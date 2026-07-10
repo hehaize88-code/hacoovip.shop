@@ -1,37 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://hacoovip.shop/</loc>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://hacoovip.shop/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://hacoovip.shop/en/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://hacoovip.shop/es/" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://hacoovip.shop/fr/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://hacoovip.shop/de/" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://hacoovip.shop/it/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://hacoovip.shop/pt/" />
-    <xhtml:link rel="alternate" hreflang="pl" href="https://hacoovip.shop/pl/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://hacoovip.shop/nl/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://hacoovip.shop/" />
-    <lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
-  </url>
-  <url><loc>https://hacoovip.shop/en/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/es/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/fr/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/de/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/it/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/pt/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/pl/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/nl/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://hacoovip.shop/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://hacoovip.shop/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://hacoovip.shop/hacoo-spreadsheet-2026-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hacoovip.shop/hacoo-qc-photos-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hacoovip.shop/hacoo-reverse-image-search-workflow.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hacoovip.shop/reverse-shopping-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://hacoovip.shop/categories.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://hacoovip.shop/trending.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hacoovip.shop/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hacoovip.shop/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hacoovip.shop/how-it-works.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hacoovip.shop/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hacoovip.shop/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hacoovip.shop/shipping-guide.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://hacoovip.shop/disclaimer.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hacoovip.shop/en/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/en/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/en/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/en/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/en/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/en/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/es/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/es/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/es/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/es/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/es/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/es/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/fr/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/fr/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/fr/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/fr/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/fr/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/fr/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/de/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/de/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/de/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/de/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/de/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/de/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/it/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/it/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/it/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/it/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/it/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/it/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pt/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/pt/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pt/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pt/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pt/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pt/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pl/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/pl/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pl/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pl/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pl/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/pl/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/nl/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hacoovip.shop/nl/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/nl/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/nl/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/nl/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/nl/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
 </urlset>
