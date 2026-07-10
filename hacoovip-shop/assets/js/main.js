@@ -1,252 +1,227 @@
 (() => {
-  const SITE = 'https://hacoovip.shop';
   const LANGS = {
-    'zh-CN': { label: '简体中文', path: '/' },
-    en: { label: 'English', path: '/en/' },
-    es: { label: 'Español', path: '/es/' },
-    fr: { label: 'Français', path: '/fr/' },
-    de: { label: 'Deutsch', path: '/de/' },
-    it: { label: 'Italiano', path: '/it/' },
-    pt: { label: 'Português', path: '/pt/' },
-    pl: { label: 'Polski', path: '/pl/' },
-    nl: { label: 'Nederlands', path: '/nl/' }
+    "zh-CN": { label: "简体中文", prefix: "" },
+    en: { label: "English", prefix: "en" },
+    es: { label: "Español", prefix: "es" },
+    fr: { label: "Français", prefix: "fr" },
+    de: { label: "Deutsch", prefix: "de" },
+    it: { label: "Italiano", prefix: "it" },
+    pt: { label: "Português", prefix: "pt" },
+    pl: { label: "Polski", prefix: "pl" },
+    nl: { label: "Nederlands", prefix: "nl" }
   };
 
-  const pageTitles = {
-    '/': 'Hacoo VIP Spreadsheet for China Shopping Finds',
-    '/en/': 'Hacoo VIP English Guide',
-    '/es/': 'Guía Hacoo VIP en Español',
-    '/fr/': 'Guide Hacoo VIP en Français',
-    '/de/': 'Hacoo VIP Deutsch',
-    '/it/': 'Guida Hacoo VIP in Italiano',
-    '/pt/': 'Guia Hacoo VIP em Português',
-    '/pl/': 'Hacoo VIP po Polsku',
-    '/nl/': 'Hacoo VIP Nederlands',
-    '/categories.html': 'Hacoo VIP Categories',
-    '/trending.html': 'Hacoo VIP Trending Products',
-    '/seo-articles.html': 'Hacoo VIP SEO Articles',
-    '/reverse-shopping-guide.html': 'Hacoo VIP Reverse Shopping Guide',
-    '/hacoo-spreadsheet-2026-guide.html': 'Hacoo Spreadsheet 2026 Guide',
-    '/hacoo-qc-photos-guide.html': 'Hacoo QC Photos Guide',
-    '/hacoo-reverse-image-search-workflow.html': 'Hacoo Reverse Image Search Workflow',
-    '/quality-control-guide.html': 'Hacoo VIP QC Guide',
-    '/faq.html': 'Hacoo VIP FAQ',
-    '/how-it-works.html': 'How Hacoo VIP Works',
-    '/shipping-guide.html': 'Hacoo VIP Shipping Notes',
-    '/disclaimer.html': 'Hacoo VIP Disclaimer'
-  };
+  const PREFIX_TO_LANG = Object.fromEntries(Object.entries(LANGS).filter(([, v]) => v.prefix).map(([k, v]) => [v.prefix, k]));
+  const LOCALIZED_PAGES = new Set(["", "index.html", "categories.html", "trending.html", "seo-articles.html", "quality-control-guide.html", "faq.html"]);
+  const ARTICLE_PAGES = new Set([
+    "reverse-shopping-guide.html",
+    "hacoo-spreadsheet-2026-guide.html",
+    "hacoo-qc-photos-guide.html",
+    "hacoo-reverse-image-search-workflow.html"
+  ]);
 
-  const articlePages = {
-    '/reverse-shopping-guide.html': {
-      headline: 'Hacoo VIP Reverse Shopping Guide: Product Research Before Proxy Buying',
-      description: 'A practical reverse-shopping guide for product research, QC-first inspection and proxy-buying decisions.',
-      datePublished: '2026-07-09',
-      dateModified: '2026-07-10',
-      keywords: ['Hacoo VIP', 'reverse shopping', 'proxy buying', 'QC guide', 'product research']
-    },
-    '/hacoo-spreadsheet-2026-guide.html': {
-      headline: 'Hacoo Spreadsheet 2026 Guide: How to Use Product Lists Safely',
-      description: 'A 2026 guide to using Hacoo-style spreadsheet lists as product research maps before any proxy-buying decision.',
-      datePublished: '2026-07-10',
-      dateModified: '2026-07-10',
-      keywords: ['Hacoo spreadsheet 2026', 'shopping spreadsheet', 'product research', 'QC checklist']
-    },
-    '/hacoo-qc-photos-guide.html': {
-      headline: 'Hacoo QC Photos Guide: How to Inspect Product Images Before Buying',
-      description: 'A QC-first guide to reviewing product cover images, detail photos, materials, sizing clues and risk signals.',
-      datePublished: '2026-07-10',
-      dateModified: '2026-07-10',
-      keywords: ['Hacoo QC photos', 'QC guide', 'product images', 'shopping research']
-    },
-    '/hacoo-reverse-image-search-workflow.html': {
-      headline: 'Hacoo Reverse Image Search Workflow for Product Research',
-      description: 'A workflow for using reverse image search to verify product covers, categories and destination pages before proxy buying.',
-      datePublished: '2026-07-10',
-      dateModified: '2026-07-10',
-      keywords: ['Hacoo reverse image search', 'product research workflow', 'proxy buying guide']
-    },
-    '/quality-control-guide.html': {
-      headline: 'Hacoo VIP QC Guide for Product Research',
-      description: 'A quality-control guide for checking product covers, detail photos, size notes and product-page consistency.',
-      datePublished: '2026-07-09',
-      dateModified: '2026-07-10',
-      keywords: ['Hacoo QC guide', 'quality control', 'product research', 'QC photos']
+  function getPathInfo() {
+    const parts = location.pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
+    const first = parts[0] || "";
+    const currentLang = PREFIX_TO_LANG[first] || "zh-CN";
+    const slug = currentLang === "zh-CN" ? (parts.join("/") || "") : (parts.slice(1).join("/") || "");
+    return { currentLang, slug };
+  }
+
+  function buildLangUrl(targetLang) {
+    const { slug } = getPathInfo();
+    const cleanSlug = slug === "index.html" ? "" : slug;
+
+    if (targetLang === "zh-CN") {
+      return cleanSlug ? `/${cleanSlug}` : "/";
     }
-  };
 
-  function normalizePath() {
-    let path = window.location.pathname || '/';
-    if (path.endsWith('/index.html')) path = path.replace(/index\.html$/, '');
-    if (path === '') path = '/';
-    return path;
+    const prefix = LANGS[targetLang]?.prefix;
+    if (!prefix) return "/";
+
+    if (LOCALIZED_PAGES.has(cleanSlug)) {
+      return cleanSlug ? `/${prefix}/${cleanSlug}` : `/${prefix}/`;
+    }
+
+    if (ARTICLE_PAGES.has(cleanSlug)) {
+      return `/${prefix}/seo-articles.html`;
+    }
+
+    return `/${prefix}/`;
   }
 
-  function currentLang() {
-    const first = normalizePath().split('/').filter(Boolean)[0];
-    return LANGS[first] ? first : 'zh-CN';
+  function setupMenu() {
+    const menu = document.querySelector("[data-menu]");
+    const links = document.querySelector(".navlinks");
+    if (menu && links) menu.addEventListener("click", () => links.classList.toggle("open"));
   }
 
-  function addJsonLd(data) {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(data, null, 2);
+  function rewriteLocalizedLinks() {
+    const { currentLang } = getPathInfo();
+    if (currentLang === "zh-CN") return;
+
+    const rewrites = {
+      "../index.html": "./",
+      "../categories.html": "categories.html",
+      "../trending.html": "trending.html",
+      "../seo-articles.html": "seo-articles.html",
+      "../quality-control-guide.html": "quality-control-guide.html",
+      "../faq.html": "faq.html",
+      "../reverse-shopping-guide.html": "seo-articles.html",
+      "../hacoo-spreadsheet-2026-guide.html": "seo-articles.html",
+      "../hacoo-qc-photos-guide.html": "seo-articles.html",
+      "../hacoo-reverse-image-search-workflow.html": "seo-articles.html"
+    };
+
+    document.querySelectorAll("a[href]").forEach((a) => {
+      const href = a.getAttribute("href");
+      if (rewrites[href]) a.setAttribute("href", rewrites[href]);
+    });
+  }
+
+  function setupLanguageSwitcher() {
+    const { currentLang } = getPathInfo();
+    document.documentElement.lang = currentLang;
+
+    const currentLabel = document.querySelector("[data-current-lang]");
+    if (currentLabel) currentLabel.textContent = LANGS[currentLang]?.label || "简体中文";
+
+    const langBox = document.querySelector(".lang");
+    const langBtn = document.querySelector(".langBtn");
+    if (!langBox || !langBtn) return;
+
+    langBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      langBox.classList.toggle("open");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!langBox.contains(e.target)) langBox.classList.remove("open");
+    });
+
+    document.querySelectorAll("[data-lang]").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.lang === currentLang);
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const nextLang = btn.dataset.lang;
+        const nextUrl = buildLangUrl(nextLang);
+        location.href = nextUrl;
+      });
+    });
+  }
+
+  function addJsonLd(obj) {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(obj);
     document.head.appendChild(script);
   }
 
-  function pageUrl(path = normalizePath()) {
-    return SITE + (path === '/' ? '/' : path);
-  }
+  function setupStructuredData() {
+    const { slug } = getPathInfo();
+    const cleanSlug = slug || "index.html";
+    const url = location.origin + location.pathname;
+    const siteName = "Hacoo VIP";
 
-  function addGlobalSchema() {
-    addJsonLd({
-      '@context': 'https://schema.org',
-      '@id': SITE + '/#organization',
-      '@type': 'Organization',
-      name: 'Hacoo VIP',
-      url: SITE + '/',
-      logo: SITE + '/assets/img/hacoo-logo.svg',
-      description: 'Independent shopping discovery and product research guide. Not the official Hacoo app website.'
-    });
-    addJsonLd({
-      '@context': 'https://schema.org',
-      '@id': SITE + '/#website',
-      '@type': 'WebSite',
-      name: 'Hacoo VIP',
-      url: SITE + '/',
-      inLanguage: ['zh-CN', 'en', 'es', 'fr', 'de', 'it', 'pt', 'pl', 'nl'],
-      publisher: { '@id': SITE + '/#organization' }
-    });
-  }
-
-  function addBreadcrumbSchema() {
-    const path = normalizePath();
-    const title = pageTitles[path] || document.title || 'Hacoo VIP';
-    const itemListElement = [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' }
-    ];
-    if (path !== '/') itemListElement.push({ '@type': 'ListItem', position: 2, name: title, item: pageUrl(path) });
-    addJsonLd({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement });
-  }
-
-  function addPageSchema() {
-    const path = normalizePath();
-    const title = pageTitles[path] || document.title || 'Hacoo VIP';
-    const data = {
-      '@context': 'https://schema.org',
-      '@type': path === '/seo-articles.html' ? 'CollectionPage' : 'WebPage',
-      name: title,
-      url: pageUrl(path),
-      isPartOf: { '@id': SITE + '/#website' },
-      publisher: { '@id': SITE + '/#organization' },
-      inLanguage: currentLang()
+    const pageTitles = {
+      "index.html": "Hacoo VIP Spreadsheet for China Shopping Finds",
+      "seo-articles.html": "Hacoo VIP SEO Articles",
+      "faq.html": "Hacoo VIP FAQ",
+      "quality-control-guide.html": "Hacoo VIP QC Guide",
+      "categories.html": "Hacoo VIP Categories",
+      "trending.html": "Hacoo VIP Trending Products",
+      "reverse-shopping-guide.html": "Hacoo VIP Reverse Shopping Guide 2026",
+      "hacoo-spreadsheet-2026-guide.html": "Hacoo Spreadsheet 2026 Guide",
+      "hacoo-qc-photos-guide.html": "Hacoo QC Photos Guide",
+      "hacoo-reverse-image-search-workflow.html": "Hacoo Reverse Image Search Workflow"
     };
-    if (articlePages[path]) data.description = articlePages[path].description;
-    addJsonLd(data);
-  }
 
-  function addArticleSchema() {
-    const path = normalizePath();
-    const article = articlePages[path];
-    if (!article) return;
+    const headline = document.querySelector("h1")?.textContent?.trim() || pageTitles[cleanSlug] || siteName;
+    const description = document.querySelector("meta[name='description']")?.content || "Independent Hacoo VIP shopping discovery and product research guide.";
+
     addJsonLd({
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: article.headline,
-      description: article.description,
-      mainEntityOfPage: pageUrl(path),
-      url: pageUrl(path),
-      datePublished: article.datePublished,
-      dateModified: article.dateModified,
-      author: { '@id': SITE + '/#organization' },
-      publisher: { '@id': SITE + '/#organization' },
-      keywords: article.keywords,
-      articleSection: 'Shopping research and QC guide',
-      inLanguage: 'en'
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://hacoovip.shop/#organization",
+      name: "Hacoo VIP",
+      url: "https://hacoovip.shop/",
+      description: "Independent shopping discovery and product research guide. Not the official Hacoo app website.",
+      logo: "https://hacoovip.shop/assets/img/hacoo-logo.svg"
     });
-  }
 
-  function addFaqSchema() {
-    if (normalizePath() !== '/faq.html') return;
     addJsonLd({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        ['Is Hacoo VIP an official Hacoo website?', 'No. Hacoo VIP is an independent shopping discovery and education site. It is not the official Hacoo app website and does not claim an official partnership.'],
-        ['Does Hacoo VIP sell products?', 'No. The site provides navigation, product research, category guidance and external links only. It does not process orders, payment, warehousing or shipping.'],
-        ['What do product cards open?', 'Product cards open matching product-detail pages so users can review images, titles, category fit and available details.'],
-        ['What do category cards open?', 'Category cards open broader category pages such as shoes, hoodies, jackets or accessories, so users can browse multiple items.'],
-        ['How do SEO article cards work?', 'Article cards are ordered by update date and link to independent guide pages such as spreadsheet research, QC photos and reverse image search workflows.'],
-        ['Why should users check QC before proxy buying?', 'QC checks help users review material cues, sizing notes, stitching, color consistency and packaging details before continuing any shopping workflow.'],
-        ['Does the language switcher create SEO language pages?', 'Yes. The site uses separate language directories such as /en/, /es/, /fr/, /de/, /it/, /pt/, /pl/ and /nl/.'],
-        ['Where is the sitemap?', 'The sitemap is available at https://hacoovip.shop/sitemap.xml and lists the core pages and SEO article pages.'],
-        ['Can users treat spreadsheet links as proof of quality?', 'No. Spreadsheet links should be treated as research leads, not proof of quality, authenticity, logistics or seller reliability.'],
-        ['When should a user stop researching an item?', 'A user should stop when the image, title and destination do not match, when detail photos are missing, or when links feel misleading.']
-      ].map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } }))
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://hacoovip.shop/#website",
+      name: siteName,
+      url: "https://hacoovip.shop/",
+      publisher: { "@id": "https://hacoovip.shop/#organization" },
+      inLanguage: document.documentElement.lang || "zh-CN"
     });
-  }
 
-  function addCollectionSchema() {
-    if (normalizePath() !== '/seo-articles.html') return;
-    const articles = [
-      ['Hacoo Spreadsheet 2026 Guide', '/hacoo-spreadsheet-2026-guide.html'],
-      ['Hacoo QC Photos Guide', '/hacoo-qc-photos-guide.html'],
-      ['Hacoo Reverse Image Search Workflow', '/hacoo-reverse-image-search-workflow.html'],
-      ['Hacoo VIP Reverse Shopping Guide', '/reverse-shopping-guide.html']
-    ];
     addJsonLd({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      name: 'Hacoo VIP SEO Articles',
-      itemListElement: articles.map(([name, path], index) => ({
-        '@type': 'ListItem',
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://hacoovip.shop/" },
+        { "@type": "ListItem", position: 2, name: headline, item: url }
+      ]
+    });
+
+    addJsonLd({
+      "@context": "https://schema.org",
+      "@type": cleanSlug === "seo-articles.html" ? "CollectionPage" : "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: headline,
+      description,
+      isPartOf: { "@id": "https://hacoovip.shop/#website" },
+      publisher: { "@id": "https://hacoovip.shop/#organization" },
+      inLanguage: document.documentElement.lang || "zh-CN"
+    });
+
+    if (cleanSlug === "faq.html") {
+      const questions = Array.from(document.querySelectorAll(".faqCard")).slice(0, 12).map((card) => ({
+        "@type": "Question",
+        name: card.querySelector("h3")?.textContent?.trim() || "Question",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: card.querySelector("p")?.textContent?.trim() || "Answer"
+        }
+      }));
+      if (questions.length) addJsonLd({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: questions });
+    }
+
+    if (ARTICLE_PAGES.has(cleanSlug)) {
+      addJsonLd({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline,
+        description,
+        url,
+        datePublished: "2026-07-10",
+        dateModified: "2026-07-10",
+        author: { "@type": "Organization", name: "Hacoo VIP" },
+        publisher: { "@id": "https://hacoovip.shop/#organization" },
+        inLanguage: document.documentElement.lang || "en"
+      });
+    }
+
+    if (cleanSlug === "seo-articles.html" || document.querySelector(".articleList, .articleGrid")) {
+      const items = Array.from(document.querySelectorAll(".articleCard[href]")).slice(0, 10).map((card, index) => ({
+        "@type": "ListItem",
         position: index + 1,
-        name,
-        url: pageUrl(path)
-      }))
-    });
-  }
-
-  function setupLanguageMenu() {
-    const active = currentLang();
-    document.documentElement.lang = active;
-    const current = document.querySelector('[data-current-lang]');
-    if (current && LANGS[active]) current.textContent = LANGS[active].label;
-
-    const langWrap = document.querySelector('.lang');
-    const langButton = document.querySelector('.langBtn');
-    if (langWrap && langButton) {
-      langButton.addEventListener('click', event => {
-        event.stopPropagation();
-        langWrap.classList.toggle('open');
-      });
-      document.addEventListener('click', event => {
-        if (!langWrap.contains(event.target)) langWrap.classList.remove('open');
-      });
-      document.querySelectorAll('[data-lang]').forEach(button => {
-        const code = button.dataset.lang;
-        button.classList.toggle('active', code === active);
-        button.addEventListener('click', event => {
-          event.preventDefault();
-          window.location.href = LANGS[code] ? LANGS[code].path : '/';
-        });
-      });
+        url: new URL(card.getAttribute("href"), location.href).href,
+        name: card.querySelector("h3")?.textContent?.trim() || `Article ${index + 1}`
+      }));
+      if (items.length) addJsonLd({ "@context": "https://schema.org", "@type": "ItemList", itemListElement: items });
     }
   }
 
-  function setupMobileMenu() {
-    const button = document.querySelector('[data-menu]');
-    const links = document.querySelector('.navlinks');
-    if (button && links) button.addEventListener('click', () => links.classList.toggle('open'));
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setupMobileMenu();
-    setupLanguageMenu();
-    addGlobalSchema();
-    addBreadcrumbSchema();
-    addPageSchema();
-    addArticleSchema();
-    addFaqSchema();
-    addCollectionSchema();
+  document.addEventListener("DOMContentLoaded", () => {
+    setupMenu();
+    rewriteLocalizedLinks();
+    setupLanguageSwitcher();
+    setupStructuredData();
   });
 })();
