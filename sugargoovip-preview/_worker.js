@@ -2,6 +2,130 @@ const SITE = "https://sugargoovip.uk";
 const MAIN = "https://www.cnfanshp.com";
 const UPDATED = "2026-07-10";
 
+const SEO_LANGS = ["de", "fr", "es", "pl"];
+const CORE_ROUTES = new Set([
+  "/", "/guides/", "/guides/what-is-sugargoo.html",
+  "/guides/qc-guide.html", "/guides/shipping-guide.html",
+  "/guides/alternative.html", "/faq.html"
+]);
+const SEO_META = {
+  de: {
+    home:["Sugargoo Tabelle 2026 | Produktfunde, QC und Versand","Entdecken Sie Produktlinks, tägliche Funde, Kategorien sowie unabhängige QC- und Versandratgeber für Sugargoo."],
+    guides:["Sugargoo Ratgeber 2026 | QC, Versand und Alternativen","Unabhängige Sugargoo-Ratgeber zu Einkaufsablauf, QC-Fotos, Versandkosten, Tracking und Alternativen."],
+    what:["Was ist Sugargoo? Einkaufsagent und Ablauf erklärt","Erfahren Sie, wie der Sugargoo-Einkaufsablauf von Produktlink und Lager bis QC, Verpackung und internationalem Versand funktioniert."],
+    qc:["Sugargoo QC-Fotos 2026 | Checkliste vor dem Versand","Prüfen Sie Größe, Farbe, Nähte, Logos, Zubehör, Maße und sichtbare Mängel anhand von Sugargoo-QC-Fotos."],
+    shipping:["Sugargoo Versandratgeber 2026 | Kosten, Routen und Tracking","Vergleichen Sie Sugargoo-Versandrouten nach Abrechnungsgewicht, Gesamtkosten, Einschränkungen, Tracking und realistischer Laufzeit."],
+    alternative:["Sugargoo Alternativen 2026 | Einkaufsagenten vergleichen","Vergleichen Sie Sugargoo-Alternativen anhand von Zahlung, QC, Lagerung, Rückgabe, Support, Verpackung und Versandrouten."],
+    faq:["Sugargoo FAQ 2026 | Bestellung, QC, Versand und Rückgabe","Antworten auf häufige Fragen zu Sugargoo-Bestellungen, QC-Fotos, Versanddauer, Rückgaben und Abrechnungsgewicht."]
+  },
+  fr: {
+    home:["Tableur Sugargoo 2026 | Produits, QC et expédition","Découvrez des liens produits, des sélections, des catégories et des guides indépendants sur le QC et l’expédition Sugargoo."],
+    guides:["Guides Sugargoo 2026 | QC, expédition et alternatives","Guides indépendants sur le fonctionnement de Sugargoo, les photos QC, les coûts d’expédition, le suivi et les alternatives."],
+    what:["Qu’est-ce que Sugargoo ? Fonctionnement de l’agent d’achat","Comprenez le processus Sugargoo, du lien produit à l’entrepôt, aux photos QC, à l’emballage et à l’expédition internationale."],
+    qc:["Photos QC Sugargoo 2026 | Liste de contrôle avant envoi","Vérifiez taille, couleur, coutures, logos, accessoires, mesures et défauts visibles grâce aux photos QC Sugargoo."],
+    shipping:["Guide d’expédition Sugargoo 2026 | Coûts, lignes et suivi","Comparez les lignes Sugargoo selon le poids facturable, le coût total, les restrictions, le suivi et les délais réalistes."],
+    alternative:["Alternatives à Sugargoo 2026 | Comparer les agents d’achat","Comparez les alternatives à Sugargoo selon les paiements, le QC, le stockage, les retours, le support et les lignes d’expédition."],
+    faq:["FAQ Sugargoo 2026 | Commandes, QC, expédition et retours","Réponses aux questions fréquentes sur les commandes Sugargoo, les photos QC, les délais, les retours et le poids facturable."]
+  },
+  es: {
+    home:["Hoja Sugargoo 2026 | Productos, QC y envíos","Descubre enlaces de productos, selecciones, categorías y guías independientes sobre control de calidad y envíos con Sugargoo."],
+    guides:["Guías Sugargoo 2026 | QC, envíos y alternativas","Guías independientes sobre el proceso de compra, fotos QC, costes de envío, seguimiento y alternativas a Sugargoo."],
+    what:["¿Qué es Sugargoo? Proceso del agente de compras","Conoce el proceso de Sugargoo desde el enlace del producto y el almacén hasta las fotos QC, el embalaje y el envío internacional."],
+    qc:["Fotos QC de Sugargoo 2026 | Lista de revisión","Revisa talla, color, costuras, logotipos, accesorios, medidas y defectos visibles mediante las fotos QC de Sugargoo."],
+    shipping:["Guía de envíos Sugargoo 2026 | Costes, rutas y seguimiento","Compara rutas de Sugargoo por peso facturable, coste total, restricciones, seguimiento y plazo de entrega realista."],
+    alternative:["Alternativas a Sugargoo 2026 | Comparar agentes de compra","Compara alternativas a Sugargoo por pagos, QC, almacenamiento, devoluciones, soporte, embalaje y rutas de envío."],
+    faq:["FAQ Sugargoo 2026 | Pedidos, QC, envíos y devoluciones","Respuestas a preguntas sobre pedidos Sugargoo, fotos QC, tiempos de envío, devoluciones y peso facturable."]
+  },
+  pl: {
+    home:["Arkusz Sugargoo 2026 | Produkty, QC i wysyłka","Odkrywaj linki do produktów, codzienne propozycje, kategorie oraz niezależne poradniki QC i wysyłki Sugargoo."],
+    guides:["Poradniki Sugargoo 2026 | QC, wysyłka i alternatywy","Niezależne poradniki o procesie zakupowym, zdjęciach QC, kosztach wysyłki, śledzeniu i alternatywach dla Sugargoo."],
+    what:["Czym jest Sugargoo? Proces agenta zakupowego","Poznaj proces Sugargoo od linku produktu i magazynu po zdjęcia QC, pakowanie oraz wysyłkę międzynarodową."],
+    qc:["Zdjęcia QC Sugargoo 2026 | Lista kontroli przed wysyłką","Sprawdź rozmiar, kolor, szwy, logo, dodatki, wymiary i widoczne wady na zdjęciach QC Sugargoo."],
+    shipping:["Poradnik wysyłki Sugargoo 2026 | Koszty, trasy i tracking","Porównaj trasy Sugargoo według wagi rozliczeniowej, pełnego kosztu, ograniczeń, śledzenia i realnego czasu dostawy."],
+    alternative:["Alternatywy Sugargoo 2026 | Porównanie agentów zakupowych","Porównaj alternatywy Sugargoo pod kątem płatności, QC, magazynu, zwrotów, wsparcia, pakowania i tras wysyłki."],
+    faq:["FAQ Sugargoo 2026 | Zamówienia, QC, wysyłka i zwroty","Odpowiedzi na pytania o zamówienia Sugargoo, zdjęcia QC, czas wysyłki, zwroty i wagę rozliczeniową."]
+  }
+};
+
+function normalizeCorePath(path) {
+  if (!path || path === "/index.html") return "/";
+  if (path === "/guides/index.html") return "/guides/";
+  return path;
+}
+function coreKey(path) {
+  path = normalizeCorePath(path);
+  if (path === "/") return "home";
+  if (path === "/guides/") return "guides";
+  if (path.endsWith("what-is-sugargoo.html")) return "what";
+  if (path.endsWith("qc-guide.html")) return "qc";
+  if (path.endsWith("shipping-guide.html")) return "shipping";
+  if (path.endsWith("alternative.html")) return "alternative";
+  if (path.endsWith("faq.html")) return "faq";
+  return null;
+}
+function localeUrl(lang, path) {
+  path = normalizeCorePath(path);
+  return lang === "en" ? SITE + path : SITE + "/" + lang + (path === "/" ? "/" : path);
+}
+function hreflangTags(path) {
+  path = normalizeCorePath(path);
+  if (!CORE_ROUTES.has(path)) return "";
+  const links = ["en", ...SEO_LANGS].map(lang => `<link rel="alternate" hreflang="${lang}" href="${localeUrl(lang, path)}">`);
+  links.push(`<link rel="alternate" hreflang="x-default" href="${localeUrl("en", path)}">`);
+  return links.join("");
+}
+function localizedInternalLinks(html, lang, path) {
+  const prefix = "/" + lang;
+  html = html.replace(/(href|src)="(?:\.\.\/)?assets\//g, `$1="/assets/`);
+  html = html.replace(/href="\.\.\/index\.html#daily-finds"/g, `href="${prefix}/#daily-finds"`);
+  html = html.replace(/href="\.\.\/index\.html#categories"/g, `href="${prefix}/#categories"`);
+  html = html.replace(/href="index\.html#daily-finds"/g, `href="${prefix}/#daily-finds"`);
+  html = html.replace(/href="index\.html#categories"/g, `href="${prefix}/#categories"`);
+  html = html.replace(/href="\.\.\/index\.html"/g, `href="${prefix}/"`);
+  html = html.replace(/href="guides\/index\.html"/g, `href="${prefix}/guides/"`);
+  html = html.replace(/href="\.\.\/faq\.html([^\"]*)"/g, `href="${prefix}/faq.html$1"`);
+  html = html.replace(/href="faq\.html([^\"]*)"/g, `href="${prefix}/faq.html$1"`);
+  const guides = ["what-is-sugargoo.html","qc-guide.html","shipping-guide.html","alternative.html"];
+  for (const file of guides) html = html.replace(new RegExp(`href="${file.replace('.', '\\.') }"`, "g"), `href="${prefix}/guides/${file}"`);
+  if (normalizeCorePath(path).startsWith("/guides/")) html = html.replace(/href="index\.html"/g, `href="${prefix}/guides/"`);
+  else html = html.replace(/href="index\.html"/g, `href="${prefix}/"`);
+  return html;
+}
+function replaceMeta(html, lang, path) {
+  path = normalizeCorePath(path);
+  const key = coreKey(path);
+  const meta = SEO_META[lang] && SEO_META[lang][key];
+  if (!meta) return html;
+  const [title, description] = meta;
+  const canonical = localeUrl(lang, path);
+  html = html.replace(/<html lang="[^"]*">/i, `<html lang="${lang}">`);
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${description}">`);
+  html = html.replace(/<link rel="canonical" href="[^"]*">/i, `<link rel="canonical" href="${canonical}">${hreflangTags(path)}`);
+  html = html.replace(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${title}">`);
+  html = html.replace(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${description}">`);
+  html = html.replace(/<meta property="og:url" content="[^"]*">/i, `<meta property="og:url" content="${canonical}">`);
+  html = html.replace(/<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${title}">`);
+  html = html.replace(/<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${description}">`);
+  html = localizedInternalLinks(html, lang, path);
+  html = html.replace(/<body([^>]*)>/i, `<body$1 data-seo-locale="${lang}">`);
+  html = html.replace(/<script src="\/assets\/i18n\.js" defer><\/script>|<script src="(?:\.\.\/)?assets\/i18n\.js" defer><\/script>/i,
+    `<script>localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script>`);
+  return html;
+}
+async function serveLocalized(request, env, lang, requestedPath) {
+  const path = normalizeCorePath(requestedPath || "/");
+  if (!CORE_ROUTES.has(path)) return Response.redirect(SITE + "/" + lang + "/", 302);
+  const assetPath = path === "/" ? "/index.html" : path === "/guides/" ? "/guides/index.html" : path;
+  const assetUrl = new URL(request.url);
+  assetUrl.pathname = assetPath;
+  assetUrl.search = "";
+  const response = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+  if (!response.ok) return response;
+  const html = replaceMeta(await response.text(), lang, path);
+  return new Response(html, {status:200, headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff"}});
+}
+
 const guidePages = {
   "/guides/sugargoo-spreadsheet-guide.html": {
     title: "Sugargoo Spreadsheet Guide 2026 | How to Use Product Links Safely",
@@ -222,7 +346,7 @@ function schema(type, title, description, path, extra = {}) {
 }
 
 function shell({title, description, path, body, type="Article"}) {
-  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="canonical" href="${SITE + path}"><link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="article"><meta property="og:site_name" content="Sugargoo VIP"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${SITE + path}"><meta property="og:image" content="${SITE}/assets/11.png"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">${schema(type,title,description,path)}</script></head><body>${nav("")}<main class="wrap"><div class="breadcrumbs"><a href="/">Home</a> / <span>${esc(title)}</span></div>${body}${footer("")}</main><script src="/assets/i18n.js" defer></script></body></html>`;
+  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="canonical" href="${SITE + path}">${hreflangTags(path)}<link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="article"><meta property="og:site_name" content="Sugargoo VIP"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${SITE + path}"><meta property="og:image" content="${SITE}/assets/11.png"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">${schema(type,title,description,path)}</script></head><body>${nav("")}<main class="wrap"><div class="breadcrumbs"><a href="/">Home</a> / <span>${esc(title)}</span></div>${body}${footer("")}</main><script src="/assets/i18n.js" defer></script></body></html>`;
 }
 
 function sectionsHtml(sections) {
@@ -266,6 +390,10 @@ function injectStaticHtml(html, pathname) {
   if ((pathname === "/" || pathname === "/index.html") && !html.includes('href="/categories/" class="btn')) {
     html = html.replace('<a class="btn btn-secondary" href="guides/index.html" data-i18n="nav.guides">Guides</a>', '<a class="btn btn-secondary" href="guides/index.html" data-i18n="nav.guides">Guides</a><a class="btn btn-secondary" href="/categories/">Category Guides</a>');
   }
+  const corePath = normalizeCorePath(pathname);
+  if (CORE_ROUTES.has(corePath) && !html.includes('hreflang=')) {
+    html = html.replace(/(<link rel="canonical"[^>]+>)/i, `$1${hreflangTags(corePath)}`);
+  }
   return html;
 }
 
@@ -279,6 +407,11 @@ export default {
       url.hostname = "sugargoovip.uk";
       url.port = "";
       return Response.redirect(url.toString(), 301);
+    }
+
+    const localeMatch = url.pathname.match(/^\/(de|fr|es|pl)(\/.*)?$/);
+    if (localeMatch) {
+      return serveLocalized(request, env, localeMatch[1], localeMatch[2] || "/");
     }
 
     const path = url.pathname;
