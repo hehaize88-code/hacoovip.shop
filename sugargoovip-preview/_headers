@@ -3,6 +3,10 @@
   Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
 
+/sitemap.txt
+  Content-Type: text/plain; charset=UTF-8
+  Cache-Control: public, max-age=0, must-revalidate
+
 /robots.txt
   Content-Type: text/plain; charset=UTF-8
   Cache-Control: public, max-age=0, must-revalidate
