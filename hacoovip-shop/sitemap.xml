@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://hacoovip.shop/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://hacoovip.shop/zh/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hacoovip.shop/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://hacoovip.shop/hacoo-spreadsheet-2026-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hacoovip.shop/hacoo-qc-photos-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -13,6 +14,11 @@
   <url><loc>https://hacoovip.shop/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hacoovip.shop/shipping-guide.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://hacoovip.shop/disclaimer.html</loc><lastmod>2026-07-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://hacoovip.shop/zh/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/zh/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/zh/seo-articles.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/zh/quality-control-guide.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://hacoovip.shop/zh/faq.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
   <url><loc>https://hacoovip.shop/en/</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hacoovip.shop/en/categories.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
   <url><loc>https://hacoovip.shop/en/trending.html</loc><lastmod>2026-07-10</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
