@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ | Sugargoo VIP</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-title-key="faq.title">
+<header class="site-header">
+<a class="site-logo" href="index.html"><img src="assets/11.png" alt="Sugargoo"></a>
+<nav class="site-nav"><a href="index.html" data-i18n="nav.home">Home</a><a href="index.html#daily-finds" data-i18n="nav.daily">Daily Finds</a><a href="index.html#categories" data-i18n="nav.categories">Categories</a><a href="https://www.cnfanshp.com/" target="_blank" rel="noopener" data-i18n="nav.spreadsheet">Spreadsheet</a><a href="guides/index.html" data-i18n="nav.guides">Guides</a><a href="faq.html" data-i18n="nav.faq">FAQ</a></nav>
+<select class="language-select" aria-label="Language"></select>
+</header>
+<main class="wrap">
+<div class="breadcrumbs"><a href="index.html" data-i18n="nav.home">Home</a> / <span data-i18n="nav.faq">FAQ</span></div>
+<section class="faq-header"><h1 data-i18n="faq.title">Frequently Asked Questions</h1><p class="article-lead" data-i18n="faq.intro">Open each question to read the full answer. The answers describe general shopping-agent workflows; current platform rules should always be verified directly.</p></section>
+<section class="faq-list">
+<details class="faq-card" id="safe"><summary data-i18n="faq.q1">Is this the official Sugargoo website?</summary><div class="faq-answer" data-i18n="faq.a1">No. This is an independent guide and product-discovery website.</div></details>
+<details class="faq-card"><summary data-i18n="faq.q2">Does this website sell products?</summary><div class="faq-answer" data-i18n="faq.a2">No. Product cards lead to the linked main shopping site.</div></details>
+<details class="faq-card" id="order"><summary data-i18n="faq.q3">How do I place an order?</summary><div class="faq-answer" data-i18n="faq.a3">Open a product link and follow the destination site’s order instructions.</div></details>
+<details class="faq-card"><summary data-i18n="faq.q4">Why should I check QC photos?</summary><div class="faq-answer" data-i18n="faq.a4">QC photos help identify visible problems before international shipping.</div></details>
+<details class="faq-card" id="shipping"><summary data-i18n="faq.q5">How long does shipping take?</summary><div class="faq-answer" data-i18n="faq.a5">Delivery depends on the route, destination and customs.</div></details>
+<details class="faq-card" id="returns"><summary data-i18n="faq.q6">Can I return an item?</summary><div class="faq-answer" data-i18n="faq.a6">Returns depend on the seller, policy and deadline.</div></details>
+<details class="faq-card"><summary data-i18n="faq.q7">What is chargeable weight?</summary><div class="faq-answer" data-i18n="faq.a7">It is the actual or volumetric weight used for billing.</div></details>
+<details class="faq-card"><summary data-i18n="faq.q8">What should I do before paying for shipping?</summary><div class="faq-answer" data-i18n="faq.a8">Check the item list, QC, address, declaration, packaging, route, insurance and estimated weight.</div></details>
+</section>
+<footer class="site-footer"><div><strong data-i18n="footer.trust">Independent shopping discovery guide</strong><p data-i18n="footer.help">Products and orders are handled by the linked main site</p></div><div><strong data-i18n="footer.choose">Choose another language</strong><div class="footer-languages"><button data-language-button="en">English</button><button data-language-button="es">Español</button><button data-language-button="fr">Français</button><button data-language-button="de">Deutsch</button><button data-language-button="it">Italiano</button><button data-language-button="pt">Português</button><button data-language-button="pl">Polski</button><button data-language-button="nl">Nederlands</button><button data-language-button="zh">简体中文</button></div></div></footer>
+</main>
+<script src="assets/i18n.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const id=location.hash.slice(1);if(id){const d=document.getElementById(id);if(d){d.open=true;setTimeout(()=>d.scrollIntoView({behavior:'smooth',block:'center'}),80)}}});</script>
+</body>
+</html>
