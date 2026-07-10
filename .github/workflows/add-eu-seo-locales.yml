@@ -1,0 +1,223 @@
+name: Add European SEO locale directories
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/add-eu-seo-locales.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-locales:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add localized routes, hreflang and language sitemaps
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('sugargoovip-preview')
+          worker_path = root / '_worker.js'
+          worker = worker_path.read_text(encoding='utf-8')
+
+          locale_code = r'''
+          const SEO_LANGS = ["de", "fr", "es", "pl"];
+          const CORE_ROUTES = new Set([
+            "/", "/guides/", "/guides/what-is-sugargoo.html",
+            "/guides/qc-guide.html", "/guides/shipping-guide.html",
+            "/guides/alternative.html", "/faq.html"
+          ]);
+          const SEO_META = {
+            de: {
+              home:["Sugargoo Tabelle 2026 | Produktfunde, QC und Versand","Entdecken Sie Produktlinks, tägliche Funde, Kategorien sowie unabhängige QC- und Versandratgeber für Sugargoo."],
+              guides:["Sugargoo Ratgeber 2026 | QC, Versand und Alternativen","Unabhängige Sugargoo-Ratgeber zu Einkaufsablauf, QC-Fotos, Versandkosten, Tracking und Alternativen."],
+              what:["Was ist Sugargoo? Einkaufsagent und Ablauf erklärt","Erfahren Sie, wie der Sugargoo-Einkaufsablauf von Produktlink und Lager bis QC, Verpackung und internationalem Versand funktioniert."],
+              qc:["Sugargoo QC-Fotos 2026 | Checkliste vor dem Versand","Prüfen Sie Größe, Farbe, Nähte, Logos, Zubehör, Maße und sichtbare Mängel anhand von Sugargoo-QC-Fotos."],
+              shipping:["Sugargoo Versandratgeber 2026 | Kosten, Routen und Tracking","Vergleichen Sie Sugargoo-Versandrouten nach Abrechnungsgewicht, Gesamtkosten, Einschränkungen, Tracking und realistischer Laufzeit."],
+              alternative:["Sugargoo Alternativen 2026 | Einkaufsagenten vergleichen","Vergleichen Sie Sugargoo-Alternativen anhand von Zahlung, QC, Lagerung, Rückgabe, Support, Verpackung und Versandrouten."],
+              faq:["Sugargoo FAQ 2026 | Bestellung, QC, Versand und Rückgabe","Antworten auf häufige Fragen zu Sugargoo-Bestellungen, QC-Fotos, Versanddauer, Rückgaben und Abrechnungsgewicht."]
+            },
+            fr: {
+              home:["Tableur Sugargoo 2026 | Produits, QC et expédition","Découvrez des liens produits, des sélections, des catégories et des guides indépendants sur le QC et l’expédition Sugargoo."],
+              guides:["Guides Sugargoo 2026 | QC, expédition et alternatives","Guides indépendants sur le fonctionnement de Sugargoo, les photos QC, les coûts d’expédition, le suivi et les alternatives."],
+              what:["Qu’est-ce que Sugargoo ? Fonctionnement de l’agent d’achat","Comprenez le processus Sugargoo, du lien produit à l’entrepôt, aux photos QC, à l’emballage et à l’expédition internationale."],
+              qc:["Photos QC Sugargoo 2026 | Liste de contrôle avant envoi","Vérifiez taille, couleur, coutures, logos, accessoires, mesures et défauts visibles grâce aux photos QC Sugargoo."],
+              shipping:["Guide d’expédition Sugargoo 2026 | Coûts, lignes et suivi","Comparez les lignes Sugargoo selon le poids facturable, le coût total, les restrictions, le suivi et les délais réalistes."],
+              alternative:["Alternatives à Sugargoo 2026 | Comparer les agents d’achat","Comparez les alternatives à Sugargoo selon les paiements, le QC, le stockage, les retours, le support et les lignes d’expédition."],
+              faq:["FAQ Sugargoo 2026 | Commandes, QC, expédition et retours","Réponses aux questions fréquentes sur les commandes Sugargoo, les photos QC, les délais, les retours et le poids facturable."]
+            },
+            es: {
+              home:["Hoja Sugargoo 2026 | Productos, QC y envíos","Descubre enlaces de productos, selecciones, categorías y guías independientes sobre control de calidad y envíos con Sugargoo."],
+              guides:["Guías Sugargoo 2026 | QC, envíos y alternativas","Guías independientes sobre el proceso de compra, fotos QC, costes de envío, seguimiento y alternativas a Sugargoo."],
+              what:["¿Qué es Sugargoo? Proceso del agente de compras","Conoce el proceso de Sugargoo desde el enlace del producto y el almacén hasta las fotos QC, el embalaje y el envío internacional."],
+              qc:["Fotos QC de Sugargoo 2026 | Lista de revisión","Revisa talla, color, costuras, logotipos, accesorios, medidas y defectos visibles mediante las fotos QC de Sugargoo."],
+              shipping:["Guía de envíos Sugargoo 2026 | Costes, rutas y seguimiento","Compara rutas de Sugargoo por peso facturable, coste total, restricciones, seguimiento y plazo de entrega realista."],
+              alternative:["Alternativas a Sugargoo 2026 | Comparar agentes de compra","Compara alternativas a Sugargoo por pagos, QC, almacenamiento, devoluciones, soporte, embalaje y rutas de envío."],
+              faq:["FAQ Sugargoo 2026 | Pedidos, QC, envíos y devoluciones","Respuestas a preguntas sobre pedidos Sugargoo, fotos QC, tiempos de envío, devoluciones y peso facturable."]
+            },
+            pl: {
+              home:["Arkusz Sugargoo 2026 | Produkty, QC i wysyłka","Odkrywaj linki do produktów, codzienne propozycje, kategorie oraz niezależne poradniki QC i wysyłki Sugargoo."],
+              guides:["Poradniki Sugargoo 2026 | QC, wysyłka i alternatywy","Niezależne poradniki o procesie zakupowym, zdjęciach QC, kosztach wysyłki, śledzeniu i alternatywach dla Sugargoo."],
+              what:["Czym jest Sugargoo? Proces agenta zakupowego","Poznaj proces Sugargoo od linku produktu i magazynu po zdjęcia QC, pakowanie oraz wysyłkę międzynarodową."],
+              qc:["Zdjęcia QC Sugargoo 2026 | Lista kontroli przed wysyłką","Sprawdź rozmiar, kolor, szwy, logo, dodatki, wymiary i widoczne wady na zdjęciach QC Sugargoo."],
+              shipping:["Poradnik wysyłki Sugargoo 2026 | Koszty, trasy i tracking","Porównaj trasy Sugargoo według wagi rozliczeniowej, pełnego kosztu, ograniczeń, śledzenia i realnego czasu dostawy."],
+              alternative:["Alternatywy Sugargoo 2026 | Porównanie agentów zakupowych","Porównaj alternatywy Sugargoo pod kątem płatności, QC, magazynu, zwrotów, wsparcia, pakowania i tras wysyłki."],
+              faq:["FAQ Sugargoo 2026 | Zamówienia, QC, wysyłka i zwroty","Odpowiedzi na pytania o zamówienia Sugargoo, zdjęcia QC, czas wysyłki, zwroty i wagę rozliczeniową."]
+            }
+          };
+
+          function normalizeCorePath(path) {
+            if (!path || path === "/index.html") return "/";
+            if (path === "/guides/index.html") return "/guides/";
+            return path;
+          }
+          function coreKey(path) {
+            path = normalizeCorePath(path);
+            if (path === "/") return "home";
+            if (path === "/guides/") return "guides";
+            if (path.endsWith("what-is-sugargoo.html")) return "what";
+            if (path.endsWith("qc-guide.html")) return "qc";
+            if (path.endsWith("shipping-guide.html")) return "shipping";
+            if (path.endsWith("alternative.html")) return "alternative";
+            if (path.endsWith("faq.html")) return "faq";
+            return null;
+          }
+          function localeUrl(lang, path) {
+            path = normalizeCorePath(path);
+            return lang === "en" ? SITE + path : SITE + "/" + lang + (path === "/" ? "/" : path);
+          }
+          function hreflangTags(path) {
+            path = normalizeCorePath(path);
+            if (!CORE_ROUTES.has(path)) return "";
+            const links = ["en", ...SEO_LANGS].map(lang => `<link rel="alternate" hreflang="${lang}" href="${localeUrl(lang, path)}">`);
+            links.push(`<link rel="alternate" hreflang="x-default" href="${localeUrl("en", path)}">`);
+            return links.join("");
+          }
+          function localizedInternalLinks(html, lang, path) {
+            const prefix = "/" + lang;
+            html = html.replace(/(href|src)="(?:\.\.\/)?assets\//g, `$1="/assets/`);
+            html = html.replace(/href="\.\.\/index\.html#daily-finds"/g, `href="${prefix}/#daily-finds"`);
+            html = html.replace(/href="\.\.\/index\.html#categories"/g, `href="${prefix}/#categories"`);
+            html = html.replace(/href="index\.html#daily-finds"/g, `href="${prefix}/#daily-finds"`);
+            html = html.replace(/href="index\.html#categories"/g, `href="${prefix}/#categories"`);
+            html = html.replace(/href="\.\.\/index\.html"/g, `href="${prefix}/"`);
+            html = html.replace(/href="guides\/index\.html"/g, `href="${prefix}/guides/"`);
+            html = html.replace(/href="\.\.\/faq\.html([^\"]*)"/g, `href="${prefix}/faq.html$1"`);
+            html = html.replace(/href="faq\.html([^\"]*)"/g, `href="${prefix}/faq.html$1"`);
+            const guides = ["what-is-sugargoo.html","qc-guide.html","shipping-guide.html","alternative.html"];
+            for (const file of guides) html = html.replace(new RegExp(`href="${file.replace('.', '\\.') }"`, "g"), `href="${prefix}/guides/${file}"`);
+            if (normalizeCorePath(path).startsWith("/guides/")) html = html.replace(/href="index\.html"/g, `href="${prefix}/guides/"`);
+            else html = html.replace(/href="index\.html"/g, `href="${prefix}/"`);
+            return html;
+          }
+          function replaceMeta(html, lang, path) {
+            path = normalizeCorePath(path);
+            const key = coreKey(path);
+            const meta = SEO_META[lang] && SEO_META[lang][key];
+            if (!meta) return html;
+            const [title, description] = meta;
+            const canonical = localeUrl(lang, path);
+            html = html.replace(/<html lang="[^"]*">/i, `<html lang="${lang}">`);
+            html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+            html = html.replace(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${description}">`);
+            html = html.replace(/<link rel="canonical" href="[^"]*">/i, `<link rel="canonical" href="${canonical}">${hreflangTags(path)}`);
+            html = html.replace(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${title}">`);
+            html = html.replace(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${description}">`);
+            html = html.replace(/<meta property="og:url" content="[^"]*">/i, `<meta property="og:url" content="${canonical}">`);
+            html = html.replace(/<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${title}">`);
+            html = html.replace(/<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${description}">`);
+            html = localizedInternalLinks(html, lang, path);
+            html = html.replace(/<body([^>]*)>/i, `<body$1 data-seo-locale="${lang}">`);
+            html = html.replace(/<script src="\/assets\/i18n\.js" defer><\/script>|<script src="(?:\.\.\/)?assets\/i18n\.js" defer><\/script>/i,
+              `<script>localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script>`);
+            return html;
+          }
+          async function serveLocalized(request, env, lang, requestedPath) {
+            const path = normalizeCorePath(requestedPath || "/");
+            if (!CORE_ROUTES.has(path)) return Response.redirect(SITE + "/" + lang + "/", 302);
+            const assetPath = path === "/" ? "/index.html" : path === "/guides/" ? "/guides/index.html" : path;
+            const assetUrl = new URL(request.url);
+            assetUrl.pathname = assetPath;
+            assetUrl.search = "";
+            const response = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+            if (!response.ok) return response;
+            const html = replaceMeta(await response.text(), lang, path);
+            return new Response(html, {status:200, headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff"}});
+          }
+          '''.strip('\n')
+
+          marker = 'const UPDATED = "2026-07-10";'
+          if 'const SEO_LANGS = ["de", "fr", "es", "pl"]' not in worker:
+              worker = worker.replace(marker, marker + '\n\n' + locale_code, 1)
+
+          old_shell = '<link rel="canonical" href="${SITE + path}"><link rel="icon"'
+          new_shell = '<link rel="canonical" href="${SITE + path}">${hreflangTags(path)}<link rel="icon"'
+          worker = worker.replace(old_shell, new_shell)
+
+          old_inject_end = '  return html;\n}\n\nexport default {'
+          new_inject_end = '''  const corePath = normalizeCorePath(pathname);\n  if (CORE_ROUTES.has(corePath) && !html.includes('hreflang=')) {\n    html = html.replace(/(<link rel="canonical"[^>]+>)/i, `$1${hreflangTags(corePath)}`);\n  }\n  return html;\n}\n\nexport default {'''
+          worker = worker.replace(old_inject_end, new_inject_end)
+
+          fetch_marker = '    const path = url.pathname;'
+          locale_fetch = '''    const localeMatch = url.pathname.match(/^\\/(de|fr|es|pl)(\\/.*)?$/);\n    if (localeMatch) {\n      return serveLocalized(request, env, localeMatch[1], localeMatch[2] || "/");\n    }\n\n    const path = url.pathname;'''
+          worker = worker.replace(fetch_marker, locale_fetch, 1)
+          worker_path.write_text(worker, encoding='utf-8')
+
+          i18n_path = root / 'assets' / 'i18n.js'
+          i18n = i18n_path.read_text(encoding='utf-8')
+          old_apply = "function apply(lang){const d=T[lang]||T.en;document.documentElement.lang=lang==='zh'?'zh-CN':lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(d[k]!=null)el.textContent=d[k]});document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml;if(d[k]!=null)el.innerHTML=d[k]});const tk=document.body.dataset.titleKey;if(tk&&d[tk])document.title=d[tk]+' | Sugargoo VIP';document.querySelectorAll('.language-select').forEach(s=>s.value=lang);localStorage.setItem('sugargooLang',lang)}"
+          new_apply = "const SEO_LANGS=['de','fr','es','pl'];const SEO_CORE=new Set(['/','/guides/','/guides/what-is-sugargoo.html','/guides/qc-guide.html','/guides/shipping-guide.html','/guides/alternative.html','/faq.html']);function seoBasePath(){const m=location.pathname.match(/^\\/(de|fr|es|pl)(\\/.*)?$/);let p=m?(m[2]||'/'):location.pathname;if(p==='/index.html')p='/';if(p==='/guides/index.html')p='/guides/';return p}function chooseLanguage(lang){if(lang==='en'||SEO_LANGS.includes(lang)){let p=seoBasePath();if(!SEO_CORE.has(p))p='/';const target=lang==='en'?p:'/'+lang+(p==='/'?'/':p);location.href=target+location.search+location.hash;return}apply(lang)}function apply(lang){const d=T[lang]||T.en;document.documentElement.lang=lang==='zh'?'zh-CN':lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(d[k]!=null)el.textContent=d[k]});document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml;if(d[k]!=null)el.innerHTML=d[k]});const tk=document.body.dataset.titleKey;const seoLocale=/^\\/(de|fr|es|pl)(\\/|$)/.test(location.pathname);if(tk&&d[tk]&&!seoLocale)document.title=d[tk]+' | Sugargoo VIP';document.querySelectorAll('.language-select').forEach(s=>s.value=lang);localStorage.setItem('sugargooLang',lang)}"
+          i18n = i18n.replace(old_apply, new_apply)
+          old_build = "function build(){const saved=localStorage.getItem('sugargooLang')||'en';document.querySelectorAll('.language-select').forEach(sel=>{sel.innerHTML='';Object.entries(labels).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent='🌐 '+n;sel.appendChild(o)});sel.addEventListener('change',()=>apply(sel.value))});document.querySelectorAll('[data-language-button]').forEach(btn=>btn.addEventListener('click',()=>apply(btn.dataset.languageButton)));apply(saved)}"
+          new_build = "function build(){const match=location.pathname.match(/^\\/(de|fr|es|pl)(\\/|$)/);const saved=match?match[1]:(localStorage.getItem('sugargooLang')||'en');document.querySelectorAll('.language-select').forEach(sel=>{sel.innerHTML='';Object.entries(labels).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent='🌐 '+n;sel.appendChild(o)});sel.addEventListener('change',()=>chooseLanguage(sel.value))});document.querySelectorAll('[data-language-button]').forEach(btn=>btn.addEventListener('click',()=>chooseLanguage(btn.dataset.languageButton)));apply(saved)}"
+          i18n = i18n.replace(old_build, new_build)
+          i18n_path.write_text(i18n, encoding='utf-8')
+
+          routes = ['/', '/guides/', '/guides/what-is-sugargoo.html', '/guides/qc-guide.html', '/guides/shipping-guide.html', '/guides/alternative.html', '/faq.html']
+          labels = {'de':'Deutsch','fr':'Français','es':'Español','pl':'Polski'}
+          for lang in labels:
+              rows = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+              for route in routes:
+                  url = f'https://sugargoovip.uk/{lang}/' if route == '/' else f'https://sugargoovip.uk/{lang}{route}'
+                  rows.append(f'  <url><loc>{url}</loc><lastmod>2026-07-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>')
+              rows.append('</urlset>')
+              (root / f'sitemap-{lang}.xml').write_text('\n'.join(rows) + '\n', encoding='utf-8')
+
+          index_rows = ['<?xml version="1.0" encoding="UTF-8"?>', '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+          for name in ['sitemap.xml','sitemap-de.xml','sitemap-fr.xml','sitemap-es.xml','sitemap-pl.xml']:
+              index_rows.append(f'  <sitemap><loc>https://sugargoovip.uk/{name}</loc><lastmod>2026-07-10</lastmod></sitemap>')
+          index_rows.append('</sitemapindex>')
+          (root / 'sitemap-index.xml').write_text('\n'.join(index_rows) + '\n', encoding='utf-8')
+
+          robots_path = root / 'robots.txt'
+          robots = robots_path.read_text(encoding='utf-8')
+          if 'sitemap-index.xml' not in robots:
+              robots = robots.rstrip() + '\nSitemap: https://sugargoovip.uk/sitemap-index.xml\n'
+          robots_path.write_text(robots, encoding='utf-8')
+
+          headers_path = root / '_headers'
+          headers = headers_path.read_text(encoding='utf-8')
+          block = '''\n/sitemap-index.xml\n  Content-Type: application/xml; charset=UTF-8\n  Cache-Control: public, max-age=0, must-revalidate\n\n/sitemap-*.xml\n  Content-Type: application/xml; charset=UTF-8\n  Cache-Control: public, max-age=0, must-revalidate\n'''
+          if '/sitemap-index.xml' not in headers:
+              headers = headers.rstrip() + '\n' + block
+          headers_path.write_text(headers, encoding='utf-8')
+
+      - name: Commit localized SEO routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/add-eu-seo-locales.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add de fr es pl SEO routes, hreflang and sitemaps'
+          git push origin HEAD:main
