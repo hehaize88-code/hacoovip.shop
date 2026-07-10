@@ -11,217 +11,31 @@
     nl: { label: "Nederlands", prefix: "nl" }
   };
 
-  const PREFIX_TO_LANG = Object.fromEntries(Object.entries(LANGS).filter(([, v]) => v.prefix).map(([k, v]) => [v.prefix, k]));
+  const UI = {
+    en:{ind:"Independent guide: not an official Hacoo app website; built for product research, category browsing and QC notes.",cat:"Categories",trend:"Trending",seo:"SEO Articles",qc:"QC Guide",faq:"FAQ",open:"Open Spreadsheet",catsTitle:"Popular category entrances",catsLead:"Browse product groups from the language page without returning to the home page.",trendTitle:"Trending product entries",trendLead:"Open product-detail leads and continue research from real cover images.",seoTitle:"SEO Articles",seoLead:"Read research guides about spreadsheets, QC photos, reverse image search and proxy-buying decisions.",qcTitle:"QC Guide",qcLead:"Check product images, material cues, sizes and detail photos before taking action.",faqTitle:"FAQ",faqLead:"Short answers about how to use Hacoo VIP as an independent research guide.",read:"Open page",products:"Products",categories:"Categories",guides:"Guides",help:"Help"},
+    es:{ind:"Guía independiente: no es el sitio oficial de la app Hacoo; ayuda a investigar productos, categorías y notas QC.",cat:"Categorías",trend:"Tendencias",seo:"Artículos SEO",qc:"Guía QC",faq:"FAQ",open:"Abrir hoja",catsTitle:"Entradas de categorías populares",catsLead:"Explora grupos de productos sin volver a la página principal.",trendTitle:"Productos en tendencia",trendLead:"Abre productos y continúa investigando con imágenes reales.",seoTitle:"Artículos SEO",seoLead:"Guías sobre hojas, fotos QC, búsqueda inversa y compra con proxy.",qcTitle:"Guía QC",qcLead:"Revisa imágenes, materiales, tallas y detalles antes de avanzar.",faqTitle:"FAQ",faqLead:"Respuestas sobre cómo usar Hacoo VIP como guía independiente.",read:"Abrir página",products:"Productos",categories:"Categorías",guides:"Guías",help:"Ayuda"},
+    fr:{ind:"Guide indépendant : ce site n’est pas le site officiel de l’application Hacoo.",cat:"Catégories",trend:"Tendances",seo:"Articles SEO",qc:"Guide QC",faq:"FAQ",open:"Ouvrir la feuille",catsTitle:"Entrées de catégories populaires",catsLead:"Parcourez les groupes de produits sans revenir à l’accueil.",trendTitle:"Produits tendance",trendLead:"Ouvrez les pistes produit et continuez la recherche avec de vraies images.",seoTitle:"Articles SEO",seoLead:"Guides sur les feuilles, photos QC, recherche inversée et achat proxy.",qcTitle:"Guide QC",qcLead:"Vérifiez images, matières, tailles et détails avant d’avancer.",faqTitle:"FAQ",faqLead:"Réponses courtes sur l’utilisation de Hacoo VIP.",read:"Ouvrir la page",products:"Produits",categories:"Catégories",guides:"Guides",help:"Aide"},
+    de:{ind:"Unabhängiger Leitfaden: keine offizielle Hacoo-App-Webseite; für Produktrecherche, Kategorien und QC-Hinweise.",cat:"Kategorien",trend:"Trends",seo:"SEO-Artikel",qc:"QC-Leitfaden",faq:"FAQ",open:"Tabelle öffnen",catsTitle:"Beliebte Kategorie-Einstiege",catsLead:"Durchsuche Produktgruppen, ohne zur Startseite zurückzukehren.",trendTitle:"Trend-Produktseiten",trendLead:"Öffne Produktdetails und recherchiere mit echten Produktbildern weiter.",seoTitle:"SEO-Artikel",seoLead:"Guides zu Tabellen, QC-Fotos, Rückwärtssuche und Proxy-Kaufentscheidungen.",qcTitle:"QC-Leitfaden",qcLead:"Prüfe Bilder, Materialien, Größen und Detailfotos vor dem nächsten Schritt.",faqTitle:"FAQ",faqLead:"Kurze Antworten zur Nutzung von Hacoo VIP als unabhängige Recherchehilfe.",read:"Seite öffnen",products:"Produkte",categories:"Kategorien",guides:"Guides",help:"Hilfe"},
+    it:{ind:"Guida indipendente: non è il sito ufficiale dell’app Hacoo.",cat:"Categorie",trend:"Tendenze",seo:"Articoli SEO",qc:"Guida QC",faq:"FAQ",open:"Apri foglio",catsTitle:"Ingressi categoria popolari",catsLead:"Sfoglia gruppi prodotto senza tornare alla home.",trendTitle:"Prodotti di tendenza",trendLead:"Apri dettagli prodotto e continua la ricerca da immagini reali.",seoTitle:"Articoli SEO",seoLead:"Guide su spreadsheet, foto QC, ricerca inversa e proxy buying.",qcTitle:"Guida QC",qcLead:"Controlla immagini, materiali, taglie e dettagli prima di procedere.",faqTitle:"FAQ",faqLead:"Risposte brevi su Hacoo VIP come guida indipendente.",read:"Apri pagina",products:"Prodotti",categories:"Categorie",guides:"Guide",help:"Aiuto"},
+    pt:{ind:"Guia independente: não é o site oficial do aplicativo Hacoo.",cat:"Categorias",trend:"Tendências",seo:"Artigos SEO",qc:"Guia QC",faq:"FAQ",open:"Abrir planilha",catsTitle:"Entradas de categorias populares",catsLead:"Navegue por grupos de produtos sem voltar à página inicial.",trendTitle:"Produtos em tendência",trendLead:"Abra detalhes de produtos e continue a pesquisa com imagens reais.",seoTitle:"Artigos SEO",seoLead:"Guias sobre planilhas, fotos QC, busca reversa e compra por proxy.",qcTitle:"Guia QC",qcLead:"Verifique imagens, materiais, medidas e detalhes antes de avançar.",faqTitle:"FAQ",faqLead:"Respostas curtas sobre como usar o Hacoo VIP.",read:"Abrir página",products:"Produtos",categories:"Categorias",guides:"Guias",help:"Ajuda"},
+    pl:{ind:"Niezależny przewodnik: to nie jest oficjalna strona aplikacji Hacoo.",cat:"Kategorie",trend:"Trendy",seo:"Artykuły SEO",qc:"Przewodnik QC",faq:"FAQ",open:"Otwórz arkusz",catsTitle:"Popularne wejścia kategorii",catsLead:"Przeglądaj grupy produktów bez powrotu na stronę główną.",trendTitle:"Popularne produkty",trendLead:"Otwieraj szczegóły produktów i badaj realne zdjęcia.",seoTitle:"Artykuły SEO",seoLead:"Poradniki o arkuszach, zdjęciach QC, reverse image search i zakupach proxy.",qcTitle:"Przewodnik QC",qcLead:"Sprawdź zdjęcia, materiały, rozmiary i szczegóły przed decyzją.",faqTitle:"FAQ",faqLead:"Krótkie odpowiedzi o korzystaniu z Hacoo VIP.",read:"Otwórz stronę",products:"Produkty",categories:"Kategorie",guides:"Poradniki",help:"Pomoc"},
+    nl:{ind:"Onafhankelijke gids: dit is niet de officiële Hacoo-app website.",cat:"Categorieën",trend:"Trends",seo:"SEO-artikelen",qc:"QC-gids",faq:"FAQ",open:"Spreadsheet openen",catsTitle:"Populaire categorie-ingangen",catsLead:"Bekijk productgroepen zonder terug te gaan naar de homepage.",trendTitle:"Populaire producten",trendLead:"Open productdetails en onderzoek echte coverafbeeldingen.",seoTitle:"SEO-artikelen",seoLead:"Gidsen over spreadsheets, QC-foto's, reverse image search en proxy buying.",qcTitle:"QC-gids",qcLead:"Controleer beelden, materialen, maten en details voordat je verdergaat.",faqTitle:"FAQ",faqLead:"Korte antwoorden over Hacoo VIP als onafhankelijke gids.",read:"Pagina openen",products:"Producten",categories:"Categorieën",guides:"Gidsen",help:"Hulp"}
+  };
+
+  const PREFIX_TO_LANG = Object.fromEntries(Object.entries(LANGS).filter(([,v]) => v.prefix).map(([k,v]) => [v.prefix,k]));
   const LOCALIZED_PAGES = new Set(["", "index.html", "categories.html", "trending.html", "seo-articles.html", "quality-control-guide.html", "faq.html"]);
-  const ARTICLE_PAGES = new Set([
-    "reverse-shopping-guide.html",
-    "hacoo-spreadsheet-2026-guide.html",
-    "hacoo-qc-photos-guide.html",
-    "hacoo-reverse-image-search-workflow.html"
-  ]);
+  const ARTICLE_PAGES = new Set(["reverse-shopping-guide.html","hacoo-spreadsheet-2026-guide.html","hacoo-qc-photos-guide.html","hacoo-reverse-image-search-workflow.html"]);
 
-  function getPathInfo() {
-    const parts = location.pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
-    const first = parts[0] || "";
-    const currentLang = PREFIX_TO_LANG[first] || "zh-CN";
-    const slug = currentLang === "zh-CN" ? (parts.join("/") || "") : (parts.slice(1).join("/") || "");
-    return { currentLang, slug };
-  }
+  function getPathInfo(){const parts=location.pathname.replace(/^\/+|\/+$/g,"").split("/").filter(Boolean);const first=parts[0]||"";const currentLang=PREFIX_TO_LANG[first]||"zh-CN";const slug=currentLang==="zh-CN"?(parts.join("/")||""):(parts.slice(1).join("/")||"");return{currentLang,slug};}
+  function buildLangUrl(targetLang){const{slug}=getPathInfo();const clean=slug==="index.html"?"":slug;if(targetLang==="zh-CN")return clean?`/${clean}`:"/";const prefix=LANGS[targetLang]?.prefix;if(!prefix)return"/";if(LOCALIZED_PAGES.has(clean))return clean?`/${prefix}/${clean}`:`/${prefix}/`;if(ARTICLE_PAGES.has(clean))return`/${prefix}/seo-articles.html`;return`/${prefix}/`;}
 
-  function buildLangUrl(targetLang) {
-    const { slug } = getPathInfo();
-    const cleanSlug = slug === "index.html" ? "" : slug;
-
-    if (targetLang === "zh-CN") {
-      return cleanSlug ? `/${cleanSlug}` : "/";
-    }
-
-    const prefix = LANGS[targetLang]?.prefix;
-    if (!prefix) return "/";
-
-    if (LOCALIZED_PAGES.has(cleanSlug)) {
-      return cleanSlug ? `/${prefix}/${cleanSlug}` : `/${prefix}/`;
-    }
-
-    if (ARTICLE_PAGES.has(cleanSlug)) {
-      return `/${prefix}/seo-articles.html`;
-    }
-
-    return `/${prefix}/`;
-  }
-
-  function setupMenu() {
-    const menu = document.querySelector("[data-menu]");
-    const links = document.querySelector(".navlinks");
-    if (menu && links) menu.addEventListener("click", () => links.classList.toggle("open"));
-  }
-
-  function rewriteLocalizedLinks() {
-    const { currentLang } = getPathInfo();
-    if (currentLang === "zh-CN") return;
-
-    const rewrites = {
-      "../index.html": "./",
-      "../categories.html": "categories.html",
-      "../trending.html": "trending.html",
-      "../seo-articles.html": "seo-articles.html",
-      "../quality-control-guide.html": "quality-control-guide.html",
-      "../faq.html": "faq.html",
-      "../reverse-shopping-guide.html": "seo-articles.html",
-      "../hacoo-spreadsheet-2026-guide.html": "seo-articles.html",
-      "../hacoo-qc-photos-guide.html": "seo-articles.html",
-      "../hacoo-reverse-image-search-workflow.html": "seo-articles.html"
-    };
-
-    document.querySelectorAll("a[href]").forEach((a) => {
-      const href = a.getAttribute("href");
-      if (rewrites[href]) a.setAttribute("href", rewrites[href]);
-    });
-  }
-
-  function setupLanguageSwitcher() {
-    const { currentLang } = getPathInfo();
-    document.documentElement.lang = currentLang;
-
-    const currentLabel = document.querySelector("[data-current-lang]");
-    if (currentLabel) currentLabel.textContent = LANGS[currentLang]?.label || "简体中文";
-
-    const langBox = document.querySelector(".lang");
-    const langBtn = document.querySelector(".langBtn");
-    if (!langBox || !langBtn) return;
-
-    langBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      langBox.classList.toggle("open");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!langBox.contains(e.target)) langBox.classList.remove("open");
-    });
-
-    document.querySelectorAll("[data-lang]").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.lang === currentLang);
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const nextLang = btn.dataset.lang;
-        const nextUrl = buildLangUrl(nextLang);
-        location.href = nextUrl;
-      });
-    });
-  }
-
-  function addJsonLd(obj) {
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify(obj);
-    document.head.appendChild(script);
-  }
-
-  function setupStructuredData() {
-    const { slug } = getPathInfo();
-    const cleanSlug = slug || "index.html";
-    const url = location.origin + location.pathname;
-    const siteName = "Hacoo VIP";
-
-    const pageTitles = {
-      "index.html": "Hacoo VIP Spreadsheet for China Shopping Finds",
-      "seo-articles.html": "Hacoo VIP SEO Articles",
-      "faq.html": "Hacoo VIP FAQ",
-      "quality-control-guide.html": "Hacoo VIP QC Guide",
-      "categories.html": "Hacoo VIP Categories",
-      "trending.html": "Hacoo VIP Trending Products",
-      "reverse-shopping-guide.html": "Hacoo VIP Reverse Shopping Guide 2026",
-      "hacoo-spreadsheet-2026-guide.html": "Hacoo Spreadsheet 2026 Guide",
-      "hacoo-qc-photos-guide.html": "Hacoo QC Photos Guide",
-      "hacoo-reverse-image-search-workflow.html": "Hacoo Reverse Image Search Workflow"
-    };
-
-    const headline = document.querySelector("h1")?.textContent?.trim() || pageTitles[cleanSlug] || siteName;
-    const description = document.querySelector("meta[name='description']")?.content || "Independent Hacoo VIP shopping discovery and product research guide.";
-
-    addJsonLd({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": "https://hacoovip.shop/#organization",
-      name: "Hacoo VIP",
-      url: "https://hacoovip.shop/",
-      description: "Independent shopping discovery and product research guide. Not the official Hacoo app website.",
-      logo: "https://hacoovip.shop/assets/img/hacoo-logo.svg"
-    });
-
-    addJsonLd({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://hacoovip.shop/#website",
-      name: siteName,
-      url: "https://hacoovip.shop/",
-      publisher: { "@id": "https://hacoovip.shop/#organization" },
-      inLanguage: document.documentElement.lang || "zh-CN"
-    });
-
-    addJsonLd({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://hacoovip.shop/" },
-        { "@type": "ListItem", position: 2, name: headline, item: url }
-      ]
-    });
-
-    addJsonLd({
-      "@context": "https://schema.org",
-      "@type": cleanSlug === "seo-articles.html" ? "CollectionPage" : "WebPage",
-      "@id": `${url}#webpage`,
-      url,
-      name: headline,
-      description,
-      isPartOf: { "@id": "https://hacoovip.shop/#website" },
-      publisher: { "@id": "https://hacoovip.shop/#organization" },
-      inLanguage: document.documentElement.lang || "zh-CN"
-    });
-
-    if (cleanSlug === "faq.html") {
-      const questions = Array.from(document.querySelectorAll(".faqCard")).slice(0, 12).map((card) => ({
-        "@type": "Question",
-        name: card.querySelector("h3")?.textContent?.trim() || "Question",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: card.querySelector("p")?.textContent?.trim() || "Answer"
-        }
-      }));
-      if (questions.length) addJsonLd({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: questions });
-    }
-
-    if (ARTICLE_PAGES.has(cleanSlug)) {
-      addJsonLd({
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline,
-        description,
-        url,
-        datePublished: "2026-07-10",
-        dateModified: "2026-07-10",
-        author: { "@type": "Organization", name: "Hacoo VIP" },
-        publisher: { "@id": "https://hacoovip.shop/#organization" },
-        inLanguage: document.documentElement.lang || "en"
-      });
-    }
-
-    if (cleanSlug === "seo-articles.html" || document.querySelector(".articleList, .articleGrid")) {
-      const items = Array.from(document.querySelectorAll(".articleCard[href]")).slice(0, 10).map((card, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        url: new URL(card.getAttribute("href"), location.href).href,
-        name: card.querySelector("h3")?.textContent?.trim() || `Article ${index + 1}`
-      }));
-      if (items.length) addJsonLd({ "@context": "https://schema.org", "@type": "ItemList", itemListElement: items });
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    setupMenu();
-    rewriteLocalizedLinks();
-    setupLanguageSwitcher();
-    setupStructuredData();
-  });
+  function langMenu(currentLang){return `<div class="lang"><button class="langBtn" type="button">🌐 <span data-current-lang>${LANGS[currentLang]?.label||"English"}</span>⌄</button><div class="langMenu"><button data-lang="zh-CN">简体中文</button><button data-lang="en">English</button><button data-lang="es">Español</button><button data-lang="fr">Français</button><button data-lang="de">Deutsch</button><button data-lang="it">Italiano</button><button data-lang="pt">Português</button><button data-lang="pl">Polski</button><button data-lang="nl">Nederlands</button></div></div>`;}
+  function headerHtml(lang,d){return `<div class="topbar"><div class="container"><b>${d.ind}</b></div></div><header class="header"><div class="container nav"><a class="brand" href="./"><img alt="Hacoo" src="../assets/img/hacoo-logo.svg"><span class="vip">VIP</span></a><button class="menu" data-menu aria-label="menu"><span></span><span></span><span></span></button><nav class="navlinks"><a href="categories.html">${d.cat}</a><a href="trending.html">${d.trend}</a><a href="seo-articles.html">${d.seo}</a><a href="quality-control-guide.html">${d.qc}</a><a href="faq.html">${d.faq}</a><a class="primary" href="https://www.cnfanshp.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_nav">${d.open}</a></nav>${langMenu(lang)}</div></header>`;}
+  function cardsHtml(items,read){return `<div class="contentGrid">${items.map(i=>`<a class="infoCard" href="${i.href}"><h3>${i.t}</h3><p>${i.p}</p><p style="margin-top:14px;font-weight:900;color:#743d1d">${read} →</p></a>`).join("")}</div>`;}
+  function renderLocalizedPage(){const page=document.body.dataset.localPage;const lang=document.body.dataset.localLang;if(!page||!UI[lang])return;const d=UI[lang];document.documentElement.lang=lang;let title=d.catsTitle,lead=d.catsLead,body="";if(page==="categories"){title=d.catsTitle;lead=d.catsLead;body=cardsHtml([{t:"Shoes",p:"Sneaker and footwear category entry.",href:"https://www.cnfanshp.com/shoes/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_shoes"},{t:"Hoodies",p:"Sweatshirts, hoodies and layering pieces.",href:"https://www.cnfanshp.com/hoodies-sweaters/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_hoodies"},{t:"Jackets",p:"Outerwear and seasonal jacket finds.",href:"https://www.cnfanshp.com/jackets/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_jackets"}],d.read);}if(page==="trending"){title=d.trendTitle;lead=d.trendLead;body=cardsHtml([{t:"Running / Streetwear Sneaker",p:"Open the matching product-detail page.",href:"https://www.cnfanshp.com/AllProducts/6045.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_shoes"},{t:"Sweatshirt",p:"Inspect photos and material cues.",href:"https://www.cnfanshp.com/AllProducts/5974.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_sweatshirt"},{t:"Jacket",p:"Review colors, details and QC notes.",href:"https://www.cnfanshp.com/AllProducts/5919.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_jacket"}],d.read);}if(page==="seo"){title=d.seoTitle;lead=d.seoLead;body=cardsHtml([{t:"Hacoo Spreadsheet 2026 Guide",p:"Use product lists as research maps.",href:"../hacoo-spreadsheet-2026-guide.html"},{t:"Hacoo QC Photos Guide",p:"Inspect photos before action.",href:"../hacoo-qc-photos-guide.html"},{t:"Reverse Image Search Workflow",p:"Verify image-led product leads.",href:"../hacoo-reverse-image-search-workflow.html"}],d.read);}if(page==="qc"){title=d.qcTitle;lead=d.qcLead;body=cardsHtml([{t:"Check cover image",p:"Confirm image, title and destination match.",href:"quality-control-guide.html"},{t:"Review details",p:"Look at material, stitching, color and sizing.",href:"quality-control-guide.html"},{t:"Read SEO article",p:"Open the deeper research workflow.",href:"seo-articles.html"}],d.read);}if(page==="faq"){title=d.faqTitle;lead=d.faqLead;body=cardsHtml([{t:"Is this official?",p:"No. It is an independent guide, not official Hacoo.",href:"faq.html"},{t:"Does it sell products?",p:"No. It links to product research pages and categories.",href:"faq.html"},{t:"Why use QC first?",p:"A strong cover image is not enough for a safe decision.",href:"quality-control-guide.html"}],d.read);}document.body.innerHTML=`${headerHtml(lang,d)}<main><section class="pageHero container"><span class="eyebrow"><i></i><span>Hacoo VIP</span></span><h1>${title}</h1><p class="lead">${lead}</p><div class="actions"><a class="btn btnDark" href="seo-articles.html">${d.seo}</a><a class="btn btnLight" href="quality-control-guide.html">${d.qc}</a></div></section><section class="container">${body}</section></main><section class="container cta"><div><h2>${d.open}</h2><p>${lead}</p></div><div class="actions"><a class="btn btnWhite" href="https://www.cnfanshp.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_bottom">${d.open}</a><a class="btn btnOutline" href="categories.html">${d.categories}</a></div></section><script src="../assets/js/main.js"><\/script>`;}
+  function setupMenu(){const menu=document.querySelector("[data-menu]");const links=document.querySelector(".navlinks");if(menu&&links)menu.addEventListener("click",()=>links.classList.toggle("open"));}
+  function setupLanguageSwitcher(){const{currentLang}=getPathInfo();const currentLabel=document.querySelector("[data-current-lang]");if(currentLabel)currentLabel.textContent=LANGS[currentLang]?.label||"简体中文";const langBox=document.querySelector(".lang"),langBtn=document.querySelector(".langBtn");if(!langBox||!langBtn)return;langBtn.addEventListener("click",e=>{e.stopPropagation();langBox.classList.toggle("open")});document.addEventListener("click",e=>{if(!langBox.contains(e.target))langBox.classList.remove("open")});document.querySelectorAll("[data-lang]").forEach(btn=>{btn.classList.toggle("active",btn.dataset.lang===currentLang);btn.addEventListener("click",e=>{e.preventDefault();location.href=buildLangUrl(btn.dataset.lang)})});}
+  function addJsonLd(obj){const s=document.createElement("script");s.type="application/ld+json";s.textContent=JSON.stringify(obj);document.head.appendChild(s);}
+  function setupStructuredData(){const{slug}=getPathInfo();const clean=slug||"index.html";const url=location.origin+location.pathname;const headline=document.querySelector("h1")?.textContent?.trim()||"Hacoo VIP";const description=document.querySelector("meta[name='description']")?.content||"Independent Hacoo VIP shopping discovery and product research guide.";addJsonLd({"@context":"https://schema.org","@type":"Organization","@id":"https://hacoovip.shop/#organization",name:"Hacoo VIP",url:"https://hacoovip.shop/",description:"Independent shopping discovery and product research guide. Not the official Hacoo app website.",logo:"https://hacoovip.shop/assets/img/hacoo-logo.svg"});addJsonLd({"@context":"https://schema.org","@type":"WebSite","@id":"https://hacoovip.shop/#website",name:"Hacoo VIP",url:"https://hacoovip.shop/",publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});addJsonLd({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://hacoovip.shop/"},{"@type":"ListItem",position:2,name:headline,item:url}]});addJsonLd({"@context":"https://schema.org","@type":clean==="seo-articles.html"?"CollectionPage":"WebPage","@id":`${url}#webpage`,url,name:headline,description,isPartOf:{"@id":"https://hacoovip.shop/#website"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});if(clean==="faq.html"){const qs=Array.from(document.querySelectorAll(".faqCard,.infoCard")).slice(0,12).map(card=>({"@type":"Question",name:card.querySelector("h3")?.textContent?.trim()||"Question",acceptedAnswer:{"@type":"Answer",text:card.querySelector("p")?.textContent?.trim()||"Answer"}}));if(qs.length)addJsonLd({"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs});}if(ARTICLE_PAGES.has(clean))addJsonLd({"@context":"https://schema.org","@type":"Article",headline,description,url,datePublished:"2026-07-10",dateModified:"2026-07-10",author:{"@type":"Organization",name:"Hacoo VIP"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});const items=Array.from(document.querySelectorAll(".articleCard[href], .infoCard[href]")).slice(0,10).map((card,i)=>({"@type":"ListItem",position:i+1,url:new URL(card.getAttribute("href"),location.href).href,name:card.querySelector("h3")?.textContent?.trim()||`Item ${i+1}`}));if(items.length)addJsonLd({"@context":"https://schema.org","@type":"ItemList",itemListElement:items});}
+  document.addEventListener("DOMContentLoaded",()=>{renderLocalizedPage();setupMenu();setupLanguageSwitcher();setupStructuredData();});
 })();
