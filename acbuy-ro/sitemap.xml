@@ -10,4 +10,9 @@
   <url><loc>https://acbuy.ro/guide-qc-photos.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://acbuy.ro/guide-shipping.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://acbuy.ro/acbuy-shipping-to-romania.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://acbuy.ro/about.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://acbuy.ro/contact.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://acbuy.ro/editorial-policy.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://acbuy.ro/privacy.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://acbuy.ro/disclaimer.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
 </urlset>
