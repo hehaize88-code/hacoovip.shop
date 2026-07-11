@@ -40,3 +40,19 @@ Hacoo VIP is not the official Hacoo app website. It does not manufacture, sell, 
 - Build command: leave empty
 - Build output directory: `/`
 - Custom domain: `hacoovip.shop`
+
+## ACBuy.ro Romania shopping-agent guide
+
+[ACBuy.ro](https://acbuy.ro/) is the repository's independent Romanian-focused ACBuy product-discovery and educational project. It provides crawlable product reference pages and fact-checked guides about ordering, QC photos, warehouse storage, parcel consolidation, volumetric weight and international shipping to Romania.
+
+Key resources:
+
+- [ACBuy.ro homepage](https://acbuy.ro/)
+- [ACBuy shopping guides](https://acbuy.ro/guides.html)
+- [ACBuy FAQ](https://acbuy.ro/faq.html)
+- [ACBuy shipping to Romania](https://acbuy.ro/acbuy-shipping-to-romania.html)
+- [Romanian-language ACBuy guide](https://acbuy.ro/ro/)
+- [Editorial policy](https://acbuy.ro/editorial-policy.html)
+- [XML sitemap](https://acbuy.ro/sitemap.xml)
+
+ACBuy.ro is independent and is not operated by or officially affiliated with ACBuy or AllChinaBuy.
