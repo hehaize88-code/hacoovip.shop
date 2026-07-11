@@ -12,4 +12,7 @@
   <url><loc>https://acbuy.ro/editorial-policy.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://acbuy.ro/privacy.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://acbuy.ro/disclaimer.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://acbuy.ro/ro/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://acbuy.ro/ro/ghiduri.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://acbuy.ro/ro/intrebari-frecvente.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
