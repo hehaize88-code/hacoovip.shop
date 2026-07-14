@@ -307,6 +307,11 @@
         return;
       }
 
+      if (isNikeTerm(term)) {
+        renderRows(previewNikeProducts);
+        return;
+      }
+
       resultBox.innerHTML = '<a class="result-empty result-search-link" href="' + escapeHtml(mainSearchUrl(term)) + '" target="_blank" rel="sponsored nofollow noopener">' + escapeHtml(finderText.noInline) + '</a>';
     } catch (error) {
       if (sequence !== requestSequence) return;

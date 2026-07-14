@@ -70,7 +70,8 @@ export function parseProducts(html, limit = 6) {
 }
 
 async function upstreamSearch(query) {
-  const sourceUrl = `${MAIN_ORIGIN}/search.html?keywords=${encodeURIComponent(query)}&channelid=2`;
+  const upstreamQuery = query.toLowerCase() === "耐克" ? "nike" : query;
+  const sourceUrl = `${MAIN_ORIGIN}/search.html?keywords=${encodeURIComponent(upstreamQuery)}&channelid=2`;
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12000);
 
@@ -100,7 +101,9 @@ async function handleSearch(request, context) {
   }
 
   const edgeCache = typeof caches !== "undefined" ? caches.default : null;
-  const cacheKey = new Request(requestUrl.toString(), { method: "GET" });
+  const cacheUrl = new URL(requestUrl);
+  cacheUrl.searchParams.set("_cache_version", "2");
+  const cacheKey = new Request(cacheUrl.toString(), { method: "GET" });
   if (edgeCache) {
     const cached = await edgeCache.match(cacheKey);
     if (cached) {
