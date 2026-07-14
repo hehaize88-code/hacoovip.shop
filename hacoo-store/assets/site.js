@@ -285,7 +285,7 @@
     resultBox.innerHTML = '<div class="result-loading">' + escapeHtml(finderText.searching) + '</div>';
 
     try {
-      const response = await fetch(rootPrefix + "api/search.php?q=" + encodeURIComponent(term), {
+      const response = await fetch(rootPrefix + "api/search?q=" + encodeURIComponent(term), {
         headers: { "Accept": "application/json" }
       });
       if (!response.ok) throw new Error("Search request failed");
