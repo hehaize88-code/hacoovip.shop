@@ -22,7 +22,9 @@ function decodeEntities(value) {
     if (entity[0] === "#") {
       const hexadecimal = entity[1]?.toLowerCase() === "x";
       const codePoint = Number.parseInt(entity.slice(hexadecimal ? 2 : 1), hexadecimal ? 16 : 10);
-      return Number.isFinite(codePoint) ? String.fromCodePoint(codePoint) : match;
+      return Number.isInteger(codePoint) && codePoint >= 0 && codePoint <= 0x10ffff
+        ? String.fromCodePoint(codePoint)
+        : match;
     }
     return named[entity.toLowerCase()] ?? match;
   });
@@ -88,8 +90,7 @@ async function upstreamSearch(query) {
   }
 }
 
-export async function onRequest(context) {
-  const { request } = context;
+async function handleSearch(request, context) {
   if (request.method !== "GET") return jsonResponse(405, { error: "Method not allowed" }, { Allow: "GET" });
 
   const requestUrl = new URL(request.url);
@@ -118,3 +119,11 @@ export async function onRequest(context) {
     return jsonResponse(502, { error: "Product search is temporarily unavailable" });
   }
 }
+
+export default {
+  async fetch(request, env, context) {
+    const pathname = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
+    if (pathname === "/api/search") return handleSearch(request, context);
+    return env.ASSETS.fetch(request);
+  }
+};

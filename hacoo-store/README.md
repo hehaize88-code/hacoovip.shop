@@ -14,7 +14,7 @@ Static, responsive production site for `hacoo.store`.
 
 ## Live product search
 
-The homepage calls `/api/search`, a same-origin Cloudflare Pages Function that extracts up to six product records from the current catalog search and caches each keyword at the edge for five minutes. The function lives at `functions/api/search.js`; no PHP runtime is required.
+The homepage calls `/api/search`, a same-origin Cloudflare Pages advanced-mode Worker that extracts up to six product records from the current catalog search and caches each keyword at the edge for five minutes. The Worker lives at `_worker.js`; every non-API request is passed through to the normal static asset service, and no PHP runtime is required.
 
 The optional standalone visual preview includes three cached Nike results because a single local HTML file cannot execute the Cloudflare Function. Preview files are generated outside the public site directory so they cannot become duplicate indexable pages.
 
