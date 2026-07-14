@@ -153,7 +153,7 @@ const locales = {
         steps: [["Choisir la bonne source", "Utilisez l’application officielle pour les commandes et l’assistance Hacoo. Utilisez les catégories indépendantes pour découvrir d’autres produits."], ["Vérifier les détails essentiels", "Contrôlez les mesures, les variantes, le prix, la livraison, les retours et l’identité du site qui encaisse."], ["Continuer sur la destination", "La disponibilité, le paiement, l’expédition et le service après-vente dépendent de la destination choisie."]],
         factsEyebrow: "Vérifié auprès de Hacoo", factsTitle: "Ce que disent les pages officielles.", factsIntro: "Les informations suivantes proviennent des pages d’aide et de livraison de Hacoo. Consultez toujours la source actuelle.",
         facts: [["Commande officielle", "Hacoo décrit un paiement standard dans l’application.", "Ouvrez l’application, connectez-vous, ajoutez les articles au panier puis payez.", "https://act.hacoo.app/act/sara/helpcenter/order1", "Lire l’aide officielle"], ["Délais officiels", "La livraison est une estimation, pas une garantie.", "La page indique généralement 15 à 28 jours, avec des fourchettes régionales et 3 à 5 jours ouvrés de traitement.", "https://www.hacoo.app/en-US/pages/shipping-info", "Consulter la page de livraison"]],
-        ctaTitle: "Prêt à parcourir les catégories ?", ctaText: "Choisissez une catégorie claire puis vérifiez le produit en direct avant de poursuivre.", ctaButton: "Voir toutes les catégories"
+        ctaTitle: "Prêt à parcourir les catégories ?", ctaText: "Choisissez une catégorie claire puis vérifiez le produit en direct avant de poursuivre.", ctaButton: "Voir tous les produits"
       },
       finds: {
         title: "Sélections Hacoo et produits externes | Guide indépendant", description: "Parcourez des sélections Hacoo clairement identifiées et des parcours externes pour chaussures, vêtements, sacs, accessoires et plus.",
@@ -246,7 +246,7 @@ const locales = {
         steps: [["Die richtige Quelle wählen", "Nutze die offizielle App für Hacoo-Bestellungen und Support. Externe Kategorien dienen der unabhängigen Produktsuche."], ["Wichtige Details prüfen", "Kontrolliere Maße, Varianten, Preis, Versand, Rückgabe und wer die Zahlung entgegennimmt."], ["Auf der Zielseite fortfahren", "Verfügbarkeit, Zahlung, Versand und Kundendienst richten sich nach dem gewählten Ziel."]],
         factsEyebrow: "Mit Hacoo abgeglichen", factsTitle: "Was die offiziellen Seiten sagen.", factsIntro: "Diese Angaben stammen aus Hacoos Hilfe- und Versandseiten. Prüfe vor einer Bestellung immer die aktuelle Quelle.",
         facts: [["Offizieller Bestellablauf", "Hacoo beschreibt einen normalen App-Warenkorb.", "App öffnen, anmelden, Artikel in den Warenkorb legen, zur Kasse gehen und bezahlen.", "https://act.hacoo.app/act/sara/helpcenter/order1", "Offizielle Bestellhilfe lesen"], ["Offizielle Lieferangaben", "Lieferzeiten sind Spannen, keine Garantien.", "Die Seite nennt meist 15 bis 28 Tage sowie regionale Spannen und 3 bis 5 Werktage Bearbeitung.", "https://www.hacoo.app/en-US/pages/shipping-info", "Offizielle Versandseite prüfen"]],
-        ctaTitle: "Bereit, die Kategorien zu öffnen?", ctaText: "Wähle einen klaren Produkttyp und prüfe anschließend die Live-Produktseite.", ctaButton: "Alle Kategorien ansehen"
+        ctaTitle: "Bereit, die Kategorien zu öffnen?", ctaText: "Wähle einen klaren Produkttyp und prüfe anschließend die Live-Produktseite.", ctaButton: "Alle Produkte ansehen"
       },
       finds: {
         title: "Hacoo-Entdeckungen und externe Produkte | Unabhängiger Guide", description: "Klar gekennzeichnete Hacoo-Suchwege für Schuhe, Kleidung, Taschen, Accessoires, Elektronik und mehr.",
@@ -339,7 +339,7 @@ const locales = {
         steps: [["Scegli la fonte giusta", "Usa l’app ufficiale per ordini e assistenza Hacoo. Usa le categorie indipendenti per scoprire altri prodotti."], ["Controlla i dettagli decisivi", "Verifica misure, varianti, prezzo, consegna, resi e chi riceve il pagamento."], ["Continua sulla destinazione", "Disponibilità, pagamento, spedizione e assistenza dipendono dalla destinazione scelta."]],
         factsEyebrow: "Verificato con Hacoo", factsTitle: "Cosa dicono le pagine ufficiali.", factsIntro: "Queste informazioni provengono dalle pagine ufficiali di aiuto e spedizione Hacoo. Controlla sempre la fonte aggiornata.",
         facts: [["Ordine ufficiale", "Hacoo descrive un normale checkout nell’app.", "Apri l’app, accedi, aggiungi gli articoli al carrello, controlla e paga.", "https://act.hacoo.app/act/sara/helpcenter/order1", "Leggi l’aiuto ufficiale"], ["Tempi ufficiali", "La consegna è una stima, non una garanzia.", "La pagina indica in genere 15–28 giorni, fasce regionali e 3–5 giorni lavorativi di elaborazione.", "https://www.hacoo.app/en-US/pages/shipping-info", "Controlla la pagina spedizione"]],
-        ctaTitle: "Pronto a sfogliare le categorie?", ctaText: "Scegli un tipo di prodotto chiaro e verifica la scheda aggiornata prima di continuare.", ctaButton: "Vedi tutte le categorie"
+        ctaTitle: "Pronto a sfogliare le categorie?", ctaText: "Scegli un tipo di prodotto chiaro e verifica la scheda aggiornata prima di continuare.", ctaButton: "Vedi tutti i prodotti"
       },
       finds: {
         title: "Scoperte Hacoo e prodotti esterni | Guida indipendente", description: "Percorsi Hacoo chiaramente indicati per scarpe, abbigliamento, borse, accessori, elettronica e altro.",
@@ -432,7 +432,7 @@ const locales = {
         steps: [["Elige la fuente correcta", "Usa la app oficial para pedidos y soporte de Hacoo. Usa las categorías independientes para descubrir otros productos."], ["Comprueba los detalles clave", "Revisa medidas, variantes, precio, entrega, devoluciones y quién recibe el pago."], ["Continúa en el destino", "La disponibilidad, el pago, el envío y la posventa dependen del destino elegido."]],
         factsEyebrow: "Verificado con Hacoo", factsTitle: "Lo que dicen las páginas oficiales.", factsIntro: "Estos datos proceden de las páginas de ayuda y envío de Hacoo. Consulta siempre la fuente actual antes de pedir.",
         facts: [["Pedido oficial", "Hacoo describe un checkout normal dentro de la app.", "Abre la app, inicia sesión, añade productos al carrito, revisa y paga.", "https://act.hacoo.app/act/sara/helpcenter/order1", "Leer la ayuda oficial"], ["Plazos oficiales", "La entrega es una estimación, no una garantía.", "La página indica normalmente 15–28 días, rangos regionales y 3–5 días laborables de preparación.", "https://www.hacoo.app/en-US/pages/shipping-info", "Consultar la página de envío"]],
-        ctaTitle: "¿Listo para explorar las categorías?", ctaText: "Elige un tipo de producto claro y comprueba la ficha en directo antes de continuar.", ctaButton: "Ver todas las categorías"
+        ctaTitle: "¿Listo para explorar las categorías?", ctaText: "Elige un tipo de producto claro y comprueba la ficha en directo antes de continuar.", ctaButton: "Ver todos los productos"
       },
       finds: {
         title: "Hallazgos Hacoo y productos externos | Guía independiente", description: "Rutas Hacoo claramente identificadas para calzado, ropa, bolsos, accesorios, electrónica y más.",
@@ -600,7 +600,7 @@ function renderHome(locale, prefix) {
     <section class="category-strip" aria-label="${locale.common.categories}"><div class="shell category-grid">${featuredCards(locale, prefix)}</div></section>
     <section class="section section-soft"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.stepsEyebrow}</p><h2>${p.stepsTitle}</h2></div><p>${p.stepsIntro}</p></div><div class="steps">${p.steps.map((step, index) => `<article class="step-card"><span class="step-number">0${index + 1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join("")}</div><div class="section-actions"><a class="btn btn-primary" href="${base}${routes.checklist.file}">${p.stepsButton}</a></div></div></section>
     <section class="section"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.factsEyebrow}</p><h2>${p.factsTitle}</h2></div><p>${p.factsIntro}</p></div><div class="fact-grid">${p.facts.map((fact, index) => `<article class="fact-card${index === 0 ? " primary" : ""}"><p class="kicker">${fact[0]}</p><h3>${fact[1]}</h3><p>${fact[2]}</p><a class="source-link" href="${fact[3]}" target="_blank" rel="noopener nofollow">${fact[4]} →</a></article>`).join("")}</div></div></section>
-    <section class="cta-band"><div class="shell cta-inner"><div><h2>${p.ctaTitle}</h2><p>${p.ctaText}</p></div><a class="btn" href="${base}${routes.categories.file}">${p.ctaButton}</a></div></section>
+    <section class="cta-band"><div class="shell cta-inner"><div><h2>${p.ctaTitle}</h2><p>${p.ctaText}</p></div><a class="btn" href="https://www.cnfanshp.com/AllProducts/" target="_blank" rel="noopener">${p.ctaButton}</a></div></section>
   </main>`;
 }
 
