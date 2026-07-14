@@ -1,6 +1,6 @@
-# Hacoo Store Guide inspection build
+# Hacoo Store Guide
 
-Static, responsive inspection build for `hacoo.store`.
+Static, responsive production site for `hacoo.store`.
 
 - Open `index.html` to review the site.
 - The six header destinations are standalone pages, including a dedicated SEO Articles hub.
@@ -16,8 +16,8 @@ Static, responsive inspection build for `hacoo.store`.
 
 The homepage calls `api/search.php`, a same-origin search bridge that extracts up to six product records from the current catalog search and caches each keyword for five minutes. It requires PHP 7.4+, the DOM extension, and either cURL or `allow_url_fopen`.
 
-The standalone visual preview includes three cached Nike results because PHP cannot execute inside a single HTML file. When hosted with PHP support, other keywords use the live bridge automatically.
+The optional standalone visual preview includes three cached Nike results because PHP cannot execute inside a single HTML file. Preview files are generated outside the public site directory so they cannot become duplicate indexable pages.
 
 ## Regenerating localized pages
 
-Run `node scripts/build-locales.mjs` after changing localized copy or navigation, then run `node scripts/build-standalone-preview.mjs` to refresh the single-file inspection homepage.
+Run `node scripts/build-locales.mjs` after changing localized copy or navigation. Run `node scripts/build-standalone-preview.mjs` only when a local single-file review is needed; it writes to `../hacoo-store-previews/`, outside the deployable directory.

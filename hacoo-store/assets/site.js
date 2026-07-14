@@ -23,7 +23,7 @@
 
   const rootPrefix = siteRootPrefix();
 
-  function currentRouteFile() {
+  function currentRoutePath() {
     const canonical = document.querySelector('link[rel="canonical"]');
     let path = "/";
     try {
@@ -33,11 +33,11 @@
     }
     path = path.replace(/^\/(fr|de|it|es)(?=\/|$)/, "");
     path = path.replace(/^\/+|\/+$/g, "");
-    return path ? path + "/index.html" : "index.html";
+    return path ? path + "/" : "";
   }
 
   function languageDestination(code) {
-    return rootPrefix + (code === "en" ? "" : code + "/") + currentRouteFile();
+    return rootPrefix + (code === "en" ? "" : code + "/") + currentRoutePath();
   }
 
   function addLanguageSwitcher() {
@@ -99,6 +99,17 @@
       }
     });
   }
+
+  const secondaryGroups = Array.from(document.querySelectorAll("[data-home-secondary-group]"));
+  secondaryGroups.forEach(function (group) {
+    const button = group.querySelector("[data-home-secondary-toggle]");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      const open = group.getAttribute("data-open") === "true";
+      group.setAttribute("data-open", String(!open));
+      button.setAttribute("aria-expanded", String(!open));
+    });
+  });
 
   const finder = document.querySelector("[data-finder]");
   if (!finder) return;
@@ -230,7 +241,7 @@
 
   function renderRows(items) {
     resultBox.innerHTML = items.map(function (route) {
-      return '<a class="result-row" href="' + escapeHtml(route.url) + '" target="_blank" rel="noopener">' +
+      return '<a class="result-row" href="' + escapeHtml(route.url) + '" target="_blank" rel="sponsored nofollow noopener">' +
         '<img src="' + escapeHtml(route.image) + '" alt="" width="58" height="58" loading="lazy" referrerpolicy="no-referrer">' +
         '<span class="result-copy"><strong>' + escapeHtml(route.title) + '</strong><span>' + escapeHtml(route.detail || finderText.productResult) + '</span></span>' +
         '<span class="result-arrow" aria-hidden="true">→</span>' +
@@ -296,7 +307,7 @@
         return;
       }
 
-      resultBox.innerHTML = '<a class="result-empty result-search-link" href="' + escapeHtml(mainSearchUrl(term)) + '" target="_blank" rel="noopener">' + escapeHtml(finderText.noInline) + '</a>';
+      resultBox.innerHTML = '<a class="result-empty result-search-link" href="' + escapeHtml(mainSearchUrl(term)) + '" target="_blank" rel="sponsored nofollow noopener">' + escapeHtml(finderText.noInline) + '</a>';
     } catch (error) {
       if (sequence !== requestSequence) return;
 
@@ -305,7 +316,7 @@
         return;
       }
 
-      resultBox.innerHTML = '<a class="result-empty result-search-link" href="' + escapeHtml(mainSearchUrl(term)) + '" target="_blank" rel="noopener">' + escapeHtml(finderText.openAll) + ' “' + escapeHtml(term) + '” →</a>';
+      resultBox.innerHTML = '<a class="result-empty result-search-link" href="' + escapeHtml(mainSearchUrl(term)) + '" target="_blank" rel="sponsored nofollow noopener">' + escapeHtml(finderText.openAll) + ' “' + escapeHtml(term) + '” →</a>';
     }
   }
 

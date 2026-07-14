@@ -2,10 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const outputPath = path.join(root, "hacoo-store-visual-preview.html");
-const reviewPath = path.join(root, "hacoo-store-review-v2.html");
-const articlesReviewPath = path.join(root, "hacoo-store-articles-review.html");
-const checklistReviewPath = path.join(root, "hacoo-store-checklist-review.html");
+const previewRoot = path.resolve(root, "..", "hacoo-store-previews");
+fs.mkdirSync(previewRoot, { recursive: true });
+const outputPath = path.join(previewRoot, "hacoo-store-visual-preview.html");
+const reviewPath = path.join(previewRoot, "hacoo-store-review-v2.html");
+const articlesReviewPath = path.join(previewRoot, "hacoo-store-articles-review.html");
+const checklistReviewPath = path.join(previewRoot, "hacoo-store-checklist-review.html");
 const css = fs.readFileSync(path.join(root, "assets/styles.css"), "utf8");
 const jsSource = fs.readFileSync(path.join(root, "assets/site.js"), "utf8");
 
