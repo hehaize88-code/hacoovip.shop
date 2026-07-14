@@ -158,7 +158,7 @@ const locales = {
       finds: {
         title: "Sélections Hacoo et produits externes | Guide indépendant", description: "Parcourez des sélections Hacoo clairement identifiées et des parcours externes pour chaussures, vêtements, sacs, accessoires et plus.",
         crumb: "Sélections", eyebrow: "Destinations clairement indiquées", h1: "Des sélections Hacoo sans confondre les sources", lead: "Passez d’une recherche générale à un produit ou une catégorie précise. Chaque bouton indique une destination indépendante à vérifier avant achat.",
-        directoryEyebrow: "Tous les parcours disponibles", directoryTitle: "Commencez par une catégorie précise.", directoryIntro: "Une catégorie dédiée facilite la comparaison. Les parcours sont contrôlés périodiquement, mais les fiches produits peuvent changer.",
+        directoryEyebrow: "Poursuivre la recherche sur ce site", directoryTitle: "Choisissez le bon point de départ.", directoryIntro: "Ouvrez un produit sélectionné ci-dessus ou utilisez les guides internes ci-dessous pour comparer les catégories, les tailles, la livraison et les vérifications avant achat.",
         checksEyebrow: "Avant d’ouvrir un produit", checksTitle: "Trois vérifications utiles.", checksIntro: "Un lien accélère la découverte, mais la destination finale contrôle la transaction.",
         checks: [["Comparer la variante", "Vérifiez que la taille, la couleur, les photos et le prix correspondent au produit sélectionné."], ["Lire les conditions", "Identifiez qui encaisse, expédie, accepte les retours et fournit l’assistance."], ["Conserver une preuve", "Enregistrez la fiche, la variante, le montant, le numéro de commande et le suivi."]]
       },
@@ -251,7 +251,7 @@ const locales = {
       finds: {
         title: "Hacoo-Entdeckungen und externe Produkte | Unabhängiger Guide", description: "Klar gekennzeichnete Hacoo-Suchwege für Schuhe, Kleidung, Taschen, Accessoires, Elektronik und mehr.",
         crumb: "Entdeckungen", eyebrow: "Klar gekennzeichnete Ziele", h1: "Hacoo-Entdeckungen ohne Quellen zu vermischen", lead: "Wechsle von einer breiten Suche zu einem konkreten Produkt oder einer Kategorie. Jedes externe Ziel muss vor dem Kauf geprüft werden.",
-        directoryEyebrow: "Alle verfügbaren Wege", directoryTitle: "Eng beginnen, dann vergleichen.", directoryIntro: "Eine eigene Kategorie erleichtert den Vergleich. Wege werden regelmäßig geprüft, einzelne Angebote können sich dennoch ändern.",
+        directoryEyebrow: "Auf dieser Website weiter recherchieren", directoryTitle: "Den passenden nächsten Schritt wählen.", directoryIntro: "Öffne oben ein ausgewähltes Produkt oder nutze die internen Ratgeber unten, um Kategorien, Größen, Versand und Prüfungen vor dem Kauf zu vergleichen.",
         checksEyebrow: "Vor dem Öffnen", checksTitle: "Drei sinnvolle Kontrollen.", checksIntro: "Ein Link beschleunigt die Suche, doch das endgültige Ziel steuert die Transaktion.",
         checks: [["Variante vergleichen", "Prüfe Größe, Farbe, Fotos und Preis des aktuell ausgewählten Artikels."], ["Bedingungen lesen", "Kläre Zahlung, Versand, Rückgabe und zuständigen Support."], ["Nachweise speichern", "Sichere Produktseite, Variante, Betrag, Bestellnummer und Sendungsverfolgung."]]
       },
@@ -344,7 +344,7 @@ const locales = {
       finds: {
         title: "Scoperte Hacoo e prodotti esterni | Guida indipendente", description: "Percorsi Hacoo chiaramente indicati per scarpe, abbigliamento, borse, accessori, elettronica e altro.",
         crumb: "Scoperte", eyebrow: "Destinazioni chiaramente indicate", h1: "Scoperte Hacoo senza confondere le fonti", lead: "Passa da una ricerca generica a un prodotto o una categoria precisa. Ogni destinazione esterna va verificata prima dell’acquisto.",
-        directoryEyebrow: "Tutti i percorsi disponibili", directoryTitle: "Parti da una categoria precisa.", directoryIntro: "Una pagina dedicata facilita il confronto. I percorsi vengono controllati periodicamente, ma le singole inserzioni possono cambiare.",
+        directoryEyebrow: "Continua la ricerca su questo sito", directoryTitle: "Scegli il passaggio successivo.", directoryIntro: "Apri uno dei prodotti selezionati qui sopra oppure usa le guide interne per confrontare categorie, taglie, spedizione e controlli prima dell’acquisto.",
         checksEyebrow: "Prima di aprire un prodotto", checksTitle: "Tre controlli utili.", checksIntro: "Un link accelera la scoperta, ma la destinazione finale controlla la transazione.",
         checks: [["Confronta la variante", "Controlla taglia, colore, foto e prezzo del prodotto selezionato."], ["Leggi le condizioni", "Identifica chi gestisce pagamento, spedizione, reso e assistenza."], ["Salva le prove", "Conserva scheda, variante, importo, numero d’ordine e tracciamento."]]
       },
@@ -437,7 +437,7 @@ const locales = {
       finds: {
         title: "Hallazgos Hacoo y productos externos | Guía independiente", description: "Rutas Hacoo claramente identificadas para calzado, ropa, bolsos, accesorios, electrónica y más.",
         crumb: "Hallazgos", eyebrow: "Destinos claramente identificados", h1: "Hallazgos Hacoo sin mezclar las fuentes", lead: "Pasa de una búsqueda general a un producto o categoría concretos. Comprueba cada destino externo antes de comprar.",
-        directoryEyebrow: "Todas las rutas disponibles", directoryTitle: "Empieza por una categoría concreta.", directoryIntro: "Una página dedicada facilita la comparación. Las rutas se revisan periódicamente, pero las fichas pueden cambiar.",
+        directoryEyebrow: "Continúa investigando en este sitio", directoryTitle: "Elige el siguiente paso adecuado.", directoryIntro: "Abre uno de los productos seleccionados o utiliza las guías internas para comparar categorías, tallas, envío y comprobaciones antes de comprar.",
         checksEyebrow: "Antes de abrir un producto", checksTitle: "Tres comprobaciones útiles.", checksIntro: "Un enlace acelera el descubrimiento, pero el destino final controla la transacción.",
         checks: [["Compara la variante", "Revisa talla, color, fotos y precio del artículo seleccionado."], ["Lee las condiciones", "Identifica quién gestiona pago, envío, devolución y soporte."], ["Guarda pruebas", "Conserva la ficha, la variante, el importe, el pedido y el seguimiento."]]
       },
@@ -766,16 +766,14 @@ function routeCards(locale) {
           <a class="route-card" href="${url}" target="_blank" rel="sponsored nofollow noopener"><h3>${locale.catalog.routes[key]}</h3><span>${locale.catalog.openRoute} →</span></a>`).join("");
 }
 
-function mobileCategoryDirectory(locale) {
-  const keys = ["shoes", "hoodies", "tshirts", "jackets", "bottoms", "headwear", "accessories", "electronics"];
-  const routeMap = Object.fromEntries(productRoutes);
-  return `
-    <section class="mobile-category-directory" aria-labelledby="mobile-category-title">
-      <div class="shell">
-        <div class="mobile-category-head"><h2 id="mobile-category-title">${locale.common.categories}</h2><a class="mobile-all-link" href="${routeMap.allProducts}" target="_blank" rel="sponsored nofollow noopener">${locale.catalog.routes.allProducts} →</a></div>
-        <nav class="mobile-category-links" aria-label="${locale.common.categories}">${keys.map((key) => `<a href="${routeMap[key]}" target="_blank" rel="sponsored nofollow noopener"><span>${locale.catalog.routes[key]}</span><span aria-hidden="true">→</span></a>`).join("")}</nav>
-      </div>
-    </section>`;
+function researchCards(locale, base) {
+  return [
+    ["categories", locale.common.categories, locale.common.browseCategories],
+    ["checklist", locale.pages.checklist.crumb, locale.pages.articles.openArticle],
+    ["size", locale.common.sizeGuide, locale.pages.articles.openArticle],
+    ["shipping", locale.common.shipping, locale.pages.articles.openArticle]
+  ].map(([key, title, action]) => `
+          <a class="route-card" href="${routeHref(base, key)}"><h3>${title}</h3><span>${action} →</span></a>`).join("");
 }
 
 function finder(locale) {
@@ -795,7 +793,6 @@ function renderHome(locale, prefix) {
   return `
   <main id="main">
     <section class="hero"><div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">${p.eyebrow}</p><h1>${p.h1}<span class="dot">.</span></h1><p class="lead">${p.lead}</p><div class="actions"><a class="btn btn-primary" href="${routeHref(base, "finds")}">${p.primary}</a><a class="btn" href="${routeHref(base, "how")}">${p.secondary}</a></div><div class="trust-row"><span class="trust-pill"><span class="trust-icon">↻</span>${p.updated}</span><span class="trust-pill"><span class="trust-icon">▦</span>${p.categoryLed}</span><span class="trust-pill"><span class="trust-icon">✓</span>${p.cited}</span></div></div>${finder(locale)}</div></section>
-    ${mobileCategoryDirectory(locale)}
     <section class="category-strip home-categories" aria-label="${locale.common.categories}"><div class="shell category-grid">${featuredCards(locale, prefix)}</div></section>
     <section class="section section-soft home-steps"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.stepsEyebrow}</p><h2>${p.stepsTitle}</h2></div><p>${p.stepsIntro}</p></div><div class="steps">${p.steps.map((step, index) => `<article class="step-card"><span class="step-number">0${index + 1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join("")}</div><div class="section-actions"><a class="btn btn-primary" href="${routeHref(base, "checklist")}">${p.stepsButton}</a></div></div></section>
     <div class="home-secondary-group" data-home-secondary-group data-open="false"><button class="home-secondary-toggle" type="button" aria-expanded="false" data-home-secondary-toggle>${p.factsTitle}</button>
@@ -806,11 +803,13 @@ function renderHome(locale, prefix) {
 
 function renderCatalog(locale, routeKey, prefix) {
   const page = locale.pages[routeKey];
+  const base = localBase(prefix, locale.code);
+  const directoryCards = routeKey === "finds" ? researchCards(locale, base) : routeCards(locale);
   return `
   <main id="main">
     <section class="page-hero"><div class="shell hero-box"><div class="breadcrumbs"><a href="${localBase(prefix, locale.code)}">${locale.common.home}</a><span>/</span><strong>${page.crumb}</strong></div><p class="eyebrow">${page.eyebrow}</p><h1>${page.h1}<span class="dot">.</span></h1><p>${page.lead}</p></div></section>
     <section class="category-strip" style="padding-top:0"><div class="shell category-grid">${featuredCards(locale, prefix)}</div></section>
-    <section class="section section-soft"><div class="shell"><div class="section-head"><div><p class="eyebrow">${page.directoryEyebrow}</p><h2>${page.directoryTitle}</h2></div><p>${page.directoryIntro}</p></div><div class="route-grid">${routeCards(locale)}</div></div></section>
+    <section class="section section-soft"><div class="shell"><div class="section-head"><div><p class="eyebrow">${page.directoryEyebrow}</p><h2>${page.directoryTitle}</h2></div><p>${page.directoryIntro}</p></div><div class="route-grid">${directoryCards}</div></div></section>
     <section class="section"><div class="shell"><div class="section-head"><div><p class="eyebrow">${page.checksEyebrow}</p><h2>${page.checksTitle}</h2></div><p>${page.checksIntro}</p></div><div class="steps">${page.checks.map((step, index) => `<article class="step-card"><span class="step-number">0${index + 1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join("")}</div></div></section>
   </main>`;
 }
