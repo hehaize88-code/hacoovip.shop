@@ -580,6 +580,18 @@ function routeCards(locale) {
           <a class="route-card" href="${url}" target="_blank" rel="noopener"><h3>${locale.catalog.routes[key]}</h3><span>${locale.catalog.openRoute} →</span></a>`).join("");
 }
 
+function mobileCategoryDirectory(locale) {
+  const keys = ["shoes", "hoodies", "tshirts", "jackets", "bottoms", "headwear", "accessories", "electronics"];
+  const routeMap = Object.fromEntries(productRoutes);
+  return `
+    <section class="mobile-category-directory" aria-labelledby="mobile-category-title">
+      <div class="shell">
+        <div class="mobile-category-head"><h2 id="mobile-category-title">${locale.common.categories}</h2><a class="mobile-all-link" href="${routeMap.allProducts}" target="_blank" rel="noopener">${locale.catalog.routes.allProducts} →</a></div>
+        <nav class="mobile-category-links" aria-label="${locale.common.categories}">${keys.map((key) => `<a href="${routeMap[key]}" target="_blank" rel="noopener"><span>${locale.catalog.routes[key]}</span><span aria-hidden="true">→</span></a>`).join("")}</nav>
+      </div>
+    </section>`;
+}
+
 function finder(locale) {
   const f = locale.home.finder;
   return `
@@ -597,6 +609,7 @@ function renderHome(locale, prefix) {
   return `
   <main id="main">
     <section class="hero"><div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">${p.eyebrow}</p><h1>${p.h1}<span class="dot">.</span></h1><p class="lead">${p.lead}</p><div class="actions"><a class="btn btn-primary" href="${base}${routes.finds.file}">${p.primary}</a><a class="btn" href="${base}${routes.how.file}">${p.secondary}</a></div><div class="trust-row"><span class="trust-pill"><span class="trust-icon">↻</span>${p.updated}</span><span class="trust-pill"><span class="trust-icon">▦</span>${p.categoryLed}</span><span class="trust-pill"><span class="trust-icon">✓</span>${p.cited}</span></div></div>${finder(locale)}</div></section>
+    ${mobileCategoryDirectory(locale)}
     <section class="category-strip home-categories" aria-label="${locale.common.categories}"><div class="shell category-grid">${featuredCards(locale, prefix)}</div></section>
     <section class="section section-soft home-steps"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.stepsEyebrow}</p><h2>${p.stepsTitle}</h2></div><p>${p.stepsIntro}</p></div><div class="steps">${p.steps.map((step, index) => `<article class="step-card"><span class="step-number">0${index + 1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join("")}</div><div class="section-actions"><a class="btn btn-primary" href="${base}${routes.checklist.file}">${p.stepsButton}</a></div></div></section>
     <section class="section home-secondary"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.factsEyebrow}</p><h2>${p.factsTitle}</h2></div><p>${p.factsIntro}</p></div><div class="fact-grid">${p.facts.map((fact, index) => `<article class="fact-card${index === 0 ? " primary" : ""}"><p class="kicker">${fact[0]}</p><h3>${fact[1]}</h3><p>${fact[2]}</p><a class="source-link" href="${fact[3]}" target="_blank" rel="noopener nofollow">${fact[4]} →</a></article>`).join("")}</div></div></section>
