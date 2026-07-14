@@ -560,6 +560,14 @@ function routeHref(base, routeKey) {
   return base + routes[routeKey].slug;
 }
 
+function normalizeSchemaText(value) {
+  return String(value || "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([.!?,;:])/g, "$1")
+    .trim();
+}
+
 function structuredData(locale, routeKey, canonical) {
   const page = locale.pages[routeKey];
   const organizationId = "https://hacoo.store/#organization";
@@ -576,21 +584,21 @@ function structuredData(locale, routeKey, canonical) {
       height: 64
     },
     description: "Independent Hacoo research and shopping guide. Not affiliated with Hacoo."
+  }, {
+    "@type": "WebSite",
+    "@id": websiteId,
+    url: "https://hacoo.store/",
+    name: "Hacoo Store Guide",
+    inLanguage: languageCodes,
+    publisher: { "@id": organizationId }
   }];
 
   if (routeKey === "home") {
     graph.push({
-      "@type": "WebSite",
-      "@id": websiteId,
-      url: canonical,
-      name: "Hacoo Store Guide",
-      inLanguage: locale.code,
-      publisher: { "@id": organizationId }
-    }, {
       "@type": "WebPage",
       "@id": `${canonical}#webpage`,
       url: canonical,
-      name: page.h1,
+      name: normalizeSchemaText(page.h1),
       description: page.description,
       isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },
@@ -603,7 +611,7 @@ function structuredData(locale, routeKey, canonical) {
       "@type": pageType,
       "@id": `${canonical}#webpage`,
       url: canonical,
-      name: page.h1,
+      name: normalizeSchemaText(page.h1),
       description: page.description,
       isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },
@@ -614,7 +622,7 @@ function structuredData(locale, routeKey, canonical) {
       "@id": `${canonical}#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: locale.common.home, item: `https://hacoo.store/${locale.code}/` },
-        { "@type": "ListItem", position: 2, name: page.crumb || page.h1, item: canonical }
+        { "@type": "ListItem", position: 2, name: normalizeSchemaText(page.crumb || page.h1), item: canonical }
       ]
     });
   }
@@ -622,7 +630,7 @@ function structuredData(locale, routeKey, canonical) {
   if (["checklist", "how", "shipping", "size", "spreadsheet"].includes(routeKey)) {
     graph.push({
       "@type": "Article",
-      headline: page.h1,
+      headline: normalizeSchemaText(page.h1),
       description: page.description,
       mainEntityOfPage: { "@id": `${canonical}#webpage` },
       datePublished: "2026-07-13",
@@ -638,7 +646,7 @@ function structuredData(locale, routeKey, canonical) {
       "@type": "FAQPage",
       mainEntity: page.items.map(([question, answer]) => ({
         "@type": "Question",
-        name: question,
+        name: normalizeSchemaText(question),
         acceptedAnswer: { "@type": "Answer", text: answer }
       }))
     });
@@ -853,7 +861,7 @@ for (const code of ["fr", "de", "it", "es"]) {
 
 function textFromHtml(html, pattern) {
   const match = html.match(pattern);
-  return match ? match[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() : "";
+  return match ? normalizeSchemaText(match[1]) : "";
 }
 
 function englishSeoGraph(routeKey, html) {
@@ -862,6 +870,7 @@ function englishSeoGraph(routeKey, html) {
   const headline = textFromHtml(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i);
   const description = (html.match(/<meta name="description" content="([^"]*)">/i) || ["", ""])[1];
   const organizationId = "https://hacoo.store/#organization";
+  const websiteId = "https://hacoo.store/#website";
   const graph = [{
     "@type": "Organization",
     "@id": organizationId,
@@ -874,11 +883,19 @@ function englishSeoGraph(routeKey, html) {
   if (routeKey !== "home") {
     const pageType = routeKey === "about" ? "AboutPage" : ["finds", "categories", "articles"].includes(routeKey) ? "CollectionPage" : "WebPage";
     graph.push({
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: "https://hacoo.store/",
+      name: "Hacoo Store Guide",
+      inLanguage: languageCodes,
+      publisher: { "@id": organizationId }
+    }, {
       "@type": pageType,
       "@id": `${canonical}#webpage`,
       url: canonical,
       name: headline,
       description,
+      isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },
       dateModified: "2026-07-14",
       inLanguage: "en"
@@ -980,7 +997,7 @@ const sitemapEntries = [];
 for (const code of languageCodes) {
   for (const route of Object.values(routes)) {
     const url = code === "en" ? `https://hacoo.store/${route.slug}` : `https://hacoo.store/${code}/${route.slug}`;
-    sitemapEntries.push(`  <url><loc>${url}</loc><lastmod>2026-07-14</lastmod></url>`);
+    sitemapEntries.push(`  <url><loc>${url}</loc></url>`);
   }
 }
 fs.writeFileSync(path.join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`);
