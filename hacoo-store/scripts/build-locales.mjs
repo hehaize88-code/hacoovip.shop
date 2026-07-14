@@ -8,6 +8,8 @@ const routes = {
   home: { slug: "", file: "index.html", type: "home" },
   finds: { slug: "finds/", file: "finds/index.html", type: "catalog" },
   categories: { slug: "categories/", file: "categories/index.html", type: "catalog" },
+  articles: { slug: "articles/", file: "articles/index.html", type: "hub" },
+  checklist: { slug: "guides/hacoo-shopping-checklist/", file: "guides/hacoo-shopping-checklist/index.html", type: "article" },
   how: { slug: "guides/how-hacoo-works/", file: "guides/how-hacoo-works/index.html", type: "article" },
   shipping: { slug: "guides/shipping/", file: "guides/shipping/index.html", type: "shipping" },
   size: { slug: "guides/size-guide/", file: "guides/size-guide/index.html", type: "article" },
@@ -16,6 +18,90 @@ const routes = {
   about: { slug: "about/", file: "about/index.html", type: "article" },
   privacy: { slug: "privacy/", file: "privacy/index.html", type: "article" },
   terms: { slug: "terms/", file: "terms/index.html", type: "article" }
+};
+
+const localizedAdditions = {
+  fr: {
+    articlesLabel: "Articles SEO",
+    stepsButton: "Lire le guide complet en trois étapes",
+    articlesPage: {
+      title: "Articles et guides Hacoo 2026 | Recherche indépendante",
+      description: "Retrouvez les guides Hacoo indépendants sur les achats, les spreadsheets, la livraison, les tailles et les contrôles avant paiement.",
+      crumb: "Articles SEO", eyebrow: "Centre de recherche", h1: "Guides Hacoo approfondis et clairement sourcés", lead: "Chaque article répond à une intention de recherche précise, distingue les sources officielles des parcours externes et conduit vers une page dédiée.",
+      cardLabel: "Guide indépendant", openArticle: "Lire l’article", introTitle: "Commencez par la question qui vous concerne", introText: "Ces pages sont reliées entre elles pour faciliter la recherche sans répéter le même contenu. Consultez toujours la page en direct avant une commande."
+    },
+    checklistPage: {
+      title: "Checklist d’achat Hacoo 2026 | 3 vérifications essentielles", description: "Un guide complet en trois étapes pour choisir la bonne source, vérifier le produit et comprendre la destination avant de payer.",
+      crumb: "Checklist d’achat", eyebrow: "Guide complet en trois étapes", h1: "La checklist Hacoo à utiliser avant de continuer", lead: "Passez de la découverte à une décision plus sûre en vérifiant la source, les détails qui bloquent et le site qui gérera réellement la transaction.",
+      summaryLabel: "En bref", summary: " Utilisez Hacoo pour ses informations et produits officiels, traitez chaque base externe comme une destination séparée et ne payez qu’après avoir contrôlé la variante, le prix, la livraison et les retours.",
+      sections: [
+        ["1. Choisir la bonne source", `<p>Commencez par identifier le type de page ouverte. L’application et les pages officielles Hacoo sont les références pour les produits Hacoo, le compte, les commandes, l’assistance et les politiques actuelles. Une liste appelée « Hacoo spreadsheet » ou un annuaire indépendant sert surtout à organiser la découverte.</p><ul><li>Vérifiez le domaine avant de vous fier au titre de la page.</li><li>Lisez la déclaration d’indépendance ou d’affiliation.</li><li>Utilisez une source officielle pour toute règle susceptible de changer.</li></ul>`],
+        ["2. Vérifier le détail qui bloque", `<p>Avant de quitter la page de recherche, repérez ce qui pourrait rendre l’achat incorrect : taille, couleur, variante, stock, prix ou méthode de livraison. Ouvrez la fiche en direct et ne vous fiez pas uniquement à une image ou à une ancienne ligne de liste.</p><ul><li>Comparez les mesures avec un article qui vous va.</li><li>Confirmez la variante et le montant final.</li><li>Lisez les délais, frais, retours et conditions d’assistance.</li></ul>`],
+        ["3. Continuer vers la destination", `<p>Le site qui accepte le paiement contrôle la disponibilité, l’exécution, l’expédition, les retours et le service après-vente. Enregistrez la fiche, la variante, le montant et la confirmation de commande. Si le texte de cette destination contredit un guide tiers, la page en direct doit être vérifiée avant d’agir.</p>`],
+        ["Une routine de contrôle en 60 secondes", `<ol><li>Confirmez le domaine et l’identité du site.</li><li>Relisez le produit, la taille et la variante sélectionnée.</li><li>Vérifiez le prix total et la devise.</li><li>Repérez le délai et la politique de retour.</li><li>Conservez une preuve avant et après paiement.</li></ol>`]
+      ]
+    }
+  },
+  de: {
+    articlesLabel: "SEO-Artikel",
+    stepsButton: "Vollständigen Drei-Schritte-Ratgeber lesen",
+    articlesPage: {
+      title: "Hacoo Artikel und Ratgeber 2026 | Unabhängige Recherche", description: "Unabhängige Hacoo Ratgeber zu Shopping, Spreadsheets, Versand, Größen und wichtigen Prüfungen vor der Zahlung.",
+      crumb: "SEO-Artikel", eyebrow: "Recherchezentrum", h1: "Ausführliche Hacoo-Ratgeber mit klaren Quellen", lead: "Jeder Artikel beantwortet eine konkrete Suchfrage, trennt offizielle Informationen von externen Zielen und führt auf eine eigenständige Seite.",
+      cardLabel: "Unabhängiger Ratgeber", openArticle: "Artikel lesen", introTitle: "Beginne mit deiner wichtigsten Frage", introText: "Die Seiten sind sinnvoll miteinander verknüpft, ohne denselben Inhalt zu wiederholen. Prüfe vor einer Bestellung immer die aktuelle Zielseite."
+    },
+    checklistPage: {
+      title: "Hacoo Shopping-Checkliste 2026 | 3 wichtige Prüfungen", description: "Der vollständige Drei-Schritte-Ratgeber zur richtigen Quelle, zur Produktprüfung und zum tatsächlichen Zahlungsziel.",
+      crumb: "Shopping-Checkliste", eyebrow: "Vollständiger Drei-Schritte-Ratgeber", h1: "Die Hacoo-Checkliste vor dem nächsten Schritt", lead: "Triff eine klarere Entscheidung, indem du Quelle, kritische Produktdetails und die tatsächlich verantwortliche Zielseite prüfst.",
+      summaryLabel: "Kurz gesagt", summary: " Nutze offizielle Hacoo-Seiten für Hacoo-Informationen, behandle externe Verzeichnisse als getrennte Ziele und zahle erst nach Prüfung von Variante, Preis, Versand und Rückgabe.",
+      sections: [
+        ["1. Die richtige Quelle wählen", `<p>Identifiziere zuerst die geöffnete Seite. Die Hacoo-App und offizielle Hacoo-Seiten sind maßgeblich für Produkte, Konto, Bestellungen, Support und aktuelle Richtlinien. Ein „Hacoo Spreadsheet“ oder unabhängiges Verzeichnis organisiert in erster Linie die Produktsuche.</p><ul><li>Prüfe die Domain und nicht nur den Seitentitel.</li><li>Lies den Hinweis zu Unabhängigkeit oder Zugehörigkeit.</li><li>Nutze für veränderliche Regeln eine offizielle Quelle.</li></ul>`],
+        ["2. Das entscheidende Detail prüfen", `<p>Suche vor dem Wechsel zur Zielseite nach möglichen Fehlerquellen: Größe, Farbe, Variante, Bestand, Preis oder Versandart. Öffne die Live-Produktseite und verlasse dich nicht ausschließlich auf ein Bild oder einen alten Listeneintrag.</p><ul><li>Vergleiche Maße mit einem passenden eigenen Artikel.</li><li>Bestätige Variante, Menge und Endbetrag.</li><li>Lies Lieferzeit, Gebühren, Rückgabe und Supportbedingungen.</li></ul>`],
+        ["3. Auf der Zielseite fortfahren", `<p>Die Seite, die die Zahlung annimmt, kontrolliert Verfügbarkeit, Abwicklung, Versand, Rückgaben und Kundendienst. Speichere Produktseite, Variante, Betrag und Bestellbestätigung. Bei Widersprüchen muss die aktuelle Zielseite vor dem Handeln geprüft werden.</p>`],
+        ["Die 60-Sekunden-Prüfung", `<ol><li>Domain und Betreiber bestätigen.</li><li>Produkt, Größe und Variante erneut prüfen.</li><li>Gesamtpreis und Währung kontrollieren.</li><li>Lieferzeit und Rückgaberegel finden.</li><li>Vor und nach der Zahlung einen Nachweis speichern.</li></ol>`]
+      ]
+    }
+  },
+  it: {
+    articlesLabel: "Articoli SEO",
+    stepsButton: "Leggi la guida completa in tre passaggi",
+    articlesPage: {
+      title: "Articoli e guide Hacoo 2026 | Ricerca indipendente", description: "Guide Hacoo indipendenti su acquisti, spreadsheet, spedizione, taglie e controlli prima del pagamento.",
+      crumb: "Articoli SEO", eyebrow: "Centro di ricerca", h1: "Guide Hacoo approfondite con fonti chiare", lead: "Ogni articolo risponde a una ricerca precisa, separa le fonti ufficiali dalle destinazioni esterne e porta a una pagina dedicata.",
+      cardLabel: "Guida indipendente", openArticle: "Leggi l’articolo", introTitle: "Inizia dalla domanda che conta", introText: "Le pagine sono collegate per facilitare la ricerca senza duplicare lo stesso contenuto. Prima di ordinare verifica sempre la pagina aggiornata."
+    },
+    checklistPage: {
+      title: "Checklist acquisti Hacoo 2026 | 3 controlli essenziali", description: "Guida completa in tre passaggi per scegliere la fonte, controllare il prodotto e capire chi gestisce la transazione.",
+      crumb: "Checklist acquisti", eyebrow: "Guida completa in tre passaggi", h1: "La checklist Hacoo prima di continuare", lead: "Passa dalla scoperta a una scelta più chiara verificando la fonte, i dettagli decisivi e il sito responsabile della transazione.",
+      summaryLabel: "In breve", summary: " Usa le fonti ufficiali per le informazioni Hacoo, considera ogni indice esterno una destinazione separata e paga solo dopo aver verificato variante, prezzo, spedizione e resi.",
+      sections: [
+        ["1. Scegliere la fonte corretta", `<p>Identifica prima il tipo di pagina. L’app e le pagine ufficiali Hacoo sono il riferimento per prodotti Hacoo, account, ordini, assistenza e politiche correnti. Uno “Hacoo spreadsheet” o un elenco indipendente serve soprattutto a organizzare la scoperta.</p><ul><li>Controlla il dominio, non solo il titolo.</li><li>Leggi la dichiarazione di indipendenza o affiliazione.</li><li>Per regole variabili usa una fonte ufficiale.</li></ul>`],
+        ["2. Controllare il dettaglio decisivo", `<p>Prima di aprire la destinazione individua ciò che potrebbe rendere errato l’acquisto: taglia, colore, variante, disponibilità, prezzo o spedizione. Apri la scheda dal vivo e non affidarti soltanto a un’immagine o a una vecchia riga di elenco.</p><ul><li>Confronta le misure con un capo adatto.</li><li>Conferma variante, quantità e totale.</li><li>Leggi tempi, costi, resi e assistenza.</li></ul>`],
+        ["3. Continuare sulla destinazione", `<p>Il sito che accetta il pagamento controlla disponibilità, evasione, spedizione, resi e servizio post-vendita. Salva scheda, variante, importo e conferma d’ordine. Se la destinazione contraddice una guida esterna, verifica il testo aggiornato prima di agire.</p>`],
+        ["Il controllo in 60 secondi", `<ol><li>Conferma dominio e gestore.</li><li>Ricontrolla prodotto, taglia e variante.</li><li>Verifica totale e valuta.</li><li>Trova tempi e politica di reso.</li><li>Salva una prova prima e dopo il pagamento.</li></ol>`]
+      ]
+    }
+  },
+  es: {
+    articlesLabel: "Artículos SEO",
+    stepsButton: "Leer la guía completa en tres pasos",
+    articlesPage: {
+      title: "Artículos y guías Hacoo 2026 | Investigación independiente", description: "Guías Hacoo independientes sobre compras, spreadsheets, envío, tallas y comprobaciones antes de pagar.",
+      crumb: "Artículos SEO", eyebrow: "Centro de investigación", h1: "Guías Hacoo detalladas y con fuentes claras", lead: "Cada artículo responde a una búsqueda concreta, separa las fuentes oficiales de los destinos externos y conduce a una página propia.",
+      cardLabel: "Guía independiente", openArticle: "Leer el artículo", introTitle: "Empieza por la pregunta que necesitas resolver", introText: "Las páginas están conectadas para facilitar la investigación sin repetir el mismo contenido. Antes de pedir, comprueba siempre la página actual."
+    },
+    checklistPage: {
+      title: "Checklist de compra Hacoo 2026 | 3 comprobaciones", description: "Guía completa en tres pasos para elegir la fuente, revisar el producto y saber quién gestiona realmente la transacción.",
+      crumb: "Checklist de compra", eyebrow: "Guía completa en tres pasos", h1: "La checklist Hacoo antes de continuar", lead: "Pasa del descubrimiento a una decisión más clara comprobando la fuente, los detalles decisivos y el sitio responsable de la transacción.",
+      summaryLabel: "En resumen", summary: " Usa las fuentes oficiales para la información Hacoo, trata cada índice externo como un destino separado y paga solo después de revisar variante, precio, envío y devoluciones.",
+      sections: [
+        ["1. Elegir la fuente correcta", `<p>Identifica primero qué tipo de página has abierto. La app y las páginas oficiales Hacoo son la referencia para productos Hacoo, cuenta, pedidos, soporte y políticas actuales. Un “Hacoo spreadsheet” o directorio independiente sirve principalmente para organizar el descubrimiento.</p><ul><li>Comprueba el dominio y no solo el título.</li><li>Lee la declaración de independencia o afiliación.</li><li>Usa una fuente oficial para cualquier regla cambiante.</li></ul>`],
+        ["2. Revisar el detalle decisivo", `<p>Antes de abrir el destino, localiza lo que podría hacer incorrecta la compra: talla, color, variante, stock, precio o método de envío. Abre la ficha en directo y no dependas solo de una imagen o una fila antigua.</p><ul><li>Compara medidas con una prenda que te quede bien.</li><li>Confirma variante, cantidad e importe final.</li><li>Lee plazos, costes, devoluciones y soporte.</li></ul>`],
+        ["3. Continuar en el destino", `<p>El sitio que acepta el pago controla disponibilidad, preparación, envío, devoluciones y posventa. Guarda la ficha, variante, importe y confirmación del pedido. Si el destino contradice una guía externa, verifica el texto actual antes de actuar.</p>`],
+        ["La revisión de 60 segundos", `<ol><li>Confirma dominio y operador.</li><li>Revisa producto, talla y variante.</li><li>Comprueba total y moneda.</li><li>Localiza plazo y política de devolución.</li><li>Guarda una prueba antes y después de pagar.</li></ol>`]
+      ]
+    }
+  }
 };
 
 const productRoutes = [
@@ -416,6 +502,13 @@ const locales = {
   }
 };
 
+for (const [code, addition] of Object.entries(localizedAdditions)) {
+  locales[code].common.articles = addition.articlesLabel;
+  locales[code].pages.home.stepsButton = addition.stepsButton;
+  locales[code].pages.articles = addition.articlesPage;
+  locales[code].pages.checklist = addition.checklistPage;
+}
+
 function relativeRoot(outputFile) {
   const directory = path.posix.dirname(outputFile);
   const depth = directory === "." ? 0 : directory.split("/").length;
@@ -443,6 +536,7 @@ function header(locale, routeKey, prefix) {
   const nav = [
     ["finds", c.finds],
     ["categories", c.categories],
+    ["articles", c.articles],
     ["how", c.how],
     ["shipping", c.shipping],
     ["faq", c.faq]
@@ -454,7 +548,7 @@ function header(locale, routeKey, prefix) {
       <a class="brand" href="${base}index.html" aria-label="${c.homeLabel}"><img class="brand-logo" src="${prefix}assets/images/hacoo-logo.png" alt="Hacoo" width="200" height="64"></a>
       <button class="menu-toggle" type="button" aria-label="${c.openNav}" aria-expanded="false" data-menu-toggle>☰</button>
       <nav class="site-nav" aria-label="${c.primaryNav}" data-site-nav data-open="false"><ul>
-        ${nav.map(([key, label]) => `<li><a href="${base}${routes[key].file}"${key === routeKey ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}
+        ${nav.map(([key, label]) => `<li><a${key === "articles" ? ' class="nav-featured"' : ""} href="${base}${routes[key].file}"${key === routeKey ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}
       </ul></nav>
       <div class="language-switcher"><span class="language-icon" aria-hidden="true">文</span><label class="skip-link" for="site-language">Language</label><select id="site-language" aria-label="Website language" data-language-switch>${[["en", "English"], ["fr", "Français"], ["de", "Deutsch"], ["it", "Italiano"], ["es", "Español"]].map(([code, label]) => `<option value="${code}"${code === locale.code ? " selected" : ""}>${label}</option>`).join("")}</select></div>
       <div class="independent-note">${c.independent}<br>${c.notAffiliated}</div>
@@ -468,7 +562,7 @@ function footer(locale, prefix) {
   return `
   <footer class="site-footer"><div class="shell"><div class="footer-grid">
     <div><div class="brand"><img class="brand-logo" src="${prefix}assets/images/hacoo-logo.png" alt="Hacoo" width="200" height="64"></div><p class="footer-copy">${c.footerCopy}</p></div>
-    <div><div class="footer-title">${c.guides}</div><nav class="footer-links"><a href="${base}${routes.spreadsheet.file}">${c.spreadsheet}</a><a href="${base}${routes.how.file}">${c.how}</a><a href="${base}${routes.shipping.file}">${c.shipping}</a><a href="${base}${routes.size.file}">${c.sizeGuide}</a></nav></div>
+    <div><div class="footer-title">${c.guides}</div><nav class="footer-links"><a href="${base}${routes.articles.file}">${c.articles}</a><a href="${base}${routes.spreadsheet.file}">${c.spreadsheet}</a><a href="${base}${routes.how.file}">${c.how}</a><a href="${base}${routes.shipping.file}">${c.shipping}</a><a href="${base}${routes.size.file}">${c.sizeGuide}</a></nav></div>
     <div><div class="footer-title">${c.site}</div><nav class="footer-links"><a href="${base}${routes.about.file}">${c.about}</a><a href="${base}${routes.faq.file}">${c.faq}</a><a href="${base}${routes.privacy.file}">${c.privacy}</a><a href="${base}${routes.terms.file}">${c.terms}</a></nav></div>
   </div><div class="footer-bottom"><span>© 2026 Hacoo Store Guide</span><span>${c.reviewed}</span></div></div></footer>`;
 }
@@ -504,7 +598,7 @@ function renderHome(locale, prefix) {
   <main id="main">
     <section class="hero"><div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">${p.eyebrow}</p><h1>${p.h1}<span class="dot">.</span></h1><p class="lead">${p.lead}</p><div class="actions"><a class="btn btn-primary" href="${base}${routes.finds.file}">${p.primary}</a><a class="btn" href="${base}${routes.how.file}">${p.secondary}</a></div><div class="trust-row"><span class="trust-pill"><span class="trust-icon">↻</span>${p.updated}</span><span class="trust-pill"><span class="trust-icon">▦</span>${p.categoryLed}</span><span class="trust-pill"><span class="trust-icon">✓</span>${p.cited}</span></div></div>${finder(locale)}</div></section>
     <section class="category-strip" aria-label="${locale.common.categories}"><div class="shell category-grid">${featuredCards(locale, prefix)}</div></section>
-    <section class="section section-soft"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.stepsEyebrow}</p><h2>${p.stepsTitle}</h2></div><p>${p.stepsIntro}</p></div><div class="steps">${p.steps.map((step, index) => `<article class="step-card"><span class="step-number">0${index + 1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join("")}</div></div></section>
+    <section class="section section-soft"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.stepsEyebrow}</p><h2>${p.stepsTitle}</h2></div><p>${p.stepsIntro}</p></div><div class="steps">${p.steps.map((step, index) => `<article class="step-card"><span class="step-number">0${index + 1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join("")}</div><div class="section-actions"><a class="btn btn-primary" href="${base}${routes.checklist.file}">${p.stepsButton}</a></div></div></section>
     <section class="section"><div class="shell"><div class="section-head"><div><p class="eyebrow">${p.factsEyebrow}</p><h2>${p.factsTitle}</h2></div><p>${p.factsIntro}</p></div><div class="fact-grid">${p.facts.map((fact, index) => `<article class="fact-card${index === 0 ? " primary" : ""}"><p class="kicker">${fact[0]}</p><h3>${fact[1]}</h3><p>${fact[2]}</p><a class="source-link" href="${fact[3]}" target="_blank" rel="noopener nofollow">${fact[4]} →</a></article>`).join("")}</div></div></section>
     <section class="cta-band"><div class="shell cta-inner"><div><h2>${p.ctaTitle}</h2><p>${p.ctaText}</p></div><a class="btn" href="${base}${routes.categories.file}">${p.ctaButton}</a></div></section>
   </main>`;
@@ -521,13 +615,24 @@ function renderCatalog(locale, routeKey, prefix) {
   </main>`;
 }
 
+function renderArticles(locale, prefix) {
+  const page = locale.pages.articles;
+  const base = localBase(prefix, locale.code);
+  const articleKeys = ["checklist", "spreadsheet", "how", "shipping", "size", "faq"];
+  return `
+  <main id="main">
+    <section class="page-hero"><div class="shell hero-box"><div class="breadcrumbs"><a href="${base}index.html">${locale.common.home}</a><span>/</span><strong>${page.crumb}</strong></div><p class="eyebrow">${page.eyebrow}</p><h1>${page.h1}<span class="dot">.</span></h1><p>${page.lead}</p></div></section>
+    <section class="section article-hub-section" style="padding-top:0"><div class="shell"><div class="section-head"><div><p class="eyebrow">${page.cardLabel}</p><h2>${page.introTitle}</h2></div><p>${page.introText}</p></div><div class="article-grid">${articleKeys.map((key, index) => { const target = locale.pages[key]; return `<a class="article-card${index === 0 ? " article-card-featured" : ""}" href="${base}${routes[key].file}"><span class="article-tag">${page.cardLabel}</span><h2>${target.h1}</h2><p>${target.lead}</p><span class="article-card-link">${page.openArticle} →</span></a>`; }).join("")}</div></div></section>
+  </main>`;
+}
+
 function renderArticle(locale, routeKey, prefix) {
   const page = locale.pages[routeKey];
   const base = localBase(prefix, locale.code);
   return `
   <main id="main">
     <section class="page-hero"><div class="shell hero-box"><div class="breadcrumbs"><a href="${base}index.html">${locale.common.home}</a><span>/</span><strong>${page.crumb}</strong></div><p class="eyebrow">${page.eyebrow}</p><h1>${page.h1}<span class="dot">.</span></h1><p>${page.lead}</p></div></section>
-    <div class="shell article-layout"><article class="article"><div class="callout"><strong>${page.summaryLabel}</strong>${page.summary}</div>${page.sections.map((section) => `<h2>${section[0]}</h2>${section[1]}`).join("")}</article><aside class="sidebar"><h3>${locale.common.guideNav}</h3><nav><a href="${base}${routes.how.file}">${locale.common.how}</a><a href="${base}${routes.shipping.file}">${locale.common.shipping}</a><a href="${base}${routes.size.file}">${locale.common.sizeGuide}</a><a href="${base}${routes.faq.file}">${locale.common.faq}</a></nav><a class="btn btn-primary btn-small" href="${base}${routes.categories.file}">${locale.common.browseCategories}</a></aside></div>
+    <div class="shell article-layout"><article class="article"><div class="callout"><strong>${page.summaryLabel}</strong>${page.summary}</div>${page.sections.map((section) => `<h2>${section[0]}</h2>${section[1]}`).join("")}</article><aside class="sidebar"><h3>${locale.common.guideNav}</h3><nav><a href="${base}${routes.articles.file}">${locale.common.articles}</a><a href="${base}${routes.how.file}">${locale.common.how}</a><a href="${base}${routes.shipping.file}">${locale.common.shipping}</a><a href="${base}${routes.size.file}">${locale.common.sizeGuide}</a><a href="${base}${routes.faq.file}">${locale.common.faq}</a></nav><a class="btn btn-primary btn-small" href="${base}${routes.categories.file}">${locale.common.browseCategories}</a></aside></div>
   </main>`;
 }
 
@@ -537,7 +642,7 @@ function renderShipping(locale, prefix) {
   return `
   <main id="main">
     <section class="page-hero"><div class="shell hero-box"><div class="breadcrumbs"><a href="${base}index.html">${locale.common.home}</a><span>/</span><strong>${page.crumb}</strong></div><p class="eyebrow">${page.eyebrow}</p><h1>${page.h1}<span class="dot">.</span></h1><p>${page.lead}</p></div></section>
-    <div class="shell article-layout"><article class="article"><div class="callout"><strong>${page.summaryLabel}</strong>${page.summary}</div><h2>${page.rangesTitle}</h2><p>${page.rangesIntro}</p><div class="compare-wrap"><table class="compare-table"><thead><tr><th>${page.destination}</th><th>${page.range}</th></tr></thead><tbody><tr><td>${page.ukGroup}</td><td>15–25 ${page.days}</td></tr><tr><td>${page.spain}</td><td>15–30 ${page.days}</td></tr><tr><td>${page.other}</td><td>25–65 ${page.days}</td></tr><tr><td>${page.general}</td><td>15–28 ${page.days}</td></tr></tbody></table></div>${page.sections.map((section) => `<h2>${section[0]}</h2>${section[1]}`).join("")}</article><aside class="sidebar"><h3>${locale.common.guideNav}</h3><nav><a href="${base}${routes.how.file}">${locale.common.how}</a><a href="${base}${routes.size.file}">${locale.common.sizeGuide}</a><a href="${base}${routes.faq.file}">${locale.common.faq}</a></nav><a class="btn btn-primary btn-small" href="https://www.hacoo.app/en-US/pages/shipping-info" target="_blank" rel="noopener nofollow">${page.officialButton}</a></aside></div>
+    <div class="shell article-layout"><article class="article"><div class="callout"><strong>${page.summaryLabel}</strong>${page.summary}</div><h2>${page.rangesTitle}</h2><p>${page.rangesIntro}</p><div class="compare-wrap"><table class="compare-table"><thead><tr><th>${page.destination}</th><th>${page.range}</th></tr></thead><tbody><tr><td>${page.ukGroup}</td><td>15–25 ${page.days}</td></tr><tr><td>${page.spain}</td><td>15–30 ${page.days}</td></tr><tr><td>${page.other}</td><td>25–65 ${page.days}</td></tr><tr><td>${page.general}</td><td>15–28 ${page.days}</td></tr></tbody></table></div>${page.sections.map((section) => `<h2>${section[0]}</h2>${section[1]}`).join("")}</article><aside class="sidebar"><h3>${locale.common.guideNav}</h3><nav><a href="${base}${routes.articles.file}">${locale.common.articles}</a><a href="${base}${routes.how.file}">${locale.common.how}</a><a href="${base}${routes.size.file}">${locale.common.sizeGuide}</a><a href="${base}${routes.faq.file}">${locale.common.faq}</a></nav><a class="btn btn-primary btn-small" href="https://www.hacoo.app/en-US/pages/shipping-info" target="_blank" rel="noopener nofollow">${page.officialButton}</a></aside></div>
   </main>`;
 }
 
@@ -557,6 +662,7 @@ function renderDocument(locale, routeKey) {
   let main = "";
   if (route.type === "home") main = renderHome(locale, prefix);
   else if (route.type === "catalog") main = renderCatalog(locale, routeKey, prefix);
+  else if (route.type === "hub") main = renderArticles(locale, prefix);
   else if (route.type === "shipping") main = renderShipping(locale, prefix);
   else if (route.type === "faq") main = renderFaq(locale, prefix);
   else main = renderArticle(locale, routeKey, prefix);
@@ -603,6 +709,19 @@ for (const [routeKey, route] of Object.entries(routes)) {
     html = html.replace(howLink, `<li><a href="${prefix}${routes.categories.file}">Categories</a></li>${howLink}`);
   }
 
+  const primaryNavMatch = html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/);
+  if (primaryNavMatch && !primaryNavMatch[0].includes(">SEO Articles</a>")) {
+    const articlesLink = `<li><a class="nav-featured" href="${prefix}${routes.articles.file}">SEO Articles</a></li>`;
+    const updatedNav = primaryNavMatch[0].replace(/(<li><a[^>]*>How it works<\/a><\/li>)/, `${articlesLink}$1`);
+    html = html.replace(primaryNavMatch[0], updatedNav);
+  }
+
+  const footerGuideStart = '<div class="footer-title">Guides</div><nav class="footer-links">';
+  const footerMatch = html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/);
+  if (footerMatch && html.includes(footerGuideStart) && !footerMatch[0].includes(`href="${prefix}${routes.articles.file}">SEO Articles</a>`)) {
+    html = html.replace(footerGuideStart, `${footerGuideStart}<a href="${prefix}${routes.articles.file}">SEO Articles</a>`);
+  }
+
   if (!html.includes('hreflang="fr"')) {
     const canonicalPattern = /(<link rel="canonical" href="[^"]+">)/;
     html = html.replace(canonicalPattern, `$1\n${languageAlternates(route)}`);
@@ -620,7 +739,7 @@ const sitemapEntries = [];
 for (const code of languageCodes) {
   for (const route of Object.values(routes)) {
     const url = code === "en" ? `https://hacoo.store/${route.slug}` : `https://hacoo.store/${code}/${route.slug}`;
-    sitemapEntries.push(`  <url><loc>${url}</loc><lastmod>2026-07-13</lastmod></url>`);
+    sitemapEntries.push(`  <url><loc>${url}</loc><lastmod>2026-07-14</lastmod></url>`);
   }
 }
 fs.writeFileSync(path.join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`);
