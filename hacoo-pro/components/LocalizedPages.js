@@ -5,6 +5,7 @@ import HeroSearch from "./HeroSearch";
 import StructuredData from "./StructuredData";
 import { createPageMetadata } from "@/app/seo";
 import { categories, guides, DESTINATION, SITE_URL } from "@/app/data";
+import { getLocalizedDepth } from "@/app/localizedDepth";
 import { absoluteLocalizedUrl, getCopy, localizeCategories, localizeGuides, localizePath } from "@/app/i18n";
 
 export function LocalizedHome({ locale }) {
@@ -36,47 +37,57 @@ export function LocalizedSpreadsheet({ locale }) {
 
 export function LocalizedCategories({ locale }) {
   const copy = getCopy(locale);
+  const depth = getLocalizedDepth(locale);
   const page = copy.categoriesPage;
   const localizedCategories = localizeCategories(categories,locale);
-  return <div className="localized-shell" lang={locale}><section className="page-hero simple-hero"><div className="wrap"><span className="section-label">{page.eyebrow}</span><h1>{page.title[0]}<br/><em>{page.title[1]}</em></h1><p>{page.lead}</p></div></section><section className="section wrap"><div className="category-grid">{localizedCategories.map((category,index)=><CategoryCard category={category} index={index} locale={locale} key={category.slug}/>)}</div></section></div>;
+  return <div className="localized-shell" lang={locale}><section className="page-hero simple-hero"><div className="wrap"><span className="section-label">{page.eyebrow}</span><h1>{page.title[0]}<br/><em>{page.title[1]}</em></h1><p>{page.lead}</p></div></section><section className="section wrap"><div className="category-grid">{localizedCategories.map((category,index)=><CategoryCard category={category} index={index} locale={locale} key={category.slug}/>)}</div></section><section className="soft-section"><div className="wrap split-copy"><div><span className="section-label">{copy.nav.categories}</span><h2>{depth.indexes.categoriesTitle}</h2></div><div><p className="large-copy">{depth.indexes.categoriesText}</p><p>{copy.categoryDetail.note}</p></div></div></section></div>;
 }
 
 export function LocalizedCategory({ locale, slug }) {
   const copy = getCopy(locale);
+  const depth = getLocalizedDepth(locale);
   const category = localizeCategories(categories,locale).find((item)=>item.slug===slug);
   if (!category) return null;
   const page = copy.categoryDetail;
-  const schema = { "@context": "https://schema.org", "@type": "CollectionPage", name: category.name, description: category.description, url: absoluteLocalizedUrl(`/categories/${slug}`,locale), inLanguage: locale };
-  return <div className="localized-shell" lang={locale}><StructuredData data={schema}/><section className="category-hero"><div className="category-hero-image"><img src={category.image} alt={category.name}/></div><div className="category-hero-copy"><span className="section-label">{category.eyebrow} / {page.label}</span><h1>{category.name}<br/><em>{copy.nav.spreadsheet}.</em></h1><p>{category.description}</p><a className="button primary" href={`${DESTINATION}${category.destination}`} target="_blank" rel="noopener noreferrer">{page.live} {category.name.toLowerCase()} <Arrow/></a></div></section>
-    <section className="section wrap"><div className="story-grid"><div><span className="section-label">{page.why}</span><h2>{page.whyTitle}</h2></div><div><p className="large-copy">{page.whyCopy}</p><p>{page.note}</p><h3>{page.checksTitle}</h3><div className="stacked-checks">{page.checks.map((text,index)=><div key={text}><span>0{index+1}</span><p>{text}</p></div>)}</div></div></div></section></div>;
+  const checks = depth.categoryChecks[slug] || page.checks;
+  const schema = { "@context": "https://schema.org", "@type": "CollectionPage", name: category.name, description: category.description, url: absoluteLocalizedUrl(`/categories/${slug}`,locale), inLanguage: locale, dateModified: "2026-07-15" };
+  return <div className="localized-shell" lang={locale}><StructuredData data={schema}/><section className="category-hero"><div className="category-hero-image"><img src={category.image} alt={category.name}/></div><div className="category-hero-copy"><span className="section-label">{category.eyebrow} / {page.label}</span><h1>{category.name}<br/><em>{copy.nav.spreadsheet}.</em></h1><p>{category.description}</p><a className="button primary" href={`${DESTINATION}${category.destination}`} target="_blank" rel="noopener noreferrer">{page.live} {category.name} <Arrow/></a></div></section>
+    <section className="section wrap"><div className="story-grid"><div><span className="section-label">{page.why}</span><h2>{page.whyTitle}</h2></div><div><p className="large-copy">{page.whyCopy}</p><p>{page.note}</p><h3>{page.checksTitle}</h3><div className="stacked-checks">{page.checks.map((text,index)=><div key={text}><span>0{index+1}</span><p>{text}</p></div>)}</div></div></div></section>
+    <section className="soft-section"><div className="wrap"><div className="section-heading"><div><span className="section-label">{depth.category.label}</span><h2>{depth.category.title}</h2></div><p>{depth.category.intro(category.name)}</p></div><div className="research-grid">{checks.map((text,index)=><article className="research-card" key={text}><span>0{index+1}</span><h3>{category.name}</h3><p>{text}</p></article>)}</div><p className="verification-note">{depth.category.reviewed}</p></div></section></div>;
 }
 
 export function LocalizedGuides({ locale }) {
   const copy = getCopy(locale);
+  const depth = getLocalizedDepth(locale);
   const page = copy.guidesPage;
   const localizedGuides = localizeGuides(guides,locale);
-  return <div className="localized-shell" lang={locale}><section className="page-hero simple-hero"><div className="wrap"><span className="section-label">{page.eyebrow}</span><h1>{page.title[0]}<br/><em>{page.title[1]}</em></h1><p>{page.lead}</p></div></section><section className="section wrap"><div className="article-index">{localizedGuides.map((guide,index)=><Link href={localizePath(`/guides/${guide.slug}`,locale)} key={guide.slug}><span className="article-no">0{index+1}</span><div><small>{guide.read}</small><h2>{guide.title}</h2><p>{guide.short}</p></div><span className="article-arrow"><Arrow/></span></Link>)}</div></section></div>;
+  return <div className="localized-shell" lang={locale}><section className="page-hero simple-hero"><div className="wrap"><span className="section-label">{page.eyebrow}</span><h1>{page.title[0]}<br/><em>{page.title[1]}</em></h1><p>{page.lead}</p></div></section><section className="section wrap"><div className="article-index">{localizedGuides.map((guide,index)=><Link href={localizePath(`/guides/${guide.slug}`,locale)} key={guide.slug}><span className="article-no">0{index+1}</span><div><small>{guide.read}</small><h2>{guide.title}</h2><p>{guide.short}</p></div><span className="article-arrow"><Arrow/></span></Link>)}</div></section><section className="soft-section"><div className="wrap split-copy"><div><span className="section-label">{copy.nav.guides}</span><h2>{depth.indexes.guidesTitle}</h2></div><div><p className="large-copy">{depth.indexes.guidesText}</p><p>{copy.guideDetail.sections[2][1]}</p></div></div></section></div>;
 }
 
 export function LocalizedGuide({ locale, slug }) {
   const copy = getCopy(locale);
+  const depth = getLocalizedDepth(locale);
   const guide = localizeGuides(guides,locale).find((item)=>item.slug===slug);
   if (!guide) return null;
   const page = copy.guideDetail;
+  const checks = depth.guideChecks[slug] || page.steps;
   const schema = { "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.short, mainEntityOfPage: absoluteLocalizedUrl(`/guides/${slug}`,locale), inLanguage: locale, author: { "@type": "Organization", name: "Hacoo Pro Editorial" }, datePublished: "2026-07-14", dateModified: "2026-07-14" };
-  return <div className="localized-shell" lang={locale}><StructuredData data={schema}/><article className="article"><header className="article-hero"><div className="wrap article-head"><span className="section-label">{page.label}</span><h1>{guide.title}</h1><div className="article-meta"><span>{page.byline}</span><span>{guide.read}</span><span>{page.reviewed}</span></div><p>{guide.short}</p></div></header><div className="wrap article-body"><aside><span>{copy.nav.guides}</span>{page.sections.map(([title],index)=><a href={`#section-${index}`} key={title}>{title}</a>)}<a href="#quick-process">{page.process}</a></aside><div className="article-content">{page.sections.map(([title,text],index)=><section id={`section-${index}`} key={title}><h2>{title}</h2><p>{text}</p></section>)}<section id="quick-process"><h2>{page.process}</h2><ol>{page.steps.map((step,index)=><li key={step}><span>{index+1}</span>{step}</li>)}</ol></section><div className="article-callout"><h2>{page.continue}</h2><p>{guide.short}</p><Link className="button primary" href={localizePath("/categories",locale)}>{page.browse} <Arrow/></Link></div></div></div></article></div>;
+  return <div className="localized-shell" lang={locale}><StructuredData data={schema}/><article className="article"><header className="article-hero"><div className="wrap article-head"><span className="section-label">{page.label}</span><h1>{guide.title}</h1><div className="article-meta"><span>{page.byline}</span><span>{guide.read}</span><span>{page.reviewed}</span></div><p>{guide.short}</p></div></header><div className="wrap article-body"><aside><span>{copy.nav.guides}</span>{page.sections.map(([title],index)=><a href={`#section-${index}`} key={title}>{title}</a>)}<a href="#evidence-check">{depth.guide.label}</a><a href="#quick-process">{page.process}</a></aside><div className="article-content">{page.sections.map(([title,text],index)=><section id={`section-${index}`} key={title}><h2>{title}</h2><p>{text}</p></section>)}<section id="evidence-check"><h2>{depth.guide.title}</h2><p>{depth.guide.intro}</p><ul className="mistake-list">{checks.map((text)=><li key={text}><CheckIcon size={18}/><span>{text}</span></li>)}</ul></section><section id="quick-process"><h2>{page.process}</h2><ol>{page.steps.map((step,index)=><li key={step}><span>{index+1}</span>{step}</li>)}</ol></section><div className="article-callout"><h2>{page.continue}</h2><p>{guide.short}</p><Link className="button primary" href={localizePath("/categories",locale)}>{page.browse} <Arrow/></Link></div></div></div></article></div>;
 }
 
 export function LocalizedFAQ({ locale }) {
   const copy = getCopy(locale);
+  const depth = getLocalizedDepth(locale);
   const page = copy.faqPage;
-  const schema = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale, mainEntity: page.items.map(([question,answer])=>({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
-  return <div className="localized-shell" lang={locale}><StructuredData data={schema}/><section className="page-hero simple-hero"><div className="wrap"><span className="section-label">{page.eyebrow}</span><h1>{page.title[0]}<br/><em>{page.title[1]}</em></h1><p>{page.lead}</p></div></section><section className="section wrap faq-page"><div className="faq-list">{page.items.map(([question,answer])=><details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section></div>;
+  const items = [...page.items, ...depth.faqExtra];
+  const schema = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale, mainEntity: items.map(([question,answer])=>({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
+  return <div className="localized-shell" lang={locale}><StructuredData data={schema}/><section className="page-hero simple-hero"><div className="wrap"><span className="section-label">{page.eyebrow}</span><h1>{page.title[0]}<br/><em>{page.title[1]}</em></h1><p>{page.lead}</p></div></section><section className="section wrap faq-page"><div className="faq-list">{items.map(([question,answer])=><details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section></div>;
 }
 
 export function LocalizedAbout({ locale }) {
   const page = getCopy(locale).about;
-  return <div className="localized-shell" lang={locale}><section className="page-hero dark-hero"><div className="wrap narrow"><span className="section-label inverse">{page.eyebrow}</span><h1>{page.title[0]}<br/>{page.title[1]}</h1><p>{page.lead}</p></div></section><section className="section wrap"><div className="story-grid"><div><span className="section-label">{page.ruleLabel}</span><h2>{page.ruleTitle}</h2></div><div><p className="large-copy">{page.main}</p><p>{page.note}</p></div></div><div className="values-grid">{page.values.map(([title,text],index)=><div key={title}><span>0{index+1}</span><h3>{title}</h3><p>{text}</p></div>)}</div></section></div>;
+  const depth = getLocalizedDepth(locale);
+  return <div className="localized-shell" lang={locale}><section className="page-hero dark-hero"><div className="wrap narrow"><span className="section-label inverse">{page.eyebrow}</span><h1>{page.title[0]}<br/>{page.title[1]}</h1><p>{page.lead}</p></div></section><section className="section wrap"><div className="story-grid"><div><span className="section-label">{page.ruleLabel}</span><h2>{page.ruleTitle}</h2></div><div><p className="large-copy">{page.main}</p><p>{page.note}</p></div></div><div className="values-grid">{page.values.map(([title,text],index)=><div key={title}><span>0{index+1}</span><h3>{title}</h3><p>{text}</p></div>)}</div></section><section className="soft-section"><div className="wrap"><div className="section-heading"><div><span className="section-label">Hacoo Pro</span><h2>{depth.about.title}</h2></div><p>{depth.about.intro}</p></div><div className="research-grid">{depth.about.steps.map(([title,text],index)=><article className="research-card" key={title}><span>0{index+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section></div>;
 }
 
 export function localizedPageMetadata(locale, pathname, title, description) {
