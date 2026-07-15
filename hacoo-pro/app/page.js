@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       <section className="section wrap">
-        <div className="section-heading compact"><div><span className="section-label">03 / Current catalog routes</span><h2>Fresh routes to explore.</h2></div><a className="text-link large" href="https://www.cnfanshp.com/AllProducts/" target="_blank" rel="noopener noreferrer">View the live catalog <Arrow/></a></div>
+        <div className="section-heading compact"><div><span className="section-label">03 / Current catalog routes</span><h2>Fresh routes to explore.</h2></div><Link className="text-link large" href="/products">Browse all checked products <Arrow/></Link></div>
         <div className="product-grid">{products.map(p => <ProductCard product={p} key={p.slug}/>)}</div>
         <p className="data-note">Each card opens an independent reference page with a current search route. Images and external availability may change; Hacoo Pro does not sell or authenticate products.</p>
       </section>

@@ -34,6 +34,20 @@ Use these Pages build settings:
 
 The default `npm run build` remains the Vinext/Worker build used by Worker-compatible hosting.
 
+## Product checks
+
+The Pages build validates product IDs, paths and local images before Next.js runs:
+
+```bash
+npm run validate:products
+```
+
+Use the separate live check when refreshing the catalog. It verifies that every external detail route returns a real product page with the expected canonical path and image metadata, but it is intentionally not a deployment dependency:
+
+```bash
+npm run check:products
+```
+
 ## Project structure
 
 - `app/` — routes, localized content, SEO metadata and styles

@@ -16,6 +16,7 @@ export default function Header() {
   const links = [
     ["/spreadsheet", copy.nav.spreadsheet],
     ["/categories", copy.nav.categories],
+    ["/products", copy.nav.products],
     ["/guides", copy.nav.guides],
     ["/faq", copy.nav.faq],
     ["/about", copy.nav.about],
