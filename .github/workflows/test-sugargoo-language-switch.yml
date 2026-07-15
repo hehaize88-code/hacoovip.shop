@@ -43,10 +43,11 @@ jobs:
             dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded',{bubbles:true}));
             return dom;
           }
-          function change(dom,lang){
+          async function change(dom,lang){
             const select=dom.window.document.querySelector('.language-select');
             select.value=lang;
             select.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+            await new Promise(resolve=>dom.window.setTimeout(resolve,10));
           }
           function assert(ok,msg){if(!ok) throw new Error(msg);}
 
@@ -54,16 +55,16 @@ jobs:
           const home=boot(homeHtml,'https://sugargoovip.uk/','it');
           assert(home.window.document.querySelector('.language-select').value==='it','Home did not start in Italian');
           assert(home.window.document.querySelector('[data-i18n="hero.b"]').textContent.includes('Guida'),'Italian home copy missing');
-          change(home,'en');
+          await change(home,'en');
           assert(home.window.localStorage.getItem('sugargooLang')==='en','English was not saved');
           assert(home.window.document.querySelector('.language-select').value==='en','Selector reverted from English');
           assert(home.window.document.querySelector('[data-i18n="hero.b"]').textContent==='Shopping Guide','Home did not change to English');
           assert(home.window.location.pathname==='/','English home changed page unexpectedly');
-          change(home,'de');
+          await change(home,'de');
           assert(home.window.document.querySelector('.language-select').value==='de','Selector did not change to German');
           assert(home.window.location.pathname==='/de/','German SEO URL was not retained in place');
           assert(home.window.document.querySelector('[data-i18n="hero.b"]').textContent.includes('Einkaufsratgeber'),'German home copy missing');
-          change(home,'pt');
+          await change(home,'pt');
           assert(home.window.document.querySelector('.language-select').value==='pt','Selector did not change to Portuguese');
           assert(home.window.location.pathname==='/','Portuguese did not return to the same base page');
 
@@ -71,11 +72,12 @@ jobs:
           const articleHtml=fs.readFileSync(`${base}/${articlePath}`,'utf8');
           const articleScript=fs.readFileSync(`${base}/assets/reverse-articles/multi-item-order-ledger.js`,'utf8');
           const article=boot(articleHtml,`https://sugargoovip.uk/${articlePath}`,'it',articleScript);
+          await new Promise(resolve=>article.window.setTimeout(resolve,10));
           assert(article.window.document.querySelector('.article-card h1').textContent.startsWith('Come organizzare'),'Article did not start in Italian');
-          change(article,'en');
+          await change(article,'en');
           assert(article.window.location.pathname===`/${articlePath}`,'Article language switch jumped away from the article');
           assert(article.window.document.querySelector('.article-card h1').textContent.startsWith('How to Organize'),'Article body did not switch to English');
-          change(article,'zh');
+          await change(article,'zh');
           assert(article.window.location.pathname===`/${articlePath}`,'Chinese switch jumped away from the article');
           assert(article.window.document.querySelector('.article-card h1').textContent.includes('反向代购'),'Article did not restore Chinese');
 
