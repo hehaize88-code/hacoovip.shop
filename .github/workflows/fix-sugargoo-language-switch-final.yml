@@ -19,72 +19,47 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Patch language state and navigation
+      - name: Patch language state without page redirects
         shell: python
         run: |
           from pathlib import Path
+          import re
 
           base = Path('sugargoovip-preview')
 
           i18n = base / 'assets/i18n.js'
           text = i18n.read_text(encoding='utf-8')
+          choose = "function normalizeInternalLinks(){document.querySelectorAll('a[href]').forEach(a=>{const raw=a.getAttribute('href');if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:')||raw.startsWith('javascript:'))return;let u;try{u=new URL(raw,location.href)}catch{return}if(u.origin!==location.origin)return;u.pathname=u.pathname.replace(/^\\/(de|fr|es|pl)(?=\\/|$)/,'')||'/';a.setAttribute('href',u.pathname+u.search+u.hash)})}function chooseLanguage(lang){localStorage.setItem('sugargooLang',lang);apply(lang);normalizeInternalLinks();window.dispatchEvent(new CustomEvent('sugargoo:languagechange',{detail:{lang}}))}function apply"
+          text, n = re.subn(r"function chooseLanguage\(lang\)\{.*?\}function apply", choose, text, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('chooseLanguage patch failed')
 
-          start = text.index('function chooseLanguage(lang){')
-          end = text.index('function apply(lang){', start)
-          new_choose = """function normalizeInternalLinks(){document.querySelectorAll('a[href]').forEach(a=>{const raw=a.getAttribute('href');if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:')||raw.startsWith('javascript:'))return;let u;try{u=new URL(raw,location.href)}catch{return}if(u.origin!==location.origin)return;u.pathname=u.pathname.replace(/^\/(de|fr|es|pl)(?=\/|$)/,'')||'/';a.setAttribute('href',u.pathname+u.search+u.hash)})}function chooseLanguage(lang){localStorage.setItem('sugargooLang',lang);apply(lang);normalizeInternalLinks();window.dispatchEvent(new CustomEvent('sugargoo:languagechange',{detail:{lang}}))}"""
-          text = text[:start] + new_choose + text[end:]
-
-          old_build_start = text.index('function build(){')
-          old_build_end = text.index("document.addEventListener('DOMContentLoaded',build);", old_build_start)
-          new_build = """function build(){const match=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/);const stored=localStorage.getItem('sugargooLang');const saved=stored||(match?match[1]:'en');document.querySelectorAll('.language-select').forEach(sel=>{sel.innerHTML='';Object.entries(labels).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent='🌐 '+n;sel.appendChild(o)});sel.addEventListener('change',()=>chooseLanguage(sel.value))});document.querySelectorAll('[data-language-button]').forEach(btn=>btn.addEventListener('click',()=>chooseLanguage(btn.dataset.languageButton)));apply(saved);normalizeInternalLinks()}\n"""
-          text = text[:old_build_start] + new_build + text[old_build_end:]
+          build = "function build(){const match=location.pathname.match(/^\\/(de|fr|es|pl)(\\/|$)/);const stored=localStorage.getItem('sugargooLang');const saved=stored||(match?match[1]:'en');document.querySelectorAll('.language-select').forEach(sel=>{sel.innerHTML='';Object.entries(labels).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent='🌐 '+n;sel.appendChild(o)});sel.addEventListener('change',()=>chooseLanguage(sel.value))});document.querySelectorAll('[data-language-button]').forEach(btn=>btn.addEventListener('click',()=>chooseLanguage(btn.dataset.languageButton)));apply(saved);normalizeInternalLinks()}\ndocument.addEventListener('DOMContentLoaded',build);"
+          text, n = re.subn(r"function build\(\)\{.*?\}\s*document\.addEventListener\('DOMContentLoaded',build\);", build, text, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('build patch failed')
           i18n.write_text(text, encoding='utf-8')
 
           fix = base / 'assets/language-fix.js'
           f = fix.read_text(encoding='utf-8')
-          old_selected = """function selectedLanguage(){
-    const match=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/);
-    if(match) return match[1];
-    const select=document.querySelector('.language-select');
-    return (select&&select.value)||localStorage.getItem('sugargooLang')||'en';
-  }"""
-          new_selected = """function selectedLanguage(){
-    const select=document.querySelector('.language-select');
-    const stored=localStorage.getItem('sugargooLang');
-    const match=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/);
-    return (select&&select.value)||stored||(match?match[1]:'en');
-  }"""
-          if old_selected in f:
-              f = f.replace(old_selected, new_selected)
-          f_start = f.index('  function leaveSeoLocaleForClientLanguage(lang){')
-          f_end = f.index("  document.addEventListener('DOMContentLoaded',()=>{", f_start)
-          replacement = """  function refresh(lang){
-    localStorage.setItem('sugargooLang',lang);
-    setTimeout(()=>localizeGuideCards(lang),0);
-  }
-
-"""
-          f = f[:f_start] + replacement + f[f_end:]
+          selected = "function selectedLanguage(){const select=document.querySelector('.language-select');const stored=localStorage.getItem('sugargooLang');const match=location.pathname.match(/^\\/(de|fr|es|pl)(\\/|$)/);return (select&&select.value)||stored||(match?match[1]:'en')}"
+          f, n = re.subn(r"function selectedLanguage\(\)\{.*?\}\s*function filterGuideCards", selected + "\n\n  function filterGuideCards", f, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('selectedLanguage patch failed')
+          refresh = "  function refresh(lang){localStorage.setItem('sugargooLang',lang);setTimeout(()=>localizeGuideCards(lang),0);}\n\n  document.addEventListener('DOMContentLoaded',()=>{"
+          f, n = re.subn(r"  function leaveSeoLocaleForClientLanguage\(lang\)\{.*?  document\.addEventListener\('DOMContentLoaded',\(\)=>\{", refresh, f, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('language-fix redirect patch failed')
           if "window.addEventListener('sugargoo:languagechange'" not in f:
               f = f.replace("  window.addEventListener('pageshow',()=>localizeGuideCards(selectedLanguage()));", "  window.addEventListener('sugargoo:languagechange',event=>localizeGuideCards(event.detail.lang));\n  window.addEventListener('pageshow',()=>localizeGuideCards(selectedLanguage()));")
           fix.write_text(f, encoding='utf-8')
 
           worker = base / '_worker.js'
           w = worker.read_text(encoding='utf-8')
-          w = w.replace("<script>localStorage.setItem('sugargooLang','${lang}')</script><script src=\"/assets/i18n.js\" defer></script>", "<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script><script src=\"/assets/i18n.js\" defer></script>")
+          w = w.replace("<script>localStorage.setItem('sugargooLang','${lang}')</script>", "<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script>")
           worker.write_text(w, encoding='utf-8')
 
-      - name: Validate patched JavaScript structure
-        shell: bash
-        run: |
-          set -euo pipefail
-          grep -q "function chooseLanguage(lang){localStorage.setItem" sugargoovip-preview/assets/i18n.js
-          grep -q "function normalizeInternalLinks" sugargoovip-preview/assets/i18n.js
-          grep -q "const stored=localStorage.getItem('sugargooLang')" sugargoovip-preview/assets/i18n.js
-          grep -q "window.addEventListener('sugargoo:languagechange'" sugargoovip-preview/assets/language-fix.js
-          grep -q "if(!localStorage.getItem('sugargooLang'))" sugargoovip-preview/_worker.js
-
-      - name: Commit repair
+      - name: Commit final repair
         shell: bash
         run: |
           set -euo pipefail
@@ -92,5 +67,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Keep Sugargoo language selection on the current page'
+          git commit -m 'Keep Sugargoo language changes on the current page'
           git push origin HEAD:main
