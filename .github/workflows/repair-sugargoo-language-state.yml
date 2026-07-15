@@ -1,0 +1,120 @@
+name: Repair Sugargoo language state
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-sugargoo-language-state.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch the single-page language controller
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          base = Path('sugargoovip-preview')
+
+          # 1. i18n.js is the only language-selector controller.
+          i18n = base / 'assets/i18n.js'
+          text = i18n.read_text(encoding='utf-8')
+          replacement = r'''function chooseLanguage(lang){
+            localStorage.setItem('sugargooLang',lang);
+            const base=seoBasePath();
+            let next=base;
+            if(SEO_CORE.has(base)&&SEO_LANGS.includes(lang)) next='/'+lang+(base==='/'?'/':base);
+            if(location.pathname!==next) history.replaceState(null,'',next+location.search+location.hash);
+            apply(lang);
+            window.dispatchEvent(new CustomEvent('sugargoo:languagechange',{detail:{lang}}));
+          }function apply'''
+          text, count = re.subn(r'function chooseLanguage\(lang\)\{.*?\}function apply', replacement, text, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Could not replace chooseLanguage')
+
+          build_replacement = r'''function build(){
+            const match=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/);
+            const saved=localStorage.getItem('sugargooLang')||(match?match[1]:'en');
+            document.querySelectorAll('.language-select').forEach(sel=>{
+              sel.innerHTML='';
+              Object.entries(labels).forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent='🌐 '+n;sel.appendChild(o)});
+              sel.addEventListener('change',()=>chooseLanguage(sel.value));
+            });
+            document.querySelectorAll('[data-language-button]').forEach(btn=>btn.addEventListener('click',()=>chooseLanguage(btn.dataset.languageButton)));
+            apply(saved);
+          }
+          document.addEventListener('DOMContentLoaded',build);'''
+          text, count = re.subn(r"function build\(\)\{.*?\}\s*document\.addEventListener\('DOMContentLoaded',build\);", build_replacement, text, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Could not replace build')
+          i18n.write_text(text, encoding='utf-8')
+
+          # 2. language-fix.js only translates guide cards. It must never navigate or reload.
+          fix = base / 'assets/language-fix.js'
+          f = fix.read_text(encoding='utf-8')
+          tail = r'''function selectedLanguage(){
+            return localStorage.getItem('sugargooLang')||(location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/)?.[1])||'en';
+          }
+          function cardKey(card){
+            try{return new URL(card.getAttribute('href'),location.href).pathname.split('/').filter(Boolean).pop()||'';}catch{return '';}
+          }
+          function localizeGuideCards(lang){
+            document.querySelectorAll('.guide-card').forEach(card=>{
+              card.hidden=false;card.removeAttribute('hidden');
+              const copy=(FIRST_FIVE[lang]||FIRST_FIVE.en)[cardKey(card)];
+              if(!copy)return;
+              const h=card.querySelector('h3'),p=card.querySelector('p');
+              if(h)h.textContent=copy[0];if(p)p.textContent=copy[1];
+            });
+            const intro=document.querySelector('[data-guide-hub-intro],.guide-hub .article-lead');
+            if(intro&&INTRO[lang])intro.textContent=INTRO[lang];
+          }
+          document.addEventListener('DOMContentLoaded',()=>localizeGuideCards(selectedLanguage()));
+          window.addEventListener('sugargoo:languagechange',event=>localizeGuideCards(event.detail.lang));
+          window.addEventListener('pageshow',()=>localizeGuideCards(selectedLanguage()));
+          })();'''
+          start = f.find('function selectedLanguage(){')
+          if start < 0:
+              raise SystemExit('Could not find selectedLanguage')
+          f = f[:start] + tail
+          fix.write_text(f, encoding='utf-8')
+
+          # 3. A localized server response may seed a language only once; it must never overwrite a user's later selection.
+          worker = base / '_worker.js'
+          w = worker.read_text(encoding='utf-8')
+          old = '''<script>localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script><script src="/assets/language-fix.js" defer></script>'''
+          new = '''<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script>'''
+          if old not in w:
+              raise SystemExit('Could not find worker language injection')
+          worker.write_text(w.replace(old,new), encoding='utf-8')
+
+      - name: Validate no selector redirect remains
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "history.replaceState" sugargoovip-preview/assets/i18n.js
+          grep -q "const saved=localStorage.getItem" sugargoovip-preview/assets/i18n.js
+          ! grep -q "location.reload" sugargoovip-preview/assets/language-fix.js
+          ! grep -q "location.replace" sugargoovip-preview/assets/language-fix.js
+          grep -q "if(!localStorage.getItem('sugargooLang'))" sugargoovip-preview/_worker.js
+          ! grep -q "localStorage.setItem('sugargooLang','\${lang}')</script><script src=\"/assets/i18n.js\" defer></script><script src=\"/assets/language-fix.js\"" sugargoovip-preview/_worker.js
+
+      - name: Commit repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/repair-sugargoo-language-state.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Fix Sugargoo language persistence without page jumps'
+          git push origin HEAD:main
