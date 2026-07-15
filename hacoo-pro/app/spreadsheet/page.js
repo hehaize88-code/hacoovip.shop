@@ -1,0 +1,16 @@
+import Link from "next/link";
+import { Arrow, CheckIcon } from "@/components/Icons";
+import { CategoryCard } from "@/components/Cards";
+import StructuredData from "@/components/StructuredData";
+import { categories, SITE_URL } from "../data";
+import { languageAlternates } from "../i18n";
+
+export const metadata = { title: "Hacoo Spreadsheet 2026 — Categories, Links & Buying Checks", description: "Use the independent Hacoo spreadsheet guide to find category routes, current product links, sizing help and practical listing checks.", alternates: languageAlternates("/spreadsheet", "en") };
+
+export default function SpreadsheetPage() {
+  const schema = { "@context": "https://schema.org", "@type": "WebPage", name: "Hacoo Spreadsheet Guide", url: `${SITE_URL}/spreadsheet`, description: "Independent guide to Hacoo spreadsheet-style product discovery." };
+  return <><StructuredData data={schema}/><section className="page-hero lime-hero"><div className="wrap narrow"><span className="section-label">Hacoo spreadsheet / 2026 guide</span><h1>One index.<br/>Better decisions.</h1><p>Use this hub to move from a broad Hacoo spreadsheet search to the right category, the right checklist and a current external listing.</p><div className="hero-actions"><Link className="button dark" href="/categories">Choose a category <Arrow/></Link><Link className="button quiet-dark" href="/guides/how-to-use-hacoo-spreadsheet">How it works</Link></div></div></section>
+    <section className="section wrap"><div className="split-copy"><div><span className="section-label">The short answer</span><h2>What is a Hacoo spreadsheet?</h2></div><div><p className="large-copy">It is a structured product-discovery route: category links, current listing destinations and practical notes collected in one place for easier comparison.</p><p>Hacoo Pro is independent. It does not operate Hacoo, process transactions or guarantee external products. Its job is to reduce noise during research and make the next verification step obvious.</p></div></div></section>
+    <section className="soft-section"><div className="wrap"><div className="section-heading compact"><div><span className="section-label">Browse the index</span><h2>Choose a product route.</h2></div><p>Each section uses category-specific checks rather than repeating the same generic shopping advice.</p></div><div className="category-grid">{categories.map((c, i) => <CategoryCard category={c} index={i} key={c.slug}/>)}</div></div></section>
+    <section className="section wrap"><div className="section-heading"><div><span className="section-label">Use it responsibly</span><h2>Four checks before<br/>the destination.</h2></div></div><div className="check-grid">{[["Current link","Confirm that the external page still opens and describes the item shown."],["Exact option","Match color, size, version and included items to the option you intend to inspect."],["Useful evidence","Prefer clear measurements and multiple views over a single promotional image."],["Live terms","Read current availability, shipping, returns and destination-specific information."]].map(([h,p])=><div className="check-card" key={h}><CheckIcon size={24}/><h3>{h}</h3><p>{p}</p></div>)}</div></section></>;
+}
