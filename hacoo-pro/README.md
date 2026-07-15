@@ -18,6 +18,22 @@ npm run start
 
 The application uses Next.js-compatible Vinext output for Cloudflare deployment. Runtime and Sites metadata are stored in `wrangler.jsonc` and `.openai/hosting.json`.
 
+## Cloudflare Pages
+
+This monorepo project has a dedicated static export for Cloudflare Pages:
+
+```bash
+npm run build:pages
+```
+
+Use these Pages build settings:
+
+- Root directory: `hacoo-pro`
+- Build command: `npm run build:pages`
+- Build output directory: `out`
+
+The default `npm run build` remains the Vinext/Worker build used by Worker-compatible hosting.
+
 ## Project structure
 
 - `app/` — routes, localized content, SEO metadata and styles
