@@ -110,7 +110,7 @@ function replaceMeta(html, lang, path) {
   html = localizedInternalLinks(html, lang, path);
   html = html.replace(/<body([^>]*)>/i, `<body$1 data-seo-locale="${lang}">`);
   html = html.replace(/<script src="\/assets\/i18n\.js" defer><\/script>|<script src="(?:\.\.\/)?assets\/i18n\.js" defer><\/script>/i,
-    `<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script>`);
+    `<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n-v5.js" defer></script>`);
   return html;
 }
 async function serveLocalized(request, env, lang, requestedPath) {
@@ -346,7 +346,7 @@ function schema(type, title, description, path, extra = {}) {
 }
 
 function shell({title, description, path, body, type="Article"}) {
-  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="canonical" href="${SITE + path}">${hreflangTags(path)}<link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="article"><meta property="og:site_name" content="Sugargoo VIP"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${SITE + path}"><meta property="og:image" content="${SITE}/assets/11.png"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">${schema(type,title,description,path)}</script></head><body>${nav("")}<main class="wrap"><div class="breadcrumbs"><a href="/">Home</a> / <span>${esc(title)}</span></div>${body}${footer("")}</main><script src="/assets/i18n.js" defer></script><script src="/assets/language-fix.js" defer></script></body></html>`;
+  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="canonical" href="${SITE + path}">${hreflangTags(path)}<link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="article"><meta property="og:site_name" content="Sugargoo VIP"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${SITE + path}"><meta property="og:image" content="${SITE}/assets/11.png"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">${schema(type,title,description,path)}</script></head><body>${nav("")}<main class="wrap"><div class="breadcrumbs"><a href="/">Home</a> / <span>${esc(title)}</span></div>${body}${footer("")}</main><script src="/assets/i18n-v5.js" defer></script><script src="/assets/language-fix-v5.js" defer></script></body></html>`;
 }
 
 function sectionsHtml(sections) {
