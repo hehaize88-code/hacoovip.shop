@@ -79,57 +79,23 @@
   };
 
   function selectedLanguage(){
-    return localStorage.getItem('sugargooLang') || (location.pathname.match(SEO_PREFIX)?.[1]) || 'en';
-  }
-
-  function cleanPath(){
-    let path=location.pathname.replace(SEO_PREFIX,'') || '/';
-    if(path==='/index.html') path='/';
-    if(path==='/guides/index.html') path='/guides/';
-    return path;
-  }
-
-  function switchLanguage(lang){
-    localStorage.setItem('sugargooLang',lang);
-    const target=cleanPath()+location.search+location.hash;
-    if(location.pathname!==cleanPath()) location.replace(target);
-    else location.reload();
-  }
-
-  function cardKey(card){
-    try{return new URL(card.getAttribute('href'),location.href).pathname.split('/').filter(Boolean).pop()||'';}catch{return '';}
-  }
-
-  function localizeGuideCards(lang){
-    document.querySelectorAll('.guide-card').forEach(card=>{
-      card.hidden=false;
-      card.removeAttribute('hidden');
-      const copy=(FIRST_FIVE[lang]||FIRST_FIVE.en)[cardKey(card)];
-      if(!copy) return;
-      const h=card.querySelector('h3');
-      const p=card.querySelector('p');
-      if(h) h.textContent=copy[0];
-      if(p) p.textContent=copy[1];
-    });
-    const intro=document.querySelector('[data-guide-hub-intro],.guide-hub .article-lead');
-    if(intro&&INTRO[lang]) intro.textContent=INTRO[lang];
-  }
-
-  document.addEventListener('change',event=>{
-    if(!event.target.matches('.language-select')) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    switchLanguage(event.target.value);
-  },true);
-
-  document.addEventListener('click',event=>{
-    const button=event.target.closest('[data-language-button]');
-    if(!button) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    switchLanguage(button.dataset.languageButton);
-  },true);
-
-  document.addEventListener('DOMContentLoaded',()=>localizeGuideCards(selectedLanguage()));
-  window.addEventListener('pageshow',()=>localizeGuideCards(selectedLanguage()));
+  return localStorage.getItem('sugargooLang')||(location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/)?.[1])||'en';
+}
+function cardKey(card){
+  try{return new URL(card.getAttribute('href'),location.href).pathname.split('/').filter(Boolean).pop()||'';}catch{return '';}
+}
+function localizeGuideCards(lang){
+  document.querySelectorAll('.guide-card').forEach(card=>{
+    card.hidden=false;card.removeAttribute('hidden');
+    const copy=(FIRST_FIVE[lang]||FIRST_FIVE.en)[cardKey(card)];
+    if(!copy)return;
+    const h=card.querySelector('h3'),p=card.querySelector('p');
+    if(h)h.textContent=copy[0];if(p)p.textContent=copy[1];
+  });
+  const intro=document.querySelector('[data-guide-hub-intro],.guide-hub .article-lead');
+  if(intro&&INTRO[lang])intro.textContent=INTRO[lang];
+}
+document.addEventListener('DOMContentLoaded',()=>localizeGuideCards(selectedLanguage()));
+window.addEventListener('sugargoo:languagechange',event=>localizeGuideCards(event.detail.lang));
+window.addEventListener('pageshow',()=>localizeGuideCards(selectedLanguage()));
 })();

@@ -110,7 +110,7 @@ function replaceMeta(html, lang, path) {
   html = localizedInternalLinks(html, lang, path);
   html = html.replace(/<body([^>]*)>/i, `<body$1 data-seo-locale="${lang}">`);
   html = html.replace(/<script src="\/assets\/i18n\.js" defer><\/script>|<script src="(?:\.\.\/)?assets\/i18n\.js" defer><\/script>/i,
-    `<script>localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script><script src="/assets/language-fix.js" defer></script>`);
+    `<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n.js" defer></script>`);
   return html;
 }
 async function serveLocalized(request, env, lang, requestedPath) {
