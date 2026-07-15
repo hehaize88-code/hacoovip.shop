@@ -1,5 +1,80 @@
 (()=>{
-  const SEO_PREFIX=/^\/(de|fr|es|pl)(?=\/|$)/;
+  const SUPPORTED=new Set(['en','es','fr','de','it','pt','pl','nl','zh']);
+  const SEO_LANGS=new Set(['de','fr','es','pl']);
+  const CORE_ROUTES=new Set(['/','/guides/','/guides/what-is-sugargoo.html','/guides/qc-guide.html','/guides/shipping-guide.html','/guides/alternative.html','/faq.html']);
+
+  function normalizePath(path){
+    path=(path||'/').replace(/^\/(de|fr|es|pl)(?=\/|$)/,'')||'/';
+    if(path==='/index.html')path='/';
+    if(path==='/guides/index.html')path='/guides/';
+    return path;
+  }
+
+  function pathForLanguage(lang,path){
+    path=normalizePath(path);
+    return SEO_LANGS.has(lang)&&CORE_ROUTES.has(path)?'/'+lang+(path==='/'?'/':path):path;
+  }
+
+  function safeStore(lang){
+    try{localStorage.setItem('sugargooLang',lang)}catch{}
+  }
+
+  function selectedLanguage(){
+    const query=new URLSearchParams(location.search).get('lang');
+    if(query&&SUPPORTED.has(query))return query;
+    try{
+      const stored=localStorage.getItem('sugargooLang');
+      if(stored&&SUPPORTED.has(stored))return stored;
+    }catch{}
+    const path=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/)?.[1];
+    return path||'en';
+  }
+
+  function targetForLanguage(lang){
+    if(!SUPPORTED.has(lang))lang='en';
+    const url=new URL(location.href);
+    url.pathname=pathForLanguage(lang,url.pathname);
+    url.searchParams.set('lang',lang);
+    return url.pathname+url.search+url.hash;
+  }
+
+  function switchLanguage(lang){
+    if(!SUPPORTED.has(lang))lang='en';
+    safeStore(lang);
+    const target=targetForLanguage(lang);
+    const current=location.pathname+location.search+location.hash;
+    if(current===target){
+      if(typeof window.SugargooSetLanguage==='function')window.SugargooSetLanguage(lang);
+      return;
+    }
+    location.assign(target);
+  }
+
+  // A query-string selection must win over both an old locale URL and stale localStorage.
+  const explicit=new URLSearchParams(location.search).get('lang');
+  if(explicit&&SUPPORTED.has(explicit)){
+    safeStore(explicit);
+    const corrected=targetForLanguage(explicit);
+    const current=location.pathname+location.search+location.hash;
+    if(corrected!==current)history.replaceState({sugargooLanguage:explicit},'',corrected);
+  }
+
+  // Capture before the older i18n/article listeners so they cannot redirect to a different page.
+  document.addEventListener('change',event=>{
+    if(!event.target.matches('.language-select'))return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    switchLanguage(event.target.value);
+  },true);
+
+  document.addEventListener('click',event=>{
+    const button=event.target.closest('[data-language-button]');
+    if(!button)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    switchLanguage(button.dataset.languageButton);
+  },true);
+
   const INTRO={
     en:'Independent, practical articles covering reverse shopping, image and product-link verification, order records, confirmation, QC, warehouse decisions, packing, payments, returns, tracking and destination planning.',
     es:'Artículos independientes y prácticos sobre compra inversa, verificación de imágenes y enlaces, control de pedidos, QC, almacén, embalaje, pagos, devoluciones, seguimiento y planificación del destino.',
@@ -12,14 +87,16 @@
     zh:'独立、实用的反向代购文章，涵盖图片与商品链接核验、多商品订单记录、下单确认、QC、仓库决策、包装、付款、退货、追踪与目的地规划。'
   };
 
-  const FIRST_FIVE={
-    en:{
-      'sugargoo-reverse-shopping-multi-item-order-ledger.html':['How to Organize a Multi-Item Sugargoo Reverse-Shopping Order','Use batch numbers, item IDs and status records to prevent mixed, missing or incorrectly changed items.'],
-      'sugargoo-reverse-shopping-image-to-product-link.html':['How to Find a Sugargoo Product from an Image','Turn a screenshot into search clues, compare candidate links and verify the listing before ordering.'],
-      'sugargoo-reverse-shopping-confirmation-checkpoints.html':['How to Prevent Last-Minute Changes in Sugargoo Orders','Use confirmation checkpoints before purchase, after listing changes and before international shipping.'],
-      'sugargoo-reverse-shopping-order-boundaries.html':['Which Orders Fit a Sugargoo Reverse-Shopping Workflow?','Judge an order by product clarity, information changes, cross-border limits and communication cost.'],
-      'sugargoo-reverse-shopping-product-link-workflow.html':['How Does Sugargoo Reverse Shopping Work?','Verify the product link, selected variant, cost breakdown and pre-shipping details before proceeding.']
-    },
+  const EN={
+    'sugargoo-reverse-shopping-multi-item-order-ledger.html':['How to Organize a Multi-Item Sugargoo Reverse-Shopping Order','Use batch numbers, item IDs and status records to prevent mixed, missing or incorrectly changed items.'],
+    'sugargoo-reverse-shopping-image-to-product-link.html':['How to Find a Sugargoo Product from an Image','Turn a screenshot into search clues, compare candidate links and verify the listing before ordering.'],
+    'sugargoo-reverse-shopping-confirmation-checkpoints.html':['How to Prevent Last-Minute Changes in Sugargoo Orders','Use confirmation checkpoints before purchase, after listing changes and before international shipping.'],
+    'sugargoo-reverse-shopping-order-boundaries.html':['Which Orders Fit a Sugargoo Reverse-Shopping Workflow?','Judge an order by product clarity, information changes, cross-border limits and communication cost.'],
+    'sugargoo-reverse-shopping-product-link-workflow.html':['How Does Sugargoo Reverse Shopping Work?','Verify the product link, selected variant, cost breakdown and pre-shipping details before proceeding.']
+  };
+
+  const CARDS={
+    en:EN,
     it:{
       'sugargoo-reverse-shopping-multi-item-order-ledger.html':['Come organizzare un ordine Sugargoo con più articoli','Usa numeri di lotto, codici articolo e stati per evitare scambi, omissioni e modifiche errate.'],
       'sugargoo-reverse-shopping-image-to-product-link.html':['Come trovare un prodotto Sugargoo da un’immagine','Trasforma lo screenshot in indizi, confronta i link e verifica l’inserzione.'],
@@ -78,24 +155,49 @@
     }
   };
 
-  function selectedLanguage(){
-  return localStorage.getItem('sugargooLang')||(location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/)?.[1])||'en';
-}
-function cardKey(card){
-  try{return new URL(card.getAttribute('href'),location.href).pathname.split('/').filter(Boolean).pop()||'';}catch{return '';}
-}
-function localizeGuideCards(lang){
-  document.querySelectorAll('.guide-card').forEach(card=>{
-    card.hidden=false;card.removeAttribute('hidden');
-    const copy=(FIRST_FIVE[lang]||FIRST_FIVE.en)[cardKey(card)];
-    if(!copy)return;
-    const h=card.querySelector('h3'),p=card.querySelector('p');
-    if(h)h.textContent=copy[0];if(p)p.textContent=copy[1];
+  function cardKey(card){
+    try{return new URL(card.getAttribute('href'),location.href).pathname.split('/').filter(Boolean).pop()||''}catch{return ''}
+  }
+
+  function localizeCards(lang){
+    const dictionary=CARDS[lang]||EN;
+    document.querySelectorAll('.guide-card').forEach(card=>{
+      card.hidden=false;
+      card.removeAttribute('hidden');
+      const copy=dictionary[cardKey(card)]||EN[cardKey(card)];
+      if(!copy)return;
+      const heading=card.querySelector('h3');
+      const paragraph=card.querySelector('p');
+      if(heading)heading.textContent=copy[0];
+      if(paragraph)paragraph.textContent=copy[1];
+    });
+    const intro=document.querySelector('[data-guide-hub-intro],.guide-hub .article-lead');
+    if(intro&&INTRO[lang])intro.textContent=INTRO[lang];
+  }
+
+  function decorateLinks(lang){
+    document.querySelectorAll('a[href]').forEach(anchor=>{
+      const raw=anchor.getAttribute('href');
+      if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:')||raw.startsWith('javascript:'))return;
+      let url;
+      try{url=new URL(raw,location.href)}catch{return}
+      if(url.origin!==location.origin)return;
+      url.pathname=pathForLanguage(lang,url.pathname);
+      url.searchParams.set('lang',lang);
+      anchor.setAttribute('href',url.pathname+url.search+url.hash);
+    });
+  }
+
+  function refresh(){
+    const lang=selectedLanguage();
+    localizeCards(lang);
+    decorateLinks(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded',refresh);
+  window.addEventListener('pageshow',refresh);
+  window.addEventListener('sugargoo:languagechange',event=>{
+    localizeCards(event.detail.lang);
+    decorateLinks(event.detail.lang);
   });
-  const intro=document.querySelector('[data-guide-hub-intro],.guide-hub .article-lead');
-  if(intro&&INTRO[lang])intro.textContent=INTRO[lang];
-}
-document.addEventListener('DOMContentLoaded',()=>localizeGuideCards(selectedLanguage()));
-window.addEventListener('sugargoo:languagechange',event=>localizeGuideCards(event.detail.lang));
-window.addEventListener('pageshow',()=>localizeGuideCards(selectedLanguage()));
 })();
