@@ -2,6 +2,7 @@ import "./globals.css";
 import "./search.css";
 import "./mobile.css";
 import "./product.css";
+import "./research-modules.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
