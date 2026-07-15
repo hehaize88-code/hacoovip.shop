@@ -900,6 +900,16 @@ function textFromHtml(html, pattern) {
   return match ? normalizeSchemaText(match[1]) : "";
 }
 
+function latestEditorialPublishedDate() {
+  const manifestPath = path.join(root, "scripts", "editorial-articles.json");
+  if (!fs.existsSync(manifestPath)) return "2026-07-14";
+  const dates = JSON.parse(fs.readFileSync(manifestPath, "utf8"))
+    .map((article) => article && article.published)
+    .filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date || ""))
+    .sort();
+  return dates.at(-1) || "2026-07-14";
+}
+
 function englishSeoGraph(routeKey, html) {
   const route = routes[routeKey];
   const canonical = `https://hacoo.store/${route.slug}`;
@@ -933,7 +943,7 @@ function englishSeoGraph(routeKey, html) {
       description,
       isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },
-      dateModified: "2026-07-14",
+      dateModified: routeKey === "articles" ? latestEditorialPublishedDate() : "2026-07-14",
       inLanguage: "en"
     }, {
       "@type": "BreadcrumbList",
@@ -1029,13 +1039,29 @@ for (const [routeKey, route] of Object.entries(routes)) {
   fs.writeFileSync(englishPath, html);
 }
 
-const sitemapEntries = [];
+const sitemapUrls = new Set();
 for (const code of languageCodes) {
   for (const route of Object.values(routes)) {
     const url = code === "en" ? `https://hacoo.store/${route.slug}` : `https://hacoo.store/${code}/${route.slug}`;
-    sitemapEntries.push(`  <url><loc>${url}</loc></url>`);
+    sitemapUrls.add(url);
   }
 }
+
+// English editorial articles are maintained separately from the generated
+// locale route families. Reading the manifest here keeps repeat builds from
+// deleting their canonical URLs from the sitemap.
+const editorialManifestPath = path.join(root, "scripts", "editorial-articles.json");
+if (fs.existsSync(editorialManifestPath)) {
+  const editorialArticles = JSON.parse(fs.readFileSync(editorialManifestPath, "utf8"));
+  for (const article of editorialArticles) {
+    if (!article || !/^https:\/\/hacoo\.store\/articles\/[a-z0-9-]+\/$/.test(article.url || "")) {
+      throw new Error(`Invalid editorial article URL in ${editorialManifestPath}`);
+    }
+    sitemapUrls.add(article.url);
+  }
+}
+
+const sitemapEntries = [...sitemapUrls].map((url) => `  <url><loc>${url}</loc></url>`);
 fs.writeFileSync(path.join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`);
 
 console.log("Localized routes, English alternates, navigation, and sitemap generated.");
