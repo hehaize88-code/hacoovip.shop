@@ -11,6 +11,15 @@
   Content-Type: text/plain; charset=UTF-8
   Cache-Control: public, max-age=0, must-revalidate
 
+/assets/i18n.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/language-fix.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/reverse-articles/*
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=86400
 
