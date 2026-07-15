@@ -1,7 +1,8 @@
 node_modules/
 .next/
-.wrangler/
-dist/
 out/
+dist/
+.wrangler/
+.dev.vars
 .DS_Store
 *.log
