@@ -12,13 +12,19 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 /assets/i18n.js
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store
 
 /assets/language-fix.js
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store
+
+/assets/i18n-v5.js
+  Cache-Control: no-store
+
+/assets/language-fix-v5.js
+  Cache-Control: no-store
 
 /assets/reverse-articles/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store
 
 /assets/*
   Cache-Control: public, max-age=86400
@@ -37,10 +43,4 @@
 
 /sitemap-*.xml
   Content-Type: application/xml; charset=UTF-8
-  Cache-Control: public, max-age=0, must-revalidate
-
-/assets/i18n-v5.js
-  Cache-Control: public, max-age=0, must-revalidate
-
-/assets/language-fix-v5.js
   Cache-Control: public, max-age=0, must-revalidate
