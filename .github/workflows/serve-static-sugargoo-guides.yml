@@ -1,0 +1,47 @@
+name: Preserve full Sugargoo guide hub
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/serve-static-sugargoo-guides.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Let the static guide index remain the source of truth
+        shell: python
+        run: |
+          from pathlib import Path
+          path = Path('sugargoovip-preview/_worker.js')
+          text = path.read_text(encoding='utf-8')
+          old = 'if (path === "/guides/" || path === "/guides/index.html") html = guideHub();'
+          new = 'if (false && (path === "/guides/" || path === "/guides/index.html")) html = guideHub();'
+          if old not in text and new not in text:
+              raise SystemExit('Expected guide-hub route was not found')
+          if old in text:
+              text = text.replace(old, new, 1)
+              path.write_text(text, encoding='utf-8')
+
+      - name: Commit worker patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/serve-static-sugargoo-guides.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Serve the complete static Sugargoo guide index'
+          git push origin HEAD:main
