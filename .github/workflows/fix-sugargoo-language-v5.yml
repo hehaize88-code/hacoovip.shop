@@ -1,0 +1,195 @@
+name: Fix Sugargoo language controller v5
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-sugargoo-language-v5.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build a new versioned language controller
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          base = Path('sugargoovip-preview')
+          source = (base / 'assets/i18n.js').read_text(encoding='utf-8')
+
+          choose = r'''function pageBasePath(){
+            let p=location.pathname.replace(/^\/(de|fr|es|pl)(?=\/|$)/,'')||'/';
+            if(p==='/index.html')p='/';
+            if(p==='/guides/index.html')p='/guides/';
+            return p;
+          }
+          function languagePath(lang){
+            const p=pageBasePath();
+            return SEO_LANGS.includes(lang)&&SEO_CORE.has(p)?'/'+lang+(p==='/'?'/':p):p;
+          }
+          function chooseLanguage(lang){
+            if(!T[lang])lang='en';
+            localStorage.setItem('sugargooLang',lang);
+            const next=languagePath(lang);
+            if(location.pathname!==next)history.replaceState({sugargooLanguage:lang},'',next+location.search+location.hash);
+            apply(lang);
+            window.dispatchEvent(new CustomEvent('sugargoo:languagechange',{detail:{lang}}));
+          }
+          function apply'''
+          source, count = re.subn(r'function chooseLanguage\(lang\)\{.*?\}function apply', choose, source, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Unable to replace chooseLanguage in i18n.js')
+
+          build = r'''function build(){
+            const pathLang=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/)?.[1];
+            const saved=pathLang||localStorage.getItem('sugargooLang')||'en';
+            document.querySelectorAll('.language-select').forEach(sel=>{
+              sel.innerHTML='';
+              Object.entries(labels).forEach(([value,name])=>{
+                const option=document.createElement('option');
+                option.value=value;
+                option.textContent='🌐 '+name;
+                sel.appendChild(option);
+              });
+              if(sel.dataset.sugargooLanguageBound!=='1'){
+                sel.dataset.sugargooLanguageBound='1';
+                sel.addEventListener('change',()=>chooseLanguage(sel.value));
+              }
+            });
+            document.querySelectorAll('[data-language-button]').forEach(button=>{
+              if(button.dataset.sugargooLanguageBound==='1')return;
+              button.dataset.sugargooLanguageBound='1';
+              button.addEventListener('click',event=>{
+                event.preventDefault();
+                chooseLanguage(button.dataset.languageButton);
+              });
+            });
+            apply(saved);
+            window.SugargooSetLanguage=chooseLanguage;
+          }
+          document.addEventListener('DOMContentLoaded',build);
+          window.addEventListener('popstate',()=>{
+            const pathLang=location.pathname.match(/^\/(de|fr|es|pl)(\/|$)/)?.[1];
+            apply(pathLang||localStorage.getItem('sugargooLang')||'en');
+          });'''
+          source, count = re.subn(r"function build\(\)\{.*?\}\s*document\.addEventListener\('DOMContentLoaded',build\);", build, source, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Unable to replace build in i18n.js')
+
+          (base / 'assets/i18n-v5.js').write_text(source, encoding='utf-8')
+          (base / 'assets/language-fix-v5.js').write_text((base / 'assets/language-fix.js').read_text(encoding='utf-8'), encoding='utf-8')
+
+          # Use brand-new filenames on every static page so no browser can reuse an older cached controller.
+          for page in base.rglob('*.html'):
+              text = page.read_text(encoding='utf-8')
+              text = text.replace('i18n.js', 'i18n-v5.js')
+              text = text.replace('language-fix.js', 'language-fix-v5.js')
+              page.write_text(text, encoding='utf-8')
+
+          worker = base / '_worker.js'
+          text = worker.read_text(encoding='utf-8')
+          text = text.replace('/assets/i18n.js', '/assets/i18n-v5.js')
+          text = text.replace('/assets/language-fix.js', '/assets/language-fix-v5.js')
+          worker.write_text(text, encoding='utf-8')
+
+          headers = base / '_headers'
+          text = headers.read_text(encoding='utf-8')
+          rules = '''\n/assets/i18n-v5.js\n  Cache-Control: public, max-age=0, must-revalidate\n\n/assets/language-fix-v5.js\n  Cache-Control: public, max-age=0, must-revalidate\n'''
+          if '/assets/i18n-v5.js' not in text:
+              text += rules
+          headers.write_text(text, encoding='utf-8')
+
+      - name: Run real DOM regression tests against the versioned scripts
+        run: |
+          npm install --no-save jsdom@24
+          cat > .tmp-sugargoo-language-v5.mjs <<'JS'
+          import fs from 'node:fs';
+          import {JSDOM} from 'jsdom';
+
+          const base='sugargoovip-preview';
+          const i18n=fs.readFileSync(`${base}/assets/i18n-v5.js`,'utf8');
+          const fix=fs.readFileSync(`${base}/assets/language-fix-v5.js`,'utf8');
+          const wait=dom=>new Promise(resolve=>dom.window.setTimeout(resolve,20));
+          const assert=(ok,message)=>{if(!ok)throw new Error(message)};
+
+          async function boot(file,url,stored,extra){
+            const html=fs.readFileSync(`${base}/${file}`,'utf8');
+            const dom=new JSDOM(html,{url,runScripts:'outside-only'});
+            if(stored)dom.window.localStorage.setItem('sugargooLang',stored);
+            dom.window.eval(i18n);
+            dom.window.eval(fix);
+            if(extra)dom.window.eval(fs.readFileSync(`${base}/${extra}`,'utf8'));
+            dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded',{bubbles:true}));
+            await wait(dom);
+            return dom;
+          }
+          async function select(dom,lang){
+            const el=dom.window.document.querySelector('.language-select');
+            el.value=lang;
+            el.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+            await wait(dom);
+          }
+
+          const home=await boot('index.html','https://sugargoovip.uk/','it');
+          assert(home.window.document.querySelector('.language-select').value==='it','Italian initial selector failed');
+          await select(home,'en');
+          assert(home.window.localStorage.getItem('sugargooLang')==='en','English state was not saved');
+          assert(home.window.document.querySelector('.language-select').value==='en','Selector returned to Italian');
+          assert(home.window.document.querySelector('[data-i18n="hero.b"]').textContent==='Shopping Guide','English home text failed');
+          assert(home.window.location.pathname==='/' ,'English changed away from home');
+          await select(home,'de');
+          assert(home.window.document.querySelector('.language-select').value==='de','German selector failed');
+          assert(home.window.location.pathname==='/de/','German history URL failed');
+          assert(home.window.document.querySelector('[data-i18n="hero.b"]').textContent.includes('Einkaufsratgeber'),'German text failed');
+          await select(home,'pt');
+          assert(home.window.location.pathname==='/' ,'Portuguese did not preserve the home page');
+          assert(home.window.document.querySelector('.language-select').value==='pt','Portuguese selector failed');
+
+          const articleFile='guides/sugargoo-reverse-shopping-multi-item-order-ledger.html';
+          const article=await boot(articleFile,`https://sugargoovip.uk/${articleFile}`,'it','assets/reverse-articles/multi-item-order-ledger.js');
+          assert(article.window.document.querySelector('.article-card h1').textContent.startsWith('Come organizzare'),'Italian article did not initialize');
+          await select(article,'en');
+          assert(article.window.location.pathname===`/${articleFile}`,'Article jumped to another page');
+          assert(article.window.document.querySelector('.article-card h1').textContent.startsWith('How to Organize'),'English full article did not render');
+          await select(article,'zh');
+          assert(article.window.location.pathname===`/${articleFile}`,'Chinese article switch jumped to home');
+          assert(article.window.document.querySelector('.article-card h1').textContent.includes('反向代购'),'Chinese full article did not restore');
+
+          const localized=await boot('index.html','https://sugargoovip.uk/de/',null);
+          assert(localized.window.document.querySelector('.language-select').value==='de','Direct /de/ did not initialize German');
+          await select(localized,'en');
+          assert(localized.window.location.pathname==='/' ,'Switching /de/ to English did not preserve the same page');
+          assert(localized.window.document.querySelector('.language-select').value==='en','/de/ selector returned to German');
+
+          console.log('PASS: versioned language controller works on home, SEO path and full article pages.');
+          JS
+          node .tmp-sugargoo-language-v5.mjs
+
+      - name: Validate no static page references the old controller
+        run: |
+          set -euo pipefail
+          ! grep -R --include='*.html' -n 'i18n.js\|language-fix.js' sugargoovip-preview
+          grep -R --include='*.html' -q 'i18n-v5.js' sugargoovip-preview
+          grep -q '/assets/i18n-v5.js' sugargoovip-preview/_worker.js
+
+      - name: Commit the tested versioned repair
+        run: |
+          rm -rf .github/workflows/fix-sugargoo-language-v5.yml .tmp-sugargoo-language-v5.mjs node_modules package.json package-lock.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Replace Sugargoo language controller with tested v5 assets'
+          git push origin HEAD:main
