@@ -9,5 +9,5 @@ export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
   if (!LOCALIZED_LOCALES.includes(locale)) notFound();
   const setLanguage = `document.documentElement.lang=${JSON.stringify(locale)}`;
-  return <><script dangerouslySetInnerHTML={{ __html: setLanguage }}/><div lang={locale} data-locale={locale}>{children}</div></>;
+  return <><meta httpEquiv="content-language" content={locale}/><script dangerouslySetInnerHTML={{ __html: setLanguage }}/><div lang={locale} data-locale={locale}>{children}</div></>;
 }

@@ -3,6 +3,7 @@ import { Arrow, CheckIcon } from "./Icons";
 import { CategoryCard } from "./Cards";
 import HeroSearch from "./HeroSearch";
 import StructuredData from "./StructuredData";
+import { createPageMetadata } from "@/app/seo";
 import { categories, guides, DESTINATION, SITE_URL } from "@/app/data";
 import { absoluteLocalizedUrl, getCopy, localizeCategories, localizeGuides, localizePath } from "@/app/i18n";
 
@@ -79,5 +80,42 @@ export function LocalizedAbout({ locale }) {
 }
 
 export function localizedPageMetadata(locale, pathname, title, description) {
-  return { title, description, alternates: { canonical: absoluteLocalizedUrl(pathname,locale), languages: Object.fromEntries(["en","es","fr","de","it","pt"].map((code)=>[code,absoluteLocalizedUrl(pathname,code)]).concat([["x-default",`${SITE_URL}${pathname === "/" ? "" : pathname}`]])) }, openGraph: { title, description, url: absoluteLocalizedUrl(pathname,locale), locale } };
+  const labels = {
+    es: { home: "Guía Hacoo: categorías y enlaces", spreadsheet: "Directorio Hacoo 2026: enlaces y categorías", categories: "Categorías Hacoo: enlaces y comprobaciones", guides: "Guías Hacoo: tallas, QC y envíos", faq: "Preguntas frecuentes sobre Hacoo", about: "Sobre Hacoo Pro: guía independiente", category: (name) => `${name} Hacoo: enlaces y guía`, guide: (name) => `${name} — Guía práctica` },
+    fr: { home: "Guide Hacoo : catégories et liens", spreadsheet: "Répertoire Hacoo 2026 : liens et catégories", categories: "Catégories Hacoo : liens et vérifications", guides: "Guides Hacoo : tailles, QC et livraison", faq: "Questions fréquentes sur Hacoo", about: "À propos de Hacoo Pro : guide indépendant", category: (name) => `${name} Hacoo : liens et guide`, guide: (name) => `${name} — Guide pratique` },
+    de: { home: "Hacoo-Ratgeber: Kategorien und Links", spreadsheet: "Hacoo-Verzeichnis 2026: Links und Kategorien", categories: "Hacoo-Kategorien: Links und Prüfungen", guides: "Hacoo-Ratgeber: Größe, QC und Versand", faq: "Häufige Fragen zu Hacoo", about: "Über Hacoo Pro: unabhängiger Ratgeber", category: (name) => `${name} Hacoo: Links und Ratgeber`, guide: (name) => `${name} — Praktischer Ratgeber` },
+    it: { home: "Guida Hacoo: categorie e link", spreadsheet: "Elenco Hacoo 2026: link e categorie", categories: "Categorie Hacoo: link e controlli", guides: "Guide Hacoo: taglie, QC e spedizione", faq: "Domande frequenti su Hacoo", about: "Informazioni su Hacoo Pro: guida indipendente", category: (name) => `${name} Hacoo: link e guida`, guide: (name) => `${name} — Guida pratica` },
+    pt: { home: "Guia Hacoo: categorias e links", spreadsheet: "Diretório Hacoo 2026: links e categorias", categories: "Categorias Hacoo: links e verificações", guides: "Guias Hacoo: tamanhos, QC e envio", faq: "Perguntas frequentes sobre Hacoo", about: "Sobre o Hacoo Pro: guia independente", category: (name) => `${name} Hacoo: links e guia`, guide: (name) => `${name} — Guia prático` },
+  };
+  const localeLabels = labels[locale] || labels.es;
+  let seoTitle = title;
+  if (pathname === "/") seoTitle = localeLabels.home;
+  else if (pathname === "/spreadsheet") seoTitle = localeLabels.spreadsheet;
+  else if (pathname === "/categories") seoTitle = localeLabels.categories;
+  else if (pathname === "/guides") seoTitle = localeLabels.guides;
+  else if (pathname === "/faq") seoTitle = localeLabels.faq;
+  else if (pathname === "/about") seoTitle = localeLabels.about;
+  else if (pathname.startsWith("/categories/")) seoTitle = localeLabels.category(title);
+  else if (pathname.startsWith("/guides/")) seoTitle = localeLabels.guide(title);
+
+  const suffixes = {
+    es: "Incluye enlaces actuales, comprobaciones prácticas y datos que debes confirmar en el anuncio.",
+    fr: "Avec des liens actuels, des vérifications pratiques et les informations à confirmer sur l’annonce.",
+    de: "Mit aktuellen Links, praktischen Prüfungen und Angaben, die im Angebot bestätigt werden müssen.",
+    it: "Con link attuali, controlli pratici e dati da confermare nell’inserzione.",
+    pt: "Inclui links atuais, verificações práticas e dados a confirmar no anúncio.",
+  };
+  const expandedDescription = description.length < 90 ? `${description} ${suffixes[locale]}` : description;
+  const seoDescription = expandedDescription.length > 160
+    ? `${expandedDescription.slice(0, 157).replace(/\s+\S*$/, "")}.`
+    : expandedDescription;
+  const canonicalPath = localizePath(pathname, locale);
+  const withSlash = (url) => url.endsWith("/") ? url : `${url}/`;
+  const alternates = {
+    canonical: withSlash(absoluteLocalizedUrl(pathname, locale)),
+    languages: Object.fromEntries(
+      ["en", "es", "fr", "de", "it", "pt"].map((code) => [code, withSlash(absoluteLocalizedUrl(pathname, code))]).concat([["x-default", withSlash(absoluteLocalizedUrl(pathname, "en"))]]),
+    ),
+  };
+  return createPageMetadata({ title: seoTitle, description: seoDescription, path: canonicalPath, locale, alternates, type: pathname.startsWith("/guides/") ? "article" : "website" });
 }

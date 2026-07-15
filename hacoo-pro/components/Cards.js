@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Arrow } from "./Icons";
-import { DESTINATION } from "@/app/data";
 import { localizePath } from "@/app/i18n";
 
 export function CategoryCard({ category, index, locale = "en" }) {
@@ -14,9 +13,9 @@ export function CategoryCard({ category, index, locale = "en" }) {
 
 export function ProductCard({ product }) {
   return (
-    <a className="product-card" href={`${DESTINATION}${product.href}`} target="_blank" rel="noopener noreferrer">
+    <Link className="product-card" href={`/products/${product.slug}`}>
       <div className="product-image"><img src={product.image} alt={product.name} loading="lazy"/><span>{product.tag}</span></div>
-      <div className="product-copy"><small>{product.category}</small><h3>{product.name}</h3><span className="text-link">Check live listing <Arrow size={16}/></span></div>
-    </a>
+      <div className="product-copy"><small>{product.category}</small><h3>{product.name}</h3><span className="text-link">View product reference <Arrow size={16}/></span></div>
+    </Link>
   );
 }

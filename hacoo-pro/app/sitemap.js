@@ -1,4 +1,4 @@
-import { categories, guides, SITE_URL } from "./data";
+import { categories, guides, products, SITE_URL } from "./data";
 import { LOCALES, localizePath } from "./i18n";
 export const dynamic = "force-static";
 
@@ -8,7 +8,7 @@ function canonicalUrl(path, locale = "en") {
 }
 
 export default function sitemap() {
-  const now = new Date("2026-07-14");
+  const now = new Date("2026-07-15");
   const localizedCore = ["/", "/spreadsheet", "/categories", "/guides", "/faq", "/about"].flatMap((path) =>
     LOCALES.map((locale) => ({
       url: canonicalUrl(path, locale),
@@ -40,5 +40,12 @@ export default function sitemap() {
     priority: 0.4,
   }));
 
-  return [...localizedCore, ...localizedCategories, ...localizedGuides, ...legal];
+  const productReferences = products.map((product) => ({
+    url: canonicalUrl(`/products/${product.slug}`),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.65,
+  }));
+
+  return [...localizedCore, ...localizedCategories, ...localizedGuides, ...productReferences, ...legal];
 }
