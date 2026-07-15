@@ -5,6 +5,9 @@ export const localizedDepth = {
       title: "Guarda pruebas útiles antes de elegir.",
       intro: (name) => `Para comparar ${name.toLowerCase()} de forma responsable, anota la opción exacta, usa el mismo método de medida y relaciona cada foto con la variante seleccionada. Estas comprobaciones reducen errores sin sustituir la información actual del anuncio.`,
       reviewed: "Ruta de categoría revisada el 15 de julio de 2026. La disponibilidad, las opciones y las condiciones externas pueden cambiar.",
+      productLabel: "Producto actual", productTitle: "Una ficha real, comprobada directamente.", openListing: "Abrir ficha verificada", fallback: "Búsqueda alternativa",
+      tableLabel: "Tabla de talla y QC", tableTitle: "Registra pruebas, no impresiones.", tableHeaders: ["Comprobación", "Qué anotar", "Prueba útil"], tableRecord: "Anota el valor o la opción exacta.", tableEvidence: "Foto, tabla o texto de la ficha actual.",
+      faqTitle: "Preguntas de comprobación", updateLabel: "Registro de cambios", updateTitle: "Producto y guía actualizados", updateText: "Se verificó la ficha, se añadió una búsqueda alternativa y se actualizó la tabla de talla/QC.", disclosure: "La inclusión no verifica stock, calidad, autenticidad ni idoneidad. Confirma la opción actual.",
     },
     guide: {
       label: "Comprobación práctica",
@@ -47,6 +50,9 @@ export const localizedDepth = {
       title: "Conservez des éléments utiles avant de choisir.",
       intro: (name) => `Pour comparer les ${name.toLowerCase()} de façon responsable, notez l’option exacte, utilisez la même méthode de mesure et associez chaque photo à la variante sélectionnée. Ces contrôles réduisent les erreurs sans remplacer l’annonce actuelle.`,
       reviewed: "Parcours de catégorie vérifié le 15 juillet 2026. Disponibilité, options et conditions externes peuvent changer.",
+      productLabel: "Produit actuel", productTitle: "Une annonce réelle, vérifiée directement.", openListing: "Ouvrir l’annonce vérifiée", fallback: "Recherche de secours",
+      tableLabel: "Tableau taille et QC", tableTitle: "Notez des preuves, pas des impressions.", tableHeaders: ["Contrôle", "À noter", "Preuve utile"], tableRecord: "Notez la valeur ou l’option exacte.", tableEvidence: "Photo, tableau ou texte de l’annonce actuelle.",
+      faqTitle: "Questions de vérification", updateLabel: "Journal des mises à jour", updateTitle: "Produit et guide actualisés", updateText: "L’annonce a été vérifiée, une recherche de secours a été ajoutée et le tableau taille/QC a été actualisé.", disclosure: "L’inclusion ne confirme ni stock, qualité, authenticité ni adéquation. Vérifiez l’option actuelle.",
     },
     guide: {
       label: "Contrôle pratique",
@@ -89,6 +95,9 @@ export const localizedDepth = {
       title: "Halte nützliche Nachweise vor der Auswahl fest.",
       intro: (name) => `Um ${name.toLowerCase()} verlässlich zu vergleichen, notiere die genaue Variante, nutze dieselbe Messmethode und ordne jedes Foto der ausgewählten Option zu. Diese Prüfungen verringern Fehler, ersetzen aber nicht die Angaben im aktuellen Angebot.`,
       reviewed: "Kategorieroute geprüft am 15. Juli 2026. Verfügbarkeit, Varianten und externe Bedingungen können sich ändern.",
+      productLabel: "Aktuelles Produkt", productTitle: "Ein echtes Angebot, direkt geprüft.", openListing: "Geprüftes Angebot öffnen", fallback: "Ersatzsuche",
+      tableLabel: "Größen- und QC-Tabelle", tableTitle: "Nachweise statt Eindrücke festhalten.", tableHeaders: ["Prüfung", "Zu notieren", "Nützlicher Nachweis"], tableRecord: "Notiere den genauen Wert oder die Variante.", tableEvidence: "Foto, Tabelle oder Text des aktuellen Angebots.",
+      faqTitle: "Prüffragen", updateLabel: "Änderungsprotokoll", updateTitle: "Produkt und Ratgeber aktualisiert", updateText: "Das Angebot wurde geprüft, eine Ersatzsuche ergänzt und die Größen-/QC-Tabelle aktualisiert.", disclosure: "Die Aufnahme bestätigt weder Bestand, Qualität, Echtheit noch Eignung. Prüfe die aktuelle Variante.",
     },
     guide: {
       label: "Praktische Prüfung",
@@ -131,6 +140,9 @@ export const localizedDepth = {
       title: "Conserva prove utili prima di scegliere.",
       intro: (name) => `Per confrontare ${name.toLowerCase()} in modo responsabile, annota l’opzione esatta, usa lo stesso metodo di misurazione e associa ogni foto alla variante selezionata. Questi controlli riducono gli errori senza sostituire l’inserzione attuale.`,
       reviewed: "Percorso di categoria verificato il 15 luglio 2026. Disponibilità, opzioni e condizioni esterne possono cambiare.",
+      productLabel: "Prodotto attuale", productTitle: "Un’inserzione reale, verificata direttamente.", openListing: "Apri inserzione verificata", fallback: "Ricerca alternativa",
+      tableLabel: "Tabella taglia e QC", tableTitle: "Registra prove, non impressioni.", tableHeaders: ["Controllo", "Cosa annotare", "Prova utile"], tableRecord: "Annota il valore o l’opzione esatta.", tableEvidence: "Foto, tabella o testo dell’inserzione attuale.",
+      faqTitle: "Domande di verifica", updateLabel: "Registro aggiornamenti", updateTitle: "Prodotto e guida aggiornati", updateText: "L’inserzione è stata verificata, è stata aggiunta una ricerca alternativa e la tabella taglia/QC è stata aggiornata.", disclosure: "L’inclusione non conferma disponibilità, qualità, autenticità o idoneità. Verifica l’opzione attuale.",
     },
     guide: {
       label: "Controllo pratico",
@@ -173,6 +185,9 @@ export const localizedDepth = {
       title: "Guarde provas úteis antes de escolher.",
       intro: (name) => `Para comparar ${name.toLowerCase()} com responsabilidade, anote a opção exata, use o mesmo método de medição e associe cada fotografia à variante selecionada. Estas verificações reduzem erros sem substituir o anúncio atual.`,
       reviewed: "Rota de categoria verificada em 15 de julho de 2026. Disponibilidade, opções e condições externas podem mudar.",
+      productLabel: "Produto atual", productTitle: "Um anúncio real, verificado diretamente.", openListing: "Abrir anúncio verificado", fallback: "Pesquisa alternativa",
+      tableLabel: "Tabela de tamanho e QC", tableTitle: "Registe provas, não impressões.", tableHeaders: ["Verificação", "O que registar", "Prova útil"], tableRecord: "Registe o valor ou a opção exata.", tableEvidence: "Fotografia, tabela ou texto do anúncio atual.",
+      faqTitle: "Perguntas de verificação", updateLabel: "Registo de atualizações", updateTitle: "Produto e guia atualizados", updateText: "O anúncio foi verificado, foi adicionada uma pesquisa alternativa e a tabela de tamanho/QC foi atualizada.", disclosure: "A inclusão não confirma stock, qualidade, autenticidade ou adequação. Verifique a opção atual.",
     },
     guide: {
       label: "Verificação prática",

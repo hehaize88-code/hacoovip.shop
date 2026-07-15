@@ -1,5 +1,6 @@
 export const SITE_URL = "https://hacoo.pro";
 export const DESTINATION = "https://www.cnfanshp.com";
+export const CATALOG_REVIEW = { iso: "2026-07-15", label: "July 15, 2026" };
 
 export const categories = [
   {
@@ -94,8 +95,14 @@ export const categoryResearch = {
       ["Shape and width", "Compare toe shape, heel structure and visible width. Two shoes with the same printed size can still fit differently."],
       ["Construction", "Check the sole edge, stitching, panels and both shoes from matching angles. Look for consistency rather than one flattering image."],
     ],
+    reviewRows: [
+      ["Foot and internal length", "Record both values in millimetres using the same start and end points.", "Size chart or a clearly photographed insole measurement."],
+      ["Shape and width", "Note toe-box shape, visible width and heel structure.", "Matching top, side and rear views of the selected pair."],
+      ["Construction", "Check outsole edge, panel joins, stitching and left/right consistency.", "Comparable close views in neutral light rather than one promotional angle."],
+      ["Selected option", "Save the exact colour, size and whether a box is included.", "Current option selector, stock state and package information."],
+    ],
     mistakes: ["Choosing only from the printed EU, UK or US size", "Comparing different colorways or options as if they were identical", "Forgetting that boxes can affect packed shipping volume"],
-    faqs: [["Does a size conversion guarantee fit?", "No. Use the live measurements and compare them with footwear you already own."], ["Why recheck the destination page?", "Sizes, colors, images and availability can change after a discovery page is published."]],
+    faqs: [["Does a size conversion guarantee fit?", "No. Use the live measurements and compare them with footwear you already own."], ["Why recheck the destination page?", "Sizes, colors, images and availability can change after a discovery page is published."], ["What should useful shoe QC photos show?", "Look for both shoes together plus matching top, side, rear, outsole and measurement views."], ["What if the verified product detail changes?", "Use the live-search fallback, match the image and option again, and do not assume a replacement result is identical."]],
   },
   headwear: {
     primaryCheck: "Circumference and crown depth",
@@ -106,8 +113,14 @@ export const categoryResearch = {
       ["Adjustment system", "Confirm whether the item is fitted, stretch, snapback, strapback or another adjustable construction."],
       ["Finish details", "Inspect brim shape, panel seams, embroidery alignment and the inside band on the exact option shown."],
     ],
+    reviewRows: [
+      ["Head circumference", "Record the user's circumference and the listing's fit range in centimetres.", "Size chart or a visible tape measurement around the band."],
+      ["Crown and brim", "Note crown depth, brim length and whether the structure is soft or rigid.", "Front, side and interior views of the selected style."],
+      ["Closure or stretch", "Record fitted size, adjustment range or stretch construction.", "Rear closure and inner-band photographs."],
+      ["Decoration and seams", "Check the exact placement, edge finish and panel symmetry.", "Close photographs of embroidery, print and high-stress seams."],
+    ],
     mistakes: ["Assuming one-size means the same fit for everyone", "Ignoring crown depth and brim shape", "Checking embroidery on a different color option"],
-    faqs: [["What measurement matters most for hats?", "Head circumference is the first reference, but crown depth and adjustment range also affect fit."], ["Are product photos enough to judge structure?", "Not always. Look for side, rear and interior views when the listing provides them."]],
+    faqs: [["What measurement matters most for hats?", "Head circumference is the first reference, but crown depth and adjustment range also affect fit."], ["Are product photos enough to judge structure?", "Not always. Look for side, rear and interior views when the listing provides them."], ["What should headwear QC photos include?", "Useful sets show front, side, rear, interior band, closure and close decoration views for the same option."], ["What if the verified product detail changes?", "Open the category route or live-search fallback and rematch the selected colour, shape and decoration before using it."]],
   },
   "hoodies-sweaters": {
     primaryCheck: "Chest, length and fabric weight",
@@ -118,8 +131,14 @@ export const categoryResearch = {
       ["Fabric and warmth", "Look for material composition, knit or fleece construction and useful weight information rather than guessing from a photo."],
       ["Graphics and finishing", "Check cuffs, hem, pocket joins, drawcords and graphic placement in both full and close views."],
     ],
+    reviewRows: [
+      ["Flat measurements", "Record chest, shoulder, sleeve and body length in centimetres.", "A labelled flat-garment chart using consistent measurement points."],
+      ["Fabric", "Note composition, stated weight and whether the interior is fleece, loopback or knit.", "Material label, close texture view and interior photograph."],
+      ["Finish", "Check cuffs, hem, pockets, drawcords and graphic alignment.", "Full front/back views plus close photographs of joins and decoration."],
+      ["Selected option", "Save the exact size, colour and intended fit.", "Current option selector and the matching measurement chart."],
+    ],
     mistakes: ["Using body size instead of garment measurements", "Treating every oversized description as the same cut", "Ignoring fabric weight and interior finish"],
-    faqs: [["How much extra room should a hoodie have?", "That depends on the intended fit and layering. Compare with a hoodie you already wear comfortably."], ["Can colors differ between images?", "Yes. Lighting and screens vary, so confirm the selected color and all available listing views."]],
+    faqs: [["How much extra room should a hoodie have?", "That depends on the intended fit and layering. Compare with a hoodie you already wear comfortably."], ["Can colors differ between images?", "Yes. Lighting and screens vary, so confirm the selected color and all available listing views."], ["What should sweatshirt QC photos show?", "Check full front and back views, measurements, inside fabric, cuffs, hem, pockets and any decoration."], ["What if the verified product detail changes?", "Use the search fallback and only continue after the live option, measurements and images match the reference again."]],
   },
   "t-shirts": {
     primaryCheck: "Shoulder, chest and length",
@@ -130,8 +149,14 @@ export const categoryResearch = {
       ["Fabric information", "Check composition and available weight or construction notes. Photography alone cannot establish thickness or feel."],
       ["Print or embroidery", "Use full views for placement and close views for edges, stitching and surface finish on the chosen color."],
     ],
+    reviewRows: [
+      ["Shoulder, chest and length", "Measure a well-fitting shirt flat and record the same points in centimetres.", "A chart showing the garment measurement method, not only size letters."],
+      ["Fabric and collar", "Note composition, available fabric weight and collar construction.", "Material label plus close views of fabric, neckline and placket when present."],
+      ["Print or embroidery", "Record placement, scale and finish on the chosen colour.", "Full front/back and close decoration photographs of the same option."],
+      ["Selected option", "Save exact size, colour and cut before leaving the listing.", "Current selector and matching chart or option-specific notes."],
+    ],
     mistakes: ["Selecting by S, M or L without measurements", "Judging fabric thickness from a dark promotional image", "Checking a print that belongs to another option"],
-    faqs: [["Why measure a T-shirt flat?", "Flat measurements are easier to reproduce and compare with most garment size charts."], ["Should I expect every color to fit the same?", "Do not assume it. Confirm the current chart and option details on the destination page."]],
+    faqs: [["Why measure a T-shirt flat?", "Flat measurements are easier to reproduce and compare with most garment size charts."], ["Should I expect every color to fit the same?", "Do not assume it. Confirm the current chart and option details on the destination page."], ["What should T-shirt QC photos show?", "Use full front and back views, flat measurements, collar, seams and close decoration views for the selected option."], ["What if the verified product detail changes?", "Use the fallback search and confirm the current image, title, option and chart before treating a result as the same shirt."]],
   },
   jackets: {
     primaryCheck: "Layering room and sleeve length",
@@ -142,8 +167,14 @@ export const categoryResearch = {
       ["Hardware and seams", "Inspect zipper tracks, snaps, pocket openings, lining joins and high-stress seams in the available detail views."],
       ["Packed volume", "Bulky or insulated outerwear can occupy more space than its weight suggests, so check current shipping information."],
     ],
+    reviewRows: [
+      ["Layered measurements", "Record chest, shoulder, sleeve and back length from a jacket worn with usual layers.", "Flat-garment chart with clearly defined measurement points."],
+      ["Hardware", "Note closure type and inspect zippers, snaps, pockets and adjusters.", "Close photographs of hardware and the open/closed positions."],
+      ["Lining and seams", "Record lining material and inspect high-stress joins.", "Interior, cuff, hem and seam close-ups for the same option."],
+      ["Weight and package", "Save stated weight, size and any packed-dimension information.", "Current listing or shipping estimate rather than an old screenshot."],
+    ],
     mistakes: ["Comparing jacket measurements with a fitted T-shirt", "Ignoring the lining and closure details", "Assuming product weight predicts packed volume"],
-    faqs: [["Should a jacket use the same measurements as a top?", "Use a well-fitting jacket as the reference when you plan to wear layers underneath."], ["Why does packed size matter?", "Outerwear can be bulky, which may affect the shipping methods and estimates shown later."]],
+    faqs: [["Should a jacket use the same measurements as a top?", "Use a well-fitting jacket as the reference when you plan to wear layers underneath."], ["Why does packed size matter?", "Outerwear can be bulky, which may affect the shipping methods and estimates shown later."], ["What should jacket QC photos show?", "Look for full exterior and interior views plus measurements, closures, pockets, lining and seam close-ups."], ["What if the verified product detail changes?", "Use the search fallback and rematch the silhouette, panels, hardware and selected size before relying on it."]],
   },
   "pants-shorts": {
     primaryCheck: "Waist, rise, inseam and opening",
@@ -154,8 +185,14 @@ export const categoryResearch = {
       ["Vertical proportions", "Compare front rise, back rise and inseam with a pair that fits, using the same start and end points."],
       ["Leg shape", "Use thigh and leg-opening measurements to distinguish straight, tapered, wide and relaxed silhouettes."],
     ],
+    reviewRows: [
+      ["Waist method", "Record whether the value is flat width, circumference or an elastic range.", "Chart note or a visible tape measurement at the waistband."],
+      ["Rise and inseam", "Measure front rise, back rise and inseam from consistent points.", "Flat front/back measurement photographs for the selected size."],
+      ["Thigh and opening", "Record thigh and leg-opening widths to describe the silhouette.", "Labelled measurements plus a full flat garment view."],
+      ["Selected option", "Save the exact cut, size, colour and waistband construction.", "Current selector and a chart that matches that option."],
+    ],
     mistakes: ["Doubling a waist value without checking the chart method", "Ignoring rise when comparing overall fit", "Using a model photo instead of the listed dimensions"],
-    faqs: [["Is the listed waist always a circumference?", "No. Some charts show the garment laid flat, so read the measurement method first."], ["Why compare rise as well as inseam?", "Rise affects where the waistband sits and changes the usable leg length and overall proportion."]],
+    faqs: [["Is the listed waist always a circumference?", "No. Some charts show the garment laid flat, so read the measurement method first."], ["Why compare rise as well as inseam?", "Rise affects where the waistband sits and changes the usable leg length and overall proportion."], ["What should bottoms QC photos show?", "Useful sets show flat front/back, waistband, rise, inseam, leg opening, pockets and close seam views."], ["What if the verified product detail changes?", "Use the fallback search and confirm cut, waistband, measurements and selected option before making a new match."]],
   },
   accessories: {
     primaryCheck: "Exact dimensions and closures",
@@ -166,8 +203,14 @@ export const categoryResearch = {
       ["Closures and hardware", "Inspect clasps, hinges, zippers, pins and edge finishing, especially where repeated movement creates stress."],
       ["Material and contents", "Read material descriptions carefully and confirm every included part on the selected live option."],
     ],
+    reviewRows: [
+      ["Dimensions", "Record length, width, depth and any adjustable range in centimetres.", "Tape measurement or a labelled diagram rather than visual scale alone."],
+      ["Material", "Save the exact material wording and avoid inferring composition from appearance.", "Material label, macro surface view and current listing text."],
+      ["Hardware", "Check clasps, hinges, zippers, pins, edges and repeated-movement points.", "Open/closed views and close photographs of moving parts."],
+      ["Included pieces", "List every component, pouch, cable or spare part that is stated as included.", "Current bundle selector and a complete contents photograph."],
+    ],
     mistakes: ["Estimating scale from a hand or styled photograph", "Assuming every pictured extra is included", "Treating a material name as proof without checking details"],
-    faqs: [["How can I judge accessory size online?", "Use the exact dimensions and compare them with an object or space you can measure yourself."], ["Are all photographed parts included?", "Not necessarily. Confirm the bundle or option description on the current destination page."]],
+    faqs: [["How can I judge accessory size online?", "Use the exact dimensions and compare them with an object or space you can measure yourself."], ["Are all photographed parts included?", "Not necessarily. Confirm the bundle or option description on the current destination page."], ["What should accessory QC photos show?", "Look for scale measurements, front/back/interior views, closures, edges, hardware and all included pieces."], ["What if the verified product detail changes?", "Use the search fallback and rematch dimensions, material wording, hardware and bundle contents."]],
   },
   electronics: {
     primaryCheck: "Model, power and compatibility",
@@ -178,20 +221,26 @@ export const categoryResearch = {
       ["Power and connection", "Confirm voltage, plug, charging standard, connector and device or region compatibility before leaving the guide."],
       ["Bundle and support", "Check what is included and read the current warranty, return and restricted-item information on the destination."],
     ],
+    reviewRows: [
+      ["Model and revision", "Record the complete model number, revision and regional version.", "Label, settings screen or packaging photograph that shows the identifier."],
+      ["Power and connectors", "Save voltage, plug, charging standard and every required connector.", "Specification text plus clear port and label photographs."],
+      ["Compatibility", "List supported devices, operating systems, bands or regional requirements.", "Current specification source; do not infer compatibility from appearance."],
+      ["Bundle and terms", "Record included accessories, warranty, returns and restricted-item conditions.", "Current bundle selector and destination terms at the time of review."],
+    ],
     mistakes: ["Choosing by appearance instead of full model number", "Ignoring regional power or wireless requirements", "Assuming a pictured cable or adapter is included"],
-    faqs: [["Why is the full model number important?", "Different revisions can look alike while using different connectors, standards or included accessories."], ["Can Hacoo Pro confirm compatibility?", "No. Use the manufacturer and current destination specifications as the final reference."]],
+    faqs: [["Why is the full model number important?", "Different revisions can look alike while using different connectors, standards or included accessories."], ["Can Hacoo Pro confirm compatibility?", "No. Use the manufacturer and current destination specifications as the final reference."], ["What should electronics QC photos show?", "Useful evidence includes the model label, ports, power markings, device screens, included parts and package condition."], ["What if the verified product detail changes?", "Use the live-search fallback and rematch model, revision, connectors and bundle before treating another result as equivalent."]],
   },
 };
 
 export const products = [
-  { slug: "grey-low-top-sneakers", name: "Grey low-top sneakers", category: "Shoes", categorySlug: "shoes", image: "/products/live-6045.jpg", tag: "Reference", query: "grey low top sneakers", focus: "Compare internal length, toe shape, heel construction and the selected colour before relying on the thumbnail." },
-  { slug: "letter-embroidered-beanies", name: "Letter-embroidered beanies", category: "Headwear", categorySlug: "headwear", image: "/products/live-5971.webp", tag: "Reference", query: "letter embroidered beanies", focus: "Check head circumference, knit stretch, crown depth and embroidery placement on the exact option shown." },
-  { slug: "classic-logo-crew-neck", name: "Classic logo crew-neck", category: "Sweatshirts", categorySlug: "hoodies-sweaters", image: "/products/live-5974.webp", tag: "Reference", query: "classic logo crew neck sweatshirt", focus: "Compare chest width, shoulder width, body length, fabric weight and logo alignment on the selected colour." },
-  { slug: "pique-cotton-polo", name: "Piqué cotton polo", category: "T-Shirts", categorySlug: "t-shirts", image: "/products/live-5976.webp", tag: "Reference", query: "pique cotton polo", focus: "Check flat garment measurements, collar shape, placket construction and fabric description before choosing a size." },
-  { slug: "colour-block-track-jacket", name: "Colour-block track jacket", category: "Jackets", categorySlug: "jackets", image: "/products/live-5981.webp", tag: "Reference", query: "colour block track jacket", focus: "Review chest and sleeve measurements, zipper alignment, pocket construction and room for intended layers." },
-  { slug: "drawstring-denim-shorts", name: "Drawstring denim shorts", category: "Pants & Shorts", categorySlug: "pants-shorts", image: "/products/live-5983.webp", tag: "Reference", query: "drawstring denim shorts", focus: "Compare waist range, rise, inseam, leg opening and drawstring construction on the current option." },
-  { slug: "classic-dress-watch", name: "Classic dress watch", category: "Accessories", categorySlug: "accessories", image: "/products/live-5952.webp", tag: "Reference", query: "classic dress watch", focus: "Confirm case and strap dimensions, movement description, clasp, included pieces and current external terms." },
-  { slug: "magnetic-power-bank", name: "Magnetic power bank", category: "Electronics", categorySlug: "electronics", image: "/products/live-5822.webp", tag: "Reference", query: "magnetic power bank", focus: "Match the exact model, stated capacity, connector, charging standard, compatibility and included accessories." },
+  { slug: "grey-low-top-sneakers", name: "Grey low-top sneakers", catalogLabel: "shoes-60", listingId: "6045", listingPath: "/AllProducts/6045.html", category: "Shoes", categorySlug: "shoes", image: "/products/live-6045.jpg", tag: "Link verified", query: "grey low top sneakers", focus: "Compare internal length, toe shape, heel construction and the selected colour before relying on the thumbnail." },
+  { slug: "letter-embroidered-beanies", name: "Letter-embroidered beanies", catalogLabel: "Miu Miu letter-embroidered", listingId: "5971", listingPath: "/AllProducts/5971.html", category: "Headwear", categorySlug: "headwear", image: "/products/live-5971.webp", tag: "Link verified", query: "letter embroidered beanies", focus: "Check head circumference, knit stretch, crown depth and embroidery placement on the exact option shown." },
+  { slug: "classic-logo-crew-neck", name: "Classic logo crew-neck", catalogLabel: "Patagonia classic loose-fitting crew neck", listingId: "5974", listingPath: "/AllProducts/5974.html", category: "Sweatshirts", categorySlug: "hoodies-sweaters", image: "/products/live-5974.webp", tag: "Link verified", query: "classic logo crew neck sweatshirt", focus: "Compare chest width, shoulder width, body length, fabric weight and logo alignment on the selected colour." },
+  { slug: "pique-cotton-polo", name: "Piqué cotton polo", catalogLabel: "Gucci pique cotton breathable and versatile short", listingId: "5976", listingPath: "/AllProducts/5976.html", category: "T-Shirts", categorySlug: "t-shirts", image: "/products/live-5976.webp", tag: "Link verified", query: "pique cotton polo", focus: "Check flat garment measurements, collar shape, placket construction and fabric description before choosing a size." },
+  { slug: "colour-block-track-jacket", name: "Colour-block track jacket", catalogLabel: "Celine embroidered chocolate-", listingId: "5981", listingPath: "/AllProducts/5981.html", category: "Jackets", categorySlug: "jackets", image: "/products/live-5981.webp", tag: "Link verified", query: "colour block track jacket", focus: "Review chest and sleeve measurements, zipper alignment, pocket construction and room for intended layers." },
+  { slug: "drawstring-denim-shorts", name: "Drawstring denim shorts", catalogLabel: "Balenciaga new drawstring", listingId: "5983", listingPath: "/AllProducts/5983.html", category: "Pants & Shorts", categorySlug: "pants-shorts", image: "/products/live-5983.webp", tag: "Link verified", query: "drawstring denim shorts", focus: "Compare waist range, rise, inseam, leg opening and drawstring construction on the current option." },
+  { slug: "classic-dress-watch", name: "Classic dress watch", catalogLabel: "Longinges watches (39 styles)", listingId: "5952", listingPath: "/AllProducts/5952.html", category: "Accessories", categorySlug: "accessories", image: "/products/live-5952.webp", tag: "Link verified", query: "classic dress watch", focus: "Confirm case and strap dimensions, movement description, clasp, included pieces and current external terms." },
+  { slug: "magnetic-power-bank", name: "Magnetic power bank", catalogLabel: "AIR MagSsfe", listingId: "5822", listingPath: "/AllProducts/5822.html", category: "Electronics", categorySlug: "electronics", image: "/products/live-5822.webp", tag: "Link verified", query: "magnetic power bank", focus: "Match the exact model, stated capacity, connector, charging standard, compatibility and included accessories." },
 ];
 
 export const guides = [
