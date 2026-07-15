@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "mkdir -p /tmp/hacoo-wrangler && XDG_CONFIG_HOME=/tmp/hacoo-wrangler vinext build && if [ -f dist/server/index.mjs ]; then cp dist/server/index.mjs dist/server/index.js; fi && if [ -f dist/server/ssr/index.mjs ]; then cp dist/server/ssr/index.mjs dist/server/ssr/index.js; fi && mkdir -p dist/.openai && cp .openai/hosting.json dist/.openai/hosting.json",
+    "build:pages": "CLOUDFLARE_PAGES_STATIC_EXPORT=1 next build",
     "build:next": "next build",
     "start": "vinext start",
     "lint": "next lint"
