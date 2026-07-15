@@ -1,2 +1,4 @@
-export const metadata={title:"Contact Hacoo Pro",description:"Contact the independent Hacoo Pro editorial guide about corrections, link updates or rights concerns.",alternates:{canonical:"/contact"}};
+import { createPageMetadata } from "../seo";
+
+export const metadata=createPageMetadata({title:"Contact Hacoo Pro",description:"Contact the independent Hacoo Pro editorial guide about corrections, broken links, content updates or rights concerns.",path:"/contact",alternates:{canonical:"/contact/"}});
 export default function Contact(){return <section className="page-hero simple-hero full-page"><div className="wrap narrow"><span className="section-label">Contact</span><h1>Corrections<br/><em>make guides better.</em></h1><p>For a factual correction, broken-link report, rights concern or editorial question, contact <a href="mailto:service@cnfanshp.com">service@cnfanshp.com</a>. Please include the exact Hacoo Pro URL and the information you believe should be reviewed.</p><div className="contact-note"><strong>Important</strong><p>Hacoo Pro does not process orders and cannot provide support for transactions made on an external website.</p></div></div></section>}
