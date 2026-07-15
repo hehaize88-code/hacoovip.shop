@@ -26,7 +26,7 @@ jobs:
 
       - name: Run language-switch regression tests
         run: |
-          cat > /tmp/test-language.mjs <<'JS'
+          cat > .tmp-test-language.mjs <<'JS'
           import fs from 'node:fs';
           import {JSDOM} from 'jsdom';
 
@@ -81,11 +81,11 @@ jobs:
 
           console.log('PASS: home and independent article language switching remain on the current page.');
           JS
-          node /tmp/test-language.mjs
+          node .tmp-test-language.mjs
 
       - name: Remove test workflow after passing
         run: |
-          rm -f .github/workflows/test-sugargoo-language-switch.yml
+          rm -rf .github/workflows/test-sugargoo-language-switch.yml .tmp-test-language.mjs node_modules package.json package-lock.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
