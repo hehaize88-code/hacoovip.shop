@@ -1,10 +1,15 @@
 import StructuredData from "./StructuredData";
 import { CATALOG_REVIEW } from "@/app/data";
-import { absoluteLocalizedUrl } from "@/app/i18n";
 import { getLegalCopy } from "@/app/legal-copy";
+import { createBreadcrumbList, pageUrl, WEBSITE_ID } from "@/app/schema";
 
 function PageSchema({ locale, path, name, description }) {
-  return <StructuredData data={{ "@context": "https://schema.org", "@type": "WebPage", name, description, url: `${absoluteLocalizedUrl(path, locale)}/`, inLanguage: locale, dateModified: CATALOG_REVIEW.iso }}/>;
+  const url = pageUrl(path, locale);
+  const breadcrumb = createBreadcrumbList({ locale, path, items: [{ name: "Hacoo Pro", path: "/" }, { name, path }] });
+  return <StructuredData data={{ "@context": "https://schema.org", "@graph": [
+    { "@type": "WebPage", "@id": `${url}#webpage`, name, description, url, inLanguage: locale, dateModified: CATALOG_REVIEW.iso, breadcrumb: { "@id": breadcrumb["@id"] }, isPartOf: { "@id": WEBSITE_ID } },
+    breadcrumb,
+  ] }}/>;
 }
 
 export function ContactPage({ locale = "en" }) {

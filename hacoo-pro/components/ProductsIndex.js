@@ -4,6 +4,7 @@ import { CATALOG_REVIEW, categories, DESTINATION, products, SITE_URL } from "@/a
 import { getProductPageCopy } from "@/app/products-copy";
 import { getLocalizedProduct } from "@/app/product-locales";
 import { localizeCategories, localizePath } from "@/app/i18n";
+import { createBreadcrumbList, WEBSITE_ID } from "@/app/schema";
 
 export default function ProductsIndex({ locale = "en" }) {
   const copy = getProductPageCopy(locale);
@@ -22,11 +23,13 @@ export default function ProductsIndex({ locale = "en" }) {
     };
   });
   const pageUrl = `${SITE_URL}${localizePath("/products", locale)}/`;
+  const breadcrumb = createBreadcrumbList({ locale, path: "/products", items: [{ name: "Hacoo Pro", path: "/" }, { name: copy.title.join(" "), path: "/products" }] });
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "CollectionPage", name: copy.title.join(" "), url: pageUrl, description: copy.lead, inLanguage: locale, dateModified: CATALOG_REVIEW.iso },
+      { "@type": "CollectionPage", "@id": `${pageUrl}#webpage`, name: copy.title.join(" "), url: pageUrl, description: copy.lead, inLanguage: locale, dateModified: CATALOG_REVIEW.iso, breadcrumb: { "@id": breadcrumb["@id"] }, isPartOf: { "@id": WEBSITE_ID } },
       { "@type": "ItemList", name: copy.directoryTitle, numberOfItems: items.length, itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, url: `${SITE_URL}${localizePath(`/products/${item.slug}`, locale)}/`, name: item.name })) },
+      breadcrumb,
     ],
   };
 

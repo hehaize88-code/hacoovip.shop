@@ -7,8 +7,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
 import { SITE_URL } from "./data";
-import { languageAlternates, LOCALES } from "./i18n";
+import { languageAlternates } from "./i18n";
 import { SOCIAL_IMAGE } from "./seo";
+import { createOrganizationGraph } from "./schema";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -21,9 +22,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const schema = { "@context": "https://schema.org", "@graph": [
-    { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "Hacoo Pro", url: SITE_URL, description: "Editorial Hacoo spreadsheet guide operated by the same publishing team as CNFansHP; not affiliated with or endorsed by Hacoo." },
-    { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "Hacoo Pro", publisher: { "@id": `${SITE_URL}/#organization` }, inLanguage: LOCALES }
-  ]};
+  const schema = { "@context": "https://schema.org", "@graph": createOrganizationGraph() };
   return <html lang="en" suppressHydrationWarning><body><StructuredData data={schema}/><Header/><main>{children}</main><Footer/></body></html>;
 }

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { LocalizedGuide, localizedPageMetadata } from "@/components/LocalizedPages";
 import { guides } from "../../../data";
 import { LOCALIZED_LOCALES, localizeGuides } from "../../../i18n";
+import { getGuideArticleImage } from "../../../schema";
 
 export function generateStaticParams() {
   return LOCALIZED_LOCALES.flatMap((locale) => guides.map(({ slug }) => ({ locale, slug })));
@@ -11,7 +12,10 @@ export async function generateMetadata({ params }) {
   const { locale, slug } = await params;
   const guide = localizeGuides(guides,locale).find((item)=>item.slug===slug);
   if (!LOCALIZED_LOCALES.includes(locale) || !guide) return {};
-  return localizedPageMetadata(locale, `/guides/${slug}`, guide.title, guide.short);
+  const image = getGuideArticleImage(slug, guide.title);
+  return localizedPageMetadata(locale, `/guides/${slug}`, guide.title, guide.short, {
+    image: { url: image.url, width: image.width, height: image.height, alt: image.caption },
+  });
 }
 
 export default async function Guide({ params }) {
