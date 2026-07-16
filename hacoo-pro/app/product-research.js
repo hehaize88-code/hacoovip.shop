@@ -1,0 +1,298 @@
+export const productResearch = {
+  "grey-low-top-sneakers": {
+    seoDescription: "Research the grey low-top sneaker reference with image observations, sizing measurements, shoe QC checks, a verified live route and update history.",
+    summary: "The reference image shows a grey lace-up low-top pair photographed from above on a measurement mat, with the left and right shoes visible together. That makes it useful for checking overall symmetry and panel layout, but it does not reveal the internal length, material, sole flexibility or the exact option currently selected on the external page.",
+    observed: [
+      ["Pair shown together", "Both shoes appear in the same frame, so toe shape, lace rows, collar height and left-to-right symmetry can be compared."],
+      ["Visible panel layout", "The top view exposes the toe panels, eyestays, side panels and outsole edge; these are useful landmarks when matching later QC photographs."],
+      ["Packaging context", "A box and a fabric bag are visible in the reference, but the live option must state what is actually included. A photograph alone is not a bundle promise."],
+    ],
+    limits: "The image cannot establish internal shoe length, width, material composition, comfort, authenticity or current stock. Treat it as a matching reference and request measured evidence for the exact size and colour option.",
+    measurements: [
+      ["Foot and internal length", "Record your longest foot in millimetres and request the removable-insole or internal heel-to-toe length for the selected size.", "Allow appropriate movement and sock room; do not convert from a familiar regional size label alone."],
+      ["Forefoot width", "Measure a comfortable shoe at its widest forefoot point and ask where the listing width was taken.", "A similar length can still feel wrong if the toe box or last is narrower."],
+      ["Heel and collar", "Request collar opening, heel height and a straight rear photograph.", "Use them to assess heel hold and whether the rear construction is visibly centred."],
+      ["Outsole footprint", "Ask for outsole length and width with the tape endpoints visible.", "This is a useful cross-check, but it is not a substitute for internal length."],
+    ],
+    qc: [
+      ["Toe and pair symmetry", "Compare toe curvature, panel edges and the position of both shoes in one neutral, top-down frame.", "Large left-to-right differences need clarification."],
+      ["Stitching and joins", "Inspect eyestays, toe panels, heel seams and the complete upper-to-sole join at close range.", "Look for skipped stitches, open joins or excess adhesive rather than judging from one distant photo."],
+      ["Lacing and hardware", "Count eyelets and compare their spacing, lace length and any visible hardware on both sides.", "The selected pair should match the current listing images and option."],
+      ["Sole and heel", "Request both outsole bottoms and a straight rear view on a level surface.", "Confirm tread consistency, heel alignment and obvious rocking or distortion."],
+    ],
+    workflow: [
+      ["Match the exact option", "Confirm grey colour, size selector, current catalog image and listing #6045 before using any measurements."],
+      ["Compare measured evidence", "Use millimetres from a well-fitting shoe and the selected pair; keep internal and outsole measurements separate."],
+      ["Review the pair as a pair", "Make a final pass across symmetry, seams, soles and included items, then save the date and option checked."],
+    ],
+    faqs: [
+      ["Can the photograph confirm the sneaker size?", "No. The photograph provides shape and construction landmarks only. Confirm the exact option and request an internal or removable-insole length for the selected size."],
+      ["Is outsole length enough for sizing?", "No. Outsole construction varies and usually exceeds usable internal space. Use it only as a cross-check alongside internal length and forefoot width."],
+      ["Does the visible box mean it is included?", "Not necessarily. Packaging in a reference image is not proof of the current bundle. Read the selected option and ask the destination to confirm included pieces."],
+      ["What if listing #6045 changes its image?", "Stop treating it as the same match. Use the fallback search, then compare the option name, panel layout, colour and measurements before adopting a replacement route."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #6045 returned successfully. The reference image was reviewed for visible footwear landmarks and this sizing/QC worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The catalog label “shoes-60”, category route and image-matched product reference were recorded."],
+    ],
+  },
+  "letter-embroidered-beanies": {
+    seoDescription: "Research the letter-embroidered beanie reference with visible knit details, headwear measurements, embroidery QC checks and a verified live route.",
+    summary: "The reference image presents several rib-knit cuff beanies in grey, black, brown, navy and light neutral colours. It is helpful for comparing crown shape, cuff treatment and embroidery placement across colour examples, but it does not show the unstretched circumference, fibre content or the exact colour currently available.",
+    observed: [
+      ["Several colour examples", "Multiple colours appear in one frame, making broad shade and contrast comparisons possible without proving the destination's current option list."],
+      ["Folded cuff construction", "Each visible beanie uses a turned cuff, with the embroidered area positioned on the front of that fold."],
+      ["Rib-knit surface", "Vertical ribbing is visible across the crowns and cuffs; later photographs can be compared for rib direction, spacing and obvious distortion."],
+    ],
+    limits: "A styled group image cannot confirm fibre composition, warmth, stretch recovery, unstretched size, wash behaviour or authenticity. Obtain flat measurements and the selected option's current details.",
+    measurements: [
+      ["Opening width", "Request the cuff opening measured flat without stretching and state whether the published figure is width or full circumference.", "Compare it with a comfortable beanie using the same method."],
+      ["Crown depth", "Measure from the top centre to the lower edge with the cuff folded as intended.", "This helps predict whether the silhouette will sit close or leave extra crown volume."],
+      ["Cuff height", "Record the visible folded height at the front and back.", "A deeper fold changes both coverage and the embroidery position."],
+      ["Stretch evidence", "Ask for the material description and, if supplied, the comfortable circumference range rather than a maximum forced stretch.", "A single stretched photograph does not show recovery or long-term fit."],
+    ],
+    qc: [
+      ["Embroidery placement", "Use a straight front photograph to compare centring, baseline and distance from the cuff edges.", "Letters should be legible and positioned consistently on the selected colour."],
+      ["Rib consistency", "Inspect the crown, cuff and side transitions for skipped, pulled or unusually widened ribs.", "Neutral lighting is more useful than a heavily filtered image."],
+      ["Crown finishing", "Request a top view and inspect the gathered crown seams.", "Check for open stitching, uneven gathering or a visibly twisted top."],
+      ["Labels and colour", "Match the selected colour name with the full item, interior label and option screenshot.", "Lighting can shift greys, browns and navy; text and images should agree."],
+    ],
+    workflow: [
+      ["Select one colour", "Use the exact option name and image rather than assuming every colour in the group photograph remains available."],
+      ["Confirm fit method", "Compare flat opening, crown depth and cuff height with a beanie that already fits the intended wearer."],
+      ["Inspect finishing", "Review embroidery, ribs, crown seam and labels on the same selected item before recording the result."],
+    ],
+    faqs: [
+      ["Does one-size mean every head circumference?", "No. One-size is an option label, not a universal fit guarantee. Request flat opening and crown measurements and compare them with an item you own."],
+      ["Can the group photo confirm all available colours?", "No. It documents colours visible when the reference was captured. The current selector on listing #5971 is the source for available options."],
+      ["How should embroidery be checked?", "Use a level front photo and compare its centring, baseline, stitch fill and distance from the cuff edge. Avoid judging only from an angled group image."],
+      ["What if the knit looks different on the live page?", "Rematch the rib pattern, cuff, crown and option name. If those differ materially, use the fallback search and treat the result as a new candidate."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5971 returned successfully. Visible cuff, rib and embroidery details were reviewed and a headwear-specific worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed catalog label, live headwear route and multi-colour reference image were recorded."],
+    ],
+  },
+  "classic-logo-crew-neck": {
+    seoDescription: "Research the classic logo crew-neck reference with garment measurements, graphic and seam QC checks, live-route verification and update history.",
+    summary: "The reference image shows several long-sleeve crew-neck tops laid flat or hung in multiple colours, each with a large chest graphic. It supplies useful landmarks for neckline, sleeve and graphic placement, but the image alone cannot verify fabric weight, fibre content, interior finish, fit or the exact colour and size currently selected.",
+    observed: [
+      ["Multi-colour overview", "The frame contains numerous colour examples, useful for recognising the general product family but not for confirming live inventory."],
+      ["Large chest graphic", "A prominent centred graphic provides clear alignment points relative to the neckline, side seams and hem."],
+      ["Crew-neck silhouette", "Long sleeves, a round neck and ribbed-looking edge areas are visible; exact construction should be confirmed in closer current photographs."],
+    ],
+    limits: "The overview does not establish composition, thickness, print durability, interior fleece, shrinkage, authenticity or garment measurements. Verify the selected option and request flat measurements taken without stretching.",
+    measurements: [
+      ["Chest width", "Measure straight across from underarm to underarm on a flat garment and state that the result is a flat width.", "Compare with a crew-neck that already has the desired ease."],
+      ["Shoulder width", "Measure seam to seam across the back, or record that the shoulder is dropped if no conventional seam point exists.", "This helps distinguish fitted, regular and deliberately oversized proportions."],
+      ["Body length", "Measure from the high shoulder point beside the neck to the lower hem.", "Use the same starting point on the comparison garment."],
+      ["Sleeve and openings", "Record sleeve length using the stated seam method plus cuff and hem opening widths.", "Confirm the sleeves and ribbed edges will not be materially tighter or shorter than intended."],
+    ],
+    qc: [
+      ["Graphic alignment", "Request a flat front view and compare graphic centre, level and distance from the neckline and side seams.", "Ripples in the garment should not be mistaken for print distortion."],
+      ["Neckline", "Inspect the entire collar seam, front curve and rear join in close photographs.", "Look for twisting, puckering, open stitching or an uneven neck shape."],
+      ["Cuffs and hem", "Compare both cuffs and the complete lower edge while the garment lies flat.", "Check symmetry, rib recovery and obvious waves or skipped seams."],
+      ["Back and interior", "Ask for a full back plus interior neck label and seam views.", "These views reveal information the busy multi-item reference cannot show."],
+    ],
+    workflow: [
+      ["Lock the colour and size", "Match the current selector, product image and listing #5974 before copying a chart or photograph into your notes."],
+      ["Compare four dimensions", "Use chest, shoulder, body and sleeve values from the same selected garment and measurement method."],
+      ["Check graphic and construction", "Review a level full front, back, neckline, cuffs and hem, then note any missing evidence."],
+    ],
+    faqs: [
+      ["Can the reference show whether the crew-neck is oversized?", "Only visually. A reliable fit comparison needs chest, shoulder, body and sleeve measurements from the selected size compared with a garment you own."],
+      ["Does the image prove the fabric is heavyweight?", "No. Photography cannot reliably establish weight or composition. Use the current material description and, if available, an actual garment-weight figure."],
+      ["How do I check a large chest graphic?", "Use a garment laid flat and a straight camera angle. Compare centring, level, edges and spacing from fixed seams rather than judging folds in the fabric."],
+      ["What if a colour has a different chart?", "Treat the selected option's chart as authoritative for that candidate. Do not transfer values from another colour or batch without confirmation."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5974 returned successfully. Graphic, neckline and silhouette landmarks were reviewed and garment-specific research modules were added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed catalog label, sweatshirt category route and multi-colour reference were recorded."],
+    ],
+  },
+  "pique-cotton-polo": {
+    seoDescription: "Research the short-sleeve polo reference with flat measurements, collar and placket QC checks, verified live route and update notes.",
+    summary: "The reference image shows dark, navy and light short-sleeve polo examples on hangers, with contrast piping around the collar and placket and a small chest mark. Those details help identify the product family, but the photograph does not confirm piqué composition, breathability, fabric weight, option availability or fit.",
+    observed: [
+      ["Contrast collar treatment", "Light piping is visible around the collar and down the button placket, creating useful alignment landmarks."],
+      ["Short-sleeve shape", "The examples show a straight short-sleeve polo silhouette; flat measurements are still required because hanging fabric can change proportions."],
+      ["Small chest detail", "A compact mark appears on the chest area and can be checked against the placket, shoulder and side seam for placement."],
+    ],
+    limits: "The reference cannot verify cotton percentage, piqué texture, breathability, opacity, shrinkage, authenticity or selected-size measurements. Confirm claims only from the current detail page and matching evidence.",
+    measurements: [
+      ["Chest width", "Lay the polo flat and measure underarm to underarm without stretching.", "Compare the flat width and intended ease with a polo that already fits."],
+      ["Shoulder and body length", "Record shoulder seam to seam and high shoulder point to hem.", "These values help separate a wider cut from a simply larger size."],
+      ["Sleeve", "Measure shoulder seam to cuff and record the sleeve-opening width.", "Check both length and opening against the intended upper-arm fit."],
+      ["Collar and placket", "Record collar-point shape, placket length and button count in a level front view.", "Measurements and imagery should correspond to the same selected option."],
+    ],
+    qc: [
+      ["Piping alignment", "Inspect the full collar and placket with buttons closed.", "The contrast line should meet cleanly and remain even around both sides of the collar."],
+      ["Placket and buttons", "Request close views of buttonholes, button attachment and the lower placket endpoint.", "Look for pulling, skipped stitching or a visibly twisted front opening."],
+      ["Chest detail", "Compare position, baseline and stitch or print edges in a straight front photograph.", "Confirm it belongs to the selected colour, not a reused option image."],
+      ["Hem and side seams", "Use front, back and side views on a flat garment.", "Check that the hem is even and side seams are not visibly spiralled."],
+    ],
+    workflow: [
+      ["Verify the current option", "Match colour, size and catalog image on listing #5976 before recording any details."],
+      ["Measure like for like", "Use one flat polo as the reference and compare chest, shoulder, length and sleeve using identical endpoints."],
+      ["Inspect the front construction", "Review piping, placket, buttons, chest detail and hem in level photographs before deciding."],
+    ],
+    faqs: [
+      ["Does the title prove this is cotton piqué?", "No. Hacoo Pro records an observed catalog label but does not independently test composition. Read the current specification and treat unsupported claims cautiously."],
+      ["Why should a hanging photo not be used for sizing?", "Hangers can pull the shoulders and body into a different shape. Use a flat garment with clearly stated measurement points."],
+      ["What is the most useful collar QC view?", "A straight, buttoned front view shows whether the collar points, piping and placket align. Add a close rear collar view for seam finishing."],
+      ["Can I reuse measurements from another colour?", "Only if the current destination explicitly confirms the same chart and cut. Otherwise record the selected colour and size with its own evidence."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5976 returned successfully. Collar, placket and chest landmarks were reviewed and a polo-specific worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed catalog label, T-shirt route and three-colour polo reference were recorded."],
+    ],
+  },
+  "colour-block-track-jacket": {
+    seoDescription: "Research the colour-block track jacket reference with layering measurements, zipper and panel QC checks, a verified live route and update log.",
+    summary: "The reference image shows a full-zip jacket laid flat with a dark upper section, brown middle band, light lower body, contrast piping and striped ribbed edges. It offers strong panel and alignment landmarks, but it cannot confirm fabric, lining, water resistance, pocket capacity, fit or live option availability.",
+    observed: [
+      ["Three main colour zones", "The upper body, horizontal chest band and lower body create clear boundaries that can be checked for height and left-to-right alignment."],
+      ["Centred full zipper", "A light front zipper runs from hem to standing collar and provides a reference line for comparing panel symmetry."],
+      ["Striped edge treatment", "The cuffs and lower hem show striped ribbed-looking bands, while contrast piping follows the chest and sleeve transitions."],
+    ],
+    limits: "The image cannot establish fabric composition, lining, warmth, weather protection, zipper durability, pocket depth, authenticity or actual garment dimensions. Confirm those points on the current selected option.",
+    measurements: [
+      ["Layering chest", "Measure the jacket flat underarm to underarm while zipped and compare it with a jacket worn over the intended base layer.", "Choose ease for the planned layer, not only a body measurement."],
+      ["Shoulder and sleeve", "Record shoulder width and sleeve length using the exact seam path; note if the shoulder is dropped.", "A different seam method can make sleeve values incomparable."],
+      ["Back length", "Measure from the rear collar seam to the bottom of the ribbed hem.", "Confirm whether the stated length includes the collar or only the body."],
+      ["Openings", "Record cuff, hem and collar opening widths without stretching the ribbing.", "These dimensions affect layering and how the jacket sits when closed."],
+    ],
+    qc: [
+      ["Panel alignment", "Zip the jacket and compare the horizontal colour boundaries and piping across the centre front.", "Misaligned panels are easier to see against the zipper reference line."],
+      ["Zipper operation", "Request closed, partly open and fully open views plus close images of top and bottom stops.", "Photography cannot prove long-term durability, but visible waves or damage require clarification."],
+      ["Pockets and seams", "Inspect both pocket openings, side seams and the joins where multiple colours meet.", "Confirm symmetry and look for open or heavily puckered stitching."],
+      ["Ribbed edges", "Compare both cuffs and the complete hem while the garment lies flat.", "Check stripe order, width, recovery and obvious left-to-right differences."],
+    ],
+    workflow: [
+      ["Define the intended layer", "Measure a jacket that fits over the same T-shirt, sweatshirt or other layer you plan to wear."],
+      ["Match the panelled option", "Confirm the current colour-block layout, size and listing #5981 before using its chart or images."],
+      ["Close the zipper for QC", "Use a centred closed-front image to review panel, piping and hem alignment, then inspect seams and pockets."],
+    ],
+    faqs: [
+      ["Can the photo show whether the jacket is warm?", "No. Warmth depends on material, weight, lining, construction and use conditions. Confirm the current specification instead of inferring from colour or silhouette."],
+      ["Why measure the jacket while zipped?", "Closing the front puts both halves in their intended position and makes chest width, panel alignment and hem symmetry easier to compare."],
+      ["Which length matters for layering?", "Chest ease, shoulder method, sleeve length and back length all matter. Compare the selected size with a jacket worn over the same intended layer."],
+      ["What if the colour blocks do not line up at the zipper?", "Ask for a straight closed-front photograph. If the mismatch remains material and is not caused by folds, record it as a QC concern."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5981 returned successfully. Panel, zipper and ribbed-edge landmarks were reviewed and a layering/QC worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed catalog label, jacket route and colour-block reference image were recorded."],
+    ],
+  },
+  "drawstring-denim-shorts": {
+    seoDescription: "Research the drawstring denim shorts reference with waist, rise and leg measurements, denim QC checks, verified route and update history.",
+    summary: "The reference image shows light-wash denim shorts on a hanger with a conventional button-and-fly area, belt loops, front pockets, a visible white drawstring and raw-looking leg edges. These details support visual matching, but the image cannot confirm denim composition, waist elasticity, inseam, wash consistency or the selected live size.",
+    observed: [
+      ["Dual waist details", "A buttoned waistband and belt loops are visible together with a long front drawstring; the live option must clarify how the drawstring is constructed and functions."],
+      ["Light washed surface", "The front shows varied light tonal areas. Lighting and intentional wash effects must be separated from stains or defects using neutral photographs."],
+      ["Raw-looking leg edges", "Loose fibres are visible along the lower edges, which appear intentionally unfinished; current close views should confirm both sides are consistent."],
+    ],
+    limits: "The image does not establish fibre content, stretch, waistband range, pocket depth, wash permanence, authenticity or size. Obtain flat measurements and current front, back and detail photographs for the exact option.",
+    measurements: [
+      ["Waist", "Measure the waistband flat at rest; if it stretches, record the comfortable range separately and state whether the drawstring changes the usable fit.", "Do not confuse a flat width with full circumference."],
+      ["Front and back rise", "Measure from the crotch seam to the top of the waistband at front and rear.", "Rise affects where the shorts sit and cannot be inferred reliably from the hanger photo."],
+      ["Inseam and outseam", "Record crotch-to-leg-edge and waistband-to-leg-edge using both sides if the raw hem varies.", "Use the same edge convention for the comparison shorts."],
+      ["Leg opening and thigh", "Measure the lower opening and the thigh at a stated distance below the crotch.", "These figures help assess ease through the leg independently of the waist."],
+    ],
+    qc: [
+      ["Waist construction", "Inspect button, fly, drawstring exits, belt loops and the waistband interior.", "Confirm the drawstring is attached and routed as the selected option describes."],
+      ["Wash consistency", "Request full front and back views in neutral light.", "Compare intentional fading across both legs and clarify isolated marks that do not appear in the listing."],
+      ["Raw edges", "Inspect both leg openings at close range and compare their finished length and loose fibres.", "An intentional raw hem should still correspond to the current images and selected option."],
+      ["Pockets and stress points", "Check pocket corners, crotch seams, fly base and belt-loop attachments.", "These areas benefit from close, focused evidence rather than a single front view."],
+    ],
+    workflow: [
+      ["Confirm the waist system", "Read how the button, waistband and drawstring work on the current option; do not assume elasticity from the image."],
+      ["Measure a comparable pair", "Use waist, rise, inseam, outseam and leg opening from shorts worn at the intended position."],
+      ["Review wash and edges", "Compare full front/back photographs plus close views of drawstring, pockets, crotch and both raw hems."],
+    ],
+    faqs: [
+      ["Does the drawstring mean the waist is elastic?", "Not necessarily. The reference shows a drawstring, but only the current specification or measured range can confirm whether the waistband stretches."],
+      ["How should a raw hem be judged?", "Match it with the selected option's imagery, then compare both leg openings for length, cutting and loose fibres. Intentional distressing should not be confused with an unrelated tear."],
+      ["Which measurements matter most?", "Waist method, front and back rise, inseam, outseam, thigh and leg opening together describe the fit more reliably than a size label."],
+      ["Can wash colour be confirmed from one photograph?", "No. Screen settings and lighting shift pale denim tones. Use neutral full views and the current option name, and ask about isolated marks."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5983 returned successfully. Waist, wash and raw-edge landmarks were reviewed and a shorts-specific worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed catalog label, pants-and-shorts route and light-wash reference image were recorded."],
+    ],
+  },
+  "classic-dress-watch": {
+    seoDescription: "Research the classic dress-watch reference with dimension and specification requests, dial and case QC checks, verified route and update notes.",
+    summary: "The reference image shows a round gold-tone case, a dark reflective dial, small bright hour markers, a crown at the right side and a black textured strap. It is useful for matching the visible configuration, but it cannot confirm movement, materials, water resistance, dimensions, timekeeping, included pieces or authenticity.",
+    observed: [
+      ["Round dress-watch layout", "A slim-looking round case and dark dial create a clear overall silhouette, while the reflective surface changes appearance with angle."],
+      ["Marker and hand pattern", "Small bright hour markers and simple hands provide landmarks for checking dial alignment in a straight-on photograph."],
+      ["Dark textured strap", "A black strap with visible texture is attached in the reference; its material, length and clasp still require current specification evidence."],
+    ],
+    limits: "A promotional-style photograph cannot verify case or crystal material, movement, accuracy, water resistance, strap composition, serial information, authenticity or bundle. Do not rely on brand-like text as proof of origin.",
+    measurements: [
+      ["Case dimensions", "Request case diameter excluding the crown, case thickness and lug-to-lug length in millimetres.", "Compare all three with a watch that wears comfortably; diameter alone is incomplete."],
+      ["Lug and strap", "Record lug width, both strap-piece lengths, adjustment range and clasp type.", "Confirm the selected strap can fit the intended wrist and can be replaced if needed."],
+      ["Movement specification", "Record the exact movement description and any model or revision identifier shown on the current page.", "Do not infer mechanical, automatic or quartz operation from dial appearance."],
+      ["Bundle and terms", "List every included piece, current return conditions and any stated water-resistance test basis.", "A box, card or rating should be treated as included only when the live option says so."],
+    ],
+    qc: [
+      ["Dial alignment", "Use a straight-on, glare-controlled photograph to compare markers, hands, printed text and their position relative to the case.", "Angled reflections can hide or distort the dial."],
+      ["Case and crystal", "Request close views around the bezel, lugs, crown and crystal edge under neutral light.", "Record visible scratches, chips, uneven plating or gaps without making a material claim."],
+      ["Strap and clasp", "Inspect both strap sides, stitching or texture, spring-bar areas and the complete clasp.", "Confirm the pictured strap matches the selected configuration."],
+      ["Function evidence", "Ask for the exact model information and any destination-provided operation or test evidence.", "A still image cannot establish movement function, accuracy or water resistance."],
+    ],
+    workflow: [
+      ["Match the configuration", "Listing #5952 mentions multiple styles, so record the exact style selector and screenshot before comparing evidence."],
+      ["Confirm dimensions and mechanism", "Collect case, lug, strap and movement details from the same selected style."],
+      ["Separate appearance from function", "Use photos for visible condition and alignment; use current specifications and terms for function, rating and bundle claims."],
+    ],
+    faqs: [
+      ["Can Hacoo Pro confirm the watch movement?", "No. The reference image does not reveal the mechanism. Use the exact current style's movement description and model information."],
+      ["Does visible dial text prove authenticity?", "No. Text or a logo in an image is not proof of origin or authenticity. This page is an independent visual research reference only."],
+      ["Which case measurement is most useful?", "Diameter, thickness and lug-to-lug length work together. Add strap range and compare them with a watch that already fits the intended wrist."],
+      ["Can a photo confirm water resistance?", "No. A claim requires current specification and appropriate testing context. Never infer resistance from case appearance or a printed rating alone."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5952 returned successfully. Dial, case and strap landmarks were reviewed and a watch-specific specification/QC worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed multi-style catalog label, accessories route and dark-dial watch image were recorded."],
+    ],
+  },
+  "magnetic-power-bank": {
+    seoDescription: "Research the magnetic power-bank reference with model, capacity, charging and compatibility checks, a verified live route and update history.",
+    summary: "The reference image shows a compact, light-coloured rectangular device held in one hand, with a large circular alignment graphic and a short vertical mark below it. This is enough to recognise the pictured form factor, but not to confirm capacity, ports, charging standards, magnet strength, device compatibility, certification, included accessories or condition.",
+    observed: [
+      ["Handheld form factor", "The device appears compact relative to the hand, but perspective is not a measurement and no scale is visible."],
+      ["Circular alignment graphic", "A large circle dominates the visible face and supplies a matching landmark; it does not prove a particular charging protocol."],
+      ["Only one face shown", "Ports, buttons, indicator lights and printed model information are not clearly documented in this reference view."],
+    ],
+    limits: "Appearance cannot verify battery capacity, output, input, charging speed, cell condition, thermal behaviour, certifications, compatibility or authenticity. Confirm the exact model and regional shipping rules from current sources.",
+    measurements: [
+      ["Exact model and revision", "Record the complete model number, revision and regional version from the product label or current specification.", "Similar enclosures may contain different capacities, ports or charging standards."],
+      ["Capacity and ratings", "Record stated battery capacity, rated output capacity, input and output values with units and test conditions where supplied.", "Do not equate a marketing capacity figure with delivered device energy."],
+      ["Ports and standards", "List every connector, wired and wireless charging standard, maximum stated output and required cable or adapter.", "Match these values with the intended phone and regional power setup."],
+      ["Size, weight and bundle", "Request dimensions, weight and an exact list of included cable, adapter or accessories.", "Use current terms; the single reference image does not show the bundle."],
+    ],
+    qc: [
+      ["Identification label", "Request a legible model/rating label and packaging identifier for the exact unit.", "Text should match the selected option and destination specification."],
+      ["Ports and enclosure", "Inspect every port, button, seam, corner and both broad faces in focused neutral-light images.", "Look for dents, separation, corrosion or damaged connectors without claiming internal condition."],
+      ["Indicators and basic operation", "Use destination-provided evidence showing indicators, wired input/output and the intended charging mode where available.", "A static product image cannot demonstrate output, speed or battery health."],
+      ["Compatibility and shipping", "Recheck supported devices, required standards and current battery shipping restrictions for the destination.", "Compatibility and carrier eligibility can change independently of the product image."],
+    ],
+    workflow: [
+      ["Identify before comparing", "Match the full model, revision, rating label and selected bundle on listing #5822; do not choose by enclosure alone."],
+      ["Check the complete power path", "Confirm device compatibility, charging standard, connector, cable, adapter and regional input requirements together."],
+      ["Review safety and terms", "Read current battery shipping, return, warranty and certification information before leaving the destination page."],
+    ],
+    faqs: [
+      ["Does the circular graphic prove MagSafe compatibility?", "No. A visual ring is not a technical specification. Confirm the exact supported standard, model and intended device on the current listing and manufacturer information."],
+      ["Can the photograph confirm battery capacity?", "No. Capacity and rated output require legible specifications and appropriate test context. Never infer them from physical size."],
+      ["What should an electronics QC set include?", "Useful evidence includes the model/rating label, all ports, buttons, indicators, enclosure seams, included parts and packaging condition."],
+      ["Why check shipping before choosing the item?", "Battery products may have carrier and destination restrictions. Current eligibility can affect whether an option is practical even when its page is reachable."],
+    ],
+    updates: [
+      ["2026-07-16", "July 16, 2026", "Detail route rechecked", "Listing #5822 returned successfully. Visible enclosure landmarks were reviewed and a model, power, compatibility and QC worksheet was added."],
+      ["2026-07-15", "July 15, 2026", "Reference established", "The observed catalog label, electronics route and handheld device reference were recorded."],
+    ],
+  },
+};
