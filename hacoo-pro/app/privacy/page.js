@@ -1,5 +1,8 @@
+import { PrivacyPage } from "@/components/LegalPages";
+import { getLegalCopy } from "../legal-copy";
+import { languageAlternates } from "../i18n";
 import { createPageMetadata } from "../seo";
 
-export const metadata=createPageMetadata({title:"Hacoo Pro Privacy Policy",description:"Read how Hacoo Pro handles basic site usage, its publisher relationship with CNFansHP, external links and privacy requests.",path:"/privacy",alternates:{canonical:"/privacy/"}});
-export default function Privacy(){return <Legal title="Privacy Policy" intro="This policy explains the privacy approach used by Hacoo Pro, an editorial discovery guide operated by the same publishing team as CNFansHP." sections={[["Information handled","The site does not provide user accounts or accept payments. Standard hosting logs may include IP address, browser information, referring pages and requested URLs for security and performance purposes."],["Publisher relationship","Hacoo Pro and CNFansHP are operated by the same publishing team but perform separate site functions. Hacoo Pro provides editorial research and navigation; CNFansHP provides external catalog destinations."],["External websites","Links may open CNFansHP or another external destination. Leaving Hacoo Pro means the destination website's privacy policy, cookies and controls apply, even when the destination shares the same publishing team."],["Cookies and analytics","No advertising or behavioral analytics cookies are intentionally included. If analytics or advertising tools are added, this policy and any required consent experience will be updated first."],["Contact","Privacy questions can be sent to the shared editorial desk at service@cnfanshp.com. Do not send order, payment or other unnecessary sensitive information to Hacoo Pro."]]}/>} 
-function Legal({title,intro,sections}){return <section className="legal wrap"><span className="section-label">Last reviewed July 16, 2026</span><h1>{title}</h1><p className="legal-intro">{intro}</p>{sections.map(([h,p])=><div key={h}><h2>{h}</h2><p>{p}</p></div>)}</section>}
+const page = getLegalCopy("en").privacy;
+export const metadata = createPageMetadata({ title: page.title, description: page.description, path: "/privacy", alternates: languageAlternates("/privacy", "en") });
+export default function Privacy() { return <PrivacyPage locale="en"/>; }

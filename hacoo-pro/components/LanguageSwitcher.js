@@ -11,7 +11,7 @@ export default function LanguageSwitcher({ onNavigate }) {
   function changeLanguage(event) {
     const nextLocale = event.target.value;
     const cleanPath = stripLocale(pathname);
-    const hasLocalizedVersion = cleanPath === "/" || /^\/(spreadsheet|categories(?:\/[^/]+)?|guides(?:\/[^/]+)?|faq|about)$/.test(cleanPath);
+    const hasLocalizedVersion = cleanPath === "/" || /^\/(spreadsheet|categories(?:\/[^/]+)?|products(?:\/[^/]+)?|guides(?:\/[^/]+)?|faq|about|contact|privacy|terms)$/.test(cleanPath);
     const nextPath = localizePath(hasLocalizedVersion ? cleanPath : "/", nextLocale);
     onNavigate?.();
     router.push(nextPath);

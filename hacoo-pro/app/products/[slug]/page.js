@@ -5,6 +5,7 @@ import StructuredData from "@/components/StructuredData";
 import { CATALOG_REVIEW, categories, DESTINATION, products, SITE_URL } from "@/app/data";
 import { productResearch } from "@/app/product-research";
 import { createPageMetadata } from "@/app/seo";
+import { languageAlternates } from "@/app/i18n";
 
 export function generateStaticParams() {
   return products.map(({ slug }) => ({ slug }));
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }) {
     title: `${product.name}: Size & QC Research`,
     description: research.seoDescription,
     path: `/products/${product.slug}`,
-    alternates: { canonical: `/products/${product.slug}/` },
+    alternates: languageAlternates(`/products/${product.slug}`, "en"),
     image: {
       url: `${SITE_URL}${product.image}`,
       width: 750,
