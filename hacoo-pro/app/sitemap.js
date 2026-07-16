@@ -1,4 +1,4 @@
-import { categories, guides, products, SITE_URL } from "./data";
+import { CATALOG_REVIEW, categories, guides, products, SITE_URL } from "./data";
 import { LOCALES, localizePath } from "./i18n";
 export const dynamic = "force-static";
 
@@ -8,7 +8,7 @@ function canonicalUrl(path, locale = "en") {
 }
 
 export default function sitemap() {
-  const now = new Date("2026-07-15");
+  const now = new Date(CATALOG_REVIEW.iso);
   const localizedCore = ["/", "/spreadsheet", "/categories", "/products", "/guides", "/faq", "/about"].flatMap((path) =>
     LOCALES.map((locale) => ({
       url: canonicalUrl(path, locale),
