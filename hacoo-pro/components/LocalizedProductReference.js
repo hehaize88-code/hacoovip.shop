@@ -6,6 +6,7 @@ import { getLocalizedDepth } from "@/app/localizedDepth";
 import { absoluteLocalizedUrl, localizeCategories, localizePath } from "@/app/i18n";
 import { getLocalizedProduct, getLocalizedProductPageCopy } from "@/app/product-locales";
 import { getProductPageCopy } from "@/app/products-copy";
+import { getCyclicRelated, withTrailingSlash } from "@/app/internal-links";
 
 function withSlash(url) {
   return url.endsWith("/") ? url : `${url}/`;
@@ -24,7 +25,7 @@ export default function LocalizedProductReference({ locale, slug }) {
   const checks = depth.categoryChecks[product.categorySlug] || [];
   const verifiedListing = `${DESTINATION}${product.listingPath}`;
   const liveSearch = `${DESTINATION}/search.html?keywords=${encodeURIComponent(product.query)}&channelid=2&method=1`;
-  const relatedProducts = products.filter((item) => item.slug !== product.slug).slice(0, 3).map((item) => getLocalizedProduct(item, locale));
+  const relatedProducts = getCyclicRelated(products, product.slug, 3).map((item) => getLocalizedProduct(item, locale));
   const path = `/products/${product.slug}`;
   const productUrl = withSlash(absoluteLocalizedUrl(path, locale));
   const productImage = `${SITE_URL}${product.image}`;
@@ -73,7 +74,7 @@ export default function LocalizedProductReference({ locale, slug }) {
         <div className="hero-actions">
           <a className="button primary" href={verifiedListing} target="_blank" rel="noopener noreferrer">{copy.open} <Arrow/></a>
           <a className="button quiet" href={liveSearch} target="_blank" rel="noopener noreferrer">{copy.fallback}</a>
-          <Link className="button quiet" href={localizePath(`/categories/${product.categorySlug}`, locale)}>{copy.categoryGuide} {category.name}</Link>
+          <Link className="button quiet" href={withTrailingSlash(localizePath(`/categories/${product.categorySlug}`, locale))}>{copy.categoryGuide} {category.name}</Link>
         </div>
         <span className="product-reference-note">#{product.listingId} · {directoryCopy.reviewedDate} · {copy.independent}</span>
       </div>
@@ -107,6 +108,6 @@ export default function LocalizedProductReference({ locale, slug }) {
 
     <section className="section wrap product-route-section"><div className="reference-grid"><div><span className="section-label">{copy.routeLabel}</span><h2>{copy.routeTitle}</h2></div><div className="reference-copy"><p className="large-copy">{copy.routeLead}</p><p>{copy.routeText(product.catalogLabel, product.listingId)}</p><div className="reference-checks">{checks.map((check, index) => <div key={check}><span>0{index + 1}</span><p>{check}</p></div>)}</div><div className="inline-links"><a href={verifiedListing} target="_blank" rel="noopener noreferrer">{copy.open} <Arrow size={16}/></a><a href={liveSearch} target="_blank" rel="noopener noreferrer">{copy.fallback} <Arrow size={16}/></a></div></div></div></section>
 
-    <section className="soft-section product-related-section"><div className="wrap"><div className="section-heading compact"><div><span className="section-label">{copy.related}</span><h2>{copy.relatedTitle}</h2></div><Link className="text-link large" href={localizePath("/products", locale)}>{copy.all} <Arrow size={17}/></Link></div><div className="related-product-grid">{relatedProducts.map((item) => <Link className="related-product-card" href={localizePath(`/products/${item.slug}`, locale)} key={item.slug}><img src={item.image} alt={item.name}/><div><small>{localizeCategories(categories, locale).find((entry) => entry.slug === item.categorySlug)?.name}</small><h3>{item.name}</h3><span>{copy.openResearch} <Arrow size={15}/></span></div></Link>)}</div></div></section>
+    <section className="soft-section product-related-section"><div className="wrap"><div className="section-heading compact"><div><span className="section-label">{copy.related}</span><h2>{copy.relatedTitle}</h2></div><Link className="text-link large" href={withTrailingSlash(localizePath("/products", locale))}>{copy.all} <Arrow size={17}/></Link></div><div className="related-product-grid">{relatedProducts.map((item) => <Link className="related-product-card" href={withTrailingSlash(localizePath(`/products/${item.slug}`, locale))} key={item.slug}><img src={item.image} alt={item.name}/><div><small>{localizeCategories(categories, locale).find((entry) => entry.slug === item.categorySlug)?.name}</small><h3>{item.name}</h3><span>{copy.openResearch} <Arrow size={15}/></span></div></Link>)}</div></div></section>
   </div>;
 }
