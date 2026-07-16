@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "mkdir -p /tmp/hacoo-wrangler && XDG_CONFIG_HOME=/tmp/hacoo-wrangler vinext build && if [ -f dist/server/index.mjs ]; then cp dist/server/index.mjs dist/server/index.js; fi && if [ -f dist/server/ssr/index.mjs ]; then cp dist/server/ssr/index.mjs dist/server/ssr/index.js; fi && mkdir -p dist/.openai && cp .openai/hosting.json dist/.openai/hosting.json",
-    "build:pages": "npm run validate:products && CLOUDFLARE_PAGES_STATIC_EXPORT=1 next build && node scripts/create-sitemap-aliases.mjs && npm run validate:localized",
+    "build:pages": "npm run validate:products && CLOUDFLARE_PAGES_STATIC_EXPORT=1 next build && node scripts/create-sitemap-aliases.mjs && npm run validate:localized && npm run validate:internal-links",
     "build:next": "next build",
     "validate:products": "node scripts/validate-products.mjs",
     "validate:localized": "node scripts/validate-localized-routes.mjs",
+    "validate:internal-links": "AUDIT_DIR=out AUDIT_STRICT=1 node scripts/audit-live-internal-links.mjs",
     "check:products": "node scripts/check-live-products.mjs",
     "start": "vinext start",
     "lint": "next lint"

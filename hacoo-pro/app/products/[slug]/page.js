@@ -6,6 +6,7 @@ import { CATALOG_REVIEW, categories, DESTINATION, products, SITE_URL } from "@/a
 import { productResearch } from "@/app/product-research";
 import { createPageMetadata } from "@/app/seo";
 import { languageAlternates } from "@/app/i18n";
+import { getCyclicRelated, withTrailingSlash } from "@/app/internal-links";
 
 export function generateStaticParams() {
   return products.map(({ slug }) => ({ slug }));
@@ -41,7 +42,7 @@ export default async function ProductReferencePage({ params }) {
 
   const verifiedListing = `${DESTINATION}${product.listingPath}`;
   const liveSearch = `${DESTINATION}/search.html?keywords=${encodeURIComponent(product.query)}&channelid=2&method=1`;
-  const relatedProducts = products.filter((item) => item.slug !== product.slug).slice(0, 3);
+  const relatedProducts = getCyclicRelated(products, product.slug, 3);
   const productUrl = `${SITE_URL}/products/${product.slug}/`;
   const schema = {
     "@context": "https://schema.org",
@@ -95,7 +96,7 @@ export default async function ProductReferencePage({ params }) {
         <div className="hero-actions">
           <a className="button primary" href={verifiedListing} target="_blank" rel="noopener noreferrer">Open verified listing <Arrow/></a>
           <a className="button quiet" href={liveSearch} target="_blank" rel="noopener noreferrer">Search fallback</a>
-          <Link className="button quiet" href={`/categories/${product.categorySlug}`}>Open {product.category} guide</Link>
+          <Link className="button quiet" href={`/categories/${product.categorySlug}/`}>Open {product.category} guide</Link>
         </div>
         <span className="product-reference-note">Listing #{product.listingId} checked {CATALOG_REVIEW.label} · independent reference</span>
       </div>
@@ -181,8 +182,8 @@ export default async function ProductReferencePage({ params }) {
 
     <section className="soft-section product-related-section">
       <div className="wrap">
-        <div className="section-heading compact"><div><span className="section-label">Continue researching</span><h2>Related checked references.</h2></div><Link className="text-link large" href="/products">View all products <Arrow size={17}/></Link></div>
-        <div className="related-product-grid">{relatedProducts.map((item) => <Link className="related-product-card" href={`/products/${item.slug}`} key={item.slug}><img src={item.image} alt={`${item.name} product reference`}/><div><small>{item.category}</small><h3>{item.name}</h3><span>Open research page <Arrow size={15}/></span></div></Link>)}</div>
+        <div className="section-heading compact"><div><span className="section-label">Continue researching</span><h2>Related checked references.</h2></div><Link className="text-link large" href="/products/">View all products <Arrow size={17}/></Link></div>
+        <div className="related-product-grid">{relatedProducts.map((item) => <Link className="related-product-card" href={withTrailingSlash(`/products/${item.slug}`)} key={item.slug}><img src={item.image} alt={`${item.name} product reference`}/><div><small>{item.category}</small><h3>{item.name}</h3><span>Open research page <Arrow size={15}/></span></div></Link>)}</div>
       </div>
     </section>
   </>;
