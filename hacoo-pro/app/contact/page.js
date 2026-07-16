@@ -1,4 +1,8 @@
+import { ContactPage } from "@/components/LegalPages";
+import { getLegalCopy } from "../legal-copy";
+import { languageAlternates } from "../i18n";
 import { createPageMetadata } from "../seo";
 
-export const metadata=createPageMetadata({title:"Contact Hacoo Pro",description:"Contact the Hacoo Pro editorial guide about corrections, broken links, content updates or rights concerns.",path:"/contact",alternates:{canonical:"/contact/"}});
-export default function Contact(){return <section className="page-hero simple-hero full-page"><div className="wrap narrow"><span className="section-label">Contact</span><h1>Corrections<br/><em>make guides better.</em></h1><p>For a factual correction, broken-link report, rights concern or editorial question, contact our shared editorial desk at <a href="mailto:service@cnfanshp.com">service@cnfanshp.com</a>. This address is operated by the same publishing team as CNFansHP. Please include the exact Hacoo Pro URL and the information you believe should be reviewed.</p><div className="contact-note"><strong>Important</strong><p>Hacoo Pro publishes editorial guidance and does not process orders. Transaction support must be requested from the website that handled the transaction.</p></div></div></section>}
+const page = getLegalCopy("en").contact;
+export const metadata = createPageMetadata({ title: page.title, description: page.description, path: "/contact", alternates: languageAlternates("/contact", "en") });
+export default function Contact() { return <ContactPage locale="en"/>; }

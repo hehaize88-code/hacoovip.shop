@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="footer-grid">
         <div className="footer-brand"><div className="brand brand-inverse"><img className="brand-logo" src="/hacoo.png" width="200" height="64" alt="Hacoo"/></div><p>{copy.footer.description}</p></div>
         <div><h3>{copy.footer.explore}</h3><Link href={localizePath("/spreadsheet", locale)}>{copy.nav.spreadsheet}</Link><Link href={localizePath("/categories", locale)}>{copy.nav.categories}</Link><Link href={localizePath("/products", locale)}>{copy.nav.products}</Link><Link href={localizePath("/guides", locale)}>{copy.nav.guides}</Link><Link href={localizePath("/faq", locale)}>{copy.nav.faq}</Link></div>
-        <div><h3>{copy.footer.site}</h3><Link href={localizePath("/about", locale)}>{copy.nav.about}</Link><Link href="/contact">{copy.footer.contact}</Link><Link href="/privacy">{copy.footer.privacy}</Link><Link href="/terms">{copy.footer.terms}</Link></div>
+        <div><h3>{copy.footer.site}</h3><Link href={localizePath("/about", locale)}>{copy.nav.about}</Link><Link href={localizePath("/contact", locale)}>{copy.footer.contact}</Link><Link href={localizePath("/privacy", locale)}>{copy.footer.privacy}</Link><Link href={localizePath("/terms", locale)}>{copy.footer.terms}</Link></div>
       </div>
       <div className="footer-bottom"><p>© {new Date().getFullYear()} Hacoo Pro</p><p>{copy.footer.disclaimer}</p></div>
     </footer>

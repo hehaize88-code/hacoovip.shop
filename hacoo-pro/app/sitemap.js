@@ -33,19 +33,23 @@ export default function sitemap() {
       priority: 0.75,
     })),
   );
-  const legal = ["/contact", "/privacy", "/terms"].map((path) => ({
-    url: canonicalUrl(path),
-    lastModified: now,
-    changeFrequency: "yearly",
-    priority: 0.4,
-  }));
+  const legal = ["/contact", "/privacy", "/terms"].flatMap((path) =>
+    LOCALES.map((locale) => ({
+      url: canonicalUrl(path, locale),
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    })),
+  );
 
-  const productReferences = products.map((product) => ({
-    url: canonicalUrl(`/products/${product.slug}`),
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.65,
-  }));
+  const productReferences = products.flatMap((product) =>
+    LOCALES.map((locale) => ({
+      url: canonicalUrl(`/products/${product.slug}`, locale),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.65,
+    })),
+  );
 
   return [...localizedCore, ...localizedCategories, ...localizedGuides, ...productReferences, ...legal];
 }

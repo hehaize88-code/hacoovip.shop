@@ -2,27 +2,31 @@ import StructuredData from "./StructuredData";
 import ProductDirectory from "./ProductDirectory";
 import { CATALOG_REVIEW, categories, DESTINATION, products, SITE_URL } from "@/app/data";
 import { getProductPageCopy } from "@/app/products-copy";
+import { getLocalizedProduct } from "@/app/product-locales";
 import { localizeCategories, localizePath } from "@/app/i18n";
 
 export default function ProductsIndex({ locale = "en" }) {
   const copy = getProductPageCopy(locale);
   const localizedCategories = localizeCategories(categories, locale);
   const categoryNames = Object.fromEntries(localizedCategories.map((category) => [category.slug, category.name]));
-  const items = products.map((product) => ({
-    ...product,
-    displayCategory: categoryNames[product.categorySlug] || product.category,
-    referenceUrl: `/products/${product.slug}`,
-    listingUrl: `${DESTINATION}${product.listingPath}`,
-    searchUrl: `${DESTINATION}/search.html?keywords=${encodeURIComponent(product.query)}&channelid=2&method=1`,
-    checkedIso: CATALOG_REVIEW.iso,
-    checkedLabel: copy.reviewedDate,
-  }));
+  const items = products.map((sourceProduct) => {
+    const product = getLocalizedProduct(sourceProduct, locale);
+    return {
+      ...product,
+      displayCategory: categoryNames[product.categorySlug] || product.category,
+      referenceUrl: localizePath(`/products/${product.slug}`, locale),
+      listingUrl: `${DESTINATION}${product.listingPath}`,
+      searchUrl: `${DESTINATION}/search.html?keywords=${encodeURIComponent(product.query)}&channelid=2&method=1`,
+      checkedIso: CATALOG_REVIEW.iso,
+      checkedLabel: copy.reviewedDate,
+    };
+  });
   const pageUrl = `${SITE_URL}${localizePath("/products", locale)}/`;
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "CollectionPage", name: copy.title.join(" "), url: pageUrl, description: copy.lead, inLanguage: locale, dateModified: CATALOG_REVIEW.iso },
-      { "@type": "ItemList", name: copy.directoryTitle, numberOfItems: items.length, itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, url: `${SITE_URL}/products/${item.slug}/`, name: item.name })) },
+      { "@type": "ItemList", name: copy.directoryTitle, numberOfItems: items.length, itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, url: `${SITE_URL}${localizePath(`/products/${item.slug}`, locale)}/`, name: item.name })) },
     ],
   };
 
