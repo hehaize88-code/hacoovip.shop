@@ -340,9 +340,9 @@ export const guideContent = {
 };
 
 export const faqs = [
-  ["What is Hacoo Pro?", "Hacoo Pro is an independent product-discovery and editorial guide for people searching Hacoo spreadsheet-style categories, links and buying checklists."],
-  ["Is Hacoo Pro the official Hacoo website?", "No. Hacoo Pro is independent and is not affiliated with, endorsed by or operated by Hacoo or any marketplace."],
-  ["Does Hacoo Pro sell products?", "No. We organize discovery pages and link to external live listings. Any transaction takes place on the destination website under its own terms."],
+  ["What is Hacoo Pro?", "Hacoo Pro is an editorial product-discovery guide operated by the same publishing team as CNFansHP. The two sites have separate research and catalog roles."],
+  ["Is Hacoo Pro the official Hacoo website?", "No. Hacoo Pro is not operated or endorsed by Hacoo. Its shared publisher relationship is with CNFansHP, not Hacoo or any marketplace."],
+  ["Does Hacoo Pro sell products?", "No. Hacoo Pro publishes editorial guidance. Catalog and transaction pages open separately on CNFansHP or another destination under that site's own terms."],
   ["Where do the product links go?", "Product cards open a matching Hacoo Pro reference page first. From there, visitors can run a current CNFansHP search or open the relevant live category without being sent to an expired detail URL."],
   ["Are listings always available?", "No. External listings, options and availability can change. Always check the current destination page."],
   ["Does a listing guarantee product quality?", "No. A link or photograph cannot guarantee quality. Use available measurements, listing information and policies to make your own assessment."],
