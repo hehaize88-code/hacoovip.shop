@@ -1,4 +1,4 @@
-import { SITE_URL } from "./data";
+import { SITE_URL } from "./data.js";
 
 export const LOCALES = ["en", "es", "fr", "de", "it", "pt"];
 export const LOCALIZED_LOCALES = LOCALES.filter((locale) => locale !== "en");

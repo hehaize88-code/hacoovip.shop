@@ -5,6 +5,7 @@ import StructuredData from "@/components/StructuredData";
 import { CATALOG_REVIEW, categories, categoryResearch, DESTINATION, products, SITE_URL } from "../../data";
 import { languageAlternates } from "../../i18n";
 import { createPageMetadata } from "../../seo";
+import { createBreadcrumbList, pageUrl, WEBSITE_ID } from "../../schema";
 
 export function generateStaticParams(){ return categories.map(c=>({slug:c.slug})); }
 export async function generateMetadata({params}) { const {slug}=await params; const c=categories.find(x=>x.slug===slug); if(!c)return{}; return createPageMetadata({ title:`Hacoo ${c.name}: Product Links & Checks`, description:`Explore the Hacoo ${c.name.toLowerCase()} spreadsheet route, current catalog links and practical checks for measurements, listing details and availability.`, path:`/categories/${c.slug}`, alternates:languageAlternates(`/categories/${c.slug}`,"en") }); }
@@ -17,7 +18,9 @@ export default async function CategoryPage({params}) {
   if(!c||!research||!featuredProduct) notFound();
   const verifiedListing=`${DESTINATION}${featuredProduct.listingPath}`;
   const liveSearch=`${DESTINATION}/search.html?keywords=${encodeURIComponent(featuredProduct.query)}&channelid=2&method=1`;
-  const schema={"@context":"https://schema.org","@graph":[{"@type":"CollectionPage",name:`Hacoo ${c.name} Spreadsheet`,url:`${SITE_URL}/categories/${c.slug}/`,description:c.description,dateModified:CATALOG_REVIEW.iso,mainEntity:{"@id":`${SITE_URL}/products/${featuredProduct.slug}/`}},{"@type":"ItemList",name:`Current ${c.name} reference`,itemListElement:[{"@type":"ListItem",position:1,url:`${SITE_URL}/products/${featuredProduct.slug}/`,name:featuredProduct.name}]},{"@type":"FAQPage",mainEntity:research.faqs.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))}]};
+  const categoryUrl = pageUrl(`/categories/${c.slug}`);
+  const breadcrumb = createBreadcrumbList({ path: `/categories/${c.slug}`, items: [{ name: "Home", path: "/" }, { name: "Categories", path: "/categories" }, { name: c.name, path: `/categories/${c.slug}` }] });
+  const schema={"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":`${categoryUrl}#webpage`,name:`Hacoo ${c.name} Spreadsheet`,url:categoryUrl,description:c.description,dateModified:CATALOG_REVIEW.iso,mainEntity:{"@id":`${SITE_URL}/products/${featuredProduct.slug}/`},breadcrumb:{"@id":breadcrumb["@id"]},isPartOf:{"@id":WEBSITE_ID}},{"@type":"ItemList",name:`Current ${c.name} reference`,itemListElement:[{"@type":"ListItem",position:1,url:`${SITE_URL}/products/${featuredProduct.slug}/`,name:featuredProduct.name}]},{"@type":"FAQPage",mainEntity:research.faqs.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))},breadcrumb]};
 
   return <>
     <StructuredData data={schema}/>
