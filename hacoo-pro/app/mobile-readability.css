@@ -1,0 +1,294 @@
+/*
+ * Mobile readability layer
+ *
+ * Loaded after the component styles so the compact mobile layout can stay in
+ * place while typography, touch targets and colour contrast remain usable.
+ */
+@media (max-width: 760px) {
+  :root {
+    --muted: #56564f;
+    --orange: #c94026;
+    --line: #c8c5bb;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 15px;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+  }
+
+  .menu-button {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    place-items: center;
+    border-radius: 50%;
+  }
+
+  .nav-links > a:not(.nav-cta) {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    color: #474740;
+    font-size: 14px;
+  }
+
+  .nav-links > a.active {
+    color: var(--ink);
+  }
+
+  .nav-cta,
+  .button,
+  .language-switcher {
+    min-height: 44px;
+  }
+
+  .button {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .button.primary {
+    color: #fff;
+  }
+
+  .language-switcher select {
+    font-size: 16px;
+  }
+
+  .eyebrow,
+  .section-label,
+  .locale-note,
+  .article-index small,
+  .category-copy small,
+  .product-copy small,
+  .guide-card small,
+  .related-product-card small {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .page-hero p,
+  .category-hero-copy p,
+  .section-heading > p,
+  .split-copy > div:last-child > p:not(.large-copy),
+  .story-grid > div:last-child > p:not(.large-copy),
+  .values-grid p,
+  .check-card p,
+  .faq-list details p,
+  .legal p {
+    color: var(--muted);
+  }
+
+  .search-card label > span {
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  .search-card input[type="search"] {
+    font-size: 16px;
+  }
+
+  .search-card input[type="search"]::placeholder {
+    color: #66665f;
+  }
+
+  .search-card button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .product-image span,
+  .directory-product-image > span,
+  .directory-product-meta small,
+  .directory-product-meta span,
+  .product-filters button span {
+    font-size: 11px;
+  }
+
+  .faq-list summary {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .text-link.large {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  /* Keep the short homepage rhythm, but remove the 8–10px type. */
+  .home-page .eyebrow,
+  .home-page .section-label,
+  .home-page .photo-note,
+  .home-page .signal-card p,
+  .home-page .search-card label > span,
+  .home-page .ticker div,
+  .home-page .category-image span,
+  .home-page .category-copy small,
+  .home-page .product-copy small,
+  .home-page .guide-card small,
+  .home-page .guide-number,
+  .home-page .process-list > li > span,
+  .home-page .product-image span {
+    font-size: 11px;
+  }
+
+  .home-page .hero-lead {
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-line-clamp: 3;
+  }
+
+  .home-page .hero-actions .button,
+  .home-page .center-action .button,
+  .home-page .process-intro .button,
+  .home-page .faq-preview .button {
+    font-size: 13px;
+  }
+
+  .home-page .trust-row {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .home-page .section-heading > p,
+  .home-page .category-copy p,
+  .home-page .process-intro p,
+  .home-page .text-link,
+  .home-page .faq-list summary {
+    font-size: 13px;
+  }
+
+  .home-page .process-list h3 {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .home-page .process-list p,
+  .home-page .guide-card p,
+  .home-page .faq-preview > div:first-child > p,
+  .home-page .faq-list details p,
+  .home-page .data-note {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .home-page .product-copy h3 {
+    font-size: 14px;
+    line-height: 1.22;
+  }
+
+  .home-page .guide-card h3 {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  /* Product detail pages. */
+  .product-reference-copy > p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .product-reference-copy .button {
+    font-size: 13px;
+  }
+
+  .product-reference-note,
+  .table-note,
+  .reference-disclosure,
+  .verified-product-disclosure {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .product-research-section .research-table th::before,
+  .product-research-section .research-table td::before {
+    font-size: 11px;
+  }
+
+  .related-product-card span {
+    font-size: 12px;
+  }
+
+  /* Products directory: keep two columns and make every action readable. */
+  .products-index-stats dd {
+    color: #c1bfb6;
+    font-size: 11px;
+  }
+
+  .directory-product-copy > p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .directory-product-status,
+  .directory-fallback {
+    font-size: 12px;
+  }
+
+  .directory-product-actions .button {
+    min-height: 44px;
+    padding: 8px 6px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .products-index-notice p {
+    color: #34342f;
+    font-size: 13px;
+  }
+
+  /* Dark surfaces use a lighter secondary tone than the old grey. */
+  .dark-section p,
+  .dark-hero p,
+  .product-decision-section p,
+  .verified-product-section .section-heading > p,
+  .verified-product-copy > p:not(.verified-product-id):not(.verified-product-disclosure),
+  .products-index-hero p,
+  .site-footer .footer-brand p {
+    color: #c7c5ba;
+  }
+
+  .verified-product-id,
+  .verified-product-copy dt,
+  .verified-product-disclosure {
+    color: #b8b6ad;
+  }
+
+  .site-footer .footer-brand p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .site-footer .footer-grid h3 {
+    font-size: 11px;
+  }
+
+  .site-footer .footer-grid > div:not(:first-child) a {
+    color: #dedcd2;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .site-footer .footer-bottom {
+    color: #b8b6ad;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
