@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const schema = { "@context": "https://schema.org", "@graph": [
-    { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "Hacoo Pro", url: SITE_URL, description: "Independent Hacoo spreadsheet discovery and editorial guide." },
+    { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "Hacoo Pro", url: SITE_URL, description: "Editorial Hacoo spreadsheet guide operated by the same publishing team as CNFansHP; not affiliated with or endorsed by Hacoo." },
     { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "Hacoo Pro", publisher: { "@id": `${SITE_URL}/#organization` }, inLanguage: LOCALES }
   ]};
   return <html lang="en" suppressHydrationWarning><body><StructuredData data={schema}/><Header/><main>{children}</main><Footer/></body></html>;
