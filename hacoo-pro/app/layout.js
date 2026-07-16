@@ -3,6 +3,7 @@ import "./search.css";
 import "./mobile.css";
 import "./product.css";
 import "./research-modules.css";
+import "./mobile-readability.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
