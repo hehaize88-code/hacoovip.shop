@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://allchinabuy.pro
+Sitemap: https://allchinabuy.pro/sitemap.xml
