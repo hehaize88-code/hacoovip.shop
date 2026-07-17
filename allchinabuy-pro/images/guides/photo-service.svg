@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Standard and detailed photo comparison</title><desc id="desc">Standard photos cover routine checks while detailed photos answer a precise question.</desc><rect width="1600" height="900" fill="#10110f"/>
+  <text x="100" y="120" fill="#c8ff2e" font-family="Arial,sans-serif" font-size="32" font-weight="700" letter-spacing="5">PHOTO SERVICE</text><text x="100" y="225" fill="#fff" font-family="Arial,sans-serif" font-size="76" font-weight="800">More photos ≠ more evidence.</text>
+  <g font-family="Arial,sans-serif"><rect x="100" y="345" width="650" height="340" rx="12" fill="#f4efe3"/><text x="145" y="420" fill="#10110f" font-size="26" font-weight="700">STANDARD INSPECTION</text><text x="145" y="510" fill="#10110f" font-size="42" font-weight="700">Quantity · colour · size</text><text x="145" y="575" fill="#55584d" font-size="25">Routine overview evidence</text>
+  <rect x="850" y="345" width="650" height="340" rx="12" fill="#c8ff2e"/><text x="895" y="420" fill="#10110f" font-size="26" font-weight="700">DETAILED REQUEST</text><text x="895" y="510" fill="#10110f" font-size="42" font-weight="700">One precise question</text><text x="895" y="575" fill="#31342b" font-size="25">Angle · label · measurement</text></g>
+  <text x="100" y="790" fill="#b8baaf" font-family="Arial,sans-serif" font-size="25">Write an observable success condition so a missed requirement can be identified.</text>
+</svg>
