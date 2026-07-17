@@ -1,0 +1,66 @@
+name: Publish AllChinaBuy Pro static site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "allchinabuy-pro/**"
+      - ".github/workflows/publish-allchinabuy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-allchinabuy-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+          cache: npm
+          cache-dependency-path: allchinabuy-pro/package-lock.json
+
+      - name: Install dependencies
+        working-directory: allchinabuy-pro
+        run: npm ci
+
+      - name: Build static Pages export
+        working-directory: allchinabuy-pro
+        run: npm run build:pages
+
+      - name: Sync export into the configured Pages directory
+        working-directory: allchinabuy-pro
+        run: |
+          set -euo pipefail
+          test -f out/index.html
+          test -d out/_next/static
+          rsync -a out/ ./
+          test -f index.html
+          test -d _next/static
+
+      - name: Publish generated static files
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A allchinabuy-pro
+          if git diff --cached --quiet; then
+            echo "Static export is already current."
+            exit 0
+          fi
+          git commit -m "Publish AllChinaBuy Pro static export"
+          git pull --rebase origin main
+          git push origin HEAD:main
