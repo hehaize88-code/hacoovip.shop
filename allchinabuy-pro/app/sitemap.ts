@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { categories, guides, products, SITE_URL } from "@/lib/content";
 import { supportedLocales } from "@/lib/locales";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date("2026-07-17T00:00:00.000Z");
   const staticRoutes = [
