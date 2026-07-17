@@ -102,9 +102,9 @@ export default function Home() {
           <Link className="text-link" href="/guides">All guides <span aria-hidden="true">→</span></Link>
         </div>
         <div className="guide-grid">
-          {guides.map((guide, index) => (
+          {guides.slice(0, 4).map((guide, index) => (
             <article className="guide-card" key={guide.slug}>
-              <span className="guide-card__index">0{index + 1}</span>
+              <span className="guide-card__index">{String(index + 1).padStart(2, "0")}</span>
               <p className="eyebrow">{guide.eyebrow}</p>
               <h3><Link href={`/guides/${guide.slug}`}>{guide.title}</Link></h3>
               <p>{guide.description}</p>

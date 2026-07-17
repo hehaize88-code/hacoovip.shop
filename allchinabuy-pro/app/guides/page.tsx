@@ -4,8 +4,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { guides, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "China Shopping Guides",
-  description: "Practical, independent guides to product links, QC photographs, measurements and international shipping planning.",
+  title: "Fact-Checked AllChinaBuy Guides",
+  description: "Independent, source-linked guides to the AllChinaBuy order flow, QC photos, warehouse packing, shipping restrictions and freight planning.",
   alternates: { canonical: `${SITE_URL}/guides` },
 };
 
@@ -28,15 +28,20 @@ export default function GuidesPage() {
         },
       }} />
       <section className="page-hero page-hero--plain">
-        <p className="eyebrow">Practical reading</p>
-        <h1>Guides that answer the next question.</h1>
-        <p>Original explainers for navigating product routes, reading warehouse photographs and planning an international parcel.</p>
+        <p className="eyebrow">{guides.length} source-linked guides</p>
+        <h1>AllChinaBuy research you can audit.</h1>
+        <p>We checked AllChinaBuy’s public English mobile pages and turned the visible rules into practical workflows. Every article names its official sources, review date and evidence limits.</p>
+        <ul className="page-hero__facts">
+          <li>Official pages linked</li>
+          <li>Fact-checked July 17, 2026</li>
+          <li>No invented fees or delivery promises</li>
+        </ul>
       </section>
       <section className="content-section">
         <div className="guide-list">
           {guides.map((guide, index) => (
             <article className="guide-card" key={guide.slug}>
-              <span className="guide-card__index">0{index + 1}</span>
+              <span className="guide-card__index">{String(index + 1).padStart(2, "0")}</span>
               <p className="eyebrow">{guide.eyebrow}</p>
               <h2><Link href={`/guides/${guide.slug}`}>{guide.title}</Link></h2>
               <p>{guide.description}</p>

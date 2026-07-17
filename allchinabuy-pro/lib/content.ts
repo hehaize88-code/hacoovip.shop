@@ -1,3 +1,8 @@
+import { guides } from "./guides";
+
+export { guides };
+export type { Guide } from "./guides";
+
 export const SITE_URL = "https://allchinabuy.pro";
 export const MAIN_SITE_URL = "https://cnfanshp.com";
 export const LAST_REVIEWED = "July 17, 2026";
@@ -23,16 +28,6 @@ export type Product = {
   checkedAt: string;
   tags: string[];
   targetUrl: string;
-};
-
-export type Guide = {
-  slug: string;
-  title: string;
-  eyebrow: string;
-  description: string;
-  readingTime: string;
-  updated: string;
-  sections: { title: string; body: string }[];
 };
 
 export const categories: Category[] = [
@@ -291,133 +286,6 @@ function assertUniqueProductField(field: "slug" | "image" | "targetUrl") {
 assertUniqueProductField("slug");
 assertUniqueProductField("image");
 assertUniqueProductField("targetUrl");
-
-export const guides: Guide[] = [
-  {
-    slug: "how-a-china-shopping-directory-works",
-    title: "How a China Shopping Directory Works",
-    eyebrow: "Beginner guide",
-    description:
-      "Understand what a curated product directory can do, what it cannot verify, and how to continue safely to a live shopping page.",
-    readingTime: "7 min read",
-    updated: LAST_REVIEWED,
-    sections: [
-      {
-        title: "A directory is a discovery layer",
-        body: "A shopping directory organizes routes into a larger catalogue. It can make categories, common searches and practical checks easier to understand, but it does not manufacture, inspect or ship the products. AllChinaBuy Pro is independent and sends visitors to CNFansHP when they want to view live catalogue results.",
-      },
-      {
-        title: "Start broad, then verify the live page",
-        body: "Begin with the product type you actually need. Once you reach a live result, review the current title, images, options, price, seller information and availability. Directory descriptions are research prompts; the destination page remains the place to confirm current commercial details.",
-      },
-      {
-        title: "Use measurements instead of assumptions",
-        body: "International size labels are inconsistent. Compare garment measurements with an item you already own, and check shoe insole or foot-length guidance when available. If a necessary measurement is missing, asking before purchase is safer than guessing.",
-      },
-      {
-        title: "Plan the complete cost",
-        body: "The product price is only one part of a cross-border purchase. Domestic delivery, optional services, packing materials, international shipping, taxes and payment conversion can all affect the total. Keep a simple estimate and leave room for packed weight or volume to change.",
-      },
-      {
-        title: "Keep records",
-        body: "Save the original listing link, selected options, measurements and key screenshots. Links and stock can change. A compact record makes it easier to compare warehouse information with what you selected and to explain a problem if one appears.",
-      },
-    ],
-  },
-  {
-    slug: "qc-photo-checklist",
-    title: "A Practical QC Photo Checklist",
-    eyebrow: "Quality control",
-    description:
-      "A repeatable way to review warehouse photographs without confusing photographs with a full product inspection.",
-    readingTime: "8 min read",
-    updated: LAST_REVIEWED,
-    sections: [
-      {
-        title: "Check the order first",
-        body: "Before looking for small flaws, confirm that the product, colour, size and quantity match the order. A clear photograph of the wrong option is still the wrong order. Compare visible labels and measurement evidence with your saved purchase details.",
-      },
-      {
-        title: "Review shape and symmetry",
-        body: "Look at the product from several angles. For footwear, compare left and right shape, panels, sole alignment and visible glue. For clothing, check seams, hems, pockets, zips and the way the garment sits when laid flat. Perspective can distort proportions, so avoid judging from a single angle.",
-      },
-      {
-        title: "Ask for measurements that answer a decision",
-        body: "Extra photographs are most useful when they resolve a specific uncertainty. Requesting insole length, chest width, body length or bag dimensions is more actionable than asking for another general picture. State the exact measurement and units you need.",
-      },
-      {
-        title: "Understand the limits",
-        body: "A warehouse image cannot reliably prove durability, long-term colourfastness, electronics performance, water resistance or authenticity. Treat it as one checkpoint in the process. Product claims that need laboratory or brand verification require stronger evidence.",
-      },
-      {
-        title: "Make a documented decision",
-        body: "Record whether you accept the item, request clarification or use the available return process. Deadlines can apply, so review photographs promptly. Keep the photographs and messages connected to the order in case you need them later.",
-      },
-    ],
-  },
-  {
-    slug: "shipping-cost-planning",
-    title: "Plan Shipping Cost Before You Build a Haul",
-    eyebrow: "Shipping guide",
-    description:
-      "A grounded method for estimating packed weight, volumetric weight, restrictions and destination costs before checkout.",
-    readingTime: "9 min read",
-    updated: LAST_REVIEWED,
-    sections: [
-      {
-        title: "Separate product and parcel weight",
-        body: "Product weight is not final parcel weight. Outer cartons, protective material and consolidation choices add weight and dimensions. Shoes and structured bags may occupy more space than their scale weight suggests, which matters when a line uses volumetric calculations.",
-      },
-      {
-        title: "Compare chargeable-weight rules",
-        body: "Shipping lines can calculate charges differently. Some use actual weight, while others compare actual and volumetric weight and charge the larger figure. Read the current line rules and use the official calculator with realistic dimensions rather than the smallest possible estimate.",
-      },
-      {
-        title: "Check restrictions before purchasing",
-        body: "Batteries, liquids, magnets, food, cosmetics and some branded goods can face route or destination restrictions. A cheap product becomes an expensive problem if it cannot use the expected shipping line. Confirm restrictions before placing the product order.",
-      },
-      {
-        title: "Treat taxes as destination-specific",
-        body: "Customs rules, thresholds and tax collection differ by country and can change. Do not copy another buyer's declaration or tax outcome without checking the current requirements for your destination. Use official customs information when accuracy matters.",
-      },
-      {
-        title: "Keep a buffer",
-        body: "Estimates are useful, not guarantees. Build a buffer for packing changes, exchange rates and carrier adjustments. If the final quotation is outside your budget, reconsider parcel composition and available lines before submitting international delivery.",
-      },
-    ],
-  },
-  {
-    slug: "product-link-safety",
-    title: "Product Link Safety: What to Check Before You Click Buy",
-    eyebrow: "Link guide",
-    description:
-      "How to recognize the destination, preserve the source link and avoid treating a directory page as proof of a seller or product.",
-    readingTime: "6 min read",
-    updated: LAST_REVIEWED,
-    sections: [
-      {
-        title: "Know where the link ends",
-        body: "Read the destination domain before continuing. AllChinaBuy Pro links to CNFansHP for live catalogue searches, but it remains a separate independent website. A familiar brand name inside a URL path is not the same as ownership of the domain.",
-      },
-      {
-        title: "Preserve the original source",
-        body: "When a product originates on another marketplace, save that original address as well as the agent or catalogue link. The source helps you recover context if a converted link changes or an item becomes unavailable.",
-      },
-      {
-        title: "Do not trust urgency labels alone",
-        body: "Countdowns, stock warnings and popularity labels can be useful only when backed by current inventory data. Avoid rushing because a directory or promotional page says an item is trending. Verify availability and terms on the current destination page.",
-      },
-      {
-        title: "Check payment and account pages carefully",
-        body: "Use a unique password and verify the domain before entering credentials or payment details. Secure HTTPS is necessary but does not by itself prove that every seller or product claim is reliable.",
-      },
-      {
-        title: "Report broken routes",
-        body: "A responsible directory should update or remove broken links. If a route no longer reaches the intended category or returns an unexpected destination, stop and use the contact page to report it instead of trying similar-looking domains.",
-      },
-    ],
-  },
-];
 
 export const faqs = [
   {

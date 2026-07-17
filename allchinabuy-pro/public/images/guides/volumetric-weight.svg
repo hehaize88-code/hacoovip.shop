@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Volumetric weight formula</title><desc id="desc">Forty by thirty by twenty centimetres divided by five thousand equals 4.8 kilograms.</desc><rect width="1600" height="900" fill="#f4efe3"/>
+  <text x="100" y="120" fill="#10110f" font-family="Arial,sans-serif" font-size="32" font-weight="700" letter-spacing="5">VOLUMETRIC WEIGHT</text><text x="100" y="225" fill="#10110f" font-family="Arial,sans-serif" font-size="76" font-weight="800">Measure the packed exterior.</text>
+  <rect x="100" y="340" width="1400" height="330" rx="12" fill="#10110f"/><text x="800" y="455" text-anchor="middle" fill="#c8ff2e" font-family="Arial,sans-serif" font-size="38" font-weight="700">L × W × H ÷ 5,000</text><text x="800" y="570" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="72" font-weight="800">40 × 30 × 20 cm = 4.8 kg</text>
+  <text x="100" y="785" fill="#4b4d45" font-family="Arial,sans-serif" font-size="25">Compare 4.8 kg with scale weight and the chargeable weight shown by the live route.</text>
+</svg>
