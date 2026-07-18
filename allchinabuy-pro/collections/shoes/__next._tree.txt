@@ -1,4 +1,4 @@
 :HL["/_next/static/chunks/03_m9.m-ljlhk.css","style"]
 :HL["/logo-allchinabuy.png","image"]
 :HL["/images/neutral-sneaker.png","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"collections","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"shoes","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"hyiHchZYIguGzNptC8dk5"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"collections","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"shoes","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"XTz5rlvWhGSRRKwV5MEiF"}
