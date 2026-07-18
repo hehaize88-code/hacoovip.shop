@@ -1,7 +1,9 @@
 import { guides } from "./guides";
+import { faqs, featuredFaqs } from "./faqs";
 
-export { guides };
+export { faqs, featuredFaqs, guides };
 export type { Guide } from "./guides";
+export type { FaqItem } from "./faqs";
 
 export const SITE_URL = "https://allchinabuy.pro";
 export const MAIN_SITE_URL = "https://cnfanshp.com";
@@ -286,39 +288,6 @@ function assertUniqueProductField(field: "slug" | "image" | "targetUrl") {
 assertUniqueProductField("slug");
 assertUniqueProductField("image");
 assertUniqueProductField("targetUrl");
-
-export const faqs = [
-  {
-    question: "Is AllChinaBuy Pro the official AllChinaBuy website?",
-    answer:
-      "No. AllChinaBuy Pro is an independent shopping directory. It is not owned, sponsored or endorsed by AllChinaBuy, CNFansHP or the marketplaces mentioned in its guides.",
-  },
-  {
-    question: "Does this website sell or ship products?",
-    answer:
-      "No. It organizes discovery pages and practical research guidance. Product browsing, account activity, payment and fulfilment take place on the destination website.",
-  },
-  {
-    question: "Where does the search box go?",
-    answer:
-      "A text search opens the corresponding CNFansHP search-results page using the exact words you entered. An empty category link opens the relevant catalogue section instead.",
-  },
-  {
-    question: "Are the product images proof of quality or authenticity?",
-    answer:
-      "No. The original logo-free images on this directory illustrate product categories. They do not prove the quality, availability, origin or authenticity of a live marketplace item.",
-  },
-  {
-    question: "How often are directory links reviewed?",
-    answer:
-      "The core destination routes were reviewed on July 17, 2026. Each discovery page shows its review date. Availability and destination content can still change after that date.",
-  },
-  {
-    question: "Why are there no invented ratings or customer quotations?",
-    answer:
-      "Ratings and testimonials require verifiable evidence. This directory avoids fabricating social proof and instead explains what shoppers should verify on the live listing.",
-  },
-];
 
 export function getProduct(slug: string) {
   return products.find((product) => product.slug === slug);

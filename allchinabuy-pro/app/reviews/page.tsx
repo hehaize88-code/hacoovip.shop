@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { InfoPage } from "@/components/InfoPage";
 import { SITE_URL } from "@/lib/content";
 
@@ -15,6 +16,12 @@ export default function ReviewsPage() {
       title="Reviewed links, clearly limited claims."
       intro="A route check can confirm where a link goes. It cannot prove product quality, authenticity, stock or a future delivery outcome."
     >
+      <div className="callout">
+        <p>
+          Looking for practical platform answers? Read the <Link href="/faq">source-linked AllChinaBuy FAQ</Link>.
+        </p>
+      </div>
+
       <h2>What “route checked” means</h2>
       <p>
         We open the destination, confirm that it resolves to the intended CNFansHP search or category,

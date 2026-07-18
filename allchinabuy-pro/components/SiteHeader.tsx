@@ -7,7 +7,7 @@ const nav = [
   ["Clothing", "/collections/clothing"],
   ["Accessories", "/collections/accessories"],
   ["Guides", "/guides"],
-  ["Reviews", "/reviews"],
+  ["FAQ", "/faq"],
 ];
 
 const languages = [
