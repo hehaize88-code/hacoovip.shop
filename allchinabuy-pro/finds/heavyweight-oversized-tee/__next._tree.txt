@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/086bo7tzxjb4j.css","style"]
+:HL["/_next/static/chunks/02k1mmoxd7sf6.css","style"]
 :HL["/logo-allchinabuy.png","image"]
 :HL["/images/products/polo-shirt-7727310781.webp","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"heavyweight-oversized-tee","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"BcB4SxR6Hc2gLNKtrLW-D"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"heavyweight-oversized-tee","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"T52LD4VStxrA86gKWy1ut"}
