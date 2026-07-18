@@ -7,6 +7,7 @@ export type { FaqItem } from "./faqs";
 
 export const SITE_URL = "https://allchinabuy.pro";
 export const MAIN_SITE_URL = "https://www.allchinabuy.com";
+export const ALLCHINABUY_HOME_URL = `${MAIN_SITE_URL}/en/page/homepage/`;
 export const LAST_REVIEWED = "July 18, 2026";
 
 export function buildAllChinaBuySearchUrl(searchTerm: string) {
@@ -15,7 +16,7 @@ export function buildAllChinaBuySearchUrl(searchTerm: string) {
 
 function buildAllChinaBuyProductUrl(itemId: string) {
   const sourceUrl = `https://weidian.com/item.html?itemId=${itemId}`;
-  return `${MAIN_SITE_URL}/cn/page/buy/?nTag=Home-search&from=search-input&_search=url&position=&url=${encodeURIComponent(sourceUrl)}`;
+  return `${MAIN_SITE_URL}/en/page/buy/?nTag=Home-search&from=search-input&_search=url&position=&url=${encodeURIComponent(sourceUrl)}`;
 }
 
 export type Category = {
