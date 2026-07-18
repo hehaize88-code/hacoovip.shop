@@ -163,6 +163,7 @@ button, input { border-radius: 0; }
 
 .hero-section {
   width: min(100%, 1600px);
+  height: clamp(620px, 66vh, 680px);
   min-height: 620px;
   margin: 0 auto;
   display: grid;
@@ -589,7 +590,7 @@ button, input { border-radius: 0; }
   .site-header__inner { grid-template-columns: auto 1fr auto; }
   .desktop-nav { gap: 20px; }
   .desktop-nav a { font-size: 13px; }
-  .hero-section { grid-template-columns: 60% 40%; }
+  .hero-section { height: 660px; grid-template-columns: 60% 40%; }
   .hero-copy h1 { font-size: clamp(58px, 6.4vw, 74px); }
   .guide-grid { grid-template-columns: repeat(2, 1fr); }
   .product-grid { grid-template-columns: repeat(3, 1fr); }
@@ -611,7 +612,7 @@ button, input { border-radius: 0; }
   .mobile-menu nav > a { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.13); font-weight: 750; }
   .mobile-menu__languages { padding-top: 16px; display: flex; gap: 10px; }
   .mobile-menu__languages a { padding: 8px 10px; border: 1px solid rgba(255,255,255,.42); font-size: 12px; }
-  .hero-section { min-height: 0; grid-template-columns: 1fr; border-right: 0; border-left: 0; }
+  .hero-section { height: auto; min-height: 0; grid-template-columns: 1fr; border-right: 0; border-left: 0; }
   .hero-copy { padding: 28px 20px 24px; }
   .hero-copy h1 { font-size: clamp(56px, 16.5vw, 82px); max-width: 650px; }
   .hero-copy__intro { margin: 18px 0 14px; font-size: 15px; }
