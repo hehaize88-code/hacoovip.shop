@@ -746,9 +746,13 @@ button, input { border-radius: 0; }
   .faq-accordion__sources a { padding: 5px 6px; font-size: 8px; }
 
   .home-page .hero-section { min-height: 0; }
-  .home-page .hero-art { height: 112px; min-height: 112px; }
+  .home-page .hero-art {
+    height: clamp(220px, 64vw, 280px);
+    min-height: clamp(220px, 64vw, 280px);
+    border-bottom: 1px solid var(--ink);
+  }
   .home-page .hero-art img { object-position: center 50%; }
-  .home-page .hero-art__stamp { width: 48px; height: 48px; right: 10px; bottom: 8px; font-size: 6px; }
+  .home-page .hero-art__stamp { width: 62px; height: 62px; right: 12px; bottom: 12px; font-size: 7.5px; }
   .home-page .hero-copy { padding: 16px 14px 18px; }
   .home-page .eyebrow { margin-bottom: 6px; font-size: 9px; }
   .home-page .hero-copy h1 { max-width: 360px; font-size: clamp(44px, 13.2vw, 52px); line-height: .86; }
