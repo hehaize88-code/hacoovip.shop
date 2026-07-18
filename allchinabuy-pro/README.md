@@ -28,5 +28,4 @@ npm run lint
 npm run build
 ```
 
-The hosted inspection version is available at
-<https://allchinabuy-pro.hehaize88.chatgpt.site>.
+The production website is available at <https://allchinabuy.pro>.
