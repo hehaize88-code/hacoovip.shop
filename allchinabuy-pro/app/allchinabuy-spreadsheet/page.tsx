@@ -46,10 +46,10 @@ export default function SpreadsheetPage() {
       <section className="prose-shell">
         <h2>Is this the official AllChinaBuy sheet?</h2>
         <p>
-          No. AllChinaBuy Pro is independent and is not owned, sponsored or endorsed by AllChinaBuy or any
-          transaction marketplace. Product entries match public source images and item IDs to corresponding
-          AllChinaBuy routes; broad searches and category buttons open AllChinaBuy results. The site does not
-          offer a downloadable spreadsheet and does not process transactions.
+          No. AllChinaBuy Pro is independent from the official AllChinaBuy website and is not owned,
+          sponsored or endorsed by AllChinaBuy. Product entries match public source images and item IDs to exact CNFansHP product pages;
+          broad searches and category buttons open the corresponding CNFansHP catalogue pages. The site does
+          not offer a downloadable spreadsheet and does not process transactions.
         </p>
         <h2>What belongs in a trustworthy finds directory?</h2>
         <p>
