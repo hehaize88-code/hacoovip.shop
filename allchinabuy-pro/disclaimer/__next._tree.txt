@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/09vgk864g6ib4.css","style"]
+:HL["/_next/static/chunks/086bo7tzxjb4j.css","style"]
 :HL["/logo-allchinabuy.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"disclaimer","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"rJaS4xnI--YS59IVdVA4M"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"disclaimer","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"BcB4SxR6Hc2gLNKtrLW-D"}
