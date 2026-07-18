@@ -24,9 +24,9 @@ export default function ReviewsPage() {
 
       <h2>What “route checked” means</h2>
       <p>
-        For a product entry, we match the public source title, first image and numeric item ID, then
-        build the corresponding AllChinaBuy purchase route without adding a third-party referral code.
-        Category and search routes are checked separately. Destination content can change afterward,
+        For a product entry, we match the public source title, first image and numeric item ID to the exact
+        CNFansHP product page. Category and search routes are checked separately against the same main-site
+        catalogue. Destination content can change afterward,
         so every entry still asks readers to verify the live page.
       </p>
 
@@ -42,7 +42,7 @@ export default function ReviewsPage() {
       <ol>
         <li>Choose a useful product type or shopping question.</li>
         <li>Match the source title, first image and numeric item ID.</li>
-        <li>Generate the exact AllChinaBuy route for that original item.</li>
+        <li>Locate the exact matching CNFansHP product page and verify its item ID.</li>
         <li>Write specific checks a shopper can perform on the destination page.</li>
         <li>State the review date and the limits of the information.</li>
         <li>Update or remove routes that no longer match their stated destination.</li>
