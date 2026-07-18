@@ -18,7 +18,7 @@ export default function DisclaimerPage() {
       <h2>No official affiliation</h2>
       <p>
         AllChinaBuy Pro is an independent editorial directory. It is not owned, operated, sponsored or
-        endorsed by AllChinaBuy, CNFansHP or the marketplaces and brands that may be referenced for
+        endorsed by AllChinaBuy or the marketplaces and brands that may be referenced for
         identification. Third-party names and marks belong to their respective owners.
       </p>
 

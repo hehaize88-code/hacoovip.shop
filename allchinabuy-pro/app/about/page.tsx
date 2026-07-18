@@ -25,7 +25,7 @@ export default function AboutPage() {
       <h2>Independent means separate</h2>
       <p>
         AllChinaBuy Pro is not the official AllChinaBuy website and is not owned, sponsored or endorsed
-        by AllChinaBuy, CNFansHP or any marketplace mentioned in the editorial material. It does not
+        by AllChinaBuy or any transaction marketplace mentioned in the editorial material. It does not
         process accounts, payments, orders, returns or shipping.
       </p>
 
@@ -37,12 +37,12 @@ export default function AboutPage() {
         <li>Product images matched to public item IDs, with editorial illustrations labelled separately.</li>
       </ul>
 
-      <h2>How this relates to CNFansHP</h2>
+      <h2>How destination links work</h2>
       <p>
-        CNFansHP is used as a public discovery source for catalogue titles, images and original item IDs.
-        Product cards open the corresponding item through AllChinaBuy, and broad search and category buttons
-        now open AllChinaBuy search results. A visitor should always read the destination domain, review its
-        current terms and contact the transaction platform directly for support.
+        Product entries pair public source-listing titles, images and original item IDs with corresponding
+        AllChinaBuy item routes. Broad search and category buttons open AllChinaBuy search results. A visitor
+        should always read the destination domain, review its current terms and contact the transaction
+        platform directly for support.
       </p>
     </InfoPage>
   );
