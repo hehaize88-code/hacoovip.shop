@@ -13,7 +13,7 @@ export default function TermsPage() {
     <InfoPage
       eyebrow="Terms of use"
       title="Use the directory as a research starting point."
-      intro="Effective July 17, 2026. These terms apply to this website, not to transactions on a destination platform."
+      intro="Effective July 18, 2026. These terms apply to this website, not to transactions on a destination platform."
     >
       <h2>Informational use</h2>
       <p>
@@ -46,7 +46,8 @@ export default function TermsPage() {
       <h2>Updates</h2>
       <p>
         These terms may be revised when site features or legal requirements change. A revised effective
-        date will appear at the top of the page. Material changes should be reviewed before public release.
+        date will appear at the top of the page. Material revisions take effect when the updated terms are
+        published here.
       </p>
     </InfoPage>
   );
