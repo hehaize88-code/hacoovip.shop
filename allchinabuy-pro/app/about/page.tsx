@@ -40,8 +40,8 @@ export default function AboutPage() {
       <h2>How this relates to CNFansHP</h2>
       <p>
         CNFansHP is used as a public discovery source for catalogue titles, images and original item IDs.
-        Product cards then open the corresponding item through AllChinaBuy, while broad search and category
-        buttons may still lead to CNFansHP. A visitor should always read the destination domain, review its
+        Product cards open the corresponding item through AllChinaBuy, and broad search and category buttons
+        now open AllChinaBuy search results. A visitor should always read the destination domain, review its
         current terms and contact the transaction platform directly for support.
       </p>
     </InfoPage>
