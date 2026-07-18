@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/052kk01yg~zf3.css","style"]
+:HL["/_next/static/chunks/14ntqnx1-l2...css","style"]
 :HL["/logo-allchinabuy.png","image"]
 :HL["/images/hero-collage.png","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locale","param":{"type":"d","key":"de","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"MW_EJ7ywtkrQMNeitdAgy"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locale","param":{"type":"d","key":"de","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"cc2j3piWefebUD76DB3Jc"}
