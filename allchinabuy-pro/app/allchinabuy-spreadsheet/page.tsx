@@ -48,7 +48,7 @@ export default function SpreadsheetPage() {
         <p>
           No. AllChinaBuy Pro is independent and is not owned, sponsored or endorsed by AllChinaBuy or
           CNFansHP. Product entries match public source images and item IDs to corresponding AllChinaBuy
-          routes; broad searches and category buttons may lead to CNFansHP. The site does not offer a
+          routes; broad searches and category buttons open AllChinaBuy results. The site does not offer a
           downloadable spreadsheet and does not process transactions.
         </p>
         <h2>What belongs in a trustworthy finds directory?</h2>
