@@ -3,7 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
 import { SearchBox } from "@/components/SearchBox";
-import { categories, featuredFaqs, guides, products, SITE_URL } from "@/lib/content";
+import { ALLCHINABUY_HOME_URL, categories, featuredFaqs, guides, products, SITE_URL } from "@/lib/content";
 
 export default function Home() {
   return (
@@ -29,7 +29,7 @@ export default function Home() {
             name: "AllChinaBuy Pro Editorial",
             url: SITE_URL,
             logo: `${SITE_URL}/logo-allchinabuy.png`,
-            description: "An independent editorial shopping directory. Not affiliated with AllChinaBuy or CNFansHP.",
+            description: "An independent editorial shopping directory. Not affiliated with AllChinaBuy or any transaction marketplace.",
           },
         ],
       }} />
@@ -41,7 +41,14 @@ export default function Home() {
           <p className="hero-copy__intro">Curated product finds, link checks and practical buying guides — built for international shoppers.</p>
           <SearchBox />
           <div className="hero-actions">
-            <Link href="/finds" className="button button--lime">Browse all finds <span aria-hidden="true">→</span></Link>
+            <a
+              href={ALLCHINABUY_HOME_URL}
+              className="button button--lime"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+            >
+              Browse AllChinaBuy <span aria-hidden="true">↗</span>
+            </a>
             <Link href="/guides/how-a-china-shopping-directory-works" className="button button--outline">How it works</Link>
           </div>
           <ul className="trust-chips" aria-label="Directory principles">
