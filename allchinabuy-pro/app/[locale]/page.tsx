@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SearchBox } from "@/components/SearchBox";
-import { categories, SITE_URL } from "@/lib/content";
+import { categories, MAIN_CATALOGUE_URL, SITE_URL } from "@/lib/content";
 import { isSupportedLocale, localeContent, supportedLocales } from "@/lib/locales";
 
 type PageProps = { params: Promise<{ locale: string }> };
@@ -49,7 +49,9 @@ export default async function LocalizedHome({ params }: PageProps) {
           <p>{content.subcopy}</p>
           <SearchBox placeholder={content.placeholder} buttonLabel={content.search} />
           <div className="page-hero__actions">
-            <Link className="button button--lime" href="/finds">{content.categories} <span aria-hidden="true">→</span></Link>
+            <a className="button button--lime" href={MAIN_CATALOGUE_URL} target="_blank" rel="nofollow noopener noreferrer">
+              {content.categories} <span aria-hidden="true">↗</span>
+            </a>
             <Link className="button button--outline-dark" href="/guides/how-a-china-shopping-directory-works">{content.guide}</Link>
           </div>
           <p className="localized-note">{content.note}</p>
@@ -65,7 +67,7 @@ export default async function LocalizedHome({ params }: PageProps) {
         </div>
         <div className="localized-grid">
           {categories.slice(0, 6).map((category) => (
-            <a key={category.slug} href={category.targetUrl}>
+            <a key={category.slug} href={category.targetUrl} target="_blank" rel="nofollow noopener noreferrer">
               <span>{category.title}</span><span aria-hidden="true">↗</span>
             </a>
           ))}
