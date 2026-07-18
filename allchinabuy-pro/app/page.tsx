@@ -3,7 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
 import { SearchBox } from "@/components/SearchBox";
-import { ALLCHINABUY_HOME_URL, categories, featuredFaqs, guides, products, SITE_URL } from "@/lib/content";
+import { MAIN_CATALOGUE_URL, categories, featuredFaqs, guides, products, SITE_URL } from "@/lib/content";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
             description: "Independent China shopping directory and research guides.",
             potentialAction: {
               "@type": "SearchAction",
-              target: "https://www.allchinabuy.com/en/page/search?nTag=Home-search&from=search-input&_search=keyword&position=&keyword={search_term_string}",
+              target: "https://www.cnfanshp.com/search.html?channelid=2&keywords={search_term_string}",
               "query-input": "required name=search_term_string",
             },
           },
@@ -29,7 +29,7 @@ export default function Home() {
             name: "AllChinaBuy Pro Editorial",
             url: SITE_URL,
             logo: `${SITE_URL}/logo-allchinabuy.png`,
-            description: "An independent editorial shopping directory. Not affiliated with AllChinaBuy or any transaction marketplace.",
+            description: "An editorial shopping directory whose product and category links lead to the associated CNFansHP main catalogue; it is not the official AllChinaBuy website.",
           },
         ],
       }} />
@@ -42,12 +42,12 @@ export default function Home() {
           <SearchBox />
           <div className="hero-actions">
             <a
-              href={ALLCHINABUY_HOME_URL}
+              href={MAIN_CATALOGUE_URL}
               className="button button--lime"
               target="_blank"
               rel="nofollow noopener noreferrer"
             >
-              Browse AllChinaBuy <span aria-hidden="true">↗</span>
+              Browse all products <span aria-hidden="true">↗</span>
             </a>
             <Link href="/guides/how-a-china-shopping-directory-works" className="button button--outline">How it works</Link>
           </div>
@@ -79,7 +79,7 @@ export default function Home() {
       <section className="category-band" aria-labelledby="category-heading">
         <div className="section-heading section-heading--dark">
           <div><p className="eyebrow">Browse by intent</p><h2 id="category-heading">A directory built around useful categories.</h2></div>
-          <p>Choose a research route here, then confirm current commercial details in the live AllChinaBuy results.</p>
+          <p>Choose a research route here, then confirm current commercial details in the matching main-site category.</p>
         </div>
         <div className="category-grid">
           {categories.map((category, index) => (
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       <section className="search-cta">
-        <div><p className="eyebrow">Ready to look?</p><h2>Search the live AllChinaBuy catalogue.</h2><p>Your exact words are passed to AllChinaBuy&apos;s search results — not reduced to a generic “all products” page.</p></div>
+        <div><p className="eyebrow">Ready to look?</p><h2>Search the main catalogue.</h2><p>Your exact words are passed to the CNFansHP product search — not reduced to a generic “all products” page.</p></div>
         <SearchBox compact />
       </section>
     </main>
