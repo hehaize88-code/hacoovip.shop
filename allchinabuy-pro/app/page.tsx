@@ -19,7 +19,7 @@ export default function Home() {
             description: "Independent China shopping directory and research guides.",
             potentialAction: {
               "@type": "SearchAction",
-              target: "https://cnfanshp.com/search.html?channelid=2&keywords={search_term_string}",
+              target: "https://www.allchinabuy.com/en/page/search?nTag=Home-search&from=search-input&_search=keyword&position=&keyword={search_term_string}",
               "query-input": "required name=search_term_string",
             },
           },
@@ -41,7 +41,7 @@ export default function Home() {
           <p className="hero-copy__intro">Curated product finds, link checks and practical buying guides — built for international shoppers.</p>
           <SearchBox />
           <div className="hero-actions">
-            <a href="https://cnfanshp.com/AllProducts/" className="button button--lime">Browse all products <span aria-hidden="true">→</span></a>
+            <Link href="/finds" className="button button--lime">Browse all finds <span aria-hidden="true">→</span></Link>
             <Link href="/guides/how-a-china-shopping-directory-works" className="button button--outline">How it works</Link>
           </div>
           <ul className="trust-chips" aria-label="Directory principles">
@@ -72,11 +72,11 @@ export default function Home() {
       <section className="category-band" aria-labelledby="category-heading">
         <div className="section-heading section-heading--dark">
           <div><p className="eyebrow">Browse by intent</p><h2 id="category-heading">A directory built around useful categories.</h2></div>
-          <p>Choose a research route here, then confirm current commercial details on the live CNFansHP page.</p>
+          <p>Choose a research route here, then confirm current commercial details in the live AllChinaBuy results.</p>
         </div>
         <div className="category-grid">
           {categories.map((category, index) => (
-            <a href={category.targetUrl} key={category.slug} className="category-card">
+            <a href={category.targetUrl} key={category.slug} className="category-card" target="_blank" rel="nofollow noopener noreferrer">
               <span className="category-card__number">{String(index + 1).padStart(2, "0")}</span>
               <div><h3>{category.title}</h3><p>{category.kicker}</p></div>
               <span aria-hidden="true">↗</span>
@@ -131,7 +131,7 @@ export default function Home() {
       </section>
 
       <section className="search-cta">
-        <div><p className="eyebrow">Ready to look?</p><h2>Search the live CNFansHP catalogue.</h2><p>Your exact words are passed to the destination search — not reduced to a generic “all products” page.</p></div>
+        <div><p className="eyebrow">Ready to look?</p><h2>Search the live AllChinaBuy catalogue.</h2><p>Your exact words are passed to AllChinaBuy&apos;s search results — not reduced to a generic “all products” page.</p></div>
         <SearchBox compact />
       </section>
     </main>

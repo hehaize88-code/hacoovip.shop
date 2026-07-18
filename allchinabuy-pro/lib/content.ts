@@ -7,8 +7,11 @@ export type { FaqItem } from "./faqs";
 
 export const SITE_URL = "https://allchinabuy.pro";
 export const MAIN_SITE_URL = "https://www.allchinabuy.com";
-export const CATALOGUE_SOURCE_URL = "https://www.cnfanshp.com";
 export const LAST_REVIEWED = "July 18, 2026";
+
+export function buildAllChinaBuySearchUrl(searchTerm: string) {
+  return `${MAIN_SITE_URL}/en/page/search?nTag=Home-search&from=search-input&_search=keyword&position=&keyword=${encodeURIComponent(searchTerm)}`;
+}
 
 function buildAllChinaBuyProductUrl(itemId: string) {
   const sourceUrl = `https://weidian.com/item.html?itemId=${itemId}`;
@@ -46,9 +49,9 @@ export const categories: Category[] = [
     title: "Shoes",
     kicker: "Runners, casual pairs and everyday footwear",
     description:
-      "Browse a cleaner route into the CNFansHP shoe catalogue, then compare the live listing before making any decision.",
+      "Browse a cleaner route into AllChinaBuy footwear results, then compare the live listing before making any decision.",
     image: "/images/neutral-sneaker.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/shoes/`,
+    targetUrl: buildAllChinaBuySearchUrl("shoes"),
     searchTerm: "shoes",
   },
   {
@@ -58,7 +61,7 @@ export const categories: Category[] = [
     description:
       "Start with broad clothing ideas and continue to the live catalogue for current options, details and availability.",
     image: "/images/charcoal-tee.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/t-shirts/`,
+    targetUrl: buildAllChinaBuySearchUrl("clothing"),
     searchTerm: "clothing",
   },
   {
@@ -68,7 +71,7 @@ export const categories: Category[] = [
     description:
       "Use material, intended weather and measurements as your first checks before following a jacket listing.",
     image: "/images/charcoal-jacket.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/jackets/`,
+    targetUrl: buildAllChinaBuySearchUrl("jackets"),
     searchTerm: "jackets",
   },
   {
@@ -78,7 +81,7 @@ export const categories: Category[] = [
     description:
       "Compare waist, rise, inseam and fabric notes instead of relying on a generic size label alone.",
     image: "/images/everyday-bottoms.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/pants-shorts/`,
+    targetUrl: buildAllChinaBuySearchUrl("pants shorts"),
     searchTerm: "pants shorts",
   },
   {
@@ -88,7 +91,7 @@ export const categories: Category[] = [
     description:
       "A compact category for finding headwear while keeping fit, material and packaging shape in view.",
     image: "/images/cap-accessories.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/headwear/`,
+    targetUrl: buildAllChinaBuySearchUrl("headwear"),
     searchTerm: "headwear",
   },
   {
@@ -98,7 +101,7 @@ export const categories: Category[] = [
     description:
       "Review dimensions and materials carefully; product photos alone rarely communicate usable capacity.",
     image: "/images/black-crossbody.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/accessories/`,
+    targetUrl: buildAllChinaBuySearchUrl("accessories"),
     searchTerm: "accessories",
   },
   {
@@ -108,7 +111,7 @@ export const categories: Category[] = [
     description:
       "Check the live product page for the current size chart, print method and care information.",
     image: "/images/sports-jersey.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/Jersey/`,
+    targetUrl: buildAllChinaBuySearchUrl("jersey"),
     searchTerm: "jersey",
   },
   {
@@ -118,7 +121,7 @@ export const categories: Category[] = [
     description:
       "Confirm battery, plug, voltage, shipping-line and destination restrictions before ordering electronics.",
     image: "/images/small-electronics.png",
-    targetUrl: `${CATALOGUE_SOURCE_URL}/electronics/`,
+    targetUrl: buildAllChinaBuySearchUrl("electronics"),
     searchTerm: "electronics",
   },
 ];
