@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/14ntqnx1-l2...css","style"]
+:HL["/_next/static/chunks/09vgk864g6ib4.css","style"]
 :HL["/logo-allchinabuy.png","image"]
 :HL["/images/products/north-face-waist-pack-7714820698.webp","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"utility-crossbody-bag","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"cc2j3piWefebUD76DB3Jc"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"utility-crossbody-bag","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"rJaS4xnI--YS59IVdVA4M"}
