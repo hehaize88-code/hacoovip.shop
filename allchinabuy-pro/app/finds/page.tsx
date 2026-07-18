@@ -6,7 +6,7 @@ import { categories, products, SITE_URL } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Independent China Shopping Finds",
   description:
-    "Browse source-matched product images and item IDs, then open each corresponding product through AllChinaBuy.",
+    "Browse source-matched product images and item IDs, then open each exact corresponding product on the CNFansHP main site.",
   alternates: { canonical: `${SITE_URL}/finds` },
 };
 

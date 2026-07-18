@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
-import { getProduct, products, SITE_URL } from "@/lib/content";
+import { getCategory, getProduct, products, SITE_URL } from "@/lib/content";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -35,6 +35,8 @@ export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
+  const productCategory = getCategory(product.categorySlug);
+  if (!productCategory) notFound();
 
   const related = products
     .filter((item) => item.slug !== product.slug && item.categorySlug === product.categorySlug)
@@ -103,10 +105,10 @@ export default async function ProductPage({ params }: PageProps) {
             target="_blank"
             rel="nofollow noopener noreferrer"
           >
-            Open matching item on AllChinaBuy <span aria-hidden="true">↗</span>
+            Open matching item on CNFansHP <span aria-hidden="true">↗</span>
           </a>
           <p className="product-detail__notice">
-            Image, source label and item route matched {product.checkedAt}. This does not verify brand authenticity or product quality. Price, options, availability and seller information can change after review.
+            Image, source label, item ID and main-site product page matched {product.checkedAt}. This does not verify brand authenticity or product quality. Price, options, availability and seller information can change after review.
           </p>
         </div>
       </section>
@@ -125,7 +127,9 @@ export default async function ProductPage({ params }: PageProps) {
       <section className="content-section content-section--dark">
         <div className="section-heading section-heading--dark">
           <div><p className="eyebrow">Keep researching</p><h2>Related directory entries.</h2></div>
-          <Link className="text-link" href={`/collections/${product.categorySlug}`}>Open {product.category} collection →</Link>
+          <a className="text-link" href={productCategory.targetUrl} target="_blank" rel="nofollow noopener noreferrer">
+            Open {product.category} on CNFansHP ↗
+          </a>
         </div>
         <div className="product-grid">
           {fallbackRelated.map((item) => <ProductCard key={item.slug} product={item} />)}

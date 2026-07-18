@@ -6,11 +6,12 @@ export function ProductCard({ product, compact = false }: { product: Product; co
     <article
       className={compact ? "product-card product-card--compact" : "product-card"}
       data-item-id={product.itemId}
+      data-main-product-id={product.mainProductId}
     >
       <a
         href={product.targetUrl}
         className="product-card__image-wrap"
-        aria-label={`Open ${product.title}, item ${product.itemId}, on AllChinaBuy`}
+        aria-label={`Open ${product.title}, item ${product.itemId}, on CNFansHP`}
         target="_blank"
         rel="nofollow noopener noreferrer"
       >

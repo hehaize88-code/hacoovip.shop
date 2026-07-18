@@ -6,20 +6,17 @@ type SearchBoxProps = {
 
 export function SearchBox({
   placeholder = "Search shoes, clothing or paste a product name",
-  buttonLabel = "Search all finds",
+  buttonLabel = "Search main site",
   compact = false,
 }: SearchBoxProps) {
   return (
     <form
       className={compact ? "search-form search-form--compact" : "search-form"}
-      action="https://www.allchinabuy.com/en/page/search"
+      action="https://www.cnfanshp.com/search.html"
       method="get"
-      aria-label="Search the AllChinaBuy catalogue"
+      aria-label="Search the CNFansHP catalogue"
     >
-      <input type="hidden" name="nTag" value="Home-search" />
-      <input type="hidden" name="from" value="search-input" />
-      <input type="hidden" name="_search" value="keyword" />
-      <input type="hidden" name="position" value="" />
+      <input type="hidden" name="channelid" value="2" />
       <label className="sr-only" htmlFor={compact ? "catalogue-search-compact" : "catalogue-search"}>
         Search products
       </label>
@@ -28,7 +25,7 @@ export function SearchBox({
       </span>
       <input
         id={compact ? "catalogue-search-compact" : "catalogue-search"}
-        name="keyword"
+        name="keywords"
         type="search"
         placeholder={placeholder}
         autoComplete="off"
