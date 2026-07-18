@@ -6,7 +6,7 @@ Independent China shopping directory and editorial research site for
 ## Included
 
 - responsive landing page and product discovery directory
-- category routes into the live CNFansHP catalogue
+- category routes into live AllChinaBuy search results
 - product detail pages, buying guides, FAQ and policy pages
 - English, French, German, Italian and Spanish landing routes
 - sitemap, robots, manifest and structured data
