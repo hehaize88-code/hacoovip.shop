@@ -23,7 +23,7 @@ export default function PrivacyPage() {
 
       <h2>Search transitions</h2>
       <p>
-        When you submit a catalogue search, your keywords are sent directly to AllChinaBuy in the destination
+        When you submit a catalogue search, your keywords are sent directly to CNFansHP in the destination
         URL. From that point, the destination website&apos;s privacy terms apply. Do not place passwords,
         payment data or other sensitive information in a search field.
       </p>
