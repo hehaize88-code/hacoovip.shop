@@ -49,16 +49,23 @@ export default function Home() {
             <li><span aria-hidden="true">▦</span> Clear categories</li>
             <li><span aria-hidden="true">▯</span> Mobile friendly</li>
           </ul>
-          <div className="hero-trending">
-            <div className="section-label"><span>Trending research routes</span><Link href="/finds">View all ↗</Link></div>
-            <div className="hero-trending__grid">
-              {products.slice(0, 3).map((product) => <ProductCard key={product.slug} product={product} compact />)}
-            </div>
-          </div>
         </div>
         <div className="hero-art" aria-hidden="true">
           <img src="/images/hero-collage.png" alt="" width="1120" height="1400" fetchPriority="high" />
           <span className="hero-art__stamp">Independent<br />not official</span>
+        </div>
+      </section>
+
+      <section className="home-trending" aria-labelledby="home-trending-heading">
+        <div className="home-trending__heading">
+          <div>
+            <p className="eyebrow">Freshly checked</p>
+            <h2 id="home-trending-heading">Trending research routes</h2>
+          </div>
+          <Link className="text-link" href="/finds">View all finds <span aria-hidden="true">↗</span></Link>
+        </div>
+        <div className="home-trending__grid">
+          {products.slice(0, 3).map((product) => <ProductCard key={product.slug} product={product} compact />)}
         </div>
       </section>
 
