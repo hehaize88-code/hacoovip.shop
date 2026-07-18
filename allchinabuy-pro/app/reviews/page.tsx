@@ -52,8 +52,9 @@ export default function ReviewsPage() {
 
       <h2>Corrections</h2>
       <p>
-        Broken routes and factual errors should be corrected promptly. The public reporting channel
-        will be listed on the contact page before this inspection build is released.
+        Broken routes and factual errors are reviewed through the public editorial report form on the{" "}
+        <Link href="/contact">contact page</Link>. Include the affected page, the unexpected destination,
+        the date observed and any non-confidential evidence that helps reproduce the problem.
       </p>
     </InfoPage>
   );
