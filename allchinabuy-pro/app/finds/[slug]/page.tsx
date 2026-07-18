@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `${SITE_URL}/finds/${product.slug}`,
       title: product.title,
       description: product.short,
-      images: [{ url: product.image, alt: `Generic illustration for ${product.title}` }],
+      images: [{ url: product.image, alt: `Source listing image for ${product.title}, item ${product.itemId}` }],
     },
   };
 }
@@ -54,10 +54,12 @@ export default async function ProductPage({ params }: PageProps) {
               name: product.title,
               url: `${SITE_URL}/finds/${product.slug}`,
               description: product.description,
-              dateModified: "2026-07-17",
+              dateModified: "2026-07-18",
               mainEntity: {
                 "@type": "Product",
                 name: product.title,
+                sku: product.itemId,
+                url: product.targetUrl,
                 image: `${SITE_URL}${product.image}`,
                 description: product.short,
                 category: product.category,
@@ -76,22 +78,35 @@ export default async function ProductPage({ params }: PageProps) {
       />
       <section className="product-detail">
         <div className="product-detail__image">
-          <img src={product.image} alt={`Generic ${product.title.toLowerCase()} category illustration`} width="1254" height="1254" fetchPriority="high" />
-          <span>Illustrative image · no brand claim</span>
+          <img
+            src={product.image}
+            alt={`Source listing image for ${product.title}, item ${product.itemId}`}
+            width="1254"
+            height="1254"
+            fetchPriority="high"
+          />
+          <span>Source listing image · item {product.itemId}</span>
         </div>
         <div className="product-detail__copy">
           <div className="breadcrumb"><Link href="/finds">Finds</Link> / {product.category}</div>
           <p className="eyebrow">Independent research entry</p>
           <h1>{product.title}</h1>
+          <p className="product-detail__source-label">Source listing label: {product.sourceTitle}</p>
           <p className="product-detail__lead">{product.description}</p>
           <div className="product-detail__tags">
+            <span>Item {product.itemId}</span>
             {product.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
-          <a className="button button--lime" href={product.targetUrl}>
-            Open live CNFansHP results <span aria-hidden="true">↗</span>
+          <a
+            className="button button--lime"
+            href={product.targetUrl}
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            Open matching item on AllChinaBuy <span aria-hidden="true">↗</span>
           </a>
           <p className="product-detail__notice">
-            Route checked {product.checkedAt}. Price, options, availability, seller information and destination terms can change after this review.
+            Image, source label and item route matched {product.checkedAt}. This does not verify brand authenticity or product quality. Price, options, availability and seller information can change after review.
           </p>
         </div>
       </section>

@@ -75,7 +75,7 @@ export default async function CollectionPage({ params }: PageProps) {
           <h1>{category.title}</h1>
           <p>{category.description}</p>
           <div className="page-hero__actions">
-            <a className="button button--lime" href={category.targetUrl}>Browse live category <span aria-hidden="true">↗</span></a>
+            <a className="button button--lime" href={category.targetUrl} target="_blank" rel="nofollow noopener noreferrer">Browse source category <span aria-hidden="true">↗</span></a>
             <Link className="button button--outline-dark" href="/guides/qc-photo-checklist">Read the QC checklist</Link>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default async function CollectionPage({ params }: PageProps) {
       <section className="content-section">
         <div className="section-heading">
           <div><p className="eyebrow">Research entries</p><h2>Start here, verify there.</h2></div>
-          <p>{category.kicker}. Illustrations are generic and do not represent a verified live listing.</p>
+          <p>{category.kicker}. Product cards below use first images matched to their listed item IDs and direct AllChinaBuy routes; verify the live destination before ordering.</p>
         </div>
         {categoryProducts.length > 0 ? (
           <div className="product-grid">

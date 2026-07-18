@@ -13,7 +13,7 @@ export default function DisclaimerPage() {
     <InfoPage
       eyebrow="Important disclosure"
       title="Independent, informational and separate from every transaction."
-      intro="Last reviewed July 17, 2026. Read this page before relying on a directory entry or outbound link."
+      intro="Last reviewed July 18, 2026. Read this page before relying on a directory entry or outbound link."
     >
       <h2>No official affiliation</h2>
       <p>
@@ -36,11 +36,12 @@ export default function DisclaimerPage() {
         must be confirmed on the current destination and relevant official sources.
       </p>
 
-      <h2>Images are illustrative</h2>
+      <h2>How images are used</h2>
       <p>
-        Original logo-free visuals on AllChinaBuy Pro communicate broad product categories. They are not
-        photographs of a verified live listing and do not establish quality, origin, authenticity,
-        certification, performance or availability.
+        Product cards reproduce the first image attached to the cited public source listing and pair it
+        with that listing&apos;s item ID. Category artwork and some editorial figures remain original
+        illustrations. Neither type of image establishes quality, origin, authenticity, certification,
+        performance or current availability.
       </p>
 
       <h2>Cross-border decisions involve risk</h2>

@@ -38,7 +38,7 @@ export default function SpreadsheetPage() {
         </div>
         <div className="check-grid">
           <article><span>01</span><h3>Search by intent</h3><p>Filter product types and research prompts instead of hunting through unexplained rows.</p></article>
-          <article><span>02</span><h3>Read the limits</h3><p>Every entry separates an editorial illustration from current destination information.</p></article>
+          <article><span>02</span><h3>Read the limits</h3><p>Every product entry pairs a source-listing image and item ID while keeping editorial artwork clearly separate.</p></article>
           <article><span>03</span><h3>Keep useful context</h3><p>Measurement, QC and shipping checks sit beside the route instead of in a forgotten note.</p></article>
           <article><span>04</span><h3>Verify live details</h3><p>The destination remains the source for current price, availability, seller information and terms.</p></article>
         </div>
@@ -47,8 +47,9 @@ export default function SpreadsheetPage() {
         <h2>Is this the official AllChinaBuy sheet?</h2>
         <p>
           No. AllChinaBuy Pro is independent and is not owned, sponsored or endorsed by AllChinaBuy or
-          CNFansHP. It is an editorial discovery layer that links to current CNFansHP search and category
-          pages. It does not offer a downloadable spreadsheet and does not process transactions.
+          CNFansHP. Product entries match public source images and item IDs to corresponding AllChinaBuy
+          routes; broad searches and category buttons may lead to CNFansHP. The site does not offer a
+          downloadable spreadsheet and does not process transactions.
         </p>
         <h2>What belongs in a trustworthy finds directory?</h2>
         <p>

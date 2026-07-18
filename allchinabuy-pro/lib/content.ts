@@ -6,8 +6,14 @@ export type { Guide } from "./guides";
 export type { FaqItem } from "./faqs";
 
 export const SITE_URL = "https://allchinabuy.pro";
-export const MAIN_SITE_URL = "https://cnfanshp.com";
-export const LAST_REVIEWED = "July 17, 2026";
+export const MAIN_SITE_URL = "https://www.allchinabuy.com";
+export const CATALOGUE_SOURCE_URL = "https://www.cnfanshp.com";
+export const LAST_REVIEWED = "July 18, 2026";
+
+function buildAllChinaBuyProductUrl(itemId: string) {
+  const sourceUrl = `https://weidian.com/item.html?itemId=${itemId}`;
+  return `${MAIN_SITE_URL}/cn/page/buy/?nTag=Home-search&from=search-input&_search=url&position=&url=${encodeURIComponent(sourceUrl)}`;
+}
 
 export type Category = {
   slug: string;
@@ -22,6 +28,8 @@ export type Category = {
 export type Product = {
   slug: string;
   title: string;
+  sourceTitle: string;
+  itemId: string;
   category: string;
   categorySlug: string;
   short: string;
@@ -40,7 +48,7 @@ export const categories: Category[] = [
     description:
       "Browse a cleaner route into the CNFansHP shoe catalogue, then compare the live listing before making any decision.",
     image: "/images/neutral-sneaker.png",
-    targetUrl: `${MAIN_SITE_URL}/shoes/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/shoes/`,
     searchTerm: "shoes",
   },
   {
@@ -50,7 +58,7 @@ export const categories: Category[] = [
     description:
       "Start with broad clothing ideas and continue to the live catalogue for current options, details and availability.",
     image: "/images/charcoal-tee.png",
-    targetUrl: `${MAIN_SITE_URL}/t-shirts/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/t-shirts/`,
     searchTerm: "clothing",
   },
   {
@@ -60,7 +68,7 @@ export const categories: Category[] = [
     description:
       "Use material, intended weather and measurements as your first checks before following a jacket listing.",
     image: "/images/charcoal-jacket.png",
-    targetUrl: `${MAIN_SITE_URL}/jackets/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/jackets/`,
     searchTerm: "jackets",
   },
   {
@@ -70,7 +78,7 @@ export const categories: Category[] = [
     description:
       "Compare waist, rise, inseam and fabric notes instead of relying on a generic size label alone.",
     image: "/images/everyday-bottoms.png",
-    targetUrl: `${MAIN_SITE_URL}/pants-shorts/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/pants-shorts/`,
     searchTerm: "pants shorts",
   },
   {
@@ -80,7 +88,7 @@ export const categories: Category[] = [
     description:
       "A compact category for finding headwear while keeping fit, material and packaging shape in view.",
     image: "/images/cap-accessories.png",
-    targetUrl: `${MAIN_SITE_URL}/headwear/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/headwear/`,
     searchTerm: "headwear",
   },
   {
@@ -90,7 +98,7 @@ export const categories: Category[] = [
     description:
       "Review dimensions and materials carefully; product photos alone rarely communicate usable capacity.",
     image: "/images/black-crossbody.png",
-    targetUrl: `${MAIN_SITE_URL}/accessories/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/accessories/`,
     searchTerm: "accessories",
   },
   {
@@ -100,7 +108,7 @@ export const categories: Category[] = [
     description:
       "Check the live product page for the current size chart, print method and care information.",
     image: "/images/sports-jersey.png",
-    targetUrl: `${MAIN_SITE_URL}/Jersey/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/Jersey/`,
     searchTerm: "jersey",
   },
   {
@@ -110,7 +118,7 @@ export const categories: Category[] = [
     description:
       "Confirm battery, plug, voltage, shipping-line and destination restrictions before ordering electronics.",
     image: "/images/small-electronics.png",
-    targetUrl: `${MAIN_SITE_URL}/electronics/`,
+    targetUrl: `${CATALOGUE_SOURCE_URL}/electronics/`,
     searchTerm: "electronics",
   },
 ];
@@ -118,163 +126,187 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     slug: "neutral-mesh-runner",
-    title: "Neutral Mesh Runner",
+    title: "Shoes-60",
+    sourceTitle: "shoes-60",
+    itemId: "7721490300",
     category: "Shoes",
     categorySlug: "shoes",
-    short: "A neutral starting point for everyday technical runners.",
+    short: "Matched source image and direct AllChinaBuy route for item 7721490300.",
     description:
-      "This discovery entry helps you compare neutral mesh running-style footwear without pretending that one image proves quality. Open the live CNFansHP results, review the current seller page, confirm sizing and inspect available detail photographs before ordering.",
-    image: "/images/neutral-sneaker.png",
+      "The public source catalogue labels this footwear entry “shoes-60” and associates its displayed first image with Weidian item 7721490300. Open the matching AllChinaBuy route to reload current seller information, then verify sizing, options, price and availability before ordering.",
+    image: "/images/products/shoes-60-7721490300.jpg",
     checkedAt: LAST_REVIEWED,
-    tags: ["neutral", "mesh", "runner"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=mesh%20runner%20shoes`,
+    tags: ["shoes-60", "footwear", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7721490300"),
   },
   {
     slug: "charcoal-technical-shell",
-    title: "Charcoal Technical Shell",
+    title: "Celine Embroidered Jacket",
+    sourceTitle: "Celine embroidered chocolate-",
+    itemId: "7729275624",
     category: "Jackets",
     categorySlug: "jackets",
-    short: "A practical route into lightweight technical outerwear.",
+    short: "Matched source image and direct AllChinaBuy route for item 7729275624.",
     description:
-      "Use this page as a research starting point for technical shell jackets. Compare fabric composition, lining, hood construction, garment measurements and the warehouse photographs shown on the live listing. Water resistance should never be assumed from appearance alone.",
-    image: "/images/charcoal-jacket.png",
+      "The source catalogue displays the label “Celine embroidered chocolate-” for Weidian item 7729275624. The image shown here is that listing’s first image. Follow the matching AllChinaBuy route and confirm the full seller title, materials, measurements, options and current availability.",
+    image: "/images/products/celine-jacket-7729275624.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["shell", "outerwear", "charcoal"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=technical%20shell%20jacket`,
+    tags: ["jacket", "embroidered", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7729275624"),
   },
   {
     slug: "heavyweight-oversized-tee",
-    title: "Heavyweight Oversized Tee",
+    title: "Polo Shirt (5 Styles)",
+    sourceTitle: "Polo shirt（5 styles）",
+    itemId: "7727310781",
     category: "Clothing",
     categorySlug: "clothing",
-    short: "A simple entry for comparing relaxed cotton T-shirts.",
+    short: "Matched source image and direct AllChinaBuy route for item 7727310781.",
     description:
-      "For an oversized T-shirt, the useful details are chest width, shoulder width, length, fabric weight and shrinkage guidance. Follow the live catalogue link and compare those measurements with a shirt you already own rather than choosing only by S, M or L.",
-    image: "/images/charcoal-tee.png",
+      "The public source catalogue lists “Polo shirt（5 styles）” under Weidian item 7727310781. The first image is reproduced here to keep the card and destination aligned. Confirm the exact style, colour, size chart, fabric and seller details on AllChinaBuy before payment.",
+    image: "/images/products/polo-shirt-7727310781.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["t-shirt", "cotton", "oversized"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=heavyweight%20oversized%20t-shirt`,
+    tags: ["polo shirt", "five styles", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7727310781"),
   },
   {
     slug: "utility-crossbody-bag",
-    title: "Utility Crossbody Bag",
+    title: "The North Face Waist Pack",
+    sourceTitle: "The North Face Waist Pack",
+    itemId: "7714820698",
     category: "Accessories",
     categorySlug: "accessories",
-    short: "A compact accessory search focused on usable dimensions.",
+    short: "Matched source image and direct AllChinaBuy route for item 7714820698.",
     description:
-      "Crossbody bags can look larger in product photography than they are. Check the listed height, width, depth, strap range, closure and internal pockets on the current product page. If those figures are missing, request clarification before purchase.",
-    image: "/images/black-crossbody.png",
+      "The source catalogue identifies this waist-pack listing as Weidian item 7714820698. Its first listing image is shown here. Open the corresponding AllChinaBuy route and check the selected colour, dimensions, strap range, construction and current seller information.",
+    image: "/images/products/north-face-waist-pack-7714820698.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["bag", "utility", "travel"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=utility%20crossbody%20bag`,
+    tags: ["waist pack", "bag", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7714820698"),
   },
   {
     slug: "minimal-six-panel-cap",
-    title: "Minimal Six-Panel Cap",
+    title: "Miu Miu Letter-Embroidered Beanie",
+    sourceTitle: "Miu Miu letter-embroidered",
+    itemId: "7726285689",
     category: "Headwear",
     categorySlug: "headwear",
-    short: "A clean headwear route for simple everyday caps.",
+    short: "Matched source image and direct AllChinaBuy route for item 7726285689.",
     description:
-      "Cap fit depends on crown depth, circumference and adjustment range. Use the current listing to confirm those details, and remember that firm packaging may be useful when a structured crown needs to hold its shape in transit.",
-    image: "/images/cap-accessories.png",
+      "The source catalogue displays “Miu Miu letter-embroidered” for Weidian item 7726285689, with the first image showing several knit colour options. Use the matching AllChinaBuy page to confirm the actual option names, measurements, material and availability.",
+    image: "/images/products/miu-miu-beanie-7726285689.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["cap", "headwear", "minimal"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=six%20panel%20cap`,
+    tags: ["beanie", "headwear", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7726285689"),
   },
   {
     slug: "everyday-training-shoe",
-    title: "Everyday Training Shoe",
+    title: "Shoes-59",
+    sourceTitle: "shoes-59",
+    itemId: "7718490449",
     category: "Shoes",
     categorySlug: "shoes",
-    short: "A second footwear route for casual training silhouettes.",
+    short: "Matched source image and direct AllChinaBuy route for item 7718490449.",
     description:
-      "Before choosing a training-style shoe, compare insole length, outsole pattern, upper material and warehouse photos. This directory does not grade performance or authenticity; it simply takes you to current CNFansHP search results for further research.",
-    image: "/images/everyday-training-shoe.png",
+      "The public source catalogue labels this footwear entry “shoes-59” and maps the displayed first image to Weidian item 7718490449. Open the exact AllChinaBuy route, then compare the option selected there with the image and verify size, material, price and stock.",
+    image: "/images/products/shoes-59-7718490449.jpg",
     checkedAt: LAST_REVIEWED,
-    tags: ["training", "everyday", "footwear"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=everyday%20training%20shoes`,
+    tags: ["shoes-59", "footwear", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7718490449"),
   },
   {
     slug: "lightweight-hooded-layer",
-    title: "Lightweight Hooded Layer",
+    title: "Miu Miu Knitted Jacket",
+    sourceTitle: "Miu Miu new arrival Knitted",
+    itemId: "7729222146",
     category: "Jackets",
     categorySlug: "jackets",
-    short: "A browse path for packable hooded outer layers.",
+    short: "Matched source image and direct AllChinaBuy route for item 7729222146.",
     description:
-      "A lightweight jacket is useful only when its material and fit suit the intended conditions. Confirm garment weight, measurements, pocket layout and fabric description on the live listing. Product imagery is a visual reference, not a performance test.",
-    image: "/images/lightweight-hooded-layer.png",
+      "The source catalogue labels Weidian item 7729222146 “Miu Miu new arrival Knitted.” Its first listing image is reproduced here. Use the direct AllChinaBuy route to verify the full product title, knit composition, measurements, colour and live seller information.",
+    image: "/images/products/miu-miu-jacket-7729222146.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["hooded", "layer", "lightweight"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=lightweight%20hooded%20anorak`,
+    tags: ["knitted jacket", "zip jacket", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7729222146"),
   },
   {
     slug: "relaxed-cotton-top",
-    title: "Relaxed Cotton Top",
+    title: "Broken Planet Tee",
+    sourceTitle: "Broken Planet Tee",
+    itemId: "7727358217",
     category: "Clothing",
     categorySlug: "clothing",
-    short: "A measured approach to relaxed everyday tops.",
+    short: "Matched source image and direct AllChinaBuy route for item 7727358217.",
     description:
-      "Use shoulder, chest and body-length figures to compare relaxed tops. Screens can shift colour, and fabric hand-feel cannot be confirmed from an image, so read the live listing and available buyer information carefully.",
-    image: "/images/relaxed-cotton-top.png",
+      "The source catalogue lists “Broken Planet Tee” as Weidian item 7727358217 and uses the displayed multi-style image first. Open the matching AllChinaBuy destination and confirm which design and size are selected, along with fabric, measurements and current availability.",
+    image: "/images/products/broken-planet-tee-7727358217.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["cotton", "top", "relaxed"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=relaxed%20long%20sleeve%20cotton%20top`,
+    tags: ["tee", "multiple styles", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7727358217"),
   },
   {
     slug: "compact-travel-organizer",
-    title: "Compact Travel Organizer",
+    title: "VANS Trifold Canvas Wallet",
+    sourceTitle: "VANS Velcro vertical tri-fold canvas sports wallet",
+    itemId: "7730292918",
     category: "Accessories",
     categorySlug: "accessories",
-    short: "A route into small organizers and travel add-ons.",
+    short: "Matched source image and direct AllChinaBuy route for item 7730292918.",
     description:
-      "Small accessories are easy to add to a parcel but can still affect packed volume. Check exact dimensions, closures, material and weight on the current listing. Combine purchases only after estimating the final parcel rather than item price alone.",
-    image: "/images/compact-travel-organizer.png",
+      "The public source title for Weidian item 7730292918 is “VANS Velcro vertical tri-fold canvas sports wallet.” The card uses that listing’s first image. Check the exact pattern, closure, dimensions, material and seller details on the matching AllChinaBuy page.",
+    image: "/images/products/vans-wallet-7730292918.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["organizer", "travel", "accessory"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=compact%20travel%20organizer%20pouch`,
+    tags: ["wallet", "trifold", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7730292918"),
   },
   {
     slug: "sports-jersey-starting-point",
-    title: "Sports Jersey Starting Point",
+    title: "Football Jerseys",
+    sourceTitle: "Football Jerseys",
+    itemId: "7706116723",
     category: "Jerseys",
     categorySlug: "jersey",
-    short: "A category route for sports-inspired shirts and sets.",
+    short: "Matched source image and direct AllChinaBuy route for item 7706116723.",
     description:
-      "Jersey measurements and decoration methods vary. Confirm the current size chart, fabric description, print or embroidery notes and care instructions on the linked page. This directory makes no authenticity or licensing claim.",
-    image: "/images/sports-jersey.png",
+      "The source catalogue labels Weidian item 7706116723 “Football Jerseys” and displays the image used on this card first. Use the corresponding AllChinaBuy route to confirm the exact team or style option, size chart, decoration method, price and availability.",
+    image: "/images/products/football-jerseys-7706116723.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["jersey", "sports", "shirt"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=sports%20jersey`,
+    tags: ["football jersey", "sportswear", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7706116723"),
   },
   {
     slug: "everyday-bottoms-guide",
-    title: "Everyday Bottoms Guide",
+    title: "Patagonia Quick-Drying Pants",
+    sourceTitle: "Patagonia quick-drying pants",
+    itemId: "7726173713",
     category: "Pants & shorts",
     categorySlug: "pants-shorts",
-    short: "A practical browse route for pants and shorts.",
+    short: "Matched source image and direct AllChinaBuy route for item 7726173713.",
     description:
-      "Waist labels alone are not enough for bottoms. Look for garment waist, rise, thigh, inseam and hem measurements, then compare them with a pair that fits. Follow the live category for current listings and product details.",
-    image: "/images/everyday-bottoms.png",
+      "The source catalogue identifies Weidian item 7726173713 as “Patagonia quick-drying pants” and uses the displayed multi-colour image first. Confirm the precise colour, waist, rise, inseam, fabric and live seller information on AllChinaBuy.",
+    image: "/images/products/patagonia-pants-7726173713.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["pants", "shorts", "sizing"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=casual%20cargo%20pants`,
+    tags: ["quick-drying pants", "multiple colours", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7726173713"),
   },
   {
     slug: "small-electronics-checklist",
-    title: "Small Electronics Checklist",
+    title: "Horizon Earbuds (5 Styles)",
+    sourceTitle: "Horizon Earbuds 5 styles",
+    itemId: "7716842309",
     category: "Electronics",
     categorySlug: "electronics",
-    short: "A safety-first route for small electronics searches.",
+    short: "Matched source image and direct AllChinaBuy route for item 7716842309.",
     description:
-      "Electronics can have battery, plug, voltage and shipping restrictions. Verify technical specifications, destination compatibility and the shipping line before payment. Do not treat a marketplace photograph as proof of certification or performance.",
-    image: "/images/small-electronics.png",
+      "The source catalogue labels Weidian item 7716842309 “Horizon Earbuds 5 styles” and supplies the first image shown here. Open the matching AllChinaBuy route and verify the selected style, technical specifications, battery details, compatibility and shipping-line restrictions.",
+    image: "/images/products/horizon-earbuds-7716842309.webp",
     checkedAt: LAST_REVIEWED,
-    tags: ["electronics", "shipping", "checklist"],
-    targetUrl: `${MAIN_SITE_URL}/search.html?channelid=2&keywords=small%20electronics%20accessories`,
+    tags: ["earbuds", "five styles", "source-matched"],
+    targetUrl: buildAllChinaBuyProductUrl("7716842309"),
   },
 ];
 
-function assertUniqueProductField(field: "slug" | "image" | "targetUrl") {
+function assertUniqueProductField(field: "slug" | "itemId" | "image" | "targetUrl") {
   const seen = new Set<string>();
   for (const product of products) {
     const value = product[field];
@@ -286,6 +318,7 @@ function assertUniqueProductField(field: "slug" | "image" | "targetUrl") {
 }
 
 assertUniqueProductField("slug");
+assertUniqueProductField("itemId");
 assertUniqueProductField("image");
 assertUniqueProductField("targetUrl");
 

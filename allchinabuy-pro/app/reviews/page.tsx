@@ -24,22 +24,25 @@ export default function ReviewsPage() {
 
       <h2>What “route checked” means</h2>
       <p>
-        We open the destination, confirm that it resolves to the intended CNFansHP search or category,
-        and note the date of that review. Search results and catalogue content can change afterward,
-        so every discovery entry directs readers to verify the live page.
+        For a product entry, we match the public source title, first image and numeric item ID, then
+        build the corresponding AllChinaBuy purchase route without adding a third-party referral code.
+        Category and search routes are checked separately. Destination content can change afterward,
+        so every entry still asks readers to verify the live page.
       </p>
 
       <h2>What we do not claim</h2>
       <p>
         We do not assign quality scores without test evidence. We do not invent purchases, customer
-        quotations, ratings, prices, stock counters or authenticity conclusions. Original images on
-        this site are generic editorial illustrations and are labelled as such.
+        quotations, ratings, prices, stock counters or authenticity conclusions. Product cards use
+        source-listing images for identification; original category and editorial artwork remains
+        clearly separate from live catalogue content.
       </p>
 
       <h2>How an entry is written</h2>
       <ol>
         <li>Choose a useful product type or shopping question.</li>
-        <li>Confirm a relevant live category or keyword-search route.</li>
+        <li>Match the source title, first image and numeric item ID.</li>
+        <li>Generate the exact AllChinaBuy route for that original item.</li>
         <li>Write specific checks a shopper can perform on the destination page.</li>
         <li>State the review date and the limits of the information.</li>
         <li>Update or remove routes that no longer match their stated destination.</li>

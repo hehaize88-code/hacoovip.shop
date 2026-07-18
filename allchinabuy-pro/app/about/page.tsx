@@ -34,14 +34,15 @@ export default function AboutPage() {
         <li>Clear destination links and the date a core route was reviewed.</li>
         <li>Original explanations focused on measurements, QC evidence and parcel planning.</li>
         <li>No fabricated ratings, testimonials, prices, scarcity labels or authenticity claims.</li>
-        <li>A visible distinction between generic editorial imagery and live catalogue content.</li>
+        <li>Product images matched to public item IDs, with editorial illustrations labelled separately.</li>
       </ul>
 
       <h2>How this relates to CNFansHP</h2>
       <p>
-        Search forms and catalogue buttons lead to CNFansHP because that is where the current shopping
-        information is displayed. A visitor should always read the destination domain, review its
-        current terms and contact that platform directly for transaction support.
+        CNFansHP is used as a public discovery source for catalogue titles, images and original item IDs.
+        Product cards then open the corresponding item through AllChinaBuy, while broad search and category
+        buttons may still lead to CNFansHP. A visitor should always read the destination domain, review its
+        current terms and contact the transaction platform directly for support.
       </p>
     </InfoPage>
   );
