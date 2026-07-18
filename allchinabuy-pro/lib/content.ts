@@ -8,6 +8,8 @@ export type { FaqItem } from "./faqs";
 export const SITE_URL = "https://allchinabuy.pro";
 export const MAIN_SITE_URL = "https://www.cnfanshp.com";
 export const MAIN_CATALOGUE_URL = `${MAIN_SITE_URL}/AllProducts/`;
+export const EDITORIAL_REPORT_URL =
+  "https://github.com/hehaize88-code/hacoovip.shop/issues/new?title=AllChinaBuy%20Pro%20correction&body=Page%20URL%3A%0AObserved%20issue%3A%0ADate%20observed%3A";
 export const LAST_REVIEWED = "July 18, 2026";
 
 function buildMainProductUrl(mainProductId: string) {

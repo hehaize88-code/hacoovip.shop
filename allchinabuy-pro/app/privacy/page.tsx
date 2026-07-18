@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { InfoPage } from "@/components/InfoPage";
 import { SITE_URL } from "@/lib/content";
 
@@ -13,7 +14,7 @@ export default function PrivacyPage() {
     <InfoPage
       eyebrow="Privacy notice"
       title="A directory with minimal data needs."
-      intro="Effective July 17, 2026. This notice describes the current inspection build and will be reviewed before public release."
+      intro="Effective July 18, 2026. This notice describes the current public website."
     >
       <h2>No directory account</h2>
       <p>
@@ -31,8 +32,8 @@ export default function PrivacyPage() {
       <h2>Technical request information</h2>
       <p>
         Hosting and security infrastructure may process standard request information such as IP address,
-        device or browser data, timestamps and requested pages to deliver and protect the website. This
-        build does not add advertising trackers or a custom analytics script.
+        device or browser data, timestamps and requested pages to deliver and protect the website. The
+        website does not add advertising trackers or a custom analytics script.
       </p>
 
       <h2>Outbound websites</h2>
@@ -43,8 +44,10 @@ export default function PrivacyPage() {
 
       <h2>Changes and contact</h2>
       <p>
-        If analytics, email forms or other data features are added before release, this notice must be
-        updated first. A monitored privacy contact will also be published on the contact page before launch.
+        If analytics, email forms or other data features are added, this notice will be updated before
+        those features are enabled. Privacy questions and factual corrections can be submitted through the
+        public editorial report form on the <Link href="/contact">contact page</Link>. Do not include
+        sensitive or confidential information in that public form.
       </p>
     </InfoPage>
   );
