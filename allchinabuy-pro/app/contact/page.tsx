@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InfoPage } from "@/components/InfoPage";
-import { SITE_URL } from "@/lib/content";
+import { EDITORIAL_REPORT_URL, SITE_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact & Corrections",
@@ -24,17 +24,34 @@ export default function ContactPage() {
 
       <h2>Broken links and editorial corrections</h2>
       <p>
-        A monitored editorial reporting address will be added here before the site is publicly released.
-        This inspection build intentionally does not display an unverified mailbox or a form that cannot
-        actually deliver a message.
+        Use the public editorial report form for a broken route, factual error or outdated destination.
+        The form is hosted in this website&apos;s public GitHub repository, so a GitHub sign-in may be
+        required and anything submitted there can be read publicly.
       </p>
 
-      <div className="callout"><p>When reporting a route later, include the AllChinaBuy Pro page address, the unexpected destination and the date you observed the issue. Do not include passwords, payment details or identity documents.</p></div>
+      <p>
+        <a
+          className="button button--lime"
+          href={EDITORIAL_REPORT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open editorial report form <span aria-hidden="true">↗</span>
+        </a>
+      </p>
+
+      <div className="callout">
+        <p>
+          Include the AllChinaBuy Pro page address, the unexpected destination and the date you observed
+          the issue. Do not submit passwords, payment details, identity documents or other private data.
+        </p>
+      </div>
 
       <h2>Brand or rights concerns</h2>
       <p>
         A rights notice should identify the relevant page, the protected work or mark, the basis of the
-        concern and a method for verification. The same public editorial channel will handle those notices.
+        concern and a method for verification. Use the same editorial report form, but keep the initial
+        public report limited to non-confidential information.
       </p>
     </InfoPage>
   );
