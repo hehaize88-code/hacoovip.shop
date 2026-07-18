@@ -7,6 +7,7 @@ Independent China shopping directory and editorial research site for
 
 - responsive landing page and product discovery directory
 - category routes into the corresponding CNFansHP main-site categories
+- exact product routes into their matching CNFansHP main-site detail pages
 - product detail pages, buying guides, FAQ and policy pages
 - English, French, German, Italian and Spanish landing routes
 - sitemap, robots, manifest and structured data
