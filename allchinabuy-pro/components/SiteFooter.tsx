@@ -18,7 +18,11 @@ export function SiteFooter() {
         <div>
           <h2>Browse</h2>
           <Link href="/finds">All finds</Link>
-          {categories.slice(0, 4).map((category) => <Link key={category.slug} href={`/collections/${category.slug}`}>{category.title}</Link>)}
+          {categories.slice(0, 4).map((category) => (
+            <a key={category.slug} href={category.targetUrl} target="_blank" rel="nofollow noopener noreferrer">
+              {category.title}
+            </a>
+          ))}
         </div>
         <div>
           <h2>Learn</h2>
