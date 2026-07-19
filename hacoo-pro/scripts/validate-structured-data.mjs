@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { guides, SITE_URL } from "../app/data.js";
 import { GUIDE_ARTICLE_IMAGES, ORGANIZATION_ID, ORGANIZATION_LOGO_ID, ORGANIZATION_LOGO_URL } from "../app/schema.js";
+import { articles } from "../app/articles/data.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(root, "out");
@@ -92,6 +93,24 @@ for (const locale of locales) {
     if (!image || image.contentUrl !== `${SITE_URL}${expected.path}`) problems.push(`${url}: Article image is missing or incorrect`);
     if (!html.includes(`src="${expected.path}"`)) problems.push(`${url}: Article image is not visible in page HTML`);
   }
+}
+
+for (const item of articles) {
+  const url = `${SITE_URL}/articles/${item.slug}/`;
+  const html = await readFile(htmlPathFor(url), "utf8");
+  const nodes = schemaNodes(html);
+  const article = nodes.find((node) => node?.["@type"] === "Article");
+  if (!article) {
+    problems.push(`${url}: missing Article entity`);
+    continue;
+  }
+  articlePages += 1;
+  if (article.publisher?.["@id"] !== ORGANIZATION_ID) problems.push(`${url}: Article publisher is not the Organization entity`);
+  if (article.inLanguage !== "en") problems.push(`${url}: Article language is not English`);
+  if (Number(article.wordCount) < 1200 || Number(article.wordCount) > 1800) problems.push(`${url}: structured wordCount is outside 1200-1800`);
+  const image = nodes.find((node) => node?.["@id"] === article.image?.["@id"] && node?.["@type"] === "ImageObject");
+  if (!image || image.contentUrl !== `${SITE_URL}${item.image.path}`) problems.push(`${url}: Article image is missing or incorrect`);
+  if (!html.includes(`src="${item.image.path}"`)) problems.push(`${url}: Article image is not visible in page HTML`);
 }
 
 if (problems.length) {
