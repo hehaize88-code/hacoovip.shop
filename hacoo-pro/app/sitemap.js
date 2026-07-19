@@ -1,5 +1,6 @@
 import { CATALOG_REVIEW, categories, guides, products, SITE_URL } from "./data";
 import { LOCALES, localizePath } from "./i18n";
+import { articles } from "./articles/data";
 export const dynamic = "force-static";
 
 function canonicalUrl(path, locale = "en") {
@@ -51,5 +52,15 @@ export default function sitemap() {
     })),
   );
 
-  return [...localizedCore, ...localizedCategories, ...localizedGuides, ...productReferences, ...legal];
+  const englishResearch = [
+    { url: canonicalUrl("/articles"), lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+    ...articles.map((article) => ({
+      url: canonicalUrl(`/articles/${article.slug}`),
+      lastModified: new Date(article.modified),
+      changeFrequency: "monthly",
+      priority: 0.78,
+    })),
+  ];
+
+  return [...localizedCore, ...localizedCategories, ...localizedGuides, ...productReferences, ...englishResearch, ...legal];
 }
