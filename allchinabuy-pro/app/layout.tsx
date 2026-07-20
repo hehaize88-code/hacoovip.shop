@@ -40,13 +40,20 @@ export const metadata: Metadata = {
     siteName: "AllChinaBuy Pro",
     title: "AllChinaBuy Pro — Independent Shopping Directory",
     description: "Find clearer product routes, link checks and practical China shopping guides.",
-    images: [{ url: "/images/hero-collage.webp", width: 1120, height: 1400, alt: "Logo-free clothing and footwear editorial collage" }],
+    images: [
+      {
+        url: "/images/social/home.webp",
+        width: 1200,
+        height: 630,
+        alt: "AllChinaBuy Pro independent shopping directory share card",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AllChinaBuy Pro — Independent Shopping Directory",
     description: "Find clearer product routes, link checks and practical China shopping guides.",
-    images: ["/images/hero-collage.webp"],
+    images: ["/images/social/home.webp"],
   },
   robots: { index: true, follow: true },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },

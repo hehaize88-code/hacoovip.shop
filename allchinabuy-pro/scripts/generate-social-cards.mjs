@@ -15,6 +15,7 @@ mkdirSync(guideSocialDir, { recursive: true });
 const logoData = readFileSync(join(publicDir, "logo-allchinabuy.png")).toString("base64");
 
 const cards = [
+  ["home", "INDEPENDENT DIRECTORY", "AllChinaBuy Pro: Shopping Directory", "Clearer product routes, link checks and practical China shopping guides."],
   ["finds", "RESEARCH FINDS", "Independent China Shopping Finds", "Source-matched products with clear checks and exact routes."],
   ["guides", "PRACTICAL GUIDES", "Fact-Checked AllChinaBuy Guides", "Source-linked workflows for orders, QC, packing and shipping."],
   ["faq", "STRAIGHT ANSWERS", "AllChinaBuy FAQ: Orders, QC, Packing & Shipping", "30 researched answers tied to public source pages."],
