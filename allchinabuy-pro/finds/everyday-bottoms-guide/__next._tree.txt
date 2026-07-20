@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/03_m9.m-ljlhk.css","style"]
+:HL["/_next/static/chunks/0es2cj3mvunzi.css","style"]
 :HL["/logo-allchinabuy.png","image"]
 :HL["/images/products/patagonia-pants-7726173713.webp","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"everyday-bottoms-guide","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"9kee5Kc8O61djWJ4HAwI5"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"everyday-bottoms-guide","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"t3pVO0OvK--GEAmxin_z4"}
