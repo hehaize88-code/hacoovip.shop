@@ -1,3 +1,3 @@
 :HL["/_next/static/chunks/0es2cj3mvunzi.css","style"]
 :HL["/images/products/shoes-59-7718490449.jpg","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"everyday-training-shoe","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"r9s-E3XDMJ1awE3Zpvtjo"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"finds","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"everyday-training-shoe","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"QeR3bHVZSmdcojWHjuIli"}
