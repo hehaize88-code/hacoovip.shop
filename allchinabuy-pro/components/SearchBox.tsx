@@ -1,12 +1,16 @@
 type SearchBoxProps = {
   placeholder?: string;
   buttonLabel?: string;
+  formLabel?: string;
+  inputLabel?: string;
   compact?: boolean;
 };
 
 export function SearchBox({
   placeholder = "Search shoes, clothing or paste a product name",
   buttonLabel = "Search main site",
+  formLabel = "Search the CNFansHP catalogue",
+  inputLabel = "Search products",
   compact = false,
 }: SearchBoxProps) {
   return (
@@ -14,11 +18,11 @@ export function SearchBox({
       className={compact ? "search-form search-form--compact" : "search-form"}
       action="https://www.cnfanshp.com/search.html"
       method="get"
-      aria-label="Search the CNFansHP catalogue"
+      aria-label={formLabel}
     >
       <input type="hidden" name="channelid" value="2" />
       <label className="sr-only" htmlFor={compact ? "catalogue-search-compact" : "catalogue-search"}>
-        Search products
+        {inputLabel}
       </label>
       <span className="search-form__icon" aria-hidden="true">
         ⌕
