@@ -131,8 +131,8 @@ export default function Home() {
       <section className="faq-section" aria-labelledby="faq-heading">
         <div className="faq-section__intro"><p className="eyebrow">Straight answers</p><h2 id="faq-heading">Before you use the directory.</h2><p>Clear ownership and limits matter. This website is independent and does not process orders.</p><Link className="text-link" href="/faq">Read every answer →</Link></div>
         <div className="faq-list">
-          {featuredFaqs.map((item, index) => (
-            <details key={item.question} open={index === 0}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>
+          {featuredFaqs.map((item) => (
+            <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>
           ))}
         </div>
       </section>
