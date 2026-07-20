@@ -77,6 +77,14 @@ for (const path of pages) {
   if (metas.get("twitter:image") !== metas.get("og:image")) {
     failures.push(`${route}: Twitter and Open Graph images differ`);
   }
+  if (route === "/") {
+    if (metas.get("og:image") !== `${siteUrl}/images/social/home.webp`) {
+      failures.push(`${route}: homepage does not use the dedicated horizontal share card`);
+    }
+    if (metas.get("og:image:width") !== "1200" || metas.get("og:image:height") !== "630") {
+      failures.push(`${route}: homepage share card must declare 1200×630 dimensions`);
+    }
+  }
   if (route !== "/" && canonical === siteUrl) {
     failures.push(`${route}: inherited the homepage canonical URL`);
   }
