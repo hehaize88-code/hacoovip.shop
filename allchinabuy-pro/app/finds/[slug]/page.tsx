@@ -44,6 +44,8 @@ export default async function ProductPage({ params }: PageProps) {
   const fallbackRelated = related.length > 0
     ? related
     : products.filter((item) => item.slug !== product.slug).slice(0, 3);
+  const pageUrl = `${SITE_URL}/finds/${product.slug}`;
+  const breadcrumbId = `${pageUrl}#breadcrumb`;
 
   return (
     <main id="main-content" className="inner-page">
@@ -53,26 +55,24 @@ export default async function ProductPage({ params }: PageProps) {
           "@graph": [
             {
               "@type": "ItemPage",
+              "@id": `${pageUrl}#webpage`,
               name: product.title,
-              url: `${SITE_URL}/finds/${product.slug}`,
+              url: pageUrl,
               description: product.description,
               dateModified: "2026-07-18",
-              mainEntity: {
-                "@type": "Product",
-                name: product.title,
-                sku: product.itemId,
-                url: product.targetUrl,
-                image: `${SITE_URL}${product.image}`,
-                description: product.short,
-                category: product.category,
+              primaryImageOfPage: {
+                "@type": "ImageObject",
+                url: `${SITE_URL}${product.image}`,
               },
+              breadcrumb: { "@id": breadcrumbId },
             },
             {
               "@type": "BreadcrumbList",
+              "@id": breadcrumbId,
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
                 { "@type": "ListItem", position: 2, name: "Finds", item: `${SITE_URL}/finds` },
-                { "@type": "ListItem", position: 3, name: product.title, item: `${SITE_URL}/finds/${product.slug}` },
+                { "@type": "ListItem", position: 3, name: product.title, item: pageUrl },
               ],
             },
           ],
