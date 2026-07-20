@@ -80,7 +80,15 @@ export default async function CollectionPage({ params }: PageProps) {
           </div>
         </div>
         <div className="category-hero__image">
-          <img src={category.image} alt={`Generic ${category.title.toLowerCase()} category illustration`} width="1254" height="1254" fetchPriority="high" />
+          <img
+            src={category.image}
+            srcSet={`${category.imageMobile} 640w, ${category.image} 1254w`}
+            sizes="(max-width: 860px) 100vw, 50vw"
+            alt={`Generic ${category.title.toLowerCase()} category illustration`}
+            width="1254"
+            height="1254"
+            fetchPriority="high"
+          />
         </div>
       </section>
       <section className="content-section">

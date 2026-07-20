@@ -22,6 +22,7 @@ export type Category = {
   kicker: string;
   description: string;
   image: string;
+  imageMobile: string;
   targetUrl: string;
   searchTerm: string;
 };
@@ -49,7 +50,8 @@ export const categories: Category[] = [
     kicker: "Runners, casual pairs and everyday footwear",
     description:
       "Browse a cleaner route into the main-site footwear catalogue, then compare the live listing before making any decision.",
-    image: "/images/neutral-sneaker.png",
+    image: "/images/neutral-sneaker.webp",
+    imageMobile: "/images/neutral-sneaker-640.webp",
     targetUrl: `${MAIN_SITE_URL}/shoes/`,
     searchTerm: "shoes",
   },
@@ -59,7 +61,8 @@ export const categories: Category[] = [
     kicker: "T-shirts, sweatshirts and daily layers",
     description:
       "Start with broad clothing ideas and continue to the live catalogue for current options, details and availability.",
-    image: "/images/charcoal-tee.png",
+    image: "/images/charcoal-tee.webp",
+    imageMobile: "/images/charcoal-tee-640.webp",
     targetUrl: `${MAIN_SITE_URL}/t-shirts/`,
     searchTerm: "clothing",
   },
@@ -69,7 +72,8 @@ export const categories: Category[] = [
     kicker: "Technical shells, casual jackets and outer layers",
     description:
       "Use material, intended weather and measurements as your first checks before following a jacket listing.",
-    image: "/images/charcoal-jacket.png",
+    image: "/images/charcoal-jacket.webp",
+    imageMobile: "/images/charcoal-jacket-640.webp",
     targetUrl: `${MAIN_SITE_URL}/jackets/`,
     searchTerm: "jackets",
   },
@@ -79,7 +83,8 @@ export const categories: Category[] = [
     kicker: "Relaxed fits, daily basics and seasonal bottoms",
     description:
       "Compare waist, rise, inseam and fabric notes instead of relying on a generic size label alone.",
-    image: "/images/everyday-bottoms.png",
+    image: "/images/everyday-bottoms.webp",
+    imageMobile: "/images/everyday-bottoms-640.webp",
     targetUrl: `${MAIN_SITE_URL}/pants-shorts/`,
     searchTerm: "pants shorts",
   },
@@ -89,7 +94,8 @@ export const categories: Category[] = [
     kicker: "Caps, beanies and low-weight add-ons",
     description:
       "A compact category for finding headwear while keeping fit, material and packaging shape in view.",
-    image: "/images/cap-accessories.png",
+    image: "/images/cap-accessories.webp",
+    imageMobile: "/images/cap-accessories-640.webp",
     targetUrl: `${MAIN_SITE_URL}/headwear/`,
     searchTerm: "headwear",
   },
@@ -99,7 +105,8 @@ export const categories: Category[] = [
     kicker: "Bags, organizers and practical extras",
     description:
       "Review dimensions and materials carefully; product photos alone rarely communicate usable capacity.",
-    image: "/images/black-crossbody.png",
+    image: "/images/black-crossbody.webp",
+    imageMobile: "/images/black-crossbody-640.webp",
     targetUrl: `${MAIN_SITE_URL}/accessories/`,
     searchTerm: "accessories",
   },
@@ -109,7 +116,8 @@ export const categories: Category[] = [
     kicker: "Sports-inspired tops and coordinated sets",
     description:
       "Check the live product page for the current size chart, print method and care information.",
-    image: "/images/sports-jersey.png",
+    image: "/images/sports-jersey.webp",
+    imageMobile: "/images/sports-jersey-640.webp",
     targetUrl: `${MAIN_SITE_URL}/Jersey/`,
     searchTerm: "jersey",
   },
@@ -119,7 +127,8 @@ export const categories: Category[] = [
     kicker: "Small devices and everyday accessories",
     description:
       "Confirm battery, plug, voltage, shipping-line and destination restrictions before ordering electronics.",
-    image: "/images/small-electronics.png",
+    image: "/images/small-electronics.webp",
+    imageMobile: "/images/small-electronics-640.webp",
     targetUrl: `${MAIN_SITE_URL}/electronics/`,
     searchTerm: "electronics",
   },

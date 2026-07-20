@@ -58,7 +58,15 @@ export default function Home() {
           </ul>
         </div>
         <div className="hero-art" aria-hidden="true">
-          <img src="/images/hero-collage.png" alt="" width="1120" height="1400" fetchPriority="high" />
+          <img
+            src="/images/hero-collage.webp"
+            srcSet="/images/hero-collage-560.webp 560w, /images/hero-collage.webp 1120w"
+            sizes="(max-width: 860px) 100vw, 40vw"
+            alt=""
+            width="1120"
+            height="1400"
+            fetchPriority="high"
+          />
           <span className="hero-art__stamp">Independent<br />not official</span>
         </div>
       </section>
@@ -94,7 +102,15 @@ export default function Home() {
 
       <section className="editorial-split">
         <div className="editorial-split__visual">
-          <img src="/images/neutral-sneaker.png" alt="Generic neutral technical sneaker used as a category illustration" width="1254" height="1254" loading="lazy" />
+          <img
+            src="/images/neutral-sneaker.webp"
+            srcSet="/images/neutral-sneaker-640.webp 640w, /images/neutral-sneaker.webp 1254w"
+            sizes="(max-width: 560px) 112px, (max-width: 860px) 100vw, 50vw"
+            alt="Generic neutral technical sneaker used as a category illustration"
+            width="1254"
+            height="1254"
+            loading="lazy"
+          />
           <span>Image is illustrative.<br />No brand claim.</span>
         </div>
         <div className="editorial-split__copy">
