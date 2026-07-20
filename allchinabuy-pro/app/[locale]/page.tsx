@@ -48,7 +48,12 @@ export default async function LocalizedHome({ params }: PageProps) {
           <p className="eyebrow">AllChinaBuy Pro · {content.label}</p>
           <h1>{content.headline}</h1>
           <p>{content.subcopy}</p>
-          <SearchBox placeholder={content.placeholder} buttonLabel={content.search} />
+          <SearchBox
+            placeholder={content.placeholder}
+            buttonLabel={content.search}
+            formLabel={content.searchFormLabel}
+            inputLabel={content.searchInputLabel}
+          />
           <div className="page-hero__actions">
             <a className="button button--lime" href={MAIN_CATALOGUE_URL} target="_blank" rel="nofollow noopener noreferrer">
               {content.categories} <span aria-hidden="true">↗</span>
@@ -71,13 +76,13 @@ export default async function LocalizedHome({ params }: PageProps) {
       </section>
       <section className="content-section">
         <div className="section-heading">
-          <div><p className="eyebrow">{content.categories}</p><h2>Browse clear product routes.</h2></div>
+          <div><p className="eyebrow">{content.categories}</p><h2>{content.browseHeading}</h2></div>
           <p>{content.note}</p>
         </div>
         <div className="localized-grid">
           {categories.slice(0, 6).map((category) => (
             <a key={category.slug} href={category.targetUrl} target="_blank" rel="nofollow noopener noreferrer">
-              <span>{category.title}</span><span aria-hidden="true">↗</span>
+              <span>{content.categoryLabels[category.slug] ?? category.title}</span><span aria-hidden="true">↗</span>
             </a>
           ))}
         </div>

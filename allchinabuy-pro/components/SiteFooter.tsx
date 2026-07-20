@@ -1,48 +1,64 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { categories } from "@/lib/content";
+import {
+  defaultCategoryLabels,
+  defaultChromeContent,
+  localeContent,
+  localeFromPathname,
+} from "@/lib/locales";
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  const locale = localeFromPathname(pathname);
+  const localized = locale ? localeContent[locale] : undefined;
+  const chrome = localized?.chrome ?? defaultChromeContent;
+  const categoryLabels = localized?.categoryLabels ?? defaultCategoryLabels;
+  const homeHref = locale ? `/${locale}` : "/";
+
   return (
     <footer className="site-footer">
       <div className="site-footer__top">
         <div>
-          <Link href="/" className="brand brand--footer">
+          <Link href={homeHref} className="brand brand--footer" aria-label={chrome.homeLabel}>
             <span className="brand__logo-frame">
               <img src="/logo-allchinabuy.png" alt="AllChinaBuy" width="1718" height="253" loading="lazy" />
             </span>
-            <span className="brand__tagline">Independent China shopping directory</span>
+            <span className="brand__tagline">{chrome.tagline}</span>
           </Link>
-          <p>Clearer product discovery, link routes and practical research notes for international shoppers.</p>
+          <p>{chrome.footer.description}</p>
         </div>
         <div>
-          <h2>Browse</h2>
-          <Link href="/finds">All finds</Link>
+          <h2>{chrome.footer.browse}</h2>
+          <Link href="/finds">{chrome.footer.allFinds}</Link>
           {categories.slice(0, 4).map((category) => (
             <a key={category.slug} href={category.targetUrl} target="_blank" rel="nofollow noopener noreferrer">
-              {category.title}
+              {categoryLabels[category.slug] ?? category.title}
             </a>
           ))}
         </div>
         <div>
-          <h2>Learn</h2>
-          <Link href="/guides">Guides</Link>
-          <Link href="/allchinabuy-spreadsheet">Spreadsheet alternative</Link>
-          <Link href="/reviews">Review method</Link>
-          <Link href="/faq">FAQ</Link>
-          <Link href="/about">About</Link>
+          <h2>{chrome.footer.learn}</h2>
+          <Link href="/guides">{chrome.nav.guides}</Link>
+          <Link href="/allchinabuy-spreadsheet">{chrome.footer.spreadsheet}</Link>
+          <Link href="/reviews">{chrome.footer.reviewMethod}</Link>
+          <Link href="/faq">{chrome.nav.faq}</Link>
+          <Link href="/about">{chrome.footer.about}</Link>
         </div>
         <div>
-          <h2>Important</h2>
-          <Link href="/disclaimer">Disclaimer</Link>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-          <Link href="/contact">Contact</Link>
+          <h2>{chrome.footer.important}</h2>
+          <Link href="/disclaimer">{chrome.footer.disclaimer}</Link>
+          <Link href="/privacy">{chrome.footer.privacy}</Link>
+          <Link href="/terms">{chrome.footer.terms}</Link>
+          <Link href="/contact">{chrome.footer.contact}</Link>
         </div>
       </div>
       <div className="site-footer__bottom">
         <span>© 2026 AllChinaBuy Pro</span>
-        <span>Independent directory. No products are sold or shipped here.</span>
+        <span>{chrome.footer.legal}</span>
       </div>
     </footer>
   );
