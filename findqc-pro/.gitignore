@@ -1,0 +1,10 @@
+node_modules
+.next
+.vinext
+.open-next
+.wrangler
+dist
+.DS_Store
+*.log
+findqc-pro-preview.zip
+site-archive.tar.gz
