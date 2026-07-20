@@ -6,12 +6,17 @@ import {
   faqs,
   faqSources,
 } from "@/lib/faqs";
+import { SITE_URL } from "@/lib/content";
 import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
+const faqTitle = "AllChinaBuy FAQ: Orders, QC, Packing & Shipping";
+const faqDescription =
+  "30 source-linked answers about AllChinaBuy checkout, warehouse inspection, detailed photos, packing, storage, shipping weight, restrictions and used items.";
+const faqUrl = `${SITE_URL}/faq`;
+
 export const metadata: Metadata = buildPageMetadata({
-  title: "AllChinaBuy FAQ: Orders, QC, Packing & Shipping",
-  description:
-    "30 source-linked answers about AllChinaBuy checkout, warehouse inspection, detailed photos, packing, storage, shipping weight, restrictions and used items.",
+  title: faqTitle,
+  description: faqDescription,
   path: "/faq",
   image: socialCard("faq", "AllChinaBuy FAQ covering orders, QC, packing and shipping"),
 });
@@ -24,12 +29,13 @@ export default function FaqPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: { "@type": "Answer", text: item.answer },
-          })),
+          "@type": "WebPage",
+          "@id": `${faqUrl}#webpage`,
+          url: faqUrl,
+          name: faqTitle,
+          description: faqDescription,
+          dateModified: "2026-07-18",
+          isPartOf: { "@id": `${SITE_URL}/#website` },
         }}
       />
 
