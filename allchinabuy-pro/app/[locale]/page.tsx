@@ -57,7 +57,15 @@ export default async function LocalizedHome({ params }: PageProps) {
           <p className="localized-note">{content.note}</p>
         </div>
         <div className="localized-hero__image" aria-hidden="true">
-          <img src="/images/hero-collage.png" alt="" width="1120" height="1400" fetchPriority="high" />
+          <img
+            src="/images/hero-collage.webp"
+            srcSet="/images/hero-collage-560.webp 560w, /images/hero-collage.webp 1120w"
+            sizes="(max-width: 860px) 100vw, 50vw"
+            alt=""
+            width="1120"
+            height="1400"
+            fetchPriority="high"
+          />
         </div>
       </section>
       <section className="content-section">
