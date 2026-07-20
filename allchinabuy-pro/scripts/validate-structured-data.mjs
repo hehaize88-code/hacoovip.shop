@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const findsDir = resolve(process.cwd(), "out", "finds");
+const faqPath = resolve(process.cwd(), "out", "faq", "index.html");
 const siteUrl = "https://allchinabuy.pro";
 const failures = [];
 const forbiddenProperties = new Set(["offers", "review", "aggregateRating"]);
@@ -25,6 +26,21 @@ function hasType(value, type) {
   return types.includes(type);
 }
 
+function parseSchemaObjects(html, route) {
+  const scripts = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const roots = [];
+
+  for (const script of scripts) {
+    try {
+      roots.push(JSON.parse(script[1]));
+    } catch (error) {
+      failures.push(`${route}: invalid JSON-LD (${error.message})`);
+    }
+  }
+
+  return roots.flatMap((root) => schemaObjects(root));
+}
+
 const pages = readdirSync(findsDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => ({
@@ -34,18 +50,7 @@ const pages = readdirSync(findsDir, { withFileTypes: true })
 
 for (const page of pages) {
   const html = readFileSync(page.path, "utf8");
-  const scripts = [...html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
-  const roots = [];
-
-  for (const script of scripts) {
-    try {
-      roots.push(JSON.parse(script[1]));
-    } catch (error) {
-      failures.push(`/finds/${page.slug}/: invalid JSON-LD (${error.message})`);
-    }
-  }
-
-  const objects = roots.flatMap((root) => schemaObjects(root));
+  const objects = parseSchemaObjects(html, `/finds/${page.slug}/`);
   const itemPage = objects.find((value) => hasType(value, "ItemPage"));
   const breadcrumb = objects.find((value) => hasType(value, "BreadcrumbList"));
   const pageUrl = `${siteUrl}/finds/${page.slug}`;
@@ -88,9 +93,34 @@ if (pages.length !== 12) {
   failures.push(`Expected 12 find detail pages, audited ${pages.length}`);
 }
 
+const faqHtml = readFileSync(faqPath, "utf8");
+const faqObjects = parseSchemaObjects(faqHtml, "/faq/");
+const faqWebPage = faqObjects.find((value) => hasType(value, "WebPage"));
+const visibleQuestions = [...faqHtml.matchAll(/<details\s+id="[^"]+"/gi)].length;
+const visibleAnswers = [...faqHtml.matchAll(/class="faq-accordion__answer"/gi)].length;
+
+if (!faqWebPage) {
+  failures.push("/faq/: missing WebPage structured data");
+} else {
+  if (faqWebPage.url !== `${siteUrl}/faq`) failures.push("/faq/: WebPage URL is incorrect");
+  if (faqWebPage["@id"] !== `${siteUrl}/faq#webpage`) failures.push("/faq/: WebPage @id is incorrect");
+}
+
+for (const value of faqObjects) {
+  for (const retiredType of ["FAQPage", "Question", "Answer"]) {
+    if (hasType(value, retiredType)) failures.push(`/faq/: retired ${retiredType} rich-result schema remains`);
+  }
+}
+
+if (visibleQuestions !== 30 || visibleAnswers !== 30) {
+  failures.push(`/faq/: expected 30 visible questions and answers, found ${visibleQuestions} questions and ${visibleAnswers} answers`);
+}
+
 if (failures.length > 0) {
   console.error(`Structured data validation failed:\n- ${[...new Set(failures)].join("\n- ")}`);
   process.exit(1);
 }
 
-console.log(`ItemPage and BreadcrumbList structured data passed for ${pages.length} find detail pages.`);
+console.log(
+  `Structured data passed for ${pages.length} find detail pages; FAQ WebPage and 30 visible answers passed.`,
+);
