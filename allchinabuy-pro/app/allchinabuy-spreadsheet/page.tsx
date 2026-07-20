@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "AllChinaBuy Spreadsheet Alternative — Searchable Finds",
   description: "A searchable, mobile-friendly alternative to a static AllChinaBuy spreadsheet, with explained product routes and practical verification guides.",
-  alternates: { canonical: `${SITE_URL}/allchinabuy-spreadsheet` },
-};
+  path: "/allchinabuy-spreadsheet",
+  image: socialCard("spreadsheet", "Searchable AllChinaBuy spreadsheet alternative share card"),
+});
 
 export default function SpreadsheetPage() {
   return (

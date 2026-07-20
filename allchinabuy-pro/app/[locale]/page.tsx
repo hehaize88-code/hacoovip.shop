@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { SearchBox } from "@/components/SearchBox";
 import { categories, MAIN_CATALOGUE_URL, SITE_URL } from "@/lib/content";
 import { isSupportedLocale, localeContent, supportedLocales } from "@/lib/locales";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -18,21 +19,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Page not found", robots: { index: false, follow: false } };
   }
   const content = localeContent[locale];
-  return {
+  return buildPageMetadata({
     title: content.headline,
     description: content.subcopy,
-    alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: {
-        en: SITE_URL,
-        fr: `${SITE_URL}/fr`,
-        de: `${SITE_URL}/de`,
-        it: `${SITE_URL}/it`,
-        es: `${SITE_URL}/es`,
-        "x-default": SITE_URL,
-      },
+    path: `/${locale}`,
+    image: socialCard(`home-${locale}`, `${content.label} AllChinaBuy Pro independent directory share card`),
+    locale: content.language.replace("-", "_"),
+    languages: {
+      en: SITE_URL,
+      fr: `${SITE_URL}/fr`,
+      de: `${SITE_URL}/de`,
+      it: `${SITE_URL}/it`,
+      es: `${SITE_URL}/es`,
+      "x-default": SITE_URL,
     },
-  };
+  });
 }
 
 export default async function LocalizedHome({ params }: PageProps) {

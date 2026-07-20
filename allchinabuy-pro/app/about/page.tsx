@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { InfoPage } from "@/components/InfoPage";
-import { SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About This Independent Directory",
   description: "Why AllChinaBuy Pro organizes China shopping routes and practical verification guides as an independent editorial website.",
-  alternates: { canonical: `${SITE_URL}/about` },
-};
+  path: "/about",
+  image: socialCard("about", "About the independent AllChinaBuy Pro directory"),
+});
 
 export default function AboutPage() {
   return (

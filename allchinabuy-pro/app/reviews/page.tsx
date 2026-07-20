@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { InfoPage } from "@/components/InfoPage";
-import { SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Our Link Review Method",
   description: "How AllChinaBuy Pro checks destination routes and writes independent shopping research entries without inventing ratings.",
-  alternates: { canonical: `${SITE_URL}/reviews` },
-};
+  path: "/reviews",
+  image: socialCard("reviews", "AllChinaBuy Pro link review method share card"),
+});
 
 export default function ReviewsPage() {
   return (

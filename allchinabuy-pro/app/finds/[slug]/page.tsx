@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
 import { getCategory, getProduct, products, SITE_URL } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -17,18 +18,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const product = getProduct(slug);
   if (!product) return { title: "Find not found", robots: { index: false, follow: false } };
 
-  return {
+  return buildPageMetadata({
     title: `${product.title} — Independent Research Find`,
     description: product.short,
-    alternates: { canonical: `${SITE_URL}/finds/${product.slug}` },
-    openGraph: {
-      type: "article",
-      url: `${SITE_URL}/finds/${product.slug}`,
-      title: product.title,
-      description: product.short,
-      images: [{ url: product.image, alt: `Source listing image for ${product.title}, item ${product.itemId}` }],
+    path: `/finds/${product.slug}`,
+    type: "article",
+    modifiedTime: "2026-07-18",
+    image: {
+      url: product.image,
+      alt: `Source listing image for ${product.title}, item ${product.itemId}`,
     },
-  };
+  });
 }
 
 export default async function ProductPage({ params }: PageProps) {

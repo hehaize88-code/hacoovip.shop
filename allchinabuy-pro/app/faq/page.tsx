@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL } from "@/lib/content";
 import {
   FAQ_REVIEWED,
   faqCategories,
   faqs,
   faqSources,
 } from "@/lib/faqs";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "AllChinaBuy FAQ: Orders, QC, Packing & Shipping",
   description:
     "30 source-linked answers about AllChinaBuy checkout, warehouse inspection, detailed photos, packing, storage, shipping weight, restrictions and used items.",
-  alternates: { canonical: `${SITE_URL}/faq` },
-};
+  path: "/faq",
+  image: socialCard("faq", "AllChinaBuy FAQ covering orders, QC, packing and shipping"),
+});
 
 const officialSources = Object.values(faqSources).filter((source) => source.official);
 

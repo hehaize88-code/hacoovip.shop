@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { guides, SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Fact-Checked AllChinaBuy Guides",
   description: "Independent, source-linked guides to the AllChinaBuy order flow, QC photos, warehouse packing, shipping restrictions and freight planning.",
-  alternates: { canonical: `${SITE_URL}/guides` },
-};
+  path: "/guides",
+  image: socialCard("guides", "AllChinaBuy Pro fact-checked guides share card"),
+});
 
 export default function GuidesPage() {
   return (

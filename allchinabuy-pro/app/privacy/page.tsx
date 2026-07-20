@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { InfoPage } from "@/components/InfoPage";
-import { SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Notice",
   description: "How the AllChinaBuy Pro directory handles search transitions, standard technical logs and future privacy updates.",
-  alternates: { canonical: `${SITE_URL}/privacy` },
-};
+  path: "/privacy",
+  image: socialCard("privacy", "AllChinaBuy Pro privacy notice share card"),
+});
 
 export default function PrivacyPage() {
   return (

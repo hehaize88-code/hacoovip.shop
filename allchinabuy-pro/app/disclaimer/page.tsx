@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { InfoPage } from "@/components/InfoPage";
-import { SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Independent Website Disclaimer",
   description: "Independence, trademark, product-information and cross-border shopping disclaimers for AllChinaBuy Pro.",
-  alternates: { canonical: `${SITE_URL}/disclaimer` },
-};
+  path: "/disclaimer",
+  image: socialCard("disclaimer", "AllChinaBuy Pro independent website disclaimer"),
+});
 
 export default function DisclaimerPage() {
   return (
