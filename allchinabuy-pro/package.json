@@ -18,7 +18,11 @@
     "validate:locales": "node scripts/validate-localized-pages.mjs",
     "validate:social": "node scripts/validate-social-metadata.mjs",
     "validate:structured-data": "node scripts/validate-structured-data.mjs",
-    "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
+    "cf:typegen": "bash scripts/sites-env.sh -- wrangler types",
+    "cf:types:check": "bash scripts/sites-env.sh -- wrangler types --check",
+    "typecheck": "bash scripts/sites-env.sh -- tsc --noEmit --pretty false",
+    "lint": "bash scripts/sites-env.sh -- eslint .",
+    "check": "npm run cf:types:check && npm run typecheck && npm run lint",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
   },
   "dependencies": {
