@@ -1,4 +1,4 @@
 :HL["/_next/static/chunks/0es2cj3mvunzi.css","style"]
 :HL["/logo-allchinabuy.png","image"]
-:HL["/images/everyday-bottoms.png","image",{"fetchPriority":"high"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"collections","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"pants-shorts","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"t3pVO0OvK--GEAmxin_z4"}
+:HL["/images/everyday-bottoms.webp","image",{"imageSrcSet":"/images/everyday-bottoms-640.webp 640w, /images/everyday-bottoms.webp 1254w","imageSizes":"(max-width: 860px) 100vw, 50vw","fetchPriority":"high"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"collections","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"pants-shorts","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"cOIXcBT6xIScPc7NX2xNR"}
