@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
 import { categories, getCategory, products, SITE_URL } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -16,18 +17,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const category = getCategory(slug);
   if (!category) return { title: "Collection not found", robots: { index: false, follow: false } };
-  return {
+  return buildPageMetadata({
     title: `${category.title} Finds & Shopping Links`,
     description: category.description,
-    alternates: { canonical: `${SITE_URL}/collections/${category.slug}` },
-    openGraph: {
-      type: "website",
-      url: `${SITE_URL}/collections/${category.slug}`,
-      title: `${category.title} research collection`,
-      description: category.description,
-      images: [{ url: category.image, alt: `Generic ${category.title} category illustration` }],
+    path: `/collections/${category.slug}`,
+    image: {
+      url: category.image,
+      width: 1254,
+      height: 1254,
+      alt: `Generic ${category.title} category illustration`,
     },
-  };
+  });
 }
 
 export default async function CollectionPage({ params }: PageProps) {

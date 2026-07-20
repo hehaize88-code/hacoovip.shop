@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { getGuide, guides, SITE_URL } from "@/lib/content";
+import { buildPageMetadata, guideSocialCard } from "@/lib/metadata";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -15,19 +16,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) return { title: "Guide not found", robots: { index: false, follow: false } };
-  return {
+  return buildPageMetadata({
     title: guide.title,
     description: guide.description,
-    alternates: { canonical: `${SITE_URL}/guides/${guide.slug}` },
-    openGraph: {
-      type: "article",
-      url: `${SITE_URL}/guides/${guide.slug}`,
-      title: guide.title,
-      description: guide.description,
-      modifiedTime: "2026-07-17",
-      images: [{ url: `${SITE_URL}${guide.figure.src}`, width: 1600, height: 900, alt: guide.figure.alt }],
-    },
-  };
+    path: `/guides/${guide.slug}`,
+    type: "article",
+    modifiedTime: "2026-07-17",
+    image: guideSocialCard(guide.figure.src, guide.figure.alt),
+  });
 }
 
 export default async function GuidePage({ params }: PageProps) {

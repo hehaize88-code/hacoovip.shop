@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { InfoPage } from "@/components/InfoPage";
-import { SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Website Terms of Use",
   description: "Terms for using the AllChinaBuy Pro independent shopping directory and its outbound research links.",
-  alternates: { canonical: `${SITE_URL}/terms` },
-};
+  path: "/terms",
+  image: socialCard("terms", "AllChinaBuy Pro website terms of use share card"),
+});
 
 export default function TermsPage() {
   return (

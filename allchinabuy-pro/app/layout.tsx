@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AllChinaBuy Pro — Independent Shopping Directory",
-    description: "Curated product routes, link checks and practical buying guides.",
+    description: "Find clearer product routes, link checks and practical China shopping guides.",
     images: ["/images/hero-collage.webp"],
   },
   robots: { index: true, follow: true },

@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { FindsExplorer } from "@/components/FindsExplorer";
 import { JsonLd } from "@/components/JsonLd";
 import { categories, products, SITE_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Independent China Shopping Finds",
   description:
     "Browse source-matched product images and item IDs, then open each exact corresponding product on the CNFansHP main site.",
-  alternates: { canonical: `${SITE_URL}/finds` },
-};
+  path: "/finds",
+  image: socialCard("finds", "AllChinaBuy Pro independent research finds share card"),
+});
 
 export default function FindsPage() {
   return (

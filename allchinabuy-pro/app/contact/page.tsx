@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { InfoPage } from "@/components/InfoPage";
-import { EDITORIAL_REPORT_URL, SITE_URL } from "@/lib/content";
+import { EDITORIAL_REPORT_URL } from "@/lib/content";
+import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact & Corrections",
   description: "Contact boundaries for directory corrections and destination-platform order support.",
-  alternates: { canonical: `${SITE_URL}/contact` },
-};
+  path: "/contact",
+  image: socialCard("contact", "AllChinaBuy Pro contact and corrections share card"),
+});
 
 export default function ContactPage() {
   return (
