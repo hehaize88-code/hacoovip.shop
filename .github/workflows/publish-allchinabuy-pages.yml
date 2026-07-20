@@ -37,6 +37,10 @@ jobs:
         working-directory: allchinabuy-pro
         run: npm ci
 
+      - name: Verify Cloudflare types, TypeScript, and lint
+        working-directory: allchinabuy-pro
+        run: npm run check
+
       - name: Build static Pages export
         working-directory: allchinabuy-pro
         run: npm run build:pages

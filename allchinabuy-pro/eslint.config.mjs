@@ -7,11 +7,18 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
+    // Framework and deployment output. The repository intentionally tracks the
+    // Pages export, but generated JavaScript must never be treated as source.
     ".next/**",
+    "_next/**",
     "out/**",
-    "build/**",
+    "dist/**",
+    ".sites-runtime/**",
+    ".wrangler/**",
+    "outputs/**",
+    "work/**",
     "next-env.d.ts",
+    "worker-configuration.d.ts",
   ]),
 ]);
 
