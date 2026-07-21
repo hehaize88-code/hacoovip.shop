@@ -48,6 +48,24 @@ export default async function CategoryPage({ params }) {
           <Link href="/guides/qc-photo-checklist"><T id="categoryDetail.complete" /> <ArrowIcon /></Link>
         </aside>
       </section>
+      <section className="related-categories" aria-labelledby="related-category-title">
+        <div className="section-heading compact-heading">
+          <div>
+            <span className="eyebrow"><T id="home.browseType" /></span>
+            <h2 id="related-category-title"><T id="home.startCategory" /></h2>
+          </div>
+          <Link href="/categories" className="text-link"><T id="home.allCategories" /> <ArrowIcon /></Link>
+        </div>
+        <div className="related-category-links">
+          {categories.filter((item) => item.slug !== category.slug).map((item) => (
+            <Link href={`/categories/${item.slug}`} key={item.slug}>
+              <span>{item.code}</span>
+              <strong><T id={`category.${item.slug}.name`} /></strong>
+              <ArrowIcon size={15} />
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,7 @@
+import Link from "next/link";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
-import { ArrowIcon, ExternalIcon } from "../../components/Icons";
+import { ArrowIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
 import { categories } from "../../lib/data";
 
@@ -22,8 +23,8 @@ export default function CategoriesPage() {
             <h2><T id={`category.${category.slug}.name`} /></h2>
             <p><T id={`category.${category.slug}.description`} /></p>
             <div className="category-actions">
-              <a href={category.href}><T id="categories.openGuide" /> <ArrowIcon size={16} /></a>
-              <a href={category.href} target="_blank" rel="noopener noreferrer" aria-label={`Browse ${category.name} in the main catalog`}><ExternalIcon /></a>
+              <Link href={`/categories/${category.slug}`}><T id="categories.openGuide" /> <ArrowIcon size={16} /></Link>
+              <Link href={`/categories/${category.slug}`} aria-label={`Open the ${category.name} category guide`}><ArrowIcon size={16} /></Link>
             </div>
           </article>
         ))}

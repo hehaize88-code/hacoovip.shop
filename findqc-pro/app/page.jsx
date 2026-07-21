@@ -5,7 +5,7 @@ import SearchBox from "../components/SearchBox";
 import ProductCard from "../components/ProductCard";
 import { ArrowIcon, CheckIcon } from "../components/Icons";
 import { useLanguage } from "../components/LanguageProvider";
-import { categories, MAIN_SITE, products } from "../lib/data";
+import { categories, products } from "../lib/data";
 
 function StackedText({ value }) {
   const lines = value.split("\n");
@@ -63,15 +63,15 @@ export default function HomePage() {
               <span className="eyebrow">{t("home.browseType")}</span>
               <h2>{t("home.startCategory")}</h2>
             </div>
-            <a href={`${MAIN_SITE}/AllProducts/`} className="text-link">{t("home.allCategories")} <ArrowIcon /></a>
+            <Link href="/categories" className="text-link">{t("home.allCategories")} <ArrowIcon /></Link>
           </div>
           <div className="category-strip">
             {categories.slice(0, 6).map((category) => (
-              <a className="category-chip" href={category.href} key={category.slug}>
+              <Link className="category-chip" href={`/categories/${category.slug}`} key={category.slug}>
                 <span>{category.code}</span>
                 <div><strong>{t(`category.${category.slug}.name`)}</strong><small>{t(`category.${category.slug}.short`)}</small></div>
                 <ArrowIcon size={16} />
-              </a>
+              </Link>
             ))}
           </div>
         </div>
