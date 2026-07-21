@@ -1,5 +1,7 @@
 import { articles, categories } from "../lib/data";
 
+export const dynamic = "force-static";
+
 export default function sitemap() {
   const base = "https://findqc.pro";
   const staticRoutes = ["", "/products", "/categories", "/guides", "/guides/qc-photo-checklist", "/guides/how-to-buy", "/articles", "/faq", "/about", "/contact", "/privacy", "/terms"];
