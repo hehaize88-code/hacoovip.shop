@@ -7,6 +7,8 @@ import { ArrowIcon, CheckIcon, ExternalIcon } from "../../../components/Icons";
 import T from "../../../components/LocalizedText";
 import { categoryGuides } from "../../../lib/categoryGuides";
 import { categories, products } from "../../../lib/data";
+import { translate } from "../../../lib/i18n";
+import { BUILD_LANGUAGE, languageUrl } from "../../../lib/routing";
 import { localizedMetadata } from "../../../lib/seo";
 
 export function generateStaticParams() {
@@ -29,9 +31,43 @@ export default async function CategoryPage({ params }) {
   if (!category) notFound();
   const guide = categoryGuides[category.slug];
   const matches = products.filter((product) => product.category === category.slug);
+  const categoryName = translate(BUILD_LANGUAGE, `category.${category.slug}.name`);
+  const productName = (product) => {
+    const key = `product.name.${product.id}`;
+    const translated = translate(BUILD_LANGUAGE, key);
+    return translated === key ? product.name : translated;
+  };
+  const categoryUrl = languageUrl(`/categories/${category.slug}`);
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${categoryUrl}#product-list`,
+    name: `${categoryName}: ${translate(BUILD_LANGUAGE, "categoryDetail.matchingTitle")}`,
+    url: categoryUrl,
+    numberOfItems: matches.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: matches.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: productName(product),
+      url: product.href,
+      image: new URL(product.image, "https://findqc.pro").toString(),
+    })),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: translate(BUILD_LANGUAGE, "common.home"), item: languageUrl("/") },
+      { "@type": "ListItem", position: 2, name: translate(BUILD_LANGUAGE, "nav.categories"), item: languageUrl("/categories") },
+      { "@type": "ListItem", position: 3, name: categoryName, item: categoryUrl },
+    ],
+  };
 
   return (
     <div className="shell inner-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <Breadcrumbs items={[{ labelKey: "nav.categories", href: "/categories" }, { labelKey: `category.${category.slug}.name` }]} />
       <PageHero eyebrow={<>{category.code} / <T id={`category.${category.slug}.short`} /></>} title={<><T id={`category.${category.slug}.name`} /><br /><em><T id="categoryDetail.title2" /></em></>} intro={<T id={`category.${category.slug}.description`} />}>
         <a className="hero-source-link" href={category.href} target="_blank" rel="noopener noreferrer"><T id="categoryDetail.browse" /> <ExternalIcon /></a>

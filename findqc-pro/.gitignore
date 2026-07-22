@@ -4,6 +4,8 @@ node_modules
 .open-next
 .wrangler
 dist
+out
+.multilingual-out
 .DS_Store
 *.log
 findqc-pro-preview.zip

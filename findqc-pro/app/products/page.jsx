@@ -6,6 +6,8 @@ import ProductCard from "../../components/ProductCard";
 import { ArrowIcon, CheckIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
 import { CATALOG_REVIEWED, categories, products } from "../../lib/data";
+import { translate } from "../../lib/i18n";
+import { BUILD_LANGUAGE, languageUrl } from "../../lib/routing";
 import { localizedMetadata } from "../../lib/seo";
 
 export const metadata = localizedMetadata({
@@ -18,9 +20,40 @@ export default function ProductsPage() {
     category,
     items: products.filter((product) => product.category === category.slug),
   }));
+  const productName = (product) => {
+    const key = `product.name.${product.id}`;
+    const translated = translate(BUILD_LANGUAGE, key);
+    return translated === key ? product.name : translated;
+  };
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${languageUrl("/products")}#product-list`,
+    name: `${translate(BUILD_LANGUAGE, "products.title1")} ${translate(BUILD_LANGUAGE, "products.title2")}`,
+    url: languageUrl("/products"),
+    numberOfItems: products.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: productName(product),
+      url: product.href,
+      image: new URL(product.image, "https://findqc.pro").toString(),
+    })),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: translate(BUILD_LANGUAGE, "common.home"), item: languageUrl("/") },
+      { "@type": "ListItem", position: 2, name: translate(BUILD_LANGUAGE, "nav.finds"), item: languageUrl("/products") },
+    ],
+  };
 
   return (
     <div className="shell inner-page products-depth-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <Breadcrumbs items={[{ labelKey: "nav.finds" }]} />
       <PageHero eyebrow={<T id="products.eyebrow" />} title={<><T id="products.title1" /><br /><em><T id="products.title2" /></em></>} intro={<T id="products.intro" />}><SearchBox compact /></PageHero>
 

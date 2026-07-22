@@ -18,9 +18,26 @@ export default function HomePage() {
     question: t(`home.faq${number}Question`),
     answer: t(`home.faq${number}Answer`),
   }));
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://findqc.pro/#organization",
+    name: "FindQC Pro Editorial Desk",
+    alternateName: "FindQC Pro",
+    url: "https://findqc.pro/",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://findqc.pro/findqc-logo.png",
+      width: 128,
+      height: 128,
+    },
+    description: t("footer.description"),
+    email: "hello@findqc.pro",
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
       <section className="home-hero shell">
         <div className="hero-copy">
           <span className="eyebrow"><i /> {t("home.eyebrow")}</span>

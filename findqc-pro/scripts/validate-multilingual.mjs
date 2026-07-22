@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { articles as englishArticles } from "../lib/articles.js";
+import { categories, products } from "../lib/data.js";
 import { getLocalizedArticles } from "../lib/localizedArticles.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -63,6 +64,27 @@ function visibleText(html) {
 
 function expectedLanguage(pathname) {
   return pathname.match(/^\/(pl|es|de|ro)(?=\/|$)/)?.[1] || "en";
+}
+
+function localizedPath(language, pathname) {
+  if (language === "en") return pathname;
+  return `/${language}${pathname === "/" ? "/" : pathname}`;
+}
+
+function structuredData(html, pathname) {
+  const schemas = [];
+  for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      schemas.push(JSON.parse(match[1]));
+    } catch (error) {
+      failures.push(`Invalid JSON-LD on ${pathname}: ${error.message}`);
+    }
+  }
+  return schemas;
+}
+
+function schemaOfType(schemas, type) {
+  return schemas.find((schema) => schema["@type"] === type || schema["@graph"]?.some((item) => item["@type"] === type));
 }
 
 for (const language of languages.filter((candidate) => candidate !== "en")) {
@@ -135,6 +157,49 @@ for (const url of urls) {
   }
 }
 
+for (const language of languages) {
+  const homePath = localizedPath(language, "/");
+  const homeHtml = readFileSync(htmlPath(homePath), "utf8");
+  if (!schemaOfType(structuredData(homeHtml, homePath), "Organization")) failures.push(`Missing Organization schema: ${homePath}`);
+
+  const productsPath = localizedPath(language, "/products");
+  const productsHtml = readFileSync(htmlPath(productsPath), "utf8");
+  const productSchemas = structuredData(productsHtml, productsPath);
+  const productList = schemaOfType(productSchemas, "ItemList");
+  const productBreadcrumbs = schemaOfType(productSchemas, "BreadcrumbList");
+  if (productList?.numberOfItems !== products.length || productList?.itemListElement?.length !== products.length) {
+    failures.push(`Products ItemList must contain ${products.length} items: ${productsPath}`);
+  }
+  if (productBreadcrumbs?.itemListElement?.length !== 2) failures.push(`Products BreadcrumbList must contain 2 levels: ${productsPath}`);
+
+  for (const category of categories) {
+    const categoryPath = localizedPath(language, `/categories/${category.slug}`);
+    const categoryHtml = readFileSync(htmlPath(categoryPath), "utf8");
+    const categorySchemas = structuredData(categoryHtml, categoryPath);
+    const categoryList = schemaOfType(categorySchemas, "ItemList");
+    const categoryBreadcrumbs = schemaOfType(categorySchemas, "BreadcrumbList");
+    const expectedProducts = products.filter((product) => product.category === category.slug).length;
+    if (categoryList?.numberOfItems !== expectedProducts || categoryList?.itemListElement?.length !== expectedProducts) {
+      failures.push(`Category ItemList must contain ${expectedProducts} items: ${categoryPath}`);
+    }
+    if (categoryBreadcrumbs?.itemListElement?.length !== 3) failures.push(`Category BreadcrumbList must contain 3 levels: ${categoryPath}`);
+  }
+
+  const faqPath = localizedPath(language, "/faq");
+  const faqHtml = readFileSync(htmlPath(faqPath), "utf8");
+  const faq = schemaOfType(structuredData(faqHtml, faqPath), "FAQPage");
+  const faqVisibleText = visibleText(faqHtml);
+  if (faq?.inLanguage !== language || faq?.mainEntity?.length !== 17) {
+    failures.push(`FAQPage must contain 17 ${language} questions: ${faqPath}`);
+  } else {
+    for (const entity of faq.mainEntity) {
+      if (!faqVisibleText.includes(entity.name) || !faqVisibleText.includes(entity.acceptedAnswer?.text)) {
+        failures.push(`FAQPage markup is not visible on the page: ${faqPath} / ${entity.name}`);
+      }
+    }
+  }
+}
+
 const sitemapAlternateCount = (sitemap.match(/<xhtml:link /g) || []).length;
 if (urls.length !== 130) failures.push(`Expected 130 sitemap URLs, found ${urls.length}`);
 if (new Set(urls).size !== urls.length) failures.push("Sitemap contains duplicate URLs");
@@ -151,5 +216,8 @@ console.log(JSON.stringify({
   indexableUrls: urls.length,
   localizedArticlePages: articleSlugs.length * (languages.length - 1),
   bidirectionalAlternateLinks: sitemapAlternateCount,
+  structuredDataLanguages: languages.length,
+  productListItems: products.length,
+  categoryLists: categories.length * languages.length,
   status: "passed",
 }, null, 2));

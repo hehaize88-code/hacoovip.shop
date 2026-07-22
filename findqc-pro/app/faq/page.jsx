@@ -3,7 +3,8 @@ import PageHero from "../../components/PageHero";
 import SearchBox from "../../components/SearchBox";
 import { ExternalIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
-import { PAGE_TRANSLATIONS } from "../../lib/pageTranslations";
+import { translate } from "../../lib/i18n";
+import { BUILD_LANGUAGE, languageUrl } from "../../lib/routing";
 import { localizedMetadata } from "../../lib/seo";
 
 export const metadata = localizedMetadata({
@@ -22,12 +23,16 @@ export default function FaqPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${languageUrl("/faq")}#faq`,
+    url: languageUrl("/faq"),
+    name: `${translate(BUILD_LANGUAGE, "faq.title1")} ${translate(BUILD_LANGUAGE, "faq.title2")}`,
+    inLanguage: BUILD_LANGUAGE,
     mainEntity: faqOrder.map((number) => ({
       "@type": "Question",
-      name: PAGE_TRANSLATIONS.en[`faq.items.${number}.question`],
+      name: translate(BUILD_LANGUAGE, `faq.items.${number}.question`),
       acceptedAnswer: {
         "@type": "Answer",
-        text: PAGE_TRANSLATIONS.en[`faq.items.${number}.answer`],
+        text: translate(BUILD_LANGUAGE, `faq.items.${number}.answer`),
       },
     })),
   };
