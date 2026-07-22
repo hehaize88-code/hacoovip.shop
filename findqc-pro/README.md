@@ -6,6 +6,8 @@ Catalog status: 108 reviewed product routes across 9 categories, last reviewed J
 
 Brand clarity: a translated first-screen notice identifies this as an independent research guide and curated catalog, not the official FindQC search tool.
 
+Search status: keyword searches first open the mapped FindQC Pro results page. Browser titles and descriptions follow the query in all five languages before exact product links open the source catalog.
+
 ## Local development
 
 ```bash
@@ -20,16 +22,14 @@ npm ci
 npm run build
 ```
 
-The Vinext build is written to `dist/`. Cloudflare settings should use this
-folder as the project root:
+The multilingual static build is written to `out/`. Cloudflare Pages uses:
 
+- Production branch: `main`
 - Root directory: `findqc-pro`
-- Node.js: `22.13.0` or newer
 - Build command: `npm ci && npm run build`
-- Worker deployment command: `npx wrangler deploy`
+- Build output directory: `out`
+- Deploy command: none
 
-The canonical public domain remains `https://findqc.pro`; connecting that
-domain is intentionally handled separately from this source deployment.
+The canonical public domain remains `https://findqc.pro`. The build preserves the permanent `www.findqc.pro` to `findqc.pro` redirect, including paths and query parameters.
 
-Deployment status: the GitHub-to-Cloudflare production connection was
-re-established on July 22, 2026, and this commit triggers a fresh production build.
+Deployment status: search-result titles and the mapped search flow were prepared for production on July 22, 2026.
