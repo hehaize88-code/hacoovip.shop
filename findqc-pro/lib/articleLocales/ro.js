@@ -1,0 +1,300 @@
+export const roArticleUi = {
+  journalMetadataTitle: "Ghiduri FindQC: căutare, fotografii QC și agenți de cumpărături",
+  journalMetadataDescription: "Ghiduri verificate despre căutarea FindQC, semnalele produselor, evaluarea fotografiilor QC și procesul cu un agent de cumpărături.",
+  journalSchemaName: "Jurnalul de cercetare FindQC Pro",
+  journalCount: "05 ghiduri detaliate",
+  journalNote: "Fiecare articol este redactat integral în limba română, verificat pe pagini actuale deținute de FindQC și legat de sursele oficiale. Imaginile editoriale sunt marcate clar și nu sunt prezentate drept dovezi QC din depozit.",
+  editorialDesk: "Redacția FindQC Pro",
+  factChecked: "Informații verificate",
+  heroCaption: "Imagine editorială folosită pentru a ilustra obiectul inspecției. Nu este prezentată drept fotografie QC dintr-un depozit FindQC.",
+  contents: "În acest articol",
+  researchNotes: "Note de cercetare",
+  officialSources: "Surse oficiale consultate",
+  sourceIntro: "Acest ghid editorial independent a fost verificat la 20 iulie 2026 pe paginile FindQC de mai jos. Funcțiile și politicile se pot schimba; confirmă întotdeauna informațiile curente la sursă.",
+  independentNote: "FindQC Pro este un site independent de descoperire și educație. Nu este FindQC și nu pretinde că operează serviciul acestuia.",
+  continueResearch: "Continuă cercetarea",
+  relatedNotes: "Ghiduri asociate",
+  allArticles: "Toate articolele",
+  readArticle: "Citește articolul",
+  home: "Acasă",
+  journal: "Articole",
+};
+
+export const roArticleSources = {
+  "https://findqc.com/": { label: "Pagina principală FindQC", note: "Descrierile actuale pentru navigare, Trending, Karma, Review Wall și Real Hauls." },
+  "https://findqc.com/terms-of-service": { label: "Termenii și condițiile FindQC", note: "Descrierea oficială a serviciului, a cumpărăturilor prin terți și a limitelor datelor QC." },
+  "https://findqc.com/privacy-policy": { label: "Politica de confidențialitate FindQC", note: "Explicația oficială despre căutare, popularitate, colecții și înregistrările QC provenite de la terți." },
+  "https://academy.findqc.com/2024/12/21/mastering-qc-finder-choosing-the-best-search-method/": { label: "FindQC Academy: alegerea metodei de căutare", note: "Comparația oficială între căutarea prin link, imagine și cuvinte-cheie." },
+  "https://findqc.com/robots": { label: "Botul FindQC", note: "Descrierea oficială a analizării linkurilor, recunoașterii imaginilor și materialelor QC din Discord." },
+};
+
+export const roArticles = {
+  "before-you-buy-qc-guide": {
+    title: "Cum folosești FindQC înainte de cumpărare: listă practică pentru fotografii QC",
+    shortTitle: "Listă practică pentru fotografii QC",
+    description: "Un proces verificat pentru asocierea rezultatului FindQC cu oferta corectă, citirea fotografiilor din depozit și luarea unei decizii fără a transforma imaginile într-o garanție.",
+    excerpt: "Confirmă oferta, parcurge întregul set de imagini, compară măsurătorile și separă dovezile vizibile de ceea ce o fotografie nu poate demonstra.",
+    category: "Ghid FindQC",
+    readTime: "10 min de citit",
+    date: "20 iulie 2026",
+    heroAlt: "O pereche de pantofi gri fotografiată de sus lângă o cutie",
+    keywords: ["FindQC", "ghid FindQC", "fotografii QC", "control în depozit", "agent de cumpărături"],
+    intro: [
+      "O verificare QC utilă nu începe cu mărirea siglei. Mai întâi trebuie să confirmi că înregistrarea aparține produsului pe care intenționezi să-l cumperi. Apoi separi ceea ce se vede de ceea ce doar presupui. FindQC adună linkuri și materiale QC pentru cercetare, dar nu decide în locul cumpărătorului și nu înlocuiește oferta comercială actuală.",
+      "Folosește procesul de două ori: înainte de comandă, pentru a elimina candidații slabi, și după ce agentul publică fotografiile unității ajunse în depozit. Al doilea set cântărește mai mult deoarece este legat direct de comanda ta.",
+    ],
+    sections: [
+      { id: "role", title: "1. Înțelege corect rolul FindQC", blocks: [
+        { type: "p", text: "Termenii descriu FindQC drept o platformă de descoperire și agregare a conținutului QC. Serviciile pot include căutarea prin link și imagine, QC obișnuit sau premium, conversia linkurilor, asistență pentru mărimi și un bot Discord. FindQC organizează cercetarea; nu vinde produsul." },
+        { type: "p", text: "Cumpărarea, plata, transportul și retururile sunt gestionate de vânzători și agenți terți. De aceea prețul, varianta, transportul intern și condițiile de retur trebuie reconfirmate pe pagina unde are loc tranzacția." },
+        { type: "callout", title: "Modelul corect", text: "FindQC este masa de cercetare, oferta-sursă stabilește condițiile comerciale, iar fotografiile depozitului tău arată unitatea primită efectiv." },
+      ] },
+      { id: "listing", title: "2. Confirmă oferta înainte de a judeca fotografiile", blocks: [
+        { type: "p", text: "Dacă ai un link exact Taobao, Weidian sau 1688, începe cu el. FindQC Academy consideră căutarea prin link cea mai precisă pentru o țintă clară, dar avertizează că un link șters, înlocuit sau nefuncțional poate duce la un rezultat vechi ori diferit." },
+        { type: "list", title: "Cinci verificări de identitate", items: ["Platforma și linkul-sursă corespund candidatului.", "Vânzătorul sau magazinul nu s-au schimbat.", "Culoarea, modelul și varianta sunt cele comandate.", "Înregistrarea nu este marcată drept eliminată ori indisponibilă.", "Prețul, transportul intern și returul sunt confirmate pe pagina de cumpărare."] },
+        { type: "p", text: "Mai mulți vânzători pot folosi aceeași fotografie promoțională. O copertă identică sau un titlu asemănător nu demonstrează aceeași fabrică, același lot ori aceeași variantă. Stabilește identitatea înaintea calității vizibile." },
+      ] },
+      { id: "whole-item", title: "3. Citește tot setul, de la imaginea generală la detaliu", blocks: [
+        { type: "p", text: "Deschide toate imaginile înainte de verdict. Începe cu vederea din față, spate, lateral și de sus, când există. Verifică silueta, simetria, alinierea panourilor, consistența culorii și prezența tuturor pieselor. O singură fotografie rareori oferă context suficient." },
+        { type: "p", text: "Apoi examinează îmbinările cusăturilor, tivurile, gulerele, manșetele, fermoarele, capsele, broderia, marginile imprimeului și accesoriile metalice. O reflexie nu este o zgârietură, iar o cută de transport nu dovedește o croială răsucită. Caută același indiciu din mai multe unghiuri." },
+        { type: "figure", image: "/products/jacket.webp", alt: "Jachetă închisă la culoare folosită ca exemplu editorial", caption: "Exemplu editorial: evaluează forma înainte de a mări fermoarele, cusăturile și broderia. Nu este o înregistrare QC FindQC." },
+        { type: "p", text: "Încheie cu etichetele, accesoriile și ambalajul. Mărimea fotografiată trebuie să corespundă variantei comandate, iar piesele detașabile trebuie să fie prezente. Ambalajul nu dovedește calitatea, dar poate arăta lipsuri sau risc de deteriorare." },
+      ] },
+      { id: "measurements", title: "4. Tratează măsurătorile ca dovezi", blocks: [
+        { type: "p", text: "Unghiul camerei denaturează dimensiunile. Dacă apare o ruletă, compară ambele capete cu tabelul vânzătorului și cu un obiect similar pe care îl deții. Pentru haine contează lățimea pieptului, lungimea, umerii, mânecile, talia sau interiorul piciorului; la încălțăminte, lungimea branțului poate fi mai utilă decât numărul tipărit." },
+        { type: "p", text: "Citește și metoda. O ruletă curbată, un material pliat sau alt punct de pornire poate schimba rezultatul cu centimetri. Lățimea măsurată plat nu este circumferința corpului, iar talpa exterioară nu este branțul utilizabil." },
+        { type: "callout", title: "Regulă practică", text: "Compară lucruri măsurate la fel: haină întinsă cu haină întinsă, branț cu branț și aceleași puncte de început și sfârșit." },
+      ] },
+      { id: "signals", title: "5. Folosește semnalele comunității ca context", blocks: [
+        { type: "p", text: "FindQC separă Trending, Karma, Review Wall și Real Hauls. Aceste zone ajută la descoperirea produselor și întrebărilor, dar descriu fenomene diferite: atenție, preferințe comunitare, observații ale cumpărătorilor și exemple de colete expediate." },
+        { type: "p", text: "Popularitatea nu este durabilitate. O recenzie poate privi altă mărime, culoare, dată sau serie; un haul arată doar că un colet a parcurs o rută. Verifică data, linkul și numărul de exemple înainte de a acorda greutate." },
+        { type: "p", text: "Încrederea crește când indicii independenți coincid: oferta este corectă, mai multe seturi QC arată o execuție constantă, măsurile se potrivesc și recenziile recente repetă aceeași observație. Riscul nu devine niciodată zero." },
+      ] },
+      { id: "limits", title: "6. Recunoaște ce nu pot stabili fotografiile QC", blocks: [
+        { type: "p", text: "FindQC precizează că fotografiile, greutatea, dimensiunile și defectele provin în general de la agenți terți. Platforma organizează datele, dar nu le garantează exactitatea, completitudinea sau autenticitatea și nu oferă certificare de autenticitate." },
+        { type: "p", text: "O imagine poate arăta o pată, o piesă lipsă, un imprimeu strâmb sau o culoare greșită. De regulă nu dovedește compoziția fibrelor, rezistența în timp, sănătatea bateriei, impermeabilitatea, confortul, mirosul ori construcția internă. Ce nu apare în cadru rămâne necunoscut." },
+        { type: "p", text: "Înregistrările publice te ajută să alegi ce ofertă merită cercetată. Fotografiile propriei unități susțin acceptarea, solicitarea de dovezi, schimbul sau returul în limitele regulilor actuale." },
+      ] },
+      { id: "workflow", title: "7. Decizie în zece minute", blocks: [
+        { type: "list", title: "Verifică în această ordine", items: ["Minutul 1: salvează linkul exact și varianta.", "Minutele 2–3: confirmă vânzătorul, disponibilitatea și condițiile.", "Minutele 4–5: analizează forma, culoarea, simetria și piesele.", "Minutele 6–7: mărește detaliile importante pentru categorie.", "Minutul 8: compară măsurile cu obiectul de referință.", "Minutul 9: caută probleme repetate în recenzii recente.", "Minutul 10: acceptă, cere dovezi sau respinge."] },
+        { type: "p", text: "Când lipsește informația, numește cadrul necesar: prim-plan al urmei, fotografie a etichetei, măsurarea branțului sau imaginea tuturor accesoriilor. O cerere precisă este mai ușor de executat și evaluat decât „mai multe poze”." },
+        { type: "p", text: "Scopul nu este eliminarea oricărui risc, ci cea mai bună decizie disponibilă cât timp agentul încă poate acționa." },
+      ] },
+    ],
+    cta: { eyebrow: "Continuă verificarea", title: "Folosește lista în șapte etape pentru fotografiile din depozit", label: "Deschide lista QC" },
+  },
+
+  "findqc-search-methods": {
+    title: "Metode de căutare FindQC: link, imagine sau cuvinte-cheie",
+    shortTitle: "Link, imagine sau cuvinte-cheie",
+    description: "Când folosești fiecare metodă FindQC, cum poate eșua și ce verifici înainte să consideri că rezultatul aparține produsului tău.",
+    excerpt: "Păstrează cel mai puternic indiciu pe care îl ai și validează rezultatul în loc să accepți prima asemănare vizuală.",
+    category: "Strategie de căutare",
+    readTime: "9 min de citit",
+    date: "20 iulie 2026",
+    heroAlt: "Tricou alb pliat folosit ca exemplu editorial pentru căutare",
+    keywords: ["căutare FindQC", "căutare prin link", "căutare prin imagine", "cuvinte-cheie FindQC", "fotografii QC"],
+    intro: ["Un link complet, o captură decupată și un nume vag conțin niveluri diferite de informație. Nu trebuie introduse în același mod. FindQC oferă mai multe căi, iar Academy compară căutarea prin link, imagine și cuvinte-cheie.", "Cea mai bună metodă păstrează identificatorul cel mai puternic pe care îl ai. După găsirea candidaților, aplică aceeași verificare de identitate pentru a nu transforma asemănarea într-o certitudine falsă."],
+    sections: [
+      { id: "decision", title: "1. Alege metoda după indiciul inițial", blocks: [
+        { type: "p", text: "URL-ul original Taobao, Weidian sau 1688 conține un identificator direct și trebuie încercat primul. O fotografie curată poate propune articole similare vizual. Un nume, model sau categorie permite explorare mai largă prin termeni." },
+        { type: "table", headers: ["Indiciu disponibil", "Prima metodă", "Riscul principal"], rows: [["URL valid al produsului", "Link", "Oferta poate fi ștearsă sau înlocuită"], ["Fotografie clară și distinctivă", "Imagine", "Aspectul similar poate aparține altui vânzător"], ["Nume, model sau categorie", "Cuvinte-cheie", "Limba și denumirea creează zgomot"], ["Captură cu text parțial", "Imagine, apoi termeni", "Decuparea și suprapunerile reduc precizia"]] },
+        { type: "p", text: "Nu abandona un link exact pentru o denumire generală. Fiecare pas departe de un identificator unic mărește lista pe care trebuie să o filtrezi manual." },
+      ] },
+      { id: "link-search", title: "2. Linkul: drumul cel mai scurt spre un candidat", blocks: [
+        { type: "p", text: "FindQC Academy descrie metoda drept precisă și rapidă când ținta este clară. Lipește adresa completă a produsului, nu pagina magazinului, adresa unei imagini ori un link social scurtat. Identificatorul articolului trebuie păstrat." },
+        { type: "p", text: "După rezultat, compară platforma, magazinul, titlul, coperta și varianta. O înregistrare marcată drept eliminată poate fi o arhivă utilă de imagini, dar nu confirmă disponibilitatea actuală." },
+        { type: "list", title: "Folosește linkul când", items: ["Un vânzător, tabel sau mesaj oferă URL-ul marketplace-ului.", "Cauți material QC pentru o ofertă exactă.", "Vrei să revii la același candidat fără să refaci interogarea."] },
+        { type: "p", text: "Lipsa rezultatului nu dovedește lipsa înregistrărilor. Păstrează adresa, extrage titlul și imaginea principală, apoi încearcă următoarea metodă." },
+      ] },
+      { id: "image-search", title: "3. Imaginea: bună la recunoaștere, slabă la identitate", blocks: [
+        { type: "p", text: "Căutarea vizuală ajută când numele este necunoscut, într-o altă limbă sau ai doar o captură. Decupează conversații, prețuri, filigrane și obiecte străine, dar păstrează silueta, accesoriile, imprimeul și culorile distinctive." },
+        { type: "figure", image: "/products/headwear.webp", alt: "Șapcă neagră brodată pe fundal deschis", caption: "O imagine curată și centrată oferă mai multe trăsături utile decât o fotografie aglomerată. Exemplu editorial." },
+        { type: "p", text: "Academy avertizează că unghiul și calitatea influențează precizia. Încearcă alt cadru dacă rezultatele sunt prea largi. Vânzători diferiți pot folosi aceeași fotografie de catalog, deci o miniatură identică este doar un indiciu." },
+        { type: "p", text: "Deschide candidații și compară linkul-sursă, magazinul, variantele, măsurile și seturile QC. Cea mai apropiată imagine nu este automat oferta originală sau același lot." },
+      ] },
+      { id: "keyword-search", title: "4. Cuvintele-cheie: descoperire largă cu filtrare", blocks: [
+        { type: "p", text: "Termenii sunt potriviți pentru explorarea unei categorii. Începe cu elemente concrete: tip, material vizibil, culoare, model sau detaliu. Elimină adjectivele promoționale generale." },
+        { type: "p", text: "Testează variante în engleză și textul original copiat din ofertă. Modifică un singur element odată. O expresie prea lungă poate exclude o potrivire bună din cauza unei mici diferențe de formulare." },
+        { type: "p", text: "Rezultatele sunt candidați, nu un clasament al calității. Deschide mai multe opțiuni, compară sursele și salvează URL-ul exact al celor verificate." },
+      ] },
+      { id: "verify", title: "5. Verifică fiecare rezultat cu patru întrebări", blocks: [
+        { type: "list", title: "Înainte să ai încredere", items: ["Platforma, magazinul și URL-ul corespund ofertei?", "Varianta, culoarea și modelul sunt corecte?", "Fotografiile QC aparțin ofertei sau doar unui articol asemănător?", "Disponibilitatea și condițiile comerciale sunt încă actuale?"] },
+        { type: "p", text: "Controlul rămâne necesar și pentru o copertă perfectă. Numele și fotografiile de catalog se copiază ușor; mai mulți identificatori concordanți sunt mai siguri decât o asemănare." },
+        { type: "callout", title: "Principiu de căutare", text: "FindQC reduce spațiul de cercetare, dar nu înlocuiește confirmarea identității produsului." },
+      ] },
+      { id: "recovery", title: "6. Folosește o scară de recuperare", blocks: [
+        { type: "p", text: "Începe cu URL-ul complet, apoi elimină doar parametrii de urmărire. Folosește imaginea principală curată și, dacă este generică, un detaliu decupat. La final combină numele, modelul, categoria și o trăsătură vizibilă." },
+        { type: "p", text: "Păstrează indiciile originale. Linkul și captura datată vor fi necesare pentru revenirea la pagina tranzacției și confirmarea variantei." },
+        { type: "p", text: "Dacă nicio cale nu produce un rezultat verificabil, notează incertitudinea. Nu lega două produse numai fiindcă au un stil apropiat." },
+      ] },
+      { id: "sequence", title: "7. O secvență care păstrează dovezile", blocks: [
+        { type: "p", text: "Salvează URL-ul, varianta și captura datată. Caută prin link, apoi imagine și la final prin cuvinte. Pentru fiecare candidat notează ce se potrivește și ce lipsește. Elimină rezultatele cu identitate greșită chiar dacă au fotografii bune." },
+        { type: "p", text: "După un candidat solid, treci separat la evaluarea fotografiilor: ansamblu, detalii, măsuri și limite. Separarea etapelor împiedică o imagine atractivă să devină falsă dovadă de identitate." },
+      ] },
+    ],
+    cta: { eyebrow: "Pasul următor", title: "Transformă rezultatul într-o verificare QC ordonată", label: "Deschide lista pentru fotografii QC" },
+  },
+
+  "findqc-product-signals": {
+    title: "Cum citești Trending, Karma, recenziile și haul-urile FindQC fără exces de încredere",
+    shortTitle: "Cum interpretezi semnalele FindQC",
+    description: "Ce poate spune fiecare semnal comunitar FindQC, ce nu demonstrează și cum îl combini cu oferta și fotografiile QC.",
+    excerpt: "Atenția, preferințele, observațiile și coletele expediate răspund unor întrebări diferite; niciun semnal nu înlocuiește verificarea.",
+    category: "Interpretarea semnalelor",
+    readTime: "9 min de citit",
+    date: "20 iulie 2026",
+    heroAlt: "Accesoriu de modă folosit ca exemplu editorial pentru un semnal de produs",
+    keywords: ["FindQC Trending", "FindQC Karma", "recenzii FindQC", "Real Hauls", "semnale de produs"],
+    intro: ["Semnalele comunității sunt utile ca context. Devin riscante când sunt transformate într-un certificat de calitate pe care nu l-au promis. FindQC separă Trending, Karma, Review Wall și Real Hauls; mai întâi trebuie stabilit ce întrebare poate răspunde fiecare.", "Scopul nu este ignorarea experiențelor, ci păstrarea datei, variantei, lotului și mărimii eșantionului. Semnalul generează întrebări; oferta și imaginile propriei unități rămân dovezile principale."],
+    sections: [
+      { id: "map", title: "1. Leagă semnalul de întrebarea potrivită", blocks: [
+        { type: "table", headers: ["Semnal", "Întrebare utilă", "Nu demonstrează"], rows: [["Trending", "Ce atrage atenția acum?", "Calitate sau durabilitate"], ["Karma", "Ce preferă comunitatea?", "Specificații verificate"], ["Review Wall", "Ce a observat un cumpărător?", "Același rezultat pentru altă variantă"], ["Real Hauls", "Ce a apărut într-un colet trimis?", "Cost sau rezultat repetabil"]] },
+        { type: "p", text: "Zonele ajută la descoperire și scot la iveală probleme, termeni sau comparații de cercetat. Ele nu transformă observațiile istorice în garanții." },
+        { type: "p", text: "Notează data, linkul, varianta și numărul de exemple vizibile. Cu cât contextul este mai incomplet, cu atât semnalul trebuie să cântărească mai puțin." },
+      ] },
+      { id: "trending", title: "2. Trending măsoară atenția, nu rezistența", blocks: [
+        { type: "p", text: "Un produs poate deveni popular fiindcă este nou, ieftin, sezonier, controversat sau ușor de distribuit. Vizualizările nu arată rezistența cusăturii, consistența mărimii ori stabilitatea lotului." },
+        { type: "p", text: "Trending este util pentru candidați recenți. După descoperire, deschide oferta-sursă și analizează seturile QC disponibile." },
+        { type: "list", title: "Înainte să urmezi tendința", items: ["Oferta este activă și aparține aceluiași vânzător?", "Există mai multe seturi QC recente?", "Recenziile privesc varianta dorită?", "Atenția vine din dovezi, preț sau doar noutate?"] },
+      ] },
+      { id: "karma", title: "3. Karma este un filtru comunitar, nu o specificație", blocks: [
+        { type: "p", text: "Karma poate evidenția produse preferate repetat. Preferința nu oferă singură măsuri, compoziție, toleranțe de fabricație sau condiții de retur." },
+        { type: "p", text: "Compară data și linkul cu oferta curentă. Un magazin poate schimba variantele sau furnizorul. Folosește Karma pentru prioritizarea cercetării, nu pentru aprobare automată." },
+        { type: "figure", image: "/products/accessories.webp", alt: "Accesoriu folosit ca exemplu editorial", caption: "Popularitatea descoperă un candidat; oferta și materialul QC stabilesc ce afirmații sunt justificate." },
+      ] },
+      { id: "reviews", title: "4. Citește observațiile, nu doar scorurile", blocks: [
+        { type: "p", text: "O recenzie este valoroasă când descrie ceva verificabil: măsură, culoare, piesă lipsă, aliniere sau experiența unei variante. Un simplu „perfect” fără dată, link și imagine oferă puține informații transferabile." },
+        { type: "p", text: "Separă observația de interpretare. „Ruleta arată 68 cm” poate fi repetat; „mărime normală” depinde de corpul și așteptările autorului. Caută tipare independente." },
+        { type: "list", title: "Acordă greutate mai mare când recenzia", items: ["Identifică oferta, mărimea, culoarea și data.", "Include fotografii pentru observație.", "Explică așteptarea și rezultatul.", "Coincide cu alte înregistrări recente."] },
+        { type: "p", text: "Chiar și o recenzie bună descrie o singură unitate. Folosește-o ca listă de întrebări pentru a ta, nu ca promisiune." },
+      ] },
+      { id: "hauls", title: "5. Un haul arată un traseu încheiat, nu un rezultat repetabil", blocks: [
+        { type: "p", text: "Real Hauls poate arăta ce articole au fost expediate împreună. Nu fixează costul pentru altă țară, dată, greutate volumetrică, rută sau declarație vamală." },
+        { type: "p", text: "Nici nu recomandă automat fiecare articol. Verifică observațiile, fotografiile de depozit și linkurile active. Un colet atractiv poate oferi puține detalii despre fiecare produs." },
+        { type: "p", text: "Folosește haul-urile ca context pentru grupare și întrebări logistice pe care le confirmi ulterior cu agentul." },
+      ] },
+      { id: "triangulate", title: "6. Combină semnalul, oferta și dovezile QC", blocks: [
+        { type: "p", text: "Semnalul comunității propune un candidat. Oferta confirmă identitatea, varianta și condițiile comerciale. QC-ul istoric arată exemple, iar fotografiile depozitului arată unitatea ta. Fiecare strat răspunde altui tip de întrebare." },
+        { type: "callout", title: "Regulă de pondere", text: "Cu cât o dovadă este mai aproape de unitatea, varianta și data cumpărării tale, cu atât trebuie să conteze mai mult." },
+        { type: "p", text: "La contradicții, popularitatea nu corectează o măsură greșită, iar o fotografie veche impecabilă nu șterge un defect vizibil acum." },
+      ] },
+      { id: "scorecard", title: "7. Creează o fișă scurtă de dovezi", blocks: [
+        { type: "list", title: "Cinci rânduri sunt suficiente", items: ["Identitate: platformă, magazin, URL și variantă.", "Actualitate: datele ofertei și semnalelor.", "Tipare: observații repetate în recenzii și QC.", "Unitatea proprie: măsuri, defecte și accesorii.", "Necunoscute: imagini, teste sau reguli lipsă."] },
+        { type: "p", text: "Marchează fiecare rând drept confirmat, incert sau necunoscut și notează dovada etichetei." },
+        { type: "p", text: "Semnalele comunitare slabe pot fi acceptabile când identitatea și imaginile proprii sunt solide. Invers, popularitatea nu repară o ofertă incertă." },
+        { type: "p", text: "Păstrează fișa lângă link și capturi pentru a compara comenzi viitoare pe baza faptelor." },
+      ] },
+    ],
+    cta: { eyebrow: "Aplică acest context", title: "Verifică ce pot demonstra în mod real fotografiile QC", label: "Citește limitele fotografiilor QC" },
+  },
+
+  "what-qc-photos-can-prove": {
+    title: "Ce pot — și ce nu pot — spune fotografiile QC FindQC înainte de expediere",
+    shortTitle: "Limitele reale ale fotografiilor QC",
+    description: "Separă defectele vizibile, măsurătorile și piesele verificabile de caracteristicile pe care o fotografie din depozit nu le poate demonstra.",
+    excerpt: "O imagine răspunde întrebărilor vizuale concrete, dar nu certifică autenticitatea, materialul, confortul sau durabilitatea viitoare.",
+    category: "Bazele QC",
+    readTime: "9 min de citit",
+    date: "20 iulie 2026",
+    heroAlt: "Articol vestimentar fotografiat ca exemplu editorial pentru control QC",
+    keywords: ["fotografii QC FindQC", "control depozit", "limite fotografii QC", "măsurători QC", "verificare înainte de expediere"],
+    intro: ["Fotografiile din depozit sunt valoroase deoarece transformă unele întrebări abstracte în observații vizibile. Tot ele pot crea falsă certitudine dacă li se cere să demonstreze caracteristici aflate în afara cadrului. O evaluare bună începe cu o întrebare la care imaginea chiar poate răspunde.", "FindQC precizează că fotografiile, greutatea, dimensiunile și defectele provin în mare parte de la agenți terți, fără garanție privind exactitatea, completitudinea sau autenticitatea. Limita nu face înregistrarea inutilă, ci îi definește domeniul."],
+    sections: [
+      { id: "source", title: "1. Înțelege originea dovezilor", blocks: [
+        { type: "p", text: "FindQC agregă și organizează materiale de la terți. Platforma de cercetare nu face neapărat fotografiile, nu cumpără produsul și nu controlează tranzacția. Alt agent, alt moment sau altă variantă pot produce un set diferit." },
+        { type: "p", text: "O înregistrare publică poate reprezenta o unitate anterioară. Fotografiile publicate în contul tău de agent aparțin comenzii curente și trebuie să aibă pondere mai mare, după verificarea numărului și variantei." },
+        { type: "callout", title: "Ierarhia dovezilor", text: "Înregistrările publice cercetează oferta; fotografiile propriului depozit susțin decizia pentru unitatea concretă." },
+      ] },
+      { id: "visible", title: "2. Ce poate arăta de obicei o fotografie clară", blocks: [
+        { type: "p", text: "Cadrele generale pot arăta culoarea greșită, o piesă lipsă, asimetrie evidentă, deformare, deteriorare sau diferență față de varianta comandată. Prim-planurile pot documenta cusături, margini de imprimeu, zgârieturi, pete, accesorii metalice și etichete." },
+        { type: "p", text: "Indiciul este mai puternic dacă apare din două unghiuri și lângă o scară. O urmă prezentă doar într-o imagine întunecată poate fi praf, reflexie sau compresie. Cere un cadru suplimentar." },
+        { type: "figure", image: "/products/shoes-60.jpg", alt: "Pantofi gri folosiți ca exemplu editorial", caption: "Vederea completă ajută la verificarea perechii, formei și culorii; prim-planurile răspund întrebărilor despre îmbinări și suprafețe." },
+        { type: "p", text: "Poți verifica și prezența șireturilor, curelelor, pieselor și ambalajului promise, comparând cu lista exactă a ofertei." },
+      ] },
+      { id: "measurements", title: "3. Măsurile răspund întrebărilor despre potrivire", blocks: [
+        { type: "p", text: "O ruletă vizibilă transformă impresia de mărime într-un număr. Pentru haine verifică lățimea pieptului, lungimea, umerii, mâneca, talia sau interiorul piciorului; pentru pantofi branțul, iar pentru genți cele trei dimensiuni exterioare." },
+        { type: "p", text: "Metoda contează la fel de mult ca cifra. Ruleta trebuie să înceapă de la zero, să nu se curbeze peste o suprafață groasă și să folosească aceleași puncte ca obiectul de referință. Lățimea la plat nu este circumferința corpului." },
+        { type: "p", text: "O mică toleranță de poziționare este normală, dar o fotografie neclară cu un capăt ascuns nu rezolvă întrebarea." },
+      ] },
+      { id: "cannot-prove", title: "4. Ce nu poate demonstra de regulă fotografia", blocks: [
+        { type: "list", title: "Nu deduce din imagine", items: ["Compoziția, gradul sau siguranța chimică a materialului.", "Autenticitatea sau certificarea mărcii.", "Durabilitatea după utilizare ori spălări.", "Confortul, mirosul, senzația sau căderea pe corp.", "Sănătatea bateriei, funcția internă ori impermeabilitatea reală.", "Defectele din afara cadrului sau sub straturi închise."] },
+        { type: "p", text: "O suprafață netedă poate fi rigidă, un dispozitiv care pornește poate avea autonomie slabă, iar o cusătură exterioară corectă nu arată întărirea internă. Sunt necesare specificații, teste, reguli de retur sau experiență de utilizare." },
+        { type: "p", text: "Termenii FindQC spun și că materialul QC poate conține erori și nu reprezintă certificare de autenticitate. O fotografie agregată nu este un raport de expertiză." },
+      ] },
+      { id: "photo-problems", title: "5. Separă defectul produsului de problema fotografiei", blocks: [
+        { type: "p", text: "Lumina schimbă nuanța, obiectivul larg deformează marginile, o haină pliată pare asimetrică, iar folia produce reflexii. Verifică dacă presupusul defect rămâne vizibil după schimbarea poziției și a luminii." },
+        { type: "p", text: "În schimb, nu respinge drept „cameră slabă” o urmă clară care apare în mai multe cadre. Descrie poziția față de cusătură, etichetă sau riglă." },
+        { type: "figure", image: "/products/tshirt.webp", alt: "Tricou folosit pentru a explica pliurile și lumina", caption: "Pliurile și umbrele schimbă forma aparentă. Cere așezare plată când croiala este decisivă." },
+      ] },
+      { id: "request", title: "6. Cere dovezi suplimentare cu un scop precis", blocks: [
+        { type: "p", text: "O cerere bună indică locul, unghiul și motivul. „Mai multe poze” poate produce încă un cadru general inutil. Mai bine: „prim-plan al marginii stângi a imprimeului fără folie” sau „branț cu ambele capete ale ruletei vizibile”." },
+        { type: "list", title: "Cereri care răspund unei întrebări", items: ["Eticheta mărimii lângă numărul comenzii.", "Două unghiuri pentru o posibilă urmă.", "Măsurare plată cu început și sfârșit vizibile.", "Toate accesoriile scoase din ambalaj.", "Test funcțional concret, dacă agentul îl oferă."] },
+        { type: "p", text: "Verifică dinainte costul, timpul și termenul de retur. O dovadă primită după închiderea posibilității de acțiune are valoare practică redusă." },
+      ] },
+      { id: "decision", title: "7. Folosește trei stări de decizie", blocks: [
+        { type: "p", text: "Acceptarea înseamnă că identitatea corespunde și dovezile vizibile nu depășesc toleranța ta. Nu garantează toate proprietățile." },
+        { type: "p", text: "Cererea de dovezi înseamnă că o incertitudine vizuală poate fi clarificată prin măsură, unghi sau test disponibil. Este un pas activ." },
+        { type: "p", text: "Respingerea sau schimbul înseamnă o diferență relevantă confirmată, în limitele regulilor agentului și vânzătorului. Păstrează capturile și indică exact punctul." },
+        { type: "p", text: "Cele trei stări evită atât acceptarea automată a unor imagini frumoase, cât și respingerea din cauza unei umbre ambigue." },
+      ] },
+    ],
+    cta: { eyebrow: "Aplică în practică", title: "Urmează procesul complet înainte de aprobarea expedierii", label: "Deschide ghidul de cumpărare" },
+  },
+
+  "findqc-shopping-agent-workflow": {
+    title: "FindQC și agentul de cumpărături: de la link la decizia din depozit",
+    shortTitle: "De la FindQC la decizia din depozit",
+    description: "Un proces clar pentru cercetare, transmiterea variantei exacte, verificarea propriei unități și separarea aprobării produsului de planificarea coletului.",
+    excerpt: "Păstrează separate cercetarea, tranzacția și dovezile din depozit pentru a ști cine răspunde de fiecare etapă.",
+    category: "Proces cu agentul",
+    readTime: "10 min de citit",
+    date: "20 iulie 2026",
+    heroAlt: "Jachetă folosită ca exemplu editorial pentru o comandă prin agent",
+    keywords: ["FindQC agent de cumpărături", "cumpărături cu FindQC", "fotografii depozit", "link Taobao agent", "proces QC"],
+    intro: ["FindQC și agentul de cumpărături intervin în momente diferite. FindQC ajută la descoperirea și organizarea înregistrărilor; vânzătorul oferă produsul; agentul îl poate cumpăra, primi, fotografia, depozita și expedia după propriile reguli. Confuzia rolurilor face dificilă verificarea prețului sau rezolvarea problemei.", "Procesul mai sigur păstrează o urmă de la primul link până la decizia din depozit. Astfel compari varianta comandată cu cea primită, dai greutatea cea mai mare fotografiilor propriei unități și clarifici îndoielile înainte de transportul internațional."],
+    sections: [
+      { id: "separate", title: "1. Separă cercetarea de tranzacție", blocks: [
+        { type: "p", text: "Termenii FindQC precizează că platforma nu furnizează servicii de cumpărare sau redirecționare. Plățile, transportul și retururile sunt gestionate de terți, iar linkurile pot conduce către agenți." },
+        { type: "p", text: "Confirmă fiecare sumă sau regulă la partea responsabilă. Prețul curent aparține ofertei; taxele, fotografiile suplimentare, depozitarea și rutele aparțin agentului; taxele vamale și restricțiile depind și de destinație." },
+        { type: "table", headers: ["Etapă", "Sursa principală", "Ce confirmi"], rows: [["Cercetare", "FindQC și oferta", "Identitate, înregistrări, întrebări"], ["Cumpărare", "Vânzător și agent", "Variantă, preț, retur"], ["Depozit", "Contul agentului", "Unitate, măsuri, defecte vizibile"], ["Expediere", "Agent și transportator", "Greutate, rută, asigurare, restricții"]] },
+      ] },
+      { id: "candidate", title: "2. Creează fișa candidatului", blocks: [
+        { type: "p", text: "Înainte de agent, salvează URL-ul complet, magazinul, o captură datată, culoarea, mărimea, modelul și piesele incluse. Păstrează tabelul de măsuri și condițiile care se pot schimba." },
+        { type: "p", text: "Adaugă riscurile categoriei. La pantofi: branț, simetrie și lipire; la jachetă: măsuri, fermoar și panouri; la electronice: model, mufă și test funcțional disponibil." },
+        { type: "list", title: "Fișa minimă", items: ["Link și platformă-sursă.", "Magazin sau vânzător vizibil.", "Varianta exactă și cantitatea.", "Măsuri ori accesorii esențiale.", "Data și condițiile importante."] },
+      ] },
+      { id: "research", title: "3. Nu confunda istoricul cu stocul", blocks: [
+        { type: "p", text: "Caută linkul în FindQC și confirmă potrivirea. Înregistrările vechi pot arăta unghiuri, măsuri și probleme repetate, dar nu demonstrează stocul de azi sau același lot." },
+        { type: "p", text: "Dacă produsul este marcat drept eliminat, tratează fotografiile ca arhivă. Disponibilitatea se confirmă în oferta curentă sau la agent. O imagine păstrată nu este o confirmare comercială." },
+        { type: "figure", image: "/products/jacket.webp", alt: "Jachetă închisă la culoare folosită ca exemplu editorial", caption: "Înregistrările istorice sugerează întrebări QC; oferta activă confirmă ce poate fi cumpărat acum." },
+      ] },
+      { id: "handoff", title: "4. Transmite agentului sursa și varianta exacte", blocks: [
+        { type: "p", text: "Lipește linkul original și selectează atent varianta. În observații notează doar date verificabile: culoare, mărime, model și accesoriu. Evită „cel din fotografie” când pagina conține opțiuni multiple." },
+        { type: "p", text: "Înainte de plată confirmă prețul, transportul intern, cursul agentului, eventualele comisioane și politica de retur. O sumă istorică din FindQC nu este o ofertă actuală." },
+        { type: "callout", title: "Transmitere curată", text: "Același link și aceeași denumire a variantei trebuie să apară în fișa ta, comanda agentului și verificarea din depozit." },
+      ] },
+      { id: "warehouse", title: "5. Acordă cea mai mare pondere fotografiilor propriei unități", blocks: [
+        { type: "p", text: "După sosire, compară numărul comenzii, varianta, culoarea și cantitatea. Apoi verifică ansamblul, detaliile și măsurile după întrebările pregătite. O galerie publică veche nu înlocuiește imaginile unității tale." },
+        { type: "p", text: "Dacă agentul limitează fotografiile gratuite sau taxează servicii suplimentare, consultă regulile curente din cont. Prioritizează cadrele care pot schimba decizia." },
+        { type: "list", title: "Ordinea controlului", items: ["Comanda și varianta.", "Forma generală, culoarea și cantitatea.", "Detalii de execuție relevante.", "Măsuri comparabile cu reperul.", "Accesorii și deteriorări vizibile ale ambalajului."] },
+      ] },
+      { id: "uncertainty", title: "6. Transformă incertitudinea într-o cerere precisă", blocks: [
+        { type: "p", text: "Indică locul și scopul: „marginea dreaptă a imprimeului fără folie” sau „branț măsurat cap la cap”. O întrebare precisă produce un rezultat comparabil cu un criteriu." },
+        { type: "p", text: "Verifică taxa, durata și termenul de retur înainte de serviciul suplimentar. Un răspuns primit după închiderea ferestrei de retur poate fi inutil practic." },
+        { type: "p", text: "Dacă serviciul nu poate demonstra o caracteristică precum durabilitatea viitoare, noteaz-o drept risc rezidual în loc să ceri o fotografie nepotrivită." },
+      ] },
+      { id: "parcel", title: "7. Aprobă articolul înainte de optimizarea coletului", blocks: [
+        { type: "p", text: "Mai întâi acceptă, schimbă sau returnează unitatea conform regulilor. Abia apoi compară ambalarea, eliminarea cutiilor, întărirea, greutatea reală și volumetrică, rutele, asigurarea și restricțiile." },
+        { type: "p", text: "Un haul istoric oferă context, nu un preț pentru destinația, data, greutatea și volumul tău. Cere estimarea agentului când datele coletului sunt cunoscute." },
+        { type: "figure", image: "/products/electronics.webp", alt: "Accesoriu electronic folosit ca exemplu editorial", caption: "Produsele fragile sau cu baterii pot necesita verificări și rute speciale. Confirmă regulile actuale cu agentul." },
+      ] },
+      { id: "audit", title: "8. Păstrează un istoric scurt", blocks: [
+        { type: "p", text: "Salvează URL-ul, varianta, capturile ofertei, fotografiile depozitului, măsurile solicitate și decizia finală. Datele separă informația istorică de cea actuală." },
+        { type: "p", text: "Dacă apare o problemă, poți arăta ce ai comandat și ce ai primit chiar dacă pagina s-a schimbat. Înregistrarea îmbunătățește și viitoarele comparații între vânzători, mărimi și cereri." },
+        { type: "p", text: "Un istoric bun nu trebuie să fie lung. Trebuie să păstreze identificatorii și dovezile care au justificat fiecare decizie." },
+      ] },
+    ],
+    cta: { eyebrow: "Începe cu dovezile", title: "Folosește FindQC cu cea mai precisă metodă de căutare", label: "Compară metodele de căutare" },
+  },
+};

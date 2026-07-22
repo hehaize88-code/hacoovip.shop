@@ -2,11 +2,13 @@ import Link from "../../../components/LocalizedLink";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { ArrowIcon, ExternalIcon } from "../../../components/Icons";
-import { articles, getArticle } from "../../../lib/articles";
+import { articles } from "../../../lib/articles";
+import { getArticleUi, getLocalizedArticle } from "../../../lib/localizedArticles";
 import { BUILD_LANGUAGE, languageUrl } from "../../../lib/routing";
 import { localizedMetadata } from "../../../lib/seo";
 
 const siteUrl = "https://findqc.pro";
+const articleUi = getArticleUi(BUILD_LANGUAGE);
 
 export function generateStaticParams() {
   return articles.map(({ slug }) => ({ slug }));
@@ -14,7 +16,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = getLocalizedArticle(slug, BUILD_LANGUAGE);
   if (!article) return {};
 
   return localizedMetadata({
@@ -28,7 +30,7 @@ export async function generateMetadata({ params }) {
       url: languageUrl(`/articles/${article.slug}`),
       publishedTime: article.dateISO,
       modifiedTime: article.dateISO,
-      authors: ["FindQC Pro Editorial Desk"],
+      authors: [articleUi.editorialDesk],
       images: [{ url: article.heroImage }],
     },
     twitter: {
@@ -102,10 +104,10 @@ function ArticleCta({ cta }) {
 
 export default async function ArticlePage({ params }) {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = getLocalizedArticle(slug, BUILD_LANGUAGE);
   if (!article) notFound();
 
-  const relatedArticles = article.related.map(getArticle).filter(Boolean);
+  const relatedArticles = article.related.map((relatedSlug) => getLocalizedArticle(relatedSlug, BUILD_LANGUAGE)).filter(Boolean);
   const articleUrl = languageUrl(`/articles/${article.slug}`);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -117,7 +119,7 @@ export default async function ArticlePage({ params }) {
     dateModified: article.dateISO,
     inLanguage: BUILD_LANGUAGE,
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
-    author: { "@type": "Organization", name: "FindQC Pro Editorial Desk", url: languageUrl("/about") },
+    author: { "@type": "Organization", name: articleUi.editorialDesk, url: languageUrl("/about") },
     publisher: {
       "@type": "Organization",
       name: "FindQC Pro",
@@ -131,8 +133,8 @@ export default async function ArticlePage({ params }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: languageUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Journal", item: languageUrl("/articles") },
+      { "@type": "ListItem", position: 1, name: articleUi.home, item: languageUrl("/") },
+      { "@type": "ListItem", position: 2, name: articleUi.journal, item: languageUrl("/articles") },
       { "@type": "ListItem", position: 3, name: article.shortTitle, item: articleUrl },
     ],
   };
@@ -148,20 +150,20 @@ export default async function ArticlePage({ params }) {
         <h1>{article.title}</h1>
         <p>{article.description}</p>
         <div>
-          <span>FindQC Pro Editorial Desk</span>
+          <span>{articleUi.editorialDesk}</span>
           <time dateTime={article.dateISO}>{article.date}</time>
-          <span>Fact-checked</span>
+          <span>{articleUi.factChecked}</span>
         </div>
       </header>
 
       <figure className="article-hero-figure">
         <img src={article.heroImage} alt={article.heroAlt} fetchPriority="high" />
-        <figcaption>Editorial product image used to illustrate the inspection subject. It is not presented as a FindQC warehouse QC record.</figcaption>
+        <figcaption>{articleUi.heroCaption}</figcaption>
       </figure>
 
       <div className="long-read-layout">
         <aside>
-          <strong>In this article</strong>
+          <strong>{articleUi.contents}</strong>
           {article.sections.map((section) => <a href={`#${section.id}`} key={section.id}>{section.title.replace(/^\d+\.\s*/, "")}</a>)}
         </aside>
         <div className="prose">
@@ -175,9 +177,9 @@ export default async function ArticlePage({ params }) {
           ))}
 
           <section className="article-sources" aria-labelledby="official-sources">
-            <span>Research notes</span>
-            <h2 id="official-sources">Official sources checked</h2>
-            <p>This independent editorial guide was checked against the following FindQC-owned pages on 20 July 2026. Product features and policies can change, so verify current details at the source.</p>
+            <span>{articleUi.researchNotes}</span>
+            <h2 id="official-sources">{articleUi.officialSources}</h2>
+            <p>{articleUi.sourceIntro}</p>
             <ul>
               {article.sources.map((source) => (
                 <li key={source.href}>
@@ -186,7 +188,7 @@ export default async function ArticlePage({ params }) {
                 </li>
               ))}
             </ul>
-            <small>FindQC Pro is an independent discovery and education site. It is not FindQC and does not claim to operate FindQC's service.</small>
+            <small>{articleUi.independentNote}</small>
           </section>
 
           <ArticleCta cta={article.cta} />
@@ -195,8 +197,8 @@ export default async function ArticlePage({ params }) {
 
       <section className="related-articles" aria-labelledby="related-reading">
         <div className="section-heading compact-heading">
-          <div><span className="eyebrow">Continue the research</span><h2 id="related-reading">Related field notes</h2></div>
-          <Link href="/articles">All journal articles <ArrowIcon /></Link>
+          <div><span className="eyebrow">{articleUi.continueResearch}</span><h2 id="related-reading">{articleUi.relatedNotes}</h2></div>
+          <Link href="/articles">{articleUi.allArticles} <ArrowIcon /></Link>
         </div>
         <div className="related-article-grid">
           {relatedArticles.map((related) => (
@@ -204,7 +206,7 @@ export default async function ArticlePage({ params }) {
               <span>{related.category}</span>
               <h3>{related.shortTitle}</h3>
               <p>{related.excerpt}</p>
-              <b>Read article <ArrowIcon /></b>
+              <b>{articleUi.readArticle} <ArrowIcon /></b>
             </Link>
           ))}
         </div>

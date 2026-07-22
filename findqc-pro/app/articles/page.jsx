@@ -2,25 +2,29 @@ import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import { ArrowIcon } from "../../components/Icons";
-import { articles } from "../../lib/articles";
+import { BUILD_LANGUAGE, languageUrl } from "../../lib/routing";
+import { getArticleUi, getLocalizedArticles } from "../../lib/localizedArticles";
 import T from "../../components/LocalizedText";
 import { localizedMetadata } from "../../lib/seo";
 
+const articles = getLocalizedArticles(BUILD_LANGUAGE);
+const articleUi = getArticleUi(BUILD_LANGUAGE);
+
 export const metadata = localizedMetadata({
-  title: "FindQC Guides: Search, QC Photos & Shopping Agents",
-  description: "Fact-checked English guides to FindQC search, product signals, QC photo review and the shopping-agent workflow.",
+  title: articleUi.journalMetadataTitle,
+  description: articleUi.journalMetadataDescription,
 }, "/articles");
 
 export default function ArticlesPage() {
   const itemListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "FindQC Pro research journal",
+    name: articleUi.journalSchemaName,
     numberOfItems: articles.length,
     itemListElement: articles.map((article, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://findqc.pro/articles/${article.slug}`,
+      url: languageUrl(`/articles/${article.slug}`),
       name: article.title,
     })),
   };
@@ -31,8 +35,8 @@ export default function ArticlesPage() {
       <Breadcrumbs items={[{ labelKey: "nav.journal" }]} />
       <PageHero eyebrow={<T id="articles.eyebrow" />} title={<><T id="articles.title1" /><br /><em><T id="articles.title2" /></em></>} intro={<T id="articles.intro" />} />
       <div className="journal-research-note">
-        <span>05 in-depth guides</span>
-        <p>Every article is written in English, checked against current FindQC-owned pages and linked to its official source notes. Images are clearly marked editorial examples rather than warehouse QC evidence.</p>
+        <span>{articleUi.journalCount}</span>
+        <p>{articleUi.journalNote}</p>
       </div>
       <section className="journal-grid">
         {articles.map((article, index) => (

@@ -1,0 +1,300 @@
+export const deArticleUi = {
+  journalMetadataTitle: "FindQC-Ratgeber: Suche, QC-Fotos und Shopping Agents",
+  journalMetadataDescription: "Geprüfte Ratgeber zur FindQC-Suche, zu Produktsignalen, zur Bewertung von QC-Fotos und zum Ablauf mit einem Shopping Agent.",
+  journalSchemaName: "FindQC Pro Wissensmagazin",
+  journalCount: "05 ausführliche Ratgeber",
+  journalNote: "Jeder Artikel ist vollständig auf Deutsch verfasst, anhand aktueller FindQC-eigener Seiten geprüft und mit offiziellen Quellen verknüpft. Redaktionelle Bilder sind klar gekennzeichnet und werden nicht als QC-Nachweis aus einem Lager dargestellt.",
+  editorialDesk: "Redaktion von FindQC Pro",
+  factChecked: "Fakten geprüft",
+  heroCaption: "Redaktionelles Produktbild zur Veranschaulichung des Prüfthemas. Es wird nicht als FindQC-QC-Aufnahme aus einem Lager dargestellt.",
+  contents: "In diesem Artikel",
+  researchNotes: "Recherchehinweise",
+  officialSources: "Geprüfte offizielle Quellen",
+  sourceIntro: "Dieser unabhängige Ratgeber wurde am 20. Juli 2026 mit den folgenden FindQC-eigenen Seiten abgeglichen. Funktionen und Richtlinien können sich ändern; prüfe aktuelle Angaben immer an der Quelle.",
+  independentNote: "FindQC Pro ist eine unabhängige Such- und Informationsseite. Sie ist nicht FindQC und betreibt dessen Dienst nicht.",
+  continueResearch: "Weiter recherchieren",
+  relatedNotes: "Verwandte Ratgeber",
+  allArticles: "Alle Artikel",
+  readArticle: "Artikel lesen",
+  home: "Startseite",
+  journal: "Ratgeber",
+};
+
+export const deArticleSources = {
+  "https://findqc.com/": { label: "FindQC-Startseite", note: "Aktuelle Beschreibungen der Navigation sowie von Trending, Karma, Review Wall und Real Hauls." },
+  "https://findqc.com/terms-of-service": { label: "Nutzungsbedingungen von FindQC", note: "Offizielle Beschreibung des Dienstes, der Käufe über Dritte und der Grenzen von QC-Daten." },
+  "https://findqc.com/privacy-policy": { label: "Datenschutzerklärung von FindQC", note: "Offizielle Erläuterung von Suche, Popularität, Sammlungen und QC-Datensätzen Dritter." },
+  "https://academy.findqc.com/2024/12/21/mastering-qc-finder-choosing-the-best-search-method/": { label: "FindQC Academy: die passende Suchmethode", note: "Offizieller Vergleich von Link-, Bild- und Stichwortsuche." },
+  "https://findqc.com/robots": { label: "FindQC Bot", note: "Offizielle Beschreibung von Linkanalyse, Bilderkennung und QC-Medien in Discord." },
+};
+
+export const deArticles = {
+  "before-you-buy-qc-guide": {
+    title: "FindQC vor dem Kauf nutzen: eine praktische Checkliste für QC-Fotos",
+    shortTitle: "Praktische Checkliste für QC-Fotos",
+    description: "Ein geprüfter Ablauf, um einen FindQC-Treffer der richtigen Anzeige zuzuordnen, Lagerfotos zu lesen und aus begrenzten Bildern keine Garantie abzuleiten.",
+    excerpt: "Bestätige die Anzeige, prüfe den vollständigen Bildsatz, vergleiche Maße und trenne sichtbare Hinweise von Eigenschaften, die Fotos nicht belegen.",
+    category: "FindQC-Ratgeber",
+    readTime: "10 Min. Lesezeit",
+    date: "20. Juli 2026",
+    heroAlt: "Ein Paar graue Schuhe von oben neben einem Schuhkarton fotografiert",
+    keywords: ["FindQC", "FindQC Ratgeber", "QC-Fotos", "Lagerkontrolle", "Shopping Agent"],
+    intro: [
+      "Eine sinnvolle QC-Prüfung beginnt nicht beim Logo. Zuerst muss feststehen, dass der Datensatz zu dem Produkt gehört, das du kaufen möchtest. Danach trennst du sichtbare Tatsachen von Annahmen. FindQC kann Angebote und QC-Material für die Recherche zusammenführen, entscheidet aber nicht für den Käufer und ersetzt nicht die Kontrolle der aktuellen Verkaufsseite.",
+      "Nutze den folgenden Ablauf zweimal: vor der Bestellung, um ungeeignete Kandidaten auszusortieren, und erneut, wenn dein Agent Bilder des tatsächlich eingelagerten Artikels bereitstellt. Der zweite Satz wiegt stärker, weil er zu deiner konkreten Bestellung gehört.",
+    ],
+    sections: [
+      { id: "role", title: "1. Verstehe die Rolle von FindQC", blocks: [
+        { type: "p", text: "Die Nutzungsbedingungen beschreiben FindQC als Plattform zum Auffinden und Bündeln von QC-Inhalten. Genannt werden unter anderem Link- und Bildsuche, reguläres und erweitertes QC, Link-Konvertierung, Größenhilfe und ein Discord-Bot. FindQC ordnet Recherchematerial; es verkauft den Artikel nicht." },
+        { type: "p", text: "Kauf, Zahlung, Versand und Rückgabe werden von externen Verkäufern und Agents abgewickelt. Preis, Variante, Inlandversand und Rückgabebedingungen müssen deshalb auf der Seite bestätigt werden, auf der die Transaktion stattfindet." },
+        { type: "callout", title: "Die richtige Einordnung", text: "FindQC ist der Rechercheplatz, das Quellangebot enthält die Handelsbedingungen und die Fotos deines Lagers zeigen das Exemplar aus deiner Bestellung." },
+      ] },
+      { id: "listing", title: "2. Bestätige das Angebot vor der Bildbewertung", blocks: [
+        { type: "p", text: "Wenn du eine genaue Taobao-, Weidian- oder 1688-URL besitzt, beginne damit. Die FindQC Academy bezeichnet die Linksuche bei einem klaren Ziel als besonders präzise, weist aber darauf hin, dass ein gelöschter, ersetzter oder defekter Link zu einem veralteten oder anderen Ergebnis führen kann." },
+        { type: "list", title: "Fünf Identitätsprüfungen", items: ["Marktplatz und Quelllink stimmen mit deinem Kandidaten überein.", "Verkäufer oder Shop wurden nicht unbemerkt ausgetauscht.", "Farbe, Modell und Variante entsprechen deiner Auswahl.", "Der Datensatz ist nicht als entfernt oder nicht verfügbar gekennzeichnet.", "Preis, Inlandversand und Rückgabe werden auf der Kaufseite bestätigt."] },
+        { type: "p", text: "Mehrere Verkäufer können dasselbe Werbebild verwenden. Eine identische Vorschau oder ein ähnlicher Titel beweisen weder dieselbe Fabrik noch dieselbe Charge. Kläre zuerst die Identität und bewerte erst danach die sichtbare Qualität." },
+      ] },
+      { id: "whole-item", title: "3. Lies den ganzen Bildsatz: vom Überblick zum Detail", blocks: [
+        { type: "p", text: "Öffne alle Aufnahmen, bevor du urteilst. Beginne mit Vorder-, Rück-, Seiten- und Draufsicht, soweit vorhanden. Prüfe Silhouette, Symmetrie, Ausrichtung von Einsätzen, Farbkonsistenz und Vollständigkeit. Ein einzelnes Foto liefert selten genug Kontext." },
+        { type: "p", text: "Untersuche anschließend Nahtkreuzungen, Säume, Kragen, Bündchen, Reißverschlüsse, Ösen, Stickerei, Druckkanten und Beschläge. Ein Lichtreflex ist kein Kratzer; eine Transportfalte beweist keinen schiefen Schnitt. Suche denselben Hinweis aus mehreren Blickwinkeln." },
+        { type: "figure", image: "/products/jacket.webp", alt: "Dunkle Jacke als redaktionelles Produktbeispiel", caption: "Redaktionelles Beispiel: Beurteile zuerst die Form und vergrößere anschließend Reißverschlüsse, Nähte und Stickereien. Kein FindQC-Lagerdatensatz." },
+        { type: "p", text: "Zum Schluss folgen Etiketten, Zubehör und Verpackung. Das fotografierte Größenetikett muss zur bestellten Variante passen, abnehmbare Teile müssen vorhanden sein. Verpackung beweist keine Produktqualität, kann aber fehlende Teile oder ein klares Transportrisiko zeigen." },
+      ] },
+      { id: "measurements", title: "4. Behandle Maße als Beleg, nicht als Dekoration", blocks: [
+        { type: "p", text: "Der Kamerawinkel verzerrt Größen. Ist ein Maßband zu sehen, vergleiche beide Endpunkte mit der Größentabelle und einem ähnlichen eigenen Gegenstand. Bei Kleidung sind Brustweite, Länge, Schulter, Ärmel, Bund und Innenbein relevant; bei Schuhen ist die Innensohlenlänge oft aussagekräftiger als die aufgedruckte Größe." },
+        { type: "p", text: "Lies auch die Methode. Ein gebogenes Band, gefalteter Stoff oder ein anderer Startpunkt kann mehrere Zentimeter verändern. Flach gemessene Breite ist nicht Körperumfang, Außensohlenlänge nicht nutzbare Innensohlenlänge." },
+        { type: "callout", title: "Praktische Regel", text: "Vergleiche Gleiches mit Gleichem: flach liegende Kleidung, identische Messpunkte und Innensohle mit Innensohle." },
+      ] },
+      { id: "signals", title: "5. Nutze Community-Signale als Kontext", blocks: [
+        { type: "p", text: "FindQC trennt Trending, Karma, Review Wall und Real Hauls. Diese Bereiche helfen beim Entdecken und bei der Formulierung von Fragen, beschreiben aber unterschiedliche Dinge: Aufmerksamkeit, Community-Vorlieben, Käuferbeobachtungen und Beispiele versandter Pakete." },
+        { type: "p", text: "Popularität ist keine Haltbarkeit. Eine Bewertung kann sich auf eine andere Größe, Farbe, Charge oder ein anderes Datum beziehen. Ein Haul zeigt nur, dass ein Paket einen Versandweg durchlaufen hat. Prüfe Datum, Link und Stichprobengröße." },
+        { type: "p", text: "Vertrauen wächst, wenn unabhängige Hinweise übereinstimmen: korrekte Anzeige, ähnliche Verarbeitung in mehreren QC-Sätzen, passende Maße und wiederkehrende aktuelle Beobachtungen. Vollständig verschwindet das Risiko trotzdem nicht." },
+      ] },
+      { id: "limits", title: "6. Kenne die Grenzen von QC-Fotos", blocks: [
+        { type: "p", text: "FindQC erklärt, dass Fotos, Gewicht, Abmessungen und Mängeldaten gewöhnlich von externen Agents stammen. Die Plattform ordnet sie, garantiert aber weder Richtigkeit noch Vollständigkeit oder Echtheit und bietet keine Authentizitätszertifizierung." },
+        { type: "p", text: "Ein Bild kann Flecken, fehlende Teile, schiefe Drucke oder falsche Farben zeigen. Es belegt gewöhnlich keine Faserzusammensetzung, Langzeithaltbarkeit, Batteriezustand, Wasserdichtigkeit, Bequemlichkeit, Geruch oder innere Konstruktion. Was außerhalb des Bildes liegt, bleibt unbekannt." },
+        { type: "p", text: "Öffentliche Datensätze helfen bei der Vorauswahl. Die Bilder deines Exemplars unterstützen die Entscheidung über Annahme, zusätzliche Prüfung, Umtausch oder Rückgabe im Rahmen der aktuellen Regeln von Verkäufer und Agent." },
+      ] },
+      { id: "workflow", title: "7. Entscheidung in zehn Minuten", blocks: [
+        { type: "list", title: "Prüfe in dieser Reihenfolge", items: ["Minute 1: exakten Link und gewählte Variante sichern.", "Minuten 2–3: Verkäufer, Verfügbarkeit und aktuelle Bedingungen bestätigen.", "Minuten 4–5: Form, Farbe, Symmetrie und Vollständigkeit prüfen.", "Minuten 6–7: kategoriewichtige Details vergrößern.", "Minute 8: Maße mit deinem Referenzgegenstand vergleichen.", "Minute 9: nach wiederkehrenden aktuellen Hinweisen suchen.", "Minute 10: annehmen, weitere Belege anfordern oder ablehnen."] },
+        { type: "p", text: "Fehlt Information, benenne die benötigte Aufnahme: Nahbild einer Stelle, Größenetikett, Innensohlenmaß oder Überblick über Zubehör. Eine genaue Anfrage ist leichter auszuführen und auszuwerten als „mehr Fotos“ ohne Ziel." },
+        { type: "p", text: "Ziel ist nicht die Beseitigung jedes Risikos, sondern die bestmögliche nächste Entscheidung, solange der Agent noch handeln kann." },
+      ] },
+    ],
+    cta: { eyebrow: "Prüfung fortsetzen", title: "Nutze die siebenstufige Checkliste für Lagerfotos", label: "QC-Checkliste öffnen" },
+  },
+
+  "findqc-search-methods": {
+    title: "FindQC-Suchmethoden: Linksuche, Bildsuche oder Stichwörter",
+    shortTitle: "Link, Bild oder Stichwörter",
+    description: "Wann welche FindQC-Suche sinnvoll ist, woran sie scheitern kann und wie du einen Treffer vor dem Kauf überprüfst.",
+    excerpt: "Bewahre den stärksten vorhandenen Hinweis und validiere jeden Treffer, statt die erste optische Übereinstimmung für das richtige Angebot zu halten.",
+    category: "Suchstrategie",
+    readTime: "9 Min. Lesezeit",
+    date: "20. Juli 2026",
+    heroAlt: "Gefaltetes weißes T-Shirt als redaktionelles Suchbeispiel",
+    keywords: ["FindQC Suche", "Linksuche", "Bildsuche", "FindQC Stichwörter", "QC-Fotos finden"],
+    intro: ["Eine vollständige URL, ein zugeschnittener Screenshot und ein vager Produktname enthalten unterschiedlich starke Informationen. Deshalb sollten sie nicht gleich behandelt werden. FindQC bietet mehrere Suchwege; die Academy vergleicht Link-, Bild- und Stichwortsuche ausdrücklich.", "Die beste Methode ist nicht die technisch wirkende, sondern diejenige, die den stärksten vorhandenen Identifikator bewahrt. Danach braucht jeder Kandidat dieselbe Identitätskontrolle."],
+    sections: [
+      { id: "decision", title: "1. Wähle nach deinem Ausgangsmaterial", blocks: [
+        { type: "p", text: "Eine originale Taobao-, Weidian- oder 1688-Produkt-URL enthält einen direkten Identifikator und gehört an die erste Stelle. Ein klares Foto eignet sich für visuell ähnliche Kandidaten. Name, Modell oder Kategorie ermöglichen eine breite Stichwortsuche." },
+        { type: "table", headers: ["Vorhandener Hinweis", "Erste Methode", "Hauptrisiko"], rows: [["Gültige Produkt-URL", "Link", "Angebot kann entfernt oder ersetzt sein"], ["Klares, markantes Foto", "Bild", "Ähnliches Aussehen kann zu anderem Verkäufer gehören"], ["Name, Modell oder Kategorie", "Stichwörter", "Sprache und Bezeichnung erzeugen Rauschen"], ["Screenshot mit Teiltext", "Bild, dann Stichwörter", "Zuschnitt und Overlays senken Genauigkeit"]] },
+        { type: "p", text: "Wirf einen präzisen Link nicht zugunsten eines allgemeinen Namens weg. Jeder Schritt fort von einem eindeutigen Identifikator vergrößert die manuell zu prüfende Ergebnismenge." },
+      ] },
+      { id: "link-search", title: "2. Linksuche: der kürzeste Weg zum Kandidaten", blocks: [
+        { type: "p", text: "Die FindQC Academy beschreibt sie bei klarem Ziel als präzise und zeitsparend. Füge die vollständige Produkt-URL ein, nicht die Shop-Startseite, eine Bildadresse oder einen verkürzten Social-Link. Der Artikelidentifikator muss erhalten bleiben." },
+        { type: "p", text: "Vergleiche nach dem Treffer Plattform, Shop, Titel, Vorschaubild und Variante. Ein als entfernt markierter Datensatz kann als Bildarchiv nützlich sein, bestätigt aber keine aktuelle Kaufmöglichkeit." },
+        { type: "list", title: "Linksuche eignet sich, wenn", items: ["Verkäufer, Tabelle oder Beitrag eine Marktplatz-URL liefert.", "Du QC-Material für genau ein Angebot suchst.", "Du denselben Kandidaten später erneut öffnen möchtest."] },
+        { type: "p", text: "Kein Treffer bedeutet nicht automatisch keine QC-Daten. Bewahre die URL, extrahiere Titel und Hauptbild und wechsle anschließend die Methode." },
+      ] },
+      { id: "image-search", title: "3. Bildsuche: gut zum Erkennen, schwach für Identität", blocks: [
+        { type: "p", text: "Die Bildsuche hilft bei unbekanntem Namen, fremder Sprache oder einem Screenshot. Schneide Chatblasen, Preise, Wasserzeichen und fremde Objekte weg, erhalte aber Silhouette, auffällige Beschläge, Drucke und Farbflächen." },
+        { type: "figure", image: "/products/headwear.webp", alt: "Schwarze bestickte Kappe vor hellem Hintergrund", caption: "Ein sauberes, zentriertes Bild enthält mehr brauchbare Formmerkmale als ein überfülltes Lifestyle-Foto. Redaktionelles Beispiel." },
+        { type: "p", text: "Die Academy weist darauf hin, dass Qualität und Perspektive die Genauigkeit beeinflussen. Probiere ein zweites Bild bei zu breiten Ergebnissen. Mehrere Verkäufer können dasselbe Katalogfoto verwenden; eine identische Vorschau ist nur eine Spur." },
+        { type: "p", text: "Öffne Kandidaten und vergleiche Quelllink, Shop, Varianten, Maße und QC-Sätze. Die optisch nächste Übereinstimmung ist nicht automatisch das ursprüngliche Angebot oder dieselbe Charge." },
+      ] },
+      { id: "keyword-search", title: "4. Stichwörter: breite Entdeckung mit Filtern", blocks: [
+        { type: "p", text: "Stichwörter sind sinnvoll bei der Erkundung einer Kategorie. Beginne mit konkreten Merkmalen wie Typ, sichtbarem Material, Farbe, Modell oder Detail und entferne allgemeine Werbewörter." },
+        { type: "p", text: "Teste englische Varianten und, falls vorhanden, den Originaltext aus dem Angebot. Ändere jeweils nur einen Bestandteil. Eine sehr lange Phrase kann einen gültigen Treffer wegen einer kleinen Abweichung ausschließen." },
+        { type: "p", text: "Die Ergebnisse sind Kandidaten, keine Qualitätsrangliste. Öffne mehrere, vergleiche ihre Quellen und speichere den exakten Link der verifizierten Optionen." },
+      ] },
+      { id: "verify", title: "5. Prüfe jeden Treffer mit vier Fragen", blocks: [
+        { type: "list", title: "Vor dem Vertrauen", items: ["Passen Plattform, Shop und URL zum gesuchten Angebot?", "Stimmen Variante, Farbe und Modell?", "Gehören die QC-Fotos zu diesem Angebot oder nur zu einem ähnlichen Produkt?", "Sind Verfügbarkeit und Handelsbedingungen aktuell?"] },
+        { type: "p", text: "Diese Prüfung gilt auch bei perfektem Vorschaubild. Namen und Katalogfotos werden leicht kopiert; mehrere übereinstimmende Identifikatoren sind zuverlässiger als eine Ähnlichkeit." },
+        { type: "callout", title: "Suchprinzip", text: "FindQC verkleinert den Recherchebereich, ersetzt aber nicht die Bestätigung der Produktidentität." },
+      ] },
+      { id: "recovery", title: "6. Nutze eine Wiederherstellungsleiter", blocks: [
+        { type: "p", text: "Beginne mit der vollständigen URL, entferne danach nur Trackingparameter. Nutze anschließend das saubere Hauptbild, dann einen markanten Ausschnitt. Zuletzt kombiniere Namen, Modell, Kategorie und ein sichtbares Merkmal in einer kurzen Anfrage." },
+        { type: "p", text: "Bewahre alle ursprünglichen Hinweise. Link und datierter Screenshot werden später benötigt, um zur Transaktionsseite zurückzukehren und die Variante zu prüfen." },
+        { type: "p", text: "Ergibt keine Methode einen überprüfbaren Treffer, notiere die Unsicherheit. Verbinde Angebote nicht allein wegen eines ähnlichen Stils." },
+      ] },
+      { id: "sequence", title: "7. Eine Suchfolge, die Belege erhält", blocks: [
+        { type: "p", text: "Sichere URL, Variante und datierten Screenshot. Suche per Link, danach per Bild und schließlich per Stichwort. Notiere für jeden Kandidaten Übereinstimmungen und offene Punkte. Verwirf Ergebnisse mit falscher Identität trotz guter Fotos." },
+        { type: "p", text: "Erst nach einem soliden Treffer folgt die Bildbewertung: Überblick, Details, Maße und Grenzen. Diese Trennung verhindert, dass ein gutes Foto fälschlich als Beweis für das richtige Angebot gilt." },
+      ] },
+    ],
+    cta: { eyebrow: "Nächster Schritt", title: "Verwandle den Suchtreffer in eine geordnete QC-Prüfung", label: "QC-Foto-Checkliste öffnen" },
+  },
+
+  "findqc-product-signals": {
+    title: "Trending, Karma, Bewertungen und Hauls in FindQC richtig einordnen",
+    shortTitle: "FindQC-Signale richtig lesen",
+    description: "Was die Community-Signale von FindQC aussagen können, was sie nicht beweisen und wie du sie mit Angebot und QC-Fotos verbindest.",
+    excerpt: "Aufmerksamkeit, Vorlieben, Berichte und versandte Pakete beantworten verschiedene Fragen; kein Signal ersetzt die Produktprüfung.",
+    category: "Signalbewertung",
+    readTime: "9 Min. Lesezeit",
+    date: "20. Juli 2026",
+    heroAlt: "Modeaccessoire als redaktionelles Beispiel für ein Produktsignal",
+    keywords: ["FindQC Trending", "FindQC Karma", "FindQC Bewertungen", "Real Hauls", "Produktsignale"],
+    intro: ["Community-Signale sind als Kontext nützlich. Problematisch werden sie, wenn sie als Qualitätsstempel behandelt werden, den das Signal nie versprochen hat. FindQC führt Trending, Karma, Review Wall und Real Hauls getrennt; ordne daher zuerst jedem Bereich die richtige Frage zu.", "Ziel ist nicht, Erfahrungen zu ignorieren, sondern Datum, Variante, Charge und Stichprobengröße beizubehalten. Ein Signal liefert Fragen; das Angebot und die Bilder deines Exemplars bleiben die wichtigsten Belege."],
+    sections: [
+      { id: "map", title: "1. Ordne jedem Signal die passende Frage zu", blocks: [
+        { type: "table", headers: ["Signal", "Nützliche Frage", "Kein Beweis für"], rows: [["Trending", "Was erhält gerade Aufmerksamkeit?", "Qualität oder Haltbarkeit"], ["Karma", "Was bevorzugt die Community?", "Geprüfte Spezifikationen"], ["Review Wall", "Was hat ein Käufer beobachtet?", "Dass andere Varianten identisch sind"], ["Real Hauls", "Was war in einem versandten Paket?", "Wiederholbare Kosten oder Ergebnisse"]] },
+        { type: "p", text: "Die Bereiche helfen bei der Entdeckung und zeigen Probleme, Begriffe oder Vergleiche für die weitere Recherche. Historische Beobachtungen werden dadurch nicht zur Garantie." },
+        { type: "p", text: "Notiere Datum, Link, Variante und sichtbare Anzahl von Beispielen. Je weniger Kontext ein Signal besitzt, desto geringer sollte sein Gewicht sein." },
+      ] },
+      { id: "trending", title: "2. Trending misst Aufmerksamkeit, nicht Lebensdauer", blocks: [
+        { type: "p", text: "Ein Produkt kann trenden, weil es neu, billig, saisonal, umstritten oder leicht zu teilen ist. Aufrufe verraten nichts über Nahtfestigkeit, Größentreue oder die Stabilität einer Charge." },
+        { type: "p", text: "Trending ist gut zum Entdecken neuer Kandidaten. Danach musst du das Ranking verlassen, das Quellangebot öffnen und vorhandene QC-Sätze untersuchen." },
+        { type: "list", title: "Fragen vor dem Folgen eines Trends", items: ["Ist das Angebot aktiv und vom selben Verkäufer?", "Gibt es mehrere aktuelle QC-Sätze?", "Beziehen sich Bewertungen auf deine Variante?", "Kommt die Aufmerksamkeit von Belegen, Preis oder bloßer Neuheit?"] },
+      ] },
+      { id: "karma", title: "3. Karma ist ein Community-Filter, keine Spezifikation", blocks: [
+        { type: "p", text: "Karma kann häufig bevorzugte Produkte hervorheben. Die Präferenz liefert jedoch keine Maße, Materialzusammensetzung, Fertigungstoleranzen oder Rückgaberegeln." },
+        { type: "p", text: "Vergleiche Zeitpunkt und Link mit dem aktuellen Angebot. Ein Shop kann Varianten oder Lieferanten wechseln. Nutze Karma zur Priorisierung der Recherche, nicht zur automatischen Freigabe." },
+        { type: "figure", image: "/products/accessories.webp", alt: "Accessoire als redaktionelles Beispiel", caption: "Popularität findet einen Kandidaten; erst Angebot und QC-Material bestimmen, welche Aussagen zulässig sind." },
+      ] },
+      { id: "reviews", title: "4. Lies Beobachtungen, nicht nur Bewertungen", blocks: [
+        { type: "p", text: "Eine Rezension ist wertvoll, wenn sie etwas Prüfbares nennt: Maß, Farbe, fehlendes Teil, Ausrichtung oder Erfahrung mit einer konkreten Variante. Ein bloßes „perfekt“ ohne Datum, Link und Foto ist wenig übertragbar." },
+        { type: "p", text: "Trenne Beobachtung und Deutung. „Das Band zeigt 68 cm“ ist reproduzierbar; „fällt normal aus“ hängt von Körper und Erwartung ab. Suche nach Mustern in unabhängigen Berichten." },
+        { type: "list", title: "Mehr Gewicht verdient eine Rezension, die", items: ["Angebot, Größe, Farbe und Datum nennt.", "Fotos zur Beobachtung enthält.", "Erwartung und Ergebnis erklärt.", "Mit anderen aktuellen Datensätzen übereinstimmt."] },
+        { type: "p", text: "Auch eine gute Rezension beschreibt nur ein Exemplar. Nutze sie als Prüfliste für dein eigenes, nicht als Versprechen desselben Ergebnisses." },
+      ] },
+      { id: "hauls", title: "5. Ein Haul zeigt einen abgeschlossenen Weg", blocks: [
+        { type: "p", text: "Real Hauls kann zeigen, welche Artikel gemeinsam versandt wurden. Daraus folgt kein Preis für ein anderes Land, Datum, Volumengewicht, eine andere Route oder Zollerklärung." },
+        { type: "p", text: "Ein Haul empfiehlt auch nicht automatisch jeden enthaltenen Artikel. Prüfe Kommentare, Lagerfotos und aktive Links. Ein attraktives Gesamtpaket kann wenig Detailwissen über einzelne Produkte liefern." },
+        { type: "p", text: "Nutze Hauls als Kontext für Bündelung, Maße und spätere Logistikfragen an deinen Agent." },
+      ] },
+      { id: "triangulate", title: "6. Verbinde Signal, Angebot und QC-Beleg", blocks: [
+        { type: "p", text: "Das Community-Signal schlägt einen Kandidaten vor. Die Quelle bestätigt Identität, Variante und Handelsbedingungen. Historische QC-Sätze zeigen Beispiele; die Lagerfotos zeigen dein Exemplar. Jede Schicht beantwortet eine andere Frage." },
+        { type: "callout", title: "Gewichtungsregel", text: "Je näher ein Beleg an deinem Exemplar, deiner Variante und deinem Kaufdatum liegt, desto wichtiger sollte er sein." },
+        { type: "p", text: "Bei Widersprüchen darf Popularität keine falsche Messung überstimmen, und ein altes makelloses Bild entfernt keinen heute sichtbaren Mangel." },
+      ] },
+      { id: "scorecard", title: "7. Erstelle eine kleine Belegkarte", blocks: [
+        { type: "list", title: "Fünf Zeilen genügen", items: ["Identität: Plattform, Shop, URL und Variante.", "Aktualität: Daten von Angebot und Signalen.", "Muster: wiederkehrende Hinweise in Bewertungen und QC.", "Eigenes Exemplar: Maße, sichtbare Mängel, Zubehör.", "Unbekanntes: fehlende Bilder, Tests oder Regeln."] },
+        { type: "p", text: "Markiere jede Zeile als bestätigt, fraglich oder unbekannt und notiere den Beleg für die Einstufung." },
+        { type: "p", text: "Schwache Community-Signale sind verkraftbar, wenn Identität und eigene Belege stark sind. Umgekehrt kann Popularität kein unsicheres Angebot ausgleichen." },
+        { type: "p", text: "Bewahre die Karte mit URL und Screenshots auf. So vergleichst du spätere Bestellungen auf Grundlage von Daten statt Erinnerung." },
+      ] },
+    ],
+    cta: { eyebrow: "Kontext anwenden", title: "Prüfe, was QC-Fotos tatsächlich belegen können", label: "Grenzen von QC-Fotos lesen" },
+  },
+
+  "what-qc-photos-can-prove": {
+    title: "Was FindQC-QC-Fotos vor dem Versand zeigen können — und was nicht",
+    shortTitle: "Die tatsächlichen Grenzen von QC-Fotos",
+    description: "Sichtbare Mängel, Maße und Zubehör von Eigenschaften trennen, die ein Lagerfoto nicht nachweisen kann.",
+    excerpt: "Ein Foto beantwortet konkrete visuelle Fragen, zertifiziert aber weder Echtheit noch Material, Komfort oder künftige Haltbarkeit.",
+    category: "QC-Grundlagen",
+    readTime: "9 Min. Lesezeit",
+    date: "20. Juli 2026",
+    heroAlt: "Kleidungsstück als redaktionelles Beispiel für eine QC-Prüfung",
+    keywords: ["FindQC QC-Fotos", "Lagerprüfung", "Grenzen von QC-Fotos", "QC-Maße", "Kontrolle vor Versand"],
+    intro: ["Lagerfotos sind wertvoll, weil sie abstrakte Fragen in sichtbare Beobachtungen verwandeln. Falsche Sicherheit entsteht, wenn sie Eigenschaften beweisen sollen, die nicht im Bild liegen. Eine gute Prüfung formuliert Fragen, die eine Aufnahme tatsächlich beantworten kann.", "FindQC weist darauf hin, dass Fotos, Gewicht, Maße und Mängeldaten großteils von externen Agents stammen und Genauigkeit, Vollständigkeit sowie Echtheit nicht garantiert werden. Das macht die Daten nicht wertlos, sondern begrenzt ihre Aussage."],
+    sections: [
+      { id: "source", title: "1. Verstehe die Herkunft des Materials", blocks: [
+        { type: "p", text: "FindQC bündelt Inhalte Dritter. Die Rechercheplattform fotografiert nicht zwingend selbst, kauft den Artikel nicht und kontrolliert die Transaktion nicht. Ein anderer Agent, Zeitpunkt oder Variantenwechsel kann zu einem anderen Bildsatz führen." },
+        { type: "p", text: "Ein öffentlicher Datensatz kann ein früheres Exemplar zeigen. Die Aufnahmen in deinem Agent-Konto gehören zur aktuellen Bestellung und verdienen mehr Gewicht, sofern Bestellnummer und Variante übereinstimmen." },
+        { type: "callout", title: "Beleghierarchie", text: "Öffentliche Datensätze dienen der Angebotsrecherche; eigene Lagerfotos der Entscheidung über das konkrete Exemplar." },
+      ] },
+      { id: "visible", title: "2. Was ein klares Foto häufig zeigt", blocks: [
+        { type: "p", text: "Übersichtsaufnahmen können falsche Farbe, fehlende Teile, deutliche Asymmetrie, Verformung, Transportschaden oder eine abweichende Variante zeigen. Nahbilder können sichtbare Nähte, Druckkanten, Kratzer, Flecken, Beschläge und Etiketten dokumentieren." },
+        { type: "p", text: "Verlässlicher wird ein Hinweis, wenn er aus zwei Perspektiven und mit Größenreferenz sichtbar ist. Eine Stelle in nur einem dunklen Foto kann Staub, Reflexion oder Kompression sein. Fordere eine zweite Aufnahme an." },
+        { type: "figure", image: "/products/shoes-60.jpg", alt: "Graue Schuhe als redaktionelles Beispiel", caption: "Die Gesamtansicht prüft Paar, Form und Farbe; Nahbilder beantworten Fragen zu Verbindungen und Oberflächen." },
+        { type: "p", text: "Auch angekündigtes Zubehör, Schnürsenkel, Riemen oder Verpackung lassen sich zählen, müssen aber mit dem genauen Angebotsumfang verglichen werden." },
+      ] },
+      { id: "measurements", title: "3. Maße beantworten Passformfragen — bei richtiger Lesart", blocks: [
+        { type: "p", text: "Ein sichtbares Band macht aus einem Größeneindruck eine prüfbare Zahl. Bei Kleidung kommen Brustweite, Länge, Schulter, Ärmel, Bund oder Innenbein infrage; bei Schuhen die Innensohle, bei Taschen drei Außenmaße." },
+        { type: "p", text: "Die Methode zählt ebenso wie die Zahl. Das Band sollte bei null beginnen, nicht über dicke Flächen gebogen sein und dieselben Punkte wie dein Vergleichsstück nutzen. Flache Brustweite ist kein Körperumfang." },
+        { type: "p", text: "Eine kleine Toleranz für Platzierung und Ablesen ist normal. Eine unscharfe Aufnahme mit verdecktem Bandende beantwortet die Frage jedoch nicht." },
+      ] },
+      { id: "cannot-prove", title: "4. Was Fotos normalerweise nicht beweisen", blocks: [
+        { type: "list", title: "Nicht aus Pixeln ableiten", items: ["Materialzusammensetzung, Güteklasse oder chemische Sicherheit.", "Authentizität oder Markenzertifizierung.", "Haltbarkeit nach Nutzung oder Wäsche.", "Komfort, Geruch, Hautgefühl oder Fall am Körper.", "Batteriezustand, innere Funktion oder echte Wasserdichtigkeit.", "Mängel außerhalb des Bildes oder unter geschlossenen Schichten."] },
+        { type: "p", text: "Eine glatte Oberfläche kann steif sein, ein startendes Gerät eine schwache Batterie haben und eine saubere Außennaht nichts über die innere Verstärkung sagen. Dafür braucht es Spezifikationen, Funktionstests, Rückgaberegeln oder Nutzungserfahrung." },
+        { type: "p", text: "FindQC erklärt außerdem, dass QC-Inhalte Fehler enthalten können und keine Authentizitätszertifizierung darstellen. Ein aggregiertes Foto ist kein Gutachten." },
+      ] },
+      { id: "photo-problems", title: "5. Produktfehler von Fotoproblemen trennen", blocks: [
+        { type: "p", text: "Licht verändert Farbtöne, Weitwinkel verzerrt Kanten, gefaltete Kleidung wirkt asymmetrisch und Schutzfolie erzeugt Reflexe. Prüfe, ob der vermutete Fehler bei anderer Lage und gleichmäßiger Beleuchtung bleibt." },
+        { type: "p", text: "Ein scharfer Hinweis, der in mehreren Bildern erscheint, sollte dagegen nicht als Kamerafehler abgetan werden. Beschreibe seine Lage zu Naht, Etikett oder Lineal." },
+        { type: "figure", image: "/products/tshirt.webp", alt: "T-Shirt zur Erklärung von Falten und Licht", caption: "Falten und Schatten verändern die scheinbare Form. Bitte um flache Auslage, wenn der Schnitt entscheidend ist." },
+      ] },
+      { id: "request", title: "6. Zusätzliche Belege mit klarer Absicht anfordern", blocks: [
+        { type: "p", text: "Eine gute Anfrage nennt Stelle, Winkel und Zweck. „Mehr Fotos“ kann ein weiteres nutzloses Übersichtsbild ergeben. Besser: „Nahaufnahme der linken Druckkante ohne Folie“ oder „Innensohle mit beiden sichtbaren Bandenden“." },
+        { type: "list", title: "Zielgerichtete Anfragen", items: ["Größenetikett neben der Bestellnummer.", "Zwei Winkel einer möglichen Beschädigung.", "Flaches Maß mit sichtbarem Start und Ende.", "Alles Zubehör außerhalb der Verpackung.", "Konkreter Funktionstest, falls angeboten."] },
+        { type: "p", text: "Prüfe vorab Kosten, Bearbeitungszeit und Rückgabefrist. Ein Beleg, der erst nach Ende der Handlungsmöglichkeit eintrifft, hat wenig praktischen Wert." },
+      ] },
+      { id: "decision", title: "7. Drei Entscheidungszustände statt nur Ja oder Nein", blocks: [
+        { type: "p", text: "Annehmen bedeutet: Identität stimmt und der sichtbare Befund überschreitet deine Toleranz nicht. Es ist keine Garantie aller Eigenschaften." },
+        { type: "p", text: "Weitere Belege anfordern bedeutet: Eine visuelle Unsicherheit kann durch Maß, Perspektive oder verfügbaren Test geklärt werden. Das ist ein aktiver Schritt." },
+        { type: "p", text: "Ablehnen oder Umtausch anfragen bedeutet: Eine relevante Abweichung wurde bestätigt, vorbehaltlich der Regeln von Agent und Verkäufer. Sichere Belege und benenne die Stelle." },
+        { type: "p", text: "Das Dreistufenmodell verhindert sowohl voreilige Zustimmung zu schönen Bildern als auch Ablehnung wegen eines unklaren Schattens." },
+      ] },
+    ],
+    cta: { eyebrow: "In die Praxis umsetzen", title: "Nutze den vollständigen Ablauf vor der Versandfreigabe", label: "Kaufablauf öffnen" },
+  },
+
+  "findqc-shopping-agent-workflow": {
+    title: "FindQC mit einem Shopping Agent nutzen: vom Produktlink zur Lagerentscheidung",
+    shortTitle: "Von FindQC zur Lagerentscheidung",
+    description: "Ein klarer Ablauf für Recherche, Übergabe der exakten Variante, Prüfung des eigenen Exemplars und Trennung von Produktfreigabe und Paketplanung.",
+    excerpt: "Halte Recherche, Transaktion und Lagerbeleg getrennt, damit klar bleibt, welche Partei für welchen Schritt zuständig ist.",
+    category: "Agent-Ablauf",
+    readTime: "10 Min. Lesezeit",
+    date: "20. Juli 2026",
+    heroAlt: "Jacke als redaktionelles Beispiel für eine Agent-Bestellung",
+    keywords: ["FindQC Shopping Agent", "mit FindQC kaufen", "Lagerfotos", "Taobao Link Agent", "QC Ablauf"],
+    intro: ["FindQC und ein Shopping Agent arbeiten in verschiedenen Phasen. FindQC hilft beim Auffinden und Ordnen von Datensätzen, der Verkäufer bietet das Produkt an und der Agent kann es nach seinen Regeln kaufen, empfangen, fotografieren, lagern und versenden. Vermischte Rollen erschweren Preisprüfung und Problemlösung.", "Der sicherere Ablauf erhält eine Spur vom ersten Link bis zur Lagerentscheidung. So vergleichst du bestellte und erhaltene Variante, gewichtest Bilder deines Exemplars höher und klärst Unsicherheiten vor der internationalen Versandplanung."],
+    sections: [
+      { id: "separate", title: "1. Recherche und Transaktion trennen", blocks: [
+        { type: "p", text: "Die FindQC-Bedingungen sagen, dass die Plattform keine Kauf- oder Weiterleitungsdienste anbietet. Zahlung, Versand und Rückgabe werden durch Dritte abgewickelt; Links können zu Agents führen." },
+        { type: "p", text: "Bestätige jede geldrelevante Angabe bei der zuständigen Partei. Der aktuelle Preis gehört zum Angebot, Gebühren, Zusatzfotos, Lagerung und Routen zum Agent; Steuern und Beschränkungen hängen zusätzlich vom Ziel ab." },
+        { type: "table", headers: ["Phase", "Hauptquelle", "Zu bestätigen"], rows: [["Recherche", "FindQC und Quelle", "Identität, Datensätze, Fragen"], ["Kauf", "Verkäufer und Agent", "Variante, Preis, Rückgabe"], ["Lager", "Agent-Konto", "Exemplar, Maße, sichtbare Mängel"], ["Versand", "Agent und Carrier", "Gewicht, Route, Versicherung, Grenzen"]] },
+      ] },
+      { id: "candidate", title: "2. Lege einen Kandidatendatensatz an", blocks: [
+        { type: "p", text: "Sichere vollständige URL, Shop, datierten Screenshot, Farbe, Größe, Modell und enthaltene Teile, bevor du den Agent öffnest. Bewahre Größentabelle und veränderliche Bedingungen auf." },
+        { type: "p", text: "Ergänze kategorietypische Risiken: bei Schuhen Innensohle, Symmetrie und Klebstoff; bei Jacken Maße, Reißverschluss und Einsätze; bei Elektronik Modell, Stecker und möglicher Funktionstest." },
+        { type: "list", title: "Mindestdatensatz", items: ["Quelllink und Plattform.", "Sichtbarer Shop oder Verkäufer.", "Exakte Variante und Menge.", "Unverzichtbare Maße oder Teile.", "Datum und wichtige Angebotsbedingungen."] },
+      ] },
+      { id: "research", title: "3. Historie nicht mit Bestand verwechseln", blocks: [
+        { type: "p", text: "Suche den Link in FindQC und bestätige die Zuordnung. Alte Datensätze können Perspektiven, Maße und wiederkehrende Fragen zeigen, beweisen aber weder heutigen Bestand noch dieselbe Charge." },
+        { type: "p", text: "Ist ein Produkt als entfernt markiert, behandle die Bilder als Archiv. Verfügbarkeit wird im Angebot oder beim Agent geprüft. Ein erhaltenes Foto ist keine Handelsbestätigung." },
+        { type: "figure", image: "/products/jacket.webp", alt: "Dunkle Jacke als redaktionelles Beispiel", caption: "Historische Datensätze liefern Prüffragen; das Live-Angebot bestätigt, was aktuell kaufbar ist." },
+      ] },
+      { id: "handoff", title: "4. Exakte Quelle und Variante an den Agent übergeben", blocks: [
+        { type: "p", text: "Füge den Original-Link ein und wähle die Variante sorgfältig. Schreibe in Hinweise nur überprüfbare Angaben wie Farbe, Größe, Modell und Zubehör. „Das auf dem Bild“ ist bei vielen Optionen zu ungenau." },
+        { type: "p", text: "Bestätige vor Zahlung Artikelpreis, Inlandversand, Wechselkurs des Agents, Gebühren und Rückgaberegeln. Eine historische Zahl aus FindQC ist kein aktuelles Angebot." },
+        { type: "callout", title: "Saubere Übergabe", text: "Derselbe Link und dieselbe Variantenbezeichnung müssen in deinem Datensatz, der Agent-Bestellung und der Lagerprüfung stehen." },
+      ] },
+      { id: "warehouse", title: "5. Eigene Lagerfotos am stärksten gewichten", blocks: [
+        { type: "p", text: "Nach Eingang vergleichst du Bestellnummer, Variante, Farbe und Menge. Danach folgen Übersicht, Details und Maße anhand deiner vorbereiteten Fragen. Eine öffentliche ältere Galerie darf die Bilder deines Exemplars nicht ersetzen." },
+        { type: "p", text: "Falls der Agent kostenlose Bilder begrenzt oder Zusatzleistungen berechnet, prüfe die aktuellen Kontoregeln. Priorisiere Aufnahmen, die eine Entscheidung verändern können." },
+        { type: "list", title: "Prüfreihenfolge", items: ["Bestellung und Variante.", "Gesamtform, Farbe und Menge.", "Kategoriewichtige Verarbeitungsdetails.", "Vergleichbare Maße.", "Zubehör und sichtbarer Verpackungsschaden."] },
+      ] },
+      { id: "uncertainty", title: "6. Unsicherheit in eine genaue Anfrage übersetzen", blocks: [
+        { type: "p", text: "Nenne Ort und Zweck: „rechte Druckkante ohne Schutzfolie“ oder „Innensohle von Ende zu Ende messen“. Eine genaue Frage erzeugt einen mit dem Kriterium vergleichbaren Befund." },
+        { type: "p", text: "Prüfe Kosten, Bearbeitungszeit und Rückgabefrist vor der Zusatzleistung. Eine Antwort nach Ende des Rückgabefensters hilft praktisch kaum." },
+        { type: "p", text: "Kann der angebotene Dienst eine Eigenschaft wie künftige Haltbarkeit nicht prüfen, notiere sie als Restrisiko statt ein ungeeignetes Foto anzufordern." },
+      ] },
+      { id: "parcel", title: "7. Artikel freigeben, bevor das Paket optimiert wird", blocks: [
+        { type: "p", text: "Entscheide zuerst über Annahme, Umtausch oder Rückgabe. Erst danach folgen Verpackung, Entfernen von Kartons, Verstärkung, tatsächliches und volumetrisches Gewicht, Routen, Versicherung und Einschränkungen." },
+        { type: "p", text: "Ein historischer Haul liefert Kontext, aber keinen Preis für dein Ziel, Datum, Gewicht und Volumen. Hole die Schätzung beim Agent ein, sobald Paketdaten vorliegen." },
+        { type: "figure", image: "/products/electronics.webp", alt: "Elektronikzubehör als redaktionelles Beispiel", caption: "Empfindliche Produkte und Batterien können eigene Prüfungen und Routen benötigen. Aktuelle Regeln beim Agent bestätigen." },
+      ] },
+      { id: "audit", title: "8. Eine kurze Nachweisspur behalten", blocks: [
+        { type: "p", text: "Bewahre URL, Variante, Angebots-Screenshots, Lagerfotos, angeforderte Maße und Entscheidung mit Datum auf. So bleiben historische und aktuelle Informationen getrennt." },
+        { type: "p", text: "Bei Problemen kannst du zeigen, was bestellt und erhalten wurde, auch wenn sich die Seite verändert. Der Datensatz verbessert spätere Vergleiche von Verkäufern, Größen und Anfragen." },
+        { type: "p", text: "Eine gute Spur muss nicht lang sein. Sie bewahrt Identifikatoren und Belege, die jede Entscheidung getragen haben." },
+      ] },
+    ],
+    cta: { eyebrow: "Mit Belegen beginnen", title: "Nutze FindQC mit der präzisesten Suchmethode", label: "Suchmethoden vergleichen" },
+  },
+};
