@@ -30,3 +30,6 @@ folder as the project root:
 
 The canonical public domain remains `https://findqc.pro`; connecting that
 domain is intentionally handled separately from this source deployment.
+
+Deployment status: the GitHub-to-Cloudflare production connection was
+re-established on July 22, 2026, and this commit triggers a fresh production build.
