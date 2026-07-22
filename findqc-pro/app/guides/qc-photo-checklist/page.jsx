@@ -1,15 +1,15 @@
-import Link from "next/link";
+import Link from "../../../components/LocalizedLink";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import PageHero from "../../../components/PageHero";
 import { ArrowIcon, CheckIcon, ExternalIcon } from "../../../components/Icons";
 import T from "../../../components/LocalizedText";
 import { categories } from "../../../lib/data";
+import { localizedMetadata } from "../../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "7-Step QC Photo Checklist Before Shipping",
   description: "Use a practical seven-stage checklist to compare order details, condition, construction, labels, measurements and packing in warehouse QC photos.",
-  alternates: { canonical: "/guides/qc-photo-checklist" },
-};
+}, "/guides/qc-photo-checklist");
 
 export default function ChecklistPage() {
   return (

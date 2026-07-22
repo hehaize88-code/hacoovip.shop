@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "./LocalizedLink";
 import { useLanguage } from "./LanguageProvider";
 
 export default function Breadcrumbs({ items }) {

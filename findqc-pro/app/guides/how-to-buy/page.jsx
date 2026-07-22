@@ -1,15 +1,15 @@
-import Link from "next/link";
+import Link from "../../../components/LocalizedLink";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import PageHero from "../../../components/PageHero";
 import SearchBox from "../../../components/SearchBox";
 import { ArrowIcon, CheckIcon, ExternalIcon } from "../../../components/Icons";
 import T from "../../../components/LocalizedText";
+import { localizedMetadata } from "../../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "How to Buy More Carefully: Search to Shipment",
   description: "Follow a practical workflow for product search, source-page verification, option records, warehouse QC review and shipment approval.",
-  alternates: { canonical: "/guides/how-to-buy" },
-};
+}, "/guides/how-to-buy");
 
 export default function HowToBuyPage() {
   return (

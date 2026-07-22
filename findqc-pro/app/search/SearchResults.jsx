@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../../components/LocalizedLink";
 import { useSearchParams } from "next/navigation";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import SearchBox from "../../components/SearchBox";

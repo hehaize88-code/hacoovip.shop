@@ -1,15 +1,15 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import { ArrowIcon, ExternalIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "How FindQC Search Works | Independent QC Guide",
   description: "A source-checked guide to FindQC link, image and keyword search, the QC data it aggregates, and the limits buyers should understand.",
-  alternates: { canonical: "/guides" },
-};
+}, "/guides");
 
 const methods = [
   { number: "01", key: "link" },

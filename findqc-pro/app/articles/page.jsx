@@ -1,15 +1,15 @@
-import Link from "next/link";
+import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import { ArrowIcon } from "../../components/Icons";
 import { articles } from "../../lib/articles";
 import T from "../../components/LocalizedText";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "FindQC Guides: Search, QC Photos & Shopping Agents",
   description: "Fact-checked English guides to FindQC search, product signals, QC photo review and the shopping-agent workflow.",
-  alternates: { canonical: "/articles" },
-};
+}, "/articles");
 
 export default function ArticlesPage() {
   const itemListLd = {

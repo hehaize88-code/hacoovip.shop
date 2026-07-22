@@ -1,8 +1,10 @@
-import Link from "next/link";
+import Link from "../../../components/LocalizedLink";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { ArrowIcon, ExternalIcon } from "../../../components/Icons";
 import { articles, getArticle } from "../../../lib/articles";
+import { BUILD_LANGUAGE, languageUrl } from "../../../lib/routing";
+import { localizedMetadata } from "../../../lib/seo";
 
 const siteUrl = "https://findqc.pro";
 
@@ -15,16 +17,15 @@ export async function generateMetadata({ params }) {
   const article = getArticle(slug);
   if (!article) return {};
 
-  return {
+  return localizedMetadata({
     title: article.title,
     description: article.description,
     keywords: article.keywords,
-    alternates: { canonical: `/articles/${article.slug}` },
     openGraph: {
       type: "article",
       title: article.title,
       description: article.description,
-      url: `${siteUrl}/articles/${article.slug}`,
+      url: languageUrl(`/articles/${article.slug}`),
       publishedTime: article.dateISO,
       modifiedTime: article.dateISO,
       authors: ["FindQC Pro Editorial Desk"],
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }) {
       images: [article.heroImage],
     },
     robots: { index: true, follow: true },
-  };
+  }, `/articles/${article.slug}`);
 }
 
 function ContentBlock({ block }) {
@@ -105,7 +106,7 @@ export default async function ArticlePage({ params }) {
   if (!article) notFound();
 
   const relatedArticles = article.related.map(getArticle).filter(Boolean);
-  const articleUrl = `${siteUrl}/articles/${article.slug}`;
+  const articleUrl = languageUrl(`/articles/${article.slug}`);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -114,9 +115,9 @@ export default async function ArticlePage({ params }) {
     image: [`${siteUrl}${article.heroImage}`],
     datePublished: article.dateISO,
     dateModified: article.dateISO,
-    inLanguage: "en",
+    inLanguage: BUILD_LANGUAGE,
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
-    author: { "@type": "Organization", name: "FindQC Pro Editorial Desk", url: `${siteUrl}/about` },
+    author: { "@type": "Organization", name: "FindQC Pro Editorial Desk", url: languageUrl("/about") },
     publisher: {
       "@type": "Organization",
       name: "FindQC Pro",
@@ -130,8 +131,8 @@ export default async function ArticlePage({ params }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "Journal", item: `${siteUrl}/articles` },
+      { "@type": "ListItem", position: 1, name: "Home", item: languageUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Journal", item: languageUrl("/articles") },
       { "@type": "ListItem", position: 3, name: article.shortTitle, item: articleUrl },
     ],
   };

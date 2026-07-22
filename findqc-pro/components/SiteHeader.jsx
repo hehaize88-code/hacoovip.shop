@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import Link from "./LocalizedLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowIcon, MenuIcon } from "./Icons";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "./LanguageProvider";
+import { stripLanguagePrefix } from "../lib/routing";
 
 const links = [
   ["/products", "nav.finds"],
@@ -17,6 +18,7 @@ const links = [
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const activePath = stripLanguagePrefix(pathname);
   const [open, setOpen] = useState(false);
   const { t } = useLanguage();
 
@@ -32,7 +34,7 @@ export default function SiteHeader() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {links.map(([href, key]) => (
-            <Link key={href} href={href} className={pathname.startsWith(href) ? "active" : ""}>
+            <Link key={href} href={href} className={activePath.startsWith(href) ? "active" : ""}>
               {t(key)}
             </Link>
           ))}
@@ -55,7 +57,7 @@ export default function SiteHeader() {
             <LanguageSwitcher mobile />
           </div>
           {links.map(([href, key]) => (
-            <Link key={href} href={href} className={pathname.startsWith(href) ? "active" : ""}>
+            <Link key={href} href={href} className={activePath.startsWith(href) ? "active" : ""}>
               {t(key)}<span>↗</span>
             </Link>
           ))}

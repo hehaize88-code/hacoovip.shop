@@ -1,7 +1,8 @@
 import Breadcrumbs from "../../components/Breadcrumbs";
 import T from "../../components/LocalizedText";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = { title: "Terms of Use", description: "Terms of use for FindQC Pro.", alternates: { canonical: "/terms" } };
+export const metadata = localizedMetadata({ title: "Terms of Use", description: "Terms of use for FindQC Pro." }, "/terms");
 
 export default function TermsPage() {
   return (

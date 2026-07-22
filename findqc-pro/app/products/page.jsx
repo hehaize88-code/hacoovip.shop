@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import SearchBox from "../../components/SearchBox";
@@ -6,12 +6,12 @@ import ProductCard from "../../components/ProductCard";
 import { ArrowIcon, CheckIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
 import { categories, products } from "../../lib/data";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "Product Finds with Exact Source Links",
   description: "Browse a curated product shortlist, open exact source pages and use practical listing and QC checks before ordering or approving international shipment.",
-  alternates: { canonical: "/products" },
-};
+}, "/products");
 
 export default function ProductsPage() {
   return (

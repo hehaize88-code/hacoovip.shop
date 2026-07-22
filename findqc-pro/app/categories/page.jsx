@@ -1,15 +1,15 @@
-import Link from "next/link";
+import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import { ArrowIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
 import { categories } from "../../lib/data";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "Product Categories",
   description: "Browse product categories and use focused QC prompts for shoes, clothing, accessories, jerseys and electronics.",
-  alternates: { canonical: "/categories" },
-};
+}, "/categories");
 
 export default function CategoriesPage() {
   return (

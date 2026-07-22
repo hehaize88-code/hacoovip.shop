@@ -1,10 +1,11 @@
-import Link from "next/link";
+import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import { ArrowIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = { title: "About", description: "About FindQC Pro, an independent product-discovery and QC education website.", alternates: { canonical: "/about" } };
+export const metadata = localizedMetadata({ title: "About", description: "About FindQC Pro, an independent product-discovery and QC education website." }, "/about");
 
 export default function AboutPage() {
   return (

@@ -2,8 +2,10 @@ import "./globals.css";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
 import LanguageProvider from "../components/LanguageProvider";
+import { DEFAULT_LANGUAGE } from "../lib/i18n";
+import { localizedMetadata } from "../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   metadataBase: new URL("https://findqc.pro"),
   title: {
     default: "FindQC Pro — Product Finder & QC Guides",
@@ -12,7 +14,6 @@ export const metadata = {
   description:
     "Search product listings, browse useful finds and learn how to review warehouse QC photos before international shipping.",
   keywords: ["product finder", "QC photos", "quality check guide", "warehouse inspection", "China shopping guide"],
-  alternates: { canonical: "/" },
   openGraph: {
     title: "FindQC Pro — Find Better. Check Smarter.",
     description: "Independent product discovery and practical QC education.",
@@ -29,11 +30,11 @@ export const metadata = {
     images: ["/og.svg"],
   },
   icons: { icon: "/findqc-logo.png", apple: "/findqc-logo.png" },
-};
+}, "/");
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang={DEFAULT_LANGUAGE}>
       <body>
         <LanguageProvider>
           <SiteHeader />

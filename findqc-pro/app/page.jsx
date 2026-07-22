@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../components/LocalizedLink";
 import SearchBox from "../components/SearchBox";
 import ProductCard from "../components/ProductCard";
 import { ArrowIcon, CheckIcon } from "../components/Icons";

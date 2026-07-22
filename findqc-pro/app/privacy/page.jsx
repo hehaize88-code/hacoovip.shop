@@ -1,7 +1,8 @@
 import Breadcrumbs from "../../components/Breadcrumbs";
 import T from "../../components/LocalizedText";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = { title: "Privacy Policy", description: "Privacy policy for FindQC Pro.", alternates: { canonical: "/privacy" } };
+export const metadata = localizedMetadata({ title: "Privacy Policy", description: "Privacy policy for FindQC Pro." }, "/privacy");
 
 export default function PrivacyPage() {
   return <Policy>

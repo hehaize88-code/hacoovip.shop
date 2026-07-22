@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../components/LocalizedLink";
 import { ArrowIcon } from "../components/Icons";
 import T from "../components/LocalizedText";
 

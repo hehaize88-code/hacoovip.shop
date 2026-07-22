@@ -1,8 +1,9 @@
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import T from "../../components/LocalizedText";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = { title: "Contact", description: "Contact information and correction requests for FindQC Pro.", alternates: { canonical: "/contact" } };
+export const metadata = localizedMetadata({ title: "Contact", description: "Contact information and correction requests for FindQC Pro." }, "/contact");
 
 export default function ContactPage() {
   return (

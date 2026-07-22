@@ -4,12 +4,12 @@ import SearchBox from "../../components/SearchBox";
 import { ExternalIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
 import { PAGE_TRANSLATIONS } from "../../lib/pageTranslations";
+import { localizedMetadata } from "../../lib/seo";
 
-export const metadata = {
+export const metadata = localizedMetadata({
   title: "FindQC FAQ: Search, QC Photos, Reviews & Agent Flow",
   description: "Fact-checked answers about FindQC search methods, QC data sources, Trending, Karma, reviews, hauls, removed listings and shopping-agent limits.",
-  alternates: { canonical: "/faq" },
-};
+}, "/faq");
 
 const faqGroups = [
   { titleKey: "faq.groups.official", items: [10, 11, 12, 13, 14, 15, 16, 17] },

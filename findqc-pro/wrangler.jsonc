@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "findqc-pro",
+  "name": "findqc-pro-preview",
   "compatibility_date": "2026-07-20",
   "compatibility_flags": ["nodejs_compat"],
   "main": "vinext/server/fetch-handler",

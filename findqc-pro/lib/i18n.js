@@ -8,7 +8,10 @@ export const LANGUAGE_OPTIONS = [
   { code: "ro", label: "Română" },
 ];
 
-export const DEFAULT_LANGUAGE = "en";
+const requestedLanguage = process.env.NEXT_PUBLIC_SITE_LANGUAGE;
+export const DEFAULT_LANGUAGE = LANGUAGE_OPTIONS.some(({ code }) => code === requestedLanguage)
+  ? requestedLanguage
+  : "en";
 
 export const TRANSLATIONS = {
   en: {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../../../components/LocalizedLink";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import PageHero from "../../../components/PageHero";
@@ -7,6 +7,7 @@ import { ArrowIcon, CheckIcon, ExternalIcon } from "../../../components/Icons";
 import T from "../../../components/LocalizedText";
 import { categoryGuides } from "../../../lib/categoryGuides";
 import { categories, products } from "../../../lib/data";
+import { localizedMetadata } from "../../../lib/seo";
 
 export function generateStaticParams() {
   return categories.map(({ slug }) => ({ slug }));
@@ -16,11 +17,10 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const category = categories.find((item) => item.slug === slug);
   if (!category) return {};
-  return {
+  return localizedMetadata({
     title: `${category.name} Finds & QC Checklist`,
     description: `Browse ${category.name.toLowerCase()} finds and use a practical QC checklist for sizing, visible condition, measurements, details and packing before shipment.`,
-    alternates: { canonical: `/categories/${category.slug}` },
-  };
+  }, `/categories/${category.slug}`);
 }
 
 export default async function CategoryPage({ params }) {
