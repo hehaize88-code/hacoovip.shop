@@ -10,6 +10,8 @@ Search status: keyword searches first open the mapped FindQC Pro results page. B
 
 Image status: responsive AVIF/WebP variants, intrinsic dimensions, LCP-only preload, below-fold lazy loading and long-lived hashed asset caching are generated during each production build.
 
+Sitemap status: every indexable URL uses an explicit content modification date; production build time is never used as `lastmod`.
+
 ## Local development
 
 ```bash
@@ -34,4 +36,4 @@ The multilingual static build is written to `out/`. Cloudflare Pages uses:
 
 The canonical public domain remains `https://findqc.pro`. The build preserves the permanent `www.findqc.pro` to `findqc.pro` redirect, including paths and query parameters.
 
-Deployment status: responsive image delivery and cache controls were prepared for production on July 22, 2026.
+Deployment status: truthful per-page sitemap dates were prepared for production on July 22, 2026.
