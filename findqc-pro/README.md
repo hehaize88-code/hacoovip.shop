@@ -2,6 +2,8 @@
 
 Independent product-discovery and QC education website for `findqc.pro`.
 
+Catalog status: 108 reviewed product routes across 9 categories, last reviewed July 22, 2026.
+
 ## Local development
 
 ```bash
