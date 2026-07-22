@@ -71,6 +71,16 @@ function localizedPath(language, pathname) {
   return `/${language}${pathname === "/" ? "/" : pathname}`;
 }
 
+function localizedUrl(language, pathname) {
+  if (language === "en" && pathname === "/") return "https://findqc.pro";
+  const prefix = language === "en" ? "" : `/${language}`;
+  return `https://findqc.pro${prefix}${pathname === "/" ? "/" : pathname}`;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function structuredData(html, pathname) {
   const schemas = [];
   for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
@@ -134,17 +144,24 @@ for (const url of urls) {
   }
 
   const html = readFileSync(file, "utf8");
+  const head = html.match(/<head>([\s\S]*?)<\/head>/i)?.[1] || "";
   if (!html.includes(`<html lang="${language}"`)) failures.push(`Wrong lang attribute: ${url}`);
-  if (!html.includes(`<link rel="canonical" href="${url}"`)) failures.push(`Wrong canonical: ${url}`);
+  const canonicalTags = head.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi) || [];
+  if (canonicalTags.length !== 1) failures.push(`Expected one canonical tag, found ${canonicalTags.length}: ${url}`);
+  if (!canonicalTags[0]?.includes(`href="${url}"`)) failures.push(`Wrong canonical: ${url}`);
+
+  const ogUrlTags = head.match(/<meta\b(?=[^>]*\bproperty=["']og:url["'])[^>]*>/gi) || [];
+  if (ogUrlTags.length !== 1) failures.push(`Expected one og:url tag, found ${ogUrlTags.length}: ${url}`);
+  if (!ogUrlTags[0]?.includes(`content="${url}"`)) failures.push(`Wrong og:url: ${url}`);
   if ((html.match(/<h1[\s>]/g) || []).length !== 1) failures.push(`Expected one H1: ${url}`);
 
   const basePath = pathname.replace(/^\/(pl|es|de|ro)(?=\/|$)/, "") || "/";
   for (const alternate of [...languages, "x-default"]) {
     const targetLanguage = alternate === "x-default" ? "en" : alternate;
-    const prefix = targetLanguage === "en" ? "" : `/${targetLanguage}`;
-    const expected = `https://findqc.pro${prefix}${basePath === "/" ? "/" : basePath}`;
-    const pattern = new RegExp(`<link rel="alternate" hreflang="${alternate}" href="${expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`);
-    if (!pattern.test(html)) failures.push(`Missing ${alternate} alternate: ${url}`);
+    const expected = localizedUrl(targetLanguage, basePath);
+    const pattern = new RegExp(`<link\\b(?=[^>]*\\brel=["']alternate["'])(?=[^>]*\\bhreflang=["']${escapeRegExp(alternate)}["'])(?=[^>]*\\bhref=["']${escapeRegExp(expected)}["'])[^>]*>`, "gi");
+    const alternateTags = head.match(pattern) || [];
+    if (alternateTags.length !== 1) failures.push(`Expected one ${alternate} alternate, found ${alternateTags.length}: ${url}`);
   }
 
   if (language !== "en") {

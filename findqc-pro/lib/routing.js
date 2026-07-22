@@ -18,5 +18,7 @@ export function languagePath(pathname = "/", language = BUILD_LANGUAGE) {
 }
 
 export function languageUrl(pathname = "/", language = BUILD_LANGUAGE) {
-  return new URL(languagePath(pathname, language), "https://findqc.pro").toString();
+  const localizedPath = languagePath(pathname, language);
+  if (localizedPath === "/") return "https://findqc.pro";
+  return new URL(localizedPath, "https://findqc.pro").toString();
 }
