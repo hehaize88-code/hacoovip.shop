@@ -12,6 +12,8 @@ Image status: responsive AVIF/WebP variants, intrinsic dimensions, LCP-only prel
 
 Sitemap status: every indexable URL uses an explicit content modification date; production build time is never used as `lastmod`.
 
+Editorial trust status: localized author responsibility, source hierarchy, verification, update history and correction guidance are part of the production build.
+
 ## Local development
 
 ```bash
