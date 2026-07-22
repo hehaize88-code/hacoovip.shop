@@ -7,7 +7,7 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
+    "dev": "vite",
     "build": "node scripts/build-multilingual.mjs",
     "build:single": "next build",
     "validate": "node scripts/validate-multilingual.mjs",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "../../components/LocalizedLink";
 import { useSearchParams } from "next/navigation";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -8,6 +9,7 @@ import ProductCard from "../../components/ProductCard";
 import { ArrowIcon, ExternalIcon } from "../../components/Icons";
 import { categories, products } from "../../lib/data";
 import T from "../../components/LocalizedText";
+import { useLanguage } from "../../components/LanguageProvider";
 
 function includesQuery(values, query) {
   const words = query.toLowerCase().split(/\s+/).filter(Boolean);
@@ -15,12 +17,35 @@ function includesQuery(values, query) {
   return words.every((word) => haystack.includes(word));
 }
 
+function titleCase(value) {
+  return value.replace(/(^|[\s-])([a-z])/g, (_, boundary, letter) => `${boundary}${letter.toUpperCase()}`);
+}
+
 export default function SearchResults() {
   const params = useSearchParams();
+  const { t } = useLanguage();
   const query = (params.get("q") || "").trim().slice(0, 120);
   const productMatches = query ? products.filter((product) => includesQuery([product.id, product.sourceId, product.name, product.category, product.note], query)) : [];
   const categoryMatches = query ? categories.filter((category) => includesQuery([category.name, category.slug, category.short, category.description], query)) : [];
   const googleHref = `https://www.google.com/search?q=${encodeURIComponent(`site:cnfanshp.com ${query}`)}`;
+
+  useEffect(() => {
+    const displayQuery = titleCase(query);
+    document.title = query
+      ? t("searchPage.browserTitle", { query: displayQuery })
+      : t("searchPage.browserTitleEmpty");
+
+    const description = query
+      ? t("searchPage.browserDescription", { query: displayQuery })
+      : t("searchPage.browserDescriptionEmpty");
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "description");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", description);
+  }, [query, t]);
 
   return (
     <div className="shell inner-page search-page">

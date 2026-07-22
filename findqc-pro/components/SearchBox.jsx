@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { ArrowIcon, SearchIcon } from "./Icons";
 import { useLanguage } from "./LanguageProvider";
-
-const MAIN_SEARCH_URL = "https://www.cnfanshp.com/search.html";
+import { languagePath } from "../lib/routing";
 
 function searchInput(value) {
   const trimmed = value.trim();
@@ -24,7 +23,7 @@ function searchInput(value) {
 
 export default function SearchBox({ compact = false }) {
   const [query, setQuery] = useState("");
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   function submit(event) {
     event.preventDefault();
@@ -35,9 +34,8 @@ export default function SearchBox({ compact = false }) {
       return;
     }
 
-    const destination = new URL(MAIN_SEARCH_URL);
-    destination.searchParams.set("keywords", input.query);
-    destination.searchParams.set("channelid", "2");
+    const destination = new URL(languagePath("/search", language), window.location.origin);
+    destination.searchParams.set("q", input.query);
     window.location.assign(destination.toString());
   }
 
