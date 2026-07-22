@@ -3,14 +3,14 @@ export const plArticleUi = {
   journalMetadataDescription: "Sprawdzone poradniki o wyszukiwaniu w FindQC, sygnałach popularności, ocenie zdjęć QC i współpracy z agentem zakupowym.",
   journalSchemaName: "Magazyn poradnikowy FindQC Pro",
   journalCount: "05 szczegółowych poradników",
-  journalNote: "Każdy artykuł został napisany po polsku, sprawdzony na aktualnych stronach należących do FindQC i połączony z oficjalnymi źródłami. Ilustracje redakcyjne są wyraźnie opisane i nie udają zdjęć QC z magazynu.",
+  journalNote: "Każdy artykuł został napisany po polsku i sprawdzony w aktualnych źródłach pierwotnych oraz — gdy ma to znaczenie — w niezależnych publicznych bazach bezpieczeństwa. Ilustracje redakcyjne nie udają zdjęć QC z magazynu.",
   editorialDesk: "Redakcja FindQC Pro",
   factChecked: "Zweryfikowane fakty",
   heroCaption: "Zdjęcie redakcyjne ilustrujące przedmiot kontroli. Nie jest przedstawiane jako materiał QC z magazynu FindQC.",
   contents: "W tym artykule",
   researchNotes: "Notatki badawcze",
-  officialSources: "Sprawdzone źródła oficjalne",
-  sourceIntro: "Ten niezależny poradnik sprawdzono 20 lipca 2026 r. na poniższych stronach należących do FindQC. Funkcje i zasady mogą się zmieniać, dlatego aktualne informacje zawsze potwierdź u źródła.",
+  officialSources: "Sprawdzone źródła",
+  sourceIntro: "Zestaw źródeł tego niezależnego poradnika ostatnio sprawdzono 22 lipca 2026 r. Funkcje, zasady i alerty bezpieczeństwa mogą się zmieniać, dlatego potwierdź je w połączonym źródle.",
   independentNote: "FindQC Pro jest niezależnym serwisem wyszukiwawczym i edukacyjnym. Nie jest FindQC i nie twierdzi, że obsługuje jego usługi.",
   continueResearch: "Kontynuuj sprawdzanie",
   relatedNotes: "Powiązane poradniki",
@@ -40,6 +40,14 @@ export const plArticleSources = {
   "https://findqc.com/robots": {
     label: "Bot FindQC",
     note: "Oficjalny opis analizowania linków, rozpoznawania obrazów oraz materiałów QC w serwisie Discord.",
+  },
+  "https://www.cpsc.gov/Recalls": {
+    label: "Wycofania i ostrzeżenia U.S. CPSC",
+    note: "Niezależna publiczna baza wycofań i ostrzeżeń dla produktów konsumenckich; zdjęcia QC nie zastępują kontroli bezpieczeństwa.",
+  },
+  "https://ec.europa.eu/safety-gate-alerts/": {
+    label: "Alerty EU Safety Gate",
+    note: "System Komisji Europejskiej dla niebezpiecznych produktów nieżywnościowych, niezależny od zdjęć sprzedawcy i magazynu.",
   },
 };
 

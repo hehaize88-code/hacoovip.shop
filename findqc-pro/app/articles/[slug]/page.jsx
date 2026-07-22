@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
       description: article.description,
       url: languageUrl(`/articles/${article.slug}`),
       publishedTime: article.dateISO,
-      modifiedTime: article.dateISO,
+      modifiedTime: article.updatedISO || article.dateISO,
       authors: [articleUi.editorialDesk],
       images: [{ url: article.heroImage }],
     },
@@ -117,10 +117,10 @@ export default async function ArticlePage({ params }) {
     description: article.description,
     image: [`${siteUrl}${article.heroImage}`],
     datePublished: article.dateISO,
-    dateModified: article.dateISO,
+    dateModified: article.updatedISO || article.dateISO,
     inLanguage: BUILD_LANGUAGE,
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
-    author: { "@type": "Organization", name: articleUi.editorialDesk, url: languageUrl("/about") },
+    author: { "@type": "Organization", name: articleUi.editorialDesk, url: languageUrl("/editorial-policy#editorial-desk") },
     publisher: {
       "@type": "Organization",
       name: "FindQC Pro",
@@ -151,7 +151,7 @@ export default async function ArticlePage({ params }) {
         <h1>{article.title}</h1>
         <p>{article.description}</p>
         <div>
-          <span>{articleUi.editorialDesk}</span>
+          <Link className="article-author-link" href="/editorial-policy#editorial-desk">{articleUi.editorialDesk} <ArrowIcon /></Link>
           <time dateTime={article.dateISO}>{article.date}</time>
           <span>{articleUi.factChecked}</span>
         </div>

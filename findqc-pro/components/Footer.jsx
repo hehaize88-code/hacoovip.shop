@@ -3,9 +3,11 @@
 import Link from "./LocalizedLink";
 import SearchBox from "./SearchBox";
 import { useLanguage } from "./LanguageProvider";
+import { getTrustContent } from "../lib/trustContent";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const trust = getTrustContent(language);
 
   return (
     <footer className="site-footer">
@@ -34,6 +36,7 @@ export default function Footer() {
         <div>
           <h3>{t("footer.information")}</h3>
           <Link href="/about">{t("footer.about")}</Link>
+          <Link href="/editorial-policy">{trust.navLabel}</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/contact">{t("footer.contact")}</Link>
           <Link href="/privacy">{t("footer.privacy")}</Link>

@@ -3,14 +3,14 @@ export const deArticleUi = {
   journalMetadataDescription: "Geprüfte Ratgeber zur FindQC-Suche, zu Produktsignalen, zur Bewertung von QC-Fotos und zum Ablauf mit einem Shopping Agent.",
   journalSchemaName: "FindQC Pro Wissensmagazin",
   journalCount: "05 ausführliche Ratgeber",
-  journalNote: "Jeder Artikel ist vollständig auf Deutsch verfasst, anhand aktueller FindQC-eigener Seiten geprüft und mit offiziellen Quellen verknüpft. Redaktionelle Bilder sind klar gekennzeichnet und werden nicht als QC-Nachweis aus einem Lager dargestellt.",
+  journalNote: "Jeder Artikel ist auf Deutsch verfasst und anhand aktueller Primärquellen sowie bei Bedarf unabhängiger öffentlicher Sicherheitsquellen geprüft. Redaktionelle Bilder werden nicht als QC-Nachweis aus einem Lager dargestellt.",
   editorialDesk: "Redaktion von FindQC Pro",
   factChecked: "Fakten geprüft",
   heroCaption: "Redaktionelles Produktbild zur Veranschaulichung des Prüfthemas. Es wird nicht als FindQC-QC-Aufnahme aus einem Lager dargestellt.",
   contents: "In diesem Artikel",
   researchNotes: "Recherchehinweise",
-  officialSources: "Geprüfte offizielle Quellen",
-  sourceIntro: "Dieser unabhängige Ratgeber wurde am 20. Juli 2026 mit den folgenden FindQC-eigenen Seiten abgeglichen. Funktionen und Richtlinien können sich ändern; prüfe aktuelle Angaben immer an der Quelle.",
+  officialSources: "Geprüfte Quellen",
+  sourceIntro: "Der Quellensatz dieses unabhängigen Ratgebers wurde zuletzt am 22. Juli 2026 geprüft. Funktionen, Richtlinien und Sicherheitswarnungen können sich ändern; prüfe die verlinkte aktuelle Quelle.",
   independentNote: "FindQC Pro ist eine unabhängige Such- und Informationsseite. Sie ist nicht FindQC und betreibt dessen Dienst nicht.",
   continueResearch: "Weiter recherchieren",
   relatedNotes: "Verwandte Ratgeber",
@@ -26,6 +26,8 @@ export const deArticleSources = {
   "https://findqc.com/privacy-policy": { label: "Datenschutzerklärung von FindQC", note: "Offizielle Erläuterung von Suche, Popularität, Sammlungen und QC-Datensätzen Dritter." },
   "https://academy.findqc.com/2024/12/21/mastering-qc-finder-choosing-the-best-search-method/": { label: "FindQC Academy: die passende Suchmethode", note: "Offizieller Vergleich von Link-, Bild- und Stichwortsuche." },
   "https://findqc.com/robots": { label: "FindQC Bot", note: "Offizielle Beschreibung von Linkanalyse, Bilderkennung und QC-Medien in Discord." },
+  "https://www.cpsc.gov/Recalls": { label: "Rückrufe und Warnungen der U.S. CPSC", note: "Unabhängige öffentliche Datenbank für Produktrückrufe und Warnungen; QC-Fotos ersetzen keine Sicherheitsprüfung." },
+  "https://ec.europa.eu/safety-gate-alerts/": { label: "EU Safety Gate Warnungen", note: "Warnsystem der Europäischen Kommission für gefährliche Non-Food-Produkte, unabhängig von Verkäufer- oder Lagerbildern." },
 };
 
 export const deArticles = {

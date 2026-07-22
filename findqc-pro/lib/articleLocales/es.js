@@ -3,14 +3,14 @@ export const esArticleUi = {
   journalMetadataDescription: "Guías verificadas sobre las búsquedas de FindQC, las señales de producto, la revisión de fotos QC y el proceso con un agente de compra.",
   journalSchemaName: "Revista de investigación de FindQC Pro",
   journalCount: "05 guías detalladas",
-  journalNote: "Cada artículo está redactado en español, se contrasta con páginas actuales propiedad de FindQC y enlaza sus fuentes oficiales. Las imágenes editoriales se identifican claramente y no se presentan como pruebas QC de almacén.",
+  journalNote: "Cada artículo está redactado en español y se contrasta con fuentes primarias actuales y, cuando procede, con referencias públicas independientes de seguridad. Las imágenes editoriales no se presentan como pruebas QC de almacén.",
   editorialDesk: "Redacción de FindQC Pro",
   factChecked: "Datos verificados",
   heroCaption: "Imagen editorial utilizada para ilustrar el objeto de la inspección. No se presenta como una foto QC de un almacén de FindQC.",
   contents: "En este artículo",
   researchNotes: "Notas de investigación",
-  officialSources: "Fuentes oficiales consultadas",
-  sourceIntro: "Esta guía editorial independiente se contrastó con las siguientes páginas propiedad de FindQC el 20 de julio de 2026. Las funciones y políticas pueden cambiar; comprueba siempre la información vigente en la fuente.",
+  officialSources: "Fuentes consultadas",
+  sourceIntro: "El conjunto de fuentes de esta guía independiente se revisó por última vez el 22 de julio de 2026. Funciones, políticas y alertas pueden cambiar; comprueba la información vigente en la fuente enlazada.",
   independentNote: "FindQC Pro es un sitio independiente de descubrimiento y formación. No es FindQC ni afirma gestionar su servicio.",
   continueResearch: "Continúa investigando",
   relatedNotes: "Artículos relacionados",
@@ -40,6 +40,14 @@ export const esArticleSources = {
   "https://findqc.com/robots": {
     label: "Bot de FindQC",
     note: "Descripción oficial del análisis de enlaces, el reconocimiento de imágenes y el material QC disponible en Discord.",
+  },
+  "https://www.cpsc.gov/Recalls": {
+    label: "Retiradas y alertas de U.S. CPSC",
+    note: "Base pública independiente de retiradas y advertencias de productos; las fotos QC no sustituyen una comprobación de seguridad.",
+  },
+  "https://ec.europa.eu/safety-gate-alerts/": {
+    label: "Alertas de EU Safety Gate",
+    note: "Sistema de la Comisión Europea para productos no alimentarios peligrosos, independiente de imágenes del vendedor o almacén.",
   },
 };
 

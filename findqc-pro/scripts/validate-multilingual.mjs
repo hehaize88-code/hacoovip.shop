@@ -6,6 +6,7 @@ import { categories, products } from "../lib/data.js";
 import { getLocalizedArticles } from "../lib/localizedArticles.js";
 import { imageManifest } from "../lib/imageManifest.js";
 import { getRouteLastModified } from "../lib/contentDates.js";
+import { getTrustContent } from "../lib/trustContent.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(root, "out");
@@ -196,6 +197,7 @@ for (const url of urls) {
 }
 
 for (const language of languages) {
+  const trust = getTrustContent(language);
   const homePath = localizedPath(language, "/");
   const homeHtml = readFileSync(htmlPath(homePath), "utf8");
   if (!schemaOfType(structuredData(homeHtml, homePath), "Organization")) failures.push(`Missing Organization schema: ${homePath}`);
@@ -236,6 +238,35 @@ for (const language of languages) {
       }
     }
   }
+
+  const aboutPath = localizedPath(language, "/about");
+  const aboutHtml = readFileSync(htmlPath(aboutPath), "utf8");
+  const aboutVisibleText = visibleText(aboutHtml);
+  const aboutSchema = schemaOfType(structuredData(aboutHtml, aboutPath), "AboutPage");
+  if (!aboutSchema?.mainEntity?.publishingPrinciples?.includes("/editorial-policy")) failures.push(`AboutPage publishing principles missing: ${aboutPath}`);
+  if (!aboutVisibleText.includes(trust.about.deskTitle) || !aboutVisibleText.includes(trust.about.updatesTitle)) failures.push(`About trust content not localized: ${aboutPath}`);
+  if (!aboutHtml.includes("https://www.cpsc.gov/Recalls") || !aboutHtml.includes("https://ec.europa.eu/safety-gate-alerts/")) failures.push(`About independent references missing: ${aboutPath}`);
+
+  const editorialPath = localizedPath(language, "/editorial-policy");
+  const editorialHtml = readFileSync(htmlPath(editorialPath), "utf8");
+  const editorialVisibleText = visibleText(editorialHtml);
+  const editorialSchema = schemaOfType(structuredData(editorialHtml, editorialPath), "WebPage");
+  if (editorialSchema?.author?.["@type"] !== "Organization") failures.push(`Editorial author must be an Organization: ${editorialPath}`);
+  if (!editorialVisibleText.includes(trust.editorial.identityTitle) || !editorialVisibleText.includes(trust.editorial.correctionsTitle)) failures.push(`Editorial policy not localized: ${editorialPath}`);
+  if ((editorialHtml.match(/target="_blank"/g) || []).length < 6) failures.push(`Editorial policy needs six visible reference links: ${editorialPath}`);
+
+  const contactPath = localizedPath(language, "/contact");
+  const contactHtml = readFileSync(htmlPath(contactPath), "utf8");
+  const contactVisibleText = visibleText(contactHtml);
+  const contactSchema = schemaOfType(structuredData(contactHtml, contactPath), "ContactPage");
+  if (contactSchema?.mainEntity?.email !== "hello@findqc.pro") failures.push(`ContactPage email missing: ${contactPath}`);
+  if (!contactVisibleText.includes(trust.contact.correctionTitle) || !contactVisibleText.includes(trust.contact.processTitle)) failures.push(`Contact correction policy not localized: ${contactPath}`);
+
+  for (const article of englishArticles) {
+    const articlePath = localizedPath(language, `/articles/${article.slug}`);
+    const articleHtml = readFileSync(htmlPath(articlePath), "utf8");
+    if (!articleHtml.includes(`${localizedPath(language, "/editorial-policy")}#editorial-desk`)) failures.push(`Article author profile link missing: ${articlePath}`);
+  }
 }
 
 if (Object.keys(imageManifest).length !== 117) failures.push(`Expected 117 image manifest entries, found ${Object.keys(imageManifest).length}`);
@@ -264,9 +295,9 @@ if (!headers.includes("/_next/static/*") || !headers.includes("max-age=31536000,
 }
 
 const sitemapAlternateCount = (sitemap.match(/<xhtml:link /g) || []).length;
-if (urls.length !== 130) failures.push(`Expected 130 sitemap URLs, found ${urls.length}`);
+if (urls.length !== 135) failures.push(`Expected 135 sitemap URLs, found ${urls.length}`);
 if (new Set(urls).size !== urls.length) failures.push("Sitemap contains duplicate URLs");
-if (sitemapAlternateCount !== 780) failures.push(`Expected 780 sitemap alternates, found ${sitemapAlternateCount}`);
+if (sitemapAlternateCount !== 810) failures.push(`Expected 810 sitemap alternates, found ${sitemapAlternateCount}`);
 if (sitemapEntries.length !== urls.length) failures.push(`Expected ${urls.length} sitemap lastmod values, found ${sitemapEntries.length}`);
 for (const entry of sitemapEntries) {
   const { pathname } = new URL(entry.url);

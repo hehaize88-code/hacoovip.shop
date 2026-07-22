@@ -3,14 +3,14 @@ export const roArticleUi = {
   journalMetadataDescription: "Ghiduri verificate despre căutarea FindQC, semnalele produselor, evaluarea fotografiilor QC și procesul cu un agent de cumpărături.",
   journalSchemaName: "Jurnalul de cercetare FindQC Pro",
   journalCount: "05 ghiduri detaliate",
-  journalNote: "Fiecare articol este redactat integral în limba română, verificat pe pagini actuale deținute de FindQC și legat de sursele oficiale. Imaginile editoriale sunt marcate clar și nu sunt prezentate drept dovezi QC din depozit.",
+  journalNote: "Fiecare articol este redactat în română și verificat în surse primare actuale și, când este relevant, în referințe publice independente de siguranță. Imaginile editoriale nu sunt prezentate drept dovezi QC din depozit.",
   editorialDesk: "Redacția FindQC Pro",
   factChecked: "Informații verificate",
   heroCaption: "Imagine editorială folosită pentru a ilustra obiectul inspecției. Nu este prezentată drept fotografie QC dintr-un depozit FindQC.",
   contents: "În acest articol",
   researchNotes: "Note de cercetare",
-  officialSources: "Surse oficiale consultate",
-  sourceIntro: "Acest ghid editorial independent a fost verificat la 20 iulie 2026 pe paginile FindQC de mai jos. Funcțiile și politicile se pot schimba; confirmă întotdeauna informațiile curente la sursă.",
+  officialSources: "Surse consultate",
+  sourceIntro: "Setul de surse al acestui ghid independent a fost revizuit ultima dată la 22 iulie 2026. Funcțiile, politicile și alertele se pot schimba; confirmă informațiile curente în sursa legată.",
   independentNote: "FindQC Pro este un site independent de descoperire și educație. Nu este FindQC și nu pretinde că operează serviciul acestuia.",
   continueResearch: "Continuă cercetarea",
   relatedNotes: "Ghiduri asociate",
@@ -26,6 +26,8 @@ export const roArticleSources = {
   "https://findqc.com/privacy-policy": { label: "Politica de confidențialitate FindQC", note: "Explicația oficială despre căutare, popularitate, colecții și înregistrările QC provenite de la terți." },
   "https://academy.findqc.com/2024/12/21/mastering-qc-finder-choosing-the-best-search-method/": { label: "FindQC Academy: alegerea metodei de căutare", note: "Comparația oficială între căutarea prin link, imagine și cuvinte-cheie." },
   "https://findqc.com/robots": { label: "Botul FindQC", note: "Descrierea oficială a analizării linkurilor, recunoașterii imaginilor și materialelor QC din Discord." },
+  "https://www.cpsc.gov/Recalls": { label: "Retrageri și avertismente U.S. CPSC", note: "Bază publică independentă pentru retrageri și avertismente; fotografiile QC nu înlocuiesc verificarea siguranței." },
+  "https://ec.europa.eu/safety-gate-alerts/": { label: "Alerte EU Safety Gate", note: "Sistemul Comisiei Europene pentru produse nealimentare periculoase, independent de imaginile vânzătorului ori depozitului." },
 };
 
 export const roArticles = {

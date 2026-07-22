@@ -12,8 +12,9 @@ const routeLastModified = Object.freeze({
   "/guides/how-to-buy": "2026-07-22",
   "/articles": "2026-07-20",
   "/faq": "2026-07-21",
-  "/about": "2026-07-21",
-  "/contact": "2026-07-21",
+  "/about": "2026-07-22",
+  "/contact": "2026-07-22",
+  "/editorial-policy": "2026-07-22",
   "/privacy": "2026-07-21",
   "/terms": "2026-07-21",
   "/categories/shoes": "2026-07-22",
@@ -56,4 +57,3 @@ export function getRouteLastModified(route, language = "en") {
 export function articleLastModified(article) {
   return article.updatedISO || article.dateISO;
 }
-
