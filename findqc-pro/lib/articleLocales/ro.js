@@ -161,7 +161,7 @@ export const roArticles = {
       { id: "karma", title: "3. Karma este un filtru comunitar, nu o specificație", blocks: [
         { type: "p", text: "Karma poate evidenția produse preferate repetat. Preferința nu oferă singură măsuri, compoziție, toleranțe de fabricație sau condiții de retur." },
         { type: "p", text: "Compară data și linkul cu oferta curentă. Un magazin poate schimba variantele sau furnizorul. Folosește Karma pentru prioritizarea cercetării, nu pentru aprobare automată." },
-        { type: "figure", image: "/products/accessories.webp", alt: "Accesoriu folosit ca exemplu editorial", caption: "Popularitatea descoperă un candidat; oferta și materialul QC stabilesc ce afirmații sunt justificate." },
+        { type: "figure", image: "/products/watch.webp", alt: "Accesoriu folosit ca exemplu editorial", caption: "Popularitatea descoperă un candidat; oferta și materialul QC stabilesc ce afirmații sunt justificate." },
       ] },
       { id: "reviews", title: "4. Citește observațiile, nu doar scorurile", blocks: [
         { type: "p", text: "O recenzie este valoroasă când descrie ceva verificabil: măsură, culoare, piesă lipsă, aliniere sau experiența unei variante. Un simplu „perfect” fără dată, link și imagine oferă puține informații transferabile." },

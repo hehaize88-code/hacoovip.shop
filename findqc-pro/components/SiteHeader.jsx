@@ -28,7 +28,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="nav-shell">
         <Link href="/" className="brand" aria-label="FindQC Pro home">
-          <img className="brand-logo-image" src="/findqc-logo.png" alt="" width="44" height="44" />
+          <img className="brand-logo-image" src="/findqc-logo.png" alt="" width="44" height="44" fetchPriority="low" decoding="async" />
           <span className="brand-name">findqc<span>.pro</span></span>
         </Link>
 

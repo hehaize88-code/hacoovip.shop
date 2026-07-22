@@ -3,9 +3,11 @@
 import Link from "../components/LocalizedLink";
 import SearchBox from "../components/SearchBox";
 import ProductCard from "../components/ProductCard";
+import ResponsiveImage from "../components/ResponsiveImage";
 import { ArrowIcon, CheckIcon } from "../components/Icons";
 import { useLanguage } from "../components/LanguageProvider";
 import { categories, products } from "../lib/data";
+import { preload } from "react-dom";
 
 function StackedText({ value }) {
   const lines = value.split("\n");
@@ -14,6 +16,13 @@ function StackedText({ value }) {
 
 export default function HomePage() {
   const { t } = useLanguage();
+  preload("/optimized/products/shoes-60-960.avif", {
+    as: "image",
+    type: "image/avif",
+    imageSrcSet: "/optimized/products/shoes-60-480.avif 480w, /optimized/products/shoes-60-960.avif 960w",
+    imageSizes: "(max-width: 760px) calc(100vw - 56px), 414px",
+    fetchPriority: "high",
+  });
   const previewFaqs = [1, 2, 3].map((number) => ({
     question: t(`home.faq${number}Question`),
     answer: t(`home.faq${number}Answer`),
@@ -59,7 +68,12 @@ export default function HomePage() {
             <b>QC / 01</b>
           </div>
           <div className="board-photo">
-            <img src="/products/shoes-60.jpg" alt="Footwear product example" />
+            <ResponsiveImage
+              src="/products/shoes-60.jpg"
+              alt="Footwear product example"
+              sizes="(max-width: 760px) calc(100vw - 56px), 414px"
+              priority
+            />
             <span className="corner tl" /><span className="corner tr" />
             <span className="corner bl" /><span className="corner br" />
             <div className="photo-tag">{t("home.referenceImage")}</div>
@@ -104,7 +118,7 @@ export default function HomePage() {
           <Link href="/products" className="outline-button">{t("home.viewAll")} <ArrowIcon /></Link>
         </div>
         <div className="product-grid home-products">
-          {products.slice(0, 4).map((product, index) => <ProductCard product={product} priority={index < 2} key={product.id} />)}
+          {products.slice(0, 4).map((product) => <ProductCard product={product} key={product.id} />)}
         </div>
         <p className="price-note">{t("home.priceNote")}</p>
       </section>

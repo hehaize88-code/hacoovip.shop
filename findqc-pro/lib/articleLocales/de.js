@@ -161,7 +161,7 @@ export const deArticles = {
       { id: "karma", title: "3. Karma ist ein Community-Filter, keine Spezifikation", blocks: [
         { type: "p", text: "Karma kann häufig bevorzugte Produkte hervorheben. Die Präferenz liefert jedoch keine Maße, Materialzusammensetzung, Fertigungstoleranzen oder Rückgaberegeln." },
         { type: "p", text: "Vergleiche Zeitpunkt und Link mit dem aktuellen Angebot. Ein Shop kann Varianten oder Lieferanten wechseln. Nutze Karma zur Priorisierung der Recherche, nicht zur automatischen Freigabe." },
-        { type: "figure", image: "/products/accessories.webp", alt: "Accessoire als redaktionelles Beispiel", caption: "Popularität findet einen Kandidaten; erst Angebot und QC-Material bestimmen, welche Aussagen zulässig sind." },
+        { type: "figure", image: "/products/watch.webp", alt: "Accessoire als redaktionelles Beispiel", caption: "Popularität findet einen Kandidaten; erst Angebot und QC-Material bestimmen, welche Aussagen zulässig sind." },
       ] },
       { id: "reviews", title: "4. Lies Beobachtungen, nicht nur Bewertungen", blocks: [
         { type: "p", text: "Eine Rezension ist wertvoll, wenn sie etwas Prüfbares nennt: Maß, Farbe, fehlendes Teil, Ausrichtung oder Erfahrung mit einer konkreten Variante. Ein bloßes „perfekt“ ohne Datum, Link und Foto ist wenig übertragbar." },

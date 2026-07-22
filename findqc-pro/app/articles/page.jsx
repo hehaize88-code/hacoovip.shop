@@ -5,6 +5,7 @@ import { ArrowIcon } from "../../components/Icons";
 import { BUILD_LANGUAGE, languageUrl } from "../../lib/routing";
 import { getArticleUi, getLocalizedArticles } from "../../lib/localizedArticles";
 import T from "../../components/LocalizedText";
+import ResponsiveImage from "../../components/ResponsiveImage";
 import { localizedMetadata } from "../../lib/seo";
 
 const articles = getLocalizedArticles(BUILD_LANGUAGE);
@@ -42,7 +43,7 @@ export default function ArticlesPage() {
         {articles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} className="journal-card" key={article.slug}>
             <span>0{index + 1}</span>
-            <div className="journal-card-image"><img src={article.heroImage} alt="" loading={index === 0 ? "eager" : "lazy"} /></div>
+            <div className="journal-card-image"><ResponsiveImage src={article.heroImage} alt="" sizes="170px" /></div>
             <div className="journal-card-copy">
               <small>{article.category} · {article.readTime}</small>
               <h2>{article.title}</h2>

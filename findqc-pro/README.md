@@ -8,6 +8,8 @@ Brand clarity: a translated first-screen notice identifies this as an independen
 
 Search status: keyword searches first open the mapped FindQC Pro results page. Browser titles and descriptions follow the query in all five languages before exact product links open the source catalog.
 
+Image status: responsive AVIF/WebP variants, intrinsic dimensions, LCP-only preload, below-fold lazy loading and long-lived hashed asset caching are generated during each production build.
+
 ## Local development
 
 ```bash
@@ -32,4 +34,4 @@ The multilingual static build is written to `out/`. Cloudflare Pages uses:
 
 The canonical public domain remains `https://findqc.pro`. The build preserves the permanent `www.findqc.pro` to `findqc.pro` redirect, including paths and query parameters.
 
-Deployment status: search-result titles and the mapped search flow were prepared for production on July 22, 2026.
+Deployment status: responsive image delivery and cache controls were prepared for production on July 22, 2026.

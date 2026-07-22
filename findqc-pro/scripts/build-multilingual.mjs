@@ -17,6 +17,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
 const buildOut = path.join(root, "out");
 const staging = path.join(root, ".multilingual-out");
+const imageGenerator = path.join(root, "scripts", "generate-responsive-images.mjs");
 const languages = ["en", "pl", "es", "de", "ro"];
 const localeMap = { en: "en_US", pl: "pl_PL", es: "es_ES", de: "de_DE", ro: "ro_RO" };
 const removalOptions = {
@@ -116,6 +117,12 @@ function buildSitemap(routes) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join("\n")}\n</urlset>\n`;
 }
+
+const imageResult = spawnSync(process.execPath, [imageGenerator], {
+  cwd: root,
+  stdio: "inherit",
+});
+if (imageResult.status !== 0) process.exit(imageResult.status ?? 1);
 
 rmSync(staging, removalOptions);
 let indexableRoutes = [];

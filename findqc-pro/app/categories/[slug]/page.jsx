@@ -77,7 +77,7 @@ export default async function CategoryPage({ params }) {
         <div>
           <div className="section-heading compact-heading"><div><span className="eyebrow"><T id="categoryDetail.matchingEyebrow" /></span><h2><T id="categoryDetail.matchingTitle" /></h2></div></div>
           <div className="product-grid category-products">
-            {matches.length ? matches.map((product) => <ProductCard product={product} priority key={product.id} />) : <p><T id="categoryDetail.none" /></p>}
+            {matches.length ? matches.map((product) => <ProductCard product={product} key={product.id} />) : <p><T id="categoryDetail.none" /></p>}
           </div>
         </div>
         <aside className="check-card">

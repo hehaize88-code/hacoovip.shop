@@ -287,7 +287,7 @@ export const esArticles = {
         blocks: [
           { type: "p", text: "Karma puede ayudar a localizar favoritos repetidos de la comunidad. Esa preferencia agrega una valoración, pero no especifica por sí misma medidas, composición, tolerancias de fabricación ni condiciones de devolución." },
           { type: "p", text: "Compara la fecha y el enlace de los votos con la oferta actual. Una tienda puede cambiar imágenes, variantes o proveedor sin cambiar una URL visible. Utiliza Karma para priorizar la investigación, no para aprobar automáticamente." },
-          { type: "figure", image: "/products/accessories.webp", alt: "Accesorio utilizado como ejemplo editorial", caption: "La popularidad ayuda a descubrir un candidato; los detalles de la oferta y la evidencia QC determinan qué puede afirmarse sobre él." },
+          { type: "figure", image: "/products/watch.webp", alt: "Accesorio utilizado como ejemplo editorial", caption: "La popularidad ayuda a descubrir un candidato; los detalles de la oferta y la evidencia QC determinan qué puede afirmarse sobre él." },
         ],
       },
       {

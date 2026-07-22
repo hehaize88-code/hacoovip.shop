@@ -2,6 +2,7 @@
 
 import { ExternalIcon } from "./Icons";
 import { useLanguage } from "./LanguageProvider";
+import ResponsiveImage from "./ResponsiveImage";
 
 const NOTE_KEYS = {
   "Footwear listing": "product.note.shoes",
@@ -24,7 +25,12 @@ export default function ProductCard({ product, priority = false }) {
   return (
     <article className="product-card">
       <a href={product.href} target="_blank" rel="noopener noreferrer" className="product-image-link" aria-label={t("product.open", { name: productName })}>
-        <img src={product.image} alt={productName} width="750" height="750" loading={priority ? "eager" : "lazy"} decoding="async" />
+        <ResponsiveImage
+          src={product.image}
+          alt={productName}
+          sizes="(max-width: 640px) calc(50vw - 22px), (max-width: 1050px) calc(33vw - 28px), 280px"
+          priority={priority}
+        />
         <span className="source-pill">{t("product.live")}</span>
       </a>
       <div className="product-card-body">

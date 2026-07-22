@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="footer-grid">
         <div className="footer-brand">
           <div className="brand footer-logo">
-            <img className="brand-logo-image" src="/findqc-logo.png" alt="" width="48" height="48" />
+            <img className="brand-logo-image" src="/findqc-logo.png" alt="" width="48" height="48" loading="lazy" decoding="async" />
             <span className="brand-name">findqc<span>.pro</span></span>
           </div>
           <p>{t("footer.description")}</p>

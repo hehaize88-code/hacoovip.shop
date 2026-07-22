@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import { ArrowIcon, ExternalIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
+import ResponsiveImage from "../../components/ResponsiveImage";
 import { localizedMetadata } from "../../lib/seo";
 
 export const metadata = localizedMetadata({
@@ -52,13 +52,13 @@ export default function GuidesPage() {
         <div className="guide-research-visual">
           <div className="guide-research-images" aria-hidden="true">
             <div className="guide-research-photo guide-research-photo-main">
-              <Image src="/products/shoes-60.jpg" alt="" fill sizes="(max-width: 760px) 60vw, 270px" />
+              <ResponsiveImage src="/products/shoes-60.jpg" alt="" sizes="(max-width: 760px) 60vw, 270px" priority />
             </div>
             <div className="guide-research-photo">
-              <Image src="/products/hoodie.webp" alt="" fill sizes="(max-width: 760px) 35vw, 130px" />
+              <ResponsiveImage src="/products/hoodie.webp" alt="" sizes="(max-width: 760px) 35vw, 130px" />
             </div>
             <div className="guide-research-photo">
-              <Image src="/products/electronics.webp" alt="" fill sizes="(max-width: 760px) 35vw, 130px" />
+              <ResponsiveImage src="/products/electronics.webp" alt="" sizes="(max-width: 760px) 35vw, 130px" />
             </div>
           </div>
           <span className="guide-research-stamp"><T id="guides.visual.stamp" /></span>

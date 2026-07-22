@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { articles as englishArticles } from "../lib/articles.js";
 import { categories, products } from "../lib/data.js";
 import { getLocalizedArticles } from "../lib/localizedArticles.js";
+import { imageManifest } from "../lib/imageManifest.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(root, "out");
@@ -145,6 +146,23 @@ for (const url of urls) {
 
   const html = readFileSync(file, "utf8");
   const head = html.match(/<head>([\s\S]*?)<\/head>/i)?.[1] || "";
+  const imageTags = html.match(/<img\b[^>]*>/gi) || [];
+  const eagerImages = imageTags.filter((tag) => /\bloading=["']eager["']/i.test(tag));
+  const responsiveSources = html.match(/<source\b[^>]*\btype=["']image\/(?:avif|webp)["'][^>]*>/gi) || [];
+  for (const image of imageTags) {
+    if (!/\bwidth=["']\d+["']/i.test(image) || !/\bheight=["']\d+["']/i.test(image)) {
+      failures.push(`Image missing intrinsic dimensions: ${url}`);
+    }
+  }
+  if (eagerImages.length > 1) failures.push(`More than one eager image: ${url}`);
+  if (eagerImages.some((tag) => !/\bfetchpriority=["']high["']/i.test(tag))) {
+    failures.push(`Eager image is not high priority: ${url}`);
+  }
+  for (const source of responsiveSources) {
+    if (!/\bsrcset=["'][^"']+\s\d+w/i.test(source) || !/\bsizes=["'][^"']+["']/i.test(source)) {
+      failures.push(`Responsive image source is missing srcset or sizes: ${url}`);
+    }
+  }
   if (!html.includes(`<html lang="${language}"`)) failures.push(`Wrong lang attribute: ${url}`);
   const canonicalTags = head.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi) || [];
   if (canonicalTags.length !== 1) failures.push(`Expected one canonical tag, found ${canonicalTags.length}: ${url}`);
@@ -215,6 +233,31 @@ for (const language of languages) {
       }
     }
   }
+}
+
+if (Object.keys(imageManifest).length !== 117) failures.push(`Expected 117 image manifest entries, found ${Object.keys(imageManifest).length}`);
+for (const product of products) {
+  if (!imageManifest[product.image]) failures.push(`Product image is missing responsive variants: ${product.image}`);
+}
+for (const [source, image] of Object.entries(imageManifest)) {
+  if (!image.width || !image.height || image.webp.length === 0) failures.push(`Incomplete image metadata: ${source}`);
+  for (const candidate of [...image.avif, ...image.webp]) {
+    if (!existsSync(path.join(out, candidate.src.replace(/^\//, "")))) failures.push(`Missing generated image: ${candidate.src}`);
+  }
+}
+
+const homeHtml = readFileSync(htmlPath("/"), "utf8");
+const homeHead = homeHtml.match(/<head>([\s\S]*?)<\/head>/i)?.[1] || "";
+const imagePreloads = homeHead.match(/<link\b(?=[^>]*\brel=["']preload["'])(?=[^>]*\bas=["']image["'])[^>]*>/gi) || [];
+if (imagePreloads.length !== 1 || !imagePreloads[0].includes("/optimized/products/shoes-60-480.avif")) {
+  failures.push("Homepage must preload only the responsive AVIF LCP image");
+}
+if ((homeHtml.match(/loading="eager"/g) || []).length !== 1) failures.push("Homepage must have exactly one eager image");
+if ((homeHtml.match(/loading="lazy"/g) || []).length < 5) failures.push("Homepage below-fold images must be lazy-loaded");
+
+const headers = readFileSync(path.join(out, "_headers"), "utf8");
+if (!headers.includes("/_next/static/*") || !headers.includes("max-age=31536000, immutable")) {
+  failures.push("Next.js static assets must use one-year immutable caching");
 }
 
 const sitemapAlternateCount = (sitemap.match(/<xhtml:link /g) || []).length;

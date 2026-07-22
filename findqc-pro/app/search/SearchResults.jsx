@@ -59,7 +59,7 @@ export default function SearchResults() {
       {query && (productMatches.length > 0 || categoryMatches.length > 0) ? (
         <>
           {categoryMatches.length > 0 && <section className="search-result-section"><div className="result-label"><span><T id="searchPage.categories" /></span><b>{categoryMatches.length}</b></div><div className="search-category-list">{categoryMatches.map((category) => <Link href={`/categories/${category.slug}`} key={category.slug}><span>{category.code}</span><div><strong><T id={`category.${category.slug}.name`} /></strong><small><T id={`category.${category.slug}.short`} /></small></div><ArrowIcon /></Link>)}</div></section>}
-          {productMatches.length > 0 && <section className="search-result-section"><div className="result-label"><span><T id="searchPage.products" /></span><b>{productMatches.length}</b></div><div className="product-grid all-products">{productMatches.map((product) => <ProductCard product={product} priority key={product.id} />)}</div></section>}
+          {productMatches.length > 0 && <section className="search-result-section"><div className="result-label"><span><T id="searchPage.products" /></span><b>{productMatches.length}</b></div><div className="product-grid all-products">{productMatches.map((product) => <ProductCard product={product} key={product.id} />)}</div></section>}
         </>
       ) : (
         <section className="empty-search">

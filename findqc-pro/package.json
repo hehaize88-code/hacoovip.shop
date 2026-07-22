@@ -10,6 +10,7 @@
     "dev": "vite",
     "build": "node scripts/build-multilingual.mjs",
     "build:single": "next build",
+    "images:generate": "node scripts/generate-responsive-images.mjs",
     "validate": "node scripts/validate-multilingual.mjs",
     "preview": "vinext start"
   },
@@ -23,6 +24,7 @@
     "@cloudflare/vite-plugin": "1.45.1",
     "@vitejs/plugin-react": "6.0.3",
     "@vitejs/plugin-rsc": "0.5.28",
+    "sharp": "0.34.5",
     "vite": "8.1.5",
     "vinext": "1.0.0-beta.2"
   }

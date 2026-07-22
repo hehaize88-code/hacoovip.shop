@@ -6,6 +6,7 @@ node_modules
 dist
 out
 .multilingual-out
+public/optimized
 .DS_Store
 *.log
 findqc-pro-preview.zip

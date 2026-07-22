@@ -89,7 +89,7 @@ export default function ProductsPage() {
               <Link href={`/categories/${category.slug}`}>Open the {category.name.toLowerCase()} QC guide <ArrowIcon size={16} /></Link>
             </header>
             <div className="product-grid all-products">
-              {items.map((product, index) => <ProductCard product={product} priority={groupIndex === 0 && index < 4} key={product.id} />)}
+              {items.map((product) => <ProductCard product={product} key={product.id} />)}
             </div>
           </section>
         ))}

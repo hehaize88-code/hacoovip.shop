@@ -220,7 +220,7 @@ export const plArticles = {
       { id: "karma", title: "3. Karma jest filtrem społeczności, nie specyfikacją", blocks: [
         { type: "p", text: "Karma może wyłonić często wybierane produkty. Preferencja nie podaje jednak wymiarów, składu, tolerancji produkcyjnych ani zasad zwrotu." },
         { type: "p", text: "Porównaj datę i link głosów z obecną ofertą. Sklep może zmienić warianty albo dostawcę bez oczywistej zmiany adresu. Karma służy do ustalenia priorytetów badania, nie do automatycznego zatwierdzenia." },
-        { type: "figure", image: "/products/accessories.webp", alt: "Akcesorium jako przykład redakcyjny", caption: "Popularność pomaga znaleźć kandydata; dopiero oferta i materiał QC określają, co można o nim stwierdzić." },
+        { type: "figure", image: "/products/watch.webp", alt: "Akcesorium jako przykład redakcyjny", caption: "Popularność pomaga znaleźć kandydata; dopiero oferta i materiał QC określają, co można o nim stwierdzić." },
       ] },
       { id: "reviews", title: "4. Czytaj obserwacje, nie tylko oceny", blocks: [
         { type: "p", text: "Recenzja jest użyteczna, gdy opisuje coś sprawdzalnego: wymiar, kolor, brakującą część, wyrównanie albo doświadczenie z konkretnym wariantem. Samo „idealne” bez daty, linku i zdjęcia ma małą wartość." },

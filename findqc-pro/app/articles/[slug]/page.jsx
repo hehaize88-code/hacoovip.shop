@@ -6,6 +6,7 @@ import { articles } from "../../../lib/articles";
 import { getArticleUi, getLocalizedArticle } from "../../../lib/localizedArticles";
 import { BUILD_LANGUAGE, languageUrl } from "../../../lib/routing";
 import { localizedMetadata } from "../../../lib/seo";
+import ResponsiveImage from "../../../components/ResponsiveImage";
 
 const siteUrl = "https://findqc.pro";
 const articleUi = getArticleUi(BUILD_LANGUAGE);
@@ -78,7 +79,7 @@ function ContentBlock({ block }) {
   if (block.type === "figure") {
     return (
       <figure className="prose-figure">
-        <img src={block.image} alt={block.alt} loading="lazy" />
+        <ResponsiveImage src={block.image} alt={block.alt} sizes="(max-width: 760px) calc(100vw - 40px), 680px" />
         <figcaption>{block.caption}</figcaption>
       </figure>
     );
@@ -157,7 +158,7 @@ export default async function ArticlePage({ params }) {
       </header>
 
       <figure className="article-hero-figure">
-        <img src={article.heroImage} alt={article.heroAlt} fetchPriority="high" />
+        <ResponsiveImage src={article.heroImage} alt={article.heroAlt} sizes="(max-width: 1040px) calc(100vw - 40px), 980px" priority />
         <figcaption>{articleUi.heroCaption}</figcaption>
       </figure>
 
