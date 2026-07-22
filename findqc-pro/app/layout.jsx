@@ -1,5 +1,6 @@
 import "./globals.css";
 import SiteHeader from "../components/SiteHeader";
+import IndependenceNotice from "../components/IndependenceNotice";
 import Footer from "../components/Footer";
 import LanguageProvider from "../components/LanguageProvider";
 import { DEFAULT_LANGUAGE } from "../lib/i18n";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
       <body>
         <LanguageProvider>
           <SiteHeader />
+          <IndependenceNotice />
           <main>{children}</main>
           <Footer />
         </LanguageProvider>
