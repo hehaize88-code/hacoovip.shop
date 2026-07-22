@@ -152,6 +152,9 @@ for (const language of languages) {
 writeFileSync(path.join(staging, "sitemap.xml"), buildSitemap(indexableRoutes));
 writeFileSync(path.join(staging, "robots.txt"), "User-Agent: *\nAllow: /\nSitemap: https://findqc.pro/sitemap.xml\n");
 
+const worker = path.join(root, "_worker.js");
+if (existsSync(worker)) cpSync(worker, path.join(staging, "_worker.js"));
+
 rmSync(buildOut, removalOptions);
 renameSync(staging, buildOut);
 console.log(`Multilingual export complete: ${indexableRoutes.length * languages.length} indexable URLs across ${languages.length} languages.`);
