@@ -5,7 +5,7 @@ import SearchBox from "../../components/SearchBox";
 import ProductCard from "../../components/ProductCard";
 import { ArrowIcon, CheckIcon } from "../../components/Icons";
 import T from "../../components/LocalizedText";
-import { categories, products } from "../../lib/data";
+import { CATALOG_REVIEWED, categories, products } from "../../lib/data";
 import { localizedMetadata } from "../../lib/seo";
 
 export const metadata = localizedMetadata({
@@ -14,6 +14,11 @@ export const metadata = localizedMetadata({
 }, "/products");
 
 export default function ProductsPage() {
+  const productGroups = categories.map((category) => ({
+    category,
+    items: products.filter((product) => product.category === category.slug),
+  }));
+
   return (
     <div className="shell inner-page products-depth-page">
       <Breadcrumbs items={[{ labelKey: "nav.finds" }]} />
@@ -22,19 +27,40 @@ export default function ProductsPage() {
       <section className="shortlist-method" aria-labelledby="shortlist-method-title">
         <div>
           <span className="eyebrow light">How this shortlist works</span>
-          <h2 id="shortlist-method-title">A small map of exact pages—not a quality ranking.</h2>
+          <h2 id="shortlist-method-title">{products.length} exact product routes across nine categories.</h2>
         </div>
-        <p>Each card is mapped to one specific source-catalog page so visitors can avoid a generic “all products” destination. Inclusion does not mean that FindQC Pro has purchased, inspected, authenticated or endorsed the item. Availability, options and source prices can change after a card is checked.</p>
+        <p>Every card was matched to one specific source-catalog page and a distinct listing image on {CATALOG_REVIEWED}. Inclusion does not mean that FindQC Pro has purchased, inspected, authenticated or endorsed the item. Availability, options, view counts and source prices can change after a card is checked.</p>
         <ul>
-          <li><CheckIcon size={17} /><span><strong>Exact destination</strong>Open the named item page and confirm that its ID, images and options still match.</span></li>
-          <li><CheckIcon size={17} /><span><strong>Category context</strong>Use the linked category guide to identify the measurements and visible details that matter.</span></li>
-          <li><CheckIcon size={17} /><span><strong>Decision evidence</strong>Review the warehouse images for your own order before approving international shipment.</span></li>
+          <li><CheckIcon size={17} /><span><strong>12 per category</strong>Each of the nine categories now contains twelve individually mapped products.</span></li>
+          <li><CheckIcon size={17} /><span><strong>Unique route and image</strong>No two cards reuse the same destination or local product image.</span></li>
+          <li><CheckIcon size={17} /><span><strong>Evidence still required</strong>Review the warehouse images for your own order before approving international shipment.</span></li>
         </ul>
       </section>
 
-      <section className="product-grid all-products" aria-label="Mapped product finds">
-        {products.map((product, index) => <ProductCard product={product} priority={index < 4} key={product.id} />)}
-      </section>
+      <nav className="product-category-index" aria-label="Jump to a product category">
+        {productGroups.map(({ category, items }) => (
+          <a href={`#products-${category.slug}`} key={category.slug}>
+            <span>{category.code}</span>
+            <strong>{category.name}</strong>
+            <small>{items.length} products</small>
+            <ArrowIcon size={15} />
+          </a>
+        ))}
+      </nav>
+
+      <div className="product-catalog">
+        {productGroups.map(({ category, items }, groupIndex) => (
+          <section className="product-catalog-section" id={`products-${category.slug}`} aria-labelledby={`products-${category.slug}-title`} key={category.slug}>
+            <header className="product-group-heading">
+              <div><span>{category.code} / {items.length} source-linked products</span><h2 id={`products-${category.slug}-title`}>{category.name}</h2></div>
+              <Link href={`/categories/${category.slug}`}>Open the {category.name.toLowerCase()} QC guide <ArrowIcon size={16} /></Link>
+            </header>
+            <div className="product-grid all-products">
+              {items.map((product, index) => <ProductCard product={product} priority={groupIndex === 0 && index < 4} key={product.id} />)}
+            </div>
+          </section>
+        ))}
+      </div>
       <p className="price-note"><T id="products.priceNote" /></p>
 
       <section className="product-use-grid" aria-labelledby="product-use-title">
