@@ -12,6 +12,7 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { getRouteLastModified } from "../lib/contentDates.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
@@ -106,8 +107,8 @@ function copyHtmlBuild(language) {
 }
 
 function buildSitemap(routes) {
-  const lastmod = new Date().toISOString().slice(0, 10);
   const entries = routes.flatMap((route) => languages.map((language) => {
+    const lastmod = getRouteLastModified(route, language);
     const alternates = [
       ...languages.map((candidate) => `    <xhtml:link rel="alternate" hreflang="${candidate}" href="${localizedUrl(route, candidate)}" />`),
       `    <xhtml:link rel="alternate" hreflang="x-default" href="${localizedUrl(route, "en")}" />`,

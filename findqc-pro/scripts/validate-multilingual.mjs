@@ -5,12 +5,15 @@ import { articles as englishArticles } from "../lib/articles.js";
 import { categories, products } from "../lib/data.js";
 import { getLocalizedArticles } from "../lib/localizedArticles.js";
 import { imageManifest } from "../lib/imageManifest.js";
+import { getRouteLastModified } from "../lib/contentDates.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(root, "out");
 const languages = ["en", "pl", "es", "de", "ro"];
 const sitemap = readFileSync(path.join(out, "sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g)]
+  .map((match) => ({ url: match[1], lastModified: match[2] }));
 const failures = [];
 const articleSlugs = englishArticles.map(({ slug }) => slug);
 
@@ -264,6 +267,18 @@ const sitemapAlternateCount = (sitemap.match(/<xhtml:link /g) || []).length;
 if (urls.length !== 130) failures.push(`Expected 130 sitemap URLs, found ${urls.length}`);
 if (new Set(urls).size !== urls.length) failures.push("Sitemap contains duplicate URLs");
 if (sitemapAlternateCount !== 780) failures.push(`Expected 780 sitemap alternates, found ${sitemapAlternateCount}`);
+if (sitemapEntries.length !== urls.length) failures.push(`Expected ${urls.length} sitemap lastmod values, found ${sitemapEntries.length}`);
+for (const entry of sitemapEntries) {
+  const { pathname } = new URL(entry.url);
+  const language = expectedLanguage(pathname);
+  const route = pathname.replace(/^\/(pl|es|de|ro)(?=\/|$)/, "") || "/";
+  const expected = getRouteLastModified(route, language);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.lastModified)) failures.push(`Invalid sitemap lastmod: ${entry.url}`);
+  if (entry.lastModified !== expected) failures.push(`Wrong sitemap lastmod (${entry.lastModified}, expected ${expected}): ${entry.url}`);
+}
+if (new Set(sitemapEntries.map(({ lastModified }) => lastModified)).size < 2) {
+  failures.push("Sitemap lastmod values must reflect page content dates, not one deployment date");
+}
 if (!readFileSync(path.join(out, "robots.txt"), "utf8").includes("Sitemap: https://findqc.pro/sitemap.xml")) failures.push("robots.txt sitemap is incorrect");
 
 if (failures.length) {
