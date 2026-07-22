@@ -19,6 +19,12 @@ const buildOut = path.join(root, "out");
 const staging = path.join(root, ".multilingual-out");
 const languages = ["en", "pl", "es", "de", "ro"];
 const localeMap = { en: "en_US", pl: "pl_PL", es: "es_ES", de: "de_DE", ro: "ro_RO" };
+const removalOptions = {
+  recursive: true,
+  force: true,
+  maxRetries: 10,
+  retryDelay: 100,
+};
 
 function walk(directory, predicate, results = []) {
   for (const entry of readdirSync(directory)) {
@@ -108,12 +114,12 @@ function buildSitemap(routes) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join("\n")}\n</urlset>\n`;
 }
 
-rmSync(staging, { recursive: true, force: true });
+rmSync(staging, removalOptions);
 let indexableRoutes = [];
 
 for (const language of languages) {
-  rmSync(buildOut, { recursive: true, force: true });
-  rmSync(path.join(root, ".next"), { recursive: true, force: true });
+  rmSync(buildOut, removalOptions);
+  rmSync(path.join(root, ".next"), removalOptions);
 
   const result = spawnSync(process.execPath, [nextBin, "build"], {
     cwd: root,
@@ -146,6 +152,6 @@ for (const language of languages) {
 writeFileSync(path.join(staging, "sitemap.xml"), buildSitemap(indexableRoutes));
 writeFileSync(path.join(staging, "robots.txt"), "User-Agent: *\nAllow: /\nSitemap: https://findqc.pro/sitemap.xml\n");
 
-rmSync(buildOut, { recursive: true, force: true });
+rmSync(buildOut, removalOptions);
 renameSync(staging, buildOut);
 console.log(`Multilingual export complete: ${indexableRoutes.length * languages.length} indexable URLs across ${languages.length} languages.`);
