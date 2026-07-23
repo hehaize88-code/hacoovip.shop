@@ -1,3 +1,4 @@
+# Catalog link labels reviewed 2026-07-23
 User-agent: *
 Allow: /
 
