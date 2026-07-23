@@ -3,7 +3,6 @@ export default {
     const url = new URL(request.url);
 
     if (url.hostname === "www.oopbuys.pro") {
-      url.protocol = "https:";
       url.hostname = "oopbuys.pro";
       return Response.redirect(url.toString(), 301);
     }

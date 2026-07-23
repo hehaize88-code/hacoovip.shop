@@ -1,339 +1,452 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://oopbuys.pro/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>1</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/finds/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/categories/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/articles/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/guides/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/guides/oopbuy-spreadsheet/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/guides/how-oopbuy-works/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/guides/qc/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/guides/shipping/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/reviews/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/faq/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/about/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/privacy/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/terms/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.9</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/finds/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/categories/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/articles/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/guides/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/guides/oopbuy-spreadsheet/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/guides/how-oopbuy-works/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/guides/qc/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/guides/shipping/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/reviews/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/faq/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/about/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/privacy/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/de/terms/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.9</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/finds/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/categories/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/articles/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/guides/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/guides/oopbuy-spreadsheet/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/guides/how-oopbuy-works/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/guides/qc/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/guides/shipping/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/reviews/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/faq/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/about/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/privacy/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/es/terms/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.9</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/finds/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/categories/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/articles/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/guides/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/guides/oopbuy-spreadsheet/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/guides/how-oopbuy-works/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/guides/qc/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/guides/shipping/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.85</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/reviews/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/faq/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/about/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/privacy/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://oopbuys.pro/nl/terms/</loc>
-<lastmod>2026-07-23T00:00:00.000Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://oopbuys.pro/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/finds/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/finds/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/finds/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/finds/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/finds/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/finds/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/categories/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/categories/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/categories/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/categories/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/categories/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/categories/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/articles/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/guides/oopbuy-spreadsheet/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/guides/how-oopbuy-works/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/guides/qc/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/qc/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/guides/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/shipping/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/reviews/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/reviews/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/reviews/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/reviews/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/reviews/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/reviews/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/faq/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/faq/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/faq/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/faq/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/about/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/about/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/about/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/privacy/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/terms/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/terms/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/finds/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/finds/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/finds/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/finds/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/finds/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/finds/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/categories/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/categories/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/categories/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/categories/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/categories/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/categories/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/articles/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/guides/oopbuy-spreadsheet/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/guides/how-oopbuy-works/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/guides/qc/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/qc/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/guides/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/shipping/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/reviews/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/reviews/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/reviews/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/reviews/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/reviews/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/reviews/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/faq/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/faq/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/faq/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/faq/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/about/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/about/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/about/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/privacy/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/de/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/terms/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/terms/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/finds/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/finds/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/finds/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/finds/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/finds/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/finds/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/categories/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/categories/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/categories/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/categories/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/categories/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/categories/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/articles/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/guides/oopbuy-spreadsheet/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/guides/how-oopbuy-works/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/guides/qc/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/qc/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/guides/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/shipping/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/reviews/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/reviews/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/reviews/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/reviews/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/reviews/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/reviews/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/faq/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/faq/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/faq/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/faq/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/about/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/about/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/about/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/privacy/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/es/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/terms/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/terms/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/finds/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/finds/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/finds/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/finds/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/finds/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/finds/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/categories/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/categories/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/categories/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/categories/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/categories/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/categories/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/articles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/articles/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/guides/oopbuy-spreadsheet/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/oopbuy-spreadsheet/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/oopbuy-spreadsheet/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/guides/how-oopbuy-works/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/how-oopbuy-works/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/how-oopbuy-works/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/guides/qc/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/qc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/qc/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/guides/shipping/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/guides/shipping/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/guides/shipping/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/reviews/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/reviews/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/reviews/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/reviews/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/reviews/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/reviews/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/faq/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/faq/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/faq/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/faq/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/about/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/about/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/about/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/privacy/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/privacy/" />
+  </url>
+  <url>
+    <loc>https://oopbuys.pro/nl/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://oopbuys.pro/terms/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oopbuys.pro/de/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oopbuys.pro/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://oopbuys.pro/nl/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://oopbuys.pro/terms/" />
+  </url>
 </urlset>
