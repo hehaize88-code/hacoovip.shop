@@ -1,4 +1,4 @@
-# Catalog link labels reviewed 2026-07-23
+# Image routes restored 2026-07-26
 User-agent: *
 Allow: /
 
