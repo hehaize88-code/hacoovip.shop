@@ -1,0 +1,213 @@
+{
+  "canonicalLocale": "en",
+  "locales": [
+    "de",
+    "es",
+    "nl"
+  ],
+  "routes": {
+    "/": {
+      "de": {
+        "file": "_i18n/de/root.json",
+        "fallbackEnglishStrings": 4
+      },
+      "es": {
+        "file": "_i18n/es/root.json",
+        "fallbackEnglishStrings": 4
+      },
+      "nl": {
+        "file": "_i18n/nl/root.json",
+        "fallbackEnglishStrings": 4
+      }
+    },
+    "/finds/": {
+      "de": {
+        "file": "_i18n/de/finds.json",
+        "fallbackEnglishStrings": 3
+      },
+      "es": {
+        "file": "_i18n/es/finds.json",
+        "fallbackEnglishStrings": 3
+      },
+      "nl": {
+        "file": "_i18n/nl/finds.json",
+        "fallbackEnglishStrings": 3
+      }
+    },
+    "/categories/": {
+      "de": {
+        "file": "_i18n/de/categories.json",
+        "fallbackEnglishStrings": 0
+      },
+      "es": {
+        "file": "_i18n/es/categories.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/categories.json",
+        "fallbackEnglishStrings": 0
+      }
+    },
+    "/guides/": {
+      "de": {
+        "file": "_i18n/de/guides.json",
+        "fallbackEnglishStrings": 0
+      },
+      "es": {
+        "file": "_i18n/es/guides.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/guides.json",
+        "fallbackEnglishStrings": 0
+      }
+    },
+    "/articles/": {
+      "de": {
+        "file": "_i18n/de/articles.json",
+        "fallbackEnglishStrings": 3
+      },
+      "es": {
+        "file": "_i18n/es/articles.json",
+        "fallbackEnglishStrings": 3
+      },
+      "nl": {
+        "file": "_i18n/nl/articles.json",
+        "fallbackEnglishStrings": 3
+      }
+    },
+    "/faq/": {
+      "de": {
+        "file": "_i18n/de/faq.json",
+        "fallbackEnglishStrings": 8
+      },
+      "es": {
+        "file": "_i18n/es/faq.json",
+        "fallbackEnglishStrings": 8
+      },
+      "nl": {
+        "file": "_i18n/nl/faq.json",
+        "fallbackEnglishStrings": 8
+      }
+    },
+    "/reviews/": {
+      "de": {
+        "file": "_i18n/de/reviews.json",
+        "fallbackEnglishStrings": 25
+      },
+      "es": {
+        "file": "_i18n/es/reviews.json",
+        "fallbackEnglishStrings": 24
+      },
+      "nl": {
+        "file": "_i18n/nl/reviews.json",
+        "fallbackEnglishStrings": 23
+      }
+    },
+    "/about/": {
+      "de": {
+        "file": "_i18n/de/about.json",
+        "fallbackEnglishStrings": 0
+      },
+      "es": {
+        "file": "_i18n/es/about.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/about.json",
+        "fallbackEnglishStrings": 0
+      }
+    },
+    "/privacy/": {
+      "de": {
+        "file": "_i18n/de/privacy.json",
+        "fallbackEnglishStrings": 1
+      },
+      "es": {
+        "file": "_i18n/es/privacy.json",
+        "fallbackEnglishStrings": 1
+      },
+      "nl": {
+        "file": "_i18n/nl/privacy.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/terms/": {
+      "de": {
+        "file": "_i18n/de/terms.json",
+        "fallbackEnglishStrings": 1
+      },
+      "es": {
+        "file": "_i18n/es/terms.json",
+        "fallbackEnglishStrings": 1
+      },
+      "nl": {
+        "file": "_i18n/nl/terms.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/guides/how-oopbuy-works/": {
+      "de": {
+        "file": "_i18n/de/guides--how-oopbuy-works.json",
+        "fallbackEnglishStrings": 31
+      },
+      "es": {
+        "file": "_i18n/es/guides--how-oopbuy-works.json",
+        "fallbackEnglishStrings": 30
+      },
+      "nl": {
+        "file": "_i18n/nl/guides--how-oopbuy-works.json",
+        "fallbackEnglishStrings": 28
+      }
+    },
+    "/guides/oopbuy-spreadsheet/": {
+      "de": {
+        "file": "_i18n/de/guides--oopbuy-spreadsheet.json",
+        "fallbackEnglishStrings": 24
+      },
+      "es": {
+        "file": "_i18n/es/guides--oopbuy-spreadsheet.json",
+        "fallbackEnglishStrings": 24
+      },
+      "nl": {
+        "file": "_i18n/nl/guides--oopbuy-spreadsheet.json",
+        "fallbackEnglishStrings": 24
+      }
+    },
+    "/guides/qc/": {
+      "de": {
+        "file": "_i18n/de/guides--qc.json",
+        "fallbackEnglishStrings": 36
+      },
+      "es": {
+        "file": "_i18n/es/guides--qc.json",
+        "fallbackEnglishStrings": 35
+      },
+      "nl": {
+        "file": "_i18n/nl/guides--qc.json",
+        "fallbackEnglishStrings": 34
+      }
+    },
+    "/guides/shipping/": {
+      "de": {
+        "file": "_i18n/de/guides--shipping.json",
+        "fallbackEnglishStrings": 45
+      },
+      "es": {
+        "file": "_i18n/es/guides--shipping.json",
+        "fallbackEnglishStrings": 45
+      },
+      "nl": {
+        "file": "_i18n/nl/guides--shipping.json",
+        "fallbackEnglishStrings": 43
+      }
+    }
+  },
+  "audit": {
+    "fallbackEnglishStringsByLocale": {
+      "de": 181,
+      "es": 178,
+      "nl": 172
+    }
+  }
+}

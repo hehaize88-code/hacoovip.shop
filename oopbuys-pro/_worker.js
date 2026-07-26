@@ -42,6 +42,269 @@ function logoResponse() {
   });
 }
 
+const LOCALIZED_LANGUAGES = new Set(["de", "es", "nl"]);
+const VOID_ELEMENTS = new Set([
+  "area",
+  "base",
+  "br",
+  "col",
+  "embed",
+  "hr",
+  "img",
+  "input",
+  "link",
+  "meta",
+  "param",
+  "source",
+  "track",
+  "wbr",
+]);
+const TRANSLATED_ATTRIBUTES = new Set([
+  "alt",
+  "aria-label",
+  "placeholder",
+  "title",
+]);
+const overlayCache = new Map();
+
+function decodeHtml(value) {
+  return value
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) =>
+      String.fromCodePoint(Number.parseInt(code, 16)),
+    )
+    .replace(/&#([0-9]+);/g, (_, code) =>
+      String.fromCodePoint(Number.parseInt(code, 10)),
+    )
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;|&#x27;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, "\u00a0");
+}
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function escapeAttribute(value, quote) {
+  const escaped = escapeHtml(value);
+  return quote === "'"
+    ? escaped.replace(/'/g, "&#x27;")
+    : escaped.replace(/"/g, "&quot;");
+}
+
+function normalizeText(value) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function localizedRoute(pathname) {
+  const segments = pathname.split("/").filter(Boolean);
+  const locale = segments[0];
+  if (!LOCALIZED_LANGUAGES.has(locale)) {
+    return null;
+  }
+
+  const canonicalSegments = segments.slice(1);
+  const canonicalPath = canonicalSegments.length
+    ? `/${canonicalSegments.join("/")}/`
+    : "/";
+  return {
+    locale,
+    canonicalPath,
+    key: canonicalSegments.length
+      ? canonicalSegments.join("--")
+      : "root",
+  };
+}
+
+function localizeInternalHref(value, locale, inLanguageMenu) {
+  if (
+    inLanguageMenu ||
+    !value.startsWith("/") ||
+    value.startsWith("//") ||
+    value.startsWith("/_") ||
+    value.startsWith("/assets/") ||
+    value.startsWith("/images/") ||
+    value.startsWith("/favicon")
+  ) {
+    return value;
+  }
+
+  const pathMatch = value.match(/^([^?#]*)([\s\S]*)$/);
+  const path = pathMatch ? pathMatch[1] : value;
+  const suffix = pathMatch ? pathMatch[2] : "";
+  if (/^\/(de|es|nl)(?:\/|$)/.test(path)) {
+    return value;
+  }
+  return path === "/"
+    ? `/${locale}/${suffix}`
+    : `/${locale}${path}${suffix}`;
+}
+
+function translateTag(tag, tagName, overlay, locale, context) {
+  const attributePattern =
+    /(\s)([^\s=/>]+)(?:=(["'])([\s\S]*?)\3)?/g;
+  return tag.replace(
+    attributePattern,
+    (match, spacing, rawName, quote, rawValue) => {
+      if (!quote) {
+        return match;
+      }
+
+      const attributeName = rawName.toLowerCase();
+      const decodedValue = decodeHtml(rawValue);
+      let value = decodedValue;
+      const key = `${tagName}\u241f${attributeName}\u241f${decodedValue}`;
+
+      if (TRANSLATED_ATTRIBUTES.has(attributeName)) {
+        value = overlay.attributes[key] || value;
+      }
+      if (attributeName === "href") {
+        value = localizeInternalHref(
+          value,
+          locale,
+          context.inLanguageMenu,
+        );
+      }
+      return `${spacing}${rawName}=${quote}${escapeAttribute(
+        value,
+        quote,
+      )}${quote}`;
+    },
+  );
+}
+
+function translateCanonicalHtml(html, overlay, locale, pathname) {
+  const tokens =
+    html.match(/<!--[\s\S]*?-->|<![^>]*>|<\/?[^>]+>|[^<]+/g) || [];
+  const stack = [];
+  let structuredDataIndex = 0;
+
+  const output = tokens.map((token) => {
+    if (token.startsWith("<!--") || token.startsWith("<!")) {
+      return token;
+    }
+
+    const closing = token.match(/^<\/\s*([a-zA-Z0-9:-]+)/);
+    if (closing) {
+      const tagName = closing[1].toLowerCase();
+      for (let index = stack.length - 1; index >= 0; index -= 1) {
+        if (stack[index].tagName === tagName) {
+          stack.length = index;
+          break;
+        }
+      }
+      return token;
+    }
+
+    const opening = token.match(/^<\s*([a-zA-Z0-9:-]+)/);
+    if (opening) {
+      const tagName = opening[1].toLowerCase();
+      const ancestorLanguageMenu = stack.some((entry) =>
+        entry.classes.has("language-menu"),
+      );
+      const translatedTag = translateTag(
+        token,
+        tagName,
+        overlay,
+        locale,
+        { inLanguageMenu: ancestorLanguageMenu },
+      );
+      const classMatch = translatedTag.match(
+        /\sclass=(["'])([\s\S]*?)\1/i,
+      );
+      const typeMatch = translatedTag.match(
+        /\stype=(["'])([\s\S]*?)\1/i,
+      );
+      const classes = new Set(
+        classMatch ? decodeHtml(classMatch[2]).split(/\s+/) : [],
+      );
+
+      if (!VOID_ELEMENTS.has(tagName) && !/\/\s*>$/.test(token)) {
+        stack.push({
+          tagName,
+          classes,
+          structuredData:
+            tagName === "script" &&
+            typeMatch &&
+            decodeHtml(typeMatch[2]).toLowerCase() ===
+              "application/ld+json",
+        });
+      }
+      return translatedTag;
+    }
+
+    const parent = stack[stack.length - 1];
+    if (!parent) {
+      return token;
+    }
+    if (parent.structuredData) {
+      const localizedData =
+        overlay.structuredData[structuredDataIndex] || token;
+      structuredDataIndex += 1;
+      return localizedData;
+    }
+    if (["script", "style", "noscript", "svg"].includes(parent.tagName)) {
+      return token;
+    }
+
+    const normalized = normalizeText(decodeHtml(token));
+    if (!normalized) {
+      return token;
+    }
+    const key = `${parent.tagName}\u241f${normalized}`;
+    const translation = overlay.text[key];
+    if (!translation) {
+      return token;
+    }
+
+    const leading = token.match(/^\s*/)?.[0] || "";
+    const trailing = token.match(/\s*$/)?.[0] || "";
+    return `${leading}${escapeHtml(translation)}${trailing}`;
+  });
+
+  const canonicalUrl = `https://oopbuys.pro${pathname}`;
+  return output
+    .join("")
+    .replace(/<html\b[^>]*\blang=(["'])[^"']*\1/i, (tag) =>
+      tag.replace(/\blang=(["'])[^"']*\1/i, `lang="${locale}"`),
+    )
+    .replace(
+      /(<link\b[^>]*\brel=(["'])canonical\2[^>]*\bhref=)(["'])[^"']*\3/i,
+      `$1"${canonicalUrl}"`,
+    )
+    .replace(
+      /(<meta\b[^>]*\bproperty=(["'])og:url\2[^>]*\bcontent=)(["'])[^"']*\3/i,
+      `$1"${canonicalUrl}"`,
+    )
+    .replace(
+      /(<meta\b[^>]*\bproperty=(["'])og:locale\2[^>]*\bcontent=)(["'])[^"']*\3/i,
+      `$1"${locale}"`,
+    );
+}
+
+async function getOverlay(env, origin, locale, key) {
+  const cacheKey = `${locale}/${key}`;
+  if (!overlayCache.has(cacheKey)) {
+    overlayCache.set(
+      cacheKey,
+      env.ASSETS.fetch(
+        new Request(`${origin}/_i18n/${locale}/${key}.json`),
+      ).then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Missing locale overlay: ${cacheKey}`);
+        }
+        return response.json();
+      }),
+    );
+  }
+  return overlayCache.get(cacheKey);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -94,7 +357,20 @@ export default {
       });
     }
 
-    const response = await env.ASSETS.fetch(request);
+    const route = localizedRoute(url.pathname);
+    let response;
+    let overlay = null;
+    if (request.method === "GET" && route) {
+      const canonicalUrl = new URL(route.canonicalPath, url.origin);
+      const [canonicalResponse, localizedOverlay] = await Promise.all([
+        env.ASSETS.fetch(new Request(canonicalUrl, request)),
+        getOverlay(env, url.origin, route.locale, route.key),
+      ]);
+      response = canonicalResponse;
+      overlay = localizedOverlay;
+    } else {
+      response = await env.ASSETS.fetch(request);
+    }
     const contentType = response.headers.get("Content-Type") || "";
 
     if (
@@ -104,15 +380,30 @@ export default {
       return response;
     }
 
-    const html = await response.text();
-    if (!html.includes("</head>") || html.includes('id="oopbuy-wordmark-logo"')) {
+    let html = await response.text();
+    if (overlay && route) {
+      html = translateCanonicalHtml(
+        html,
+        overlay,
+        route.locale,
+        url.pathname.endsWith("/") ? url.pathname : `${url.pathname}/`,
+      );
+    }
+    if (!html.includes("</head>")) {
       return new Response(html, response);
     }
 
     const headers = new Headers(response.headers);
     headers.delete("Content-Length");
+    if (route) {
+      headers.set("Content-Language", route.locale);
+      headers.set("Vary", "Accept-Encoding");
+    }
 
-    return new Response(html.replace("</head>", `${WORDMARK_STYLE}</head>`), {
+    const brandedHtml = html.includes('id="oopbuy-wordmark-logo"')
+      ? html
+      : html.replace("</head>", `${WORDMARK_STYLE}</head>`);
+    return new Response(brandedHtml, {
       status: response.status,
       statusText: response.statusText,
       headers,
