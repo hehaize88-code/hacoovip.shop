@@ -55,6 +55,45 @@ export default {
       return logoResponse();
     }
 
+    if (url.pathname === "/_vinext/image") {
+      const sourcePath = url.searchParams.get("url");
+      const isLocalImage =
+        sourcePath &&
+        sourcePath.startsWith("/images/") &&
+        !sourcePath.includes("..") &&
+        !sourcePath.includes("\\") &&
+        !sourcePath.includes("?") &&
+        !sourcePath.includes("#");
+
+      if (!isLocalImage) {
+        return new Response("Invalid image path", { status: 400 });
+      }
+
+      const assetUrl = new URL(sourcePath, url.origin);
+      const assetRequest = new Request(assetUrl.toString(), {
+        method: "GET",
+        headers: request.headers,
+      });
+      const assetResponse = await env.ASSETS.fetch(assetRequest);
+
+      if (!assetResponse.ok) {
+        return assetResponse;
+      }
+
+      const assetHeaders = new Headers(assetResponse.headers);
+      assetHeaders.set(
+        "Cache-Control",
+        "public, max-age=31536000, immutable",
+      );
+      assetHeaders.delete("Content-Length");
+
+      return new Response(assetResponse.body, {
+        status: assetResponse.status,
+        statusText: assetResponse.statusText,
+        headers: assetHeaders,
+      });
+    }
+
     const response = await env.ASSETS.fetch(request);
     const contentType = response.headers.get("Content-Type") || "";
 
