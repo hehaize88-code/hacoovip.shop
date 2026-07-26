@@ -9,15 +9,15 @@
     "/": {
       "de": {
         "file": "_i18n/de/root.json",
-        "fallbackEnglishStrings": 4
+        "fallbackEnglishStrings": 0
       },
       "es": {
         "file": "_i18n/es/root.json",
-        "fallbackEnglishStrings": 4
+        "fallbackEnglishStrings": 0
       },
       "nl": {
         "file": "_i18n/nl/root.json",
-        "fallbackEnglishStrings": 4
+        "fallbackEnglishStrings": 0
       }
     },
     "/finds/": {
@@ -205,9 +205,9 @@
   },
   "audit": {
     "fallbackEnglishStringsByLocale": {
-      "de": 181,
-      "es": 178,
-      "nl": 172
+      "de": 177,
+      "es": 174,
+      "nl": 168
     }
   }
 }

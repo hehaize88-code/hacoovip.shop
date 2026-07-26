@@ -64,6 +64,38 @@ VISIBLE_TAGS = {
 }
 TRANSLATED_ATTRIBUTES = ("alt", "aria-label", "placeholder", "title")
 NON_VISIBLE_PARENTS = {"script", "style", "noscript", "svg"}
+MANUAL_TEXT = {
+    "de": {
+        "h1\u241fBetter finds.": "Bessere Funde.",
+        "h1\u241fClearer QC.": "Klarere QC.",
+        "h1\u241fSmarter shipping.": "Intelligentere Versandplanung.",
+        "h2\u241fChoose the answer you need.": "Wähle die Antwort, die du brauchst.",
+        "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
+            "Ablauf anhand des offiziellen OOPBUY-Einsteigerleitfadens geprüft. "
+            "Produktverfügbarkeit, Routenverfügbarkeit und Kosten können sich ändern."
+        ),
+    },
+    "es": {
+        "h1\u241fBetter finds.": "Mejores hallazgos.",
+        "h1\u241fClearer QC.": "QC más claro.",
+        "h1\u241fSmarter shipping.": "Envíos mejor planificados.",
+        "h2\u241fChoose the answer you need.": "Elige la respuesta que necesitas.",
+        "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
+            "Proceso comprobado con la guía oficial para principiantes de OOPBUY. "
+            "La disponibilidad de productos y rutas, así como los costes, pueden cambiar."
+        ),
+    },
+    "nl": {
+        "h1\u241fBetter finds.": "Betere vondsten.",
+        "h1\u241fClearer QC.": "Duidelijkere QC.",
+        "h1\u241fSmarter shipping.": "Slimmere verzendplanning.",
+        "h2\u241fChoose the answer you need.": "Kies het antwoord dat je nodig hebt.",
+        "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
+            "Proces gecontroleerd aan de hand van de officiële beginnersgids van OOPBUY. "
+            "Productbeschikbaarheid, routebeschikbaarheid en kosten kunnen veranderen."
+        ),
+    },
+}
 
 
 @dataclass
@@ -468,6 +500,9 @@ def build_overlay(
             f"title\u241f{normalize(english_title.group(1))}",
             normalize(localized_title.group(1)),
         )
+
+    if not route:
+        text.update(MANUAL_TEXT.get(locale, {}))
 
     English_visible = [
         normalize(text_value)
