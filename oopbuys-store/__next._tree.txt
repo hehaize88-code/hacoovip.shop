@@ -1,0 +1,6 @@
+:HL["/_next/static/chunks/0no9ioxve66x8.css","style"]
+:HL["/oopbuy.png","image"]
+:HL["/products/hoodie.webp","image"]
+:HL["/products/polo.webp","image"]
+:HL["/products/jacket.webp","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"v_Z0S5nB2Gg-ASLYk8lYO"}
