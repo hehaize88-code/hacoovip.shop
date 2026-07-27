@@ -14,6 +14,8 @@ Sitemap status: every indexable URL uses an explicit content modification date; 
 
 Editorial trust status: localized author responsibility, source hierarchy, verification, update history and correction guidance are part of the production build.
 
+Article localization status: evidence-led articles may remain English-only until a reviewed human translation exists; the build limits hreflang and sitemap entries to genuinely available languages.
+
 ## Local development
 
 ```bash
