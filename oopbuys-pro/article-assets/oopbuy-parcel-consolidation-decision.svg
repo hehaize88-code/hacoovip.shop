@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">OOPBUY parcel consolidation decision flow</title>
+  <desc id="desc">A decision flow showing when to hold, split, compare, or consolidate warehouse items before international shipping.</desc>
+  <rect width="1200" height="675" fill="#fffaf6"/>
+  <rect x="48" y="40" width="1104" height="595" rx="32" fill="#ffffff" stroke="#f1d8cc" stroke-width="3"/>
+  <text x="90" y="100" fill="#241f1c" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700">Combine or split the parcel?</text>
+  <text x="90" y="139" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="21">Use current warehouse evidence and route eligibility—not a universal weight rule.</text>
+
+  <rect x="90" y="190" width="270" height="94" rx="18" fill="#fff1ea" stroke="#ed7f4f" stroke-width="3"/>
+  <text x="225" y="228" text-anchor="middle" fill="#2d2521" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">1. QC complete?</text>
+  <text x="225" y="258" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">Every selected item approved</text>
+
+  <path d="M360 237 H445" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <path d="M432 225 L449 237 L432 249" stroke="#c5ada2" stroke-width="4" fill="none"/>
+
+  <rect x="450" y="190" width="300" height="94" rx="18" fill="#fff1ea" stroke="#ed7f4f" stroke-width="3"/>
+  <text x="600" y="228" text-anchor="middle" fill="#2d2521" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">2. Same route fit?</text>
+  <text x="600" y="258" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">Contents accepted together</text>
+
+  <path d="M750 237 H835" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <path d="M822 225 L839 237 L822 249" stroke="#c5ada2" stroke-width="4" fill="none"/>
+
+  <rect x="840" y="190" width="270" height="94" rx="18" fill="#fff1ea" stroke="#ed7f4f" stroke-width="3"/>
+  <text x="975" y="228" text-anchor="middle" fill="#2d2521" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">3. Volume checked?</text>
+  <text x="975" y="258" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">Compare packed dimensions</text>
+
+  <path d="M225 284 V352" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <path d="M213 339 L225 356 L237 339" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <text x="242" y="326" fill="#9c4930" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">NO</text>
+
+  <path d="M600 284 V352" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <path d="M588 339 L600 356 L612 339" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <text x="617" y="326" fill="#9c4930" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">NO</text>
+
+  <path d="M975 284 V352" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <path d="M963 339 L975 356 L987 339" stroke="#c5ada2" stroke-width="4" fill="none"/>
+  <text x="992" y="326" fill="#2e7d5b" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">YES</text>
+
+  <rect x="90" y="360" width="270" height="112" rx="18" fill="#f7f3f1" stroke="#b8a9a2" stroke-width="2"/>
+  <text x="225" y="403" text-anchor="middle" fill="#2d2521" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Hold the item</text>
+  <text x="225" y="435" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">Resolve size, damage,</text>
+  <text x="225" y="458" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">return or missing-part issues</text>
+
+  <rect x="450" y="360" width="300" height="112" rx="18" fill="#f7f3f1" stroke="#b8a9a2" stroke-width="2"/>
+  <text x="600" y="403" text-anchor="middle" fill="#2d2521" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Split by compatibility</text>
+  <text x="600" y="435" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">Separate restricted, fragile,</text>
+  <text x="600" y="458" text-anchor="middle" fill="#6f625b" font-family="Arial, Helvetica, sans-serif" font-size="17">urgent or route-limiting items</text>
+
+  <rect x="840" y="360" width="270" height="112" rx="18" fill="#edf8f3" stroke="#4b9c78" stroke-width="3"/>
+  <text x="975" y="403" text-anchor="middle" fill="#204b39" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Compare both quotes</text>
+  <text x="975" y="435" text-anchor="middle" fill="#47705f" font-family="Arial, Helvetica, sans-serif" font-size="17">One parcel vs. two using</text>
+  <text x="975" y="458" text-anchor="middle" fill="#47705f" font-family="Arial, Helvetica, sans-serif" font-size="17">current weight and dimensions</text>
+
+  <path d="M975 472 V520" stroke="#4b9c78" stroke-width="4" fill="none"/>
+  <path d="M963 507 L975 524 L987 507" stroke="#4b9c78" stroke-width="4" fill="none"/>
+
+  <rect x="280" y="525" width="640" height="72" rx="22" fill="#2b2420"/>
+  <text x="600" y="555" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Consolidate only when every item fits the same route</text>
+  <text x="600" y="582" text-anchor="middle" fill="#f2d7ca" font-family="Arial, Helvetica, sans-serif" font-size="17">and the packed comparison improves the total trade-off.</text>
+</svg>
