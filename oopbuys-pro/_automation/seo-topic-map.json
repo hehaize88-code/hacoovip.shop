@@ -1,0 +1,226 @@
+{
+  "updated": "2026-07-27",
+  "scope": "English canonical content for oopbuys.pro",
+  "pages": [
+    {
+      "url": "https://oopbuys.pro/",
+      "primaryQuery": "oopbuy finds",
+      "secondaryTerms": [
+        "oopbuy shopping guide",
+        "oopbuy products"
+      ],
+      "intent": "mixed discovery",
+      "angle": "Site-wide orientation from product discovery to QC and shipping.",
+      "evidence": [
+        "Official workflow summary"
+      ],
+      "internalLinkRole": "Homepage and hub distributor"
+    },
+    {
+      "url": "https://oopbuys.pro/finds/",
+      "primaryQuery": "oopbuy finds",
+      "secondaryTerms": [
+        "oopbuy product links",
+        "oopbuy products"
+      ],
+      "intent": "commercial discovery",
+      "angle": "Curated entry points with live-catalog verification warnings.",
+      "evidence": [
+        "Current destination links"
+      ],
+      "internalLinkRole": "Product-discovery spoke"
+    },
+    {
+      "url": "https://oopbuys.pro/categories/",
+      "primaryQuery": "oopbuy categories",
+      "secondaryTerms": [
+        "oopbuy shoes",
+        "oopbuy clothing"
+      ],
+      "intent": "commercial navigation",
+      "angle": "Broad category routes into the main catalog.",
+      "evidence": [
+        "Current destination links"
+      ],
+      "internalLinkRole": "Category hub"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/",
+      "primaryQuery": "oopbuy seo articles",
+      "secondaryTerms": [
+        "oopbuy buying guides",
+        "oopbuy research"
+      ],
+      "intent": "informational navigation",
+      "angle": "Directory of long-form answers grouped by decision.",
+      "evidence": [
+        "Internal page inventory"
+      ],
+      "internalLinkRole": "Article hub"
+    },
+    {
+      "url": "https://oopbuys.pro/guides/",
+      "primaryQuery": "oopbuy guides",
+      "secondaryTerms": [
+        "oopbuy tutorial",
+        "oopbuy help"
+      ],
+      "intent": "informational navigation",
+      "angle": "Directory for the four foundational workflow guides.",
+      "evidence": [
+        "Official workflow sources"
+      ],
+      "internalLinkRole": "Guide hub"
+    },
+    {
+      "url": "https://oopbuys.pro/guides/oopbuy-spreadsheet/",
+      "primaryQuery": "oopbuy spreadsheet",
+      "secondaryTerms": [
+        "oopbuy finds spreadsheet",
+        "verify oopbuy links"
+      ],
+      "intent": "informational",
+      "angle": "Use a spreadsheet as discovery input while verifying the live listing, QC and parcel.",
+      "evidence": [
+        "OOPBUY pages",
+        "dated source ledger"
+      ],
+      "internalLinkRole": "Discovery pillar"
+    },
+    {
+      "url": "https://oopbuys.pro/guides/how-oopbuy-works/",
+      "primaryQuery": "how does oopbuy work",
+      "secondaryTerms": [
+        "oopbuy order process",
+        "oopbuy warehouse"
+      ],
+      "intent": "informational",
+      "angle": "End-to-end buying-agent workflow from product link to parcel.",
+      "evidence": [
+        "OOPBUY pages",
+        "dated source ledger"
+      ],
+      "internalLinkRole": "Workflow pillar"
+    },
+    {
+      "url": "https://oopbuys.pro/guides/qc/",
+      "primaryQuery": "oopbuy qc photos",
+      "secondaryTerms": [
+        "how to read oopbuy qc",
+        "warehouse qc checklist"
+      ],
+      "intent": "informational",
+      "angle": "Repeatable visible-evidence review before after-sales or shipment decisions.",
+      "evidence": [
+        "OOPBUY pages",
+        "dated source ledger"
+      ],
+      "internalLinkRole": "Warehouse evidence pillar"
+    },
+    {
+      "url": "https://oopbuys.pro/guides/shipping/",
+      "primaryQuery": "oopbuy shipping guide",
+      "secondaryTerms": [
+        "oopbuy shipping weight",
+        "oopbuy volumetric weight"
+      ],
+      "intent": "informational",
+      "angle": "Broad route, weight, dimensions and packing overview.",
+      "evidence": [
+        "OOPBUY pages",
+        "dated source ledger"
+      ],
+      "internalLinkRole": "Shipping pillar"
+    },
+    {
+      "url": "https://oopbuys.pro/reviews/",
+      "primaryQuery": "oopbuy review 2026",
+      "secondaryTerms": [
+        "is oopbuy legit",
+        "oopbuy customer reviews"
+      ],
+      "intent": "commercial investigation",
+      "angle": "Evidence-led synthesis of official workflow and dated public review samples.",
+      "evidence": [
+        "OOPBUY pages",
+        "Google Play",
+        "Trustpilot"
+      ],
+      "internalLinkRole": "Trust and risk assessment"
+    },
+    {
+      "url": "https://oopbuys.pro/faq/",
+      "primaryQuery": "oopbuy faq",
+      "secondaryTerms": [
+        "oopbuy storage",
+        "oopbuy returns",
+        "oopbuy tracking"
+      ],
+      "intent": "informational",
+      "angle": "Concise answers with links to deeper guides.",
+      "evidence": [
+        "OOPBUY pages",
+        "dated source ledger"
+      ],
+      "internalLinkRole": "Question-capture hub"
+    },
+    {
+      "url": "https://oopbuys.pro/about/",
+      "primaryQuery": "about oopbuy finds",
+      "secondaryTerms": [
+        "independent oopbuy guide"
+      ],
+      "intent": "navigational trust",
+      "angle": "Editorial standard and independence disclosure.",
+      "evidence": [
+        "Site policy"
+      ],
+      "internalLinkRole": "Trust support"
+    },
+    {
+      "url": "https://oopbuys.pro/privacy/",
+      "primaryQuery": "oopbuys privacy policy",
+      "secondaryTerms": [
+        "oopbuy finds data policy"
+      ],
+      "intent": "navigational",
+      "angle": "Visitor-data and external-link policy.",
+      "evidence": [
+        "Site policy"
+      ],
+      "internalLinkRole": "Legal support"
+    },
+    {
+      "url": "https://oopbuys.pro/terms/",
+      "primaryQuery": "oopbuys terms",
+      "secondaryTerms": [
+        "oopbuy finds disclaimer"
+      ],
+      "intent": "navigational",
+      "angle": "Informational-use and independence disclaimer.",
+      "evidence": [
+        "Site policy"
+      ],
+      "internalLinkRole": "Legal support"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-parcel-consolidation/",
+      "primaryQuery": "oopbuy parcel consolidation",
+      "secondaryTerms": [
+        "combine oopbuy parcels",
+        "split oopbuy parcel",
+        "oopbuy warehouse shipping multiple items",
+        "oopbuy dimensional weight"
+      ],
+      "intent": "informational decision support",
+      "angle": "Choose one parcel or two using QC readiness, route fit, dimensions, protection and current quotes.",
+      "evidence": [
+        "OOPBUY product pages",
+        "OOPBUY platform notices",
+        "UPS dimensional-weight guidance",
+        "UPU and IATA dangerous-goods guidance"
+      ],
+      "internalLinkRole": "Shipping decision spoke linked to QC and shipping pillars"
+    }
+  ]
+}
