@@ -16,7 +16,17 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[
 const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g)]
   .map((match) => ({ url: match[1], lastModified: match[2] }));
 const failures = [];
-const articleSlugs = englishArticles.map(({ slug }) => slug);
+
+function languagesForArticle(article) {
+  return article.languages || languages;
+}
+
+function languagesForRoute(route) {
+  const slug = route.match(/^\/articles\/([^/]+)$/)?.[1];
+  if (!slug) return languages;
+  const article = englishArticles.find((candidate) => candidate.slug === slug);
+  return article ? languagesForArticle(article) : languages;
+}
 
 function articleText(article) {
   const values = [];
@@ -33,6 +43,22 @@ function articleText(article) {
     sections: article.sections,
     cta: article.cta,
   });
+  return values.join(" ");
+}
+
+function articleBodyText(article) {
+  const values = [...article.intro];
+  for (const section of article.sections) {
+    values.push(section.title);
+    for (const block of section.blocks) {
+      if (block.type === "p") values.push(block.text);
+      if (block.type === "callout") values.push(block.title, block.text);
+      if (block.type === "list") values.push(block.title, ...block.items);
+      if (block.type === "table") values.push(...block.headers, ...block.rows.flat());
+      if (block.type === "figure") values.push(block.caption);
+      if (block.type === "source") values.push("Source", block.label, block.text);
+    }
+  }
   return values.join(" ");
 }
 
@@ -102,9 +128,17 @@ function schemaOfType(schemas, type) {
   return schemas.find((schema) => schema["@type"] === type || schema["@graph"]?.some((item) => item["@type"] === type));
 }
 
+for (const article of englishArticles) {
+  const wordCount = words(articleBodyText(article)).length;
+  if (wordCount < 1200 || wordCount > 1800) {
+    failures.push(`English article word count must be 1200-1800 (${wordCount}): ${article.slug}`);
+  }
+  if (!languagesForArticle(article).includes("en")) failures.push(`Article must be available in English: ${article.slug}`);
+}
+
 for (const language of languages.filter((candidate) => candidate !== "en")) {
   const localizedArticles = getLocalizedArticles(language);
-  for (const englishArticle of englishArticles) {
+  for (const englishArticle of englishArticles.filter((article) => languagesForArticle(article).includes(language))) {
     const localized = localizedArticles.find(({ slug }) => slug === englishArticle.slug);
     if (!localized) {
       failures.push(`Missing localized article data: ${language}/${englishArticle.slug}`);
@@ -178,7 +212,12 @@ for (const url of urls) {
   if ((html.match(/<h1[\s>]/g) || []).length !== 1) failures.push(`Expected one H1: ${url}`);
 
   const basePath = pathname.replace(/^\/(pl|es|de|ro)(?=\/|$)/, "") || "/";
-  for (const alternate of [...languages, "x-default"]) {
+  const routeLanguages = languagesForRoute(basePath);
+  const allAlternateTags = head.match(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang=["'][^"']+["'])[^>]*>/gi) || [];
+  if (allAlternateTags.length !== routeLanguages.length + 1) {
+    failures.push(`Expected ${routeLanguages.length + 1} total alternates, found ${allAlternateTags.length}: ${url}`);
+  }
+  for (const alternate of [...routeLanguages, "x-default"]) {
     const targetLanguage = alternate === "x-default" ? "en" : alternate;
     const expected = localizedUrl(targetLanguage, basePath);
     const pattern = new RegExp(`<link\\b(?=[^>]*\\brel=["']alternate["'])(?=[^>]*\\bhreflang=["']${escapeRegExp(alternate)}["'])(?=[^>]*\\bhref=["']${escapeRegExp(expected)}["'])[^>]*>`, "gi");
@@ -262,7 +301,7 @@ for (const language of languages) {
   if (contactSchema?.mainEntity?.email !== "hello@findqc.pro") failures.push(`ContactPage email missing: ${contactPath}`);
   if (!contactVisibleText.includes(trust.contact.correctionTitle) || !contactVisibleText.includes(trust.contact.processTitle)) failures.push(`Contact correction policy not localized: ${contactPath}`);
 
-  for (const article of englishArticles) {
+  for (const article of englishArticles.filter((candidate) => languagesForArticle(candidate).includes(language))) {
     const articlePath = localizedPath(language, `/articles/${article.slug}`);
     const articleHtml = readFileSync(htmlPath(articlePath), "utf8");
     if (!articleHtml.includes(`${localizedPath(language, "/editorial-policy")}#editorial-desk`)) failures.push(`Article author profile link missing: ${articlePath}`);
@@ -295,9 +334,23 @@ if (!headers.includes("/_next/static/*") || !headers.includes("max-age=31536000,
 }
 
 const sitemapAlternateCount = (sitemap.match(/<xhtml:link /g) || []).length;
-if (urls.length !== 135) failures.push(`Expected 135 sitemap URLs, found ${urls.length}`);
+const englishRoutes = urls
+  .map((url) => new URL(url))
+  .filter(({ pathname }) => expectedLanguage(pathname) === "en")
+  .map(({ pathname }) => pathname || "/");
+const expectedUrlCount = englishRoutes.reduce((count, route) => count + languagesForRoute(route).length, 0);
+const expectedAlternateCount = urls.reduce((count, url) => {
+  const { pathname } = new URL(url);
+  const route = pathname.replace(/^\/(pl|es|de|ro)(?=\/|$)/, "") || "/";
+  return count + languagesForRoute(route).length + 1;
+}, 0);
+if (urls.length !== expectedUrlCount) failures.push(`Expected ${expectedUrlCount} sitemap URLs, found ${urls.length}`);
 if (new Set(urls).size !== urls.length) failures.push("Sitemap contains duplicate URLs");
-if (sitemapAlternateCount !== 810) failures.push(`Expected 810 sitemap alternates, found ${sitemapAlternateCount}`);
+if (sitemapAlternateCount !== expectedAlternateCount) failures.push(`Expected ${expectedAlternateCount} sitemap alternates, found ${sitemapAlternateCount}`);
+for (const article of englishArticles) {
+  const expectedUrl = `https://findqc.pro/articles/${article.slug}`;
+  if (!urls.includes(expectedUrl)) failures.push(`English article missing from sitemap: ${expectedUrl}`);
+}
 if (sitemapEntries.length !== urls.length) failures.push(`Expected ${urls.length} sitemap lastmod values, found ${sitemapEntries.length}`);
 for (const entry of sitemapEntries) {
   const { pathname } = new URL(entry.url);
@@ -320,7 +373,7 @@ if (failures.length) {
 console.log(JSON.stringify({
   languages: languages.length,
   indexableUrls: urls.length,
-  localizedArticlePages: articleSlugs.length * (languages.length - 1),
+  localizedArticlePages: englishArticles.reduce((count, article) => count + languagesForArticle(article).filter((language) => language !== "en").length, 0),
   bidirectionalAlternateLinks: sitemapAlternateCount,
   structuredDataLanguages: languages.length,
   productListItems: products.length,

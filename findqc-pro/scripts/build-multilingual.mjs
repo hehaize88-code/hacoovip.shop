@@ -13,6 +13,7 @@ import {
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getRouteLastModified } from "../lib/contentDates.js";
+import { articles } from "../lib/articles.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
@@ -27,6 +28,13 @@ const removalOptions = {
   maxRetries: 10,
   retryDelay: 100,
 };
+
+function languagesForRoute(route) {
+  const slug = route.match(/^\/articles\/([^/]+)$/)?.[1];
+  if (!slug) return languages;
+  const article = articles.find((candidate) => candidate.slug === slug);
+  return article?.languages || languages;
+}
 
 function walk(directory, predicate, results = []) {
   for (const entry of readdirSync(directory)) {
@@ -62,9 +70,10 @@ function stripMarkup(value) {
 
 function enrichHtml(html, route, language) {
   const canonical = localizedUrl(route, language);
+  const routeLanguages = languagesForRoute(route);
   const seoTags = [
     `<link rel="canonical" href="${canonical}"/>`,
-    ...languages.map((candidate) => `<link rel="alternate" hreflang="${candidate}" href="${localizedUrl(route, candidate)}"/>`),
+    ...routeLanguages.map((candidate) => `<link rel="alternate" hreflang="${candidate}" href="${localizedUrl(route, candidate)}"/>`),
     `<link rel="alternate" hreflang="x-default" href="${localizedUrl(route, "en")}"/>`,
     `<meta property="og:url" content="${canonical}"/>`,
     `<meta property="og:locale" content="${localeMap[language]}"/>`,
@@ -107,10 +116,11 @@ function copyHtmlBuild(language) {
 }
 
 function buildSitemap(routes) {
-  const entries = routes.flatMap((route) => languages.map((language) => {
+  const entries = routes.flatMap((route) => languagesForRoute(route).map((language) => {
     const lastmod = getRouteLastModified(route, language);
+    const routeLanguages = languagesForRoute(route);
     const alternates = [
-      ...languages.map((candidate) => `    <xhtml:link rel="alternate" hreflang="${candidate}" href="${localizedUrl(route, candidate)}" />`),
+      ...routeLanguages.map((candidate) => `    <xhtml:link rel="alternate" hreflang="${candidate}" href="${localizedUrl(route, candidate)}" />`),
       `    <xhtml:link rel="alternate" hreflang="x-default" href="${localizedUrl(route, "en")}" />`,
     ].join("\n");
     return `  <url>\n    <loc>${localizedUrl(route, language)}</loc>\n${alternates}\n    <lastmod>${lastmod}</lastmod>\n  </url>`;
@@ -168,4 +178,5 @@ if (existsSync(worker)) cpSync(worker, path.join(staging, "_worker.js"));
 
 rmSync(buildOut, removalOptions);
 renameSync(staging, buildOut);
-console.log(`Multilingual export complete: ${indexableRoutes.length * languages.length} indexable URLs across ${languages.length} languages.`);
+const indexableUrlCount = indexableRoutes.reduce((count, route) => count + languagesForRoute(route).length, 0);
+console.log(`Multilingual export complete: ${indexableUrlCount} indexable URLs across ${languages.length} languages.`);

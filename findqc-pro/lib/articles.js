@@ -1,3 +1,5 @@
+import { ARTICLE_LANGUAGE_OVERRIDES } from "./articleAvailability.js";
+
 export const articleSources = {
   home: {
     label: "FindQC homepage",
@@ -23,6 +25,31 @@ export const articleSources = {
     label: "FindQC Bot",
     href: "https://findqc.com/robots",
     note: "Official description of link parsing, image recognition and QC media in Discord.",
+  },
+  botAcademy: {
+    label: "FindQC Academy: Discord image-search bot",
+    href: "https://academy.findqc.com/2025/02/27/findqc-com-discord-community-bot-intelligent-image-search-shopping-assistant/",
+    note: "FindQC's February 2025 description of image uploads, product matching and result fields in its Discord bot.",
+  },
+  universalLinks: {
+    label: "FindQC Academy: universal link recognition",
+    href: "https://academy.findqc.com/2024/12/11/revolutionizing-qc-searches-introducing-findqcs-universal-link-recognition/",
+    note: "FindQC's explanation of recognizing Taobao, 1688, Weidian and agent links without manual conversion.",
+  },
+  botPrivacy: {
+    label: "FindQC Bot Privacy Policy",
+    href: "https://academy.findqc.com/privacy-policy/",
+    note: "Bot-specific disclosure covering commands or messages, Discord identifiers, usage data and third-party APIs.",
+  },
+  botTerms: {
+    label: "FindQC Bot Terms of Service",
+    href: "https://academy.findqc.com/terms-of-service/",
+    note: "Bot-specific terms covering lawful use, Discord rules, user responsibility and service limitations.",
+  },
+  discordApps: {
+    label: "Discord Help: Using Apps",
+    href: "https://support.discord.com/hc/en-us/articles/21334461140375-Using-Apps-on-Discord",
+    note: "Discord's current guidance on adding third-party apps, reviewing requested access and managing installed apps.",
   },
   cpsc: {
     label: "U.S. Consumer Product Safety Commission recalls",
@@ -239,7 +266,7 @@ export const articles = [
       },
     ],
     sources: [articleSources.academySearch, articleSources.terms, articleSources.privacy, articleSources.bot],
-    related: ["before-you-buy-qc-guide", "findqc-product-signals", "findqc-shopping-agent-workflow"],
+    related: ["before-you-buy-qc-guide", "findqc-product-signals", "findqc-shopping-agent-workflow", "findqc-discord-bot-guide"],
     cta: { eyebrow: "Put search into practice", title: "Browse mapped products with exact source links", href: "/products", label: "Open product finds" },
   },
   {
@@ -568,6 +595,130 @@ export const articles = [
     sources: [articleSources.terms, articleSources.academySearch, articleSources.home, articleSources.privacy, articleSources.cpsc, articleSources.safetyGate],
     related: ["before-you-buy-qc-guide", "findqc-search-methods", "what-qc-photos-can-prove"],
     cta: { eyebrow: "Ready to research a live catalog?", title: "Browse the mapped CNFansHP product collection", href: "https://cnfanshp.com/AllProducts/", label: "Browse the catalog", external: true },
+  },
+  {
+    slug: "findqc-discord-bot-guide",
+    title: "FindQC Discord Bot Guide: Links, Image Search and QC Media",
+    shortTitle: "Using the FindQC Discord Bot",
+    description: "A practical, independent guide to FindQC Bot link parsing, image search, QC photos and videos, affiliate routing, permissions and privacy checks.",
+    excerpt: "Use the FindQC Discord Bot as a fast research entry point while keeping product identity, QC evidence, commercial links and app permissions separate.",
+    category: "Discord Research",
+    readTime: "11 min read",
+    date: "27 July 2026",
+    dateISO: "2026-07-27",
+    updatedISO: "2026-07-27",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-discord-bot-guide"],
+    heroImage: "/products/hoodie.webp",
+    heroAlt: "Black hoodie used as an editorial example of a product link parsed in a Discord research workflow",
+    keywords: ["FindQC Discord bot", "FindQC bot guide", "FindQC image search bot", "FindQC QC videos", "Discord QC bot"],
+    intro: [
+      "The FindQC Discord Bot can shorten the distance between a product clue and a research record. A member can share a marketplace link or image, receive a structured result and open related QC material without rebuilding the search across several browser tabs.",
+      "Speed creates a predictable risk: the first result can feel more certain than the evidence supports. FindQC describes link parsing, image recognition, QC photos and high-resolution video, but also says it is an aggregation platform—not the seller or forwarding agent—and does not guarantee third-party QC data. Use the bot to find candidates, then verify identity, evidence, destination and permissions separately.",
+    ],
+    sections: [
+      {
+        id: "role",
+        title: "1. Define the bot's job before using its answer",
+        blocks: [
+          { type: "p", text: "FindQC presents its bot as a Discord tool that parses product links, recognizes images and returns product information with QC media. Its public example card includes a title, displayed price, domestic freight, specifications, a QC-photo count and third-party agent buttons. These are FindQC's product claims, not a guarantee that every result contains every field." },
+          { type: "p", text: "The main FindQC Terms of Service draw an important boundary. FindQC calls itself a QC discovery and aggregation platform and says it does not sell goods, take responsibility for third-party pricing or provide purchasing and forwarding. Therefore, a bot card is a research interface. It is not an invoice, a warehouse inspection for your order or a promise that a seller will accept a return." },
+          { type: "callout", title: "A useful division of labour", text: "Let the bot answer 'What record might match this clue?' Let the source listing answer 'What is offered now?' Let your agent's warehouse record answer 'What arrived for my order?'" },
+          { type: "source", href: "https://findqc.com/robots", label: "FindQC Bot page", text: "Current feature and example-result claims checked 27 July 2026." },
+          { type: "source", href: "https://findqc.com/terms-of-service", label: "FindQC Terms of Service", text: "Current platform, third-party purchase and QC-data limitations checked 27 July 2026." },
+        ],
+      },
+      {
+        id: "inputs",
+        title: "2. Start with the strongest clue: exact link before image",
+        blocks: [
+          { type: "p", text: "Use the original marketplace product link when you have it. FindQC Academy says its universal link recognition is intended to recognize Taobao, 1688, Weidian and agent links without requiring manual conversion. A full item URL normally carries a stronger identifier than a product nickname or promotional image. Keep the item ID intact when removing tracking parameters or copied social text." },
+          { type: "p", text: "Image search is the recovery method when the source link is missing. FindQC says its recognition feature uses Taobao and 1688 data, while an Academy article describes uploading screenshots or product images for related links. Treat this as an official feature claim: visual recognition proposes candidates; it does not prove that the closest thumbnail shares the seller, batch or specification." },
+          { type: "table", headers: ["What you have", "Best first move", "What still needs checking"], rows: [
+            ["Complete marketplace item URL", "Send the exact link", "Marketplace, seller, variant and live availability"],
+            ["Agent or converted product URL", "Try the link, then recover the source item", "Whether the conversion still resolves to the intended listing"],
+            ["Clean product image", "Use image recognition", "Source identity, seller and specification—not appearance alone"],
+            ["Busy screenshot", "Crop interface text and unrelated objects first", "Whether cropping removed a useful model or variant clue"],
+          ] },
+          { type: "source", href: "https://academy.findqc.com/2024/12/11/revolutionizing-qc-searches-introducing-findqcs-universal-link-recognition/", label: "FindQC Academy: universal link recognition", text: "Official platform coverage statement." },
+          { type: "source", href: "https://academy.findqc.com/2025/02/27/findqc-com-discord-community-bot-intelligent-image-search-shopping-assistant/", label: "FindQC Academy: Discord image search", text: "Official description of image-upload and matching behaviour." },
+        ],
+      },
+      {
+        id: "identity",
+        title: "3. Verify the result before opening a buying-agent button",
+        blocks: [
+          { type: "p", text: "Read a bot result in two passes. First check identity: marketplace, item ID, seller, title, cover image and specification. Then check freshness: is the listing live, has the product changed, and do price and domestic freight match the commercial page? A result can remain historically useful after the offer disappears." },
+          { type: "list", title: "Stop and investigate when", items: [
+            "The item ID or marketplace differs from the link you submitted.",
+            "The card shows a familiar image but a different seller or specification.",
+            "The price is unusually different from the live source page.",
+            "The QC gallery appears to cover another colour, size or revision.",
+            "A buying-agent button opens a generic search page instead of the intended item.",
+          ] },
+          { type: "p", text: "When several candidates look right, save their source URLs and compare the fields that cannot be inferred from the photograph: model code, option text, measurements, connector, material description or included parts. The bot has succeeded when it gives you a verifiable candidate, not merely when it returns an attractive card." },
+          { type: "p", text: "No QC photos is not a positive or negative verdict; it means the displayed record lacks that evidence. Continue with the live listing or your own warehouse record instead of guessing." },
+        ],
+      },
+      {
+        id: "media",
+        title: "4. Read QC photos and videos as different forms of limited evidence",
+        blocks: [
+          { type: "p", text: "FindQC markets an exclusive high-definition video library on the bot page and says members can view products from more angles. Video can be valuable for surface continuity, how hardware moves, how fabric drapes and whether a mark persists as the camera changes position. It can also reveal that two still images came from different lighting conditions." },
+          { type: "p", text: "Resolution does not expand the test. A sharp video of a powered-on screen does not establish battery health, reliability or electrical safety; a rotating shoe does not prove comfort, composition or authenticity. Check the recording date, listing and variant, whether the whole item stays in frame and whether an edit skips the area you need." },
+          { type: "figure", image: "/products/hoodie.webp", alt: "Black hoodie shown front-on as an editorial QC research example", caption: "A product image can help define the model and visible features to check. It does not prove that a later warehouse unit has the same construction. Editorial catalog example; not a FindQC QC record." },
+          { type: "p", text: "Give the highest weight to media tied to your order. Public records help form a checklist; your warehouse record shows the unit awaiting approval. Request any missing label, measurement, accessory layout or close-up instead of relying on an older clip." },
+          { type: "source", href: "https://findqc.com/robots", label: "FindQC Bot page", text: "Official QC-video feature claims." },
+          { type: "source", href: "https://findqc.com/terms-of-service", label: "FindQC Terms of Service", text: "Official disclaimer for third-party QC content and authenticity certification." },
+        ],
+      },
+      {
+        id: "commercial-links",
+        title: "5. Treat buying buttons and affiliate routing as commercial links",
+        blocks: [
+          { type: "p", text: "The current bot page says a server owner can configure preferred shipping agents and that parsed links may be replaced with that community's affiliate links. This does not automatically make the destination unsafe, but it creates a financial relationship that a buyer should understand. The most prominent button may reflect the server's configuration rather than an independent ranking of agents." },
+          { type: "p", text: "Before leaving Discord, inspect the destination domain and confirm that the product identifier survived the redirect. On the agent page, check the current item, variant, price, domestic shipping, payment and return terms. FindQC's terms say affiliate-program rules determine commissions and that clicks or payouts are not guaranteed; they also say the third-party agent controls the actual transaction." },
+          { type: "callout", title: "Commercial transparency test", text: "Ask two separate questions: 'Does this link point to the correct item?' and 'Does the person or community sharing it benefit if I use it?' A yes to the second does not answer the first." },
+        ],
+      },
+      {
+        id: "privacy",
+        title: "6. Review Discord permissions and bot privacy before installation",
+        blocks: [
+          { type: "p", text: "Discord's current help guidance says server apps are added by the server owner or someone with Manage Server permission, and the authorization flow shows the requested access before approval. Discord also makes clear that apps are third-party services operated by their developers. An administrator should read the permission prompt, avoid granting unrelated access and confirm where the app appears under Server Settings, Integrations, Bots and Apps." },
+          { type: "p", text: "FindQC's bot-specific Privacy Policy says the bot may collect user-provided commands, preferences or messages, along with Discord user IDs, server IDs, command frequency and error logs. It also says Discord API data may be used to operate the bot. The policy describes retention as only as long as necessary, while FindQC's newer main-site policy separately gives a six-month period for account-linked and usage data. Because those documents use different scopes and wording, do not assume the website's six-month statement automatically defines every bot record." },
+          { type: "list", title: "Admin and member checks", items: [
+            "Open the invitation from FindQC's own bot page rather than an edited copy.",
+            "Read every requested permission and remove access that is not needed.",
+            "Tell members which channels parse product links and images.",
+            "Do not upload addresses, payment screens, order numbers or private messages for product matching.",
+            "Recheck the bot profile, integrations entry and developer policy after major feature changes.",
+          ] },
+          { type: "p", text: "Members should submit the product clue, not the personal context around it. A cropped product image is usually more useful and less revealing than a complete chat, receipt or account screenshot." },
+          { type: "source", href: "https://support.discord.com/hc/en-us/articles/21334461140375-Using-Apps-on-Discord", label: "Discord Help: Using Apps", text: "Current installation, permission and third-party-app guidance." },
+          { type: "source", href: "https://academy.findqc.com/privacy-policy/", label: "FindQC Bot Privacy Policy", text: "Bot-specific data categories and retention wording." },
+        ],
+      },
+      {
+        id: "workflow",
+        title: "7. Use a seven-step bot-to-warehouse workflow",
+        blocks: [
+          { type: "list", title: "The repeatable sequence", items: [
+            "Submit the exact item URL; use a cropped product image only when the source is missing.",
+            "Confirm marketplace, item ID, seller, title and intended specification in the result.",
+            "Open the source listing and verify live price, availability, domestic freight and return terms.",
+            "Review public QC media for category-specific questions and record what remains unseen.",
+            "Inspect the agent destination and recognize any affiliate routing before purchasing.",
+            "After the item reaches the warehouse, compare your own photos with the checklist created during research.",
+            "Approve, request a precise extra view, exchange or return under the agent and seller's current rules.",
+          ] },
+          { type: "p", text: "This sequence preserves speed without erasing provenance: where the product came from, who controls the transaction and which media belongs to the ordered unit." },
+          { type: "p", text: "The best result is traceable from input to source listing, from public QC evidence to your warehouse item and from a commercial redirect to a clearly identified agent page. If one link in that chain is uncertain, pause there instead of borrowing confidence from the rest of the interface." },
+        ],
+      },
+    ],
+    sources: [articleSources.bot, articleSources.terms, articleSources.botAcademy, articleSources.universalLinks, articleSources.botPrivacy, articleSources.botTerms, articleSources.discordApps],
+    related: ["findqc-search-methods", "what-qc-photos-can-prove", "findqc-shopping-agent-workflow"],
+    cta: { eyebrow: "Continue with the evidence", title: "Use the complete warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
 ];
 

@@ -10,7 +10,7 @@ const routeLastModified = Object.freeze({
   "/guides": "2026-07-21",
   "/guides/qc-photo-checklist": "2026-07-22",
   "/guides/how-to-buy": "2026-07-22",
-  "/articles": "2026-07-20",
+  "/articles": "2026-07-27",
   "/faq": "2026-07-21",
   "/about": "2026-07-22",
   "/contact": "2026-07-22",

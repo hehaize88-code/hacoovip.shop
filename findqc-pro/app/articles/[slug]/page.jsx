@@ -2,8 +2,7 @@ import Link from "../../../components/LocalizedLink";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import { ArrowIcon, ExternalIcon } from "../../../components/Icons";
-import { articles } from "../../../lib/articles";
-import { getArticleUi, getLocalizedArticle } from "../../../lib/localizedArticles";
+import { getArticleUi, getLocalizedArticle, getLocalizedArticles } from "../../../lib/localizedArticles";
 import { BUILD_LANGUAGE, languageUrl } from "../../../lib/routing";
 import { localizedMetadata } from "../../../lib/seo";
 import ResponsiveImage from "../../../components/ResponsiveImage";
@@ -12,7 +11,7 @@ const siteUrl = "https://findqc.pro";
 const articleUi = getArticleUi(BUILD_LANGUAGE);
 
 export function generateStaticParams() {
-  return articles.map(({ slug }) => ({ slug }));
+  return getLocalizedArticles(BUILD_LANGUAGE).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
@@ -82,6 +81,16 @@ function ContentBlock({ block }) {
         <ResponsiveImage src={block.image} alt={block.alt} sizes="(max-width: 760px) calc(100vw - 40px), 680px" />
         <figcaption>{block.caption}</figcaption>
       </figure>
+    );
+  }
+
+  if (block.type === "source") {
+    return (
+      <p className="inline-source">
+        <span>Source:</span>{" "}
+        <a href={block.href} target="_blank" rel="noopener noreferrer">{block.label} <ExternalIcon /></a>
+        {block.text && <> — {block.text}</>}
+      </p>
     );
   }
 
