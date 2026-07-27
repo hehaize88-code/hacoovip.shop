@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sugargoos.de/sitemap-main.xml
+Sitemap: https://sugargoos.de/sitemap.xml
