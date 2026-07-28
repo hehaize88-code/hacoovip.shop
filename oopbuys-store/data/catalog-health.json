@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-28T15:49:34.786Z",
+  "monitor": {
+    "schedule": "Daily at 03:17 UTC",
+    "requestMethod": "GET",
+    "inactiveAfterConsecutiveFailures": 2,
+    "behavior": "The first failed check moves a listing behind healthy results. Two consecutive failed daily checks hide it until a later check succeeds."
+  },
+  "summary": {
+    "totalChecks": 20,
+    "active": 20,
+    "warning": 0,
+    "inactive": 0,
+    "productCount": 8,
+    "activeProducts": 8
+  },
+  "exchangeRate": {
+    "status": "fresh",
+    "base": "USD",
+    "quote": "CNY",
+    "cnyPerUsd": 6.7713,
+    "usdPerEur": 1.1367,
+    "cnyPerEur": 7.6969,
+    "source": "European Central Bank euro reference rates",
+    "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+    "sourcePublishedAt": "2026-07-28",
+    "fetchedAt": "2026-07-28T15:49:27.424Z",
+    "calculation": "CNY per EUR divided by USD per EUR",
+    "notice": "Reference rate for informational estimates only; it is not a checkout or transaction rate."
+  },
+  "products": [
+    {
+      "id": "5974",
+      "name": "Patagonia classic loose-fitting crew neck",
+      "url": "https://www.cnfanshp.com/AllProducts/5974.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5974.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.424Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.424Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 140,
+      "usdEstimate": 20.68,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5976",
+      "name": "Gucci pique cotton breathable and versatile short",
+      "url": "https://www.cnfanshp.com/AllProducts/5976.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5976.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.426Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.426Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 215,
+      "usdEstimate": 31.75,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5981",
+      "name": "Celine embroidered chocolate-",
+      "url": "https://www.cnfanshp.com/AllProducts/5981.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5981.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.426Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.426Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 298,
+      "usdEstimate": 44.01,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5983",
+      "name": "Balenciaga new drawstring",
+      "url": "https://www.cnfanshp.com/AllProducts/5983.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5983.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.427Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.427Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 249,
+      "usdEstimate": 36.77,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5971",
+      "name": "Miu Miu letter-embroidered",
+      "url": "https://www.cnfanshp.com/AllProducts/5971.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5971.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.427Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.427Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 89,
+      "usdEstimate": 13.14,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5952",
+      "name": "Longinges watches（39 styles)",
+      "url": "https://www.cnfanshp.com/AllProducts/5952.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5952.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.428Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.428Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 520,
+      "usdEstimate": 76.79,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5822",
+      "name": "AIR MagSsfe",
+      "url": "https://www.cnfanshp.com/AllProducts/5822.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5822.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.429Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.429Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 75,
+      "usdEstimate": 11.08,
+      "validation": "HTTP success with product title and source price block"
+    },
+    {
+      "id": "5850",
+      "name": "NBA City Edition Jerseys [40 styles]",
+      "url": "https://www.cnfanshp.com/AllProducts/5850.html",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/5850.html",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:27.430Z",
+      "lastSuccessAt": "2026-07-28T15:49:27.430Z",
+      "consecutiveFailures": 0,
+      "sourceAmountCny": 88,
+      "usdEstimate": 13,
+      "validation": "HTTP success with product title and source price block"
+    }
+  ],
+  "catalogRoutes": [
+    {
+      "id": "all-products",
+      "url": "https://www.cnfanshp.com/AllProducts/",
+      "finalUrl": "https://www.cnfanshp.com/AllProducts/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.487Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.487Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "shoes",
+      "url": "https://www.cnfanshp.com/shoes/",
+      "finalUrl": "https://www.cnfanshp.com/shoes/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.488Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.488Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "hoodies",
+      "url": "https://www.cnfanshp.com/hoodies-sweaters/",
+      "finalUrl": "https://www.cnfanshp.com/hoodies-sweaters/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.488Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.488Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "t-shirts",
+      "url": "https://www.cnfanshp.com/t-shirts/",
+      "finalUrl": "https://www.cnfanshp.com/t-shirts/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.489Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.489Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "jackets",
+      "url": "https://www.cnfanshp.com/jackets/",
+      "finalUrl": "https://www.cnfanshp.com/jackets/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.489Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.489Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "pants",
+      "url": "https://www.cnfanshp.com/pants-shorts/",
+      "finalUrl": "https://www.cnfanshp.com/pants-shorts/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.489Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.489Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "headwear",
+      "url": "https://www.cnfanshp.com/headwear/",
+      "finalUrl": "https://www.cnfanshp.com/headwear/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.489Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.489Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "accessories",
+      "url": "https://www.cnfanshp.com/accessories/",
+      "finalUrl": "https://www.cnfanshp.com/accessories/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.489Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.489Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "jerseys",
+      "url": "https://www.cnfanshp.com/Jersey/",
+      "finalUrl": "https://www.cnfanshp.com/Jersey/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.490Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.490Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "electronics",
+      "url": "https://www.cnfanshp.com/electronics/",
+      "finalUrl": "https://www.cnfanshp.com/electronics/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.490Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.490Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "other",
+      "url": "https://www.cnfanshp.com/other-stuff/",
+      "finalUrl": "https://www.cnfanshp.com/other-stuff/",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.490Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.490Z",
+      "consecutiveFailures": 0
+    },
+    {
+      "id": "search",
+      "url": "https://www.cnfanshp.com/search.html?keywords=shoes&channelid=2&method=1",
+      "finalUrl": "https://www.cnfanshp.com/search.html?keywords=shoes&channelid=2&method=1",
+      "httpStatus": 200,
+      "state": "active",
+      "checkedAt": "2026-07-28T15:49:31.490Z",
+      "lastSuccessAt": "2026-07-28T15:49:31.490Z",
+      "consecutiveFailures": 0
+    }
+  ]
+}

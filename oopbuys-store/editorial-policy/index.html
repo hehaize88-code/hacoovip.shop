@@ -19,6 +19,13 @@
         <h2>Research records and outbound links</h2>
         <p>Long-form guides identify the source titles and research date in a visible record. Platform sources may be listed without an outbound link so the site can document the basis of a claim without turning the article into promotion for the subject being reviewed. Readers can search the exact source title independently.</p>
       </section>
+      <section id="catalog-monitoring">
+        <h2>Catalog monitoring, prices and exchange-rate evidence</h2>
+        <p>The catalog monitor uses full <code>GET</code> requests because some valid catalog pages reject or mishandle <code>HEAD</code> requests. A product counts as active only when the response succeeds and the matching page still contains both a product title and its source-price block. Category and search routes must return a successful, non-empty page rather than a soft 404.</p>
+        <p>The public status record is refreshed daily. A first failed product check moves that card behind healthy listings. Two consecutive failed daily checks hide it from the rendered catalog; a later successful check restores it automatically. This delay avoids removing a valid listing because of one temporary network or origin error.</p>
+        <p>USD amounts are estimates derived from the source listing amount. The monitor reads the European Central Bank’s working-day EUR/USD and EUR/CNY reference rates, then calculates CNY per USD as CNY per EUR divided by USD per EUR. The displayed source date and check time are part of the public record. The reference rate is informational and is not a promise of a checkout, card or agent transaction rate.</p>
+        <p>The current machine-readable record is available at <a href="/data/catalog-health.json">catalog-health.json</a>. It contains the check time, response state, source amount, estimate rate, consecutive-failure count and stale-listing decision for every monitored product.</p>
+      </section>
       <section>
         <h2>Reviews, comparisons and first-hand experience</h2>
         <p>We do not fabricate orders, parcels, conversations, screenshots or personal experience. When an article analyzes customer feedback, it explains that the reports cannot be independently audited from review text alone. Positive and negative themes are both considered, and known review-platform warnings are not hidden.</p>
