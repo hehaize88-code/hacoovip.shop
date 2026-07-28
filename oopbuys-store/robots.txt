@@ -1,5 +1,5 @@
 User-Agent: *
 Allow: /
 
-Host: https://oopbuys.store
+Host: oopbuys.store
 Sitemap: https://oopbuys.store/sitemap.xml
