@@ -40,4 +40,4 @@ The multilingual static build is written to `out/`. Cloudflare Pages uses:
 
 The canonical public domain remains `https://findqc.pro`. The build preserves the permanent `www.findqc.pro` to `findqc.pro` redirect, including paths and query parameters.
 
-Deployment status: the six-guide English article library and truthful per-page sitemap dates were prepared for production on July 27, 2026.
+Deployment status: the seven-guide English article library and truthful per-page sitemap dates were prepared for production on July 29, 2026.
