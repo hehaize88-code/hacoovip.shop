@@ -51,6 +51,26 @@ export const articleSources = {
     href: "https://support.discord.com/hc/en-us/articles/21334461140375-Using-Apps-on-Discord",
     note: "Discord's current guidance on adding third-party apps, reviewing requested access and managing installed apps.",
   },
+  isoSizing: {
+    label: "ISO 8559-2:2017 clothing size designation",
+    href: "https://www.iso.org/standard/64075.html",
+    note: "International standard distinguishing body dimensions used for size designation from garment dimensions chosen by designers and manufacturers.",
+  },
+  nistConversion: {
+    label: "NIST Guide to the SI conversion factors",
+    href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+    note: "Authoritative conversion factor between inches and centimetres.",
+  },
+  leeSizing: {
+    label: "Lee clothing size charts and measuring guidance",
+    href: "https://www.lee.com/size-charts.html",
+    note: "Public manufacturer guidance showing measurement points and warning that size-chart values can vary by style.",
+  },
+  carharttSizing: {
+    label: "Carhartt men's clothing size and fit guide",
+    href: "https://www.carhartt.com/men-size-guide",
+    note: "Public manufacturer instructions for taking chest, natural-waist and hip body measurements and distinguishing fit profiles.",
+  },
   cpsc: {
     label: "U.S. Consumer Product Safety Commission recalls",
     href: "https://www.cpsc.gov/Recalls",
@@ -164,7 +184,7 @@ export const articles = [
       },
     ],
     sources: [articleSources.terms, articleSources.home, articleSources.academySearch, articleSources.cpsc, articleSources.safetyGate],
-    related: ["findqc-search-methods", "what-qc-photos-can-prove", "findqc-shopping-agent-workflow"],
+    related: ["findqc-search-methods", "what-qc-photos-can-prove", "findqc-shopping-agent-workflow", "findqc-qc-measurements-size-guide"],
     cta: { eyebrow: "Continue the check", title: "Use the seven-stage warehouse photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
   {
@@ -719,6 +739,129 @@ export const articles = [
     sources: [articleSources.bot, articleSources.terms, articleSources.botAcademy, articleSources.universalLinks, articleSources.botPrivacy, articleSources.botTerms, articleSources.discordApps],
     related: ["findqc-search-methods", "what-qc-photos-can-prove", "findqc-shopping-agent-workflow"],
     cta: { eyebrow: "Continue with the evidence", title: "Use the complete warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
+  },
+  {
+    slug: "findqc-qc-measurements-size-guide",
+    title: "FindQC Size Guide: How to Read QC Measurement Photos Before You Buy",
+    shortTitle: "Reading FindQC QC Measurements",
+    description: "Learn how to compare FindQC QC measurement photos with a garment you own, spot unreliable ruler placement and request useful warehouse evidence.",
+    excerpt: "Separate body measurements from garment measurements, compare identical points and turn an unclear ruler photo into a precise warehouse request.",
+    category: "Sizing Evidence",
+    readTime: "11 min read",
+    date: "29 July 2026",
+    dateISO: "2026-07-29",
+    updatedISO: "2026-07-29",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-qc-measurements-size-guide"],
+    heroImage: "/products/pants.webp",
+    heroAlt: "Dark trousers laid flat as an editorial example for comparing garment measurements",
+    keywords: ["FindQC size guide", "FindQC measurements", "QC measurement photos", "garment measurement QC", "shopping agent size check"],
+    intro: [
+      "A size label is a name, not a measurement. Two garments marked M can have different chest widths, rises or inseams, while a camera angle can make either one look larger than it is. The useful question is not “Does this look true to size?” but “Was the same dimension measured from the same points on both garments?”",
+      "FindQC lists a Size Assistant among its tools and can display dimensions supplied by third-party agents. Its own terms also say those records may be incomplete or inaccurate. This guide shows how to turn a public QC ruler photo into a cautious sizing decision, then how to ask for better evidence when your own warehouse item arrives.",
+    ],
+    sections: [
+      {
+        id: "role",
+        title: "1. Know what a FindQC measurement can actually establish",
+        blocks: [
+          { type: "p", text: "FindQC describes itself as a QC discovery and aggregation platform. Its Terms of Service list a Size Assistant and state that QC photos, weight, dimensions and defect records generally come from third-party agents. FindQC organizes the data but does not guarantee its accuracy, completeness or authenticity. That makes a displayed measurement a research clue, not a fit guarantee." },
+          { type: "p", text: "A public photo may belong to another buyer's unit, size, colour or order date. It can reveal how a seller's garment was measured and whether several units appear broadly consistent. It cannot prove that the unit eventually attached to your order will match. The most decision-relevant evidence is still a clear measurement of your own warehouse item." },
+          { type: "callout", title: "Use three levels of confidence", text: "Seller chart: a stated target. Public QC photo: evidence from another recorded unit. Your warehouse photo: evidence from the unit awaiting your approval. Do not treat the first two as substitutes for the third." },
+          { type: "source", href: "https://findqc.com/terms-of-service", label: "FindQC Terms of Service", text: "Platform role, Size Assistant listing and third-party dimension limitations checked 29 July 2026." },
+        ],
+      },
+      {
+        id: "body-versus-garment",
+        title: "2. Separate body measurements from garment measurements",
+        blocks: [
+          { type: "p", text: "This is the mistake behind many bad size comparisons. A brand chart may describe the body the garment is intended to fit, while a QC photo measures the finished garment lying flat. ISO 8559-2 explains that clothing size designation is based on body measurements; garment measurements are chosen by the designer or manufacturer with allowances for cut, style and how the item is worn." },
+          { type: "p", text: "Suppose a chart lists a 100 cm chest. That may mean a body chest circumference, not a 50 cm flat garment width. The finished garment also needs ease: extra room for movement, layering or an oversized silhouette. Doubling a flat chest width can help compare it with a garment circumference, but it still does not convert that number into the wearer's body size." },
+          { type: "table", headers: ["Number shown", "What it may describe", "Safe comparison"], rows: [
+            ["Body chest or waist", "Circumference of the intended wearer", "Your body measured by the same definition"],
+            ["Flat chest width", "Armpit-to-armpit width of a laid-flat top", "The same width on a garment you already like"],
+            ["Garment waist", "Width or circumference of the waistband", "A reference garment with the waistband in the same state"],
+            ["Inseam", "Crotch seam to inside hem", "The identical seam path on similar trousers"],
+          ] },
+          { type: "source", href: "https://www.iso.org/standard/64075.html", label: "ISO 8559-2:2017", text: "Body-dimension basis for size designation and the separate role of garment dimensions." },
+        ],
+      },
+      {
+        id: "reference",
+        title: "3. Build a reference from clothes you already wear",
+        blocks: [
+          { type: "p", text: "The most practical reference is not a generic S, M or L chart. It is a similar garment that fits you in the way you want. Choose a sweatshirt for a sweatshirt, straight-leg trousers for straight-leg trousers and a fitted shirt for a fitted shirt. Different cuts can have deliberately different measurements even when the label is identical." },
+          { type: "list", title: "Create a six-line reference note", items: [
+            "Garment type, cut and labelled size.",
+            "Chest width measured flat at the same height on both sides.",
+            "Body length from the same shoulder or collar point to the hem.",
+            "Shoulder width between equivalent seam points.",
+            "Sleeve length using the same start point and path.",
+            "For trousers: waistband state, rise, thigh, inseam and leg opening as relevant.",
+          ] },
+          { type: "p", text: "Photograph your tape position as well as writing the number. Manufacturer guides demonstrate why definitions matter: Lee describes different body points for waist, hips, chest, sleeve and inseam and notes that its charts can vary by style; Carhartt separately explains chest, natural waist and hip measurement and shows that fit profiles change the garment silhouette. Neither guide is a universal chart for marketplace clothing. They are useful examples of defining the point before trusting the value." },
+          { type: "source", href: "https://www.lee.com/size-charts.html", label: "Lee size charts", text: "Style-specific chart warning and published body-measurement definitions." },
+          { type: "source", href: "https://www.carhartt.com/men-size-guide", label: "Carhartt size and fit guide", text: "Published chest, waist, hip and fit-profile guidance." },
+        ],
+      },
+      {
+        id: "audit-photo",
+        title: "4. Audit the ruler photo before reading the number",
+        blocks: [
+          { type: "p", text: "A large number in a sharp photograph can still be weak evidence. First check the garment state. It should be laid on a reasonably flat surface, not hanging, twisted or partly folded. Closures should match your reference: a zipped jacket and an open jacket do not present the same width. An elastic waistband measured stretched cannot be compared with one measured relaxed." },
+          { type: "p", text: "Next trace the tool. Confirm that zero begins at the intended edge rather than outside the frame, that the tape follows a straight path, and that the far reading is visible without guessing. A cloth tape can bow over thick fabric; a rigid ruler can sit above a curved waistband. Perspective makes the nearer end look larger, so the camera should be close to perpendicular." },
+          { type: "list", title: "Reject or downgrade the photo when", items: [
+            "The zero point is hidden, cropped or offset from the garment edge.",
+            "The tape crosses the garment diagonally or bends around a fold.",
+            "Hands pull elastic fabric without showing the relaxed measurement.",
+            "The start and end points do not match the seller chart or your reference.",
+            "The label, colour or identifying feature is absent, so the pictured variant is uncertain.",
+          ] },
+          { type: "p", text: "Small differences can come from placement, fabric compression or rounding. Do not manufacture precision from a blurry image. Record a range when the tape appears to fall between marks, and request a clearer photograph when the difference would change your decision." },
+        ],
+      },
+      {
+        id: "conversion",
+        title: "5. Convert units without creating false precision",
+        blocks: [
+          { type: "p", text: "Marketplace charts often use centimetres while your reference note may use inches. NIST lists the conversion factor as 1 inch equals 2.54 centimetres. Keep the original value beside the conversion, and round to a precision the photograph can support. A tape that can only be read to roughly half a centimetre does not justify reporting several decimal places." },
+          { type: "table", headers: ["QC reading", "Converted value", "How to report it"], rows: [
+            ["50 cm flat chest", "About 19.7 in", "50 cm / 19.7 in flat width"],
+            ["72 cm garment length", "About 28.3 in", "72 cm / 28.3 in length"],
+            ["30 in inseam", "76.2 cm", "30 in / about 76 cm inseam"],
+          ] },
+          { type: "p", text: "Treat these as mathematical examples, not measurements from an actual FindQC order. The conversion can be exact while the photographed reading remains approximate. Your decision should reflect the weaker part of the evidence chain." },
+          { type: "source", href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", label: "NIST Guide to the SI", text: "Official inch-to-centimetre conversion factor." },
+        ],
+      },
+      {
+        id: "decision",
+        title: "6. Compare differences by consequence, not by label",
+        blocks: [
+          { type: "p", text: "Write the QC value beside your reference garment, then subtract. A 2 cm difference in flat chest width affects the full circumference differently from a 2 cm difference in sleeve length. A slightly longer oversized hoodie may be acceptable; a shorter rise or inseam may not be fixable for the intended wearer. Decide which dimensions are fit-critical before looking at the result." },
+          { type: "p", text: "Use three outcomes. Accept when the identity is clear, the measurement method matches and all critical differences fall within your personal range. Ask for evidence when the number is close but the photo method is unclear. Reject or pursue an exchange under the agent's current rules when a verified critical dimension is outside your range." },
+          { type: "callout", title: "Do not invent a universal tolerance", text: "There is no honest site-wide rule that every garment may differ by a fixed number of centimetres. Fabric, cut, measurement definition and your intended fit all matter. Use a tolerance derived from your reference garment and the consequence of the difference." },
+        ],
+      },
+      {
+        id: "request",
+        title: "7. Request a warehouse photo that can settle the question",
+        blocks: [
+          { type: "p", text: "A useful request names the ordered variant, garment state, measurement points and unit. For example: “Please lay the size M trousers flat with the waistband relaxed, place the tape from the crotch seam to the inside hem, and show both zero and the final centimetre mark in one frame.” That is verifiable. “Please check the size” is not." },
+          { type: "list", title: "Include these details", items: [
+            "The order item, colour and labelled size.",
+            "Whether the garment should be closed, relaxed, flattened or unstretched.",
+            "The exact seam or edge used at each end.",
+            "Centimetres or inches, with the complete measuring tool visible.",
+            "A second close-up only if the full-frame reading is not legible.",
+          ] },
+          { type: "p", text: "Keep a screenshot of the seller chart and your reference method with the request. If support or the warehouse cannot reproduce the measurement, the remaining uncertainty is itself part of the decision. FindQC can help you find earlier evidence, but the shopping agent and seller control any extra-photo, exchange or return process." },
+          { type: "p", text: "The disciplined workflow is simple: identify what the number describes, reproduce the same measurement on a trusted garment, audit the QC photograph, convert units carefully and act only on differences that matter. This will not guarantee fit, but it replaces size-label guesswork with evidence you can explain and recheck." },
+        ],
+      },
+    ],
+    sources: [articleSources.terms, articleSources.isoSizing, articleSources.nistConversion, articleSources.leeSizing, articleSources.carharttSizing],
+    related: ["before-you-buy-qc-guide", "what-qc-photos-can-prove", "findqc-shopping-agent-workflow"],
+    cta: { eyebrow: "Check the rest of the item", title: "Continue with the warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
 ];
 

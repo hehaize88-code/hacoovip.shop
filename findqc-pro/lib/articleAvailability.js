@@ -1,5 +1,6 @@
 export const ARTICLE_LANGUAGE_OVERRIDES = Object.freeze({
   "findqc-discord-bot-guide": ["en"],
+  "findqc-qc-measurements-size-guide": ["en"],
 });
 
 export function routeIsAvailableInLanguage(pathname, language) {

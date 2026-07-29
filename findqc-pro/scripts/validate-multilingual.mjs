@@ -12,10 +12,22 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(root, "out");
 const languages = ["en", "pl", "es", "de", "ro"];
 const sitemap = readFileSync(path.join(out, "sitemap.xml"), "utf8");
+const topicMap = JSON.parse(readFileSync(path.join(root, "_automation", "seo-topic-map.json"), "utf8"));
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g)]
   .map((match) => ({ url: match[1], lastModified: match[2] }));
 const failures = [];
+
+const mappedSlugs = topicMap.articles.map((article) => article.slug);
+const mappedQueries = topicMap.articles.map((article) => article.primaryQuery.toLocaleLowerCase());
+if (new Set(mappedSlugs).size !== mappedSlugs.length) failures.push("SEO topic map contains duplicate slugs");
+if (new Set(mappedQueries).size !== mappedQueries.length) failures.push("SEO topic map contains duplicate primary queries");
+for (const article of englishArticles) {
+  if (!mappedSlugs.includes(article.slug)) failures.push(`Article missing from SEO topic map: ${article.slug}`);
+}
+for (const slug of mappedSlugs) {
+  if (!englishArticles.some((article) => article.slug === slug)) failures.push(`SEO topic map references unknown article: ${slug}`);
+}
 
 function languagesForArticle(article) {
   return article.languages || languages;

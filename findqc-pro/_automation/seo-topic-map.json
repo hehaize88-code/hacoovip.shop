@@ -1,0 +1,50 @@
+{
+  "lastUpdated": "2026-07-29",
+  "articles": [
+    {
+      "slug": "before-you-buy-qc-guide",
+      "primaryQuery": "how to use FindQC before buying",
+      "intent": "General pre-purchase QC checklist",
+      "focus": ["listing identity", "whole photo set", "measurements", "evidence limits"]
+    },
+    {
+      "slug": "findqc-search-methods",
+      "primaryQuery": "FindQC search methods",
+      "intent": "Choose between link, image and keyword search",
+      "focus": ["input selection", "failure recovery", "result verification"]
+    },
+    {
+      "slug": "findqc-product-signals",
+      "primaryQuery": "FindQC reviews trending karma hauls",
+      "intent": "Interpret community and popularity signals without overtrusting them",
+      "focus": ["signal definitions", "bias", "sample limits", "cross-checking"]
+    },
+    {
+      "slug": "what-qc-photos-can-prove",
+      "primaryQuery": "what can FindQC QC photos prove",
+      "intent": "Separate visible inspection evidence from unsupported conclusions",
+      "focus": ["visible defects", "hidden properties", "authenticity limits", "warehouse evidence"]
+    },
+    {
+      "slug": "findqc-shopping-agent-workflow",
+      "primaryQuery": "use FindQC with a shopping agent",
+      "intent": "Move from product discovery to an auditable warehouse decision",
+      "focus": ["role boundaries", "order identity", "warehouse approval", "record keeping"]
+    },
+    {
+      "slug": "findqc-discord-bot-guide",
+      "primaryQuery": "FindQC Discord bot",
+      "intent": "Use link parsing, image search and QC media while checking permissions and redirects",
+      "focus": ["bot inputs", "result identity", "QC video limits", "affiliate routing", "privacy"]
+    },
+    {
+      "slug": "findqc-qc-measurements-size-guide",
+      "primaryQuery": "how to read FindQC QC measurements",
+      "intent": "Compare apparel QC ruler photos with a trusted reference garment",
+      "focus": ["body versus garment measurements", "ruler placement", "unit conversion", "decision thresholds", "extra-photo requests"],
+      "exampleType": "Clearly labelled hypothetical measurement conversions, never presented as customer orders",
+      "outline": ["evidence role", "measurement definitions", "reference garment", "photo audit", "conversion", "decision", "warehouse request"],
+      "faqAngles": ["Can FindQC guarantee fit?", "Should flat chest width be doubled?", "How should an unclear measurement photo be retaken?"]
+    }
+  ]
+}

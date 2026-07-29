@@ -2,10 +2,10 @@ import { articles as englishArticles } from "./articles.js";
 import { ARTICLE_LOCALES, ARTICLE_SOURCE_LOCALES, ARTICLE_UI_LOCALES } from "./articleLocales/index.js";
 
 const ENGLISH_UI = {
-  journalMetadataTitle: "FindQC Guides: Search, QC Photos & Shopping Agents",
-  journalMetadataDescription: "Fact-checked guides to FindQC search, Discord bot research, product signals, QC photo review and shopping-agent workflows.",
+  journalMetadataTitle: "FindQC Guides: Search, QC Photos, Sizing & Agents",
+  journalMetadataDescription: "Fact-checked guides to FindQC search, QC measurement photos, Discord research, product signals and shopping-agent workflows.",
   journalSchemaName: "FindQC Pro research journal",
-  journalCount: "06 in-depth guides",
+  journalCount: "07 in-depth guides",
   journalNote: "Every article is checked against current primary sources and, where relevant, independent public-safety references. Images are clearly marked editorial examples rather than warehouse QC evidence.",
   editorialDesk: "FindQC Pro Editorial Desk",
   factChecked: "Fact-checked",
@@ -13,7 +13,7 @@ const ENGLISH_UI = {
   contents: "In this article",
   researchNotes: "Research notes",
   officialSources: "Sources checked",
-  sourceIntro: "This independent editorial guide's source set was last reviewed on 27 July 2026. Features, policies and safety notices can change, so verify current details at the linked source.",
+  sourceIntro: "This independent editorial guide's source set was last reviewed on 29 July 2026. Features, policies and safety notices can change, so verify current details at the linked source.",
   independentNote: "FindQC Pro is an independent discovery and education site. It is not FindQC and does not claim to operate FindQC's service.",
   continueResearch: "Continue the research",
   relatedNotes: "Related field notes",
