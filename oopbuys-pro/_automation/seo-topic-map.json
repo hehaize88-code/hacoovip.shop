@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-27",
+  "updated": "2026-07-29",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -221,6 +221,26 @@
         "UPU and IATA dangerous-goods guidance"
       ],
       "internalLinkRole": "Shipping decision spoke linked to QC and shipping pillars"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-tracking-not-updating/",
+      "primaryQuery": "oopbuy tracking not updating",
+      "secondaryTerms": [
+        "oopbuy parcel tracking",
+        "oopbuy tracking number not working",
+        "oopbuy parcel stuck in transit",
+        "oopbuy customs tracking"
+      ],
+      "intent": "informational troubleshooting",
+      "angle": "Classify the last authoritative scan before escalating label creation, cross-border transit, customs, exceptions or delivery disputes.",
+      "evidence": [
+        "OOPBUY Track My Parcel notice",
+        "OOPBUY public product and proxy-shopping pages",
+        "UPS and DHL tracking-status guidance",
+        "UPU transport-data guidance",
+        "US CBP internet-purchase guidance"
+      ],
+      "internalLinkRole": "Post-dispatch troubleshooting spoke linked to shipping and parcel-consolidation guides"
     }
   ]
 }
