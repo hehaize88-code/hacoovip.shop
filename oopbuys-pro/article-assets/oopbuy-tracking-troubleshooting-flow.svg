@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">OOPBUY tracking not updating troubleshooting flow</title>
+  <desc id="desc">A decision flow that starts with the last authoritative carrier scan and separates label creation, international transit, customs, exceptions, and delivery.</desc>
+  <rect width="1200" height="675" fill="#f5f0e8"/>
+  <rect x="46" y="42" width="1108" height="591" rx="30" fill="#fffdf8" stroke="#191919" stroke-width="3"/>
+  <text x="86" y="102" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#171717">OOPBUY tracking not updating?</text>
+  <text x="86" y="139" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#5d5a54">Diagnose the last verified event before choosing an action.</text>
+
+  <rect x="86" y="177" width="1028" height="72" rx="18" fill="#171717"/>
+  <text x="600" y="209" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#ffffff">1 · Copy the tracking number, route name, last scan, location and timestamp</text>
+  <text x="600" y="235" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#e5e5e5">Use the named carrier’s record as the primary source.</text>
+
+  <path d="M600 249v35" stroke="#171717" stroke-width="4"/>
+  <path d="M600 284l-9-14h18z" fill="#171717"/>
+
+  <rect x="86" y="302" width="238" height="144" rx="18" fill="#fff1df" stroke="#e67923" stroke-width="3"/>
+  <text x="205" y="339" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#171717">Label / data only</text>
+  <text x="108" y="374" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">No carrier possession scan?</text>
+  <text x="108" y="402" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">Ask OOPBUY to confirm</text>
+  <text x="108" y="426" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">handover and route reference.</text>
+
+  <rect x="350" y="302" width="238" height="144" rx="18" fill="#edf4ff" stroke="#4c76b8" stroke-width="3"/>
+  <text x="469" y="339" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#171717">In transit</text>
+  <text x="372" y="374" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">A long-distance leg may</text>
+  <text x="372" y="398" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">have no intermediate scan.</text>
+  <text x="372" y="426" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">Compare route-specific timing.</text>
+
+  <rect x="614" y="302" width="238" height="144" rx="18" fill="#eef8ef" stroke="#4b9560" stroke-width="3"/>
+  <text x="733" y="339" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#171717">Customs / handoff</text>
+  <text x="636" y="374" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">Check carrier messages and</text>
+  <text x="636" y="398" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">destination-post tracking.</text>
+  <text x="636" y="426" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">Respond to document requests.</text>
+
+  <rect x="878" y="302" width="236" height="144" rx="18" fill="#f8ecec" stroke="#b84d4d" stroke-width="3"/>
+  <text x="996" y="339" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#171717">Exception / delivered</text>
+  <text x="900" y="374" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">Read the exact exception or</text>
+  <text x="900" y="398" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">delivery detail first.</text>
+  <text x="900" y="426" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#4f4b46">Preserve proof immediately.</text>
+
+  <path d="M205 446v46M469 446v46M733 446v46M996 446v46" stroke="#171717" stroke-width="3"/>
+  <path d="M205 492H996" stroke="#171717" stroke-width="3"/>
+  <path d="M600 492v29" stroke="#171717" stroke-width="4"/>
+  <path d="M600 521l-9-14h18z" fill="#171717"/>
+
+  <rect x="217" y="536" width="766" height="66" rx="18" fill="#f0ca3e" stroke="#171717" stroke-width="3"/>
+  <text x="600" y="564" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#171717">2 · Escalate with evidence, not a generic “Where is my parcel?”</text>
+  <text x="600" y="590" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#403b2d">Attach parcel ID, route, last scan, dates, address check and carrier response.</text>
+</svg>
