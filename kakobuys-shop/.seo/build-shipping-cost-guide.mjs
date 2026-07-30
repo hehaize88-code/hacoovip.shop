@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const site = path.resolve(here, "..");
 const slug = "kakobuy-shipping-cost-estimate";
-const canonical = `https://kakobuys.shop/articles/${slug}`;
+const canonical = `https://kakobuys.shop/articles/${slug}/`;
 const published = "2026-07-30";
 
 const pageData = {
@@ -1200,7 +1200,13 @@ function refreshCompiledArticleLibraryCopy() {
 
 function insertBefore(file, marker, fragment) {
   let source = fs.readFileSync(file, "utf8");
-  if (source.includes(`href="/articles/${slug}"`)) return;
+  const oldHref = `href="/articles/${slug}"`;
+  const canonicalHref = `href="/articles/${slug}/"`;
+  const normalized = source.replaceAll(oldHref, canonicalHref);
+  if (normalized.includes(canonicalHref)) {
+    if (normalized !== source) fs.writeFileSync(file, normalized);
+    return;
+  }
   const index = source.indexOf(marker);
   if (index < 0) throw new Error(`Unable to locate insertion marker in ${file}`);
   source = `${source.slice(0, index)}${fragment}${source.slice(index)}`;
@@ -1208,21 +1214,21 @@ function insertBefore(file, marker, fragment) {
 }
 
 function integrateStaticCards() {
-  const homeCard = `<article class="article-card"><div class="article-number">0<!-- -->4</div><div><p class="kicker">${escapeHtml(cardMeta.en.eyebrow)}</p><h3>${escapeHtml(cardMeta.en.title)}</h3><p>${escapeHtml(cardMeta.en.description)}</p><div class="article-meta"><span>${escapeHtml(cardMeta.en.readTime)}</span><span>Updated<!-- --> <!-- -->${escapeHtml(cardMeta.en.updated)}</span></div><a href="/articles/${slug}">Read research note<!-- --> →</a></div></article>`;
+  const homeCard = `<article class="article-card"><div class="article-number">0<!-- -->4</div><div><p class="kicker">${escapeHtml(cardMeta.en.eyebrow)}</p><h3>${escapeHtml(cardMeta.en.title)}</h3><p>${escapeHtml(cardMeta.en.description)}</p><div class="article-meta"><span>${escapeHtml(cardMeta.en.readTime)}</span><span>Updated<!-- --> <!-- -->${escapeHtml(cardMeta.en.updated)}</span></div><a href="/articles/${slug}/">Read research note<!-- --> →</a></div></article>`;
   insertBefore(
     path.join(site, "index.html"),
     `</div></div></section><section class="section shell"><div class="faq-wrap">`,
     homeCard
   );
 
-  const guideCard = `<article class="guide-card"><span>0<!-- -->4</span><div><p class="kicker">${escapeHtml(cardMeta.en.eyebrow)}</p><h2>${escapeHtml(cardMeta.en.title)}</h2><p>${escapeHtml(cardMeta.en.description)}</p></div><a href="/articles/${slug}">${escapeHtml(cardMeta.en.readTime)} · Read full article<!-- --> →</a></article>`;
+  const guideCard = `<article class="guide-card"><span>0<!-- -->4</span><div><p class="kicker">${escapeHtml(cardMeta.en.eyebrow)}</p><h2>${escapeHtml(cardMeta.en.title)}</h2><p>${escapeHtml(cardMeta.en.description)}</p></div><a href="/articles/${slug}/">${escapeHtml(cardMeta.en.readTime)} · Read full article<!-- --> →</a></article>`;
   insertBefore(
     path.join(site, "guides", "index.html"),
     `</div><div class="source-note"><strong>Editorial rule</strong>`,
     guideCard
   );
 
-  const libraryCard = `<article class="article-library-card"><div class="article-library-number">04</div><div><p class="kicker">${escapeHtml(cardMeta.en.eyebrow)}</p><h2>${escapeHtml(cardMeta.en.title)}</h2><p>${escapeHtml(cardMeta.en.description)}</p><div class="article-meta"><span>${escapeHtml(cardMeta.en.readTime)}</span><span>Updated<!-- --> <!-- -->${escapeHtml(cardMeta.en.updated)}</span></div></div><a href="/articles/${slug}" class="button button-dark">Read full article<!-- --> →</a></article>`;
+  const libraryCard = `<article class="article-library-card"><div class="article-library-number">04</div><div><p class="kicker">${escapeHtml(cardMeta.en.eyebrow)}</p><h2>${escapeHtml(cardMeta.en.title)}</h2><p>${escapeHtml(cardMeta.en.description)}</p><div class="article-meta"><span>${escapeHtml(cardMeta.en.readTime)}</span><span>Updated<!-- --> <!-- -->${escapeHtml(cardMeta.en.updated)}</span></div></div><a href="/articles/${slug}/" class="button button-dark">Read full article<!-- --> →</a></article>`;
   const articlesPath = path.join(site, "articles", "index.html");
   insertBefore(
     articlesPath,
@@ -1254,7 +1260,14 @@ function integrateStaticCards() {
 function updateSitemap() {
   const sitemapPath = path.join(site, "sitemap.xml");
   let source = fs.readFileSync(sitemapPath, "utf8");
-  if (source.includes(`<loc>${canonical}</loc>`)) return;
+  const normalized = source.replace(
+    `<loc>https://kakobuys.shop/articles/${slug}</loc>`,
+    `<loc>${canonical}</loc>`
+  );
+  if (normalized.includes(`<loc>${canonical}</loc>`)) {
+    if (normalized !== source) fs.writeFileSync(sitemapPath, normalized);
+    return;
+  }
   const entry = `<url>\n<loc>${canonical}</loc>\n<lastmod>${published}T00:00:00.000Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.75</priority>\n</url>\n`;
   source = source.replace("</urlset>", `${entry}</urlset>`);
   fs.writeFileSync(sitemapPath, source);
