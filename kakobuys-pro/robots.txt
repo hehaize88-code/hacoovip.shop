@@ -1,5 +1,5 @@
-User-Agent: *
+User-agent: *
 Allow: /
 
 Sitemap: https://kakobuys.pro/sitemap.xml
-Host: https://kakobuys.pro
+Sitemap: https://kakobuys.pro/sitemap-main.xml
