@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://kakobuys.pro/sitemap.xml
+Host: https://kakobuys.pro
