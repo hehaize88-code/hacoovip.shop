@@ -1,0 +1,56 @@
+{
+  "lastReviewed": "2026-07-30",
+  "entries": [
+    {
+      "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
+      "primaryQuery": "Kakobuy QC photos",
+      "relatedTerms": [
+        "Kakobuy QC guide",
+        "how to check Kakobuy QC"
+      ],
+      "intent": "visual inspection guidance",
+      "angle": "ordered item-level photo checks and evidence limits",
+      "evidence": "inspection information and dated QC-image notice",
+      "internalLinkRole": "supports product-level decisions before shipping"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-spreadsheet-vs-search",
+      "primaryQuery": "Kakobuy spreadsheet",
+      "relatedTerms": [
+        "Kakobuy product search",
+        "Kakobuy finds"
+      ],
+      "intent": "discovery workflow comparison",
+      "angle": "spreadsheet discovery versus searchable verification",
+      "evidence": "editorial workflow analysis",
+      "internalLinkRole": "supports catalog discovery"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/warehouse-storage-and-returns",
+      "primaryQuery": "Kakobuy warehouse storage",
+      "relatedTerms": [
+        "Kakobuy return",
+        "Kakobuy five-day return"
+      ],
+      "intent": "policy and deadline guidance",
+      "angle": "separates storage allowance from eligible seller returns",
+      "evidence": "inspection/storage and return help entries",
+      "internalLinkRole": "supports pre-parcel deadline decisions"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-shipping-cost-estimate",
+      "primaryQuery": "Kakobuy shipping cost",
+      "relatedTerms": [
+        "Kakobuy shipping calculator",
+        "how much is Kakobuy shipping",
+        "Kakobuy international freight",
+        "estimate Kakobuy parcel cost"
+      ],
+      "intent": "commercial investigation and cost planning",
+      "angle": "builds a transparent estimate range and replaces assumptions with live parcel data",
+      "evidence": "shipping calculator, shopping cart, public service flow and service-fee separation",
+      "internalLinkRole": "connects warehouse decisions to international parcel submission"
+    }
+  ],
+  "nextPriority": "how to use Kakobuy step by step"
+}
