@@ -1,4 +1,4 @@
-const KB_REVISION = "2026-07-30-catalog-v1";
+const KB_REVISION = "2026-07-30-catalog-v2-real-images";
 const KB_LANGS = ["en", "pl", "de", "fr", "it"];
 const KB_CATEGORY_ORDER = [
   "shoes",
@@ -46,6 +46,7 @@ const KB_COPY = {
     detailNote: "This page is an independent research record, not a seller page. Recheck the destination title, selected variant, current price, restrictions and after-sales terms before ordering.",
     productQcTitle: "QC questions for this item",
     backCategory: "Back to category",
+    representative: "Representative product",
     unavailable: "Product record not found.",
     footer: "Independent research directory. Not affiliated with the source marketplace, buying agent or any brand referenced."
   },
@@ -72,6 +73,7 @@ const KB_COPY = {
     continue: "Przejdź do oferty źródłowej ↗",
     detailNote: "To niezależny zapis badawczy, a nie strona sprzedawcy. Przed zakupem ponownie sprawdź tytuł, wariant, cenę, ograniczenia i zasady posprzedażowe.",
     productQcTitle: "Pytania QC dla tego produktu", backCategory: "Wróć do kategorii",
+    representative: "Produkt reprezentatywny",
     unavailable: "Nie znaleziono rekordu produktu.",
     footer: "Niezależny katalog badawczy. Brak powiązania ze źródłowym serwisem, agentem zakupowym i wymienionymi markami."
   },
@@ -98,6 +100,7 @@ const KB_COPY = {
     continue: "Zur Quellanzeige weitergehen ↗",
     detailNote: "Dies ist ein unabhängiger Rechercheeintrag, keine Verkäuferseite. Prüfe vor dem Kauf erneut Titel, Variante, Preis, Beschränkungen und Bedingungen.",
     productQcTitle: "QC-Fragen zu diesem Artikel", backCategory: "Zurück zur Kategorie",
+    representative: "Repräsentatives Produkt",
     unavailable: "Produkteintrag nicht gefunden.",
     footer: "Unabhängiges Rechercheverzeichnis. Keine Verbindung zum Quellmarktplatz, Einkaufsagenten oder genannten Marken."
   },
@@ -124,6 +127,7 @@ const KB_COPY = {
     continue: "Continuer vers l’annonce source ↗",
     detailNote: "Cette page est une fiche de recherche indépendante, pas une page vendeur. Vérifiez à nouveau le titre, la variante, le prix, les restrictions et les conditions avant achat.",
     productQcTitle: "Questions QC pour cet article", backCategory: "Retour à la catégorie",
+    representative: "Produit représentatif",
     unavailable: "Fiche produit introuvable.",
     footer: "Répertoire de recherche indépendant, sans affiliation avec la place de marché, l’agent d’achat ou les marques citées."
   },
@@ -150,6 +154,7 @@ const KB_COPY = {
     continue: "Vai all’annuncio originale ↗",
     detailNote: "Questa è una scheda di ricerca indipendente, non una pagina del venditore. Prima dell’acquisto ricontrolla titolo, variante, prezzo, restrizioni e condizioni.",
     productQcTitle: "Domande QC per questo articolo", backCategory: "Torna alla categoria",
+    representative: "Prodotto rappresentativo",
     unavailable: "Scheda prodotto non trovata.",
     footer: "Directory di ricerca indipendente, non affiliata al marketplace, all’agente di acquisto o ai marchi citati."
   }
@@ -522,7 +527,7 @@ function kbProductCard(product, catalog, language) {
     <article class="kb-product-card">
       <a href="/products/${kbEscape(product.page)}/" aria-label="${kbEscape(copy.view)}: ${kbEscape(product.name)}">
         <div class="kb-product-image">
-          <img src="${kbEscape(product.image)}" alt="${kbEscape(product.name)}" loading="lazy" decoding="async">
+          <img src="${kbEscape(product.image)}" alt="${kbEscape(product.name)}" width="900" height="900" loading="lazy" decoding="async">
           <span>${kbEscape(copy.view)} →</span>
         </div>
         <div class="kb-product-copy">
@@ -588,12 +593,42 @@ function kbAddItemList(products, catalog) {
 
 function kbUpgradeHome(catalog, language) {
   const copy = KB_COPY[language];
+  const boardProduct = catalog.products.find((product) => product.page === "6043");
+  const boardImage = document.querySelector(".hero-board .board-photo img");
+  if (boardProduct && boardImage) {
+    boardImage.src = boardProduct.image;
+    boardImage.alt = boardProduct.name;
+    boardImage.width = 900;
+    boardImage.height = 900;
+    boardImage.decoding = "async";
+    if (!boardImage.closest(".kb-board-product-link")) {
+      const link = document.createElement("a");
+      link.className = "kb-board-product-link";
+      link.href = `/products/${boardProduct.page}/`;
+      link.setAttribute("aria-label", `${copy.representative}: ${boardProduct.name}`);
+      boardImage.replaceWith(link);
+      link.append(boardImage);
+    }
+  }
   document.querySelectorAll("#categories .category-card").forEach((card, index) => {
     const category = KB_CATEGORY_ORDER[index];
     if (!category) return;
+    const representative = catalog.products.find((product) => product.category === category);
     card.href = `/catalog/${category}`;
     card.removeAttribute("target");
     card.removeAttribute("rel");
+    if (representative) {
+      const image = card.querySelector("img");
+      if (image) {
+        image.src = representative.image;
+        image.alt = representative.name;
+        image.width = 900;
+        image.height = 900;
+        image.loading = "lazy";
+        image.decoding = "async";
+      }
+      card.title = `${copy.categories[category]} — ${representative.name}`;
+    }
   });
 
   const grid = document.querySelector(".listing-grid");
@@ -642,6 +677,40 @@ function kbUpgradeHome(catalog, language) {
   kbAddItemList(products, catalog);
 }
 
+function kbUpgradeCatalog(catalog, language) {
+  const copy = KB_COPY[language];
+  const tiles = document.querySelectorAll(".catalog-page-grid .catalog-tile");
+  tiles.forEach((tile, index) => {
+    const category = KB_CATEGORY_ORDER[index];
+    if (!category) return;
+    const representative = catalog.products.find((product) => product.category === category);
+    const image = tile.querySelector("img");
+    if (!representative || !image) return;
+    image.src = representative.image;
+    image.alt = representative.name;
+    image.width = 900;
+    image.height = 900;
+    image.loading = "lazy";
+    image.decoding = "async";
+    if (!image.closest(".kb-catalog-image-link")) {
+      const link = document.createElement("a");
+      link.className = "kb-catalog-image-link";
+      link.href = `/products/${representative.page}/`;
+      link.setAttribute("aria-label", `${copy.representative}: ${representative.name}`);
+      image.replaceWith(link);
+      link.append(image);
+    }
+    tile.querySelectorAll("a").forEach((link) => {
+      if (link.classList.contains("kb-catalog-image-link")) return;
+      if (link.textContent?.includes("↗")) {
+        link.href = `/catalog/${category}`;
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+      }
+    });
+  });
+}
+
 function kbUpgradeCategory(catalog, language, category) {
   const copy = KB_COPY[language];
   const layout = document.querySelector(".guide-layout");
@@ -649,9 +718,12 @@ function kbUpgradeCategory(catalog, language, category) {
   const aside = layout?.querySelector(".side-card");
   if (!article || !aside) return;
   const products = catalog.products.filter((product) => product.category === category);
-  const image = article.querySelector("img");
-  const imageHtml = image
-    ? `<img src="${kbEscape(image.src)}" alt="${kbEscape(copy.categories[category])}" style="width:100%;max-height:430px;object-fit:cover;border-radius:18px;margin-bottom:32px">`
+  const representative = products[0];
+  const imageHtml = representative
+    ? `<a class="kb-category-featured" href="/products/${kbEscape(representative.page)}/" aria-label="${kbEscape(copy.representative)}: ${kbEscape(representative.name)}">
+        <img src="${kbEscape(representative.image)}" alt="${kbEscape(representative.name)}" width="900" height="900" loading="eager" decoding="async">
+        <span>${kbEscape(copy.representative)}: ${kbEscape(representative.name)} →</span>
+      </a>`
     : "";
 
   if (article.dataset.kbRevision !== `${KB_REVISION}-${category}-${language}`) {
@@ -755,7 +827,7 @@ function kbRenderProduct(catalog, language) {
     </p>
     <div class="kb-detail-grid">
       <div class="kb-detail-image">
-        <img src="${kbEscape(product.image)}" alt="${kbEscape(product.name)}" fetchpriority="high">
+        <img src="${kbEscape(product.image)}" alt="${kbEscape(product.name)}" width="900" height="900" fetchpriority="high">
       </div>
       <article class="kb-detail-copy">
         <p class="kb-kicker">${kbEscape(copy.independentRecord)}</p>
@@ -813,6 +885,10 @@ async function kbApply() {
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     if (path === "/") {
       kbUpgradeHome(catalog, language);
+      return;
+    }
+    if (path === "/catalog") {
+      kbUpgradeCatalog(catalog, language);
       return;
     }
     const match = path.match(/^\/catalog\/([^/]+)$/);

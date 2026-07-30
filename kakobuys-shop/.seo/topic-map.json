@@ -50,7 +50,117 @@
       "angle": "builds a transparent estimate range and replaces assumptions with live parcel data",
       "evidence": "shipping calculator, shopping cart, public service flow and service-fee separation",
       "internalLinkRole": "connects warehouse decisions to international parcel submission"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/how-to-use-kakobuy-step-by-step",
+      "primaryQuery": "how to use Kakobuy",
+      "relatedTerms": [
+        "Kakobuy tutorial",
+        "how to order on Kakobuy",
+        "Kakobuy warehouse",
+        "Kakobuy shipping guide"
+      ],
+      "intent": "beginner procedural guidance",
+      "angle": "separates product purchase, warehouse inspection and international parcel decisions",
+      "evidence": "Kakobuy homepage process, purchasing-service information, inspection/storage information and shipping calculator",
+      "internalLinkRole": "top-level beginner hub for order, QC and shipping articles"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/buy-from-taobao-with-kakobuy",
+      "primaryQuery": "buy from Taobao with Kakobuy",
+      "relatedTerms": [
+        "Kakobuy Taobao agent",
+        "Taobao link Kakobuy",
+        "how to order Taobao Kakobuy"
+      ],
+      "intent": "marketplace-specific buying guidance",
+      "angle": "focuses on preserving Taobao listing and SKU evidence through the agent workflow",
+      "evidence": "Kakobuy purchasing-service description, public platform scope, inspection/storage and return help",
+      "internalLinkRole": "supports readers arriving with Taobao URLs"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/buy-from-weidian-with-kakobuy",
+      "primaryQuery": "buy from Weidian with Kakobuy",
+      "relatedTerms": [
+        "Kakobuy Weidian agent",
+        "Weidian link Kakobuy",
+        "how to order Weidian Kakobuy"
+      ],
+      "intent": "marketplace-specific buying guidance",
+      "angle": "handles Weidian link stability, compact listings and instruction-heavy variants",
+      "evidence": "Kakobuy public service scope, URL-based purchasing help, inspection/storage and return information",
+      "internalLinkRole": "supports readers arriving with Weidian product links"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-volumetric-weight-parcel-packing",
+      "primaryQuery": "Kakobuy volumetric weight",
+      "relatedTerms": [
+        "Kakobuy rehearsal packing",
+        "Kakobuy parcel estimation",
+        "Kakobuy shipping weight",
+        "Kakobuy package dimensions"
+      ],
+      "intent": "shipping cost education",
+      "angle": "explains dimensional charging without inventing a universal Kakobuy divisor or rate",
+      "evidence": "Kakobuy shipping calculator and public service flow plus standard carrier dimensional-weight principles",
+      "internalLinkRole": "supports shipping-cost guide and category packaging decisions"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-shoes-spreadsheet-qc-guide",
+      "primaryQuery": "Kakobuy shoes spreadsheet",
+      "relatedTerms": [
+        "Kakobuy shoe QC",
+        "Kakobuy sneaker spreadsheet",
+        "Kakobuy shoe size",
+        "Kakobuy footwear finds"
+      ],
+      "intent": "category discovery and visual inspection",
+      "angle": "connects spreadsheet link health with footwear-specific pair comparison and sizing evidence",
+      "evidence": "Kakobuy inspection/storage and return information plus current Kakobuys.shop product records",
+      "internalLinkRole": "supports shoe category and footwear product pages"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-hoodie-streetwear-qc-guide",
+      "primaryQuery": "Kakobuy hoodie QC",
+      "relatedTerms": [
+        "Kakobuy hoodie spreadsheet",
+        "Kakobuy streetwear finds",
+        "Kakobuy clothing measurements",
+        "Kakobuy sweatshirt guide"
+      ],
+      "intent": "apparel discovery and visual inspection",
+      "angle": "prioritises real measurements and garment geometry over size labels and generic stock images",
+      "evidence": "Kakobuy inspection/storage and return information plus current hoodie product records",
+      "internalLinkRole": "supports hoodie, T-shirt and jacket category pages"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-tracking-purchase-order-parcel",
+      "primaryQuery": "Kakobuy tracking",
+      "relatedTerms": [
+        "Kakobuy parcel tracking",
+        "Kakobuy purchase order number",
+        "Kakobuy package status",
+        "Kakobuy tracking not updating"
+      ],
+      "intent": "post-purchase troubleshooting",
+      "angle": "separates domestic purchase-order events from international parcel events and provides escalation records",
+      "evidence": "Kakobuy original-order tracking announcement, tracking restoration notice and receipt guidance",
+      "internalLinkRole": "connects beginner workflow to delivery and after-sales decisions"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-reviews-evidence-checklist",
+      "primaryQuery": "Kakobuy reviews",
+      "relatedTerms": [
+        "is Kakobuy safe",
+        "Kakobuy customer experience",
+        "Kakobuy complaints",
+        "Kakobuy shipping review"
+      ],
+      "intent": "reputation research",
+      "angle": "compares source types, dates and verifiable fields instead of issuing an unsupported safe-or-scam verdict",
+      "evidence": "Kakobuy official service scope, Apple App Store listing, Trustpilot profile and public Reddit reports reviewed as user-generated evidence",
+      "internalLinkRole": "supports trust research while sending operational questions to policy and workflow guides"
     }
   ],
-  "nextPriority": "how to use Kakobuy step by step"
+  "nextPriority": "Kakobuy coupons and shipping discounts: current-term verification"
 }
