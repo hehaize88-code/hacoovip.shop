@@ -1,0 +1,109 @@
+.language-popover {
+  max-width: calc(100vw - 24px);
+}
+
+.kb-product-page .language-menu {
+  position: relative;
+  margin-left: auto;
+}
+
+.kb-product-page .language-menu summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 66px;
+  min-height: 40px;
+  padding: 0 10px;
+  color: #101b1c;
+  font-size: 12px;
+  font-weight: 900;
+  list-style: none;
+  border: 1px solid rgba(16, 27, 28, .18);
+  border-radius: 11px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.kb-product-page .language-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.kb-product-page .language-popover {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 208px;
+  padding: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(16, 27, 28, .14);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(16, 27, 28, .16);
+}
+
+.language-popover a {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 42px;
+  padding: 0 10px;
+  color: var(--ink, #101b1c);
+  text-align: left;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.language-popover a:hover,
+.language-popover a.is-active {
+  background: #edf2e5;
+}
+
+.language-popover a span:nth-child(2) {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.language-popover a small {
+  color: #7c898a;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.desktop-nav a,
+.nav-cta {
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .language-popover {
+    width: 190px;
+  }
+}
+
+.kb-topic-links,
+.kb-related-topics {
+  margin-top: 2rem;
+  padding: 1.4rem;
+  border: 1px solid rgba(26, 34, 29, .14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .72);
+}
+
+.kb-topic-links h2,
+.kb-related-topics h2 {
+  margin-top: 0;
+}
+
+.kb-topic-links p,
+.kb-related-topics p {
+  line-height: 1.75;
+}
