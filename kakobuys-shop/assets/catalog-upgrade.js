@@ -262,26 +262,214 @@ const KB_QC_TITLES = {
 };
 
 const KB_QC_DESCRIPTIONS = {
-  pl: [
-    "Porównaj lewą i prawą stronę w tym samym ułożeniu; sprawdź wysokość, linię, symetrię i widoczne skręcenie.",
-    "Obejrzyj zbliżenia łączeń, krawędzi i ruchomych elementów; szukaj szczelin, nadmiaru kleju, zarysowań lub brakujących części.",
-    "Dopasuj metkę i wybrany wariant, a następnie porównaj rzeczywiste pomiary z tabelą sprzedawcy."
-  ],
-  de: [
-    "Vergleiche links und rechts in derselben Ausrichtung und prüfe Höhe, Linienführung, Symmetrie und sichtbare Verdrehung.",
-    "Prüfe Verbindungen, Kanten und bewegliche Teile in Nahaufnahme auf Lücken, Klebereste, Kratzer oder fehlende Teile.",
-    "Gleiche Etikett und gewählte Variante ab und vergleiche die tatsächlichen Maße mit der Größentabelle des Verkäufers."
-  ],
-  fr: [
-    "Comparez les côtés gauche et droit dans la même position et contrôlez hauteur, ligne, symétrie et torsion visible.",
-    "Examinez les jonctions, bords et pièces mobiles en gros plan pour repérer jeu, colle, rayure ou élément manquant.",
-    "Vérifiez l’étiquette et la variante choisie, puis comparez les mesures réelles au tableau du vendeur."
-  ],
-  it: [
-    "Confronta lato sinistro e destro nella stessa posizione e controlla altezza, linea, simmetria e torsioni visibili.",
-    "Esamina giunzioni, bordi e parti mobili da vicino per trovare spazi, colla, graffi o componenti mancanti.",
-    "Verifica etichetta e variante scelta, poi confronta le misure reali con la tabella del venditore."
-  ]
+  pl: {
+    shoes: [
+      "Ustaw oba buty w tej samej pozycji i porównaj szerokość nosków, profil boczny, wysokość kołnierza oraz tylną linię pięty.",
+      "Prześledź krawędź podeszwy po obu stronach i z tyłu; szukaj przerw, nadmiaru kleju, przechyłu lub różnych krawędzi bieżnika.",
+      "Dopasuj oznaczenie EU, US, UK lub CN do zamówienia; przy niejasnym przeliczniku poproś o pomiar wkładki albo podeszwy."
+    ],
+    hoodies: [
+      "Sprawdź wyśrodkowanie szwu kaptura, linii ramion i wyjść sznurków; skręconych paneli nie da się skorygować regulacją sznurka.",
+      "Porównaj wysokość obu mankietów i ściągacza; po zamknięciu zamka przednie panele oraz kieszenie powinny spotkać się na jednym poziomie.",
+      "Oceń położenie nadruku względem dekoltu, środka i kieszeni, a następnie porównaj szerokość klatki i długość z tabelą."
+    ],
+    "t-shirts": [
+      "Połóż koszulkę płasko i porównaj spadek ramion, otwory rękawów, ściągacz kołnierza oraz skręcenie szwów bocznych.",
+      "Sprawdź wyśrodkowanie grafiki względem kołnierza i boków oraz widoczne pęknięcia, odklejenia, rozlanie farby lub luźne nici haftu.",
+      "Poproś o pomiar od pachy do pachy i długość pleców; rzeczywiste liczby są ważniejsze niż sama wszyta metka."
+    ],
+    jackets: [
+      "Zapnij kurtkę i prześledź linię od kołnierza do dołu; zamek, napy i dziurki nie powinny podciągać jednego panelu.",
+      "Porównaj pikowane lub ocieplane sekcje pod kątem pustych miejsc i zbicia wypełnienia oraz sprawdź, czy podszewka nie wystaje.",
+      "Porównaj wysokość kieszeni, szerokość mankietów i dół po obu stronach; potwierdź klatkę, rękaw i długość pleców."
+    ],
+    bags: [
+      "Obejrzyj torbę z przodu, boku i od spodu; sprawdź kąty paneli, kształt narożników i czy stoi równo.",
+      "Porównaj wysokość i rozstaw mocowań uchwytów; obejrzyj klamry, kółka, łańcuch oraz otwory paska pod kątem braków i rys.",
+      "Poproś o zdjęcie otwartej komory; sprawdź tor zamka, podszewkę, kieszenie wewnętrzne, metkę oraz szerokość, wysokość i głębokość."
+    ],
+    accessories: [
+      "Dopasuj kolor, kształt i liczbę elementów; w biżuterii, okularach i zegarkach porównaj kamienie, szkła, tarczę oraz dekoracje.",
+      "Poproś o zbliżenia zawiasów i zapięć; szukaj wygiętych trzpieni, niedomkniętych klamer, luźnych śrub, nierównych ogniw i nitek.",
+      "Potwierdź rozmiar zdjęciem z linijką i sprawdź położenie graweru; fotografia nie potwierdza próby metalu, dokładności mechanizmu ani ochrony UV."
+    ],
+    "pants-shorts": [
+      "Połóż spodnie płasko i sprawdź poziom pasa, rozmieszczenie szlufek oraz wyśrodkowanie rozporka albo kanału sznurka.",
+      "Wyrównaj nogawki i porównaj szew wewnętrzny, zewnętrzny oraz wysokość dołu; pranie lub nadruk powinny znajdować się na właściwych panelach.",
+      "Poproś o szerokość pasa bez rozciągania, długość całkowitą oraz w razie potrzeby udo i otwór nogawki."
+    ],
+    headwear: [
+      "Obejrzyj czapkę dokładnie z przodu i boku; panele korony powinny łączyć się równo, a daszek nie może być skręcony.",
+      "Użyj środka przodu i łączeń paneli do oceny haftu lub nadruku; sprawdź krawędzie, zerwane nici i ciągłość wzoru.",
+      "Potwierdź metkę i rozmiar; dla czapki dopasowanej poproś o obwód, a przy regulowanej sprawdź klamrę, zatrzask lub rzep."
+    ],
+    jerseys: [
+      "Połóż koszulkę płasko i użyj kołnierza oraz boków jako osi; sprawdź pisownię, odstępy cyfr i poziom nadruku z tyłu.",
+      "Porównaj położenie naszywek na klatce oraz krawędzie herbów, nadruk sponsora i detale rękawów pod kątem odklejenia i krzywizny.",
+      "Dopasuj wersję oraz metkę, potem poproś o szerokość pod pachami i długość; przy wielu wariantach sprawdź dokładny klub i kolor."
+    ],
+    electronics: [
+      "Dopasuj widoczny model, kolor, typ wtyczki lub złącza i liczbę akcesoriów; wszystkie elementy zestawu powinny być na jednym zdjęciu.",
+      "Obejrzyj porty i przyciski; jeżeli usługa na to pozwala, poproś o zdjęcie ekranu lub kontrolki po włączeniu, ale nie traktuj go jako pełnego testu.",
+      "Zapisz widoczne oznaczenia modelu, numer seryjny i etykiety regulacyjne; zdjęcia nie potwierdzą kondycji baterii ani bezpieczeństwa elektrycznego."
+    ]
+  },
+  de: {
+    shoes: [
+      "Richte beide Schuhe gleich aus und vergleiche Zehenbreite, Seitenprofil, Kragenhöhe und hintere Fersenlinie.",
+      "Verfolge die Sohlenkante an beiden Seiten und hinten auf Lücken, Klebereste, Schrägstand oder unterschiedliche Profilkanten.",
+      "Gleiche EU-, US-, UK- oder CN-Angabe mit der Bestellung ab und fordere bei unklarer Umrechnung ein Innen- oder Außensohlenmaß an."
+    ],
+    hoodies: [
+      "Prüfe, ob Kapuzennaht, Schulterlinie und Kordelaustritte mittig sitzen; verdrehte Paneele lassen sich nicht über die Kordel korrigieren.",
+      "Vergleiche beide Bündchen und den Saum; bei geschlossenem Reißverschluss müssen Frontteile und Taschen auf gleicher Höhe liegen.",
+      "Beurteile Druck oder Stickerei relativ zu Ausschnitt, Mitte und Tasche und vergleiche Brustweite sowie Länge mit der Tabelle."
+    ],
+    "t-shirts": [
+      "Lege das Shirt flach und vergleiche Schulterneigung, Ärmelöffnungen, Kragenrippe und eine mögliche Verdrehung der Seitennähte.",
+      "Prüfe die Zentrierung zum Kragen und zu den Seiten sowie sichtbares Ablösen, Reißen, Ausbluten oder lose Stickfäden.",
+      "Fordere Achsel-zu-Achsel- und Rückenlänge an; die realen Maße sind aussagekräftiger als nur das eingenähte Etikett."
+    ],
+    jackets: [
+      "Schließe die Jacke und folge der Öffnung vom Kragen bis zum Saum; Zip, Druckknöpfe und Knopflöcher dürfen kein Frontteil hochziehen.",
+      "Vergleiche Stepp- oder Füllzonen auf leere Stellen und Klumpen und prüfe, ob Futter an Ärmel, Saum oder Zip hervortritt.",
+      "Vergleiche Taschenhöhe, Bündchenweite und Saum beider Seiten und bestätige Brust-, Ärmel- und Rückenlänge."
+    ],
+    bags: [
+      "Betrachte die Tasche von vorn, von der Seite und unten; prüfe Paneelwinkel, Ecken und einen geraden Stand.",
+      "Vergleiche Höhe und Abstand der Griffanker und kontrolliere Schnallen, Ringe, Kettenglieder und Riemenlöcher auf Fehlteile und Kratzer.",
+      "Lass das Hauptfach offen fotografieren und prüfe Zip, Futter, Innentaschen, Etikett sowie Breite, Höhe und Tiefe."
+    ],
+    accessories: [
+      "Gleiche Farbe, Form und Stückzahl ab; bei Schmuck, Brillen und Uhren müssen Stein-, Glas-, Zifferblatt- und Dekorposition zur Variante passen.",
+      "Fordere Nahaufnahmen von Scharnieren und Verschlüssen an und suche nach verbogenen Stiften, lockeren Schrauben, ungleichen Gliedern oder Fäden.",
+      "Bestätige die Größe per Linealfoto und die Gravurposition; Fotos belegen weder Metallgehalt, Ganggenauigkeit noch UV-Schutz."
+    ],
+    "pants-shorts": [
+      "Lege das Kleidungsstück flach und prüfe einen geraden Bund, gleichmäßige Gürtelschlaufen und einen mittigen Zip- oder Kordelkanal.",
+      "Richte beide Beine aus und vergleiche Innennaht, Außennaht und Saumhöhe; Waschung oder Druck müssen auf den bestellten Paneelen liegen.",
+      "Fordere entspannte Bundweite, Gesamtlänge und bei Bedarf Oberschenkel- sowie Beinöffnungsmaß an."
+    ],
+    headwear: [
+      "Betrachte die Mütze frontal und seitlich; Kronenpaneele sollen gleichmäßig zusammentreffen und der Schirm darf nicht verdreht sein.",
+      "Nutze Frontmitte und Paneelnähte zur Beurteilung von Stick oder Druck und prüfe Kanten, Fadenbrüche und Musterübergänge.",
+      "Bestätige Innenetikett und Größe; bei fitted Modellen den Umfang, bei verstellbaren Modellen Schnalle, Snap oder Klett prüfen."
+    ],
+    jerseys: [
+      "Lege das Trikot flach und nutze Kragen und Seitennähte als Achse; prüfe Schreibweise, Ziffernabstand und eine waagerechte Rückengrafik.",
+      "Vergleiche die Abzeichenpositionen und prüfe Patchkanten, Sponsordruck und Ärmeldetails auf Ablösen, Lücken oder Schrägstand.",
+      "Gleiche Version und Größenetikett ab und fordere Brustweite sowie Körperlänge an; bei vielen Varianten Team und Farbe extra prüfen."
+    ],
+    electronics: [
+      "Gleiche sichtbares Modell, Farbe, Stecker- oder Anschlusstyp und Zubehörzahl ab; alle gelieferten Teile sollen gemeinsam fotografiert sein.",
+      "Prüfe Ports und Tasten auf Schäden und fordere, falls erlaubt, ein Einschaltfoto mit Display oder Anzeige an, ohne es als Funktionstest zu werten.",
+      "Erfasse sichtbare Modell-, Serien- und Zulassungslabels; Fotos belegen weder Akkuzustand, Funkleistung noch elektrische Sicherheit."
+    ]
+  },
+  fr: {
+    shoes: [
+      "Placez les deux chaussures dans la même orientation et comparez largeur de l’avant, profil latéral, hauteur du col et ligne arrière du talon.",
+      "Suivez le bord de semelle des deux côtés et à l’arrière pour repérer espace, excès de colle, inclinaison ou bord de crampons différent.",
+      "Faites correspondre la pointure EU, US, UK ou CN à la commande et demandez une mesure intérieure ou extérieure si la conversion est incertaine."
+    ],
+    hoodies: [
+      "Vérifiez le centrage de la couture de capuche, des épaules et des sorties de cordon; un panneau tordu ne se corrige pas avec le cordon.",
+      "Comparez les deux poignets et le bord; zip fermé, les panneaux avant et les poches doivent se rejoindre au même niveau.",
+      "Évaluez le motif par rapport à l’encolure, au centre et à la poche, puis comparez largeur de poitrine et longueur au tableau."
+    ],
+    "t-shirts": [
+      "Posez le t-shirt à plat et comparez pente des épaules, ouvertures des manches, bord-côte du col et torsion des coutures latérales.",
+      "Contrôlez le centrage par rapport au col et aux côtés ainsi que tout décollement, fissure, bavure ou fil de broderie lâche.",
+      "Demandez la largeur aisselle à aisselle et la longueur dos; les mesures réelles comptent plus que la seule étiquette."
+    ],
+    jackets: [
+      "Fermez la veste et suivez l’ouverture du col au bas; zip, pressions et boutonnières ne doivent pas tirer un panneau plus haut.",
+      "Comparez zones matelassées ou rembourrées pour détecter vide et amas, puis vérifiez que la doublure ne dépasse pas.",
+      "Comparez hauteur des poches, largeur des poignets et finition du bas, puis confirmez poitrine, manche et longueur dos."
+    ],
+    bags: [
+      "Observez le sac de face, de côté et dessous; contrôlez angles des panneaux, forme des coins et stabilité de la base.",
+      "Comparez hauteur et espacement des ancrages de poignée et examinez boucles, anneaux, chaîne et trous de sangle.",
+      "Demandez le compartiment principal ouvert et vérifiez zip, doublure, poches, étiquette, largeur, hauteur et profondeur."
+    ],
+    accessories: [
+      "Faites correspondre couleur, forme et nombre de pièces; pour bijoux, lunettes et montres, contrôlez pierres, verres, cadran et décor.",
+      "Demandez des gros plans des charnières et fermoirs et cherchez tige pliée, vis lâche, maillon irrégulier ou fil apparent.",
+      "Confirmez la taille avec une règle et la position de la gravure; une photo ne prouve ni titre du métal, précision du mouvement ou protection UV."
+    ],
+    "pants-shorts": [
+      "Posez le vêtement à plat et contrôlez ceinture droite, passants réguliers et braguette ou canal de cordon bien centré.",
+      "Alignez les jambes et comparez entrejambe, couture extérieure et hauteur des ourlets; lavage ou imprimé doivent être sur les bons panneaux.",
+      "Demandez largeur de taille au repos, longueur totale et, si utile, mesure de cuisse et d’ouverture de jambe."
+    ],
+    headwear: [
+      "Observez le chapeau bien de face et de côté; les panneaux de calotte doivent se rejoindre régulièrement et la visière ne pas se tordre.",
+      "Utilisez le milieu avant et les jonctions pour juger broderie ou imprimé et contrôlez bords, fils cassés et continuité du motif.",
+      "Confirmez étiquette et taille; demandez le tour de tête pour un modèle ajusté et vérifiez boucle, pression ou velcro pour un réglable."
+    ],
+    jerseys: [
+      "Posez le maillot à plat et utilisez col et côtés comme axe; vérifiez orthographe, espacement des chiffres et horizontalité du dos.",
+      "Comparez la position des écussons et inspectez leurs bords, le sponsor et les détails de manche pour décollement ou inclinaison.",
+      "Vérifiez version et taille, puis demandez largeur poitrine et longueur; sur une fiche multistyle, confirmez équipe et couleur exactes."
+    ],
+    electronics: [
+      "Faites correspondre modèle visible, couleur, type de prise ou connecteur et nombre d’accessoires; photographiez toutes les pièces ensemble.",
+      "Inspectez ports et boutons et, si le service l’autorise, demandez une photo allumée de l’écran ou du voyant sans la prendre pour un test complet.",
+      "Relevez modèle, numéro de série et étiquettes réglementaires visibles; les photos ne prouvent ni batterie, radio ou sécurité électrique."
+    ]
+  },
+  it: {
+    shoes: [
+      "Posiziona entrambe le scarpe allo stesso modo e confronta larghezza della punta, profilo laterale, altezza del collarino e linea del tallone.",
+      "Segui il bordo della suola sui due lati e dietro per trovare spazi, colla in eccesso, inclinazione o bordi del battistrada diversi.",
+      "Abbina la taglia EU, US, UK o CN all’ordine e richiedi la misura della soletta o della suola se la conversione è incerta."
+    ],
+    hoodies: [
+      "Controlla che cucitura del cappuccio, linea delle spalle e uscite dei cordini siano centrate; un pannello attorcigliato non si regola.",
+      "Confronta polsini e bordo; con la zip chiusa, pannelli anteriori e tasche devono incontrarsi alla stessa altezza.",
+      "Valuta stampa o ricamo rispetto a scollo, centro e tasca, poi confronta larghezza torace e lunghezza con la tabella."
+    ],
+    "t-shirts": [
+      "Stendi la maglia e confronta pendenza delle spalle, aperture delle maniche, costina del collo e torsione delle cuciture laterali.",
+      "Controlla centratura rispetto a collo e lati e cerca sollevamenti, crepe, sbavature o fili sciolti del ricamo.",
+      "Richiedi misura ascella-ascella e lunghezza posteriore; i numeri reali contano più della sola etichetta cucita."
+    ],
+    jackets: [
+      "Chiudi la giacca e segui l’apertura dal collo al fondo; zip, bottoni e asole non devono tirare un pannello più in alto.",
+      "Confronta zone trapuntate o imbottite per vuoti e accumuli e verifica che la fodera non sporga da polsi, fondo o zip.",
+      "Confronta altezza tasche, larghezza polsini e fondo, poi conferma torace, manica e lunghezza della schiena."
+    ],
+    bags: [
+      "Osserva la borsa davanti, di lato e dal fondo; controlla angoli dei pannelli, forma degli spigoli e stabilità della base.",
+      "Confronta altezza e distanza degli attacchi dei manici ed esamina fibbie, anelli, catena e fori della tracolla.",
+      "Richiedi il vano principale aperto e verifica zip, fodera, tasche interne, etichetta, larghezza, altezza e profondità."
+    ],
+    accessories: [
+      "Abbina colore, forma e numero di pezzi; per gioielli, occhiali e orologi confronta pietre, lenti, quadrante e decorazioni.",
+      "Richiedi primi piani di cerniere e chiusure e cerca perni piegati, viti allentate, maglie irregolari o fili esposti.",
+      "Conferma dimensione con un righello e posizione dell’incisione; una foto non prova titolo del metallo, precisione o protezione UV."
+    ],
+    "pants-shorts": [
+      "Stendi il capo e controlla cintura in piano, passanti regolari e patta o canale del cordino ben centrato.",
+      "Allinea le gambe e confronta cucitura interna, esterna e altezza degli orli; lavaggio o stampa devono essere sui pannelli ordinati.",
+      "Richiedi larghezza vita a riposo, lunghezza totale e, se utile, misura della coscia e apertura della gamba."
+    ],
+    headwear: [
+      "Osserva il cappello esattamente davanti e di lato; i pannelli della corona devono unirsi regolarmente e la visiera non deve torcersi.",
+      "Usa centro frontale e giunzioni per valutare ricamo o stampa e controlla bordi, fili rotti e continuità del motivo.",
+      "Conferma etichetta e taglia; per un fitted chiedi la circonferenza, per un regolabile controlla fibbia, snap o velcro."
+    ],
+    jerseys: [
+      "Stendi la maglia e usa collo e lati come asse; controlla ortografia, distanza tra le cifre e livello della grafica posteriore.",
+      "Confronta la posizione delle patch e ispeziona bordi, sponsor e dettagli delle maniche per sollevamenti, spazi o inclinazioni.",
+      "Abbina versione ed etichetta, poi richiedi larghezza torace e lunghezza; nelle inserzioni multistile conferma squadra e colore."
+    ],
+    electronics: [
+      "Abbina modello visibile, colore, tipo di spina o connettore e quantità di accessori; fotografa insieme tutti i componenti inclusi.",
+      "Ispeziona porte e pulsanti e, se consentito, richiedi una foto di accensione con schermo o indicatore senza considerarla un test completo.",
+      "Registra modello, seriale ed etichette normative visibili; le foto non provano salute batteria, prestazioni radio o sicurezza elettrica."
+    ]
+  }
 };
 
 let kbCatalogPromise;
@@ -353,7 +541,7 @@ function kbQcFor(category, language) {
   const english = KB_QC.en[category] || [];
   if (language === "en") return english;
   const titles = KB_QC_TITLES[language]?.[category] || english.map((item) => item[0]);
-  const descriptions = KB_QC_DESCRIPTIONS[language] || english.map((item) => item[1]);
+  const descriptions = KB_QC_DESCRIPTIONS[language]?.[category] || english.map((item) => item[1]);
   return english.map((item, index) => [titles[index] || item[0], descriptions[index] || item[1]]);
 }
 
