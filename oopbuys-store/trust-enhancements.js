@@ -11,8 +11,8 @@
       by: "Written and fact-checked by",
       method: "Research method",
       badge: "Independent guide · catalog checked daily",
-      identity: "Independent OOPBUY research and product-discovery guide. Not the official OOPBUY website. Product, category and search links open cnfanshp.com in a new tab.",
-      catalogTarget: "Open cnfanshp.com ↗",
+      identity: "Independent OOPBUY research and product-discovery guide. Not the official OOPBUY website. Product, category and search actions open the main catalog in a new tab.",
+      catalogTarget: "Open main catalog ↗",
       categoryLive: "Live catalog · daily check",
       findsEvidence: "Availability and source listing amounts are checked automatically. USD estimates use the ECB reference rate shown below; prices and rates can change.",
       monitor: "CATALOG MONITOR",
@@ -42,8 +42,8 @@
       by: "Verfasst und geprüft von",
       method: "Recherche-Methode",
       badge: "Unabhängiger Ratgeber · tägliche Katalogprüfung",
-      identity: "Unabhängiger OOPBUY-Recherche- und Produktfinder; nicht die offizielle OOPBUY-Website. Produkt-, Kategorie- und Suchlinks öffnen cnfanshp.com in einem neuen Tab.",
-      catalogTarget: "cnfanshp.com öffnen ↗",
+      identity: "Unabhängiger OOPBUY-Recherche- und Produktfinder; nicht die offizielle OOPBUY-Website. Produkt-, Kategorie- und Suchaktionen öffnen den Hauptkatalog in einem neuen Tab.",
+      catalogTarget: "Hauptkatalog öffnen ↗",
       categoryLive: "Live-Katalog · täglich geprüft",
       findsEvidence: "Verfügbarkeit und Quellpreise werden automatisch geprüft. USD-Schätzungen nutzen den unten genannten EZB-Referenzkurs; Preise und Kurse können sich ändern.",
       monitor: "KATALOG-MONITOR",
@@ -73,8 +73,8 @@
       by: "Rédigé et vérifié par",
       method: "Méthode de recherche",
       badge: "Guide indépendant · catalogue vérifié chaque jour",
-      identity: "Guide indépendant de recherche et de découverte OOPBUY, distinct du site officiel OOPBUY. Les liens produit, catégorie et recherche ouvrent cnfanshp.com dans un nouvel onglet.",
-      catalogTarget: "Ouvrir cnfanshp.com ↗",
+      identity: "Guide indépendant de recherche et de découverte OOPBUY, distinct du site officiel OOPBUY. Les actions produit, catégorie et recherche ouvrent le catalogue principal dans un nouvel onglet.",
+      catalogTarget: "Ouvrir le catalogue principal ↗",
       categoryLive: "Catalogue actif · contrôle quotidien",
       findsEvidence: "La disponibilité et les montants source sont contrôlés automatiquement. Les estimations USD utilisent le taux de référence BCE affiché ci-dessous ; prix et taux peuvent changer.",
       monitor: "SUIVI DU CATALOGUE",
@@ -104,8 +104,8 @@
       by: "Redactado y verificado por",
       method: "Método de investigación",
       badge: "Guía independiente · catálogo revisado a diario",
-      identity: "Guía independiente de investigación y descubrimiento sobre OOPBUY; no es el sitio oficial de OOPBUY. Los enlaces de productos, categorías y búsqueda abren cnfanshp.com en una pestaña nueva.",
-      catalogTarget: "Abrir cnfanshp.com ↗",
+      identity: "Guía independiente de investigación y descubrimiento sobre OOPBUY; no es el sitio oficial de OOPBUY. Las acciones de productos, categorías y búsqueda abren el catálogo principal en otra pestaña.",
+      catalogTarget: "Abrir catálogo principal ↗",
       categoryLive: "Catálogo activo · revisión diaria",
       findsEvidence: "La disponibilidad y los importes de origen se revisan automáticamente. Las estimaciones en USD usan el tipo de referencia del BCE mostrado abajo; precios y tipos pueden cambiar.",
       monitor: "MONITOR DEL CATÁLOGO",
@@ -135,8 +135,8 @@
       by: "Scritto e verificato da",
       method: "Metodo di ricerca",
       badge: "Guida indipendente · catalogo controllato ogni giorno",
-      identity: "Guida indipendente di ricerca e scoperta su OOPBUY; non è il sito ufficiale OOPBUY. I link di prodotti, categorie e ricerca aprono cnfanshp.com in una nuova scheda.",
-      catalogTarget: "Apri cnfanshp.com ↗",
+      identity: "Guida indipendente di ricerca e scoperta su OOPBUY; non è il sito ufficiale OOPBUY. Le azioni per prodotti, categorie e ricerca aprono il catalogo principale in una nuova scheda.",
+      catalogTarget: "Apri il catalogo principale ↗",
       categoryLive: "Catalogo attivo · controllo quotidiano",
       findsEvidence: "Disponibilità e importi di origine vengono controllati automaticamente. Le stime USD usano il tasso di riferimento BCE mostrato sotto; prezzi e tassi possono cambiare.",
       monitor: "MONITOR DEL CATALOGO",
@@ -301,7 +301,7 @@
       );
       setText(finds.querySelector(".currency-note"), label.findsEvidence);
     }
-    setText(document.querySelector(".panel-footer strong"), "CNFANSHP.COM");
+    setText(document.querySelector(".panel-footer strong"), "MAIN CATALOG");
   }
 
   function createHealthPanel(label) {
@@ -527,6 +527,33 @@
 
 
   const localizedShippingCards = {"de":{"count":"Vier recherchierte Langartikel zu Spreadsheet-Prüfung, QC-Entscheidungen, Versandkalkulation und gemischten Kundenerfahrungen.","html":"<article data-shipping-calculator-card=\"true\"><span class=\"article-index\">04</span><p>VERSANDKOSTEN-RECHNER · 12 MIN.</p><h3>OOPBUY Versandkosten-Rechner: Paketkosten besser schätzen</h3><span>Realistische Gewichts- und Maßangaben nutzen, abrechenbares Gewicht verstehen und Vorverpacken gezielt einsetzen.</span><a href=\"/de/articles/oopbuy-shipping-calculator-estimate/\">Ratgeber lesen <i>→</i></a></article>","href":"/de/articles/oopbuy-shipping-calculator-estimate/"},"fr":{"count":"Quatre articles approfondis sur les liens, le QC, l’estimation de livraison et les retours clients mixtes.","html":"<article data-shipping-calculator-card=\"true\"><span class=\"article-index\">04</span><p>CALCULATEUR DE LIVRAISON · 12 MIN</p><h3>Calculateur OOPBUY : mieux estimer le coût d’un colis</h3><span>Utiliser des données réalistes, comprendre le poids facturable et choisir le pré-emballage pour une raison précise.</span><a href=\"/fr/articles/oopbuy-shipping-calculator-estimate/\">Lire le guide <i>→</i></a></article>","href":"/fr/articles/oopbuy-shipping-calculator-estimate/"},"es":{"count":"Cuatro artículos extensos sobre enlaces, decisiones QC, cálculo de envío y experiencias mixtas.","html":"<article data-shipping-calculator-card=\"true\"><span class=\"article-index\">04</span><p>CALCULADORA DE ENVÍO · 12 MIN</p><h3>Calculadora OOPBUY: estima mejor el coste del paquete</h3><span>Usa entradas realistas, entiende el peso facturable y decide cuándo el embalaje de prueba mejora la estimación.</span><a href=\"/es/articles/oopbuy-shipping-calculator-estimate/\">Leer guía <i>→</i></a></article>","href":"/es/articles/oopbuy-shipping-calculator-estimate/"},"it":{"count":"Quattro articoli approfonditi su link, decisioni QC, calcolo della spedizione ed esperienze miste.","html":"<article data-shipping-calculator-card=\"true\"><span class=\"article-index\">04</span><p>CALCOLATORE SPEDIZIONE · 12 MIN</p><h3>Calcolatore OOPBUY: stimare meglio i costi del pacco</h3><span>Usa dati realistici, comprendi il peso addebitabile e scegli il pre-imballaggio quando riduce una vera incertezza.</span><a href=\"/it/articles/oopbuy-shipping-calculator-estimate/\">Leggi la guida <i>→</i></a></article>","href":"/it/articles/oopbuy-shipping-calculator-estimate/"}};
+  const localizedWarehouseCards = {
+    en: {
+      count: "Five researched long-form guides covering source links, QC decisions, shipping estimates, customer feedback and warehouse deadlines.",
+      href: "/articles/oopbuy-warehouse-storage-returns/",
+      html: '<article data-warehouse-storage-card="true"><span class="article-index">05</span><p>WAREHOUSE & RETURNS · 13 MIN READ</p><h3>OOPBUY Warehouse Storage and Returns: A Deadline-Safe Guide</h3><span>Separate the 120-hour return window from 90-day storage, then plan refunds, extensions and consolidation.</span><a href="/articles/oopbuy-warehouse-storage-returns/">Read guide <i>→</i></a></article>'
+    },
+    de: {
+      count: "Fünf recherchierte Langartikel zu Links, QC, Versandkalkulation, Kundenerfahrungen und Lagerfristen.",
+      href: "/de/articles/oopbuy-warehouse-storage-returns/",
+      html: '<article data-warehouse-storage-card="true"><span class="article-index">05</span><p>LAGERUNG & RÜCKGABE · 13 MIN.</p><h3>OOPBUY Lagerung und Rückgabe: Fristen sicher planen</h3><span>120 Stunden Rückgabe und 90 Tage Lagerung trennen, dann Erstattung, Verlängerung und Konsolidierung planen.</span><a href="/de/articles/oopbuy-warehouse-storage-returns/">Ratgeber lesen <i>→</i></a></article>'
+    },
+    fr: {
+      count: "Cinq articles approfondis sur les liens, le QC, la livraison, les retours clients et les délais d’entrepôt.",
+      href: "/fr/articles/oopbuy-warehouse-storage-returns/",
+      html: '<article data-warehouse-storage-card="true"><span class="article-index">05</span><p>STOCKAGE ET RETOURS · 13 MIN</p><h3>Stockage et retours OOPBUY : maîtriser chaque délai</h3><span>Distinguer les 120 heures de retour des 90 jours de stockage, puis planifier remboursement et consolidation.</span><a href="/fr/articles/oopbuy-warehouse-storage-returns/">Lire le guide <i>→</i></a></article>'
+    },
+    es: {
+      count: "Cinco artículos extensos sobre enlaces, QC, cálculo de envío, experiencias y plazos de almacén.",
+      href: "/es/articles/oopbuy-warehouse-storage-returns/",
+      html: '<article data-warehouse-storage-card="true"><span class="article-index">05</span><p>ALMACÉN Y DEVOLUCIONES · 13 MIN</p><h3>Almacén y devoluciones OOPBUY: controla cada plazo</h3><span>Separa las 120 horas de devolución de los 90 días de almacén y planifica reembolso y consolidación.</span><a href="/es/articles/oopbuy-warehouse-storage-returns/">Leer guía <i>→</i></a></article>'
+    },
+    it: {
+      count: "Cinque articoli approfonditi su link, QC, spedizione, esperienze e scadenze di magazzino.",
+      href: "/it/articles/oopbuy-warehouse-storage-returns/",
+      html: '<article data-warehouse-storage-card="true"><span class="article-index">05</span><p>MAGAZZINO E RESI · 13 MIN</p><h3>Magazzino e resi OOPBUY: gestire bene ogni scadenza</h3><span>Separa le 120 ore per il reso dai 90 giorni di deposito e pianifica rimborso e consolidamento.</span><a href="/it/articles/oopbuy-warehouse-storage-returns/">Leggi la guida <i>→</i></a></article>'
+    }
+  };
 
   function ensureLocalizedShippingCard(lang) {
     const data = localizedShippingCards[lang];
@@ -538,6 +565,19 @@
     const grid = section.querySelector(".article-grid");
     if (grid && !grid.querySelector('a[href="' + data.href + '"]')) {
       grid.insertAdjacentHTML("beforeend", data.html);
+    }
+  }
+
+  function ensureWarehouseCard(lang) {
+    const data = localizedWarehouseCards[lang];
+    if (!data) return;
+    const journal = document.querySelector(".journal-section");
+    if (journal) {
+      setText(journal.querySelector(".section-heading--split > p"), data.count);
+      const grid = journal.querySelector(".article-grid");
+      if (grid && !grid.querySelector('a[href="' + data.href + '"]')) {
+        grid.insertAdjacentHTML("beforeend", data.html);
+      }
     }
   }
 
@@ -566,6 +606,7 @@
     ensureHomeTrustCopy(label);
     loadCatalogHealth(label, lang);
     ensureLocalizedShippingCard(pageLanguage());
+    ensureWarehouseCard(pageLanguage());
     forceStaticArticleNavigation();
   }
 
