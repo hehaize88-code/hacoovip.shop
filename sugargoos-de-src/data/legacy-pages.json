@@ -1,0 +1,162 @@
+[
+  {
+    "locale": "en",
+    "path": "about",
+    "title": "About Our Product-Link Review Method | Sugargoos.de",
+    "description": "How Sugargoos.de verifies link destinations, records visible listing data and separates evidence from seller claims.",
+    "canonical": "https://sugargoos.de/about/",
+    "h1": "An independent finder with a documented method"
+  },
+  {
+    "locale": "en",
+    "path": "contact",
+    "title": "Contact & Corrections | Sugargoos.de",
+    "description": "Report a broken product destination, factual correction or rights concern.",
+    "canonical": "https://sugargoos.de/contact/",
+    "h1": "Contact"
+  },
+  {
+    "locale": "en",
+    "path": "faq",
+    "title": "Sugargoo FAQ 2026: Spreadsheet, QC Photos & Germany Shipping | Sugargoos.de",
+    "description": "22 fact-checked answers about Sugargoo spreadsheets, five free QC photos, storage, parcel costs and the July 2026 EU import-duty change.",
+    "canonical": "https://sugargoos.de/faq/",
+    "h1": "Sugargoo spreadsheet, QC and Germany shipping FAQ"
+  },
+  {
+    "locale": "en",
+    "path": "privacy",
+    "title": "Privacy Notice | Sugargoos.de",
+    "description": "Privacy scope for the Sugargoos.de independent directory.",
+    "canonical": "https://sugargoos.de/privacy/",
+    "h1": "Privacy"
+  },
+  {
+    "locale": "en",
+    "path": "terms",
+    "title": "Terms of Use | Sugargoos.de",
+    "description": "Scope, verification duties and independent status of Sugargoos.de.",
+    "canonical": "https://sugargoos.de/terms/",
+    "h1": "Terms of use"
+  },
+  {
+    "locale": "en",
+    "path": "guides/how-to-buy-with-sugargoo",
+    "title": "How to Use Sugargoo in 2026: A Verification-First Buying Guide | Sugargoos.de",
+    "description": "A practical, fact-checked walk-through from finding a Chinese marketplace link to reviewing warehouse evidence and submitting a parcel.",
+    "canonical": "https://sugargoos.de/guides/how-to-buy-with-sugargoo/",
+    "h1": "How to Use Sugargoo in 2026: A Verification-First Buying Guide"
+  },
+  {
+    "locale": "en",
+    "path": "guides/shipping-from-china-to-germany",
+    "title": "Sugargoo Shipping to Germany in 2026: Costs, Routes, Customs and Parcel Planning | Sugargoos.de",
+    "description": "A live-data shipping method for Germany, including dimensional weight, consolidation, restricted goods and the EU customs change effective 1 July 2026.",
+    "canonical": "https://sugargoos.de/guides/shipping-from-china-to-germany/",
+    "h1": "Sugargoo Shipping to Germany in 2026: Costs, Routes, Customs and Parcel Planning"
+  },
+  {
+    "locale": "en",
+    "path": "guides/sugargoo-qc-photos-guide",
+    "title": "Sugargoo QC Photos Guide: How to Read the Five Free Warehouse Images | Sugargoos.de",
+    "description": "A category-specific method for checking warehouse photos, requesting useful extra evidence and avoiding claims a photograph cannot prove.",
+    "canonical": "https://sugargoos.de/guides/sugargoo-qc-photos-guide/",
+    "h1": "Sugargoo QC Photos Guide: How to Read the Five Free Warehouse Images"
+  },
+  {
+    "locale": "en",
+    "path": "guides/sugargoo-spreadsheet-safety",
+    "title": "Sugargoo Spreadsheet 2026: How to Find Links Without Buying Blind | Sugargoos.de",
+    "description": "A search-intent guide to spreadsheets, finds and product links, with a repeatable method for checking variants, seller pages, QC and delivered cost.",
+    "canonical": "https://sugargoos.de/guides/sugargoo-spreadsheet-safety/",
+    "h1": "Sugargoo Spreadsheet 2026: How to Find Links Without Buying Blind"
+  },
+  {
+    "locale": "en",
+    "path": "guides/w2c-and-qc-explained",
+    "title": "Sugargoo W2C, Finds and QC Explained: From Product Link to Warehouse Decision | Sugargoos.de",
+    "description": "A plain-English map of W2C links, finds pages, spreadsheets, buying-agent orders, warehouse QC and parcel submission.",
+    "canonical": "https://sugargoos.de/guides/w2c-and-qc-explained/",
+    "h1": "Sugargoo W2C, Finds and QC Explained: From Product Link to Warehouse Decision"
+  },
+  {
+    "locale": "de",
+    "path": "about",
+    "title": "Über unsere Methode zur Produktlink-Prüfung | Sugargoos.de",
+    "description": "Wie Sugargoos.de Linkziele prüft, sichtbare Daten erfasst und Fakten von Verkäuferbehauptungen trennt.",
+    "canonical": "https://sugargoos.de/de/about/",
+    "h1": "Ein unabhängiger Finder mit dokumentierter Methode"
+  },
+  {
+    "locale": "de",
+    "path": "contact",
+    "title": "Kontakt & Korrekturen | Sugargoos.de",
+    "description": "Defekte Produktziele, sachliche Korrekturen oder Rechtehinweise melden.",
+    "canonical": "https://sugargoos.de/de/contact/",
+    "h1": "Kontakt"
+  },
+  {
+    "locale": "de",
+    "path": "faq",
+    "title": "Sugargoo-FAQ 2026: Spreadsheet, QC-Fotos & Deutschland-Versand | Sugargoos.de",
+    "description": "22 faktengeprüfte Antworten zu Sugargoo-Spreadsheets, fünf kostenlosen QC-Fotos, Lagerung, Paketkosten und der EU-Zolländerung vom Juli 2026.",
+    "canonical": "https://sugargoos.de/de/faq/",
+    "h1": "FAQ zu Sugargoo-Spreadsheet, QC und Versand nach Deutschland"
+  },
+  {
+    "locale": "de",
+    "path": "privacy",
+    "title": "Datenschutzhinweis | Sugargoos.de",
+    "description": "Datenschutzumfang des unabhängigen Verzeichnisses Sugargoos.de.",
+    "canonical": "https://sugargoos.de/de/privacy/",
+    "h1": "Datenschutz"
+  },
+  {
+    "locale": "de",
+    "path": "terms",
+    "title": "Nutzungsbedingungen | Sugargoos.de",
+    "description": "Umfang, Prüfpflichten und unabhängiger Status von Sugargoos.de.",
+    "canonical": "https://sugargoos.de/de/terms/",
+    "h1": "Nutzungsbedingungen"
+  },
+  {
+    "locale": "de",
+    "path": "guides/how-to-buy-with-sugargoo",
+    "title": "Sugargoo 2026 nutzen: Ein prüfungsorientierter Bestellguide | Sugargoos.de",
+    "description": "Ein praktischer, faktengeprüfter Ablauf vom chinesischen Marktplatz-Link über Lagerbelege bis zur Paketeinreichung.",
+    "canonical": "https://sugargoos.de/de/guides/how-to-buy-with-sugargoo/",
+    "h1": "Sugargoo 2026 nutzen: Ein prüfungsorientierter Bestellguide"
+  },
+  {
+    "locale": "de",
+    "path": "guides/shipping-from-china-to-germany",
+    "title": "Sugargoo-Versand nach Deutschland 2026: Kosten, Routen, Zoll und Paketplanung | Sugargoos.de",
+    "description": "Eine Versandmethode mit Live-Daten für Deutschland, einschließlich Volumengewicht, Konsolidierung, sensibler Waren und der EU-Zolländerung vom 1. Juli 2026.",
+    "canonical": "https://sugargoos.de/de/guides/shipping-from-china-to-germany/",
+    "h1": "Sugargoo-Versand nach Deutschland 2026: Kosten, Routen, Zoll und Paketplanung"
+  },
+  {
+    "locale": "de",
+    "path": "guides/sugargoo-qc-photos-guide",
+    "title": "Sugargoo-QC-Fotoguide: Die fünf kostenlosen Lagerbilder richtig lesen | Sugargoos.de",
+    "description": "Eine kategoriespezifische Methode für Lagerfotos, sinnvolle Zusatzbelege und die Grenzen fotografischer Aussagen.",
+    "canonical": "https://sugargoos.de/de/guides/sugargoo-qc-photos-guide/",
+    "h1": "Sugargoo-QC-Fotoguide: Die fünf kostenlosen Lagerbilder richtig lesen"
+  },
+  {
+    "locale": "de",
+    "path": "guides/sugargoo-spreadsheet-safety",
+    "title": "Sugargoo Spreadsheet 2026: Produktlinks finden, ohne blind zu kaufen | Sugargoos.de",
+    "description": "Ein Leitfaden zu Spreadsheets, Finds und Produktlinks mit einer wiederholbaren Prüfung von Varianten, Verkäuferseiten, QC und Gesamtkosten.",
+    "canonical": "https://sugargoos.de/de/guides/sugargoo-spreadsheet-safety/",
+    "h1": "Sugargoo Spreadsheet 2026: Produktlinks finden, ohne blind zu kaufen"
+  },
+  {
+    "locale": "de",
+    "path": "guides/w2c-and-qc-explained",
+    "title": "Sugargoo W2C, Finds und QC erklärt: Vom Produktlink zur Lagerentscheidung | Sugargoos.de",
+    "description": "Eine klare Einordnung von W2C-Links, Finds, Spreadsheets, Agent-Bestellungen, Lager-QC und Paketeinreichung.",
+    "canonical": "https://sugargoos.de/de/guides/w2c-and-qc-explained/",
+    "h1": "Sugargoo W2C, Finds und QC erklärt: Vom Produktlink zur Lagerentscheidung"
+  }
+]
