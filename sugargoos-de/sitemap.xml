@@ -1,1319 +1,755 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sugargoos.de/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/shoes/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/shoes/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/shoes/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/shoes/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/sweatshirts/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/sweatshirts/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/sweatshirts/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/sweatshirts/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/t-shirts/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/t-shirts/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/t-shirts/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/t-shirts/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/jackets/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/jackets/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/jackets/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/jackets/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/pants-shorts/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/pants-shorts/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/pants-shorts/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/pants-shorts/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/headwear/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/headwear/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/headwear/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/headwear/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/accessories/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/accessories/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/accessories/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/accessories/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/categories/electronics/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/electronics/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/electronics/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/electronics/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-60-6045/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-60-6045/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-60-6045/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-60-6045/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-59-6044/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-59-6044/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-59-6044/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-59-6044/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-58-6043/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-58-6043/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-58-6043/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-58-6043/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-57-6042/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-57-6042/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-57-6042/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-57-6042/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-56-6041/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-56-6041/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-56-6041/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-56-6041/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-55-6040/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-55-6040/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-55-6040/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-55-6040/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-54-6039/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-54-6039/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-54-6039/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-54-6039/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/shoes-53-6038/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-53-6038/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-53-6038/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-53-6038/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/patagonia-classic-loose-fittin-5974/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/patagonia-classic-loose-fittin-5974/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/patagonia-classic-loose-fittin-5974/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/patagonia-classic-loose-fittin-5974/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/miu-miu-s-new-collared-patchwo-5970/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-s-new-collared-patchwo-5970/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-s-new-collared-patchwo-5970/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-s-new-collared-patchwo-5970/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/balenciaga-new-collection-5968/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-new-collection-5968/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-new-collection-5968/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-new-collection-5968/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/balenciaga-100-cotton-printed-5960/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-100-cotton-printed-5960/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-100-cotton-printed-5960/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-100-cotton-printed-5960/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/burberry-embroidered-knit-casu-5959/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/burberry-embroidered-knit-casu-5959/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/burberry-embroidered-knit-casu-5959/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/burberry-embroidered-knit-casu-5959/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/stone-island-round-print-sweat-5935/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/stone-island-round-print-sweat-5935/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/stone-island-round-print-sweat-5935/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/stone-island-round-print-sweat-5935/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-new-arrival-crew-neck-t-5902/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-new-arrival-crew-neck-t-5902/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-new-arrival-crew-neck-t-5902/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-new-arrival-crew-neck-t-5902/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-new-diamond-5896/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-new-diamond-5896/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-new-diamond-5896/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-new-diamond-5896/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/gucci-pique-cotton-breathable-5976/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/gucci-pique-cotton-breathable-5976/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/gucci-pique-cotton-breathable-5976/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/gucci-pique-cotton-breathable-5976/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/polo-shirt-5-styles-5953/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/polo-shirt-5-styles-5953/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/polo-shirt-5-styles-5953/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/polo-shirt-5-styles-5953/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/off-white-t-shirt-5934/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/off-white-t-shirt-5934/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/off-white-t-shirt-5934/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/off-white-t-shirt-5934/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/broken-planet-tee-5931/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/broken-planet-tee-5931/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/broken-planet-tee-5931/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/broken-planet-tee-5931/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/supreme-t-shirt-31-cp-5927/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/supreme-t-shirt-31-cp-5927/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/supreme-t-shirt-31-cp-5927/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/supreme-t-shirt-31-cp-5927/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/louis-vuitton-t-shirts-2-cp-5926/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-t-shirts-2-cp-5926/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-t-shirts-2-cp-5926/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-t-shirts-2-cp-5926/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/vlone-tee-5920/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/vlone-tee-5920/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/vlone-tee-5920/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/vlone-tee-5920/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/celine-embroidered-chocolate-5981/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/celine-embroidered-chocolate-5981/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/celine-embroidered-chocolate-5981/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/celine-embroidered-chocolate-5981/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/miu-miu-new-arrival-knitted-5969/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-new-arrival-knitted-5969/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-new-arrival-knitted-5969/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-new-arrival-knitted-5969/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/maison-margiela-casual-busines-5958/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/maison-margiela-casual-busines-5958/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/maison-margiela-casual-busines-5958/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/maison-margiela-casual-busines-5958/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/prada-jacket-5933/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/prada-jacket-5933/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/prada-jacket-5933/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/prada-jacket-5933/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/the-north-face-nuptse-jacket-5919/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/the-north-face-nuptse-jacket-5919/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/the-north-face-nuptse-jacket-5919/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/the-north-face-nuptse-jacket-5919/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/louis-vuitton-jacket-5910/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-jacket-5910/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-jacket-5910/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-jacket-5910/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chrome-hearts-ch-new-design-5905/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chrome-hearts-ch-new-design-5905/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chrome-hearts-ch-new-design-5905/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chrome-hearts-ch-new-design-5905/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/miu-miu-new-reversible-zip-up-5904/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-new-reversible-zip-up-5904/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-new-reversible-zip-up-5904/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-new-reversible-zip-up-5904/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/balenciaga-new-drawstring-5983/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-new-drawstring-5983/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-new-drawstring-5983/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-new-drawstring-5983/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/drew-house-distressed-wide-leg-5982/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/drew-house-distressed-wide-leg-5982/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/drew-house-distressed-wide-leg-5982/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/drew-house-distressed-wide-leg-5982/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/acne-studios-1996-butterfly-5980/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/acne-studios-1996-butterfly-5980/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/acne-studios-1996-butterfly-5980/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/acne-studios-1996-butterfly-5980/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/balenciaga-vintage-washed-deni-5979/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-vintage-washed-deni-5979/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-vintage-washed-deni-5979/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-vintage-washed-deni-5979/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/acne-studios-1996-splatter-pai-5978/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/acne-studios-1996-splatter-pai-5978/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/acne-studios-1996-splatter-pai-5978/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/acne-studios-1996-splatter-pai-5978/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/balenciaga-new-collection-lett-5977/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-new-collection-lett-5977/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-new-collection-lett-5977/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-new-collection-lett-5977/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/patagonia-quick-drying-pants-5973/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/patagonia-quick-drying-pants-5973/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/patagonia-quick-drying-pants-5973/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/patagonia-quick-drying-pants-5973/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chrome-hearts-new-lettered-5972/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chrome-hearts-new-lettered-5972/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chrome-hearts-new-lettered-5972/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chrome-hearts-new-lettered-5972/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/miu-miu-letter-embroidered-5971/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-letter-embroidered-5971/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-letter-embroidered-5971/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-letter-embroidered-5971/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/loewe-all-over-print-sun-prote-5889/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/loewe-all-over-print-sun-prote-5889/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/loewe-all-over-print-sun-prote-5889/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/loewe-all-over-print-sun-prote-5889/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-new-printed-sun-protect-5888/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-new-printed-sun-protect-5888/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-new-printed-sun-protect-5888/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-new-printed-sun-protect-5888/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/louis-vuitton-lv-new-stylish-5887/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-lv-new-stylish-5887/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-lv-new-stylish-5887/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-lv-new-stylish-5887/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-logo-print-visor-hat-5886/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-logo-print-visor-hat-5886/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-logo-print-visor-hat-5886/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-logo-print-visor-hat-5886/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/dior-new-denim-wide-brimmed-5885/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/dior-new-denim-wide-brimmed-5885/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/dior-new-denim-wide-brimmed-5885/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/dior-new-denim-wide-brimmed-5885/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/miu-miu-new-embroidered-knitte-5884/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-new-embroidered-knitte-5884/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-new-embroidered-knitte-5884/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-new-embroidered-knitte-5884/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-beaded-straw-visor-hat-5864/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-beaded-straw-visor-hat-5864/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-beaded-straw-visor-hat-5864/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-beaded-straw-visor-hat-5864/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/longinges-watches-39-styles-5952/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/longinges-watches-39-styles-5952/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/longinges-watches-39-styles-5952/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/longinges-watches-39-styles-5952/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/arpels-grey-mothe-5947/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/arpels-grey-mothe-5947/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/arpels-grey-mothe-5947/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/arpels-grey-mothe-5947/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/arpelsvan-cleef-5946/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/arpelsvan-cleef-5946/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/arpelsvan-cleef-5946/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/arpelsvan-cleef-5946/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/vans-velcro-vertical-tri-fold-5945/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/vans-velcro-vertical-tri-fold-5945/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/vans-velcro-vertical-tri-fold-5945/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/vans-velcro-vertical-tri-fold-5945/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/louis-vuitton-lv-diamond-encha-5944/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-lv-diamond-encha-5944/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-lv-diamond-encha-5944/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-lv-diamond-encha-5944/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-blue-heart-silver-full-5943/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-blue-heart-silver-full-5943/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-blue-heart-silver-full-5943/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-blue-heart-silver-full-5943/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/chanel-double-c-hollow-design-5941/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-double-c-hollow-design-5941/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-double-c-hollow-design-5941/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-double-c-hollow-design-5941/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/gucci-fashion-sunglasses-5940/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/gucci-fashion-sunglasses-5940/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/gucci-fashion-sunglasses-5940/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/gucci-fashion-sunglasses-5940/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/air-magssfe-5822/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/air-magssfe-5822/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/air-magssfe-5822/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/air-magssfe-5822/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/apple-watch-s9-5821/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/apple-watch-s9-5821/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/apple-watch-s9-5821/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/apple-watch-s9-5821/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/cartier-mechanical-watches-top-5819/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/cartier-mechanical-watches-top-5819/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/cartier-mechanical-watches-top-5819/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/cartier-mechanical-watches-top-5819/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/cartier-rolex-watch-5753/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/cartier-rolex-watch-5753/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/cartier-rolex-watch-5753/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/cartier-rolex-watch-5753/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/armani-watch-5752/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/armani-watch-5752/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/armani-watch-5752/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/armani-watch-5752/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/horizon-earbuds-5-styles-5732/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/horizon-earbuds-5-styles-5732/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/horizon-earbuds-5-styles-5732/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/horizon-earbuds-5-styles-5732/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/watch-ultra-2-5693/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/watch-ultra-2-5693/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/watch-ultra-2-5693/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/watch-ultra-2-5693/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/finds/server-5691/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/server-5691/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/server-5691/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/server-5691/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/guides/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/sugargoo-spreadsheet-2026-complete-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-spreadsheet-2026-complete-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-spreadsheet-2026-complete-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-spreadsheet-2026-complete-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/sugargoo-warehouse-storage-returns/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-warehouse-storage-returns/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-warehouse-storage-returns/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-warehouse-storage-returns/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/taobao-weidian-links-with-sugargoo/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/taobao-weidian-links-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/taobao-weidian-links-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/taobao-weidian-links-with-sugargoo/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/sugargoo-clothing-finds-measurement-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-clothing-finds-measurement-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-clothing-finds-measurement-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-clothing-finds-measurement-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/sugargoo-shoes-spreadsheet-qc-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-shoes-spreadsheet-qc-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-shoes-spreadsheet-qc-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-shoes-spreadsheet-qc-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/sugargoo-volumetric-weight-explained/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-volumetric-weight-explained/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-volumetric-weight-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-volumetric-weight-explained/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/articles/sugargoo-germany-customs-vat-2026/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-germany-customs-vat-2026/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-germany-customs-vat-2026/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-germany-customs-vat-2026/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/about/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/about/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/about/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/about/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/contact/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/contact/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/contact/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/contact/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/faq/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/faq/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/faq/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/faq/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/privacy/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/privacy/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/privacy/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/privacy/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/terms/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/terms/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/terms/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/terms/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/guides/how-to-buy-with-sugargoo/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/how-to-buy-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/how-to-buy-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/how-to-buy-with-sugargoo/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/guides/sugargoo-qc-photos-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/sugargoo-qc-photos-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/sugargoo-qc-photos-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/sugargoo-qc-photos-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/guides/shipping-from-china-to-germany/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/shipping-from-china-to-germany/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/shipping-from-china-to-germany/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/shipping-from-china-to-germany/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/guides/sugargoo-spreadsheet-safety/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/sugargoo-spreadsheet-safety/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/sugargoo-spreadsheet-safety/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/sugargoo-spreadsheet-safety/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/guides/w2c-and-qc-explained/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/w2c-and-qc-explained/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/w2c-and-qc-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/w2c-and-qc-explained/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/shoes/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/shoes/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/shoes/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/shoes/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/sweatshirts/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/sweatshirts/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/sweatshirts/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/sweatshirts/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/t-shirts/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/t-shirts/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/t-shirts/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/t-shirts/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/jackets/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/jackets/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/jackets/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/jackets/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/pants-shorts/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/pants-shorts/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/pants-shorts/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/pants-shorts/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/headwear/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/headwear/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/headwear/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/headwear/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/accessories/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/accessories/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/accessories/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/accessories/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/categories/electronics/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/categories/electronics/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/categories/electronics/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/categories/electronics/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-60-6045/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-60-6045/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-60-6045/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-60-6045/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-59-6044/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-59-6044/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-59-6044/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-59-6044/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-58-6043/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-58-6043/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-58-6043/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-58-6043/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-57-6042/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-57-6042/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-57-6042/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-57-6042/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-56-6041/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-56-6041/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-56-6041/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-56-6041/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-55-6040/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-55-6040/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-55-6040/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-55-6040/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-54-6039/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-54-6039/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-54-6039/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-54-6039/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/shoes-53-6038/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/shoes-53-6038/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/shoes-53-6038/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/shoes-53-6038/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/patagonia-classic-loose-fittin-5974/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/patagonia-classic-loose-fittin-5974/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/patagonia-classic-loose-fittin-5974/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/patagonia-classic-loose-fittin-5974/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/miu-miu-s-new-collared-patchwo-5970/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-s-new-collared-patchwo-5970/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-s-new-collared-patchwo-5970/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-s-new-collared-patchwo-5970/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/balenciaga-new-collection-5968/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-new-collection-5968/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-new-collection-5968/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-new-collection-5968/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/balenciaga-100-cotton-printed-5960/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-100-cotton-printed-5960/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-100-cotton-printed-5960/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-100-cotton-printed-5960/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/burberry-embroidered-knit-casu-5959/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/burberry-embroidered-knit-casu-5959/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/burberry-embroidered-knit-casu-5959/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/burberry-embroidered-knit-casu-5959/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/stone-island-round-print-sweat-5935/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/stone-island-round-print-sweat-5935/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/stone-island-round-print-sweat-5935/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/stone-island-round-print-sweat-5935/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-new-arrival-crew-neck-t-5902/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-new-arrival-crew-neck-t-5902/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-new-arrival-crew-neck-t-5902/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-new-arrival-crew-neck-t-5902/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-new-diamond-5896/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-new-diamond-5896/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-new-diamond-5896/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-new-diamond-5896/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/gucci-pique-cotton-breathable-5976/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/gucci-pique-cotton-breathable-5976/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/gucci-pique-cotton-breathable-5976/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/gucci-pique-cotton-breathable-5976/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/polo-shirt-5-styles-5953/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/polo-shirt-5-styles-5953/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/polo-shirt-5-styles-5953/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/polo-shirt-5-styles-5953/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/off-white-t-shirt-5934/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/off-white-t-shirt-5934/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/off-white-t-shirt-5934/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/off-white-t-shirt-5934/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/broken-planet-tee-5931/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/broken-planet-tee-5931/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/broken-planet-tee-5931/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/broken-planet-tee-5931/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/supreme-t-shirt-31-cp-5927/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/supreme-t-shirt-31-cp-5927/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/supreme-t-shirt-31-cp-5927/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/supreme-t-shirt-31-cp-5927/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/louis-vuitton-t-shirts-2-cp-5926/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-t-shirts-2-cp-5926/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-t-shirts-2-cp-5926/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-t-shirts-2-cp-5926/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-lv-t-shirts-2-cp-5925/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/vlone-tee-5920/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/vlone-tee-5920/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/vlone-tee-5920/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/vlone-tee-5920/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/celine-embroidered-chocolate-5981/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/celine-embroidered-chocolate-5981/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/celine-embroidered-chocolate-5981/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/celine-embroidered-chocolate-5981/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/miu-miu-new-arrival-knitted-5969/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-new-arrival-knitted-5969/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-new-arrival-knitted-5969/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-new-arrival-knitted-5969/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/maison-margiela-casual-busines-5958/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/maison-margiela-casual-busines-5958/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/maison-margiela-casual-busines-5958/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/maison-margiela-casual-busines-5958/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/prada-jacket-5933/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/prada-jacket-5933/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/prada-jacket-5933/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/prada-jacket-5933/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/the-north-face-nuptse-jacket-5919/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/the-north-face-nuptse-jacket-5919/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/the-north-face-nuptse-jacket-5919/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/the-north-face-nuptse-jacket-5919/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/louis-vuitton-jacket-5910/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-jacket-5910/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-jacket-5910/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-jacket-5910/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chrome-hearts-ch-new-design-5905/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chrome-hearts-ch-new-design-5905/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chrome-hearts-ch-new-design-5905/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chrome-hearts-ch-new-design-5905/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/miu-miu-new-reversible-zip-up-5904/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-new-reversible-zip-up-5904/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-new-reversible-zip-up-5904/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-new-reversible-zip-up-5904/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/balenciaga-new-drawstring-5983/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-new-drawstring-5983/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-new-drawstring-5983/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-new-drawstring-5983/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/drew-house-distressed-wide-leg-5982/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/drew-house-distressed-wide-leg-5982/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/drew-house-distressed-wide-leg-5982/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/drew-house-distressed-wide-leg-5982/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/acne-studios-1996-butterfly-5980/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/acne-studios-1996-butterfly-5980/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/acne-studios-1996-butterfly-5980/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/acne-studios-1996-butterfly-5980/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/balenciaga-vintage-washed-deni-5979/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-vintage-washed-deni-5979/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-vintage-washed-deni-5979/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-vintage-washed-deni-5979/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/acne-studios-1996-splatter-pai-5978/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/acne-studios-1996-splatter-pai-5978/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/acne-studios-1996-splatter-pai-5978/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/acne-studios-1996-splatter-pai-5978/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/balenciaga-new-collection-lett-5977/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/balenciaga-new-collection-lett-5977/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/balenciaga-new-collection-lett-5977/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/balenciaga-new-collection-lett-5977/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/patagonia-quick-drying-pants-5973/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/patagonia-quick-drying-pants-5973/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/patagonia-quick-drying-pants-5973/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/patagonia-quick-drying-pants-5973/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chrome-hearts-new-lettered-5972/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chrome-hearts-new-lettered-5972/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chrome-hearts-new-lettered-5972/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chrome-hearts-new-lettered-5972/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/miu-miu-letter-embroidered-5971/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-letter-embroidered-5971/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-letter-embroidered-5971/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-letter-embroidered-5971/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/loewe-all-over-print-sun-prote-5889/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/loewe-all-over-print-sun-prote-5889/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/loewe-all-over-print-sun-prote-5889/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/loewe-all-over-print-sun-prote-5889/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-new-printed-sun-protect-5888/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-new-printed-sun-protect-5888/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-new-printed-sun-protect-5888/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-new-printed-sun-protect-5888/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/louis-vuitton-lv-new-stylish-5887/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-lv-new-stylish-5887/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-lv-new-stylish-5887/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-lv-new-stylish-5887/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-logo-print-visor-hat-5886/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-logo-print-visor-hat-5886/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-logo-print-visor-hat-5886/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-logo-print-visor-hat-5886/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/dior-new-denim-wide-brimmed-5885/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/dior-new-denim-wide-brimmed-5885/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/dior-new-denim-wide-brimmed-5885/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/dior-new-denim-wide-brimmed-5885/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/miu-miu-new-embroidered-knitte-5884/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/miu-miu-new-embroidered-knitte-5884/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/miu-miu-new-embroidered-knitte-5884/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/miu-miu-new-embroidered-knitte-5884/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-beaded-straw-visor-hat-5864/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-beaded-straw-visor-hat-5864/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-beaded-straw-visor-hat-5864/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-beaded-straw-visor-hat-5864/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/longinges-watches-39-styles-5952/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/longinges-watches-39-styles-5952/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/longinges-watches-39-styles-5952/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/longinges-watches-39-styles-5952/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/arpels-grey-mothe-5947/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/arpels-grey-mothe-5947/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/arpels-grey-mothe-5947/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/arpels-grey-mothe-5947/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/arpelsvan-cleef-5946/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/arpelsvan-cleef-5946/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/arpelsvan-cleef-5946/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/arpelsvan-cleef-5946/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/vans-velcro-vertical-tri-fold-5945/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/vans-velcro-vertical-tri-fold-5945/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/vans-velcro-vertical-tri-fold-5945/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/vans-velcro-vertical-tri-fold-5945/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/louis-vuitton-lv-diamond-encha-5944/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/louis-vuitton-lv-diamond-encha-5944/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/louis-vuitton-lv-diamond-encha-5944/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/louis-vuitton-lv-diamond-encha-5944/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-blue-heart-silver-full-5943/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-blue-heart-silver-full-5943/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-blue-heart-silver-full-5943/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-blue-heart-silver-full-5943/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/chanel-double-c-hollow-design-5941/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/chanel-double-c-hollow-design-5941/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/chanel-double-c-hollow-design-5941/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/chanel-double-c-hollow-design-5941/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/gucci-fashion-sunglasses-5940/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/gucci-fashion-sunglasses-5940/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/gucci-fashion-sunglasses-5940/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/gucci-fashion-sunglasses-5940/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/air-magssfe-5822/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/air-magssfe-5822/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/air-magssfe-5822/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/air-magssfe-5822/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/apple-watch-s9-5821/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/apple-watch-s9-5821/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/apple-watch-s9-5821/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/apple-watch-s9-5821/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/cartier-mechanical-watches-top-5819/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/cartier-mechanical-watches-top-5819/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/cartier-mechanical-watches-top-5819/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/cartier-mechanical-watches-top-5819/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/cartier-rolex-watch-5753/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/cartier-rolex-watch-5753/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/cartier-rolex-watch-5753/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/cartier-rolex-watch-5753/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/armani-watch-5752/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/armani-watch-5752/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/armani-watch-5752/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/armani-watch-5752/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/horizon-earbuds-5-styles-5732/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/horizon-earbuds-5-styles-5732/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/horizon-earbuds-5-styles-5732/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/horizon-earbuds-5-styles-5732/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/watch-ultra-2-5693/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/watch-ultra-2-5693/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/watch-ultra-2-5693/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/watch-ultra-2-5693/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/finds/server-5691/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/finds/server-5691/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/finds/server-5691/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/finds/server-5691/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/guides/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/sugargoo-spreadsheet-2026-complete-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-spreadsheet-2026-complete-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-spreadsheet-2026-complete-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-spreadsheet-2026-complete-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/sugargoo-warehouse-storage-returns/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-warehouse-storage-returns/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-warehouse-storage-returns/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-warehouse-storage-returns/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/taobao-weidian-links-with-sugargoo/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/taobao-weidian-links-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/taobao-weidian-links-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/taobao-weidian-links-with-sugargoo/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/sugargoo-clothing-finds-measurement-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-clothing-finds-measurement-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-clothing-finds-measurement-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-clothing-finds-measurement-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/sugargoo-shoes-spreadsheet-qc-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-shoes-spreadsheet-qc-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-shoes-spreadsheet-qc-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-shoes-spreadsheet-qc-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/sugargoo-volumetric-weight-explained/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-volumetric-weight-explained/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-volumetric-weight-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-volumetric-weight-explained/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/articles/sugargoo-germany-customs-vat-2026/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/articles/sugargoo-germany-customs-vat-2026/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/articles/sugargoo-germany-customs-vat-2026/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/articles/sugargoo-germany-customs-vat-2026/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/about/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/about/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/about/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/about/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/contact/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/contact/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/contact/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/contact/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/faq/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/faq/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/faq/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/faq/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/privacy/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/privacy/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/privacy/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/privacy/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/terms/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/terms/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/terms/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/terms/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/guides/how-to-buy-with-sugargoo/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/how-to-buy-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/how-to-buy-with-sugargoo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/how-to-buy-with-sugargoo/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/guides/sugargoo-qc-photos-guide/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/sugargoo-qc-photos-guide/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/sugargoo-qc-photos-guide/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/sugargoo-qc-photos-guide/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/guides/shipping-from-china-to-germany/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/shipping-from-china-to-germany/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/shipping-from-china-to-germany/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/shipping-from-china-to-germany/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/guides/sugargoo-spreadsheet-safety/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/sugargoo-spreadsheet-safety/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/sugargoo-spreadsheet-safety/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/sugargoo-spreadsheet-safety/" />
     <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sugargoos.de/de/guides/w2c-and-qc-explained/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://sugargoos.de/guides/w2c-and-qc-explained/" />
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://sugargoos.de/de/guides/w2c-and-qc-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sugargoos.de/guides/w2c-and-qc-explained/" />
     <lastmod>2026-07-30</lastmod>
   </url>
 </urlset>

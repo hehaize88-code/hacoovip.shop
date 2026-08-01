@@ -1188,17 +1188,13 @@ class Builder:
     def infrastructure(self) -> None:
         sitemap_lines = [
             '<?xml version="1.0" encoding="UTF-8"?>',
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         ]
         for locale, relative in self.routes:
             sitemap_lines.extend(
                 [
                     "  <url>",
                     f"    <loc>{xml_escape(absolute(locale, relative))}</loc>",
-                    f'    <xhtml:link rel="alternate" hreflang="en" href="{xml_escape(absolute("en", relative))}" />',
-                    f'    <xhtml:link rel="alternate" hreflang="de-DE" href="{xml_escape(absolute("de", relative))}" />',
-                    f'    <xhtml:link rel="alternate" hreflang="x-default" href="{xml_escape(absolute("en", relative))}" />',
                     f"    <lastmod>{BUILD_DATE}</lastmod>",
                     "  </url>",
                 ]
@@ -1326,6 +1322,18 @@ class Builder:
             raise ValueError(
                 "sitemap.xml must contain every canonical route exactly once"
             )
+
+        sitemap_namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+        expected_child_tags = [
+            f"{sitemap_namespace}loc",
+            f"{sitemap_namespace}lastmod",
+        ]
+        for url_node in sitemap_root.findall(f"{sitemap_namespace}url"):
+            child_tags = [child.tag for child in url_node]
+            if child_tags != expected_child_tags:
+                raise ValueError(
+                    "sitemap.xml URL entries must use schema order: loc, lastmod"
+                )
 
         redirect_lines = (
             (self.output / "_redirects").read_text(encoding="utf-8").splitlines()
