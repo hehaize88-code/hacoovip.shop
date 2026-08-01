@@ -32,6 +32,20 @@ PRODUCTS_BY_CATEGORY = {
     slug: [item for item in PRODUCTS if item["category"] == slug]
     for slug in CATEGORIES
 }
+MAIN_CATALOG_URL = "https://www.cnfanshp.com"
+EXPECTED_CATEGORY_PATHS = {
+    "shoes": "/shoes/",
+    "sweatshirts": "/hoodies-sweaters/",
+    "t-shirts": "/t-shirts/",
+    "jackets": "/jackets/",
+    "pants-shorts": "/pants-shorts/",
+    "headwear": "/headwear/",
+    "accessories": "/accessories/",
+    "electronics": "/electronics/",
+}
+MINIMUM_PRODUCTS = 64
+MINIMUM_ARTICLES = 7
+MINIMUM_GUIDES = 5
 
 COPY = {
     "en": {
@@ -483,6 +497,10 @@ def display_title(product: dict) -> str:
     return title or f'Catalog record {product["id"]}'
 
 
+def main_category_url(slug: str) -> str:
+    return f'{MAIN_CATALOG_URL}{CATEGORIES[slug]["catalog_path"]}'
+
+
 def product_card(locale: str, product: dict, *, eager: bool = False) -> str:
     category = CATEGORIES[product["category"]]["label"][locale]
     title = display_title(product)
@@ -515,9 +533,29 @@ def category_card(locale: str, slug: str, index: int) -> str:
         f'{len(PRODUCTS_BY_CATEGORY[slug])} {e(COPY[locale]["records"])}</span>'
         f'<h3>{e(item["label"][locale])}</h3>'
         f'<p>{e(item["intro"][locale])}</p>'
-        f'<a href="{route(locale, f"categories/{slug}")}">'
+        f'<a href="{e(main_category_url(slug))}" '
+        'rel="nofollow sponsored noopener" target="_blank">'
         f'{e(COPY[locale]["view_all"])} →</a></article>'
     )
+
+
+def validate_source_data() -> None:
+    if set(CATEGORIES) != set(EXPECTED_CATEGORY_PATHS):
+        raise ValueError("The eight reviewed category keys must be preserved")
+    for slug, expected_path in EXPECTED_CATEGORY_PATHS.items():
+        actual_path = CATEGORIES[slug]["catalog_path"]
+        if actual_path != expected_path:
+            raise ValueError(
+                f"Category {slug!r} must target {expected_path!r}, got {actual_path!r}"
+            )
+        if not PRODUCTS_BY_CATEGORY[slug]:
+            raise ValueError(f"Category {slug!r} must retain reviewed products")
+    if len(PRODUCTS) < MINIMUM_PRODUCTS:
+        raise ValueError(f"At least {MINIMUM_PRODUCTS} products must be preserved")
+    if len(ARTICLES) < MINIMUM_ARTICLES:
+        raise ValueError(f"At least {MINIMUM_ARTICLES} articles must be preserved")
+    if len(GUIDES) < MINIMUM_GUIDES:
+        raise ValueError(f"At least {MINIMUM_GUIDES} guides must be preserved")
 
 
 def guide_card(locale: str, guide: dict) -> str:
@@ -795,7 +833,7 @@ class Builder:
             f'<h2>{e(c["products_here"])}</h2>'
             f'<p>{len(PRODUCTS_BY_CATEGORY[slug])} {e(c["records"])} · '
             f'{e(c["verified"])}</p></div>'
-            f'<a class="text-link" href="https://www.cnfanshp.com{e(item["catalog_path"])}" '
+            f'<a class="text-link" href="{e(main_category_url(slug))}" '
             'rel="nofollow sponsored noopener" target="_blank">'
             f'{e(SITE[locale]["catalog"])} →</a></div>'
             f'<div class="product-grid">{cards}</div></div></section></main>'
@@ -1228,6 +1266,7 @@ class Builder:
         )
 
     def build(self) -> None:
+        validate_source_data()
         self.prepare()
         for locale in ("en", "de"):
             self.home(locale)
@@ -1247,6 +1286,26 @@ class Builder:
                 self.legacy(locale, f'guides/{guide["slug"]}')
         self.not_found()
         self.infrastructure()
+        self.validate_output()
+
+    def validate_output(self) -> None:
+        for locale in ("en", "de"):
+            for relative in ("", "categories"):
+                page = output_file(self.output, route(locale, relative))
+                document = page.read_text(encoding="utf-8")
+                for slug in EXPECTED_CATEGORY_PATHS:
+                    destination = main_category_url(slug)
+                    if document.count(f'href="{destination}"') != 1:
+                        raise ValueError(
+                            f"{route(locale, relative)} must contain one direct "
+                            f"main-catalog link for {slug!r}"
+                        )
+                    internal_destination = route(locale, f"categories/{slug}")
+                    if f'href="{internal_destination}"' in document:
+                        raise ValueError(
+                            f"{route(locale, relative)} still routes {slug!r} "
+                            "to the local category page"
+                        )
 
 
 def main() -> None:
