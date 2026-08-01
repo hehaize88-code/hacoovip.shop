@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { articles as englishArticles } from "../lib/articles.js";
-import { categories, products } from "../lib/data.js";
+import { MAIN_SITE, categories, products } from "../lib/data.js";
 import { getLocalizedArticles } from "../lib/localizedArticles.js";
 import { imageManifest } from "../lib/imageManifest.js";
 import { getRouteLastModified } from "../lib/contentDates.js";
@@ -17,6 +17,53 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[
 const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g)]
   .map((match) => ({ url: match[1], lastModified: match[2] }));
 const failures = [];
+
+const preservationContract = {
+  categoryProductCounts: {
+    shoes: 12,
+    "hoodies-sweaters": 12,
+    "t-shirts": 12,
+    jackets: 12,
+    "pants-shorts": 12,
+    headwear: 12,
+    accessories: 12,
+    jersey: 12,
+    electronics: 12,
+  },
+  articles: {
+    "before-you-buy-qc-guide": { sections: 7, blocks: 23 },
+    "findqc-search-methods": { sections: 7, blocks: 22 },
+    "findqc-product-signals": { sections: 7, blocks: 23 },
+    "what-qc-photos-can-prove": { sections: 7, blocks: 23 },
+    "findqc-shopping-agent-workflow": { sections: 8, blocks: 24 },
+    "findqc-discord-bot-guide": { sections: 7, blocks: 32 },
+    "findqc-qc-measurements-size-guide": { sections: 7, blocks: 28 },
+  },
+  homeSections: ["home-hero", "category-band", "home-products", "method-section", "editorial-section", "faq-preview"],
+  productSections: ["shortlist-method", "product-category-index", "product-catalog", "product-use-grid", "product-preflight", "product-category-paths", "product-boundary-note"],
+};
+
+if (categories.length < Object.keys(preservationContract.categoryProductCounts).length) {
+  failures.push(`Category count must remain at least ${Object.keys(preservationContract.categoryProductCounts).length}`);
+}
+for (const [slug, minimum] of Object.entries(preservationContract.categoryProductCounts)) {
+  const category = categories.find((candidate) => candidate.slug === slug);
+  if (!category) failures.push(`Protected category was removed: ${slug}`);
+  const itemCount = products.filter((product) => product.category === slug).length;
+  if (itemCount < minimum) failures.push(`Protected category lost products (${itemCount}, minimum ${minimum}): ${slug}`);
+}
+if (products.length < 108) failures.push(`Product catalog must not fall below 108 items (found ${products.length})`);
+for (const [slug, minimum] of Object.entries(preservationContract.articles)) {
+  const article = englishArticles.find((candidate) => candidate.slug === slug);
+  if (!article) {
+    failures.push(`Protected article was removed: ${slug}`);
+    continue;
+  }
+  const sectionCount = article.sections.length;
+  const blockCount = article.sections.reduce((count, section) => count + section.blocks.length, 0);
+  if (sectionCount < minimum.sections) failures.push(`Protected article lost sections (${sectionCount}, minimum ${minimum.sections}): ${slug}`);
+  if (blockCount < minimum.blocks) failures.push(`Protected article lost content blocks (${blockCount}, minimum ${minimum.blocks}): ${slug}`);
+}
 
 const mappedSlugs = topicMap.articles.map((article) => article.slug);
 const mappedQueries = topicMap.articles.map((article) => article.primaryQuery.toLocaleLowerCase());
@@ -252,9 +299,26 @@ for (const language of languages) {
   const homePath = localizedPath(language, "/");
   const homeHtml = readFileSync(htmlPath(homePath), "utf8");
   if (!schemaOfType(structuredData(homeHtml, homePath), "Organization")) failures.push(`Missing Organization schema: ${homePath}`);
+  for (const className of preservationContract.homeSections) {
+    if (!new RegExp(`class=["'][^"']*\\b${className}\\b`).test(homeHtml)) failures.push(`Protected homepage section missing: ${homePath} / ${className}`);
+  }
+  const categoryBand = homeHtml.match(new RegExp(`<section\\b[^>]*class=["\'][^"\']*\\bcategory-band\\b[^"\']*["\'][^>]*>[\\s\\S]*?<\\/section>`, "i"))?.[0] || "";
+  if (!categoryBand.includes(`href="${MAIN_SITE}/AllProducts/"`)) failures.push(`Homepage all-categories link must open the main catalog: ${homePath}`);
+  for (const category of categories.slice(0, 6)) {
+    if (!categoryBand.includes(`href="${category.href}"`)) failures.push(`Homepage category must open its main-site route: ${homePath} / ${category.slug}`);
+  }
+  if (categoryBand.includes('href="/categories/')) failures.push(`Homepage category band still contains a local category route: ${homePath}`);
 
   const productsPath = localizedPath(language, "/products");
   const productsHtml = readFileSync(htmlPath(productsPath), "utf8");
+  for (const className of preservationContract.productSections) {
+    if (!new RegExp(`class=["'][^"']*\\b${className}\\b`).test(productsHtml)) failures.push(`Protected products-page section missing: ${productsPath} / ${className}`);
+  }
+  const productCategoryIndex = productsHtml.match(new RegExp(`<nav\\b[^>]*class=["\'][^"\']*\\bproduct-category-index\\b[^"\']*["\'][^>]*>[\\s\\S]*?<\\/nav>`, "i"))?.[0] || "";
+  for (const category of categories) {
+    if (!productCategoryIndex.includes(`href="${category.href}"`)) failures.push(`Products index must open the main-site category: ${productsPath} / ${category.slug}`);
+  }
+  if (productCategoryIndex.includes('href="#products-')) failures.push(`Products category index still uses local page anchors: ${productsPath}`);
   const productSchemas = structuredData(productsHtml, productsPath);
   const productList = schemaOfType(productSchemas, "ItemList");
   const productBreadcrumbs = schemaOfType(productSchemas, "BreadcrumbList");
