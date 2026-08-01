@@ -13,6 +13,19 @@ const KB_CATEGORY_ORDER = [
   "electronics"
 ];
 
+const KB_CATEGORY_DESTINATIONS = {
+  shoes: "https://www.cnfanshp.com/shoes/",
+  hoodies: "https://www.cnfanshp.com/hoodies-sweaters/",
+  "t-shirts": "https://www.cnfanshp.com/t-shirts/",
+  jackets: "https://www.cnfanshp.com/jackets/",
+  bags: "https://www.cnfanshp.com/other-stuff/",
+  accessories: "https://www.cnfanshp.com/accessories/",
+  "pants-shorts": "https://www.cnfanshp.com/pants-shorts/",
+  headwear: "https://www.cnfanshp.com/headwear/",
+  jerseys: "https://www.cnfanshp.com/jersey/",
+  electronics: "https://www.cnfanshp.com/electronics/"
+};
+
 const KB_COPY = {
   en: {
     categories: {
@@ -614,9 +627,9 @@ function kbUpgradeHome(catalog, language) {
     const category = KB_CATEGORY_ORDER[index];
     if (!category) return;
     const representative = catalog.products.find((product) => product.category === category);
-    card.href = `/catalog/${category}`;
-    card.removeAttribute("target");
-    card.removeAttribute("rel");
+    card.href = KB_CATEGORY_DESTINATIONS[category];
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
     if (representative) {
       const image = card.querySelector("img");
       if (image) {
@@ -703,9 +716,9 @@ function kbUpgradeCatalog(catalog, language) {
     tile.querySelectorAll("a").forEach((link) => {
       if (link.classList.contains("kb-catalog-image-link")) return;
       if (link.textContent?.includes("↗")) {
-        link.href = `/catalog/${category}`;
-        link.removeAttribute("target");
-        link.removeAttribute("rel");
+        link.href = KB_CATEGORY_DESTINATIONS[category];
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
       }
     });
   });
