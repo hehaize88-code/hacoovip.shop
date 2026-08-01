@@ -568,6 +568,208 @@
   .kb-handoff-panel { margin: 16px 0; padding: 16px; }
 }
 
+/* Kakobuys.pro field-journal skin. Keep this deliberately separate from
+   the other published site so the two themes cannot collapse into one. */
+.kb-product-page {
+  --kb-ink: #17140f;
+  --kb-paper: #f1eadc;
+  --kb-red: #d6321e;
+  --kb-olive: #636b35;
+  --kb-line: #17140f;
+  background:
+    linear-gradient(rgba(23, 20, 15, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 20, 15, .035) 1px, transparent 1px),
+    var(--kb-paper);
+  background-size: 42px 42px;
+  color: var(--kb-ink);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.kb-product-header {
+  border-bottom: 1px solid var(--kb-line);
+  background: rgba(241, 234, 220, .94);
+}
+
+.kb-product-header .kb-product-shell {
+  min-height: 72px;
+}
+
+.kb-product-logo img {
+  width: 166px;
+}
+
+.kb-product-main {
+  padding-top: 34px;
+}
+
+.kb-breadcrumbs,
+.kb-detail-copy .kb-kicker,
+.kb-price small,
+.kb-fact,
+.kb-detail-note,
+.kb-product-footer,
+.kb-qc-card p,
+.kb-handoff-panel p,
+.kb-handoff-panel li {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.kb-breadcrumbs a,
+.kb-detail-copy .kb-kicker {
+  color: var(--kb-red);
+}
+
+.kb-detail-grid {
+  border: 1px solid var(--kb-line);
+  background: rgba(248, 243, 232, .72);
+  gap: 0;
+}
+
+.kb-detail-image {
+  height: 100%;
+  min-height: 560px;
+  border-right: 1px solid var(--kb-line);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.kb-detail-image img {
+  height: 100%;
+  min-height: 560px;
+  filter: saturate(.68) sepia(.1) contrast(1.04);
+}
+
+.kb-detail-copy {
+  padding: 34px;
+}
+
+.kb-detail-copy h1,
+.kb-detail-qc h2,
+.kb-qc-card h3,
+.kb-handoff-panel h2 {
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+}
+
+.kb-detail-copy h1 {
+  font-size: clamp(40px, 5vw, 66px);
+  line-height: .94;
+}
+
+.kb-price {
+  color: var(--kb-red);
+}
+
+.kb-facts {
+  border-top-color: var(--kb-line);
+}
+
+.kb-fact {
+  border-bottom-color: var(--kb-line);
+}
+
+.kb-source-button {
+  border: 1px solid var(--kb-line);
+  border-radius: 0;
+  background: var(--kb-red);
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  box-shadow: 5px 5px 0 var(--kb-ink);
+}
+
+.kb-source-button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 7px 7px 0 var(--kb-ink);
+}
+
+.kb-detail-qc {
+  border-top-color: var(--kb-line);
+}
+
+.kb-qc-grid {
+  border-top: 1px solid var(--kb-line);
+  border-left: 1px solid var(--kb-line);
+  gap: 0;
+}
+
+.kb-qc-card {
+  border: 0;
+  border-right: 1px solid var(--kb-line);
+  border-bottom: 1px solid var(--kb-line);
+  border-radius: 0;
+  background: rgba(248, 243, 232, .72);
+}
+
+.kb-qc-card span {
+  border: 1px solid var(--kb-line);
+  border-radius: 0;
+  background: var(--kb-red);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.kb-handoff-panel,
+.kb-category-intent > div {
+  border-color: var(--kb-line);
+  border-radius: 0;
+  background: #ddd2bb;
+  box-shadow: 6px 6px 0 rgba(23, 20, 15, .16);
+}
+
+.kb-product-footer {
+  border-top-color: var(--kb-line);
+  background: var(--kb-ink);
+  color: #bcb3a5;
+}
+
+.kb-product-card,
+.kb-category-featured,
+.kb-topic-links,
+.kb-related-topics {
+  border-color: var(--kb-line);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.kb-product-image span {
+  border-radius: 0;
+  background: var(--kb-red);
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .kb-detail-image,
+  .kb-detail-image img {
+    min-height: 0;
+  }
+
+  .kb-detail-image {
+    border-right: 0;
+    border-bottom: 1px solid var(--kb-line);
+  }
+}
+
+@media (max-width: 600px) {
+  .kb-product-shell {
+    width: min(100% - 18px, 620px);
+  }
+
+  .kb-detail-copy {
+    padding: 20px 14px;
+  }
+
+  .kb-detail-image {
+    border-radius: 0;
+  }
+
+  .kb-detail-copy h1 {
+    font-size: 38px;
+  }
+}
+
 .kb-topic-links,
 .kb-related-topics {
   margin-top: 2rem;

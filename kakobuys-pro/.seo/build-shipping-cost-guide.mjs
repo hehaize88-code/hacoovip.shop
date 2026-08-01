@@ -913,7 +913,7 @@ function renderPage(data) {
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeHtml(pageData.en.title)}">
   <meta name="twitter:description" content="${escapeHtml(pageData.en.description)}">
-  <link rel="stylesheet" href="/assets/index-B3cBPZ7F.css">
+  <link rel="stylesheet" href="/assets/index-DkaQDdsl.css">
   <style>
     .article-checklist{display:grid;gap:9px;padding-left:0!important;list-style:none!important}
     .article-checklist li{position:relative;padding-left:24px}

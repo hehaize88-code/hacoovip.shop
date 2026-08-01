@@ -428,7 +428,7 @@ function normalizePolishDocument(document, route) {
   document.documentElement.lang = "pl-PL";
   for (const stylesheet of document.querySelectorAll('link[rel="stylesheet"]')) {
     if (stylesheet.getAttribute("href") === "/assets/index-DkaQDdsl.css") {
-      stylesheet.setAttribute("href", "/assets/index-B3cBPZ7F.css");
+      stylesheet.setAttribute("href", "/assets/index-DkaQDdsl.css");
     }
   }
   if (!document.querySelector('link[href="/assets/locale-nav.css"]')) {

@@ -124,7 +124,7 @@ function documentHead({ title, description, canonical, type = "website", keyword
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="/favicon.svg">
-  <link rel="stylesheet" href="/assets/index-B3cBPZ7F.css">
+  <link rel="stylesheet" href="/assets/index-DkaQDdsl.css">
   <link rel="stylesheet" href="/assets/content-library.css">`;
 }
 
