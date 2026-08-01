@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent
 BASE_URL = "https://sugargoos.de"
 BUILD_DATE = "2026-07-30"
 SITEMAP_INDEX_PATH = "sitemap-index.xml"
+SITEMAP_MAIN_PATH = "sitemap-main.xml"
 SITEMAP_PAGES_PATH = "sitemap-pages.xml"
 PRODUCT_DATA = json.loads((ROOT / "data" / "products.json").read_text(encoding="utf-8"))
 PRODUCTS = PRODUCT_DATA["products"]
@@ -1203,12 +1204,14 @@ class Builder:
             )
         sitemap_lines.append("</urlset>")
         sitemap_document = "\n".join(sitemap_lines) + "\n"
-        (self.output / "sitemap.xml").write_text(
-            sitemap_document, encoding="utf-8"
-        )
-        (self.output / SITEMAP_PAGES_PATH).write_text(
-            sitemap_document, encoding="utf-8"
-        )
+        for sitemap_path in (
+            "sitemap.xml",
+            SITEMAP_MAIN_PATH,
+            SITEMAP_PAGES_PATH,
+        ):
+            (self.output / sitemap_path).write_text(
+                sitemap_document, encoding="utf-8"
+            )
         sitemap_index_lines = [
             '<?xml version="1.0" encoding="UTF-8"?>',
             '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -1230,7 +1233,7 @@ class Builder:
         )
         (self.output / "robots.txt").write_text(
             "User-agent: *\nAllow: /\n\n"
-            f"Sitemap: {BASE_URL}/{SITEMAP_INDEX_PATH}\n",
+            f"Sitemap: {BASE_URL}/{SITEMAP_MAIN_PATH}\n",
             encoding="utf-8",
         )
         old_product_ids = {
@@ -1243,7 +1246,6 @@ class Builder:
             "multi-style-watch-record": "5952",
         }
         redirects = [
-            "/sitemap-main.xml /sitemap.xml 301",
             "/finds/low-top-everyday-shoes/ /categories/shoes/ 301",
             "/de/finds/low-top-everyday-shoes/ /de/categories/shoes/ 301",
         ]
@@ -1276,6 +1278,10 @@ class Builder:
             "  Cache-Control: public, max-age=86400\n"
             "\n"
             "/sitemap.xml\n"
+            "  Content-Type: application/xml; charset=utf-8\n"
+            "  Cache-Control: public, max-age=300\n"
+            "\n"
+            f"/{SITEMAP_MAIN_PATH}\n"
             "  Content-Type: application/xml; charset=utf-8\n"
             "  Cache-Control: public, max-age=300\n"
             "\n"
@@ -1339,7 +1345,11 @@ class Builder:
             f"{sitemap_namespace}loc",
             f"{sitemap_namespace}lastmod",
         ]
-        for sitemap_name in ("sitemap.xml", SITEMAP_PAGES_PATH):
+        for sitemap_name in (
+            "sitemap.xml",
+            SITEMAP_MAIN_PATH,
+            SITEMAP_PAGES_PATH,
+        ):
             sitemap_root = ET.fromstring(
                 (self.output / sitemap_name).read_text(encoding="utf-8")
             )
@@ -1381,6 +1391,7 @@ class Builder:
             (self.output / "_redirects").read_text(encoding="utf-8").splitlines()
         )
         direct_sitemap_paths = {
+            f"/{SITEMAP_MAIN_PATH}",
             "/sitemap.txt",
             f"/{SITEMAP_INDEX_PATH}",
             f"/{SITEMAP_PAGES_PATH}",
@@ -1394,9 +1405,9 @@ class Builder:
 
         robots_text = (self.output / "robots.txt").read_text(encoding="utf-8")
         if robots_text.count("Sitemap:") != 1 or (
-            f"Sitemap: {BASE_URL}/{SITEMAP_INDEX_PATH}" not in robots_text
+            f"Sitemap: {BASE_URL}/{SITEMAP_MAIN_PATH}" not in robots_text
         ):
-            raise ValueError("robots.txt must declare only the fresh sitemap index")
+            raise ValueError("robots.txt must declare only the direct main sitemap")
 
         for locale in ("en", "de"):
             for relative in ("", "categories"):
