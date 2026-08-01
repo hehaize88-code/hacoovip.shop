@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard";
 import ResponsiveImage from "../components/ResponsiveImage";
 import { ArrowIcon, CheckIcon } from "../components/Icons";
 import { useLanguage } from "../components/LanguageProvider";
-import { categories, products } from "../lib/data";
+import { MAIN_SITE, categories, products } from "../lib/data";
 import { preload } from "react-dom";
 
 function StackedText({ value }) {
@@ -94,15 +94,15 @@ export default function HomePage() {
               <span className="eyebrow">{t("home.browseType")}</span>
               <h2>{t("home.startCategory")}</h2>
             </div>
-            <Link href="/categories" className="text-link">{t("home.allCategories")} <ArrowIcon /></Link>
+            <a href={`${MAIN_SITE}/AllProducts/`} className="text-link" target="_blank" rel="noopener noreferrer">{t("home.allCategories")} <ArrowIcon /></a>
           </div>
           <div className="category-strip">
             {categories.slice(0, 6).map((category) => (
-              <Link className="category-chip" href={`/categories/${category.slug}`} key={category.slug}>
+              <a className="category-chip" href={category.href} target="_blank" rel="noopener noreferrer" key={category.slug}>
                 <span>{category.code}</span>
                 <div><strong>{t(`category.${category.slug}.name`)}</strong><small>{t(`category.${category.slug}.short`)}</small></div>
                 <ArrowIcon size={16} />
-              </Link>
+              </a>
             ))}
           </div>
         </div>
