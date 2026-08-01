@@ -72,7 +72,7 @@ export default function ProductsPage() {
 
       <nav className="product-category-index" aria-label="Jump to a product category">
         {productGroups.map(({ category, items }) => (
-          <a href={`#products-${category.slug}`} key={category.slug}>
+          <a href={category.href} target="_blank" rel="noopener noreferrer" key={category.slug}>
             <span>{category.code}</span>
             <strong>{category.name}</strong>
             <small>{items.length} products</small>

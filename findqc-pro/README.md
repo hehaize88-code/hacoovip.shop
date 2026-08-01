@@ -16,6 +16,10 @@ Editorial trust status: localized author responsibility, source hierarchy, verif
 
 Article localization status: evidence-led articles may remain English-only until a reviewed human translation exists; the build limits hreflang and sitemap entries to genuinely available languages.
 
+Category route status: the homepage category band and the nine-item Products index open the matching `cnfanshp.com` categories directly; category-specific QC guide links remain internal where they are explicitly labelled as guides.
+
+Content preservation status: production validation protects the existing 108-product catalog, nine category groups, seven published articles, article section/block baselines and the established Home and Products page sections. Future article additions must be additive.
+
 ## Local development
 
 ```bash
