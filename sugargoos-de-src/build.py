@@ -20,6 +20,8 @@ from content import CATEGORIES, GUIDES, SITE
 ROOT = Path(__file__).resolve().parent
 BASE_URL = "https://sugargoos.de"
 BUILD_DATE = "2026-07-30"
+SITEMAP_INDEX_PATH = "sitemap-index.xml"
+SITEMAP_PAGES_PATH = "sitemap-pages.xml"
 PRODUCT_DATA = json.loads((ROOT / "data" / "products.json").read_text(encoding="utf-8"))
 PRODUCTS = PRODUCT_DATA["products"]
 LEGACY_META = {
@@ -1200,8 +1202,24 @@ class Builder:
                 ]
             )
         sitemap_lines.append("</urlset>")
+        sitemap_document = "\n".join(sitemap_lines) + "\n"
         (self.output / "sitemap.xml").write_text(
-            "\n".join(sitemap_lines) + "\n", encoding="utf-8"
+            sitemap_document, encoding="utf-8"
+        )
+        (self.output / SITEMAP_PAGES_PATH).write_text(
+            sitemap_document, encoding="utf-8"
+        )
+        sitemap_index_lines = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            "  <sitemap>",
+            f"    <loc>{BASE_URL}/{SITEMAP_PAGES_PATH}</loc>",
+            f"    <lastmod>{BUILD_DATE}</lastmod>",
+            "  </sitemap>",
+            "</sitemapindex>",
+        ]
+        (self.output / SITEMAP_INDEX_PATH).write_text(
+            "\n".join(sitemap_index_lines) + "\n", encoding="utf-8"
         )
         (self.output / "sitemap.txt").write_text(
             "\n".join(
@@ -1212,7 +1230,7 @@ class Builder:
         )
         (self.output / "robots.txt").write_text(
             "User-agent: *\nAllow: /\n\n"
-            f"Sitemap: {BASE_URL}/sitemap.xml\n",
+            f"Sitemap: {BASE_URL}/{SITEMAP_INDEX_PATH}\n",
             encoding="utf-8",
         )
         old_product_ids = {
@@ -1258,6 +1276,14 @@ class Builder:
             "  Cache-Control: public, max-age=86400\n"
             "\n"
             "/sitemap.xml\n"
+            "  Content-Type: application/xml; charset=utf-8\n"
+            "  Cache-Control: public, max-age=300\n"
+            "\n"
+            f"/{SITEMAP_INDEX_PATH}\n"
+            "  Content-Type: application/xml; charset=utf-8\n"
+            "  Cache-Control: public, max-age=300\n"
+            "\n"
+            f"/{SITEMAP_PAGES_PATH}\n"
             "  Content-Type: application/xml; charset=utf-8\n"
             "  Cache-Control: public, max-age=300\n"
             "\n"
@@ -1308,38 +1334,69 @@ class Builder:
                 "sitemap.txt must contain every canonical route exactly once"
             )
 
-        sitemap_root = ET.fromstring(
-            (self.output / "sitemap.xml").read_text(encoding="utf-8")
-        )
-        xml_sitemap_urls = [
-            node.text or ""
-            for node in sitemap_root.findall(
-                "{http://www.sitemaps.org/schemas/sitemap/0.9}url/"
-                "{http://www.sitemaps.org/schemas/sitemap/0.9}loc"
-            )
-        ]
-        if xml_sitemap_urls != expected_sitemap_urls:
-            raise ValueError(
-                "sitemap.xml must contain every canonical route exactly once"
-            )
-
         sitemap_namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
         expected_child_tags = [
             f"{sitemap_namespace}loc",
             f"{sitemap_namespace}lastmod",
         ]
-        for url_node in sitemap_root.findall(f"{sitemap_namespace}url"):
-            child_tags = [child.tag for child in url_node]
-            if child_tags != expected_child_tags:
-                raise ValueError(
-                    "sitemap.xml URL entries must use schema order: loc, lastmod"
+        for sitemap_name in ("sitemap.xml", SITEMAP_PAGES_PATH):
+            sitemap_root = ET.fromstring(
+                (self.output / sitemap_name).read_text(encoding="utf-8")
+            )
+            xml_sitemap_urls = [
+                node.text or ""
+                for node in sitemap_root.findall(
+                    f"{sitemap_namespace}url/{sitemap_namespace}loc"
                 )
+            ]
+            if xml_sitemap_urls != expected_sitemap_urls:
+                raise ValueError(
+                    f"{sitemap_name} must contain every canonical route exactly once"
+                )
+            for url_node in sitemap_root.findall(f"{sitemap_namespace}url"):
+                child_tags = [child.tag for child in url_node]
+                if child_tags != expected_child_tags:
+                    raise ValueError(
+                        f"{sitemap_name} URL entries must use schema order: "
+                        "loc, lastmod"
+                    )
+
+        sitemap_index_root = ET.fromstring(
+            (self.output / SITEMAP_INDEX_PATH).read_text(encoding="utf-8")
+        )
+        sitemap_index_nodes = sitemap_index_root.findall(
+            f"{sitemap_namespace}sitemap"
+        )
+        if len(sitemap_index_nodes) != 1:
+            raise ValueError("sitemap index must contain exactly one child sitemap")
+        index_node = sitemap_index_nodes[0]
+        if [child.tag for child in index_node] != expected_child_tags:
+            raise ValueError("sitemap index entries must use schema order: loc, lastmod")
+        if index_node.findtext(f"{sitemap_namespace}loc") != (
+            f"{BASE_URL}/{SITEMAP_PAGES_PATH}"
+        ):
+            raise ValueError("sitemap index must reference the direct pages sitemap")
 
         redirect_lines = (
             (self.output / "_redirects").read_text(encoding="utf-8").splitlines()
         )
-        if any(line.startswith("/sitemap.txt ") for line in redirect_lines):
-            raise ValueError("sitemap.txt must return directly without a redirect")
+        direct_sitemap_paths = {
+            "/sitemap.txt",
+            f"/{SITEMAP_INDEX_PATH}",
+            f"/{SITEMAP_PAGES_PATH}",
+        }
+        if any(
+            line.split(maxsplit=1)[0] in direct_sitemap_paths
+            for line in redirect_lines
+            if line.strip()
+        ):
+            raise ValueError("submitted sitemap endpoints must not redirect")
+
+        robots_text = (self.output / "robots.txt").read_text(encoding="utf-8")
+        if robots_text.count("Sitemap:") != 1 or (
+            f"Sitemap: {BASE_URL}/{SITEMAP_INDEX_PATH}" not in robots_text
+        ):
+            raise ValueError("robots.txt must declare only the fresh sitemap index")
 
         for locale in ("en", "de"):
             for relative in ("", "categories"):
