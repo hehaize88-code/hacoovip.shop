@@ -8,6 +8,7 @@ import html
 import json
 import re
 import shutil
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import urlsplit
 from xml.sax.saxutils import escape as xml_escape
@@ -1206,6 +1207,13 @@ class Builder:
         (self.output / "sitemap.xml").write_text(
             "\n".join(sitemap_lines) + "\n", encoding="utf-8"
         )
+        (self.output / "sitemap.txt").write_text(
+            "\n".join(
+                absolute(locale, relative) for locale, relative in self.routes
+            )
+            + "\n",
+            encoding="utf-8",
+        )
         (self.output / "robots.txt").write_text(
             "User-agent: *\nAllow: /\n\n"
             f"Sitemap: {BASE_URL}/sitemap.xml\n",
@@ -1222,7 +1230,6 @@ class Builder:
         }
         redirects = [
             "/sitemap-main.xml /sitemap.xml 301",
-            "/sitemap.txt /sitemap.xml 301",
             "/finds/low-top-everyday-shoes/ /categories/shoes/ 301",
             "/de/finds/low-top-everyday-shoes/ /de/categories/shoes/ 301",
         ]
@@ -1241,7 +1248,6 @@ class Builder:
             "  Referrer-Policy: strict-origin-when-cross-origin\n"
             "  Permissions-Policy: camera=(), microphone=(), geolocation=()\n"
             "  X-Frame-Options: SAMEORIGIN\n"
-            "  Cache-Control: public, max-age=600\n"
             "\n"
             "/images/products/*\n"
             "  Cache-Control: public, max-age=31536000, immutable\n"
@@ -1257,11 +1263,15 @@ class Builder:
             "\n"
             "/sitemap.xml\n"
             "  Content-Type: application/xml; charset=utf-8\n"
-            "  Cache-Control: public, max-age=3600\n"
+            "  Cache-Control: public, max-age=300\n"
+            "\n"
+            "/sitemap.txt\n"
+            "  Content-Type: text/plain; charset=utf-8\n"
+            "  Cache-Control: public, max-age=300\n"
             "\n"
             "/robots.txt\n"
             "  Content-Type: text/plain; charset=utf-8\n"
-            "  Cache-Control: public, max-age=3600\n",
+            "  Cache-Control: public, max-age=300\n",
             encoding="utf-8",
         )
 
@@ -1289,6 +1299,40 @@ class Builder:
         self.validate_output()
 
     def validate_output(self) -> None:
+        expected_sitemap_urls = [
+            absolute(locale, relative) for locale, relative in self.routes
+        ]
+        text_sitemap_urls = (
+            (self.output / "sitemap.txt")
+            .read_text(encoding="utf-8")
+            .splitlines()
+        )
+        if text_sitemap_urls != expected_sitemap_urls:
+            raise ValueError(
+                "sitemap.txt must contain every canonical route exactly once"
+            )
+
+        sitemap_root = ET.fromstring(
+            (self.output / "sitemap.xml").read_text(encoding="utf-8")
+        )
+        xml_sitemap_urls = [
+            node.text or ""
+            for node in sitemap_root.findall(
+                "{http://www.sitemaps.org/schemas/sitemap/0.9}url/"
+                "{http://www.sitemaps.org/schemas/sitemap/0.9}loc"
+            )
+        ]
+        if xml_sitemap_urls != expected_sitemap_urls:
+            raise ValueError(
+                "sitemap.xml must contain every canonical route exactly once"
+            )
+
+        redirect_lines = (
+            (self.output / "_redirects").read_text(encoding="utf-8").splitlines()
+        )
+        if any(line.startswith("/sitemap.txt ") for line in redirect_lines):
+            raise ValueError("sitemap.txt must return directly without a redirect")
+
         for locale in ("en", "de"):
             for relative in ("", "categories"):
                 page = output_file(self.output, route(locale, relative))
