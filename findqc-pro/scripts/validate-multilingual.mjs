@@ -38,6 +38,7 @@ const preservationContract = {
     "findqc-shopping-agent-workflow": { sections: 8, blocks: 24 },
     "findqc-discord-bot-guide": { sections: 7, blocks: 32 },
     "findqc-qc-measurements-size-guide": { sections: 7, blocks: 28 },
+    "findqc-product-safety-check": { sections: 7, blocks: 25 },
   },
   homeSections: ["home-hero", "category-band", "home-products", "method-section", "editorial-section", "faq-preview"],
   productSections: ["shortlist-method", "product-category-index", "product-catalog", "product-use-grid", "product-preflight", "product-category-paths", "product-boundary-note"],

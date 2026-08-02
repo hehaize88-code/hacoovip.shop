@@ -81,6 +81,21 @@ export const articleSources = {
     href: "https://ec.europa.eu/safety-gate-alerts/",
     note: "European Commission alert system for dangerous non-food products and an independent reference beyond seller or warehouse imagery.",
   },
+  safetyGateReport: {
+    label: "European Commission: Safety Gate 2025 overview",
+    href: "https://commission.europa.eu/news-and-media/news/increased-action-against-dangerous-products-eu-2025-2026-03-09_en",
+    note: "Official explanation of Safety Gate as the EU rapid-alert system for dangerous non-food products and the actions authorities may record.",
+  },
+  faaLithium: {
+    label: "FAA PackSafe: Lithium Batteries",
+    href: "https://www.faa.gov/hazmat/packsafe/lithium-batteries",
+    note: "U.S. aviation-safety guidance on lithium-battery hazards, physical damage, recalls, terminal protection and carrier-specific limits.",
+  },
+  iataBatteries: {
+    label: "IATA battery transport guidance",
+    href: "https://www.iata.org/en/programs/cargo/dgr/lithium-batteries/",
+    note: "Current air-cargo overview explaining that battery configuration, rating, identification, packing, marking and documentation affect transport requirements.",
+  },
 };
 
 export const articles = [
@@ -862,6 +877,119 @@ export const articles = [
     sources: [articleSources.terms, articleSources.isoSizing, articleSources.nistConversion, articleSources.leeSizing, articleSources.carharttSizing],
     related: ["before-you-buy-qc-guide", "what-qc-photos-can-prove", "findqc-shopping-agent-workflow"],
     cta: { eyebrow: "Check the rest of the item", title: "Continue with the warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
+  },
+  {
+    slug: "findqc-product-safety-check",
+    title: "FindQC Product Safety Check: Recalls, Batteries and Shipping Risk Before You Buy",
+    shortTitle: "Product Safety and Shipping Risk",
+    description: "Use FindQC evidence to identify a product, screen recalls and battery risks, and ask the right shipping questions before placing an agent order.",
+    excerpt: "A practical safety screen for checking product identity, official recall records, lithium-battery details and route restrictions before committing to an agent order.",
+    category: "Risk Control",
+    readTime: "11 min read",
+    date: "2 August 2026",
+    dateISO: "2026-08-02",
+    updatedISO: "2026-08-02",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-product-safety-check"],
+    heroImage: "/products/electronics.webp",
+    heroAlt: "Electronic accessories arranged as an editorial example for a product safety and shipping review",
+    keywords: ["FindQC product safety check", "FindQC recalls", "shopping agent battery shipping", "QC electronics checklist", "product safety database"],
+    sourceIntro: "This independent guide's sources were checked on 2 August 2026. Recall entries, transport rules and agent routes can change, so repeat the checks for the exact product and destination before paying or submitting a parcel.",
+    intro: [
+      "A clean QC gallery is not a product-safety certificate. It may help you confirm that the casing is intact, the plug type looks right or a label is present, yet it cannot show whether a model is recalled, whether a battery passed required testing or whether a particular shipping line accepts it. Those are separate questions, answered by separate evidence.",
+      "This FindQC product safety check is designed for the point before an agent order or parcel submission. It starts with FindQC as a discovery tool, then moves to public recall databases and the current rules of the agent, carrier and destination. The goal is not to turn a shopper into a dangerous-goods specialist. It is to notice the facts that require a stop, a documented answer or a safer alternative.",
+    ],
+    sections: [
+      {
+        id: "identity",
+        title: "1. Build an identity record before searching for risk",
+        blocks: [
+          { type: "p", text: "FindQC describes itself as a QC discovery and aggregation platform. Its Terms of Service say that QC photos, weights, dimensions and defect records generally come from third-party agents, and that payments, shipping and returns are handled by third parties. That boundary is useful: FindQC may help locate a candidate and earlier evidence, but it does not approve the product or the transport route." },
+          { type: "p", text: "A safety search is only as good as the identity entered. Save the original marketplace URL, seller name, product title, claimed brand or manufacturer, model number, variant, plug type and any battery rating shown. For electronics, photograph or screenshot the label panel if it is visible. A generic phrase such as “wireless charger” is too broad to clear a specific device; a model code and manufacturer name are much stronger." },
+          { type: "list", title: "Minimum identity record", items: [
+            "Exact source URL and the date it was checked.",
+            "Seller, manufacturer or responsible brand as displayed—not inferred from appearance.",
+            "Model, item or batch identifier from the listing, label or packaging.",
+            "Ordered variant, including voltage, plug, battery configuration and capacity where relevant.",
+            "Destination country and the proposed shipping line, if already known.",
+          ] },
+          { type: "source", href: "https://findqc.com/terms-of-service", label: "FindQC Terms of Service", text: "Official platform, third-party QC-data and purchase-role statements checked 2 August 2026." },
+        ],
+      },
+      {
+        id: "recalls",
+        title: "2. Search the safety database that matches the destination",
+        blocks: [
+          { type: "p", text: "For a U.S.-bound product, search the Consumer Product Safety Commission's Recalls & Product Safety Warnings database. It can be filtered by words, dates, hazard and category, and its downloadable data reaches farther back than the default recent view. For an EU or EEA destination, search Safety Gate, the European rapid-alert system for dangerous non-food products. Other countries have their own regulators, so these two databases are examples, not a global clearance service." },
+          { type: "p", text: "Run several searches: manufacturer plus model, brand plus product type, and a distinctive identifier from the label. Then compare the recalled product's photographs, date range, model list, importer and remedy with the candidate. A similar colour or shell does not establish a match. Equally, no search result is not proof of safety; a new, obscure or incorrectly labelled item may simply be absent." },
+          { type: "table", headers: ["Result", "Meaning", "Next action"], rows: [
+            ["Exact model or identifier match", "The candidate may fall within a published safety action", "Stop and follow the regulator or manufacturer notice; do not rely on a warehouse photo to override it"],
+            ["Similar product, identity unclear", "The hazard is relevant but the match is unresolved", "Request label evidence and ask the responsible seller or agent for documented clarification"],
+            ["No matching alert found", "No match appeared in the databases searched on that date", "Continue the review; record the search terms and jurisdiction instead of calling the item certified safe"],
+          ] },
+          { type: "source", href: "https://www.cpsc.gov/Recalls", label: "CPSC Recalls & Product Safety Warnings", text: "Search fields, downloadable data and current U.S. recall notices checked 2 August 2026." },
+          { type: "source", href: "https://commission.europa.eu/news-and-media/news/increased-action-against-dangerous-products-eu-2025-2026-03-09_en", label: "European Commission Safety Gate overview", text: "Official description of the EU/EEA rapid-alert system and its possible follow-up actions." },
+        ],
+      },
+      {
+        id: "batteries",
+        title: "3. Treat batteries as a transport question, not just a product feature",
+        blocks: [
+          { type: "p", text: "Battery-powered goods need an earlier check because air transport requirements depend on what the battery is, how it is configured and its rating. IATA's current cargo overview says lithium batteries may be carried by air depending on configuration and Watt-hour rating for rechargeable cells or lithium content for non-rechargeable cells. Its guidance also covers identification, packing, marking, labelling and documentation. A listing that merely says “battery included” does not answer those questions." },
+          { type: "p", text: "Record whether the cell is installed in equipment, packed with it or shipped separately; copy the voltage, amp-hour or Watt-hour marking; and note whether the casing looks swollen, crushed, pierced or wet. Do not calculate or guess a missing transport classification from a promotional description. Ask the agent which exact field or document its chosen line requires and who is responsible for the declaration." },
+          { type: "p", text: "The FAA's passenger guidance is not a substitute for an agent's cargo rules, but it explains the physical risk clearly: lithium-ion batteries can enter thermal runaway after damage, overheating, water exposure, overcharging, bad packing or a manufacturing defect. It also says damaged or recalled batteries likely to spark or generate dangerous heat must not be carried aboard an aircraft unless made safe. Visible damage is therefore a stop signal, not a cosmetic flaw to discount." },
+          { type: "source", href: "https://www.iata.org/en/programs/cargo/dgr/lithium-batteries/", label: "IATA battery transport guidance", text: "Air-cargo configuration, rating and compliance overview checked 2 August 2026." },
+          { type: "source", href: "https://www.faa.gov/hazmat/packsafe/lithium-batteries", label: "FAA PackSafe: Lithium Batteries", text: "Hazards, damage and recall guidance last updated by the FAA on 13 April 2026 and checked here on 2 August 2026." },
+        ],
+      },
+      {
+        id: "photos",
+        title: "4. Use QC photos to find red flags, not to issue a safety verdict",
+        blocks: [
+          { type: "p", text: "Warehouse photographs can answer narrow visual questions. Look for a cracked housing, pinched cable, bent plug, corrosion, liquid staining, swollen battery enclosure, missing insulating cover, damaged cell wrapper or a label that conflicts with the ordered specification. Ask for a close-up of the rating plate and battery compartment when those details affect the route decision." },
+          { type: "p", text: "The same gallery cannot verify internal wiring, chemical composition, electrical insulation, battery test records, radio compliance or long-term heat behaviour. A certification logo in a photograph only shows that a mark is printed; it does not verify the document behind it or whether the mark applies to that exact model. FindQC also states that it does not guarantee third-party QC data or provide authenticity certification." },
+          { type: "callout", title: "Two separate gates", text: "Product gate: is there a visible defect or a published safety action? Transport gate: will the exact agent line and carrier accept this configuration for this destination? Passing one does not pass the other." },
+        ],
+      },
+      {
+        id: "route",
+        title: "5. Get a route-specific answer before money or consolidation",
+        blocks: [
+          { type: "p", text: "Agent names and shipping lines are not interchangeable rules. Acceptance can depend on destination, carrier, declared product type, battery configuration, packaging and the current line policy. FindQC's terms place shipping with third parties, so confirm the route in the agent's live interface or support channel. An old community post can suggest a question, but it cannot authorize today's shipment." },
+          { type: "list", title: "Ask the agent in one message", items: [
+            "Does this exact line accept the product category and battery configuration shown in the attached label photo?",
+            "Which capacity, model, test summary, declaration or packaging details must be supplied?",
+            "Are loose batteries, power banks or battery-powered items treated differently on this route?",
+            "What happens if the warehouse identifies the item as restricted after purchase?",
+            "Can the answer be linked to the current line rule or preserved in the order record?",
+          ] },
+          { type: "p", text: "Do not ask support to promise that customs will clear an item. Ask for the agent-controlled facts: whether it will accept the item, what it must declare, what evidence it needs and which options remain if the line refuses it. Destination import law and intellectual-property rules are separate checks and may require official customs guidance or professional advice." },
+        ],
+      },
+      {
+        id: "decision",
+        title: "6. Make a documented go, hold or stop decision",
+        blocks: [
+          { type: "table", headers: ["Decision", "Evidence pattern", "Action"], rows: [
+            ["Go", "Identity is clear, no matching alert was found, no damage is visible and the current route accepts the documented configuration", "Save the evidence and recheck the own-unit warehouse photos before parcel submission"],
+            ["Hold", "A label, rating, model match or route condition is missing", "Request the one document or photograph that can resolve the uncertainty"],
+            ["Stop", "Exact recall match, swollen or damaged battery, conflicting identity, or explicit route refusal", "Do not submit the item; follow the regulator notice and the seller or agent's current resolution process"],
+          ] },
+          { type: "p", text: "Keep the original link, label image, database URLs, search date, support response and final decision together. This small audit trail protects you from memory errors and makes a later warehouse request precise. It also prevents a screenshot from another model, buyer or year from silently becoming evidence for yours." },
+          { type: "p", text: "The disciplined sequence is identity, recall search, battery classification, visible-condition check and route confirmation. FindQC can help with discovery and earlier QC evidence, but no single platform screen completes all five jobs. Product safety is not proven by confidence; it is managed by tracing each claim to the source that is actually responsible for it." },
+        ],
+      },
+      {
+        id: "sources-checked",
+        title: "7. Sources checked and limits of this guide",
+        blocks: [
+          { type: "p", text: "The FindQC homepage and Terms of Service, CPSC recall database, European Commission Safety Gate material, IATA battery transport page and FAA lithium-battery guidance were checked on 2 August 2026. FindQC statements are treated as official descriptions of its own platform, not independent proof of a product. Regulatory and industry sources are cited for their own jurisdictions and roles." },
+          { type: "p", text: "This is a screening workflow, not a compliance certificate or legal opinion. Databases, recalls and transport rules can change after publication. Repeat the searches with the exact model, destination, agent and proposed carrier at the time of the transaction." },
+        ],
+      },
+    ],
+    sources: [articleSources.terms, articleSources.cpsc, articleSources.safetyGate, articleSources.safetyGateReport, articleSources.iataBatteries, articleSources.faaLithium],
+    related: ["what-qc-photos-can-prove", "findqc-shopping-agent-workflow", "before-you-buy-qc-guide"],
+    cta: { eyebrow: "Inspect the exact unit", title: "Continue with the warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
 ];
 

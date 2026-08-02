@@ -189,7 +189,7 @@ export default async function ArticlePage({ params }) {
           <section className="article-sources" aria-labelledby="official-sources">
             <span>{articleUi.researchNotes}</span>
             <h2 id="official-sources">{articleUi.officialSources}</h2>
-            <p>{articleUi.sourceIntro}</p>
+            <p>{article.sourceIntro || articleUi.sourceIntro}</p>
             <ul>
               {article.sources.map((source) => (
                 <li key={source.href}>

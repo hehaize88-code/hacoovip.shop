@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-29",
+  "lastUpdated": "2026-08-02",
   "articles": [
     {
       "slug": "before-you-buy-qc-guide",
@@ -45,6 +45,16 @@
       "exampleType": "Clearly labelled hypothetical measurement conversions, never presented as customer orders",
       "outline": ["evidence role", "measurement definitions", "reference garment", "photo audit", "conversion", "decision", "warehouse request"],
       "faqAngles": ["Can FindQC guarantee fit?", "Should flat chest width be doubled?", "How should an unclear measurement photo be retaken?"]
+    },
+    {
+      "slug": "findqc-product-safety-check",
+      "primaryQuery": "FindQC product safety check",
+      "intent": "Screen recalls, battery hazards and route restrictions before an agent purchase or parcel submission",
+      "focus": ["product identity", "jurisdiction-specific recall search", "battery configuration", "visible damage limits", "agent and carrier confirmation"],
+      "exampleType": "Decision tables and support-question templates, never fabricated orders or carrier approvals",
+      "outline": ["identity record", "recall databases", "battery transport evidence", "photo limits", "route questions", "go-hold-stop decision", "sources and limits"],
+      "faqAngles": ["Can clean FindQC QC photos prove a product is safe?", "What battery details should be checked before agent shipping?", "Does no recall result mean a product is certified safe?"],
+      "visuals": ["Two decision tables rendered from cited guidance; no customer images or external copyrighted screenshots"]
     }
   ]
 }
