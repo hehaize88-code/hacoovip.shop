@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-29",
+  "updated": "2026-08-02",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -241,6 +241,27 @@
         "US CBP internet-purchase guidance"
       ],
       "internalLinkRole": "Post-dispatch troubleshooting spoke linked to shipping and parcel-consolidation guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-return-refund/",
+      "primaryQuery": "oopbuy return and refund",
+      "secondaryTerms": [
+        "oopbuy return policy",
+        "oopbuy refund time",
+        "oopbuy warehouse return",
+        "oopbuy aftersales",
+        "oopbuy order cancellation"
+      ],
+      "intent": "informational troubleshooting and transaction support",
+      "angle": "Choose cancellation, seller aftersales, warehouse return, exchange and refund verification from the live order status and evidence trail.",
+      "evidence": [
+        "OOPBUY Returns and Refunds notice",
+        "OOPBUY How to apply for aftersales notice",
+        "OOPBUY Inspection Information notice",
+        "US FTC online-shopping guidance",
+        "PayPal Purchase Protection terms"
+      ],
+      "internalLinkRole": "Aftersales decision spoke linked to QC and order-workflow pillars"
     }
   ]
 }
