@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-07-30",
+  "lastReviewed": "2026-08-03",
   "entries": [
     {
       "url": "https://kakobuys.pro/articles/how-to-read-kakobuy-qc-photos",
@@ -160,7 +160,20 @@
       "angle": "compares source types, dates and verifiable fields instead of issuing an unsupported safe-or-scam verdict",
       "evidence": "Kakobuy official service scope, Apple App Store listing, Trustpilot profile and public Reddit reports reviewed as user-generated evidence",
       "internalLinkRole": "supports trust research while sending operational questions to policy and workflow guides"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/buy-from-1688-with-kakobuy/",
+      "primaryQuery": "buy from 1688 with Kakobuy",
+      "relatedTerms": [
+        "Kakobuy 1688 agent",
+        "1688 link Kakobuy",
+        "how to order 1688 Kakobuy"
+      ],
+      "intent": "marketplace-specific buying guidance",
+      "angle": "preserves 1688 quantity and price conditions from source offer through warehouse verification",
+      "evidence": "Kakobuy supported product-link search and public service flow plus 1688 platform terms",
+      "internalLinkRole": "supports readers arriving with 1688 product links"
     }
   ],
-  "nextPriority": "Kakobuy coupons and shipping discounts: current-term verification"
+  "nextPriority": "Kakobuy parcel consolidation: when combining warehouse items helps or hurts"
 }
