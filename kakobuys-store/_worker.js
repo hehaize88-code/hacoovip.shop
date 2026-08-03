@@ -241,6 +241,23 @@ class RemoveElement {
   }
 }
 
+class RemovePreviewHydrationData {
+  constructor() {
+    this.buffer = "";
+  }
+
+  text(textChunk) {
+    this.buffer += textChunk.text;
+    if (!textChunk.lastInTextNode) {
+      textChunk.remove();
+      return;
+    }
+    const previewRecord = ',[\\"$\\",\\"meta\\",\\"4\\",{\\"name\\":\\"codex-preview\\",\\"content\\":\\"development\\"}]';
+    textChunk.replace(this.buffer.split(previewRecord).join(""));
+    this.buffer = "";
+  }
+}
+
 class SetDocumentLanguage {
   constructor(language) {
     this.language = language;
@@ -330,6 +347,7 @@ export default {
       .on('meta[property="og:title"]', new RemoveElement())
       .on('meta[property="og:description"]', new RemoveElement())
       .on('meta[property="og:url"]', new RemoveElement())
+      .on("script", new RemovePreviewHydrationData())
       .on("head", seoHead)
       .transform(htmlResponse);
   },
