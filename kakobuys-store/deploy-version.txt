@@ -1,2 +1,2 @@
-SEO article localization release: e8afbe33a4339bc47fc2ed071ee98e7d78ead689
+Production SEO routing release: dc1ba305c255fc2daeddab52096cc3c08cd850d9
 Published: 2026-08-03
