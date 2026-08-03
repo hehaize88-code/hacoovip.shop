@@ -1,6 +1,6 @@
 const CANONICAL_ORIGIN = "https://kakobuys.store";
 const LANGUAGE_CODES = ["en", "de", "fr", "es", "it", "pl", "pt", "ro"];
-const PAGE_SLUGS = [
+const LOCALIZED_PAGE_SLUGS = [
   "categories",
   "qc-hub",
   "guides",
@@ -13,6 +13,41 @@ const PAGE_SLUGS = [
   "kakobuy-spreadsheet-first-time-guide",
   "product-price-vs-parcel-cost",
 ];
+
+const ENGLISH_ONLY_PAGES = {
+  "kakobuy-warehouse-storage-guide": "Kakobuy Warehouse Storage Guide",
+  finds: "Kakobuy Finds: 30 Checked Product Records",
+  "find-6059": "Shoes 1 — Record 6059",
+  "find-6057": "Shoes 1 — Record 6057",
+  "find-6049": "Shoes 64",
+  "find-6048": "Shoes 63",
+  "find-6047": "Shoes 62",
+  "find-6046": "Shoes 61",
+  "find-5756": "Corteiz Hoodie Sets",
+  "find-5743": "Louis Vuitton Hoodie",
+  "find-5742": "Palm Angel Hoodie",
+  "find-5708": "Mixed Emotion Hoodie",
+  "find-5706": "Balenciaga Hoodie",
+  "find-5663": "Derschutze Hoodie",
+  "find-5964": "Bottega Veneta Woven Bag",
+  "find-5962": "Loro Piana Vintage Leather Bag",
+  "find-5961": "Bottega Veneta Woven Chain Bag",
+  "find-5923": "Louis Vuitton Cherry Bag",
+  "find-5913": "Fred Perry Bag",
+  "find-5883": "Miu Miu Mini Leather Bowling Bag",
+  "find-5850": "NBA City Edition Jerseys — Record 5850",
+  "find-5846": "NBA City Edition Jerseys — Record 5846",
+  "find-5613": "2024–25 Soccer Jerseys 41–80",
+  "find-5583": "Serie A Jersey Set",
+  "find-5560": "Chrome Hearts Jersey",
+  "find-5349": "Japanese Jersey",
+  "find-5952": "Longines Watches — 39 Styles",
+  "find-5821": "Apple Watch S9",
+  "find-5819": "Cartier Mechanical Watches",
+  "find-5753": "Cartier and Rolex Watch Record",
+  "find-5752": "Armani Watch",
+  "find-5693": "Watch Ultra 2",
+};
 
 const SEO = {
   en: {
@@ -170,10 +205,11 @@ const SEO = {
 };
 
 const canonicalPaths = new Set(["/"]);
-for (const slug of PAGE_SLUGS) canonicalPaths.add(`/${slug}/`);
+for (const slug of LOCALIZED_PAGE_SLUGS) canonicalPaths.add(`/${slug}/`);
+for (const slug of Object.keys(ENGLISH_ONLY_PAGES)) canonicalPaths.add(`/${slug}/`);
 for (const language of LANGUAGE_CODES.slice(1)) {
   canonicalPaths.add(`/${language}/`);
-  for (const slug of PAGE_SLUGS) canonicalPaths.add(`/${language}/${slug}/`);
+  for (const slug of LOCALIZED_PAGE_SLUGS) canonicalPaths.add(`/${language}/${slug}/`);
 }
 
 function canonicalPath(pathname) {
@@ -194,6 +230,21 @@ function languagePath(language, slug) {
 }
 
 function pageMetadata(language, slug) {
+  if (language === "en" && ENGLISH_ONLY_PAGES[slug]) {
+    const page = ENGLISH_ONLY_PAGES[slug];
+    if (slug === "kakobuy-warehouse-storage-guide") return {
+      title: "Kakobuy Warehouse Storage Guide (2026): 100-Day Planning",
+      description: "Learn how Kakobuy warehouse storage works, what to inspect on arrival, how to track deadlines and when to consolidate or submit a parcel.",
+    };
+    if (slug === "finds") return {
+      title: "Kakobuy Finds: 30 Checked Product Records (2026)",
+      description: "Browse 30 Kakobuy finds with independent detail pages, product images, USD reference prices, destination records and last-checked dates.",
+    };
+    return {
+      title: `${page} | Kakobuy Finds Record`,
+      description: `Independent details for ${page}, including category, reference price, destination record and the last-checked date.`,
+    };
+  }
   const translation = SEO[language];
   if (slug === "home") {
     return { title: translation.homeTitle, description: translation.homeDescription };
@@ -216,9 +267,10 @@ function escapeHtml(value) {
 function seoMarkup({ language, slug, canonicalUrl, title, description }) {
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description);
-  const alternates = LANGUAGE_CODES.map((alternateLanguage) =>
-    `<link rel="alternate" hreflang="${alternateLanguage}" href="${CANONICAL_ORIGIN}${languagePath(alternateLanguage, slug)}">`,
-  ).join("");
+  const localized = LOCALIZED_PAGE_SLUGS.includes(slug) || slug === "home";
+  const alternates = localized
+    ? LANGUAGE_CODES.map((alternateLanguage) => `<link rel="alternate" hreflang="${alternateLanguage}" href="${CANONICAL_ORIGIN}${languagePath(alternateLanguage, slug)}">`).join("")
+    : `<link rel="alternate" hreflang="en" href="${canonicalUrl}">`;
   const locale = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`;
   return (
     `<title>${safeTitle}</title>` +

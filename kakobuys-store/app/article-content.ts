@@ -228,5 +228,86 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy public shipping estimator, cost explanation, warehouse service and return guidance, reviewed August 3, 2026. Shipping routes, calculations, eligibility and destination rules can change."
+  },
+  {
+    slug: "kakobuy-warehouse-storage-guide",
+    title: "Kakobuy Warehouse Storage Guide: Timing, QC and Parcel Planning",
+    seoTitle: "Kakobuy Warehouse Storage Guide (2026): 100-Day Planning",
+    seoDescription: "Learn how Kakobuy warehouse storage works, what to inspect on arrival, how to track deadlines and when to consolidate or submit a parcel.",
+    primaryKeyword: "Kakobuy warehouse storage",
+    secondaryKeywords: ["Kakobuy 100 days storage", "Kakobuy warehouse guide", "Kakobuy parcel consolidation", "Kakobuy storage time"],
+    intro: "Warehouse storage is most useful when it creates time for better decisions. Kakobuy publicly advertises 100 days of free storage, allowing items from different sellers to arrive before parcel submission. That window can support quality-control review and consolidation, but it should not be mistaken for a 100-day return period or a reason to ignore an order. Inspection, seller-return eligibility, parcel planning and storage expiration follow different clocks.",
+    quickAnswer: "Check every item as soon as it is stocked, record the storage and return deadlines shown for that order, resolve QC problems immediately, and consolidate only after every keep-or-return decision is complete. Use the remaining storage time to compare measured weight, dimensions, packaging and shipping routes—not to postpone inspection.",
+    sections: [
+      {
+        heading: "What Kakobuy says about warehouse storage",
+        paragraphs: [
+          "Kakobuy describes its service as a purchasing and freight-forwarding workflow. Its public service pages say that goods are sent to the Kakobuy warehouse, inspected and stored, and that users can select items in the warehouse to submit as one parcel. The same public material advertises 100 days of free storage. This creates a practical gap between domestic arrival and international dispatch.",
+          "The advertised period is a platform-level statement, not a substitute for the live information attached to an individual order. Policies can change, special items may be handled differently, and the day count displayed in the account is the operational record to follow. Save the stocking date, note the displayed deadline and recheck it before planning around the full period."
+        ],
+        bullets: ["Confirm the warehouse stocking date for each item.", "Record the storage deadline shown in the live account.", "Treat policy summaries as guidance and the live order as the current record."]
+      },
+      {
+        heading: "Storage time and return time are not the same",
+        paragraphs: [
+          "A common mistake is assuming that an item can be returned at any point while it remains in free storage. Kakobuy's public help information describes a five-day return or exchange guarantee for qualifying purchases after warehouse signing or stocking. Conditions, exclusions, seller cooperation and domestic return shipping can apply. That is a much shorter decision window than the advertised storage period.",
+          "The correct sequence is therefore inspection first, storage second. Open the QC images promptly, verify the ordered variant and resolve visible problems while a return or exchange may still be available. Once the keep decision is complete, the longer storage window can help coordinate other arrivals and parcel options. Waiting because ‘there are 100 days’ can turn a solvable warehouse issue into an item you can only ship or abandon."
+        ],
+        bullets: ["Storage controls how long an accepted item can wait.", "Return eligibility controls whether an unwanted item can go back.", "Parcel submission controls when accepted items enter international shipping."]
+      },
+      {
+        heading: "Build an arrival checklist for every item",
+        paragraphs: [
+          "Use the same small checklist whenever an order changes to stocked or stored. Match the warehouse record to the product ordered, including color, size, quantity and selected variant. Review the complete image set rather than the first thumbnail. Look for obvious damage, missing components and visible differences from the saved listing. If measurements matter, confirm that the available evidence is usable.",
+          "Then give the item one of three statuses: keep, question or return/exchange. ‘Question’ should identify exactly what is missing, such as an insole measurement, the reverse side of a print or the contents of a package. A vague unresolved status is easy to forget. Store the decision beside the item ID so later parcel planning includes only products you have actually accepted."
+        ],
+        bullets: ["Identity: item, variant, size, color and quantity.", "QC: shape, measurements, construction, marks and accessories.", "Decision: keep, targeted question, or return/exchange review.", "Deadline: date by which the next action must be completed."]
+      },
+      {
+        heading: "Use the storage window to coordinate sellers",
+        paragraphs: [
+          "Products ordered on the same day do not necessarily reach the warehouse together. Sellers have different handling times, domestic carriers move at different speeds, and an out-of-stock variant may create delay. Storage lets earlier arrivals wait while later orders move through the domestic stage. This is one of its clearest benefits.",
+          "Do not allow one uncertain order to hold every accepted item indefinitely. Set a decision date before the oldest storage deadline. If a delayed seller has not shipped, or a replacement is still unresolved, compare the cost of waiting with submitting the ready items. The right answer depends on storage time remaining, expected parcel size and whether the later item changes the shipping plan materially."
+        ]
+      },
+      {
+        heading: "Consolidate for a reason, not by default",
+        paragraphs: [
+          "Kakobuy says users can select warehouse items and submit them into one parcel. Consolidation may reduce repeated base charges and make a rate band more efficient. It also creates one tracking flow instead of several. Those advantages are real only after comparing the available routes with the measured parcel information.",
+          "A larger parcel can cross a weight threshold, create more dimensional weight, remove a shipping line or concentrate more value in one shipment. Product types matter too. Soft clothing may pack well together, while shoes, rigid bags and fragile accessories may require space and protection. Compare at least two structures: one combined parcel and two logical groups. Choose based on measured cost, route availability and protection—not on the assumption that one box is always cheaper."
+        ],
+        bullets: ["Group compatible products after QC approval.", "Compare combined and split-parcel estimates.", "Check weight, dimensions and route restrictions.", "Keep enough protection for rigid or fragile items."]
+      },
+      {
+        heading: "Track actual weight, dimensions and packaging choices",
+        paragraphs: [
+          "Storage gives you time to replace guesses with warehouse information. Product-listing weights may be missing or approximate, and international shipping is calculated later. Kakobuy's public information says international cost depends on estimated weight, selected method and shipping area. The live estimator is useful for comparison, but the packed parcel can differ from an early estimate.",
+          "Record both scale weight and dimensions when they become available. Large, light parcels may be affected by dimensional or volumetric calculations used by logistics lines. Removing retail packaging can reduce volume but may reduce protection. Vacuum packing can help suitable soft goods but can crease them. Decide which packaging serves the item, then compare current lines with the resulting parcel rather than optimizing for the smallest possible box at any cost."
+        ]
+      },
+      {
+        heading: "Create a simple storage dashboard",
+        paragraphs: [
+          "A spreadsheet is enough. Use one row per warehouse item and columns for order ID, product, stocking date, return deadline, storage deadline, QC status, measured weight, dimensions and intended parcel group. Add a link to the live order rather than copying sensitive account data into a shared sheet. Sort by the earliest action date, not by purchase date.",
+          "Review the dashboard after each new arrival and at least weekly while items remain stored. A color system can help: red for action required, amber for an unresolved question, green for accepted and assigned to a parcel, and gray for returned or removed. The purpose is not administrative perfection. It is to prevent a short return window or an older storage deadline from disappearing inside a long list of finds."
+        ],
+        bullets: ["Order and product identifier.", "Stocking, return and storage dates.", "QC decision and unresolved question.", "Weight, dimensions and parcel group.", "Next action and responsible date."]
+      },
+      {
+        heading: "Know when to submit the parcel",
+        paragraphs: [
+          "Submit when every included item has a completed QC decision, the parcel grouping makes sense, measured information is available, and the current shipping routes fit your budget and destination. Do not wait for the last possible storage day. Leaving a buffer gives time to resolve a rejected line, adjust packaging or split the parcel if the first plan is unavailable.",
+          "Before confirmation, reopen each item and ensure the correct records are selected. Compare the final package choices, declaration requirements and delivery address. Save the parcel details and tracking information. Warehouse storage has done its job when it helps you reach this point with fewer assumptions: accepted products, documented decisions, realistic measurements and enough time to act if the final route changes."
+        ]
+      },
+      {
+        heading: "A practical Kakobuy warehouse timeline",
+        paragraphs: [
+          "On arrival day, verify the order and review QC images. During the applicable return period, resolve mismatches, request a targeted detail or submit a return/exchange request when eligible. After acceptance, assign the item to a likely parcel group and update its measured information. As other products arrive, compare consolidation scenarios. Well before the oldest storage deadline, select a route and submit the parcel.",
+          "The most important principle is separation of deadlines. Storage time is planning time for items you intend to keep. It is not extra time for an undecided QC problem. When each clock is tracked independently, the advertised 100-day storage service becomes useful operational flexibility instead of a source of avoidable delay."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy public service overview, warehouse information, shipping estimator and return/exchange guidance, reviewed August 3, 2026. Storage periods, eligibility, fees and order-specific deadlines can change; confirm them in the live account."
   }
 ];

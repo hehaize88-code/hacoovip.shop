@@ -15,9 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kakobuy Spreadsheet 2026 | QC Product Index & Finds",
   description: "Explore a visual Kakobuy spreadsheet index with current product finds, QC-focused browsing routes and direct links to matching catalog records.",
-  other: {
-    "codex-preview": "development",
-  },
   icons: {
     icon: "/brand/kakobuy.png",
     shortcut: "/brand/kakobuy.png",
