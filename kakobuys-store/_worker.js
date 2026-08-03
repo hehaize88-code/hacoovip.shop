@@ -207,16 +207,36 @@ function pageMetadata(language, slug) {
 
 function escapeHtml(value) {
   return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function seoMarkup({ language, slug, canonicalUrl, title, description }) {
+  const safeTitle = escapeHtml(title);
+  const safeDescription = escapeHtml(description);
+  const alternates = LANGUAGE_CODES.map((alternateLanguage) =>
+    `<link rel="alternate" hreflang="${alternateLanguage}" href="${CANONICAL_ORIGIN}${languagePath(alternateLanguage, slug)}">`,
+  ).join("");
+  const locale = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`;
+  return (
+    `<title>${safeTitle}</title>` +
+    `<meta name="description" content="${safeDescription}">` +
+    `<link rel="canonical" href="${canonicalUrl}">` +
+    alternates +
+    `<link rel="alternate" hreflang="x-default" href="${CANONICAL_ORIGIN}${languagePath("en", slug)}">` +
+    `<meta property="og:type" content="website">` +
+    `<meta property="og:site_name" content="Kakobuy QC Index">` +
+    `<meta property="og:locale" content="${locale}">` +
+    `<meta property="og:title" content="${safeTitle}">` +
+    `<meta property="og:description" content="${safeDescription}">` +
+    `<meta property="og:url" content="${canonicalUrl}">`
+  );
 }
 
 class RemoveElement {
   element(element) {
-    const title = escapeHtml(this.title);
-    const description = escapeHtml(this.description);
     element.remove();
   }
 }
@@ -231,33 +251,12 @@ class SetDocumentLanguage {
 }
 
 class AddSeoHead {
-  constructor({ language, slug, canonicalUrl, title, description }) {
-    this.language = language;
-    this.slug = slug;
-    this.canonicalUrl = canonicalUrl;
-    this.title = title;
-    this.description = description;
+  constructor(markup) {
+    this.markup = markup;
   }
 
   element(element) {
-    const alternates = LANGUAGE_CODES.map((language) =>
-      `<link rel="alternate" hreflang="${language}" href="${CANONICAL_ORIGIN}${languagePath(language, this.slug)}">`,
-    ).join("");
-    const locale = this.language === "en" ? "en_US" : `${this.language}_${this.language.toUpperCase()}`;
-    element.append(
-      `<title>${title}</title>` +
-        `<meta name="description" content="${description}">` +
-        `<link rel="canonical" href="${this.canonicalUrl}">` +
-        alternates +
-        `<link rel="alternate" hreflang="x-default" href="${CANONICAL_ORIGIN}${languagePath("en", this.slug)}">` +
-        `<meta property="og:type" content="website">` +
-        `<meta property="og:site_name" content="Kakobuy QC Index">` +
-        `<meta property="og:locale" content="${locale}">` +
-        `<meta property="og:title" content="${title}">` +
-        `<meta property="og:description" content="${description}">` +
-        `<meta property="og:url" content="${this.canonicalUrl}">`,
-      { html: true },
-    );
+    element.append(this.markup, { html: true });
   }
 }
 
@@ -316,7 +315,7 @@ export default {
       statusText: response.statusText,
       headers,
     });
-    const seoHead = new AddSeoHead({ language, slug, canonicalUrl, ...metadata });
+    const seoHead = new AddSeoHead(seoMarkup({ language, slug, canonicalUrl, ...metadata }));
 
     return new HTMLRewriter()
       .on("html", new SetDocumentLanguage(language))
