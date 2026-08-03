@@ -3,6 +3,467 @@ from __future__ import annotations
 
 ARTICLES = [
     {
+        "slug": "sugargoo-tracking-package-status",
+        "published": "2026-08-03",
+        "modified": "2026-08-03",
+        "schema_type": "BlogPosting",
+        "primary_keyword": "Sugargoo tracking",
+        "secondary_keywords": [
+            "Sugargoo tracking not updating",
+            "Sugargoo package status",
+            "Sugargoo warehouse status",
+            "track Sugargoo parcel to Germany",
+        ],
+        "en": {
+            "seo_title": "Sugargoo Tracking Guide: Decode Every Parcel Status",
+            "title": "Sugargoo Tracking in 2026: From Warehouse Status to Germany Delivery",
+            "description": (
+                "Learn where to find Sugargoo tracking, separate warehouse and parcel statuses, "
+                "read carrier handoffs, and escalate a stalled shipment to Germany."
+            ),
+            "dek": (
+                "A status is useful only when you know which system produced it. This guide separates "
+                "seller delivery, warehouse processing, international transport, customs and German "
+                "last-mile scans so you can take the right action instead of refreshing one page."
+            ),
+            "checked": "Facts checked 3 August 2026",
+            "sections": [
+                {
+                    "heading": "First identify what you are actually tracking",
+                    "paragraphs": [
+                        (
+                            "Sugargoo tracking is not one continuous feed. Before international shipping, "
+                            "an order moves from the Chinese seller to the Sugargoo warehouse. After you "
+                            "submit a parcel, a separate record covers packing, route acceptance and the "
+                            "international journey. The product order number, Sugargoo parcel number and "
+                            "carrier tracking number therefore describe different objects. A seller can "
+                            "have delivered an item to the warehouse while no international parcel exists, "
+                            "and a parcel record can exist before the carrier has made its first physical "
+                            "scan. Start every investigation by writing down all three identifiers and the "
+                            "last timestamp shown beside each one."
+                        ),
+                        (
+                            "This distinction prevents the most common false alarm: searching a German "
+                            "carrier with a marketplace order number, or expecting international movement "
+                            "while an item is still awaiting warehouse processing. The useful question is "
+                            "not simply ‘Where is my order?’ Ask which leg is incomplete: seller to warehouse, "
+                            "warehouse inspection, parcel preparation, export transport, import processing or "
+                            "last-mile delivery. Each leg has a different evidence source and a different party "
+                            "that can act."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Find the authoritative Sugargoo parcel record",
+                    "paragraphs": [
+                        (
+                            "Sugargoo’s public tracking instructions, checked on 3 August 2026, direct users "
+                            "to the Packing Center and its Shipped area; other current official pages describe "
+                            "the same action as My Parcel and Check Logistics. Interface labels can change, so "
+                            "follow the shipped parcel record rather than an old screenshot. Open the relevant "
+                            "record and capture the parcel number, selected route, destination, submitted weight, "
+                            "tracking number and complete event history. If there is no carrier number yet, the "
+                            "parcel is not ready for meaningful external tracking."
+                        ),
+                        (
+                            "Save a dated screenshot or copy the event text into a small log. Do not record only "
+                            "the latest label; keep the time, location and source as well. A practical entry is: "
+                            "‘3 August, 09:40 UTC, Sugargoo parcel page, shipment data received.’ This makes later "
+                            "changes visible and gives support something concrete to check. It also prevents a "
+                            "browser translation from silently changing the meaning of a carrier event. Never "
+                            "publish the tracking number, address or parcel label in a public forum."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Do not confuse a created label with a carrier handover",
+                    "paragraphs": [
+                        (
+                            "A tracking number can be assigned before the physical parcel reaches the next network. "
+                            "DHL’s current status guidance explains that electronically transmitted shipment data "
+                            "means the sender created a label and sent the data; it does not, by itself, prove that "
+                            "DHL has the box. The same reasoning applies to an international route’s first electronic "
+                            "event. Look for a physical acceptance, collection, processing-centre or departure scan "
+                            "before concluding that transport has begun."
+                        ),
+                        (
+                            "If the record shows only data received, compare the timestamp with the route information "
+                            "shown when you submitted the parcel. Then contact Sugargoo through the order or parcel "
+                            "record if the handover remains outside that route’s stated processing window. Ask a narrow "
+                            "question: whether the parcel has been handed to the logistics provider and whether the "
+                            "first physical scan or a replacement number is available. A generic ‘please update’ message "
+                            "is harder to investigate than a parcel number, route, payment time and exact last event."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Read international gaps as handoffs, not destinations",
+                    "paragraphs": [
+                        (
+                            "International parcels pass through systems that do not always exchange events immediately. "
+                            "The origin logistics provider may show export processing, an airline or line-haul partner may "
+                            "carry the parcel without a consumer-facing scan, and the destination carrier may publish only "
+                            "after induction in Germany. DHL’s international help states that gaps can occur during transport "
+                            "and handover to a partner organisation. A silent interval is therefore evidence of missing scans, "
+                            "not evidence that the parcel is stationary or lost."
+                        ),
+                        (
+                            "Use the event sequence rather than translating one vague word too literally. ‘Departure,’ "
+                            "‘line-haul’ or ‘in transit’ does not identify the aircraft, border or arrival time. ‘Customs data "
+                            "submitted’ does not equal customs release. ‘Destination processing’ is stronger evidence that a "
+                            "local network has received the shipment, but it still is not an out-for-delivery promise. Record "
+                            "what the scan proves, list what it does not prove, and wait or escalate according to the selected "
+                            "route’s live estimate rather than an unrelated route discussed online."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Identify the real delivery carrier in Germany",
+                    "paragraphs": [
+                        (
+                            "A China-to-Germany parcel is not automatically delivered by DHL. DHL’s official import help "
+                            "explicitly says that shipments from abroad may be handled by other German market participants. "
+                            "If a number produces no DHL result, the shipment may not yet have entered DHL’s network or a "
+                            "different provider may be responsible. Check the Sugargoo route details and event history for a "
+                            "local carrier name or secondary tracking number before assuming the number is invalid."
+                        ),
+                        (
+                            "Once a German carrier is identified, use that carrier’s own site as the destination-side source. "
+                            "Compare it with Sugargoo rather than expecting identical timestamps. DHL also notes that not every "
+                            "step from posting to delivery appears in tracking and that data transmission between foreign postal "
+                            "operators and Deutsche Post can be delayed. Customs-related steps are shown only to a limited extent. "
+                            "A German-carrier page can confirm network entry; it cannot provide a complete customs case file or "
+                            "guarantee a delivery date."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Match the last scan to the next sensible action",
+                    "paragraphs": [
+                        (
+                            "Use a decision ladder. No international parcel record means finish warehouse decisions first. A "
+                            "parcel awaiting payment or packing stays with Sugargoo. Label created without physical acceptance "
+                            "calls for a handover check after the route’s processing window. Export or line-haul movement calls "
+                            "for monitoring against the same route’s estimate. A customs or import-processing event calls for "
+                            "attention to requests from the carrier or authorities, not repeated messages to every party. A "
+                            "destination-depot or out-for-delivery scan moves the task to the named German carrier."
+                        ),
+                        (
+                            "For a ‘delivered’ scan with no parcel in hand, check the detailed recipient or delivery-location "
+                            "information, household members, neighbours, safe-place permissions, branch and Packstation notices. "
+                            "Contact the last-mile carrier promptly if the recorded delivery cannot be found, and inform Sugargoo "
+                            "through the parcel record because the sender or shipping customer may need to open an investigation. "
+                            "Do not mark the parcel received merely to clear a dashboard notification while the delivery is still "
+                            "disputed."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Escalate with an evidence packet, not a guess",
+                    "paragraphs": [
+                        (
+                            "There is no responsible universal rule that every tracking gap becomes a loss after a fixed number "
+                            "of days. Routes differ in promised windows, scan density, handoffs and claim procedures. First compare "
+                            "the last physical event with the delivery estimate and notices attached to the exact route in your "
+                            "account. If it is outside that window, prepare one evidence packet: Sugargoo parcel number, carrier "
+                            "number, route, destination postcode, submission and payment dates, last physical scan, screenshots "
+                            "and the action you want—status confirmation, carrier enquiry or claim instructions."
+                        ),
+                        (
+                            "Send that packet through the official parcel-support channel so it remains attached to the transaction. "
+                            "Sugargoo’s current delayed/lost/damaged guidance tells users to check Packing Center tracking, contact "
+                            "official support when the issue persists and retain relevant documents. Do not invent a customs reason, "
+                            "declare the parcel lost yourself or purchase a ‘tracking recovery’ service from a stranger. An investigation "
+                            "result, compensation eligibility and deadlines depend on the booked route and its current terms; verify those "
+                            "terms in the parcel record before making a claim."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Document delivery condition before evidence disappears",
+                    "paragraphs": [
+                        (
+                            "Tracking ends with a scan, but receiving evidence begins at the door. Photograph the closed parcel so the "
+                            "label, outer damage and seals are visible without exposing personal data in public. If the box is crushed, wet, "
+                            "opened or re-taped, record every side before unpacking. Keep the packaging, contents, weight information, delivery "
+                            "notice and a continuous unpacking record when damage or missing items are plausible. These materials help separate "
+                            "carrier damage, packing problems and an item discrepancy."
+                        ),
+                        (
+                            "Report a problem through the official after-sales path as soon as it is discovered and follow the route’s current "
+                            "evidence requirements. A delivery scan alone does not prove that every item arrived intact; equally, a damaged outer "
+                            "box does not prove the carrier caused every product defect. Describe observable facts, match each missing item to its "
+                            "warehouse and parcel record, and avoid throwing away the label or filler until the case is acknowledged."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Build a tracking-ready parcel before submitting the next one",
+                    "paragraphs": [
+                        (
+                            "Prevention starts before payment. Confirm the German address, postcode, recipient name and any Packstation details "
+                            "in the format required by the chosen route. Read the route’s current tracking coverage, estimated delivery range, "
+                            "restricted-item rules, insurance options and claim conditions inside Sugargoo; these are variable facts and should "
+                            "not be copied from an old comparison post. Save the submitted weight, dimensions, parcel contents and service choices "
+                            "alongside the order IDs."
+                        ),
+                        (
+                            "The practical workflow is short: separate order, parcel and carrier identifiers; preserve the event history; decide "
+                            "whether the last event is electronic or physical; identify the actual German carrier; compare elapsed time with the "
+                            "booked route; and escalate with one complete evidence packet. That process cannot make international transport instant. "
+                            "It can stop a normal handoff from becoming panic, and it can turn a genuine exception into a case that Sugargoo or the "
+                            "carrier can investigate."
+                        ),
+                    ],
+                },
+            ],
+            "related_links": [
+                {"label": "Shipping from China to Germany", "relative": "guides/shipping-from-china-to-germany"},
+                {"label": "Warehouse storage and returns timeline", "relative": "articles/sugargoo-warehouse-storage-returns"},
+                {"label": "Volumetric weight before parcel submission", "relative": "articles/sugargoo-volumetric-weight-explained"},
+            ],
+            "sources": [
+                {
+                    "label": "Sugargoo — Tracking Guide",
+                    "url": "https://blog.sugargoo.com/sugargoo-tracking-guide/",
+                    "note": "Packing Center/My Parcel tracking workflow; checked 3 August 2026.",
+                },
+                {
+                    "label": "Sugargoo — How to Track Your Package",
+                    "url": "https://blog.sugargoo.com/how-to-track-your-package-shipping-status-transit-nodes-and-delivery-time-estimates/",
+                    "note": "Packing Center → Shipped and tracking-number workflow; checked 3 August 2026.",
+                },
+                {
+                    "label": "Sugargoo — Lost, Damaged or Delayed Parcels",
+                    "url": "https://blog.sugargoo.com/what-to-do-if-your-package-is-lost-damaged-or-delayed/",
+                    "note": "Official support and evidence guidance; checked 3 August 2026.",
+                },
+                {
+                    "label": "DHL Germany — International Parcel Questions",
+                    "url": "https://www.dhl.de/en/privatkunden/hilfe-kundenservice/themen/international/probleme-loesungen.html",
+                    "note": "Tracking gaps and carrier handoffs; checked 3 August 2026.",
+                },
+                {
+                    "label": "DHL Germany — Shipments from Abroad",
+                    "url": "https://www.dhl.de/en/privatkunden/hilfe-kundenservice/themen/international/import.html",
+                    "note": "German carrier identification and limited customs events; checked 3 August 2026.",
+                },
+            ],
+        },
+        "de": {
+            "seo_title": "Sugargoo Tracking: Paketstatus in Deutschland verstehen",
+            "title": "Sugargoo-Sendungsverfolgung 2026: Vom Lagerstatus bis zur Zustellung",
+            "description": (
+                "Sugargoo-Tracking richtig lesen: Lager- und Paketstatus trennen, Übergaben an deutsche Zusteller erkennen und Stillstand mit Belegen gezielt klären."
+            ),
+            "dek": (
+                "Ein Status hilft nur, wenn klar ist, welches System ihn erzeugt hat. Dieser Leitfaden "
+                "trennt Verkäuferweg, Lagerbearbeitung, internationalen Transport, Zoll und deutsche "
+                "Zustellung, damit aus einer Scanpause die richtige nächste Handlung wird."
+            ),
+            "checked": "Fakten geprüft am 3. August 2026",
+            "sections": [
+                {
+                    "heading": "Zuerst klären, was überhaupt verfolgt wird",
+                    "paragraphs": [
+                        (
+                            "Sugargoo-Tracking ist kein einziger durchgehender Datenstrom. Vor dem internationalen Versand "
+                            "läuft eine Bestellung vom chinesischen Verkäufer zum Sugargoo-Lager. Nach der Paketeinreichung "
+                            "entsteht ein eigener Datensatz für Verpackung, Routenannahme und Auslandsweg. Bestellnummer, "
+                            "Sugargoo-Paketnummer und Sendungsnummer des Transporteurs bezeichnen deshalb unterschiedliche "
+                            "Vorgänge. Ein Artikel kann im Lager angekommen sein, obwohl noch kein internationales Paket existiert; "
+                            "eine Paketnummer kann wiederum vor dem ersten physischen Scan vergeben sein. Für jede Prüfung alle drei "
+                            "Kennungen und den letzten Zeitstempel notieren."
+                        ),
+                        (
+                            "So wird der häufigste Fehlalarm vermieden: eine Marktplatz-Bestellnummer bei einem deutschen Zusteller "
+                            "einzugeben oder internationale Bewegung zu erwarten, während der Artikel noch bearbeitet wird. Die richtige "
+                            "Frage lautet nicht nur ‚Wo ist meine Bestellung?‘, sondern: Welche Etappe fehlt—Verkäufer zum Lager, Prüfung, "
+                            "Paketvorbereitung, Export, Importbearbeitung oder letzte Zustellstrecke? Für jede Etappe gibt es eine andere "
+                            "Beweisquelle und einen anderen Ansprechpartner."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Den maßgeblichen Sugargoo-Paketdatensatz öffnen",
+                    "paragraphs": [
+                        (
+                            "Die am 3. August 2026 geprüften öffentlichen Sugargoo-Anleitungen führen zum Packing Center und zum Bereich "
+                            "Shipped; andere aktuelle offizielle Seiten nennen denselben Schritt My Parcel und Check Logistics. Da sich "
+                            "Menütexte ändern können, zählt der tatsächlich versandte Paketdatensatz, nicht ein alter Screenshot. Dort "
+                            "Paketnummer, Route, Ziel, eingereichtes Gewicht, Trackingnummer und gesamten Ereignisverlauf sichern. Ohne "
+                            "Transporteur-Nummer ist eine externe Verfolgung noch nicht sinnvoll."
+                        ),
+                        (
+                            "Einen datierten Screenshot speichern oder die Ereignisse in ein kurzes Protokoll kopieren. Nicht nur das "
+                            "letzte Etikett festhalten, sondern Zeit, Ort und Quelle. Ein brauchbarer Eintrag lautet etwa: ‚3. August, "
+                            "09:40 UTC, Sugargoo-Paketseite, Sendungsdaten empfangen.‘ Dadurch werden spätere Änderungen sichtbar und der "
+                            "Support erhält einen klaren Prüfpunkt. Trackingnummer, Adresse und Paketlabel gehören niemals in ein öffentliches Forum."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Erstelltes Label und tatsächliche Übergabe trennen",
+                    "paragraphs": [
+                        (
+                            "Eine Sendungsnummer kann entstehen, bevor das Paket das nächste Transportnetz erreicht. DHL erklärt aktuell, "
+                            "dass elektronisch übermittelte Sendungsdaten bedeuten: Der Absender hat ein Label erzeugt und Daten gesendet. "
+                            "Das allein beweist nicht, dass DHL den Karton bereits besitzt. Dasselbe Prinzip gilt für das erste elektronische "
+                            "Ereignis einer internationalen Route. Erst Annahme-, Abhol-, Bearbeitungs- oder Abgangsscan belegen eine physische Bewegung."
+                        ),
+                        (
+                            "Steht nur ‚Daten empfangen‘, wird der Zeitstempel mit der bei Paketeinreichung angezeigten Routeninformation "
+                            "verglichen. Bleibt die Übergabe außerhalb des dort genannten Bearbeitungsfensters, über den Paketdatensatz bei "
+                            "Sugargoo nachfragen. Die konkrete Frage lautet, ob das Paket dem Logistikpartner übergeben wurde und ob ein erster "
+                            "physischer Scan oder eine Ersatznummer existiert. Paketnummer, Route, Zahlungszeit und letztes Ereignis sind nützlicher "
+                            "als eine allgemeine Bitte um ein Update."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Internationale Scanlücken als Übergaben lesen",
+                    "paragraphs": [
+                        (
+                            "Internationale Pakete durchlaufen Systeme, die Ereignisse nicht immer sofort austauschen. Der Ursprungsdienst zeigt "
+                            "möglicherweise die Exportbearbeitung, während Airline oder Ferntransportpartner ohne sichtbaren Kundenscan befördern. "
+                            "Der Zielzusteller veröffentlicht manchmal erst nach der Übernahme in Deutschland. DHL weist ausdrücklich darauf hin, "
+                            "dass beim Transport und bei der Übergabe an Partner Scanlücken auftreten können. Eine stille Phase beweist fehlende "
+                            "Scans—nicht Stillstand oder Verlust."
+                        ),
+                        (
+                            "Deshalb die Ereignisfolge prüfen, statt ein einzelnes Wort zu überdehnen. ‚Departure‘, ‚line-haul‘ oder ‚in transit‘ "
+                            "nennt weder Flugzeug noch Grenze oder Ankunftszeit. Übermittelte Zolldaten sind keine Freigabe. Eine Bearbeitung im "
+                            "Zielland belegt eher die Übernahme durch ein lokales Netz, verspricht aber noch keine Zustellung am selben Tag. Notiert "
+                            "werden muss, was der Scan beweist und was nicht; Warte- und Eskalationsentscheidung richten sich nach der gebuchten Route."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Den echten Zusteller in Deutschland ermitteln",
+                    "paragraphs": [
+                        (
+                            "Ein Paket aus China wird in Deutschland nicht automatisch von DHL zugestellt. Die offizielle DHL-Importhilfe sagt, "
+                            "dass Auslandssendungen auch andere Marktteilnehmer übernehmen können. Liefert eine Nummer bei DHL kein Ergebnis, kann "
+                            "die Sendung noch außerhalb des DHL-Netzes sein oder ein anderer Dienst zuständig sein. In Routendetails und Verlauf nach "
+                            "einem lokalen Zustellernamen oder einer zweiten Trackingnummer suchen, bevor die Nummer als ungültig gilt."
+                        ),
+                        (
+                            "Sobald der deutsche Zusteller feststeht, ist dessen eigene Seite die Quelle für die letzte Strecke. Sie wird mit "
+                            "Sugargoo verglichen; identische Zeitstempel sind nicht zu erwarten. DHL erklärt außerdem, dass nicht jeder Prozessschritt "
+                            "sichtbar ist und die Datenübertragung zwischen ausländischen Postbetreibern und Deutsche Post verzögert sein kann. "
+                            "Zollschritte erscheinen nur eingeschränkt. Eine deutsche Trackingseite kann die Netzübernahme bestätigen, aber keine "
+                            "vollständige Zollakte oder einen garantierten Zustelltag liefern."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Letzten Scan und nächste Handlung zusammenführen",
+                    "paragraphs": [
+                        (
+                            "Eine einfache Entscheidungsleiter hilft: Ohne internationalen Paketdatensatz zuerst die Lagerentscheidung abschließen. "
+                            "Ein Paket mit offener Zahlung oder Verpackung bleibt bei Sugargoo. Ein Label ohne Annahmescan erfordert nach dem "
+                            "Routen-Bearbeitungsfenster eine Übergabeprüfung. Export- oder Ferntransportbewegung wird gegen die Schätzung derselben "
+                            "Route beobachtet. Bei Zoll- oder Importbearbeitung auf konkrete Anfragen von Zusteller oder Behörde reagieren, statt alle "
+                            "Beteiligten gleichzeitig anzuschreiben. Beim Zieldepot oder Zustellscan ist der benannte deutsche Dienst zuständig."
+                        ),
+                        (
+                            "Bei ‚zugestellt‘ ohne Paket werden detaillierter Empfänger beziehungsweise Ablageort, Haushalt, Nachbarn, Ablagegenehmigung, "
+                            "Filiale und Packstation geprüft. Ist die dokumentierte Zustellung nicht auffindbar, den letzten Zusteller zeitnah kontaktieren "
+                            "und Sugargoo im Paketdatensatz informieren, weil gegebenenfalls der Absender oder Versandkunde die Nachforschung eröffnen muss. "
+                            "Die Sendung nicht nur deshalb als erhalten markieren, um eine Dashboard-Meldung zu entfernen."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Mit Belegen statt Vermutungen eskalieren",
+                    "paragraphs": [
+                        (
+                            "Es gibt keine seriöse Universalregel, nach der jede Scanpause nach einer festen Tageszahl ein Verlust ist. Routen unterscheiden "
+                            "sich bei Zeitfenster, Scandichte, Übergaben und Schadenverfahren. Zuerst das letzte physische Ereignis mit Lieferprognose und "
+                            "Hinweisen der exakt gebuchten Route vergleichen. Außerhalb dieses Fensters ein Belegpaket vorbereiten: Sugargoo-Paketnummer, "
+                            "Carrier-Nummer, Route, Ziel-Postleitzahl, Einreichungs- und Zahlungsdatum, letzter physischer Scan, Screenshots und gewünschte "
+                            "Handlung—Statusbestätigung, Transporteur-Anfrage oder Schadenanleitung."
+                        ),
+                        (
+                            "Dieses Paket über den offiziellen Paket-Support senden, damit es mit der Transaktion verbunden bleibt. Sugargoos aktuelle "
+                            "Hinweise zu verspäteten, verlorenen oder beschädigten Sendungen empfehlen, zunächst das Packing-Center-Tracking zu prüfen, "
+                            "bei anhaltender Unklarheit den offiziellen Support zu nutzen und Unterlagen aufzubewahren. Keine Zollursache erfinden, den "
+                            "Verlust nicht selbst erklären und keine dubiose ‚Tracking-Wiederherstellung‘ kaufen. Fristen und mögliche Erstattung hängen "
+                            "von den aktuellen Bedingungen der gebuchten Route ab."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Zustand bei Übergabe dokumentieren",
+                    "paragraphs": [
+                        (
+                            "Mit dem Zustellscan endet das Tracking, am Empfang beginnt jedoch die Beweissicherung. Das geschlossene Paket so fotografieren, "
+                            "dass Label, Außenschäden und Siegel erkennbar sind; persönliche Daten werden nicht öffentlich geteilt. Bei gequetschtem, nassem, "
+                            "geöffnetem oder neu verklebtem Karton jede Seite vor dem Auspacken aufnehmen. Verpackung, Inhalt, Gewichtsangaben, Zustellhinweis "
+                            "und bei möglichem Schaden eine durchgehende Auspackaufnahme aufbewahren. So lassen sich Transportschaden, Packproblem und "
+                            "Artikelabweichung besser trennen."
+                        ),
+                        (
+                            "Ein Problem nach Entdeckung möglichst schnell über den offiziellen After-Sales-Weg melden und die aktuellen Nachweisanforderungen "
+                            "der Route befolgen. Ein Zustellscan beweist nicht, dass jeder Artikel unbeschädigt ankam; ein beschädigter Außenkarton beweist "
+                            "umgekehrt nicht die Ursache jedes Produktfehlers. Beobachtbare Tatsachen beschreiben, fehlende Artikel mit Lager- und Paketdatensatz "
+                            "abgleichen und Label oder Füllmaterial nicht entsorgen, bevor der Fall bestätigt wurde."
+                        ),
+                    ],
+                },
+                {
+                    "heading": "Das nächste Paket trackingfähig vorbereiten",
+                    "paragraphs": [
+                        (
+                            "Vor Zahlung deutsche Adresse, Postleitzahl, Empfängername und gegebenenfalls Packstation-Daten im von der Route verlangten Format "
+                            "prüfen. Trackingumfang, Lieferfenster, Beschränkungen, Versicherungsoptionen und Schadenbedingungen direkt bei Sugargoo lesen; diese "
+                            "Angaben ändern sich und sollten nicht aus einem alten Vergleich übernommen werden. Eingereichtes Gewicht, Maße, Paketinhalt und "
+                            "gewählte Services zusammen mit den Bestellnummern speichern."
+                        ),
+                        (
+                            "Der belastbare Ablauf bleibt kurz: Bestell-, Paket- und Carrier-Nummer trennen; Ereignisverlauf sichern; elektronischen von physischem "
+                            "Scan unterscheiden; echten deutschen Zusteller ermitteln; verstrichene Zeit mit der gebuchten Route vergleichen; anschließend mit einem "
+                            "vollständigen Belegpaket eskalieren. Das beschleunigt den internationalen Transport nicht. Es verhindert aber, dass eine normale Übergabe "
+                            "zur Panik wird, und macht aus einer echten Ausnahme einen prüfbaren Fall."
+                        ),
+                    ],
+                },
+            ],
+            "related_links": [
+                {"label": "Versand von China nach Deutschland", "relative": "guides/shipping-from-china-to-germany"},
+                {"label": "Lagerung und Retouren richtig planen", "relative": "articles/sugargoo-warehouse-storage-returns"},
+                {"label": "Volumengewicht vor Paketeinreichung", "relative": "articles/sugargoo-volumetric-weight-explained"},
+            ],
+            "sources": [
+                {
+                    "label": "Sugargoo — Tracking Guide",
+                    "url": "https://blog.sugargoo.com/sugargoo-tracking-guide/",
+                    "note": "Packing-Center-/My-Parcel-Ablauf; geprüft am 3. August 2026.",
+                },
+                {
+                    "label": "Sugargoo — How to Track Your Package",
+                    "url": "https://blog.sugargoo.com/how-to-track-your-package-shipping-status-transit-nodes-and-delivery-time-estimates/",
+                    "note": "Packing Center → Shipped und Trackingnummer; geprüft am 3. August 2026.",
+                },
+                {
+                    "label": "Sugargoo — Lost, Damaged or Delayed Parcels",
+                    "url": "https://blog.sugargoo.com/what-to-do-if-your-package-is-lost-damaged-or-delayed/",
+                    "note": "Offizielle Support- und Nachweishinweise; geprüft am 3. August 2026.",
+                },
+                {
+                    "label": "DHL Deutschland — Internationale Pakete",
+                    "url": "https://www.dhl.de/en/privatkunden/hilfe-kundenservice/themen/international/probleme-loesungen.html",
+                    "note": "Scanlücken und Übergaben; geprüft am 3. August 2026.",
+                },
+                {
+                    "label": "DHL Deutschland — Sendungen aus dem Ausland",
+                    "url": "https://www.dhl.de/en/privatkunden/hilfe-kundenservice/themen/international/import.html",
+                    "note": "Zustellerbestimmung und eingeschränkte Zollereignisse; geprüft am 3. August 2026.",
+                },
+            ],
+        },
+    },
+    {
         "slug": "sugargoo-spreadsheet-2026-complete-guide",
         "published": "2026-07-30",
         "en": {

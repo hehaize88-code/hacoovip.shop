@@ -103,7 +103,7 @@ COPY = {
         "articles_title": "Sugargoo Articles for Germany",
         "articles_desc": (
             "Long-form, localized research on spreadsheets, finds, sizing, warehouse "
-            "decisions, volumetric weight, customs and VAT."
+            "decisions, tracking, volumetric weight, customs and VAT."
         ),
         "finds_title": "64 Sugargoo Spreadsheet Finds Checked in July 2026",
         "finds_desc": (
@@ -137,7 +137,7 @@ COPY = {
         "stats": [
             ("64", "unique product records"),
             ("8", "distinct category methods"),
-            ("12", "in-depth guides and articles"),
+            ("13", "in-depth guides and articles"),
             ("2", "localized languages"),
         ],
         "updated": "Updated 30 July 2026",
@@ -200,7 +200,7 @@ COPY = {
         "articles_title": "Sugargoo-Artikel für Deutschland",
         "articles_desc": (
             "Lokalisierte Langform-Recherche zu Spreadsheets, Finds, Maßen, "
-            "Lagerentscheidungen, Volumengewicht, Zoll und Einfuhrumsatzsteuer."
+            "Lagerentscheidungen, Tracking, Volumengewicht, Zoll und Einfuhrumsatzsteuer."
         ),
         "finds_title": "64 Sugargoo-Spreadsheet-Finds, geprüft im Juli 2026",
         "finds_desc": (
@@ -234,7 +234,7 @@ COPY = {
         "stats": [
             ("64", "einzigartige Produktdatensätze"),
             ("8", "unterschiedliche Kategoriemethoden"),
-            ("12", "ausführliche Guides und Artikel"),
+            ("13", "ausführliche Guides und Artikel"),
             ("2", "lokalisierte Sprachen"),
         ],
         "updated": "Aktualisiert am 30. Juli 2026",
@@ -1051,6 +1051,7 @@ class Builder:
         c = COPY[locale]
         info = article[locale]
         relative = f'articles/{article["slug"]}'
+        checked = info.get("checked", c["article_checked"])
         sections = "".join(
             (
                 f'<section id="section-{index}"><h2>{e(section["heading"])}</h2>'
@@ -1059,7 +1060,30 @@ class Builder:
             )
             for index, section in enumerate(info["sections"], start=1)
         )
-        sources = "".join(f"<li>{e(source)}</li>" for source in info["sources"])
+        sources = "".join(
+            (
+                f'<li><a href="{e(source["url"])}" rel="noopener noreferrer">'
+                f'{e(source["label"])}</a>'
+                + (f' — {e(source.get("note", ""))}' if source.get("note") else "")
+                + "</li>"
+                if isinstance(source, dict)
+                else f"<li>{e(source)}</li>"
+            )
+            for source in info["sources"]
+        )
+        related_items = info.get("related_links", [])
+        related_title = "Related reading" if locale == "en" else "Passende Vertiefung"
+        related = (
+            f'<section class="related-reading"><h2>{e(related_title)}</h2><ul>'
+            + "".join(
+                f'<li><a href="{route(locale, item["relative"])}">'
+                f'{e(item["label"])}</a></li>'
+                for item in related_items
+            )
+            + "</ul></section>"
+            if related_items
+            else ""
+        )
         if locale == "en":
             sidebar_title = "Use the article as a checklist"
             sidebar_text = (
@@ -1074,14 +1098,14 @@ class Builder:
             )
         body = (
             '<main id="main">'
-            f'{page_hero(locale, info["title"], info["dek"], [(SITE[locale]["nav"]["articles"], "articles"), (info["title"], relative)], c["article_checked"])}'
+            f'{page_hero(locale, info["title"], info["dek"], [(SITE[locale]["nav"]["articles"], "articles"), (info["title"], relative)], checked)}'
             '<section class="section"><div class="shell content-grid">'
             '<article class="prose">'
             '<div class="callout"><strong>'
             f'{e(c["independent"])}</strong><p>{e(SITE[locale]["disclaimer"])}</p></div>'
-            f"{sections}"
+            f"{sections}{related}"
             f'<section class="source-note"><h2>{e(c["sources"])}</h2>'
-            f'<p>{e(c["article_checked"])}</p><ul>{sources}</ul></section>'
+            f'<p>{e(checked)}</p><ul>{sources}</ul></section>'
             "</article><aside class=\"sidebar-card\">"
             f'<h2>{e(sidebar_title)}</h2><p>{e(sidebar_text)}</p>'
             f'<a class="button button-primary" href="{route(locale, "finds")}">'
@@ -1097,11 +1121,11 @@ class Builder:
         )
         schema = {
             "@context": "https://schema.org",
-            "@type": "Article",
+            "@type": article.get("schema_type", "Article"),
             "headline": info["title"],
             "description": info["description"],
             "datePublished": article["published"],
-            "dateModified": BUILD_DATE,
+            "dateModified": article.get("modified", BUILD_DATE),
             "inLanguage": SITE[locale]["lang"],
             "mainEntityOfPage": absolute(locale, relative),
             "wordCount": word_count,
@@ -1115,7 +1139,7 @@ class Builder:
             page_document(
                 locale=locale,
                 relative=relative,
-                title=f'{info["title"]} | Sugargoos.de',
+                title=info.get("seo_title", f'{info["title"]} | Sugargoos.de'),
                 description=info["description"],
                 body=body,
                 active="articles",
