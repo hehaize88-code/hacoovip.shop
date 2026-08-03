@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-07-30",
+  "lastReviewed": "2026-08-03",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -160,6 +160,20 @@
       "angle": "compares source types, dates and verifiable fields instead of issuing an unsupported safe-or-scam verdict",
       "evidence": "Kakobuy official service scope, Apple App Store listing, Trustpilot profile and public Reddit reports reviewed as user-generated evidence",
       "internalLinkRole": "supports trust research while sending operational questions to policy and workflow guides"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/buy-from-1688-with-kakobuy",
+      "primaryQuery": "buy from 1688 with Kakobuy",
+      "relatedTerms": [
+        "Kakobuy 1688 agent",
+        "1688 MOQ Kakobuy",
+        "1688 batch quantity",
+        "1688 link Kakobuy"
+      ],
+      "intent": "1688 purchase and quantity verification",
+      "angle": "separating MOQ, batch multiples, price tiers and commercial units before warehouse QC",
+      "evidence": "current Kakobuy service scope, public 1688 batch-number cart logic, inventory and warehouse statements, and Alibaba Group 1688 profile",
+      "internalLinkRole": "fills the 1688 source-link gap without replacing Taobao, Weidian or general ordering guides"
     }
   ],
   "nextPriority": "Kakobuy coupons and shipping discounts: current-term verification"
