@@ -215,3 +215,103 @@ footer { padding:35px max(5vw,30px); background:#ece5d8; display:flex; align-ite
   .faq-list summary { grid-template-columns:28px 1fr auto; padding:15px 1px; font-size:15px; gap:7px; }
   .faq-list details p { margin:0 0 17px 35px; font-size:10px; line-height:1.55; }
 }
+
+/* Keep every homepage module visible while fitting the mobile experience into
+   a compact, non-scrolling grid. Inner pages keep their existing spacing. */
+@media (max-width:650px) {
+  .home-page .site-header {
+    width:calc(100% - 16px);
+    height:56px;
+    margin-top:8px;
+    padding:0 8px 0 12px;
+  }
+  .home-page .logo-wrap { width:104px; }
+  .home-page .header-cta { padding:8px 9px; }
+  .home-page .hero { padding:16px 12px 6px; }
+  .home-page h1 { margin:11px 0 8px; font-size:38px; line-height:.88; }
+  .home-page .dek { font-size:9px; line-height:1.4; }
+  .home-page .search {
+    height:42px;
+    margin:10px 0 8px;
+    padding:5px 6px 5px 10px;
+  }
+  .home-page .search>span { font-size:19px; }
+  .home-page .search button { padding:8px 10px; }
+  .home-page .primary-button { font-size:10px; }
+  .home-page .source-note {
+    margin:12px 0 2px;
+    padding:8px 96px 8px 10px;
+  }
+  .home-page .source-note strong { padding:8px; }
+  .home-page .product-map { min-height:292px; margin-top:0; }
+  .home-page .product-1,.home-page .product-2,.home-page .product-3,.home-page .product-4 { width:43%; }
+  .home-page .product-1 { left:3%; top:10px; }
+  .home-page .product-2 { left:5%; top:153px; }
+  .home-page .product-3 { right:4%; top:17px; }
+  .home-page .product-4 { right:3%; top:161px; }
+  .home-page .product-1 .image-cutout,
+  .home-page .product-2 .image-cutout,
+  .home-page .product-3 .image-cutout,
+  .home-page .product-4 .image-cutout { height:98px; }
+  .home-page .paper-section,
+  .home-page .catalog,
+  .home-page .method { padding:26px 12px; }
+  .home-page .section-heading { margin-bottom:14px; gap:4px; }
+  .home-page .section-heading h2,
+  .home-page .method-title h2 { font-size:24px; }
+  .home-page .section-heading>span { font-size:8px; line-height:1.35; }
+  .home-page .journey-grid { gap:6px; }
+  .home-page .journey {
+    min-height:124px;
+    padding:9px 7px;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .home-page .journey small { font-size:8px; line-height:1.2; }
+  .home-page .journey h3 { margin:18px 0 4px; font-size:13px; }
+  .home-page .journey p { font-size:8px; line-height:1.3; }
+  .home-page .journey>b { top:6px; right:7px; bottom:auto; font-size:16px; }
+  .home-page .resources { padding-top:22px; }
+  .home-page .resource-grid { gap:7px; }
+  .home-page .resource-card {
+    min-height:128px;
+    padding:11px;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .home-page .resource-card>small { top:7px; right:8px; font-size:16px; }
+  .home-page .resource-card h3 { margin:19px 0 6px; font-size:19px; }
+  .home-page .resource-card p { font-size:8px; line-height:1.3; }
+  .home-page .resource-card>b { left:11px; bottom:9px; font-size:8px; }
+  .home-page .catalog-grid { gap:7px; }
+  .home-page .catalog-card { padding:5px 5px 8px; }
+  .home-page .catalog-image { height:102px; }
+  .home-page .catalog-image span { left:6px; bottom:6px; padding:4px 6px; font-size:7px; }
+  .home-page .catalog-card>div:last-child { padding:6px 3px 0; }
+  .home-page .catalog-card h3 { min-height:24px; font-size:11px; }
+  .home-page .catalog-card p { margin:4px 0 6px; font-size:10px; }
+  .home-page .categories { padding-top:26px; }
+  .home-page .category-list { gap:0 9px; }
+  .home-page .category-list a { grid-template-columns:21px 1fr; padding:9px 1px; }
+  .home-page .category-list b { font-size:13px; }
+  .home-page .category-list span { font-size:8px; }
+  .home-page .method-title { margin-bottom:14px; }
+  .home-page .method ol { gap:6px; }
+  .home-page .method li { padding:8px 7px; }
+  .home-page .method li>b { padding:3px 5px; font-size:8px; }
+  .home-page .method h3 { margin:12px 0 4px; font-size:12px; }
+  .home-page .method p { font-size:8px; line-height:1.3; }
+  .home-page footer {
+    display:grid;
+    grid-template-columns:90px minmax(0,1fr) auto;
+    align-items:center;
+    padding:13px 12px;
+    gap:8px;
+  }
+  .home-page footer img { width:90px; }
+  .home-page footer p {
+    order:initial;
+    width:auto;
+    font-size:8px;
+    line-height:1.3;
+  }
+  .home-page footer a { font-size:8px; white-space:nowrap; }
+}
