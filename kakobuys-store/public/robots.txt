@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kakobuys.store/sitemap.xml
+
