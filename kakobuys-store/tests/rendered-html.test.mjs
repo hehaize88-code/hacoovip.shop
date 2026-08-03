@@ -33,6 +33,11 @@ test("renders development preview metadata", async () => {
 });
 
 const allowedExternalHosts = new Set(["cnfanshp.com", "www.cnfanshp.com"]);
+const articleRoutes = [
+  "read-kakobuy-qc-photos",
+  "kakobuy-spreadsheet-first-time-guide",
+  "product-price-vs-parcel-cost",
+];
 const siteRoutes = [
   "",
   "categories",
@@ -43,9 +48,7 @@ const siteRoutes = [
   "under-25",
   "qc-first",
   "new-this-week",
-  "read-kakobuy-qc-photos",
-  "kakobuy-spreadsheet-first-time-guide",
-  "product-price-vs-parcel-cost",
+  ...articleRoutes,
 ];
 const languagePrefixes = ["", "de", "fr", "es", "it", "pl", "pt", "ro"];
 
@@ -141,5 +144,39 @@ test("article interface labels follow the selected language", async () => {
     const html = await response.text();
     assert.equal(response.status, 200, `${path} should render`);
     assert.match(html, new RegExp(marker));
+  }
+});
+
+test("all three article bodies follow the selected language", async () => {
+  const worker = await loadWorker();
+  const languages = ["de", "fr", "es", "it", "pl", "pt", "ro"];
+  const englishBodyMarkers = [
+    "A warehouse photo is not a guarantee that an item is perfect.",
+    "A Kakobuy spreadsheet can shorten product discovery, but it should never replace verification.",
+    "The number on a product card is useful for comparing items, but it is not a delivered-price quote.",
+  ];
+  const expectedStructure = [
+    { sections: 7, paragraphs: 14, bullets: 10 },
+    { sections: 9, paragraphs: 18, bullets: 8 },
+    { sections: 9, paragraphs: 18, bullets: 18 },
+  ];
+
+  for (const language of languages) {
+    for (const [index, route] of articleRoutes.entries()) {
+      const path = routePath(language, route);
+      const response = await worker.fetch(
+        new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
+        { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+        { waitUntil() {}, passThroughOnException() {} },
+      );
+      const html = await response.text();
+      assert.equal(response.status, 200, `${path} should render`);
+      assert.doesNotMatch(html, new RegExp(englishBodyMarkers[index].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${path} should not render the English introduction`);
+      assert.equal((html.match(/<section>/g) ?? []).length, expectedStructure[index].sections, `${path} should preserve every article section`);
+      const articleSections = html.match(/<section>[\s\S]*?<\/section>/g) ?? [];
+      const paragraphCount = articleSections.reduce((total, section) => total + (section.match(/<p>/g) ?? []).length, 0);
+      assert.equal(paragraphCount, expectedStructure[index].paragraphs, `${path} should preserve every article paragraph`);
+      assert.equal((html.match(/<li>/g) ?? []).length, expectedStructure[index].bullets, `${path} should preserve every checklist item`);
+    }
   }
 });
