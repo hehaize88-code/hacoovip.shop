@@ -1,2 +1,2 @@
-FAQ/mobile release: 33f9c9cc49bbb67edf9085a3744ea708a66491fa
+SEO article localization release: e8afbe33a4339bc47fc2ed071ee98e7d78ead689
 Published: 2026-08-03
