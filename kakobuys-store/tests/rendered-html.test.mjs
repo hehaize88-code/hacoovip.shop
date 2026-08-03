@@ -100,3 +100,46 @@ test("the approved catalog brand name is not visible in page copy", async () => 
 
   assert.doesNotMatch(visibleText, /cnfans(?:hp)?|cnbuycha/i);
 });
+
+test("FAQ renders twelve localized questions in every language", async () => {
+  const worker = await loadWorker();
+  const localeMarkers = {
+    "": "Why can a displayed price change?",
+    de: "Warum kann sich ein angezeigter Preis ändern?",
+    fr: "Pourquoi un prix affiché peut-il changer ?",
+    es: "¿Por qué puede cambiar un precio mostrado?",
+    it: "Perché un prezzo visualizzato può cambiare?",
+    pl: "Dlaczego wyświetlana cena może się zmienić?",
+    pt: "Por que um preço exibido pode mudar?",
+    ro: "De ce se poate schimba un preț afișat?",
+  };
+
+  for (const [language, marker] of Object.entries(localeMarkers)) {
+    const path = routePath(language, "faq");
+    const response = await worker.fetch(
+      new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
+      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+    const html = await response.text();
+    assert.equal(response.status, 200, `${path} should render`);
+    assert.equal((html.match(/<details>/g) ?? []).length, 12, `${path} should contain 12 FAQs`);
+    assert.match(html, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});
+
+test("article interface labels follow the selected language", async () => {
+  const worker = await loadWorker();
+  const expected = { de: "Kurzantwort", fr: "Réponse rapide", es: "Respuesta rápida", it: "Risposta rapida", pl: "Krótka odpowiedź", pt: "Resposta rápida", ro: "Răspuns rapid" };
+  for (const [language, marker] of Object.entries(expected)) {
+    const path = routePath(language, "read-kakobuy-qc-photos");
+    const response = await worker.fetch(
+      new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
+      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+    const html = await response.text();
+    assert.equal(response.status, 200, `${path} should render`);
+    assert.match(html, new RegExp(marker));
+  }
+});
