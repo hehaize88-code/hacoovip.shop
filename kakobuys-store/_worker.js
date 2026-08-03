@@ -252,9 +252,21 @@ class RemovePreviewHydrationData {
       textChunk.remove();
       return;
     }
-    const previewRecord = ',[\\"$\\",\\"meta\\",\\"4\\",{\\"name\\":\\"codex-preview\\",\\"content\\":\\"development\\"}]';
-    textChunk.replace(this.buffer.split(previewRecord).join(""));
+    const previewRecord = /,\[\\"\$\\",\\"meta\\",\\"\d+\\",\{\\"name\\":\\"codex-preview\\",\\"content\\":\\"development\\"\}\]/g;
+    textChunk.replace(this.buffer.replace(previewRecord, ""));
     this.buffer = "";
+  }
+}
+
+class PromoteFirstHeading {
+  constructor() {
+    this.promoted = false;
+  }
+
+  element(element) {
+    if (this.promoted) return;
+    element.tagName = "h1";
+    this.promoted = true;
   }
 }
 
@@ -334,7 +346,7 @@ export default {
     });
     const seoHead = new AddSeoHead(seoMarkup({ language, slug, canonicalUrl, ...metadata }));
 
-    return new HTMLRewriter()
+    const rewriter = new HTMLRewriter()
       .on("html", new SetDocumentLanguage(language))
       .on('meta[name="codex-preview"]', new RemoveElement())
       .on("title", new RemoveElement())
@@ -348,7 +360,10 @@ export default {
       .on('meta[property="og:description"]', new RemoveElement())
       .on('meta[property="og:url"]', new RemoveElement())
       .on("script", new RemovePreviewHydrationData())
-      .on("head", seoHead)
-      .transform(htmlResponse);
+      .on("head", seoHead);
+    if (slug === "categories") {
+      rewriter.on("h2", new PromoteFirstHeading());
+    }
+    return rewriter.transform(htmlResponse);
   },
 };
