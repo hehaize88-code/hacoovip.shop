@@ -555,6 +555,18 @@
     }
   };
 
+  const localizedRehearsalCards = {"en":{"count":"Six researched long-form guides covering source links, QC decisions, shipping estimates, warehouse deadlines and packed-parcel choices.","href":"/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>REHEARSAL PACKAGING · 14 MIN READ</p><h3>OOPBUY Rehearsal Packaging: Decide When It Is Worth It</h3><span>Separate packed-weight evidence from parcel photos, then pay only when the result can change a route or packaging decision.</span><a href=\"/articles/oopbuy-rehearsal-packaging-guide/\">Read guide <i>→</i></a></article>"},"de":{"count":"Sechs recherchierte Langartikel zu Links, QC, Versandkalkulation, Lagerfristen und Entscheidungen zum gepackten Paket.","href":"/de/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>PROBEVERPACKUNG · 14 MIN.</p><h3>OOPBUY Probeverpackung: Wann lohnt sich der Service?</h3><span>Gepackte Gewichtsdaten von Paketfotos trennen und nur zahlen, wenn das Ergebnis Route oder Verpackung ändern kann.</span><a href=\"/de/articles/oopbuy-rehearsal-packaging-guide/\">Ratgeber lesen <i>→</i></a></article>"},"fr":{"count":"Six articles approfondis sur les liens, le QC, la livraison, les délais d’entrepôt et les choix de colis emballé.","href":"/fr/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>EMBALLAGE D’ESSAI · 14 MIN</p><h3>Emballage d’essai OOPBUY : quand est-il utile ?</h3><span>Distinguer mesure emballée et photos, puis payer seulement si le résultat peut modifier la ligne ou le conditionnement.</span><a href=\"/fr/articles/oopbuy-rehearsal-packaging-guide/\">Lire le guide <i>→</i></a></article>"},"es":{"count":"Seis artículos extensos sobre enlaces, QC, cálculo, plazos de almacén y decisiones sobre el paquete embalado.","href":"/es/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>EMBALAJE DE PRUEBA · 14 MIN</p><h3>Embalaje de prueba OOPBUY: cuándo vale la pena</h3><span>Separa los datos del peso embalado de las fotos y paga solo si el resultado puede cambiar ruta o embalaje.</span><a href=\"/es/articles/oopbuy-rehearsal-packaging-guide/\">Leer guía <i>→</i></a></article>"},"it":{"count":"Sei articoli approfonditi su link, QC, calcolo, scadenze di magazzino e scelte per il pacco imballato.","href":"/it/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>IMBALLAGGIO DI PROVA · 14 MIN</p><h3>Imballaggio di prova OOPBUY: quando conviene</h3><span>Distingui il peso imballato dalle foto e paga solo se il risultato può cambiare rotta o confezionamento.</span><a href=\"/it/articles/oopbuy-rehearsal-packaging-guide/\">Leggi la guida <i>→</i></a></article>"}};
+
+  function ensureRehearsalCard(lang) {
+    const data = localizedRehearsalCards[lang];
+    if (!data) return;
+    const journal = document.querySelector(".journal-section");
+    if (!journal) return;
+    setText(journal.querySelector(".section-heading--split > p"), data.count);
+    const grid = journal.querySelector(".article-grid");
+    if (grid && !grid.querySelector('a[href="' + data.href + '"]')) grid.insertAdjacentHTML("beforeend", data.html);
+  }
+
   function ensureLocalizedShippingCard(lang) {
     const data = localizedShippingCards[lang];
     if (!data) return;
@@ -607,6 +619,7 @@
     loadCatalogHealth(label, lang);
     ensureLocalizedShippingCard(pageLanguage());
     ensureWarehouseCard(pageLanguage());
+    ensureRehearsalCard(pageLanguage());
     forceStaticArticleNavigation();
   }
 
