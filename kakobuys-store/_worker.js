@@ -1,3 +1,4 @@
+// Production deployment trigger: expanded content and catalog release.
 const CANONICAL_ORIGIN = "https://kakobuys.store";
 const LANGUAGE_CODES = ["en", "de", "fr", "es", "it", "pl", "pt", "ro"];
 const LOCALIZED_PAGE_SLUGS = [
