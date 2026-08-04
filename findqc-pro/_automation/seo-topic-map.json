@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-02",
+  "lastUpdated": "2026-08-04",
   "articles": [
     {
       "slug": "before-you-buy-qc-guide",
@@ -55,6 +55,16 @@
       "outline": ["identity record", "recall databases", "battery transport evidence", "photo limits", "route questions", "go-hold-stop decision", "sources and limits"],
       "faqAngles": ["Can clean FindQC QC photos prove a product is safe?", "What battery details should be checked before agent shipping?", "Does no recall result mean a product is certified safe?"],
       "visuals": ["Two decision tables rendered from cited guidance; no customer images or external copyrighted screenshots"]
+    },
+    {
+      "slug": "findqc-shoes-qc-checklist",
+      "primaryQuery": "FindQC shoes QC checklist",
+      "intent": "Inspect a specific shoe pair before shopping-agent warehouse approval",
+      "focus": ["pair identity", "size labels", "paired-view symmetry", "in-shoe measurements", "upper and sole construction", "visible damage"],
+      "exampleType": "Category-specific checklists and evidence states, never fabricated orders, defects or authenticity verdicts",
+      "outline": ["evidence roles", "pair identity", "wide-view comparison", "footwear measurements", "visible construction", "accept-ask-stop decision", "timed workflow and sources"],
+      "faqAngles": ["Can FindQC shoe photos prove authenticity?", "Should an insole measurement match foot length?", "Which shoe defects need a closer warehouse photo?"],
+      "visuals": ["Three original HTML decision and inspection tables plus one existing local editorial shoe image; no customer media"]
     }
   ]
 }

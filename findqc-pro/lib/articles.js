@@ -96,6 +96,16 @@ export const articleSources = {
     href: "https://www.iata.org/en/programs/cargo/dgr/lithium-batteries/",
     note: "Current air-cargo overview explaining that battery configuration, rating, identification, packing, marking and documentation affect transport requirements.",
   },
+  isoMondopoint: {
+    label: "ISO 9407:2019 footwear sizing",
+    href: "https://www.iso.org/standard/71594.html",
+    note: "Current ISO overview of the Mondopoint footwear size designation, which is based on defined measurements of the foot the footwear is intended to fit.",
+  },
+  isoInShoeLength: {
+    label: "ISO 19410-1:2022 in-shoe length",
+    href: "https://www.iso.org/standard/81281.html",
+    note: "ISO overview of a method for measuring effective shoe length available to accommodate the foot, excluding open-heel and open-toe footwear.",
+  },
 };
 
 export const articles = [
@@ -990,6 +1000,143 @@ export const articles = [
     sources: [articleSources.terms, articleSources.cpsc, articleSources.safetyGate, articleSources.safetyGateReport, articleSources.iataBatteries, articleSources.faaLithium],
     related: ["what-qc-photos-can-prove", "findqc-shopping-agent-workflow", "before-you-buy-qc-guide"],
     cta: { eyebrow: "Inspect the exact unit", title: "Continue with the warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
+  },
+  {
+    slug: "findqc-shoes-qc-checklist",
+    title: "FindQC Shoes QC Checklist: How to Inspect a Pair Before Warehouse Approval",
+    shortTitle: "FindQC Shoes QC Checklist",
+    description: "Use this FindQC shoes QC checklist to verify the pair, compare measurements, inspect visible construction and request better warehouse evidence.",
+    excerpt: "A shoe-specific QC workflow for checking pair identity, labels, shape, stitching, sole bonding, measurements and visible damage without claiming authenticity.",
+    category: "Category Checklist",
+    readTime: "11 min read",
+    date: "4 August 2026",
+    dateISO: "2026-08-04",
+    updatedISO: "2026-08-04",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-shoes-qc-checklist"],
+    heroImage: "/products/catalog/shoes-6034.jpg",
+    heroAlt: "Grey and white shoes photographed as an editorial example for a pair-by-pair QC checklist",
+    heroCaption: "Existing FindQC Pro local editorial catalog asset, reused to illustrate the inspection sequence. It is not a customer image or a FindQC warehouse QC record.",
+    keywords: ["FindQC shoes QC checklist", "shoe QC photos", "shopping agent shoe inspection", "warehouse shoe measurement", "shoe quality check"],
+    sourceIntro: "This independent guide's sources were checked on 4 August 2026. FindQC records, seller listings and agent procedures can change, so repeat the identity and warehouse checks for the exact pair attached to your order.",
+    intro: [
+      "Shoes invite fast judgements. A familiar silhouette, a neat side profile and a clean box can make a gallery feel convincing before the two shoes have even been compared with each other. That is the wrong order. A useful shoe inspection begins with pair identity, moves through wide views and measurements, and only then examines smaller construction details.",
+      "This FindQC shoes QC checklist is for visible, decision-relevant evidence. It does not authenticate a brand, predict comfort or prove how an outsole will wear after months of use. Instead, it shows how to turn public QC material into a question list, then apply that list to the photographs of the exact pair in your shopping-agent warehouse.",
+    ],
+    sections: [
+      {
+        id: "evidence-role",
+        title: "1. Give each source the right job",
+        blocks: [
+          { type: "p", text: "FindQC describes itself as a QC discovery and aggregation platform. Its Terms of Service say that photos, weights, dimensions and defect records generally come from third-party agents, and that the platform does not guarantee their accuracy, completeness or authenticity. Public shoe galleries are therefore research records, not inspection reports for your future pair." },
+          { type: "p", text: "Use a public record to learn which angles exist, which labels might identify the variant and where a seller's recurring visible issues may appear. Use the live source listing to confirm the commercial offer. Give the greatest weight to the warehouse photographs linked to your own order, because those are the images most likely to show the unit awaiting your decision." },
+          { type: "table", headers: ["Evidence", "Useful for", "Cannot establish"], rows: [
+            ["Seller listing", "Claimed model, colour, size options and included items", "The condition of the pair delivered to a warehouse"],
+            ["Public FindQC record", "Earlier visible examples and a category-specific question list", "That your pair is identical, available or authentic"],
+            ["Your warehouse photos", "Visible condition and identifiers on the received pair", "Hidden materials, long-term wear, comfort or legal authenticity"],
+          ] },
+          { type: "source", href: "https://findqc.com/terms-of-service", label: "FindQC Terms of Service", text: "Official platform role, third-party QC-data limits and authenticity disclaimer checked 4 August 2026." },
+        ],
+      },
+      {
+        id: "pair-identity",
+        title: "2. Confirm that both shoes belong to the ordered pair",
+        blocks: [
+          { type: "p", text: "Before zooming into stitching, record the source URL, seller, colour, labelled size and ordered variant. Then ask for one frame showing both shoes together from above and another showing the size labels. A perfect close-up from the wrong colour or size has no decision value." },
+          { type: "list", title: "Run these identity checks first", items: [
+            "Both shoes are present and are the same model, colour and material treatment.",
+            "The left and right labels show the ordered size and do not conflict with each other.",
+            "Any model, stock or item code visible on the shoes agrees across the pair and packaging.",
+            "The box label, if included, matches the photographed pair rather than a different variant.",
+            "Accessories promised on the live transaction page are visible, while unpromised extras are not assumed.",
+          ] },
+          { type: "p", text: "Do not identify a product from a promotional name alone. Marketplace titles can be shortened, translated or reused. A combination of source link, ordered variant and photographed label is stronger than any one clue. If those clues conflict, pause and request clarification before judging quality." },
+        ],
+      },
+      {
+        id: "wide-views",
+        title: "3. Compare shape and symmetry before small details",
+        blocks: [
+          { type: "p", text: "Start with paired front, rear, side, top and outsole views. Keep the shoes at roughly the same distance and orientation. Perspective can make the shoe nearer the lens appear larger, so a diagonal photograph is poor evidence of a size or shape mismatch." },
+          { type: "table", headers: ["View", "Check", "Common ambiguity"], rows: [
+            ["Front", "Toe shape, left-right width, centre line and matching lace rows", "One shoe placed closer to the camera"],
+            ["Rear", "Heel height, vertical seams, collar shape and pair alignment", "Soft collars compressed differently"],
+            ["Side", "Panel placement, sole line, material transitions and visible glue", "Lighting reflection mistaken for a stain"],
+            ["Top", "Opening shape, tongue position, lace length and label visibility", "Tongues or laces arranged unevenly"],
+            ["Outsole", "Matching tread pattern, contamination, cuts and obvious wear", "Dust from handling rather than prior use"],
+          ] },
+          { type: "p", text: "Symmetry does not mean the shoes must look pixel-identical. Soft materials settle differently, laces alter tension and removable paper can change the toe shape. Look for a difference that persists across more than one useful angle. If it disappears when the pair is aligned, the first photograph was probably the problem." },
+          { type: "callout", title: "A practical comparison rule", text: "Compare left with right, then compare both with the ordered specification. Do not compare one warehouse angle with a polished seller photograph and call the camera difference a defect." },
+        ],
+      },
+      {
+        id: "measurement",
+        title: "4. Separate size labels, foot length and usable shoe length",
+        blocks: [
+          { type: "p", text: "A printed size is a designation, not a direct promise that every shoe with that label has the same interior space. ISO 9407 describes Mondopoint sizing as a marking system based on defined measurements of the foot the footwear is intended to fit. ISO 19410-1 separately addresses effective in-shoe length—the space available to accommodate the foot. Those are related concepts, but they are not interchangeable numbers." },
+          { type: "p", text: "For a warehouse comparison, use a similar shoe you already wear comfortably. Record its removable insole length and, when practical, width at a consistent point. Ask for the same measurement on the ordered pair with zero and the final mark visible in one frame. Do not assume that an outsole measurement, insole measurement and internal usable length are equivalent." },
+          { type: "list", title: "A verifiable measurement request", items: [
+            "Show the photographed shoe, size label and removable insole in the same request sequence.",
+            "Place the insole flat without stretching or curling it.",
+            "Align zero with the rearmost heel point and show the longest toe point.",
+            "Keep the complete tape or ruler path visible and state centimetres or inches.",
+            "Repeat both shoes only when a pair mismatch is suspected; otherwise identify which shoe was measured.",
+          ] },
+          { type: "source", href: "https://www.iso.org/standard/71594.html", label: "ISO 9407:2019", text: "Current footwear size-designation overview, reviewed and confirmed by ISO in 2026." },
+          { type: "source", href: "https://www.iso.org/standard/81281.html", label: "ISO 19410-1:2022", text: "Official overview of effective in-shoe length measurement checked 4 August 2026." },
+        ],
+      },
+      {
+        id: "construction",
+        title: "5. Inspect visible construction in a fixed sequence",
+        blocks: [
+          { type: "p", text: "Move from the upper to the sole so that every photo has a purpose. On the upper, follow panel edges and paired seam lines rather than hunting randomly for a loose thread. Check whether eyelets, hooks, lace loops and decorative pieces are present on both shoes and appear securely positioned. On printed or embroidered areas, look for obvious offsets, broken edges or contamination that appears in more than one angle." },
+          { type: "p", text: "At the midsole and outsole, trace the join around each shoe. A thin, consistent adhesive trace may be a cosmetic observation; a visible open gap, lifted edge or separated section has a different consequence. Ask for a perpendicular close-up when shadow makes the join unclear. Do not infer bond strength by pressing an image with your eyes—photographs cannot test adhesion." },
+          { type: "list", title: "Visible issues worth a targeted close-up", items: [
+            "A cut, crack, puncture, deep crease or crushed structural area.",
+            "A stain or colour transfer that remains visible under neutral lighting.",
+            "A seam that is open, skipped or detached rather than merely untidy.",
+            "A sole edge that appears lifted or separated from the upper.",
+            "Missing hardware, mismatched laces, damaged lining or a torn insole.",
+            "Outsole wear or embedded debris suggesting more than routine handling.",
+          ] },
+          { type: "p", text: "Category knowledge should determine the close-ups. A hiking shoe may need hardware and outsole inspection; a suede shoe needs a clear view of marks and nap direction; a simple canvas shoe makes seam alignment easier to see. Do not apply one style's construction expectations to every shoe." },
+        ],
+      },
+      {
+        id: "limits-and-decision",
+        title: "6. Turn uncertainty into accept, ask or stop",
+        blocks: [
+          { type: "p", text: "Classify the evidence, not the emotion. Accept when identity is consistent, required views are clear, measurements fit your reference and no decision-changing visible issue remains. Ask when the apparent problem could still be lighting, angle, packing pressure or an unreadable label. Stop and use the seller or agent's current resolution process when the ordered variant is wrong, the pair conflicts, a critical measurement is outside your range or a clear structural problem is visible." },
+          { type: "table", headers: ["State", "Evidence pattern", "Next step"], rows: [
+            ["Accept", "Pair identity, fit-critical measurement and visible condition are sufficiently clear", "Save the record and continue under the agent's current workflow"],
+            ["Ask", "One missing angle or label could change the decision", "Request that exact view instead of a general re-inspection"],
+            ["Stop", "Wrong variant, conflicting pair, verified size problem or clear damage", "Do not approve while the issue remains; check current exchange or return options with the third party handling the order"],
+          ] },
+          { type: "p", text: "FindQC's terms state that purchasing, shipping and returns are handled by third parties. This guide therefore cannot supply a universal deadline, fee or remedy. Check the live seller and agent rules before ordering, then make any warehouse request while the actual options are still visible in your account." },
+        ],
+      },
+      {
+        id: "workflow-sources",
+        title: "7. A twelve-minute shoe QC workflow",
+        blocks: [
+          { type: "list", title: "Work in this order", items: [
+            "Minutes 1–2: save the source link, seller, ordered colour and size.",
+            "Minutes 3–4: match both shoe labels and any box label to the order.",
+            "Minutes 5–6: compare paired front, rear, side, top and outsole views.",
+            "Minutes 7–8: trace seams, panels, hardware and the upper-to-sole join.",
+            "Minutes 9–10: compare the relevant insole or interior measurement with your reference shoe.",
+            "Minute 11: separate confirmed issues from camera or packing ambiguity.",
+            "Minute 12: record accept, ask or stop—and name the evidence behind it.",
+          ] },
+          { type: "p", text: "The FindQC homepage and Terms of Service, ISO 9407 footwear sizing overview, ISO 19410-1 in-shoe length overview and CPSC recall database were checked on 4 August 2026. FindQC statements are treated as official descriptions of its platform, while the ISO pages support only the sizing concepts stated in their public summaries." },
+          { type: "p", text: "This checklist improves a visible inspection; it does not certify authenticity, safety, comfort or durability. If the shoe is subject to a specific safety notice, follow the regulator or manufacturer instructions rather than using appearance as a reason to disregard it." },
+          { type: "source", href: "https://www.cpsc.gov/Recalls", label: "CPSC Recalls & Product Safety Warnings", text: "Current public recall search checked 4 August 2026 as an independent safety reference." },
+        ],
+      },
+    ],
+    sources: [articleSources.terms, articleSources.home, articleSources.isoMondopoint, articleSources.isoInShoeLength, articleSources.cpsc],
+    related: ["before-you-buy-qc-guide", "findqc-qc-measurements-size-guide", "what-qc-photos-can-prove"],
+    cta: { eyebrow: "Inspect every visible angle", title: "Continue with the complete warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
 ];
 

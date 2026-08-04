@@ -168,7 +168,7 @@ export default async function ArticlePage({ params }) {
 
       <figure className="article-hero-figure">
         <ResponsiveImage src={article.heroImage} alt={article.heroAlt} sizes="(max-width: 1040px) calc(100vw - 40px), 980px" priority />
-        <figcaption>{articleUi.heroCaption}</figcaption>
+        <figcaption>{article.heroCaption || articleUi.heroCaption}</figcaption>
       </figure>
 
       <div className="long-read-layout">
