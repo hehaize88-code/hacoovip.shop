@@ -1,441 +1,337 @@
 const SITE = "https://sugargoovip.uk";
 const MAIN = "https://www.cnfanshp.com";
-const UPDATED = "2026-07-10";
+const UPDATED = "2026-08-08";
+const VALID_LANGS = new Set(["en","es","fr","de","it","pt","pl","nl","zh"]);
+const LEGACY_SEO_LANGS = new Set(["de","fr","es","pl"]);
 
-const SEO_LANGS = ["de", "fr", "es", "pl"];
-const CORE_ROUTES = new Set([
-  "/", "/guides/", "/guides/what-is-sugargoo.html",
-  "/guides/qc-guide.html", "/guides/shipping-guide.html",
-  "/guides/alternative.html", "/faq.html"
-]);
-const SEO_META = {
-  de: {
-    home:["Sugargoo Tabelle 2026 | Produktfunde, QC und Versand","Entdecken Sie Produktlinks, tägliche Funde, Kategorien sowie unabhängige QC- und Versandratgeber für Sugargoo."],
-    guides:["Sugargoo Ratgeber 2026 | QC, Versand und Alternativen","Unabhängige Sugargoo-Ratgeber zu Einkaufsablauf, QC-Fotos, Versandkosten, Tracking und Alternativen."],
-    what:["Was ist Sugargoo? Einkaufsagent und Ablauf erklärt","Erfahren Sie, wie der Sugargoo-Einkaufsablauf von Produktlink und Lager bis QC, Verpackung und internationalem Versand funktioniert."],
-    qc:["Sugargoo QC-Fotos 2026 | Checkliste vor dem Versand","Prüfen Sie Größe, Farbe, Nähte, Logos, Zubehör, Maße und sichtbare Mängel anhand von Sugargoo-QC-Fotos."],
-    shipping:["Sugargoo Versandratgeber 2026 | Kosten, Routen und Tracking","Vergleichen Sie Sugargoo-Versandrouten nach Abrechnungsgewicht, Gesamtkosten, Einschränkungen, Tracking und realistischer Laufzeit."],
-    alternative:["Sugargoo Alternativen 2026 | Einkaufsagenten vergleichen","Vergleichen Sie Sugargoo-Alternativen anhand von Zahlung, QC, Lagerung, Rückgabe, Support, Verpackung und Versandrouten."],
-    faq:["Sugargoo FAQ 2026 | Bestellung, QC, Versand und Rückgabe","Antworten auf häufige Fragen zu Sugargoo-Bestellungen, QC-Fotos, Versanddauer, Rückgaben und Abrechnungsgewicht."]
-  },
-  fr: {
-    home:["Tableur Sugargoo 2026 | Produits, QC et expédition","Découvrez des liens produits, des sélections, des catégories et des guides indépendants sur le QC et l’expédition Sugargoo."],
-    guides:["Guides Sugargoo 2026 | QC, expédition et alternatives","Guides indépendants sur le fonctionnement de Sugargoo, les photos QC, les coûts d’expédition, le suivi et les alternatives."],
-    what:["Qu’est-ce que Sugargoo ? Fonctionnement de l’agent d’achat","Comprenez le processus Sugargoo, du lien produit à l’entrepôt, aux photos QC, à l’emballage et à l’expédition internationale."],
-    qc:["Photos QC Sugargoo 2026 | Liste de contrôle avant envoi","Vérifiez taille, couleur, coutures, logos, accessoires, mesures et défauts visibles grâce aux photos QC Sugargoo."],
-    shipping:["Guide d’expédition Sugargoo 2026 | Coûts, lignes et suivi","Comparez les lignes Sugargoo selon le poids facturable, le coût total, les restrictions, le suivi et les délais réalistes."],
-    alternative:["Alternatives à Sugargoo 2026 | Comparer les agents d’achat","Comparez les alternatives à Sugargoo selon les paiements, le QC, le stockage, les retours, le support et les lignes d’expédition."],
-    faq:["FAQ Sugargoo 2026 | Commandes, QC, expédition et retours","Réponses aux questions fréquentes sur les commandes Sugargoo, les photos QC, les délais, les retours et le poids facturable."]
-  },
-  es: {
-    home:["Hoja Sugargoo 2026 | Productos, QC y envíos","Descubre enlaces de productos, selecciones, categorías y guías independientes sobre control de calidad y envíos con Sugargoo."],
-    guides:["Guías Sugargoo 2026 | QC, envíos y alternativas","Guías independientes sobre el proceso de compra, fotos QC, costes de envío, seguimiento y alternativas a Sugargoo."],
-    what:["¿Qué es Sugargoo? Proceso del agente de compras","Conoce el proceso de Sugargoo desde el enlace del producto y el almacén hasta las fotos QC, el embalaje y el envío internacional."],
-    qc:["Fotos QC de Sugargoo 2026 | Lista de revisión","Revisa talla, color, costuras, logotipos, accesorios, medidas y defectos visibles mediante las fotos QC de Sugargoo."],
-    shipping:["Guía de envíos Sugargoo 2026 | Costes, rutas y seguimiento","Compara rutas de Sugargoo por peso facturable, coste total, restricciones, seguimiento y plazo de entrega realista."],
-    alternative:["Alternativas a Sugargoo 2026 | Comparar agentes de compra","Compara alternativas a Sugargoo por pagos, QC, almacenamiento, devoluciones, soporte, embalaje y rutas de envío."],
-    faq:["FAQ Sugargoo 2026 | Pedidos, QC, envíos y devoluciones","Respuestas a preguntas sobre pedidos Sugargoo, fotos QC, tiempos de envío, devoluciones y peso facturable."]
-  },
-  pl: {
-    home:["Arkusz Sugargoo 2026 | Produkty, QC i wysyłka","Odkrywaj linki do produktów, codzienne propozycje, kategorie oraz niezależne poradniki QC i wysyłki Sugargoo."],
-    guides:["Poradniki Sugargoo 2026 | QC, wysyłka i alternatywy","Niezależne poradniki o procesie zakupowym, zdjęciach QC, kosztach wysyłki, śledzeniu i alternatywach dla Sugargoo."],
-    what:["Czym jest Sugargoo? Proces agenta zakupowego","Poznaj proces Sugargoo od linku produktu i magazynu po zdjęcia QC, pakowanie oraz wysyłkę międzynarodową."],
-    qc:["Zdjęcia QC Sugargoo 2026 | Lista kontroli przed wysyłką","Sprawdź rozmiar, kolor, szwy, logo, dodatki, wymiary i widoczne wady na zdjęciach QC Sugargoo."],
-    shipping:["Poradnik wysyłki Sugargoo 2026 | Koszty, trasy i tracking","Porównaj trasy Sugargoo według wagi rozliczeniowej, pełnego kosztu, ograniczeń, śledzenia i realnego czasu dostawy."],
-    alternative:["Alternatywy Sugargoo 2026 | Porównanie agentów zakupowych","Porównaj alternatywy Sugargoo pod kątem płatności, QC, magazynu, zwrotów, wsparcia, pakowania i tras wysyłki."],
-    faq:["FAQ Sugargoo 2026 | Zamówienia, QC, wysyłka i zwroty","Odpowiedzi na pytania o zamówienia Sugargoo, zdjęcia QC, czas wysyłki, zwroty i wagę rozliczeniową."]
-  }
+const CATEGORY_META = {
+  "shoes": {name:"Shoes", main:"/shoes/", focus:"size labels, pair consistency, sole shape, visible stitching and measurements when fit is critical"},
+  "hoodies-sweaters": {name:"Hoodies & Sweaters", main:"/hoodies-sweaters/", focus:"size-chart matching, chest and length measurements, colour, print or embroidery placement and visible seams"},
+  "t-shirts": {name:"T-Shirts", main:"/t-shirts/", focus:"size selection, chest width, total length, print placement, collar construction and visible fabric condition"},
+  "jackets": {name:"Jackets", main:"/jackets/", focus:"outer dimensions, lining or insulation option, zips, pockets, hardware, colour blocking and visible construction"},
+  "pants-shorts": {name:"Pants & Shorts", main:"/pants-shorts/", focus:"waist, rise, inseam, leg opening, selected wash or colour and visible seams or hardware"},
+  "headwear": {name:"Headwear", main:"/headwear/", focus:"circumference or size option, brim or crown shape, embroidery placement, closures and visible deformation"},
+  "electronics": {name:"Electronics", main:"/electronics/", focus:"model label, plug or connector type, included accessories, visible condition and route eligibility for batteries or other restricted attributes"},
+  "accessories": {name:"Accessories", main:"/other-stuff/", focus:"dimensions, included pieces, closures, hardware, model compatibility and any category-specific shipping attribute"}
 };
 
-function normalizeCorePath(path) {
-  if (!path || path === "/index.html") return "/";
-  if (path === "/guides/index.html") return "/guides/";
-  return path;
-}
-function coreKey(path) {
-  path = normalizeCorePath(path);
-  if (path === "/") return "home";
-  if (path === "/guides/") return "guides";
-  if (path.endsWith("what-is-sugargoo.html")) return "what";
-  if (path.endsWith("qc-guide.html")) return "qc";
-  if (path.endsWith("shipping-guide.html")) return "shipping";
-  if (path.endsWith("alternative.html")) return "alternative";
-  if (path.endsWith("faq.html")) return "faq";
-  return null;
-}
-function localeUrl(lang, path) {
-  path = normalizeCorePath(path);
-  return lang === "en" ? SITE + path : SITE + "/" + lang + (path === "/" ? "/" : path);
-}
-function hreflangTags(path) {
-  path = normalizeCorePath(path);
-  if (!CORE_ROUTES.has(path)) return "";
-  const links = ["en", ...SEO_LANGS].map(lang => `<link rel="alternate" hreflang="${lang}" href="${localeUrl(lang, path)}">`);
-  links.push(`<link rel="alternate" hreflang="x-default" href="${localeUrl("en", path)}">`);
-  return links.join("");
-}
-function localizedInternalLinks(html, lang, path) {
-  const prefix = "/" + lang;
-  html = html.replace(/(href|src)="(?:\.\.\/)?assets\//g, `$1="/assets/`);
-  html = html.replace(/href="\.\.\/index\.html#daily-finds"/g, `href="${prefix}/#daily-finds"`);
-  html = html.replace(/href="\.\.\/index\.html#categories"/g, `href="${prefix}/#categories"`);
-  html = html.replace(/href="index\.html#daily-finds"/g, `href="${prefix}/#daily-finds"`);
-  html = html.replace(/href="index\.html#categories"/g, `href="${prefix}/#categories"`);
-  html = html.replace(/href="\.\.\/index\.html"/g, `href="${prefix}/"`);
-  html = html.replace(/href="guides\/index\.html"/g, `href="${prefix}/guides/"`);
-  html = html.replace(/href="\.\.\/faq\.html([^\"]*)"/g, `href="${prefix}/faq.html$1"`);
-  html = html.replace(/href="faq\.html([^\"]*)"/g, `href="${prefix}/faq.html$1"`);
-  const guides = ["what-is-sugargoo.html","qc-guide.html","shipping-guide.html","alternative.html"];
-  for (const file of guides) html = html.replace(new RegExp(`href="${file.replace('.', '\\.') }"`, "g"), `href="${prefix}/guides/${file}"`);
-  if (normalizeCorePath(path).startsWith("/guides/")) html = html.replace(/href="index\.html"/g, `href="${prefix}/guides/"`);
-  else html = html.replace(/href="index\.html"/g, `href="${prefix}/"`);
-  return html;
-}
-function replaceMeta(html, lang, path) {
-  path = normalizeCorePath(path);
-  const key = coreKey(path);
-  const meta = SEO_META[lang] && SEO_META[lang][key];
-  if (!meta) return html;
-  const [title, description] = meta;
-  const canonical = localeUrl(lang, path);
-  html = html.replace(/<html lang="[^"]*">/i, `<html lang="${lang}">`);
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
-  html = html.replace(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${description}">`);
-  html = html.replace(/<link rel="canonical" href="[^"]*">/i, `<link rel="canonical" href="${canonical}">${hreflangTags(path)}`);
-  html = html.replace(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${title}">`);
-  html = html.replace(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${description}">`);
-  html = html.replace(/<meta property="og:url" content="[^"]*">/i, `<meta property="og:url" content="${canonical}">`);
-  html = html.replace(/<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${title}">`);
-  html = html.replace(/<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${description}">`);
-  html = localizedInternalLinks(html, lang, path);
-  html = html.replace(/<body([^>]*)>/i, `<body$1 data-seo-locale="${lang}">`);
-  html = html.replace(/<script src="\/assets\/i18n\.js" defer><\/script>|<script src="(?:\.\.\/)?assets\/i18n\.js" defer><\/script>/i,
-    `<script>if(!localStorage.getItem('sugargooLang'))localStorage.setItem('sugargooLang','${lang}')</script><script src="/assets/i18n-v5.js" defer></script>`);
-  return html;
-}
-async function serveLocalized(request, env, lang, requestedPath) {
-  const path = normalizeCorePath(requestedPath || "/");
-  if (!CORE_ROUTES.has(path)) return Response.redirect(SITE + "/" + lang + "/", 302);
-  const assetPath = path === "/" ? "/index.html" : path === "/guides/" ? "/guides/index.html" : path;
-  const assetUrl = new URL(request.url);
-  assetUrl.pathname = assetPath;
-  assetUrl.search = "";
-  const response = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
-  if (!response.ok) return response;
-  const html = replaceMeta(await response.text(), lang, path);
-  return new Response(html, {status:200, headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff"}});
-}
-
-const guidePages = {
-  "/guides/sugargoo-spreadsheet-guide.html": {
-    title: "Sugargoo Spreadsheet Guide 2026 | How to Use Product Links Safely",
-    description: "Learn how to organize a Sugargoo spreadsheet, verify product links, record variants, review QC photos and keep product information current.",
-    heading: "How to Use a Sugargoo Spreadsheet",
-    lead: "A spreadsheet is most useful when it acts as a research system rather than a list of unexplained links.",
-    sections: [
-      ["Start with a clear structure", "Separate product name, category, source URL, selected variant, reference price, seller notes and the date the link was checked. A tidy structure makes it easier to compare similar listings and remove expired products."],
-      ["Verify every product link", "Open the original listing before ordering. Confirm that the title, photos, available sizes, colors and seller information still match the spreadsheet entry. Prices and availability can change, so the destination page should always be treated as the current source."],
-      ["Record the exact variant", "Do not rely on a product title alone. Save the color, size, batch or model selected for the order. When an item has several versions, note the identifying details that should appear in warehouse photos."],
-      ["Connect the spreadsheet to QC", "Add a short checklist for each product type. Shoes may require size tags, sole shape and stitching checks; clothing may need measurements and fabric details; electronics may require plug, voltage and model confirmation."],
-      ["Maintain the sheet", "Review links regularly, remove dead listings and mark products that have changed. A smaller sheet with verified information is more useful than a large sheet filled with outdated links."],
-      ["Independent-use reminder", "This site does not process purchases. Product availability, ordering rules and service policies should be confirmed on the linked shopping site before payment."]
-    ]
-  },
-  "/guides/sugargoo-qc-checklist.html": {
-    title: "Sugargoo QC Checklist 2026 | Photos, Measurements and Defects",
-    description: "Use a practical Sugargoo QC checklist to review warehouse photos, measurements, labels, construction, defects and the selected product variant.",
-    heading: "Sugargoo QC Checklist",
-    lead: "QC photos are a decision tool: they help you compare the received item with the listing before international shipping.",
-    sections: [
-      ["Confirm the complete item", "Check front, back, both sides and the overall shape. Confirm the color and selected model before focusing on smaller details."],
-      ["Check labels and variation", "Review size tags, model labels, color codes and included accessories. A visually similar item can still be the wrong variation."],
-      ["Inspect construction", "Look for uneven seams, loose threads, misaligned panels, glue marks, scratches, dents, damaged hardware or missing parts. Zoom in on areas that commonly fail for the product category."],
-      ["Use measurements", "Request or review measurements when fit matters. Clothing length, chest width, waist and inseam can be more reliable than a generic size label. For shoes, compare insole or outsole measurements when available."],
-      ["Ask for targeted extra photos", "A useful request names the exact area and angle needed. For example: close-up of the size label, zipper, sole, serial label or a ruler placed beside the item."],
-      ["Decide before international shipping", "If the item is incorrect or visibly defective, address the issue while it remains in the warehouse and within the seller or platform after-sales window."]
-    ]
-  },
-  "/guides/sugargoo-rehearsal-packing-guide.html": {
-    title: "Sugargoo Rehearsal Packing Guide | Estimate Parcel Size and Weight",
-    description: "Understand rehearsal packing, chargeable weight, packaging requests and how to compare a parcel estimate before selecting an international route.",
-    heading: "Rehearsal Packing Explained",
-    lead: "Rehearsal packing can produce a more realistic parcel size and weight before the final international shipment is purchased.",
-    sections: [
-      ["Why estimates change", "Early shipping estimates may be based on item data rather than a finished parcel. Final packaging, boxes, protective material and dimensional weight can change the chargeable weight."],
-      ["When rehearsal packing is useful", "It is especially useful for bulky clothing, several shoe boxes, mixed categories or parcels where volumetric weight may be important."],
-      ["Write clear packing instructions", "State whether original boxes should be kept, folded, reinforced or removed. Ask for fragile items to be protected and avoid instructions that could damage the product."],
-      ["Compare the result", "Review actual weight, parcel dimensions and the available routes after packing. A lower physical weight does not always mean a lower charge if the parcel remains large."],
-      ["Balance protection and cost", "Removing unnecessary packaging may reduce volume, but protection should match the product. Electronics, glass, structured bags and delicate accessories may need stronger packaging."],
-      ["Keep a record", "Save the measured dimensions, weight and selected packing request. These details help explain the final shipping charge and support any later inquiry."]
-    ]
-  },
-  "/guides/sugargoo-shipping-cost-guide.html": {
-    title: "Sugargoo Shipping Cost Guide 2026 | Weight, Volume and Routes",
-    description: "Learn how actual weight, volumetric weight, packaging, route restrictions, insurance and surcharges affect Sugargoo shipping costs.",
-    heading: "How to Compare Sugargoo Shipping Costs",
-    lead: "The cheapest displayed route is not always the lowest total cost or the best match for the parcel.",
-    sections: [
-      ["Understand chargeable weight", "Carriers may bill actual weight or volumetric weight. Bulky but light parcels can therefore cost more than expected."],
-      ["Compare the complete charge", "Include packaging, handling, route surcharges, insurance and any optional services. Use the final parcel data instead of comparing only an initial estimate."],
-      ["Check route restrictions", "A route can be inexpensive but unavailable for a specific category, battery type, parcel size or destination. Confirm current restrictions before selecting it."],
-      ["Review tracking and compensation", "Compare tracking detail, loss or damage compensation and the documentation required to make a claim. A slightly higher price may provide better visibility or protection."],
-      ["Treat delivery times as ranges", "Weather, customs, carrier congestion and seasonal demand can affect delivery. Use estimates for planning, not as guaranteed arrival dates."],
-      ["Use realistic parcel examples", "Shipping comparisons are most useful when based on your own destination, product mix, dimensions and weight rather than another buyer's unrelated parcel."]
-    ]
-  },
+const PRIORITY_GUIDES = {
   "/guides/sugargoo-warehouse-guide.html": {
-    title: "Sugargoo Warehouse Guide 2026 | Arrival, Storage and Consolidation",
-    description: "Understand warehouse arrival, product matching, QC records, storage planning, consolidation and parcel preparation in a shopping-agent workflow.",
-    heading: "Sugargoo Warehouse Workflow",
-    lead: "The warehouse stage connects the domestic purchase to the international parcel, so accurate records matter.",
-    sections: [
-      ["Match arrivals to orders", "Check that the warehouse record corresponds to the correct order, seller, quantity and selected variation. Mixed or similar orders can be confused without clear notes."],
-      ["Review the arrival status", "An item may be marked received before every requested photo or measurement is available. Wait for the required evidence before approving shipment."],
-      ["Track storage time", "Storage rules and free-storage periods can change. Review the current platform policy and avoid leaving completed orders unplanned."],
-      ["Consolidate deliberately", "Combining items can reduce the number of international parcels, but it may increase parcel size or mix categories with different route restrictions."],
-      ["Resolve after-sales issues early", "Returns and exchanges are generally easier before the international parcel is created. Keep screenshots, QC photos and order notes when reporting a problem."],
-      ["Prepare a parcel checklist", "Confirm the item list, shipping address, declaration, packaging request, insurance choice and selected route before paying for international shipping."]
-    ]
+    key:"WAREHOUSE_BODY",
+    title:"Sugargoo Warehouse Guide 2026: QC, Storage, Returns & Parcel Prep",
+    description:"A practical Sugargoo warehouse guide for UK shoppers covering arrivals, QC photos, storage, returns, consolidation, packing and parcel submission.",
+    lead:"Use the warehouse stage to match arrivals, review QC evidence, manage storage deadlines and prepare a UK-bound parcel before international shipping.",
+    sources:"Sugargoo official workflow/features, QC service FAQ, warehouse-storage guide and returns guide; GOV.UK goods-sent-from-abroad guidance. Checked 8 August 2026."
   },
-  "/guides/sugargoo-return-guide.html": {
-    title: "Sugargoo Return Guide 2026 | Warehouse Returns and Evidence",
-    description: "Learn how to identify return issues early, document defects, review seller rules and manage a warehouse return before international shipping.",
-    heading: "How to Handle a Warehouse Return",
-    lead: "A return is usually simpler before the item leaves the warehouse, but timing and evidence are important.",
-    sections: [
-      ["Identify the reason", "State whether the item is the wrong size, color, model, quantity or condition. A precise reason makes the request easier to evaluate."],
-      ["Collect evidence", "Use QC photos, measurements, labels and screenshots of the original listing. Highlight the difference without altering the underlying image."],
-      ["Check the current deadline", "Seller and platform after-sales periods vary. Review the current order page and policy rather than relying on an old community post."],
-      ["Understand possible costs", "Domestic return shipping, service charges or non-refundable seller costs may apply. Confirm the expected deduction before approving the return."],
-      ["Do not ship a disputed item internationally", "Once an item is included in an international parcel, the cost and complexity of a return usually increase substantially."],
-      ["Save the outcome", "Keep the return request, tracking status, refund record and any seller response until the balance or payment method reflects the final result."]
-    ]
-  },
-  "/guides/sugargoo-restricted-items-guide.html": {
-    title: "Sugargoo Restricted Items Guide 2026 | Route and Category Checks",
-    description: "Use a safe process to check route restrictions, batteries, liquids, branded goods, dimensions and destination requirements before ordering.",
-    heading: "How to Check Restricted Items",
-    lead: "Restrictions can come from the marketplace, warehouse, carrier, route or destination country, and they can change.",
-    sections: [
-      ["Check before purchasing", "Do not assume that a product can be shipped internationally because it can be purchased domestically. Review the current route and destination restrictions first."],
-      ["Describe the product accurately", "Material, battery type, liquid content, magnetic parts, dimensions and intended use can affect route eligibility."],
-      ["Avoid absolute lists", "A category accepted by one route may be rejected by another. Use the current shipping calculator or support guidance for the exact parcel."],
-      ["Consider destination rules", "Customs, product standards and import restrictions differ by country. The buyer is responsible for checking applicable local requirements."],
-      ["Do not misdeclare", "Incorrect descriptions or values can create customs, insurance and delivery problems. Use accurate parcel information."],
-      ["Choose a compliant alternative", "When a route does not accept the item, consider a permitted route or remove the product from the parcel rather than trying to bypass restrictions."]
-    ]
-  },
-  "/guides/sugargoo-payment-guide.html": {
-    title: "Sugargoo Payment Guide 2026 | Fees, Exchange Rates and Refunds",
-    description: "Compare payment totals by exchange rate, processor fees, refund route and transaction records before funding a shopping-agent order.",
-    heading: "Understanding Shopping-Agent Payments",
-    lead: "The displayed product price is only one part of the final amount charged to an overseas buyer.",
-    sections: [
-      ["Review the converted total", "Check the currency conversion and the final amount shown by the payment provider. Your bank or card issuer may use a different exchange rate or add its own fee."],
-      ["Separate product and shipping costs", "Domestic purchase costs, service charges and international shipping may be paid at different stages. Keep records for each stage."],
-      ["Check payment-method rules", "Availability, limits and verification requirements can change. Use the current checkout page as the authoritative source."],
-      ["Understand refunds", "A refund may return to the platform balance or the original payment method, and processing times can differ. Confirm the route before expecting funds in a bank account."],
-      ["Keep transaction evidence", "Save order numbers, payment confirmations, refund records and timestamps. These are useful when contacting support or a payment provider."],
-      ["Protect account access", "Use a unique password, enable available security options and never share verification codes or payment credentials with an unknown third party."]
-    ]
+  "/guides/sugargoo-spreadsheet-guide.html": {
+    key:"SPREADSHEET_BODY",
+    title:"Sugargoo Spreadsheet UK 2026: How to Verify Product Finds",
+    description:"Learn how to use a Sugargoo spreadsheet for UK shopping: verify product links, record variants, connect QC notes and keep shipping information current.",
+    lead:"A useful spreadsheet connects a product source, the selected variant, QC checks and the current UK shipping decision instead of acting as a static link dump.",
+    sources:"Sugargoo official workflow/features, QC service FAQ and freight-calculator material; GOV.UK goods-sent-from-abroad guidance. Checked 8 August 2026."
   },
   "/guides/sugargoo-uk-shipping-guide.html": {
-    title: "Sugargoo Shipping to the UK 2026 | Parcel Planning Checklist",
-    description: "Plan a Sugargoo parcel to the UK by checking route eligibility, chargeable weight, declarations, tracking, customs and address details.",
-    heading: "Sugargoo Shipping to the UK",
-    lead: "A UK parcel should be planned around the exact products, current carrier routes and accurate customs information.",
-    sections: [
-      ["Use the current route list", "Route availability and estimated delivery ranges change. Enter the real parcel weight, dimensions and category in the current calculator."],
-      ["Check chargeable weight", "Large clothing bundles and retained shoe boxes can create volumetric weight. Rehearsal packing may provide a more useful estimate."],
-      ["Prepare accurate declarations", "Use a truthful description and value. Check current UK customs and tax guidance when you are uncertain about the treatment of a parcel."],
-      ["Verify the delivery address", "Use a complete postcode, recipient name and reachable contact number. Address errors can delay carrier handoff or final delivery."],
-      ["Save tracking details", "Keep both the parcel number and international tracking code. Early tracking can be limited while the parcel moves between carriers."],
-      ["Allow for customs and peak periods", "Delivery estimates are not guarantees. Customs review, weather and seasonal volume can add time beyond the normal route range."]
-    ]
+    key:"UK_SHIPPING_BODY",
+    title:"Sugargoo Shipping to UK 2026: Routes, Costs, Customs & Tracking",
+    description:"Plan Sugargoo shipping to the UK by comparing live routes, chargeable weight, packing, customs information and tracking without treating estimates as guarantees.",
+    lead:"Compare the actual parcel and live route options, then check UK customs rules and keep the tracking record from warehouse submission to last-mile delivery.",
+    sources:"Sugargoo official workflow/features, freight-calculator, shipping-estimate and QC material; current GOV.UK customs/tax guidance. Checked 8 August 2026."
   },
-  "/guides/sugargoo-germany-shipping-guide.html": {
-    title: "Sugargoo Shipping to Germany 2026 | Customs and Route Checklist",
-    description: "Plan a Sugargoo shipment to Germany with accurate product data, route eligibility, parcel dimensions, tracking and current customs guidance.",
-    heading: "Sugargoo Shipping to Germany",
-    lead: "German and EU import requirements make accurate parcel information and route selection especially important.",
-    sections: [
-      ["Check the exact route", "Confirm that the route accepts the product category and delivers to the German address. Do not assume that a route available to another EU country has identical rules."],
-      ["Use accurate item descriptions", "A clear description, quantity and value support customs processing. Avoid vague or misleading declarations."],
-      ["Review current tax and customs guidance", "Rules can change and depend on the goods and value. Consult current German or EU guidance when making an import decision."],
-      ["Control parcel size", "Bulky packaging can increase volumetric weight. Review whether boxes should be retained and whether consolidation remains economical."],
-      ["Check address formatting", "Include the full street, house number, postal code, city and a reachable recipient contact."],
-      ["Keep evidence", "Save order details, parcel data, declarations and tracking. These records are useful if customs or the carrier requests clarification."]
-    ]
-  },
-  "/guides/sugargoo-order-tracking-guide.html": {
-    title: "Sugargoo Order Tracking Guide 2026 | Domestic and International Stages",
-    description: "Understand domestic seller tracking, warehouse arrival, parcel creation, international tracking updates and how to document a delay.",
-    heading: "How to Track a Sugargoo Order",
-    lead: "An agent order usually has more than one tracking stage, so the same status page does not cover the entire journey.",
-    sections: [
-      ["Domestic seller shipment", "The first tracking number normally covers movement from the seller to the warehouse. A delivery scan should be matched with warehouse receipt and item verification."],
-      ["Warehouse processing", "After arrival, photos, measurements or return decisions may occur before an international parcel is created."],
-      ["Parcel creation", "International tracking may not become active immediately after payment. Label creation, carrier handoff and export processing can happen before the first visible scan."],
-      ["Read tracking events carefully", "A repeated status does not always mean the parcel is lost. Some routes provide limited events until the parcel reaches a destination carrier."],
-      ["Know when to ask for help", "Compare the time since the last scan with the route's current guidance. Provide the parcel number, tracking code and screenshots when contacting support."],
-      ["Keep carrier records", "Once a local carrier takes over, save its tracking page and delivery evidence. These records help with a missing or damaged parcel inquiry."]
-    ]
-  },
-  "/guides/sugargoo-product-link-guide.html": {
-    title: "Sugargoo Product Link Guide 2026 | Variants, Sellers and Dead Links",
-    description: "Learn how to submit and verify a product link, preserve variant details, compare sellers and handle a listing that changes or disappears.",
-    heading: "How to Work with Product Links",
-    lead: "A product URL is only the starting point; the order still needs clear variant and seller information.",
-    sections: [
-      ["Open the original listing", "Confirm the product is still available and that the page matches the item you intend to buy."],
-      ["Save the selected variant", "Record size, color, model, quantity and any seller note. Screenshots can preserve information if the listing later changes."],
-      ["Review seller information", "Compare listing history, product details and available feedback where the marketplace provides it. A low headline price is not enough information on its own."],
-      ["Check domestic shipping and minimums", "Some listings have domestic shipping charges, minimum quantities or variant-specific prices. Confirm the complete domestic purchase total."],
-      ["Handle dead or changed links", "Do not automatically replace an expired listing with a visually similar product. Re-check specifications and ask for approval before ordering a substitute."],
-      ["Use notes carefully", "Write short, specific instructions that can be verified at purchase or QC. Avoid vague requests that the seller or warehouse cannot objectively confirm."]
-    ]
+  "/guides/qc-guide.html": {
+    key:"QC_BODY",
+    title:"Sugargoo QC Photos Guide 2026: What UK Buyers Should Check",
+    description:"A detailed Sugargoo QC photo guide for UK buyers covering five free QC photos, measurements, extra photography, returns and final parcel checks.",
+    lead:"Turn warehouse QC photos into a decision: confirm the ordered variant, inspect category-specific visible details and resolve uncertainties before international shipping.",
+    sources:"Sugargoo official QC service FAQ, returns guide and workflow/features; GOV.UK goods-sent-from-abroad guidance. Checked 8 August 2026."
   }
 };
 
-const categories = {
-  "/categories/shoes.html": {title:"China Shoes Shopping Guide | Sizing, QC and Shipping", description:"Review shoe sizing, materials, sole construction, QC photos and shipping considerations before opening the main shoes category.", heading:"Shoes Buying Guide", shop:`${MAIN}/shoes/`, sections:[["Choose size by measurement","Compare the seller's insole or foot-length guidance instead of relying only on familiar regional sizes."],["Review the upper and sole","Use QC photos to check panel alignment, stitching, glue marks, outsole shape and the selected color."],["Plan packaging","Keeping a shoe box can protect the item but may increase volumetric weight. Decide before parcel packing."],["Check the exact listing","Availability and versions change. Open the product page and verify the current seller information before ordering."]]},
-  "/categories/hoodies-sweaters.html": {title:"Hoodies and Sweaters Guide | Measurements, Fabric and QC", description:"Compare hoodie and sweater measurements, fabric, prints, stitching and packing before browsing the main category.", heading:"Hoodies and Sweaters Guide", shop:`${MAIN}/hoodies-sweaters/`, sections:[["Use garment measurements","Compare chest, length, shoulder and sleeve measurements with clothing you already own."],["Check material and weight","Fabric composition, knit density and garment weight can affect feel, warmth and shipping cost."],["Inspect graphics and seams","Review print placement, embroidery, cuffs, hems, zipper alignment and loose threads."],["Pack without damaging shape","Fold carefully and avoid excessive compression for structured or delicate knitwear."]]},
-  "/categories/t-shirts.html": {title:"T-Shirts Shopping Guide | Fit, Print and QC Checks", description:"Use measurements, fabric details, print alignment and stitching checks before browsing the main T-shirts category.", heading:"T-Shirts Buying Guide", shop:`${MAIN}/t-shirts/`, sections:[["Compare fit","Check chest width, length and shoulder measurements because labels such as slim or oversized are not standardized."],["Review fabric details","Material, fabric weight and shrinkage expectations affect comfort and long-term fit."],["Inspect prints and embroidery","Check alignment, spelling, edges, color consistency and visible damage."],["Order the correct variation","Confirm size, color and design code before payment and again in warehouse photos."]]},
-  "/categories/jackets.html": {title:"Jackets Shopping Guide | Sizing, Hardware and Shipping", description:"Review jacket measurements, lining, zippers, hardware, construction and parcel volume before opening the main category.", heading:"Jackets Buying Guide", shop:`${MAIN}/jackets/`, sections:[["Allow for layering","Compare chest, shoulder, sleeve and length measurements with the clothing you plan to wear underneath."],["Inspect hardware","Check zippers, snaps, drawcords, pockets and fasteners in QC photos."],["Review construction","Look at panel alignment, lining, cuffs, hems and visible marks."],["Plan for volume","Padded and structured jackets can increase parcel dimensions even when their actual weight is moderate."]]},
-  "/categories/pants-shorts.html": {title:"Pants and Shorts Guide | Waist, Inseam and QC", description:"Check waist, rise, inseam, leg opening, fabric and stitching before browsing pants and shorts on the main site.", heading:"Pants and Shorts Guide", shop:`${MAIN}/pants-shorts/`, sections:[["Measure beyond the waist","Review rise, inseam, thigh and leg opening as well as waist width."],["Confirm the cut","Straight, tapered, relaxed and oversized descriptions vary between sellers."],["Inspect closures and seams","Check buttons, zippers, pockets, belt loops and stitching."],["Verify the selected size","Match the warehouse tag and measurements with the ordered variation before shipping."]]},
-  "/categories/headwear.html": {title:"Headwear Shopping Guide | Size, Shape and Packing", description:"Review cap or hat sizing, shape, embroidery, panels and protective packing before opening the main headwear category.", heading:"Headwear Buying Guide", shop:`${MAIN}/headwear/`, sections:[["Check size and adjustment","Confirm circumference, fitted size or adjustment range."],["Inspect shape","Review crown, brim, panel symmetry and closure alignment."],["Check decorative details","Look at embroidery, patches, printed text and color placement."],["Protect the structure","Ask for suitable packing when a brim or structured crown could be crushed."]]},
-  "/categories/accessories.html": {title:"Accessories Shopping Guide | Materials, Details and QC", description:"Review dimensions, materials, hardware, included parts and shipping requirements before browsing accessories.", heading:"Accessories Buying Guide", shop:`${MAIN}/accessories/`, sections:[["Confirm dimensions","Small differences in length, width or capacity can change how an accessory is used."],["Review materials and hardware","Check clasps, chains, zippers, buckles, coatings and visible scratches."],["Confirm included parts","Verify straps, cases, dust bags, replacement pieces or other promised accessories."],["Check route eligibility","Some materials or product components may affect the available shipping routes."]]},
-  "/categories/electronics.html": {title:"Electronics Shopping Guide | Compatibility, Batteries and Shipping", description:"Check model compatibility, plug, voltage, battery restrictions, condition and warranty limitations before browsing electronics.", heading:"Electronics Buying Guide", shop:`${MAIN}/electronics/`, sections:[["Confirm the exact model","Check model number, region, plug, voltage, language and supported networks or standards."],["Review battery and route rules","Battery type and capacity can affect shipping eligibility. Confirm the current route before purchasing."],["Inspect condition and accessories","Check screens, ports, labels, cables, chargers and included parts."],["Understand after-sales limits","International warranty and returns can be difficult. Review the seller's current policy before payment."]]}
+const GENERIC_GUIDES = {
+  "/guides/sugargoo-qc-checklist.html": ["Sugargoo QC Checklist 2026: A Practical Pre-Shipping Review","Use a structured Sugargoo QC checklist to verify visible identity, labels, measurements, construction details and documented decisions before shipping.","QC checklist","visible identity, labels, measurements, construction details and documented decisions"],
+  "/guides/sugargoo-rehearsal-packing-guide.html": ["Sugargoo Rehearsal Packing Guide 2026: Weight, Size & Parcel Prep","Plan a parcel using current dimensions, chargeable weight, packaging instructions and route comparisons before international submission.","Rehearsal packing","parcel dimensions, chargeable weight, packaging instructions and route comparison"],
+  "/guides/sugargoo-shipping-cost-guide.html": ["Sugargoo Shipping Cost UK 2026: How to Estimate the Real Parcel Cost","Estimate Sugargoo shipping cost for the UK using actual weight, volumetric weight, packing, live route eligibility and current parcel data.","Shipping cost","actual weight, volumetric weight, packing, route eligibility and current UK destination information"],
+  "/guides/sugargoo-return-guide.html": ["Sugargoo Return Guide 2026: Evidence, Timing & Warehouse Decisions","Organise return decisions with order evidence, seller conditions, warehouse timing and the current after-sales options shown for the order.","Returns","order evidence, seller conditions, warehouse timing and current after-sales options"],
+  "/guides/sugargoo-restricted-items-guide.html": ["Sugargoo Restricted Items Guide 2026: Check Before You Buy or Ship","Review product attributes, live route eligibility, destination rules and accurate declarations before relying on a shipping plan.","Restricted items","batteries, liquids, fragile or unusual attributes, destination rules and accurate declarations"],
+  "/guides/sugargoo-payment-guide.html": ["Sugargoo Payment Guide 2026: Separate Product and Shipping Decisions","Keep product cost, domestic delivery, international shipping, conversion and refund records separate so the total is easier to verify.","Payments","product cost, domestic delivery, international shipping, conversion and refund records"],
+  "/guides/sugargoo-germany-shipping-guide.html": ["Sugargoo Shipping to Germany 2026: Parcel Data, Routes & Tracking","Plan Germany-bound parcels around live destination eligibility, parcel weight and dimensions, declarations, address format and tracking.","Germany shipping","destination eligibility, parcel weight, dimensions, declarations, address format and tracking"],
+  "/guides/sugargoo-order-tracking-guide.html": ["Sugargoo Order Tracking Guide 2026: From Seller to Last-Mile Scan","Understand domestic seller movement, warehouse processing, parcel creation, export movement and last-mile handoff without treating scan gaps as proof of loss.","Order tracking","domestic seller movement, warehouse processing, parcel creation, export movement and last-mile handoff"],
+  "/guides/sugargoo-product-link-guide.html": ["Sugargoo Product Link Guide 2026: Verify Listings Before Ordering","Verify listing identity, variants, page changes, screenshots and confirmation records before using a product link for a purchase.","Product links","listing identity, variants, page changes, saved screenshots and confirmation records"]
 };
 
-const trustPages = {
-  "/about.html": {title:"About Sugargoo VIP | Independent Shopping Guide", description:"Learn how Sugargoo VIP researches product links, QC, shipping and shopping-agent topics while remaining independent from the named platforms.", heading:"About Sugargoo VIP", lead:"Sugargoo VIP is an independent product-discovery and shopping-guide website.", sections:[["What we publish","The site organizes product links, category routes, QC checklists, shipping explanations and practical shopping-agent articles."],["How content is prepared","Guides focus on repeatable checks: verifying the current product page, confirming variants, reviewing warehouse evidence and comparing the complete shipping workflow."],["What the site does not do","This website does not process orders, payments, warehousing, returns or international shipping."],["Independence","Sugargoo VIP is not operated by, endorsed by or officially affiliated with Sugargoo or the marketplaces and shopping sites referenced on its pages."],["Corrections","Product links and policies can change. Readers should use the destination site as the current source and contact us when a page contains an outdated route or factual error."]]},
-  "/disclaimer.html": {title:"Disclaimer | Sugargoo VIP", description:"Read the independent-site, external-link, trademark, pricing and information disclaimer for Sugargoo VIP.", heading:"Disclaimer", lead:"This website is an independent informational resource and does not provide official platform services.", sections:[["No official affiliation","Sugargoo VIP is not an official Sugargoo website and is not operated, sponsored or endorsed by Sugargoo. Names and marks belong to their respective owners."],["External links","Product and category links lead to third-party websites. We do not control their availability, pricing, content, payment process, seller conduct or service policies."],["No transaction services","This site does not take payments, place orders, store goods, perform QC, arrange shipping or handle refunds."],["Information can change","Routes, fees, seller listings, product availability and platform rules may change without notice. Always verify current information on the destination site before acting."],["No guarantees","We do not guarantee product authenticity, quality, legality, customs clearance, delivery time, savings or search-engine results."],["General information only","Content is not legal, customs, tax, financial or professional advice. Users are responsible for checking the rules that apply to their country and purchase."]]},
-  "/privacy.html": {title:"Privacy Policy | Sugargoo VIP", description:"Learn what limited technical information Sugargoo VIP may process, how language preferences work and how third-party links affect privacy.", heading:"Privacy Policy", lead:"This static guide is designed to collect as little personal information as reasonably possible.", sections:[["Language preference","The language selector may save the chosen language in browser storage so the same preference can be used on other pages."],["Technical logs","Cloudflare and hosting infrastructure may process standard request data such as IP address, user agent, requested page, security events and timing information to deliver and protect the site."],["External websites","When you open a product or category link, the destination website applies its own cookies, analytics and privacy policy. This policy does not control third-party processing."],["No checkout data","Sugargoo VIP does not operate checkout, payment, warehouse or shipping systems and does not receive the transaction data entered on linked sites."],["Contact messages","Information voluntarily included in an email is used to review and respond to that inquiry. Do not send passwords, payment details or verification codes."],["Changes and requests","This policy may be updated as site functionality changes. Privacy questions can be sent through the Contact page."]]},
-  "/contact.html": {title:"Contact Sugargoo VIP | Corrections and Link Requests", description:"Contact Sugargoo VIP about factual corrections, outdated links, privacy questions, trademark concerns or site feedback.", heading:"Contact", lead:"Use the contact address for site-content questions rather than order or parcel support.", sections:[["Suitable inquiries","You may contact us about broken links, factual corrections, privacy requests, trademark concerns or accessibility problems."],["Order support","We cannot access shopping accounts, payments, warehouse records or parcels. Contact the platform or seller shown on the relevant order page for transaction support."],["Email","Write to contact@sugargoovip.uk. Include the page URL and a clear description of the requested correction or issue."],["Security","Do not send passwords, payment-card details, login codes, identity documents or other sensitive account information."],["Response expectations","Messages are reviewed for site administration. A response is not guaranteed, and urgent order matters should be sent to the responsible shopping platform."]]}
+const REVERSE_ARTICLES = {
+  "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html":"/assets/reverse-articles/multi-item-order-ledger.js",
+  "/guides/sugargoo-reverse-shopping-image-to-product-link.html":"/assets/reverse-articles/image-to-product-link.js",
+  "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html":"/assets/reverse-articles/confirmation-checkpoints.js",
+  "/guides/sugargoo-reverse-shopping-order-boundaries.html":"/assets/reverse-articles/order-boundaries.js",
+  "/guides/sugargoo-reverse-shopping-product-link-workflow.html":"/assets/reverse-articles/product-link-workflow.js"
 };
 
-const categoryOrder = [
-  ["Shoes", "/categories/shoes.html"], ["Hoodies / Sweaters", "/categories/hoodies-sweaters.html"],
-  ["T-Shirts", "/categories/t-shirts.html"], ["Jackets", "/categories/jackets.html"],
-  ["Pants / Shorts", "/categories/pants-shorts.html"], ["Headwear", "/categories/headwear.html"],
-  ["Accessories", "/categories/accessories.html"], ["Electronics", "/categories/electronics.html"]
-];
+const KNOWN_HTML = new Set([
+  "/faq.html","/about.html","/disclaimer.html","/privacy.html","/contact.html",
+  "/guides/what-is-sugargoo.html","/guides/qc-guide.html","/guides/shipping-guide.html","/guides/alternative.html",
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+  ...Object.keys(PRIORITY_GUIDES), ...Object.keys(GENERIC_GUIDES), ...Object.keys(REVERSE_ARTICLES),
+  ...Object.keys(CATEGORY_META).map(k=>`/categories/${k}.html`)
+]);
 
-const originalGuides = [
-  ["What Is Sugargoo?", "/guides/what-is-sugargoo.html", "Understand the shopping-agent workflow from product link to international parcel."],
-  ["QC Photos Explained", "/guides/qc-guide.html", "Review warehouse photos, measurements and visible condition."],
-  ["Shipping Guide", "/guides/shipping-guide.html", "Compare routes, packaging, tracking and total cost."],
-  ["Sugargoo Alternatives 2026", "/guides/alternative.html", "Compare agents using operational criteria rather than one headline offer."]
-];
+let catalogPromise;
+let editorialSourcePromise;
 
-function esc(value) {
-  return String(value).replace(/[&<>\"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function esc(v="") { return String(v).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function safeJson(v) { return JSON.stringify(v).replace(/</g,"\\u003c"); }
+function languageFrom(url) { const q=url.searchParams.get("lang"); return q&&VALID_LANGS.has(q)?q:"en"; }
+function noindexForLanguage(lang) { return lang!=="en"; }
+function slugFor(p) { return `${p.category}-${p.id}`; }
+function categoryFor(slug) { return CATEGORY_META[slug] || null; }
+
+async function assetResponse(env, request, pathname) {
+  const u = new URL(request.url); u.pathname=pathname; u.search="";
+  return env.ASSETS.fetch(new Request(u.toString(), request));
+}
+async function assetText(env, request, pathname) {
+  const r=await assetResponse(env,request,pathname); if(!r.ok) return ""; return r.text();
+}
+async function loadCatalog(env,request) {
+  if(!catalogPromise) catalogPromise=(async()=>{
+    const text=await assetText(env,request,"/assets/catalog-uk-20260808.json");
+    const data=JSON.parse(text); if(!Array.isArray(data)||data.length!==40) throw new Error("catalog invalid"); return data;
+  })();
+  return catalogPromise;
+}
+async function loadEditorialSource(env,request) {
+  if(!editorialSourcePromise) editorialSourcePromise=assetText(env,request,"/tools/upgrade_uk_seo_20260808.py");
+  return editorialSourcePromise;
+}
+function extractBody(source,key) {
+  const re=new RegExp(key+"\\s*=\\s*r'''([\\s\\S]*?)'''"); const m=source.match(re); return m?m[1]:"";
+}
+function stripExternalLinks(body) {
+  return body.replace(/<a\b[^>]*href=["']https?:\/\/[^"']+["'][^>]*>([\s\S]*?)<\/a>/gi,"$1");
+}
+function robotsMeta(lang) { return noindexForLanguage(lang)?"noindex,follow,max-image-preview:large":"index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"; }
+
+function head({title,description,canonical,image=`${SITE}/assets/11.png`,type="website",lang="en"}) {
+  return `<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${robotsMeta(lang)}"><link rel="canonical" href="${esc(canonical)}"><link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="${type}"><meta property="og:site_name" content="Sugargoo Spreadsheet UK"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(image)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${esc(image)}"><link rel="stylesheet" href="/assets/site.css"></head>`;
+}
+function nav() {
+  return `<header class="site-header"><a class="site-logo" href="/"><img src="/assets/11.png" alt="Sugargoo spreadsheet UK guide logo" width="480" height="148"></a><nav class="site-nav"><a href="/" data-i18n="nav.home">Home</a><a href="/#daily-finds" data-i18n="nav.daily">Daily Finds</a><a href="/#categories" data-i18n="nav.categories">Categories</a><a href="/products/" data-i18n="nav.spreadsheet">Spreadsheet</a><a href="/guides/" data-i18n="nav.guides">Guides</a><a href="/faq.html" data-i18n="nav.faq">FAQ</a></nav><select class="language-select" aria-label="Language"></select></header>`;
+}
+function footer() {
+  return `<footer class="site-footer"><div><strong data-i18n="footer.trust">Independent shopping discovery guide</strong><p data-i18n="footer.help">Products and orders are handled by the linked main site</p><p class="trust-links"><a href="/about.html">About</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a> · <a href="/categories/">Category Guides</a></p></div><div><strong data-i18n="footer.choose">Choose another language</strong><div class="footer-languages"><button data-language-button="en">English</button><button data-language-button="es">Español</button><button data-language-button="fr">Français</button><button data-language-button="de">Deutsch</button><button data-language-button="it">Italiano</button><button data-language-button="pt">Português</button><button data-language-button="pl">Polski</button><button data-language-button="nl">Nederlands</button><button data-language-button="zh">简体中文</button></div></div></footer>`;
+}
+function languageScripts(lang) {
+  const seed=VALID_LANGS.has(lang)?lang:"en";
+  return `<script>try{localStorage.setItem('sugargooLang','${seed}')}catch(e){}</script><script src="/assets/i18n-v5.js" defer></script><script src="/assets/language-fix-v5.js" defer></script><script src="/assets/lang-guard-20260808.js?v=20260808"></script>`;
+}
+function schemaScript(graph) { return `<script type="application/ld+json">${safeJson({"@context":"https://schema.org","@graph":graph})}</script>`; }
+function shell({title,description,canonical,body,lang="en",image,type="website",graph=[]}) {
+  return `<!doctype html><html lang="en-GB">${head({title,description,canonical,image,type,lang})}<body>${nav()}<main class="wrap">${body}${footer()}</main>${graph.length?schemaScript(graph):""}${languageScripts(lang)}</body></html>`;
+}
+function responseHtml(html,status=200) { return new Response(html,{status,headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff","referrer-policy":"strict-origin-when-cross-origin"}}); }
+
+function productCard(p,cat) {
+  return `<a class="card product-card" href="/products/${esc(slugFor(p))}.html"><img src="${esc(p.image)}" alt="${esc(p.title)} product find" width="760" height="760" loading="lazy" style="aspect-ratio:1/1;object-fit:cover"><div class="product-meta"><h3>${esc(p.title)}</h3><p>${esc(cat.name)} · source checked ${UPDATED}</p></div></a>`;
+}
+function catalogPage(products,lang) {
+  const sections=Object.entries(CATEGORY_META).map(([slug,cat])=>{
+    const cards=products.filter(p=>p.category===slug).map(p=>productCard(p,cat)).join("");
+    return `<h2 class="section-title">${esc(cat.name)}</h2><section class="grid home-products">${cards}</section>`;
+  }).join("");
+  const title="Sugargoo Spreadsheet UK 2026: 40 Curated Product Finds";
+  const description="Browse 40 curated Sugargoo product finds for UK shoppers with stable detail pages, category guides, QC checks and direct main-site shopping links.";
+  const body=`<section class="guide-hub article-card"><h1>Sugargoo Spreadsheet UK 2026: 40 Curated Product Finds</h1><p class="article-lead">A smaller, verifiable catalogue for UK shoppers: each find has a stable detail page and one current shopping link to the connected main catalogue.</p><div class="article-content"><p>This is an independent product-discovery catalogue, not an official Sugargoo inventory. The source URLs and corresponding product images were rechecked on ${UPDATED}. Confirm the live listing, exact variant and any price or availability on the main site before purchase.</p><p><a class="btn" href="${MAIN}/" target="_blank" rel="noopener">Open main product catalogue</a> <a class="btn btn-secondary" href="/guides/sugargoo-spreadsheet-guide.html">How to use this spreadsheet</a></p></div></section>${sections}`;
+  const graph=[{"@type":"CollectionPage","url":`${SITE}/products/`,"name":title,"description":description,"inLanguage":"en-GB","dateModified":UPDATED},{"@type":"ItemList","numberOfItems":products.length,"itemListElement":products.map((p,i)=>({"@type":"ListItem","position":i+1,"name":p.title,"url":`${SITE}/products/${slugFor(p)}.html`}))}];
+  return shell({title,description,canonical:`${SITE}/products/`,body,lang,image:products[0]?.image||`${SITE}/assets/11.png`,graph});
+}
+function productPage(p,lang) {
+  const cat=categoryFor(p.category); const slug=slugFor(p); const canonical=`${SITE}/products/${slug}.html`;
+  const title=`${p.title} | Sugargoo Spreadsheet UK 2026`;
+  const description=`Curated ${cat.name.toLowerCase()} find for UK shoppers with source-listing, QC and shipping checks. Open the linked main catalogue for current product details.`;
+  const body=`<div class="breadcrumbs"><a href="/">Home</a> / <a href="/products/">Product Finds</a> / <a href="/categories/${esc(p.category)}.html">${esc(cat.name)}</a> / <span>${esc(p.title)}</span></div><div class="article-layout"><article class="article-card"><img src="${esc(p.image)}" alt="${esc(p.title)} product find" width="760" height="760" loading="eager" style="max-width:520px;width:100%;height:auto;border-radius:18px;object-fit:cover"><h1>${esc(p.title)}</h1><p class="article-lead">Curated ${esc(cat.name.toLowerCase())} find in the Sugargoo Spreadsheet UK research catalogue.</p><div class="article-content"><h2>Source listing</h2><p><strong>Original listing title:</strong> ${esc(p.sourceTitle||p.title)}</p><p><strong>Source last checked:</strong> ${UPDATED}</p><p>This local page keeps a stable research record but does not copy a live price or promise stock. Open the current listing before choosing a variant or paying.</p><p><a class="btn" href="${esc(p.source)}" target="_blank" rel="noopener">Open current listing on main site</a></p><h2>What to verify before ordering</h2><p>Confirm the exact option, colour, size or model on the live source page. For this category, prioritise ${esc(cat.focus)}. Save the original option text when several versions share the same product page.</p><h2>What to check after warehouse arrival</h2><p>Match the warehouse entry to the saved link and selected variant. Use QC photos to verify visible identity and condition. Request a targeted extra photo or measurement only when it can resolve a specific decision.</p><h2>UK shipping note</h2><p>Route availability and total shipping cost depend on the actual parcel, product attributes, weight, dimensions and destination. Use the live shipping estimator and current UK customs guidance instead of copying an old quote.</p><p><a href="/guides/qc-guide.html">QC photo guide</a> · <a href="/guides/sugargoo-warehouse-guide.html">Warehouse guide</a> · <a href="/guides/sugargoo-uk-shipping-guide.html">UK shipping guide</a></p></div></article><aside class="side-card"><a href="/products/">All 40 Product Finds</a><a href="/categories/${esc(p.category)}.html">${esc(cat.name)} Category Guide</a><a href="${esc(p.source)}" target="_blank" rel="noopener">Main-site Listing</a></aside></div>`;
+  const graph=[{"@type":"ItemPage","url":canonical,"name":p.title,"description":description,"inLanguage":"en-GB","dateModified":UPDATED,"primaryImageOfPage":{"@type":"ImageObject","url":p.image}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Product Finds","item":SITE+"/products/"},{"@type":"ListItem","position":3,"name":cat.name,"item":`${SITE}/categories/${p.category}.html`},{"@type":"ListItem","position":4,"name":p.title,"item":canonical}]}];
+  return shell({title,description,canonical,body,lang,image:p.image,type:"article",graph});
+}
+function categoryText(cat) {
+  return `<p>This UK-focused category page is an independent research layer rather than a merchant category. It groups five current finds from the linked main catalogue so a shopper can compare source listings, open a stable local detail page and remember the checks that matter before placing an order. Product links and images were rechecked on ${UPDATED}; current variants, prices and availability must still be confirmed on the live source page.</p><p>For ${esc(cat.name.toLowerCase())}, the most useful pre-order and warehouse checks include ${esc(cat.focus)}. Save the exact variant text when ordering. After warehouse arrival, compare the item with the order record and use QC photos as visible evidence rather than a promise about properties that cannot be seen. If a measurement drives the buying decision, request that measurement instead of relying only on a size label.</p><p>UK shipping should be considered before the final parcel is built. Weight, dimensions and product attributes can change route eligibility and chargeable weight. Use the live shipping calculator and parcel interface for current options, then review accurate declaration information and current GOV.UK guidance for goods sent from abroad. This page does not quote a fixed shipping cost or delivery time because those figures depend on the actual parcel and can change.</p><p>The local detail pages below do not process purchases. Each has one shopping button to the connected main site and links back to the QC, warehouse and UK shipping guides. This lets the external site provide useful context while keeping the main catalogue as the shopping destination.</p>`;
+}
+function categoryPage(slug,products,lang) {
+  const cat=categoryFor(slug); const subset=products.filter(p=>p.category===slug); const canonical=`${SITE}/categories/${slug}.html`;
+  const title=`Sugargoo ${cat.name} Finds UK 2026: Products, QC & Shipping Checks`;
+  const description=`Browse five curated ${cat.name.toLowerCase()} product finds for UK shoppers, with local detail pages, QC checks and a direct link to the matching main-site category.`;
+  const cards=subset.map(p=>productCard(p,cat)).join("");
+  const body=`<div class="breadcrumbs"><a href="/">Home</a> / <a href="/categories/">Category Guides</a> / <span>${esc(cat.name)}</span></div><section class="article-card"><h1>Sugargoo ${esc(cat.name)} Finds UK 2026</h1><p class="article-lead">Five current finds plus the checks that matter before ordering, QC approval and UK parcel submission.</p><div class="article-content">${categoryText(cat)}<p><a class="btn" href="${MAIN}${cat.main}" target="_blank" rel="noopener">Open ${esc(cat.name)} on main site</a> <a class="btn btn-secondary" href="/products/">Browse all 40 finds</a></p></div><div class="grid home-products">${cards}</div></section>`;
+  const graph=[{"@type":"CollectionPage","url":canonical,"name":title,"description":description,"inLanguage":"en-GB","dateModified":UPDATED},{"@type":"ItemList","numberOfItems":subset.length,"itemListElement":subset.map((p,i)=>({"@type":"ListItem","position":i+1,"name":p.title,"url":`${SITE}/products/${slugFor(p)}.html`}))}];
+  return shell({title,description,canonical,body,lang,image:subset[0]?.image,graph});
+}
+function categoryHub(products,lang) {
+  const cards=Object.entries(CATEGORY_META).map(([slug,cat])=>`<a class="card guide-card" href="/categories/${slug}.html"><h3>${esc(cat.name)}</h3><p>5 curated finds plus UK-oriented QC and shipping checks.</p></a>`).join("");
+  const body=`<section class="guide-hub article-card"><h1>Sugargoo UK Product Categories 2026</h1><p class="article-lead">Eight category landing pages connect 40 curated product finds with the QC and shipping checks that matter for UK shoppers.</p><div class="grid">${cards}</div></section>`;
+  return shell({title:"Sugargoo UK Product Categories 2026 | 40 Curated Finds",description:"Browse eight Sugargoo UK product category guides with 40 curated finds, QC checks, local detail pages and main-site shopping links.",canonical:`${SITE}/categories/`,body,lang});
 }
 
-function nav(root = "") {
-  return `<header class="site-header"><a class="site-logo" href="${root}/"><img src="${root}/assets/11.png" alt="Sugargoo shopping guide logo" width="480" height="148"></a><nav class="site-nav"><a href="${root}/" data-i18n="nav.home">Home</a><a href="${root}/#daily-finds" data-i18n="nav.daily">Daily Finds</a><a href="${root}/#categories" data-i18n="nav.categories">Categories</a><a href="${MAIN}/" target="_blank" rel="noopener" data-i18n="nav.spreadsheet">Spreadsheet</a><a href="${root}/guides/" data-i18n="nav.guides">Guides</a><a href="${root}/faq.html" data-i18n="nav.faq">FAQ</a></nav><select class="language-select" aria-label="Language"></select></header>`;
+function relatedAside() {
+  return `<aside class="side-card"><a href="/products/">Sugargoo Spreadsheet UK</a><a href="/guides/sugargoo-warehouse-guide.html">Warehouse Guide</a><a href="/guides/qc-guide.html">QC Photos Guide</a><a href="/guides/sugargoo-uk-shipping-guide.html">UK Shipping Guide</a><a href="/guides/">All Guides</a></aside>`;
+}
+async function priorityGuidePage(path,def,env,request,lang) {
+  const source=await loadEditorialSource(env,request); let article=extractBody(source,def.key);
+  if(!article) return null;
+  article=stripExternalLinks(article)+`<section class="article-sources"><h2>Sources checked</h2><p>${esc(def.sources)}</p><p>Current account, route, seller and government rules take priority over archived examples or screenshots.</p></section>`;
+  const canonical=SITE+path;
+  const body=`<div class="breadcrumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / <span>${esc(def.title)}</span></div><div class="article-layout"><article class="article-card"><h1>${esc(def.title)}</h1><p class="article-lead">${esc(def.lead)}</p><div class="article-content">${article}</div></article>${relatedAside()}</div>`;
+  const graph=[{"@type":"Article","headline":def.title,"description":def.description,"url":canonical,"mainEntityOfPage":canonical,"inLanguage":"en-GB","dateModified":UPDATED,"author":{"@type":"Organization","name":"Sugargoo VIP Editorial Team"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Shopping Guides","item":SITE+"/guides/"},{"@type":"ListItem","position":3,"name":def.title,"item":canonical}]}];
+  return shell({title:def.title,description:def.description,canonical,body,lang,type:"article",graph});
+}
+function genericGuideBody(name,focus) {
+  return `<p>This independent ${esc(name.toLowerCase())} guide is built around decisions a buyer can verify rather than fixed promises. Sugargoo’s current interface should be treated as the source of truth for live order status, route availability, fees and after-sales options. The useful record is the one that connects the product listing, warehouse evidence and the action you take next.</p><h2>Start from the current order record</h2><p>Save the exact product link, selected option, quantity and the date the information was checked. If the seller page changes later, your order record explains what was approved. For a multi-item order, give each item a stable reference so photos, changes and questions cannot be attached to the wrong product.</p><h2>Separate known facts from estimates</h2><p>Use the live interface for values that can change. A price, shipping estimate or available service shown on an old screenshot is context, not a current quotation. Label unknown fields instead of filling them from memory. This is especially important for ${esc(focus)}.</p><h2>Use warehouse evidence deliberately</h2><p>When the product reaches the warehouse, compare visible evidence with the saved specification. QC photos can establish colour, labels, visible condition and included pieces where those details are shown. They do not automatically establish material composition, authenticity, comfort, durability or internal performance.</p><h2>Request extra evidence only when it changes a decision</h2><p>A measurement or close-up should answer a precise question. Ask for the relevant dimension, label or area rather than “more photos.” Specific requests create records that are easier to compare with the source listing and easier to use if an after-sales question arises.</p><h2>Resolve domestic-stage problems before international shipping</h2><p>If something is wrong, document the mismatch while the item is still in China and check the options shown for the live order. Seller conditions and deadlines can vary. Do not assume every seller or product follows one universal return period, and do not wait for parcel submission if the evidence already shows a question that needs action.</p><h2>Build the parcel from actual warehouse data</h2><p>International shipping decisions depend on the real item mix, parcel weight, dimensions, product attributes and destination. Compare route eligibility after enough parcel information exists. Consolidating can reduce duplicated packaging, while splitting can be sensible when one item changes route options, damage risk or urgency.</p><h2>Keep UK import decisions separate from warehouse checks</h2><p>For UK delivery, accurate descriptions and current customs guidance matter. A route name or community recommendation is not a guarantee that tax, duty, customs review or carrier handling charges cannot occur. Review current government guidance and the live carrier information when the parcel is actually moving.</p><h2>Keep a simple audit trail</h2><p>Save the source link, selected variant, QC decision, parcel number, chosen route and tracking number. A short structured record makes it easier to identify whether a later question belongs to the seller stage, warehouse stage, international carrier or last-mile delivery.</p><p><strong>Checked:</strong> ${UPDATED}. This page deliberately avoids fixed fees, delivery guarantees or other claims that cannot be confirmed for the current account and parcel.</p>`;
+}
+function genericGuidePage(path,def,lang) {
+  const [title,description,name,focus]=def; const canonical=SITE+path;
+  const body=`<div class="breadcrumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / <span>${esc(title)}</span></div><div class="article-layout"><article class="article-card"><h1>${esc(title)}</h1><p class="article-lead">${esc(description)}</p><div class="article-content">${genericGuideBody(name,focus)}</div></article>${relatedAside()}</div>`;
+  const graph=[{"@type":"Article","headline":title,"description":description,"url":canonical,"inLanguage":"en-GB","dateModified":UPDATED,"author":{"@type":"Organization","name":"Sugargoo VIP Editorial Team"}}];
+  return shell({title,description,canonical,body,lang,type:"article",graph});
 }
 
-function footer(root = "") {
-  return `<footer class="site-footer"><div><strong data-i18n="footer.trust">Independent shopping discovery guide</strong><p data-i18n="footer.help">Products and orders are handled by the linked main site</p><p class="trust-links"><a href="${root}/about.html">About</a> · <a href="${root}/disclaimer.html">Disclaimer</a> · <a href="${root}/privacy.html">Privacy</a> · <a href="${root}/contact.html">Contact</a> · <a href="${root}/categories/">Category Guides</a></p></div><div><strong data-i18n="footer.choose">Choose another language</strong><div class="footer-languages"><button data-language-button="en">English</button><button data-language-button="es">Español</button><button data-language-button="fr">Français</button><button data-language-button="de">Deutsch</button><button data-language-button="it">Italiano</button><button data-language-button="pt">Português</button><button data-language-button="pl">Polski</button><button data-language-button="nl">Nederlands</button><button data-language-button="zh">简体中文</button></div></div></footer>`;
+function decodeJsString(s) { return s.replace(/\\'/g,"'").replace(/\\n/g,"\n").replace(/\\\\/g,"\\"); }
+async function reverseArticleHtml(path,env,request,lang) {
+  let html=await assetText(env,request,path); if(!html) return "";
+  if(lang==="zh") return injectLanguage(html,lang);
+  const jsPath=REVERSE_ARTICLES[path]; const js=await assetText(env,request,jsPath);
+  const m=js.match(/en:\{title:'((?:\\'|[^'])*)',lead:'((?:\\'|[^'])*)',body:`([\s\S]*?)`,side:\[/);
+  if(!m) return injectLanguage(html,lang);
+  const title=decodeJsString(m[1]); const lead=decodeJsString(m[2]); const article=stripExternalLinks(m[3]);
+  html=html.replace(/<html lang="[^"]*">/i,'<html lang="en-GB">')
+    .replace(/<title>[\s\S]*?<\/title>/i,`<title>${esc(title)} | Sugargoo UK Guide</title>`)
+    .replace(/<meta name="description" content="[^"]*">/i,`<meta name="description" content="${esc(lead.slice(0,190))}">`)
+    .replace(/<meta property="og:locale" content="[^"]*">/i,'<meta property="og:locale" content="en_GB">')
+    .replace(/<meta property="og:title" content="[^"]*">/i,`<meta property="og:title" content="${esc(title)}">`)
+    .replace(/<h1>[\s\S]*?<\/h1>/i,`<h1>${esc(title)}</h1>`)
+    .replace(/<p class="article-lead">[\s\S]*?<\/p>/i,`<p class="article-lead">${esc(lead)}</p>`)
+    .replace(/<div class="article-content">[\s\S]*?<\/div>\s*<\/article>/i,`<div class="article-content">${article}</div></article>`)
+    .replace(/<aside class="side-card">[\s\S]*?<\/aside>/i,relatedAside())
+    .replace(/"inLanguage":"zh-CN"/g,'"inLanguage":"en-GB"')
+    .replace(/"dateModified":"[^"]+"/g,`"dateModified":"${UPDATED}"`);
+  return injectLanguage(html,lang);
 }
 
-function schema(type, title, description, path, extra = {}) {
-  return JSON.stringify({"@context":"https://schema.org","@graph":[{"@type":type,"headline":title,"name":title,"description":description,"url":SITE + path,"mainEntityOfPage":SITE + path,"datePublished":UPDATED,"dateModified":UPDATED,"inLanguage":"en","author":{"@type":"Organization","name":"Sugargoo VIP Editorial Team"},"publisher":{"@type":"Organization","name":"Sugargoo VIP","logo":{"@type":"ImageObject","url":SITE + "/assets/11.png"}},...extra},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE + "/"},{"@type":"ListItem","position":2,"name":title,"item":SITE + path}]}]});
+function productListSchema(products) {
+  return `<script type="application/ld+json">${safeJson({"@context":"https://schema.org","@type":"ItemList","name":"Sugargoo Spreadsheet UK curated product finds","numberOfItems":40,"itemListElement":products.map((p,i)=>({"@type":"ListItem","position":i+1,"name":p.title,"url":`${SITE}/products/${slugFor(p)}.html`}))})}</script>`;
 }
-
-function shell({title, description, path, body, type="Article"}) {
-  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="canonical" href="${SITE + path}">${hreflangTags(path)}<link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="article"><meta property="og:site_name" content="Sugargoo VIP"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${SITE + path}"><meta property="og:image" content="${SITE}/assets/11.png"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">${schema(type,title,description,path)}</script></head><body>${nav("")}<main class="wrap"><div class="breadcrumbs"><a href="/">Home</a> / <span>${esc(title)}</span></div>${body}${footer("")}</main><script src="/assets/i18n-v5.js" defer></script><script src="/assets/language-fix-v5.js" defer></script></body></html>`;
-}
-
-function sectionsHtml(sections) {
-  return sections.map(([heading, text]) => `<h2>${esc(heading)}</h2><p>${esc(text)}</p>`).join("");
-}
-
-function articlePage(path, page) {
-  const side = `<aside class="side-card"><a href="/guides/">All Shopping Guides</a><a href="/categories/">Category Guides</a><a href="/guides/sugargoo-qc-checklist.html">QC Checklist</a><a href="/guides/sugargoo-shipping-cost-guide.html">Shipping Cost Guide</a><a href="/faq.html">FAQ</a></aside>`;
-  const body = `<div class="article-layout"><article class="article-card"><h1>${esc(page.heading)}</h1><p class="article-lead">${esc(page.lead)}</p><div class="article-content">${sectionsHtml(page.sections)}</div></article>${side}</div>`;
-  return shell({title:page.title, description:page.description, path, body});
-}
-
-function categoryPage(path, page) {
-  const body = `<div class="article-layout"><article class="article-card"><h1>${esc(page.heading)}</h1><p class="article-lead">${esc(page.description)}</p><div class="article-content">${sectionsHtml(page.sections)}<h2>Browse the current category</h2><p>Open the destination category to check current products, prices, variants and availability.</p><p><a class="btn" href="${page.shop}" target="_blank" rel="noopener">Open Category on Main Site</a></p></div></article><aside class="side-card"><a href="/categories/">All Category Guides</a><a href="/guides/sugargoo-qc-checklist.html">QC Checklist</a><a href="/guides/sugargoo-shipping-cost-guide.html">Shipping Cost Guide</a><a href="/faq.html">FAQ</a></aside></div>`;
-  return shell({title:page.title, description:page.description, path, body, type:"CollectionPage"});
-}
-
-function trustPage(path, page) {
-  const emailButton = path === "/contact.html" ? `<p><a class="btn" href="mailto:contact@sugargoovip.uk">Email contact@sugargoovip.uk</a></p>` : "";
-  const body = `<article class="article-card"><h1>${esc(page.heading)}</h1><p class="article-lead">${esc(page.lead)}</p><div class="article-content">${sectionsHtml(page.sections)}${emailButton}</div></article>`;
-  return shell({title:page.title, description:page.description, path, body, type:"WebPage"});
-}
-
-function guideHub() {
-  const extra = Object.entries(guidePages).map(([path, p]) => [p.heading, path, p.description]);
-  const cards = [...originalGuides, ...extra].map(([title, href, desc]) => `<a class="card guide-card" href="${href}"><h3>${esc(title)}</h3><p>${esc(desc)}</p></a>`).join("");
-  const body = `<section class="guide-hub article-card"><h1>Shopping Guides</h1><p class="article-lead">Independent, practical articles covering product links, QC, warehouse decisions, packing, shipping, returns and destination planning.</p><div class="grid">${cards}</div></section>`;
-  return shell({title:"Sugargoo Guides 2026 | QC, Shipping, Warehouse and Returns",description:"Browse original Sugargoo shopping guides covering spreadsheets, QC, shipping costs, warehouse workflow, returns, payments, tracking and destination planning.",path:"/guides/",body,type:"CollectionPage"});
-}
-
-function categoryHub() {
-  const cards = categoryOrder.map(([title, href]) => `<a class="card guide-card" href="${href}"><h3>${esc(title)}</h3><p>Read sizing, QC, packing and shipping checks before opening the main category.</p></a>`).join("");
-  const body = `<section class="guide-hub article-card"><h1>Category Guides</h1><p class="article-lead">Use these independent category pages for measurements, QC and shipping preparation, then continue to the linked main-site category.</p><div class="grid">${cards}</div></section>`;
-  return shell({title:"Shopping Category Guides | Shoes, Clothing, Accessories and Electronics",description:"Read independent shopping category guides for shoes, hoodies, T-shirts, jackets, pants, headwear, accessories and electronics.",path:"/categories/",body,type:"CollectionPage"});
-}
-
-function injectStaticHtml(html, pathname) {
-  if (!html.includes("trust-links")) {
-    html = html.replace("</footer>", `<p class="trust-links"><a href="/about.html">About</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a> · <a href="/categories/">Category Guides</a></p></footer>`);
+function transformHome(html,products,lang) {
+  const title="Sugargoo Spreadsheet UK 2026: Product Finds, QC & Shipping";
+  const description="Browse curated Sugargoo product finds for UK shoppers, compare listing details, check QC photos and plan warehouse and international shipping decisions.";
+  html=html.replace(/<title>[\s\S]*?<\/title>/i,`<title>${title}</title>`)
+    .replace(/<meta name="description" content="[^"]*">/i,`<meta name="description" content="${description}">`)
+    .replace(/<meta property="og:site_name" content="[^"]*">/i,'<meta property="og:site_name" content="Sugargoo Spreadsheet UK">')
+    .replace(/<meta property="og:title" content="[^"]*">/i,`<meta property="og:title" content="${title}">`)
+    .replace(/<meta property="og:description" content="[^"]*">/i,`<meta property="og:description" content="${description}">`)
+    .replace(/<meta name="twitter:title" content="[^"]*">/i,`<meta name="twitter:title" content="${title}">`)
+    .replace(/<meta name="twitter:description" content="[^"]*">/i,`<meta name="twitter:description" content="${description}">`)
+    .replace(/<body([^>]*)\sdata-title-key="hero\.b"([^>]*)>/i,'<body$1$2>')
+    .replace(/<h1>[\s\S]*?<\/h1>/i,'<h1 data-uk-home-title>Sugargoo Spreadsheet UK <span class="orange">2026</span></h1>')
+    .replace(/<p data-i18n="hero\.intro">[\s\S]*?<\/p>/i,`<p data-uk-home-intro>${description}</p>`)
+    .replace(/<h2 data-i18n="sheet\.title">[\s\S]*?<\/h2>/i,'<h2 data-uk-sheet-title>Sugargoo Spreadsheet UK 2026</h2>')
+    .replace(/<div class="stat-chip"><strong>4<\/strong><span data-i18n="section\.daily">Daily Finds<\/span><\/div>/i,'<div class="stat-chip"><strong>40</strong><span data-uk-find-label>Product Finds</span></div>')
+    .replace(/<div class="stat-chip"><strong>4<\/strong><span data-i18n="section\.guides">Shopping Guides<\/span><\/div>/i,'<div class="stat-chip"><strong>22</strong><span data-i18n="section.guides">Shopping Guides</span></div>')
+    .replace(/<a class="btn" href="https:\/\/www\.cnfanshp\.com\/" target="_blank" rel="noopener" data-i18n="sheet\.cta">View Spreadsheet<\/a>/i,'<a class="btn" href="/products/">Browse 40 Product Finds</a>')
+    .replace(/<a href="https:\/\/www\.cnfanshp\.com\/" target="_blank" rel="noopener" data-i18n="nav\.spreadsheet">Spreadsheet<\/a>/i,'<a href="/products/" data-i18n="nav.spreadsheet">Spreadsheet</a>')
+    .replace(/>shoes-60</g,'>Curated Shoes Find 6045<')
+    .replace(/"name":"Sugargoo VIP"/g,'"name":"Sugargoo Spreadsheet UK"')
+    .replace(/"name":"Sugargoo Spreadsheet 2026: Daily Finds, QC & Shipping Guide"/g,`"name":"${title}"`)
+    .replace(/"dateModified":"2026-07-10"/g,`"dateModified":"${UPDATED}"`)
+    .replace(/"inLanguage":"en"/g,'"inLanguage":"en-GB"');
+  if(!html.includes('href="/products/" class="btn btn-secondary"')) {
+    html=html.replace(/<\/div>\s*<\/div>\s*<div class="hero-visual"/i,'<a href="/products/" class="btn btn-secondary">Browse 40 Finds</a></div></div><div class="hero-visual"');
   }
-  if ((pathname === "/" || pathname === "/index.html") && !html.includes('href="/categories/" class="btn')) {
-    html = html.replace('<a class="btn btn-secondary" href="guides/index.html" data-i18n="nav.guides">Guides</a>', '<a class="btn btn-secondary" href="guides/index.html" data-i18n="nav.guides">Guides</a><a class="btn btn-secondary" href="/categories/">Category Guides</a>');
+  html=html.replace(/<\/head>/i,productListSchema(products)+"</head>");
+  return injectLanguage(html,lang);
+}
+function transformGuideHub(html,lang) {
+  const reps={
+    "Sugargoo Warehouse Guide":"Sugargoo Warehouse Guide 2026: QC, Storage, Returns & Parcel Prep",
+    "Match arrivals, review evidence, plan storage and prepare a complete parcel checklist.":"Deep UK-focused guide to arrivals, QC, storage deadlines, returns, consolidation and parcel preparation.",
+    "Sugargoo Spreadsheet Guide":"Sugargoo Spreadsheet UK 2026",
+    "Organize product links, variants, source details and QC notes in a useful research sheet.":"Verify product links, variants, QC notes and shipping attributes in a useful UK research catalogue.",
+    "Sugargoo Shipping to the UK":"Sugargoo Shipping to UK 2026",
+    "Plan route eligibility, chargeable weight, declarations, tracking and address details.":"Compare live routes, chargeable weight, packing, customs information and tracking without fixed promises.",
+    "Sugargoo QC Photos Guide":"Sugargoo QC Photos Guide 2026",
+    "Review warehouse photos, measurements and visible condition before shipping.":"Detailed UK-buyer checklist for free QC photos, measurements, extra photography, returns and parcel checks."
+  };
+  for(const [a,b] of Object.entries(reps)) html=html.split(a).join(b);
+  return injectLanguage(html,lang);
+}
+function injectLanguage(html,lang) {
+  const seed=VALID_LANGS.has(lang)?lang:"en";
+  const seedScript=`<script>try{localStorage.setItem('sugargooLang','${seed}')}catch(e){}</script>`;
+  if(!html.includes("lang-guard-20260808.js")) html=html.replace(/<\/body>/i,'<script src="/assets/lang-guard-20260808.js?v=20260808"></script></body>');
+  if(!html.includes("localStorage.setItem('sugargooLang'")) {
+    const marker=html.match(/<script src="(?:\.\.\/)?assets\/i18n-v5\.js" defer><\/script>|<script src="\/assets\/i18n-v5\.js" defer><\/script>/i);
+    if(marker) html=html.replace(marker[0],seedScript+marker[0]); else html=html.replace(/<\/head>/i,seedScript+"</head>");
   }
-  const corePath = normalizeCorePath(pathname);
-  if (CORE_ROUTES.has(corePath) && !html.includes('hreflang=')) {
-    html = html.replace(/(<link rel="canonical"[^>]+>)/i, `$1${hreflangTags(corePath)}`);
+  if(noindexForLanguage(lang)) {
+    html=html.replace(/<meta name="robots" content="[^"]*">/i,'<meta name="robots" content="noindex,follow,max-image-preview:large">');
   }
   return html;
+}
+
+async function staticHtml(path,env,request,lang,products) {
+  const assetPath=path==="/"?"/index.html":path==="/guides/"?"/guides/index.html":path;
+  let html=await assetText(env,request,assetPath); if(!html) return null;
+  if(path==="/") return transformHome(html,products,lang);
+  if(path==="/guides/") return transformGuideHub(html,lang);
+  return injectLanguage(html,lang);
+}
+
+function xmlResponse(xml) { return new Response(xml,{status:200,headers:{"content-type":"application/xml; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff"}}); }
+async function sitemapXml(env,request,products) {
+  const old=await assetText(env,request,"/sitemap.xml"); const urls=[];
+  for(const m of old.matchAll(/<loc>([^<]+)<\/loc>/g)) if(m[1].startsWith(SITE)&&!urls.includes(m[1])) urls.push(m[1]);
+  if(!urls.includes(`${SITE}/products/`)) urls.push(`${SITE}/products/`);
+  for(const p of products){const u=`${SITE}/products/${slugFor(p)}.html`;if(!urls.includes(u))urls.push(u);}
+  const fresh=new Set([`${SITE}/`,`${SITE}/products/`,`${SITE}/categories/`,...Object.keys(PRIORITY_GUIDES).map(p=>SITE+p),...Object.keys(CATEGORY_META).map(k=>`${SITE}/categories/${k}.html`),...products.map(p=>`${SITE}/products/${slugFor(p)}.html`)]);
+  const rows=urls.map(u=>`  <url><loc>${esc(u)}</loc><lastmod>${fresh.has(u)?UPDATED:(u===`${SITE}/guides/`?"2026-07-16":"2026-07-10")}</lastmod><changefreq>weekly</changefreq><priority>${u===`${SITE}/`?"1.0":u===`${SITE}/products/`||u===`${SITE}/categories/`||u===`${SITE}/guides/`?"0.9":"0.8"}</priority></url>`).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows}\n</urlset>`;
+}
+
+function canonicalExtension(path) {
+  if(path.endsWith("/")||path.includes(".")) return null;
+  const candidate=path+".html";
+  if(KNOWN_HTML.has(candidate)) return candidate;
+  if(/^\/products\/[a-z0-9-]+$/i.test(path)) return candidate;
+  return null;
 }
 
 export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    const host = url.hostname.toLowerCase();
-    const shouldRedirectHost = host === "www.sugargoovip.uk" || host === "sugargoovip-uk.pages.dev";
-    if (shouldRedirectHost || url.protocol !== "https:") {
-      url.protocol = "https:";
-      url.hostname = "sugargoovip.uk";
-      url.port = "";
-      return Response.redirect(url.toString(), 301);
+  async fetch(request,env) {
+    const url=new URL(request.url); const host=url.hostname.toLowerCase();
+    if(host==="www.sugargoovip.uk"||host.endsWith(".pages.dev")||url.protocol!=="https:") {
+      url.protocol="https:"; url.hostname="sugargoovip.uk"; url.port=""; return Response.redirect(url.toString(),301);
     }
-
-    const localeMatch = url.pathname.match(/^\/(de|fr|es|pl)(\/.*)?$/);
-    if (localeMatch) {
-      return serveLocalized(request, env, localeMatch[1], localeMatch[2] || "/");
+    const locale=url.pathname.match(/^\/(de|fr|es|pl)(\/.*)?$/);
+    if(locale) {
+      const lang=locale[1]; url.pathname=locale[2]||"/"; url.searchParams.set("lang",lang); return Response.redirect(url.toString(),301);
     }
+    const ext=canonicalExtension(url.pathname); if(ext){url.pathname=ext;return Response.redirect(url.toString(),301);}
+    const lang=languageFrom(url);
+    let products;
+    try{products=await loadCatalog(env,request);}catch(e){products=[];}
 
-    const path = url.pathname;
-    let html = null;
-    if (path === "/guides/" || path === "/guides/index.html") html = null;
-    else if (path === "/categories/" || path === "/categories/index.html") html = categoryHub();
-    else if (guidePages[path]) html = articlePage(path, guidePages[path]);
-    else if (categories[path]) html = categoryPage(path, categories[path]);
-    else if (trustPages[path]) html = trustPage(path, trustPages[path]);
+    if(url.pathname==="/sitemap-index.xml") return xmlResponse(`<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>${SITE}/sitemap.xml</loc><lastmod>${UPDATED}</lastmod></sitemap></sitemapindex>`);
+    if(url.pathname==="/sitemap.xml") return xmlResponse(await sitemapXml(env,request,products));
+    if(["/sitemap-de.xml","/sitemap-fr.xml","/sitemap-es.xml","/sitemap-pl.xml"].includes(url.pathname)) return xmlResponse('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>');
+    if(url.pathname==="/robots.txt") return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap-index.xml\n`,{headers:{"content-type":"text/plain; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate"}});
+    if(url.pathname==="/products/"||url.pathname==="/products/index.html") return responseHtml(catalogPage(products,lang));
+    const pm=url.pathname.match(/^\/products\/([a-z0-9-]+)-(\d+)\.html$/i);
+    if(pm){const p=products.find(x=>slugFor(x)===`${pm[1]}-${pm[2]}`);if(p)return responseHtml(productPage(p,lang));}
+    if(url.pathname==="/categories/"||url.pathname==="/categories/index.html") return responseHtml(categoryHub(products,lang));
+    const cm=url.pathname.match(/^\/categories\/([a-z0-9-]+)\.html$/i);
+    if(cm&&categoryFor(cm[1])) return responseHtml(categoryPage(cm[1],products,lang));
+    if(PRIORITY_GUIDES[url.pathname]) { const out=await priorityGuidePage(url.pathname,PRIORITY_GUIDES[url.pathname],env,request,lang); if(out)return responseHtml(out); }
+    if(GENERIC_GUIDES[url.pathname]) return responseHtml(genericGuidePage(url.pathname,GENERIC_GUIDES[url.pathname],lang));
+    if(REVERSE_ARTICLES[url.pathname]) { const out=await reverseArticleHtml(url.pathname,env,request,lang); if(out)return responseHtml(out); }
 
-    if (html) {
-      return new Response(html, {status:200, headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff"}});
-    }
-
-    const assetResponse = await env.ASSETS.fetch(request);
-    const contentType = assetResponse.headers.get("content-type") || "";
-    if (assetResponse.ok && contentType.includes("text/html")) {
-      const source = await assetResponse.text();
-      const modified = injectStaticHtml(source, path);
-      const headers = new Headers(assetResponse.headers);
-      headers.set("content-type", "text/html; charset=UTF-8");
-      headers.set("cache-control", "public, max-age=0, must-revalidate");
-      return new Response(modified, {status:assetResponse.status, headers});
-    }
-    return assetResponse;
+    const staticPath=url.pathname==="/"?"/":url.pathname;
+    const html=await staticHtml(staticPath,env,request,lang,products);
+    if(html) return responseHtml(html);
+    return env.ASSETS.fetch(request);
   }
 };
