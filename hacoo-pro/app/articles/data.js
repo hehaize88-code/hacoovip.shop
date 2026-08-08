@@ -16,6 +16,23 @@ export const articles = [
       caption: "An original Hacoo Pro decision map for the warehouse-to-parcel stage.",
     },
   },
+  {
+    slug: "hacoo-order-missing-item-split-shipment",
+    title: "Hacoo Order Missing an Item: Split-Shipment Checklist",
+    description: "Learn how to tell a Hacoo split shipment from a missing item, match tracking numbers to order lines, save evidence and choose the right support path.",
+    excerpt: "A status-led method for reconciling order lines, tracking references and received contents before reporting an item as missing.",
+    published: "2026-08-08",
+    modified: "2026-08-08",
+    checkedLabel: "August 8, 2026",
+    read: "9 min",
+    image: {
+      path: "/articles/hacoo-partial-order-decision-map.svg",
+      width: 1200,
+      height: 630,
+      alt: "Three-step Hacoo partial-order check for order lines, tracking groups and received items",
+      caption: "An original Hacoo Pro decision map for distinguishing a split shipment from a missing item.",
+    },
+  },
 ];
 
 export function getArticle(slug) {
