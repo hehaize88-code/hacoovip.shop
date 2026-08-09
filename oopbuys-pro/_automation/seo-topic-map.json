@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-02",
+  "updated": "2026-08-10",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -262,6 +262,27 @@
         "PayPal Purchase Protection terms"
       ],
       "internalLinkRole": "Aftersales decision spoke linked to QC and order-workflow pillars"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-fees-total-cost/",
+      "primaryQuery": "oopbuy fees",
+      "secondaryTerms": [
+        "oopbuy service fee",
+        "oopbuy total cost",
+        "oopbuy payment fees",
+        "oopbuy customs declaration fee",
+        "oopbuy value added service costs"
+      ],
+      "intent": "commercial cost investigation",
+      "angle": "Build a stage-by-stage delivered-cost ledger for the order, warehouse, parcel, border and payment layers.",
+      "evidence": [
+        "OOPBUY Service & Fees notice",
+        "OOPBUY warehouse value-added-services notice",
+        "OOPBUY Customs and Taxation notice",
+        "OOPBUY Klarna notice",
+        "US CFPB and FTC consumer payment guidance"
+      ],
+      "internalLinkRole": "Cost-decision spoke linked to shipping, consolidation and aftersales guides"
     }
   ]
 }

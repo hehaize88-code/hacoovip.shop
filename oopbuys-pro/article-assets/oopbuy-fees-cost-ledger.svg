@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">OOPBUY fees cost ledger</title>
+  <desc id="desc">Five cost layers from seller checkout to international delivery, with a final reconciliation step.</desc>
+  <rect width="1200" height="675" fill="#f4f0e7"/>
+  <rect x="58" y="54" width="1084" height="567" rx="28" fill="#0c1625"/>
+  <text x="104" y="125" fill="#ff6b3d" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">TRUE-COST LEDGER</text>
+  <text x="104" y="180" fill="#ffffff" font-family="Georgia, serif" font-size="43">Record each charge at the stage that creates it.</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(104 240)"><rect width="180" height="208" rx="18" fill="#f9f6ef"/><text x="22" y="40" fill="#ff4f2e" font-size="15" font-weight="700">01 · ORDER</text><text x="22" y="82" fill="#0c1625" font-size="23" font-weight="700">Item price</text><text x="22" y="116" fill="#435064" font-size="17">Seller-to-</text><text x="22" y="141" fill="#435064" font-size="17">warehouse freight</text></g>
+    <g transform="translate(304 240)"><rect width="180" height="208" rx="18" fill="#dfeaf5"/><text x="22" y="40" fill="#ff4f2e" font-size="15" font-weight="700">02 · WAREHOUSE</text><text x="22" y="82" fill="#0c1625" font-size="23" font-weight="700">Optional work</text><text x="22" y="116" fill="#435064" font-size="17">Photos, rehearsal,</text><text x="22" y="141" fill="#435064" font-size="17">storage or custom</text><text x="22" y="166" fill="#435064" font-size="17">handling</text></g>
+    <g transform="translate(504 240)"><rect width="180" height="208" rx="18" fill="#f7dfcf"/><text x="22" y="40" fill="#ff4f2e" font-size="15" font-weight="700">03 · PARCEL</text><text x="22" y="82" fill="#0c1625" font-size="23" font-weight="700">Intl. freight</text><text x="22" y="116" fill="#435064" font-size="17">Measured weight,</text><text x="22" y="141" fill="#435064" font-size="17">dimensions, route</text><text x="22" y="166" fill="#435064" font-size="17">and destination</text></g>
+    <g transform="translate(704 240)"><rect width="180" height="208" rx="18" fill="#e8e4d8"/><text x="22" y="40" fill="#ff4f2e" font-size="15" font-weight="700">04 · BORDER</text><text x="22" y="82" fill="#0c1625" font-size="23" font-weight="700">Declaration</text><text x="22" y="116" fill="#435064" font-size="17">Platform charge,</text><text x="22" y="141" fill="#435064" font-size="17">tax or carrier</text><text x="22" y="166" fill="#435064" font-size="17">collection if due</text></g>
+    <g transform="translate(904 240)"><rect width="180" height="208" rx="18" fill="#f9f6ef"/><text x="22" y="40" fill="#ff4f2e" font-size="15" font-weight="700">05 · PAYMENT</text><text x="22" y="82" fill="#0c1625" font-size="23" font-weight="700">Method terms</text><text x="22" y="116" fill="#435064" font-size="17">Displayed amount,</text><text x="22" y="141" fill="#435064" font-size="17">currency and any</text><text x="22" y="166" fill="#435064" font-size="17">provider schedule</text></g>
+    <path d="M104 505H1084" stroke="#64748b" stroke-width="2" stroke-dasharray="8 9"/>
+    <text x="104" y="555" fill="#ffffff" font-size="20" font-weight="700">FINAL CHECK</text><text x="275" y="555" fill="#cbd5e1" font-size="20">Receipt total = quoted layers + later carrier or customs collections − valid discounts</text>
+  </g>
+</svg>
