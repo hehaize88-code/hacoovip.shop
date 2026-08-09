@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-03",
+  "lastReviewed": "2026-08-09",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -174,7 +174,20 @@
       "angle": "separating MOQ, batch multiples, price tiers and commercial units before warehouse QC",
       "evidence": "current Kakobuy service scope, public 1688 batch-number cart logic, inventory and warehouse statements, and Alibaba Group 1688 profile",
       "internalLinkRole": "fills the 1688 source-link gap without replacing Taobao, Weidian or general ordering guides"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-jersey-spreadsheet-qc-guide",
+      "primaryQuery": "Kakobuy jersey spreadsheet",
+      "relatedTerms": [
+        "Kakobuy jersey QC",
+        "Kakobuy football jersey sizing",
+        "Kakobuy basketball jersey guide"
+      ],
+      "intent": "jersey discovery, sizing and pre-shipment QC",
+      "angle": "turns a category spreadsheet row into a verifiable size, decoration and warehouse inspection decision",
+      "evidence": "current Kakobuy link-submission, quality-inspection, shipping-estimator and indexed after-sales pages; internal jersey category records",
+      "internalLinkRole": "category-specific bridge from spreadsheet discovery to jersey records and QC guidance"
     }
   ],
-  "nextPriority": "Kakobuy coupons and shipping discounts: current-term verification"
+  "nextPriority": "Kakobuy parcel consolidation and packaging decisions"
 }
