@@ -557,6 +557,34 @@
 
   const localizedRehearsalCards = {"en":{"count":"Six researched long-form guides covering source links, QC decisions, shipping estimates, warehouse deadlines and packed-parcel choices.","href":"/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>REHEARSAL PACKAGING · 14 MIN READ</p><h3>OOPBUY Rehearsal Packaging: Decide When It Is Worth It</h3><span>Separate packed-weight evidence from parcel photos, then pay only when the result can change a route or packaging decision.</span><a href=\"/articles/oopbuy-rehearsal-packaging-guide/\">Read guide <i>→</i></a></article>"},"de":{"count":"Sechs recherchierte Langartikel zu Links, QC, Versandkalkulation, Lagerfristen und Entscheidungen zum gepackten Paket.","href":"/de/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>PROBEVERPACKUNG · 14 MIN.</p><h3>OOPBUY Probeverpackung: Wann lohnt sich der Service?</h3><span>Gepackte Gewichtsdaten von Paketfotos trennen und nur zahlen, wenn das Ergebnis Route oder Verpackung ändern kann.</span><a href=\"/de/articles/oopbuy-rehearsal-packaging-guide/\">Ratgeber lesen <i>→</i></a></article>"},"fr":{"count":"Six articles approfondis sur les liens, le QC, la livraison, les délais d’entrepôt et les choix de colis emballé.","href":"/fr/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>EMBALLAGE D’ESSAI · 14 MIN</p><h3>Emballage d’essai OOPBUY : quand est-il utile ?</h3><span>Distinguer mesure emballée et photos, puis payer seulement si le résultat peut modifier la ligne ou le conditionnement.</span><a href=\"/fr/articles/oopbuy-rehearsal-packaging-guide/\">Lire le guide <i>→</i></a></article>"},"es":{"count":"Seis artículos extensos sobre enlaces, QC, cálculo, plazos de almacén y decisiones sobre el paquete embalado.","href":"/es/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>EMBALAJE DE PRUEBA · 14 MIN</p><h3>Embalaje de prueba OOPBUY: cuándo vale la pena</h3><span>Separa los datos del peso embalado de las fotos y paga solo si el resultado puede cambiar ruta o embalaje.</span><a href=\"/es/articles/oopbuy-rehearsal-packaging-guide/\">Leer guía <i>→</i></a></article>"},"it":{"count":"Sei articoli approfonditi su link, QC, calcolo, scadenze di magazzino e scelte per il pacco imballato.","href":"/it/articles/oopbuy-rehearsal-packaging-guide/","html":"<article data-rehearsal-packaging-card=\"true\"><span class=\"article-index\">06</span><p>IMBALLAGGIO DI PROVA · 14 MIN</p><h3>Imballaggio di prova OOPBUY: quando conviene</h3><span>Distingui il peso imballato dalle foto e paga solo se il risultato può cambiare rotta o confezionamento.</span><a href=\"/it/articles/oopbuy-rehearsal-packaging-guide/\">Leggi la guida <i>→</i></a></article>"}};
 
+  const localizedShoeQcCards = {
+    en: {
+      count: "Seven researched long-form guides covering source links, warehouse QC, shipping estimates, deadlines, packaging and shoe checks.",
+      href: "/articles/oopbuy-shoe-qc-checklist/",
+      html: '<article data-shoe-qc-card="true"><span class="article-index">07</span><p>SHOE QC CHECKLIST · 13 MIN READ</p><h3>OOPBUY Shoe QC Checklist: Check Before Shipping</h3><span>Verify the pair, size evidence, return window and box choice before international shipping.</span><a href="/articles/oopbuy-shoe-qc-checklist/">Read guide <i>→</i></a></article>'
+    },
+    de: {
+      count: "Sieben recherchierte Langartikel zu Links, Lager-QC, Versand, Fristen, Verpackung und Schuhprüfung.",
+      href: "/de/articles/oopbuy-shoe-qc-checklist/",
+      html: '<article data-shoe-qc-card="true"><span class="article-index">07</span><p>SCHUH-QC-CHECKLISTE · 13 MIN.</p><h3>OOPBUY Schuh-QC-Checkliste: Vor Versand richtig prüfen</h3><span>Paar, Größenbeleg, Rückgabefrist und Kartonentscheidung vor dem internationalen Versand prüfen.</span><a href="/de/articles/oopbuy-shoe-qc-checklist/">Ratgeber lesen <i>→</i></a></article>'
+    },
+    fr: {
+      count: "Sept guides approfondis sur les liens, le QC d’entrepôt, la livraison, les délais, l’emballage et le contrôle des chaussures.",
+      href: "/fr/articles/oopbuy-shoe-qc-checklist/",
+      html: '<article data-shoe-qc-card="true"><span class="article-index">07</span><p>CHECKLIST QC CHAUSSURES · 13 MIN</p><h3>Checklist QC chaussures OOPBUY avant expédition</h3><span>Contrôlez la paire, la pointure, le délai de retour et la boîte avant l’expédition internationale.</span><a href="/fr/articles/oopbuy-shoe-qc-checklist/">Lire le guide <i>→</i></a></article>'
+    },
+    es: {
+      count: "Siete guías extensas sobre enlaces, QC de almacén, envío, plazos, embalaje y revisión de zapatillas.",
+      href: "/es/articles/oopbuy-shoe-qc-checklist/",
+      html: '<article data-shoe-qc-card="true"><span class="article-index">07</span><p>CHECKLIST QC ZAPATILLAS · 13 MIN</p><h3>Checklist QC de zapatillas OOPBUY antes del envío</h3><span>Comprueba el par, la talla, el plazo de devolución y la caja antes del envío internacional.</span><a href="/es/articles/oopbuy-shoe-qc-checklist/">Leer guía <i>→</i></a></article>'
+    },
+    it: {
+      count: "Sette guide approfondite su link, QC in magazzino, spedizione, scadenze, imballaggio e controllo delle scarpe.",
+      href: "/it/articles/oopbuy-shoe-qc-checklist/",
+      html: '<article data-shoe-qc-card="true"><span class="article-index">07</span><p>CHECKLIST QC SCARPE · 13 MIN</p><h3>Checklist QC scarpe OOPBUY prima della spedizione</h3><span>Controlla paio, taglia, finestra di reso e scatola prima della spedizione internazionale.</span><a href="/it/articles/oopbuy-shoe-qc-checklist/">Leggi guida <i>→</i></a></article>'
+    }
+  };
+
   function ensureRehearsalCard(lang) {
     const data = localizedRehearsalCards[lang];
     if (!data) return;
@@ -565,6 +593,18 @@
     setText(journal.querySelector(".section-heading--split > p"), data.count);
     const grid = journal.querySelector(".article-grid");
     if (grid && !grid.querySelector('a[href="' + data.href + '"]')) grid.insertAdjacentHTML("beforeend", data.html);
+  }
+
+  function ensureShoeQcCard(lang) {
+    const data = localizedShoeQcCards[lang];
+    if (!data) return;
+    const journal = document.querySelector(".journal-section");
+    if (!journal) return;
+    setText(journal.querySelector(".section-heading--split > p"), data.count);
+    const grid = journal.querySelector(".article-grid");
+    if (grid && !grid.querySelector('a[href="' + data.href + '"]')) {
+      grid.insertAdjacentHTML("beforeend", data.html);
+    }
   }
 
   function ensureLocalizedShippingCard(lang) {
@@ -620,6 +660,7 @@
     ensureLocalizedShippingCard(pageLanguage());
     ensureWarehouseCard(pageLanguage());
     ensureRehearsalCard(pageLanguage());
+    ensureShoeQcCard(pageLanguage());
     forceStaticArticleNavigation();
   }
 
