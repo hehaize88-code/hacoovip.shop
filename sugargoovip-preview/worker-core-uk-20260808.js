@@ -1,6 +1,7 @@
 const SITE = "https://sugargoovip.uk";
 const MAIN = "https://www.cnfanshp.com";
-const UPDATED = "2026-08-08";
+const UPDATED = "2026-08-09";
+const NEW_ARTICLE = "/guides/sugargoo-1688-buying-guide-uk.html";
 const VALID_LANGS = new Set(["en","es","fr","de","it","pt","pl","nl","zh"]);
 const LEGACY_SEO_LANGS = new Set(["de","fr","es","pl"]);
 
@@ -69,7 +70,7 @@ const REVERSE_ARTICLES = {
 const KNOWN_HTML = new Set([
   "/faq.html","/about.html","/disclaimer.html","/privacy.html","/contact.html",
   "/guides/what-is-sugargoo.html","/guides/qc-guide.html","/guides/shipping-guide.html","/guides/alternative.html",
-  "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html", NEW_ARTICLE,
   ...Object.keys(PRIORITY_GUIDES), ...Object.keys(GENERIC_GUIDES), ...Object.keys(REVERSE_ARTICLES),
   ...Object.keys(CATEGORY_META).map(k=>`/categories/${k}.html`)
 ]);
@@ -231,7 +232,7 @@ function transformHome(html,products,lang) {
     .replace(/<p data-i18n="hero\.intro">[\s\S]*?<\/p>/i,`<p data-uk-home-intro>${description}</p>`)
     .replace(/<h2 data-i18n="sheet\.title">[\s\S]*?<\/h2>/i,'<h2 data-uk-sheet-title>Sugargoo Spreadsheet UK 2026</h2>')
     .replace(/<div class="stat-chip"><strong>4<\/strong><span data-i18n="section\.daily">Daily Finds<\/span><\/div>/i,'<div class="stat-chip"><strong>40</strong><span data-uk-find-label>Product Finds</span></div>')
-    .replace(/<div class="stat-chip"><strong>4<\/strong><span data-i18n="section\.guides">Shopping Guides<\/span><\/div>/i,'<div class="stat-chip"><strong>22</strong><span data-i18n="section.guides">Shopping Guides</span></div>')
+    .replace(/<div class="stat-chip"><strong>4<\/strong><span data-i18n="section\.guides">Shopping Guides<\/span><\/div>/i,'<div class="stat-chip"><strong>23</strong><span data-i18n="section.guides">Shopping Guides</span></div>')
     .replace(/<a class="btn" href="https:\/\/www\.cnfanshp\.com\/" target="_blank" rel="noopener" data-i18n="sheet\.cta">View Spreadsheet<\/a>/i,'<a class="btn" href="/products/">Browse 40 Product Finds</a>')
     .replace(/<a href="https:\/\/www\.cnfanshp\.com\/" target="_blank" rel="noopener" data-i18n="nav\.spreadsheet">Spreadsheet<\/a>/i,'<a href="/products/" data-i18n="nav.spreadsheet">Spreadsheet</a>')
     .replace(/>shoes-60</g,'>Curated Shoes Find 6045<')
@@ -287,7 +288,7 @@ async function sitemapXml(env,request,products) {
   for(const m of old.matchAll(/<loc>([^<]+)<\/loc>/g)) if(m[1].startsWith(SITE)&&!urls.includes(m[1])) urls.push(m[1]);
   if(!urls.includes(`${SITE}/products/`)) urls.push(`${SITE}/products/`);
   for(const p of products){const u=`${SITE}/products/${slugFor(p)}.html`;if(!urls.includes(u))urls.push(u);}
-  const fresh=new Set([`${SITE}/`,`${SITE}/products/`,`${SITE}/categories/`,...Object.keys(PRIORITY_GUIDES).map(p=>SITE+p),...Object.keys(CATEGORY_META).map(k=>`${SITE}/categories/${k}.html`),...products.map(p=>`${SITE}/products/${slugFor(p)}.html`)]);
+  const fresh=new Set([`${SITE}/`,`${SITE}/products/`,`${SITE}/categories/`,`${SITE}${NEW_ARTICLE}`,...Object.keys(PRIORITY_GUIDES).map(p=>SITE+p),...Object.keys(CATEGORY_META).map(k=>`${SITE}/categories/${k}.html`),...products.map(p=>`${SITE}/products/${slugFor(p)}.html`)]);
   const rows=urls.map(u=>`  <url><loc>${esc(u)}</loc><lastmod>${fresh.has(u)?UPDATED:(u===`${SITE}/guides/`?"2026-07-16":"2026-07-10")}</lastmod><changefreq>weekly</changefreq><priority>${u===`${SITE}/`?"1.0":u===`${SITE}/products/`||u===`${SITE}/categories/`||u===`${SITE}/guides/`?"0.9":"0.8"}</priority></url>`).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows}\n</urlset>`;
 }
@@ -335,3 +336,4 @@ export default {
     return env.ASSETS.fetch(request);
   }
 };
+
