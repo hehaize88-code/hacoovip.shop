@@ -9,11 +9,13 @@ workerUrl.searchParams.set("static-render", `${Date.now()}`);
 const worker = (await import(workerUrl.href)).default;
 const languages = ["", "de", "fr", "es", "it", "pl", "pt", "ro"];
 const localized = ["", "categories", "qc-hub", "guides", "faq", "articles", "under-25", "qc-first", "new-this-week", "read-kakobuy-qc-photos", "kakobuy-spreadsheet-first-time-guide", "product-price-vs-parcel-cost"];
-const englishOnly = ["kakobuy-warehouse-storage-guide", "finds", ...findRoutes];
-const routes = [
+const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "finds", ...findRoutes];
+const allRoutes = [
   ...languages.flatMap((language) => localized.map((slug) => [language, slug].filter(Boolean).join("/"))),
   ...englishOnly,
 ];
+const requestedRoutes = process.argv.slice(2);
+const routes = requestedRoutes.length ? requestedRoutes : allRoutes;
 
 for (const route of routes) {
   const pathname = route ? `/${route}` : "/";

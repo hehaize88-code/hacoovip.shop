@@ -17,6 +17,7 @@ const LOCALIZED_PAGE_SLUGS = [
 
 const ENGLISH_ONLY_PAGES = {
   "kakobuy-warehouse-storage-guide": "Kakobuy Warehouse Storage Guide",
+  "kakobuy-returns-after-sales-checklist": "Kakobuy Returns and After-Sales Checklist",
   finds: "Kakobuy Finds: 30 Checked Product Records",
   "find-6059": "Shoes 1 — Record 6059",
   "find-6057": "Shoes 1 — Record 6057",
@@ -236,6 +237,10 @@ function pageMetadata(language, slug) {
     if (slug === "kakobuy-warehouse-storage-guide") return {
       title: "Kakobuy Warehouse Storage Guide (2026): 100-Day Planning",
       description: "Learn how Kakobuy warehouse storage works, what to inspect on arrival, how to track deadlines and when to consolidate or submit a parcel.",
+    };
+    if (slug === "kakobuy-returns-after-sales-checklist") return {
+      title: "Kakobuy Returns Policy: After-Sales Checklist (2026)",
+      description: "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales.",
     };
     if (slug === "finds") return {
       title: "Kakobuy Finds: 30 Checked Product Records (2026)",

@@ -309,5 +309,86 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy public service overview, warehouse information, shipping estimator and return/exchange guidance, reviewed August 3, 2026. Storage periods, eligibility, fees and order-specific deadlines can change; confirm them in the live account."
+  },
+  {
+    slug: "kakobuy-returns-after-sales-checklist",
+    title: "Kakobuy Returns and After-Sales Checklist: What to Record Before You Ask for Help",
+    seoTitle: "Kakobuy Returns Policy: After-Sales Checklist (2026)",
+    seoDescription: "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales.",
+    primaryKeyword: "Kakobuy returns",
+    secondaryKeywords: ["Kakobuy return policy", "Kakobuy after sales", "Kakobuy exchange", "Kakobuy warehouse return checklist"],
+    intro: "A return request is easier to understand when it begins with a precise mismatch, not a general complaint. The useful record connects what was ordered, what the seller sent, what the warehouse evidence shows, when the item was stocked and what outcome you are requesting. This checklist explains how to build that record before contacting Kakobuy after-sales, while recognizing that seller rules, customization, item condition and the live order state can affect eligibility.",
+    quickAnswer: "Open the live order immediately. Save the order number, source option, warehouse status, relevant QC image and displayed deadline. Describe one observable mismatch, choose a requested outcome, and submit through the current order or support route. Do not ship the item internationally while a warehouse return question is unresolved.",
+    sections: [
+      {
+        heading: "Begin with the live order, not a remembered policy",
+        paragraphs: [
+          "Kakobuy's currently indexed product help says a buyer who is dissatisfied after warehouse receipt can apply for a return within five days, after which the buyer service communicates with the seller about after-sales. That is useful current public evidence, but it is not a promise that every order will be accepted. Seller restrictions, custom products, missing packaging, product condition and the reason for the request can change the result.",
+          "Use the live order as the operational record. Check the warehouse or after-sales status, any countdown or deadline, the available buttons and the conditions displayed for that item. Save a screenshot for your private records with the date visible. A summary article can explain a method; only the current order can show which action is available now."
+        ],
+        bullets: ["Check the exact order and warehouse status.", "Record the date and any displayed deadline.", "Read item-specific restrictions before relying on a general return summary."]
+      },
+      {
+        heading: "Separate four different kinds of problem",
+        paragraphs: [
+          "A wrong item is not the same case as a visible defect, a size that matches the order but does not fit, or a change of mind. Start by classifying the request. An order mismatch means the seller sent a different recorded option, quantity or model. A visible condition problem means warehouse evidence shows damage, contamination, missing parts or construction outside the agreed listing. A preference problem means the item may match the order but no longer suits the buyer.",
+          "Classification matters because the evidence and likely seller response differ. For a mismatch, the saved option and item label are central. For damage, use an image that shows location and scale. For missing pieces, compare package contents with the listing. For fit, distinguish a wrong label or measurement from a correctly supplied size that simply feels uncertain before delivery."
+        ],
+        bullets: ["ORDER MISMATCH: wrong variant, model, color, size label or quantity.", "VISIBLE CONDITION: damage, stain, open seam or missing component.", "MEASUREMENT: warehouse evidence conflicts with a saved size chart or agreed range.", "PREFERENCE: item matches the order, but the buyer changed the decision."]
+      },
+      {
+        heading: "Build a one-page after-sales evidence record",
+        paragraphs: [
+          "Keep the record compact. Include the Kakobuy order number, seller or source listing, selected option in its original wording, quantity, purchase date, warehouse stocking date and current status. Add the one or two QC images that show the problem. If a size or specification is disputed, include the saved chart, model code or buyer note that existed before purchase.",
+          "Do not send an unfiltered gallery and ask support to find the problem. Label the relevant image and location: 'back image, lower-right print edge' or 'measurement image begins inside the ruler, so length cannot be confirmed.' A support agent can evaluate a specific claim more efficiently than a long message mixing several possibilities."
+        ]
+      },
+      {
+        heading: "Write the mismatch as a testable sentence",
+        paragraphs: [
+          "Use the structure: ordered fact, observed fact, evidence, requested outcome. For example: 'The order records navy, seller option B. The warehouse label and front image show black, option A. Please confirm whether this qualifies for return to the seller.' This does not exaggerate motive or quality; it connects two records that can be checked.",
+          "Avoid claims such as 'fake,' 'terrible quality' or 'not like the picture' unless the evidence actually establishes the point. Warehouse photographs can show visible differences but cannot prove every material, performance or authenticity question. Describe color blocks, labels, dimensions, quantity, marks, seams or missing parts instead."
+        ],
+        bullets: ["Ordered: quote the saved option or instruction.", "Observed: name the visible warehouse fact.", "Evidence: identify the image, label or measurement.", "Request: ask for return, exchange, clarification or another targeted check."]
+      },
+      {
+        heading: "Ask for one outcome at a time",
+        paragraphs: [
+          "A return sends the item back if the current order and seller process allow it. An exchange normally requires seller cooperation and introduces another domestic movement. A targeted photo or measurement can resolve uncertainty without a return. A clarification can determine whether a mark is a reflection, fold or actual defect. Choose the smallest action that answers the decision.",
+          "Do not ask simultaneously for a refund, exchange, discount, extra photos and international shipment. Conflicting instructions make the requested state unclear. If the evidence is incomplete, request the missing fact first. If the evidence already shows a material order mismatch, state the preferred return or exchange outcome and any acceptable alternative."
+        ]
+      },
+      {
+        heading: "Account for seller response and domestic movement",
+        paragraphs: [
+          "Kakobuy's indexed help describes its buyer service negotiating after-sales with the seller. That means the purchasing platform can carry the request, but the underlying seller's terms and response still matter. Do not describe an application as an approved refund until the order status confirms it. Keep every stage separate: requested, seller contacted, accepted or rejected, item returned, and refund completed.",
+          "A warehouse return can require domestic shipment back to the seller, and the live process may display who bears that cost. This article does not state a universal amount or payer because those facts can vary. Review the current order information before approving a domestic return charge, and save the displayed amount and status for your records."
+        ]
+      },
+      {
+        heading: "Do not create a parcel while the request is open",
+        paragraphs: [
+          "Kakobuy's public workflow says users select warehouse products to form one parcel after quality inspection. Keep an item out of parcel submission while its return, exchange or clarification is unresolved. International dispatch can narrow practical correction options and make the evidence chain harder to follow.",
+          "If other accepted items are ready, decide whether they can wait or should ship separately. That is a parcel-planning decision, not a reason to rush the disputed item. Record which warehouse orders belong to each group so the return case and parcel case do not accidentally use the same item."
+        ]
+      },
+      {
+        heading: "Follow status changes without inventing a deadline",
+        paragraphs: [
+          "After submitting, save the request date and check the order status. If the state does not change, contact support with the order number, request date, current status and the specific next event you are waiting for. 'Return requested on August 9; seller response not yet shown' is clearer than 'nothing is happening.'",
+          "Response time can depend on the seller and the case, so this guide does not promise a fixed resolution time. Escalate through the current support channel when the live deadline is close, a requested domestic return is stalled or the order state conflicts with a completed action. Keep messages factual and preserve earlier replies privately."
+        ],
+        bullets: ["Request submitted and timestamp saved.", "Seller response or platform decision recorded.", "Domestic return status checked when applicable.", "Refund or exchange completion confirmed in the account."]
+      },
+      {
+        heading: "A complete Kakobuy returns checklist",
+        paragraphs: [
+          "Before submitting, confirm that the order ID, selected option and warehouse item all belong together. State the problem category, quote the ordered fact, name the observed fact and attach only the decisive evidence. Check the live deadline and restrictions, select one requested outcome and keep the item out of any international parcel. Save the submission state and follow the case until the account confirms a final result.",
+          "The goal is not to guarantee approval. It is to make the case legible while an available option can still be used. A dated, item-specific record helps distinguish seller disagreement from missing evidence, and it prevents a general memory of 'the return policy' from replacing the actual order state."
+        ],
+        bullets: ["Live order and deadline checked.", "Problem classified accurately.", "Source option and buyer note preserved.", "Warehouse image or measurement identified.", "Mismatch written as one testable sentence.", "One requested outcome selected.", "Item excluded from parcel submission.", "Request and later status saved privately."]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public contact and quality-inspection pages plus a currently indexed Kakobuy product-help page describing a five-day return application and seller after-sales handling, reviewed August 9, 2026. Eligibility, exclusions, seller response, costs and displayed deadlines can change; follow the live order."
   }
 ];

@@ -17,7 +17,7 @@ const localized = [
   "kakobuy-spreadsheet-first-time-guide",
   "product-price-vs-parcel-cost",
 ];
-const englishOnly = ["kakobuy-warehouse-storage-guide", "finds", ...findRoutes];
+const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "finds", ...findRoutes];
 const route = (language, slug) => `${origin}/${language === "en" ? "" : `${language}/`}${slug ? `${slug}/` : ""}`;
 const entries = [];
 
@@ -29,7 +29,8 @@ for (const language of languages) {
 }
 
 for (const slug of englishOnly) {
-  entries.push(`  <url>\n    <loc>${route("en", slug)}</loc>\n    <lastmod>2026-08-03</lastmod>\n    <xhtml:link rel="alternate" hreflang="en" href="${route("en", slug)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${route("en", slug)}" />\n  </url>`);
+  const lastmod = slug === "kakobuy-returns-after-sales-checklist" ? "2026-08-09" : "2026-08-03";
+  entries.push(`  <url>\n    <loc>${route("en", slug)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <xhtml:link rel="alternate" hreflang="en" href="${route("en", slug)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${route("en", slug)}" />\n  </url>`);
 }
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join("\n")}\n</urlset>\n`;

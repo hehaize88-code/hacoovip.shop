@@ -28,11 +28,14 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
   };
   if (!article) return {};
   const canonicalPath = language === "en" ? `/${article.slug}` : `/${language}/${article.slug}`;
+  const isReturns = language === "en" && article.slug === "kakobuy-returns-after-sales-checklist";
+  const canonical = isReturns ? "https://kakobuys.store/kakobuy-returns-after-sales-checklist/" : canonicalPath;
   return {
     title: article.seoTitle,
     description: article.seoDescription,
+    robots: isReturns ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
     alternates: {
-      canonical: canonicalPath,
+      canonical,
       languages: articleIndex < 3 ? {
         en: `/${article.slug}`,
         de: `/de/${article.slug}`,
@@ -43,9 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
         pt: `/pt/${article.slug}`,
         ro: `/ro/${article.slug}`,
         "x-default": `/${article.slug}`
-      } : { en: canonicalPath, "x-default": canonicalPath }
+      } : { en: canonical, "x-default": canonical }
     },
-    openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article" }
+    openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: isReturns ? canonical : undefined, images: isReturns ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
   };
 }
 
