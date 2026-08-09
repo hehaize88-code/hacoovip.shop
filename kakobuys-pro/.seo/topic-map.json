@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-03",
+  "lastReviewed": "2026-08-09",
   "entries": [
     {
       "url": "https://kakobuys.pro/articles/how-to-read-kakobuy-qc-photos",
@@ -173,7 +173,21 @@
       "angle": "preserves 1688 quantity and price conditions from source offer through warehouse verification",
       "evidence": "Kakobuy supported product-link search and public service flow plus 1688 platform terms",
       "internalLinkRole": "supports readers arriving with 1688 product links"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-parcel-consolidation-guide",
+      "primaryQuery": "Kakobuy parcel consolidation",
+      "relatedTerms": [
+        "combine Kakobuy warehouse items",
+        "split Kakobuy parcel",
+        "Kakobuy packaging decisions",
+        "Kakobuy shipping routes"
+      ],
+      "intent": "parcel grouping and packaging decision",
+      "angle": "compares combined and split scenarios across protection, dimensional volume, route eligibility and concentration of value",
+      "evidence": "current Kakobuy public consolidation, quality-inspection and shipping-estimator pages",
+      "internalLinkRole": "bridges volumetric-weight, shipping-cost, storage and tracking guides"
     }
   ],
-  "nextPriority": "Kakobuy parcel consolidation: when combining warehouse items helps or hurts"
+  "nextPriority": "Kakobuy payment methods and variable fee verification"
 }
