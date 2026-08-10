@@ -26,8 +26,47 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 pillow lxml
 
+      - name: Keep the current Worker-core architecture
+        shell: python
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('sugargoovip-preview/tools/upgrade_uk_seo_20260808.py')
+          text=path.read_text(encoding='utf-8')
+          old='    patch_worker(static_paths, canonical_html)\n'
+          if old not in text:
+              raise SystemExit('Expected patch_worker call not found')
+          text=text.replace(old,"    # Current _worker.js delegates canonical routing to worker-core-uk-20260808.js.\n    # Do not rewrite the Worker with the retired monolithic handler.\n",1)
+          path.write_text(text,encoding='utf-8')
+          PY
+
       - name: Generate static UK spreadsheet catalogue
         run: python sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+
+      - name: Restore current canonical Worker and sitemap policy
+        shell: python
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          base=Path('sugargoovip-preview')
+          routes='''{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": []
+}
+'''
+          (base/'_routes.json').write_text(routes,encoding='utf-8')
+          index='''<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://sugargoovip.uk/sitemap.xml</loc>
+    <lastmod>2026-08-10</lastmod>
+  </sitemap>
+</sitemapindex>
+'''
+          (base/'sitemap-index.xml').write_text(index,encoding='utf-8')
+          (base/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: https://sugargoovip.uk/sitemap-index.xml\n',encoding='utf-8')
+          PY
 
       - name: Validate generated SEO surface
         shell: python
@@ -41,6 +80,7 @@ jobs:
           base=Path('sugargoovip-preview')
           products=list((base/'products').glob('*.html'))
           assert len(products)==41, f'expected product index + 40 details, got {len(products)}'
+          assert len(list((base/'assets/catalog').glob('*.webp')))>=39
           assert (base/'categories/index.html').exists()
           for slug in ['shoes','hoodies-sweaters','t-shirts','jackets','pants-shorts','headwear','accessories','electronics']:
               page=base/f'categories/{slug}.html'
@@ -68,6 +108,8 @@ jobs:
           assert robots.count('Sitemap:')==1 and 'sitemap-index.xml' in robots
           worker=(base/'_worker.js').read_text(encoding='utf-8')
           assert 'worker-core-uk-20260808.js' in worker
+          core=(base/'worker-core-uk-20260808.js').read_text(encoding='utf-8')
+          assert 'canonicalExtension' in core and 'noindexForLanguage' in core
           print('PASS:',counts,'products',len(products)-1,'sitemap urls',sitemap.count('<url>'))
           PY
 
@@ -83,6 +125,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/workflows/upgrade-sugargoovip-uk-seo-20260810.yml
+          git checkout -- sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
