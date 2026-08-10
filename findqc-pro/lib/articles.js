@@ -1138,6 +1138,141 @@ export const articles = [
     related: ["before-you-buy-qc-guide", "findqc-qc-measurements-size-guide", "what-qc-photos-can-prove"],
     cta: { eyebrow: "Inspect every visible angle", title: "Continue with the complete warehouse QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
+  {
+    slug: "findqc-return-evidence-checklist",
+    title: "FindQC Return Evidence Checklist: What to Save Before Contacting Your Shopping Agent",
+    shortTitle: "FindQC Return Evidence Checklist",
+    description: "Build a clear FindQC return evidence packet for a wrong item, measurement mismatch, damage or missing component before contacting your shopping agent.",
+    excerpt: "A practical, privacy-aware method for turning listing claims, order details and warehouse photos into one focused return or exchange request.",
+    category: "Warehouse Workflow",
+    readTime: "10 min read",
+    date: "10 August 2026",
+    dateISO: "2026-08-10",
+    updatedISO: "2026-08-10",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-return-evidence-checklist"],
+    heroImage: "/products/catalog/jackets-5900.jpg",
+    heroAlt: "A jacket used as an editorial example for documenting an item mismatch before an agent return request",
+    heroCaption: "Existing FindQC Pro local editorial catalog asset. It illustrates evidence organisation and is not a customer order, warehouse QC record or proof of a defect.",
+    keywords: ["FindQC return evidence checklist", "shopping agent return evidence", "warehouse QC dispute photos", "wrong item evidence", "agent exchange request"],
+    sourceIntro: "FindQC's public platform role and data limits were rechecked on 10 August 2026. Seller and shopping-agent rules govern the actual transaction, so confirm the live deadline, eligibility and remedy inside the service handling your order.",
+    intro: [
+      "A weak return message says, “This looks wrong.” A useful one identifies the ordered item, names one verifiable mismatch, shows where the claim came from and asks for a specific next step. That difference matters when a shopping agent must relay the issue to a seller while a warehouse decision window may still be open.",
+      "This FindQC return evidence checklist is a record-building method, not a promise that a return will be accepted. FindQC can help you discover earlier QC material and product links, but its current Terms of Service say purchases, shipping and returns are handled by third parties. The seller and agent involved in the actual order decide what rules, deadlines and remedies apply.",
+    ],
+    sections: [
+      {
+        id: "assign-evidence-roles",
+        title: "1. Assign each screen the right evidentiary role",
+        blocks: [
+          { type: "p", text: "Begin by separating discovery evidence from transaction evidence. A FindQC page can help locate a source listing and show third-party QC records associated with earlier items. It does not prove what your warehouse received. FindQC's current terms also say that photos, weight, dimensions and defect records generally come from third-party agents and are not guaranteed for accuracy, completeness or authenticity." },
+          { type: "p", text: "The live seller listing records what was offered when you ordered. Your agent order page records the option actually submitted. Your own warehouse gallery is the strongest visual evidence of the unit waiting for a decision. None should silently replace another. If a public QC photo is from a different buyer, date, colour or version, use it only to formulate a question." },
+          { type: "table", headers: ["Record", "What it can support", "What it cannot decide"], rows: [
+            ["FindQC discovery record", "A source route, earlier visible examples and useful inspection angles", "The condition or eligibility of your own order"],
+            ["Live seller listing", "Claimed option, included parts and visible description at capture time", "What the warehouse actually received"],
+            ["Agent order record", "Submitted item, option, quantity and order identity", "Whether a visible mismatch is real without warehouse evidence"],
+            ["Your warehouse record", "Visible identifiers, condition and measurements of the received unit", "Hidden construction, authenticity or a guaranteed remedy"],
+          ] },
+          { type: "callout", title: "Do not treat a badge as a universal policy", text: "A return label or recent-return signal shown for one listing is an item-level snapshot, not a site-wide promise. Confirm the current seller and agent terms attached to your exact order before relying on it." },
+        ],
+      },
+      {
+        id: "freeze-order-identity",
+        title: "2. Freeze the order identity before pages change",
+        blocks: [
+          { type: "p", text: "Capture the identity chain while the pages are still available. Save the original product URL as text, not only as a cropped screenshot. Record the marketplace item identifier when visible, seller name, chosen colour or style, labelled size, quantity and the agent's order number. Add the capture date because listings and option menus can change after purchase." },
+          { type: "list", title: "Minimum identity packet", items: [
+            "Original source URL and marketplace item identifier, if one is displayed.",
+            "Seller name plus the exact option text submitted by the agent.",
+            "Order number kept in the private support record, not posted publicly.",
+            "A full-page capture showing the relevant claim and its surrounding context.",
+            "Warehouse image filenames or timestamps that tie the evidence to the received unit.",
+          ] },
+          { type: "p", text: "Avoid screenshots cropped so tightly that nobody can tell which variant, measurement or page they describe. Also avoid turning unrelated identifiers into evidence: a translated product title may differ from the marketplace title without indicating a wrong item. Prioritise stable clues such as the item ID, option selection, photographed label and order record." },
+        ],
+      },
+      {
+        id: "classify-mismatch",
+        title: "3. Classify the mismatch before asking for a remedy",
+        blocks: [
+          { type: "p", text: "A precise category makes the request easier to review. “Wrong item” means the received identity conflicts with the submitted option. “Measurement mismatch” means a repeatable measurement differs from a stated or agreed value. “Visible damage” means a condition such as a cut, crack, stain or open seam is shown clearly. “Missing component” means an included part promised on the transaction page is absent from the received set." },
+          { type: "table", headers: ["Issue type", "Best supporting evidence", "Common weak evidence"], rows: [
+            ["Wrong option", "Order selection beside the received label or identifying feature", "A similar-looking product photo from another buyer"],
+            ["Measurement mismatch", "Claimed measurement plus a straight, zero-visible warehouse measurement", "A ruler shown diagonally or with the endpoint cropped"],
+            ["Visible damage", "Wide orientation photo and a neutral-light close-up of the same area", "One compressed image with no location context"],
+            ["Missing component", "Listing inclusion claim and one frame showing the complete received set", "Assuming an accessory was included because another seller supplied it"],
+            ["Preference or appearance", "Clear description of the observable difference", "Calling lighting, packaging pressure or personal taste a manufacturing defect"],
+          ] },
+          { type: "p", text: "Keep subjective dissatisfaction separate from a documented mismatch. Colour can shift under warehouse lighting, soft garments can crease in storage and camera perspective can change apparent proportions. If a better photo could resolve the uncertainty, request that evidence first. Escalating an ambiguous image as a confirmed defect can make the real issue harder to identify." },
+        ],
+      },
+      {
+        id: "build-comparison",
+        title: "4. Build a three-column comparison that survives review",
+        blocks: [
+          { type: "p", text: "Put the claimed fact, the submitted order and the warehouse observation on one line. For example: claimed colour “navy”; order option “navy, size L”; received label “black, size L.” That structure is stronger than a collage of arrows because another reviewer can reconstruct the reasoning without guessing what each image represents." },
+          { type: "list", title: "For every comparison, include", items: [
+            "The exact words or number being compared, including the measurement unit.",
+            "A complete image first, followed by a close-up that proves the detail's location.",
+            "The original image without drawn marks, plus an annotated copy only if it helps orientation.",
+            "A note when the listing language was translated or the option name is ambiguous.",
+            "One conclusion no broader than the evidence, such as “label conflicts with ordered size.”",
+          ] },
+          { type: "p", text: "For measurements, ask for a single plane, a visible zero point and an unobstructed endpoint. Name the method: flat chest width, garment length, insole length or another defined line. Do not compare flat width with body circumference, outsole length with usable shoe length, or inches with centimetres until the units and methods match." },
+          { type: "callout", title: "Use a falsifiable sentence", text: "Write a claim that a reviewer could prove wrong from the record. “The photographed neck label says M while the order selection says L” is testable. “The quality is terrible” is not." },
+        ],
+      },
+      {
+        id: "write-request",
+        title: "5. Write one request with one primary outcome",
+        blocks: [
+          { type: "p", text: "Lead with the order identity and one-sentence issue. Then number the evidence in the same order it appears in the attachments. Finish with the outcome you want the agent to check—return, exchange, corrected item, extra warehouse photo or seller review. Asking for several incompatible outcomes at once makes it unclear what action should happen first." },
+          { type: "table", headers: ["Message part", "Useful wording pattern"], rows: [
+            ["Identity", "Order [private number], seller [name], option [exact option text]"],
+            ["Issue", "The received [label/measurement/component] conflicts with [specific recorded claim]"],
+            ["Evidence", "1. order selection; 2. full warehouse view; 3. close-up or measurement"],
+            ["Request", "Please confirm the current eligible remedy and deadline for this order"],
+            ["Fallback", "If the evidence is insufficient, please request this one additional view or fact"],
+          ] },
+          { type: "p", text: "Do not insert a fee, deadline or guaranteed return right copied from an old guide or another order. FindQC does not handle the transaction, and third-party policies can vary. Ask the agent to point to the current rule displayed for the exact seller, item and order. Preserve that reply in the private case record." },
+        ],
+      },
+      {
+        id: "privacy-and-integrity",
+        title: "6. Preserve originals privately and share only what is needed",
+        blocks: [
+          { type: "p", text: "Keep an untouched folder containing the original listing capture, order record, warehouse files and support response. Edit copies, not originals. A filename or short index—E1 order option, E2 full garment, E3 size label, E4 measurement—helps an agent follow the packet and prevents two similar close-ups from being confused." },
+          { type: "p", text: "When evidence must be shared outside the agent's authenticated support channel, remove names, addresses, phone numbers, payment references, tracking codes, account identifiers and reusable order links. FindQC's current Privacy Policy describes a data-minimisation approach and says external agent privacy rules apply after users leave its service. Public posting rarely needs the private fields that prove account ownership." },
+          { type: "list", title: "Integrity checks before sending", items: [
+            "Every attachment belongs to this order and not a similar public QC record.",
+            "The original and annotated versions are both retained.",
+            "The capture date and measurement unit are visible or stated.",
+            "Redaction hides private identifiers without covering the disputed detail.",
+            "The request distinguishes confirmed facts from unresolved appearance questions.",
+          ] },
+        ],
+      },
+      {
+        id: "ten-minute-triage",
+        title: "7. A ten-minute evidence triage before you contact support",
+        blocks: [
+          { type: "list", title: "Work in this order", items: [
+            "Minutes 1–2: save the source URL, item identity, ordered option and private order number.",
+            "Minutes 3–4: classify the issue as identity, measurement, visible condition, missing component or unresolved preference.",
+            "Minutes 5–6: select one wide warehouse view and the smallest number of decisive close-ups.",
+            "Minute 7: write the claim-versus-order-versus-received comparison.",
+            "Minute 8: remove unrelated files and redact private fields from any shareable copies.",
+            "Minute 9: state one requested outcome and one evidence fallback.",
+            "Minute 10: recheck the current seller and agent rule before sending.",
+          ] },
+          { type: "p", text: "The FindQC homepage, Terms of Service and Privacy Policy were checked on 10 August 2026. Their statements are used only to define FindQC's own role, third-party data limits and privacy boundaries. They do not establish the return rules of a seller or shopping agent involved in a separate transaction." },
+          { type: "p", text: "The final packet should let an unfamiliar reviewer answer four questions quickly: what was ordered, what arrived, what conflicts and what action is being requested. If one of those answers is missing, gather it before adding more screenshots. Clear evidence is usually shorter than an emotional case, but it is much easier to verify." },
+        ],
+      },
+    ],
+    sources: [],
+    related: ["findqc-shopping-agent-workflow", "what-qc-photos-can-prove", "findqc-qc-measurements-size-guide"],
+    cta: { eyebrow: "Prepare the warehouse record", title: "Use the complete QC photo checklist before deciding", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
+  },
 ];
 
 export function getArticle(slug) {
