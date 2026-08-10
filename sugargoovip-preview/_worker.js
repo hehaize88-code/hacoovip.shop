@@ -4,10 +4,12 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const pathname = url.pathname;
+    const lang = url.searchParams.get('lang');
 
-    if (pathname === '/' || pathname === '/index.html') {
+    if ((pathname === '/' || pathname === '/index.html') && (!lang || lang === 'en')) {
       const assetUrl = new URL(request.url);
       assetUrl.pathname = '/index.html';
+      assetUrl.search = '';
       return env.ASSETS.fetch(new Request(assetUrl.toString(), request));
     }
 
