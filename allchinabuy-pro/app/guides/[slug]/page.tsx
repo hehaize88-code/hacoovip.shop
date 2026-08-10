@@ -16,14 +16,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) return { title: "Guide not found", robots: { index: false, follow: false } };
-  return buildPageMetadata({
+  const metadata = buildPageMetadata({
     title: guide.title,
     description: guide.description,
     path: `/guides/${guide.slug}`,
     type: "article",
-    modifiedTime: "2026-07-17",
+    modifiedTime: guide.modifiedDate ?? "2026-07-17",
     image: guideSocialCard(guide.figure.src, guide.figure.alt),
   });
+  if (guide.publishedDate) metadata.title = { absolute: guide.title };
+  return metadata;
 }
 
 export default async function GuidePage({ params }: PageProps) {
@@ -33,6 +35,8 @@ export default async function GuidePage({ params }: PageProps) {
   const relatedGuides = guide.relatedSlugs
     .map((relatedSlug) => getGuide(relatedSlug))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const publishedDate = guide.publishedDate ?? "2026-07-17";
+  const modifiedDate = guide.modifiedDate ?? "2026-07-17";
 
   return (
     <main id="main-content" className="inner-page">
@@ -44,12 +48,12 @@ export default async function GuidePage({ params }: PageProps) {
             headline: guide.title,
             description: guide.description,
             url: `${SITE_URL}/guides/${guide.slug}`,
-            datePublished: "2026-07-17",
-            dateModified: "2026-07-17",
+            datePublished: publishedDate,
+            dateModified: modifiedDate,
             author: { "@type": "Organization", name: "AllChinaBuy Pro Editorial" },
             publisher: { "@type": "Organization", name: "AllChinaBuy Pro" },
             image: `${SITE_URL}${guide.figure.src}`,
-            isBasedOn: guide.sources.map((source) => source.url),
+            ...(!guide.hideSourceLinks && { isBasedOn: guide.sources.map((source) => source.url) }),
             mainEntityOfPage: `${SITE_URL}/guides/${guide.slug}`,
           },
           {
@@ -73,13 +77,16 @@ export default async function GuidePage({ params }: PageProps) {
         <div className="article-figure-wrap">
           <figure className="article-figure">
             <Image src={guide.figure.src} alt={guide.figure.alt} width={1600} height={900} priority />
-            <figcaption>{guide.figure.caption} <a href={guide.figure.sourceUrl} rel="noreferrer" target="_blank">Open the official page ↗</a></figcaption>
+            <figcaption>
+              {guide.figure.caption}{" "}
+              {!guide.hideSourceLinks && <a href={guide.figure.sourceUrl} rel="noreferrer" target="_blank">Open the official page ↗</a>}
+            </figcaption>
           </figure>
         </div>
         <div className="prose-shell prose-shell--guide">
           <aside className="research-note" aria-labelledby="research-note-title">
             <p className="eyebrow" id="research-note-title">Research standard</p>
-            <p>We checked AllChinaBuy’s public English mobile pages on {guide.updated}. Platform facts are linked below. Variable fees, routes, deadlines and account-only terms must be confirmed on the current live order.</p>
+            <p>We checked AllChinaBuy’s public English mobile pages on {guide.updated}. {guide.hideSourceLinks ? "The primary pages are identified below without outbound links." : "Platform facts are linked below."} Variable fees, routes, deadlines and account-only terms must be confirmed on the current live order.</p>
           </aside>
           <section className="key-facts" aria-labelledby="key-facts-title">
             <p className="eyebrow">Verified on the public interface</p>
@@ -104,11 +111,11 @@ export default async function GuidePage({ params }: PageProps) {
           <section className="source-list" aria-labelledby="source-list-title">
             <p className="eyebrow">Primary evidence</p>
             <h2 id="source-list-title">Official pages checked</h2>
-            <p>These links go to AllChinaBuy’s public mobile website. Dynamic content, logged-in prices and availability can change after our review date.</p>
+            <p>{guide.hideSourceLinks ? "These public AllChinaBuy pages were used as primary evidence. Dynamic content, logged-in prices and availability can change after our review date." : "These links go to AllChinaBuy’s public mobile website. Dynamic content, logged-in prices and availability can change after our review date."}</p>
             <ol>
               {guide.sources.map((source) => (
-                <li key={source.url}>
-                  <a href={source.url} rel="noreferrer" target="_blank">{source.title} ↗</a>
+                <li key={`${source.title}-${source.url}`}>
+                  {guide.hideSourceLinks ? <strong>{source.title}</strong> : <a href={source.url} rel="noreferrer" target="_blank">{source.title} ↗</a>}
                   <span>{source.scope}</span>
                 </li>
               ))}
@@ -132,8 +139,12 @@ export default async function GuidePage({ params }: PageProps) {
         </div>
       </section>
       <section className="page-cta">
-        <div><p className="eyebrow">Use current data</p><h2>Check the live official page before you pay.</h2></div>
-        <a className="button button--lime" href={guide.sources[0].url} rel="noreferrer" target="_blank">Open official source <span aria-hidden="true">↗</span></a>
+        <div><p className="eyebrow">Use current data</p><h2>{guide.hideSourceLinks ? "Continue with the related planning guides." : "Check the live official page before you pay."}</h2></div>
+        {guide.hideSourceLinks ? (
+          <Link className="button button--lime" href="/guides">Browse related guides <span aria-hidden="true">→</span></Link>
+        ) : (
+          <a className="button button--lime" href={guide.sources[0].url} rel="noreferrer" target="_blank">Open official source <span aria-hidden="true">↗</span></a>
+        )}
       </section>
     </main>
   );

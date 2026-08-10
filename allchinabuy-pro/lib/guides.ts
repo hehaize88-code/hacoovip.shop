@@ -30,6 +30,9 @@ export type Guide = {
   sections: GuideSection[];
   sources: GuideSource[];
   relatedSlugs: string[];
+  publishedDate?: string;
+  modifiedDate?: string;
+  hideSourceLinks?: boolean;
 };
 
 const REVIEWED = "July 17, 2026";
@@ -53,6 +56,117 @@ const goodsDetail: GuideSource = {
 };
 
 export const guides: Guide[] = [
+  {
+    slug: "buy-from-1688-with-allchinabuy",
+    title: "How to Buy from 1688 with AllChinaBuy: A 2026 Guide",
+    eyebrow: "1688 buying guide",
+    description:
+      "Learn how to use a 1688 product link with AllChinaBuy, verify tiered pricing and quantities, review warehouse QC, and plan the international parcel.",
+    readingTime: "10 min read",
+    updated: "August 10, 2026",
+    publishedDate: "2026-08-10",
+    modifiedDate: "2026-08-10",
+    hideSourceLinks: true,
+    keyFacts: [
+      "AllChinaBuy’s public interface lists 1688.com among the shopping platforms its link-search workflow supports.",
+      "The item-stage payment and the later international shipment are separate decisions with different inputs.",
+      "A 1688 tier price is useful only after you confirm the selected variant, quantity threshold and domestic delivery shown on the live offer.",
+    ],
+    figure: {
+      src: "/images/guides/allchinabuy-1688-order.svg",
+      alt: "Four-step diagram for checking a 1688 offer, ordering the correct quantity, reviewing warehouse evidence and planning an international parcel with AllChinaBuy",
+      caption: "Editorial 1688 order checklist based on AllChinaBuy’s public interfaces; checked August 10, 2026.",
+      sourceUrl: "",
+    },
+    sections: [
+      {
+        title: "Treat a 1688 offer as a wholesale quote, not a finished checkout",
+        paragraphs: [
+          "Buying from 1688 with AllChinaBuy starts with a product link, but the link is only the beginning of the decision. AllChinaBuy’s public shipping page currently lists 1688.com among the platforms supported by its product-link search. Its public workflow then separates the item order, warehouse quality check and storage, parcel submission, and international logistics. That sequence matters because a low unit price on 1688 does not describe the final delivered cost or prove that the selected option is suitable for export.",
+          "A 1688 listing may show several prices because the unit price can change at different quantity bands. It may also contain multiple colours, sizes, materials, specifications or pack formats. Before importing the link, identify the exact option you want and the quantity that qualifies for the displayed tier. If the page is unclear, do not use the cheapest visible number as your budget. The operative figure is the price attached to the live variant and quantity accepted when the order is submitted.",
+          "The practical goal is not merely to make the link load. It is to create an order record that another person can execute without guessing. Save the original 1688 URL, seller name, selected variant text, quantity, displayed unit price, domestic delivery and a dated screenshot. This record gives you something concrete to compare with an AllChinaBuy price adjustment, seller message or warehouse receipt later.",
+        ],
+        checklist: [
+          "Open the live 1688 offer rather than relying on an old shared screenshot.",
+          "Record the exact variant, pack format and quantity tier.",
+          "Keep item cost, China domestic delivery and international freight on separate lines.",
+        ],
+      },
+      {
+        title: "Audit the imported order before paying",
+        paragraphs: [
+          "Paste the 1688 URL into AllChinaBuy’s product-link search and compare the imported page with the source offer. Check the seller, product title, variant names, quantity, unit price and domestic delivery. Automated imports can be incomplete when a listing uses unusual option tables or when the seller changes an offer. A loaded product image is not enough: the order can still carry the wrong specification or quantity.",
+          "If the link does not convert cleanly, use only the current order tools provided by AllChinaBuy and supply a precise description. The platform’s public product-service wording says it acts as an agent for selected third-party platforms and assists with purchasing, inspection, communication and after-sales handling, while the product itself and intellectual-property risks remain outside a general quality guarantee. That boundary makes your written specification especially important for material, dimensions, colour codes or custom options.",
+          "Pause when the live imported total differs from your saved calculation. The difference may come from a changed unit price, a different quantity band, domestic freight or a variant that costs more than the headline option. Compare each component instead of accepting or rejecting the total by instinct. If a seller quotation is needed, wait for the confirmed order details before treating the purchase price as final.",
+        ],
+        takeaway: "A successful import proves that the page was parsed; it does not prove that the cheapest option, correct tier or intended specification was selected.",
+      },
+      {
+        title: "Calculate the item-stage commitment with a simple ledger",
+        paragraphs: [
+          "Use a small ledger before payment: quantity multiplied by the confirmed unit price, plus the domestic delivery shown for the order, plus only those optional services you intentionally select. Keep international freight blank at this stage. AllChinaBuy’s public order flow describes the international shipment as a later payment, after the goods reach the warehouse and you submit a parcel. Combining an early shipping estimate with the item-stage total can make a provisional number look guaranteed when it is not.",
+          "For example, suppose the live offer—not a remembered advertisement—shows CNY 28 per unit for five to nine units and CNY 12 domestic delivery. Six units would create an item-and-domestic-delivery planning subtotal of CNY 180: 6 × 28 + 12. This is a hypothetical arithmetic example, not an AllChinaBuy quote or fee. It excludes optional services, payment effects, international freight, destination charges and any later seller adjustment.",
+          "Also calculate the cost of a mistake. If you need six matching pieces, a cheaper ten-piece tier may still be worse when the four surplus units add weight and volume. Conversely, placing two small orders can repeat domestic delivery and make colour matching less certain. Choose the quantity that fits the real use case, not the tier that produces the lowest unit number in isolation.",
+        ],
+      },
+      {
+        title: "Use a sample-first decision when specification risk is high",
+        paragraphs: [
+          "A sample order can be sensible when the listing involves an unfamiliar supplier, measurements that matter, variable materials, print placement or a larger repeat quantity. The trade-off is straightforward: a sample can reveal visible problems before a larger commitment, but it can also create another domestic shipment, another warehouse cycle and a separate international parcel if you ship it immediately. There is no universal break-even quantity, so compare the value of the evidence with the extra handling and transport your plan may create.",
+          "Write down the pass conditions before the sample arrives. For a blank garment, that might be flat chest width, length, fabric weight shown on the order, colour and visible stitching. For a storage item, it might be exterior dimensions, hardware count and whether pieces fit together. A vague target such as “good quality” cannot produce a consistent reorder decision. A short specification table can.",
+          "Remember that one sample demonstrates only that one received unit. It does not guarantee that a later production lot will be identical. When placing a follow-up order, preserve the seller, link, variant, sample measurements and any seller-confirmed specification, then ask whether the live offer has changed. Recheck the new warehouse evidence instead of assuming the sample permanently validates the listing.",
+        ],
+        checklist: [
+          "Define measurable pass conditions before ordering the sample.",
+          "Save the sample’s seller, variant, dimensions and warehouse photos.",
+          "Recheck the live offer and new batch rather than treating the sample as a lifetime guarantee.",
+        ],
+      },
+      {
+        title: "Review warehouse evidence for the whole quantity",
+        paragraphs: [
+          "AllChinaBuy’s public order description says standard inspection covers quantity, colour and size and provides inspection photos. That is a useful receiving check, but it cannot prove hidden construction, material composition, durability, authenticity or that every unit in a larger batch is identical. Start by reconciling the received count and visible options with the order record. Then look for crushed cartons, moisture, obvious colour variation, missing parts and mixed specifications.",
+          "For repeated units, decide what evidence would reveal a batch problem. An overview showing the complete count can confirm quantity, while close views of a sensible sample can reveal labels, finish or measurements. If the standard evidence does not answer a decision-critical question, make a targeted detailed-photo request where the current order interface offers one. Ask for one observable result per request, such as “show the size label on three units selected from different parts of the carton.”",
+          "Do not ask an agent to certify quality or authenticity from photographs. Describe the visible condition and compare it with the saved specification. If the goods do not match, use the options and deadline shown on the live order. Return eligibility depends on the seller, product and current terms; this guide does not invent a fixed return window or promise that a wholesale seller will accept a change-of-mind return.",
+        ],
+      },
+      {
+        title: "Plan consolidation around cartons, not product-page photos",
+        paragraphs: [
+          "After the goods are accepted, the next cost question is the international parcel. AllChinaBuy’s public calculator asks for destination, product category, warehouse, weight and dimensions. It also states that items in different warehouses cannot be consolidated. Confirm the actual warehouse before assuming several orders can share one shipment, and wait for usable packed measurements before treating any route estimate as decision-grade.",
+          "Bulk 1688 orders can become volume-heavy even when the merchandise is light. Retail boxes, inner cartons and seller padding can expand the chargeable size. Compare actual weight with the route’s current volumetric method and ask whether optional packaging changes are appropriate for the product. Removing packaging may reduce volume, but it can also reduce protection, lose labels or make sets harder to count. The right choice depends on fragility, resale requirements and the route’s live rules.",
+          "Run the calculator again with the destination, category, sending warehouse and measured parcel. Review available lines, restrictions and the current quotation rather than selecting a route by name alone. AllChinaBuy notes that calculator results and delivery estimates are references and that final classification and logistics pricing can change. Save the quotation date, measurements and chosen line so any later variance can be investigated with actual inputs.",
+        ],
+        takeaway: "The useful shipping estimate is the one based on the warehouse, category and packed measurements you will actually submit.",
+      },
+      {
+        title: "Use a final 1688-to-parcel decision checklist",
+        paragraphs: [
+          "Before product payment, confirm that the source offer is still live, the supplier and variant match your record, the quantity reaches the intended tier, and domestic delivery is shown separately. Record which facts are seller claims and which are measurable requirements. If a sample is justified, define the pass conditions before placing a larger order. Do not let a low headline unit price replace this work.",
+          "At warehouse receipt, reconcile quantity, options and visible condition. Resolve mismatches using the current order interface before the applicable deadline. Before international payment, confirm that all intended items are in the same warehouse, review packaging choices, obtain the packed weight and dimensions, check restrictions, and compare live routes using the current calculator. Keep the quotation and parcel data with the order record.",
+          "This guide was checked against AllChinaBuy’s public English mobile product-service, order and freight pages on August 10, 2026. Logged-in terms, seller offers, fees, routes and destination rules can change. The current product, order and parcel screens govern the transaction. The method here is deliberately durable: verify the offer, separate each cost stage, collect warehouse evidence and make the shipping decision from measured inputs.",
+        ],
+      },
+    ],
+    sources: [
+      {
+        title: "AllChinaBuy Shipping Calculator",
+        url: "",
+        scope: "Public platform support, workflow, calculator fields, route notes and warehouse restrictions.",
+      },
+      {
+        title: "AllChinaBuy Order Confirmation",
+        url: "",
+        scope: "Public order-stage descriptions for inspection, detailed photos, packing and cost timing.",
+      },
+      {
+        title: "AllChinaBuy Goods Detail",
+        url: "",
+        scope: "Public service boundaries, product-stage notices and bulk or customised purchase guidance.",
+      },
+    ],
+    relatedSlugs: ["qc-photo-checklist", "shipping-cost-planning", "allchinabuy-volumetric-weight"],
+  },
   {
     slug: "how-a-china-shopping-directory-works",
     title: "How AllChinaBuy Works: Product Link to International Parcel",
