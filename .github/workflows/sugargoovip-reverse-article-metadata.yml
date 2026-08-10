@@ -1,0 +1,92 @@
+name: Normalize Sugargoo reverse-shopping English metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sugargoovip-reverse-article-metadata.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: pip install beautifulsoup4
+      - name: Normalize English source pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json
+
+          base=Path('sugargoovip-preview/guides')
+          names=[
+            'sugargoo-reverse-shopping-multi-item-order-ledger.html',
+            'sugargoo-reverse-shopping-image-to-product-link.html',
+            'sugargoo-reverse-shopping-confirmation-checkpoints.html',
+            'sugargoo-reverse-shopping-order-boundaries.html',
+            'sugargoo-reverse-shopping-product-link-workflow.html',
+          ]
+          for name in names:
+              path=base/name
+              soup=BeautifulSoup(path.read_text(encoding='utf-8'),'html.parser')
+              soup.html['lang']='en-GB'
+              h1=soup.select_one('.article-card h1').get_text(' ',strip=True)
+              lead=soup.select_one('.article-lead').get_text(' ',strip=True)
+              desc=lead if len(lead)<=175 else lead[:172].rsplit(' ',1)[0]+'...'
+              meta=soup.find('meta',attrs={'name':'description'}); meta['content']=desc
+              keywords=soup.find('meta',attrs={'name':'keywords'})
+              if keywords: keywords.decompose()
+              for prop,val in [('og:site_name','Sugargoo Spreadsheet UK'),('og:title',h1),('og:description',desc)]:
+                  node=soup.find('meta',attrs={'property':prop})
+                  if node: node['content']=val
+              tw=soup.find('meta',attrs={'name':'twitter:title'})
+              if not tw:
+                  tw=soup.new_tag('meta'); tw['name']='twitter:title'; soup.head.append(tw)
+              tw['content']=h1
+              td=soup.find('meta',attrs={'name':'twitter:description'})
+              if not td:
+                  td=soup.new_tag('meta'); td['name']='twitter:description'; soup.head.append(td)
+              td['content']=desc
+
+              script=soup.find('script',attrs={'type':'application/ld+json'})
+              if script and script.string:
+                  data=json.loads(script.string)
+                  graph=data.get('@graph',[])
+                  article=next((x for x in graph if x.get('@type') in ('Article','BlogPosting')),None)
+                  if article:
+                      article['headline']=h1; article['name']=h1; article['description']=desc; article['inLanguage']='en-GB'; article['dateModified']='2026-08-10'
+                      if article.get('publisher',{}).get('name')=='Sugargoo VIP': article['publisher']['name']='Sugargoo Spreadsheet UK'
+                  bc=next((x for x in graph if x.get('@type')=='BreadcrumbList'),None)
+                  if bc and bc.get('itemListElement'):
+                      bc['itemListElement'][-1]['name']=h1
+                  script.string=json.dumps(data,ensure_ascii=False,separators=(',',':'))
+
+              crumb=soup.select_one('.breadcrumbs span')
+              if crumb: crumb.string=h1
+              sheet=soup.find('a',attrs={'data-i18n':'nav.spreadsheet'})
+              if sheet:
+                  sheet['href']='/products/'
+                  sheet.attrs.pop('target',None); sheet.attrs.pop('rel',None)
+              path.write_text(str(soup),encoding='utf-8')
+
+              check=BeautifulSoup(path.read_text(encoding='utf-8'),'html.parser')
+              assert check.html.get('lang')=='en-GB'
+              assert not check.find('meta',attrs={'name':'keywords'})
+              assert check.find('meta',attrs={'name':'description'})['content'][0].isascii()
+              assert check.find('a',attrs={'data-i18n':'nav.spreadsheet'})['href']=='/products/'
+              assert check.select_one('.breadcrumbs span').get_text(' ',strip=True)==h1
+          PY
+      - name: Commit normalized guide metadata
+        run: |
+          rm -f .github/workflows/sugargoovip-reverse-article-metadata.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Normalize Sugargoo reverse-shopping English metadata'
+          git push origin HEAD:main
