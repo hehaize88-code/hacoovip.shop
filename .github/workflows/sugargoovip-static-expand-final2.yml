@@ -1,0 +1,59 @@
+name: Sugargoo VIP static catalogue final 2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sugargoovip-static-expand-final2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pillow lxml
+
+      - name: Adapt legacy generator to current Worker core
+        run: |
+          sed -i 's/    patch_worker(static_paths, canonical_html)/    # Worker core already handles canonical routing/' sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+          sed -i '/assert "UK_STATIC_OVERRIDES"/c\    assert "worker-core-uk-20260808.js" in worker' sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+          sed -i '/assert "__legacyLocale" in worker/c\    assert (BASE \/ "worker-core-uk-20260808.js").exists()' sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+
+      - name: Generate product, category and deep-guide pages
+        run: python sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+
+      - name: Reinstate canonical route and sitemap policy
+        run: |
+          printf '%s\n' '{' '  "version": 1,' '  "include": ["/*"],' '  "exclude": []' '}' > sugargoovip-preview/_routes.json
+          printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>' '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' '  <sitemap>' '    <loc>https://sugargoovip.uk/sitemap.xml</loc>' '    <lastmod>2026-08-10</lastmod>' '  </sitemap>' '</sitemapindex>' > sugargoovip-preview/sitemap-index.xml
+          printf '%s\n' 'User-agent: *' 'Allow: /' '' 'Sitemap: https://sugargoovip.uk/sitemap-index.xml' > sugargoovip-preview/robots.txt
+
+      - name: Verify generated output
+        run: |
+          python -c "from pathlib import Path; from bs4 import BeautifulSoup; import re; b=Path('sugargoovip-preview'); assert len(list((b/'products').glob('*.html')))==41; assert len(list((b/'categories').glob('*.html')))==9; assert (b/'sitemap.xml').read_text(encoding='utf-8').count('<url>')>=79; print('catalog and sitemap verified')"
+          python -c "from pathlib import Path; from bs4 import BeautifulSoup; import re; b=Path('sugargoovip-preview'); names=['sugargoo-warehouse-guide.html','sugargoo-spreadsheet-guide.html','sugargoo-uk-shipping-guide.html','qc-guide.html']; counts={n:len(re.findall(r'\\b[A-Za-z0-9][A-Za-z0-9’\x27-]*\\b',BeautifulSoup((b/'guides'/n).read_text(encoding='utf-8'),'html.parser').select_one('.article-content').get_text(' ',strip=True))) for n in names}; assert all(1200<=v<=1800 for v in counts.values()),counts; print(counts)"
+          node --check sugargoovip-preview/_worker.js
+          node --check sugargoovip-preview/worker-core-uk-20260808.js
+
+      - name: Commit generated site
+        run: |
+          git checkout -- sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+          rm -f .github/workflows/sugargoovip-static-expand-final.yml .github/workflows/sugargoovip-static-expand-final2.yml .github/workflows/upgrade-sugargoovip-uk-seo-20260810.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Publish Sugargoo UK 40-product spreadsheet expansion'
+          git push origin HEAD:main
