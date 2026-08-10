@@ -185,6 +185,7 @@ export default function HacooMissingItemArticle() {
             <p>Use these pages to check adjacent questions without sending order evidence to an external guide.</p>
             <ul>
               <li><Link className="source-link" href="/guides/shipping-planning/">Shipping planning</Link> — separate current delivery information from estimates.</li>
+              <li><Link className="source-link" href="/articles/hacoo-preorder-backorder-support/">Preorder and backorder support</Link> — prepare a status record before an unavailable item receives tracking.</li>
               <li><Link className="source-link" href="/guides/qc-photo-checklist/">Photo checklist</Link> — decide which visible details are useful evidence.</li>
               <li><Link className="source-link" href="/products/">Product references</Link> — match exact options and live listing details.</li>
               <li><Link className="source-link" href="/faq/">Hacoo Pro FAQ</Link> — understand this site's independent role.</li>

@@ -33,6 +33,23 @@ export const articles = [
       caption: "An original Hacoo Pro decision map for distinguishing a split shipment from a missing item.",
     },
   },
+  {
+    slug: "hacoo-preorder-backorder-support",
+    title: "Hacoo Preorder and Backorder Support Guide",
+    description: "Use Hacoo preorder and backorder status evidence to track unshipped items, understand possible split fulfilment and send a precise support request.",
+    excerpt: "A proactive workflow for recording preorder or backorder status, separating preparation from delivery, and asking support one answerable question.",
+    published: "2026-08-11",
+    modified: "2026-08-11",
+    checkedLabel: "August 11, 2026",
+    read: "9 min",
+    image: {
+      path: "/articles/hacoo-preorder-status-map.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo preorder support map for item status, shipment assignment and evidence collection",
+      caption: "An original Hacoo Pro status map for following a preorder or backorder before fulfilment.",
+    },
+  },
 ];
 
 export function getArticle(slug) {

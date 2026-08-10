@@ -10,6 +10,7 @@ import { articles } from "./articles/data";
 export const metadata = { alternates: languageAlternates("/", "en") };
 
 export default function Home() {
+  const newestArticle = articles.at(-1);
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.slice(0, 4).map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };
   return (
     <div className="home-page">
@@ -58,7 +59,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-heading"><div><span className="section-label">04 / Field notes</span><h2>Useful reading,<br/>without the hype.</h2></div><p>Short, practical guides built around the questions that block real decisions: what a spreadsheet is, how to compare links, what to measure and what can change.</p></div>
           <div className="guide-grid">{guides.slice(0, 4).map((g, i) => <Link href={`/guides/${g.slug}`} className="guide-card" key={g.slug}><span className="guide-number">0{i + 1}</span><div><small>{g.read} read</small><h3>{g.title}</h3><p>{g.short}</p><span className="text-link">Read guide <Arrow size={16}/></span></div></Link>)}</div>
-          <div className="featured-research-link"><div><span className="section-label">New research article</span><h3>{articles[0].title}</h3><p>{articles[0].excerpt}</p><Link className="text-link" href="/articles/">Browse all research articles <Arrow size={16}/></Link></div><Link className="button dark" href={`/articles/${articles[0].slug}/`}>Read the article <Arrow/></Link></div>
+          <div className="featured-research-link"><div><span className="section-label">New research article</span><h3>{articles[0].title}</h3><p>{articles[0].excerpt}</p><p><Link className="text-link" href={`/articles/${newestArticle.slug}/`}>New: {newestArticle.title} <Arrow size={16}/></Link></p><Link className="text-link" href="/articles/">Browse all research articles <Arrow size={16}/></Link></div><Link className="button dark" href={`/articles/${articles[0].slug}/`}>Read the article <Arrow/></Link></div>
         </div>
       </section>
 
