@@ -36,7 +36,19 @@ jobs:
           target='    patch_worker(static_paths, canonical_html)\n'
           if target not in s:
               raise SystemExit('patch_worker call missing')
-          p.write_text(s.replace(target,'    # current Worker core already owns canonical routing\n',1),encoding='utf-8')
+          s=s.replace(target,'    # current Worker core already owns canonical routing\n',1)
+          old='''    worker = (BASE / "_worker.js").read_text(encoding="utf-8")
+    assert "UK_STATIC_OVERRIDES" in worker and "UK_CANONICAL_HTML" in worker
+    assert "__legacyLocale" in worker and ".html';" in worker
+'''
+          new='''    worker = (BASE / "_worker.js").read_text(encoding="utf-8")
+    core = (BASE / "worker-core-uk-20260808.js").read_text(encoding="utf-8")
+    assert "worker-core-uk-20260808.js" in worker
+    assert "__legacyLocale" in core and "canonicalExtension" in core
+'''
+          if old not in s:
+              raise SystemExit('old Worker validation block missing')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
           PY
           python sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
           printf '%s\n' '{' '  "version": 1,' '  "include": ["/*"],' '  "exclude": []' '}' > sugargoovip-preview/_routes.json
