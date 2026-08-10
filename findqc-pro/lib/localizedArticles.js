@@ -5,7 +5,7 @@ const ENGLISH_UI = {
   journalMetadataTitle: "FindQC Guides: Search, QC Photos, Sizing & Agents",
   journalMetadataDescription: "Fact-checked guides to FindQC search, QC measurement photos, Discord research, product signals and shopping-agent workflows.",
   journalSchemaName: "FindQC Pro research journal",
-  journalCount: "09 in-depth guides",
+  journalCount: "10 in-depth guides",
   journalNote: "Every article is checked against current primary sources and, where relevant, independent public-safety references. Images are clearly marked editorial examples rather than warehouse QC evidence.",
   editorialDesk: "FindQC Pro Editorial Desk",
   factChecked: "Fact-checked",

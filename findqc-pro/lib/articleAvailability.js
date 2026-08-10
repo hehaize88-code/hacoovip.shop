@@ -3,6 +3,7 @@ export const ARTICLE_LANGUAGE_OVERRIDES = Object.freeze({
   "findqc-qc-measurements-size-guide": ["en"],
   "findqc-product-safety-check": ["en"],
   "findqc-shoes-qc-checklist": ["en"],
+  "findqc-return-evidence-checklist": ["en"],
 });
 
 export function routeIsAvailableInLanguage(pathname, language) {
