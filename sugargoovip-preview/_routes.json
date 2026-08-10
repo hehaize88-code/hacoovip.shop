@@ -1,9 +1,5 @@
 {
   "version": 1,
   "include": ["/*"],
-  "exclude": [
-    "/guides",
-    "/guides/",
-    "/guides/index.html"
-  ]
+  "exclude": []
 }
