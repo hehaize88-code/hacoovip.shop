@@ -18,7 +18,6 @@ jobs:
           fetch-depth: 0
 
       - name: Clean generated homepage
-        shell: python
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -29,16 +28,15 @@ jobs:
           s=s.replace('"numberOfItems":40,"itemListElement"','"numberOfItems":8,"itemListElement"',1)
           s=s.replace('"name":"Sugargoo Spreadsheet UK curated product finds"','"name":"Featured Sugargoo Spreadsheet UK product finds"',1)
           s=s.replace('"dateModified":"2026-08-08"','"dateModified":"2026-08-10"',1)
-          replacements={
+          for old,new in {
             'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G1054H39.webp':'/assets/catalog/hoodies-sweaters-5970.webp',
             'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G11621U8.webp':'/assets/catalog/pants-shorts-5979.webp',
             'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G10Fc05.webp':'/assets/catalog/headwear-5971.webp',
             'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G05HW04.webp':'/assets/catalog/accessories-5964.webp'
-          }
-          for old,new in replacements.items():
+          }.items():
               s=s.replace(old,new)
           p.write_text(s,encoding='utf-8')
-          assert 'Browse 40 Finds</a></div>' not in s
+          assert s.count('>Browse 40 Finds</a>')==1
           assert '<strong>23</strong><span data-i18n="section.guides">' in s
           assert '"numberOfItems":8' in s
           assert 'www.cnfanshp.com/uploads/allimg' not in s
