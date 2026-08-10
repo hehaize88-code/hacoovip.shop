@@ -1,0 +1,54 @@
+name: Sugargoo VIP homepage cleanup
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sugargoovip-home-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clean generated homepage
+        shell: python
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('sugargoovip-preview/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('<a class="btn btn-secondary" href="products/">Browse 40 Finds</a>','',1)
+          s=s.replace('<strong>22</strong><span data-i18n="section.guides">Shopping Guides</span>','<strong>23</strong><span data-i18n="section.guides">Shopping Guides</span>',1)
+          s=s.replace('"numberOfItems":40,"itemListElement"','"numberOfItems":8,"itemListElement"',1)
+          s=s.replace('"name":"Sugargoo Spreadsheet UK curated product finds"','"name":"Featured Sugargoo Spreadsheet UK product finds"',1)
+          s=s.replace('"dateModified":"2026-08-08"','"dateModified":"2026-08-10"',1)
+          replacements={
+            'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G1054H39.webp':'/assets/catalog/hoodies-sweaters-5970.webp',
+            'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G11621U8.webp':'/assets/catalog/pants-shorts-5979.webp',
+            'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G10Fc05.webp':'/assets/catalog/headwear-5971.webp',
+            'https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G05HW04.webp':'/assets/catalog/accessories-5964.webp'
+          }
+          for old,new in replacements.items():
+              s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+          assert 'Browse 40 Finds</a></div>' not in s
+          assert '<strong>23</strong><span data-i18n="section.guides">' in s
+          assert '"numberOfItems":8' in s
+          assert 'www.cnfanshp.com/uploads/allimg' not in s
+          PY
+
+      - name: Commit cleanup
+        run: |
+          rm -f .github/workflows/sugargoovip-home-cleanup.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Polish Sugargoo UK spreadsheet homepage'
+          git push origin HEAD:main
