@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-04",
+  "lastUpdated": "2026-08-10",
   "latestPublishedCommit": "3d85e6124004fce1181b20ce3665eae53a98aa98",
   "articles": [
     {
@@ -66,6 +66,16 @@
       "outline": ["evidence roles", "pair identity", "wide-view comparison", "footwear measurements", "visible construction", "accept-ask-stop decision", "timed workflow and sources"],
       "faqAngles": ["Can FindQC shoe photos prove authenticity?", "Should an insole measurement match foot length?", "Which shoe defects need a closer warehouse photo?"],
       "visuals": ["Three original HTML decision and inspection tables plus one existing local editorial shoe image; no customer media"]
+    },
+    {
+      "slug": "findqc-return-evidence-checklist",
+      "primaryQuery": "FindQC return evidence checklist",
+      "intent": "Build a clear evidence packet before asking a shopping agent to review a return, exchange or mismatch",
+      "focus": ["order identity", "claim-order-warehouse comparison", "measurement evidence", "privacy-safe redaction", "specific remedy request"],
+      "exampleType": "Clearly labelled wording patterns and evidence tables, never fabricated orders, deadlines or approved returns",
+      "outline": ["evidence roles", "order identity", "mismatch classification", "three-column comparison", "agent request", "privacy and integrity", "ten-minute triage"],
+      "faqAngles": ["Can a FindQC return badge guarantee eligibility?", "Which photos make a warehouse mismatch verifiable?", "What private details should be removed before sharing evidence?"],
+      "visuals": ["Four original HTML evidence and request tables plus one existing local editorial apparel image; no customer media"]
     }
   ]
 }
