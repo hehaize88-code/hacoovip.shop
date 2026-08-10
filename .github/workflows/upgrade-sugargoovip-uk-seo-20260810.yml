@@ -1,0 +1,90 @@
+name: Final Sugargoo VIP UK SEO expansion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/upgrade-sugargoovip-uk-seo-20260810.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install generator dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 pillow lxml
+
+      - name: Generate static UK spreadsheet catalogue
+        run: python sugargoovip-preview/tools/upgrade_uk_seo_20260808.py
+
+      - name: Validate generated SEO surface
+        shell: python
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import xml.etree.ElementTree as ET
+          import re
+
+          base=Path('sugargoovip-preview')
+          products=list((base/'products').glob('*.html'))
+          assert len(products)==41, f'expected product index + 40 details, got {len(products)}'
+          assert (base/'categories/index.html').exists()
+          for slug in ['shoes','hoodies-sweaters','t-shirts','jackets','pants-shorts','headwear','accessories','electronics']:
+              page=base/f'categories/{slug}.html'
+              assert page.exists(), slug
+              soup=BeautifulSoup(page.read_text(encoding='utf-8'),'html.parser')
+              assert len(soup.select('.product-card'))==5, (slug,len(soup.select('.product-card')))
+          counts={}
+          for file in ['sugargoo-warehouse-guide.html','sugargoo-spreadsheet-guide.html','sugargoo-uk-shipping-guide.html','qc-guide.html']:
+              soup=BeautifulSoup((base/'guides'/file).read_text(encoding='utf-8'),'html.parser')
+              words=len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9’'\-]*\b",soup.select_one('.article-content').get_text(' ',strip=True)))
+              counts[file]=words
+              assert 1200<=words<=1800,(file,words)
+          home=BeautifulSoup((base/'index.html').read_text(encoding='utf-8'),'html.parser')
+          assert home.title.string=='Sugargoo Spreadsheet UK 2026: Product Finds, QC & Shipping'
+          assert 'Sugargoo Spreadsheet UK' in home.h1.get_text(' ',strip=True)
+          assert home.find('a',href='products/index.html') or home.find('a',href='/products/')
+          index=ET.parse(base/'sitemap-index.xml').getroot()
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          children=index.findall('s:sitemap',ns)
+          assert len(children)==1
+          assert children[0].find('s:loc',ns).text=='https://sugargoovip.uk/sitemap.xml'
+          sitemap=(base/'sitemap.xml').read_text(encoding='utf-8')
+          assert sitemap.count('<url>')>=79
+          robots=(base/'robots.txt').read_text(encoding='utf-8')
+          assert robots.count('Sitemap:')==1 and 'sitemap-index.xml' in robots
+          worker=(base/'_worker.js').read_text(encoding='utf-8')
+          assert 'worker-core-uk-20260808.js' in worker
+          print('PASS:',counts,'products',len(products)-1,'sitemap urls',sitemap.count('<url>'))
+          PY
+
+      - name: Validate scripts
+        run: |
+          node --check sugargoovip-preview/_worker.js
+          node --check sugargoovip-preview/worker-core-uk-20260808.js
+          for f in sugargoovip-preview/assets/*.js sugargoovip-preview/assets/reverse-articles/*.js; do
+            [ -f "$f" ] && node --check "$f"
+          done
+
+      - name: Commit generated site
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/upgrade-sugargoovip-uk-seo-20260810.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Complete Sugargoo UK spreadsheet SEO expansion'
+          git push origin HEAD:main
