@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sugargoovip.uk/sitemap.xml
-Sitemap: https://sugargoovip.uk/sitemap.txt
 Sitemap: https://sugargoovip.uk/sitemap-index.xml
