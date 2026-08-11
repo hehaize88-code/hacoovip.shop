@@ -9,7 +9,7 @@ workerUrl.searchParams.set("static-render", `${Date.now()}`);
 const worker = (await import(workerUrl.href)).default;
 const languages = ["", "de", "fr", "es", "it", "pl", "pt", "ro"];
 const localized = ["", "categories", "qc-hub", "guides", "faq", "articles", "under-25", "qc-first", "new-this-week", "read-kakobuy-qc-photos", "kakobuy-spreadsheet-first-time-guide", "product-price-vs-parcel-cost"];
-const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "finds", ...findRoutes];
+const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "kakobuy-stitching-finish-qc-checklist", "finds", ...findRoutes];
 const allRoutes = [
   ...languages.flatMap((language) => localized.map((slug) => [language, slug].filter(Boolean).join("/"))),
   ...englishOnly,

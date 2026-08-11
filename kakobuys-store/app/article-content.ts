@@ -390,5 +390,91 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public contact and quality-inspection pages plus a currently indexed Kakobuy product-help page describing a five-day return application and seller after-sales handling, reviewed August 9, 2026. Eligibility, exclusions, seller response, costs and displayed deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-stitching-finish-qc-checklist",
+    title: "Kakobuy Stitching and Finish QC Checklist",
+    seoTitle: "Kakobuy Stitching QC Checklist: Seams and Finish",
+    seoDescription: "Use this Kakobuy stitching QC checklist to inspect seams, hems, edge finishing and stress points, then decide whether to ship, clarify or return.",
+    primaryKeyword: "Kakobuy stitching QC checklist",
+    secondaryKeywords: ["Kakobuy seam inspection", "Kakobuy clothing QC", "Kakobuy finish defects", "Kakobuy warehouse photo checklist"],
+    intro: "A loose thread and an open seam are not the same risk. One may be a removable finish issue; the other may show that two panels are no longer securely joined. Kakobuy warehouse photos can help separate those cases, but only when you review the garment in a consistent order and ask for evidence that answers a specific decision.",
+    quickAnswer: "Confirm the ordered item first, then trace the main seams from wide view to close view. Compare left and right construction, inspect stress points, hems, edges and attachments, and distinguish a surface thread from a gap in the seam itself. Request one targeted view when the existing angle cannot prove the point. Ship only when the visible issue is within the limit you set before parcel submission.",
+    sections: [
+      {
+        heading: "Start with identity, because good stitching on the wrong item still fails QC",
+        paragraphs: [
+          "Before zooming into a seam, match the warehouse item to the purchase order. Confirm color, size label, quantity, model and any selected variant. Compare the front and back silhouette with the saved listing. A neat finish does not rescue a wrong size or substituted option, and a correct option does not make every visible construction issue acceptable.",
+          "Kakobuy's current public service pages say items shipped to its warehouse receive a quality check that can address visible points such as size, color and defects. That describes an appearance-focused checkpoint, not laboratory testing or a durability guarantee. Use the photos to evaluate what is visible now, while keeping material strength, wash performance and internal construction in the unknown column."
+        ],
+        bullets: ["Match the warehouse record to the exact ordered variant.", "Save the wide front and back views before inspecting details.", "List any area hidden by folds, packaging or camera angle."]
+      },
+      {
+        heading: "Learn the difference between seam construction and surface finish",
+        paragraphs: [
+          "A seam joins two or more pieces. The visible stitch line is only part of that construction. A finish treats a raw edge, hem, opening or decorative end so it looks controlled and is less likely to unravel. QC photos may show stitch path, puckering, skipped stitches, loose thread tails, raw edges and panel alignment; they usually cannot show the full seam allowance hidden inside the garment.",
+          "This distinction changes the question. If a thread tail sits on top of an otherwise continuous seam, ask whether the seam remains closed. If daylight or the background is visible between panels, the concern is a seam opening. If a raw cut edge is intentional in the listing design, it should not be classified as a defect merely because it looks unfinished. Compare like with like before judging."
+        ]
+      },
+      {
+        heading: "Trace the garment in a fixed inspection route",
+        paragraphs: [
+          "Begin at the neckline or upper opening, move across both shoulders, down the sleeve joins and side seams, then around sleeve and bottom hems. For trousers, start at the waistband, follow side and inseam lines, inspect the crotch intersection and finish at both leg hems. For a bag, follow handle attachments, top opening, side panels, base corners and lining edge. A route prevents one obvious detail from consuming the whole review.",
+          "Use the wide photo to locate each line and the close photo to assess it. Do not diagnose a tiny irregularity from a compressed full-item image. Conversely, do not let a close-up hide the larger shape: a straight stitch line can sit on a visibly twisted panel. Record the image and location for every issue that might change your decision."
+        ],
+        bullets: ["Wide view: overall shape, panel balance and obvious openings.", "Mid view: seam path, puckering, edge alignment and attachments.", "Close view: skipped stitches, thread tails, holes, fraying and residue.", "Paired view: compare left/right or front/back features that should match."]
+      },
+      {
+        heading: "Prioritize stress points over harmless-looking areas",
+        paragraphs: [
+          "Stress points carry repeated pull or load. On a hoodie these include shoulder joins, armholes, pocket corners and zipper ends. On trousers, look at the crotch intersection, pocket openings, waistband joins and closures. On a bag, focus on handle bases, strap anchors, zipper ends and corners. A visible gap or missing stitch at a load-bearing attachment usually deserves more attention than a thread tail inside a loose hem.",
+          "Photos cannot predict how much force a seam will tolerate. They can show whether both sides appear attached, whether reinforcement is visibly present where the listing shows it, and whether the surrounding fabric is torn or distorted. Avoid claims such as 'this will definitely break.' State the observable fact: 'the right strap base shows an open gap while the left is closed.'"
+        ]
+      },
+      {
+        heading: "Compare symmetry without demanding machine-perfect geometry",
+        paragraphs: [
+          "Paired features provide a useful internal reference. Compare shoulder heights, sleeve joins, pocket corners, cuff widths, leg hems or handle attachments. Use fixed landmarks such as a center zip, collar point or panel edge. If one side differs, check whether the garment is laid flat and whether perspective could create the apparent offset.",
+          "Small variation is not automatically a practical defect. Set a threshold tied to use: a pocket that is visibly rotated, a print trapped in a seam or one leg hem materially higher than the other may change the decision; a slight stitch wobble in a hidden area may not. Your threshold should be consistent across comparable items, not invented after seeing the price."
+        ]
+      },
+      {
+        heading: "Inspect hems, raw edges and thread tails separately",
+        paragraphs: [
+          "For hems, look for a continuous fold, an even visible line and no obvious section that has released. Heavy waviness can come from tension, fabric stretch or the garment being arranged poorly; one photo rarely proves the cause. Ask for the hem laid flat when its shape matters. Check whether a cuff or waistband is attached all the way around rather than judging only the front.",
+          "A loose thread tail may be removable, but do not advise cutting it until you know whether it is only a tail. Pulling or trimming a thread connected to a skipped or unraveling seam can worsen the opening. Ask for a close-up that shows where it begins and whether the stitch line continues on both sides. Raw edges should be compared with the seller image and the same edge elsewhere on the item."
+        ]
+      },
+      {
+        heading: "Check closures, patches and decorative attachments",
+        paragraphs: [
+          "Stitching QC also includes objects attached by thread. Inspect zipper tape, buttons, snaps, labels, patches, appliqués and pocket corners. Check that the ordered parts are present and that surrounding fabric is not torn. A closed zipper photo can show alignment; an open view may reveal whether teeth or tape are caught by the seam. Neither view proves long-term operation, so keep performance claims limited.",
+          "For decorative patches, compare rotation and edge lift against a stable nearby line. A patch may be intentionally off-center in the design. The reference is the exact ordered listing, not a random product photo. For labels, confirm required size or model information first; minor label stitching may matter less than a mismatch in the information printed on it."
+        ]
+      },
+      {
+        heading: "Request an extra photo only when it changes the decision",
+        paragraphs: [
+          "A useful request names the location, view and question: 'Please flatten the lower-left hem and photograph the stitch line from directly above,' or 'Please show whether the gap at the right pocket corner opens through the seam.' This is stronger than asking for 'better QC' or 'more stitching photos.' One well-framed image can resolve a fold, shadow or obstruction.",
+          "Ask for a comparison view when symmetry matters, and include a ruler only when distance or placement has an acceptance range. A ruler beside a seam cannot prove strength. If the requested image still cannot show the hidden construction, record the limit instead of treating absence of evidence as proof that the item is fine."
+        ]
+      },
+      {
+        heading: "Use a ship, clarify or after-sales decision matrix",
+        paragraphs: [
+          "Ship when the ordered identity is correct, important seams appear closed, stress-point attachments are present and visible finish issues fall within your preset tolerance. Clarify when a fold, reflection, low resolution or missing angle prevents a decision. Use the current after-sales option when warehouse evidence shows a material mismatch, open structural seam, missing attachment, tear or finish problem beyond your threshold and the order remains eligible.",
+          "Kakobuy's currently indexed product help describes a return application after warehouse arrival and seller after-sales handling. The live order remains authoritative because eligibility, exclusions, seller response, costs and deadlines can change. Do not create an international parcel while a material issue is unresolved. Save the order option, relevant image, request and displayed status."
+        ],
+        bullets: ["SHIP: identity matches and important visible construction is within tolerance.", "CLARIFY: one targeted image or answer can resolve the uncertainty.", "AFTER-SALES: visible mismatch or defect exceeds tolerance, subject to live eligibility."]
+      },
+      {
+        heading: "Final stitching and finish checklist",
+        paragraphs: [
+          "Match item, size, color and quantity. Save wide views. Trace the main seam route. Compare paired features. Inspect stress points, hems, raw edges, closures and attachments. Separate thread tails from seam openings. Request one decisive angle when needed. Choose ship, clarify or after-sales from the current order state, then write packing instructions around the accepted item's actual risks.",
+          "The aim of a Kakobuy stitching QC checklist is not to call every irregular stitch a failure. It is to spend attention where visible construction affects identity, function, fit or the chance of damage. A consistent route and a factual evidence record make that judgment more reliable than random zooming or a generic request for perfect quality."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public contact and quality-inspection pages plus a currently indexed product-help page describing warehouse photos and seller after-sales handling, reviewed August 11, 2026. The seam-review order, decision thresholds and packing checks are independent editorial methods. Eligibility, photo services, costs and deadlines can change; follow the live order."
   }
 ];

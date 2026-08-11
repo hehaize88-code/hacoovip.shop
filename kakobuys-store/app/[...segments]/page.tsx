@@ -29,11 +29,12 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
   if (!article) return {};
   const canonicalPath = language === "en" ? `/${article.slug}` : `/${language}/${article.slug}`;
   const isReturns = language === "en" && article.slug === "kakobuy-returns-after-sales-checklist";
-  const canonical = isReturns ? "https://kakobuys.store/kakobuy-returns-after-sales-checklist/" : canonicalPath;
+  const isStitching = language === "en" && article.slug === "kakobuy-stitching-finish-qc-checklist";
+  const canonical = isStitching ? "https://kakobuys.store/kakobuy-stitching-finish-qc-checklist/" : isReturns ? "https://kakobuys.store/kakobuy-returns-after-sales-checklist/" : canonicalPath;
   return {
     title: article.seoTitle,
     description: article.seoDescription,
-    robots: isReturns ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
+    robots: isReturns || isStitching ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
     alternates: {
       canonical,
       languages: articleIndex < 3 ? {
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
         "x-default": `/${article.slug}`
       } : { en: canonical, "x-default": canonical }
     },
-    openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: isReturns ? canonical : undefined, images: isReturns ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
+    openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: isReturns || isStitching ? canonical : undefined, images: isReturns || isStitching ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
   };
 }
 
