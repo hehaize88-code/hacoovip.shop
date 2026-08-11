@@ -6,7 +6,7 @@ const allLocales = Object.keys(languageMap) as Locale[];
 
 export function makeMetadata(path:string, locale:Locale, title:string, description:string):Metadata {
   const clean=path.replace(/^\/+|\/+$/g,"");
-  const localized=(lang:Locale)=>lang==="en"?`https://superbuys.pro/${clean}`:`https://superbuys.pro/${lang}/${clean}`;
+  const localized=(lang:Locale)=>lang==="en"?(clean?`https://superbuys.pro/${clean}/`:"https://superbuys.pro/"):(clean?`https://superbuys.pro/${lang}/${clean}/`:`https://superbuys.pro/${lang}/`);
   return {
     title,
     description,

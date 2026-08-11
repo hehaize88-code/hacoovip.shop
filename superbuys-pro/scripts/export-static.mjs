@@ -3,9 +3,10 @@ import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
+const buildRoot = process.env.STATIC_BUILD_ROOT || projectRoot;
 const outputRoot = join(projectRoot, "static-export");
-const workerPath = join(projectRoot, "dist/server/index.js");
-const clientRoot = join(projectRoot, "dist/client");
+const workerPath = join(buildRoot, "dist/server/index.js");
+const clientRoot = join(buildRoot, "dist/client");
 
 const workerUrl = pathToFileURL(workerPath);
 workerUrl.searchParams.set("static-export", String(Date.now()));
@@ -56,7 +57,7 @@ const routes = [
   ...Array.from(sitemap.matchAll(/<loc>https:\/\/superbuys\.pro([^<]*)<\/loc>/g),
     (match) => {
       const route = match[1] || "/";
-      return route === "/" ? route : route.replace(/\/$/, "");
+      return route;
     }),
 ];
 
@@ -67,7 +68,7 @@ for (const pathname of new Set(routes)) {
   }
   const target = pathname === "/"
     ? join(outputRoot, "index.html")
-    : join(outputRoot, pathname.replace(/^\//, ""), "index.html");
+    : join(outputRoot, pathname.replace(/^\//, "").replace(/\/$/, ""), "index.html");
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, staticHtml(await response.text()));
 }
@@ -80,7 +81,7 @@ for (const pathname of ["/robots.txt", "/sitemap.xml"]) {
   await writeFile(join(outputRoot, pathname.slice(1)), await response.text());
 }
 
-const notFoundResponse = await render("/this-page-does-not-exist");
+const notFoundResponse = await render("/this-page-does-not-exist/");
 if (notFoundResponse.status !== 404) {
   throw new Error(`Expected a real 404, received ${notFoundResponse.status}`);
 }

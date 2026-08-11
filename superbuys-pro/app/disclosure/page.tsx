@@ -1,0 +1,1 @@
+import {makeMetadata} from "../seo";import {TrustPage} from "../site";import {trustPage} from "../trust";const p=trustPage("en","disclosure");export const metadata=makeMetadata("disclosure","en","Partner Disclosure | Superbuys.pro",p.dek);export default function Page(){return <TrustPage locale="en" slug="disclosure"/>}
