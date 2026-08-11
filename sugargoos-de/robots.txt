@@ -1,3 +1,4 @@
+# Updated 2026-08-11
 User-agent: *
 Allow: /
 
