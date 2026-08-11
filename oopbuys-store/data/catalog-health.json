@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-10T04:51:41.760Z",
+  "generatedAt": "2026-08-11T04:37:36.133Z",
   "monitor": {
     "schedule": "Daily at 03:17 UTC",
     "requestMethod": "GET",
@@ -19,13 +19,13 @@
     "status": "fresh",
     "base": "USD",
     "quote": "CNY",
-    "cnyPerUsd": 6.7476,
-    "usdPerEur": 1.1535,
-    "cnyPerEur": 7.7834,
+    "cnyPerUsd": 6.7444,
+    "usdPerEur": 1.1555,
+    "cnyPerEur": 7.7931,
     "source": "European Central Bank euro reference rates",
     "sourceUrl": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
-    "sourcePublishedAt": "2026-08-07",
-    "fetchedAt": "2026-08-10T04:51:39.653Z",
+    "sourcePublishedAt": "2026-08-10",
+    "fetchedAt": "2026-08-11T04:37:34.391Z",
     "calculation": "CNY per EUR divided by USD per EUR",
     "notice": "Reference rate for informational estimates only; it is not a checkout or transaction rate."
   },
@@ -37,11 +37,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5974.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.653Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.653Z",
+      "checkedAt": "2026-08-11T04:37:34.392Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.392Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 140,
-      "usdEstimate": 20.75,
+      "usdEstimate": 20.76,
       "validation": "HTTP success with product title and source price block"
     },
     {
@@ -51,11 +51,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5976.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.654Z",
+      "checkedAt": "2026-08-11T04:37:34.393Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.393Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 215,
-      "usdEstimate": 31.86,
+      "usdEstimate": 31.88,
       "validation": "HTTP success with product title and source price block"
     },
     {
@@ -65,11 +65,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5981.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.655Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.655Z",
+      "checkedAt": "2026-08-11T04:37:34.394Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.394Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 298,
-      "usdEstimate": 44.16,
+      "usdEstimate": 44.18,
       "validation": "HTTP success with product title and source price block"
     },
     {
@@ -79,11 +79,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5983.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.656Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.656Z",
+      "checkedAt": "2026-08-11T04:37:34.395Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.395Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 249,
-      "usdEstimate": 36.9,
+      "usdEstimate": 36.92,
       "validation": "HTTP success with product title and source price block"
     },
     {
@@ -93,11 +93,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5971.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.657Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.657Z",
+      "checkedAt": "2026-08-11T04:37:34.396Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.396Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 89,
-      "usdEstimate": 13.19,
+      "usdEstimate": 13.2,
       "validation": "HTTP success with product title and source price block"
     },
     {
@@ -107,11 +107,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5952.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.658Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.658Z",
+      "checkedAt": "2026-08-11T04:37:34.397Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.397Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 520,
-      "usdEstimate": 77.06,
+      "usdEstimate": 77.1,
       "validation": "HTTP success with product title and source price block"
     },
     {
@@ -121,8 +121,8 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5822.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.659Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.659Z",
+      "checkedAt": "2026-08-11T04:37:34.398Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.398Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 75,
       "usdEstimate": 11.12,
@@ -135,11 +135,11 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/5850.html",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:39.660Z",
-      "lastSuccessAt": "2026-08-10T04:51:39.660Z",
+      "checkedAt": "2026-08-11T04:37:34.400Z",
+      "lastSuccessAt": "2026-08-11T04:37:34.400Z",
       "consecutiveFailures": 0,
       "sourceAmountCny": 88,
-      "usdEstimate": 13.04,
+      "usdEstimate": 13.05,
       "validation": "HTTP success with product title and source price block"
     }
   ],
@@ -150,8 +150,8 @@
       "finalUrl": "https://www.cnfanshp.com/AllProducts/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.653Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.653Z",
+      "checkedAt": "2026-08-11T04:37:35.288Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.288Z",
       "consecutiveFailures": 0
     },
     {
@@ -160,8 +160,8 @@
       "finalUrl": "https://www.cnfanshp.com/shoes/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.289Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.289Z",
       "consecutiveFailures": 0
     },
     {
@@ -170,8 +170,8 @@
       "finalUrl": "https://www.cnfanshp.com/hoodies-sweaters/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.289Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.289Z",
       "consecutiveFailures": 0
     },
     {
@@ -180,8 +180,8 @@
       "finalUrl": "https://www.cnfanshp.com/t-shirts/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.289Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.289Z",
       "consecutiveFailures": 0
     },
     {
@@ -190,8 +190,8 @@
       "finalUrl": "https://www.cnfanshp.com/jackets/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.289Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.289Z",
       "consecutiveFailures": 0
     },
     {
@@ -200,8 +200,8 @@
       "finalUrl": "https://www.cnfanshp.com/pants-shorts/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.289Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.289Z",
       "consecutiveFailures": 0
     },
     {
@@ -210,8 +210,8 @@
       "finalUrl": "https://www.cnfanshp.com/headwear/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.289Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.289Z",
       "consecutiveFailures": 0
     },
     {
@@ -220,8 +220,8 @@
       "finalUrl": "https://www.cnfanshp.com/accessories/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.290Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.290Z",
       "consecutiveFailures": 0
     },
     {
@@ -230,8 +230,8 @@
       "finalUrl": "https://www.cnfanshp.com/Jersey/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.654Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.654Z",
+      "checkedAt": "2026-08-11T04:37:35.290Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.290Z",
       "consecutiveFailures": 0
     },
     {
@@ -240,8 +240,8 @@
       "finalUrl": "https://www.cnfanshp.com/electronics/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.655Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.655Z",
+      "checkedAt": "2026-08-11T04:37:35.291Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.291Z",
       "consecutiveFailures": 0
     },
     {
@@ -250,8 +250,8 @@
       "finalUrl": "https://www.cnfanshp.com/other-stuff/",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.656Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.656Z",
+      "checkedAt": "2026-08-11T04:37:35.291Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.291Z",
       "consecutiveFailures": 0
     },
     {
@@ -260,8 +260,8 @@
       "finalUrl": "https://www.cnfanshp.com/search.html?keywords=shoes&channelid=2&method=1",
       "httpStatus": 200,
       "state": "active",
-      "checkedAt": "2026-08-10T04:51:40.657Z",
-      "lastSuccessAt": "2026-08-10T04:51:40.657Z",
+      "checkedAt": "2026-08-11T04:37:35.292Z",
+      "lastSuccessAt": "2026-08-11T04:37:35.292Z",
       "consecutiveFailures": 0
     }
   ]
