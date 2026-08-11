@@ -187,7 +187,20 @@
       "angle": "turns a category spreadsheet row into a verifiable size, decoration and warehouse inspection decision",
       "evidence": "current Kakobuy link-submission, quality-inspection, shipping-estimator and indexed after-sales pages; internal jersey category records",
       "internalLinkRole": "category-specific bridge from spreadsheet discovery to jersey records and QC guidance"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-keyword-search-product-finds",
+      "primaryQuery": "Kakobuy keyword search",
+      "relatedTerms": [
+        "Kakobuy product search",
+        "find products on Kakobuy",
+        "Kakobuy search terms"
+      ],
+      "intent": "beginner product discovery by keyword",
+      "angle": "controlled query ladder followed by exact-variant and seller evidence checks",
+      "evidence": "current Kakobuy public product-link/name search field, mobile keyword scope and seller-to-warehouse service flow",
+      "internalLinkRole": "bridges general search discovery to verifiable product records without replacing the spreadsheet comparison guide"
     }
   ],
-  "nextPriority": "Kakobuy parcel consolidation and packaging decisions"
+  "nextPriority": "Kakobuy image-search workflow when current platform support can be verified"
 }
