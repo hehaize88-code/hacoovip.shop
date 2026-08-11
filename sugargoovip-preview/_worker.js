@@ -6,7 +6,7 @@ const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
 function htmlAssetPath(pathname) {
   if (pathname === '/' || pathname === '/index.html') return '/index.html';
   if (pathname.endsWith('/')) return pathname + 'index.html';
-  if (pathname.endsWith('.html')) return pathname;
+  if (pathname.endsWith('.html')) return pathname.slice(0, -5);
   return null;
 }
 
