@@ -36,6 +36,12 @@ async function render(pathname) {
   );
 }
 
+function staticHtml(html) {
+  return html
+    .replace(/<link rel="modulepreload"[^>]*>/g, "")
+    .replace(/<script(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g, "");
+}
+
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
 await cp(clientRoot, outputRoot, { recursive: true });
@@ -63,7 +69,7 @@ for (const pathname of new Set(routes)) {
     ? join(outputRoot, "index.html")
     : join(outputRoot, pathname.replace(/^\//, ""), "index.html");
   await mkdir(dirname(target), { recursive: true });
-  await writeFile(target, await response.text());
+  await writeFile(target, staticHtml(await response.text()));
 }
 
 for (const pathname of ["/robots.txt", "/sitemap.xml"]) {
@@ -78,6 +84,6 @@ const notFoundResponse = await render("/this-page-does-not-exist");
 if (notFoundResponse.status !== 404) {
   throw new Error(`Expected a real 404, received ${notFoundResponse.status}`);
 }
-await writeFile(join(outputRoot, "404.html"), await notFoundResponse.text());
+await writeFile(join(outputRoot, "404.html"), staticHtml(await notFoundResponse.text()));
 
 console.log(`Exported ${new Set(routes).size} HTML routes to ${outputRoot}`);
