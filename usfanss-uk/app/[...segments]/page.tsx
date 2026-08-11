@@ -1,6 +1,34 @@
 import type { Metadata } from "next";
 import { localeCodes, pageMeta, SitePage, type Locale } from "../site";
 
+const staticRoutes = [
+  "categories",
+  "products",
+  "qc-desk",
+  "articles",
+  "help",
+  "articles/usfans-spreadsheet-guide",
+  "articles/usfans-qc-photos-guide",
+  "articles/usfans-shipping-cost-guide",
+];
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const englishRoutes = staticRoutes.map((route) => ({
+    segments: route.split("/"),
+  }));
+  const localizedRoutes = localeCodes
+    .filter((locale) => locale !== "en")
+    .flatMap((locale) =>
+      ["", ...staticRoutes].map((route) => ({
+        segments: route ? [locale, ...route.split("/")] : [locale],
+      })),
+    );
+
+  return [...englishRoutes, ...localizedRoutes];
+}
+
 function parse(segments:string[]) {
   const first=segments[0] as Locale;
   const locale:Locale=localeCodes.includes(first) ? first : "en";
