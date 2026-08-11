@@ -1,2 +1,4 @@
-# Default language is English. Root pages are served directly.
-# No redirects are needed for language switching.
+# Canonical English routes. Advanced-mode Worker applies the same rules.
+/en / 301
+/en/ / 301
+/en/* /:splat 301

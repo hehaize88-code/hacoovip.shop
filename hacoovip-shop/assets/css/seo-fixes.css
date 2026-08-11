@@ -1,0 +1,119 @@
+/* Technical SEO and mobile consistency overrides. Loaded after page-level styles. */
+html, body { max-width: 100%; overflow-x: clip; }
+
+.catalogSearch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.catalogSearch input,
+.catalogSearch button {
+  min-height: 44px;
+  border-radius: 999px;
+  font: inherit;
+}
+
+.catalogSearch input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.1);
+  color: #fffaf2;
+  padding: 0 15px;
+}
+
+.catalogSearch input::placeholder { color: #dac8b5; }
+
+.catalogSearch button {
+  border: 0;
+  background: #efc58b;
+  color: #1d120b;
+  padding: 0 16px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.price {
+  display: inline-flex;
+  width: max-content;
+  margin: 0 0 8px;
+  border-radius: 999px;
+  background: rgba(255,250,242,.72);
+  color: #3e2415;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+details.faqCard summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+details.faqCard summary::-webkit-details-marker { display: none; }
+details.faqCard summary::after { content: "+"; float: right; color: #8a4e22; }
+details.faqCard[open] summary::after { content: "−"; }
+details.faqCard p { margin-top: 10px; }
+
+@media (max-width: 920px) {
+  .searchBox,
+  .catalogSearch,
+  .chips,
+  .heroProduct p { display: grid; }
+
+  .catalogSearch { grid-template-columns: minmax(0, 1fr) auto; }
+  .heroProduct p { display: block; }
+
+  .miniGrid,
+  .productGrid,
+  .catGrid,
+  .articleGrid,
+  .articleList,
+  .contentGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+
+  .miniProduct,
+  .productCard,
+  .catCard,
+  .articleCard,
+  .infoCard {
+    min-width: 0 !important;
+    width: auto;
+  }
+
+  .miniProduct { padding: 9px; }
+  .catCard { min-height: 190px; }
+  .articleCard { min-height: 220px; }
+  .faqGrid { grid-template-columns: 1fr !important; }
+  .faqGrid .faqCard:nth-child(n+3) { display: block !important; }
+  details.faqCard { padding: 16px; }
+}
+
+@media (max-width: 430px) {
+  .articleCard h3,
+  .productBody h3,
+  .catCard h3 { font-size: 17px !important; }
+  .articleCard p,
+  .productBody p,
+  .catCard p { font-size: 12px !important; }
+}
