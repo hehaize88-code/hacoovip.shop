@@ -1,0 +1,51 @@
+import Link from "next/link";
+import {articleBody, articles, categories, copy, faqs, languageNames, locales, products, qc, sectionTitles, type Locale} from "./content";
+export {locales, type Locale} from "./content";
+
+function localPath(locale: Locale, path="") { return locale === "en" ? `/${path}` : `/${locale}/${path}`; }
+const researchLabels:Record<Locale,{sections:string;words:string;sources:string;read:string;checked:string;guidance:string;fees:string;help:string}>={
+  en:{sections:"SECTIONS",words:"WORDS",sources:"OFFICIAL SOURCES",read:"READ FACT-CHECKED GUIDE",checked:"OFFICIAL SOURCES CHECKED",guidance:"User Guidance",fees:"Fee Structure",help:"Help Center"},
+  de:{sections:"ABSCHNITTE",words:"WÖRTER",sources:"OFFIZIELLE QUELLEN",read:"GEPRÜFTEN RATGEBER LESEN",checked:"OFFIZIELLE QUELLEN GEPRÜFT",guidance:"Nutzeranleitung",fees:"Gebührenübersicht",help:"Hilfezentrum"},
+  fr:{sections:"SECTIONS",words:"MOTS",sources:"SOURCES OFFICIELLES",read:"LIRE LE GUIDE VÉRIFIÉ",checked:"SOURCES OFFICIELLES VÉRIFIÉES",guidance:"Guide utilisateur",fees:"Grille tarifaire",help:"Centre d’aide"},
+  it:{sections:"SEZIONI",words:"PAROLE",sources:"FONTI UFFICIALI",read:"LEGGI LA GUIDA VERIFICATA",checked:"FONTI UFFICIALI CONTROLLATE",guidance:"Guida utente",fees:"Struttura costi",help:"Centro assistenza"},
+  nl:{sections:"SECTIES",words:"WOORDEN",sources:"OFFICIËLE BRONNEN",read:"LEES DE GECONTROLEERDE GIDS",checked:"OFFICIËLE BRONNEN GECONTROLEERD",guidance:"Gebruikersgids",fees:"Kostenoverzicht",help:"Helpcentrum"},
+  ms:{sections:"BAHAGIAN",words:"PERKATAAN",sources:"SUMBER RASMI",read:"BACA PANDUAN DISEMAK",checked:"SUMBER RASMI DISEMAK",guidance:"Panduan Pengguna",fees:"Struktur Yuran",help:"Pusat Bantuan"},
+};
+
+function Header({locale, section=""}:{locale:Locale;section?:string}) {
+  const c=copy[locale];
+  const links=[["browse",c.nav[0]],["finds",c.nav[1]],["qc-check",c.nav[2]],["answers",c.nav[3]],["articles",c.nav[4]]];
+  return <header className="nav">
+    <Link className="brand" href={localPath(locale)} aria-label="Superbuy Spreadsheet home"><img src="/superbuy.png" alt="Super" width="726" height="142" /></Link>
+    <nav aria-label="Main navigation">{links.map(([href,label])=><Link href={localPath(locale,href)} key={href}>{label}</Link>)}</nav>
+    <details className="language"><summary>{languageNames[locale]} <span>⌄</span></summary><div>{locales.map(lang=><Link className={lang===locale?"active":""} href={lang==="en"?`/${section}`:`/${lang}/${section}`} key={lang} hrefLang={lang}>{languageNames[lang]}</Link>)}</div></details>
+    <a className="nav-cta" href="https://www.cnfanshp.com/AllProducts/">{c.full} <span>↗</span></a>
+  </header>;
+}
+
+function Footer({locale}:{locale:Locale}) { const c=copy[locale]; return <footer><img src="/superbuy.png" alt="Super" width="726" height="142"/><p>{c.independent}<br/>{c.notOfficial}</p><a href="#top">{c.back} ↑</a></footer>; }
+
+function RouteBoard({locale}:{locale:Locale}){return <div className="route-board">{categories(locale).map(({number,name,detail,href})=><a href={href} className="route" key={name}><span className="route-no">{number}</span><i/><strong>{name}</strong><small>{detail}</small><b>↗</b></a>)}</div>}
+
+function ProductBoard({locale}:{locale:Locale}){const c=copy[locale];return <div className="receipts">{products.map(p=><a className={`receipt ${p.tone}`} href={p.link} key={p.code}><div className="receipt-top"><span>{p.code}</span><span>{c.productPage} ↗</span></div><div className="product-photo"><img src={p.img} alt={p.names[locale]} loading="lazy" width="700" height="700"/></div><div className="receipt-name"><small>{p.types[locale]}</small><h3>{p.names[locale]}</h3></div><div className="price"><span>{c.approxPrice}</span><b>{p.price}</b></div><div className="barcode" aria-hidden="true"/></a>)}</div>}
+
+function QcBoard({locale}:{locale:Locale}){return <ol className="check-track">{qc[locale].map(([tag,title,text],i)=><li key={tag}><span>{String(i+1).padStart(2,"0")}</span><b>{tag}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>}
+
+function AnswerBoard({locale}:{locale:Locale}){return <div className="answer-list">{faqs[locale].map(([question,answer],i)=><details open={i===0} key={question}><summary><span><small>{String(i+1).padStart(2,"0")} / FAQ</small>{question}</span><b>+</b></summary><p>{answer}</p></details>)}</div>}
+
+function countWords(value:string){return value.trim().split(/\s+/).filter(Boolean).length}
+function ArticleCards({locale}:{locale:Locale}){const l=researchLabels[locale];return <div className="article-grid">{articles.map((a,i)=>{const body=articleBody(locale,a.slug);const words=countWords([body.dek,...body.sections.flat()].join(" "));return <Link href={localPath(locale,`articles/${a.slug}`)} className="article-card" key={a.slug}><span>0{i+1} / {a.tag[locale]}</span><div className="article-proof"><strong>{body.sections.length}</strong><small>{l.sections}</small><strong>{words.toLocaleString()}</strong><small>{l.words}</small><strong>3</strong><small>{l.sources}</small></div><h3>{a.title[locale]}</h3><p>{a.description[locale]}</p><b>{l.read} ↗</b></Link>})}</div>}
+
+function FaqSchema({locale}:{locale:Locale}){const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs[locale].map(([name,text])=>({"@type":"Question",name,acceptedAnswer:{"@type":"Answer",text}}))};return <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/>}
+
+export function HomePage({locale}:{locale:Locale}) { const c=copy[locale]; return <main id="top"><FaqSchema locale={locale}/><Header locale={locale}/>
+  <section className="engine"><div className="orbit orbit-one">{c.independent}</div><div className="orbit orbit-two">2026</div><p className="eyebrow"><span/> {c.eyebrow}</p><h1>{c.title}<br/><em>{c.accent}</em></h1><p className="engine-copy">{c.intro}</p><form className="search-machine" action="https://www.cnfanshp.com/search.html" method="get"><input type="hidden" name="channelid" value="2"/><input type="hidden" name="method" value="1"/><label htmlFor="search">{c.searchLabel}</label><input id="search" name="keywords" placeholder={c.placeholder} required/><button type="submit"><span>{c.search}</span><b>↗</b></button></form><div className="engine-foot"><p>{c.routesStat}</p><p>{c.findsStat}</p><p>{c.guidesStat}</p><p>{c.languagesStat}</p></div></section>
+  <section className="routes"><div className="route-heading"><p>01 / {c.browseLabel}</p><h2>{c.routes}</h2><span>{c.routesNote}</span></div><RouteBoard locale={locale}/></section>
+  <section className="finds"><div className="finds-title"><p>02 / {c.currentSignal}</p><h2>{c.finds}</h2><Link href={localPath(locale,"finds")}>{c.all} ↗</Link></div><ProductBoard locale={locale}/></section>
+  <section className="check"><div className="check-intro"><p>03 / {c.beforeShipping}</p><h2>{c.check}</h2><p className="check-copy">{c.checkText}</p></div><QcBoard locale={locale}/></section>
+  <section className="articles-preview"><div className="article-heading"><p>04 / {c.articleLabel}</p><h2>{c.articles}</h2><span>{c.articleIntro}</span></div><ArticleCards locale={locale}/></section>
+  <section className="answers"><div className="answers-title"><p>05 / {c.quickAnswers}</p><h2>{c.answers}</h2></div><AnswerBoard locale={locale}/></section><Footer locale={locale}/></main> }
+
+export function SectionPage({locale,section}:{locale:Locale;section:string}) { const c=copy[locale]; const title=sectionTitles[locale][section]||sectionTitles[locale].browse; return <main id="top">{section==="answers"&&<FaqSchema locale={locale}/>}<Header locale={locale} section={section}/><section className="inner-hero"><p>{c.eyebrow} / {section.replace("-"," ").toUpperCase()}</p><h1>{title}</h1><Link href={localPath(locale)}>← {c.home}</Link></section>{section==="browse"&&<section className="routes inner"><RouteBoard locale={locale}/></section>}{section==="finds"&&<section className="finds inner"><ProductBoard locale={locale}/></section>}{section==="qc-check"&&<section className="check inner"><div className="check-intro"><p>{c.beforeShipping}</p><h2>{c.check}</h2><p className="check-copy">{c.checkText}</p></div><QcBoard locale={locale}/></section>}{section==="answers"&&<section className="answers inner"><div className="answers-title"><h2>{c.answers}</h2></div><AnswerBoard locale={locale}/></section>}{section==="articles"&&<section className="articles-preview inner"><ArticleCards locale={locale}/></section>}<Footer locale={locale}/></main> }
+
+export function ArticlePage({locale,slug}:{locale:Locale;slug:string}) { const card=articles.find(a=>a.slug===slug)||articles[0]; const a=articleBody(locale,card.slug); const c=copy[locale]; const l=researchLabels[locale]; const articleSchema={"@context":"https://schema.org","@type":"Article",headline:card.title[locale],description:card.description[locale],datePublished:card.date,dateModified:"2026-08-11",author:{"@type":"Organization",name:"Superbuy Product Index"},mainEntityOfPage:`https://superbuys.pro${localPath(locale,`articles/${card.slug}`)}`}; return <main id="top"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleSchema)}}/><Header locale={locale} section={`articles/${card.slug}`}/><article className="article-page"><p>{c.eyebrow} / {card.tag[locale]}</p><h1>{card.title[locale]}</h1><div className="article-meta"><span>{c.updated}</span><span>{c.readTime}</span><span>{a.sections.length} {l.sections}</span></div><p className="article-dek">{a.dek}</p><div className="source-ledger"><b>{l.checked}</b><a href="https://www.superbuy.com/en/page/noviceguide/">{l.guidance} ↗</a><a href="https://www.superbuy.com/en/page/guide/feecomposition/">{l.fees} ↗</a><a href="https://www.superbuy.com/en/page/help/">{l.help} ↗</a></div>{a.sections.map(([h,t])=><section key={h}><h2>{h}</h2><p>{t}</p></section>)}<aside><b>{locale==="en"?"Research note:":"ⓘ"}</b> {c.sourceNote}<br/><br/>{c.notOfficial}.</aside><Link className="article-back" href={localPath(locale,"articles")}>← {c.allArticles}</Link></article><Footer locale={locale}/></main> }
