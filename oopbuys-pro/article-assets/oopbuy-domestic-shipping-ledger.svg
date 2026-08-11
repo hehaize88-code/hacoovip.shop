@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">OOPBUY domestic shipping evidence ledger</title>
+  <desc id="desc">A four-stage diagram separating listing evidence, seller dispatch, China-side tracking and warehouse intake.</desc>
+  <rect width="1200" height="675" fill="#f5f0e6"/>
+  <rect x="58" y="58" width="1084" height="559" rx="32" fill="#101820"/>
+  <text x="104" y="132" fill="#ff6b35" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3">SELLER → OOPBUY WAREHOUSE</text>
+  <text x="104" y="185" fill="#ffffff" font-family="Georgia, serif" font-size="44">Treat domestic shipping as its own evidence trail.</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(104 248)"><rect width="225" height="250" rx="18" fill="#f7f2e8"/><text x="24" y="42" fill="#ff5b2d" font-size="16" font-weight="700">01 · ORDER</text><text x="24" y="88" fill="#101820" font-size="24" font-weight="700">Listing record</text><text x="24" y="128" fill="#41536a" font-size="17">Variant · quantity</text><text x="24" y="158" fill="#41536a" font-size="17">Seller freight</text><text x="24" y="188" fill="#41536a" font-size="17">Checkout receipt</text></g>
+    <g transform="translate(359 248)"><rect width="225" height="250" rx="18" fill="#d9eaf0"/><text x="24" y="42" fill="#087e8b" font-size="16" font-weight="700">02 · DISPATCH</text><text x="24" y="88" fill="#101820" font-size="24" font-weight="700">Seller action</text><text x="24" y="128" fill="#41536a" font-size="17">Carrier number</text><text x="24" y="158" fill="#41536a" font-size="17">First acceptance</text><text x="24" y="188" fill="#41536a" font-size="17">Seller message</text></g>
+    <g transform="translate(614 248)"><rect width="225" height="250" rx="18" fill="#f6d5c7"/><text x="24" y="42" fill="#c6471d" font-size="16" font-weight="700">03 · TRANSIT</text><text x="24" y="88" fill="#101820" font-size="24" font-weight="700">China tracking</text><text x="24" y="128" fill="#41536a" font-size="17">Real scans</text><text x="24" y="158" fill="#41536a" font-size="17">Delivery record</text><text x="24" y="188" fill="#41536a" font-size="17">Exception evidence</text></g>
+    <g transform="translate(869 248)"><rect width="225" height="250" rx="18" fill="#e3e0f3"/><text x="24" y="42" fill="#6657a8" font-size="16" font-weight="700">04 · INTAKE</text><text x="24" y="88" fill="#101820" font-size="24" font-weight="700">Warehouse proof</text><text x="24" y="128" fill="#41536a" font-size="17">Stored status</text><text x="24" y="158" fill="#41536a" font-size="17">Weight · photos</text><text x="24" y="188" fill="#41536a" font-size="17">Mismatch decision</text></g>
+  </g>
+  <path d="M329 373h30m225 0h30m225 0h30" stroke="#ff6b35" stroke-width="7" stroke-linecap="round"/>
+  <text x="104" y="558" fill="#b7c2ce" font-family="Arial, sans-serif" font-size="18">Do not merge seller freight, international freight and return freight into one unlabeled number.</text>
+</svg>

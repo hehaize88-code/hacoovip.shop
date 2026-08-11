@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-10",
+  "updated": "2026-08-12",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -283,6 +283,25 @@
         "US CFPB and FTC consumer payment guidance"
       ],
       "internalLinkRole": "Cost-decision spoke linked to shipping, consolidation and aftersales guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-domestic-shipping/",
+      "primaryQuery": "oopbuy domestic shipping",
+      "secondaryTerms": [
+        "oopbuy seller to warehouse shipping",
+        "oopbuy China domestic freight",
+        "oopbuy warehouse arrival status",
+        "oopbuy seller dispatch"
+      ],
+      "intent": "informational cost planning and order-stage troubleshooting",
+      "angle": "Separate seller-to-warehouse freight from international shipping, then reconcile listing, dispatch, carrier and warehouse evidence.",
+      "evidence": [
+        "OOPBUY Service & Fees notice",
+        "OOPBUY current public product pages",
+        "OOPBUY Returns and Refunds notice",
+        "OOPBUY Inspection Information"
+      ],
+      "internalLinkRole": "China-side cost spoke linked to the full cost ledger, QC and return guides"
     }
   ]
 }
