@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Product link verification board</title>
+  <desc id="desc">A six-step board for checking marketplace, seller, variant, price, domestic freight and live status before ordering.</desc>
+  <rect width="1200" height="630" fill="#081424"/>
+  <path d="M0 490L1200 205V630H0Z" fill="#11243a"/>
+  <circle cx="1045" cy="92" r="148" fill="#ff5a36" opacity=".95"/>
+  <text x="72" y="92" fill="#ff6846" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">OOPBUY BUYER RESEARCH</text>
+  <text x="72" y="160" fill="#f7f3e9" font-family="Georgia,serif" font-size="54" font-weight="700">Verify the link,</text>
+  <text x="72" y="220" fill="#f7f3e9" font-family="Georgia,serif" font-size="54" font-weight="700">not just the photo.</text>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(72 282)"><rect width="318" height="92" rx="10" fill="#f7f3e9"/><text x="24" y="34" fill="#ff4f2e" font-size="15" font-weight="700">01 · SOURCE</text><text x="24" y="67" fill="#081424" font-size="24" font-weight="700">Marketplace + item ID</text></g>
+    <g transform="translate(414 282)"><rect width="318" height="92" rx="10" fill="#f7f3e9"/><text x="24" y="34" fill="#ff4f2e" font-size="15" font-weight="700">02 · IDENTITY</text><text x="24" y="67" fill="#081424" font-size="24" font-weight="700">Seller + live title</text></g>
+    <g transform="translate(756 282)"><rect width="318" height="92" rx="10" fill="#f7f3e9"/><text x="24" y="34" fill="#ff4f2e" font-size="15" font-weight="700">03 · SELECTION</text><text x="24" y="67" fill="#081424" font-size="24" font-weight="700">Variant + quantity</text></g>
+    <g transform="translate(72 398)"><rect width="318" height="92" rx="10" fill="#f7f3e9"/><text x="24" y="34" fill="#ff4f2e" font-size="15" font-weight="700">04 · PRICE</text><text x="24" y="67" fill="#081424" font-size="24" font-weight="700">Selected source price</text></g>
+    <g transform="translate(414 398)"><rect width="318" height="92" rx="10" fill="#f7f3e9"/><text x="24" y="34" fill="#ff4f2e" font-size="15" font-weight="700">05 · FREIGHT</text><text x="24" y="67" fill="#081424" font-size="24" font-weight="700">Seller → warehouse</text></g>
+    <g transform="translate(756 398)"><rect width="318" height="92" rx="10" fill="#f7f3e9"/><text x="24" y="34" fill="#ff4f2e" font-size="15" font-weight="700">06 · STATUS</text><text x="24" y="67" fill="#081424" font-size="24" font-weight="700">Live, changed or dead</text></g>
+  </g>
+  <text x="72" y="570" fill="#b6c4d3" font-family="Arial,sans-serif" font-size="20">Keep the submitted URL and the final landing URL as separate evidence.</text>
+</svg>
