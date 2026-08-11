@@ -187,7 +187,20 @@
       "angle": "compares combined and split scenarios across protection, dimensional volume, route eligibility and concentration of value",
       "evidence": "current Kakobuy public consolidation, quality-inspection and shipping-estimator pages",
       "internalLinkRole": "bridges volumetric-weight, shipping-cost, storage and tracking guides"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-domestic-shipping-warehouse-cost/",
+      "primaryQuery": "Kakobuy domestic shipping",
+      "relatedTerms": [
+        "Kakobuy seller to warehouse shipping",
+        "Kakobuy China shipping fee",
+        "Kakobuy warehouse delivery cost"
+      ],
+      "intent": "seller-to-warehouse cost planning",
+      "angle": "separates order-level domestic delivery from parcel-level international freight and provides a multi-seller ledger",
+      "evidence": "current Kakobuy public seller-to-warehouse process, product-page stage labels and shipping calculator boundary",
+      "internalLinkRole": "connects purchase-order tracking with landed-cost and later parcel planning without replacing the international shipping estimate"
     }
   ],
-  "nextPriority": "Kakobuy payment methods and variable fee verification"
+  "nextPriority": "Kakobuy service and payment fees only after current live terms can be verified"
 }
