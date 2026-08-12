@@ -35,7 +35,7 @@ export default function GuidesPage() {
         <p>We checked AllChinaBuy’s public English mobile pages and turned the visible rules into practical workflows. Every article names its official sources, review date and evidence limits.</p>
         <ul className="page-hero__facts">
           <li>Official pages linked</li>
-          <li>Fact-checked July 17, 2026</li>
+          <li>Latest guide fact-checked August 12, 2026</li>
           <li>No invented fees or delivery promises</li>
         </ul>
       </section>

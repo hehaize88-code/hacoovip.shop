@@ -57,6 +57,127 @@ const goodsDetail: GuideSource = {
 
 export const guides: Guide[] = [
   {
+    slug: "allchinabuy-domestic-shipping-seller-to-warehouse",
+    title: "AllChinaBuy Domestic Shipping: Seller to Warehouse Cost Guide",
+    eyebrow: "Domestic shipping guide",
+    description:
+      "Separate China domestic shipping from international freight, audit seller dispatch and warehouse receipt, and build a usable AllChinaBuy cost record.",
+    readingTime: "10 min read",
+    updated: "August 12, 2026",
+    publishedDate: "2026-08-12",
+    modifiedDate: "2026-08-12",
+    hideSourceLinks: true,
+    keyFacts: [
+      "The product payment and seller-to-warehouse movement occur before the later international parcel decision.",
+      "A domestic-delivery amount belongs to the specific seller order; it is not an estimate of international freight.",
+      "Seller dispatch, domestic carrier movement, warehouse receipt and storage are separate evidence points.",
+    ],
+    figure: {
+      src: "/images/guides/domestic-shipping-ledger.svg",
+      alt: "Decision diagram separating an AllChinaBuy seller order, China domestic delivery, warehouse receipt and international parcel",
+      caption: "Editorial domestic-shipping evidence ledger based on AllChinaBuy’s public workflow; checked August 12, 2026.",
+      sourceUrl: "",
+    },
+    sections: [
+      {
+        title: "Start with the right boundary: domestic shipping is not the parcel home",
+        paragraphs: [
+          "AllChinaBuy domestic shipping is the movement from a marketplace seller in China to the warehouse assigned to the shopping-agent order. It sits between product purchase and warehouse intake. The later parcel from the warehouse to your country is a separate logistics decision with its own destination, category, packed dimensions, weight and available routes. Confusing those stages is one of the easiest ways to underestimate a purchase.",
+          "The public AllChinaBuy interface presents the flow in that order: selection and purchase, quality check and storage, then international logistics. Its product-service wording also explains that AllChinaBuy purchases from selected third-party platforms. That means seller readiness and the domestic carrier affect the first physical handoff, while AllChinaBuy can record and assist with the order. A spreadsheet or product card cannot promise when an independent seller will dispatch.",
+          "Use three separate cost lines from the beginning: merchandise, China domestic delivery and international freight. The first two may appear during the item-stage order. Leave the third as an estimate until the goods are received, packed and eligible routes can be checked with current parcel data. This structure prevents a domestic amount from being mistaken for door-to-door shipping.",
+        ],
+        checklist: [
+          "Product price for the exact selected variant and quantity",
+          "Domestic delivery shown for that seller order",
+          "International freight kept separate until parcel planning",
+        ],
+      },
+      {
+        title: "Capture the order evidence before payment",
+        paragraphs: [
+          "A useful domestic-shipping record begins before the seller has a parcel. Save the source URL, seller name, selected option, quantity, item amount and the domestic-delivery amount displayed on the live order. Add the date. If a shared product link or old screenshot shows a different number, the current order screen is the evidence that matters for this purchase.",
+          "Do not assume that two items from the same marketplace are one seller shipment. Seller identity, warehouse assignment and the live order calculation determine the handoffs. Conversely, do not invent a saving merely because products appear to come from the same shop. The seller’s current checkout rules and the order shown to you decide whether delivery is combined, repeated or adjusted.",
+        ],
+        takeaway: "Compare seller orders using the live item-stage subtotal, not a product thumbnail or the smallest number on the source page.",
+      },
+      {
+        title: "Use a domestic-shipping ledger that survives status changes",
+        paragraphs: [
+          "Build one row per seller order. Record order reference, seller, warehouse, product subtotal, domestic delivery, payment date, seller-dispatch evidence, carrier reference where available, warehouse-received date and stored date. This is not administrative busywork. It shows exactly where an exception began and prevents an international estimate from being mixed into the item-stage account.",
+          "For a simple planning example, imagine two seller orders expressed in worksheet units rather than claimed platform prices. Order A has 120 units of merchandise and 10 units of domestic delivery. Order B has 75 and 8. The item-stage planning subtotal is 213 units: 120 + 10 + 75 + 8. International freight remains blank. These numbers are deliberately fictional; the method demonstrates addition without presenting a fee or quote as an AllChinaBuy fact.",
+        ],
+        checklist: [
+          "One row per seller order, not one row per eventual international parcel",
+          "Old and revised amounts preserved with dates",
+          "Unknown international freight left visibly unresolved",
+        ],
+      },
+      {
+        title: "Read dispatch and warehouse statuses as handoff evidence",
+        paragraphs: [
+          "An order being purchased does not prove the seller has shipped it. Seller dispatch is the next handoff, and a domestic tracking reference—when the order interface provides one—can show that a carrier record exists. A first scan is stronger evidence than a label created without movement. Still, domestic tracking is not international tracking and should not be entered in the parcel column.",
+          "Carrier delivery and warehouse storage are also different. A domestic carrier can mark a package delivered before warehouse staff identify, receive, inspect and associate the contents with the correct customer order. Allow for that processing boundary and look for the warehouse status or account record. If the carrier shows delivery but storage does not follow, save the carrier reference, delivery time and order number before contacting support through the current account channel.",
+          "Use time carefully. The public pages checked for this guide do not provide one universal seller-dispatch or warehouse-processing guarantee for every marketplace and product. Seller, carrier, holiday, warehouse and item conditions vary. Ask an evidence question—‘Has the seller provided a valid dispatch record?’—instead of relying on an invented number of days.",
+        ],
+      },
+      {
+        title: "Diagnose a stalled domestic order in the correct sequence",
+        paragraphs: [
+          "When nothing appears to move, first confirm whether the agent has completed the purchase. If not, review messages for a missing option, price change, restricted product or seller issue. If the purchase is confirmed but no dispatch exists, the seller is the unresolved handoff. Ask for the current seller status rather than requesting international tracking that cannot exist yet.",
+          "If a domestic tracking reference exists, inspect the latest carrier event. No carrier movement may indicate that only a label was created. Movement followed by an address exception needs the warehouse address and order identification checked through the account. Delivered status without storage needs the delivery evidence matched to the receiving process. Each pattern points to a different record; combining them into ‘shipping delayed’ makes support slower.",
+          "Avoid placing a replacement order until you know whether the first seller shipment can still arrive. Two live orders can create duplicate merchandise and repeated domestic delivery. If cancellation or return is offered, read the current seller and account terms before acting. This guide does not assume a fixed window, refund deduction or outcome that the public evidence cannot verify.",
+        ],
+        checklist: [
+          "Purchase unresolved: check agent messages and product eligibility",
+          "Purchased but not dispatched: request the current seller status",
+          "Tracking without movement: distinguish label creation from carrier acceptance",
+          "Delivered but not stored: provide order, carrier and delivery evidence",
+        ],
+      },
+      {
+        title: "Compare one seller with several sellers without false shortcuts",
+        paragraphs: [
+          "A multi-item order from one seller can reduce the number of domestic handoffs, but only the live order can confirm how the seller charges and sends it. Several sellers can provide better variants or lower item prices, yet each seller creates another dispatch, possible delivery amount and arrival schedule. The right comparison is a small decision model, not the blanket rule that fewer sellers always cost less.",
+          "Score each candidate on item-stage subtotal, specification confidence, seller-dispatch uncertainty and how much waiting it may add to your warehouse plan. Give specification confidence priority when a wrong item would be expensive to return or useless overseas. A small domestic saving rarely compensates for an ambiguous size, pack quantity or product version.",
+        ],
+      },
+      {
+        title: "Keep domestic packaging and international billable weight separate",
+        paragraphs: [
+          "The seller’s domestic shipment may arrive with a courier carton, retail packaging and filler. Those materials help the item survive the first leg, but they do not by themselves determine the final international package. Warehouse inspection, your packing choices and parcel preparation can change the final weight and dimensions. A domestic tracking record therefore cannot provide a reliable international freight total.",
+          "Use the warehouse evidence to decide what protection matters. A collectible box, fragile component or matched set may justify keeping packaging. Soft goods may allow volume reduction where the current service offers it. The shipping calculator then needs the actual sending warehouse, destination, category and parcel measurements. Items held in different warehouses should not be assumed to consolidate merely because they were bought through one account.",
+        ],
+        takeaway: "Domestic delivery ends at warehouse receipt; final packing starts a new cost calculation with different evidence.",
+      },
+      {
+        title: "Use a final seller-to-warehouse audit",
+        paragraphs: [
+          "Before item payment, confirm seller, variant, quantity, item price and the domestic amount shown on the order. Save the date and assigned warehouse. During fulfillment, distinguish agent purchase, seller dispatch, domestic carrier acceptance, warehouse receipt and storage. Preserve messages or adjustments that change the item-stage total.",
+          "Once the goods are stored, compare the received quantity and visible variant with the order evidence. Resolve a mismatch before parcel submission using the options and terms shown in the current account. Then move the accepted item into a separate parcel-planning ledger. Do not carry the seller’s domestic amount into a calculator field where it does not belong.",
+          "This guide was checked on August 12, 2026 against AllChinaBuy’s public English mobile goods-detail, order-confirmation and freight-calculator pages. Dynamic order values, seller behavior, warehouse assignment, account terms and routes can change. The durable method is to separate cost stages and attach evidence to every handoff; the live order and parcel interfaces remain the authority for the transaction.",
+        ],
+      },
+    ],
+    sources: [
+      {
+        title: "AllChinaBuy Goods Detail",
+        url: "",
+        scope: "Public shopping-agent boundaries and third-party seller risk wording.",
+      },
+      {
+        title: "AllChinaBuy Order Confirmation",
+        url: "",
+        scope: "Public item-stage order, domestic-delivery and warehouse-service descriptions.",
+      },
+      {
+        title: "AllChinaBuy Shipping Calculator",
+        url: "",
+        scope: "Public destination, warehouse, category, weight and dimension inputs for the later international stage.",
+      },
+    ],
+    relatedSlugs: ["how-a-china-shopping-directory-works", "allchinabuy-checkout-costs", "allchinabuy-warehouse-storage"],
+  },
+  {
     slug: "buy-from-1688-with-allchinabuy",
     title: "How to Buy from 1688 with AllChinaBuy: A 2026 Guide",
     eyebrow: "1688 buying guide",
