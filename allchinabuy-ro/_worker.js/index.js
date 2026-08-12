@@ -1,4 +1,4 @@
-globalThis.__VINEXT_LAZY_CHUNKS__ = ["assets/query-BbOc3VB2.js","assets/layout-segment-context-B_IAiODp.js","assets/link-BafQgLQa.js","assets/router-CEZ9Ouxq.js"];
+globalThis.__VINEXT_LAZY_CHUNKS__ = ["assets/query-BbOc3VB2.js","assets/layout-segment-context-x8yh0QyV.js","assets/link-BvwKYxX5.js","assets/router-DRbwv1Bi.js"];
 import * as __viteRscAsyncHooks from "node:async_hooks";
 import { AsyncLocalStorage as AsyncLocalStorage$1 } from "node:async_hooks";
 import assetsManifest from "./__vite_rsc_assets_manifest.js";
@@ -606,6 +606,11 @@ function cloneHeaders(source) {
 	const cloned = new Headers();
 	for (const [key, value] of source.entries()) cloned.append(key, value);
 	return cloned;
+}
+function encodeMiddlewareRequestHeaders(targetHeaders, requestHeaders) {
+	const overrideHeaderNames = [...requestHeaders.keys()];
+	targetHeaders.set(MIDDLEWARE_OVERRIDE_HEADERS, overrideHeaderNames.join(","));
+	for (const [key, value] of requestHeaders.entries()) targetHeaders.set(`${MIDDLEWARE_REQUEST_HEADER_PREFIX}${key}`, value);
 }
 function buildRequestHeadersFromMiddlewareResponse(baseHeaders, middlewareHeaders, options = {}) {
 	const overrideHeaderNames = getOverrideHeaderNames(middlewareHeaders);
@@ -4758,7 +4763,19 @@ function buildDangerousSchemeRegex(scheme) {
 	const chars = scheme.split("").join(SCHEME_IGNORED);
 	return new RegExp(`^${LEADING_IGNORED}${chars}${SCHEME_IGNORED}:`, "i");
 }
-buildDangerousSchemeRegex("javascript"), buildDangerousSchemeRegex("data"), buildDangerousSchemeRegex("vbscript");
+var DANGEROUS_SCHEME_RES = [
+	buildDangerousSchemeRegex("javascript"),
+	buildDangerousSchemeRegex("data"),
+	buildDangerousSchemeRegex("vbscript")
+];
+var DANGEROUS_URL_BLOCK_MESSAGE = "Next.js has blocked a javascript: URL as a security precaution.";
+function isDangerousScheme(url) {
+	const str = "" + url;
+	return DANGEROUS_SCHEME_RES.some((re) => re.test(str));
+}
+function assertSafeNavigationUrl(url) {
+	if (isDangerousScheme(url)) throw new Error(DANGEROUS_URL_BLOCK_MESSAGE);
+}
 //#endregion
 //#region node_modules/vinext/dist/utils/hash.js
 /**
@@ -5462,6 +5479,44 @@ var VALID_COOKIE_NAME_RE = /^[\x21\x23-\x27\x2A\x2B\x2D\x2E\x30-\x39\x41-\x5A\x5
 function validateCookieName(name) {
 	if (!name || !VALID_COOKIE_NAME_RE.test(name)) throw new Error(`Invalid cookie name: ${JSON.stringify(name)}`);
 }
+/**
+* Validate cookie attribute values (path, domain) to prevent injection
+* via semicolons, newlines, or other control characters.
+*/
+function validateCookieAttributeValue(value, attributeName) {
+	for (let i = 0; i < value.length; i++) {
+		const code = value.charCodeAt(i);
+		if (code <= 31 || code === 127 || value[i] === ";") throw new Error(`Invalid cookie ${attributeName} value: ${JSON.stringify(value)}`);
+	}
+}
+/**
+* Build a Set-Cookie header string from a cookie name, value, and attributes.
+*
+* - Encodes the value with `encodeURIComponent`.
+* - Defaults `Path` to `/` (matching @edge-runtime/cookies and Next.js).
+* - Validates path/domain to reject control characters and semicolons.
+* - Emits attributes in the order: Path, Domain, Max-Age, Expires, HttpOnly,
+*   Secure, SameSite.
+*
+* The caller is responsible for validating the cookie name (typically before
+* mutating any internal state) via `validateCookieName`.
+*/
+function serializeSetCookie(name, value, options) {
+	const parts = [`${name}=${encodeURIComponent(value)}`];
+	const path = options?.path ?? "/";
+	validateCookieAttributeValue(path, "Path");
+	parts.push(`Path=${path}`);
+	if (options?.domain) {
+		validateCookieAttributeValue(options.domain, "Domain");
+		parts.push(`Domain=${options.domain}`);
+	}
+	if (options?.maxAge !== void 0) parts.push(`Max-Age=${options.maxAge}`);
+	if (options?.expires) parts.push(`Expires=${options.expires.toUTCString()}`);
+	if (options?.httpOnly) parts.push("HttpOnly");
+	if (options?.secure) parts.push("Secure");
+	if (options?.sameSite) parts.push(`SameSite=${options.sameSite}`);
+	return parts.join("; ");
+}
 //#endregion
 //#region node_modules/vinext/dist/shims/internal/parse-cookie-header.js
 /**
@@ -5590,6 +5645,42 @@ function markDynamicUsage() {
 	if (state.headersContext?.forceStatic) return;
 	state.dynamicUsageDetected = true;
 }
+/** Symbol used by cache-runtime.ts to store the "use cache" ALS on globalThis */
+var _USE_CACHE_ALS_KEY = Symbol.for("vinext.cacheRuntime.contextAls");
+/** Symbol used by cache.ts to store the unstable_cache ALS on globalThis */
+var _UNSTABLE_CACHE_ALS_KEY = Symbol.for("vinext.unstableCache.als");
+var _gHeaders = globalThis;
+function _isInsideUseCache() {
+	return _gHeaders[_USE_CACHE_ALS_KEY]?.getStore() != null;
+}
+function _isInsideUnstableCache() {
+	return _gHeaders[_UNSTABLE_CACHE_ALS_KEY]?.getStore() === true;
+}
+/**
+* Throw if the current execution is inside a "use cache" or unstable_cache()
+* scope. Called by dynamic request APIs (headers, cookies, connection) to
+* prevent request-specific data from being frozen into cached results.
+*
+* @param apiName - The name of the API being called (e.g. "connection()")
+*/
+function throwIfInsideCacheScope(apiName) {
+	if (_isInsideUseCache()) {
+		const error = /* @__PURE__ */ new Error(`\`${apiName}\` cannot be called inside "use cache". If you need this data inside a cached function, call \`${apiName}\` outside and pass the required data as an argument.`);
+		try {
+			const ctx = getRequestContext();
+			if (ctx) ctx.invalidDynamicUsageError = error;
+		} catch {}
+		throw error;
+	}
+	if (_isInsideUnstableCache()) {
+		const error = /* @__PURE__ */ new Error(`\`${apiName}\` cannot be called inside a function cached with \`unstable_cache()\`. If you need this data inside a cached function, call \`${apiName}\` outside and pass the required data as an argument.`);
+		try {
+			const ctx = getRequestContext();
+			if (ctx) ctx.invalidDynamicUsageError = error;
+		} catch {}
+		throw error;
+	}
+}
 /**
 * Check, consume, and return any invalid dynamic usage error recorded during
 * the render (e.g. cookies() called inside "use cache"). This error persists
@@ -5701,6 +5792,63 @@ var _HEADERS_MUTATING_METHODS = new Set([
 	"delete",
 	"append"
 ]);
+var ReadonlyHeadersError = class ReadonlyHeadersError extends Error {
+	constructor() {
+		super("Headers cannot be modified. Read more: https://nextjs.org/docs/app/api-reference/functions/headers");
+	}
+	static callable() {
+		throw new ReadonlyHeadersError();
+	}
+};
+function _decorateRequestApiPromise(promise, target) {
+	return new Proxy(promise, {
+		get(promiseTarget, prop) {
+			if (prop in promiseTarget) {
+				const value = Reflect.get(promiseTarget, prop, promiseTarget);
+				return typeof value === "function" ? value.bind(promiseTarget) : value;
+			}
+			const value = Reflect.get(target, prop, target);
+			return typeof value === "function" ? value.bind(target) : value;
+		},
+		has(promiseTarget, prop) {
+			return prop in promiseTarget || prop in target;
+		},
+		ownKeys(promiseTarget) {
+			return Array.from(new Set([...Reflect.ownKeys(promiseTarget), ...Reflect.ownKeys(target)]));
+		},
+		getOwnPropertyDescriptor(promiseTarget, prop) {
+			return Reflect.getOwnPropertyDescriptor(promiseTarget, prop) ?? Reflect.getOwnPropertyDescriptor(target, prop);
+		}
+	});
+}
+var _decoratedHeadersPromises = /* @__PURE__ */ new WeakMap();
+function _getOrCreateDecoratedRequestApiPromise(cache, target) {
+	const cached = cache.get(target);
+	if (cached) return cached;
+	const promise = _decorateRequestApiPromise(Promise.resolve(target), target);
+	cache.set(target, promise);
+	return promise;
+}
+function _decorateRejectedRequestApiPromise(error) {
+	const normalizedError = error instanceof Error ? error : new Error(String(error));
+	const promise = Promise.reject(normalizedError);
+	promise.catch(() => {});
+	return _decorateRequestApiPromise(promise, new Proxy({}, { get(_target, prop) {
+		if (prop === "then" || prop === "catch" || prop === "finally") return;
+		throw normalizedError;
+	} }));
+}
+function _sealHeaders(headers) {
+	return new Proxy(headers, { get(target, prop) {
+		if (typeof prop === "string" && _HEADERS_MUTATING_METHODS.has(prop)) throw new ReadonlyHeadersError();
+		const value = Reflect.get(target, prop, target);
+		return typeof value === "function" ? value.bind(target) : value;
+	} });
+}
+function _getReadonlyHeaders(ctx) {
+	if (!ctx.readonlyHeaders) ctx.readonlyHeaders = _sealHeaders(ctx.headers);
+	return ctx.readonlyHeaders;
+}
 /**
 * Create a HeadersContext from a standard Request object.
 *
@@ -5746,6 +5894,23 @@ function headersContextFromRequest(request) {
 		}
 	};
 }
+/**
+* Read-only Headers instance from the incoming request.
+* Returns a Promise in Next.js 15+ style (but resolves synchronously since
+* the context is already available).
+*/
+function headers() {
+	try {
+		throwIfInsideCacheScope("headers()");
+	} catch (error) {
+		return _decorateRejectedRequestApiPromise(error);
+	}
+	const state = _getState$2();
+	if (!state.headersContext) return _decorateRejectedRequestApiPromise(/* @__PURE__ */ new Error("headers() can only be called from a Server Component, Route Handler, or Server Action. Make sure you're not calling it from a Client Component."));
+	if (state.headersContext.accessError) return _decorateRejectedRequestApiPromise(state.headersContext.accessError);
+	markDynamicUsage();
+	return _getOrCreateDecoratedRequestApiPromise(_decoratedHeadersPromises, _getReadonlyHeaders(state.headersContext));
+}
 /** Accumulated Set-Cookie headers from cookies().set() / .delete() calls */
 /**
 * Get and clear all pending Set-Cookie headers generated by cookies().set()/delete().
@@ -5760,7 +5925,7 @@ function getAndClearPendingCookies() {
 var DRAFT_MODE_COOKIE = "__prerender_bypass";
 (/* @__PURE__ */ new Date(0)).toUTCString();
 function getDraftSecret() {
-	return "5eb5f15f-631b-4d9a-8e17-3ab83d5bc8d7";
+	return "6250c53c-5c57-4b86-90a0-d46a0e7a6f6f";
 }
 /**
 * Get any Set-Cookie header generated by draftMode().enable()/disable().
@@ -6528,6 +6693,588 @@ function MetadataHead({ metadata }) {
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(import_jsx_runtime_react_server.Fragment, { children: elements });
 }
+//#endregion
+//#region node_modules/vinext/dist/shims/server.js
+var NextRequest = class extends Request {
+	_nextUrl;
+	_url;
+	_cookies;
+	constructor(input, init) {
+		const { nextConfig: _nextConfig, ...requestInit } = init ?? {};
+		if (input instanceof Request) {
+			const requestInput = requestInit.body === void 0 && input.body && !input.bodyUsed ? input.clone() : input;
+			super(requestInput, requestInit);
+		} else super(input, requestInit);
+		const url = typeof input === "string" ? new URL(input, "http://localhost") : input instanceof URL ? input : new URL(input.url, "http://localhost");
+		const urlConfig = _nextConfig ? {
+			basePath: _nextConfig.basePath,
+			nextConfig: { i18n: _nextConfig.i18n }
+		} : void 0;
+		this._nextUrl = new NextURL(url, void 0, urlConfig);
+		this._url = process.env.__NEXT_NO_MIDDLEWARE_URL_NORMALIZE ? url.toString() : this._nextUrl.toString();
+		this._cookies = new RequestCookies(this.headers);
+	}
+	get nextUrl() {
+		return this._nextUrl;
+	}
+	get url() {
+		return this._url;
+	}
+	get cookies() {
+		return this._cookies;
+	}
+	/**
+	* Client IP address. Prefers Cloudflare's trusted CF-Connecting-IP header
+	* over the spoofable X-Forwarded-For. Returns undefined if unavailable.
+	*/
+	get ip() {
+		return this.headers.get("cf-connecting-ip") ?? this.headers.get("x-real-ip") ?? this.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? void 0;
+	}
+	/**
+	* Geolocation data. Platform-dependent (e.g., Cloudflare, Vercel).
+	* Returns undefined if not available.
+	*/
+	get geo() {
+		const country = this.headers.get("cf-ipcountry") ?? this.headers.get("x-vercel-ip-country") ?? void 0;
+		if (!country) return void 0;
+		return {
+			country,
+			city: this.headers.get("cf-ipcity") ?? this.headers.get("x-vercel-ip-city") ?? void 0,
+			region: this.headers.get("cf-region") ?? this.headers.get("x-vercel-ip-country-region") ?? void 0,
+			latitude: this.headers.get("cf-iplatitude") ?? this.headers.get("x-vercel-ip-latitude") ?? void 0,
+			longitude: this.headers.get("cf-iplongitude") ?? this.headers.get("x-vercel-ip-longitude") ?? void 0
+		};
+	}
+	/**
+	* The build ID of the Next.js application.
+	* Delegates to `nextUrl.buildId` to match Next.js API surface.
+	* Can be used in middleware to detect deployment skew between client and server.
+	*/
+	get buildId() {
+		return this._nextUrl.buildId;
+	}
+};
+/** Valid HTTP redirect status codes, matching Next.js's REDIRECTS set. */
+var REDIRECT_STATUSES = new Set([
+	301,
+	302,
+	303,
+	307,
+	308
+]);
+function validateURL(url) {
+	assertSafeNavigationUrl(String(url));
+	try {
+		return String(new URL(String(url)));
+	} catch (error) {
+		throw new Error(`URL is malformed "${String(url)}". Please use only absolute URLs - https://nextjs.org/docs/messages/middleware-relative-urls`, { cause: error });
+	}
+}
+var NextResponse = class NextResponse extends Response {
+	_cookies;
+	constructor(body, init) {
+		super(body, init);
+		this._cookies = new MiddlewareResponseCookies(this.headers);
+	}
+	get cookies() {
+		return this._cookies;
+	}
+	/**
+	* Create a JSON response.
+	*/
+	static json(body, init) {
+		const headers = new Headers(init?.headers);
+		if (!headers.has("content-type")) headers.set("content-type", "application/json");
+		return new NextResponse(JSON.stringify(body), {
+			...init,
+			headers
+		});
+	}
+	/**
+	* Create a redirect response.
+	*/
+	static redirect(url, init) {
+		const status = typeof init === "number" ? init : init?.status ?? 307;
+		if (!REDIRECT_STATUSES.has(status)) throw new RangeError(`Failed to execute "redirect" on "response": Invalid status code`);
+		const headers = new Headers(typeof init === "object" ? init?.headers : void 0);
+		headers.set("Location", validateURL(url));
+		return new NextResponse(null, {
+			status,
+			headers
+		});
+	}
+	/**
+	* Create a rewrite response (middleware pattern).
+	* Sets the x-middleware-rewrite header.
+	*/
+	static rewrite(destination, init) {
+		const headers = new Headers(init?.headers);
+		headers.set(MIDDLEWARE_REWRITE_HEADER, validateURL(destination));
+		if (init?.request?.headers) encodeMiddlewareRequestHeaders(headers, init.request.headers);
+		return new NextResponse(null, {
+			...init,
+			headers
+		});
+	}
+	/**
+	* Continue to the next handler (middleware pattern).
+	* Sets the x-middleware-next header.
+	*/
+	static next(init) {
+		const headers = new Headers(init?.headers);
+		headers.set(MIDDLEWARE_NEXT_HEADER, "1");
+		if (init?.request?.headers) encodeMiddlewareRequestHeaders(headers, init.request.headers);
+		return new NextResponse(null, {
+			...init,
+			headers
+		});
+	}
+};
+var NextURL = class NextURL {
+	/** Internal URL stores the pathname WITHOUT basePath or locale prefix. */
+	_url;
+	_basePath;
+	_locale;
+	_defaultLocale;
+	_locales;
+	constructor(input, base, config) {
+		this._url = new URL(input.toString(), base);
+		this._basePath = config?.basePath ?? "";
+		this._stripBasePath();
+		const i18n = config?.nextConfig?.i18n;
+		if (i18n) {
+			this._locales = [...i18n.locales];
+			this._defaultLocale = i18n.defaultLocale;
+			this._analyzeLocale(this._locales);
+		}
+	}
+	/** Strip basePath prefix from the internal pathname. */
+	_stripBasePath() {
+		if (!this._basePath) return;
+		this._url.pathname = stripBasePath(this._url.pathname, this._basePath);
+	}
+	/** Extract locale from pathname, stripping it from the internal URL. */
+	_analyzeLocale(locales) {
+		const segments = this._url.pathname.split("/");
+		const candidate = segments[1]?.toLowerCase();
+		const match = locales.find((l) => l.toLowerCase() === candidate);
+		if (match) {
+			this._locale = match;
+			this._url.pathname = "/" + segments.slice(2).join("/");
+		} else this._locale = this._defaultLocale;
+	}
+	/**
+	* Reconstruct the full pathname with basePath + locale prefix.
+	* Mirrors Next.js's internal formatPathname().
+	*/
+	_formatPathname() {
+		let prefix = this._basePath;
+		if (this._locale && this._locale !== this._defaultLocale) prefix += "/" + this._locale;
+		if (!prefix) return this._url.pathname;
+		const inner = this._url.pathname;
+		return inner === "/" ? prefix : prefix + inner;
+	}
+	get href() {
+		const formatted = this._formatPathname();
+		if (formatted === this._url.pathname) return this._url.href;
+		const { href, pathname, search, hash } = this._url;
+		const baseEnd = href.length - pathname.length - search.length - hash.length;
+		return href.slice(0, baseEnd) + formatted + search + hash;
+	}
+	set href(value) {
+		this._url.href = value;
+		this._stripBasePath();
+		if (this._locales) this._analyzeLocale(this._locales);
+	}
+	get origin() {
+		return this._url.origin;
+	}
+	get protocol() {
+		return this._url.protocol;
+	}
+	set protocol(value) {
+		this._url.protocol = value;
+	}
+	get username() {
+		return this._url.username;
+	}
+	set username(value) {
+		this._url.username = value;
+	}
+	get password() {
+		return this._url.password;
+	}
+	set password(value) {
+		this._url.password = value;
+	}
+	get host() {
+		return this._url.host;
+	}
+	set host(value) {
+		this._url.host = value;
+	}
+	get hostname() {
+		return this._url.hostname;
+	}
+	set hostname(value) {
+		this._url.hostname = value;
+	}
+	get port() {
+		return this._url.port;
+	}
+	set port(value) {
+		this._url.port = value;
+	}
+	/** Returns the pathname WITHOUT basePath or locale prefix. */
+	get pathname() {
+		return this._url.pathname;
+	}
+	set pathname(value) {
+		this._url.pathname = value;
+	}
+	get search() {
+		return this._url.search;
+	}
+	set search(value) {
+		this._url.search = value;
+	}
+	get searchParams() {
+		return this._url.searchParams;
+	}
+	get hash() {
+		return this._url.hash;
+	}
+	set hash(value) {
+		this._url.hash = value;
+	}
+	get basePath() {
+		return this._basePath;
+	}
+	set basePath(value) {
+		this._basePath = value === "" ? "" : value.startsWith("/") ? value : "/" + value;
+	}
+	get locale() {
+		return this._locale ?? "";
+	}
+	set locale(value) {
+		if (this._locales) {
+			if (!value) {
+				this._locale = this._defaultLocale;
+				return;
+			}
+			if (!this._locales.includes(value)) throw new TypeError(`The locale "${value}" is not in the configured locales: ${this._locales.join(", ")}`);
+		}
+		this._locale = this._locales ? value : this._locale;
+	}
+	get defaultLocale() {
+		return this._defaultLocale;
+	}
+	get locales() {
+		return this._locales ? [...this._locales] : void 0;
+	}
+	clone() {
+		const config = {
+			basePath: this._basePath,
+			nextConfig: this._locales ? { i18n: {
+				locales: [...this._locales],
+				defaultLocale: this._defaultLocale
+			} } : void 0
+		};
+		return new NextURL(this.href, void 0, config);
+	}
+	toString() {
+		return this.href;
+	}
+	/**
+	* The build ID of the Next.js application.
+	* Set from `generateBuildId` in next.config.js, or a random UUID if not configured.
+	* Can be used in middleware to detect deployment skew between client and server.
+	* Matches the Next.js API: `request.nextUrl.buildId`.
+	*/
+	get buildId() {
+		return "6b8bd8f0-3d3f-4a1a-845a-dbbc9edfdab4";
+	}
+};
+var RequestCookies = class {
+	_headers;
+	_parsed;
+	constructor(headers) {
+		this._headers = headers;
+		this._parsed = parseCookieHeader(headers.get("cookie") ?? "");
+	}
+	get(name) {
+		const value = this._parsed.get(name);
+		return value !== void 0 ? {
+			name,
+			value
+		} : void 0;
+	}
+	getAll(nameOrOptions) {
+		const name = typeof nameOrOptions === "string" ? nameOrOptions : nameOrOptions?.name;
+		return [...this._parsed.entries()].filter(([cookieName]) => name === void 0 || cookieName === name).map(([cookieName, value]) => ({
+			name: cookieName,
+			value
+		}));
+	}
+	has(name) {
+		return this._parsed.has(name);
+	}
+	set(nameOrOptions, value) {
+		let cookieName;
+		let cookieValue;
+		if (typeof nameOrOptions === "string") {
+			cookieName = nameOrOptions;
+			cookieValue = value ?? "";
+		} else {
+			cookieName = nameOrOptions.name;
+			cookieValue = nameOrOptions.value;
+		}
+		validateCookieName(cookieName);
+		this._parsed.set(cookieName, cookieValue);
+		this._syncHeader();
+		return this;
+	}
+	delete(names) {
+		if (Array.isArray(names)) {
+			const results = names.map((name) => {
+				validateCookieName(name);
+				return this._parsed.delete(name);
+			});
+			this._syncHeader();
+			return results;
+		}
+		validateCookieName(names);
+		const result = this._parsed.delete(names);
+		this._syncHeader();
+		return result;
+	}
+	clear() {
+		this._parsed.clear();
+		this._syncHeader();
+		return this;
+	}
+	get size() {
+		return this._parsed.size;
+	}
+	toString() {
+		return this._serialize();
+	}
+	_serialize() {
+		return [...this._parsed.entries()].map(([n, v]) => `${n}=${encodeURIComponent(v)}`).join("; ");
+	}
+	_syncHeader() {
+		if (this._parsed.size === 0) this._headers.delete("cookie");
+		else this._headers.set("cookie", this._serialize());
+	}
+	[Symbol.iterator]() {
+		return this.getAll().map((c) => [c.name, c])[Symbol.iterator]();
+	}
+};
+var ReadonlyRequestCookiesError = class ReadonlyRequestCookiesError extends Error {
+	constructor() {
+		super("Cookies can only be modified in a Server Action or Route Handler. Read more: https://nextjs.org/docs/app/api-reference/functions/cookies#options");
+	}
+	static callable() {
+		throw new ReadonlyRequestCookiesError();
+	}
+};
+var REQUEST_HEADERS_MUTATING_METHODS = new Set([
+	"set",
+	"delete",
+	"append"
+]);
+var ReadonlyRequestHeadersError = class ReadonlyRequestHeadersError extends Error {
+	constructor() {
+		super("Headers cannot be modified. Read more: https://nextjs.org/docs/app/api-reference/functions/headers");
+	}
+	static callable() {
+		throw new ReadonlyRequestHeadersError();
+	}
+};
+function sealRequestHeaders(headers) {
+	return new Proxy(headers, { get(target, prop) {
+		if (typeof prop === "string" && REQUEST_HEADERS_MUTATING_METHODS.has(prop)) return ReadonlyRequestHeadersError.callable;
+		const value = Reflect.get(target, prop, target);
+		return typeof value === "function" ? value.bind(target) : value;
+	} });
+}
+function sealRequestCookies(cookies) {
+	return new Proxy(cookies, { get(target, prop) {
+		if (prop === "set" || prop === "delete" || prop === "clear") return ReadonlyRequestCookiesError.callable;
+		const value = Reflect.get(target, prop, target);
+		return typeof value === "function" ? value.bind(target) : value;
+	} });
+}
+var ResponseCookies = class {
+	_headers;
+	/** Internal map keyed by cookie name â€” single source of truth. */
+	_parsed = /* @__PURE__ */ new Map();
+	constructor(headers) {
+		this._headers = headers;
+		for (const header of headers.getSetCookie()) {
+			const eq = header.indexOf("=");
+			if (eq === -1) continue;
+			const cookieName = header.slice(0, eq);
+			const semi = header.indexOf(";", eq);
+			const raw = header.slice(eq + 1, semi === -1 ? void 0 : semi);
+			let value;
+			try {
+				value = decodeURIComponent(raw);
+			} catch {
+				value = raw;
+			}
+			this._parsed.set(cookieName, {
+				serialized: header,
+				entry: {
+					name: cookieName,
+					value
+				}
+			});
+		}
+	}
+	set(...args) {
+		const [name, value, opts] = parseCookieSetArgs(args);
+		validateCookieName(name);
+		const serialized = serializeSetCookie(name, value, opts);
+		this._parsed.set(name, {
+			serialized,
+			entry: {
+				name,
+				value
+			}
+		});
+		this._syncHeaders();
+		return this;
+	}
+	get(...args) {
+		const key = typeof args[0] === "string" ? args[0] : args[0].name;
+		return this._parsed.get(key)?.entry;
+	}
+	has(name) {
+		return this._parsed.has(name);
+	}
+	getAll(...args) {
+		const all = [...this._parsed.values()].map((v) => v.entry);
+		if (args.length === 0) return all;
+		const key = typeof args[0] === "string" ? args[0] : args[0].name;
+		return all.filter((c) => c.name === key);
+	}
+	delete(...args) {
+		const [name, opts] = typeof args[0] === "string" ? [args[0], void 0] : [args[0].name, args[0]];
+		return this.set({
+			name,
+			value: "",
+			expires: /* @__PURE__ */ new Date(0),
+			path: opts?.path,
+			domain: opts?.domain,
+			httpOnly: opts?.httpOnly,
+			secure: opts?.secure,
+			sameSite: opts?.sameSite
+		});
+	}
+	[Symbol.iterator]() {
+		return [...this._parsed.values()].map((v) => [v.entry.name, v.entry])[Symbol.iterator]();
+	}
+	/** Delete all Set-Cookie headers and re-append from the internal map. */
+	_syncHeaders() {
+		this._headers.delete("Set-Cookie");
+		for (const { serialized } of this._parsed.values()) this._headers.append("Set-Cookie", serialized);
+	}
+};
+var MiddlewareResponseCookies = class extends ResponseCookies {
+	_responseHeaders;
+	constructor(headers) {
+		super(headers);
+		this._responseHeaders = headers;
+	}
+	set(...args) {
+		super.set(...args);
+		this._syncMiddlewareCookieHeader();
+		return this;
+	}
+	delete(...args) {
+		super.delete(...args);
+		this._syncMiddlewareCookieHeader();
+		return this;
+	}
+	_syncMiddlewareCookieHeader() {
+		const cookies = this._responseHeaders.getSetCookie();
+		if (cookies.length === 0) {
+			this._responseHeaders.delete(MIDDLEWARE_SET_COOKIE_HEADER);
+			return;
+		}
+		this._responseHeaders.set(MIDDLEWARE_SET_COOKIE_HEADER, cookies.join(","));
+	}
+};
+/**
+* Parse the overloaded arguments for ResponseCookies.set():
+*   - (name, value, options?) â€” positional form
+*   - ({ name, value, ...options }) â€” object form
+*/
+function parseCookieSetArgs(args) {
+	if (typeof args[0] === "string") return [
+		args[0],
+		args[1],
+		args[2]
+	];
+	const { name, value, ...opts } = args[0];
+	return [
+		name,
+		value,
+		opts
+	];
+}
+/**
+* Minimal NextFetchEvent â€” extends FetchEvent where available,
+* otherwise provides the waitUntil pattern standalone.
+*/
+var NextFetchEvent = class {
+	sourcePage;
+	_waitUntilPromises = [];
+	constructor(params) {
+		this.sourcePage = params.page;
+	}
+	waitUntil(promise) {
+		this._waitUntilPromises.push(promise);
+	}
+	get waitUntilPromises() {
+		return this._waitUntilPromises;
+	}
+	/** Drain all waitUntil promises. Returns a single promise that settles when all are done. */
+	drainWaitUntil() {
+		return Promise.allSettled(this._waitUntilPromises);
+	}
+};
+globalThis.URLPattern;
+//#endregion
+//#region proxy.ts
+var proxy_exports = /* @__PURE__ */ __exportAll({
+	config: () => config,
+	proxy: () => proxy
+});
+var supportedLocales = new Set([
+	"en",
+	"de",
+	"fr",
+	"es",
+	"it",
+	"pl",
+	"ro"
+]);
+function proxy(request) {
+	const url = request.nextUrl.clone();
+	if (url.hostname === "www.allchinabuy.ro") {
+		url.hostname = "allchinabuy.ro";
+		url.protocol = "https:";
+		return NextResponse.redirect(url, 301);
+	}
+	const firstSegment = url.pathname.split("/").filter(Boolean)[0];
+	const locale = firstSegment && supportedLocales.has(firstSegment) ? firstSegment : "ro";
+	const requestHeaders = new Headers(request.headers);
+	requestHeaders.set("x-site-locale", locale);
+	return NextResponse.next({ request: { headers: requestHeaders } });
+}
+var config = { matcher: ["/((?!_next/static|_next/image|favicon.svg|allchinabuy.png|robots.txt|sitemap.xml).*)"] };
 //#endregion
 //#region node_modules/vinext/dist/utils/encode-cache-tag.js
 /**
@@ -7450,364 +8197,6 @@ function decodeMatchedParams(params) {
 		else params[key] = decodeMatchedParam(value);
 	}
 }
-//#endregion
-//#region node_modules/vinext/dist/shims/server.js
-var NextRequest = class extends Request {
-	_nextUrl;
-	_url;
-	_cookies;
-	constructor(input, init) {
-		const { nextConfig: _nextConfig, ...requestInit } = init ?? {};
-		if (input instanceof Request) {
-			const requestInput = requestInit.body === void 0 && input.body && !input.bodyUsed ? input.clone() : input;
-			super(requestInput, requestInit);
-		} else super(input, requestInit);
-		const url = typeof input === "string" ? new URL(input, "http://localhost") : input instanceof URL ? input : new URL(input.url, "http://localhost");
-		const urlConfig = _nextConfig ? {
-			basePath: _nextConfig.basePath,
-			nextConfig: { i18n: _nextConfig.i18n }
-		} : void 0;
-		this._nextUrl = new NextURL(url, void 0, urlConfig);
-		this._url = process.env.__NEXT_NO_MIDDLEWARE_URL_NORMALIZE ? url.toString() : this._nextUrl.toString();
-		this._cookies = new RequestCookies(this.headers);
-	}
-	get nextUrl() {
-		return this._nextUrl;
-	}
-	get url() {
-		return this._url;
-	}
-	get cookies() {
-		return this._cookies;
-	}
-	/**
-	* Client IP address. Prefers Cloudflare's trusted CF-Connecting-IP header
-	* over the spoofable X-Forwarded-For. Returns undefined if unavailable.
-	*/
-	get ip() {
-		return this.headers.get("cf-connecting-ip") ?? this.headers.get("x-real-ip") ?? this.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? void 0;
-	}
-	/**
-	* Geolocation data. Platform-dependent (e.g., Cloudflare, Vercel).
-	* Returns undefined if not available.
-	*/
-	get geo() {
-		const country = this.headers.get("cf-ipcountry") ?? this.headers.get("x-vercel-ip-country") ?? void 0;
-		if (!country) return void 0;
-		return {
-			country,
-			city: this.headers.get("cf-ipcity") ?? this.headers.get("x-vercel-ip-city") ?? void 0,
-			region: this.headers.get("cf-region") ?? this.headers.get("x-vercel-ip-country-region") ?? void 0,
-			latitude: this.headers.get("cf-iplatitude") ?? this.headers.get("x-vercel-ip-latitude") ?? void 0,
-			longitude: this.headers.get("cf-iplongitude") ?? this.headers.get("x-vercel-ip-longitude") ?? void 0
-		};
-	}
-	/**
-	* The build ID of the Next.js application.
-	* Delegates to `nextUrl.buildId` to match Next.js API surface.
-	* Can be used in middleware to detect deployment skew between client and server.
-	*/
-	get buildId() {
-		return this._nextUrl.buildId;
-	}
-};
-var NextURL = class NextURL {
-	/** Internal URL stores the pathname WITHOUT basePath or locale prefix. */
-	_url;
-	_basePath;
-	_locale;
-	_defaultLocale;
-	_locales;
-	constructor(input, base, config) {
-		this._url = new URL(input.toString(), base);
-		this._basePath = config?.basePath ?? "";
-		this._stripBasePath();
-		const i18n = config?.nextConfig?.i18n;
-		if (i18n) {
-			this._locales = [...i18n.locales];
-			this._defaultLocale = i18n.defaultLocale;
-			this._analyzeLocale(this._locales);
-		}
-	}
-	/** Strip basePath prefix from the internal pathname. */
-	_stripBasePath() {
-		if (!this._basePath) return;
-		this._url.pathname = stripBasePath(this._url.pathname, this._basePath);
-	}
-	/** Extract locale from pathname, stripping it from the internal URL. */
-	_analyzeLocale(locales) {
-		const segments = this._url.pathname.split("/");
-		const candidate = segments[1]?.toLowerCase();
-		const match = locales.find((l) => l.toLowerCase() === candidate);
-		if (match) {
-			this._locale = match;
-			this._url.pathname = "/" + segments.slice(2).join("/");
-		} else this._locale = this._defaultLocale;
-	}
-	/**
-	* Reconstruct the full pathname with basePath + locale prefix.
-	* Mirrors Next.js's internal formatPathname().
-	*/
-	_formatPathname() {
-		let prefix = this._basePath;
-		if (this._locale && this._locale !== this._defaultLocale) prefix += "/" + this._locale;
-		if (!prefix) return this._url.pathname;
-		const inner = this._url.pathname;
-		return inner === "/" ? prefix : prefix + inner;
-	}
-	get href() {
-		const formatted = this._formatPathname();
-		if (formatted === this._url.pathname) return this._url.href;
-		const { href, pathname, search, hash } = this._url;
-		const baseEnd = href.length - pathname.length - search.length - hash.length;
-		return href.slice(0, baseEnd) + formatted + search + hash;
-	}
-	set href(value) {
-		this._url.href = value;
-		this._stripBasePath();
-		if (this._locales) this._analyzeLocale(this._locales);
-	}
-	get origin() {
-		return this._url.origin;
-	}
-	get protocol() {
-		return this._url.protocol;
-	}
-	set protocol(value) {
-		this._url.protocol = value;
-	}
-	get username() {
-		return this._url.username;
-	}
-	set username(value) {
-		this._url.username = value;
-	}
-	get password() {
-		return this._url.password;
-	}
-	set password(value) {
-		this._url.password = value;
-	}
-	get host() {
-		return this._url.host;
-	}
-	set host(value) {
-		this._url.host = value;
-	}
-	get hostname() {
-		return this._url.hostname;
-	}
-	set hostname(value) {
-		this._url.hostname = value;
-	}
-	get port() {
-		return this._url.port;
-	}
-	set port(value) {
-		this._url.port = value;
-	}
-	/** Returns the pathname WITHOUT basePath or locale prefix. */
-	get pathname() {
-		return this._url.pathname;
-	}
-	set pathname(value) {
-		this._url.pathname = value;
-	}
-	get search() {
-		return this._url.search;
-	}
-	set search(value) {
-		this._url.search = value;
-	}
-	get searchParams() {
-		return this._url.searchParams;
-	}
-	get hash() {
-		return this._url.hash;
-	}
-	set hash(value) {
-		this._url.hash = value;
-	}
-	get basePath() {
-		return this._basePath;
-	}
-	set basePath(value) {
-		this._basePath = value === "" ? "" : value.startsWith("/") ? value : "/" + value;
-	}
-	get locale() {
-		return this._locale ?? "";
-	}
-	set locale(value) {
-		if (this._locales) {
-			if (!value) {
-				this._locale = this._defaultLocale;
-				return;
-			}
-			if (!this._locales.includes(value)) throw new TypeError(`The locale "${value}" is not in the configured locales: ${this._locales.join(", ")}`);
-		}
-		this._locale = this._locales ? value : this._locale;
-	}
-	get defaultLocale() {
-		return this._defaultLocale;
-	}
-	get locales() {
-		return this._locales ? [...this._locales] : void 0;
-	}
-	clone() {
-		const config = {
-			basePath: this._basePath,
-			nextConfig: this._locales ? { i18n: {
-				locales: [...this._locales],
-				defaultLocale: this._defaultLocale
-			} } : void 0
-		};
-		return new NextURL(this.href, void 0, config);
-	}
-	toString() {
-		return this.href;
-	}
-	/**
-	* The build ID of the Next.js application.
-	* Set from `generateBuildId` in next.config.js, or a random UUID if not configured.
-	* Can be used in middleware to detect deployment skew between client and server.
-	* Matches the Next.js API: `request.nextUrl.buildId`.
-	*/
-	get buildId() {
-		return "a63bbe8b-635e-40ca-814a-9b66d0a57be5";
-	}
-};
-var RequestCookies = class {
-	_headers;
-	_parsed;
-	constructor(headers) {
-		this._headers = headers;
-		this._parsed = parseCookieHeader(headers.get("cookie") ?? "");
-	}
-	get(name) {
-		const value = this._parsed.get(name);
-		return value !== void 0 ? {
-			name,
-			value
-		} : void 0;
-	}
-	getAll(nameOrOptions) {
-		const name = typeof nameOrOptions === "string" ? nameOrOptions : nameOrOptions?.name;
-		return [...this._parsed.entries()].filter(([cookieName]) => name === void 0 || cookieName === name).map(([cookieName, value]) => ({
-			name: cookieName,
-			value
-		}));
-	}
-	has(name) {
-		return this._parsed.has(name);
-	}
-	set(nameOrOptions, value) {
-		let cookieName;
-		let cookieValue;
-		if (typeof nameOrOptions === "string") {
-			cookieName = nameOrOptions;
-			cookieValue = value ?? "";
-		} else {
-			cookieName = nameOrOptions.name;
-			cookieValue = nameOrOptions.value;
-		}
-		validateCookieName(cookieName);
-		this._parsed.set(cookieName, cookieValue);
-		this._syncHeader();
-		return this;
-	}
-	delete(names) {
-		if (Array.isArray(names)) {
-			const results = names.map((name) => {
-				validateCookieName(name);
-				return this._parsed.delete(name);
-			});
-			this._syncHeader();
-			return results;
-		}
-		validateCookieName(names);
-		const result = this._parsed.delete(names);
-		this._syncHeader();
-		return result;
-	}
-	clear() {
-		this._parsed.clear();
-		this._syncHeader();
-		return this;
-	}
-	get size() {
-		return this._parsed.size;
-	}
-	toString() {
-		return this._serialize();
-	}
-	_serialize() {
-		return [...this._parsed.entries()].map(([n, v]) => `${n}=${encodeURIComponent(v)}`).join("; ");
-	}
-	_syncHeader() {
-		if (this._parsed.size === 0) this._headers.delete("cookie");
-		else this._headers.set("cookie", this._serialize());
-	}
-	[Symbol.iterator]() {
-		return this.getAll().map((c) => [c.name, c])[Symbol.iterator]();
-	}
-};
-var ReadonlyRequestCookiesError = class ReadonlyRequestCookiesError extends Error {
-	constructor() {
-		super("Cookies can only be modified in a Server Action or Route Handler. Read more: https://nextjs.org/docs/app/api-reference/functions/cookies#options");
-	}
-	static callable() {
-		throw new ReadonlyRequestCookiesError();
-	}
-};
-var REQUEST_HEADERS_MUTATING_METHODS = new Set([
-	"set",
-	"delete",
-	"append"
-]);
-var ReadonlyRequestHeadersError = class ReadonlyRequestHeadersError extends Error {
-	constructor() {
-		super("Headers cannot be modified. Read more: https://nextjs.org/docs/app/api-reference/functions/headers");
-	}
-	static callable() {
-		throw new ReadonlyRequestHeadersError();
-	}
-};
-function sealRequestHeaders(headers) {
-	return new Proxy(headers, { get(target, prop) {
-		if (typeof prop === "string" && REQUEST_HEADERS_MUTATING_METHODS.has(prop)) return ReadonlyRequestHeadersError.callable;
-		const value = Reflect.get(target, prop, target);
-		return typeof value === "function" ? value.bind(target) : value;
-	} });
-}
-function sealRequestCookies(cookies) {
-	return new Proxy(cookies, { get(target, prop) {
-		if (prop === "set" || prop === "delete" || prop === "clear") return ReadonlyRequestCookiesError.callable;
-		const value = Reflect.get(target, prop, target);
-		return typeof value === "function" ? value.bind(target) : value;
-	} });
-}
-/**
-* Minimal NextFetchEvent â€” extends FetchEvent where available,
-* otherwise provides the waitUntil pattern standalone.
-*/
-var NextFetchEvent = class {
-	sourcePage;
-	_waitUntilPromises = [];
-	constructor(params) {
-		this.sourcePage = params.page;
-	}
-	waitUntil(promise) {
-		this._waitUntilPromises.push(promise);
-	}
-	get waitUntilPromises() {
-		return this._waitUntilPromises;
-	}
-	/** Drain all waitUntil promises. Returns a single promise that settles when all are done. */
-	drainWaitUntil() {
-		return Promise.allSettled(this._waitUntilPromises);
-	}
-};
-globalThis.URLPattern;
 //#endregion
 //#region node_modules/vinext/dist/server/normalize-path.js
 /**
@@ -9129,8322 +9518,42 @@ async function handleAppRscRequest(options, request, preMiddlewareRequestContext
 	}
 	const scriptNonce = getScriptNonceFromHeaderSources(request.headers, middlewareContext.headers);
 	const postMiddlewareRequestContext = buildPostMwRequestContext(request);
-	const beforeFilesRewrite = await applyRewrite({
-		clearRequestContext: options.clearRequestContext,
-		request,
-		requestContext: postMiddlewareRequestContext,
-		rewrites: options.configRewrites.beforeFiles
-	}, cleanPathname);
-	if (beforeFilesRewrite instanceof Response) return beforeFilesRewrite;
-	if (beforeFilesRewrite) cleanPathname = beforeFilesRewrite;
-	if (cleanPathname === "/_vinext/image") {
-		const imageUrlResult = validateImageUrl(url.searchParams.get("url"), request.url);
-		if (imageUrlResult instanceof Response) return imageUrlResult;
-		return Response.redirect(new URL(imageUrlResult, url.origin).href, 302);
-	}
-	const metadataRouteResponse = await handleMetadataRouteRequest({
-		metadataRoutes: options.metadataRoutes,
-		cleanPathname,
-		makeThenableParams: options.makeThenableParams
-	});
-	if (metadataRouteResponse) return metadataRouteResponse;
-	const publicFileResponse = resolvePublicFileRoute({
-		cleanPathname,
-		middlewareContext,
-		pathname,
-		publicFiles: options.publicFiles,
-		request
-	});
-	if (publicFileResponse) {
-		options.clearRequestContext();
-		return publicFileResponse;
-	}
-	if (isRscRequest) stripRscCacheBustingSearchParam(url);
-	options.setNavigationContext({
-		pathname: cleanPathname,
-		searchParams: url.searchParams,
-		params: {}
-	});
-	const actionId = request.headers.get("x-rsc-action") ?? request.headers.get("next-action");
-	const contentType = request.headers.get("content-type") || "";
-	const progressiveActionResult = await options.handleProgressiveActionRequest({
-		actionId,
-		cleanPathname,
-		contentType,
-		middlewareContext,
-		request
-	});
-	if (progressiveActionResult instanceof Response) return progressiveActionResult;
-	const isProgressiveActionRender = progressiveActionResult?.kind === "form-state";
-	const formState = isProgressiveActionRender ? progressiveActionResult.formState : null;
-	const serverActionResponse = await options.handleServerActionRequest({
-		actionId,
-		cleanPathname,
-		contentType,
-		interceptionContext: interceptionContextHeader,
-		isRscRequest,
-		middlewareContext,
-		mountedSlotsHeader,
-		request,
-		searchParams: url.searchParams
-	});
-	if (serverActionResponse) return serverActionResponse;
-	let match = options.matchRoute(cleanPathname);
-	if (!match || match.route.isDynamic) {
-		const afterFilesRewrite = await applyRewrite({
-			clearRequestContext: options.clearRequestContext,
-			request,
-			requestContext: postMiddlewareRequestContext,
-			rewrites: options.configRewrites.afterFiles
-		}, cleanPathname);
-		if (afterFilesRewrite instanceof Response) return afterFilesRewrite;
-		if (afterFilesRewrite) {
-			cleanPathname = afterFilesRewrite;
-			match = options.matchRoute(cleanPathname);
-		}
-	}
-	if (!match) {
-		const fallbackRewrite = await applyRewrite({
-			clearRequestContext: options.clearRequestContext,
-			request,
-			requestContext: postMiddlewareRequestContext,
-			rewrites: options.configRewrites.fallback
-		}, cleanPathname);
-		if (fallbackRewrite instanceof Response) return fallbackRewrite;
-		if (fallbackRewrite) {
-			cleanPathname = fallbackRewrite;
-			match = options.matchRoute(cleanPathname);
-		}
-	}
-	if (!match) {
-		const pagesFallbackResponse = await options.renderPagesFallback?.({
-			isRscRequest,
-			middlewareContext,
-			request,
-			url
-		});
-		if (pagesFallbackResponse) {
-			options.clearRequestContext();
-			return pagesFallbackResponse;
-		}
-		const renderedNotFoundResponse = await options.renderNotFound({
-			isRscRequest,
-			middlewareContext,
-			request,
-			route: null,
-			scriptNonce
-		});
-		if (renderedNotFoundResponse) return renderedNotFoundResponse;
-		options.clearRequestContext();
-		const headers = new Headers();
-		mergeMiddlewareResponseHeaders(headers, middlewareContext.headers);
-		return notFoundResponse({ headers });
-	}
-	const { route, params } = match;
-	options.setNavigationContext({
-		pathname: cleanPathname,
-		searchParams: url.searchParams,
-		params
-	});
-	setRootParams(pickRootParams(params, route.rootParamNames));
-	if (route.routeHandler) {
-		setCurrentFetchSoftTags(buildPageCacheTags(cleanPathname, [], [...route.routeSegments], "route"));
-		return options.dispatchMatchedRouteHandler({
-			cleanPathname,
-			middlewareContext,
-			params,
-			request,
-			route,
-			searchParams: url.searchParams
-		});
-	}
-	return options.dispatchMatchedPage({
-		cleanPathname,
-		formState,
-		handlerStart,
-		interceptionContext: interceptionContextHeader,
-		isProgressiveActionRender,
-		isRscRequest,
-		middlewareContext,
-		mountedSlotsHeader,
-		params,
-		request,
-		route,
-		scriptNonce,
-		searchParams: url.searchParams,
-		renderMode
-	});
-}
-function createAppRscHandler(options) {
-	return async function appRscHandler(rawRequest, ctx) {
-		await options.ensureInstrumentation?.();
-		const mwCtx = rawRequest.headers.get(VINEXT_MW_CTX_HEADER);
-		const filteredHeaders = filterInternalHeaders(rawRequest.headers);
-		if (mwCtx !== null) filteredHeaders.set(VINEXT_MW_CTX_HEADER, mwCtx);
-		const request = cloneRequestWithHeaders(rawRequest, filteredHeaders);
-		const executionContext = isExecutionContextLike(ctx) ? ctx : getRequestExecutionContext() ?? null;
-		return runWithRequestContext(createRequestContext({
-			headersContext: headersContextFromRequest(request),
-			executionContext,
-			unstableCacheRevalidation: "background"
-		}), () => runWithPrerenderWorkUnit(async () => {
-			ensureFetchPatch();
-			const preMiddlewareRequestContext = requestContextFromRequest(request);
-			let response;
-			try {
-				response = await handleAppRscRequest(options, request, preMiddlewareRequestContext);
-			} catch (error) {
-				throw error;
-			}
-			return finalizeAppRscResponse(response, request, {
-				basePath: options.basePath,
-				configHeaders: options.configHeaders,
-				requestContext: preMiddlewareRequestContext
-			});
-		}, { route: () => new URL(request.url).pathname }));
-	};
-}
-//#endregion
-//#region node_modules/vinext/dist/server/instrumentation.js
-/**
-* Get the registered onRequestError handler (if any).
-*
-* Reads from globalThis so it works across Vite environment boundaries.
-*/
-function getOnRequestErrorHandler() {
-	return globalThis.__VINEXT_onRequestErrorHandler__ ?? null;
-}
-/**
-* Report a request error via the instrumentation handler.
-*
-* No-op if no onRequestError handler is registered.
-*
-* Reads the handler from globalThis so this function works correctly regardless
-* of which environment it is called from.
-*/
-function reportRequestError(error, request, context) {
-	const handler = getOnRequestErrorHandler();
-	if (!handler) return Promise.resolve();
-	const promise = (async () => {
-		try {
-			await handler(error, request, context);
-		} catch (reportErr) {
-			console.error("[vinext] onRequestError handler threw:", reportErr instanceof Error ? reportErr.message : String(reportErr));
-		}
-	})();
-	getRequestExecutionContext()?.waitUntil(promise);
-	return promise;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-route-handler-runtime.js
-var ROUTE_HANDLER_HTTP_METHODS = [
-	"GET",
-	"HEAD",
-	"POST",
-	"PUT",
-	"DELETE",
-	"PATCH",
-	"OPTIONS"
-];
-/**
-* Checks whether a string is a recognized HTTP method for App Router route
-* handlers. Invalid methods must be rejected with 400 before any auto-OPTIONS
-* or 405 logic runs.
-*
-* @see https://github.com/vercel/next.js/blob/canary/packages/next/src/server/web/http.ts
-*/
-function isValidHTTPMethod(maybeMethod) {
-	return ROUTE_HANDLER_HTTP_METHODS.includes(maybeMethod);
-}
-function collectRouteHandlerMethods(handler) {
-	const methods = ROUTE_HANDLER_HTTP_METHODS.filter((method) => typeof handler[method] === "function");
-	if (methods.includes("GET") && !methods.includes("HEAD")) methods.push("HEAD");
-	return methods;
-}
-function buildRouteHandlerAllowHeader(exportedMethods) {
-	const allow = new Set(exportedMethods);
-	allow.add("OPTIONS");
-	return Array.from(allow).sort().join(", ");
-}
-var _KNOWN_DYNAMIC_APP_ROUTE_HANDLERS_KEY = Symbol.for("vinext.appRouteHandlerRuntime.knownDynamicHandlers");
-var _g$2 = globalThis;
-var knownDynamicAppRouteHandlers = _g$2[_KNOWN_DYNAMIC_APP_ROUTE_HANDLERS_KEY] ??= /* @__PURE__ */ new Set();
-function isKnownDynamicAppRoute(pattern) {
-	return knownDynamicAppRouteHandlers.has(pattern);
-}
-function markKnownDynamicAppRoute(pattern) {
-	knownDynamicAppRouteHandlers.add(pattern);
-}
-function bindMethodIfNeeded(value, target) {
-	return typeof value === "function" ? value.bind(target) : value;
-}
-function buildNextConfig(options) {
-	if (!options.basePath && !options.i18n) return null;
-	return {
-		basePath: options.basePath,
-		i18n: options.i18n ?? void 0
-	};
-}
-function rebuildRequestWithHeaders(input, headers) {
-	const method = input.method;
-	const hasBody = method !== "GET" && method !== "HEAD";
-	const init = {
-		method,
-		headers,
-		cache: input.cache,
-		credentials: input.credentials,
-		integrity: input.integrity,
-		keepalive: input.keepalive,
-		mode: input.mode,
-		redirect: input.redirect,
-		referrer: input.referrer,
-		referrerPolicy: input.referrerPolicy,
-		signal: input.signal
-	};
-	if (hasBody && input.body) {
-		init.body = input.body;
-		init.duplex = "half";
-	}
-	return new Request(input.url, init);
-}
-function cleanStaticUrl(url) {
-	const cleanUrl = new URL(url);
-	cleanUrl.protocol = "http:";
-	cleanUrl.host = "localhost:3000";
-	cleanUrl.username = "";
-	cleanUrl.password = "";
-	cleanUrl.search = "";
-	cleanUrl.hash = "";
-	return cleanUrl.href;
-}
-function readEmptyBodyAsArrayBuffer() {
-	return new Response(null).arrayBuffer();
-}
-function readEmptyBodyAsBlob() {
-	return new Response(null).blob();
-}
-function readEmptyBodyAsFormData() {
-	return new Response(null).formData();
-}
-function readEmptyBodyAsJson() {
-	return new Response(null).json();
-}
-function readEmptyBodyAsText() {
-	return new Response(null).text();
-}
-function createTrackedAppRouteRequest(request, options = {}) {
-	let didAccessDynamicRequest = false;
-	const requestMode = options.requestMode ?? "auto";
-	const nextConfig = buildNextConfig(options);
-	const markDynamicAccess = (access) => {
-		didAccessDynamicRequest = true;
-		options.onDynamicAccess?.(access);
-	};
-	const wrapNextUrl = (nextUrl) => {
-		return new Proxy(nextUrl, { get(target, prop) {
-			switch (prop) {
-				case "search":
-				case "searchParams":
-				case "url":
-				case "href":
-				case "toJSON":
-				case "toString":
-				case "origin":
-					markDynamicAccess(`nextUrl.${String(prop)}`);
-					return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-				case "clone": return () => wrapNextUrl(target.clone());
-				default: return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-			}
-		} });
-	};
-	const wrapForceStaticNextUrl = (nextUrl) => {
-		const emptySearchParams = new URLSearchParams();
-		const staticHref = cleanStaticUrl(nextUrl.href);
-		return new Proxy(nextUrl, { get(target, prop) {
-			switch (prop) {
-				case "search": return "";
-				case "searchParams": return emptySearchParams;
-				case "href": return staticHref;
-				case "url": return;
-				case "toJSON":
-				case "toString": return () => staticHref;
-				case "clone": return () => wrapForceStaticNextUrl(target.clone());
-				default: return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-			}
-		} });
-	};
-	const throwStaticGenerationError = (expression) => {
-		throw new Error(options.staticGenerationErrorMessage?.(expression) ?? `Route handler with \`dynamic = "error"\` used ${expression}.`);
-	};
-	const wrapRequireStaticNextUrl = (nextUrl) => {
-		return new Proxy(nextUrl, { get(target, prop) {
-			switch (prop) {
-				case "search":
-				case "searchParams":
-				case "url":
-				case "href":
-				case "toJSON":
-				case "toString":
-				case "origin": return throwStaticGenerationError(`nextUrl.${String(prop)}`);
-				case "clone": return () => wrapRequireStaticNextUrl(target.clone());
-				default: return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-			}
-		} });
-	};
-	const wrapRequest = (input) => {
-		const requestHeaders = options.middlewareHeaders ? buildRequestHeadersFromMiddlewareResponse(input.headers, options.middlewareHeaders) : null;
-		const requestWithOverrides = requestHeaders ? rebuildRequestWithHeaders(input, requestHeaders) : input;
-		const nextRequest = requestWithOverrides instanceof NextRequest ? requestWithOverrides : new NextRequest(requestWithOverrides, { nextConfig: nextConfig ?? void 0 });
-		let proxiedNextUrl = null;
-		let forceStaticNextUrl = null;
-		let requireStaticNextUrl = null;
-		let forceStaticHeaders = null;
-		let forceStaticCookies = null;
-		return new Proxy(nextRequest, { get(target, prop) {
-			if (requestMode === "force-static") switch (prop) {
-				case "nextUrl":
-					forceStaticNextUrl ??= wrapForceStaticNextUrl(target.nextUrl);
-					return forceStaticNextUrl;
-				case "headers":
-					forceStaticHeaders ??= sealRequestHeaders(new Headers());
-					return forceStaticHeaders;
-				case "cookies":
-					forceStaticCookies ??= sealRequestCookies(new RequestCookies(new Headers()));
-					return forceStaticCookies;
-				case "url": return cleanStaticUrl(target.nextUrl.href);
-				case "ip":
-				case "geo": return;
-				case "body": return null;
-				case "arrayBuffer": return readEmptyBodyAsArrayBuffer;
-				case "blob": return readEmptyBodyAsBlob;
-				case "formData": return readEmptyBodyAsFormData;
-				case "json": return readEmptyBodyAsJson;
-				case "text": return readEmptyBodyAsText;
-				case "clone": return () => wrapRequest(target.clone());
-				default: return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-			}
-			if (requestMode === "error") switch (prop) {
-				case "nextUrl":
-					requireStaticNextUrl ??= wrapRequireStaticNextUrl(target.nextUrl);
-					return requireStaticNextUrl;
-				case "headers":
-				case "cookies":
-				case "url":
-				case "ip":
-				case "geo":
-				case "body":
-				case "blob":
-				case "json":
-				case "text":
-				case "arrayBuffer":
-				case "formData": return throwStaticGenerationError(`request.${String(prop)}`);
-				case "clone": return () => wrapRequest(target.clone());
-				default: return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-			}
-			switch (prop) {
-				case "nextUrl":
-					proxiedNextUrl ??= wrapNextUrl(target.nextUrl);
-					return proxiedNextUrl;
-				case "headers":
-				case "cookies":
-				case "ip":
-				case "geo":
-				case "url":
-				case "body":
-				case "blob":
-				case "json":
-				case "text":
-				case "arrayBuffer":
-				case "formData":
-					markDynamicAccess(`request.${String(prop)}`);
-					return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-				case "clone": return () => wrapRequest(target.clone());
-				default: return bindMethodIfNeeded(Reflect.get(target, prop, target), target);
-			}
-		} });
-	};
-	return {
-		request: wrapRequest(request),
-		didAccessDynamicRequest() {
-			return didAccessDynamicRequest;
-		}
-	};
-}
-//#endregion
-//#region node_modules/vinext/dist/server/next-error-digest.js
-/**
-* Pulls a stringified `digest` off an unknown thrown value, or returns null
-* when the value is not a digest-bearing error.
-*/
-function getNextErrorDigest(error) {
-	if (!error || typeof error !== "object" || !("digest" in error)) return null;
-	return String(error.digest);
-}
-/**
-* Parses a `NEXT_REDIRECT;<type>;<encodedUrl>;<status>` digest. Returns null
-* when the digest is not a redirect digest or the encoded URL segment is
-* missing. The `url` is decoded with `decodeURIComponent`; the `status`
-* defaults to 307 when omitted; an omitted `type` is left as null so the
-* caller can apply the correct context-sensitive default.
-*/
-function parseNextRedirectDigest(digest) {
-	if (!digest.startsWith("NEXT_REDIRECT;")) return null;
-	const parts = digest.split(";");
-	const encodedUrl = parts[2];
-	if (!encodedUrl) return null;
-	const type = parts[1];
-	return {
-		status: parts[3] ? parseInt(parts[3], 10) : 307,
-		type: type || null,
-		url: decodeURIComponent(encodedUrl)
-	};
-}
-/**
-* Parses a `NEXT_NOT_FOUND` or `NEXT_HTTP_ERROR_FALLBACK;<status>` digest.
-* Returns `{ status: 404 }` for `NEXT_NOT_FOUND` and the parsed status code
-* for the fallback form. Returns null otherwise.
-*/
-function parseNextHttpErrorDigest(digest) {
-	if (digest === "NEXT_NOT_FOUND") return { status: 404 };
-	if (digest.startsWith("NEXT_HTTP_ERROR_FALLBACK;")) return { status: parseInt(digest.split(";")[1], 10) };
-	return null;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-route-handler-policy.js
-function isPossibleAppRouteActionRequest(request) {
-	if (request.method.toUpperCase() !== "POST") return false;
-	const contentType = request.headers.get("content-type");
-	return request.headers.has("x-rsc-action") || request.headers.has("next-action") || contentType === "application/x-www-form-urlencoded" || contentType?.startsWith("multipart/form-data") === true;
-}
-function getAppRouteHandlerRevalidateSeconds(handler) {
-	const { revalidate } = handler;
-	if (revalidate === false) return Infinity;
-	if (typeof revalidate !== "number" || !Number.isFinite(revalidate) || revalidate < 0) return null;
-	return revalidate;
-}
-function hasAppRouteHandlerDefaultExport(handler) {
-	return typeof handler.default === "function";
-}
-function resolveAppRouteHandlerMethod(handler, method) {
-	const exportedMethods = collectRouteHandlerMethods(handler);
-	const allowHeaderForOptions = buildRouteHandlerAllowHeader(exportedMethods);
-	const shouldAutoRespondToOptions = method === "OPTIONS" && typeof handler.OPTIONS !== "function";
-	let handlerFn = typeof handler[method] === "function" ? handler[method] : void 0;
-	let isAutoHead = false;
-	if (method === "HEAD" && typeof handler.HEAD !== "function" && typeof handler.GET === "function") {
-		handlerFn = handler.GET;
-		isAutoHead = true;
-	}
-	return {
-		allowHeaderForOptions,
-		exportedMethods,
-		handlerFn,
-		isAutoHead,
-		shouldAutoRespondToOptions
-	};
-}
-function shouldReadAppRouteHandlerCache(options) {
-	return options.isProduction && options.revalidateSeconds !== null && options.revalidateSeconds > 0 && options.revalidateSeconds !== Infinity && options.dynamicConfig !== "force-dynamic" && !options.isKnownDynamic && (options.method === "GET" || options.isAutoHead) && typeof options.handlerFn === "function";
-}
-function shouldApplyAppRouteHandlerRevalidateHeader(options) {
-	return options.revalidateSeconds !== null && !options.dynamicUsedInHandler && (options.method === "GET" || options.isAutoHead) && !options.handlerSetCacheControl;
-}
-function shouldWriteAppRouteHandlerCache(options) {
-	return options.isProduction && options.revalidateSeconds !== null && options.revalidateSeconds > 0 && options.revalidateSeconds !== Infinity && options.dynamicConfig !== "force-dynamic" && shouldApplyAppRouteHandlerRevalidateHeader(options);
-}
-function resolveAppRouteHandlerSpecialError(error, requestUrl, options) {
-	if (!(error && typeof error === "object" && "digest" in error)) return null;
-	const digest = String(error.digest);
-	const redirect = parseNextRedirectDigest(digest);
-	if (redirect) return {
-		kind: "redirect",
-		location: new URL(redirect.url, requestUrl).toString(),
-		statusCode: options?.isAction ? 303 : redirect.status
-	};
-	const httpError = parseNextHttpErrorDigest(digest);
-	if (httpError) return {
-		kind: "status",
-		statusCode: httpError.status
-	};
-	return null;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-static-generation.js
-function getAppPageStaticGenerationErrorMessage() {
-	return "Page with `dynamic = \"error\"` used a dynamic API. This page was expected to be fully static, but headers(), cookies(), or searchParams was accessed. Remove the dynamic API usage or change the dynamic config to \"auto\" or \"force-dynamic\".";
-}
-function getAppRouteStaticGenerationErrorMessage(routePattern, expression) {
-	return `Route ${routePattern ?? "unknown route"} with \`dynamic = "error"\` couldn't be rendered statically because it used ${expression ?? "a dynamic request API"}. See more info here: https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic#dynamic-rendering`;
-}
-function createStaticGenerationHeadersContext(options) {
-	const context = {
-		headers: new Headers(),
-		cookies: /* @__PURE__ */ new Map()
-	};
-	if (options.dynamicConfig === "force-static") context.forceStatic = true;
-	if (options.dynamicConfig === "error") context.accessError = new Error(options.routeKind === "route" ? getAppRouteStaticGenerationErrorMessage(options.routePattern) : getAppPageStaticGenerationErrorMessage());
-	return context;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-route-handler-response.js
-var APP_ROUTE_REWRITE_ERROR = "NextResponse.rewrite() was used in a app route handler, this is not currently supported. Please remove the invocation to continue.";
-var APP_ROUTE_NEXT_ERROR = "NextResponse.next() was used in a app route handler, this is not supported. See here for more info: https://nextjs.org/docs/messages/next-response-next-in-app-route-handler";
-function hasMiddlewareHeader(headers) {
-	for (const key of headers.keys()) if (key.startsWith("x-middleware-")) return true;
-	return false;
-}
-function buildRouteHandlerCacheControl(cacheState, revalidateSeconds, expireSeconds) {
-	if (revalidateSeconds === 0) return NEVER_CACHE_CONTROL;
-	if (revalidateSeconds === Infinity) return STATIC_CACHE_CONTROL;
-	return buildCachedRevalidateCacheControl(cacheState, revalidateSeconds, expireSeconds);
-}
-function applyRouteHandlerMiddlewareContext(response, middlewareContext) {
-	if (!middlewareContext.headers && middlewareContext.status == null) return response;
-	const responseHeaders = new Headers(response.headers);
-	mergeMiddlewareResponseHeaders(responseHeaders, middlewareContext.headers);
-	return new Response(response.body, {
-		status: middlewareContext.status ?? response.status,
-		statusText: response.statusText,
-		headers: responseHeaders
-	});
-}
-function assertSupportedAppRouteHandlerResponse(response) {
-	if (response.headers.has("x-middleware-rewrite")) throw new Error(APP_ROUTE_REWRITE_ERROR);
-	if (response.headers.get("x-middleware-next") === "1") throw new Error(APP_ROUTE_NEXT_ERROR);
-}
-function buildRouteHandlerCachedResponse(cachedValue, options) {
-	const headers = new Headers();
-	for (const [key, value] of Object.entries(cachedValue.headers)) if (Array.isArray(value)) for (const entry of value) headers.append(key, entry);
-	else headers.set(key, value);
-	headers.set(VINEXT_CACHE_HEADER, options.cacheState);
-	const revalidateSeconds = options.cacheControl?.revalidate ?? options.revalidateSeconds;
-	const expireSeconds = options.cacheControl === void 0 ? void 0 : options.cacheControl.expire ?? options.expireSeconds;
-	headers.set("Cache-Control", buildRouteHandlerCacheControl(options.cacheState, revalidateSeconds, expireSeconds));
-	return new Response(options.isHead ? null : cachedValue.body, {
-		status: cachedValue.status,
-		headers
-	});
-}
-function applyRouteHandlerRevalidateHeader(response, revalidateSeconds, expireSeconds) {
-	response.headers.set("cache-control", buildRouteHandlerCacheControl("HIT", revalidateSeconds, expireSeconds));
-}
-function markRouteHandlerCacheMiss(response) {
-	response.headers.set(VINEXT_CACHE_HEADER, "MISS");
-}
-function getSetCookieName(cookie) {
-	const equalsIndex = cookie.indexOf("=");
-	if (equalsIndex <= 0) return null;
-	return cookie.slice(0, equalsIndex);
-}
-function applyMutableCookieFallbacks(headers, pendingCookies) {
-	if (pendingCookies.length === 0) return;
-	const returnedCookies = headers.getSetCookie();
-	const returnedCookieNames = /* @__PURE__ */ new Set();
-	for (const cookie of returnedCookies) {
-		const name = getSetCookieName(cookie);
-		if (name) returnedCookieNames.add(name);
-	}
-	const fallbackCookies = /* @__PURE__ */ new Map();
-	const unkeyedFallbackCookies = [];
-	for (const cookie of pendingCookies) {
-		const name = getSetCookieName(cookie);
-		if (!name) {
-			unkeyedFallbackCookies.push(cookie);
-			continue;
-		}
-		if (!returnedCookieNames.has(name)) fallbackCookies.set(name, cookie);
-	}
-	headers.delete("Set-Cookie");
-	for (const cookie of unkeyedFallbackCookies) headers.append("Set-Cookie", cookie);
-	for (const cookie of fallbackCookies.values()) headers.append("Set-Cookie", cookie);
-	for (const cookie of returnedCookies) headers.append("Set-Cookie", cookie);
-}
-async function buildAppRouteCacheValue(response) {
-	const body = await response.arrayBuffer();
-	const headers = {};
-	response.headers.forEach((value, key) => {
-		if (key === "set-cookie" || key === "X-Vinext-Cache".toLowerCase() || key === "cache-control" || key.startsWith("x-middleware-")) return;
-		headers[key] = value;
-	});
-	const setCookies = response.headers.getSetCookie?.() ?? [];
-	if (setCookies.length > 0) headers["set-cookie"] = setCookies;
-	return {
-		kind: "APP_ROUTE",
-		body,
-		status: response.status,
-		headers
-	};
-}
-function finalizeRouteHandlerResponse(response, options) {
-	const { pendingCookies, draftCookie, isHead } = options;
-	if (pendingCookies.length === 0 && !draftCookie && !isHead && !hasMiddlewareHeader(response.headers)) return response;
-	const headers = new Headers(response.headers);
-	processMiddlewareHeaders(headers);
-	applyMutableCookieFallbacks(headers, pendingCookies);
-	if (draftCookie) headers.append("Set-Cookie", draftCookie);
-	return new Response(isHead ? null : response.body, {
-		status: response.status,
-		statusText: response.statusText,
-		headers
-	});
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-route-handler-execution.js
-function configureAppRouteStaticGenerationContext(options) {
-	if (options.dynamicConfig === "force-static" || options.dynamicConfig === "error") {
-		setHeadersContext(createStaticGenerationHeadersContext({
-			dynamicConfig: options.dynamicConfig,
-			routeKind: "route",
-			routePattern: options.routePattern
-		}));
-		options.setHeadersAccessPhase?.("route-handler");
-	}
-}
-async function runAppRouteHandler(options) {
-	options.consumeDynamicUsage();
-	configureAppRouteStaticGenerationContext(options);
-	const trackedRequest = createTrackedAppRouteRequest(options.request, {
-		basePath: options.basePath,
-		i18n: options.i18n,
-		middlewareHeaders: options.middlewareRequestHeaders,
-		onDynamicAccess() {
-			options.markDynamicUsage();
-		},
-		requestMode: options.dynamicConfig === "force-static" || options.dynamicConfig === "error" ? options.dynamicConfig : "auto",
-		staticGenerationErrorMessage(expression) {
-			return getAppRouteStaticGenerationErrorMessage(options.routePattern, expression);
-		}
-	});
-	const response = await options.handlerFn(trackedRequest.request, { params: options.params });
-	return {
-		dynamicUsedInHandler: options.consumeDynamicUsage(),
-		response
-	};
-}
-async function executeAppRouteHandler(options) {
-	const previousHeadersPhase = options.setHeadersAccessPhase("route-handler");
-	try {
-		const { dynamicUsedInHandler, response } = await runAppRouteHandler({
-			...options,
-			dynamicConfig: options.handler.dynamic
-		});
-		assertSupportedAppRouteHandlerResponse(response);
-		const handlerSetCacheControl = response.headers.has("cache-control");
-		if (dynamicUsedInHandler) markKnownDynamicAppRoute(options.routePattern);
-		if (shouldApplyAppRouteHandlerRevalidateHeader({
-			dynamicUsedInHandler,
-			handlerSetCacheControl,
-			isAutoHead: options.isAutoHead,
-			method: options.method,
-			revalidateSeconds: options.revalidateSeconds
-		})) {
-			const revalidateSeconds = options.revalidateSeconds;
-			if (revalidateSeconds == null) throw new Error("Expected route handler revalidate seconds");
-			applyRouteHandlerRevalidateHeader(response, revalidateSeconds, options.expireSeconds);
-		}
-		if (shouldWriteAppRouteHandlerCache({
-			dynamicConfig: options.handler.dynamic,
-			dynamicUsedInHandler,
-			handlerSetCacheControl,
-			isAutoHead: options.isAutoHead,
-			isProduction: options.isProduction,
-			method: options.method,
-			revalidateSeconds: options.revalidateSeconds
-		})) {
-			markRouteHandlerCacheMiss(response);
-			const routeClone = response.clone();
-			const routeKey = options.isrRouteKey(options.cleanPathname);
-			const revalidateSeconds = options.revalidateSeconds;
-			if (revalidateSeconds == null) throw new Error("Expected route handler cache revalidate seconds");
-			const routeTags = options.buildPageCacheTags(options.cleanPathname, options.getCollectedFetchTags());
-			const routeWritePromise = (async () => {
-				try {
-					const routeCacheValue = await buildAppRouteCacheValue(routeClone);
-					await options.isrSet(routeKey, routeCacheValue, revalidateSeconds, routeTags, options.expireSeconds);
-					options.isrDebug?.("route cache written", routeKey);
-				} catch (cacheErr) {
-					console.error("[vinext] ISR route cache write error:", cacheErr);
-				}
-			})();
-			options.executionContext?.waitUntil(routeWritePromise);
-		}
-		const pendingCookies = options.getAndClearPendingCookies();
-		const draftCookie = options.getDraftModeCookieHeader();
-		options.clearRequestContext();
-		return applyRouteHandlerMiddlewareContext(finalizeRouteHandlerResponse(response, {
-			pendingCookies,
-			draftCookie,
-			isHead: options.isAutoHead
-		}), options.middlewareContext);
-	} catch (error) {
-		const pendingCookies = options.getAndClearPendingCookies();
-		const draftCookie = options.getDraftModeCookieHeader();
-		const specialError = resolveAppRouteHandlerSpecialError(error, options.request.url, { isAction: isPossibleAppRouteActionRequest(options.request) });
-		options.clearRequestContext();
-		if (specialError) {
-			if (specialError.kind === "redirect") return applyRouteHandlerMiddlewareContext(finalizeRouteHandlerResponse(new Response(null, {
-				status: specialError.statusCode,
-				headers: { Location: specialError.location }
-			}), {
-				pendingCookies,
-				draftCookie,
-				isHead: options.isAutoHead
-			}), options.middlewareContext);
-			return applyRouteHandlerMiddlewareContext(new Response(null, { status: specialError.statusCode }), options.middlewareContext);
-		}
-		console.error("[vinext] Route handler error:", error);
-		options.reportRequestError(error instanceof Error ? error : new Error(String(error)), {
-			path: options.cleanPathname,
-			method: options.request.method,
-			headers: Object.fromEntries(options.request.headers.entries())
-		}, {
-			routerKind: "App Router",
-			routePath: options.routePattern,
-			routeType: "route"
-		});
-		return applyRouteHandlerMiddlewareContext(new Response(null, { status: 500 }), options.middlewareContext);
-	} finally {
-		options.setHeadersAccessPhase(previousHeadersPhase);
-	}
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-route-handler-cache.js
-function getCachedAppRouteValue(entry) {
-	return entry?.value.value && entry.value.value.kind === "APP_ROUTE" ? entry.value.value : null;
-}
-async function readAppRouteHandlerCacheResponse(options) {
-	const routeKey = options.isrRouteKey(options.cleanPathname);
-	try {
-		const cached = await options.isrGet(routeKey);
-		const cachedValue = getCachedAppRouteValue(cached);
-		if (cachedValue && !cached?.isStale) {
-			options.isrDebug?.("HIT (route)", options.cleanPathname);
-			options.clearRequestContext();
-			return applyRouteHandlerMiddlewareContext(buildRouteHandlerCachedResponse(cachedValue, {
-				cacheState: "HIT",
-				cacheControl: cached?.value.cacheControl,
-				expireSeconds: options.expireSeconds,
-				isHead: options.isAutoHead,
-				revalidateSeconds: options.revalidateSeconds
-			}), options.middlewareContext);
-		}
-		if (cached?.isStale && cachedValue) {
-			const staleValue = cachedValue;
-			const revalidateSearchParams = new URLSearchParams(options.revalidateSearchParams);
-			options.scheduleBackgroundRegeneration(routeKey, async () => {
-				await options.runInRevalidationContext(async () => {
-					options.setNavigationContext({
-						pathname: options.cleanPathname,
-						searchParams: revalidateSearchParams,
-						params: options.params
-					});
-					const { dynamicUsedInHandler, response } = await runAppRouteHandler({
-						basePath: options.basePath,
-						consumeDynamicUsage: options.consumeDynamicUsage,
-						dynamicConfig: options.dynamicConfig,
-						handlerFn: options.handlerFn,
-						i18n: options.i18n,
-						markDynamicUsage: options.markDynamicUsage,
-						params: makeThenableParams(options.params),
-						request: new Request(options.requestUrl, { method: "GET" }),
-						routePattern: options.routePattern,
-						setHeadersAccessPhase: options.setHeadersAccessPhase
-					});
-					options.setNavigationContext(null);
-					assertSupportedAppRouteHandlerResponse(response);
-					if (dynamicUsedInHandler) {
-						markKnownDynamicAppRoute(options.routePattern);
-						options.isrDebug?.("route regen skipped (dynamic usage)", options.cleanPathname);
-						return;
-					}
-					const routeTags = options.buildPageCacheTags(options.cleanPathname, options.getCollectedFetchTags());
-					const routeCacheValue = await buildAppRouteCacheValue(response);
-					await options.isrSet(routeKey, routeCacheValue, options.revalidateSeconds, routeTags, options.expireSeconds);
-					options.isrDebug?.("route regen complete", routeKey);
-				});
-			});
-			options.isrDebug?.("STALE (route)", options.cleanPathname);
-			options.clearRequestContext();
-			return applyRouteHandlerMiddlewareContext(buildRouteHandlerCachedResponse(staleValue, {
-				cacheState: "STALE",
-				cacheControl: cached.value.cacheControl,
-				expireSeconds: options.expireSeconds,
-				isHead: options.isAutoHead,
-				revalidateSeconds: options.revalidateSeconds
-			}), options.middlewareContext);
-		}
-	} catch (routeCacheError) {
-		console.error("[vinext] ISR route cache read error:", routeCacheError);
-	}
-	return null;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-route-handler-dispatch.js
-function isAppRouteHandlerFunction(value) {
-	return typeof value === "function";
-}
-function buildRouteHandlerPageCacheTags(pathname, extraTags, routeSegments) {
-	return buildPageCacheTags(pathname, extraTags, routeSegments, "route");
-}
-async function runInRouteHandlerRevalidationContext(options, renderFn) {
-	await runWithRequestContext(createRequestContext({
-		headersContext: createStaticGenerationHeadersContext({
-			dynamicConfig: options.dynamicConfig,
-			routeKind: "route",
-			routePattern: options.routePattern
-		}),
-		executionContext: getRequestExecutionContext(),
-		unstableCacheRevalidation: "foreground"
-	}), async () => {
-		ensureFetchPatch();
-		setCurrentFetchSoftTags(buildRouteHandlerPageCacheTags(options.cleanPathname, [], options.routeSegments));
-		await renderFn();
-	});
-}
-async function dispatchAppRouteHandler(options) {
-	const { route } = options;
-	const handler = route.routeHandler;
-	const method = options.request.method.toUpperCase();
-	const revalidateSeconds = getAppRouteHandlerRevalidateSeconds(handler);
-	const isDevelopment = options.isDevelopment ?? false;
-	const isProduction = options.isProduction ?? true;
-	if (hasAppRouteHandlerDefaultExport(handler) && isDevelopment) console.error("[vinext] Detected default export in route handler " + route.pattern + ". Export a named export for each HTTP method instead.");
-	if (!isValidHTTPMethod(method)) {
-		options.clearRequestContext();
-		return applyRouteHandlerMiddlewareContext(new Response(null, { status: 400 }), options.middlewareContext);
-	}
-	const { allowHeaderForOptions, handlerFn, isAutoHead, shouldAutoRespondToOptions } = resolveAppRouteHandlerMethod(handler, method);
-	if (shouldAutoRespondToOptions) {
-		options.clearRequestContext();
-		return applyRouteHandlerMiddlewareContext(new Response(null, {
-			status: 204,
-			headers: { Allow: allowHeaderForOptions }
-		}), options.middlewareContext);
-	}
-	const resolvedHandlerFn = isAppRouteHandlerFunction(handlerFn) ? handlerFn : void 0;
-	if (revalidateSeconds !== null && shouldReadAppRouteHandlerCache({
-		dynamicConfig: handler.dynamic,
-		handlerFn: resolvedHandlerFn,
-		isAutoHead,
-		isKnownDynamic: isKnownDynamicAppRoute(route.pattern),
-		isProduction,
-		method,
-		revalidateSeconds
-	}) && resolvedHandlerFn) {
-		const cachedRouteResponse = await readAppRouteHandlerCacheResponse({
-			basePath: options.basePath,
-			buildPageCacheTags(pathname, extraTags) {
-				return buildRouteHandlerPageCacheTags(pathname, extraTags, route.routeSegments);
-			},
-			cleanPathname: options.cleanPathname,
-			clearRequestContext: options.clearRequestContext,
-			consumeDynamicUsage,
-			dynamicConfig: handler.dynamic,
-			getCollectedFetchTags,
-			handlerFn: resolvedHandlerFn,
-			i18n: options.i18n,
-			isAutoHead,
-			isrDebug: options.isrDebug,
-			isrGet: options.isrGet,
-			isrRouteKey: options.isrRouteKey,
-			isrSet: options.isrSet,
-			markDynamicUsage,
-			middlewareContext: options.middlewareContext,
-			params: options.params,
-			requestUrl: options.request.url,
-			revalidateSearchParams: options.searchParams,
-			expireSeconds: options.expireSeconds,
-			revalidateSeconds,
-			routePattern: route.pattern,
-			runInRevalidationContext(renderFn) {
-				return runInRouteHandlerRevalidationContext({
-					cleanPathname: options.cleanPathname,
-					dynamicConfig: handler.dynamic,
-					routePattern: route.pattern,
-					routeSegments: route.routeSegments
-				}, renderFn);
-			},
-			scheduleBackgroundRegeneration(key, renderFn) {
-				options.scheduleBackgroundRegeneration(key, renderFn, {
-					routerKind: "App Router",
-					routePath: route.pattern,
-					routeType: "route"
-				});
-			},
-			setHeadersAccessPhase,
-			setNavigationContext
-		});
-		if (cachedRouteResponse) return cachedRouteResponse;
-	}
-	if (resolvedHandlerFn) return executeAppRouteHandler({
-		basePath: options.basePath,
-		buildPageCacheTags(pathname, extraTags) {
-			return buildRouteHandlerPageCacheTags(pathname, extraTags, route.routeSegments);
-		},
-		cleanPathname: options.cleanPathname,
-		clearRequestContext: options.clearRequestContext,
-		consumeDynamicUsage,
-		executionContext: getRequestExecutionContext(),
-		getAndClearPendingCookies,
-		getCollectedFetchTags,
-		getDraftModeCookieHeader,
-		handler,
-		handlerFn: resolvedHandlerFn,
-		i18n: options.i18n,
-		isAutoHead,
-		isProduction,
-		isrDebug: options.isrDebug,
-		isrRouteKey: options.isrRouteKey,
-		isrSet: options.isrSet,
-		markDynamicUsage,
-		method,
-		middlewareContext: options.middlewareContext,
-		middlewareRequestHeaders: options.middlewareRequestHeaders,
-		params: makeThenableParams(options.params),
-		reportRequestError(error, request, context) {
-			reportRequestError(error, request, context);
-		},
-		request: options.request,
-		expireSeconds: options.expireSeconds,
-		revalidateSeconds,
-		routePattern: route.pattern,
-		setHeadersAccessPhase
-	});
-	options.clearRequestContext();
-	return applyRouteHandlerMiddlewareContext(new Response(null, { status: 405 }), options.middlewareContext);
-}
-//#endregion
-//#region node_modules/vinext/dist/utils/text-stream.js
-/**
-* Helpers for the repeated `new TextDecoder()` + `ReadableStream` chunk-loop
-* pattern used across the server. Each helper handles the streaming-decode
-* boundary correctly (final empty `decoder.decode()` flush so any incomplete
-* trailing UTF-8 sequence is reported).
-*
-* Sites with additional load-bearing behaviour (line-buffered transforms,
-* raw-byte accumulators, mixed string/Uint8Array streams, cache-key body
-* canonicalisation) intentionally still inline their own decoder.
-*/
-/**
-* Drain a UTF-8 byte stream and return the full decoded text. The stream
-* reader is released on both success and failure.
-*/
-async function readStreamAsText(stream) {
-	const reader = stream.getReader();
-	const decoder = new TextDecoder();
-	const chunks = [];
-	try {
-		for (;;) {
-			const { done, value } = await reader.read();
-			if (done) break;
-			chunks.push(decoder.decode(value, { stream: true }));
-		}
-		chunks.push(decoder.decode());
-		return chunks.join("");
-	} finally {
-		reader.releaseLock();
-	}
-}
-/**
-* Drain a UTF-8 byte stream up to `maxBytes` of *raw* input, returning the
-* decoded text. If the raw size limit is exceeded, the reader is cancelled
-* and `onLimitExceeded` is invoked; it MUST throw â€” its return type is
-* `never` to enforce that. Each caller passes its own error type.
-*
-* The size check is on raw bytes (pre-decode) to bound memory before
-* paying the decoder cost.
-*/
-async function readStreamAsTextWithLimit(stream, maxBytes, onLimitExceeded) {
-	const reader = stream.getReader();
-	const decoder = new TextDecoder();
-	const chunks = [];
-	let totalSize = 0;
-	try {
-		for (;;) {
-			const result = await reader.read();
-			if (result.done) break;
-			totalSize += result.value.byteLength;
-			if (totalSize > maxBytes) {
-				await reader.cancel();
-				onLimitExceeded();
-			}
-			chunks.push(decoder.decode(result.value, { stream: true }));
-		}
-		chunks.push(decoder.decode());
-		return chunks.join("");
-	} finally {
-		reader.releaseLock();
-	}
-}
-//#endregion
-//#region node_modules/vinext/dist/server/server-action-not-found.js
-var SERVER_ACTION_NOT_FOUND_DOCS = "https://nextjs.org/docs/messages/failed-to-find-server-action";
-var SERVER_ACTION_NOT_FOUND_BODY = "Server action not found.";
-function getServerActionNotFoundPrefix(actionId) {
-	return `Failed to find Server Action${actionId ? ` "${actionId}"` : ""}.`;
-}
-function getServerActionNotFoundMessage(actionId) {
-	return `${getServerActionNotFoundPrefix(actionId)} This request might be from an older or newer deployment.\nRead more: ${SERVER_ACTION_NOT_FOUND_DOCS}`;
-}
-function getUnknownMessage(error) {
-	if (error instanceof Error) return error.message;
-	return typeof error === "string" ? error : "";
-}
-function isServerActionNotFoundError(error, actionId) {
-	const message = getUnknownMessage(error);
-	if (!message) return false;
-	if (!actionId) return message.startsWith("Failed to find Server Action");
-	if (message.startsWith(getServerActionNotFoundPrefix(actionId))) return true;
-	return Boolean(actionId && message.includes(`[vite-rsc] invalid server reference '${actionId}'`));
-}
-function createServerActionNotFoundResponse() {
-	return new Response(SERVER_ACTION_NOT_FOUND_BODY, {
-		status: 404,
-		headers: {
-			[NEXTJS_ACTION_NOT_FOUND_HEADER]: "1",
-			"content-type": "text/plain"
-		}
-	});
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-params.js
-function getAppPageSegmentParamName(segment) {
-	if (segment.startsWith("[[...") && segment.endsWith("]]") && segment.length > 7) return segment.slice(5, -2);
-	if (segment.startsWith("[...") && segment.endsWith("]") && segment.length > 5) return segment.slice(4, -1);
-	if (segment.startsWith("[") && segment.endsWith("]") && !segment.includes(".") && segment.length > 2) return segment.slice(1, -1);
-	return null;
-}
-function isEmptyOptionalCatchAll(segment, paramValue) {
-	return segment.startsWith("[[...") && Array.isArray(paramValue) && paramValue.length === 0;
-}
-function resolveAppPageSegmentParams(routeSegments, treePosition, matchedParams) {
-	const segmentParams = {};
-	const segments = routeSegments ?? [];
-	const end = Math.min(Math.max(treePosition, 0), segments.length);
-	for (let index = 0; index < end; index++) {
-		const segment = segments[index];
-		const paramName = getAppPageSegmentParamName(segment);
-		if (!paramName) continue;
-		const paramValue = matchedParams[paramName];
-		if (paramValue === void 0 || isEmptyOptionalCatchAll(segment, paramValue)) continue;
-		segmentParams[paramName] = paramValue;
-	}
-	return segmentParams;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-request.js
-function pickRouteParams(matchedParams, routeParamNames) {
-	const params = {};
-	for (const paramName of routeParamNames) {
-		const value = matchedParams[paramName];
-		if (value !== void 0) params[paramName] = value;
-	}
-	return params;
-}
-function collectParentParamNames(routeSegments, boundaryPosition) {
-	const limit = Math.max(0, Math.min(boundaryPosition, routeSegments.length));
-	const names = [];
-	for (const segment of routeSegments.slice(0, limit)) {
-		const name = getAppPageSegmentParamName(segment);
-		if (name && !names.includes(name)) names.push(name);
-	}
-	return names;
-}
-function getLayoutGenerateStaticParamsBoundary(layoutTreePosition) {
-	return (layoutTreePosition ?? 0) - 1;
-}
-function resolveAppPageGenerateStaticParamsSources(options) {
-	const sources = [];
-	options.layouts?.forEach((layout, index) => {
-		if (typeof layout?.generateStaticParams !== "function") return;
-		sources.push({
-			generateStaticParams: layout.generateStaticParams,
-			parentParamNames: collectParentParamNames(options.routeSegments, getLayoutGenerateStaticParamsBoundary(options.layoutTreePositions?.[index]))
-		});
-	});
-	if (typeof options.page?.generateStaticParams === "function") sources.push({
-		generateStaticParams: options.page.generateStaticParams,
-		parentParamNames: collectParentParamNames(options.routeSegments, Math.max(0, options.routeSegments.length - 1))
-	});
-	return sources;
-}
-function areStaticParamsAllowed(params, staticParams) {
-	const paramKeys = Object.keys(params);
-	return staticParams.some((staticParamSet) => paramKeys.every((key) => {
-		const value = params[key];
-		const staticValue = staticParamSet[key];
-		if (staticValue === void 0) return true;
-		if (Array.isArray(value)) return JSON.stringify(value) === JSON.stringify(staticValue);
-		if (typeof staticValue === "string" || typeof staticValue === "number" || typeof staticValue === "boolean") return String(value) === String(staticValue);
-		return JSON.stringify(value) === JSON.stringify(staticValue);
-	}));
-}
-function normalizeGenerateStaticParams(generateStaticParams) {
-	return (Array.isArray(generateStaticParams) ? generateStaticParams : [generateStaticParams]).flatMap((source) => {
-		if (typeof source === "function") return [{
-			generateStaticParams: source,
-			parentParamNames: []
-		}];
-		if (typeof source?.generateStaticParams === "function") return [source];
-		return [];
-	});
-}
-async function validateAppPageDynamicParams(options) {
-	if (!options.enforceStaticParamsOnly || !options.isDynamicRoute) return null;
-	const generateStaticParamsSources = normalizeGenerateStaticParams(options.generateStaticParams);
-	if (generateStaticParamsSources.length === 0) {
-		options.clearRequestContext();
-		return notFoundResponse();
-	}
-	for (const source of generateStaticParamsSources) {
-		const staticParams = await runWithFetchDedupe(() => source.generateStaticParams({ params: pickRouteParams(options.params, source.parentParamNames) }));
-		if (Array.isArray(staticParams) && !areStaticParamsAllowed(options.params, staticParams)) {
-			options.clearRequestContext();
-			return notFoundResponse();
-		}
-	}
-	return null;
-}
-function resolveAppPageInterceptState(options) {
-	if (!options.isRscRequest) return { kind: "none" };
-	const intercept = options.findIntercept(options.cleanPathname);
-	if (!intercept) return { kind: "none" };
-	const sourceRoute = options.getSourceRoute(intercept.sourceRouteIndex);
-	if (!sourceRoute) return { kind: "none" };
-	if (sourceRoute === options.currentRoute) return {
-		kind: "current-route",
-		intercept
-	};
-	return {
-		kind: "source-route",
-		intercept,
-		sourceRoute
-	};
-}
-function resolveAppPageActionRerenderTarget(options) {
-	const interceptState = resolveAppPageInterceptState({
-		cleanPathname: options.cleanPathname,
-		currentRoute: options.currentRoute,
-		findIntercept: options.findIntercept,
-		getRouteParamNames: options.getRouteParamNames,
-		getSourceRoute: options.getSourceRoute,
-		isRscRequest: options.isRscRequest,
-		toInterceptOpts: options.toInterceptOpts
-	});
-	if (interceptState.kind === "source-route") return {
-		interceptOpts: options.toInterceptOpts(interceptState.intercept),
-		navigationParams: interceptState.intercept.matchedParams,
-		params: pickRouteParams(interceptState.intercept.matchedParams, options.getRouteParamNames(interceptState.sourceRoute)),
-		route: interceptState.sourceRoute
-	};
-	return {
-		interceptOpts: interceptState.kind === "current-route" ? options.toInterceptOpts(interceptState.intercept) : void 0,
-		navigationParams: options.currentParams,
-		params: options.currentParams,
-		route: options.currentRoute
-	};
-}
-async function resolveAppPageIntercept(options) {
-	const interceptState = resolveAppPageInterceptState({
-		cleanPathname: options.cleanPathname,
-		currentRoute: options.currentRoute,
-		findIntercept: options.findIntercept,
-		getRouteParamNames: options.getRouteParamNames,
-		getSourceRoute: options.getSourceRoute,
-		isRscRequest: options.isRscRequest,
-		toInterceptOpts: options.toInterceptOpts
-	});
-	if (interceptState.kind === "source-route") {
-		options.setNavigationContext({
-			params: interceptState.intercept.matchedParams,
-			pathname: options.cleanPathname,
-			searchParams: options.searchParams
-		});
-		const interceptElement = await options.buildPageElement(interceptState.sourceRoute, pickRouteParams(interceptState.intercept.matchedParams, options.getRouteParamNames(interceptState.sourceRoute)), options.toInterceptOpts(interceptState.intercept), options.searchParams);
-		return {
-			interceptOpts: void 0,
-			response: await options.renderInterceptResponse(interceptState.sourceRoute, interceptElement)
-		};
-	}
-	return {
-		interceptOpts: interceptState.kind === "current-route" ? options.toInterceptOpts(interceptState.intercept) : void 0,
-		response: null
-	};
-}
-async function buildAppPageElement(options) {
-	try {
-		return {
-			element: await options.buildPageElement(),
-			response: null
-		};
-	} catch (error) {
-		const specialError = options.resolveSpecialError(error);
-		if (specialError) return {
-			element: null,
-			response: await options.renderSpecialError(specialError)
-		};
-		const errorBoundaryResponse = await options.renderErrorBoundaryPage(error);
-		if (errorBoundaryResponse) return {
-			element: null,
-			response: errorBoundaryResponse
-		};
-		throw error;
-	}
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-server-action-execution.js
-/**
-* Matches Next.js' server action argument cap to prevent stack overflow in
-* Function.prototype.apply when decoding hostile action payloads.
-*/
-var SERVER_ACTION_ARGS_LIMIT = 1e3;
-var ACTION_DID_NOT_REVALIDATE = 0;
-var ACTION_DID_REVALIDATE_STATIC_AND_DYNAMIC = 1;
-function setActionRevalidatedHeader(headers, kind) {
-	if (kind === ACTION_DID_NOT_REVALIDATE) return;
-	headers.set(ACTION_REVALIDATED_HEADER, JSON.stringify(kind));
-}
-function resolveActionRevalidationKind(hasModifiedCookies) {
-	const revalidationKind = getAndClearActionRevalidationKind();
-	if (hasModifiedCookies) return ACTION_DID_REVALIDATE_STATIC_AND_DYNAMIC;
-	return revalidationKind;
-}
-function isRequestBodyTooLarge(error) {
-	return error instanceof Error && error.message === "Request body too large";
-}
-function isAppServerActionFunction(action) {
-	return typeof action === "function";
-}
-function normalizeError(error) {
-	return error instanceof Error ? error : new Error(String(error));
-}
-function validateServerActionArgs(args) {
-	if (args.length > SERVER_ACTION_ARGS_LIMIT) throw new Error(`Server Action arguments list is too long (${args.length}). Maximum allowed is ${SERVER_ACTION_ARGS_LIMIT}.`);
-}
-async function readActionBodyWithLimit(request, maxBytes) {
-	if (!request.body) return "";
-	return readStreamAsTextWithLimit(request.body, maxBytes, () => {
-		throw new Error("Request body too large");
-	});
-}
-async function readActionFormDataWithLimit(request, maxBytes) {
-	if (!request.body) return new FormData();
-	const reader = request.body.getReader();
-	const chunks = [];
-	let totalSize = 0;
-	for (;;) {
-		const result = await reader.read();
-		if (result.done) break;
-		totalSize += result.value.byteLength;
-		if (totalSize > maxBytes) {
-			await reader.cancel();
-			throw new Error("Request body too large");
-		}
-		chunks.push(result.value);
-	}
-	const combined = new Uint8Array(totalSize);
-	let offset = 0;
-	for (const chunk of chunks) {
-		combined.set(chunk, offset);
-		offset += chunk.byteLength;
-	}
-	return new Response(combined, { headers: { "Content-Type": request.headers.get("content-type") || "" } }).formData();
-}
-function getActionControlResponse(error) {
-	const digest = getNextErrorDigest(error);
-	if (!digest) return null;
-	const redirect = parseNextRedirectDigest(digest);
-	if (redirect) return {
-		kind: "redirect",
-		url: redirect.url
-	};
-	const httpError = parseNextHttpErrorDigest(digest);
-	if (httpError) {
-		if (!Number.isInteger(httpError.status)) return null;
-		return {
-			kind: "status",
-			statusCode: httpError.status
-		};
-	}
-	return null;
-}
-function getActionRedirect(error) {
-	const digest = getNextErrorDigest(error);
-	if (!digest) return null;
-	const redirect = parseNextRedirectDigest(digest);
-	if (!redirect) return null;
-	return {
-		status: redirect.status,
-		type: redirect.type ?? "push",
-		url: redirect.url
-	};
-}
-function getActionHttpFallbackStatus(error) {
-	const digest = getNextErrorDigest(error);
-	if (!digest) return null;
-	const httpError = parseNextHttpErrorDigest(digest);
-	if (!httpError || !Number.isInteger(httpError.status)) return null;
-	return httpError.status;
-}
-function createServerActionErrorResponse(error, options) {
-	options.getAndClearPendingCookies();
-	console.error("[vinext] Server action error:", error);
-	options.reportRequestError(normalizeError(error), {
-		path: options.cleanPathname,
-		method: options.request.method,
-		headers: Object.fromEntries(options.request.headers.entries())
-	}, {
-		routerKind: "App Router",
-		routePath: options.cleanPathname,
-		routeType: "action"
-	});
-	options.clearRequestContext();
-	return internalServerErrorResponse(void 0);
-}
-function createActionNotFoundResponse(actionId, options) {
-	options.getAndClearPendingCookies();
-	console.warn(getServerActionNotFoundMessage(actionId));
-	options.clearRequestContext();
-	return createServerActionNotFoundResponse();
-}
-function isProgressiveServerActionRequest(request, contentType, actionId) {
-	return request.method.toUpperCase() === "POST" && contentType.startsWith("multipart/form-data") && !actionId;
-}
-async function handleProgressiveServerActionRequest(options) {
-	if (!isProgressiveServerActionRequest(options.request, options.contentType, options.actionId)) return null;
-	const csrfResponse = validateCsrfOrigin(options.request, options.allowedOrigins);
-	if (csrfResponse) return csrfResponse;
-	if (parseInt(options.request.headers.get("content-length") || "0", 10) > options.maxActionBodySize) {
-		options.clearRequestContext();
-		return payloadTooLargeResponse();
-	}
-	try {
-		let body;
-		try {
-			body = await options.readFormDataWithLimit(options.request.clone(), options.maxActionBodySize);
-		} catch (error) {
-			if (isRequestBodyTooLarge(error)) {
-				options.clearRequestContext();
-				return payloadTooLargeResponse();
-			}
-			throw error;
-		}
-		const payloadResponse = await validateServerActionPayload(body);
-		if (payloadResponse) {
-			options.clearRequestContext();
-			return payloadResponse;
-		}
-		const action = await options.decodeAction(body);
-		if (!isAppServerActionFunction(action)) return null;
-		let actionControlResponse = null;
-		let actionResult;
-		const previousHeadersPhase = options.setHeadersAccessPhase("action");
-		try {
-			actionResult = await action();
-		} catch (error) {
-			actionControlResponse = getActionControlResponse(error);
-			if (!actionControlResponse) throw error;
-		} finally {
-			options.setHeadersAccessPhase(previousHeadersPhase);
-		}
-		if (!actionControlResponse) {
-			getAndClearActionRevalidationKind();
-			return {
-				kind: "form-state",
-				formState: await options.decodeFormState(actionResult, body) ?? null
-			};
-		}
-		const actionPendingCookies = options.getAndClearPendingCookies();
-		const actionDraftCookie = options.getDraftModeCookieHeader();
-		const actionRevalidationKind = resolveActionRevalidationKind(actionPendingCookies.length > 0 || Boolean(actionDraftCookie));
-		options.clearRequestContext();
-		const headers = new Headers();
-		if (actionControlResponse.kind === "redirect") headers.set("Location", new URL(actionControlResponse.url, options.request.url).toString());
-		mergeMiddlewareResponseHeaders(headers, options.middlewareHeaders);
-		for (const cookie of actionPendingCookies) headers.append("Set-Cookie", cookie);
-		if (actionDraftCookie) headers.append("Set-Cookie", actionDraftCookie);
-		setActionRevalidatedHeader(headers, actionRevalidationKind);
-		return new Response(null, {
-			status: actionControlResponse.kind === "redirect" ? 303 : actionControlResponse.statusCode,
-			headers
-		});
-	} catch (error) {
-		if (isServerActionNotFoundError(error, null)) return createActionNotFoundResponse(null, {
-			clearRequestContext: options.clearRequestContext,
-			getAndClearPendingCookies: options.getAndClearPendingCookies
-		});
-		getAndClearActionRevalidationKind();
-		options.getAndClearPendingCookies();
-		console.error("[vinext] Server action error:", error);
-		options.reportRequestError(normalizeError(error), {
-			path: options.cleanPathname,
-			method: options.request.method,
-			headers: Object.fromEntries(options.request.headers.entries())
-		}, {
-			routerKind: "App Router",
-			routePath: options.cleanPathname,
-			routeType: "action"
-		});
-		options.clearRequestContext();
-		return internalServerErrorResponse(void 0);
-	}
-}
-async function handleServerActionRscRequest(options) {
-	if (options.request.method.toUpperCase() !== "POST" || !options.actionId) return null;
-	const csrfResponse = validateCsrfOrigin(options.request, options.allowedOrigins);
-	if (csrfResponse) return csrfResponse;
-	if (parseInt(options.request.headers.get("content-length") || "0", 10) > options.maxActionBodySize) {
-		options.clearRequestContext();
-		return payloadTooLargeResponse();
-	}
-	try {
-		let body;
-		try {
-			body = options.contentType.startsWith("multipart/form-data") ? await options.readFormDataWithLimit(options.request, options.maxActionBodySize) : await options.readBodyWithLimit(options.request, options.maxActionBodySize);
-		} catch (error) {
-			if (isRequestBodyTooLarge(error)) {
-				options.clearRequestContext();
-				return payloadTooLargeResponse();
-			}
-			throw error;
-		}
-		const payloadResponse = await validateServerActionPayload(body);
-		if (payloadResponse) {
-			options.clearRequestContext();
-			return payloadResponse;
-		}
-		let action;
-		try {
-			action = await options.loadServerAction(options.actionId);
-		} catch (error) {
-			if (isServerActionNotFoundError(error, options.actionId)) return createActionNotFoundResponse(options.actionId, {
-				clearRequestContext: options.clearRequestContext,
-				getAndClearPendingCookies: options.getAndClearPendingCookies
-			});
-			throw error;
-		}
-		if (!isAppServerActionFunction(action)) return createActionNotFoundResponse(options.actionId, {
-			clearRequestContext: options.clearRequestContext,
-			getAndClearPendingCookies: options.getAndClearPendingCookies
-		});
-		const temporaryReferences = options.createTemporaryReferenceSet();
-		const args = await options.decodeReply(body, { temporaryReferences });
-		let returnValue;
-		let actionRedirect = null;
-		let actionStatus = 200;
-		const previousHeadersPhase = options.setHeadersAccessPhase("action");
-		try {
-			try {
-				validateServerActionArgs(args);
-				returnValue = {
-					ok: true,
-					data: await action.apply(null, args)
-				};
-			} catch (error) {
-				actionRedirect = getActionRedirect(error);
-				if (actionRedirect) returnValue = {
-					ok: true,
-					data: void 0
-				};
-				else {
-					const httpFallbackStatus = getActionHttpFallbackStatus(error);
-					if (httpFallbackStatus !== null) {
-						actionStatus = httpFallbackStatus;
-						returnValue = {
-							ok: false,
-							data: error
-						};
-					} else {
-						console.error("[vinext] Server action error:", error);
-						returnValue = {
-							ok: false,
-							data: options.sanitizeErrorForClient(error)
-						};
-					}
-				}
-			}
-		} finally {
-			options.setHeadersAccessPhase(previousHeadersPhase);
-		}
-		if (actionRedirect) {
-			const actionPendingCookies = options.getAndClearPendingCookies();
-			const actionDraftCookie = options.getDraftModeCookieHeader();
-			const actionRevalidationKind = resolveActionRevalidationKind(actionPendingCookies.length > 0 || Boolean(actionDraftCookie));
-			options.clearRequestContext();
-			const redirectHeaders = new Headers({
-				"Content-Type": "text/x-component; charset=utf-8",
-				Vary: VINEXT_RSC_VARY_HEADER
-			});
-			mergeMiddlewareResponseHeaders(redirectHeaders, options.middlewareHeaders);
-			redirectHeaders.set(ACTION_REDIRECT_HEADER, actionRedirect.url);
-			redirectHeaders.set(ACTION_REDIRECT_TYPE_HEADER, actionRedirect.type);
-			redirectHeaders.set(ACTION_REDIRECT_STATUS_HEADER, String(actionRedirect.status));
-			for (const cookie of actionPendingCookies) redirectHeaders.append("Set-Cookie", cookie);
-			if (actionDraftCookie) redirectHeaders.append("Set-Cookie", actionDraftCookie);
-			setActionRevalidatedHeader(redirectHeaders, actionRevalidationKind);
-			return new Response("", {
-				status: 200,
-				headers: redirectHeaders
-			});
-		}
-		const actionPendingCookies = options.getAndClearPendingCookies();
-		const actionDraftCookie = options.getDraftModeCookieHeader();
-		const actionRevalidationKind = resolveActionRevalidationKind(actionPendingCookies.length > 0 || Boolean(actionDraftCookie));
-		if (actionRevalidationKind === ACTION_DID_NOT_REVALIDATE) {
-			const onRenderError = options.createRscOnErrorHandler(options.request, options.cleanPathname, options.cleanPathname);
-			const rscStream = await options.renderToReadableStream({ returnValue }, {
-				temporaryReferences,
-				onError: onRenderError
-			});
-			options.clearRequestContext();
-			const actionHeaders = new Headers({
-				"Content-Type": "text/x-component; charset=utf-8",
-				Vary: VINEXT_RSC_VARY_HEADER
-			});
-			mergeMiddlewareResponseHeaders(actionHeaders, options.middlewareHeaders);
-			return new Response(rscStream, {
-				status: options.middlewareStatus ?? actionStatus,
-				headers: actionHeaders
-			});
-		}
-		const match = options.matchRoute(options.cleanPathname);
-		let element;
-		let errorPattern = match ? match.route.pattern : options.cleanPathname;
-		if (match) {
-			const { route: actionRoute, params: actionParams } = match;
-			const actionRerenderTarget = resolveAppPageActionRerenderTarget({
-				cleanPathname: options.cleanPathname,
-				currentParams: actionParams,
-				currentRoute: actionRoute,
-				findIntercept: options.findIntercept,
-				getRouteParamNames: options.getRouteParamNames,
-				getSourceRoute: options.getSourceRoute,
-				isRscRequest: options.isRscRequest,
-				toInterceptOpts: options.toInterceptOpts
-			});
-			options.setNavigationContext({
-				pathname: options.cleanPathname,
-				searchParams: options.searchParams,
-				params: actionRerenderTarget.navigationParams
-			});
-			setCurrentFetchCacheMode(options.resolveRouteFetchCacheMode?.(actionRerenderTarget.route) ?? null);
-			element = options.buildPageElement({
-				cleanPathname: options.cleanPathname,
-				interceptOpts: actionRerenderTarget.interceptOpts,
-				isRscRequest: options.isRscRequest,
-				mountedSlotsHeader: options.mountedSlotsHeader,
-				params: actionRerenderTarget.params,
-				request: options.request,
-				route: actionRerenderTarget.route,
-				searchParams: options.searchParams,
-				renderMode: APP_RSC_RENDER_MODE_ACTION_RERENDER_PRESERVE_UI
-			});
-			errorPattern = actionRerenderTarget.route.pattern;
-		} else {
-			const actionRouteId = options.createPayloadRouteId(options.cleanPathname, null);
-			element = options.createNotFoundElement(actionRouteId);
-		}
-		const onRenderError = options.createRscOnErrorHandler(options.request, options.cleanPathname, errorPattern);
-		const rscStream = await options.renderToReadableStream({
-			root: element,
-			returnValue
-		}, {
-			temporaryReferences,
-			onError: onRenderError
-		});
-		const actionHeaders = new Headers({
-			"Content-Type": "text/x-component; charset=utf-8",
-			Vary: VINEXT_RSC_VARY_HEADER
-		});
-		mergeMiddlewareResponseHeaders(actionHeaders, options.middlewareHeaders);
-		setActionRevalidatedHeader(actionHeaders, actionRevalidationKind);
-		const actionResponse = new Response(rscStream, {
-			status: options.middlewareStatus ?? actionStatus,
-			headers: actionHeaders
-		});
-		if (actionPendingCookies.length > 0 || actionDraftCookie) {
-			for (const cookie of actionPendingCookies) actionResponse.headers.append("Set-Cookie", cookie);
-			if (actionDraftCookie) actionResponse.headers.append("Set-Cookie", actionDraftCookie);
-		}
-		return actionResponse;
-	} catch (error) {
-		getAndClearActionRevalidationKind();
-		return createServerActionErrorResponse(error, {
-			cleanPathname: options.cleanPathname,
-			clearRequestContext: options.clearRequestContext,
-			getAndClearPendingCookies: options.getAndClearPendingCookies,
-			reportRequestError: options.reportRequestError,
-			request: options.request
-		});
-	}
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-execution.js
-function isPromiseLike(value) {
-	return Boolean(value && (typeof value === "object" || typeof value === "function") && "then" in value && typeof value.then === "function");
-}
-function getAppPageStatusText(statusCode) {
-	return statusCode === 403 ? "Forbidden" : statusCode === 401 ? "Unauthorized" : "Not Found";
-}
-function mergeAppPageSpecialErrorHeaders(response, middlewareContext) {
-	const headers = new Headers(response.headers);
-	mergeMiddlewareResponseHeaders(headers, middlewareContext?.headers ?? null);
-	return new Response(response.body, {
-		headers,
-		status: response.status,
-		statusText: response.statusText
-	});
-}
-function resolveAppPageSpecialError(error) {
-	if (!(error && typeof error === "object" && "digest" in error)) return null;
-	const digest = String(error.digest);
-	const redirect = parseNextRedirectDigest(digest);
-	if (redirect) return {
-		kind: "redirect",
-		location: redirect.url,
-		statusCode: redirect.status
-	};
-	const httpError = parseNextHttpErrorDigest(digest);
-	if (httpError) return {
-		kind: "http-access-fallback",
-		statusCode: httpError.status
-	};
-	return null;
-}
-/**
-* Resolves a redirect() target against the request URL and prepends the
-* configured basePath when the target is an app-internal absolute path.
-*
-* Mirrors Next.js's `addPathPrefix(getURLFromRedirectError(err), basePath)`
-* in `app-render.tsx`: a `redirect("/about")` call from a page mounted at
-* `/blog` (basePath) produces `Location: /blog/about`.
-*
-* Skips prefixing when:
-*  - basePath is unset / empty
-*  - the target is a full URL pointing at a different origin (external redirect)
-*  - the target already starts with the basePath (caller did the work themselves)
-*/
-function applyAppPageRedirectBasePath(location, requestUrl, basePath) {
-	const resolved = new URL(location, requestUrl);
-	const requestOrigin = new URL(requestUrl).origin;
-	if (!basePath || resolved.origin !== requestOrigin) return resolved.toString();
-	if (hasBasePath(resolved.pathname, basePath)) return resolved.toString();
-	resolved.pathname = resolved.pathname === "/" ? basePath : `${basePath}${resolved.pathname}`;
-	return resolved.toString();
-}
-async function buildAppPageSpecialErrorResponse(options) {
-	if (options.specialError.kind === "redirect") {
-		options.clearRequestContext();
-		const prefixedLocation = applyAppPageRedirectBasePath(options.specialError.location, options.request.url, options.basePath);
-		const location = options.isRscRequest ? await createRscRedirectLocation(prefixedLocation, options.request) : prefixedLocation;
-		const headers = new Headers({ Location: location });
-		mergeMiddlewareResponseHeaders(headers, options.middlewareContext?.headers ?? null);
-		const pendingCookies = options.getAndClearPendingCookies?.() ?? [];
-		for (const cookie of pendingCookies) headers.append("Set-Cookie", cookie);
-		return new Response(null, {
-			headers,
-			status: options.specialError.statusCode
-		});
-	}
-	if (options.renderFallbackPage) {
-		const fallbackResponse = await options.renderFallbackPage(options.specialError.statusCode);
-		if (fallbackResponse) return mergeAppPageSpecialErrorHeaders(fallbackResponse, options.middlewareContext);
-	}
-	options.clearRequestContext();
-	return mergeAppPageSpecialErrorHeaders(new Response(getAppPageStatusText(options.specialError.statusCode), { status: options.specialError.statusCode }), options.middlewareContext);
-}
-/** See `LayoutFlags` type docblock in app-elements.ts for lifecycle. */
-async function probeAppPageLayouts(options) {
-	const layoutFlags = {};
-	const cls = options.classification ?? null;
-	return {
-		response: await options.runWithSuppressedHookWarning(async () => {
-			for (let layoutIndex = options.layoutCount - 1; layoutIndex >= 0; layoutIndex--) {
-				const buildTimeResult = cls?.buildTimeClassifications?.get(layoutIndex);
-				if (cls && buildTimeResult) {
-					layoutFlags[cls.getLayoutId(layoutIndex)] = buildTimeResult === "static" ? "s" : "d";
-					if (cls.debugClassification) cls.debugClassification(cls.getLayoutId(layoutIndex), cls.buildTimeReasons?.get(layoutIndex) ?? { layer: "no-classifier" });
-					const errorResponse = await probeLayoutForErrors(options, layoutIndex);
-					if (errorResponse) return errorResponse;
-					continue;
-				}
-				if (cls) {
-					try {
-						const { dynamicDetected } = await cls.runWithIsolatedDynamicScope(() => options.probeLayoutAt(layoutIndex));
-						layoutFlags[cls.getLayoutId(layoutIndex)] = dynamicDetected ? "d" : "s";
-						if (cls.debugClassification) cls.debugClassification(cls.getLayoutId(layoutIndex), {
-							layer: "runtime-probe",
-							outcome: dynamicDetected ? "dynamic" : "static"
-						});
-					} catch (error) {
-						layoutFlags[cls.getLayoutId(layoutIndex)] = "d";
-						if (cls.debugClassification) cls.debugClassification(cls.getLayoutId(layoutIndex), {
-							layer: "runtime-probe",
-							outcome: "dynamic",
-							error: error instanceof Error ? error.message : String(error)
-						});
-						const errorResponse = await options.onLayoutError(error, layoutIndex);
-						if (errorResponse) return errorResponse;
-					}
-					continue;
-				}
-				const errorResponse = await probeLayoutForErrors(options, layoutIndex);
-				if (errorResponse) return errorResponse;
-			}
-			return null;
-		}),
-		layoutFlags
-	};
-}
-async function probeLayoutForErrors(options, layoutIndex) {
-	try {
-		const layoutResult = options.probeLayoutAt(layoutIndex);
-		if (isPromiseLike(layoutResult)) await layoutResult;
-	} catch (error) {
-		return options.onLayoutError(error, layoutIndex);
-	}
-	return null;
-}
-async function probeAppPageComponent(options) {
-	return options.runWithSuppressedHookWarning(async () => {
-		try {
-			const pageResult = options.probePage();
-			if (isPromiseLike(pageResult)) if (options.awaitAsyncResult) await pageResult;
-			else Promise.resolve(pageResult).catch(() => {});
-		} catch (error) {
-			return options.onError(error);
-		}
-		return null;
-	});
-}
-async function readAppPageBinaryStream(stream) {
-	const reader = stream.getReader();
-	const chunks = [];
-	let totalLength = 0;
-	for (;;) {
-		const { done, value } = await reader.read();
-		if (done) break;
-		chunks.push(value);
-		totalLength += value.byteLength;
-	}
-	const buffer = new Uint8Array(totalLength);
-	let offset = 0;
-	for (const chunk of chunks) {
-		buffer.set(chunk, offset);
-		offset += chunk.byteLength;
-	}
-	return buffer.buffer;
-}
-function teeAppPageRscStreamForCapture(stream, shouldCapture) {
-	if (!shouldCapture) return { ssrStream: stream };
-	const [ssrStream, sideStream] = stream.tee();
-	return {
-		ssrStream,
-		sideStream
-	};
-}
-function buildAppPageFontLinkHeader(preloads) {
-	if (!preloads || preloads.length === 0) return "";
-	return preloads.map((preload) => `<${preload.href}>; rel=preload; as=font; type=${preload.type}; crossorigin`).join(", ");
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-rsc-errors.js
-function hasDigest(error) {
-	return Boolean(error && typeof error === "object" && "digest" in error);
-}
-function getThrownValueMessage(error) {
-	return error instanceof Error ? error.message : String(error);
-}
-function getThrownValueStack(error) {
-	return error instanceof Error ? error.stack || "" : "";
-}
-/**
-* djb2 hash matching Next.js's string-hash package for RSC error digests.
-*/
-function errorDigest(input) {
-	let hash = 5381;
-	for (let i = input.length - 1; i >= 0; i--) hash = hash * 33 ^ input.charCodeAt(i);
-	return (hash >>> 0).toString();
-}
-function sanitizeErrorForClient(error, nodeEnv = "production") {
-	if (resolveAppPageSpecialError(error)) return error;
-	if (nodeEnv !== "production") return error;
-	const sanitized = /* @__PURE__ */ new Error("An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance which may provide additional details about the nature of the error.");
-	sanitized.digest = errorDigest(getThrownValueMessage(error) + getThrownValueStack(error));
-	return sanitized;
-}
-function createRscOnErrorHandler$1(options) {
-	return (error) => {
-		const nodeEnv = options.nodeEnv ?? "production";
-		if (hasDigest(error)) return String(error.digest);
-		if (nodeEnv !== "production" && error instanceof Error && error.message.includes("Only plain objects, and a few built-ins, can be passed to Client Components")) {
-			console.error("[vinext] RSC serialization error: a non-plain object was passed from a Server Component to a Client Component.\n\nCommon causes:\n  * Passing a module namespace (import * as X) directly as a prop.\n    Unlike Next.js (webpack), Vite produces real ESM module namespace objects\n    which are not serializable. Fix: pass individual values instead,\n    e.g. <Comp value={module.value} />\n  * Passing a class instance (new Foo()) as a prop.\n    Fix: convert to a plain object, e.g. { id: foo.id, name: foo.name }\n  * Passing a Date, Map, or Set. Use .toISOString(), [...map.entries()], etc.\n  * Passing Object.create(null). Use { ...obj } to restore a prototype.\n\nOriginal error:", error.message);
-			return;
-		}
-		if (options.requestInfo && options.errorContext && error) options.reportRequestError(error instanceof Error ? error : new Error(getThrownValueMessage(error)), options.requestInfo, options.errorContext);
-		if (nodeEnv === "production" && error) return errorDigest(getThrownValueMessage(error) + getThrownValueStack(error));
-	};
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-rsc-error-handler.js
-/**
-* Build a per-request RSC error handler that extracts request metadata from
-* the incoming Web `Request`, wires it into a `createRscOnErrorHandler` call,
-* and binds the configured `reportRequestError` reporter.
-*
-* Pure factory: takes all deps explicitly â€” no closure over module-level state.
-*/
-function createAppRscOnErrorHandler(reportRequestError, request, pathname, routePath) {
-	const requestHeaders = Object.fromEntries(request.headers.entries());
-	const requestInfo = {
-		path: pathname,
-		method: request.method,
-		headers: requestHeaders
-	};
-	return createRscOnErrorHandler$1({
-		errorContext: {
-			routerKind: "App Router",
-			routePath: routePath || pathname,
-			routeType: "render"
-		},
-		reportRequestError,
-		requestInfo
-	});
-}
-//#endregion
-//#region node_modules/vinext/dist/shims/error-boundary.js
-var ErrorBoundary = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'ErrorBoundary' is called on server");
-}, "593f344dc510", "ErrorBoundary");
-var ForbiddenBoundary = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'ForbiddenBoundary' is called on server");
-}, "593f344dc510", "ForbiddenBoundary");
-var NotFoundBoundary = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'NotFoundBoundary' is called on server");
-}, "593f344dc510", "NotFoundBoundary");
-var RedirectBoundary = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'RedirectBoundary' is called on server");
-}, "593f344dc510", "RedirectBoundary");
-var UnauthorizedBoundary = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'UnauthorizedBoundary' is called on server");
-}, "593f344dc510", "UnauthorizedBoundary");
-//#endregion
-//#region node_modules/vinext/dist/shims/layout-segment-context.js
-/**
-* Layout segment context provider.
-*
-* Must be "use client" so that Vite's RSC bundler renders this component in
-* the SSR/browser environment where React.createContext is available. The RSC
-* entry imports and renders LayoutSegmentProvider directly, but because of the
-* "use client" boundary the actual execution happens on the SSR/client side
-* where the context can be created and consumed by useSelectedLayoutSegment(s).
-*
-* Without "use client", this runs in the RSC environment where
-* React.createContext is undefined, getLayoutSegmentContext() returns null,
-* the provider becomes a no-op, and useSelectedLayoutSegments always returns [].
-*
-* The context is shared with navigation.ts via getLayoutSegmentContext()
-* to avoid creating separate contexts in different modules.
-*/
-/**
-* Wraps children with the layout segment context.
-*
-* Each layout in the App Router tree wraps its children with this provider,
-* passing a map of parallel route key to segment path. The "children" key is
-* always present (the default parallel route). Named parallel slots at this
-* layout level add their own keys.
-*
-* Components inside the provider call useSelectedLayoutSegments(parallelRoutesKey)
-* to read the segments for a specific parallel route.
-*/
-var LayoutSegmentProvider = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'LayoutSegmentProvider' is called on server");
-}, "15c18cfaeeff", "LayoutSegmentProvider");
-//#endregion
-//#region node_modules/vinext/dist/shims/slot.js
-/**
-* Holds resolved AppElements (not a Promise). React 19's use(Promise) during
-* hydration triggers "async Client Component" for native Promises that lack
-* React's internal .status property. Storing resolved values sidesteps this.
-*/
-var Children = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'Children' is called on server");
-}, "8c0f216c4604", "Children");
-var ParallelSlot = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'ParallelSlot' is called on server");
-}, "8c0f216c4604", "ParallelSlot");
-var Slot = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'Slot' is called on server");
-}, "8c0f216c4604", "Slot");
-//#endregion
-//#region node_modules/vinext/dist/server/app-render-dependency.js
-function createAppRenderDependency() {
-	let released = false;
-	let resolve;
-	return {
-		promise: new Promise((promiseResolve) => {
-			resolve = promiseResolve;
-		}),
-		release() {
-			if (released) return;
-			released = true;
-			resolve();
-		}
-	};
-}
-function renderAfterAppDependencies(children, dependencies) {
-	if (dependencies.length === 0) return children;
-	async function AwaitAppRenderDependencies() {
-		await Promise.all(dependencies.map((dependency) => dependency.promise));
-		return children;
-	}
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(AwaitAppRenderDependencies, {});
-}
-function renderWithAppDependencyBarrier(children, dependency) {
-	function ReleaseAppRenderDependency() {
-		dependency.release();
-		return null;
-	}
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [children, /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ReleaseAppRenderDependency, {})] });
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-segment-state.js
-function isOptionalCatchAllSegment(segment) {
-	return segment.startsWith("[[...") && segment.endsWith("]]") && segment.length > 7;
-}
-function isCatchAllSegment(segment) {
-	return segment.startsWith("[...") && segment.endsWith("]") && segment.length > 5;
-}
-function isDynamicSegment(segment) {
-	return segment.startsWith("[") && segment.endsWith("]") && !segment.includes(".");
-}
-function isRouteGroupSegment(segment) {
-	return segment.startsWith("(") && segment.endsWith(")");
-}
-function formatParamSegmentValue(value) {
-	if (Array.isArray(value)) return value.join("/");
-	return value;
-}
-function readSegmentParam(segment) {
-	if (isOptionalCatchAllSegment(segment)) return {
-		name: segment.slice(5, -2),
-		type: "oc"
-	};
-	if (isCatchAllSegment(segment)) return {
-		name: segment.slice(4, -1),
-		type: "c"
-	};
-	if (isDynamicSegment(segment)) return {
-		name: segment.slice(1, -1),
-		type: "d"
-	};
-	return null;
-}
-function formatSegmentStateParamValue(param, params, fallbackSegment) {
-	const value = params[param.name];
-	if (param.type === "oc" && (value === void 0 || Array.isArray(value) && value.length === 0)) return "";
-	return formatParamSegmentValue(value) ?? fallbackSegment;
-}
-function resolveSingleSegmentStateKey(segment, params) {
-	const param = readSegmentParam(segment);
-	if (!param) return segment;
-	return `${param.name}|${formatSegmentStateParamValue(param, params, segment)}|${param.type}`;
-}
-function resolveAppPageChildSegments(routeSegments, treePosition, params) {
-	const rawSegments = routeSegments.slice(treePosition);
-	const resolvedSegments = [];
-	for (const segment of rawSegments) {
-		if (isOptionalCatchAllSegment(segment)) {
-			const paramValue = params[segment.slice(5, -2)];
-			if (Array.isArray(paramValue) && paramValue.length === 0) continue;
-			const resolvedValue = formatParamSegmentValue(paramValue);
-			if (resolvedValue !== void 0) resolvedSegments.push(resolvedValue);
-			continue;
-		}
-		if (isCatchAllSegment(segment)) {
-			const paramName = segment.slice(4, -1);
-			resolvedSegments.push(formatParamSegmentValue(params[paramName]) ?? segment);
-			continue;
-		}
-		if (isDynamicSegment(segment)) {
-			const paramName = segment.slice(1, -1);
-			resolvedSegments.push(formatParamSegmentValue(params[paramName]) ?? segment);
-			continue;
-		}
-		resolvedSegments.push(segment);
-	}
-	return resolvedSegments;
-}
-function resolveAppPageSegmentStateKey(routeSegments, treePosition, params) {
-	for (const segment of routeSegments.slice(treePosition)) if (!isRouteGroupSegment(segment)) return resolveSingleSegmentStateKey(segment, params);
-	return "";
-}
-function resolveAppPageRouteStateKey(routeSegments, params) {
-	const statePath = [];
-	for (const segment of routeSegments) if (!isRouteGroupSegment(segment)) statePath.push(resolveSingleSegmentStateKey(segment, params));
-	return statePath.length > 0 ? JSON.stringify(statePath) : "";
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-route-wiring.js
-function getDefaultExport$1(module) {
-	return module?.default ?? null;
-}
-function getErrorBoundaryExport(module) {
-	return module?.default ?? null;
-}
-function createAppPageTreePath(routeSegments, treePosition) {
-	const treePathSegments = routeSegments?.slice(0, treePosition) ?? [];
-	if (treePathSegments.length === 0) return "/";
-	return `/${treePathSegments.join("/")}`;
-}
-function createAppPageLayoutEntries(route) {
-	return route.layouts.map((layoutModule, index) => {
-		const treePosition = route.layoutTreePositions?.[index] ?? 0;
-		const treePath = createAppPageTreePath(route.routeSegments, treePosition);
-		return {
-			errorModule: route.errorTreePositions ? null : route.errors?.[index] ?? null,
-			forbiddenModule: route.forbiddens?.[index] ?? null,
-			id: AppElementsWire.encodeLayoutId(treePath),
-			layoutModule,
-			notFoundModule: route.notFounds?.[index] ?? null,
-			unauthorizedModule: route.unauthorizeds?.[index] ?? null,
-			treePath,
-			treePosition
-		};
-	});
-}
-function createAppPageTemplateEntries(route) {
-	return (route.templates ?? []).map((templateModule, index) => {
-		const treePosition = route.templateTreePositions?.[index] ?? 0;
-		const treePath = createAppPageTreePath(route.routeSegments, treePosition);
-		return {
-			id: AppElementsWire.encodeTemplateId(treePath),
-			templateModule,
-			treePath,
-			treePosition
-		};
-	});
-}
-function createAppPageErrorEntries(route) {
-	return (route.errorPaths ?? route.errors ?? []).flatMap((errorModule, index) => {
-		if (!errorModule) return [];
-		const treePosition = route.errorTreePositions?.[index];
-		if (treePosition === void 0) return [];
-		return [{
-			errorModule,
-			treePosition
-		}];
-	});
-}
-function createAppPageParallelSlotEntries(layoutIndex, layoutEntries, route, getEffectiveSlotParams) {
-	const parallelSlots = {};
-	for (const [slotKey, slot] of Object.entries(route.slots ?? {})) {
-		const slotName = slot.name;
-		const targetIndex = slot.layoutIndex >= 0 ? slot.layoutIndex : layoutEntries.length - 1;
-		if (targetIndex !== layoutIndex) continue;
-		const treePath = layoutEntries[targetIndex]?.treePath ?? "/";
-		const slotParams = getEffectiveSlotParams(slotKey, slotName);
-		parallelSlots[slotName] = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(LayoutSegmentProvider, {
-			segmentMap: { children: slot.routeSegments ? resolveAppPageChildSegments(slot.routeSegments, 0, slotParams) : [] },
-			children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Slot, { id: AppElementsWire.encodeSlotId(slotName, treePath) })
-		});
-	}
-	return Object.keys(parallelSlots).length > 0 ? parallelSlots : void 0;
-}
-function createAppPageRouteHead(metadata, viewport) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("meta", { charSet: "utf-8" }),
-		metadata ? /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(MetadataHead, { metadata }) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ViewportHead, { viewport })
-	] });
-}
-function buildAppPageElements(options) {
-	const interceptionContext = options.interceptionContext ?? null;
-	const routeSegments = options.route.routeSegments ?? [];
-	const routeResetKey = resolveAppPageRouteStateKey(routeSegments, options.matchedParams);
-	const routeId = AppElementsWire.encodeRouteId(options.routePath, interceptionContext);
-	const pageId = AppElementsWire.encodePageId(options.routePath, interceptionContext);
-	const layoutEntries = createAppPageLayoutEntries(options.route);
-	const templateEntries = createAppPageTemplateEntries(options.route);
-	const errorEntries = createAppPageErrorEntries(options.route);
-	const layoutEntriesByTreePosition = /* @__PURE__ */ new Map();
-	const templateEntriesByTreePosition = /* @__PURE__ */ new Map();
-	const errorEntriesByTreePosition = /* @__PURE__ */ new Map();
-	for (const layoutEntry of layoutEntries) layoutEntriesByTreePosition.set(layoutEntry.treePosition, layoutEntry);
-	for (const templateEntry of templateEntries) templateEntriesByTreePosition.set(templateEntry.treePosition, templateEntry);
-	for (const errorEntry of errorEntries) errorEntriesByTreePosition.set(errorEntry.treePosition, errorEntry);
-	const layoutIndicesByTreePosition = /* @__PURE__ */ new Map();
-	for (let index = 0; index < layoutEntries.length; index++) layoutIndicesByTreePosition.set(layoutEntries[index].treePosition, index);
-	const layoutDependenciesByIndex = /* @__PURE__ */ new Map();
-	const layoutDependenciesBefore = [];
-	const slotDependenciesByLayoutIndex = [];
-	const templateDependenciesById = /* @__PURE__ */ new Map();
-	const templateDependenciesBeforeById = /* @__PURE__ */ new Map();
-	const pageDependencies = [];
-	const rootLayoutTreePath = layoutEntries[0]?.treePath ?? null;
-	const elements = { ...AppElementsWire.createMetadataEntries({
-		interceptionContext,
-		layoutIds: options.route.ids?.layouts ?? layoutEntries.map((entry) => entry.id),
-		rootLayoutTreePath,
-		routeId
-	}) };
-	const slotNameCounts = /* @__PURE__ */ new Map();
-	for (const slot of Object.values(options.route.slots ?? {})) {
-		const slotName = slot.name;
-		slotNameCounts.set(slotName, (slotNameCounts.get(slotName) ?? 0) + 1);
-	}
-	const orderedTreePositions = Array.from(new Set([
-		...layoutEntries.map((entry) => entry.treePosition),
-		...templateEntries.map((entry) => entry.treePosition),
-		...errorEntries.map((entry) => entry.treePosition)
-	])).sort((left, right) => left - right);
-	const resolveSlotOverride = (slotKey, slotName) => {
-		const overrideByKey = options.slotOverrides?.[slotKey];
-		if (overrideByKey) return overrideByKey;
-		if (slotKey === slotName || (slotNameCounts.get(slotName) ?? 0) === 1) return options.slotOverrides?.[slotName];
-	};
-	const getEffectiveSlotParams = (slotKey, slotName) => resolveSlotOverride(slotKey, slotName)?.params ?? options.matchedParams;
-	for (const treePosition of orderedTreePositions) {
-		const layoutIndex = layoutIndicesByTreePosition.get(treePosition);
-		if (layoutIndex !== void 0) {
-			const layoutEntry = layoutEntries[layoutIndex];
-			layoutDependenciesBefore[layoutIndex] = [...pageDependencies];
-			if (getDefaultExport$1(layoutEntry.layoutModule)) {
-				const layoutDependency = createAppRenderDependency();
-				layoutDependenciesByIndex.set(layoutIndex, layoutDependency);
-				pageDependencies.push(layoutDependency);
-			}
-			slotDependenciesByLayoutIndex[layoutIndex] = [...pageDependencies];
-		}
-		const templateEntry = templateEntriesByTreePosition.get(treePosition);
-		if (!templateEntry || !getDefaultExport$1(templateEntry.templateModule)) continue;
-		const templateDependency = createAppRenderDependency();
-		templateDependenciesById.set(templateEntry.id, templateDependency);
-		templateDependenciesBeforeById.set(templateEntry.id, [...pageDependencies]);
-		pageDependencies.push(templateDependency);
-	}
-	elements[pageId] = renderAfterAppDependencies(options.element, pageDependencies);
-	for (const templateEntry of templateEntries) {
-		const templateComponent = getDefaultExport$1(templateEntry.templateModule);
-		if (!templateComponent) continue;
-		const TemplateComponent = templateComponent;
-		const templateDependency = templateDependenciesById.get(templateEntry.id);
-		const templateElement = templateDependency ? renderWithAppDependencyBarrier(/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(TemplateComponent, {
-			params: options.matchedParams,
-			children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Children, {})
-		}), templateDependency) : /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(TemplateComponent, {
-			params: options.matchedParams,
-			children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Children, {})
-		});
-		elements[templateEntry.id] = renderAfterAppDependencies(templateElement, templateDependenciesBeforeById.get(templateEntry.id) ?? []);
-	}
-	for (let index = 0; index < layoutEntries.length; index++) {
-		const layoutEntry = layoutEntries[index];
-		const layoutComponent = getDefaultExport$1(layoutEntry.layoutModule);
-		if (!layoutComponent) continue;
-		const layoutProps = { params: options.makeThenableParams(resolveAppPageSegmentParams(options.route.routeSegments, layoutEntry.treePosition, options.matchedParams)) };
-		for (const slot of Object.values(options.route.slots ?? {})) {
-			const slotName = slot.name;
-			if ((slot.layoutIndex >= 0 ? slot.layoutIndex : layoutEntries.length - 1) !== index) continue;
-			layoutProps[slotName] = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ParallelSlot, { name: slotName });
-		}
-		const LayoutComponent = layoutComponent;
-		const layoutDependency = layoutDependenciesByIndex.get(index);
-		const layoutElement = layoutDependency ? renderWithAppDependencyBarrier(/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(LayoutComponent, {
-			...layoutProps,
-			children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Children, {})
-		}), layoutDependency) : /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(LayoutComponent, {
-			...layoutProps,
-			children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Children, {})
-		});
-		elements[layoutEntry.id] = renderAfterAppDependencies(layoutElement, layoutDependenciesBefore[index] ?? []);
-	}
-	for (const [slotKey, slot] of Object.entries(options.route.slots ?? {})) {
-		const slotName = slot.name;
-		const targetIndex = slot.layoutIndex >= 0 ? slot.layoutIndex : layoutEntries.length - 1;
-		const treePath = layoutEntries[targetIndex]?.treePath ?? "/";
-		const slotId = AppElementsWire.encodeSlotId(slotName, treePath);
-		const slotOverride = resolveSlotOverride(slotKey, slotName);
-		const slotParams = getEffectiveSlotParams(slotKey, slotName);
-		const slotResetKey = resolveAppPageRouteStateKey(slot.routeSegments ?? [], slotParams);
-		const overrideOrPageComponent = getDefaultExport$1(slotOverride?.pageModule) ?? getDefaultExport$1(slot.page);
-		const defaultComponent = getDefaultExport$1(slot.default);
-		if (!overrideOrPageComponent && defaultComponent && options.isRscRequest && options.mountedSlotIds?.has(slotId)) continue;
-		const slotComponent = overrideOrPageComponent ?? defaultComponent;
-		if (!slotComponent) {
-			elements[slotId] = AppElementsWire.unmatchedSlotValue;
-			continue;
-		}
-		const slotThenableParams = options.makeThenableParams(slotParams);
-		const slotProps = { params: slotThenableParams };
-		if (slotOverride?.props) Object.assign(slotProps, slotOverride.props);
-		let slotElement = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(slotComponent, { ...slotProps });
-		const interceptLayouts = slotOverride?.layoutModules ?? [];
-		for (let layoutIndex = interceptLayouts.length - 1; layoutIndex >= 0; layoutIndex--) {
-			const interceptLayoutComponent = getDefaultExport$1(interceptLayouts[layoutIndex]);
-			if (!interceptLayoutComponent) continue;
-			slotElement = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(interceptLayoutComponent, {
-				params: slotThenableParams,
-				children: slotElement
-			});
-		}
-		const slotLayoutComponent = getDefaultExport$1(slot.layout);
-		if (slotLayoutComponent) slotElement = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(slotLayoutComponent, {
-			params: slotThenableParams,
-			children: slotElement
-		});
-		const slotLoadingComponent = getDefaultExport$1(slot.loading);
-		if (slotLoadingComponent && !shouldSuppressLoadingBoundaries(options.renderMode ?? "navigation")) slotElement = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(import_react_react_server.Suspense, {
-			fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(slotLoadingComponent, {}),
-			children: slotElement
-		}, slotResetKey);
-		const slotErrorComponent = getErrorBoundaryExport(slot.error);
-		if (slotErrorComponent) slotElement = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ErrorBoundary, {
-			resetKey: slotResetKey,
-			fallback: slotErrorComponent,
-			children: slotElement
-		});
-		elements[slotId] = renderAfterAppDependencies(slotElement, targetIndex >= 0 ? slotDependenciesByLayoutIndex[targetIndex] ?? [] : []);
-	}
-	let routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(LayoutSegmentProvider, {
-		segmentMap: { children: [] },
-		children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Slot, { id: pageId })
-	});
-	routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(RedirectBoundary, { children: routeChildren });
-	const routeLoadingComponent = getDefaultExport$1(options.route.loading);
-	if (routeLoadingComponent && !shouldSuppressLoadingBoundaries(options.renderMode ?? "navigation")) routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(import_react_react_server.Suspense, {
-		fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(routeLoadingComponent, {}),
-		children: routeChildren
-	}, routeResetKey);
-	const lastLayoutErrorModule = errorEntries.length > 0 ? errorEntries[errorEntries.length - 1].errorModule : null;
-	const notFoundComponent = getDefaultExport$1(options.route.notFound) ?? getDefaultExport$1(options.rootNotFoundModule);
-	if (notFoundComponent) routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(NotFoundBoundary, {
-		resetKey: routeResetKey,
-		fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(notFoundComponent, {}),
-		children: routeChildren
-	});
-	const forbiddenComponent = getDefaultExport$1(options.route.forbidden) ?? getDefaultExport$1(options.rootForbiddenModule);
-	if (forbiddenComponent) routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ForbiddenBoundary, {
-		resetKey: routeResetKey,
-		fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(forbiddenComponent, {}),
-		children: routeChildren
-	});
-	const unauthorizedComponent = getDefaultExport$1(options.route.unauthorized) ?? getDefaultExport$1(options.rootUnauthorizedModule);
-	if (unauthorizedComponent) routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(UnauthorizedBoundary, {
-		resetKey: routeResetKey,
-		fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(unauthorizedComponent, {}),
-		children: routeChildren
-	});
-	const pageErrorComponent = getErrorBoundaryExport(options.route.error);
-	if (pageErrorComponent && options.route.error !== lastLayoutErrorModule) routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ErrorBoundary, {
-		resetKey: routeResetKey,
-		fallback: pageErrorComponent,
-		children: routeChildren
-	});
-	for (let index = orderedTreePositions.length - 1; index >= 0; index--) {
-		const treePosition = orderedTreePositions[index];
-		const segmentResetKey = resolveAppPageSegmentStateKey(routeSegments, treePosition, options.matchedParams);
-		let segmentChildren = routeChildren;
-		const layoutEntry = layoutEntriesByTreePosition.get(treePosition);
-		const templateEntry = templateEntriesByTreePosition.get(treePosition);
-		const errorEntry = errorEntriesByTreePosition.get(treePosition);
-		if (layoutEntry) {
-			const layoutNotFoundComponent = getDefaultExport$1(layoutEntry.notFoundModule);
-			if (layoutNotFoundComponent) segmentChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(NotFoundBoundary, {
-				resetKey: segmentResetKey,
-				fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(layoutNotFoundComponent, {}),
-				children: segmentChildren
-			});
-			const layoutForbiddenComponent = getDefaultExport$1(layoutEntry.forbiddenModule);
-			if (layoutForbiddenComponent) segmentChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ForbiddenBoundary, {
-				resetKey: segmentResetKey,
-				fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(layoutForbiddenComponent, {}),
-				children: segmentChildren
-			});
-			const layoutUnauthorizedComponent = getDefaultExport$1(layoutEntry.unauthorizedModule);
-			if (layoutUnauthorizedComponent) segmentChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(UnauthorizedBoundary, {
-				resetKey: segmentResetKey,
-				fallback: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(layoutUnauthorizedComponent, {}),
-				children: segmentChildren
-			});
-		}
-		const segmentErrorComponent = getErrorBoundaryExport(errorEntry?.errorModule ?? layoutEntry?.errorModule);
-		if (segmentErrorComponent) segmentChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ErrorBoundary, {
-			resetKey: segmentResetKey,
-			fallback: segmentErrorComponent,
-			children: segmentChildren
-		});
-		if (templateEntry && getDefaultExport$1(templateEntry.templateModule)) segmentChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Slot, {
-			id: templateEntry.id,
-			children: segmentChildren
-		}, segmentResetKey);
-		if (!layoutEntry) {
-			routeChildren = segmentChildren;
-			continue;
-		}
-		const layoutHasElement = getDefaultExport$1(layoutEntry.layoutModule) !== null;
-		const layoutIndex = layoutIndicesByTreePosition.get(treePosition) ?? -1;
-		const segmentMap = { children: resolveAppPageChildSegments(routeSegments, layoutEntry.treePosition, options.matchedParams) };
-		for (const [slotKey, slot] of Object.entries(options.route.slots ?? {})) {
-			const slotName = slot.name;
-			if ((slot.layoutIndex >= 0 ? slot.layoutIndex : layoutEntries.length - 1) !== layoutIndex) continue;
-			const slotParams = getEffectiveSlotParams(slotKey, slotName);
-			segmentMap[slotName] = slot.routeSegments ? resolveAppPageChildSegments(slot.routeSegments, 0, slotParams) : [];
-		}
-		routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(LayoutSegmentProvider, {
-			segmentMap,
-			children: layoutHasElement ? /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Slot, {
-				id: layoutEntry.id,
-				parallelSlots: createAppPageParallelSlotEntries(layoutIndex, layoutEntries, options.route, getEffectiveSlotParams),
-				children: segmentChildren
-			}) : segmentChildren
-		});
-	}
-	const globalErrorComponent = getErrorBoundaryExport(options.globalErrorModule);
-	if (globalErrorComponent) routeChildren = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ErrorBoundary, {
-		fallback: globalErrorComponent,
-		children: routeChildren
-	});
-	elements[routeId] = /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [createAppPageRouteHead(options.resolvedMetadata, options.resolvedViewport), routeChildren] });
-	return elements;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/file-based-metadata.js
-function routeApplies(routePath, routePrefix) {
-	if (!routePrefix) return true;
-	return routePath === routePrefix || routePath.startsWith(`${routePrefix}/`);
-}
-function routeScore(routePrefix) {
-	return routePrefix.split("/").filter(Boolean).length;
-}
-function routeSegmentsApply(routeSegments, routePrefixSegments) {
-	if (routePrefixSegments.length > routeSegments.length) return false;
-	for (let index = 0; index < routePrefixSegments.length; index++) if (routeSegments[index] !== routePrefixSegments[index]) return false;
-	return true;
-}
-function removeParallelRouteSegments(routeSegments) {
-	return routeSegments.filter((segment) => !segment.startsWith("@"));
-}
-function routeSegmentsApplyWithParallelSlots(routeSegments, routePrefixSegments) {
-	if (routeSegmentsApply(routeSegments, routePrefixSegments)) return true;
-	const visiblePrefixSegments = removeParallelRouteSegments(routePrefixSegments);
-	return visiblePrefixSegments.length !== routePrefixSegments.length && routeSegmentsApply(routeSegments, visiblePrefixSegments);
-}
-function routeSpecificity(route) {
-	return route.routeSegments?.length ?? routeScore(route.routePrefix);
-}
-function selectDeepestRoutes(metadataRoutes, kind, routePath, params, routeSegments) {
-	if (!metadataRoutes || metadataRoutes.length === 0) return [];
-	let selectedScore = -1;
-	const selectedRoutes = [];
-	for (const route of metadataRoutes) {
-		if ((route.headData?.kind ?? getMetadataRouteKind(route)) !== kind) continue;
-		if (routeSegments && route.routeSegments) {
-			if (!routeSegmentsApplyWithParallelSlots(routeSegments, route.routeSegments)) continue;
-			const currentScore = routeSpecificity(route);
-			if (currentScore > selectedScore) {
-				selectedScore = currentScore;
-				selectedRoutes.length = 0;
-				selectedRoutes.push(route);
-				continue;
-			}
-			if (currentScore === selectedScore) selectedRoutes.push(route);
-			continue;
-		}
-		const routePrefix = route.routePrefix;
-		const resolvedRoutePrefix = fillRoutePatternSegments(routePrefix, params);
-		const normalizedRoutePrefix = routePattern(routePrefix);
-		if (!routeApplies(routePath, routePrefix) && !routeApplies(routePath, normalizedRoutePrefix) && (!resolvedRoutePrefix || !routeApplies(routePath, resolvedRoutePrefix))) continue;
-		const currentScore = routeSpecificity(route);
-		if (currentScore > selectedScore) {
-			selectedScore = currentScore;
-			selectedRoutes.length = 0;
-			selectedRoutes.push(route);
-			continue;
-		}
-		if (currentScore === selectedScore) selectedRoutes.push(route);
-	}
-	return selectedRoutes;
-}
-function isStringOrUrl(value) {
-	return typeof value === "string" || typeof value === "object" && value instanceof URL;
-}
-function normalizeIconDescriptor(value) {
-	if (typeof value !== "object" || value === null || Array.isArray(value)) return null;
-	const urlValue = Reflect.get(value, "url");
-	if (!isStringOrUrl(urlValue)) return null;
-	const entry = { url: urlValue };
-	const sizesValue = Reflect.get(value, "sizes");
-	if (typeof sizesValue === "string") entry.sizes = sizesValue;
-	const typeValue = Reflect.get(value, "type");
-	if (typeof typeValue === "string") entry.type = typeValue;
-	const mediaValue = Reflect.get(value, "media");
-	if (typeof mediaValue === "string") entry.media = mediaValue;
-	return entry;
-}
-function normalizeIconValue(value) {
-	if (isStringOrUrl(value)) return { url: value };
-	return normalizeIconDescriptor(value);
-}
-function normalizeIconValueList(values) {
-	const normalizedEntries = [];
-	for (const value of values) {
-		const normalizedValue = normalizeIconValue(value);
-		if (normalizedValue) normalizedEntries.push(normalizedValue);
-	}
-	return normalizedEntries;
-}
-function normalizeIconEntries(icon) {
-	const normalizedTopLevelValue = normalizeIconValue(icon);
-	if (normalizedTopLevelValue) return [normalizedTopLevelValue];
-	if (Array.isArray(icon)) return normalizeIconValueList(icon);
-	if (!isIconMap(icon)) return [];
-	const iconValue = icon.icon;
-	if (!iconValue) return [];
-	if (Array.isArray(iconValue)) return normalizeIconValueList(iconValue);
-	const normalizedValue = normalizeIconValue(iconValue);
-	return normalizedValue ? [normalizedValue] : [];
-}
-function isIconMap(value) {
-	if (!value || typeof value !== "object" || value instanceof URL || Array.isArray(value)) return false;
-	return normalizeIconValue(value) === null;
-}
-function cloneIconMap(value) {
-	if (!value) return {};
-	if (isIconMap(value)) return { ...value };
-	const iconEntries = normalizeIconEntries(value);
-	return iconEntries.length > 0 ? { icon: iconEntries } : {};
-}
-function buildIconEntry(headData) {
-	if (headData.kind !== "favicon" && headData.kind !== "icon") return null;
-	const iconEntry = { url: headData.href };
-	if (headData.sizes) iconEntry.sizes = headData.sizes;
-	if (headData.type) iconEntry.type = headData.type;
-	return iconEntry;
-}
-function buildAppleEntry(headData) {
-	if (headData.kind !== "apple") return null;
-	const appleEntry = { url: headData.href };
-	if (headData.sizes) appleEntry.sizes = headData.sizes;
-	if (headData.type) appleEntry.type = headData.type;
-	return appleEntry;
-}
-function normalizeAppleEntry(value) {
-	if (isStringOrUrl(value)) return { url: value };
-	return { ...value };
-}
-function buildSocialEntry(headData) {
-	if (headData.kind !== "openGraph" && headData.kind !== "twitter") return null;
-	const socialEntry = { url: headData.href };
-	if (headData.width !== void 0) socialEntry.width = headData.width;
-	if (headData.height !== void 0) socialEntry.height = headData.height;
-	if (headData.alt) socialEntry.alt = headData.alt;
-	if (headData.type) socialEntry.type = headData.type;
-	return socialEntry;
-}
-function normalizeMetadataImageId(route, id) {
-	const normalizedId = String(id);
-	if (!isValidMetadataImageId(normalizedId)) {
-		console.warn(`[vinext] Skipping metadata route ${route.servedUrl} image id "${normalizedId}" because metadata image ids must match /^[a-zA-Z0-9-_.]+$/.`);
-		return null;
-	}
-	return normalizedId;
-}
-function withContentHash(href, contentHash) {
-	if (!contentHash) return href;
-	return `${href}?${contentHash}`;
-}
-function hasOwnProperty(source, key) {
-	return Boolean(source && Object.prototype.hasOwnProperty.call(source, key));
-}
-function hasOpenGraphImages(metadata) {
-	return hasOwnProperty(metadata?.openGraph, "images");
-}
-function hasTwitterImages(metadata) {
-	return hasOwnProperty(metadata?.twitter, "images");
-}
-function hasIcons(metadata) {
-	return Boolean(metadata?.icons);
-}
-function getMetadataSourceForRoute(route, options, fallbackMetadata) {
-	if (!options?.metadataSources) return fallbackMetadata;
-	if (!route.routeSegments) return null;
-	for (let index = options.metadataSources.length - 1; index >= 0; index--) {
-		const source = options.metadataSources[index];
-		if (routeSegmentsApplyWithParallelSlots(source.routeSegments, route.routeSegments)) return source.metadata;
-	}
-	return null;
-}
-function socialRouteHasExplicitImagesAtSource(route, kind, options, fallbackMetadata) {
-	const sourceMetadata = getMetadataSourceForRoute(route, options, fallbackMetadata);
-	return kind === "openGraph" ? hasOpenGraphImages(sourceMetadata) : hasTwitterImages(sourceMetadata);
-}
-function iconRouteHasExplicitIconsAtSource(route, options, fallbackMetadata) {
-	return hasIcons(fallbackMetadata) || hasIcons(getMetadataSourceForRoute(route, options, null));
-}
-function readStringProperty(source, key) {
-	const value = Reflect.get(source, key);
-	return typeof value === "string" ? value : void 0;
-}
-function readNumberProperty(source, key) {
-	const value = Reflect.get(source, key);
-	return typeof value === "number" ? value : void 0;
-}
-function readStringOrNumberProperty(source, key) {
-	const value = Reflect.get(source, key);
-	if (typeof value === "string" || typeof value === "number") return value;
-}
-function readSizeProperty(source) {
-	const sizeValue = Reflect.get(source, "size");
-	if (typeof sizeValue !== "object" || sizeValue === null) return;
-	const width = readNumberProperty(sizeValue, "width");
-	const height = readNumberProperty(sizeValue, "height");
-	if (width === void 0 && height === void 0) return;
-	return {
-		width,
-		height
-	};
-}
-function readDynamicImageMetadataSource(source) {
-	return {
-		id: readStringOrNumberProperty(source, "id"),
-		alt: readStringProperty(source, "alt"),
-		contentType: readStringProperty(source, "contentType"),
-		size: readSizeProperty(source)
-	};
-}
-async function resolveDynamicImageMetadataSources(route, params) {
-	if (!route.module || typeof route.module !== "object") return [];
-	const generateImageMetadata = Reflect.get(route.module, "generateImageMetadata");
-	if (typeof generateImageMetadata !== "function") return [readDynamicImageMetadataSource(route.module)];
-	const result = await generateImageMetadata({ params: makeThenableParams(params) });
-	if (!Array.isArray(result)) return [];
-	const sources = [];
-	for (const entry of result) if (typeof entry === "object" && entry !== null) {
-		const source = readDynamicImageMetadataSource(entry);
-		if (source.id === void 0) {
-			console.warn(`[vinext] Skipping metadata route ${route.servedUrl} image metadata entry because generateImageMetadata entries must include an id.`);
-			continue;
-		}
-		sources.push(source);
-	}
-	return sources;
-}
-async function resolveRouteHeadData(route, params) {
-	if (!route.isDynamic || !route.module || typeof route.module !== "object") return route.headData ? [route.headData] : [];
-	const routeKind = getMetadataImageRouteKind(route);
-	if (!routeKind) return route.headData ? [route.headData] : [];
-	const resolvedUrl = fillRoutePatternSegments(route.servedUrl, params);
-	if (!resolvedUrl) {
-		console.warn(`[vinext] Skipping metadata route ${route.servedUrl} because params did not fill all dynamic segments.`);
-		return [];
-	}
-	const metadataSources = await resolveDynamicImageMetadataSources(route, params);
-	const resolvedHeadData = [];
-	for (const metadataSource of metadataSources) {
-		let hrefBase = resolvedUrl;
-		if (metadataSource.id !== void 0) {
-			const normalizedId = normalizeMetadataImageId(route, metadataSource.id);
-			if (!normalizedId) continue;
-			hrefBase = `${resolvedUrl}/${normalizedId}`;
-		}
-		const href = withContentHash(hrefBase, route.contentHash);
-		const contentType = metadataSource.contentType ?? route.contentType;
-		const size = metadataSource.size;
-		if (routeKind === "icon" || routeKind === "apple") {
-			let sizes;
-			if (size?.width !== void 0 && size.height !== void 0) sizes = `${size.width}x${size.height}`;
-			resolvedHeadData.push({
-				kind: routeKind,
-				href,
-				sizes,
-				type: contentType
-			});
-			continue;
-		}
-		resolvedHeadData.push({
-			kind: routeKind,
-			href,
-			alt: metadataSource.alt,
-			height: size?.height,
-			type: contentType,
-			width: size?.width
-		});
-	}
-	return resolvedHeadData;
-}
-async function resolveHeadDataList(routes, params) {
-	return (await Promise.all(routes.map((route) => resolveRouteHeadData(route, params)))).flat();
-}
-async function applyFileBasedMetadata(metadata, routePath, params, metadataRoutes, options) {
-	if (!metadataRoutes || metadataRoutes.length === 0) return metadata;
-	const routeSegments = options?.routeSegments ?? null;
-	const faviconRoutes = selectDeepestRoutes(metadataRoutes, "favicon", routePath, params, routeSegments);
-	const iconRoutes = selectDeepestRoutes(metadataRoutes, "icon", routePath, params, routeSegments).filter((route) => !iconRouteHasExplicitIconsAtSource(route, options, metadata));
-	const appleRoutes = selectDeepestRoutes(metadataRoutes, "apple", routePath, params, routeSegments).filter((route) => !iconRouteHasExplicitIconsAtSource(route, options, metadata));
-	const openGraphRoutes = selectDeepestRoutes(metadataRoutes, "openGraph", routePath, params, routeSegments).filter((route) => !socialRouteHasExplicitImagesAtSource(route, "openGraph", options, metadata));
-	const twitterRoutes = selectDeepestRoutes(metadataRoutes, "twitter", routePath, params, routeSegments).filter((route) => !socialRouteHasExplicitImagesAtSource(route, "twitter", options, metadata));
-	const manifestRoutes = selectDeepestRoutes(metadataRoutes, "manifest", routePath, params, routeSegments);
-	const [faviconHeadData, iconHeadData, appleHeadData, openGraphHeadData, twitterHeadData, manifestHeadData] = await Promise.all([
-		resolveHeadDataList(faviconRoutes, params),
-		resolveHeadDataList(iconRoutes, params),
-		resolveHeadDataList(appleRoutes, params),
-		resolveHeadDataList(openGraphRoutes, params),
-		resolveHeadDataList(twitterRoutes, params),
-		resolveHeadDataList(manifestRoutes, params)
-	]);
-	if (!metadata && faviconHeadData.length === 0 && iconHeadData.length === 0 && appleHeadData.length === 0 && openGraphHeadData.length === 0 && twitterHeadData.length === 0 && manifestHeadData.length === 0) return null;
-	const nextMetadata = metadata ? { ...metadata } : {};
-	const faviconEntries = [];
-	for (const headData of faviconHeadData) {
-		const iconEntry = buildIconEntry(headData);
-		if (iconEntry) faviconEntries.push(iconEntry);
-	}
-	if (faviconEntries.length > 0) {
-		const nextIcons = cloneIconMap(nextMetadata.icons);
-		const normalizedIcons = normalizeIconEntries(nextIcons);
-		nextIcons.icon = [...faviconEntries, ...normalizedIcons];
-		nextMetadata.icons = nextIcons;
-	}
-	{
-		const nextIcons = cloneIconMap(nextMetadata.icons);
-		const iconEntries = [];
-		for (const headData of iconHeadData) {
-			const iconEntry = buildIconEntry(headData);
-			if (iconEntry) iconEntries.push(iconEntry);
-		}
-		if (iconEntries.length > 0) {
-			const normalizedIcons = normalizeIconEntries(nextIcons);
-			nextIcons.icon = [...iconEntries, ...normalizedIcons];
-		}
-		const appleEntries = [];
-		for (const headData of appleHeadData) {
-			const appleEntry = buildAppleEntry(headData);
-			if (appleEntry) appleEntries.push(appleEntry);
-		}
-		if (appleEntries.length > 0) {
-			const existingApple = nextIcons.apple;
-			const normalizedAppleEntries = [];
-			if (Array.isArray(existingApple)) for (const entry of existingApple) normalizedAppleEntries.push(normalizeAppleEntry(entry));
-			else if (existingApple) normalizedAppleEntries.push(normalizeAppleEntry(existingApple));
-			nextIcons.apple = [...appleEntries, ...normalizedAppleEntries];
-		}
-		if (iconEntries.length > 0 || appleEntries.length > 0) nextMetadata.icons = nextIcons;
-	}
-	if (openGraphHeadData.length > 0) {
-		const socialEntries = [];
-		for (const headData of openGraphHeadData) {
-			const socialEntry = buildSocialEntry(headData);
-			if (socialEntry) socialEntries.push(socialEntry);
-		}
-		if (socialEntries.length > 0) {
-			const nextOpenGraph = nextMetadata.openGraph ? { ...nextMetadata.openGraph } : {};
-			nextOpenGraph.images = socialEntries;
-			nextMetadata.openGraph = nextOpenGraph;
-		}
-	}
-	if (twitterHeadData.length > 0) {
-		const socialEntries = [];
-		for (const headData of twitterHeadData) {
-			const socialEntry = buildSocialEntry(headData);
-			if (socialEntry) socialEntries.push(socialEntry);
-		}
-		if (socialEntries.length > 0) {
-			const nextTwitter = nextMetadata.twitter ? { ...nextMetadata.twitter } : {};
-			nextTwitter.images = socialEntries;
-			nextMetadata.twitter = nextTwitter;
-		}
-	}
-	if (manifestHeadData.length > 0 && manifestHeadData[0].kind === "manifest") nextMetadata.manifest = manifestHeadData[0].href;
-	return nextMetadata;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-head.js
-function resolveActiveParallelRouteHeadInputs(options) {
-	return Object.entries(options.slots ?? {}).map(([slotKey, slot]) => {
-		if (options.interceptSlotKey === slotKey && options.interceptPage) return {
-			layoutModules: options.interceptLayouts ?? [],
-			pageModule: options.interceptPage,
-			params: options.interceptParams ?? options.params,
-			routeSegments: options.routeSegments
-		};
-		return {
-			layoutModules: slot.layout ? [slot.layout] : [],
-			pageModule: slot.page,
-			params: options.params,
-			routeSegments: options.routeSegments
-		};
-	});
-}
-function isPresent(value) {
-	return value !== null && value !== void 0;
-}
-function collectAppPageSearchParams(searchParams) {
-	const pageSearchParams = Object.create(null);
-	let hasSearchParams = false;
-	searchParams?.forEach((value, key) => {
-		hasSearchParams = true;
-		const currentValue = pageSearchParams[key];
-		if (Array.isArray(currentValue)) {
-			pageSearchParams[key] = [...currentValue, value];
-			return;
-		}
-		if (currentValue !== void 0) {
-			pageSearchParams[key] = [currentValue, value];
-			return;
-		}
-		pageSearchParams[key] = value;
-	});
-	return {
-		hasSearchParams,
-		pageSearchParams
-	};
-}
-function createMetadataSources(metadataResults, routeSegments, layoutTreePositions, pageMetadata, includePageSource) {
-	const metadataSources = metadataResults.map((metadata, index) => ({
-		routeSegments: routeSegments.slice(0, layoutTreePositions[index] ?? 0),
-		metadata
-	}));
-	if (includePageSource) metadataSources.push({
-		routeSegments,
-		metadata: pageMetadata
-	});
-	return metadataSources;
-}
-function createLayoutInputs(layoutModules, layoutTreePositions) {
-	const layoutInputs = [];
-	for (let index = 0; index < layoutModules.length; index++) {
-		const layoutModule = layoutModules[index];
-		if (!isPresent(layoutModule)) continue;
-		layoutInputs.push({
-			module: layoutModule,
-			treePosition: layoutTreePositions[index] ?? 0
-		});
-	}
-	return layoutInputs;
-}
-async function resolveLayoutMetadata(layoutInputs, params, routeSegments) {
-	const layoutMetadataPromises = [];
-	let accumulatedMetadata = Promise.resolve({});
-	for (const layoutInput of layoutInputs) {
-		const parentForLayout = accumulatedMetadata;
-		const layoutParams = resolveAppPageSegmentParams(routeSegments, layoutInput.treePosition, params);
-		const metadataPromise = resolveModuleMetadata(layoutInput.module, layoutParams, void 0, parentForLayout);
-		layoutMetadataPromises.push(metadataPromise);
-		metadataPromise.catch(() => null);
-		accumulatedMetadata = metadataPromise.then(async (metadataResult) => {
-			if (metadataResult) return mergeMetadataEntries([{ metadata: await parentForLayout }, { metadata: metadataResult }]);
-			return parentForLayout;
-		});
-		accumulatedMetadata.catch(() => null);
-	}
-	return Promise.all(layoutMetadataPromises);
-}
-async function resolveLayoutViewport(layoutInputs, params, routeSegments) {
-	return Promise.all(layoutInputs.map((layoutInput) => {
-		const layoutParams = resolveAppPageSegmentParams(routeSegments, layoutInput.treePosition, params);
-		return resolveModuleViewport(layoutInput.module, layoutParams);
-	}));
-}
-async function resolveParallelRouteHead(parallelRoute, fallbackParams, fallbackRouteSegments, pageSearchParams, parent) {
-	const params = parallelRoute.params ?? fallbackParams;
-	const routeSegments = parallelRoute.routeSegments ?? fallbackRouteSegments;
-	const metadataResults = [];
-	const viewportResults = [];
-	const metadataSources = [];
-	let accumulatedMetadata = parent;
-	const layoutModules = [...parallelRoute.layoutModules ?? [], parallelRoute.layoutModule].filter(isPresent);
-	const layoutViewportPromises = layoutModules.map((layoutModule) => resolveModuleViewport(layoutModule, params));
-	const pageViewportPromise = parallelRoute.pageModule ? resolveModuleViewport(parallelRoute.pageModule, params) : Promise.resolve(null);
-	for (const layoutViewportPromise of layoutViewportPromises) layoutViewportPromise.catch(() => null);
-	pageViewportPromise.catch(() => null);
-	for (const layoutModule of layoutModules) {
-		const layoutMetadata = await resolveModuleMetadata(layoutModule, params, void 0, accumulatedMetadata);
-		metadataResults.push(layoutMetadata);
-		metadataSources.push({
-			metadata: layoutMetadata,
-			routeSegments
-		});
-		if (layoutMetadata) {
-			accumulatedMetadata = accumulatedMetadata.then(async (parentMetadata) => mergeMetadataEntries([{ metadata: parentMetadata }, { metadata: layoutMetadata }]));
-			accumulatedMetadata.catch(() => null);
-		}
-	}
-	if (parallelRoute.pageModule) {
-		const pageMetadata = await resolveModuleMetadata(parallelRoute.pageModule, params, pageSearchParams, accumulatedMetadata);
-		metadataResults.push(pageMetadata);
-		metadataSources.push({
-			metadata: pageMetadata,
-			routeSegments
-		});
-	}
-	viewportResults.push(...await Promise.all(layoutViewportPromises));
-	const pageViewport = await pageViewportPromise;
-	if (parallelRoute.pageModule) viewportResults.push(pageViewport);
-	return {
-		metadataResults,
-		metadataSources,
-		viewportResults
-	};
-}
-async function resolveAppPageHead(options) {
-	return await runWithFetchDedupe(() => resolveAppPageHeadInner(options));
-}
-async function resolveAppPageHeadInner(options) {
-	const routeSegments = options.routeSegments ?? [];
-	const layoutTreePositions = options.layoutTreePositions ?? [];
-	const layoutInputs = createLayoutInputs(options.layoutModules, layoutTreePositions);
-	const layoutSourcePositions = layoutInputs.map((input) => input.treePosition);
-	const { hasSearchParams, pageSearchParams } = collectAppPageSearchParams(options.searchParams);
-	const layoutMetadataPromise = resolveLayoutMetadata(layoutInputs, options.params, routeSegments);
-	const layoutViewportPromise = resolveLayoutViewport(layoutInputs, options.params, routeSegments);
-	const layoutMetadataResultsForParent = layoutMetadataPromise.then((metadataResults) => metadataResults.filter(isPresent));
-	layoutMetadataResultsForParent.catch(() => null);
-	const pageParentPromise = layoutMetadataResultsForParent.then((metadataResults) => metadataResults.length > 0 ? mergeMetadataEntries(metadataResults.map((metadata) => ({ metadata }))) : {});
-	pageParentPromise.catch(() => null);
-	const pageMetadataPromise = options.pageModule ? resolveModuleMetadata(options.pageModule, options.params, pageSearchParams, pageParentPromise) : Promise.resolve(null);
-	const pageViewportPromise = options.pageModule ? resolveModuleViewport(options.pageModule, options.params) : Promise.resolve(null);
-	const parallelRouteHeadPromise = Promise.all((options.parallelRoutes ?? []).map((parallelRoute) => resolveParallelRouteHead(parallelRoute, options.params, routeSegments, pageSearchParams, pageParentPromise)));
-	const [layoutMetadataResults, layoutViewportResults, pageMetadata, pageViewport, parallelRouteHeads] = await Promise.all([
-		layoutMetadataPromise,
-		layoutViewportPromise,
-		pageMetadataPromise,
-		pageViewportPromise,
-		parallelRouteHeadPromise
-	]);
-	const parallelMetadataResults = parallelRouteHeads.flatMap((head) => head.metadataResults);
-	const parallelViewportResults = parallelRouteHeads.flatMap((head) => head.viewportResults);
-	const parallelMetadataSources = parallelRouteHeads.flatMap((head) => head.metadataSources);
-	const metadataEntries = [
-		...layoutMetadataResults.filter(isPresent).map((metadata) => ({ metadata })),
-		...pageMetadata ? [{
-			isPage: true,
-			metadata: pageMetadata
-		}] : [],
-		...parallelMetadataResults.filter(isPresent).map((metadata) => ({
-			contributesTitle: false,
-			metadata
-		}))
-	];
-	const viewportList = [
-		...layoutViewportResults.filter(isPresent),
-		...pageViewport ? [pageViewport] : [],
-		...parallelViewportResults.filter(isPresent)
-	];
-	const resolvedMetadataBase = metadataEntries.length > 0 ? mergeMetadataEntries(metadataEntries) : null;
-	const metadataSources = createMetadataSources(layoutMetadataResults, routeSegments, layoutSourcePositions, pageMetadata, Boolean(options.pageModule));
-	metadataSources.push(...parallelMetadataSources);
-	let metadata = resolvedMetadataBase;
-	try {
-		metadata = await applyFileBasedMetadata(resolvedMetadataBase, options.routePath, options.params, options.metadataRoutes, {
-			routeSegments,
-			metadataSources
-		});
-	} catch (error) {
-		if (!options.fallbackOnFileMetadataError) throw error;
-		console.error(`[vinext] File-based metadata resolution failed while rendering error boundary for ${options.routePath}:`, error);
-	}
-	if (metadata) metadata = postProcessMetadata(metadata);
-	return {
-		hasSearchParams,
-		metadata,
-		pageSearchParams,
-		viewport: mergeViewport(viewportList)
-	};
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-boundary.js
-function resolveAppPageHttpAccessBoundaryComponent(options) {
-	let boundaryModule;
-	if (options.statusCode === 403) boundaryModule = options.routeForbiddenModule ?? options.rootForbiddenModule;
-	else if (options.statusCode === 401) boundaryModule = options.routeUnauthorizedModule ?? options.rootUnauthorizedModule;
-	else boundaryModule = options.routeNotFoundModule ?? options.rootNotFoundModule;
-	return options.getDefaultExport(boundaryModule) ?? null;
-}
-function resolveAppPageParentHttpAccessBoundaryModule(options) {
-	let routeModules = options.routeNotFoundModules;
-	let rootModule = options.rootNotFoundModule;
-	if (options.statusCode === 403) {
-		routeModules = options.routeForbiddenModules;
-		rootModule = options.rootForbiddenModule;
-	} else if (options.statusCode === 401) {
-		routeModules = options.routeUnauthorizedModules;
-		rootModule = options.rootUnauthorizedModule;
-	}
-	if (routeModules) for (let index = options.layoutIndex - 1; index >= 0; index--) {
-		const module = routeModules[index];
-		if (module) return module;
-	}
-	return rootModule ?? null;
-}
-function resolveAppPageErrorBoundary(options) {
-	const pageErrorComponent = options.getDefaultExport(options.pageErrorModule);
-	if (pageErrorComponent) return {
-		component: pageErrorComponent,
-		isGlobalError: false
-	};
-	const segmentErrorModules = options.errorModules ?? options.layoutErrorModules;
-	if (segmentErrorModules) for (let index = segmentErrorModules.length - 1; index >= 0; index--) {
-		const segmentErrorComponent = options.getDefaultExport(segmentErrorModules[index]);
-		if (segmentErrorComponent) return {
-			component: segmentErrorComponent,
-			isGlobalError: false
-		};
-	}
-	const globalErrorComponent = options.getDefaultExport(options.globalErrorModule);
-	return {
-		component: globalErrorComponent ?? null,
-		isGlobalError: Boolean(globalErrorComponent)
-	};
-}
-function wrapAppPageBoundaryElement(options) {
-	let element = options.element;
-	if (!options.skipLayoutWrapping) for (let index = options.layoutModules.length - 1; index >= 0; index--) {
-		const layoutComponent = options.getDefaultExport(options.layoutModules[index]);
-		if (!layoutComponent) continue;
-		const treePosition = options.layoutTreePositions ? options.layoutTreePositions[index] : 0;
-		const asyncParams = options.makeThenableParams(resolveAppPageSegmentParams(options.routeSegments, treePosition, options.matchedParams));
-		element = options.renderLayout(layoutComponent, element, asyncParams);
-		if (options.isRscRequest && options.renderLayoutSegmentProvider && options.resolveChildSegments) {
-			const childSegments = options.resolveChildSegments(options.routeSegments ?? [], treePosition, options.matchedParams);
-			element = options.renderLayoutSegmentProvider({ children: childSegments }, element);
-		}
-	}
-	if (options.isRscRequest && options.includeGlobalErrorBoundary && options.globalErrorComponent) element = options.renderErrorBoundary(options.globalErrorComponent, element);
-	return element;
-}
-async function renderAppPageBoundaryResponse(options) {
-	const rscStream = runWithFetchDedupe(() => options.renderToReadableStream(options.element, { onError: options.createRscOnErrorHandler() }));
-	if (options.isRscRequest) {
-		const headers = new Headers({
-			"Content-Type": "text/x-component; charset=utf-8",
-			Vary: VINEXT_RSC_VARY_HEADER
-		});
-		mergeMiddlewareResponseHeaders(headers, options.middlewareHeaders ?? null);
-		return new Response(rscStream, {
-			status: options.status,
-			headers
-		});
-	}
-	return options.createHtmlResponse(rscStream, options.status);
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-stream.js
-function createAppPageFontData(options) {
-	return {
-		links: options.getLinks(),
-		preloads: options.getPreloads(),
-		styles: options.getStyles()
-	};
-}
-async function renderAppPageHtmlStream(options) {
-	const ssrOptions = {
-		formState: options.formState ?? null,
-		scriptNonce: options.scriptNonce,
-		sideStream: options.sideStream,
-		capturedRscDataRef: options.capturedRscDataRef,
-		waitForAllReady: options.waitForAllReady
-	};
-	return options.ssrHandler.handleSsr(options.rscStream, options.navigationContext, options.fontData, ssrOptions);
-}
-/**
-* Wraps a stream so that `onFlush` is called when the last byte has been read
-* by the downstream consumer (i.e. when the HTTP layer finishes draining the
-* response body). This is the correct place to clear per-request context,
-* because the RSC/SSR pipeline is lazy â€” components execute while the stream
-* is being consumed, not when the stream handle is first obtained.
-*/
-function deferUntilStreamConsumed(stream, onFlush) {
-	let called = false;
-	const once = () => {
-		if (!called) {
-			called = true;
-			onFlush();
-		}
-	};
-	const cleanup = new TransformStream({ flush() {
-		once();
-	} });
-	const reader = stream.pipeThrough(cleanup).getReader();
-	return new ReadableStream({
-		pull(controller) {
-			return reader.read().then(({ done, value }) => {
-				if (done) controller.close();
-				else controller.enqueue(value);
-			}, (error) => {
-				once();
-				controller.error(error);
-			});
-		},
-		cancel(reason) {
-			once();
-			return reader.cancel(reason);
-		}
-	});
-}
-async function renderAppPageHtmlResponse(options) {
-	const safeStream = deferUntilStreamConsumed(await renderAppPageHtmlStream(options), () => {
-		options.clearRequestContext();
-	});
-	const headers = new Headers({
-		"Content-Type": "text/html; charset=utf-8",
-		Vary: VINEXT_RSC_VARY_HEADER
-	});
-	if (options.fontLinkHeader) headers.set("Link", options.fontLinkHeader);
-	mergeMiddlewareResponseHeaders(headers, options.middlewareHeaders ?? null);
-	return new Response(safeStream, {
-		status: options.status,
-		headers
-	});
-}
-async function renderAppPageHtmlStreamWithRecovery(options) {
-	try {
-		const htmlStream = await options.renderHtmlStream();
-		options.onShellRendered?.();
-		return {
-			htmlStream,
-			response: null
-		};
-	} catch (error) {
-		const specialError = options.resolveSpecialError(error);
-		if (specialError) return {
-			htmlStream: null,
-			response: await options.renderSpecialErrorResponse(specialError)
-		};
-		const boundaryResponse = await options.renderErrorBoundaryResponse(error);
-		if (boundaryResponse) return {
-			htmlStream: null,
-			response: boundaryResponse
-		};
-		throw error;
-	}
-}
-function createAppPageRscErrorTracker(baseOnError) {
-	let capturedError = null;
-	let capturedSpecialError = null;
-	return {
-		getCapturedError() {
-			return capturedError;
-		},
-		getCapturedSpecialError() {
-			return capturedSpecialError;
-		},
-		onRenderError(error, requestInfo, errorContext) {
-			if (error && typeof error === "object" && "digest" in error) {
-				if (capturedSpecialError === null) capturedSpecialError = error;
-			} else capturedError = error;
-			return baseOnError(error, requestInfo, errorContext);
-		}
-	};
-}
-function shouldRerenderAppPageWithGlobalError(options) {
-	return Boolean(options.capturedError) && !options.hasLocalBoundary;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-boundary-render.js
-function getDefaultExport(module) {
-	return module?.default ?? null;
-}
-function wrapRenderedBoundaryElement(options) {
-	return wrapAppPageBoundaryElement({
-		element: options.element,
-		getDefaultExport,
-		globalErrorComponent: getDefaultExport(options.globalErrorModule),
-		includeGlobalErrorBoundary: options.includeGlobalErrorBoundary,
-		isRscRequest: options.isRscRequest,
-		layoutModules: options.layoutModules,
-		layoutTreePositions: options.layoutTreePositions,
-		makeThenableParams: options.makeThenableParams,
-		matchedParams: options.matchedParams,
-		renderErrorBoundary(GlobalErrorComponent, children) {
-			return (0, import_react_react_server.createElement)(ErrorBoundary, {
-				fallback: GlobalErrorComponent,
-				children
-			});
-		},
-		renderLayout(LayoutComponent, children, asyncParams) {
-			return (0, import_react_react_server.createElement)(LayoutComponent, {
-				children,
-				params: asyncParams
-			});
-		},
-		renderLayoutSegmentProvider(segmentMap, children) {
-			return (0, import_react_react_server.createElement)(LayoutSegmentProvider, { segmentMap }, children);
-		},
-		resolveChildSegments: options.resolveChildSegments,
-		routeSegments: options.routeSegments ?? [],
-		skipLayoutWrapping: options.skipLayoutWrapping
-	});
-}
-function createAppPageBoundaryLayoutEntries(route, layoutModules) {
-	if (!route || layoutModules.length === 0) return [];
-	return createAppPageLayoutEntries({
-		errors: route.errors,
-		layoutTreePositions: route.layoutTreePositions,
-		layouts: layoutModules,
-		notFounds: null,
-		routeSegments: route.routeSegments
-	});
-}
-function resolveHttpAccessFallbackHeadRouteSegments(route, layoutModules) {
-	if (!route?.routeSegments) return;
-	if (!route.layouts || layoutModules.length >= route.layouts.length) return route.routeSegments;
-	const lastIncludedLayoutIndex = layoutModules.length - 1;
-	if (lastIncludedLayoutIndex < 0) return [];
-	const segmentCount = route.layoutTreePositions?.[lastIncludedLayoutIndex] ?? 0;
-	return route.routeSegments.slice(0, segmentCount);
-}
-function resolveHttpAccessFallbackHeadLayoutTreePositions(route, layoutModules) {
-	if (!route?.layouts || layoutModules.length >= route.layouts.length) return route?.layoutTreePositions;
-	return route.layoutTreePositions?.slice(0, layoutModules.length);
-}
-function createAppPageBoundaryRscPayload(options) {
-	const routeId = AppElementsWire.encodeRouteId(options.pathname, null);
-	const layoutEntries = createAppPageBoundaryLayoutEntries(options.route, options.layoutModules);
-	return {
-		...AppElementsWire.createMetadataEntries({
-			interceptionContext: null,
-			layoutIds: layoutEntries.map((entry) => entry.id),
-			rootLayoutTreePath: layoutEntries[0]?.treePath ?? null,
-			routeId
-		}),
-		[routeId]: options.element
-	};
-}
-async function renderAppPageBoundaryElementResponse(options) {
-	const pathname = new URL(options.requestUrl).pathname;
-	return renderAppPageBoundaryResponse({
-		async createHtmlResponse(rscStream, responseStatus) {
-			const fontData = createAppPageFontData({
-				getLinks: options.getFontLinks,
-				getPreloads: options.getFontPreloads,
-				getStyles: options.getFontStyles
-			});
-			const ssrHandler = await options.loadSsrHandler();
-			return renderAppPageHtmlResponse({
-				clearRequestContext: options.clearRequestContext,
-				fontData,
-				fontLinkHeader: options.buildFontLinkHeader(fontData.preloads),
-				middlewareHeaders: options.middlewareContext.headers,
-				navigationContext: options.getNavigationContext(),
-				rscStream,
-				scriptNonce: options.scriptNonce,
-				ssrHandler,
-				status: responseStatus
-			});
-		},
-		createRscOnErrorHandler() {
-			return options.createRscOnErrorHandler(pathname, options.routePattern ?? pathname);
-		},
-		element: createAppPageBoundaryRscPayload({
-			element: options.element,
-			layoutModules: options.layoutModules,
-			pathname,
-			route: options.route
-		}),
-		isRscRequest: options.isRscRequest,
-		middlewareHeaders: options.middlewareContext.headers,
-		renderToReadableStream: options.renderToReadableStream,
-		status: options.status
-	});
-}
-async function renderAppPageHttpAccessFallback(options) {
-	const boundaryComponent = options.boundaryComponent ?? resolveAppPageHttpAccessBoundaryComponent({
-		getDefaultExport,
-		rootForbiddenModule: options.rootForbiddenModule,
-		rootNotFoundModule: options.rootNotFoundModule,
-		rootUnauthorizedModule: options.rootUnauthorizedModule,
-		routeForbiddenModule: options.route?.forbidden,
-		routeNotFoundModule: options.route?.notFound,
-		routeUnauthorizedModule: options.route?.unauthorized,
-		statusCode: options.statusCode
-	});
-	if (!boundaryComponent) return null;
-	const layoutModules = options.layoutModules ?? options.route?.layouts ?? options.rootLayouts;
-	const routeSegments = resolveHttpAccessFallbackHeadRouteSegments(options.route, layoutModules);
-	const { metadata, viewport } = await resolveAppPageHead({
-		layoutModules,
-		layoutTreePositions: resolveHttpAccessFallbackHeadLayoutTreePositions(options.route, layoutModules),
-		metadataRoutes: options.metadataRoutes,
-		params: options.matchedParams,
-		routePath: options.route?.pattern ?? new URL(options.requestUrl).pathname,
-		routeSegments
-	});
-	const headElements = [(0, import_react_react_server.createElement)("meta", {
-		charSet: "utf-8",
-		key: "charset"
-	}), (0, import_react_react_server.createElement)("meta", {
-		content: "noindex",
-		key: "robots",
-		name: "robots"
-	})];
-	if (metadata) headElements.push((0, import_react_react_server.createElement)(MetadataHead, {
-		key: "metadata",
-		metadata
-	}));
-	headElements.push((0, import_react_react_server.createElement)(ViewportHead, {
-		key: "viewport",
-		viewport
-	}));
-	const element = wrapRenderedBoundaryElement({
-		element: (0, import_react_react_server.createElement)(import_react_react_server.Fragment, null, ...headElements, (0, import_react_react_server.createElement)(boundaryComponent)),
-		globalErrorModule: options.globalErrorModule,
-		includeGlobalErrorBoundary: true,
-		isRscRequest: options.isRscRequest,
-		layoutModules,
-		layoutTreePositions: options.route?.layoutTreePositions,
-		makeThenableParams: options.makeThenableParams,
-		matchedParams: options.matchedParams,
-		resolveChildSegments: options.resolveChildSegments,
-		routeSegments: options.route?.routeSegments
-	});
-	return renderAppPageBoundaryElementResponse({
-		...options,
-		element,
-		layoutModules,
-		route: options.route,
-		routePattern: options.route?.pattern,
-		status: options.statusCode
-	});
-}
-async function renderAppPageErrorBoundary(options) {
-	const errorBoundary = resolveAppPageErrorBoundary({
-		getDefaultExport,
-		errorModules: options.route?.errorPaths,
-		globalErrorModule: options.globalErrorModule,
-		layoutErrorModules: options.route?.errors,
-		pageErrorModule: options.route?.error
-	});
-	if (!errorBoundary.component) return null;
-	const rawError = options.error instanceof Error ? options.error : new Error(String(options.error));
-	rewriteClientHookError(rawError);
-	const errorObject = options.sanitizeErrorForClient(rawError);
-	const matchedParams = options.matchedParams ?? options.route?.params ?? {};
-	const layoutModules = options.route?.layouts ?? options.rootLayouts;
-	const pathname = new URL(options.requestUrl).pathname;
-	const headElements = [(0, import_react_react_server.createElement)("meta", {
-		charSet: "utf-8",
-		key: "charset"
-	})];
-	if (!errorBoundary.isGlobalError) try {
-		const { metadata, viewport } = await resolveAppPageHead({
-			fallbackOnFileMetadataError: true,
-			layoutModules,
-			layoutTreePositions: options.route?.layoutTreePositions,
-			metadataRoutes: options.metadataRoutes,
-			params: matchedParams,
-			routePath: options.route?.pattern ?? pathname,
-			routeSegments: options.route?.routeSegments
-		});
-		if (metadata) headElements.push((0, import_react_react_server.createElement)(MetadataHead, {
-			key: "metadata",
-			metadata
-		}));
-		headElements.push((0, import_react_react_server.createElement)(ViewportHead, {
-			key: "viewport",
-			viewport
-		}));
-	} catch (error) {
-		console.error(`[vinext] App page error boundary head resolution failed for ${options.route?.pattern ?? pathname}:`, error);
-	}
-	const element = wrapRenderedBoundaryElement({
-		element: (0, import_react_react_server.createElement)(import_react_react_server.Fragment, null, ...headElements, (0, import_react_react_server.createElement)(errorBoundary.component, { error: errorObject })),
-		globalErrorModule: options.globalErrorModule,
-		includeGlobalErrorBoundary: !errorBoundary.isGlobalError,
-		isRscRequest: options.isRscRequest,
-		layoutModules,
-		layoutTreePositions: options.route?.layoutTreePositions,
-		makeThenableParams: options.makeThenableParams,
-		matchedParams,
-		resolveChildSegments: options.resolveChildSegments,
-		routeSegments: options.route?.routeSegments,
-		skipLayoutWrapping: errorBoundary.isGlobalError
-	});
-	return renderAppPageBoundaryElementResponse({
-		...options,
-		element,
-		layoutModules,
-		route: options.route,
-		routePattern: options.route?.pattern,
-		status: 200
-	});
-}
-var _clientHookPattern = /\b(useState|useEffect|useReducer|useRef|useContext|useLayoutEffect|useInsertionEffect|useSyncExternalStore|useTransition|useImperativeHandle|useDeferredValue|useActionState|useOptimistic|useEffectEvent)\b.*is not a function/;
-function rewriteClientHookError(error) {
-	const match = error.message.match(_clientHookPattern);
-	if (match) error.message = buildClientHookErrorMessage(`${match[1]}()`);
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-fallback-renderer.js
-var EMPTY_MW_CTX = {
-	headers: null,
-	status: null
-};
-function createAppFallbackRenderer(options) {
-	const { clearRequestContext, createRscOnErrorHandler: buildRscOnErrorHandler, fontProviders, getNavigationContext, globalErrorModule, makeThenableParams, metadataRoutes, resolveChildSegments, rootBoundaries, rscRenderer, sanitizer, ssrLoader } = options;
-	const { rootForbiddenModule, rootLayouts, rootNotFoundModule, rootUnauthorizedModule } = rootBoundaries;
-	return {
-		renderHttpAccessFallback(route, statusCode, isRscRequest, request, opts, scriptNonce, middlewareContext) {
-			return renderAppPageHttpAccessFallback({
-				boundaryComponent: opts?.boundaryComponent ?? null,
-				buildFontLinkHeader: fontProviders.buildFontLinkHeader,
-				clearRequestContext,
-				createRscOnErrorHandler(pathname, routePath) {
-					return buildRscOnErrorHandler(request, pathname, routePath);
-				},
-				getFontLinks: fontProviders.getFontLinks,
-				getFontPreloads: fontProviders.getFontPreloads,
-				getFontStyles: fontProviders.getFontStyles,
-				getNavigationContext,
-				globalErrorModule,
-				isRscRequest,
-				layoutModules: opts?.layouts ?? null,
-				loadSsrHandler: ssrLoader,
-				makeThenableParams,
-				matchedParams: opts?.matchedParams ?? route?.params ?? {},
-				middlewareContext: middlewareContext ?? EMPTY_MW_CTX,
-				metadataRoutes,
-				requestUrl: request.url,
-				resolveChildSegments,
-				rootForbiddenModule,
-				rootLayouts,
-				rootNotFoundModule,
-				rootUnauthorizedModule,
-				route,
-				renderToReadableStream: rscRenderer,
-				scriptNonce,
-				statusCode
-			});
-		},
-		renderNotFound(route, isRscRequest, request, matchedParams, scriptNonce, middlewareContext) {
-			return this.renderHttpAccessFallback(route, 404, isRscRequest, request, { matchedParams }, scriptNonce, middlewareContext);
-		},
-		renderErrorBoundary(route, error, isRscRequest, request, matchedParams, scriptNonce, middlewareContext) {
-			return renderAppPageErrorBoundary({
-				buildFontLinkHeader: fontProviders.buildFontLinkHeader,
-				clearRequestContext,
-				createRscOnErrorHandler(pathname, routePath) {
-					return buildRscOnErrorHandler(request, pathname, routePath);
-				},
-				error,
-				getFontLinks: fontProviders.getFontLinks,
-				getFontPreloads: fontProviders.getFontPreloads,
-				getFontStyles: fontProviders.getFontStyles,
-				getNavigationContext,
-				globalErrorModule,
-				isRscRequest,
-				loadSsrHandler: ssrLoader,
-				makeThenableParams,
-				matchedParams: matchedParams ?? route?.params ?? {},
-				middlewareContext: middlewareContext ?? EMPTY_MW_CTX,
-				metadataRoutes,
-				requestUrl: request.url,
-				resolveChildSegments,
-				rootLayouts,
-				route,
-				renderToReadableStream: rscRenderer,
-				sanitizeErrorForClient: sanitizer,
-				scriptNonce
-			});
-		}
-	};
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-element-builder.js
-/**
-* Build the App Router element tree for a matched route.
-*
-* This is the central element-construction path for the App Router RSC
-* handler. It resolves page head metadata (including parallel route metadata),
-* creates the page React element, and wires it into the nested layout +
-* boundary tree via {@link buildAppPageElements}.
-*
-* The function is extracted from the generated RSC entry template so it can
-* be unit-tested independently of the code-generation machinery.
-*
-* Next.js equivalent: the component tree construction in
-* {@link https://github.com/vercel/next.js/blob/canary/packages/next/src/server/app-render/create-component-tree.tsx|create-component-tree.tsx}
-* and the page head resolution in
-* {@link https://github.com/vercel/next.js/blob/canary/packages/next/src/server/app-render/create-metadata.tsx|create-metadata.tsx}.
-*/
-async function buildPageElements$1(options) {
-	const { route, params, routePath, pageRequest, globalErrorModule, rootNotFoundModule, rootForbiddenModule, rootUnauthorizedModule, metadataRoutes } = options;
-	const { opts, searchParams, isRscRequest, mountedSlotsHeader, renderMode = APP_RSC_RENDER_MODE_NAVIGATION } = pageRequest;
-	const pageModule = route.page;
-	const PageComponent = pageModule?.default;
-	if (!!pageModule && !PageComponent) {
-		const interceptionContext = opts?.interceptionContext ?? null;
-		const noExportRouteId = AppElementsWire.encodeRouteId(routePath, interceptionContext);
-		let noExportRootLayout = null;
-		const noExportLayoutIds = route.ids?.layouts ?? route.layouts.map((_, index) => AppElementsWire.encodeLayoutId(createAppPageTreePath(route.routeSegments, route.layoutTreePositions?.[index] ?? 0)));
-		if (route.layouts?.length > 0) {
-			const treePosition = route.layoutTreePositions?.[0] ?? 0;
-			noExportRootLayout = createAppPageTreePath(route.routeSegments, treePosition);
-		}
-		return {
-			...AppElementsWire.createMetadataEntries({
-				interceptionContext,
-				layoutIds: noExportLayoutIds,
-				rootLayoutTreePath: noExportRootLayout,
-				routeId: noExportRouteId
-			}),
-			[noExportRouteId]: (0, import_react_react_server.createElement)("div", null, "Page has no default export")
-		};
-	}
-	const { hasSearchParams, metadata: resolvedMetadata, pageSearchParams, viewport: resolvedViewport } = await resolveAppPageHead({
-		layoutModules: route.layouts,
-		layoutTreePositions: route.layoutTreePositions,
-		metadataRoutes,
-		pageModule: route.page ?? null,
-		parallelRoutes: resolveActiveParallelRouteHeadInputs({
-			interceptLayouts: opts?.interceptLayouts ?? null,
-			interceptPage: opts?.interceptPage ?? null,
-			interceptParams: opts?.interceptParams ?? null,
-			interceptSlotKey: opts?.interceptSlotKey ?? null,
-			params,
-			routeSegments: route.routeSegments ?? [],
-			slots: route.slots ?? null
-		}),
-		params,
-		routePath: route.pattern,
-		routeSegments: route.routeSegments ?? null,
-		searchParams
-	});
-	const pageProps = { params: makeThenableParams(params) };
-	if (searchParams) {
-		pageProps.searchParams = makeThenableParams(pageSearchParams);
-		if (hasSearchParams) markDynamicUsage();
-	}
-	const mountedSlotIds = mountedSlotsHeader ? new Set(mountedSlotsHeader.split(" ")) : null;
-	const slotOverrides = buildSlotOverrides(route, params, routePath, opts);
-	return buildAppPageElements({
-		element: PageComponent ? (0, import_react_react_server.createElement)(PageComponent, pageProps) : null,
-		globalErrorModule: globalErrorModule ?? null,
-		isRscRequest,
-		mountedSlotIds,
-		makeThenableParams,
-		matchedParams: params,
-		resolvedMetadata,
-		resolvedViewport,
-		interceptionContext: opts?.interceptionContext ?? null,
-		routePath,
-		rootNotFoundModule: rootNotFoundModule ?? null,
-		rootForbiddenModule: rootForbiddenModule ?? null,
-		rootUnauthorizedModule: rootUnauthorizedModule ?? null,
-		route,
-		slotOverrides,
-		renderMode
-	});
-}
-/**
-* Build the per-request `slotOverrides` map. Combines:
-*  - Interception overrides (existing behavior â€” swap in the intercepting page
-*    and its layouts when the request is intercepted into this slot).
-*  - Slot-specific param extraction for inherited slots whose URL pattern
-*    has different param names than the route's. The runtime matches the
-*    cleaned request path against `slot.slotPatternParts` to produce
-*    slot-scoped params, which `app-page-route-wiring` then hands to the
-*    slot page instead of the route's matched params.
-*
-* `routePath` is the already-normalized request pathname (basePath stripped,
-* RSC suffix removed). Re-parsing `request.url` here would re-introduce the
-* basePath and silently break the match for any app that configures one.
-*/
-function buildSlotOverrides(route, routeParams, routePath, opts) {
-	const overrides = {};
-	if (opts && opts.interceptSlotKey && opts.interceptPage) overrides[opts.interceptSlotKey] = {
-		layoutModules: opts.interceptLayouts || null,
-		pageModule: opts.interceptPage,
-		params: opts.interceptParams || routeParams
-	};
-	const slots = route.slots;
-	if (slots) {
-		let urlParts = null;
-		const routeParamSet = collectParamNameSet(route.params);
-		for (const [slotKey, slot] of Object.entries(slots)) {
-			const patternParts = slot.slotPatternParts;
-			const paramNames = slot.slotParamNames;
-			if (!patternParts || patternParts.length === 0) continue;
-			if (paramNames && paramNames.every((name) => routeParamSet.has(name))) continue;
-			if (urlParts === null) urlParts = routePath.split("/").filter(Boolean);
-			const matched = matchRoutePattern(urlParts, patternParts);
-			if (!matched) continue;
-			const existing = overrides[slotKey];
-			overrides[slotKey] = existing ? {
-				...existing,
-				params: matched
-			} : { params: matched };
-		}
-	}
-	return Object.keys(overrides).length > 0 ? overrides : null;
-}
-function collectParamNameSet(params) {
-	const set = /* @__PURE__ */ new Set();
-	if (params) for (const name of params) set.add(name);
-	return set;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/isr-cache.js
-/**
-* ISR (Incremental Static Regeneration) cache layer.
-*
-* Wraps the pluggable CacheHandler with stale-while-revalidate semantics:
-* - Fresh hit: serve immediately
-* - Stale hit: serve immediately + trigger background regeneration
-* - Miss: render synchronously, cache, serve
-*
-* Background regeneration is deduped â€” only one regeneration per cache key
-* runs at a time, preventing thundering herd on popular pages.
-*
-* This layer works with any CacheHandler backend (memory, Redis, KV, etc.)
-* because it only uses the standard get/set interface.
-*/
-/**
-* Get a cache entry with staleness information.
-*
-* Returns { value, isStale: false } for fresh entries,
-* { value, isStale: true } for expired-but-usable entries,
-* or null for cache misses.
-*/
-async function isrGet(key) {
-	const result = await getCacheHandler().get(key);
-	if (!result || !result.value) return null;
-	if (result.cacheState === "expired") return null;
-	return {
-		value: result,
-		isStale: result.cacheState === "stale"
-	};
-}
-/**
-* Store a value in the ISR cache with a revalidation period.
-*/
-async function isrSet(key, data, revalidateSeconds, tags, expireSeconds) {
-	await getCacheHandler().set(key, data, {
-		cacheControl: expireSeconds === void 0 ? { revalidate: revalidateSeconds } : {
-			revalidate: revalidateSeconds,
-			expire: expireSeconds
-		},
-		revalidate: revalidateSeconds,
-		tags: tags ?? []
-	});
-}
-var _PENDING_REGEN_KEY = Symbol.for("vinext.isrCache.pendingRegenerations");
-var _g$1 = globalThis;
-var pendingRegenerations = _g$1[_PENDING_REGEN_KEY] ??= /* @__PURE__ */ new Map();
-/**
-* Trigger a background regeneration for a cache key.
-*
-* If a regeneration for this key is already in progress, this is a no-op.
-* The renderFn should produce the new cache value and call isrSet internally.
-*
-* On Cloudflare Workers the regeneration promise is registered with
-* `ctx.waitUntil()` via the ALS-backed ExecutionContext, keeping the isolate
-* alive until the regeneration completes even after the Response is returned.
-*
-* When `errorContext` is provided and the render function fails, the error
-* is reported via `reportRequestError` (instrumentation hook) with
-* `revalidateReason: "stale"`.
-*/
-function triggerBackgroundRegeneration(key, renderFn, errorContext) {
-	if (pendingRegenerations.has(key)) return;
-	const promise = renderFn().catch((err) => {
-		console.error(`[vinext] ISR background regeneration failed for ${key}:`, err);
-		if (errorContext) reportRequestError(err instanceof Error ? err : new Error(String(err)), {
-			path: key,
-			method: "GET",
-			headers: {}
-		}, {
-			routerKind: errorContext.routerKind,
-			routePath: errorContext.routePath,
-			routeType: errorContext.routeType,
-			revalidateReason: "stale"
-		});
-	}).finally(() => {
-		pendingRegenerations.delete(key);
-	});
-	pendingRegenerations.set(key, promise);
-	getRequestExecutionContext()?.waitUntil(promise);
-}
-/**
-* Build a CachedAppPageValue for the App Router ISR cache.
-*/
-function buildAppPageCacheValue(html, rscData, status) {
-	return {
-		kind: "APP_PAGE",
-		html,
-		rscData,
-		headers: void 0,
-		postponed: void 0,
-		status
-	};
-}
-function normalizeCachePathname(pathname) {
-	return pathname === "/" ? "/" : pathname.replace(/\/$/, "");
-}
-function buildCacheKey(prefix, pathname, suffix) {
-	const normalized = normalizeCachePathname(pathname);
-	const suffixPart = suffix ? `:${suffix}` : "";
-	const key = `${prefix}:${normalized}${suffixPart}`;
-	if (key.length <= 200) return key;
-	return `${prefix}:__hash:${fnv1a64(normalized)}${suffixPart}`;
-}
-/**
-* Compute an App Router ISR key for one cache artifact.
-*
-* App pages store HTML, RSC payloads, and route-handler responses separately.
-* The suffix mirrors Next.js's separate on-disk app artifacts while keeping the
-* Cloudflare KV key under its 512-byte limit for long pathnames.
-*/
-function appIsrCacheKey(pathname, suffix, buildId = "a63bbe8b-635e-40ca-814a-9b66d0a57be5") {
-	return buildCacheKey(buildId ? `app:${buildId}` : "app", pathname, suffix);
-}
-function appIsrHtmlKey(pathname) {
-	return appIsrCacheKey(pathname, "html");
-}
-/**
-* Build the ISR cache key for an RSC payload.
-*
-* Note: the key format changed from `rsc:<hash>` to `rsc:slots:<hash>` (and
-* optionally `rsc:slots:<hash>:preserve-ui`). Existing cached entries under
-* the old format will become unreachable after deployment. This is acceptable
-* because ISR entries have TTLs and will be regenerated on the next request.
-*/
-function appIsrRscKey(pathname, mountedSlotsHeader, renderMode = APP_RSC_RENDER_MODE_NAVIGATION) {
-	const normalizedMountedSlotsHeader = normalizeMountedSlotsHeader(mountedSlotsHeader);
-	const variant = [normalizedMountedSlotsHeader ? `slots:${fnv1a64(normalizedMountedSlotsHeader)}` : null, shouldUsePreserveUiCacheVariant(renderMode) ? "preserve-ui" : null].filter((part) => part !== null).join(":");
-	return appIsrCacheKey(pathname, variant ? `rsc:${variant}` : "rsc");
-}
-function appIsrRouteKey(pathname) {
-	return appIsrCacheKey(pathname, "route");
-}
-var _REVALIDATE_KEY = Symbol.for("vinext.isrCache.revalidateDurations");
-_g$1[_REVALIDATE_KEY] ??= /* @__PURE__ */ new Map();
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-cache.js
-var NO_STORE_CACHE_CONTROL = "no-store, must-revalidate";
-function buildAppPageCacheControl(cacheState, revalidateSeconds, expireSeconds) {
-	return buildCachedRevalidateCacheControl(cacheState, revalidateSeconds, expireSeconds);
-}
-function buildAppPageCachedHeaders(options) {
-	const headers = new Headers({
-		"Cache-Control": options.cacheControl,
-		"Content-Type": options.contentType,
-		Vary: VINEXT_RSC_VARY_HEADER,
-		[VINEXT_CACHE_HEADER]: options.cacheState
-	});
-	if (options.mountedSlotsHeader) headers.set(VINEXT_MOUNTED_SLOTS_HEADER, options.mountedSlotsHeader);
-	mergeMiddlewareResponseHeaders(headers, options.middlewareHeaders ?? null);
-	return headers;
-}
-function getCachedAppPageValue(entry) {
-	return entry?.value.value && entry.value.value.kind === "APP_PAGE" ? entry.value.value : null;
-}
-function resolveAppPageCacheWritePolicy(options) {
-	let revalidateSeconds = options.revalidateSeconds;
-	let expireSeconds = options.expireSeconds;
-	const requestCacheLife = options.requestCacheLife;
-	if (requestCacheLife?.revalidate !== void 0) revalidateSeconds = revalidateSeconds === null ? requestCacheLife.revalidate : Math.min(revalidateSeconds, requestCacheLife.revalidate);
-	if (requestCacheLife?.expire !== void 0) expireSeconds = requestCacheLife.expire;
-	if (revalidateSeconds === null || revalidateSeconds <= 0 || !Number.isFinite(revalidateSeconds)) return null;
-	return {
-		expireSeconds,
-		revalidateSeconds
-	};
-}
-function buildAppPageCachedResponse(cachedValue, options) {
-	const status = options.middlewareStatus ?? (cachedValue.status || 200);
-	const revalidateSeconds = options.cacheControl?.revalidate ?? options.revalidateSeconds;
-	const expireSeconds = options.cacheControl === void 0 ? void 0 : options.cacheControl.expire ?? options.expireSeconds;
-	const cacheControl = buildAppPageCacheControl(options.cacheState, revalidateSeconds, expireSeconds);
-	if (options.isRscRequest) {
-		if (!cachedValue.rscData) return null;
-		const rscHeaders = buildAppPageCachedHeaders({
-			cacheControl,
-			cacheState: options.cacheState,
-			contentType: "text/x-component; charset=utf-8",
-			middlewareHeaders: options.middlewareHeaders,
-			mountedSlotsHeader: options.mountedSlotsHeader
-		});
-		return new Response(cachedValue.rscData, {
-			status,
-			headers: rscHeaders
-		});
-	}
-	if (typeof cachedValue.html !== "string" || cachedValue.html.length === 0) return null;
-	const htmlHeaders = buildAppPageCachedHeaders({
-		cacheControl,
-		cacheState: options.cacheState,
-		contentType: "text/html; charset=utf-8",
-		middlewareHeaders: options.middlewareHeaders
-	});
-	return new Response(cachedValue.html, {
-		status,
-		headers: htmlHeaders
-	});
-}
-async function readAppPageCacheResponse(options) {
-	const isrKey = options.isRscRequest ? options.isrRscKey(options.cleanPathname, options.mountedSlotsHeader, options.renderMode) : options.isrHtmlKey(options.cleanPathname);
-	try {
-		const cached = await options.isrGet(isrKey);
-		const cachedValue = getCachedAppPageValue(cached);
-		if (cachedValue && !cached?.isStale) {
-			const hitResponse = buildAppPageCachedResponse(cachedValue, {
-				cacheState: "HIT",
-				cacheControl: cached?.value.cacheControl,
-				expireSeconds: options.expireSeconds,
-				isRscRequest: options.isRscRequest,
-				middlewareHeaders: options.middlewareHeaders,
-				middlewareStatus: options.middlewareStatus,
-				mountedSlotsHeader: options.mountedSlotsHeader,
-				revalidateSeconds: options.revalidateSeconds
-			});
-			if (hitResponse) {
-				options.isrDebug?.(options.isRscRequest ? "HIT (RSC)" : "HIT (HTML)", options.cleanPathname);
-				options.clearRequestContext();
-				return hitResponse;
-			}
-			options.isrDebug?.("MISS (empty cached entry)", options.cleanPathname);
-		}
-		if (cached?.isStale && cachedValue) {
-			const regenerationKey = options.isRscRequest ? options.isrRscKey(options.cleanPathname, options.mountedSlotsHeader, options.renderMode) : options.isrHtmlKey(options.cleanPathname);
-			options.scheduleBackgroundRegeneration(regenerationKey, async () => {
-				const revalidatedPage = await options.renderFreshPageForCache();
-				const revalidateSeconds = revalidatedPage.cacheControl?.revalidate ?? options.revalidateSeconds;
-				const expireSeconds = revalidatedPage.cacheControl?.expire ?? options.expireSeconds;
-				const writes = [options.isrSet(options.isrRscKey(options.cleanPathname, options.mountedSlotsHeader, options.renderMode), buildAppPageCacheValue("", revalidatedPage.rscData, 200), revalidateSeconds, revalidatedPage.tags, expireSeconds)];
-				if (!options.isRscRequest) writes.push(options.isrSet(options.isrHtmlKey(options.cleanPathname), buildAppPageCacheValue(revalidatedPage.html, void 0, 200), revalidateSeconds, revalidatedPage.tags, expireSeconds));
-				await Promise.all(writes);
-				options.isrDebug?.("regen complete", options.cleanPathname);
-			});
-			const staleResponse = buildAppPageCachedResponse(cachedValue, {
-				cacheState: "STALE",
-				cacheControl: cached.value.cacheControl,
-				expireSeconds: options.expireSeconds,
-				isRscRequest: options.isRscRequest,
-				middlewareHeaders: options.middlewareHeaders,
-				middlewareStatus: options.middlewareStatus,
-				mountedSlotsHeader: options.mountedSlotsHeader,
-				revalidateSeconds: options.revalidateSeconds
-			});
-			if (staleResponse) {
-				options.isrDebug?.(options.isRscRequest ? "STALE (RSC)" : "STALE (HTML)", options.cleanPathname);
-				options.clearRequestContext();
-				return staleResponse;
-			}
-			options.isrDebug?.("STALE MISS (empty stale entry)", options.cleanPathname);
-		}
-		if (!cached) options.isrDebug?.("MISS (no cache entry)", options.cleanPathname);
-	} catch (isrReadError) {
-		console.error("[vinext] ISR cache read error:", isrReadError);
-	}
-	return null;
-}
-function finalizeAppPageHtmlCacheResponse(response, options) {
-	if (!response.body) return response;
-	const [streamForClient, streamForCache] = response.body.tee();
-	const htmlKey = options.isrHtmlKey(options.cleanPathname);
-	const rscKey = options.isrRscKey(options.cleanPathname, null);
-	const clientHeaders = new Headers(response.headers);
-	if (options.preserveClientResponseHeaders !== true) {
-		clientHeaders.set("Cache-Control", NO_STORE_CACHE_CONTROL);
-		clientHeaders.set(VINEXT_CACHE_HEADER, "MISS");
-	}
-	const cachePromise = (async () => {
-		try {
-			const cachedHtml = await readStreamAsText(streamForCache);
-			if (options.capturedDynamicUsageBeforeContextCleanup?.() === true || options.consumeDynamicUsage()) {
-				options.isrDebug?.("HTML cache write skipped (dynamic usage during render)", htmlKey);
-				return;
-			}
-			const cachePolicy = resolveAppPageCacheWritePolicy({
-				expireSeconds: options.expireSeconds,
-				requestCacheLife: options.getRequestCacheLife?.(),
-				revalidateSeconds: options.revalidateSeconds
-			});
-			if (!cachePolicy) {
-				options.isrDebug?.("HTML cache write skipped (no cache policy)", htmlKey);
-				return;
-			}
-			const pageTags = options.getPageTags();
-			const writes = [options.isrSet(htmlKey, buildAppPageCacheValue(cachedHtml, void 0, 200), cachePolicy.revalidateSeconds, pageTags, cachePolicy.expireSeconds)];
-			if (options.capturedRscDataPromise) writes.push(options.capturedRscDataPromise.then((rscData) => options.isrSet(rscKey, buildAppPageCacheValue("", rscData, 200), cachePolicy.revalidateSeconds, pageTags, cachePolicy.expireSeconds)));
-			await Promise.all(writes);
-			options.isrDebug?.("HTML cache written", htmlKey);
-		} catch (cacheError) {
-			console.error("[vinext] ISR cache write error:", cacheError);
-		}
-	})();
-	options.waitUntil?.(cachePromise);
-	return new Response(streamForClient, {
-		status: response.status,
-		statusText: response.statusText,
-		headers: clientHeaders
-	});
-}
-function finalizeAppPageRscCacheResponse(response, options) {
-	if (!scheduleAppPageRscCacheWrite(options)) return response;
-	if (options.preserveClientResponseHeaders === true) return response;
-	const clientHeaders = new Headers(response.headers);
-	clientHeaders.set("Cache-Control", NO_STORE_CACHE_CONTROL);
-	clientHeaders.set(VINEXT_CACHE_HEADER, "MISS");
-	return new Response(response.body, {
-		status: response.status,
-		statusText: response.statusText,
-		headers: clientHeaders
-	});
-}
-function scheduleAppPageRscCacheWrite(options) {
-	const capturedRscDataPromise = options.capturedRscDataPromise;
-	if (!capturedRscDataPromise || options.dynamicUsedDuringBuild) return false;
-	const rscKey = options.isrRscKey(options.cleanPathname, options.mountedSlotsHeader, options.renderMode);
-	const cachePromise = (async () => {
-		try {
-			const rscData = await capturedRscDataPromise;
-			if (options.consumeDynamicUsage()) {
-				options.isrDebug?.("RSC cache write skipped (dynamic usage during render)", rscKey);
-				return;
-			}
-			const cachePolicy = resolveAppPageCacheWritePolicy({
-				expireSeconds: options.expireSeconds,
-				requestCacheLife: options.getRequestCacheLife?.(),
-				revalidateSeconds: options.revalidateSeconds
-			});
-			if (!cachePolicy) {
-				options.isrDebug?.("RSC cache write skipped (no cache policy)", rscKey);
-				return;
-			}
-			await options.isrSet(rscKey, buildAppPageCacheValue("", rscData, 200), cachePolicy.revalidateSeconds, options.getPageTags(), cachePolicy.expireSeconds);
-			options.isrDebug?.("RSC cache written", rscKey);
-		} catch (cacheError) {
-			console.error("[vinext] ISR RSC cache write error:", cacheError);
-		}
-	})();
-	options.waitUntil?.(cachePromise);
-	return true;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-method.js
-function isNonGetOrHead(method) {
-	const normalizedMethod = method.toUpperCase();
-	return normalizedMethod !== "GET" && normalizedMethod !== "HEAD";
-}
-function isStaticOrSsgAppPageCandidate(options) {
-	if (options.dynamicConfig === "force-dynamic" || options.revalidateSeconds === 0) return false;
-	if (options.dynamicConfig === "force-static" || options.dynamicConfig === "error") return true;
-	if (options.revalidateSeconds !== null && options.revalidateSeconds > 0) return true;
-	if (options.hasGenerateStaticParams) return true;
-	return !options.isDynamicRoute;
-}
-function resolveAppPageMethodResponse(options) {
-	if (!isNonGetOrHead(options.request.method)) return null;
-	if (isPossibleAppRouteActionRequest(options.request)) return null;
-	if (!isStaticOrSsgAppPageCandidate(options)) return null;
-	const headers = new Headers();
-	mergeMiddlewareResponseHeaders(headers, options.middlewareHeaders ?? null);
-	return methodNotAllowedResponse("GET, HEAD", { headers });
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-probe.js
-async function probeAppPageBeforeRender(options) {
-	let layoutFlags = {};
-	if (options.layoutCount > 0) {
-		const layoutProbeResult = await probeAppPageLayouts({
-			layoutCount: options.layoutCount,
-			async onLayoutError(layoutError, layoutIndex) {
-				const specialError = options.resolveSpecialError(layoutError);
-				if (!specialError) return null;
-				return options.renderLayoutSpecialError(specialError, layoutIndex);
-			},
-			probeLayoutAt: options.probeLayoutAt,
-			runWithSuppressedHookWarning(probe) {
-				return options.runWithSuppressedHookWarning(probe);
-			},
-			classification: options.classification
-		});
-		layoutFlags = layoutProbeResult.layoutFlags;
-		if (layoutProbeResult.response) return {
-			response: layoutProbeResult.response,
-			layoutFlags
-		};
-	}
-	if (options.hasLoadingBoundary) return {
-		response: null,
-		layoutFlags
-	};
-	return {
-		response: await probeAppPageComponent({
-			awaitAsyncResult: true,
-			async onError(pageError) {
-				const specialError = options.resolveSpecialError(pageError);
-				if (specialError) return options.renderPageSpecialError(specialError);
-				return null;
-			},
-			probePage: options.probePage,
-			runWithSuppressedHookWarning(probe) {
-				return options.runWithSuppressedHookWarning(probe);
-			}
-		}),
-		layoutFlags
-	};
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-render.js
-function buildResponseTiming(options) {
-	if (options.isProduction) return;
-	return {
-		compileEnd: options.compileEnd,
-		handlerStart: options.handlerStart,
-		renderEnd: options.renderEnd,
-		responseKind: options.responseKind
-	};
-}
-function readRequestCacheLifeForPrerender(options) {
-	return options.peekRequestCacheLife?.() ?? options.getRequestCacheLife();
-}
-function applyRequestCacheLife(options) {
-	let revalidateSeconds = options.revalidateSeconds;
-	let expireSeconds = options.expireSeconds;
-	const requestCacheLife = options.requestCacheLife;
-	if (requestCacheLife?.revalidate !== void 0) revalidateSeconds = revalidateSeconds === null ? requestCacheLife.revalidate : Math.min(revalidateSeconds, requestCacheLife.revalidate);
-	if (requestCacheLife?.expire !== void 0) expireSeconds = requestCacheLife.expire;
-	return {
-		expireSeconds,
-		revalidateSeconds
-	};
-}
-function readRootBoundaryId(element) {
-	const rootLayoutTreePath = element[AppElementsWire.keys.rootLayout];
-	return typeof rootLayoutTreePath === "string" ? rootLayoutTreePath : null;
-}
-function createAppPageArtifactCompatibility(element, routePattern) {
-	if (!isAppElementsRecord(element)) return;
-	const rootBoundaryId = readRootBoundaryId(element);
-	return createArtifactCompatibilityEnvelope({
-		graphVersion: createArtifactCompatibilityGraphVersion({
-			routePattern,
-			rootBoundaryId
-		}),
-		deploymentVersion: "a63bbe8b-635e-40ca-814a-9b66d0a57be5",
-		rootBoundaryId
-	});
-}
-/**
-* Wraps an RSC response body to report invalid dynamic usage errors after the
-* stream is fully consumed. In dev mode, errors from cookies()/headers() inside
-* "use cache" may be caught by user try/catch and silently swallowed â€” this
-* wrapper waits for the stream to drain and surfaces any recorded error to the
-* terminal (and, via HMR, the browser dev overlay).
-* Ported from Next.js: https://github.com/vercel/next.js/commit/f5e54c06726b571a042fce67417e40a29f6b8689
-*/
-function wrapRscResponseForDevErrorReporting(response, consumeInvalidDynamicUsageError) {
-	const originalBody = response.body;
-	if (!originalBody) return response;
-	let consumed = false;
-	const onConsumed = () => {
-		if (consumed) return;
-		consumed = true;
-		const error = consumeInvalidDynamicUsageError();
-		if (error) console.error("[vinext] Invalid dynamic usage:", error);
-	};
-	const cleanup = new TransformStream({ flush() {
-		onConsumed();
-	} });
-	const reader = originalBody.pipeThrough(cleanup).getReader();
-	const wrappedStream = new ReadableStream({
-		pull(controller) {
-			return reader.read().then(({ done, value }) => {
-				if (done) controller.close();
-				else controller.enqueue(value);
-			}, (streamError) => {
-				onConsumed();
-				controller.error(streamError);
-			});
-		},
-		cancel(reason) {
-			onConsumed();
-			return reader.cancel(reason);
-		}
-	});
-	return new Response(wrappedStream, {
-		status: response.status,
-		statusText: response.statusText,
-		headers: response.headers
-	});
-}
-async function renderAppPageLifecycle(options) {
-	const preRenderResult = await probeAppPageBeforeRender({
-		hasLoadingBoundary: options.hasLoadingBoundary,
-		layoutCount: options.layoutCount,
-		probeLayoutAt(layoutIndex) {
-			return options.probeLayoutAt(layoutIndex);
-		},
-		probePage() {
-			return options.probePage();
-		},
-		renderLayoutSpecialError(specialError, layoutIndex) {
-			return options.renderLayoutSpecialError(specialError, layoutIndex);
-		},
-		renderPageSpecialError(specialError) {
-			return options.renderPageSpecialError(specialError);
-		},
-		resolveSpecialError: resolveAppPageSpecialError,
-		runWithSuppressedHookWarning(probe) {
-			return options.runWithSuppressedHookWarning(probe);
-		},
-		classification: options.classification
-	});
-	if (preRenderResult.response) return preRenderResult.response;
-	const layoutFlags = preRenderResult.layoutFlags;
-	const artifactCompatibility = createAppPageArtifactCompatibility(options.element, options.routePattern);
-	const outgoingElement = AppElementsWire.encodeOutgoingPayload({
-		element: options.element,
-		layoutFlags,
-		...artifactCompatibility ? { artifactCompatibility } : {}
-	});
-	const compileEnd = options.isProduction ? void 0 : performance.now();
-	const rscErrorTracker = createAppPageRscErrorTracker(options.createRscOnErrorHandler(options.cleanPathname, options.routePattern));
-	const rscStream = runWithFetchDedupe(() => options.renderToReadableStream(outgoingElement, { onError: rscErrorTracker.onRenderError }));
-	let revalidateSeconds = options.revalidateSeconds;
-	let expireSeconds = options.expireSeconds;
-	const shouldCaptureRscForCacheMetadata = options.isProgressiveActionRender !== true && (options.isProduction || options.isPrerender === true) && (revalidateSeconds === null || revalidateSeconds > 0 && revalidateSeconds !== Infinity) && !options.isDraftMode && !options.isForceDynamic;
-	const rscCapture = teeAppPageRscStreamForCapture(rscStream, shouldCaptureRscForCacheMetadata);
-	const rscForResponse = rscCapture.ssrStream;
-	const capturedRscDataRef = { value: null };
-	if (rscCapture.sideStream && options.isRscRequest) capturedRscDataRef.value = readAppPageBinaryStream(rscCapture.sideStream);
-	if (options.isRscRequest) {
-		if (options.isPrerender === true) {
-			await settleCapturedRscRenderForCacheMetadata(capturedRscDataRef.value);
-			({expireSeconds, revalidateSeconds} = applyRequestCacheLife({
-				expireSeconds,
-				requestCacheLife: readRequestCacheLifeForPrerender(options),
-				revalidateSeconds
-			}));
-		}
-		const dynamicUsedDuringBuild = options.consumeDynamicUsage();
-		const rscResponsePolicy = resolveAppPageRscResponsePolicy({
-			dynamicUsedDuringBuild,
-			isDraftMode: options.isDraftMode,
-			isDynamicError: options.isDynamicError,
-			isForceDynamic: options.isForceDynamic,
-			isForceStatic: options.isForceStatic,
-			isProduction: options.isProduction,
-			expireSeconds,
-			revalidateSeconds
-		});
-		const rscResponse = buildAppPageRscResponse(rscForResponse, {
-			middlewareContext: options.middlewareContext,
-			mountedSlotsHeader: options.mountedSlotsHeader,
-			params: options.params,
-			policy: rscResponsePolicy,
-			timing: buildResponseTiming({
-				compileEnd,
-				handlerStart: options.handlerStart,
-				isProduction: options.isProduction,
-				responseKind: "rsc"
-			})
-		});
-		return finalizeAppPageRscCacheResponse(!options.isProduction && rscResponse.body && options.consumeInvalidDynamicUsageError ? wrapRscResponseForDevErrorReporting(rscResponse, options.consumeInvalidDynamicUsageError) : rscResponse, {
-			capturedRscDataPromise: options.isProduction && shouldCaptureRscForCacheMetadata ? capturedRscDataRef.value : null,
-			cleanPathname: options.cleanPathname,
-			consumeDynamicUsage: options.consumeDynamicUsage,
-			dynamicUsedDuringBuild,
-			getPageTags() {
-				return options.getPageTags();
-			},
-			getRequestCacheLife() {
-				return options.getRequestCacheLife();
-			},
-			isrDebug: options.isrDebug,
-			isrRscKey: options.isrRscKey,
-			isrSet: options.isrSet,
-			mountedSlotsHeader: options.mountedSlotsHeader,
-			renderMode: options.renderMode,
-			preserveClientResponseHeaders: rscResponsePolicy.cacheState !== "MISS",
-			expireSeconds,
-			revalidateSeconds,
-			waitUntil(promise) {
-				options.waitUntil?.(promise);
-			}
-		});
-	}
-	const fontData = createAppPageFontData({
-		getLinks: options.getFontLinks,
-		getPreloads: options.getFontPreloads,
-		getStyles: options.getFontStyles
-	});
-	const fontLinkHeader = buildAppPageFontLinkHeader(fontData.preloads);
-	let renderEnd;
-	const htmlRender = await renderAppPageHtmlStreamWithRecovery({
-		onShellRendered() {
-			if (!options.isProduction) renderEnd = performance.now();
-		},
-		renderErrorBoundaryResponse(error) {
-			return options.renderErrorBoundaryResponse(error);
-		},
-		async renderHtmlStream() {
-			const ssrHandler = await options.loadSsrHandler();
-			return renderAppPageHtmlStream({
-				capturedRscDataRef,
-				fontData,
-				navigationContext: options.getNavigationContext(),
-				formState: options.formState ?? null,
-				rscStream: rscForResponse,
-				scriptNonce: options.scriptNonce,
-				sideStream: rscCapture.sideStream,
-				ssrHandler,
-				waitForAllReady: options.isPrerender
-			});
-		},
-		renderSpecialErrorResponse(specialError) {
-			return options.renderPageSpecialError(specialError);
-		},
-		resolveSpecialError: resolveAppPageSpecialError
-	});
-	if (htmlRender.response) return htmlRender.response;
-	const htmlStream = htmlRender.htmlStream;
-	if (!htmlStream) throw new Error("[vinext] Expected an HTML stream when no fallback response was returned");
-	if (options.hasLoadingBoundary) {
-		const captured = rscErrorTracker.getCapturedSpecialError();
-		if (captured) {
-			const specialError = resolveAppPageSpecialError(captured);
-			if (specialError) {
-				htmlStream.cancel().catch(() => {});
-				return options.renderPageSpecialError(specialError);
-			}
-		}
-	}
-	if (shouldRerenderAppPageWithGlobalError({
-		capturedError: rscErrorTracker.getCapturedError(),
-		hasLocalBoundary: options.routeHasLocalBoundary
-	})) {
-		const cleanResponse = await options.renderErrorBoundaryResponse(rscErrorTracker.getCapturedError());
-		if (cleanResponse) return cleanResponse;
-	}
-	if (options.isPrerender === true) {
-		await settleCapturedRscRenderForCacheMetadata(capturedRscDataRef.value);
-		({expireSeconds, revalidateSeconds} = applyRequestCacheLife({
-			expireSeconds,
-			requestCacheLife: readRequestCacheLifeForPrerender(options),
-			revalidateSeconds
-		}));
-	}
-	const draftCookie = options.getDraftModeCookieHeader();
-	const dynamicUsedDuringRender = options.consumeDynamicUsage();
-	let dynamicUsedBeforeContextCleanup = dynamicUsedDuringRender;
-	const safeHtmlStream = deferUntilStreamConsumed(htmlStream, () => {
-		dynamicUsedBeforeContextCleanup = dynamicUsedBeforeContextCleanup || options.consumeDynamicUsage();
-		options.clearRequestContext();
-	});
-	const htmlResponsePolicy = resolveAppPageHtmlResponsePolicy({
-		dynamicUsedDuringRender,
-		isProgressiveActionRender: options.isProgressiveActionRender === true,
-		hasScriptNonce: Boolean(options.scriptNonce),
-		isDraftMode: options.isDraftMode,
-		isDynamicError: options.isDynamicError,
-		isForceDynamic: options.isForceDynamic,
-		isForceStatic: options.isForceStatic,
-		isProduction: options.isProduction,
-		expireSeconds,
-		revalidateSeconds
-	});
-	const htmlResponseTiming = buildResponseTiming({
-		compileEnd,
-		handlerStart: options.handlerStart,
-		isProduction: options.isProduction,
-		renderEnd,
-		responseKind: "html"
-	});
-	const shouldSpeculativelyWriteCache = options.isProduction && shouldCaptureRscForCacheMetadata && revalidateSeconds === null && !options.isDynamicError && !options.isForceStatic && !options.scriptNonce && options.isProgressiveActionRender !== true && !dynamicUsedDuringRender;
-	if (htmlResponsePolicy.shouldWriteToCache || shouldSpeculativelyWriteCache) {
-		const isrResponse = buildAppPageHtmlResponse(safeHtmlStream, {
-			draftCookie,
-			fontLinkHeader,
-			middlewareContext: options.middlewareContext,
-			policy: htmlResponsePolicy,
-			timing: htmlResponseTiming
-		});
-		if (options.isPrerender === true) return isrResponse;
-		return finalizeAppPageHtmlCacheResponse(isrResponse, {
-			capturedDynamicUsageBeforeContextCleanup() {
-				return dynamicUsedBeforeContextCleanup;
-			},
-			capturedRscDataPromise: capturedRscDataRef.value,
-			cleanPathname: options.cleanPathname,
-			consumeDynamicUsage: options.consumeDynamicUsage,
-			getPageTags() {
-				return options.getPageTags();
-			},
-			getRequestCacheLife() {
-				return options.getRequestCacheLife();
-			},
-			isrDebug: options.isrDebug,
-			isrHtmlKey: options.isrHtmlKey,
-			isrRscKey: options.isrRscKey,
-			isrSet: options.isrSet,
-			preserveClientResponseHeaders: !htmlResponsePolicy.shouldWriteToCache,
-			expireSeconds,
-			revalidateSeconds,
-			waitUntil(cachePromise) {
-				options.waitUntil?.(cachePromise);
-			}
-		});
-	}
-	return buildAppPageHtmlResponse(safeHtmlStream, {
-		draftCookie,
-		fontLinkHeader,
-		middlewareContext: options.middlewareContext,
-		policy: htmlResponsePolicy,
-		timing: htmlResponseTiming
-	});
-}
-async function settleCapturedRscRenderForCacheMetadata(capturedRscDataPromise) {
-	if (!capturedRscDataPromise) return;
-	try {
-		await capturedRscDataPromise;
-	} catch {}
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-page-dispatch.js
-function shouldReadAppPageCache(options) {
-	return options.isProduction && !options.isProgressiveActionRender && !options.isDraftMode && !options.isForceDynamic && (options.isRscRequest || !options.scriptNonce) && (options.revalidateSeconds === null || options.revalidateSeconds > 0);
-}
-function buildAppPageTags(cleanPathname, extraTags, routeSegments) {
-	return buildPageCacheTags(cleanPathname, extraTags, [...routeSegments], "page");
-}
-async function runAppPageRevalidationContext(options, renderFn) {
-	return runWithRequestContext(createRequestContext({
-		headersContext: createStaticGenerationHeadersContext({
-			dynamicConfig: options.dynamicConfig,
-			routeKind: "page",
-			routePattern: options.routePattern
-		}),
-		currentFetchCacheMode: options.currentFetchCacheMode ?? null,
-		executionContext: getRequestExecutionContext(),
-		unstableCacheRevalidation: "foreground"
-	}), async () => {
-		ensureFetchPatch();
-		setCurrentFetchSoftTags(buildAppPageTags(options.cleanPathname, [], options.routeSegments));
-		options.setNavigationContext({
-			pathname: options.cleanPathname,
-			searchParams: new URLSearchParams(),
-			params: options.params
-		});
-		return await runWithFetchDedupe(renderFn);
-	});
-}
-function getCapturedRscDataPromise(capturedRscDataPromise) {
-	if (!capturedRscDataPromise) throw new Error("[vinext] Expected captured RSC data while regenerating an app page cache entry");
-	return capturedRscDataPromise;
-}
-function toInterceptOptions(interceptionContext, intercept) {
-	return {
-		interceptionContext,
-		interceptLayouts: intercept.interceptLayouts,
-		interceptPage: intercept.page,
-		interceptParams: intercept.matchedParams,
-		interceptSlotKey: intercept.slotKey
-	};
-}
-async function dispatchAppPage(options) {
-	return await runWithFetchDedupe(() => dispatchAppPageInner(options));
-}
-async function dispatchAppPageInner(options) {
-	const route = options.route;
-	const dynamicConfig = options.dynamicConfig;
-	const currentRevalidateSeconds = options.revalidateSeconds;
-	const isForceStatic = dynamicConfig === "force-static";
-	const isDynamicError = dynamicConfig === "error";
-	const isForceDynamic = dynamicConfig === "force-dynamic";
-	const isDraftMode = isDraftModeRequest(options.request);
-	setCurrentFetchSoftTags(buildAppPageTags(options.cleanPathname, [], route.routeSegments));
-	setCurrentFetchCacheMode(options.fetchCache ?? null);
-	if (options.hasPageModule && !options.hasPageDefaultExport) {
-		options.clearRequestContext();
-		return new Response("Page has no default export", { status: 500 });
-	}
-	const methodResponse = resolveAppPageMethodResponse({
-		dynamicConfig,
-		hasGenerateStaticParams: options.hasGenerateStaticParams,
-		isDynamicRoute: route.isDynamic,
-		middlewareHeaders: options.middlewareContext.headers,
-		request: options.request,
-		revalidateSeconds: currentRevalidateSeconds
-	});
-	if (methodResponse) {
-		options.clearRequestContext();
-		return methodResponse;
-	}
-	if ((isForceStatic || isDynamicError) && !isDraftMode) {
-		setHeadersContext(createStaticGenerationHeadersContext({
-			dynamicConfig,
-			routeKind: "page",
-			routePattern: route.pattern
-		}));
-		options.setNavigationContext({
-			pathname: options.cleanPathname,
-			searchParams: new URLSearchParams(),
-			params: options.params
-		});
-	}
-	if (shouldReadAppPageCache({
-		isDraftMode,
-		isForceDynamic,
-		isProgressiveActionRender: options.isProgressiveActionRender === true,
-		isProduction: options.isProduction,
-		isRscRequest: options.isRscRequest,
-		revalidateSeconds: currentRevalidateSeconds,
-		scriptNonce: options.scriptNonce
-	})) {
-		const cachedPageResponse = await readAppPageCacheResponse({
-			cleanPathname: options.cleanPathname,
-			clearRequestContext: options.clearRequestContext,
-			isRscRequest: options.isRscRequest,
-			isrDebug: options.isrDebug,
-			isrGet: options.isrGet,
-			isrHtmlKey: options.isrHtmlKey,
-			isrRscKey: options.isrRscKey,
-			isrSet: options.isrSet,
-			middlewareHeaders: options.middlewareContext.headers,
-			middlewareStatus: options.middlewareContext.status,
-			mountedSlotsHeader: options.mountedSlotsHeader,
-			renderMode: options.renderMode,
-			expireSeconds: options.expireSeconds,
-			revalidateSeconds: currentRevalidateSeconds ?? 0,
-			renderFreshPageForCache: async () => runAppPageRevalidationContext({
-				cleanPathname: options.cleanPathname,
-				currentFetchCacheMode: options.fetchCache ?? null,
-				dynamicConfig,
-				params: options.params,
-				routePattern: route.pattern,
-				routeSegments: route.routeSegments,
-				setNavigationContext: options.setNavigationContext
-			}, async () => {
-				const revalidatedElement = await options.buildPageElement(route, options.params, void 0, new URLSearchParams());
-				const revalidatedOnError = options.createRscOnErrorHandler(options.cleanPathname, route.pattern);
-				const revalidatedRscCapture = teeAppPageRscStreamForCapture(options.renderToReadableStream(revalidatedElement, { onError: revalidatedOnError }), true);
-				const revalidatedSsrEntry = await options.loadSsrHandler();
-				const revalidatedCapturedRscRef = { value: null };
-				const html = await readStreamAsText(await revalidatedSsrEntry.handleSsr(revalidatedRscCapture.ssrStream, options.getNavigationContext(), {
-					links: options.getFontLinks(),
-					styles: options.getFontStyles(),
-					preloads: options.getFontPreloads()
-				}, revalidatedRscCapture.sideStream ? {
-					sideStream: revalidatedRscCapture.sideStream,
-					capturedRscDataRef: revalidatedCapturedRscRef
-				} : void 0));
-				const rscData = await getCapturedRscDataPromise(revalidatedCapturedRscRef.value);
-				const cacheLife = _consumeRequestScopedCacheLife();
-				options.clearRequestContext();
-				return {
-					html,
-					rscData,
-					tags: buildAppPageTags(options.cleanPathname, getCollectedFetchTags(), route.routeSegments),
-					cacheControl: typeof cacheLife?.revalidate === "number" ? {
-						revalidate: cacheLife.revalidate,
-						expire: cacheLife.expire
-					} : void 0
-				};
-			}),
-			scheduleBackgroundRegeneration(key, renderFn) {
-				options.scheduleBackgroundRegeneration(key, renderFn, {
-					routerKind: "App Router",
-					routePath: route.pattern,
-					routeType: "render"
-				});
-			}
-		});
-		if (cachedPageResponse) return cachedPageResponse;
-	}
-	const dynamicParamsResponse = await validateAppPageDynamicParams({
-		clearRequestContext: options.clearRequestContext,
-		enforceStaticParamsOnly: options.dynamicParamsConfig === false,
-		generateStaticParams: options.generateStaticParams,
-		isDynamicRoute: route.isDynamic,
-		params: options.params
-	});
-	if (dynamicParamsResponse) return dynamicParamsResponse;
-	const interceptResult = await resolveAppPageIntercept({
-		buildPageElement(interceptRoute, interceptParams, interceptOpts, interceptSearchParams) {
-			setCurrentFetchCacheMode(options.resolveRouteFetchCacheMode?.(interceptRoute) ?? null);
-			return options.buildPageElement(interceptRoute, interceptParams, interceptOpts, interceptSearchParams);
-		},
-		cleanPathname: options.cleanPathname,
-		currentRoute: route,
-		findIntercept(pathname) {
-			return options.findIntercept(pathname);
-		},
-		getRouteParamNames(sourceRoute) {
-			return sourceRoute.params;
-		},
-		getSourceRoute(sourceRouteIndex) {
-			return options.getSourceRoute(sourceRouteIndex);
-		},
-		isRscRequest: options.isRscRequest,
-		renderInterceptResponse(sourceRoute, interceptElement) {
-			const interceptOnError = options.createRscOnErrorHandler(options.cleanPathname, sourceRoute.pattern);
-			const interceptStream = options.renderToReadableStream(interceptElement, { onError: interceptOnError });
-			const interceptHeaders = new Headers({
-				"Content-Type": "text/x-component; charset=utf-8",
-				Vary: VINEXT_RSC_VARY_HEADER
-			});
-			mergeMiddlewareResponseHeaders(interceptHeaders, options.middlewareContext.headers);
-			return new Response(interceptStream, {
-				status: options.middlewareContext.status ?? 200,
-				headers: interceptHeaders
-			});
-		},
-		searchParams: options.searchParams,
-		setNavigationContext: options.setNavigationContext,
-		toInterceptOpts(intercept) {
-			return toInterceptOptions(options.interceptionContext, intercept);
-		}
-	});
-	if (interceptResult.response) return interceptResult.response;
-	const pageBuildResult = await buildAppPageElement({
-		buildPageElement() {
-			return options.buildPageElement(route, options.params, interceptResult.interceptOpts, options.searchParams);
-		},
-		renderErrorBoundaryPage(buildError) {
-			return options.renderErrorBoundaryPage(buildError);
-		},
-		renderSpecialError(specialError) {
-			return renderPageSpecialError(options, specialError);
-		},
-		resolveSpecialError: resolveAppPageSpecialError
-	});
-	if (pageBuildResult.response) return pageBuildResult.response;
-	return renderAppPageLifecycle({
-		cleanPathname: options.cleanPathname,
-		clearRequestContext: options.clearRequestContext,
-		consumeDynamicUsage,
-		consumeInvalidDynamicUsageError,
-		createRscOnErrorHandler(pathname, routePath) {
-			return options.createRscOnErrorHandler(pathname, routePath);
-		},
-		element: pageBuildResult.element,
-		getDraftModeCookieHeader,
-		getFontLinks: options.getFontLinks,
-		getFontPreloads: options.getFontPreloads,
-		getFontStyles: options.getFontStyles,
-		getNavigationContext: options.getNavigationContext,
-		getPageTags() {
-			return buildAppPageTags(options.cleanPathname, getCollectedFetchTags(), route.routeSegments);
-		},
-		getRequestCacheLife() {
-			return _consumeRequestScopedCacheLife();
-		},
-		peekRequestCacheLife() {
-			return _peekRequestScopedCacheLife();
-		},
-		handlerStart: options.handlerStart,
-		hasLoadingBoundary: shouldSuppressLoadingBoundaries(options.renderMode ?? "navigation") ? false : Boolean(route.loading?.default),
-		formState: options.formState ?? null,
-		isProgressiveActionRender: options.isProgressiveActionRender === true,
-		isDynamicError,
-		isDraftMode,
-		isForceDynamic,
-		isForceStatic,
-		isPrerender: process.env.VINEXT_PRERENDER === "1",
-		isProduction: options.isProduction,
-		isRscRequest: options.isRscRequest,
-		isrDebug: options.isrDebug,
-		isrHtmlKey: options.isrHtmlKey,
-		isrRscKey: options.isrRscKey,
-		isrSet: options.isrSet,
-		expireSeconds: options.expireSeconds,
-		layoutCount: route.layouts.length,
-		loadSsrHandler: options.loadSsrHandler,
-		middlewareContext: options.middlewareContext,
-		params: options.params,
-		probeLayoutAt(layoutIndex) {
-			return options.probeLayoutAt(layoutIndex);
-		},
-		probePage() {
-			return options.probePage();
-		},
-		classification: {
-			getLayoutId(index) {
-				const treePosition = route.layoutTreePositions?.[index] ?? 0;
-				return AppElementsWire.encodeLayoutId(createAppPageTreePath([...route.routeSegments], treePosition));
-			},
-			buildTimeClassifications: route.__buildTimeClassifications,
-			buildTimeReasons: route.__buildTimeReasons,
-			debugClassification: options.debugClassification,
-			async runWithIsolatedDynamicScope(fn) {
-				const priorDynamic = consumeDynamicUsage();
-				try {
-					return {
-						result: await fn(),
-						dynamicDetected: consumeDynamicUsage()
-					};
-				} finally {
-					consumeDynamicUsage();
-					if (priorDynamic) markDynamicUsage();
-				}
-			}
-		},
-		revalidateSeconds: currentRevalidateSeconds,
-		mountedSlotsHeader: options.mountedSlotsHeader,
-		renderMode: options.renderMode ?? "navigation",
-		renderErrorBoundaryResponse(renderError) {
-			return options.renderErrorBoundaryPage(renderError);
-		},
-		renderLayoutSpecialError(specialError, layoutIndex) {
-			return renderLayoutSpecialError(options, specialError, layoutIndex);
-		},
-		renderPageSpecialError(specialError) {
-			return renderPageSpecialError(options, specialError);
-		},
-		renderToReadableStream: options.renderToReadableStream,
-		routeHasLocalBoundary: Boolean(route.error?.default || route.errors?.some((errorModule) => errorModule?.default)),
-		routePattern: route.pattern,
-		runWithSuppressedHookWarning(probe) {
-			return options.runWithSuppressedHookWarning(probe);
-		},
-		scriptNonce: options.scriptNonce,
-		waitUntil(cachePromise) {
-			getRequestExecutionContext()?.waitUntil(cachePromise);
-		}
-	});
-}
-async function renderLayoutSpecialError(options, specialError, layoutIndex) {
-	return buildAppPageSpecialErrorResponse({
-		basePath: options.basePath,
-		clearRequestContext: options.clearRequestContext,
-		getAndClearPendingCookies,
-		isRscRequest: options.isRscRequest,
-		middlewareContext: options.middlewareContext,
-		renderFallbackPage(statusCode) {
-			const parentBoundary = resolveAppPageParentHttpAccessBoundaryModule({
-				layoutIndex,
-				rootForbiddenModule: options.rootForbiddenModule,
-				rootNotFoundModule: options.rootNotFoundModule,
-				rootUnauthorizedModule: options.rootUnauthorizedModule,
-				routeForbiddenModules: options.route.forbiddens,
-				routeNotFoundModules: options.route.notFounds,
-				routeUnauthorizedModules: options.route.unauthorizeds,
-				statusCode
-			})?.default;
-			return options.renderHttpAccessFallbackPage(statusCode, {
-				boundaryComponent: parentBoundary,
-				layouts: options.route.layouts.slice(0, layoutIndex),
-				matchedParams: options.params
-			}, null);
-		},
-		request: options.request,
-		specialError
-	});
-}
-async function renderPageSpecialError(options, specialError) {
-	return buildAppPageSpecialErrorResponse({
-		basePath: options.basePath,
-		clearRequestContext: options.clearRequestContext,
-		getAndClearPendingCookies,
-		isRscRequest: options.isRscRequest,
-		middlewareContext: options.middlewareContext,
-		renderFallbackPage(statusCode) {
-			return options.renderHttpAccessFallbackPage(statusCode, { matchedParams: options.params }, null);
-		},
-		request: options.request,
-		specialError
-	});
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-segment-config.js
-var DYNAMIC_VALUES = new Set([
-	"auto",
-	"error",
-	"force-dynamic",
-	"force-static"
-]);
-var FETCH_CACHE_VALUES = new Set([
-	"auto",
-	"default-cache",
-	"default-no-store",
-	"force-cache",
-	"force-no-store",
-	"only-cache",
-	"only-no-store"
-]);
-function isRouteSegmentDynamic(value) {
-	return DYNAMIC_VALUES.has(value);
-}
-function isRouteSegmentFetchCache(value) {
-	return FETCH_CACHE_VALUES.has(value);
-}
-function resolveRevalidateSeconds(current, value) {
-	if (value === false) {
-		if (current === null) return Infinity;
-		return current === Infinity ? Infinity : current;
-	}
-	if (typeof value !== "number") return current;
-	if (current === null) return value;
-	return value < current ? value : current;
-}
-function isCacheFetchCacheMode(value) {
-	return value === "default-cache" || value === "force-cache" || value === "only-cache";
-}
-function describeFetchCacheConflict(value) {
-	return `Route segment config has incompatible fetchCache values including "${value}".`;
-}
-/**
-* Resolve the route segment config that applies to an App page route.
-*
-* Next.js collects config from every segment in the loader tree and reduces it
-* into the effective route config. The generated vinext entry already knows
-* the concrete layout/page modules for a route, so it should only describe
-* those modules and delegate the behavior to this helper.
-*/
-function resolveAppPageSegmentConfig(options) {
-	const segments = [...options.layouts ?? [], options.page];
-	const config = { revalidateSeconds: null };
-	let hasForceCache = false;
-	let hasForceNoStore = false;
-	let hasOnlyCache = false;
-	let hasOnlyNoStore = false;
-	let hasParentDefaultNoStore = false;
-	for (const segment of segments) {
-		if (!segment) continue;
-		if (isRouteSegmentDynamic(segment.dynamic)) config.dynamicConfig = segment.dynamic;
-		if (segment.dynamicParams === false) config.dynamicParamsConfig = false;
-		else if (segment.dynamicParams === true && config.dynamicParamsConfig !== false) config.dynamicParamsConfig = true;
-		if (isRouteSegmentFetchCache(segment.fetchCache)) {
-			const fetchCache = segment.fetchCache;
-			if (hasParentDefaultNoStore && (fetchCache === "auto" || isCacheFetchCacheMode(fetchCache))) throw new Error(describeFetchCacheConflict(fetchCache));
-			if (fetchCache === "force-cache") hasForceCache = true;
-			if (fetchCache === "force-no-store") hasForceNoStore = true;
-			if (fetchCache === "only-cache") hasOnlyCache = true;
-			if (fetchCache === "only-no-store") hasOnlyNoStore = true;
-			if ((hasForceCache || hasOnlyCache) && (hasForceNoStore || hasOnlyNoStore)) throw new Error(describeFetchCacheConflict(fetchCache));
-			if (fetchCache === "default-no-store") hasParentDefaultNoStore = true;
-			if (hasForceCache) config.fetchCache = "force-cache";
-			else if (hasForceNoStore) config.fetchCache = "force-no-store";
-			else if (hasOnlyCache) config.fetchCache = "only-cache";
-			else if (hasOnlyNoStore) config.fetchCache = "only-no-store";
-			else config.fetchCache = fetchCache;
-		}
-		config.revalidateSeconds = resolveRevalidateSeconds(config.revalidateSeconds, segment.revalidate);
-	}
-	if (config.dynamicConfig === "force-dynamic") config.revalidateSeconds = 0;
-	if (config.fetchCache === void 0) {
-		if (config.dynamicConfig === "force-dynamic") config.fetchCache = "force-no-store";
-		else if (config.dynamicConfig === "error") config.fetchCache = "only-cache";
-	}
-	if (config.dynamicParamsConfig === void 0 && (config.dynamicConfig === "error" || config.dynamicConfig === "force-static")) config.dynamicParamsConfig = false;
-	return config;
-}
-function resolveAppPageFetchCacheMode(options) {
-	return resolveAppPageSegmentConfig(options).fetchCache ?? null;
-}
-//#endregion
-//#region node_modules/vinext/dist/routing/route-trie.js
-function createNode() {
-	return {
-		staticChildren: /* @__PURE__ */ new Map(),
-		dynamicChild: null,
-		catchAllChild: null,
-		optionalCatchAllChild: null,
-		route: null
-	};
-}
-/**
-* Build a trie from pre-sorted routes.
-*
-* Routes must have a `patternParts` property (string[] of URL segments).
-* Pattern segment conventions:
-*   - `:name`  â€” dynamic segment
-*   - `:name+` â€” catch-all (1+ segments)
-*   - `:name*` â€” optional catch-all (0+ segments)
-*   - anything else â€” static segment
-*
-* First route to claim a terminal position wins (routes are pre-sorted
-* by precedence, so insertion order preserves correct priority).
-*/
-function buildRouteTrie(routes) {
-	const root = createNode();
-	for (const route of routes) {
-		const parts = route.patternParts;
-		if (parts.length === 0) {
-			if (root.route === null) root.route = route;
-			continue;
-		}
-		let node = root;
-		for (let i = 0; i < parts.length; i++) {
-			const part = parts[i];
-			if (part.endsWith("+") && part.startsWith(":")) {
-				if (i !== parts.length - 1) break;
-				const paramName = part.slice(1, -1);
-				if (node.catchAllChild === null) node.catchAllChild = {
-					paramName,
-					route
-				};
-				break;
-			}
-			if (part.endsWith("*") && part.startsWith(":")) {
-				if (i !== parts.length - 1) break;
-				const paramName = part.slice(1, -1);
-				if (node.optionalCatchAllChild === null) node.optionalCatchAllChild = {
-					paramName,
-					route
-				};
-				break;
-			}
-			if (part.startsWith(":")) {
-				const paramName = part.slice(1);
-				if (node.dynamicChild === null) node.dynamicChild = {
-					paramName,
-					node: createNode()
-				};
-				node = node.dynamicChild.node;
-				if (i === parts.length - 1) {
-					if (node.route === null) node.route = route;
-				}
-				continue;
-			}
-			let child = node.staticChildren.get(part);
-			if (!child) {
-				child = createNode();
-				node.staticChildren.set(part, child);
-			}
-			node = child;
-			if (i === parts.length - 1) {
-				if (node.route === null) node.route = route;
-			}
-		}
-	}
-	return root;
-}
-/**
-* Match a URL against the trie.
-*
-* Returns decoded param values â€” `decodeURIComponent` is applied to
-* individual param entries so that `%2F` â†’ `/`, `%23` â†’ `#`, etc.
-* Segment boundaries (the original `/` splits) are preserved by the
-* upstream normalization layer; this step only decodes the captured
-* param strings the caller sees.
-*
-* Mirrors Next.js route-matcher.ts:25-27.
-*
-* @param root - Trie root built by `buildRouteTrie`
-* @param urlParts - Pre-split URL segments (no empty strings)
-* @returns Match result with route and extracted params, or null
-*/
-function trieMatch(root, urlParts) {
-	const result = match(root, urlParts, 0);
-	if (result) decodeMatchedParams(result.params);
-	return result;
-}
-function createParams() {
-	return Object.create(null);
-}
-function match(node, urlParts, index) {
-	if (index === urlParts.length) {
-		if (node.route !== null) return {
-			route: node.route,
-			params: createParams()
-		};
-		if (node.optionalCatchAllChild !== null) return {
-			route: node.optionalCatchAllChild.route,
-			params: createParams()
-		};
-		return null;
-	}
-	const segment = urlParts[index];
-	const staticChild = node.staticChildren.get(segment);
-	if (staticChild) {
-		const result = match(staticChild, urlParts, index + 1);
-		if (result !== null) return result;
-	}
-	if (node.dynamicChild !== null) {
-		const result = match(node.dynamicChild.node, urlParts, index + 1);
-		if (result !== null) {
-			result.params[node.dynamicChild.paramName] = segment;
-			return result;
-		}
-	}
-	if (node.catchAllChild !== null) {
-		const remaining = urlParts.slice(index);
-		const params = createParams();
-		params[node.catchAllChild.paramName] = remaining;
-		return {
-			route: node.catchAllChild.route,
-			params
-		};
-	}
-	if (node.optionalCatchAllChild !== null) {
-		const remaining = urlParts.slice(index);
-		const params = createParams();
-		params[node.optionalCatchAllChild.paramName] = remaining;
-		return {
-			route: node.optionalCatchAllChild.route,
-			params
-		};
-	}
-	return null;
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-rsc-route-matching.js
-function createRouteParams() {
-	return Object.create(null);
-}
-function appRscPathnameParts(pathname) {
-	const pathOnly = pathname.split("?")[0];
-	return normalizePathnameForRouteMatch(pathOnly === "/" ? "/" : pathOnly.replace(/\/$/, "")).split("/").filter(Boolean);
-}
-function createAppRscRouteMatcher(routes) {
-	const routeTrie = buildRouteTrie(routes);
-	const interceptLookup = createInterceptLookup(routes);
-	return {
-		matchRoute(url) {
-			return trieMatch(routeTrie, appRscPathnameParts(url));
-		},
-		findIntercept(pathname, sourcePathname = null) {
-			const urlParts = appRscPathnameParts(pathname);
-			for (const entry of interceptLookup) {
-				const params = matchAppRscRoutePattern(urlParts, entry.targetPatternParts);
-				if (params !== null) {
-					let sourceParams = createRouteParams();
-					if (sourcePathname !== null) {
-						const sourceRoute = routes[entry.sourceRouteIndex];
-						const sourceParts = appRscPathnameParts(sourcePathname);
-						const matchedSourceParams = sourceRoute ? matchAppRscRoutePattern(sourceParts, sourceRoute.patternParts) : null;
-						if (matchedSourceParams !== null) sourceParams = matchedSourceParams;
-					}
-					return {
-						...entry,
-						matchedParams: mergeMatchedParams(sourceParams, params)
-					};
-				}
-			}
-			return null;
-		}
-	};
-}
-function createInterceptLookup(routes) {
-	const interceptLookup = [];
-	for (let routeIndex = 0; routeIndex < routes.length; routeIndex++) {
-		const route = routes[routeIndex];
-		if (!route.slots) continue;
-		for (const [slotKey, slotModule] of Object.entries(route.slots)) {
-			if (!slotModule.intercepts) continue;
-			for (const intercept of slotModule.intercepts) interceptLookup.push({
-				sourceRouteIndex: routeIndex,
-				slotKey,
-				targetPattern: intercept.targetPattern,
-				targetPatternParts: intercept.targetPattern.split("/").filter(Boolean),
-				interceptLayouts: intercept.interceptLayouts,
-				page: intercept.page,
-				params: intercept.params
-			});
-		}
-	}
-	return interceptLookup;
-}
-function matchAppRscRoutePattern(urlParts, patternParts) {
-	return matchRoutePattern(urlParts, patternParts);
-}
-function mergeMatchedParams(sourceParams, targetParams) {
-	return Object.assign(createRouteParams(), sourceParams, targetParams);
-}
-//#endregion
-//#region node_modules/vinext/dist/shims/navigation-state.js
-/**
-* Server-only navigation state backed by AsyncLocalStorage.
-*
-* This module provides request-scoped isolation for navigation context
-* and useServerInsertedHTML callbacks. Without ALS, concurrent requests
-* on Cloudflare Workers would share module-level state and leak data
-* (pathnames, params, CSS-in-JS styles) between requests.
-*
-* This module is server-only â€” it imports node:async_hooks and must NOT
-* be bundled for the browser. The dual-environment navigation.ts shim
-* uses a registration pattern so it works in both environments.
-*/
-var _FALLBACK_KEY = Symbol.for("vinext.navigation.fallback");
-var _g = globalThis;
-var _als = getOrCreateAls("vinext.navigation.als");
-var _fallbackState = _g[_FALLBACK_KEY] ??= {
-	serverContext: null,
-	serverInsertedHTMLCallbacks: []
-};
-function _getState() {
-	if (isInsideUnifiedScope()) return getRequestContext();
-	return _als.getStore() ?? _fallbackState;
-}
-var _accessors = {
-	getServerContext() {
-		return _getState().serverContext;
-	},
-	setServerContext(ctx) {
-		_getState().serverContext = ctx;
-	},
-	getInsertedHTMLCallbacks() {
-		return _getState().serverInsertedHTMLCallbacks;
-	},
-	clearInsertedHTMLCallbacks() {
-		_getState().serverInsertedHTMLCallbacks = [];
-	}
-};
-_registerStateAccessors(_accessors);
-globalThis[GLOBAL_ACCESSORS_KEY] = _accessors;
-//#endregion
-//#region node_modules/vinext/dist/build/google-fonts/sort-variants.js
-function sortFontsVariantValues(valA, valB) {
-	if (valA.includes(",") && valB.includes(",")) {
-		const [aPrefix, aSuffix] = valA.split(",", 2);
-		const [bPrefix, bSuffix] = valB.split(",", 2);
-		if (aPrefix === bPrefix) return parseInt(aSuffix) - parseInt(bSuffix);
-		return parseInt(aPrefix) - parseInt(bPrefix);
-	}
-	return parseInt(valA) - parseInt(valB);
-}
-//#endregion
-//#region node_modules/vinext/dist/build/google-fonts/build-url.js
-function buildGoogleFontsUrl$1(fontFamily, axes, display) {
-	const variants = [];
-	if (axes.wght) for (const wght of axes.wght) if (!axes.ital) variants.push([["wght", wght], ...axes.variableAxes ?? []]);
-	else for (const ital of axes.ital) variants.push([
-		["ital", ital],
-		["wght", wght],
-		...axes.variableAxes ?? []
-	]);
-	else if (axes.variableAxes) variants.push([...axes.variableAxes]);
-	if (axes.variableAxes) for (const variant of variants) variant.sort(([a], [b]) => {
-		const aIsLowercase = a.charCodeAt(0) > 96;
-		const bIsLowercase = b.charCodeAt(0) > 96;
-		if (aIsLowercase && !bIsLowercase) return -1;
-		if (bIsLowercase && !aIsLowercase) return 1;
-		return a > b ? 1 : -1;
-	});
-	let url = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(/ /g, "+")}`;
-	if (variants.length > 0) {
-		const keyList = variants[0].map(([key]) => key).join(",");
-		const valueLists = variants.map((variant) => variant.map(([, val]) => val).join(",")).sort(sortFontsVariantValues).join(";");
-		url = `${url}:${keyList}@${valueLists}`;
-	}
-	return `${url}&display=${display}`;
-}
-//#endregion
-//#region node_modules/vinext/dist/shims/font-google-base.js
-/**
-* next/font/google shim
-*
-* Provides a compatible shim for Next.js Google Fonts.
-*
-* Two modes:
-* 1. **Dev / CDN mode** (default): Loads fonts from Google Fonts CDN via <link> tags.
-* 2. **Self-hosted mode** (production build): The vinext:google-fonts Vite plugin
-*    fetches font CSS + .woff2 files at build time, caches them locally, and injects
-*    @font-face CSS pointing at local assets. No requests to Google at runtime.
-*
-* Usage:
-*   import { Inter } from 'next/font/google';
-*   const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] });
-*   // inter.className -> stable CSS class for this font/options pair
-*   // inter.style -> { fontFamily: "'Inter', sans-serif" }
-*   // inter.variable -> CSS class that sets the font CSS variable
-*/
-/**
-* Escape a string for safe interpolation inside a CSS single-quoted string.
-*
-* Prevents CSS injection by escaping characters that could break out of
-* a `'...'` CSS string context: backslashes, single quotes, and newlines.
-*/
-function escapeCSSString(value) {
-	return value.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/\n/g, "\\a ").replace(/\r/g, "\\d ");
-}
-/**
-* Validate a CSS custom property name (e.g. `--font-inter`).
-*
-* Custom properties must start with `--` and only contain alphanumeric
-* characters, hyphens, and underscores. Anything else could be used to
-* break out of the CSS declaration and inject arbitrary rules.
-*
-* Returns the name if valid, undefined otherwise.
-*/
-function sanitizeCSSVarName(name) {
-	if (/^--[a-zA-Z0-9_-]+$/.test(name)) return name;
-}
-/**
-* Sanitize a CSS font-family fallback name.
-*
-* Generic family names (sans-serif, serif, monospace, etc.) are used as-is.
-* Named families are wrapped in escaped quotes. This prevents injection via
-* crafted fallback values like `); } body { color: red; } .x {`.
-*/
-function sanitizeFallback(name) {
-	const generics = new Set([
-		"serif",
-		"sans-serif",
-		"monospace",
-		"cursive",
-		"fantasy",
-		"system-ui",
-		"ui-serif",
-		"ui-sans-serif",
-		"ui-monospace",
-		"ui-rounded",
-		"emoji",
-		"math",
-		"fangsong"
-	]);
-	const trimmed = name.trim();
-	if (generics.has(trimmed)) return trimmed;
-	return `'${escapeCSSString(trimmed)}'`;
-}
-var injectedFonts = /* @__PURE__ */ new Set();
-/**
-* Convert a font family name to a CSS variable name.
-* e.g., "Inter" -> "--font-inter", "Roboto Mono" -> "--font-roboto-mono"
-*/
-function toVarName(family) {
-	return "--font-" + family.toLowerCase().replace(/\s+/g, "-");
-}
-function fontClassSegment(family) {
-	return family.toLowerCase().replace(/[^a-z0-9_-]+/g, "_").replace(/^_+|_+$/g, "") || "font";
-}
-function normalizeStringSetOption(value) {
-	if (!value) return "";
-	return [...new Set((Array.isArray(value) ? value : [value]).map((item) => item.trim()).filter(Boolean))].sort().join(",");
-}
-function normalizeWeightOption(value) {
-	const normalized = normalizeStringSetOption(value);
-	return normalized === "variable" ? "" : normalized;
-}
-function normalizeStyleOption(value) {
-	const values = new Set((Array.isArray(value) ? value : value ? [value] : []).map((item) => item.trim()).filter(Boolean));
-	const hasItalic = values.has("italic");
-	const hasNormal = values.has("normal");
-	if (!hasItalic) return "";
-	return hasNormal ? "italic,normal" : "italic";
-}
-function normalizeFallbackOption(value) {
-	if (!value) return "";
-	return value.map((item) => item.trim()).join(",");
-}
-function normalizeBooleanOption(value) {
-	if (value === void 0) return "";
-	return value ? "1" : "0";
-}
-function normalizeStringOrBooleanOption(value) {
-	if (value === void 0) return "";
-	return typeof value === "boolean" ? normalizeBooleanOption(value) : value;
-}
-function hashString(value) {
-	let hash = 2166136261;
-	for (let i = 0; i < value.length; i++) {
-		hash ^= value.charCodeAt(i);
-		hash = Math.imul(hash, 16777619) >>> 0;
-	}
-	return hash.toString(36).padStart(7, "0");
-}
-function createFontIdentity(family, options, cssVarName, fallback) {
-	return hashString([
-		family,
-		cssVarName,
-		normalizeWeightOption(options.weight),
-		normalizeStyleOption(options.style),
-		normalizeStringSetOption(options.subsets),
-		options.display ?? "swap",
-		normalizeBooleanOption(options.preload),
-		normalizeFallbackOption(fallback),
-		normalizeStringOrBooleanOption(options.adjustFontFallback),
-		normalizeStringSetOption(options.axes),
-		options._selfHostedCSS ?? ""
-	].join("\0"));
-}
-/**
-* Build a Google Fonts CSS URL.
-*
-* In production this code path is dead. The build plugin
-* (`vinext:google-fonts` in `src/plugins/fonts.ts`) statically resolves
-* each font call's axis values against the bundled metadata, fetches the
-* Google Fonts CSS, and injects the resulting CSS as `_selfHostedCSS` so
-* the runtime never queries Google. The shim only reaches this builder
-* when the plugin's static parser bails (dynamic options, eval-only
-* shapes), which is dev-only.
-*
-* The dev fallback intentionally has no metadata: shipping the 388 KB
-* `font-data.json` to the Worker bundle would dwarf the rest of the shim,
-* and the production path already has the metadata-aware variant. The
-* tradeoff is that the dev fallback cannot resolve a variable font's
-* actual `wght` axis range. It emits no axis segment when no `weight` is
-* given, which makes Google return the default static face (200) instead
-* of the broken `:wght@100..900` URL that issue #885 reports.
-*/
-function buildGoogleFontsUrl(family, options) {
-	const weights = options.weight ? Array.isArray(options.weight) ? options.weight : [options.weight] : [];
-	const styles = options.style ? Array.isArray(options.style) ? options.style : [options.style] : [];
-	const hasItalic = styles.includes("italic");
-	const hasNormal = styles.includes("normal");
-	const ital = hasItalic ? [...hasNormal ? ["0"] : [], "1"] : void 0;
-	const normalizedWeights = weights.length === 1 && weights[0] === "variable" ? [] : weights;
-	return buildGoogleFontsUrl$1(family, {
-		wght: normalizedWeights.length > 0 ? normalizedWeights : ital ? ["400"] : void 0,
-		ital
-	}, options.display ?? "swap");
-}
-/**
-* Inject a <link> tag for the font (client-side only).
-* On the server, we track font URLs for SSR head injection.
-*/
-function injectFontStylesheet(url) {
-	if (injectedFonts.has(url)) return;
-	injectedFonts.add(url);
-	if (typeof document !== "undefined") {
-		const link = document.createElement("link");
-		link.rel = "stylesheet";
-		link.href = url;
-		document.head.appendChild(link);
-	}
-}
-/** Track which className CSS rules have been injected. */
-var injectedClassRules = /* @__PURE__ */ new Set();
-/**
-* Inject a CSS rule that maps a className to a font-family.
-*
-* This is what makes `<div className={inter.className}>` apply the font.
-* Next.js generates equivalent rules at build time.
-*
-* In Next.js, the .className class ONLY sets font-family â€” it does NOT
-* set CSS variables. CSS variables are handled separately by the .variable class.
-*/
-function injectClassNameRule(className, fontFamily) {
-	if (injectedClassRules.has(className)) return;
-	injectedClassRules.add(className);
-	const css = `.${className} { font-family: ${fontFamily}; }\n`;
-	if (typeof document === "undefined") {
-		ssrFontStyles$1.push(css);
-		return;
-	}
-	const style = document.createElement("style");
-	style.textContent = css;
-	style.setAttribute("data-vinext-font-class", className);
-	document.head.appendChild(style);
-}
-/** Track which variable class CSS rules have been injected. */
-var injectedVariableRules = /* @__PURE__ */ new Set();
-/**
-* Inject a CSS rule that sets a CSS variable on an element.
-* This is what makes `<html className={inter.variable}>` set the CSS variable
-* that can be referenced by other styles (e.g., Tailwind's font-sans).
-*
-* In Next.js, the .variable class ONLY sets the CSS variable â€” it does NOT
-* set font-family. This is critical because apps commonly apply multiple
-* .variable classes to <body> (e.g., geistSans.variable + geistMono.variable).
-* If we also set font-family here, the last class wins due to CSS cascade,
-* causing all text to use that font (e.g., everything becomes monospace).
-*/
-function injectVariableClassRule(variableClassName, cssVarName, fontFamily) {
-	if (injectedVariableRules.has(variableClassName)) return;
-	injectedVariableRules.add(variableClassName);
-	const css = `.${variableClassName} { ${cssVarName}: ${fontFamily}; }\n`;
-	if (typeof document === "undefined") {
-		ssrFontStyles$1.push(css);
-		return;
-	}
-	const style = document.createElement("style");
-	style.textContent = css;
-	style.setAttribute("data-vinext-font-variable", variableClassName);
-	document.head.appendChild(style);
-}
-var ssrFontStyles$1 = [];
-/**
-* Get collected SSR font class styles (used by the renderer).
-* Note: We don't clear the arrays because fonts are loaded at module import
-* time and need to persist across all requests in the Workers environment.
-*/
-function getSSRFontStyles$1() {
-	return [...ssrFontStyles$1];
-}
-var ssrFontUrls = [];
-/**
-* Get collected SSR font URLs (used by the renderer).
-* Note: We don't clear the arrays because fonts are loaded at module import
-* time and need to persist across all requests in the Workers environment.
-*/
-function getSSRFontLinks() {
-	return [...ssrFontUrls];
-}
-var ssrFontPreloads$1 = [];
-var ssrFontPreloadHrefs = /* @__PURE__ */ new Set();
-/**
-* Get collected SSR font preload data (used by the renderer).
-* Returns an array of { href, type } objects for emitting
-* <link rel="preload" as="font" ...> tags.
-*/
-function getSSRFontPreloads$1() {
-	return [...ssrFontPreloads$1];
-}
-/**
-* Determine the MIME type for a font file based on its extension.
-*/
-function getFontMimeType(pathOrUrl) {
-	if (pathOrUrl.endsWith(".woff2")) return "font/woff2";
-	if (pathOrUrl.endsWith(".woff")) return "font/woff";
-	if (pathOrUrl.endsWith(".ttf")) return "font/ttf";
-	if (pathOrUrl.endsWith(".otf")) return "font/opentype";
-	return "font/woff2";
-}
-/**
-* Extract font file URLs from @font-face CSS rules.
-* Parses url('...') references from the CSS text.
-*/
-function extractFontUrlsFromCSS(css) {
-	const urls = [];
-	const urlRegex = /url\(['"]?([^'")]+)['"]?\)/g;
-	let match;
-	while ((match = urlRegex.exec(css)) !== null) {
-		const url = match[1];
-		if (url && url.startsWith("/")) urls.push(url);
-	}
-	return urls;
-}
-/**
-* Collect font file URLs from self-hosted CSS for preload link generation.
-* Only collects on the server (SSR). Deduplicates by href using a Set for O(1) lookups.
-*/
-function collectFontPreloadsFromCSS(css) {
-	if (typeof document !== "undefined") return;
-	const urls = extractFontUrlsFromCSS(css);
-	for (const href of urls) if (!ssrFontPreloadHrefs.has(href)) {
-		ssrFontPreloadHrefs.add(href);
-		ssrFontPreloads$1.push({
-			href,
-			type: getFontMimeType(href)
-		});
-	}
-}
-/** Track injected self-hosted @font-face blocks (deduplicate) */
-var injectedSelfHosted = /* @__PURE__ */ new Set();
-/**
-* Inject self-hosted @font-face CSS (from the build plugin).
-* This replaces the CDN <link> tag with inline CSS.
-*/
-function injectSelfHostedCSS(css) {
-	if (injectedSelfHosted.has(css)) return;
-	injectedSelfHosted.add(css);
-	collectFontPreloadsFromCSS(css);
-	if (typeof document === "undefined") {
-		ssrFontStyles$1.push(css);
-		return;
-	}
-	const style = document.createElement("style");
-	style.textContent = css;
-	style.setAttribute("data-vinext-font-selfhosted", "true");
-	document.head.appendChild(style);
-}
-function createFontLoader(family) {
-	return function fontLoader(options = {}) {
-		const fallback = options.fallback ?? ["sans-serif"];
-		const fontFamily = `'${escapeCSSString(family)}', ${fallback.map(sanitizeFallback).join(", ")}`;
-		const defaultVarName = toVarName(family);
-		const cssVarName = options.variable ? sanitizeCSSVarName(options.variable) ?? defaultVarName : defaultVarName;
-		const id = createFontIdentity(family, options, cssVarName, fallback);
-		const classSegment = fontClassSegment(family);
-		const className = `__font_${classSegment}_${id}`;
-		const variableClassName = `__variable_${classSegment}_${id}`;
-		if (options._selfHostedCSS) injectSelfHostedCSS(options._selfHostedCSS);
-		else {
-			const url = buildGoogleFontsUrl(family, options);
-			injectFontStylesheet(url);
-			if (typeof document === "undefined") {
-				if (!ssrFontUrls.includes(url)) ssrFontUrls.push(url);
-			}
-		}
-		injectClassNameRule(className, fontFamily);
-		injectVariableClassRule(variableClassName, cssVarName, fontFamily);
-		return {
-			className,
-			style: { fontFamily },
-			variable: variableClassName
-		};
-	};
-}
-var googleFonts = new Proxy({}, { get(_target, prop) {
-	if (typeof prop !== "string") return void 0;
-	if (prop === "__esModule") return true;
-	if (prop === "default") return googleFonts;
-	return createFontLoader(prop.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2"));
-} });
-//#endregion
-//#region node_modules/vinext/dist/shims/font-local.js
-var ssrFontStyles = [];
-var ssrFontPreloads = [];
-/**
-* Get collected SSR font styles (used by the renderer).
-* Note: We don't clear the arrays because fonts are loaded at module import
-* time and need to persist across all requests in the Workers environment.
-*/
-function getSSRFontStyles() {
-	return [...ssrFontStyles];
-}
-/**
-* Get collected SSR font preload data (used by the renderer).
-* Returns an array of { href, type } objects for emitting
-* <link rel="preload" as="font" ...> tags.
-*/
-function getSSRFontPreloads() {
-	return [...ssrFontPreloads];
-}
-//#endregion
-//#region node_modules/vinext/dist/server/app-hook-warning-suppression.js
-var suppressHookWarningAls = new AsyncLocalStorage$1();
-var _origConsoleError = console.error;
-console.error = (...args) => {
-	if (suppressHookWarningAls.getStore() === true && typeof args[0] === "string" && args[0].includes("Invalid hook call")) return;
-	_origConsoleError.apply(console, args);
-};
-//#endregion
-//#region node_modules/vinext/dist/server/app-request-context.js
-/**
-* Set navigation context in the ALS-backed store. "use client" components
-* rendered during SSR need the pathname/searchParams/params but the SSR
-* environment has a separate module instance of next/navigation.
-*
-* Clearing nav context (ctx === null) also clears root params.
-*/
-function setAppNavigationContext(ctx) {
-	setNavigationContext(ctx);
-	if (ctx === null) setRootParams(null);
-}
-/**
-* Clear all per-request ALS state owned by the App Router handler.
-* Must be called before returning a non-page response (redirect, public
-* file proxy, etc.) to prevent state leaking between requests on Workers.
-*
-* Clears: headers, navigation context, root params.
-*/
-function clearAppRequestContext() {
-	setHeadersContext(null);
-	setAppNavigationContext(null);
-}
-//#endregion
-//#region node_modules/vinext/dist/shims/link.js
-var link_default = /* @__PURE__ */ registerClientReference(() => {
-	throw new Error("Unexpectedly client reference export 'default' is called on server");
-}, "c2747888630f", "default");
-//#endregion
-//#region app/concepts.tsx
-var categories = [
-	[
-		"Sneakers",
-		"64+ fresh finds",
-		"https://www.cnfanshp.com/shoes/",
-		"01"
-	],
-	[
-		"Hoodies",
-		"Layers & knitwear",
-		"https://www.cnfanshp.com/hoodies-sweaters/",
-		"02"
-	],
-	[
-		"T-Shirts",
-		"Daily rotation",
-		"https://www.cnfanshp.com/t-shirts/",
-		"03"
-	],
-	[
-		"Jackets",
-		"Outerwear edit",
-		"https://www.cnfanshp.com/jackets/",
-		"04"
-	],
-	[
-		"Bottoms",
-		"Pants & shorts",
-		"https://www.cnfanshp.com/pants-shorts/",
-		"05"
-	],
-	[
-		"Accessories",
-		"Finish the fit",
-		"https://www.cnfanshp.com/accessories/",
-		"06"
-	]
-];
-var products = [
-	{
-		name: "PiquÃ© Cotton Polo",
-		category: "T-Shirts",
-		price: "$29.90",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G1121Q55.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5976.html",
-		score: "94"
-	},
-	{
-		name: "Classic Polo Â· 5 styles",
-		category: "T-Shirts",
-		price: "$15.15",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G04619608.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5953.html",
-		score: "91"
-	},
-	{
-		name: "Graphic Cotton Tee",
-		category: "T-Shirts",
-		price: "$15.30",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G02630c8.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5934.html",
-		score: "89"
-	},
-	{
-		name: "Chocolate Embroidered Jacket",
-		category: "Jackets",
-		price: "$41.40",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G1193O56.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5981.html",
-		score: "96"
-	},
-	{
-		name: "New Season Knit",
-		category: "Jackets",
-		price: "$44.45",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G10240Z1.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5969.html",
-		score: "92"
-	},
-	{
-		name: "Casual Business Jacket",
-		category: "Jackets",
-		price: "$63.20",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G05126214.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5958.html",
-		score: "90"
-	},
-	{
-		name: "Classic Loose-Fit Sweatshirt",
-		category: "Hoodies",
-		price: "$19.45",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G1101D39.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5974.html",
-		score: "93"
-	},
-	{
-		name: "Collared Patchwork Knit",
-		category: "Hoodies",
-		price: "$22.25",
-		image: "https://www.cnfanshp.com/uploads/allimg/20260417/1-26041G1054H39.webp",
-		href: "https://www.cnfanshp.com/AllProducts/5970.html",
-		score: "88"
-	}
-];
-function ConceptSwitcher({ active }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("nav", {
-		className: "concept-switcher",
-		"aria-label": "Switch design concept",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(link_default, {
-			className: "switcher-home",
-			href: "/",
-			children: "All concepts"
-		}), [
-			"A",
-			"B",
-			"C"
-		].map((item) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(link_default, {
-			className: active === item ? "active" : "",
-			href: `/concept-${item.toLowerCase()}`,
-			children: item
-		}, item))]
-	});
-}
-function SearchBar({ label = "Search 2,000+ finds" }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("form", {
-		className: "product-search",
-		action: "https://www.cnfanshp.com/search.html",
-		method: "get",
-		target: "_blank",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("label", {
-				className: "sr-only",
-				htmlFor: `product-search-${label}`,
-				children: "Search products"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-				"aria-hidden": "true",
-				children: "âŒ•"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("input", {
-				id: `product-search-${label}`,
-				name: "keywords",
-				type: "search",
-				placeholder: label,
-				autoComplete: "off",
-				required: true
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("input", {
-				type: "hidden",
-				name: "channelid",
-				value: "2"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("button", {
-				type: "submit",
-				children: ["Search ", /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "â†—" })]
-			})
-		]
-	});
-}
-function ProductCard({ product, index = 0, mode = "a" }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-		className: `product-card product-${mode}`,
-		href: product.href,
-		target: "_blank",
-		rel: "noopener",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-			className: "product-image-wrap",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("img", {
-					src: product.image,
-					alt: product.name,
-					loading: "lazy",
-					width: "640",
-					height: "800"
-				}),
-				mode === "a" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-					className: "verified-badge",
-					children: "Curated"
-				}),
-				mode === "b" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", {
-					className: "editorial-number",
-					children: ["0", index + 1]
-				})
-			]
-		}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-			className: "product-copy",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-					className: "product-category",
-					children: product.category
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h3", { children: product.name }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "product-bottom",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("strong", { children: product.price }), mode === "c" ? /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [
-						"Match ",
-						product.score,
-						"%"
-					] }) : /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "View find â†—" })]
-				})
-			]
-		})]
-	});
-}
-function Footer({ mode }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("footer", {
-		className: `site-footer footer-${mode}`,
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-				className: "brand-mark",
-				children: "A"
-			}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("strong", { children: "ACBuy Atlas" })] }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Independent product discovery guide. Not affiliated with AllChinaBuy or any featured brand. Product details and availability may change." }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "Concept preview Â· 2026" })
-		]
-	});
-}
-//#endregion
-//#region app/concept-c/articles.ts
-var englishArticles = [
-	{
-		title: "How to Use an AllChinaBuy Spreadsheet Without Getting Lost",
-		slug: "spreadsheet-guide",
-		description: "A practical system for turning a large AllChinaBuy spreadsheet into a verified, comparable shortlist before you spend money.",
-		primaryKeyword: "AllChinaBuy spreadsheet",
-		secondaryKeywords: [
-			"ACBuy spreadsheet",
-			"AllChinaBuy finds",
-			"how to use AllChinaBuy",
-			"AllChinaBuy product links"
-		],
-		readTime: "9 min read",
-		updated: "August 12, 2026",
-		intro: ["A large product spreadsheet feels useful because it puts hundreds or thousands of finds in one place. The problem is that quantity can create false confidence. A row with a photo, a price and a link is not the same thing as a checked product. Listings change, variants carry different prices, sellers replace photos and some links eventually stop working. The right way to use an AllChinaBuy spreadsheet is therefore not to scroll until something looks exciting. It is to treat the sheet as a discovery index, then verify each candidate before ordering.", "That distinction matters because AllChinaBuy describes its service as a cross-border purchasing agency covering procurement, order fulfilment, quality inspection, international logistics and after-sales service. In other words, the platform sits between a shopper and sellers in China. A spreadsheet can help you discover an item, but the live listing, order record, warehouse photos and current parcel quote are the records that matter at later stages. This guide gives you a repeatable way to move from discovery to a sensible shortlist without confusing an old spreadsheet entry with a live offer."],
-		sections: [
-			{
-				heading: "Start with the search intent, not the biggest category",
-				paragraphs: ["Before opening ten tabs, write down what you are actually trying to find. A useful search brief includes the product type, acceptable price range, preferred colour, required size or measurements, and the details that would make you reject the item. For a jacket, that might mean a specific chest width, a zip closure and a total item budget below a chosen amount. For shoes, it may mean insole length, colour and upper material. This brief prevents a common spreadsheet problem: comparing products that only look similar in thumbnail form but are not substitutes for one another.", "Use category pages to reduce the field, then use descriptive queries rather than only brand names. Terms such as â€œheavyweight zip hoodie,â€ â€œwide-leg trousersâ€ or â€œleather crossbody bagâ€ describe the construction you want and can surface alternatives. The spreadsheet should shorten research, not decide taste for you. If every result is judged against the same written brief, a lower-priced item cannot win merely because it appeared first."]
-			},
-			{
-				heading: "Understand what a spreadsheet row can and cannot prove",
-				paragraphs: ["A good row can tell you that a product was found at a particular URL, was placed in a category and had a displayed price when the index was checked. It may also show a preview image. It normally cannot prove current stock, the price of every colour or size, material quality, seller performance, final packed weight or international shipping cost. Those facts either change over time or become available only after an order reaches later stages.", "Treat the row as a pointer, not a guarantee. Open the exact product page and compare the product title, selected variant, seller information, domestic delivery terms and live price with the spreadsheet entry. If the live page and the row disagree, the live page takes priority. If the link opens a different product, a generic search page or an unavailable listing, remove it from the shortlist. A broken shortcut should never become a reason to improvise with an unknown substitute."]
-			},
-			{
-				heading: "Build a shortlist that can be compared fairly",
-				paragraphs: ["Limit the first shortlist to three to five candidates per product type. More choices rarely improve the decision once the important attributes are visible. Record the live item price, variant, seller, available measurements, domestic shipping charge if shown, and the date checked. Add a notes column for unclear details. This small comparison table is more useful than saving twenty screenshots because it forces each candidate into the same structure.", "Do not rank by item price alone. A slightly more expensive listing with clear measurements and consistent photos may be easier to evaluate than a cheaper listing with vague options. Conversely, polished images do not prove quality. The goal is not to award a winner immediately; it is to identify which candidate supplies enough information to justify an order and which questions must be answered later through the purchasing or warehouse process."],
-				checklist: [
-					"Exact title and live URL",
-					"Chosen colour, size and variant price",
-					"Seller and domestic shipping information",
-					"Measurements or size chart",
-					"Questions to verify in warehouse photos"
-				]
-			},
-			{
-				heading: "Read prices as previews, not final totals",
-				paragraphs: ["Spreadsheet prices are useful for rough comparison, but they are rarely the complete landed cost. A listing can use a low default price while a larger size, different material or premium version costs more. Currency conversion also changes the displayed equivalent. After the item purchase come other possible cost layers: domestic shipping to the warehouse, optional services, packing choices, international transport and destination-country taxes or carrier charges where applicable.", "Keep two budgets from the start. The first is the item-stage budget: goods, selected variants and any domestic charges visible at order time. The second is a parcel reserve for international delivery and possible destination charges. AllChinaBuy provides a shipping calculator, but its own form requires destination, product category, estimated weight and optional packed dimensions. That design is a reminder that a thumbnail price cannot predict a parcel total. Use estimates for planning and the live quote for the decision."]
-			},
-			{
-				heading: "Use warehouse inspection as a decision gate",
-				paragraphs: ["AllChinaBuyâ€™s official app description includes quality inspection among its services. That makes the warehouse stage more than a waiting room. When photos become available, compare the received item with the exact variant in your order record. Check colour, size label, visible shape, front and back, closures, stitching, print placement and any included parts. If measurements matter, compare a ruler photo with a well-fitting item you already own rather than relying only on the printed size.", "QC photos reduce uncertainty about visible features, but they do not prove comfort, fabric composition, durability, internal construction or authenticity. Lighting and camera angle can also change how colour and proportions appear. Decide what can be accepted, what needs another photo, and what is a reason to contact support before international shipping. Once a parcel leaves the warehouse, correcting a seller-side problem is normally harder and more expensive."]
-			},
-			{
-				heading: "Reject common spreadsheet shortcuts",
-				paragraphs: ["The first shortcut is assuming a high match score, â€œverifiedâ€ label or popular position means the product has been physically tested by the index owner. Unless the methodology is clearly explained, those labels should be treated as curation signals only. The second shortcut is ordering several near-identical items because each looks inexpensive. Consolidation can reduce repeated fixed costs, but extra weight and volume still matter, and one bulky item can change available shipping options.", "The third shortcut is copying customer comments without context. A review may describe a different batch, size, destination, shipping line or time period. It can reveal questions worth asking, but it cannot replace a check of your own listing and parcel. Finally, do not assume an old screenshot proves a current promotion, coupon, route or return rule. Time-sensitive claims should always be verified inside the current platform interface before payment."]
-			},
-			{
-				heading: "Follow one repeatable workflow",
-				paragraphs: ["A dependable workflow has five gates. Discover products through the spreadsheet. Verify the live listing and chosen variant. Record a small shortlist using consistent fields. Inspect the received item while it is still in the warehouse. Then compare the current parcel options using real recorded weight and dimensions. At every gate, remove candidates that do not supply enough information instead of carrying uncertainty forward.", "This method may feel slower than clicking the first attractive card, but it usually saves time because each decision has a purpose. It also produces better search behaviour: you stop browsing generic â€œbest findsâ€ pages and start looking for specific construction, measurement, QC and shipping answers. That is exactly how a spreadsheet becomes a useful shopping tool rather than an endless feed."]
-			},
-			{
-				heading: "Final pre-order checklist",
-				paragraphs: ["Before placing an order, confirm that the URL still opens the intended listing, the selected variant is correct, the live price is acceptable and the size decision is based on measurements where available. Save the product record and note the date checked. Decide which visible details must be confirmed in warehouse photos. Finally, keep enough budget outside the item price for parcel costs; do not spend the entire budget at the product stage.", "The best AllChinaBuy spreadsheet is not necessarily the one with the largest number in its headline. It is the one that helps you reach a smaller, clearer and currently verifiable set of choices. Use the database for discovery, the live listing for the order, the warehouse record for inspection and the live shipping quote for parcel planning. Each source answers a different question, and treating them that way is the simplest protection against outdated links and unrealistic totals."]
-			}
-		],
-		sourceNote: "Research basis: AllChinaBuy official website and shipping calculator, plus the official AllChinaBuy app description on Google Play; checked August 12, 2026. Variable prices, routes, promotions and policies should be rechecked in the live platform interface."
-	},
-	{
-		title: "AllChinaBuy QC Photos: A Five-Minute Inspection Routine",
-		slug: "qc-photo-routine",
-		description: "A practical AllChinaBuy QC photo checklist for confirming the item, checking measurements and spotting visible problems before parcel submission.",
-		primaryKeyword: "AllChinaBuy QC photos",
-		secondaryKeywords: [
-			"ACBuy QC",
-			"how to check AllChinaBuy QC photos",
-			"warehouse inspection photos",
-			"AllChinaBuy quality inspection"
-		],
-		readTime: "10 min read",
-		updated: "August 12, 2026",
-		intro: ["Quality-control photos are most useful when they lead to a decision. They are not decoration, and they are not a certificate that an item is perfect. AllChinaBuy publicly describes quality inspection as part of its purchasing-agency service, alongside procurement, order fulfilment, international logistics and after-sales support. The practical purpose of the warehouse photos is to let you compare what arrived with what you ordered before you commit it to an international parcel.", "Five focused minutes are usually more valuable than twenty minutes of random zooming. Start with identity, move to shape, check measurements, inspect high-risk details and finish with a clear outcome: accept, ask for evidence, or contact support about a return or exchange. The routine below is designed for clothing, shoes, bags and everyday accessories, but the logic applies to most photo-based warehouse inspections."],
-		sections: [
-			{
-				heading: "Minute one: confirm that it is the right item",
-				paragraphs: ["Open the order record and the live listing beside the QC set. Compare product type, colour, selected size and visible option details. A correct-looking hoodie in the wrong colour or size is still the wrong item. Check labels, tags, model codes and included parts when they are visible, but do not let one matching label override obvious differences elsewhere. Sellers sometimes use generic packaging, so the item itself remains the main evidence.", "Look at the full front and back before zooming into small details. Ask whether the silhouette, panel arrangement, collar, pockets, sole shape, straps or hardware match the version ordered. If the platform shows the parcel or order identifier with the photo set, make sure it matches your record. This first minute catches fulfilment mistakes that detailed stitching inspection cannot solve."]
-			},
-			{
-				heading: "Minute two: judge overall shape and symmetry",
-				paragraphs: ["Shape problems are easier to see when the item is photographed flat or square to the camera. Compare the left and right sides, shoulder height, pocket position, toe boxes, heel alignment, bag handles and the way panels meet. Some apparent asymmetry comes from folds or camera angle, so look for the same issue in more than one photo before deciding it is a defect.", "For clothing, check whether the garment is laid naturally rather than stretched. For shoes, compare both shoes rather than inspecting only the cleaner one. For bags, inspect whether the base sits level and the straps appear equal. A warehouse photo cannot tell you how an item feels on the body, but it can reveal obvious distortion, missing components and uneven assembly."]
-			},
-			{
-				heading: "Minute three: use measurements instead of size labels",
-				paragraphs: ["A printed size is a category, not a dimension. Different sellers may use different size charts, and the finished item can vary from the listing. When fit matters, compare ruler or tape photos with measurements from an item you already own and like. For tops, useful dimensions often include chest width, body length and sleeve length. For trousers, waist, rise, thigh and inseam may matter. For shoes, insole length is often more informative than the box label alone.", "Read the ruler carefully. Check where the measurement begins, whether the tape is straight and whether the garment is flat. A photo that cuts off the zero point or bends around fabric does not provide a reliable number. If the required dimension is missing, an additional measurement photo can be more valuable than another close-up of a logo or label."],
-				checklist: [
-					"Compare against an item you own",
-					"Check the ruler starts at zero",
-					"Make sure the item is laid flat",
-					"Allow for normal small manufacturing variation",
-					"Request the dimension that changes your decision"
-				]
-			},
-			{
-				heading: "Minute four: inspect the details most likely to fail",
-				paragraphs: ["Do not give every detail equal attention. Focus on areas that carry stress or are difficult to fix: zips, buttons, eyelets, buckles, handles, pocket openings, sole joins and major seams. Look for loose threads, skipped stitches, stains, scratches, glue marks, tears, dents and missing hardware. On printed items, compare placement and alignment across the whole garment before zooming into the print edge.", "Lighting can exaggerate surface marks and hide texture. A bright reflection on coated leather is not automatically a scratch, and a dark fold is not automatically a stain. Look for repeated evidence across angles. Photos can show visible construction, but they cannot prove material composition, waterproofing, smell, long-term durability or whether an electronic item functions unless a specific test is documented. Keep the conclusion inside what the evidence supports."]
-			},
-			{
-				heading: "Minute five: choose accept, clarify or escalate",
-				paragraphs: ["End the inspection with one of three outcomes. Accept means the correct item arrived and the visible condition is within your tolerance. Clarify means one missing angle, measurement or close-up would change the decision; request only that evidence. Escalate means the item appears wrong, damaged or materially different from the order, so contact the platform through the current order or warehouse process before parcel submission.", "Avoid vague requests such as â€œtake better photos.â€ State the exact area and reason: â€œPlease photograph the left zip tooth straight on,â€ or â€œPlease measure the insole from heel to toe with the zero point visible.â€ Specific requests reduce ambiguity. Return eligibility, timing, seller acceptance and fees can vary, so do not copy an old community rule into a current case. Read the live order options and contact support when the decision affects money."]
-			},
-			{
-				heading: "What QC photos cannot guarantee",
-				paragraphs: ["A clean photo set cannot guarantee that an item will fit, feel comfortable or last. It also cannot verify hidden stitching, internal padding, fibre content, colour accuracy on your screen or performance under use. Photo inspection is strongest for identity, measurements, obvious damage, missing pieces and visible construction. Treat claims beyond those areas with caution unless the platform provides a specific documented test.", "QC should also not be confused with authentication. A warehouse image can help you compare the received item with the sellerâ€™s listing, but it does not establish intellectual-property status or legality in your destination. Buyers remain responsible for what they purchase and for destination-country rules. If an item type is restricted or sensitive, check current platform and customs information before ordering and again before choosing a route."]
-			},
-			{
-				heading: "Keep a simple evidence record",
-				paragraphs: ["Save the order identifier, selected variant, seller listing and relevant QC photos together. If you ask a question, keep the response with that record. This is useful when several similar items arrive, and it prevents you from relying on memory when building a parcel days later. A short note such as â€œsize confirmed by chest measurement; small mark acceptedâ€ explains why the item was approved.", "Record-keeping also makes later support conversations clearer. Instead of saying an item is â€œbad,â€ you can identify the order, show the selected variant and point to the visible issue. The goal is not to create a legal file; it is to preserve the evidence that existed before international shipping. Once items are combined and repacked, identifying where a problem began can become more difficult."]
-			},
-			{
-				heading: "A practical QC standard for real buyers",
-				paragraphs: ["Perfection is not a useful standard for mass-produced goods. Decide in advance which differences matter: wrong size, missing part, major stain, damaged closure or a measurement outside your acceptable range. Small packaging dents or removable threads may not justify delay, while a wrong variant clearly does. Consistent thresholds help you avoid rejecting one item for a detail you accepted on another.", "The strongest QC routine is short because it follows a fixed order: identity, shape, dimensions, risk details and outcome. It uses photos for what photos can prove and requests extra evidence only when it changes the decision. That is how AllChinaBuy QC photos become a practical warehouse checkpoint instead of a gallery you glance at before clicking submit."]
-			}
-		],
-		sourceNote: "Research basis: AllChinaBuyâ€™s official service description identifies quality inspection as part of its purchasing workflow. Inspection limits and the decision framework are editorial guidance, not a claim that every order receives identical images or services. Checked August 12, 2026."
-	},
-	{
-		title: "AllChinaBuy Product Price vs Parcel Cost: What You Actually Pay",
-		slug: "parcel-cost-guide",
-		description: "Understand why an AllChinaBuy item price cannot predict the international parcel total, and build a realistic budget before ordering.",
-		primaryKeyword: "AllChinaBuy shipping cost",
-		secondaryKeywords: [
-			"AllChinaBuy shipping calculator",
-			"ACBuy shipping price",
-			"AllChinaBuy parcel cost",
-			"AllChinaBuy volumetric weight"
-		],
-		readTime: "11 min read",
-		updated: "August 12, 2026",
-		intro: ["A low product price is not a low delivered price. This is the most important budgeting lesson for any purchasing-agent order. AllChinaBuyâ€™s official description separates procurement and order fulfilment from international logistics, and it notes that international shipping is provided by third-party service companies. The official shipping calculator also asks for destination, product category, estimated weight and optional package dimensions. Those inputs explain why the number on a product card cannot predict the number shown when a parcel is ready.", "A realistic budget is built in stages. First comes the selected product and any domestic movement to the warehouse. Then the item is inspected, combined with other goods if desired, packed, measured and matched with routes available for its destination and category. Currency conversion, optional services and destination charges may add further uncertainty. This guide shows how to plan each stage without inventing a universal per-kilogram rate or promising a delivery time that the live quote may not support."],
-		sections: [
-			{
-				heading: "Separate the product order from the international parcel",
-				paragraphs: ["Purchasing-agent orders usually create two different money decisions. The first is whether to buy the item from a seller in China. The second is whether and how to ship one or more warehouse items internationally. Keeping those decisions separate prevents the product price from consuming the parcel budget. A $20 item is not â€œ$20 deliveredâ€ merely because the discovery page shows $20.", "At the product stage, record the exact variant price and any domestic seller-to-warehouse charge shown. At the parcel stage, use the warehouseâ€™s recorded item information and current route options. If you plan several products, reserve money for shipping before placing every item order. Otherwise, you can end up with goods in storage and no comfortable route within the remaining budget."]
-			},
-			{
-				heading: "Use the official calculator for scenarios, not promises",
-				paragraphs: ["AllChinaBuy provides a public shipping calculator. Its visible inputs include the destination country or region, the warehouse origin, product category, estimated weight and package dimensions for lines that calculate with volumetric weight. This makes it useful for comparing scenarios before ordering: one light clothing parcel, a parcel containing shoes with boxes, or a bulky mixed order. Change one input at a time so you can see which assumption moves the estimate.", "The result remains an estimate because the final parcel may differ from your guess. Seller packaging, warehouse packing, dimensional measurement, route availability, fuel or carrier adjustments and item restrictions can change the live options. Save the date and assumptions when comparing estimates. A calculator result without its destination, category, weight and dimensions is not a reusable quote."]
-			},
-			{
-				heading: "Understand actual weight and volumetric weight",
-				paragraphs: ["Actual weight is what the packed parcel physically weighs. Volumetric weight is a carrier method that converts package dimensions into a chargeable figure. The exact divisor or rule can differ by route, so use the rule shown for the current option rather than memorising one formula. A parcel full of lightweight but bulky packaging can therefore be charged as if it were heavier than the scale reading.", "This is why shoe boxes, rigid gift boxes, puffy clothing and protective air space matter. Removing unnecessary retail packaging may reduce volume, but it also removes protection. The sensible choice depends on the item. A soft T-shirt can tolerate compact packing; fragile accessories or structured shoes may need reinforcement. Ask what packing change is being made and judge the saving against the damage risk."]
-			},
-			{
-				heading: "Consolidation helps only when the parcel still makes sense",
-				paragraphs: ["Combining several warehouse items can avoid sending multiple separate parcels and may spread some fixed handling or first-weight effects across more goods. It does not make added weight or volume disappear. Every extra hoodie, shoe box or accessory changes the parcel, and a mixed category can affect which lines are available. Consolidation should be a planning tool, not an excuse to add products until the item total looks large enough.", "Before combining everything, compare at least two scenarios: one complete parcel and a sensible split. A split can cost more overall, but it may keep each parcel within route limits, separate sensitive items or reduce the consequence of a single delay. The cheapest displayed line is not automatically the best value if its restrictions, tracking, compensation terms or estimated service level do not fit the order."]
-			},
-			{
-				heading: "Product category can change route availability",
-				paragraphs: ["The official calculator asks for product category because carriers do not treat every item the same. Batteries, liquids, magnets, electronics, food, cosmetics and other sensitive categories may have fewer routes or special conditions. Even ordinary goods can face destination-specific limits. Do not mark a product as a safer category simply to reveal a cheaper estimate; the warehouse or carrier can reclassify it later.", "Check the current description of each route and confirm that all parcel contents are eligible. If a listing is unclear about material or components, resolve that before parcel submission. A route shown for generic clothing does not prove it will accept a parcel containing a battery-powered accessory. Eligibility is a live operational fact, not a permanent property of a spreadsheet row."]
-			},
-			{
-				heading: "Budget for the costs outside the freight line",
-				paragraphs: ["The international line item is not always the whole delivered cost. Depending on the order and destination, the total can also involve currency conversion, payment processing, optional inspection or packing services, insurance choices, taxes, duties, customs assessment or last-mile carrier charges. Not every cost applies to every parcel, and the platform cannot guarantee how a destination authority will assess a shipment.", "Create three budget columns: known, estimated and destination-dependent. Product and selected variant prices belong in known once confirmed. A calculator scenario belongs in estimated. Taxes or carrier charges that depend on destination treatment belong in destination-dependent until verified. This prevents a precise-looking spreadsheet total from hiding uncertainty and makes it easier to decide how much reserve is comfortable."]
-			},
-			{
-				heading: "What customer reviews canâ€”and cannotâ€”tell you",
-				paragraphs: ["Public app reviews show mixed experiences. Some users praise the interface, order tracking or customer support, while others complain that shipping was much higher than the product value or that route information felt unclear. These accounts are useful because they highlight the questions a buyer should ask: What were the destination, packed weight, dimensions, category, route and date? Was the amount an estimate or final charge? Were destination fees included?", "A review is not a universal price table. One userâ€™s parcel may differ in country, volume, line, timing and contents. Use repeated complaints as prompts for verification, not as proof that your parcel will cost the same. Likewise, a positive delivery story does not guarantee your route or customs outcome. A balanced review article should preserve this context and clearly label customer statements as individual experiences."],
-				checklist: [
-					"Destination and date",
-					"Packed weight and dimensions",
-					"Product categories and restrictions",
-					"Selected route and quoted service level",
-					"Whether taxes or last-mile fees were included"
-				]
-			},
-			{
-				heading: "Use a landed-cost worksheet before you buy",
-				paragraphs: ["Start with the live variant price, domestic delivery and the number of items. Add a shipping scenario from the official calculator using honest category, weight and size assumptions. Add optional services you actually intend to use. Then set aside a destination reserve based on current local rules or carrier information. Divide the estimated total by the number of useful items only after the full total is visible; this shows whether a â€œcheapâ€ extra item really improves value.", "Run a stress test by increasing estimated parcel cost by a percentage you can tolerate. If the order becomes unaffordable with a moderate change, the item stage is already too large. Remove low-priority products before purchase rather than hoping the final quote will be unusually low. Budgeting is most effective while every item is still optional."]
-			},
-			{
-				heading: "The decision rule that prevents shipping shock",
-				paragraphs: ["Never approve the product basket using only product-card prices. Approve it only when the item-stage cost plus a realistic parcel scenario plus a reserve fits the total budget. When warehouse measurements become available, replace assumptions with recorded values and compare live routes again. If the final parcel is not attractive, reconsider packing, remove optional packaging where appropriate, compare a split or delay adding lower-priority goods.", "There is no honest single answer to â€œHow much is AllChinaBuy shipping?â€ without destination, contents, weight, dimensions and timing. The useful answer is a process: estimate before buying, inspect and measure in the warehouse, compare eligible live routes, and keep uncertain destination costs visible. That process does not guarantee the cheapest parcel, but it prevents a low item price from being mistaken for a delivered total."]
-			}
-		],
-		sourceNote: "Research basis: AllChinaBuy official website, official freight calculator and official app description; calculator fields and service description checked August 12, 2026. Customer-review patterns are treated as anecdotal experience, not universal pricing evidence."
-	}
-];
-var getEnglishArticle = (slug) => englishArticles.find((article) => article.slug === slug) ?? englishArticles[0];
-//#endregion
-//#region app/concept-c/terminal.tsx
-var locales$1 = [
-	"en",
-	"de",
-	"fr",
-	"es",
-	"it",
-	"pl",
-	"ro"
-];
-var localeCopy = {
-	en: {
-		name: "English",
-		labels: [
-			"Database",
-			"Categories",
-			"QC guide",
-			"Shipping",
-			"Articles",
-			"FAQ"
-		],
-		cats: [
-			"Sneakers",
-			"Hoodies",
-			"T-Shirts",
-			"Jackets",
-			"Bottoms",
-			"Accessories"
-		],
-		hero: [
-			"PRODUCT DISCOVERY ENGINE v3.0",
-			"Search less. Find better.",
-			"A fast, structured index for AllChinaBuy spreadsheet searches. Compare USD prices and open the exact product listing."
-		],
-		ui: [
-			"Browse products",
-			"Menu",
-			"Language",
-			"QUICK QUERY",
-			"INDEX STATUS",
-			"active records",
-			"FILTERS",
-			"RESET",
-			"CATEGORY",
-			"PRICE_USD",
-			"STATUS",
-			"Link verified",
-			"New this week",
-			"MATCHES",
-			"CURATED",
-			"WHY THIS INDEX",
-			"Read article",
-			"Open collection",
-			"Search products, categories, styles..."
-		],
-		pages: {
-			products: ["Product database", "Browse curated finds with product images, USD price previews and direct paths to exact listings."],
-			categories: ["Browse by category", "Start with a focused department, then open the matching shopping collection."],
-			"qc-guide": ["How to read QC photos", "A practical inspection checklist for shape, details, measurements and visible defects before shipping."],
-			"shipping-guide": ["Plan your parcel", "Understand cost inputs before submission. Routes and final prices depend on destination, size, weight and item type."],
-			articles: ["Research library", "Fact-led guides for product discovery, inspection and parcel planning."],
-			faq: ["Frequently asked questions", "Clear answers about this independent index, product links, QC photos, pricing and shipping."]
-		},
-		qc: [
-			["Confirm the item", "Match product, colour and size with the order record before checking smaller details."],
-			["Check every angle", "Review front, back, side and close-ups for asymmetry, stains or damage."],
-			["Use measurements", "A label is not a measurement. Compare ruler photos with an item you own."],
-			["Inspect key details", "Zoom in on seams, prints, embroidery, closures and hardware."],
-			["Decide before shipping", "Ask for clarification while the item is still in the warehouse."]
-		],
-		shipping: [
-			["Build the parcel", "Combine only ready items and verify recorded weight and dimensions."],
-			["Review restrictions", "Batteries, liquids and sensitive categories can change available routes."],
-			["Compare chargeable weight", "Carriers may use actual or volumetric weight."],
-			["Choose protection", "Remove unnecessary packaging, but reinforce fragile items."],
-			["Verify the live quote", "Routes, estimates and prices change; confirm the current checkout quote."]
-		],
-		articles: [
-			[
-				"How to Use an AllChinaBuy Spreadsheet Without Getting Lost",
-				"spreadsheet-guide",
-				"Move from a huge list to a short, comparable product shortlist."
-			],
-			[
-				"QC Photos: A Five-Minute Inspection Routine",
-				"qc-photo-routine",
-				"What to check first and when an extra photo is worth requesting."
-			],
-			[
-				"Product Price vs Parcel Cost",
-				"parcel-cost-guide",
-				"Why a low item price does not predict the final shipping total."
-			]
-		],
-		faq: [
-			["Is this the official AllChinaBuy website?", "No. This is an independent research and product-discovery site."],
-			["Where do product buttons lead?", "Each card opens the exact product at our shopping destination, not AllChinaBuy."],
-			["Are prices final?", "No. USD values are previews; options, exchange rates and shipping change the total."],
-			["What are QC photos?", "Warehouse inspection photos used before international parcel submission."],
-			["Do QC photos guarantee quality?", "No. They help with visible issues but cannot reveal every hidden detail."],
-			["Can I search by product name?", "Yes. The query is sent to the live shopping catalogue."],
-			["Why can shipping cost more than the item?", "Destination, route, type, packed weight and volume determine cost."],
-			["Do you link to competing agents?", "No. Calls to action use one consistent shopping destination."],
-			["What services does AllChinaBuy publicly describe?", "Its official app description lists procurement, order fulfilment, quality inspection, international logistics and after-sales service; international shipping is provided by third-party service companies."],
-			["What information is needed for a shipping estimate?", "The official calculator asks for destination, product category, estimated weight and, where relevant, package dimensions."],
-			["Does a calculator result guarantee the final parcel price?", "No. Final packed measurements, item eligibility and currently available routes can change the live quote."],
-			["What should I verify before parcel submission?", "Confirm the received item, QC evidence, recorded weight and dimensions, route eligibility and the current checkout total."]
-		]
-	},
-	de: {
-		name: "Deutsch",
-		labels: [
-			"Datenbank",
-			"Kategorien",
-			"QC-Ratgeber",
-			"Versand",
-			"Artikel",
-			"FAQ"
-		],
-		cats: [
-			"Sneaker",
-			"Hoodies",
-			"T-Shirts",
-			"Jacken",
-			"Hosen",
-			"Accessoires"
-		],
-		hero: [
-			"PRODUKTSUCHMASCHINE v3.0",
-			"Weniger suchen. Besser finden.",
-			"Ein schneller Index fÃ¼r AllChinaBuy-Spreadsheet-Suchen. USD-Preise vergleichen und direkt das Produkt Ã¶ffnen."
-		],
-		ui: [
-			"Produkte ansehen",
-			"MenÃ¼",
-			"Sprache",
-			"SCHNELLSUCHE",
-			"INDEXSTATUS",
-			"aktive EintrÃ¤ge",
-			"FILTER",
-			"ZURÃœCKSETZEN",
-			"KATEGORIE",
-			"PREIS_USD",
-			"STATUS",
-			"Link geprÃ¼ft",
-			"Neu diese Woche",
-			"TREFFER",
-			"KURATIERT",
-			"WARUM DIESER INDEX",
-			"Artikel lesen",
-			"Kollektion Ã¶ffnen",
-			"Produkte, Kategorien, Stile suchen..."
-		],
-		pages: {
-			products: ["Produktdatenbank", "Kuratierte Produkte mit Bildern, USD-Preisvorschau und direktem Link."],
-			categories: ["Nach Kategorie", "WÃ¤hle eine Abteilung und Ã¶ffne die passende Kollektion."],
-			"qc-guide": ["QC-Fotos richtig prÃ¼fen", "Checkliste fÃ¼r Form, Details, MaÃŸe und sichtbare MÃ¤ngel vor dem Versand."],
-			"shipping-guide": ["Paket planen", "Kosten hÃ¤ngen von Ziel, GrÃ¶ÃŸe, Gewicht und Artikelart ab."],
-			articles: ["Ratgeber-Bibliothek", "Faktenbasierte Anleitungen zu Suche, PrÃ¼fung und Paketplanung."],
-			faq: ["HÃ¤ufige Fragen", "Klare Antworten zu Index, Links, QC-Fotos, Preisen und Versand."]
-		},
-		qc: [
-			["Artikel bestÃ¤tigen", "Name, Farbe und GrÃ¶ÃŸe zuerst mit der Bestellung abgleichen."],
-			["Alle Winkel prÃ¼fen", "Vorderseite, RÃ¼ckseite, Seiten und Nahaufnahmen prÃ¼fen."],
-			["MaÃŸe nutzen", "Etiketten sind keine MaÃŸe. Mit eigener Kleidung vergleichen."],
-			["Details vergrÃ¶ÃŸern", "NÃ¤hte, Drucke, Stickerei, VerschlÃ¼sse und BeschlÃ¤ge prÃ¼fen."],
-			["Vor Versand entscheiden", "Unklare Details klÃ¤ren, solange der Artikel im Lager ist."]
-		],
-		shipping: [
-			["Paket zusammenstellen", "Nur versandbereite Artikel bÃ¼ndeln und MaÃŸe prÃ¼fen."],
-			["EinschrÃ¤nkungen prÃ¼fen", "Akkus, FlÃ¼ssigkeiten und sensible Waren kÃ¶nnen Routen begrenzen."],
-			["Abrechnungsgewicht vergleichen", "Es kann reales oder Volumengewicht gelten."],
-			["Schutz wÃ¤hlen", "UnnÃ¶tige Verpackung entfernen, Zerbrechliches schÃ¼tzen."],
-			["Aktuelles Angebot prÃ¼fen", "Routen und Preise Ã¤ndern sich; maÃŸgeblich ist das aktuelle Angebot."]
-		],
-		articles: [
-			[
-				"AllChinaBuy Spreadsheet ohne Chaos nutzen",
-				"spreadsheet-guide",
-				"Von einer groÃŸen Liste zu einer kurzen Produktauswahl."
-			],
-			[
-				"QC-Fotos: PrÃ¼fung in fÃ¼nf Minuten",
-				"qc-photo-routine",
-				"Was zuerst geprÃ¼ft wird und wann ein Zusatzfoto sinnvoll ist."
-			],
-			[
-				"Produktpreis und Paketkosten",
-				"parcel-cost-guide",
-				"Warum ein gÃ¼nstiger Artikel keinen gÃ¼nstigen Versand garantiert."
-			]
-		],
-		faq: [
-			["Ist dies die offizielle AllChinaBuy-Seite?", "Nein. Dies ist eine unabhÃ¤ngige Produktsuche."],
-			["Wohin fÃ¼hren Produktbuttons?", "Direkt zum Produkt unseres Einkaufsziels, nicht zu AllChinaBuy."],
-			["Sind Preise endgÃ¼ltig?", "Nein. Optionen, Kurse und Versand Ã¤ndern den Endbetrag."],
-			["Was sind QC-Fotos?", "Lagerfotos zur PrÃ¼fung vor dem internationalen Versand."],
-			["Garantieren sie QualitÃ¤t?", "Nein. Sie zeigen sichtbare, aber nicht alle versteckten Details."],
-			["Kann ich nach Namen suchen?", "Ja. Das Stichwort wird an den Produktkatalog Ã¼bergeben."],
-			["Warum kann Versand teurer sein?", "Ziel, Route, Warenart, Gewicht und Volumen bestimmen den Preis."],
-			["Gibt es Links zu anderen Agenten?", "Nein. Alle Handlungslinks nutzen ein Einkaufsziel."]
-		]
-	},
-	fr: {
-		name: "FranÃ§ais",
-		labels: [
-			"Base produits",
-			"CatÃ©gories",
-			"Guide QC",
-			"Livraison",
-			"Articles",
-			"FAQ"
-		],
-		cats: [
-			"Baskets",
-			"Sweats",
-			"T-shirts",
-			"Vestes",
-			"Pantalons",
-			"Accessoires"
-		],
-		hero: [
-			"MOTEUR DE DÃ‰COUVERTE v3.0",
-			"Cherchez moins. Trouvez mieux.",
-			"Un index structurÃ© pour les recherches AllChinaBuy spreadsheet. Comparez les prix USD et ouvrez la fiche exacte."
-		],
-		ui: [
-			"Voir les produits",
-			"Menu",
-			"Langue",
-			"RECHERCHE RAPIDE",
-			"Ã‰TAT DE Lâ€™INDEX",
-			"fiches actives",
-			"FILTRES",
-			"RÃ‰INITIALISER",
-			"CATÃ‰GORIE",
-			"PRIX_USD",
-			"STATUT",
-			"Lien vÃ©rifiÃ©",
-			"Nouveau cette semaine",
-			"RÃ‰SULTATS",
-			"SÃ‰LECTION",
-			"POURQUOI CET INDEX",
-			"Lire lâ€™article",
-			"Ouvrir la collection",
-			"Rechercher produits, catÃ©gories, styles..."
-		],
-		pages: {
-			products: ["Base de produits", "Produits sÃ©lectionnÃ©s avec images, prix USD et lien direct."],
-			categories: ["Par catÃ©gorie", "Choisissez un rayon puis ouvrez la collection."],
-			"qc-guide": ["Lire les photos QC", "VÃ©rifiez forme, dÃ©tails, mesures et dÃ©fauts visibles."],
-			"shipping-guide": ["Planifier le colis", "Le coÃ»t dÃ©pend du pays, du volume, du poids et du type dâ€™article."],
-			articles: ["BibliothÃ¨que de guides", "Conseils factuels sur la recherche, le contrÃ´le et lâ€™expÃ©dition."],
-			faq: ["Questions frÃ©quentes", "RÃ©ponses sur lâ€™index, les liens, les photos QC et les coÃ»ts."]
-		},
-		qc: [
-			["Confirmer lâ€™article", "Comparez nom, couleur et taille avec la commande."],
-			["Voir tous les angles", "ContrÃ´lez face, dos, cÃ´tÃ©s et gros plans."],
-			["Utiliser les mesures", "Comparez les mesures avec un vÃªtement connu."],
-			["Zoomer sur les dÃ©tails", "Inspectez coutures, impressions, broderies et fermetures."],
-			["DÃ©cider avant lâ€™envoi", "Demandez une prÃ©cision tant que lâ€™article est Ã  lâ€™entrepÃ´t."]
-		],
-		shipping: [
-			["Composer le colis", "Regroupez les articles prÃªts et vÃ©rifiez les dimensions."],
-			["VÃ©rifier les restrictions", "Batteries, liquides et articles sensibles peuvent limiter les lignes."],
-			["Comparer le poids facturÃ©", "Le poids rÃ©el ou volumÃ©trique peut sâ€™appliquer."],
-			["Choisir la protection", "Retirez le superflu mais protÃ©gez les objets fragiles."],
-			["VÃ©rifier le devis", "Lignes et prix changent; confirmez au moment de lâ€™envoi."]
-		],
-		articles: [
-			[
-				"Utiliser un spreadsheet AllChinaBuy efficacement",
-				"spreadsheet-guide",
-				"Transformer une longue liste en courte sÃ©lection."
-			],
-			[
-				"Photos QC : contrÃ´le en cinq minutes",
-				"qc-photo-routine",
-				"Les prioritÃ©s et le bon moment pour demander une photo."
-			],
-			[
-				"Prix produit et coÃ»t du colis",
-				"parcel-cost-guide",
-				"Pourquoi un article peu cher ne garantit pas un envoi peu cher."
-			]
-		],
-		faq: [
-			["Est-ce le site officiel AllChinaBuy ?", "Non. Câ€™est un guide indÃ©pendant."],
-			["OÃ¹ mÃ¨nent les boutons ?", "Vers la fiche exacte de notre destination, pas vers AllChinaBuy."],
-			["Les prix sont-ils dÃ©finitifs ?", "Non. Options, change et livraison modifient le total."],
-			["Que sont les photos QC ?", "Des photos dâ€™entrepÃ´t avant lâ€™envoi international."],
-			["Garantissent-elles la qualitÃ© ?", "Non. Elles montrent certains dÃ©fauts, pas tous les dÃ©tails cachÃ©s."],
-			["Puis-je chercher par nom ?", "Oui. Le mot-clÃ© est transmis au catalogue."],
-			["Pourquoi la livraison peut-elle coÃ»ter plus ?", "Pays, ligne, poids et volume dÃ©terminent le coÃ»t."],
-			["Liens vers dâ€™autres agents ?", "Non. Tous les boutons gardent une seule destination."]
-		]
-	},
-	es: {
-		name: "EspaÃ±ol",
-		labels: [
-			"Base de datos",
-			"CategorÃ­as",
-			"GuÃ­a QC",
-			"EnvÃ­o",
-			"ArtÃ­culos",
-			"FAQ"
-		],
-		cats: [
-			"Zapatillas",
-			"Sudaderas",
-			"Camisetas",
-			"Chaquetas",
-			"Pantalones",
-			"Accesorios"
-		],
-		hero: [
-			"MOTOR DE PRODUCTOS v3.0",
-			"Busca menos. Encuentra mejor.",
-			"Ãndice estructurado para bÃºsquedas AllChinaBuy spreadsheet. Compara precios USD y abre el producto exacto."
-		],
-		ui: [
-			"Ver productos",
-			"MenÃº",
-			"Idioma",
-			"BÃšSQUEDA RÃPIDA",
-			"ESTADO DEL ÃNDICE",
-			"registros activos",
-			"FILTROS",
-			"REINICIAR",
-			"CATEGORÃA",
-			"PRECIO_USD",
-			"ESTADO",
-			"Enlace verificado",
-			"Nuevo esta semana",
-			"RESULTADOS",
-			"SELECCIÃ“N",
-			"POR QUÃ‰ ESTE ÃNDICE",
-			"Leer artÃ­culo",
-			"Abrir colecciÃ³n",
-			"Buscar productos, categorÃ­as, estilos..."
-		],
-		pages: {
-			products: ["Base de productos", "Productos seleccionados con imÃ¡genes, precio USD y enlace directo."],
-			categories: ["Explorar categorÃ­as", "Elige un departamento y abre su colecciÃ³n."],
-			"qc-guide": ["CÃ³mo leer fotos QC", "Comprueba forma, detalles, medidas y defectos visibles."],
-			"shipping-guide": ["Planifica el paquete", "El coste depende de destino, tamaÃ±o, peso y tipo."],
-			articles: ["Biblioteca de guÃ­as", "Consejos basados en hechos sobre bÃºsqueda, control y envÃ­o."],
-			faq: ["Preguntas frecuentes", "Respuestas sobre el Ã­ndice, enlaces, fotos QC y costes."]
-		},
-		qc: [
-			["Confirmar el artÃ­culo", "Compara nombre, color y talla con el pedido."],
-			["Revisar todos los Ã¡ngulos", "Mira frente, espalda, laterales y primeros planos."],
-			["Usar medidas", "Compara la cinta mÃ©trica con una prenda propia."],
-			["Ampliar detalles", "Revisa costuras, estampados, bordados y cierres."],
-			["Decidir antes del envÃ­o", "Aclara dudas mientras el artÃ­culo sigue en almacÃ©n."]
-		],
-		shipping: [
-			["Crear el paquete", "Agrupa artÃ­culos listos y verifica dimensiones."],
-			["Revisar restricciones", "BaterÃ­as, lÃ­quidos y artÃ­culos sensibles pueden limitar rutas."],
-			["Comparar peso facturable", "Puede aplicarse peso real o volumÃ©trico."],
-			["Elegir protecciÃ³n", "Quita embalaje innecesario y protege lo frÃ¡gil."],
-			["Verificar cotizaciÃ³n", "Rutas y precios cambian; confirma el importe actual."]
-		],
-		articles: [
-			[
-				"Usar un spreadsheet AllChinaBuy sin perderse",
-				"spreadsheet-guide",
-				"De una lista enorme a una selecciÃ³n comparable."
-			],
-			[
-				"Fotos QC: revisiÃ³n en cinco minutos",
-				"qc-photo-routine",
-				"QuÃ© revisar primero y cuÃ¡ndo pedir otra foto."
-			],
-			[
-				"Precio del producto y coste del paquete",
-				"parcel-cost-guide",
-				"Por quÃ© un producto barato no asegura un envÃ­o barato."
-			]
-		],
-		faq: [
-			["Â¿Es la web oficial de AllChinaBuy?", "No. Es una guÃ­a independiente."],
-			["Â¿A dÃ³nde llevan los botones?", "A la ficha exacta de nuestro destino, no a AllChinaBuy."],
-			["Â¿Son precios finales?", "No. Opciones, cambio y envÃ­o modifican el total."],
-			["Â¿QuÃ© son las fotos QC?", "Fotos de almacÃ©n antes del envÃ­o internacional."],
-			["Â¿Garantizan calidad?", "No. Ayudan con defectos visibles, no con todo lo oculto."],
-			["Â¿Puedo buscar por nombre?", "SÃ­. La palabra se envÃ­a al catÃ¡logo."],
-			["Â¿Por quÃ© el envÃ­o puede costar mÃ¡s?", "Destino, ruta, peso y volumen determinan el precio."],
-			["Â¿Hay enlaces a otros agentes?", "No. Todos los botones usan un destino."]
-		]
-	},
-	it: {
-		name: "Italiano",
-		labels: [
-			"Database",
-			"Categorie",
-			"Guida QC",
-			"Spedizione",
-			"Articoli",
-			"FAQ"
-		],
-		cats: [
-			"Sneaker",
-			"Felpe",
-			"T-shirt",
-			"Giacche",
-			"Pantaloni",
-			"Accessori"
-		],
-		hero: [
-			"MOTORE DI RICERCA v3.0",
-			"Cerca meno. Trova meglio.",
-			"Indice strutturato per ricerche AllChinaBuy spreadsheet. Confronta i prezzi USD e apri il prodotto esatto."
-		],
-		ui: [
-			"Vedi prodotti",
-			"Menu",
-			"Lingua",
-			"RICERCA RAPIDA",
-			"STATO INDICE",
-			"schede attive",
-			"FILTRI",
-			"AZZERA",
-			"CATEGORIA",
-			"PREZZO_USD",
-			"STATO",
-			"Link verificato",
-			"Nuovi questa settimana",
-			"RISULTATI",
-			"SELEZIONATI",
-			"PERCHÃ‰ QUESTO INDICE",
-			"Leggi articolo",
-			"Apri collezione",
-			"Cerca prodotti, categorie, stili..."
-		],
-		pages: {
-			products: ["Database prodotti", "Prodotti selezionati con immagini, prezzi USD e link diretto."],
-			categories: ["Esplora categorie", "Scegli un reparto e apri la collezione."],
-			"qc-guide": ["Leggere le foto QC", "Controlla forma, dettagli, misure e difetti visibili."],
-			"shipping-guide": ["Pianifica il pacco", "Il costo dipende da destinazione, dimensioni, peso e tipo."],
-			articles: ["Guide e ricerche", "Contenuti basati su fatti per ricerca, controllo e spedizione."],
-			faq: ["Domande frequenti", "Risposte su indice, link, foto QC e costi."]
-		},
-		qc: [
-			["Conferma lâ€™articolo", "Confronta nome, colore e taglia con lâ€™ordine."],
-			["Controlla ogni angolo", "Esamina fronte, retro, lati e primi piani."],
-			["Usa le misure", "Confronta le foto con un capo tuo."],
-			["Ingrandisci i dettagli", "Controlla cuciture, stampe, ricami e chiusure."],
-			["Decidi prima dellâ€™invio", "Chiedi chiarimenti mentre il prodotto Ã¨ in magazzino."]
-		],
-		shipping: [
-			["Componi il pacco", "Raggruppa articoli pronti e verifica le dimensioni."],
-			["Controlla i limiti", "Batterie, liquidi e articoli sensibili possono limitare le linee."],
-			["Confronta il peso", "PuÃ² valere il peso reale o volumetrico."],
-			["Scegli la protezione", "Riduci lâ€™imballo ma proteggi gli oggetti fragili."],
-			["Verifica il preventivo", "Linee e prezzi cambiano; conferma il dato attuale."]
-		],
-		articles: [
-			[
-				"Usare uno spreadsheet AllChinaBuy senza perdersi",
-				"spreadsheet-guide",
-				"Da una grande lista a una selezione confrontabile."
-			],
-			[
-				"Foto QC: controllo in cinque minuti",
-				"qc-photo-routine",
-				"Cosa guardare prima e quando chiedere una foto extra."
-			],
-			[
-				"Prezzo prodotto e costo pacco",
-				"parcel-cost-guide",
-				"PerchÃ© un articolo economico non garantisce una spedizione economica."
-			]
-		],
-		faq: [
-			["Ãˆ il sito ufficiale AllChinaBuy?", "No. Ãˆ una guida indipendente."],
-			["Dove portano i pulsanti?", "Alla pagina esatta del nostro sito, non ad AllChinaBuy."],
-			["I prezzi sono definitivi?", "No. Opzioni, cambio e spedizione cambiano il totale."],
-			["Cosa sono le foto QC?", "Foto di magazzino prima della spedizione."],
-			["Garantiscono la qualitÃ ?", "No. Aiutano con difetti visibili, non con tutto."],
-			["Posso cercare per nome?", "SÃ¬. La parola passa al catalogo."],
-			["PerchÃ© la spedizione puÃ² costare di piÃ¹?", "Destinazione, linea, peso e volume determinano il costo."],
-			["Collegate altri agenti?", "No. Tutti i pulsanti usano una sola destinazione."]
-		]
-	},
-	pl: {
-		name: "Polski",
-		labels: [
-			"Baza produktÃ³w",
-			"Kategorie",
-			"Poradnik QC",
-			"WysyÅ‚ka",
-			"ArtykuÅ‚y",
-			"FAQ"
-		],
-		cats: [
-			"Buty",
-			"Bluzy",
-			"T-shirty",
-			"Kurtki",
-			"Spodnie",
-			"Akcesoria"
-		],
-		hero: [
-			"WYSZUKIWARKA PRODUKTÃ“W v3.0",
-			"Szukaj mniej. Znajduj lepiej.",
-			"UporzÄ…dkowany indeks dla wyszukiwaÅ„ AllChinaBuy spreadsheet. PorÃ³wnuj ceny USD i otwieraj konkretny produkt."
-		],
-		ui: [
-			"Zobacz produkty",
-			"Menu",
-			"JÄ™zyk",
-			"SZYBKIE WYSZUKIWANIE",
-			"STAN INDEKSU",
-			"aktywnych pozycji",
-			"FILTRY",
-			"RESETUJ",
-			"KATEGORIA",
-			"CENA_USD",
-			"STATUS",
-			"Link sprawdzony",
-			"Nowe w tym tygodniu",
-			"WYNIKÃ“W",
-			"WYBRANE",
-			"DLACZEGO TEN INDEKS",
-			"Czytaj artykuÅ‚",
-			"OtwÃ³rz kolekcjÄ™",
-			"Szukaj produktÃ³w, kategorii, stylÃ³w..."
-		],
-		pages: {
-			products: ["Baza produktÃ³w", "Wybrane produkty ze zdjÄ™ciami, cenami USD i linkiem."],
-			categories: ["Kategorie", "Wybierz dziaÅ‚ i otwÃ³rz kolekcjÄ™."],
-			"qc-guide": ["Jak czytaÄ‡ zdjÄ™cia QC", "SprawdÅº ksztaÅ‚t, detale, wymiary i widoczne wady."],
-			"shipping-guide": ["Zaplanuj paczkÄ™", "Koszt zaleÅ¼y od kraju, rozmiaru, wagi i typu."],
-			articles: ["Biblioteka poradnikÃ³w", "Rzetelne treÅ›ci o wyszukiwaniu, kontroli i przesyÅ‚ce."],
-			faq: ["CzÄ™ste pytania", "Odpowiedzi o indeksie, linkach, zdjÄ™ciach QC i kosztach."]
-		},
-		qc: [
-			["PotwierdÅº produkt", "PorÃ³wnaj nazwÄ™, kolor i rozmiar z zamÃ³wieniem."],
-			["SprawdÅº kaÅ¼dy kÄ…t", "Obejrzyj przÃ³d, tyÅ‚, boki i zbliÅ¼enia."],
-			["UÅ¼yj wymiarÃ³w", "PorÃ³wnaj zdjÄ™cia z wÅ‚asnÄ… odzieÅ¼Ä…."],
-			["PowiÄ™ksz szczegÃ³Å‚y", "SprawdÅº szwy, nadruki, hafty i zamki."],
-			["Zdecyduj przed wysyÅ‚kÄ…", "WyjaÅ›nij wÄ…tpliwoÅ›ci, gdy produkt jest w magazynie."]
-		],
-		shipping: [
-			["Zbuduj paczkÄ™", "PoÅ‚Ä…cz gotowe produkty i sprawdÅº wymiary."],
-			["SprawdÅº ograniczenia", "Baterie, pÅ‚yny i wraÅ¼liwe towary mogÄ… ograniczaÄ‡ linie."],
-			["PorÃ³wnaj wagÄ™", "MoÅ¼e obowiÄ…zywaÄ‡ waga rzeczywista lub objÄ™toÅ›ciowa."],
-			["Wybierz zabezpieczenie", "UsuÅ„ zbÄ™dne opakowania i chroÅ„ delikatne rzeczy."],
-			["SprawdÅº wycenÄ™", "Linie i ceny siÄ™ zmieniajÄ…; potwierdÅº ofertÄ™."]
-		],
-		articles: [
-			[
-				"Jak uÅ¼ywaÄ‡ AllChinaBuy spreadsheet bez chaosu",
-				"spreadsheet-guide",
-				"Od ogromnej listy do krÃ³tkiego porÃ³wnania."
-			],
-			[
-				"ZdjÄ™cia QC: kontrola w piÄ™Ä‡ minut",
-				"qc-photo-routine",
-				"Co sprawdziÄ‡ i kiedy poprosiÄ‡ o dodatkowe zdjÄ™cie."
-			],
-			[
-				"Cena produktu a koszt paczki",
-				"parcel-cost-guide",
-				"Dlaczego tani produkt nie oznacza taniej wysyÅ‚ki."
-			]
-		],
-		faq: [
-			["Czy to oficjalna strona AllChinaBuy?", "Nie. To niezaleÅ¼ny przewodnik."],
-			["DokÄ…d prowadzÄ… przyciski?", "Do dokÅ‚adnej karty produktu, nie do AllChinaBuy."],
-			["Czy ceny sÄ… ostateczne?", "Nie. Opcje, kurs i wysyÅ‚ka zmieniajÄ… sumÄ™."],
-			["Czym sÄ… zdjÄ™cia QC?", "ZdjÄ™ciami magazynowymi przed wysyÅ‚kÄ…."],
-			["Czy gwarantujÄ… jakoÅ›Ä‡?", "Nie. PokazujÄ… widoczne wady, nie wszystkie ukryte."],
-			["Czy mogÄ™ szukaÄ‡ po nazwie?", "Tak. HasÅ‚o trafia do katalogu."],
-			["Dlaczego wysyÅ‚ka bywa droÅ¼sza?", "Kraj, linia, waga i objÄ™toÅ›Ä‡ okreÅ›lajÄ… cenÄ™."],
-			["Czy linkujecie innych agentÃ³w?", "Nie. Wszystkie przyciski prowadzÄ… do jednego celu."]
-		]
-	},
-	ro: {
-		name: "RomÃ¢nÄƒ",
-		labels: [
-			"BazÄƒ produse",
-			"Categorii",
-			"Ghid QC",
-			"Livrare",
-			"Articole",
-			"FAQ"
-		],
-		cats: [
-			"Pantofi",
-			"Hanorace",
-			"Tricouri",
-			"Jachete",
-			"Pantaloni",
-			"Accesorii"
-		],
-		hero: [
-			"MOTOR DE CÄ‚UTARE v3.0",
-			"CautÄƒ mai puÈ›in. GÄƒseÈ™te mai bine.",
-			"Index structurat pentru cÄƒutÄƒri AllChinaBuy spreadsheet. ComparÄƒ preÈ›uri USD È™i deschide produsul exact."
-		],
-		ui: [
-			"Vezi produsele",
-			"Meniu",
-			"LimbÄƒ",
-			"CÄ‚UTARE RAPIDÄ‚",
-			"STARE INDEX",
-			"Ã®nregistrÄƒri active",
-			"FILTRE",
-			"RESETEAZÄ‚",
-			"CATEGORIE",
-			"PREÈš_USD",
-			"STARE",
-			"Link verificat",
-			"Nou sÄƒptÄƒmÃ¢na aceasta",
-			"REZULTATE",
-			"SELECTATE",
-			"DE CE ACEST INDEX",
-			"CiteÈ™te articolul",
-			"Deschide colecÈ›ia",
-			"CautÄƒ produse, categorii, stiluri..."
-		],
-		pages: {
-			products: ["BazÄƒ de produse", "Produse selectate cu imagini, preÈ›uri USD È™i link direct."],
-			categories: ["ExploreazÄƒ categoriile", "Alege un departament È™i deschide colecÈ›ia."],
-			"qc-guide": ["Cum citeÈ™ti pozele QC", "VerificÄƒ forma, detaliile, mÄƒsurile È™i defectele vizibile."],
-			"shipping-guide": ["PlanificÄƒ pachetul", "Costul depinde de destinaÈ›ie, dimensiune, greutate È™i tip."],
-			articles: ["BibliotecÄƒ de ghiduri", "ConÈ›inut documentat despre cÄƒutare, verificare È™i livrare."],
-			faq: ["ÃŽntrebÄƒri frecvente", "RÄƒspunsuri despre index, linkuri, poze QC È™i costuri."]
-		},
-		qc: [
-			["ConfirmÄƒ produsul", "ComparÄƒ numele, culoarea È™i mÄƒrimea cu comanda."],
-			["VerificÄƒ toate unghiurile", "PriveÈ™te faÈ›a, spatele, lateralele È™i detaliile."],
-			["FoloseÈ™te mÄƒsurÄƒtorile", "ComparÄƒ fotografiile cu o piesÄƒ pe care o ai."],
-			["MÄƒreÈ™te detaliile", "VerificÄƒ cusÄƒturi, imprimeuri, broderii È™i fermoare."],
-			["Decide Ã®nainte de livrare", "Cere clarificÄƒri cÃ¢t produsul este Ã®n depozit."]
-		],
-		shipping: [
-			["ConstruieÈ™te pachetul", "GrupeazÄƒ produsele pregÄƒtite È™i verificÄƒ dimensiunile."],
-			["VerificÄƒ restricÈ›iile", "Bateriile, lichidele È™i produsele sensibile pot limita rutele."],
-			["ComparÄƒ greutatea", "Se poate folosi greutatea realÄƒ sau volumetricÄƒ."],
-			["Alege protecÈ›ia", "EliminÄƒ ambalajul inutil È™i protejeazÄƒ obiectele fragile."],
-			["VerificÄƒ oferta", "Rutele È™i preÈ›urile se schimbÄƒ; confirmÄƒ oferta actualÄƒ."]
-		],
-		articles: [
-			[
-				"Cum foloseÈ™ti un AllChinaBuy spreadsheet eficient",
-				"spreadsheet-guide",
-				"De la o listÄƒ mare la o selecÈ›ie comparabilÄƒ."
-			],
-			[
-				"Poze QC: verificare Ã®n cinci minute",
-				"qc-photo-routine",
-				"Ce verifici È™i cÃ¢nd meritÄƒ o fotografie suplimentarÄƒ."
-			],
-			[
-				"PreÈ›ul produsului È™i costul pachetului",
-				"parcel-cost-guide",
-				"De ce un produs ieftin nu garanteazÄƒ o livrare ieftinÄƒ."
-			]
-		],
-		faq: [
-			["Este site-ul oficial AllChinaBuy?", "Nu. Este un ghid independent."],
-			["Unde duc butoanele produselor?", "La pagina exactÄƒ a produsului, nu la AllChinaBuy."],
-			["PreÈ›urile sunt finale?", "Nu. OpÈ›iunile, cursul È™i livrarea schimbÄƒ totalul."],
-			["Ce sunt pozele QC?", "Fotografii din depozit Ã®nainte de transport."],
-			["GaranteazÄƒ calitatea?", "Nu. AratÄƒ probleme vizibile, nu toate detaliile ascunse."],
-			["Pot cÄƒuta dupÄƒ nume?", "Da. Termenul este trimis cÄƒtre catalog."],
-			["De ce livrarea poate costa mai mult?", "DestinaÈ›ia, ruta, greutatea È™i volumul determinÄƒ costul."],
-			["TrimiteÈ›i cÄƒtre alÈ›i agenÈ›i?", "Nu. Toate acÈ›iunile folosesc o singurÄƒ destinaÈ›ie."]
-		]
-	}
-};
-var factualFaqExtras = {
-	de: [
-		["Welche Leistungen beschreibt AllChinaBuy Ã¶ffentlich?", "Die offizielle App nennt Einkauf, Bestellabwicklung, QualitÃ¤tsprÃ¼fung, internationale Logistik und Kundendienst; der internationale Versand erfolgt durch Drittanbieter."],
-		["Welche Daten braucht eine VersandschÃ¤tzung?", "Der offizielle Rechner fragt nach Ziel, Warenkategorie, geschÃ¤tztem Gewicht und gegebenenfalls PaketmaÃŸen."],
-		["Ist der Rechnerpreis endgÃ¼ltig?", "Nein. EndmaÃŸe, Wareneignung und aktuell verfÃ¼gbare Linien kÃ¶nnen das Live-Angebot Ã¤ndern."],
-		["Was prÃ¼fe ich vor dem Paketversand?", "Artikel, QC-Nachweise, Gewicht, MaÃŸe, Linien-Eignung und den aktuellen Gesamtbetrag prÃ¼fen."]
-	],
-	fr: [
-		["Quels services AllChinaBuy dÃ©crit-il ?", "Lâ€™application officielle cite lâ€™achat, le traitement des commandes, le contrÃ´le qualitÃ©, la logistique internationale et le service aprÃ¨s-vente; lâ€™envoi international est assurÃ© par des tiers."],
-		["Quelles donnÃ©es faut-il pour estimer lâ€™envoi ?", "Le calculateur officiel demande la destination, la catÃ©gorie, le poids estimÃ© et, si nÃ©cessaire, les dimensions."],
-		["Le rÃ©sultat du calculateur est-il final ?", "Non. Mesures finales, Ã©ligibilitÃ© et lignes disponibles peuvent modifier le devis rÃ©el."],
-		["Que vÃ©rifier avant lâ€™envoi ?", "Article reÃ§u, preuves QC, poids, dimensions, Ã©ligibilitÃ© de la ligne et total actuel."]
-	],
-	es: [
-		["Â¿QuÃ© servicios describe AllChinaBuy?", "La app oficial enumera compra, gestiÃ³n de pedidos, inspecciÃ³n de calidad, logÃ­stica internacional y posventa; el envÃ­o internacional lo prestan terceros."],
-		["Â¿QuÃ© datos necesita una estimaciÃ³n?", "La calculadora oficial solicita destino, categorÃ­a, peso estimado y, cuando corresponde, dimensiones."],
-		["Â¿El resultado es el precio final?", "No. Medidas finales, elegibilidad y rutas disponibles pueden cambiar la cotizaciÃ³n real."],
-		["Â¿QuÃ© revisar antes de enviar?", "Producto, pruebas QC, peso, dimensiones, elegibilidad de ruta y total actual."]
-	],
-	it: [
-		["Quali servizi descrive AllChinaBuy?", "Lâ€™app ufficiale indica acquisto, gestione ordini, controllo qualitÃ , logistica internazionale e post-vendita; la spedizione internazionale Ã¨ fornita da terzi."],
-		["Quali dati servono per una stima?", "Il calcolatore ufficiale richiede destinazione, categoria, peso stimato e, se necessario, dimensioni."],
-		["Il risultato Ã¨ il prezzo finale?", "No. Misure finali, idoneitÃ  e linee disponibili possono cambiare il preventivo reale."],
-		["Cosa verificare prima della spedizione?", "Prodotto, prove QC, peso, dimensioni, idoneitÃ  della linea e totale attuale."]
-	],
-	pl: [
-		["Jakie usÅ‚ugi opisuje AllChinaBuy?", "Oficjalna aplikacja wymienia zakup, realizacjÄ™ zamÃ³wieÅ„, kontrolÄ™ jakoÅ›ci, logistykÄ™ miÄ™dzynarodowÄ… i obsÅ‚ugÄ™ posprzedaÅ¼owÄ…; wysyÅ‚kÄ™ zapewniajÄ… firmy zewnÄ™trzne."],
-		["Jakie dane sÄ… potrzebne do wyceny?", "Oficjalny kalkulator pyta o kraj, kategoriÄ™, szacowanÄ… wagÄ™ i w razie potrzeby wymiary."],
-		["Czy wynik kalkulatora jest ostateczny?", "Nie. KoÅ„cowe wymiary, kwalifikacja towaru i dostÄ™pne linie mogÄ… zmieniÄ‡ ofertÄ™."],
-		["Co sprawdziÄ‡ przed wysyÅ‚kÄ…?", "Produkt, zdjÄ™cia QC, wagÄ™, wymiary, dostÄ™pnoÅ›Ä‡ linii i aktualnÄ… sumÄ™."]
-	],
-	ro: [
-		["Ce servicii descrie AllChinaBuy?", "AplicaÈ›ia oficialÄƒ enumerÄƒ achiziÈ›ia, procesarea comenzilor, controlul calitÄƒÈ›ii, logistica internaÈ›ionalÄƒ È™i serviciile post-vÃ¢nzare; transportul internaÈ›ional este oferit de terÈ›i."],
-		["Ce date sunt necesare pentru estimare?", "Calculatorul oficial cere destinaÈ›ia, categoria, greutatea estimatÄƒ È™i, unde este cazul, dimensiunile."],
-		["Rezultatul este preÈ›ul final?", "Nu. Dimensiunile finale, eligibilitatea È™i rutele disponibile pot modifica oferta realÄƒ."],
-		["Ce verific Ã®nainte de expediere?", "Produsul, dovezile QC, greutatea, dimensiunile, eligibilitatea rutei È™i totalul actual."]
-	]
-};
-for (const locale of locales$1) if (locale !== "en") localeCopy[locale].faq.push(...factualFaqExtras[locale]);
-var slugs = [
-	"products",
-	"categories",
-	"qc-guide",
-	"shipping-guide",
-	"articles",
-	"faq"
-];
-var href = (locale, path = "") => `${locale === "en" ? "" : `/${locale}`}${path ? `/${path}` : "/"}`;
-function Header({ locale, path }) {
-	const t = localeCopy[locale], suffix = path.join("/");
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("header", {
-		className: "site-nav nav-c terminal-header",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-				className: "terminal-brand",
-				href: href(locale),
-				"aria-label": "AllChinaBuy finds home",
-				children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("img", {
-					src: "/allchinabuy.png",
-					alt: "AllChinaBuy",
-					width: "1718",
-					height: "253"
-				})
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("nav", {
-				className: "terminal-nav",
-				children: slugs.map((slug, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-					className: path[0] === slug ? "active" : "",
-					href: href(locale, slug),
-					children: t.labels[i]
-				}, slug))
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-				className: "terminal-actions",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("details", {
-						className: "lang-menu",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("summary", { children: [locale.toUpperCase(), "âŒ„"] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", { children: locales$1.map((l) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-							className: l === locale ? "active" : "",
-							href: href(l, suffix),
-							children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: l.toUpperCase() }), localeCopy[l].name]
-						}, l)) })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						className: "terminal-cta",
-						href: "https://www.cnfanshp.com/AllProducts/",
-						target: "_blank",
-						rel: "noopener",
-						children: [t.ui[0], " â†—"]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("details", {
-						className: "mobile-menu",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("summary", { children: t.ui[1] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-							slugs.map((slug, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-								href: href(locale, slug),
-								children: t.labels[i]
-							}, slug)),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: t.ui[2] }),
-							locales$1.map((l) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-								href: href(l, suffix),
-								children: localeCopy[l].name
-							}, l))
-						] })]
-					})
-				]
-			})
-		]
-	});
-}
-function SiteFooter({ locale }) {
-	const t = localeCopy[locale];
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("footer", {
-		className: "site-footer footer-c terminal-footer",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-				className: "terminal-footer-logo",
-				children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("img", {
-					src: "/allchinabuy.png",
-					alt: "AllChinaBuy",
-					width: "1718",
-					height: "253"
-				})
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("p", { children: [
-				t.pages.products[1],
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "Independent guide Â· not affiliated with AllChinaBuy or featured brands." })
-			] }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "allchinabuy.ro Â· 2026" })
-		]
-	});
-}
-function Home$1({ locale }) {
-	const t = localeCopy[locale];
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-			className: "hero-c",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "terminal-path",
-					children: "/ DISCOVER / ALL_PRODUCTS"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "hero-c-grid",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-							className: "mono-label",
-							children: t.hero[0]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h1", { children: t.hero[1].replace(". ", ".\n").split("\n").map((x, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [x, i === 0 && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {})] }, x)) }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: t.hero[2] })
-					] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "system-panel",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: t.ui[4] }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("strong", { children: "2,044" }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("small", { children: t.ui[5] }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("hr", {}),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { children: "+128" }),
-								" 30 DAYS ",
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { children: "98.7%" }),
-								" CHECKED"
-							] })
-						]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(SearchBar, { label: t.ui[18] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "quick-queries",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [t.ui[3], ":"] }), categories.slice(0, 5).map(([, , url], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						href: url,
-						target: "_blank",
-						rel: "noopener",
-						children: [
-							"[",
-							t.cats[i].toUpperCase(),
-							"]"
-						]
-					}, url))]
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-			className: "terminal-body",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("aside", {
-				className: "filter-panel",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "filter-title",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: t.ui[6] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: t.ui[7] })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("label", { children: t.ui[8] }),
-					categories.map(([, , url], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						href: url,
-						target: "_blank",
-						rel: "noopener",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { className: i === 0 ? "checked" : "" }),
-							t.cats[i],
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: [
-								648,
-								392,
-								318,
-								284,
-								241,
-								161
-							][i] })
-						]
-					}, url)),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("label", { children: t.ui[9] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "price-range",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "$0" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "$80+" })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-						className: "range-line",
-						children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", {})
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("label", { children: t.ui[10] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						href: "#results",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { className: "checked" }),
-							t.ui[11],
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "1,921" })
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						href: "#results",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", {}),
-							t.ui[12],
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "42" })
-						]
-					})
-				]
-			}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "results-panel",
-				id: "results",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "results-head",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "RESULT_SET" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("b", { children: ["2,044 ", t.ui[13]] })] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("button", { children: [t.ui[14], " â†“"] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("button", { children: "GRID â–¦" })] })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-						className: "products-c",
-						children: products.map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ProductCard, {
-							mode: "c",
-							product: p,
-							index: i
-						}, p.href))
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						className: "terminal-more",
-						href: href(locale, "products"),
-						children: [t.ui[0], " â†’"]
-					})
-				]
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-			className: "data-promise",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: t.ui[15] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", { children: [
-				["DIRECT_PATHS", t.pages.products[1]],
-				["QC_LOGIC", t.pages["qc-guide"][1]],
-				["PARCEL_DATA", t.pages["shipping-guide"][1]]
-			].map(([a, b], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("article", { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("b", { children: ["0", i + 1] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: a }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: b })
-			] }, a)) })]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(HomeArticles, { locale }),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(HomeFaq, { locale })
-	] });
-}
-function HomeArticles({ locale }) {
-	const t = localeCopy[locale];
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-		className: "home-library",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-			className: "home-module-head",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "/ SEO_ARTICLES" }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: t.pages.articles[0] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: t.pages.articles[1] })
-			] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-				href: href(locale, "articles"),
-				children: [t.labels[4], " â†’"]
-			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-			className: "article-grid home-article-grid",
-			children: t.articles.map(([title, slug, summary], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-				href: href(locale, `articles/${slug}`),
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [
-						"0",
-						i + 1,
-						" Â· FIELD NOTE"
-					] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: title }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: summary }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("b", { children: [t.ui[16], " â†’"] })
-				]
-			}, slug))
-		})]
-	});
-}
-function HomeFaq({ locale }) {
-	const t = localeCopy[locale];
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-		className: "home-library home-faq-section",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-			className: "home-module-head",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "/ FAQ_INDEX" }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: t.pages.faq[0] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: t.pages.faq[1] })
-			] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-				href: href(locale, "faq"),
-				children: [t.labels[5], " â†’"]
-			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-			className: "home-faq-grid",
-			children: t.faq.slice(0, 4).map(([q, a], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-				href: href(locale, "faq"),
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: String(i + 1).padStart(2, "0") }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h3", { children: q }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: a }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "FAQ â†’" })
-				]
-			}, q))
-		})]
-	});
-}
-function PageHero({ t, section }) {
-	const p = t.pages[section] || t.pages.articles;
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-		className: "terminal-page-hero",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: ["/ ", section.toUpperCase().replaceAll("-", "_")] }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h1", { children: p[0] }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: p[1] })
-		]
-	});
-}
-function Article({ locale, slug }) {
-	const t = localeCopy[locale], localized = t.articles.find((x) => x[1] === slug) || t.articles[0], article = getEnglishArticle(slug);
-	const articleSchema = {
-		"@context": "https://schema.org",
-		"@type": "Article",
-		headline: article.title,
-		description: article.description,
-		dateModified: "2026-08-12",
-		datePublished: "2026-08-12",
-		inLanguage: "en",
-		author: {
-			"@type": "Organization",
-			name: "allchinabuy.ro Editorial Research"
-		}
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("script", {
-			type: "application/ld+json",
-			dangerouslySetInnerHTML: { __html: JSON.stringify(articleSchema) }
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-			className: "article-hero",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-					href: href(locale, "articles"),
-					children: ["â† ", t.labels[4]]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [
-					"FIELD NOTE Â· ",
-					article.updated.toUpperCase(),
-					" Â· ",
-					article.readTime.toUpperCase()
-				] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h1", { children: locale === "en" ? article.title : localized[0] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: locale === "en" ? article.description : localized[2] }),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "article-keywords",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "PRIMARY KEYWORD" }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: article.primaryKeyword }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "SUPPORTING" }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: article.secondaryKeywords.join(" Â· ") })
-					]
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("article", {
-			className: "terminal-article",
-			children: [
-				article.intro.map((paragraph, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", {
-					className: i === 0 ? "article-intro" : "article-lede",
-					children: paragraph
-				}, paragraph)),
-				article.sections.map((section, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: String(i + 1).padStart(2, "0") }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: section.heading }),
-					section.paragraphs.map((paragraph) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: paragraph }, paragraph)),
-					section.checklist && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("ul", {
-						className: "article-checklist",
-						children: section.checklist.map((item) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("li", { children: item }, item))
-					})
-				] })] }, section.heading)),
-				/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "article-callout",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "RESEARCH NOTE" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: article.sourceNote })]
-				})
-			]
-		})
-	] });
-}
-function Section({ locale, path }) {
-	const t = localeCopy[locale], section = path[0] || "products";
-	if (section === "articles" && path[1]) return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Article, {
-		locale,
-		slug: path[1]
-	});
-	const faqSchema = section === "faq" ? {
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		mainEntity: t.faq.map(([q, a]) => ({
-			"@type": "Question",
-			name: q,
-			acceptedAnswer: {
-				"@type": "Answer",
-				text: a
-			}
-		}))
-	} : null;
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [
-		faqSchema && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("script", {
-			type: "application/ld+json",
-			dangerouslySetInnerHTML: { __html: JSON.stringify(faqSchema) }
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(PageHero, {
-			t,
-			section
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-			className: "terminal-page-content",
-			children: [
-				section === "products" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)(import_jsx_runtime_react_server.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "page-toolbar",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: ["2,044 ", t.ui[13]] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(SearchBar, { label: t.ui[18] })]
-				}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "products-c page-products",
-					children: products.map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ProductCard, {
-						mode: "c",
-						product: p,
-						index: i
-					}, p.href))
-				})] }),
-				section === "categories" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "category-terminal-grid",
-					children: categories.map(([, , url], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						href: url,
-						target: "_blank",
-						rel: "noopener",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: ["0", i + 1] }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: t.cats[i] }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("small", { children: [
-								[
-									648,
-									392,
-									318,
-									284,
-									241,
-									161
-								][i],
-								" ",
-								t.ui[5]
-							] }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("i", { children: [t.ui[17], " â†—"] })
-						]
-					}, url))
-				}),
-				section === "qc-guide" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Steps, { items: t.qc }),
-				" ",
-				section === "shipping-guide" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Steps, { items: t.shipping }),
-				" ",
-				section === "articles" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "article-grid",
-					children: t.articles.map(([title, slug, summary], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						href: href(locale, `articles/${slug}`),
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [
-								"0",
-								i + 1,
-								" Â· FIELD NOTE"
-							] }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: title }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: summary }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("b", { children: [t.ui[16], " â†’"] })
-						]
-					}, slug))
-				}),
-				section === "faq" && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "faq-terminal",
-					children: t.faq.map(([q, a], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("details", {
-						open: i === 0,
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("summary", { children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: String(i + 1).padStart(2, "0") }),
-							q,
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "+" })
-						] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: a })]
-					}, q))
-				})
-			]
-		})
-	] });
-}
-function Steps({ items }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-		className: "terminal-steps",
-		children: items.map(([h, p], i) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("article", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: ["0", i + 1] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: h }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: p })] })] }, h))
-	});
-}
-function TerminalPage({ locale = "en", path = [], showSwitcher = false }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("main", {
-		className: "site concept-c",
-		lang: locale,
-		children: [
-			showSwitcher && /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ConceptSwitcher, { active: "C" }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Header, {
-				locale,
-				path
-			}),
-			path.length ? /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Section, {
-				locale,
-				path
-			}) : /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Home$1, { locale }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(SiteFooter, { locale })
-		]
-	});
-}
-var getLocaleCopy = (locale) => localeCopy[locale];
-//#endregion
-//#region app/page.tsx
-var page_exports$5 = /* @__PURE__ */ __exportAll({ default: () => Home });
-function Home() {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(TerminalPage, {});
-}
-var Resources = ((React, deps, RemoveDuplicateServerCss, precedence) => {
-	return function Resources() {
-		return React.createElement(React.Fragment, null, [...deps.css.map((href) => React.createElement("link", {
-			key: "css:" + href,
-			rel: "stylesheet",
-			...precedence ? { precedence } : {},
-			href,
-			"data-rsc-css-href": href
-		})), RemoveDuplicateServerCss && React.createElement(RemoveDuplicateServerCss, { key: "remove-duplicate-css" })]);
-	};
-})(import_react_react_server.default, assetsManifest.serverResources["app/layout.tsx"], void 0, "vite-rsc/importer-resources");
-//#endregion
-//#region \0virtual:vinext-google-fonts?fonts=Geist%2CGeist_Mono
-var Geist = /* @__PURE__ */ createFontLoader("Geist");
-var Geist_Mono = /* @__PURE__ */ createFontLoader("Geist Mono");
-//#endregion
-//#region app/layout.tsx
-var layout_exports = /* @__PURE__ */ __exportAll({
-	default: () => $$wrap_RootLayout,
-	metadata: () => metadata$3
-});
-var geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-	_selfHostedCSS: "/* cyrillic-ext */\n@font-face {\n  font-family: 'Geist';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Geist';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Geist';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Geist';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Geist';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n"
-});
-var geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-	_selfHostedCSS: "/* cyrillic-ext */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n/* cyrillic */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n/* symbols2 */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');\n  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;\n}\n/* vietnamese */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n/* latin-ext */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: 'Geist Mono';\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n"
-});
-var metadata$3 = {
-	metadataBase: new URL("https://allchinabuy.ro"),
-	title: "AllChinaBuy Spreadsheet 2026: ACBuy Finds, QC & Shipping Guides",
-	description: "Browse curated AllChinaBuy spreadsheet finds, compare product previews, read QC photo checks and plan parcel costs with fact-led guides.",
-	alternates: {
-		canonical: "/",
-		languages: {
-			"x-default": "/",
-			en: "/",
-			de: "/de/",
-			fr: "/fr/",
-			es: "/es/",
-			it: "/it/",
-			pl: "/pl/",
-			ro: "/ro/"
-		}
-	},
-	robots: {
-		index: true,
-		follow: true
-	},
-	icons: {
-		icon: "/favicon.svg",
-		shortcut: "/favicon.svg"
-	}
-};
-function RootLayout({ children }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("html", {
-		lang: "en",
-		children: /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("body", {
-			className: `${geistSans.variable} ${geistMono.variable}`,
-			children
-		})
-	});
-}
-var $$wrap_RootLayout = /* @__PURE__ */ __vite_rsc_wrap_css__(RootLayout, "default");
-function __vite_rsc_wrap_css__(value, name) {
-	if (typeof value !== "function") return value;
-	function __wrapper(props) {
-		return import_react_react_server.createElement(import_react_react_server.Fragment, null, import_react_react_server.createElement(Resources), import_react_react_server.createElement(value, props));
-	}
-	Object.defineProperty(__wrapper, "name", { value: name });
-	return __wrapper;
-}
-//#endregion
-//#region app/concept-a/page.tsx
-var page_exports$4 = /* @__PURE__ */ __exportAll({
-	default: () => ConceptA,
-	metadata: () => metadata$2
-});
-var metadata$2 = {
-	title: "AllChinaBuy Spreadsheet 2026 â€” Curated Product Finds",
-	description: "Browse independent AllChinaBuy spreadsheet finds by category with USD price previews and direct product paths."
-};
-function ConceptA() {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("main", {
-		className: "site concept-a",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ConceptSwitcher, { active: "A" }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("header", {
-				className: "site-nav nav-a",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						className: "site-brand",
-						href: "#top",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-							className: "brand-mark",
-							children: "A"
-						}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "ACBuy Atlas" })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("nav", { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-							href: "#categories",
-							children: "Categories"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-							href: "#drops",
-							children: "New drops"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-							href: "#guide",
-							children: "How it works"
-						})
-					] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						className: "nav-cta",
-						href: "#drops",
-						children: ["Browse finds ", /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "â†—" })]
-					})
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "hero-a",
-				id: "top",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "hero-a-copy",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-							className: "live-chip",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", {}), " UPDATED AUG 12 Â· 2026"]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("h1", { children: [
-							"Find the piece.",
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("em", { children: "Skip the noise." })
-						] }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "A sharper AllChinaBuy spreadsheet experienceâ€”curated products, clear USD prices and a direct path to every find." }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(SearchBar, {}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-							className: "trust-row",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "2K+" }), " curated finds"] }),
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "6" }), " core categories"] }),
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "Daily" }), " link checks"] })
-							]
-						})
-					]
-				}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "hero-a-visual",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", { className: "visual-orbit orbit-one" }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", { className: "visual-orbit orbit-two" }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-							className: "hero-product hero-product-main",
-							href: products[3].href,
-							target: "_blank",
-							rel: "noopener",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("img", {
-								src: products[3].image,
-								alt: products[3].name
-							}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "EDITOR'S PICK" }),
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("strong", { children: products[3].name }),
-								/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("b", { children: [products[3].price, " â†—"] })
-							] })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-							className: "float-card float-card-one",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "QC" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "Photo-ready finds" })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-							className: "float-card float-card-two",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "94%" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "curation match" })]
-						})
-					]
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("section", {
-				className: "category-strip",
-				id: "categories",
-				children: categories.map(([name, note, href, n]) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-					href,
-					target: "_blank",
-					rel: "noopener",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: n }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: name }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("small", { children: note })] }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { children: "â†—" })
-					]
-				}, name))
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "section-a",
-				id: "drops",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "section-heading",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-						className: "section-kicker",
-						children: "FRESHLY INDEXED"
-					}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("h2", { children: "Today's radar" })] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Clean picks, real listing photos, zero endless spreadsheet scrolling." })]
-				}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "products-a",
-					children: products.slice(0, 8).map((product, index) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ProductCard, {
-						product,
-						index
-					}, product.href))
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "how-a",
-				id: "guide",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-					className: "section-kicker",
-					children: "THE SIMPLE ROUTE"
-				}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("h2", { children: [
-					"From find to cart",
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-					"in three clean moves."
-				] })] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("ol", { children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("li", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "01" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "Discover" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Search or browse a tightly organized category." })] })] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("li", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "02" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "Inspect" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Open the product listing and review the details." })] })] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("li", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "03" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "Continue" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Use the direct product path when you are ready." })] })] })
-				] })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Footer, { mode: "a" })
-		]
-	});
-}
-//#endregion
-//#region app/concept-b/page.tsx
-var page_exports$3 = /* @__PURE__ */ __exportAll({
-	default: () => ConceptB,
-	metadata: () => metadata$1
-});
-var metadata$1 = {
-	title: "The Finds Edit â€” Independent AllChinaBuy Product Picks",
-	description: "A curated editorial shortlist of fashion finds for AllChinaBuy spreadsheet shoppers."
-};
-function ConceptB() {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("main", {
-		className: "site concept-b",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ConceptSwitcher, { active: "B" }),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("header", {
-				className: "site-nav nav-b",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-						className: "site-brand",
-						href: "#top",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "THE" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("b", { children: [
-							"FINDS",
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-							"EDIT"
-						] })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("nav", { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-							href: "#edit",
-							children: "The edit"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-							href: "#departments",
-							children: "Departments"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-							href: "#notes",
-							children: "Field notes"
-						})
-					] }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-						className: "nav-cta",
-						href: "#edit",
-						children: "Shop the issue â†˜"
-					})
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "hero-b",
-				id: "top",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "issue-label",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "ISSUE" }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("b", { children: "08 / 26" }),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { children: "Independent ACBuy discovery" })
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "hero-b-title",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("h1", { children: [
-							"Things worth",
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("em", { children: "finding." })
-						] }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "A weekly edit of standout fashion findsâ€”selected for people with taste, not time." })]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-						className: "hero-b-collage",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-								className: "collage-copy",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "DROP 032" }),
-									/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("strong", { children: [
-										"New",
-										/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-										"Season",
-										/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-										"Layers"
-									] }),
-									/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("a", {
-										href: "#edit",
-										children: "Enter the edit â†—"
-									})
-								]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("img", {
-								className: "collage-main",
-								src: products[4].image,
-								alt: products[4].name
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("img", {
-								className: "collage-small",
-								src: products[0].image,
-								alt: products[0].name
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", {
-								className: "vertical-note",
-								children: "CURATED / CONSIDERED / CURRENT"
-							})
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(SearchBar, { label: "What are you looking for?" })
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "departments-b",
-				id: "departments",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "SHOP BY DEPARTMENT" }), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", { children: categories.map(([name, , href], index) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("a", {
-					href,
-					target: "_blank",
-					rel: "noopener",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("small", { children: ["0", index + 1] }),
-						name,
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("i", { children: "â†—" })
-					]
-				}, name)) })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "section-b",
-				id: "edit",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("div", {
-					className: "editorial-heading",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "THE SHORTLIST Â· 08.12.26" }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("h2", { children: [
-							"Eight good reasons",
-							/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("br", {}),
-							"to stop scrolling."
-						] }),
-						/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Prices shown in USD for faster comparison. Open any item to see the full current listing." })
-					]
-				}), /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("div", {
-					className: "products-b",
-					children: products.slice(0, 8).map((product, index) => /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(ProductCard, {
-						mode: "b",
-						product,
-						index
-					}, product.href))
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsxs)("section", {
-				className: "notes-b",
-				id: "notes",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("span", { children: "FIELD NOTE â„– 04" }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("blockquote", { children: "â€œThe best spreadsheet isn't the longest one. It's the one that helps you decide.â€" }),
-					/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)("p", { children: "Built around clearer categories, real product imagery and fewer dead ends." })
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(Footer, { mode: "b" })
-		]
-	});
-}
-//#endregion
-//#region app/concept-c/page.tsx
-var page_exports$2 = /* @__PURE__ */ __exportAll({
-	default: () => ConceptC,
-	metadata: () => metadata
-});
-var metadata = {
-	title: "ACBuy Finds Database â€” AllChinaBuy Spreadsheet & QC Guides",
-	description: "Search curated product finds and open independent AllChinaBuy spreadsheet, QC photo, shipping and FAQ guides."
-};
-function ConceptC() {
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(TerminalPage, {});
-}
-//#endregion
-//#region app/[...route]/page.tsx
-var page_exports$1 = /* @__PURE__ */ __exportAll({
-	default: () => PublicRoute,
-	generateMetadata: () => generateMetadata$1
-});
-var sections = [
-	"products",
-	"categories",
-	"qc-guide",
-	"shipping-guide",
-	"articles",
-	"faq"
-];
-function parseRoute(route) {
-	const candidate = route[0];
-	const hasLocale = locales$1.includes(candidate);
-	return {
-		locale: hasLocale ? candidate : "en",
-		path: hasLocale ? route.slice(1) : route
-	};
-}
-function cleanPath(locale, path) {
-	const suffix = path.length ? `/${path.join("/")}` : "/";
-	return locale === "en" ? suffix : `/${locale}${suffix}`;
-}
-function languageAlternates(path) {
-	const suffix = path.length ? `/${path.join("/")}` : "/";
-	return {
-		"x-default": suffix,
-		en: suffix,
-		de: `/de${suffix}`,
-		fr: `/fr${suffix}`,
-		es: `/es${suffix}`,
-		it: `/it${suffix}`,
-		pl: `/pl${suffix}`,
-		ro: `/ro${suffix}`
-	};
-}
-function isValid(path) {
-	if (!path.length) return true;
-	if (!sections.includes(path[0])) return false;
-	if (path[0] !== "articles") return path.length === 1;
-	if (path.length === 1) return true;
-	return path.length === 2 && englishArticles.some((article) => article.slug === path[1]);
-}
-async function generateMetadata$1({ params }) {
-	const { route } = await params;
-	const { locale, path } = parseRoute(route);
-	if (!isValid(path)) return {};
-	const alternates = {
-		canonical: cleanPath(locale, path),
-		languages: languageAlternates(path)
-	};
-	if (path[0] === "articles" && path[1]) {
-		const article = getEnglishArticle(path[1]);
-		return {
-			title: {
-				"spreadsheet-guide": "AllChinaBuy Spreadsheet Guide: Find Better Products",
-				"qc-photo-routine": "AllChinaBuy QC Photos: 5-Minute Inspection Guide",
-				"parcel-cost-guide": "AllChinaBuy Shipping Cost: Product vs Parcel Price"
-			}[article.slug],
-			description: article.description,
-			alternates
-		};
-	}
-	const copy = getLocaleCopy(locale);
-	const page = copy.pages[path[0] || "products"] || copy.pages.articles;
-	return {
-		title: `${page[0]} â€” AllChinaBuy Spreadsheet`,
-		description: page[1],
-		alternates
-	};
-}
-async function PublicRoute({ params }) {
-	const { route } = await params;
-	if (route[0] === "en") permanentRedirect(`/${route.slice(1).join("/")}`);
-	const { locale, path } = parseRoute(route);
-	if (!isValid(path)) notFound();
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(TerminalPage, {
-		locale,
-		path
-	});
-}
-//#endregion
-//#region app/concept-c/[locale]/[[...path]]/page.tsx
-var page_exports = /* @__PURE__ */ __exportAll({
-	default: () => LocalizedTerminal,
-	generateMetadata: () => generateMetadata
-});
-async function generateMetadata({ params }) {
-	const { locale: rawLocale, path = [] } = await params;
-	const copy = getLocaleCopy(locales$1.includes(rawLocale) ? rawLocale : "en");
-	if (path[0] === "articles" && path[1]) {
-		const article = getEnglishArticle(path[1]);
-		return {
-			title: {
-				"spreadsheet-guide": "AllChinaBuy Spreadsheet Guide: Find Better Products",
-				"qc-photo-routine": "AllChinaBuy QC Photos: 5-Minute Inspection Guide",
-				"parcel-cost-guide": "AllChinaBuy Shipping Cost: Product vs Parcel Price"
-			}[article.slug],
-			description: article.description
-		};
-	}
-	const page = copy.pages[path[0] || "products"] || copy.pages.articles;
-	return {
-		title: `${page[0]} â€” ACB_FIND//`,
-		description: page[1]
-	};
-}
-async function LocalizedTerminal({ params }) {
-	const { locale: rawLocale, path = [] } = await params;
-	return /* @__PURE__ */ (0, import_jsx_runtime_react_server.jsx)(TerminalPage, {
-		locale: locales$1.includes(rawLocale) ? rawLocale : "en",
-		path
-	});
-}
-//#endregion
-//#region app/robots.ts
-var robots_exports = /* @__PURE__ */ __exportAll({ default: () => robots });
-function robots() {
-	return {
-		rules: {
-			userAgent: "*",
-			allow: "/"
-		},
-		sitemap: "https://allchinabuy.ro/sitemap.xml",
-		host: "https://allchinabuy.ro"
-	};
-}
-//#endregion
-//#region app/sitemap.ts
-var sitemap_exports = /* @__PURE__ */ __exportAll({ default: () => sitemap });
-var base = "https://allchinabuy.ro";
-var locales = [
-	"",
-	"/de",
-	"/fr",
-	"/es",
-	"/it",
-	"/pl",
-	"/ro"
-];
-var pages = [
-	"",
-	"/products",
-	"/categories",
-	"/qc-guide",
-	"/shipping-guide",
-	"/articles",
-	"/faq"
-];
-function sitemap() {
-	const now = /* @__PURE__ */ new Date("2026-08-12");
-	const routes = locales.flatMap((locale) => pages.map((page) => ({
-		url: `${base}${locale}${page || "/"}`,
-		lastModified: now,
-		changeFrequency: page === "" || page === "/products" ? "weekly" : "monthly",
-		priority: page === "" ? 1 : page === "/products" ? .9 : .7
-	})));
-	const articles = locales.flatMap((locale) => englishArticles.map((article) => ({
-		url: `${base}${locale}/articles/${article.slug}`,
-		lastModified: now,
-		changeFrequency: "monthly",
-		priority: .8
-	})));
-	return [...routes, ...articles];
-}
-//#endregion
-//#region \0virtual:vinext-rsc-entry
-var renderToReadableStream = createRscRenderer(renderToReadableStream$1);
-function _getSSRFontStyles() {
-	return [...getSSRFontStyles$1(), ...getSSRFontStyles()];
-}
-function _getSSRFontPreloads() {
-	return [...getSSRFontPreloads$1(), ...getSSRFontPreloads()];
-}
-var __isrDebug = process.env.NEXT_PRIVATE_DEBUG_CACHE ? console.debug.bind(console, "[vinext] ISR:") : void 0;
-var __classDebug = process.env.VINEXT_DEBUG_CLASSIFICATION ? function(layoutId, reason) {
-	console.debug("[vinext] CLS:", layoutId, reason);
-} : void 0;
-function __resolveRouteFetchCacheMode(route) {
-	return resolveAppPageFetchCacheMode({
-		layouts: route.layouts,
-		page: route.page
-	});
-}
-function __VINEXT_CLASS(routeIdx) { return ((routeIdx) => {
-    switch (routeIdx) {
-      case 0: return new Map([[0, "static"]]);
-      case 1: return new Map([[0, "static"]]);
-      case 2: return new Map([[0, "static"]]);
-      case 3: return new Map([[0, "static"]]);
-      case 4: return new Map([[0, "static"]]);
-      case 5: return new Map([[0, "static"]]);
-      default: return null;
-    }
-  })(routeIdx); }
-function __VINEXT_CLASS_REASONS(routeIdx) {
-	return null;
-}
-var routes = [
-	{
-		__buildTimeClassifications: __VINEXT_CLASS(0),
-		__buildTimeReasons: __classDebug ? __VINEXT_CLASS_REASONS(0) : null,
-		ids: {
-			"route": "route:/",
-			"page": "page:/",
-			"routeHandler": null,
-			"rootBoundary": "root-boundary:/",
-			"layouts": ["layout:/"],
-			"templates": [],
-			"slots": {}
-		},
-		pattern: "/",
-		patternParts: [],
-		isDynamic: false,
-		params: [],
-		rootParamNames: [],
-		page: page_exports$5,
-		routeHandler: null,
-		layouts: [layout_exports],
-		routeSegments: [],
-		templateTreePositions: [],
-		layoutTreePositions: [0],
-		templates: [],
-		errors: [null],
-		errorPaths: [],
-		errorTreePositions: [],
-		slots: {},
-		loading: null,
-		error: null,
-		notFound: null,
-		notFounds: [null],
-		forbidden: null,
-		forbiddens: [null],
-		unauthorized: null,
-		unauthorizeds: [null]
-	},
-	{
-		__buildTimeClassifications: __VINEXT_CLASS(1),
-		__buildTimeReasons: __classDebug ? __VINEXT_CLASS_REASONS(1) : null,
-		ids: {
-			"route": "route:/concept-a",
-			"page": "page:/concept-a",
-			"routeHandler": null,
-			"rootBoundary": "root-boundary:/",
-			"layouts": ["layout:/"],
-			"templates": [],
-			"slots": {}
-		},
-		pattern: "/concept-a",
-		patternParts: ["concept-a"],
-		isDynamic: false,
-		params: [],
-		rootParamNames: [],
-		page: page_exports$4,
-		routeHandler: null,
-		layouts: [layout_exports],
-		routeSegments: ["concept-a"],
-		templateTreePositions: [],
-		layoutTreePositions: [0],
-		templates: [],
-		errors: [null],
-		errorPaths: [],
-		errorTreePositions: [],
-		slots: {},
-		loading: null,
-		error: null,
-		notFound: null,
-		notFounds: [null],
-		forbidden: null,
-		forbiddens: [null],
-		unauthorized: null,
-		unauthorizeds: [null]
-	},
-	{
-		__buildTimeClassifications: __VINEXT_CLASS(2),
-		__buildTimeReasons: __classDebug ? __VINEXT_CLASS_REASONS(2) : null,
-		ids: {
-			"route": "route:/concept-b",
-			"page": "page:/concept-b",
-			"routeHandler": null,
-			"rootBoundary": "root-boundary:/",
-			"layouts": ["layout:/"],
-			"templates": [],
-			"slots": {}
-		},
-		pattern: "/concept-b",
-		patternParts: ["concept-b"],
-		isDynamic: false,
-		params: [],
-		rootParamNames: [],
-		page: page_exports$3,
-		routeHandler: null,
-		layouts: [layout_exports],
-		routeSegments: ["concept-b"],
-		templateTreePositions: [],
-		layoutTreePositions: [0],
-		templates: [],
-		errors: [null],
-		errorPaths: [],
-		errorTreePositions: [],
-		slots: {},
-		loading: null,
-		error: null,
-		notFound: null,
-		notFounds: [null],
-		forbidden: null,
-		forbiddens: [null],
-		unauthorized: null,
-		unauthorizeds: [null]
-	},
-	{
-		__buildTimeClassifications: __VINEXT_CLASS(3),
-		__buildTimeReasons: __classDebug ? __VINEXT_CLASS_REASONS(3) : null,
-		ids: {
-			"route": "route:/concept-c",
-			"page": "page:/concept-c",
-			"routeHandler": null,
-			"rootBoundary": "root-boundary:/",
-			"layouts": ["layout:/"],
-			"templates": [],
-			"slots": {}
-		},
-		pattern: "/concept-c",
-		patternParts: ["concept-c"],
-		isDynamic: false,
-		params: [],
-		rootParamNames: [],
-		page: page_exports$2,
-		routeHandler: null,
-		layouts: [layout_exports],
-		routeSegments: ["concept-c"],
-		templateTreePositions: [],
-		layoutTreePositions: [0],
-		templates: [],
-		errors: [null],
-		errorPaths: [],
-		errorTreePositions: [],
-		slots: {},
-		loading: null,
-		error: null,
-		notFound: null,
-		notFounds: [null],
-		forbidden: null,
-		forbiddens: [null],
-		unauthorized: null,
-		unauthorizeds: [null]
-	},
-	{
-		__buildTimeClassifications: __VINEXT_CLASS(4),
-		__buildTimeReasons: __classDebug ? __VINEXT_CLASS_REASONS(4) : null,
-		ids: {
-			"route": "route:/:route+",
-			"page": "page:/:route+",
-			"routeHandler": null,
-			"rootBoundary": "root-boundary:/",
-			"layouts": ["layout:/"],
-			"templates": [],
-			"slots": {}
-		},
-		pattern: "/:route+",
-		patternParts: [":route+"],
-		isDynamic: true,
-		params: ["route"],
-		rootParamNames: [],
-		page: page_exports$1,
-		routeHandler: null,
-		layouts: [layout_exports],
-		routeSegments: ["[...route]"],
-		templateTreePositions: [],
-		layoutTreePositions: [0],
-		templates: [],
-		errors: [null],
-		errorPaths: [],
-		errorTreePositions: [],
-		slots: {},
-		loading: null,
-		error: null,
-		notFound: null,
-		notFounds: [null],
-		forbidden: null,
-		forbiddens: [null],
-		unauthorized: null,
-		unauthorizeds: [null]
-	},
-	{
-		__buildTimeClassifications: __VINEXT_CLASS(5),
-		__buildTimeReasons: __classDebug ? __VINEXT_CLASS_REASONS(5) : null,
-		ids: {
-			"route": "route:/concept-c/:locale/:path*",
-			"page": "page:/concept-c/:locale/:path*",
-			"routeHandler": null,
-			"rootBoundary": "root-boundary:/",
-			"layouts": ["layout:/"],
-			"templates": [],
-			"slots": {}
-		},
-		pattern: "/concept-c/:locale/:path*",
-		patternParts: [
-			"concept-c",
-			":locale",
-			":path*"
-		],
-		isDynamic: true,
-		params: ["locale", "path"],
-		rootParamNames: [],
-		page: page_exports,
-		routeHandler: null,
-		layouts: [layout_exports],
-		routeSegments: [
-			"concept-c",
-			"[locale]",
-			"[[...path]]"
-		],
-		templateTreePositions: [],
-		layoutTreePositions: [0],
-		templates: [],
-		errors: [null],
-		errorPaths: [],
-		errorTreePositions: [],
-		slots: {},
-		loading: null,
-		error: null,
-		notFound: null,
-		notFounds: [null],
-		forbidden: null,
-		forbiddens: [null],
-		unauthorized: null,
-		unauthorizeds: [null]
-	}
-];
-var __routeMatcher = createAppRscRouteMatcher(routes);
-var metadataRoutes = [{
-	type: "robots",
-	isDynamic: true,
-	routePrefix: "",
-	routeSegments: [],
-	servedUrl: "/robots.txt",
-	contentType: "text/plain",
-	contentHash: "35cbdb0ec13049a7",
-	module: robots_exports
-}, {
-	type: "sitemap",
-	isDynamic: true,
-	routePrefix: "",
-	routeSegments: [],
-	servedUrl: "/sitemap.xml",
-	contentType: "application/xml",
-	contentHash: "d78358b72c826651",
-	module: sitemap_exports
-}];
-var rootNotFoundModule = null;
-var rootForbiddenModule = null;
-var rootUnauthorizedModule = null;
-var rootLayouts = [layout_exports];
-var createRscOnErrorHandler = (request, pathname, routePath) => createAppRscOnErrorHandler(reportRequestError, request, pathname, routePath);
-var __fallbackRenderer = createAppFallbackRenderer({
-	rootBoundaries: {
-		rootForbiddenModule,
-		rootLayouts,
-		rootNotFoundModule,
-		rootUnauthorizedModule
-	},
-	globalErrorModule: null,
-	metadataRoutes,
-	ssrLoader() {
-		return import("./ssr/index.js");
-	},
-	fontProviders: {
-		buildFontLinkHeader: buildAppPageFontLinkHeader,
-		getFontLinks: getSSRFontLinks,
-		getFontPreloads: _getSSRFontPreloads,
-		getFontStyles: _getSSRFontStyles
-	},
-	makeThenableParams,
-	sanitizer: sanitizeErrorForClient,
-	rscRenderer: renderToReadableStream,
-	getNavigationContext,
-	resolveChildSegments: resolveAppPageChildSegments,
-	clearRequestContext() {
-		clearAppRequestContext();
-	},
-	createRscOnErrorHandler(request, pathname, routePath) {
-		return createRscOnErrorHandler(request, pathname, routePath);
-	}
-});
-function matchRoute(url) {
-	return __routeMatcher.matchRoute(url);
-}
-/**
-* Check if a pathname matches any intercepting route.
-* Returns the match info or null.
-*/
-function findIntercept(pathname, sourcePathname = null) {
-	return __routeMatcher.findIntercept(pathname, sourcePathname);
-}
-async function buildPageElements(route, params, routePath, pageRequest) {
-	return buildPageElements$1({
-		route,
-		params,
-		routePath,
-		pageRequest,
-		globalErrorModule: null,
-		rootNotFoundModule: null,
-		rootForbiddenModule: null,
-		rootUnauthorizedModule: null,
-		metadataRoutes
-	});
-}
-var __basePath = "";
-var __trailingSlash = false;
-var __i18nConfig = null;
-var __configRedirects = [];
-var __configRewrites = {
-	"beforeFiles": [],
-	"afterFiles": [],
-	"fallback": []
-};
-var __configHeaders = [];
-var __publicFiles = new Set([
-	"/allchinabuy.png",
-	"/favicon.svg",
-	"/file.svg",
-	"/globe.svg",
-	"/window.svg"
-]);
-var __allowedOrigins = [];
-var __expireTime = 31536e3;
-var __allowedDevOrigins = [];
-var __safeDevHosts = [
-	"localhost",
-	"127.0.0.1",
-	"[::1]"
-];
-function __forbidden() {
-	return new Response("Forbidden", {
-		status: 403,
-		headers: { "Content-Type": "text/plain" }
-	});
-}
-function __validateDevRequestOrigin(request) {
-	if (request.headers.get("sec-fetch-mode") === "no-cors" && request.headers.get("sec-fetch-site") === "cross-site") {
-		console.warn("[vinext] Blocked cross-site no-cors request to " + new URL(request.url).pathname);
-		return __forbidden();
-	}
-	const origin = request.headers.get("origin");
-	if (!origin) return null;
-	if (origin === "null") {
-		if (!__allowedDevOrigins.includes("null")) {
-			console.warn("[vinext] Blocked request with Origin: null. Add \"null\" to allowedDevOrigins to allow sandboxed contexts.");
-			return __forbidden();
-		}
-		return null;
-	}
-	let originHostname;
-	try {
-		originHostname = new URL(origin).hostname.toLowerCase();
-	} catch {
-		return __forbidden();
-	}
-	if (__safeDevHosts.includes(originHostname) || originHostname.endsWith(".localhost")) return null;
-	const hostHeader = (request.headers.get("x-forwarded-host") || request.headers.get("host") || "").split(",")[0].trim().split(":")[0].toLowerCase();
-	if (hostHeader && originHostname === hostHeader) return null;
-	for (const pattern of __allowedDevOrigins) if (pattern.startsWith("*.")) {
-		const suffix = pattern.slice(1);
-		if (originHostname === pattern.slice(2) || originHostname.endsWith(suffix)) return null;
-	} else if (originHostname === pattern) return null;
-	console.warn(`[vinext] Blocked cross-origin request from "${origin}" to ${new URL(request.url).pathname}. To allow this origin, add it to allowedDevOrigins in next.config.js.`);
-	return __forbidden();
-}
-/**
-* Maximum server-action request body size.
-* Configurable via experimental.serverActions.bodySizeLimit in next.config.
-* Defaults to 1MB, matching the Next.js default.
-* @see https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions#bodysizelimit
-* Prevents unbounded request body buffering.
-*/
-var __MAX_ACTION_BODY_SIZE = 1048576;
-var _virtual_vinext_rsc_entry_default = createAppRscHandler({
-	basePath: __basePath,
-	clearRequestContext() {
-		clearAppRequestContext();
-	},
-	configHeaders: __configHeaders,
-	configRedirects: __configRedirects,
-	configRewrites: __configRewrites,
-	dispatchMatchedPage({ cleanPathname, formState, handlerStart, interceptionContext, isProgressiveActionRender, isRscRequest, middlewareContext, mountedSlotsHeader, params, request, route, scriptNonce, searchParams, renderMode }) {
-		const PageComponent = route.page?.default;
-		const __segmentConfig = resolveAppPageSegmentConfig({
-			layouts: route.layouts,
-			page: route.page
-		});
-		const __generateStaticParams = resolveAppPageGenerateStaticParamsSources({
-			layouts: route.layouts,
-			layoutTreePositions: route.layoutTreePositions,
-			page: route.page,
-			routeSegments: route.routeSegments
-		});
-		const _asyncRouteParams = makeThenableParams(params);
-		return dispatchAppPage({
-			basePath: __basePath,
-			buildPageElement(targetRoute, targetParams, targetOpts, targetSearchParams) {
-				return buildPageElements(targetRoute, targetParams, cleanPathname, {
-					opts: targetOpts,
-					searchParams: targetSearchParams,
-					isRscRequest,
-					request,
-					mountedSlotsHeader,
-					renderMode
-				});
-			},
-			cleanPathname,
-			clearRequestContext() {
-				clearAppRequestContext();
-			},
-			createRscOnErrorHandler(pathname, routePath) {
-				return createRscOnErrorHandler(request, pathname, routePath);
-			},
-			debugClassification: __classDebug,
-			dynamicConfig: __segmentConfig.dynamicConfig,
-			dynamicParamsConfig: __segmentConfig.dynamicParamsConfig,
-			fetchCache: __segmentConfig.fetchCache ?? null,
-			findIntercept(pathname) {
-				return findIntercept(pathname, interceptionContext);
-			},
-			generateStaticParams: __generateStaticParams,
-			getFontLinks: getSSRFontLinks,
-			getFontPreloads: _getSSRFontPreloads,
-			getFontStyles: _getSSRFontStyles,
-			getNavigationContext,
-			getSourceRoute(sourceRouteIndex) {
-				return routes[sourceRouteIndex];
-			},
-			hasGenerateStaticParams: __generateStaticParams.length > 0,
-			hasPageDefaultExport: !!PageComponent,
-			hasPageModule: !!route.page,
-			handlerStart,
-			interceptionContext,
-			expireSeconds: __expireTime,
-			formState,
-			isProgressiveActionRender,
-			isProduction: true,
-			isRscRequest,
-			isrDebug: __isrDebug,
-			isrGet,
-			isrHtmlKey: appIsrHtmlKey,
-			isrRscKey: appIsrRscKey,
-			isrSet,
-			loadSsrHandler() {
-				return import("./ssr/index.js");
-			},
-			middlewareContext,
-			mountedSlotsHeader,
-			params,
-			probeLayoutAt(li) {
-				const LayoutComp = route.layouts[li]?.default;
-				if (!LayoutComp) return null;
-				return LayoutComp({
-					params: makeThenableParams(resolveAppPageSegmentParams(route.routeSegments, route.layoutTreePositions?.[li] ?? 0, params)),
-					children: null
-				});
-			},
-			probePage() {
-				if (!PageComponent) return null;
-				return PageComponent({
-					params: _asyncRouteParams,
-					searchParams: makeThenableParams(collectAppPageSearchParams(searchParams).searchParamsObject)
-				});
-			},
-			renderErrorBoundaryPage(renderErr) {
-				return __fallbackRenderer.renderErrorBoundary(route, renderErr, isRscRequest, request, params, scriptNonce, middlewareContext);
-			},
-			renderHttpAccessFallbackPage(statusCode, opts, currentMiddlewareContext) {
-				return __fallbackRenderer.renderHttpAccessFallback(route, statusCode, isRscRequest, request, opts, scriptNonce, currentMiddlewareContext);
-			},
-			renderToReadableStream,
-			request,
-			revalidateSeconds: __segmentConfig.revalidateSeconds,
-			resolveRouteFetchCacheMode(targetRoute) {
-				return __resolveRouteFetchCacheMode(targetRoute);
-			},
-			rootForbiddenModule,
-			rootNotFoundModule,
-			rootUnauthorizedModule,
-			route,
-			runWithSuppressedHookWarning(probe) {
-				return suppressHookWarningAls.run(true, probe);
-			},
-			scheduleBackgroundRegeneration(key, renderFn, errorContext) {
-				triggerBackgroundRegeneration(key, renderFn, errorContext);
-			},
-			scriptNonce,
-			searchParams,
-			setNavigationContext: setAppNavigationContext,
-			renderMode
-		});
-	},
-	dispatchMatchedRouteHandler({ cleanPathname, middlewareContext, params, request, route, searchParams }) {
-		return dispatchAppRouteHandler({
-			basePath: __basePath,
-			cleanPathname,
-			clearRequestContext() {
-				clearAppRequestContext();
-			},
-			i18n: __i18nConfig,
-			isrDebug: __isrDebug,
-			isrGet,
-			isrRouteKey: appIsrRouteKey,
-			isrSet,
-			middlewareContext,
-			middlewareRequestHeaders: middlewareContext.requestHeaders,
-			params,
-			request,
-			route: {
-				pattern: route.pattern,
-				routeHandler: route.routeHandler,
-				routeSegments: route.routeSegments
-			},
-			scheduleBackgroundRegeneration: triggerBackgroundRegeneration,
-			searchParams
-		});
-	},
-	handleProgressiveActionRequest({ actionId, cleanPathname, contentType, middlewareContext, request }) {
-		return handleProgressiveServerActionRequest({
-			actionId,
-			allowedOrigins: __allowedOrigins,
-			cleanPathname,
-			clearRequestContext() {
-				clearAppRequestContext();
-			},
-			contentType,
-			decodeAction,
-			decodeFormState,
-			getAndClearPendingCookies,
-			getDraftModeCookieHeader,
-			maxActionBodySize: __MAX_ACTION_BODY_SIZE,
-			middlewareHeaders: middlewareContext.headers,
-			readFormDataWithLimit: readActionFormDataWithLimit,
-			reportRequestError,
-			request,
-			setHeadersAccessPhase
-		});
-	},
-	handleServerActionRequest({ actionId, cleanPathname, contentType, interceptionContext, isRscRequest, middlewareContext, mountedSlotsHeader, request, searchParams }) {
-		return handleServerActionRscRequest({
-			actionId,
-			allowedOrigins: __allowedOrigins,
-			buildPageElement({ route: actionRoute, params: actionParams, cleanPathname: actionCleanPathname, interceptOpts, searchParams: actionSearchParams, isRscRequest: actionIsRscRequest, request: actionRequest, mountedSlotsHeader: actionMountedSlotsHeader, renderMode: actionRenderMode }) {
-				return buildPageElements(actionRoute, actionParams, actionCleanPathname, {
-					opts: interceptOpts,
-					searchParams: actionSearchParams,
-					isRscRequest: actionIsRscRequest,
-					request: actionRequest,
-					mountedSlotsHeader: actionMountedSlotsHeader,
-					renderMode: actionRenderMode
-				});
-			},
-			cleanPathname,
-			clearRequestContext() {
-				clearAppRequestContext();
-			},
-			contentType,
-			createNotFoundElement(actionRouteId) {
-				return {
-					...AppElementsWire.createMetadataEntries({
-						interceptionContext: null,
-						rootLayoutTreePath: null,
-						routeId: actionRouteId
-					}),
-					[actionRouteId]: (0, import_react_react_server.createElement)("div", null, "Page not found")
-				};
-			},
-			createPayloadRouteId(pathnameToRender, currentInterceptionContext) {
-				return AppElementsWire.encodeRouteId(pathnameToRender, currentInterceptionContext);
-			},
-			createRscOnErrorHandler(actionRequest, actionPathname, routePattern) {
-				return createRscOnErrorHandler(actionRequest, actionPathname, routePattern);
-			},
-			createTemporaryReferenceSet,
-			decodeReply,
-			findIntercept(pathnameToMatch) {
-				return findIntercept(pathnameToMatch, interceptionContext);
-			},
-			getAndClearPendingCookies,
-			getDraftModeCookieHeader,
-			getRouteParamNames(sourceRoute) {
-				return sourceRoute.params;
-			},
-			getSourceRoute(sourceRouteIndex) {
-				return routes[sourceRouteIndex];
-			},
-			isRscRequest,
-			loadServerAction,
-			matchRoute(pathnameToMatch) {
-				return matchRoute(pathnameToMatch);
-			},
-			maxActionBodySize: __MAX_ACTION_BODY_SIZE,
-			middlewareHeaders: middlewareContext.headers,
-			middlewareStatus: middlewareContext.status,
-			mountedSlotsHeader,
-			readBodyWithLimit: readActionBodyWithLimit,
-			readFormDataWithLimit: readActionFormDataWithLimit,
-			renderToReadableStream,
-			reportRequestError,
-			request,
-			sanitizeErrorForClient(error) {
-				return sanitizeErrorForClient(error);
-			},
-			searchParams,
-			setHeadersAccessPhase,
-			setNavigationContext: setAppNavigationContext,
-			toInterceptOpts(intercept) {
-				return {
-					interceptionContext,
-					interceptLayouts: intercept.interceptLayouts,
-					interceptSlotKey: intercept.slotKey,
-					interceptPage: intercept.page,
-					interceptParams: intercept.matchedParams
-				};
-			}
-		});
-	},
-	i18nConfig: __i18nConfig,
-	isMiddlewareProxy: false,
-	makeThenableParams,
-	matchRoute,
-	metadataRoutes,
-	middlewareModule: null,
-	publicFiles: __publicFiles,
-	renderNotFound({ isRscRequest, matchedParams, middlewareContext, request, route, scriptNonce }) {
-		return __fallbackRenderer.renderNotFound(route, isRscRequest, request, matchedParams, scriptNonce, middlewareContext);
-	},
-	rootParamNamesByPattern: {},
-	setNavigationContext: setAppNavigationContext,
-	staticParamsMap: {
-		"/:route+": null,
-		"/concept-c/:locale/:path*": null
-	},
-	trailingSlash: __trailingSlash,
-	validateDevRequestOrigin: __validateDevRequestOrigin
-});
-//#endregion
-//#region node_modules/vinext/dist/server/app-router-entry.js
-/**
-* Default Cloudflare Worker entry point for vinext App Router.
-*
-* Use this directly in wrangler.jsonc:
-*   "main": "vinext/server/app-router-entry"
-*
-* Or import and delegate to it from a custom worker:
-*   import handler from "vinext/server/app-router-entry";
-*   return handler.fetch(request, env, ctx);
-*
-* This file runs in the RSC environment. Configure the Cloudflare plugin with:
-*   cloudflare({ viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] } })
-*/
-var app_router_entry_default = { async fetch(request, env, ctx) {
-	return handleRequest(request, env, ctx);
-} };
-async function handleRequest(request, env, ctx) {
-	const url = new URL(request.url);
-	if (isOpenRedirectShaped(url.pathname)) return notFoundResponse();
-	try {
-		decodeURIComponent(url.pathname);
-	} catch {
-		return badRequestResponse();
-	}
-	{
-		const filteredHeaders = filterInternalHeaders(request.headers);
-		request = cloneRequestWithHeaders(request, filteredHeaders);
-	}
-	const handleFn = () => _virtual_vinext_rsc_entry_default(request, ctx);
-	const result = await (ctx ? runWithExecutionContext(ctx, handleFn) : handleFn());
-	if (result instanceof Response) {
-		if (env?.ASSETS) {
-			const assetFetcher = env.ASSETS;
-			const assetResponse = await resolveStaticAssetSignal(result, { fetchAsset: (path) => Promise.resolve(assetFetcher.fetch(new Request(new URL(path, request.url)))) });
-			if (assetResponse) return assetResponse;
-		}
-		return result;
-	}
-	if (result === null || result === void 0) return notFoundResponse();
-	return new Response(String(result), { status: 200 });
-}
-//#endregion
-//#region \0virtual:cloudflare/worker-entry
-var worker_entry_default = { async fetch(request, env, ctx) {
-	if (new URL(request.url).pathname === "/_vinext/image") return handleImageOptimization(request, {
-		fetchAsset: (path) => env.ASSETS.fetch(new Request(new URL(path, request.url))),
-		transformImage: async (body, { width, format, quality }) => {
-			return (await env.IMAGES.input(body).transform(width > 0 ? { width } : {}).output({
-				format,
-				quality
-			})).response();
-		}
-	}, [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES]);
-	return app_router_entry_default.fetch(request, env, ctx);
-} };
-//#endregion
-export { worker_entry_default as default };
+	const×8ñ¼­zÊ&ŠÛ^uÐÝÉ…Á½É•MÑ…Ñ¥9•áÑUÉ°€ô€¡¹•áÑUÉ°¤€ôøì($%½¹ÍÐ•µÁÑåM•…É¡A…É…µÌ€ô¹•ÜUI1M•…É¡A…É…µÌ ¤ì($%½¹ÍÐÍÑ…Ñ¥!É•˜€ô±•…¹MÑ…Ñ¥UÉ°¡¹•áÑUÉ°¹¡É•˜¤ì($%É•ÑÕÉ¸¹•ÜAÉ½áä¡¹•áÑUÉ°°ì•Ð¡Ñ…É•Ð°ÁÉ½À¤ì($$%ÍÝ¥Ñ €¡ÁÉ½À¤ì($$$%…Í”€‰Í•…É ˆèÉ•ÑÕÉ¸€ˆˆì($$$%…Í”€‰Í•…É¡A…É…µÌˆèÉ•ÑÕÉ¸•µÁÑåM•…É¡A…É…µÌì($$$%…Í”€‰¡É•˜ˆèÉ•ÑÕÉ¸ÍÑ…Ñ¥!É•˜ì($$$%…Í”€‰ÕÉ°ˆèÉ•ÑÕÉ¸ì($$$%…Í”€‰Ñ½)M=8ˆè($$$%…Í”€‰Ñ½MÑÉ¥¹œˆèÉ•ÑÕÉ¸€ ¤€ôøÍÑ…Ñ¥!É•˜ì($$$%…Í”€‰±½¹”ˆèÉ•ÑÕÉ¸€ ¤€ôøÝÉ…Á½É•MÑ…Ñ¥9•áÑUÉ°¡Ñ…É•Ð¹±½¹” ¤¤ì($$$%‘•™…Õ±ÐèÉ•ÑÕÉ¸‰¥¹‘5•Ñ¡½‘%™9••‘•¡I•™±•Ð¹•Ð¡Ñ…É•Ð°ÁÉ½À°Ñ…É•Ð¤°Ñ…É•Ð¤ì($$%ô($%ôô¤ì(%ôì(%½¹ÍÐÑ¡É½ÝMÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½È€ô€¡•áÁÉ•ÍÍ¥½¸¤€ôøì($%Ñ¡É½Ü¹•ÜÉÉ½È¡½ÁÑ¥½¹Ì¹ÍÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…”ü¸¡•áÁÉ•ÍÍ¥½¸¤€üüI½ÕÑ”¡…¹‘±•ÈÝ¥Ñ q‘å¹…µ¥Œ€ô€‰•ÉÉ½È‰q€ÕÍ•€‘í•áÁÉ•ÍÍ¥½¹ô¹€¤ì(%ôì(%½¹ÍÐÝÉ…ÁI•ÅÕ¥É•MÑ…Ñ¥9•áÑUÉ°€ô€¡¹•áÑUÉ°¤€ôøì($%É•ÑÕÉ¸¹•ÜAÉ½áä¡¹•áÑUÉ°°ì•Ð¡Ñ…É•Ð°ÁÉ½À¤ì($$%ÍÝ¥Ñ €¡ÁÉ½À¤ì($$$%…Í”€‰Í•…É ˆè($$$%…Í”€‰Í•…É¡A…É…µÌˆè($$$%…Í”€‰ÕÉ°ˆè($$$%…Í”€‰¡É•˜ˆè($$$%…Í”€‰Ñ½)M=8ˆè($$$%…Í”€‰Ñ½MÑÉ¥¹œˆè($$$%…Í”€‰½É¥¥¸ˆèÉ•ÑÕÉ¸Ñ¡É½ÝMÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½È¡¹•áÑUÉ°¸‘íMÑÉ¥¹œ¡ÁÉ½À¥õ€¤ì($$$%…Í”€‰±½¹”ˆèÉ•ÑÕÉ¸€ ¤€ôøÝÉ…ÁI•ÅÕ¥É•MÑ…Ñ¥9•áÑUÉ°¡Ñ…É•Ð¹±½¹” ¤¤ì($$$%‘•™…Õ±ÐèÉ•ÑÕÉ¸‰¥¹‘5•Ñ¡½‘%™9••‘•¡I•™±•Ð¹•Ð¡Ñ…É•Ð°ÁÉ½À°Ñ…É•Ð¤°Ñ…É•Ð¤ì($$%ô($%ôô¤ì(%ôì(%½¹ÍÐÝÉ…ÁI•ÅÕ•ÍÐ€ô€¡¥¹ÁÕÐ¤€ôøì($%½¹ÍÐÉ•ÅÕ•ÍÑ!•…‘•ÉÌ€ô½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ€ü‰Õ¥±‘I•ÅÕ•ÍÑ!•…‘•ÉÍÉ½µ5¥‘‘±•Ý…É•I•ÍÁ½¹Í”¡¥¹ÁÕÐ¹¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ¤€è¹Õ±°ì($%½¹ÍÐÉ•ÅÕ•ÍÑ]¥Ñ¡=Ù•ÉÉ¥‘•Ì€ôÉ•ÅÕ•ÍÑ!•…‘•ÉÌ€üÉ•‰Õ¥±‘I•ÅÕ•ÍÑ]¥Ñ¡!•…‘•ÉÌ¡¥¹ÁÕÐ°É•ÅÕ•ÍÑ!•…‘•ÉÌ¤€è¥¹ÁÕÐì($%½¹ÍÐ¹•áÑI•ÅÕ•ÍÐ€ôÉ•ÅÕ•ÍÑ]¥Ñ¡=Ù•ÉÉ¥‘•Ì¥¹ÍÑ…¹•½˜9•áÑI•ÅÕ•ÍÐ€üÉ•ÅÕ•ÍÑ]¥Ñ¡=Ù•ÉÉ¥‘•Ì€è¹•Ü9•áÑI•ÅÕ•ÍÐ¡É•ÅÕ•ÍÑ]¥Ñ¡=Ù•ÉÉ¥‘•Ì°ì¹•áÑ½¹™¥œè¹•áÑ½¹™¥œ€üüÙ½¥€Àô¤ì($%±•ÐÁÉ½á¥•‘9•áÑUÉ°€ô¹Õ±°ì($%±•Ð™½É•MÑ…Ñ¥9•áÑUÉ°€ô¹Õ±°ì($%±•ÐÉ•ÅÕ¥É•MÑ…Ñ¥9•áÑUÉ°€ô¹Õ±°ì($%±•Ð™½É•MÑ…Ñ¥!•…‘•ÉÌ€ô¹Õ±°ì($%±•Ð™½É•MÑ…Ñ¥½½­¥•Ì€ô¹Õ±°ì($%É•ÑÕÉ¸¹•ÜAÉ½áä¡¹•áÑI•ÅÕ•ÍÐ°ì•Ð¡Ñ…É•Ð°ÁÉ½À¤ì($$%¥˜€¡É•ÅÕ•ÍÑ5½‘”€ôôô€‰™½É”µÍÑ…Ñ¥Œˆ¤ÍÝ¥Ñ €¡ÁÉ½À¤ì($$$%…Í”€‰¹•áÑUÉ°ˆè($$$$%™½É•MÑ…Ñ¥9•áÑUÉ°€üüôÝÉ…Á½É•MÑ…Ñ¥9•áÑUÉ°¡Ñ…É•Ð¹¹•áÑUÉ°¤ì($$$$%É•ÑÕÉ¸™½É•MÑ…Ñ¥9•áÑUÉ°ì($$$%…Í”€‰¡•…‘•ÉÌˆè($$$$%™½É•MÑ…Ñ¥!•…‘•ÉÌ€üüôÍ•…±I•ÅÕ•ÍÑ!•…‘•ÉÌ¡¹•Ü!•…‘•ÉÌ ¤¤ì($$$$%É•ÑÕÉ¸™½É•MÑ…Ñ¥!•…‘•ÉÌì($$$%…Í”€‰½½­¥•Ìˆè($$$$%™½É•MÑ…Ñ¥½½­¥•Ì€üüôÍ•…±I•ÅÕ•ÍÑ½½­¥•Ì¡¹•ÜI•ÅÕ•ÍÑ½½­¥•Ì¡¹•Ü!•…‘•ÉÌ ¤¤¤ì($$$$%É•ÑÕÉ¸™½É•MÑ…Ñ¥½½­¥•Ìì($$$%…Í”€‰ÕÉ°ˆèÉ•ÑÕÉ¸±•…¹MÑ…Ñ¥UÉ°¡Ñ…É•Ð¹¹•áÑUÉ°¹¡É•˜¤ì($$$%…Í”€‰¥Àˆè($$$%…Í”€‰•¼ˆèÉ•ÑÕÉ¸ì($$$%…Í”€‰‰½‘äˆèÉ•ÑÕÉ¸¹Õ±°ì($$$%…Í”€‰…ÉÉ…å	Õ™™•ÈˆèÉ•ÑÕÉ¸É•…‘µÁÑå	½‘åÍÉÉ…å	Õ™™•Èì($$$%…Í”€‰‰±½ˆˆèÉ•ÑÕÉ¸É•…‘µÁÑå	½‘åÍ	±½ˆì($$$%…Í”€‰™½Éµ…Ñ„ˆèÉ•ÑÕÉ¸É•…‘µÁÑå	½‘åÍ½Éµ…Ñ„ì($$$%…Í”€‰©Í½¸ˆèÉ•ÑÕÉ¸É•…‘µÁÑå	½‘åÍ)Í½¸ì($$$%…Í”€‰Ñ•áÐˆèÉ•ÑÕÉ¸É•…‘µÁÑå	½‘åÍQ•áÐì($$$%…Í”€‰±½¹”ˆèÉ•ÑÕÉ¸€ ¤€ôøÝÉ…ÁI•ÅÕ•ÍÐ¡Ñ…É•Ð¹±½¹” ¤¤ì($$$%‘•™…Õ±ÐèÉ•ÑÕÉ¸‰¥¹‘5•Ñ¡½‘%™9••‘•¡I•™±•Ð¹•Ð¡Ñ…É•Ð°ÁÉ½À°Ñ…É•Ð¤°Ñ…É•Ð¤ì($$%ô($$%¥˜€¡É•ÅÕ•ÍÑ5½‘”€ôôô€‰•ÉÉ½Èˆ¤ÍÝ¥Ñ €¡ÁÉ½À¤ì($$$%…Í”€‰¹•áÑUÉ°ˆè($$$$%É•ÅÕ¥É•MÑ…Ñ¥9•áÑUÉ°€üüôÝÉ…ÁI•ÅÕ¥É•MÑ…Ñ¥9•áÑUÉ°¡Ñ…É•Ð¹¹•áÑUÉ°¤ì($$$$%É•ÑÕÉ¸É•ÅÕ¥É•MÑ…Ñ¥9•áÑUÉ°ì($$$%…Í”€‰¡•…‘•ÉÌˆè($$$%…Í”€‰½½­¥•Ìˆè($$$%…Í”€‰ÕÉ°ˆè($$$%…Í”€‰¥Àˆè($$$%…Í”€‰•¼ˆè($$$%…Í”€‰‰½‘äˆè($$$%…Í”€‰‰±½ˆˆè($$$%…Í”€‰©Í½¸ˆè($$$%…Í”€‰Ñ•áÐˆè($$$%…Í”€‰…ÉÉ…å	Õ™™•Èˆè($$$%…Í”€‰™½Éµ…Ñ„ˆèÉ•ÑÕÉ¸Ñ¡É½ÝMÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½È¡É•ÅÕ•ÍÐ¸‘íMÑÉ¥¹œ¡ÁÉ½À¥õ€¤ì($$$%…Í”€‰±½¹”ˆèÉ•ÑÕÉ¸€ ¤€ôøÝÉ…ÁI•ÅÕ•ÍÐ¡Ñ…É•Ð¹±½¹” ¤¤ì($$$%‘•™…Õ±ÐèÉ•ÑÕÉ¸‰¥¹‘5•Ñ¡½‘%™9••‘•¡I•™±•Ð¹•Ð¡Ñ…É•Ð°ÁÉ½À°Ñ…É•Ð¤°Ñ…É•Ð¤ì($$%ô($$%ÍÝ¥Ñ €¡ÁÉ½À¤ì($$$%…Í”€‰¹•áÑUÉ°ˆè($$$$%ÁÉ½á¥•‘9•áÑUÉ°€üüôÝÉ…Á9•áÑUÉ°¡Ñ…É•Ð¹¹•áÑUÉ°¤ì($$$$%É•ÑÕÉ¸ÁÉ½á¥•‘9•áÑUÉ°ì($$$%…Í”€‰¡•…‘•ÉÌˆè($$$%…Í”€‰½½­¥•Ìˆè($$$%…Í”€‰¥Àˆè($$$%…Í”€‰•¼ˆè($$$%…Í”€‰ÕÉ°ˆè($$$%…Í”€‰‰½‘äˆè($$$%…Í”€‰‰±½ˆˆè($$$%…Í”€‰©Í½¸ˆè($$$%…Í”€‰Ñ•áÐˆè($$$%…Í”€‰…ÉÉ…å	Õ™™•Èˆè($$$%…Í”€‰™½Éµ…Ñ„ˆè($$$$%µ…É­å¹…µ¥•ÍÌ¡É•ÅÕ•ÍÐ¸‘íMÑÉ¥¹œ¡ÁÉ½À¥õ€¤ì($$$$%É•ÑÕÉ¸‰¥¹‘5•Ñ¡½‘%™9••‘•¡I•™±•Ð¹•Ð¡Ñ…É•Ð°ÁÉ½À°Ñ…É•Ð¤°Ñ…É•Ð¤ì($$$%…Í”€‰±½¹”ˆèÉ•ÑÕÉ¸€ ¤€ôøÝÉ…ÁI•ÅÕ•ÍÐ¡Ñ…É•Ð¹±½¹” ¤¤ì($$$%‘•™…Õ±ÐèÉ•ÑÕÉ¸‰¥¹‘5•Ñ¡½‘%™9••‘•¡I•™±•Ð¹•Ð¡Ñ…É•Ð°ÁÉ½À°Ñ…É•Ð¤°Ñ…É•Ð¤ì($$%ô($%ôô¤ì(%ôì(%É•ÑÕÉ¸ì($%É•ÅÕ•ÍÐèÝÉ…ÁI•ÅÕ•ÍÐ¡É•ÅÕ•ÍÐ¤°($%‘¥‘•ÍÍå¹…µ¥I•ÅÕ•ÍÐ ¤ì($$%É•ÑÕÉ¸‘¥‘•ÍÍå¹…µ¥I•ÅÕ•ÍÐì($%ô(%ôì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½¹•áÐµ•ÉÉ½Èµ‘¥•ÍÐ¹©Ì(¼¨¨(¨AÕ±±Ì„ÍÑÉ¥¹¥™¥•‘¥•ÍÑ€½™˜…¸Õ¹­¹½Ý¸Ñ¡É½Ý¸Ù…±Õ”°½ÈÉ•ÑÕÉ¹Ì¹Õ±°(¨Ý¡•¸Ñ¡”Ù…±Õ”¥Ì¹½Ð„‘¥•ÍÐµ‰•…É¥¹œ•ÉÉ½È¸(¨¼)™Õ¹Ñ¥½¸•Ñ9•áÑÉÉ½É¥•ÍÐ¡•ÉÉ½È¤ì(%¥˜€ …•ÉÉ½ÈñðÑåÁ•½˜•ÉÉ½È€„ôô€‰½‰©•Ðˆñð€„ ‰‘¥•ÍÐˆ¥¸•ÉÉ½È¤¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸MÑÉ¥¹œ¡•ÉÉ½È¹‘¥•ÍÐ¤ì)ô(¼¨¨(¨A…ÉÍ•Ì„9aQ}I%IPìñÑåÁ”øìñ•¹½‘•‘UÉ°øìñÍÑ…ÑÕÌù€‘¥•ÍÐ¸I•ÑÕÉ¹Ì¹Õ±°(¨Ý¡•¸Ñ¡”‘¥•ÍÐ¥Ì¹½Ð„É•‘¥É•Ð‘¥•ÍÐ½ÈÑ¡”•¹½‘•UI0Í•µ•¹Ð¥Ì(¨µ¥ÍÍ¥¹œ¸Q¡”ÕÉ±€¥Ì‘•½‘•Ý¥Ñ ‘•½‘•UI%½µÁ½¹•¹Ñ€ìÑ¡”ÍÑ…ÑÕÍ€(¨‘•™…Õ±ÑÌÑ¼€ÌÀÜÝ¡•¸½µ¥ÑÑ•ì…¸½µ¥ÑÑ•ÑåÁ•€¥Ì±•™Ð…Ì¹Õ±°Í¼Ñ¡”(¨…±±•È…¸…ÁÁ±äÑ¡”½ÉÉ•Ð½¹Ñ•áÐµÍ•¹Í¥Ñ¥Ù”‘•™…Õ±Ð¸(¨¼)™Õ¹Ñ¥½¸Á…ÉÍ•9•áÑI•‘¥É•Ñ¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€ …‘¥•ÍÐ¹ÍÑ…ÉÑÍ]¥Ñ  ‰9aQ}I%IPìˆ¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÁ…ÉÑÌ€ô‘¥•ÍÐ¹ÍÁ±¥Ð ˆìˆ¤ì(%½¹ÍÐ•¹½‘•‘UÉ°€ôÁ…ÉÑÍlÉtì(%¥˜€ …•¹½‘•‘UÉ°¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÑåÁ”€ôÁ…ÉÑÍlÅtì(%É•ÑÕÉ¸ì($%ÍÑ…ÑÕÌèÁ…ÉÑÍlÍt€üÁ…ÉÍ•%¹Ð¡Á…ÉÑÍlÍt°€ÄÀ¤€è€ÌÀÜ°($%ÑåÁ”èÑåÁ”ñð¹Õ±°°($%ÕÉ°è‘•½‘•UI%½µÁ½¹•¹Ð¡•¹½‘•‘UÉ°¤(%ôì)ô(¼¨¨(¨A…ÉÍ•Ì„9aQ}9=Q}=U9€½È9aQ}!QQA}II=I}11	,ìñÍÑ…ÑÕÌù€‘¥•ÍÐ¸(¨I•ÑÕÉ¹ÌìÍÑ…ÑÕÌè€ÐÀÐõ€™½È9aQ}9=Q}=U9€…¹Ñ¡”Á…ÉÍ•ÍÑ…ÑÕÌ½‘”(¨™½ÈÑ¡”™…±±‰…¬™½É´¸I•ÑÕÉ¹Ì¹Õ±°½Ñ¡•ÉÝ¥Í”¸(¨¼)™Õ¹Ñ¥½¸Á…ÉÍ•9•áÑ!ÑÑÁÉÉ½É¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡‘¥•ÍÐ€ôôô€‰9aQ}9=Q}=U9ˆ¤É•ÑÕÉ¸ìÍÑ…ÑÕÌè€ÐÀÐôì(%¥˜€¡‘¥•ÍÐ¹ÍÑ…ÉÑÍ]¥Ñ  ‰9aQ}!QQA}II=I}11	,ìˆ¤¤É•ÑÕÉ¸ìÍÑ…ÑÕÌèÁ…ÉÍ•%¹Ð¡‘¥•ÍÐ¹ÍÁ±¥Ð ˆìˆ¥lÅt°€ÄÀ¤ôì(%É•ÑÕÉ¸¹Õ±°ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ”µ¡…¹‘±•ÈµÁ½±¥ä¹©Ì)™Õ¹Ñ¥½¸¥ÍA½ÍÍ¥‰±•ÁÁI½ÕÑ•Ñ¥½¹I•ÅÕ•ÍÐ¡É•ÅÕ•ÍÐ¤ì(%¥˜€¡É•ÅÕ•ÍÐ¹µ•Ñ¡½¹Ñ½UÁÁ•É…Í” ¤€„ôô€‰A=MPˆ¤É•ÑÕÉ¸™…±Í”ì(%½¹ÍÐ½¹Ñ•¹ÑQåÁ”€ôÉ•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰½¹Ñ•¹ÐµÑåÁ”ˆ¤ì(%É•ÑÕÉ¸É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹¡…Ì ‰àµÉÍŒµ…Ñ¥½¸ˆ¤ñðÉ•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹¡…Ì ‰¹•áÐµ…Ñ¥½¸ˆ¤ñð½¹Ñ•¹ÑQåÁ”€ôôô€‰…ÁÁ±¥…Ñ¥½¸½àµÝÝÜµ™½É´µÕÉ±•¹½‘•ˆñð½¹Ñ•¹ÑQåÁ”ü¹ÍÑ…ÉÑÍ]¥Ñ  ‰µÕ±Ñ¥Á…ÉÐ½™½É´µ‘…Ñ„ˆ¤€ôôôÑÉÕ”ì)ô)™Õ¹Ñ¥½¸•ÑÁÁI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•M•½¹‘Ì¡¡…¹‘±•È¤ì(%½¹ÍÐìÉ•Ù…±¥‘…Ñ”ô€ô¡…¹‘±•Èì(%¥˜€¡É•Ù…±¥‘…Ñ”€ôôô™…±Í”¤É•ÑÕÉ¸%¹™¥¹¥Ñäì(%¥˜€¡ÑåÁ•½˜É•Ù…±¥‘…Ñ”€„ôô€‰¹Õµ‰•Èˆñð€…9Õµ‰•È¹¥Í¥¹¥Ñ”¡É•Ù…±¥‘…Ñ”¤ñðÉ•Ù…±¥‘…Ñ”€ð€À¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸É•Ù…±¥‘…Ñ”ì)ô)™Õ¹Ñ¥½¸¡…ÍÁÁI½ÕÑ•!…¹‘±•É•™…Õ±ÑáÁ½ÉÐ¡¡…¹‘±•È¤ì(%É•ÑÕÉ¸ÑåÁ•½˜¡…¹‘±•È¹‘•™…Õ±Ð€ôôô€‰™Õ¹Ñ¥½¸ˆì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁI½ÕÑ•!…¹‘±•É5•Ñ¡½¡¡…¹‘±•È°µ•Ñ¡½¤ì(%½¹ÍÐ•áÁ½ÉÑ•‘5•Ñ¡½‘Ì€ô½±±•ÑI½ÕÑ•!…¹‘±•É5•Ñ¡½‘Ì¡¡…¹‘±•È¤ì(%½¹ÍÐ…±±½Ý!•…‘•É½É=ÁÑ¥½¹Ì€ô‰Õ¥±‘I½ÕÑ•!…¹‘±•É±±½Ý!•…‘•È¡•áÁ½ÉÑ•‘5•Ñ¡½‘Ì¤ì(%½¹ÍÐÍ¡½Õ±‘ÕÑ½I•ÍÁ½¹‘Q½=ÁÑ¥½¹Ì€ôµ•Ñ¡½€ôôô€‰=AQ%=9Lˆ€˜˜ÑåÁ•½˜¡…¹‘±•È¹=AQ%=9L€„ôô€‰™Õ¹Ñ¥½¸ˆì(%±•Ð¡…¹‘±•É¸€ôÑåÁ•½˜¡…¹‘±•Émµ•Ñ¡½‘t€ôôô€‰™Õ¹Ñ¥½¸ˆ€ü¡…¹‘±•Émµ•Ñ¡½‘t€èÙ½¥€Àì(%±•Ð¥ÍÕÑ½!•…€ô™…±Í”ì(%¥˜€¡µ•Ñ¡½€ôôô€‰!ˆ€˜˜ÑåÁ•½˜¡…¹‘±•È¹!€„ôô€‰™Õ¹Ñ¥½¸ˆ€˜˜ÑåÁ•½˜¡…¹‘±•È¹P€ôôô€‰™Õ¹Ñ¥½¸ˆ¤ì($%¡…¹‘±•É¸€ô¡…¹‘±•È¹Pì($%¥ÍÕÑ½!•…€ôÑÉÕ”ì(%ô(%É•ÑÕÉ¸ì($%…±±½Ý!•…‘•É½É=ÁÑ¥½¹Ì°($%•áÁ½ÉÑ•‘5•Ñ¡½‘Ì°($%¡…¹‘±•É¸°($%¥ÍÕÑ½!•…°($%Í¡½Õ±‘ÕÑ½I•ÍÁ½¹‘Q½=ÁÑ¥½¹Ì(%ôì)ô)™Õ¹Ñ¥½¸Í¡½Õ±‘I•…‘ÁÁI½ÕÑ•!…¹‘±•É…¡”¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô¹Õ±°€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ø€À€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô%¹™¥¹¥Ñä€˜˜½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€„ôô€‰™½É”µ‘å¹…µ¥Œˆ€˜˜€…½ÁÑ¥½¹Ì¹¥Í-¹½Ý¹å¹…µ¥Œ€˜˜€¡½ÁÑ¥½¹Ì¹µ•Ñ¡½€ôôô€‰Pˆñð½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…¤€˜˜ÑåÁ•½˜½ÁÑ¥½¹Ì¹¡…¹‘±•É¸€ôôô€‰™Õ¹Ñ¥½¸ˆì)ô)™Õ¹Ñ¥½¸Í¡½Õ±‘ÁÁ±åÁÁI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•!•…‘•È¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô¹Õ±°€˜˜€…½ÁÑ¥½¹Ì¹‘å¹…µ¥UÍ•‘%¹!…¹‘±•È€˜˜€¡½ÁÑ¥½¹Ì¹µ•Ñ¡½€ôôô€‰Pˆñð½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…¤€˜˜€…½ÁÑ¥½¹Ì¹¡…¹‘±•ÉM•Ñ…¡•½¹ÑÉ½°ì)ô)™Õ¹Ñ¥½¸Í¡½Õ±‘]É¥Ñ•ÁÁI½ÕÑ•!…¹‘±•É…¡”¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô¹Õ±°€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ø€À€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô%¹™¥¹¥Ñä€˜˜½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€„ôô€‰™½É”µ‘å¹…µ¥Œˆ€˜˜Í¡½Õ±‘ÁÁ±åÁÁI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•!•…‘•È¡½ÁÑ¥½¹Ì¤ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁI½ÕÑ•!…¹‘±•ÉMÁ•¥…±ÉÉ½È¡•ÉÉ½È°É•ÅÕ•ÍÑUÉ°°½ÁÑ¥½¹Ì¤ì(%¥˜€ „¡•ÉÉ½È€˜˜ÑåÁ•½˜•ÉÉ½È€ôôô€‰½‰©•Ðˆ€˜˜€‰‘¥•ÍÐˆ¥¸•ÉÉ½È¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ‘¥•ÍÐ€ôMÑÉ¥¹œ¡•ÉÉ½È¹‘¥•ÍÐ¤ì(%½¹ÍÐÉ•‘¥É•Ð€ôÁ…ÉÍ•9•áÑI•‘¥É•Ñ¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡É•‘¥É•Ð¤É•ÑÕÉ¸ì($%­¥¹è€‰É•‘¥É•Ðˆ°($%±½…Ñ¥½¸è¹•ÜUI0¡É•‘¥É•Ð¹ÕÉ°°É•ÅÕ•ÍÑUÉ°¤¹Ñ½MÑÉ¥¹œ ¤°($%ÍÑ…ÑÕÍ½‘”è½ÁÑ¥½¹Ìü¹¥ÍÑ¥½¸€ü€ÌÀÌ€èÉ•‘¥É•Ð¹ÍÑ…ÑÕÌ(%ôì(%½¹ÍÐ¡ÑÑÁÉÉ½È€ôÁ…ÉÍ•9•áÑ!ÑÑÁÉÉ½É¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡¡ÑÑÁÉÉ½È¤É•ÑÕÉ¸ì($%­¥¹è€‰ÍÑ…ÑÕÌˆ°($%ÍÑ…ÑÕÍ½‘”è¡ÑÑÁÉÉ½È¹ÍÑ…ÑÕÌ(%ôì(%É•ÑÕÉ¸¹Õ±°ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÍÑ…Ñ¥Œµ•¹•É…Ñ¥½¸¹©Ì)™Õ¹Ñ¥½¸•ÑÁÁA…•MÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…” ¤ì(%É•ÑÕÉ¸€‰A…”Ý¥Ñ ‘å¹…µ¥Œ€ôp‰•ÉÉ½Ép‰€ÕÍ•„‘å¹…µ¥ŒA$¸Q¡¥ÌÁ…”Ý…Ì•áÁ•Ñ•Ñ¼‰”™Õ±±äÍÑ…Ñ¥Œ°‰ÕÐ¡•…‘•ÉÌ ¤°½½­¥•Ì ¤°½ÈÍ•…É¡A…É…µÌÝ…Ì…•ÍÍ•¸I•µ½Ù”Ñ¡”‘å¹…µ¥ŒA$ÕÍ…”½È¡…¹”Ñ¡”‘å¹…µ¥Œ½¹™¥œÑ¼p‰…ÕÑ½pˆ½Èp‰™½É”µ‘å¹…µ¥pˆ¸ˆì)ô)™Õ¹Ñ¥½¸•ÑÁÁI½ÕÑ•MÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…”¡É½ÕÑ•A…ÑÑ•É¸°•áÁÉ•ÍÍ¥½¸¤ì(%É•ÑÕÉ¸I½ÕÑ”€‘íÉ½ÕÑ•A…ÑÑ•É¸€üü€‰Õ¹­¹½Ý¸É½ÕÑ”‰ôÝ¥Ñ q‘å¹…µ¥Œ€ô€‰•ÉÉ½È‰q€½Õ±‘¸Ð‰”É•¹‘•É•ÍÑ…Ñ¥…±±ä‰•…ÕÍ”¥ÐÕÍ•€‘í•áÁÉ•ÍÍ¥½¸€üü€‰„‘å¹…µ¥ŒÉ•ÅÕ•ÍÐA$‰ô¸M•”µ½É”¥¹™¼¡•É”è¡ÑÑÁÌè¼½¹•áÑ©Ì¹½Éœ½‘½Ì½…ÁÀ½‰Õ¥±‘¥¹œµå½ÕÈµ…ÁÁ±¥…Ñ¥½¸½É•¹‘•É¥¹œ½ÍÑ…Ñ¥Œµ…¹µ‘å¹…µ¥Œ‘å¹…µ¥ŒµÉ•¹‘•É¥¹€ì)ô)™Õ¹Ñ¥½¸É•…Ñ•MÑ…Ñ¥•¹•É…Ñ¥½¹!•…‘•ÉÍ½¹Ñ•áÐ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ½¹Ñ•áÐ€ôì($%¡•…‘•ÉÌè¹•Ü!•…‘•ÉÌ ¤°($%½½­¥•Ìè€¼¨}}AUI}|€¨¼¹•Ü5…À ¤(%ôì(%¥˜€¡½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µÍÑ…Ñ¥Œˆ¤½¹Ñ•áÐ¹™½É•MÑ…Ñ¥Œ€ôÑÉÕ”ì(%¥˜€¡½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆ¤½¹Ñ•áÐ¹…•ÍÍÉÉ½È€ô¹•ÜÉÉ½È¡½ÁÑ¥½¹Ì¹É½ÕÑ•-¥¹€ôôô€‰É½ÕÑ”ˆ€ü•ÑÁÁI½ÕÑ•MÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…”¡½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸¤€è•ÑÁÁA…•MÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…” ¤¤ì(%É•ÑÕÉ¸½¹Ñ•áÐì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ”µ¡…¹‘±•ÈµÉ•ÍÁ½¹Í”¹©Ì)Ù…ÈAA}I=UQ}I]I%Q}II=H€ô€‰9•áÑI•ÍÁ½¹Í”¹É•ÝÉ¥Ñ” ¤Ý…ÌÕÍ•¥¸„…ÁÀÉ½ÕÑ”¡…¹‘±•È°Ñ¡¥Ì¥Ì¹½ÐÕÉÉ•¹Ñ±äÍÕÁÁ½ÉÑ•¸A±•…Í”É•µ½Ù”Ñ¡”¥¹Ù½…Ñ¥½¸Ñ¼½¹Ñ¥¹Õ”¸ˆì)Ù…ÈAA}I=UQ}9aQ}II=H€ô€‰9•áÑI•ÍÁ½¹Í”¹¹•áÐ ¤Ý…ÌÕÍ•¥¸„…ÁÀÉ½ÕÑ”¡…¹‘±•È°Ñ¡¥Ì¥Ì¹½ÐÍÕÁÁ½ÉÑ•¸M•”¡•É”™½Èµ½É”¥¹™¼è¡ÑÑÁÌè¼½¹•áÑ©Ì¹½Éœ½‘½Ì½µ•ÍÍ…•Ì½¹•áÐµÉ•ÍÁ½¹Í”µ¹•áÐµ¥¸µ…ÁÀµÉ½ÕÑ”µ¡…¹‘±•Èˆì)™Õ¹Ñ¥½¸¡…Í5¥‘‘±•Ý…É•!•…‘•È¡¡•…‘•ÉÌ¤ì(%™½È€¡½¹ÍÐ­•ä½˜¡•…‘•ÉÌ¹­•åÌ ¤¤¥˜€¡­•ä¹ÍÑ…ÉÑÍ]¥Ñ  ‰àµµ¥‘‘±•Ý…É”´ˆ¤¤É•ÑÕÉ¸ÑÉÕ”ì(%É•ÑÕÉ¸™…±Í”ì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘I½ÕÑ•!…¹‘±•É…¡•½¹ÑÉ½°¡…¡•MÑ…Ñ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤ì(%¥˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô€À¤É•ÑÕÉ¸9YI}!}=9QI=0ì(%¥˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô%¹™¥¹¥Ñä¤É•ÑÕÉ¸MQQ%}!}=9QI=0ì(%É•ÑÕÉ¸‰Õ¥±‘…¡•‘I•Ù…±¥‘…Ñ•…¡•½¹ÑÉ½°¡…¡•MÑ…Ñ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤ì)ô)™Õ¹Ñ¥½¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡É•ÍÁ½¹Í”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%¥˜€ …µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ€˜˜µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹ÍÑ…ÑÕÌ€ôô¹Õ±°¤É•ÑÕÉ¸É•ÍÁ½¹Í”ì(%½¹ÍÐÉ•ÍÁ½¹Í•!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¤ì(%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡É•ÍÁ½¹Í•!•…‘•ÉÌ°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¹‰½‘ä°ì($%ÍÑ…ÑÕÌèµ¥‘‘±•Ý…É•½¹Ñ•áÐ¹ÍÑ…ÑÕÌ€üüÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%ÍÑ…ÑÕÍQ•áÐèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÍQ•áÐ°($%¡•…‘•ÉÌèÉ•ÍÁ½¹Í•!•…‘•ÉÌ(%ô¤ì)ô)™Õ¹Ñ¥½¸…ÍÍ•ÉÑMÕÁÁ½ÉÑ•‘ÁÁI½ÕÑ•!…¹‘±•ÉI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¤ì(%¥˜€¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹¡…Ì ‰àµµ¥‘‘±•Ý…É”µÉ•ÝÉ¥Ñ”ˆ¤¤Ñ¡É½Ü¹•ÜÉÉ½È¡AA}I=UQ}I]I%Q}II=H¤ì(%¥˜€¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹•Ð ‰àµµ¥‘‘±•Ý…É”µ¹•áÐˆ¤€ôôô€ˆÄˆ¤Ñ¡É½Ü¹•ÜÉÉ½È¡AA}I=UQ}9aQ}II=H¤ì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘I½ÕÑ•!…¹‘±•É…¡•‘I•ÍÁ½¹Í”¡…¡•‘Y…±Õ”°½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ ¤ì(%™½È€¡½¹ÍÐm­•ä°Ù…±Õ•t½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡…¡•‘Y…±Õ”¹¡•…‘•ÉÌ¤¤¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤¤™½È€¡½¹ÍÐ•¹ÑÉä½˜Ù…±Õ”¤¡•…‘•ÉÌ¹…ÁÁ•¹¡­•ä°•¹ÑÉä¤ì(%•±Í”¡•…‘•ÉÌ¹Í•Ð¡­•ä°Ù…±Õ”¤ì(%¡•…‘•ÉÌ¹Í•Ð¡Y%9aQ}!}!H°½ÁÑ¥½¹Ì¹…¡•MÑ…Ñ”¤ì(%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°ü¹É•Ù…±¥‘…Ñ”€üü½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì(%½¹ÍÐ•áÁ¥É•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°€ôôôÙ½¥€À€üÙ½¥€À€è½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°¹•áÁ¥É”€üü½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ìì(%¡•…‘•ÉÌ¹Í•Ð ‰…¡”µ½¹ÑÉ½°ˆ°‰Õ¥±‘I½ÕÑ•!…¹‘±•É…¡•½¹ÑÉ½°¡½ÁÑ¥½¹Ì¹…¡•MÑ…Ñ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¹¥Í!•…€ü¹Õ±°€è…¡•‘Y…±Õ”¹‰½‘ä°ì($%ÍÑ…ÑÕÌè…¡•‘Y…±Õ”¹ÍÑ…ÑÕÌ°($%¡•…‘•ÉÌ(%ô¤ì)ô)™Õ¹Ñ¥½¸…ÁÁ±åI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•!•…‘•È¡É•ÍÁ½¹Í”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤ì(%É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹Í•Ð ‰…¡”µ½¹ÑÉ½°ˆ°‰Õ¥±‘I½ÕÑ•!…¹‘±•É…¡•½¹ÑÉ½° ‰!%Pˆ°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤¤ì)ô)™Õ¹Ñ¥½¸µ…É­I½ÕÑ•!…¹‘±•É…¡•5¥ÍÌ¡É•ÍÁ½¹Í”¤ì(%É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹Í•Ð¡Y%9aQ}!}!H°€‰5%MLˆ¤ì)ô)™Õ¹Ñ¥½¸•ÑM•Ñ½½­¥•9…µ”¡½½­¥”¤ì(%½¹ÍÐ•ÅÕ…±Í%¹‘•à€ô½½­¥”¹¥¹‘•á=˜ ˆôˆ¤ì(%¥˜€¡•ÅÕ…±Í%¹‘•à€ðô€À¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸½½­¥”¹Í±¥” À°•ÅÕ…±Í%¹‘•à¤ì)ô)™Õ¹Ñ¥½¸…ÁÁ±å5ÕÑ…‰±•½½­¥•…±±‰…­Ì¡¡•…‘•ÉÌ°Á•¹‘¥¹½½­¥•Ì¤ì(%¥˜€¡Á•¹‘¥¹½½­¥•Ì¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸ì(%½¹ÍÐÉ•ÑÕÉ¹•‘½½­¥•Ì€ô¡•…‘•ÉÌ¹•ÑM•Ñ½½­¥” ¤ì(%½¹ÍÐÉ•ÑÕÉ¹•‘½½­¥•9…µ•Ì€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(%™½È€¡½¹ÍÐ½½­¥”½˜É•ÑÕÉ¹•‘½½­¥•Ì¤ì($%½¹ÍÐ¹…µ”€ô•ÑM•Ñ½½­¥•9…µ”¡½½­¥”¤ì($%¥˜€¡¹…µ”¤É•ÑÕÉ¹•‘½½­¥•9…µ•Ì¹…‘¡¹…µ”¤ì(%ô(%½¹ÍÐ™…±±‰…­½½­¥•Ì€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%½¹ÍÐÕ¹­•å•‘…±±‰…­½½­¥•Ì€ômtì(%™½È€¡½¹ÍÐ½½­¥”½˜Á•¹‘¥¹½½­¥•Ì¤ì($%½¹ÍÐ¹…µ”€ô•ÑM•Ñ½½­¥•9…µ”¡½½­¥”¤ì($%¥˜€ …¹…µ”¤ì($$%Õ¹­•å•‘…±±‰…­½½­¥•Ì¹ÁÕÍ ¡½½­¥”¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%¥˜€ …É•ÑÕÉ¹•‘½½­¥•9…µ•Ì¹¡…Ì¡¹…µ”¤¤™…±±‰…­½½­¥•Ì¹Í•Ð¡¹…µ”°½½­¥”¤ì(%ô(%¡•…‘•ÉÌ¹‘•±•Ñ” ‰M•Ðµ½½­¥”ˆ¤ì(%™½È€¡½¹ÍÐ½½­¥”½˜Õ¹­•å•‘…±±‰…­½½­¥•Ì¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì(%™½È€¡½¹ÍÐ½½­¥”½˜™…±±‰…­½½­¥•Ì¹Ù…±Õ•Ì ¤¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì(%™½È€¡½¹ÍÐ½½­¥”½˜É•ÑÕÉ¹•‘½½­¥•Ì¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁI½ÕÑ•…¡•Y…±Õ”¡É•ÍÁ½¹Í”¤ì(%½¹ÍÐ‰½‘ä€ô…Ý…¥ÐÉ•ÍÁ½¹Í”¹…ÉÉ…å	Õ™™•È ¤ì(%½¹ÍÐ¡•…‘•ÉÌ€ôíôì(%É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹™½É…  ¡Ù…±Õ”°­•ä¤€ôøì($%¥˜€¡­•ä€ôôô€‰Í•Ðµ½½­¥”ˆñð­•ä€ôôô€‰`µY¥¹•áÐµ…¡”ˆ¹Ñ½1½Ý•É…Í” ¤ñð­•ä€ôôô€‰…¡”µ½¹ÑÉ½°ˆñð­•ä¹ÍÑ…ÉÑÍ]¥Ñ  ‰àµµ¥‘‘±•Ý…É”´ˆ¤¤É•ÑÕÉ¸ì($%¡•…‘•ÉÍm­•åt€ôÙ…±Õ”ì(%ô¤ì(%½¹ÍÐÍ•Ñ½½­¥•Ì€ôÉ•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹•ÑM•Ñ½½­¥”ü¸ ¤€üümtì(%¥˜€¡Í•Ñ½½­¥•Ì¹±•¹Ñ €ø€À¤¡•…‘•ÉÍl‰Í•Ðµ½½­¥”‰t€ôÍ•Ñ½½­¥•Ìì(%É•ÑÕÉ¸ì($%­¥¹è€‰AA}I=UQˆ°($%‰½‘ä°($%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%¡•…‘•ÉÌ(%ôì)ô)™Õ¹Ñ¥½¸™¥¹…±¥é•I½ÕÑ•!…¹‘±•ÉI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”°½ÁÑ¥½¹Ì¤ì(%½¹ÍÐìÁ•¹‘¥¹½½­¥•Ì°‘É…™Ñ½½­¥”°¥Í!•…ô€ô½ÁÑ¥½¹Ìì(%¥˜€¡Á•¹‘¥¹½½­¥•Ì¹±•¹Ñ €ôôô€À€˜˜€…‘É…™Ñ½½­¥”€˜˜€…¥Í!•…€˜˜€…¡…Í5¥‘‘±•Ý…É•!•…‘•È¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¤¤É•ÑÕÉ¸É•ÍÁ½¹Í”ì(%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¤ì(%ÁÉ½•ÍÍ5¥‘‘±•Ý…É•!•…‘•ÉÌ¡¡•…‘•ÉÌ¤ì(%…ÁÁ±å5ÕÑ…‰±•½½­¥•…±±‰…­Ì¡¡•…‘•ÉÌ°Á•¹‘¥¹½½­¥•Ì¤ì(%¥˜€¡‘É…™Ñ½½­¥”¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°‘É…™Ñ½½­¥”¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡¥Í!•…€ü¹Õ±°€èÉ•ÍÁ½¹Í”¹‰½‘ä°ì($%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%ÍÑ…ÑÕÍQ•áÐèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÍQ•áÐ°($%¡•…‘•ÉÌ(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ”µ¡…¹‘±•Èµ•á•ÕÑ¥½¸¹©Ì)™Õ¹Ñ¥½¸½¹™¥ÕÉ•ÁÁI½ÕÑ•MÑ…Ñ¥•¹•É…Ñ¥½¹½¹Ñ•áÐ¡½ÁÑ¥½¹Ì¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µÍÑ…Ñ¥Œˆñð½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆ¤ì($%Í•Ñ!•…‘•ÉÍ½¹Ñ•áÐ¡É•…Ñ•MÑ…Ñ¥•¹•É…Ñ¥½¹!•…‘•ÉÍ½¹Ñ•áÐ¡ì($$%‘å¹…µ¥½¹™¥œè½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ°($$%É½ÕÑ•-¥¹è€‰É½ÕÑ”ˆ°($$%É½ÕÑ•A…ÑÑ•É¸è½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸($%ô¤¤ì($%½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”ü¸ ‰É½ÕÑ”µ¡…¹‘±•Èˆ¤ì(%ô)ô)…Íå¹Œ™Õ¹Ñ¥½¸ÉÕ¹ÁÁI½ÕÑ•!…¹‘±•È¡½ÁÑ¥½¹Ì¤ì(%½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤ì(%½¹™¥ÕÉ•ÁÁI½ÕÑ•MÑ…Ñ¥•¹•É…Ñ¥½¹½¹Ñ•áÐ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÑÉ…­•‘I•ÅÕ•ÍÐ€ôÉ•…Ñ•QÉ…­•‘ÁÁI½ÕÑ•I•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°ì($%‰…Í•A…Ñ è½ÁÑ¥½¹Ì¹‰…Í•A…Ñ °($%¤Äá¸è½ÁÑ¥½¹Ì¹¤Äá¸°($%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•I•ÅÕ•ÍÑ!•…‘•ÉÌ°($%½¹å¹…µ¥•ÍÌ ¤ì($$%½ÁÑ¥½¹Ì¹µ…É­å¹…µ¥UÍ…” ¤ì($%ô°($%É•ÅÕ•ÍÑ5½‘”è½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µÍÑ…Ñ¥Œˆñð½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆ€ü½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€è€‰…ÕÑ¼ˆ°($%ÍÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…”¡•áÁÉ•ÍÍ¥½¸¤ì($$%É•ÑÕÉ¸•ÑÁÁI½ÕÑ•MÑ…Ñ¥•¹•É…Ñ¥½¹ÉÉ½É5•ÍÍ…”¡½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸°•áÁÉ•ÍÍ¥½¸¤ì($%ô(%ô¤ì(%½¹ÍÐÉ•ÍÁ½¹Í”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹¡…¹‘±•É¸¡ÑÉ…­•‘I•ÅÕ•ÍÐ¹É•ÅÕ•ÍÐ°ìÁ…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌô¤ì(%É•ÑÕÉ¸ì($%‘å¹…µ¥UÍ•‘%¹!…¹‘±•Èè½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤°($%É•ÍÁ½¹Í”(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸•á•ÕÑ•ÁÁI½ÕÑ•!…¹‘±•È¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÁÉ•Ù¥½ÕÍ!•…‘•ÉÍA¡…Í”€ô½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í” ‰É½ÕÑ”µ¡…¹‘±•Èˆ¤ì(%ÑÉäì($%½¹ÍÐì‘å¹…µ¥UÍ•‘%¹!…¹‘±•È°É•ÍÁ½¹Í”ô€ô…Ý…¥ÐÉÕ¹ÁÁI½ÕÑ•!…¹‘±•È¡ì($$$¸¸¹½ÁÑ¥½¹Ì°($$%‘å¹…µ¥½¹™¥œè½ÁÑ¥½¹Ì¹¡…¹‘±•È¹‘å¹…µ¥Œ($%ô¤ì($%…ÍÍ•ÉÑMÕÁÁ½ÉÑ•‘ÁÁI½ÕÑ•!…¹‘±•ÉI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¤ì($%½¹ÍÐ¡…¹‘±•ÉM•Ñ…¡•½¹ÑÉ½°€ôÉ•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹¡…Ì ‰…¡”µ½¹ÑÉ½°ˆ¤ì($%¥˜€¡‘å¹…µ¥UÍ•‘%¹!…¹‘±•È¤µ…É­-¹½Ý¹å¹…µ¥ÁÁI½ÕÑ”¡½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸¤ì($%¥˜€¡Í¡½Õ±‘ÁÁ±åÁÁI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•!•…‘•È¡ì($$%‘å¹…µ¥UÍ•‘%¹!…¹‘±•È°($$%¡…¹‘±•ÉM•Ñ…¡•½¹ÑÉ½°°($$%¥ÍÕÑ½!•…è½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…°($$%µ•Ñ¡½è½ÁÑ¥½¹Ì¹µ•Ñ¡½°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($%ô¤¤ì($$%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì($$%¥˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôô¹Õ±°¤Ñ¡É½Ü¹•ÜÉÉ½È ‰áÁ•Ñ•É½ÕÑ”¡…¹‘±•ÈÉ•Ù…±¥‘…Ñ”Í•½¹‘Ìˆ¤ì($$%…ÁÁ±åI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•!•…‘•È¡É•ÍÁ½¹Í”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì¤ì($%ô($%¥˜€¡Í¡½Õ±‘]É¥Ñ•ÁÁI½ÕÑ•!…¹‘±•É…¡”¡ì($$%‘å¹…µ¥½¹™¥œè½ÁÑ¥½¹Ì¹¡…¹‘±•È¹‘å¹…µ¥Œ°($$%‘å¹…µ¥UÍ•‘%¹!…¹‘±•È°($$%¡…¹‘±•ÉM•Ñ…¡•½¹ÑÉ½°°($$%¥ÍÕÑ½!•…è½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…°($$%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($$%µ•Ñ¡½è½ÁÑ¥½¹Ì¹µ•Ñ¡½°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($%ô¤¤ì($$%µ…É­I½ÕÑ•!…¹‘±•É…¡•5¥ÍÌ¡É•ÍÁ½¹Í”¤ì($$%½¹ÍÐÉ½ÕÑ•±½¹”€ôÉ•ÍÁ½¹Í”¹±½¹” ¤ì($$%½¹ÍÐÉ½ÕÑ•-•ä€ô½ÁÑ¥½¹Ì¹¥ÍÉI½ÕÑ•-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì($$%¥˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôô¹Õ±°¤Ñ¡É½Ü¹•ÜÉÉ½È ‰áÁ•Ñ•É½ÕÑ”¡…¹‘±•È…¡”É•Ù…±¥‘…Ñ”Í•½¹‘Ìˆ¤ì($$%½¹ÍÐÉ½ÕÑ•Q…Ì€ô½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•…¡•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹•Ñ½±±•Ñ•‘•Ñ¡Q…Ì ¤¤ì($$%½¹ÍÐÉ½ÕÑ•]É¥Ñ•AÉ½µ¥Í”€ô€¡…Íå¹Œ€ ¤€ôøì($$$%ÑÉäì($$$$%½¹ÍÐÉ½ÕÑ•…¡•Y…±Õ”€ô…Ý…¥Ð‰Õ¥±‘ÁÁI½ÕÑ•…¡•Y…±Õ”¡É½ÕÑ•±½¹”¤ì($$$$%…Ý…¥Ð½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡É½ÕÑ•-•ä°É½ÕÑ•…¡•Y…±Õ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°É½ÕÑ•Q…Ì°½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì¤ì($$$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰É½ÕÑ”…¡”ÝÉ¥ÑÑ•¸ˆ°É½ÕÑ•-•ä¤ì($$$%ô…Ñ €¡…¡•ÉÈ¤ì($$$$%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt%MHÉ½ÕÑ”…¡”ÝÉ¥Ñ”•ÉÉ½Èèˆ°…¡•ÉÈ¤ì($$$%ô($$%ô¤ ¤ì($$%½ÁÑ¥½¹Ì¹•á•ÕÑ¥½¹½¹Ñ•áÐü¹Ý…¥ÑU¹Ñ¥°¡É½ÕÑ•]É¥Ñ•AÉ½µ¥Í”¤ì($%ô($%½¹ÍÐÁ•¹‘¥¹½½­¥•Ì€ô½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì($%½¹ÍÐ‘É…™Ñ½½­¥”€ô½ÁÑ¥½¹Ì¹•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È ¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡™¥¹…±¥é•I½ÕÑ•!…¹‘±•ÉI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”°ì($$%Á•¹‘¥¹½½­¥•Ì°($$%‘É…™Ñ½½­¥”°($$%¥Í!•…è½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…($%ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%ô…Ñ €¡•ÉÉ½È¤ì($%½¹ÍÐÁ•¹‘¥¹½½­¥•Ì€ô½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì($%½¹ÍÐ‘É…™Ñ½½­¥”€ô½ÁÑ¥½¹Ì¹•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È ¤ì($%½¹ÍÐÍÁ•¥…±ÉÉ½È€ôÉ•Í½±Ù•ÁÁI½ÕÑ•!…¹‘±•ÉMÁ•¥…±ÉÉ½È¡•ÉÉ½È°½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹ÕÉ°°ì¥ÍÑ¥½¸è¥ÍA½ÍÍ¥‰±•ÁÁI½ÕÑ•Ñ¥½¹I•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¤ô¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%¥˜€¡ÍÁ•¥…±ÉÉ½È¤ì($$%¥˜€¡ÍÁ•¥…±ÉÉ½È¹­¥¹€ôôô€‰É•‘¥É•Ðˆ¤É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡™¥¹…±¥é•I½ÕÑ•!…¹‘±•ÉI•ÍÁ½¹Í”¡¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ì($$$%ÍÑ…ÑÕÌèÍÁ•¥…±ÉÉ½È¹ÍÑ…ÑÕÍ½‘”°($$$%¡•…‘•ÉÌèì1½…Ñ¥½¸èÍÁ•¥…±ÉÉ½È¹±½…Ñ¥½¸ô($$%ô¤°ì($$$%Á•¹‘¥¹½½­¥•Ì°($$$%‘É…™Ñ½½­¥”°($$$%¥Í!•…è½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…($$%ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ìÍÑ…ÑÕÌèÍÁ•¥…±ÉÉ½È¹ÍÑ…ÑÕÍ½‘”ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($%ô($%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑtI½ÕÑ”¡…¹‘±•È•ÉÉ½Èèˆ°•ÉÉ½È¤ì($%½ÁÑ¥½¹Ì¹É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÉ½È€è¹•ÜÉÉ½È¡MÑÉ¥¹œ¡•ÉÉ½È¤¤°ì($$%Á…Ñ è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%µ•Ñ¡½è½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹µ•Ñ¡½°($$%¡•…‘•ÉÌè=‰©•Ð¹™É½µ¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•¹ÑÉ¥•Ì ¤¤($%ô°ì($$%É½ÕÑ•É-¥¹è€‰ÁÀI½ÕÑ•Èˆ°($$%É½ÕÑ•A…Ñ è½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸°($$%É½ÕÑ•QåÁ”è€‰É½ÕÑ”ˆ($%ô¤ì($%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ìÍÑ…ÑÕÌè€ÔÀÀô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%ô™¥¹…±±äì($%½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”¡ÁÉ•Ù¥½ÕÍ!•…‘•ÉÍA¡…Í”¤ì(%ô)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ”µ¡…¹‘±•Èµ…¡”¹©Ì)™Õ¹Ñ¥½¸•Ñ…¡•‘ÁÁI½ÕÑ•Y…±Õ”¡•¹ÑÉä¤ì(%É•ÑÕÉ¸•¹ÑÉäü¹Ù…±Õ”¹Ù…±Õ”€˜˜•¹ÑÉä¹Ù…±Õ”¹Ù…±Õ”¹­¥¹€ôôô€‰AA}I=UQˆ€ü•¹ÑÉä¹Ù…±Õ”¹Ù…±Õ”€è¹Õ±°ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘ÁÁI½ÕÑ•!…¹‘±•É…¡•I•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÉ½ÕÑ•-•ä€ô½ÁÑ¥½¹Ì¹¥ÍÉI½ÕÑ•-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì(%ÑÉäì($%½¹ÍÐ…¡•€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹¥ÍÉ•Ð¡É½ÕÑ•-•ä¤ì($%½¹ÍÐ…¡•‘Y…±Õ”€ô•Ñ…¡•‘ÁÁI½ÕÑ•Y…±Õ”¡…¡•¤ì($%¥˜€¡…¡•‘Y…±Õ”€˜˜€……¡•ü¹¥ÍMÑ…±”¤ì($$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰!%P€¡É½ÕÑ”¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡‰Õ¥±‘I½ÕÑ•!…¹‘±•É…¡•‘I•ÍÁ½¹Í”¡…¡•‘Y…±Õ”°ì($$$%…¡•MÑ…Ñ”è€‰!%Pˆ°($$$%…¡•½¹ÑÉ½°è…¡•ü¹Ù…±Õ”¹…¡•½¹ÑÉ½°°($$$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$$%¥Í!•…è½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($%ô($%¥˜€¡…¡•ü¹¥ÍMÑ…±”€˜˜…¡•‘Y…±Õ”¤ì($$%½¹ÍÐÍÑ…±•Y…±Õ”€ô…¡•‘Y…±Õ”ì($$%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•…É¡A…É…µÌ€ô¹•ÜUI1M•…É¡A…É…µÌ¡½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•…É¡A…É…µÌ¤ì($$%½ÁÑ¥½¹Ì¹Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡É½ÕÑ•-•ä°…Íå¹Œ€ ¤€ôøì($$$%…Ý…¥Ð½ÁÑ¥½¹Ì¹ÉÕ¹%¹I•Ù…±¥‘…Ñ¥½¹½¹Ñ•áÐ¡…Íå¹Œ€ ¤€ôøì($$$$%½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡ì($$$$$%Á…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$$$$%Í•…É¡A…É…µÌèÉ•Ù…±¥‘…Ñ•M•…É¡A…É…µÌ°($$$$$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ($$$$%ô¤ì($$$$%½¹ÍÐì‘å¹…µ¥UÍ•‘%¹!…¹‘±•È°É•ÍÁ½¹Í”ô€ô…Ý…¥ÐÉÕ¹ÁÁI½ÕÑ•!…¹‘±•È¡ì($$$$$%‰…Í•A…Ñ è½ÁÑ¥½¹Ì¹‰…Í•A…Ñ °($$$$$%½¹ÍÕµ•å¹…µ¥UÍ…”è½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…”°($$$$$%‘å¹…µ¥½¹™¥œè½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ°($$$$$%¡…¹‘±•É¸è½ÁÑ¥½¹Ì¹¡…¹‘±•É¸°($$$$$%¤Äá¸è½ÁÑ¥½¹Ì¹¤Äá¸°($$$$$%µ…É­å¹…µ¥UÍ…”è½ÁÑ¥½¹Ì¹µ…É­å¹…µ¥UÍ…”°($$$$$%Á…É…µÌèµ…­•Q¡•¹…‰±•A…É…µÌ¡½ÁÑ¥½¹Ì¹Á…É…µÌ¤°($$$$$%É•ÅÕ•ÍÐè¹•ÜI•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑUÉ°°ìµ•Ñ¡½è€‰Pˆô¤°($$$$$%É½ÕÑ•A…ÑÑ•É¸è½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸°($$$$$%Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”è½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”($$$$%ô¤ì($$$$%½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡¹Õ±°¤ì($$$$%…ÍÍ•ÉÑMÕÁÁ½ÉÑ•‘ÁÁI½ÕÑ•!…¹‘±•ÉI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¤ì($$$$%¥˜€¡‘å¹…µ¥UÍ•‘%¹!…¹‘±•È¤ì($$$$$%µ…É­-¹½Ý¹å¹…µ¥ÁÁI½ÕÑ”¡½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸¤ì($$$$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰É½ÕÑ”É••¸Í­¥ÁÁ•€¡‘å¹…µ¥ŒÕÍ…”¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$$$$%É•ÑÕÉ¸ì($$$$%ô($$$$%½¹ÍÐÉ½ÕÑ•Q…Ì€ô½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•…¡•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹•Ñ½±±•Ñ•‘•Ñ¡Q…Ì ¤¤ì($$$$%½¹ÍÐÉ½ÕÑ•…¡•Y…±Õ”€ô…Ý…¥Ð‰Õ¥±‘ÁÁI½ÕÑ•…¡•Y…±Õ”¡É•ÍÁ½¹Í”¤ì($$$$%…Ý…¥Ð½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡É½ÕÑ•-•ä°É½ÕÑ•…¡•Y…±Õ”°½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì°É½ÕÑ•Q…Ì°½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì¤ì($$$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰É½ÕÑ”É••¸½µÁ±•Ñ”ˆ°É½ÕÑ•-•ä¤ì($$$%ô¤ì($$%ô¤ì($$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰MQ1€¡É½ÕÑ”¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡‰Õ¥±‘I½ÕÑ•!…¹‘±•É…¡•‘I•ÍÁ½¹Í”¡ÍÑ…±•Y…±Õ”°ì($$$%…¡•MÑ…Ñ”è€‰MQ1ˆ°($$$%…¡•½¹ÑÉ½°è…¡•¹Ù…±Õ”¹…¡•½¹ÑÉ½°°($$$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$$%¥Í!•…è½ÁÑ¥½¹Ì¹¥ÍÕÑ½!•…°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($%ô(%ô…Ñ €¡É½ÕÑ•…¡•ÉÉ½È¤ì($%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt%MHÉ½ÕÑ”…¡”É•…•ÉÉ½Èèˆ°É½ÕÑ•…¡•ÉÉ½È¤ì(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ”µ¡…¹‘±•Èµ‘¥ÍÁ…Ñ ¹©Ì)™Õ¹Ñ¥½¸¥ÍÁÁI½ÕÑ•!…¹‘±•ÉÕ¹Ñ¥½¸¡Ù…±Õ”¤ì(%É•ÑÕÉ¸ÑåÁ•½˜Ù…±Õ”€ôôô€‰™Õ¹Ñ¥½¸ˆì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘I½ÕÑ•!…¹‘±•ÉA…•…¡•Q…Ì¡Á…Ñ¡¹…µ”°•áÑÉ…Q…Ì°É½ÕÑ•M•µ•¹ÑÌ¤ì(%É•ÑÕÉ¸‰Õ¥±‘A…•…¡•Q…Ì¡Á…Ñ¡¹…µ”°•áÑÉ…Q…Ì°É½ÕÑ•M•µ•¹ÑÌ°€‰É½ÕÑ”ˆ¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸ÉÕ¹%¹I½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ¥½¹½¹Ñ•áÐ¡½ÁÑ¥½¹Ì°É•¹‘•É¸¤ì(%…Ý…¥ÐÉÕ¹]¥Ñ¡I•ÅÕ•ÍÑ½¹Ñ•áÐ¡É•…Ñ•I•ÅÕ•ÍÑ½¹Ñ•áÐ¡ì($%¡•…‘•ÉÍ½¹Ñ•áÐèÉ•…Ñ•MÑ…Ñ¥•¹•É…Ñ¥½¹!•…‘•ÉÍ½¹Ñ•áÐ¡ì($$%‘å¹…µ¥½¹™¥œè½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ°($$%É½ÕÑ•-¥¹è€‰É½ÕÑ”ˆ°($$%É½ÕÑ•A…ÑÑ•É¸è½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸($%ô¤°($%•á•ÕÑ¥½¹½¹Ñ•áÐè•ÑI•ÅÕ•ÍÑá•ÕÑ¥½¹½¹Ñ•áÐ ¤°($%Õ¹ÍÑ…‰±•…¡•I•Ù…±¥‘…Ñ¥½¸è€‰™½É•É½Õ¹ˆ(%ô¤°…Íå¹Œ€ ¤€ôøì($%•¹ÍÕÉ••Ñ¡A…Ñ  ¤ì($%Í•ÑÕÉÉ•¹Ñ•Ñ¡M½™ÑQ…Ì¡‰Õ¥±‘I½ÕÑ•!…¹‘±•ÉA…•…¡•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°mt°½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ¤¤ì($%…Ý…¥ÐÉ•¹‘•É¸ ¤ì(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‘¥ÍÁ…Ñ¡ÁÁI½ÕÑ•!…¹‘±•È¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐìÉ½ÕÑ”ô€ô½ÁÑ¥½¹Ìì(%½¹ÍÐ¡…¹‘±•È€ôÉ½ÕÑ”¹É½ÕÑ•!…¹‘±•Èì(%½¹ÍÐµ•Ñ¡½€ô½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹µ•Ñ¡½¹Ñ½UÁÁ•É…Í” ¤ì(%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô•ÑÁÁI½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ•M•½¹‘Ì¡¡…¹‘±•È¤ì(%½¹ÍÐ¥Í•Ù•±½Áµ•¹Ð€ô½ÁÑ¥½¹Ì¹¥Í•Ù•±½Áµ•¹Ð€üü™…±Í”ì(%½¹ÍÐ¥ÍAÉ½‘ÕÑ¥½¸€ô½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€üüÑÉÕ”ì(%¥˜€¡¡…ÍÁÁI½ÕÑ•!…¹‘±•É•™…Õ±ÑáÁ½ÉÐ¡¡…¹‘±•È¤€˜˜¥Í•Ù•±½Áµ•¹Ð¤½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt•Ñ•Ñ•‘•™…Õ±Ð•áÁ½ÉÐ¥¸É½ÕÑ”¡…¹‘±•È€ˆ€¬É½ÕÑ”¹Á…ÑÑ•É¸€¬€ˆ¸áÁ½ÉÐ„¹…µ••áÁ½ÉÐ™½È•… !QQ@µ•Ñ¡½¥¹ÍÑ•…¸ˆ¤ì(%¥˜€ …¥ÍY…±¥‘!QQA5•Ñ¡½¡µ•Ñ¡½¤¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ìÍÑ…ÑÕÌè€ÐÀÀô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%ô(%½¹ÍÐì…±±½Ý!•…‘•É½É=ÁÑ¥½¹Ì°¡…¹‘±•É¸°¥ÍÕÑ½!•…°Í¡½Õ±‘ÕÑ½I•ÍÁ½¹‘Q½=ÁÑ¥½¹Ìô€ôÉ•Í½±Ù•ÁÁI½ÕÑ•!…¹‘±•É5•Ñ¡½¡¡…¹‘±•È°µ•Ñ¡½¤ì(%¥˜€¡Í¡½Õ±‘ÕÑ½I•ÍÁ½¹‘Q½=ÁÑ¥½¹Ì¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ì($$%ÍÑ…ÑÕÌè€ÈÀÐ°($$%¡•…‘•ÉÌèì±±½Üè…±±½Ý!•…‘•É½É=ÁÑ¥½¹Ìô($%ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%ô(%½¹ÍÐÉ•Í½±Ù•‘!…¹‘±•É¸€ô¥ÍÁÁI½ÕÑ•!…¹‘±•ÉÕ¹Ñ¥½¸¡¡…¹‘±•É¸¤€ü¡…¹‘±•É¸€èÙ½¥€Àì(%¥˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô¹Õ±°€˜˜Í¡½Õ±‘I•…‘ÁÁI½ÕÑ•!…¹‘±•É…¡”¡ì($%‘å¹…µ¥½¹™¥œè¡…¹‘±•È¹‘å¹…µ¥Œ°($%¡…¹‘±•É¸èÉ•Í½±Ù•‘!…¹‘±•É¸°($%¥ÍÕÑ½!•…°($%¥Í-¹½Ý¹å¹…µ¥Œè¥Í-¹½Ý¹å¹…µ¥ÁÁI½ÕÑ”¡É½ÕÑ”¹Á…ÑÑ•É¸¤°($%¥ÍAÉ½‘ÕÑ¥½¸°($%µ•Ñ¡½°($%É•Ù…±¥‘…Ñ•M•½¹‘Ì(%ô¤€˜˜É•Í½±Ù•‘!…¹‘±•É¸¤ì($%½¹ÍÐ…¡•‘I½ÕÑ•I•ÍÁ½¹Í”€ô…Ý…¥ÐÉ•…‘ÁÁI½ÕÑ•!…¹‘±•É…¡•I•ÍÁ½¹Í”¡ì($$%‰…Í•A…Ñ è½ÁÑ¥½¹Ì¹‰…Í•A…Ñ °($$%‰Õ¥±‘A…•…¡•Q…Ì¡Á…Ñ¡¹…µ”°•áÑÉ…Q…Ì¤ì($$$%É•ÑÕÉ¸‰Õ¥±‘I½ÕÑ•!…¹‘±•ÉA…•…¡•Q…Ì¡Á…Ñ¡¹…µ”°•áÑÉ…Q…Ì°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤ì($$%ô°($$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$%½¹ÍÕµ•å¹…µ¥UÍ…”°($$%‘å¹…µ¥½¹™¥œè¡…¹‘±•È¹‘å¹…µ¥Œ°($$%•Ñ½±±•Ñ•‘•Ñ¡Q…Ì°($$%¡…¹‘±•É¸èÉ•Í½±Ù•‘!…¹‘±•É¸°($$%¤Äá¸è½ÁÑ¥½¹Ì¹¤Äá¸°($$%¥ÍÕÑ½!•…°($$%¥ÍÉ•‰Õœè½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœ°($$%¥ÍÉ•Ðè½ÁÑ¥½¹Ì¹¥ÍÉ•Ð°($$%¥ÍÉI½ÕÑ•-•äè½ÁÑ¥½¹Ì¹¥ÍÉI½ÕÑ•-•ä°($$%¥ÍÉM•Ðè½ÁÑ¥½¹Ì¹¥ÍÉM•Ð°($$%µ…É­å¹…µ¥UÍ…”°($$%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ°($$%É•ÅÕ•ÍÑUÉ°è½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹ÕÉ°°($$%É•Ù…±¥‘…Ñ•M•…É¡A…É…µÌè½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ°($$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ì°($$%É½ÕÑ•A…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸°($$%ÉÕ¹%¹I•Ù…±¥‘…Ñ¥½¹½¹Ñ•áÐ¡É•¹‘•É¸¤ì($$$%É•ÑÕÉ¸ÉÕ¹%¹I½ÕÑ•!…¹‘±•ÉI•Ù…±¥‘…Ñ¥½¹½¹Ñ•áÐ¡ì($$$$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$$$%‘å¹…µ¥½¹™¥œè¡…¹‘±•È¹‘å¹…µ¥Œ°($$$$%É½ÕÑ•A…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸°($$$$%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ($$$%ô°É•¹‘•É¸¤ì($$%ô°($$%Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸¤ì($$$%½ÁÑ¥½¹Ì¹Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸°ì($$$$%É½ÕÑ•É-¥¹è€‰ÁÀI½ÕÑ•Èˆ°($$$$%É½ÕÑ•A…Ñ èÉ½ÕÑ”¹Á…ÑÑ•É¸°($$$$%É½ÕÑ•QåÁ”è€‰É½ÕÑ”ˆ($$$%ô¤ì($$%ô°($$%Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”°($$%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ($%ô¤ì($%¥˜€¡…¡•‘I½ÕÑ•I•ÍÁ½¹Í”¤É•ÑÕÉ¸…¡•‘I½ÕÑ•I•ÍÁ½¹Í”ì(%ô(%¥˜€¡É•Í½±Ù•‘!…¹‘±•É¸¤É•ÑÕÉ¸•á•ÕÑ•ÁÁI½ÕÑ•!…¹‘±•È¡ì($%‰…Í•A…Ñ è½ÁÑ¥½¹Ì¹‰…Í•A…Ñ °($%‰Õ¥±‘A…•…¡•Q…Ì¡Á…Ñ¡¹…µ”°•áÑÉ…Q…Ì¤ì($$%É•ÑÕÉ¸‰Õ¥±‘I½ÕÑ•!…¹‘±•ÉA…•…¡•Q…Ì¡Á…Ñ¡¹…µ”°•áÑÉ…Q…Ì°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤ì($%ô°($%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($%½¹ÍÕµ•å¹…µ¥UÍ…”°($%•á•ÕÑ¥½¹½¹Ñ•áÐè•ÑI•ÅÕ•ÍÑá•ÕÑ¥½¹½¹Ñ•áÐ ¤°($%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì°($%•Ñ½±±•Ñ•‘•Ñ¡Q…Ì°($%•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È°($%¡…¹‘±•È°($%¡…¹‘±•É¸èÉ•Í½±Ù•‘!…¹‘±•É¸°($%¤Äá¸è½ÁÑ¥½¹Ì¹¤Äá¸°($%¥ÍÕÑ½!•…°($%¥ÍAÉ½‘ÕÑ¥½¸°($%¥ÍÉ•‰Õœè½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœ°($%¥ÍÉI½ÕÑ•-•äè½ÁÑ¥½¹Ì¹¥ÍÉI½ÕÑ•-•ä°($%¥ÍÉM•Ðè½ÁÑ¥½¹Ì¹¥ÍÉM•Ð°($%µ…É­å¹…µ¥UÍ…”°($%µ•Ñ¡½°($%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($%µ¥‘‘±•Ý…É•I•ÅÕ•ÍÑ!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•I•ÅÕ•ÍÑ!•…‘•ÉÌ°($%Á…É…µÌèµ…­•Q¡•¹…‰±•A…É…µÌ¡½ÁÑ¥½¹Ì¹Á…É…µÌ¤°($%É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡•ÉÉ½È°É•ÅÕ•ÍÐ°½¹Ñ•áÐ¤ì($$%É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡•ÉÉ½È°É•ÅÕ•ÍÐ°½¹Ñ•áÐ¤ì($%ô°($%É•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°($%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($%É•Ù…±¥‘…Ñ•M•½¹‘Ì°($%É½ÕÑ•A…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸°($%Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”(%ô¤ì(%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%É•ÑÕÉ¸…ÁÁ±åI½ÕÑ•!…¹‘±•É5¥‘‘±•Ý…É•½¹Ñ•áÐ¡¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ìÍÑ…ÑÕÌè€ÐÀÔô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½ÕÑ¥±Ì½Ñ•áÐµÍÑÉ•…´¹©Ì(¼¨¨(¨!•±Á•ÉÌ™½ÈÑ¡”É•Á•…Ñ•¹•ÜQ•áÑ•½‘•È ¥€€¬I•…‘…‰±•MÑÉ•…µ€¡Õ¹¬µ±½½À(¨Á…ÑÑ•É¸ÕÍ•…É½ÍÌÑ¡”Í•ÉÙ•È¸… ¡•±Á•È¡…¹‘±•ÌÑ¡”ÍÑÉ•…µ¥¹œµ‘•½‘”(¨‰½Õ¹‘…Éä½ÉÉ•Ñ±ä€¡™¥¹…°•µÁÑä‘•½‘•È¹‘•½‘” ¥€™±ÕÍ Í¼…¹ä¥¹½µÁ±•Ñ”(¨ÑÉ…¥±¥¹œUQ´àÍ•ÅÕ•¹”¥ÌÉ•Á½ÉÑ•¤¸(¨(¨M¥Ñ•ÌÝ¥Ñ …‘‘¥Ñ¥½¹…°±½…µ‰•…É¥¹œ‰•¡…Ù¥½ÕÈ€¡±¥¹”µ‰Õ™™•É•ÑÉ…¹Í™½ÉµÌ°(¨É…Üµ‰åÑ”…ÕµÕ±…Ñ½ÉÌ°µ¥á•ÍÑÉ¥¹œ½U¥¹ÐáÉÉ…äÍÑÉ•…µÌ°…¡”µ­•ä‰½‘ä(¨…¹½¹¥…±¥Í…Ñ¥½¸¤¥¹Ñ•¹Ñ¥½¹…±±äÍÑ¥±°¥¹±¥¹”Ñ¡•¥È½Ý¸‘•½‘•È¸(¨¼(¼¨¨(¨É…¥¸„UQ´à‰åÑ”ÍÑÉ•…´…¹É•ÑÕÉ¸Ñ¡”™Õ±°‘•½‘•Ñ•áÐ¸Q¡”ÍÑÉ•…´(¨É•…‘•È¥ÌÉ•±•…Í•½¸‰½Ñ ÍÕ•ÍÌ…¹™…¥±ÕÉ”¸(¨¼)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘MÑÉ•…µÍQ•áÐ¡ÍÑÉ•…´¤ì(%½¹ÍÐÉ•…‘•È€ôÍÑÉ•…´¹•ÑI•…‘•È ¤ì(%½¹ÍÐ‘•½‘•È€ô¹•ÜQ•áÑ•½‘•È ¤ì(%½¹ÍÐ¡Õ¹­Ì€ômtì(%ÑÉäì($%™½È€ ìì¤ì($$%½¹ÍÐì‘½¹”°Ù…±Õ”ô€ô…Ý…¥ÐÉ•…‘•È¹É•… ¤ì($$%¥˜€¡‘½¹”¤‰É•…¬ì($$%¡Õ¹­Ì¹ÁÕÍ ¡‘•½‘•È¹‘•½‘”¡Ù…±Õ”°ìÍÑÉ•…´èÑÉÕ”ô¤¤ì($%ô($%¡Õ¹­Ì¹ÁÕÍ ¡‘•½‘•È¹‘•½‘” ¤¤ì($%É•ÑÕÉ¸¡Õ¹­Ì¹©½¥¸ ˆˆ¤ì(%ô™¥¹…±±äì($%É•…‘•È¹É•±•…Í•1½¬ ¤ì(%ô)ô(¼¨¨(¨É…¥¸„UQ´à‰åÑ”ÍÑÉ•…´ÕÀÑ¼µ…á	åÑ•Í€½˜€©É…Ü¨¥¹ÁÕÐ°É•ÑÕÉ¹¥¹œÑ¡”(¨‘•½‘•Ñ•áÐ¸%˜Ñ¡”É…ÜÍ¥é”±¥µ¥Ð¥Ì•á••‘•°Ñ¡”É•…‘•È¥Ì…¹•±±•(¨…¹½¹1¥µ¥Ñá••‘•‘€¥Ì¥¹Ù½­•ì¥Ð5UMPÑ¡É½ÜƒŠP¥ÑÌÉ•ÑÕÉ¸ÑåÁ”¥Ì(¨¹•Ù•É€Ñ¼•¹™½É”Ñ¡…Ð¸… …±±•ÈÁ…ÍÍ•Ì¥ÑÌ½Ý¸•ÉÉ½ÈÑåÁ”¸(¨(¨Q¡”Í¥é”¡•¬¥Ì½¸É…Ü‰åÑ•Ì€¡ÁÉ”µ‘•½‘”¤Ñ¼‰½Õ¹µ•µ½Éä‰•™½É”(¨Á…å¥¹œÑ¡”‘•½‘•È½ÍÐ¸(¨¼)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘MÑÉ•…µÍQ•áÑ]¥Ñ¡1¥µ¥Ð¡ÍÑÉ•…´°µ…á	åÑ•Ì°½¹1¥µ¥Ñá••‘•¤ì(%½¹ÍÐÉ•…‘•È€ôÍÑÉ•…´¹•ÑI•…‘•È ¤ì(%½¹ÍÐ‘•½‘•È€ô¹•ÜQ•áÑ•½‘•È ¤ì(%½¹ÍÐ¡Õ¹­Ì€ômtì(%±•ÐÑ½Ñ…±M¥é”€ô€Àì(%ÑÉäì($%™½È€ ìì¤ì($$%½¹ÍÐÉ•ÍÕ±Ð€ô…Ý…¥ÐÉ•…‘•È¹É•… ¤ì($$%¥˜€¡É•ÍÕ±Ð¹‘½¹”¤‰É•…¬ì($$%Ñ½Ñ…±M¥é”€¬ôÉ•ÍÕ±Ð¹Ù…±Õ”¹‰åÑ•1•¹Ñ ì($$%¥˜€¡Ñ½Ñ…±M¥é”€øµ…á	åÑ•Ì¤ì($$$%…Ý…¥ÐÉ•…‘•È¹…¹•° ¤ì($$$%½¹1¥µ¥Ñá••‘• ¤ì($$%ô($$%¡Õ¹­Ì¹ÁÕÍ ¡‘•½‘•È¹‘•½‘”¡É•ÍÕ±Ð¹Ù…±Õ”°ìÍÑÉ•…´èÑÉÕ”ô¤¤ì($%ô($%¡Õ¹­Ì¹ÁÕÍ ¡‘•½‘•È¹‘•½‘” ¤¤ì($%É•ÑÕÉ¸¡Õ¹­Ì¹©½¥¸ ˆˆ¤ì(%ô™¥¹…±±äì($%É•…‘•È¹É•±•…Í•1½¬ ¤ì(%ô)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½Í•ÉÙ•Èµ…Ñ¥½¸µ¹½Ðµ™½Õ¹¹©Ì)Ù…ÈMIYI}Q%=9}9=Q}=U9}=L€ô€‰¡ÑÑÁÌè¼½¹•áÑ©Ì¹½Éœ½‘½Ì½µ•ÍÍ…•Ì½™…¥±•µÑ¼µ™¥¹µÍ•ÉÙ•Èµ…Ñ¥½¸ˆì)Ù…ÈMIYI}Q%=9}9=Q}=U9}	=d€ô€‰M•ÉÙ•È…Ñ¥½¸¹½Ð™½Õ¹¸ˆì)™Õ¹Ñ¥½¸•ÑM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘AÉ•™¥à¡…Ñ¥½¹%¤ì(%É•ÑÕÉ¸…¥±•Ñ¼™¥¹M•ÉÙ•ÈÑ¥½¸‘í…Ñ¥½¹%€ü€€ˆ‘í…Ñ¥½¹%‘ô‰€€è€ˆ‰ô¹€ì)ô)™Õ¹Ñ¥½¸•ÑM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘5•ÍÍ…”¡…Ñ¥½¹%¤ì(%É•ÑÕÉ¸€‘í•ÑM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘AÉ•™¥à¡…Ñ¥½¹%¥ôQ¡¥ÌÉ•ÅÕ•ÍÐµ¥¡Ð‰”™É½´…¸½±‘•È½È¹•Ý•È‘•Á±½åµ•¹Ð¹q¹I•…µ½É”è€‘íMIYI}Q%=9}9=Q}=U9}=Mõ€ì)ô)™Õ¹Ñ¥½¸•ÑU¹­¹½Ý¹5•ÍÍ…”¡•ÉÉ½È¤ì(%¥˜€¡•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È¤É•ÑÕÉ¸•ÉÉ½È¹µ•ÍÍ…”ì(%É•ÑÕÉ¸ÑåÁ•½˜•ÉÉ½È€ôôô€‰ÍÑÉ¥¹œˆ€ü•ÉÉ½È€è€ˆˆì)ô)™Õ¹Ñ¥½¸¥ÍM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘ÉÉ½È¡•ÉÉ½È°…Ñ¥½¹%¤ì(%½¹ÍÐµ•ÍÍ…”€ô•ÑU¹­¹½Ý¹5•ÍÍ…”¡•ÉÉ½È¤ì(%¥˜€ …µ•ÍÍ…”¤É•ÑÕÉ¸™…±Í”ì(%¥˜€ ……Ñ¥½¹%¤É•ÑÕÉ¸µ•ÍÍ…”¹ÍÑ…ÉÑÍ]¥Ñ  ‰…¥±•Ñ¼™¥¹M•ÉÙ•ÈÑ¥½¸ˆ¤ì(%¥˜€¡µ•ÍÍ…”¹ÍÑ…ÉÑÍ]¥Ñ ¡•ÑM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘AÉ•™¥à¡…Ñ¥½¹%¤¤¤É•ÑÕÉ¸ÑÉÕ”ì(%É•ÑÕÉ¸	½½±•…¸¡…Ñ¥½¹%€˜˜µ•ÍÍ…”¹¥¹±Õ‘•Ì¡mÙ¥Ñ”µÉÍt¥¹Ù…±¥Í•ÉÙ•ÈÉ•™•É•¹”€œ‘í…Ñ¥½¹%‘ô€¤¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•M•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘I•ÍÁ½¹Í” ¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡MIYI}Q%=9}9=Q}=U9}	=d°ì($%ÍÑ…ÑÕÌè€ÐÀÐ°($%¡•…‘•ÉÌèì($$%m9aQ)M}Q%=9}9=Q}=U9}!Itè€ˆÄˆ°($$$‰½¹Ñ•¹ÐµÑåÁ”ˆè€‰Ñ•áÐ½Á±…¥¸ˆ($%ô(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÁ…É…µÌ¹©Ì)™Õ¹Ñ¥½¸•ÑÁÁA…•M•µ•¹ÑA…É…µ9…µ”¡Í•µ•¹Ð¤ì(%¥˜€¡Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰ml¸¸¸ˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ‰utˆ¤€˜˜Í•µ•¹Ð¹±•¹Ñ €ø€Ü¤É•ÑÕÉ¸Í•µ•¹Ð¹Í±¥” Ô°€´È¤ì(%¥˜€¡Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰l¸¸¸ˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ‰tˆ¤€˜˜Í•µ•¹Ð¹±•¹Ñ €ø€Ô¤É•ÑÕÉ¸Í•µ•¹Ð¹Í±¥” Ð°€´Ä¤ì(%¥˜€¡Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰lˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ‰tˆ¤€˜˜€…Í•µ•¹Ð¹¥¹±Õ‘•Ì ˆ¸ˆ¤€˜˜Í•µ•¹Ð¹±•¹Ñ €ø€È¤É•ÑÕÉ¸Í•µ•¹Ð¹Í±¥” Ä°€´Ä¤ì(%É•ÑÕÉ¸¹Õ±°ì)ô)™Õ¹Ñ¥½¸¥ÍµÁÑå=ÁÑ¥½¹…±…Ñ¡±°¡Í•µ•¹Ð°Á…É…µY…±Õ”¤ì(%É•ÑÕÉ¸Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰ml¸¸¸ˆ¤€˜˜ÉÉ…ä¹¥ÍÉÉ…ä¡Á…É…µY…±Õ”¤€˜˜Á…É…µY…±Õ”¹±•¹Ñ €ôôô€Àì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•M•µ•¹ÑA…É…µÌ¡É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸°µ…Ñ¡•‘A…É…µÌ¤ì(%½¹ÍÐÍ•µ•¹ÑA…É…µÌ€ôíôì(%½¹ÍÐÍ•µ•¹ÑÌ€ôÉ½ÕÑ•M•µ•¹ÑÌ€üümtì(%½¹ÍÐ•¹€ô5…Ñ ¹µ¥¸¡5…Ñ ¹µ…à¡ÑÉ••A½Í¥Ñ¥½¸°€À¤°Í•µ•¹ÑÌ¹±•¹Ñ ¤ì(%™½È€¡±•Ð¥¹‘•à€ô€Àì¥¹‘•à€ð•¹ì¥¹‘•à¬¬¤ì($%½¹ÍÐÍ•µ•¹Ð€ôÍ•µ•¹ÑÍm¥¹‘•átì($%½¹ÍÐÁ…É…µ9…µ”€ô•ÑÁÁA…•M•µ•¹ÑA…É…µ9…µ”¡Í•µ•¹Ð¤ì($%¥˜€ …Á…É…µ9…µ”¤½¹Ñ¥¹Õ”ì($%½¹ÍÐÁ…É…µY…±Õ”€ôµ…Ñ¡•‘A…É…µÍmÁ…É…µ9…µ•tì($%¥˜€¡Á…É…µY…±Õ”€ôôôÙ½¥€Àñð¥ÍµÁÑå=ÁÑ¥½¹…±…Ñ¡±°¡Í•µ•¹Ð°Á…É…µY…±Õ”¤¤½¹Ñ¥¹Õ”ì($%Í•µ•¹ÑA…É…µÍmÁ…É…µ9…µ•t€ôÁ…É…µY…±Õ”ì(%ô(%É•ÑÕÉ¸Í•µ•¹ÑA…É…µÌì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÉ•ÅÕ•ÍÐ¹©Ì)™Õ¹Ñ¥½¸Á¥­I½ÕÑ•A…É…µÌ¡µ…Ñ¡•‘A…É…µÌ°É½ÕÑ•A…É…µ9…µ•Ì¤ì(%½¹ÍÐÁ…É…µÌ€ôíôì(%™½È€¡½¹ÍÐÁ…É…µ9…µ”½˜É½ÕÑ•A…É…µ9…µ•Ì¤ì($%½¹ÍÐÙ…±Õ”€ôµ…Ñ¡•‘A…É…µÍmÁ…É…µ9…µ•tì($%¥˜€¡Ù…±Õ”€„ôôÙ½¥€À¤Á…É…µÍmÁ…É…µ9…µ•t€ôÙ…±Õ”ì(%ô(%É•ÑÕÉ¸Á…É…µÌì)ô)™Õ¹Ñ¥½¸½±±•ÑA…É•¹ÑA…É…µ9…µ•Ì¡É½ÕÑ•M•µ•¹ÑÌ°‰½Õ¹‘…ÉåA½Í¥Ñ¥½¸¤ì(%½¹ÍÐ±¥µ¥Ð€ô5…Ñ ¹µ…à À°5…Ñ ¹µ¥¸¡‰½Õ¹‘…ÉåA½Í¥Ñ¥½¸°É½ÕÑ•M•µ•¹ÑÌ¹±•¹Ñ ¤¤ì(%½¹ÍÐ¹…µ•Ì€ômtì(%™½È€¡½¹ÍÐÍ•µ•¹Ð½˜É½ÕÑ•M•µ•¹ÑÌ¹Í±¥” À°±¥µ¥Ð¤¤ì($%½¹ÍÐ¹…µ”€ô•ÑÁÁA…•M•µ•¹ÑA…É…µ9…µ”¡Í•µ•¹Ð¤ì($%¥˜€¡¹…µ”€˜˜€…¹…µ•Ì¹¥¹±Õ‘•Ì¡¹…µ”¤¤¹…µ•Ì¹ÁÕÍ ¡¹…µ”¤ì(%ô(%É•ÑÕÉ¸¹…µ•Ìì)ô)™Õ¹Ñ¥½¸•Ñ1…å½ÕÑ•¹•É…Ñ•MÑ…Ñ¥A…É…µÍ	½Õ¹‘…Éä¡±…å½ÕÑQÉ••A½Í¥Ñ¥½¸¤ì(%É•ÑÕÉ¸€¡±…å½ÕÑQÉ••A½Í¥Ñ¥½¸€üü€À¤€´€Äì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…••¹•É…Ñ•MÑ…Ñ¥A…É…µÍM½ÕÉ•Ì¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÍ½ÕÉ•Ì€ômtì(%½ÁÑ¥½¹Ì¹±…å½ÕÑÌü¹™½É…  ¡±…å½ÕÐ°¥¹‘•à¤€ôøì($%¥˜€¡ÑåÁ•½˜±…å½ÕÐü¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ€„ôô€‰™Õ¹Ñ¥½¸ˆ¤É•ÑÕÉ¸ì($%Í½ÕÉ•Ì¹ÁÕÍ ¡ì($$%•¹•É…Ñ•MÑ…Ñ¥A…É…µÌè±…å½ÕÐ¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ°($$%Á…É•¹ÑA…É…µ9…µ•Ìè½±±•ÑA…É•¹ÑA…É…µ9…µ•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ°•Ñ1…å½ÕÑ•¹•É…Ñ•MÑ…Ñ¥A…É…µÍ	½Õ¹‘…Éä¡½ÁÑ¥½¹Ì¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹m¥¹‘•át¤¤($%ô¤ì(%ô¤ì(%¥˜€¡ÑåÁ•½˜½ÁÑ¥½¹Ì¹Á…”ü¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ€ôôô€‰™Õ¹Ñ¥½¸ˆ¤Í½ÕÉ•Ì¹ÁÕÍ ¡ì($%•¹•É…Ñ•MÑ…Ñ¥A…É…µÌè½ÁÑ¥½¹Ì¹Á…”¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ°($%Á…É•¹ÑA…É…µ9…µ•Ìè½±±•ÑA…É•¹ÑA…É…µ9…µ•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ°5…Ñ ¹µ…à À°½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ¹±•¹Ñ €´€Ä¤¤(%ô¤ì(%É•ÑÕÉ¸Í½ÕÉ•Ìì)ô)™Õ¹Ñ¥½¸…É•MÑ…Ñ¥A…É…µÍ±±½Ý•¡Á…É…µÌ°ÍÑ…Ñ¥A…É…µÌ¤ì(%½¹ÍÐÁ…É…µ-•åÌ€ô=‰©•Ð¹­•åÌ¡Á…É…µÌ¤ì(%É•ÑÕÉ¸ÍÑ…Ñ¥A…É…µÌ¹Í½µ” ¡ÍÑ…Ñ¥A…É…µM•Ð¤€ôøÁ…É…µ-•åÌ¹•Ù•Éä ¡­•ä¤€ôøì($%½¹ÍÐÙ…±Õ”€ôÁ…É…µÍm­•åtì($%½¹ÍÐÍÑ…Ñ¥Y…±Õ”€ôÍÑ…Ñ¥A…É…µM•Ñm­•åtì($%¥˜€¡ÍÑ…Ñ¥Y…±Õ”€ôôôÙ½¥€À¤É•ÑÕÉ¸ÑÉÕ”ì($%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤¤É•ÑÕÉ¸)M=8¹ÍÑÉ¥¹¥™ä¡Ù…±Õ”¤€ôôô)M=8¹ÍÑÉ¥¹¥™ä¡ÍÑ…Ñ¥Y…±Õ”¤ì($%¥˜€¡ÑåÁ•½˜ÍÑ…Ñ¥Y…±Õ”€ôôô€‰ÍÑÉ¥¹œˆñðÑåÁ•½˜ÍÑ…Ñ¥Y…±Õ”€ôôô€‰¹Õµ‰•ÈˆñðÑåÁ•½˜ÍÑ…Ñ¥Y…±Õ”€ôôô€‰‰½½±•…¸ˆ¤É•ÑÕÉ¸MÑÉ¥¹œ¡Ù…±Õ”¤€ôôôMÑÉ¥¹œ¡ÍÑ…Ñ¥Y…±Õ”¤ì($%É•ÑÕÉ¸)M=8¹ÍÑÉ¥¹¥™ä¡Ù…±Õ”¤€ôôô)M=8¹ÍÑÉ¥¹¥™ä¡ÍÑ…Ñ¥Y…±Õ”¤ì(%ô¤¤ì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é••¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¡•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¤ì(%É•ÑÕÉ¸€¡ÉÉ…ä¹¥ÍÉÉ…ä¡•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¤€ü•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ€èm•¹•É…Ñ•MÑ…Ñ¥A…É…µÍt¤¹™±…Ñ5…À ¡Í½ÕÉ”¤€ôøì($%¥˜€¡ÑåÁ•½˜Í½ÕÉ”€ôôô€‰™Õ¹Ñ¥½¸ˆ¤É•ÑÕÉ¸mì($$%•¹•É…Ñ•MÑ…Ñ¥A…É…µÌèÍ½ÕÉ”°($$%Á…É•¹ÑA…É…µ9…µ•Ìèmt($%õtì($%¥˜€¡ÑåÁ•½˜Í½ÕÉ”ü¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ€ôôô€‰™Õ¹Ñ¥½¸ˆ¤É•ÑÕÉ¸mÍ½ÕÉ•tì($%É•ÑÕÉ¸mtì(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸Ù…±¥‘…Ñ•ÁÁA…•å¹…µ¥A…É…µÌ¡½ÁÑ¥½¹Ì¤ì(%¥˜€ …½ÁÑ¥½¹Ì¹•¹™½É•MÑ…Ñ¥A…É…µÍ=¹±äñð€…½ÁÑ¥½¹Ì¹¥Íå¹…µ¥I½ÕÑ”¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ•¹•É…Ñ•MÑ…Ñ¥A…É…µÍM½ÕÉ•Ì€ô¹½Éµ…±¥é••¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¡½ÁÑ¥½¹Ì¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¤ì(%¥˜€¡•¹•É…Ñ•MÑ…Ñ¥A…É…µÍM½ÕÉ•Ì¹±•¹Ñ €ôôô€À¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸¹½Ñ½Õ¹‘I•ÍÁ½¹Í” ¤ì(%ô(%™½È€¡½¹ÍÐÍ½ÕÉ”½˜•¹•É…Ñ•MÑ…Ñ¥A…É…µÍM½ÕÉ•Ì¤ì($%½¹ÍÐÍÑ…Ñ¥A…É…µÌ€ô…Ý…¥ÐÉÕ¹]¥Ñ¡•Ñ¡•‘ÕÁ”  ¤€ôøÍ½ÕÉ”¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¡ìÁ…É…µÌèÁ¥­I½ÕÑ•A…É…µÌ¡½ÁÑ¥½¹Ì¹Á…É…µÌ°Í½ÕÉ”¹Á…É•¹ÑA…É…µ9…µ•Ì¤ô¤¤ì($%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡ÍÑ…Ñ¥A…É…µÌ¤€˜˜€……É•MÑ…Ñ¥A…É…µÍ±±½Ý•¡½ÁÑ¥½¹Ì¹Á…É…µÌ°ÍÑ…Ñ¥A…É…µÌ¤¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%É•ÑÕÉ¸¹½Ñ½Õ¹‘I•ÍÁ½¹Í” ¤ì($%ô(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•%¹Ñ•É•ÁÑMÑ…Ñ”¡½ÁÑ¥½¹Ì¤ì(%¥˜€ …½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ¤É•ÑÕÉ¸ì­¥¹è€‰¹½¹”ˆôì(%½¹ÍÐ¥¹Ñ•É•ÁÐ€ô½ÁÑ¥½¹Ì¹™¥¹‘%¹Ñ•É•ÁÐ¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì(%¥˜€ …¥¹Ñ•É•ÁÐ¤É•ÑÕÉ¸ì­¥¹è€‰¹½¹”ˆôì(%½¹ÍÐÍ½ÕÉ•I½ÕÑ”€ô½ÁÑ¥½¹Ì¹•ÑM½ÕÉ•I½ÕÑ”¡¥¹Ñ•É•ÁÐ¹Í½ÕÉ•I½ÕÑ•%¹‘•à¤ì(%¥˜€ …Í½ÕÉ•I½ÕÑ”¤É•ÑÕÉ¸ì­¥¹è€‰¹½¹”ˆôì(%¥˜€¡Í½ÕÉ•I½ÕÑ”€ôôô½ÁÑ¥½¹Ì¹ÕÉÉ•¹ÑI½ÕÑ”¤É•ÑÕÉ¸ì($%­¥¹è€‰ÕÉÉ•¹ÐµÉ½ÕÑ”ˆ°($%¥¹Ñ•É•ÁÐ(%ôì(%É•ÑÕÉ¸ì($%­¥¹è€‰Í½ÕÉ”µÉ½ÕÑ”ˆ°($%¥¹Ñ•É•ÁÐ°($%Í½ÕÉ•I½ÕÑ”(%ôì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ¥¹Ñ•É•ÁÑMÑ…Ñ”€ôÉ•Í½±Ù•ÁÁA…•%¹Ñ•É•ÁÑMÑ…Ñ”¡ì($%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%ÕÉÉ•¹ÑI½ÕÑ”è½ÁÑ¥½¹Ì¹ÕÉÉ•¹ÑI½ÕÑ”°($%™¥¹‘%¹Ñ•É•ÁÐè½ÁÑ¥½¹Ì¹™¥¹‘%¹Ñ•É•ÁÐ°($%•ÑI½ÕÑ•A…É…µ9…µ•Ìè½ÁÑ¥½¹Ì¹•ÑI½ÕÑ•A…É…µ9…µ•Ì°($%•ÑM½ÕÉ•I½ÕÑ”è½ÁÑ¥½¹Ì¹•ÑM½ÕÉ•I½ÕÑ”°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%Ñ½%¹Ñ•É•ÁÑ=ÁÑÌè½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ(%ô¤ì(%¥˜€¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹­¥¹€ôôô€‰Í½ÕÉ”µÉ½ÕÑ”ˆ¤É•ÑÕÉ¸ì($%¥¹Ñ•É•ÁÑ=ÁÑÌè½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¤°($%¹…Ù¥…Ñ¥½¹A…É…µÌè¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¹µ…Ñ¡•‘A…É…µÌ°($%Á…É…µÌèÁ¥­I½ÕÑ•A…É…µÌ¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¹µ…Ñ¡•‘A…É…µÌ°½ÁÑ¥½¹Ì¹•ÑI½ÕÑ•A…É…µ9…µ•Ì¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹Í½ÕÉ•I½ÕÑ”¤¤°($%É½ÕÑ”è¥¹Ñ•É•ÁÑMÑ…Ñ”¹Í½ÕÉ•I½ÕÑ”(%ôì(%É•ÑÕÉ¸ì($%¥¹Ñ•É•ÁÑ=ÁÑÌè¥¹Ñ•É•ÁÑMÑ…Ñ”¹­¥¹€ôôô€‰ÕÉÉ•¹ÐµÉ½ÕÑ”ˆ€ü½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¤€èÙ½¥€À°($%¹…Ù¥…Ñ¥½¹A…É…µÌè½ÁÑ¥½¹Ì¹ÕÉÉ•¹ÑA…É…µÌ°($%Á…É…µÌè½ÁÑ¥½¹Ì¹ÕÉÉ•¹ÑA…É…µÌ°($%É½ÕÑ”è½ÁÑ¥½¹Ì¹ÕÉÉ•¹ÑI½ÕÑ”(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•%¹Ñ•É•ÁÐ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ¥¹Ñ•É•ÁÑMÑ…Ñ”€ôÉ•Í½±Ù•ÁÁA…•%¹Ñ•É•ÁÑMÑ…Ñ”¡ì($%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%ÕÉÉ•¹ÑI½ÕÑ”è½ÁÑ¥½¹Ì¹ÕÉÉ•¹ÑI½ÕÑ”°($%™¥¹‘%¹Ñ•É•ÁÐè½ÁÑ¥½¹Ì¹™¥¹‘%¹Ñ•É•ÁÐ°($%•ÑI½ÕÑ•A…É…µ9…µ•Ìè½ÁÑ¥½¹Ì¹•ÑI½ÕÑ•A…É…µ9…µ•Ì°($%•ÑM½ÕÉ•I½ÕÑ”è½ÁÑ¥½¹Ì¹•ÑM½ÕÉ•I½ÕÑ”°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%Ñ½%¹Ñ•É•ÁÑ=ÁÑÌè½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ(%ô¤ì(%¥˜€¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹­¥¹€ôôô€‰Í½ÕÉ”µÉ½ÕÑ”ˆ¤ì($%½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡ì($$%Á…É…µÌè¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¹µ…Ñ¡•‘A…É…µÌ°($$%Á…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%Í•…É¡A…É…µÌè½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ($%ô¤ì($%½¹ÍÐ¥¹Ñ•É•ÁÑ±•µ•¹Ð€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•±•µ•¹Ð¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹Í½ÕÉ•I½ÕÑ”°Á¥­I½ÕÑ•A…É…µÌ¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¹µ…Ñ¡•‘A…É…µÌ°½ÁÑ¥½¹Ì¹•ÑI½ÕÑ•A…É…µ9…µ•Ì¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹Í½ÕÉ•I½ÕÑ”¤¤°½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¤°½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ¤ì($%É•ÑÕÉ¸ì($$%¥¹Ñ•É•ÁÑ=ÁÑÌèÙ½¥€À°($$%É•ÍÁ½¹Í”è…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•É%¹Ñ•É•ÁÑI•ÍÁ½¹Í”¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹Í½ÕÉ•I½ÕÑ”°¥¹Ñ•É•ÁÑ±•µ•¹Ð¤($%ôì(%ô(%É•ÑÕÉ¸ì($%¥¹Ñ•É•ÁÑ=ÁÑÌè¥¹Ñ•É•ÁÑMÑ…Ñ”¹­¥¹€ôôô€‰ÕÉÉ•¹ÐµÉ½ÕÑ”ˆ€ü½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ¡¥¹Ñ•É•ÁÑMÑ…Ñ”¹¥¹Ñ•É•ÁÐ¤€èÙ½¥€À°($%É•ÍÁ½¹Í”è¹Õ±°(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•±•µ•¹Ð¡½ÁÑ¥½¹Ì¤ì(%ÑÉäì($%É•ÑÕÉ¸ì($$%•±•µ•¹Ðè…Ý…¥Ð½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•±•µ•¹Ð ¤°($$%É•ÍÁ½¹Í”è¹Õ±°($%ôì(%ô…Ñ €¡•ÉÉ½È¤ì($%½¹ÍÐÍÁ•¥…±ÉÉ½È€ô½ÁÑ¥½¹Ì¹É•Í½±Ù•MÁ•¥…±ÉÉ½È¡•ÉÉ½È¤ì($%¥˜€¡ÍÁ•¥…±ÉÉ½È¤É•ÑÕÉ¸ì($$%•±•µ•¹Ðè¹Õ±°°($$%É•ÍÁ½¹Í”è…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉMÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤($%ôì($%½¹ÍÐ•ÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåA…”¡•ÉÉ½È¤ì($%¥˜€¡•ÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”¤É•ÑÕÉ¸ì($$%•±•µ•¹Ðè¹Õ±°°($$%É•ÍÁ½¹Í”è•ÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”($%ôì($%Ñ¡É½Ü•ÉÉ½Èì(%ô)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÍ•ÉÙ•Èµ…Ñ¥½¸µ•á•ÕÑ¥½¸¹©Ì(¼¨¨(¨5…Ñ¡•Ì9•áÐ¹©ÌœÍ•ÉÙ•È…Ñ¥½¸…ÉÕµ•¹Ð…ÀÑ¼ÁÉ•Ù•¹ÐÍÑ…¬½Ù•É™±½Ü¥¸(¨Õ¹Ñ¥½¸¹ÁÉ½Ñ½ÑåÁ”¹…ÁÁ±äÝ¡•¸‘•½‘¥¹œ¡½ÍÑ¥±”…Ñ¥½¸Á…å±½…‘Ì¸(¨¼)Ù…ÈMIYI}Q%=9}IM}1%5%P€ô€Å”Ìì)Ù…ÈQ%=9}%}9=Q}IY1%Q€ô€Àì)Ù…ÈQ%=9}%}IY1%Q}MQQ%}9}e95%€ô€Äì)™Õ¹Ñ¥½¸Í•ÑÑ¥½¹I•Ù…±¥‘…Ñ•‘!•…‘•È¡¡•…‘•ÉÌ°­¥¹¤ì(%¥˜€¡­¥¹€ôôôQ%=9}%}9=Q}IY1%Q¤É•ÑÕÉ¸ì(%¡•…‘•ÉÌ¹Í•Ð¡Q%=9}IY1%Q}!H°)M=8¹ÍÑÉ¥¹¥™ä¡­¥¹¤¤ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¡¡…Í5½‘¥™¥•‘½½­¥•Ì¤ì(%½¹ÍÐÉ•Ù…±¥‘…Ñ¥½¹-¥¹€ô•Ñ¹‘±•…ÉÑ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹ ¤ì(%¥˜€¡¡…Í5½‘¥™¥•‘½½­¥•Ì¤É•ÑÕÉ¸Q%=9}%}IY1%Q}MQQ%}9}e95%ì(%É•ÑÕÉ¸É•Ù…±¥‘…Ñ¥½¹-¥¹ì)ô)™Õ¹Ñ¥½¸¥ÍI•ÅÕ•ÍÑ	½‘åQ½½1…É”¡•ÉÉ½È¤ì(%É•ÑÕÉ¸•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€˜˜•ÉÉ½È¹µ•ÍÍ…”€ôôô€‰I•ÅÕ•ÍÐ‰½‘äÑ½¼±…É”ˆì)ô)™Õ¹Ñ¥½¸¥ÍÁÁM•ÉÙ•ÉÑ¥½¹Õ¹Ñ¥½¸¡…Ñ¥½¸¤ì(%É•ÑÕÉ¸ÑåÁ•½˜…Ñ¥½¸€ôôô€‰™Õ¹Ñ¥½¸ˆì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•ÉÉ½È¡•ÉÉ½È¤ì(%É•ÑÕÉ¸•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÉ½È€è¹•ÜÉÉ½È¡MÑÉ¥¹œ¡•ÉÉ½È¤¤ì)ô)™Õ¹Ñ¥½¸Ù…±¥‘…Ñ•M•ÉÙ•ÉÑ¥½¹ÉÌ¡…ÉÌ¤ì(%¥˜€¡…ÉÌ¹±•¹Ñ €øMIYI}Q%=9}IM}1%5%P¤Ñ¡É½Ü¹•ÜÉÉ½È¡M•ÉÙ•ÈÑ¥½¸…ÉÕµ•¹ÑÌ±¥ÍÐ¥ÌÑ½¼±½¹œ€ ‘í…ÉÌ¹±•¹Ñ¡ô¤¸5…á¥µÕ´…±±½Ý•¥Ì€‘íMIYI}Q%=9}IM}1%5%Qô¹€¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘Ñ¥½¹	½‘å]¥Ñ¡1¥µ¥Ð¡É•ÅÕ•ÍÐ°µ…á	åÑ•Ì¤ì(%¥˜€ …É•ÅÕ•ÍÐ¹‰½‘ä¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸É•…‘MÑÉ•…µÍQ•áÑ]¥Ñ¡1¥µ¥Ð¡É•ÅÕ•ÍÐ¹‰½‘ä°µ…á	åÑ•Ì°€ ¤€ôøì($%Ñ¡É½Ü¹•ÜÉÉ½È ‰I•ÅÕ•ÍÐ‰½‘äÑ½¼±…É”ˆ¤ì(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘Ñ¥½¹½Éµ…Ñ…]¥Ñ¡1¥µ¥Ð¡É•ÅÕ•ÍÐ°µ…á	åÑ•Ì¤ì(%¥˜€ …É•ÅÕ•ÍÐ¹‰½‘ä¤É•ÑÕÉ¸¹•Ü½Éµ…Ñ„ ¤ì(%½¹ÍÐÉ•…‘•È€ôÉ•ÅÕ•ÍÐ¹‰½‘ä¹•ÑI•…‘•È ¤ì(%½¹ÍÐ¡Õ¹­Ì€ômtì(%±•ÐÑ½Ñ…±M¥é”€ô€Àì(%™½È€ ìì¤ì($%½¹ÍÐÉ•ÍÕ±Ð€ô…Ý…¥ÐÉ•…‘•È¹É•… ¤ì($%¥˜€¡É•ÍÕ±Ð¹‘½¹”¤‰É•…¬ì($%Ñ½Ñ…±M¥é”€¬ôÉ•ÍÕ±Ð¹Ù…±Õ”¹‰åÑ•1•¹Ñ ì($%¥˜€¡Ñ½Ñ…±M¥é”€øµ…á	åÑ•Ì¤ì($$%…Ý…¥ÐÉ•…‘•È¹…¹•° ¤ì($$%Ñ¡É½Ü¹•ÜÉÉ½È ‰I•ÅÕ•ÍÐ‰½‘äÑ½¼±…É”ˆ¤ì($%ô($%¡Õ¹­Ì¹ÁÕÍ ¡É•ÍÕ±Ð¹Ù…±Õ”¤ì(%ô(%½¹ÍÐ½µ‰¥¹•€ô¹•ÜU¥¹ÐáÉÉ…ä¡Ñ½Ñ…±M¥é”¤ì(%±•Ð½™™Í•Ð€ô€Àì(%™½È€¡½¹ÍÐ¡Õ¹¬½˜¡Õ¹­Ì¤ì($%½µ‰¥¹•¹Í•Ð¡¡Õ¹¬°½™™Í•Ð¤ì($%½™™Í•Ð€¬ô¡Õ¹¬¹‰åÑ•1•¹Ñ ì(%ô(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡½µ‰¥¹•°ì¡•…‘•ÉÌèì€‰½¹Ñ•¹ÐµQåÁ”ˆèÉ•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰½¹Ñ•¹ÐµÑåÁ”ˆ¤ñð€ˆˆôô¤¹™½Éµ…Ñ„ ¤ì)ô)™Õ¹Ñ¥½¸•ÑÑ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¡•ÉÉ½È¤ì(%½¹ÍÐ‘¥•ÍÐ€ô•Ñ9•áÑÉÉ½É¥•ÍÐ¡•ÉÉ½È¤ì(%¥˜€ …‘¥•ÍÐ¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÉ•‘¥É•Ð€ôÁ…ÉÍ•9•áÑI•‘¥É•Ñ¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡É•‘¥É•Ð¤É•ÑÕÉ¸ì($%­¥¹è€‰É•‘¥É•Ðˆ°($%ÕÉ°èÉ•‘¥É•Ð¹ÕÉ°(%ôì(%½¹ÍÐ¡ÑÑÁÉÉ½È€ôÁ…ÉÍ•9•áÑ!ÑÑÁÉÉ½É¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡¡ÑÑÁÉÉ½È¤ì($%¥˜€ …9Õµ‰•È¹¥Í%¹Ñ••È¡¡ÑÑÁÉÉ½È¹ÍÑ…ÑÕÌ¤¤É•ÑÕÉ¸¹Õ±°ì($%É•ÑÕÉ¸ì($$%­¥¹è€‰ÍÑ…ÑÕÌˆ°($$%ÍÑ…ÑÕÍ½‘”è¡ÑÑÁÉÉ½È¹ÍÑ…ÑÕÌ($%ôì(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô)™Õ¹Ñ¥½¸•ÑÑ¥½¹I•‘¥É•Ð¡•ÉÉ½È¤ì(%½¹ÍÐ‘¥•ÍÐ€ô•Ñ9•áÑÉÉ½É¥•ÍÐ¡•ÉÉ½È¤ì(%¥˜€ …‘¥•ÍÐ¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÉ•‘¥É•Ð€ôÁ…ÉÍ•9•áÑI•‘¥É•Ñ¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€ …É•‘¥É•Ð¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸ì($%ÍÑ…ÑÕÌèÉ•‘¥É•Ð¹ÍÑ…ÑÕÌ°($%ÑåÁ”èÉ•‘¥É•Ð¹ÑåÁ”€üü€‰ÁÕÍ ˆ°($%ÕÉ°èÉ•‘¥É•Ð¹ÕÉ°(%ôì)ô)™Õ¹Ñ¥½¸•ÑÑ¥½¹!ÑÑÁ…±±‰…­MÑ…ÑÕÌ¡•ÉÉ½È¤ì(%½¹ÍÐ‘¥•ÍÐ€ô•Ñ9•áÑÉÉ½É¥•ÍÐ¡•ÉÉ½È¤ì(%¥˜€ …‘¥•ÍÐ¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ¡ÑÑÁÉÉ½È€ôÁ…ÉÍ•9•áÑ!ÑÑÁÉÉ½É¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€ …¡ÑÑÁÉÉ½Èñð€…9Õµ‰•È¹¥Í%¹Ñ••È¡¡ÑÑÁÉÉ½È¹ÍÑ…ÑÕÌ¤¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸¡ÑÑÁÉÉ½È¹ÍÑ…ÑÕÌì)ô)™Õ¹Ñ¥½¸É•…Ñ•M•ÉÙ•ÉÑ¥½¹ÉÉ½ÉI•ÍÁ½¹Í”¡•ÉÉ½È°½ÁÑ¥½¹Ì¤ì(%½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì(%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑtM•ÉÙ•È…Ñ¥½¸•ÉÉ½Èèˆ°•ÉÉ½È¤ì(%½ÁÑ¥½¹Ì¹É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡¹½Éµ…±¥é•ÉÉ½È¡•ÉÉ½È¤°ì($%Á…Ñ è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%µ•Ñ¡½è½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹µ•Ñ¡½°($%¡•…‘•ÉÌè=‰©•Ð¹™É½µ¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•¹ÑÉ¥•Ì ¤¤(%ô°ì($%É½ÕÑ•É-¥¹è€‰ÁÀI½ÕÑ•Èˆ°($%É½ÕÑ•A…Ñ è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%É½ÕÑ•QåÁ”è€‰…Ñ¥½¸ˆ(%ô¤ì(%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%É•ÑÕÉ¸¥¹Ñ•É¹…±M•ÉÙ•ÉÉÉ½ÉI•ÍÁ½¹Í”¡Ù½¥€À¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•Ñ¥½¹9½Ñ½Õ¹‘I•ÍÁ½¹Í”¡…Ñ¥½¹%°½ÁÑ¥½¹Ì¤ì(%½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì(%½¹Í½±”¹Ý…É¸¡•ÑM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘5•ÍÍ…”¡…Ñ¥½¹%¤¤ì(%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%É•ÑÕÉ¸É•…Ñ•M•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘I•ÍÁ½¹Í” ¤ì)ô)™Õ¹Ñ¥½¸¥ÍAÉ½É•ÍÍ¥Ù•M•ÉÙ•ÉÑ¥½¹I•ÅÕ•ÍÐ¡É•ÅÕ•ÍÐ°½¹Ñ•¹ÑQåÁ”°…Ñ¥½¹%¤ì(%É•ÑÕÉ¸É•ÅÕ•ÍÐ¹µ•Ñ¡½¹Ñ½UÁÁ•É…Í” ¤€ôôô€‰A=MPˆ€˜˜½¹Ñ•¹ÑQåÁ”¹ÍÑ…ÉÑÍ]¥Ñ  ‰µÕ±Ñ¥Á…ÉÐ½™½É´µ‘…Ñ„ˆ¤€˜˜€……Ñ¥½¹%ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸¡…¹‘±•AÉ½É•ÍÍ¥Ù•M•ÉÙ•ÉÑ¥½¹I•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¤ì(%¥˜€ …¥ÍAÉ½É•ÍÍ¥Ù•M•ÉÙ•ÉÑ¥½¹I•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹½¹Ñ•¹ÑQåÁ”°½ÁÑ¥½¹Ì¹…Ñ¥½¹%¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÍÉ™I•ÍÁ½¹Í”€ôÙ…±¥‘…Ñ•ÍÉ™=É¥¥¸¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹…±±½Ý•‘=É¥¥¹Ì¤ì(%¥˜€¡ÍÉ™I•ÍÁ½¹Í”¤É•ÑÕÉ¸ÍÉ™I•ÍÁ½¹Í”ì(%¥˜€¡Á…ÉÍ•%¹Ð¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰½¹Ñ•¹Ðµ±•¹Ñ ˆ¤ñð€ˆÀˆ°€ÄÀ¤€ø½ÁÑ¥½¹Ì¹µ…áÑ¥½¹	½‘åM¥é”¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸Á…å±½…‘Q½½1…É•I•ÍÁ½¹Í” ¤ì(%ô(%ÑÉäì($%±•Ð‰½‘äì($%ÑÉäì($$%‰½‘ä€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•…‘½Éµ…Ñ…]¥Ñ¡1¥µ¥Ð¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹±½¹” ¤°½ÁÑ¥½¹Ì¹µ…áÑ¥½¹	½‘åM¥é”¤ì($%ô…Ñ €¡•ÉÉ½È¤ì($$%¥˜€¡¥ÍI•ÅÕ•ÍÑ	½‘åQ½½1…É”¡•ÉÉ½È¤¤ì($$$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%É•ÑÕÉ¸Á…å±½…‘Q½½1…É•I•ÍÁ½¹Í” ¤ì($$%ô($$%Ñ¡É½Ü•ÉÉ½Èì($%ô($%½¹ÍÐÁ…å±½…‘I•ÍÁ½¹Í”€ô…Ý…¥ÐÙ…±¥‘…Ñ•M•ÉÙ•ÉÑ¥½¹A…å±½…¡‰½‘ä¤ì($%¥˜€¡Á…å±½…‘I•ÍÁ½¹Í”¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%É•ÑÕÉ¸Á…å±½…‘I•ÍÁ½¹Í”ì($%ô($%½¹ÍÐ…Ñ¥½¸€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹‘•½‘•Ñ¥½¸¡‰½‘ä¤ì($%¥˜€ …¥ÍÁÁM•ÉÙ•ÉÑ¥½¹Õ¹Ñ¥½¸¡…Ñ¥½¸¤¤É•ÑÕÉ¸¹Õ±°ì($%±•Ð…Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”€ô¹Õ±°ì($%±•Ð…Ñ¥½¹I•ÍÕ±Ðì($%½¹ÍÐÁÉ•Ù¥½ÕÍ!•…‘•ÉÍA¡…Í”€ô½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í” ‰…Ñ¥½¸ˆ¤ì($%ÑÉäì($$%…Ñ¥½¹I•ÍÕ±Ð€ô…Ý…¥Ð…Ñ¥½¸ ¤ì($%ô…Ñ €¡•ÉÉ½È¤ì($$%…Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”€ô•ÑÑ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¡•ÉÉ½È¤ì($$%¥˜€ ……Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¤Ñ¡É½Ü•ÉÉ½Èì($%ô™¥¹…±±äì($$%½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”¡ÁÉ•Ù¥½ÕÍ!•…‘•ÉÍA¡…Í”¤ì($%ô($%¥˜€ ……Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¤ì($$%•Ñ¹‘±•…ÉÑ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹ ¤ì($$%É•ÑÕÉ¸ì($$$%­¥¹è€‰™½É´µÍÑ…Ñ”ˆ°($$$%™½ÉµMÑ…Ñ”è…Ý…¥Ð½ÁÑ¥½¹Ì¹‘•½‘•½ÉµMÑ…Ñ”¡…Ñ¥½¹I•ÍÕ±Ð°‰½‘ä¤€üü¹Õ±°($$%ôì($%ô($%½¹ÍÐ…Ñ¥½¹A•¹‘¥¹½½­¥•Ì€ô½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì($%½¹ÍÐ…Ñ¥½¹É…™Ñ½½­¥”€ô½ÁÑ¥½¹Ì¹•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È ¤ì($%½¹ÍÐ…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹€ôÉ•Í½±Ù•Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¡…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¹±•¹Ñ €ø€Àñð	½½±•…¸¡…Ñ¥½¹É…™Ñ½½­¥”¤¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ ¤ì($%¥˜€¡…Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¹­¥¹€ôôô€‰É•‘¥É•Ðˆ¤¡•…‘•ÉÌ¹Í•Ð ‰1½…Ñ¥½¸ˆ°¹•ÜUI0¡…Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¹ÕÉ°°½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹ÕÉ°¤¹Ñ½MÑÉ¥¹œ ¤¤ì($%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ¤ì($%™½È€¡½¹ÍÐ½½­¥”½˜…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì($%¥˜€¡…Ñ¥½¹É…™Ñ½½­¥”¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°…Ñ¥½¹É…™Ñ½½­¥”¤ì($%Í•ÑÑ¥½¹I•Ù…±¥‘…Ñ•‘!•…‘•È¡¡•…‘•ÉÌ°…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¤ì($%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ì($$%ÍÑ…ÑÕÌè…Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¹­¥¹€ôôô€‰É•‘¥É•Ðˆ€ü€ÌÀÌ€è…Ñ¥½¹½¹ÑÉ½±I•ÍÁ½¹Í”¹ÍÑ…ÑÕÍ½‘”°($$%¡•…‘•ÉÌ($%ô¤ì(%ô…Ñ €¡•ÉÉ½È¤ì($%¥˜€¡¥ÍM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘ÉÉ½È¡•ÉÉ½È°¹Õ±°¤¤É•ÑÕÉ¸É•…Ñ•Ñ¥½¹9½Ñ½Õ¹‘I•ÍÁ½¹Í”¡¹Õ±°°ì($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ìè½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì($%ô¤ì($%•Ñ¹‘±•…ÉÑ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹ ¤ì($%½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì($%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑtM•ÉÙ•È…Ñ¥½¸•ÉÉ½Èèˆ°•ÉÉ½È¤ì($%½ÁÑ¥½¹Ì¹É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡¹½Éµ…±¥é•ÉÉ½È¡•ÉÉ½È¤°ì($$%Á…Ñ è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%µ•Ñ¡½è½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹µ•Ñ¡½°($$%¡•…‘•ÉÌè=‰©•Ð¹™É½µ¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•¹ÑÉ¥•Ì ¤¤($%ô°ì($$%É½ÕÑ•É-¥¹è€‰ÁÀI½ÕÑ•Èˆ°($$%É½ÕÑ•A…Ñ è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%É½ÕÑ•QåÁ”è€‰…Ñ¥½¸ˆ($%ô¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸¥¹Ñ•É¹…±M•ÉÙ•ÉÉÉ½ÉI•ÍÁ½¹Í”¡Ù½¥€À¤ì(%ô)ô)…Íå¹Œ™Õ¹Ñ¥½¸¡…¹‘±•M•ÉÙ•ÉÑ¥½¹IÍI•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹µ•Ñ¡½¹Ñ½UÁÁ•É…Í” ¤€„ôô€‰A=MPˆñð€…½ÁÑ¥½¹Ì¹…Ñ¥½¹%¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÍÉ™I•ÍÁ½¹Í”€ôÙ…±¥‘…Ñ•ÍÉ™=É¥¥¸¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹…±±½Ý•‘=É¥¥¹Ì¤ì(%¥˜€¡ÍÉ™I•ÍÁ½¹Í”¤É•ÑÕÉ¸ÍÉ™I•ÍÁ½¹Í”ì(%¥˜€¡Á…ÉÍ•%¹Ð¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰½¹Ñ•¹Ðµ±•¹Ñ ˆ¤ñð€ˆÀˆ°€ÄÀ¤€ø½ÁÑ¥½¹Ì¹µ…áÑ¥½¹	½‘åM¥é”¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸Á…å±½…‘Q½½1…É•I•ÍÁ½¹Í” ¤ì(%ô(%ÑÉäì($%±•Ð‰½‘äì($%ÑÉäì($$%‰½‘ä€ô½ÁÑ¥½¹Ì¹½¹Ñ•¹ÑQåÁ”¹ÍÑ…ÉÑÍ]¥Ñ  ‰µÕ±Ñ¥Á…ÉÐ½™½É´µ‘…Ñ„ˆ¤€ü…Ý…¥Ð½ÁÑ¥½¹Ì¹É•…‘½Éµ…Ñ…]¥Ñ¡1¥µ¥Ð¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹µ…áÑ¥½¹	½‘åM¥é”¤€è…Ý…¥Ð½ÁÑ¥½¹Ì¹É•…‘	½‘å]¥Ñ¡1¥µ¥Ð¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹µ…áÑ¥½¹	½‘åM¥é”¤ì($%ô…Ñ €¡•ÉÉ½È¤ì($$%¥˜€¡¥ÍI•ÅÕ•ÍÑ	½‘åQ½½1…É”¡•ÉÉ½È¤¤ì($$$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%É•ÑÕÉ¸Á…å±½…‘Q½½1…É•I•ÍÁ½¹Í” ¤ì($$%ô($$%Ñ¡É½Ü•ÉÉ½Èì($%ô($%½¹ÍÐÁ…å±½…‘I•ÍÁ½¹Í”€ô…Ý…¥ÐÙ…±¥‘…Ñ•M•ÉÙ•ÉÑ¥½¹A…å±½…¡‰½‘ä¤ì($%¥˜€¡Á…å±½…‘I•ÍÁ½¹Í”¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%É•ÑÕÉ¸Á…å±½…‘I•ÍÁ½¹Í”ì($%ô($%±•Ð…Ñ¥½¸ì($%ÑÉäì($$%…Ñ¥½¸€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹±½…‘M•ÉÙ•ÉÑ¥½¸¡½ÁÑ¥½¹Ì¹…Ñ¥½¹%¤ì($%ô…Ñ €¡•ÉÉ½È¤ì($$%¥˜€¡¥ÍM•ÉÙ•ÉÑ¥½¹9½Ñ½Õ¹‘ÉÉ½È¡•ÉÉ½È°½ÁÑ¥½¹Ì¹…Ñ¥½¹%¤¤É•ÑÕÉ¸É•…Ñ•Ñ¥½¹9½Ñ½Õ¹‘I•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¹…Ñ¥½¹%°ì($$$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$$%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ìè½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì($$%ô¤ì($$%Ñ¡É½Ü•ÉÉ½Èì($%ô($%¥˜€ …¥ÍÁÁM•ÉÙ•ÉÑ¥½¹Õ¹Ñ¥½¸¡…Ñ¥½¸¤¤É•ÑÕÉ¸É•…Ñ•Ñ¥½¹9½Ñ½Õ¹‘I•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¹…Ñ¥½¹%°ì($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ìè½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì($%ô¤ì($%½¹ÍÐÑ•µÁ½É…ÉåI•™•É•¹•Ì€ô½ÁÑ¥½¹Ì¹É•…Ñ•Q•µÁ½É…ÉåI•™•É•¹•M•Ð ¤ì($%½¹ÍÐ…ÉÌ€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹‘•½‘•I•Á±ä¡‰½‘ä°ìÑ•µÁ½É…ÉåI•™•É•¹•Ìô¤ì($%±•ÐÉ•ÑÕÉ¹Y…±Õ”ì($%±•Ð…Ñ¥½¹I•‘¥É•Ð€ô¹Õ±°ì($%±•Ð…Ñ¥½¹MÑ…ÑÕÌ€ô€ÈÀÀì($%½¹ÍÐÁÉ•Ù¥½ÕÍ!•…‘•ÉÍA¡…Í”€ô½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í” ‰…Ñ¥½¸ˆ¤ì($%ÑÉäì($$%ÑÉäì($$$%Ù…±¥‘…Ñ•M•ÉÙ•ÉÑ¥½¹ÉÌ¡…ÉÌ¤ì($$$%É•ÑÕÉ¹Y…±Õ”€ôì($$$$%½¬èÑÉÕ”°($$$$%‘…Ñ„è…Ý…¥Ð…Ñ¥½¸¹…ÁÁ±ä¡¹Õ±°°…ÉÌ¤($$$%ôì($$%ô…Ñ €¡•ÉÉ½È¤ì($$$%…Ñ¥½¹I•‘¥É•Ð€ô•ÑÑ¥½¹I•‘¥É•Ð¡•ÉÉ½È¤ì($$$%¥˜€¡…Ñ¥½¹I•‘¥É•Ð¤É•ÑÕÉ¹Y…±Õ”€ôì($$$$%½¬èÑÉÕ”°($$$$%‘…Ñ„èÙ½¥€À($$$%ôì($$$%•±Í”ì($$$$%½¹ÍÐ¡ÑÑÁ…±±‰…­MÑ…ÑÕÌ€ô•ÑÑ¥½¹!ÑÑÁ…±±‰…­MÑ…ÑÕÌ¡•ÉÉ½È¤ì($$$$%¥˜€¡¡ÑÑÁ…±±‰…­MÑ…ÑÕÌ€„ôô¹Õ±°¤ì($$$$$%…Ñ¥½¹MÑ…ÑÕÌ€ô¡ÑÑÁ…±±‰…­MÑ…ÑÕÌì($$$$$%É•ÑÕÉ¹Y…±Õ”€ôì($$$$$$%½¬è™…±Í”°($$$$$$%‘…Ñ„è•ÉÉ½È($$$$$%ôì($$$$%ô•±Í”ì($$$$$%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑtM•ÉÙ•È…Ñ¥½¸•ÉÉ½Èèˆ°•ÉÉ½È¤ì($$$$$%É•ÑÕÉ¹Y…±Õ”€ôì($$$$$$%½¬è™…±Í”°($$$$$$%‘…Ñ„è½ÁÑ¥½¹Ì¹Í…¹¥Ñ¥é•ÉÉ½É½É±¥•¹Ð¡•ÉÉ½È¤($$$$$%ôì($$$$%ô($$$%ô($$%ô($%ô™¥¹…±±äì($$%½ÁÑ¥½¹Ì¹Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”¡ÁÉ•Ù¥½ÕÍ!•…‘•ÉÍA¡…Í”¤ì($%ô($%¥˜€¡…Ñ¥½¹I•‘¥É•Ð¤ì($$%½¹ÍÐ…Ñ¥½¹A•¹‘¥¹½½­¥•Ì€ô½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì($$%½¹ÍÐ…Ñ¥½¹É…™Ñ½½­¥”€ô½ÁÑ¥½¹Ì¹•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È ¤ì($$%½¹ÍÐ…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹€ôÉ•Í½±Ù•Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¡…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¹±•¹Ñ €ø€Àñð	½½±•…¸¡…Ñ¥½¹É…™Ñ½½­¥”¤¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%½¹ÍÐÉ•‘¥É•Ñ!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$$$‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½àµ½µÁ½¹•¹Ðì¡…ÉÍ•ÐõÕÑ˜´àˆ°($$$%Y…ÉäèY%9aQ}IM}YIe}!H($$%ô¤ì($$%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡É•‘¥É•Ñ!•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ¤ì($$%É•‘¥É•Ñ!•…‘•ÉÌ¹Í•Ð¡Q%=9}I%IQ}!H°…Ñ¥½¹I•‘¥É•Ð¹ÕÉ°¤ì($$%É•‘¥É•Ñ!•…‘•ÉÌ¹Í•Ð¡Q%=9}I%IQ}QeA}!H°…Ñ¥½¹I•‘¥É•Ð¹ÑåÁ”¤ì($$%É•‘¥É•Ñ!•…‘•ÉÌ¹Í•Ð¡Q%=9}I%IQ}MQQUM}!H°MÑÉ¥¹œ¡…Ñ¥½¹I•‘¥É•Ð¹ÍÑ…ÑÕÌ¤¤ì($$%™½È€¡½¹ÍÐ½½­¥”½˜…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¤É•‘¥É•Ñ!•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì($$%¥˜€¡…Ñ¥½¹É…™Ñ½½­¥”¤É•‘¥É•Ñ!•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°…Ñ¥½¹É…™Ñ½½­¥”¤ì($$%Í•ÑÑ¥½¹I•Ù…±¥‘…Ñ•‘!•…‘•È¡É•‘¥É•Ñ!•…‘•ÉÌ°…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¤ì($$%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í” ˆˆ°ì($$$%ÍÑ…ÑÕÌè€ÈÀÀ°($$$%¡•…‘•ÉÌèÉ•‘¥É•Ñ!•…‘•ÉÌ($$%ô¤ì($%ô($%½¹ÍÐ…Ñ¥½¹A•¹‘¥¹½½­¥•Ì€ô½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì ¤ì($%½¹ÍÐ…Ñ¥½¹É…™Ñ½½­¥”€ô½ÁÑ¥½¹Ì¹•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È ¤ì($%½¹ÍÐ…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹€ôÉ•Í½±Ù•Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¡…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¹±•¹Ñ €ø€Àñð	½½±•…¸¡…Ñ¥½¹É…™Ñ½½­¥”¤¤ì($%¥˜€¡…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹€ôôôQ%=9}%}9=Q}IY1%Q¤ì($$%½¹ÍÐ½¹I•¹‘•ÉÉÉ½È€ô½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$%½¹ÍÐÉÍMÑÉ•…´€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´¡ìÉ•ÑÕÉ¹Y…±Õ”ô°ì($$$%Ñ•µÁ½É…ÉåI•™•É•¹•Ì°($$$%½¹ÉÉ½Èè½¹I•¹‘•ÉÉÉ½È($$%ô¤ì($$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%½¹ÍÐ…Ñ¥½¹!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$$$‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½àµ½µÁ½¹•¹Ðì¡…ÉÍ•ÐõÕÑ˜´àˆ°($$$%Y…ÉäèY%9aQ}IM}YIe}!H($$%ô¤ì($$%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡…Ñ¥½¹!•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ¤ì($$%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡ÉÍMÑÉ•…´°ì($$$%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•MÑ…ÑÕÌ€üü…Ñ¥½¹MÑ…ÑÕÌ°($$$%¡•…‘•ÉÌè…Ñ¥½¹!•…‘•ÉÌ($$%ô¤ì($%ô($%½¹ÍÐµ…Ñ €ô½ÁÑ¥½¹Ì¹µ…Ñ¡I½ÕÑ”¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($%±•Ð•±•µ•¹Ðì($%±•Ð•ÉÉ½ÉA…ÑÑ•É¸€ôµ…Ñ €üµ…Ñ ¹É½ÕÑ”¹Á…ÑÑ•É¸€è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”ì($%¥˜€¡µ…Ñ ¤ì($$%½¹ÍÐìÉ½ÕÑ”è…Ñ¥½¹I½ÕÑ”°Á…É…µÌè…Ñ¥½¹A…É…µÌô€ôµ…Ñ ì($$%½¹ÍÐ…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð€ôÉ•Í½±Ù•ÁÁA…•Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¡ì($$$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$$%ÕÉÉ•¹ÑA…É…µÌè…Ñ¥½¹A…É…µÌ°($$$%ÕÉÉ•¹ÑI½ÕÑ”è…Ñ¥½¹I½ÕÑ”°($$$%™¥¹‘%¹Ñ•É•ÁÐè½ÁÑ¥½¹Ì¹™¥¹‘%¹Ñ•É•ÁÐ°($$$%•ÑI½ÕÑ•A…É…µ9…µ•Ìè½ÁÑ¥½¹Ì¹•ÑI½ÕÑ•A…É…µ9…µ•Ì°($$$%•ÑM½ÕÉ•I½ÕÑ”è½ÁÑ¥½¹Ì¹•ÑM½ÕÉ•I½ÕÑ”°($$$%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($$$%Ñ½%¹Ñ•É•ÁÑ=ÁÑÌè½ÁÑ¥½¹Ì¹Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ($$%ô¤ì($$%½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡ì($$$%Á…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$$%Í•…É¡A…É…µÌè½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ°($$$%Á…É…µÌè…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¹¹…Ù¥…Ñ¥½¹A…É…µÌ($$%ô¤ì($$%Í•ÑÕÉÉ•¹Ñ•Ñ¡…¡•5½‘”¡½ÁÑ¥½¹Ì¹É•Í½±Ù•I½ÕÑ••Ñ¡…¡•5½‘”ü¸¡…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¹É½ÕÑ”¤€üü¹Õ±°¤ì($$%•±•µ•¹Ð€ô½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•±•µ•¹Ð¡ì($$$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$$%¥¹Ñ•É•ÁÑ=ÁÑÌè…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¹¥¹Ñ•É•ÁÑ=ÁÑÌ°($$$%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($$$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$$%Á…É…µÌè…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¹Á…É…µÌ°($$$%É•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°($$$%É½ÕÑ”è…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¹É½ÕÑ”°($$$%Í•…É¡A…É…µÌè½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ°($$$%É•¹‘•É5½‘”èAA}IM}I9I}5=}Q%=9}II9I}AIMIY}U$($$%ô¤ì($$%•ÉÉ½ÉA…ÑÑ•É¸€ô…Ñ¥½¹I•É•¹‘•ÉQ…É•Ð¹É½ÕÑ”¹Á…ÑÑ•É¸ì($%ô•±Í”ì($$%½¹ÍÐ…Ñ¥½¹I½ÕÑ•%€ô½ÁÑ¥½¹Ì¹É•…Ñ•A…å±½…‘I½ÕÑ•%¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°¹Õ±°¤ì($$%•±•µ•¹Ð€ô½ÁÑ¥½¹Ì¹É•…Ñ•9½Ñ½Õ¹‘±•µ•¹Ð¡…Ñ¥½¹I½ÕÑ•%¤ì($%ô($%½¹ÍÐ½¹I•¹‘•ÉÉÉ½È€ô½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°•ÉÉ½ÉA…ÑÑ•É¸¤ì($%½¹ÍÐÉÍMÑÉ•…´€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´¡ì($$%É½½Ðè•±•µ•¹Ð°($$%É•ÑÕÉ¹Y…±Õ”($%ô°ì($$%Ñ•µÁ½É…ÉåI•™•É•¹•Ì°($$%½¹ÉÉ½Èè½¹I•¹‘•ÉÉÉ½È($%ô¤ì($%½¹ÍÐ…Ñ¥½¹!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$$‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½àµ½µÁ½¹•¹Ðì¡…ÉÍ•ÐõÕÑ˜´àˆ°($$%Y…ÉäèY%9aQ}IM}YIe}!H($%ô¤ì($%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡…Ñ¥½¹!•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ¤ì($%Í•ÑÑ¥½¹I•Ù…±¥‘…Ñ•‘!•…‘•È¡…Ñ¥½¹!•…‘•ÉÌ°…Ñ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹¤ì($%½¹ÍÐ…Ñ¥½¹I•ÍÁ½¹Í”€ô¹•ÜI•ÍÁ½¹Í”¡ÉÍMÑÉ•…´°ì($$%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•MÑ…ÑÕÌ€üü…Ñ¥½¹MÑ…ÑÕÌ°($$%¡•…‘•ÉÌè…Ñ¥½¹!•…‘•ÉÌ($%ô¤ì($%¥˜€¡…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¹±•¹Ñ €ø€Àñð…Ñ¥½¹É…™Ñ½½­¥”¤ì($$%™½È€¡½¹ÍÐ½½­¥”½˜…Ñ¥½¹A•¹‘¥¹½½­¥•Ì¤…Ñ¥½¹I•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì($$%¥˜€¡…Ñ¥½¹É…™Ñ½½­¥”¤…Ñ¥½¹I•ÍÁ½¹Í”¹¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°…Ñ¥½¹É…™Ñ½½­¥”¤ì($%ô($%É•ÑÕÉ¸…Ñ¥½¹I•ÍÁ½¹Í”ì(%ô…Ñ €¡•ÉÉ½È¤ì($%•Ñ¹‘±•…ÉÑ¥½¹I•Ù…±¥‘…Ñ¥½¹-¥¹ ¤ì($%É•ÑÕÉ¸É•…Ñ•M•ÉÙ•ÉÑ¥½¹ÉÉ½ÉI•ÍÁ½¹Í”¡•ÉÉ½È°ì($$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ìè½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì°($$%É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½Èè½ÁÑ¥½¹Ì¹É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È°($$%É•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ($%ô¤ì(%ô)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ•á•ÕÑ¥½¸¹©Ì)™Õ¹Ñ¥½¸¥ÍAÉ½µ¥Í•1¥­”¡Ù…±Õ”¤ì(%É•ÑÕÉ¸	½½±•…¸¡Ù…±Õ”€˜˜€¡ÑåÁ•½˜Ù…±Õ”€ôôô€‰½‰©•ÐˆñðÑåÁ•½˜Ù…±Õ”€ôôô€‰™Õ¹Ñ¥½¸ˆ¤€˜˜€‰Ñ¡•¸ˆ¥¸Ù…±Õ”€˜˜ÑåÁ•½˜Ù…±Õ”¹Ñ¡•¸€ôôô€‰™Õ¹Ñ¥½¸ˆ¤ì)ô)™Õ¹Ñ¥½¸•ÑÁÁA…•MÑ…ÑÕÍQ•áÐ¡ÍÑ…ÑÕÍ½‘”¤ì(%É•ÑÕÉ¸ÍÑ…ÑÕÍ½‘”€ôôô€ÐÀÌ€ü€‰½É‰¥‘‘•¸ˆ€èÍÑ…ÑÕÍ½‘”€ôôô€ÐÀÄ€ü€‰U¹…ÕÑ¡½É¥é•ˆ€è€‰9½Ð½Õ¹ˆì)ô)™Õ¹Ñ¥½¸µ•É•ÁÁA…•MÁ•¥…±ÉÉ½É!•…‘•ÉÌ¡É•ÍÁ½¹Í”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¤ì(%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°µ¥‘‘±•Ý…É•½¹Ñ•áÐü¹¡•…‘•ÉÌ€üü¹Õ±°¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¹‰½‘ä°ì($%¡•…‘•ÉÌ°($%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%ÍÑ…ÑÕÍQ•áÐèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÍQ•áÐ(%ô¤ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•MÁ•¥…±ÉÉ½È¡•ÉÉ½È¤ì(%¥˜€ „¡•ÉÉ½È€˜˜ÑåÁ•½˜•ÉÉ½È€ôôô€‰½‰©•Ðˆ€˜˜€‰‘¥•ÍÐˆ¥¸•ÉÉ½È¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ‘¥•ÍÐ€ôMÑÉ¥¹œ¡•ÉÉ½È¹‘¥•ÍÐ¤ì(%½¹ÍÐÉ•‘¥É•Ð€ôÁ…ÉÍ•9•áÑI•‘¥É•Ñ¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡É•‘¥É•Ð¤É•ÑÕÉ¸ì($%­¥¹è€‰É•‘¥É•Ðˆ°($%±½…Ñ¥½¸èÉ•‘¥É•Ð¹ÕÉ°°($%ÍÑ…ÑÕÍ½‘”èÉ•‘¥É•Ð¹ÍÑ…ÑÕÌ(%ôì(%½¹ÍÐ¡ÑÑÁÉÉ½È€ôÁ…ÉÍ•9•áÑ!ÑÑÁÉÉ½É¥•ÍÐ¡‘¥•ÍÐ¤ì(%¥˜€¡¡ÑÑÁÉÉ½È¤É•ÑÕÉ¸ì($%­¥¹è€‰¡ÑÑÀµ…•ÍÌµ™…±±‰…¬ˆ°($%ÍÑ…ÑÕÍ½‘”è¡ÑÑÁÉÉ½È¹ÍÑ…ÑÕÌ(%ôì(%É•ÑÕÉ¸¹Õ±°ì)ô(¼¨¨(¨I•Í½±Ù•Ì„É•‘¥É•Ð ¤Ñ…É•Ð……¥¹ÍÐÑ¡”É•ÅÕ•ÍÐUI0…¹ÁÉ•Á•¹‘ÌÑ¡”(¨½¹™¥ÕÉ•‰…Í•A…Ñ Ý¡•¸Ñ¡”Ñ…É•Ð¥Ì…¸…ÁÀµ¥¹Ñ•É¹…°…‰Í½±ÕÑ”Á…Ñ ¸(¨(¨5¥ÉÉ½ÉÌ9•áÐ¹©ÌÌ…‘‘A…Ñ¡AÉ•™¥à¡•ÑUI1É½µI•‘¥É•ÑÉÉ½È¡•ÉÈ¤°‰…Í•A…Ñ ¥€(¨¥¸…ÁÀµÉ•¹‘•È¹ÑÍá€è„É•‘¥É•Ð ˆ½…‰½ÕÐˆ¥€…±°™É½´„Á…”µ½Õ¹Ñ•…Ð(¨€½‰±½€€¡‰…Í•A…Ñ ¤ÁÉ½‘Õ•Ì1½…Ñ¥½¸è€½‰±½œ½…‰½ÕÑ€¸(¨(¨M­¥ÁÌÁÉ•™¥á¥¹œÝ¡•¸è(¨€€´‰…Í•A…Ñ ¥ÌÕ¹Í•Ð€¼•µÁÑä(¨€€´Ñ¡”Ñ…É•Ð¥Ì„™Õ±°UI0Á½¥¹Ñ¥¹œ…Ð„‘¥™™•É•¹Ð½É¥¥¸€¡•áÑ•É¹…°É•‘¥É•Ð¤(¨€€´Ñ¡”Ñ…É•Ð…±É•…‘äÍÑ…ÉÑÌÝ¥Ñ Ñ¡”‰…Í•A…Ñ €¡…±±•È‘¥Ñ¡”Ý½É¬Ñ¡•µÍ•±Ù•Ì¤(¨¼)™Õ¹Ñ¥½¸…ÁÁ±åÁÁA…•I•‘¥É•Ñ	…Í•A…Ñ ¡±½…Ñ¥½¸°É•ÅÕ•ÍÑUÉ°°‰…Í•A…Ñ ¤ì(%½¹ÍÐÉ•Í½±Ù•€ô¹•ÜUI0¡±½…Ñ¥½¸°É•ÅÕ•ÍÑUÉ°¤ì(%½¹ÍÐÉ•ÅÕ•ÍÑ=É¥¥¸€ô¹•ÜUI0¡É•ÅÕ•ÍÑUÉ°¤¹½É¥¥¸ì(%¥˜€ …‰…Í•A…Ñ ñðÉ•Í½±Ù•¹½É¥¥¸€„ôôÉ•ÅÕ•ÍÑ=É¥¥¸¤É•ÑÕÉ¸É•Í½±Ù•¹Ñ½MÑÉ¥¹œ ¤ì(%¥˜€¡¡…Í	…Í•A…Ñ ¡É•Í½±Ù•¹Á…Ñ¡¹…µ”°‰…Í•A…Ñ ¤¤É•ÑÕÉ¸É•Í½±Ù•¹Ñ½MÑÉ¥¹œ ¤ì(%É•Í½±Ù•¹Á…Ñ¡¹…µ”€ôÉ•Í½±Ù•¹Á…Ñ¡¹…µ”€ôôô€ˆ¼ˆ€ü‰…Í•A…Ñ €è€‘í‰…Í•A…Ñ¡ô‘íÉ•Í½±Ù•¹Á…Ñ¡¹…µ•õ€ì(%É•ÑÕÉ¸É•Í½±Ù•¹Ñ½MÑÉ¥¹œ ¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•MÁ•¥…±ÉÉ½ÉI•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹ÍÁ•¥…±ÉÉ½È¹­¥¹€ôôô€‰É•‘¥É•Ðˆ¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%½¹ÍÐÁÉ•™¥á•‘1½…Ñ¥½¸€ô…ÁÁ±åÁÁA…•I•‘¥É•Ñ	…Í•A…Ñ ¡½ÁÑ¥½¹Ì¹ÍÁ•¥…±ÉÉ½È¹±½…Ñ¥½¸°½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹ÕÉ°°½ÁÑ¥½¹Ì¹‰…Í•A…Ñ ¤ì($%½¹ÍÐ±½…Ñ¥½¸€ô½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€ü…Ý…¥ÐÉ•…Ñ•IÍI•‘¥É•Ñ1½…Ñ¥½¸¡ÁÉ•™¥á•‘1½…Ñ¥½¸°½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¤€èÁÉ•™¥á•‘1½…Ñ¥½¸ì($%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì1½…Ñ¥½¸è±½…Ñ¥½¸ô¤ì($%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐü¹¡•…‘•ÉÌ€üü¹Õ±°¤ì($%½¹ÍÐÁ•¹‘¥¹½½­¥•Ì€ô½ÁÑ¥½¹Ì¹•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ìü¸ ¤€üümtì($%™½È€¡½¹ÍÐ½½­¥”½˜Á•¹‘¥¹½½­¥•Ì¤¡•…‘•ÉÌ¹…ÁÁ•¹ ‰M•Ðµ½½­¥”ˆ°½½­¥”¤ì($%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡¹Õ±°°ì($$%¡•…‘•ÉÌ°($$%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹ÍÁ•¥…±ÉÉ½È¹ÍÑ…ÑÕÍ½‘”($%ô¤ì(%ô(%¥˜€¡½ÁÑ¥½¹Ì¹É•¹‘•É…±±‰…­A…”¤ì($%½¹ÍÐ™…±±‰…­I•ÍÁ½¹Í”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•É…±±‰…­A…”¡½ÁÑ¥½¹Ì¹ÍÁ•¥…±ÉÉ½È¹ÍÑ…ÑÕÍ½‘”¤ì($%¥˜€¡™…±±‰…­I•ÍÁ½¹Í”¤É•ÑÕÉ¸µ•É•ÁÁA…•MÁ•¥…±ÉÉ½É!•…‘•ÉÌ¡™…±±‰…­I•ÍÁ½¹Í”°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%ô(%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%É•ÑÕÉ¸µ•É•ÁÁA…•MÁ•¥…±ÉÉ½É!•…‘•ÉÌ¡¹•ÜI•ÍÁ½¹Í”¡•ÑÁÁA…•MÑ…ÑÕÍQ•áÐ¡½ÁÑ¥½¹Ì¹ÍÁ•¥…±ÉÉ½È¹ÍÑ…ÑÕÍ½‘”¤°ìÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹ÍÁ•¥…±ÉÉ½È¹ÍÑ…ÑÕÍ½‘”ô¤°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì)ô(¼¨¨M•”1…å½ÕÑ±…Í€ÑåÁ”‘½‰±½¬¥¸…ÁÀµ•±•µ•¹ÑÌ¹ÑÌ™½È±¥™•å±”¸€¨¼)…Íå¹Œ™Õ¹Ñ¥½¸ÁÉ½‰•ÁÁA…•1…å½ÕÑÌ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ±…å½ÕÑ±…Ì€ôíôì(%½¹ÍÐ±Ì€ô½ÁÑ¥½¹Ì¹±…ÍÍ¥™¥…Ñ¥½¸€üü¹Õ±°ì(%É•ÑÕÉ¸ì($%É•ÍÁ½¹Í”è…Ý…¥Ð½ÁÑ¥½¹Ì¹ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡…Íå¹Œ€ ¤€ôøì($$%™½È€¡±•Ð±…å½ÕÑ%¹‘•à€ô½ÁÑ¥½¹Ì¹±…å½ÕÑ½Õ¹Ð€´€Äì±…å½ÕÑ%¹‘•à€øô€Àì±…å½ÕÑ%¹‘•à´´¤ì($$$%½¹ÍÐ‰Õ¥±‘Q¥µ•I•ÍÕ±Ð€ô±Ìü¹‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìü¹•Ð¡±…å½ÕÑ%¹‘•à¤ì($$$%¥˜€¡±Ì€˜˜‰Õ¥±‘Q¥µ•I•ÍÕ±Ð¤ì($$$$%±…å½ÕÑ±…Ím±Ì¹•Ñ1…å½ÕÑ%¡±…å½ÕÑ%¹‘•à¥t€ô‰Õ¥±‘Q¥µ•I•ÍÕ±Ð€ôôô€‰ÍÑ…Ñ¥Œˆ€ü€‰Ìˆ€è€‰ˆì($$$$%¥˜€¡±Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸¤±Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸¡±Ì¹•Ñ1…å½ÕÑ%¡±…å½ÕÑ%¹‘•à¤°±Ì¹‰Õ¥±‘Q¥µ•I•…Í½¹Ìü¹•Ð¡±…å½ÕÑ%¹‘•à¤€üüì±…å•Èè€‰¹¼µ±…ÍÍ¥™¥•Èˆô¤ì($$$$%½¹ÍÐ•ÉÉ½ÉI•ÍÁ½¹Í”€ô…Ý…¥ÐÁÉ½‰•1…å½ÕÑ½ÉÉÉ½ÉÌ¡½ÁÑ¥½¹Ì°±…å½ÕÑ%¹‘•à¤ì($$$$%¥˜€¡•ÉÉ½ÉI•ÍÁ½¹Í”¤É•ÑÕÉ¸•ÉÉ½ÉI•ÍÁ½¹Í”ì($$$$%½¹Ñ¥¹Õ”ì($$$%ô($$$%¥˜€¡±Ì¤ì($$$$%ÑÉäì($$$$$%½¹ÍÐì‘å¹…µ¥•Ñ•Ñ•ô€ô…Ý…¥Ð±Ì¹ÉÕ¹]¥Ñ¡%Í½±…Ñ•‘å¹…µ¥M½Á”  ¤€ôø½ÁÑ¥½¹Ì¹ÁÉ½‰•1…å½ÕÑÐ¡±…å½ÕÑ%¹‘•à¤¤ì($$$$$%±…å½ÕÑ±…Ím±Ì¹•Ñ1…å½ÕÑ%¡±…å½ÕÑ%¹‘•à¥t€ô‘å¹…µ¥•Ñ•Ñ•€ü€‰ˆ€è€‰Ìˆì($$$$$%¥˜€¡±Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸¤±Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸¡±Ì¹•Ñ1…å½ÕÑ%¡±…å½ÕÑ%¹‘•à¤°ì($$$$$$%±…å•Èè€‰ÉÕ¹Ñ¥µ”µÁÉ½‰”ˆ°($$$$$$%½ÕÑ½µ”è‘å¹…µ¥•Ñ•Ñ•€ü€‰‘å¹…µ¥Œˆ€è€‰ÍÑ…Ñ¥Œˆ($$$$$%ô¤ì($$$$%ô…Ñ €¡•ÉÉ½È¤ì($$$$$%±…å½ÕÑ±…Ím±Ì¹•Ñ1…å½ÕÑ%¡±…å½ÕÑ%¹‘•à¥t€ô€‰ˆì($$$$$%¥˜€¡±Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸¤±Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸¡±Ì¹•Ñ1…å½ÕÑ%¡±…å½ÕÑ%¹‘•à¤°ì($$$$$$%±…å•Èè€‰ÉÕ¹Ñ¥µ”µÁÉ½‰”ˆ°($$$$$$%½ÕÑ½µ”è€‰‘å¹…µ¥Œˆ°($$$$$$%•ÉÉ½Èè•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÉ½È¹µ•ÍÍ…”€èMÑÉ¥¹œ¡•ÉÉ½È¤($$$$$%ô¤ì($$$$$%½¹ÍÐ•ÉÉ½ÉI•ÍÁ½¹Í”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹½¹1…å½ÕÑÉÉ½È¡•ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($$$$$%¥˜€¡•ÉÉ½ÉI•ÍÁ½¹Í”¤É•ÑÕÉ¸•ÉÉ½ÉI•ÍÁ½¹Í”ì($$$$%ô($$$$%½¹Ñ¥¹Õ”ì($$$%ô($$$%½¹ÍÐ•ÉÉ½ÉI•ÍÁ½¹Í”€ô…Ý…¥ÐÁÉ½‰•1…å½ÕÑ½ÉÉÉ½ÉÌ¡½ÁÑ¥½¹Ì°±…å½ÕÑ%¹‘•à¤ì($$$%¥˜€¡•ÉÉ½ÉI•ÍÁ½¹Í”¤É•ÑÕÉ¸•ÉÉ½ÉI•ÍÁ½¹Í”ì($$%ô($$%É•ÑÕÉ¸¹Õ±°ì($%ô¤°($%±…å½ÕÑ±…Ì(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸ÁÉ½‰•1…å½ÕÑ½ÉÉÉ½ÉÌ¡½ÁÑ¥½¹Ì°±…å½ÕÑ%¹‘•à¤ì(%ÑÉäì($%½¹ÍÐ±…å½ÕÑI•ÍÕ±Ð€ô½ÁÑ¥½¹Ì¹ÁÉ½‰•1…å½ÕÑÐ¡±…å½ÕÑ%¹‘•à¤ì($%¥˜€¡¥ÍAÉ½µ¥Í•1¥­”¡±…å½ÕÑI•ÍÕ±Ð¤¤…Ý…¥Ð±…å½ÕÑI•ÍÕ±Ðì(%ô…Ñ €¡•ÉÉ½È¤ì($%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹½¹1…å½ÕÑÉÉ½È¡•ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸ÁÉ½‰•ÁÁA…•½µÁ½¹•¹Ð¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡…Íå¹Œ€ ¤€ôøì($%ÑÉäì($$%½¹ÍÐÁ…•I•ÍÕ±Ð€ô½ÁÑ¥½¹Ì¹ÁÉ½‰•A…” ¤ì($$%¥˜€¡¥ÍAÉ½µ¥Í•1¥­”¡Á…•I•ÍÕ±Ð¤¤¥˜€¡½ÁÑ¥½¹Ì¹…Ý…¥ÑÍå¹I•ÍÕ±Ð¤…Ý…¥ÐÁ…•I•ÍÕ±Ðì($$%•±Í”AÉ½µ¥Í”¹É•Í½±Ù”¡Á…•I•ÍÕ±Ð¤¹…Ñ   ¤€ôøíô¤ì($%ô…Ñ €¡•ÉÉ½È¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹½¹ÉÉ½È¡•ÉÉ½È¤ì($%ô($%É•ÑÕÉ¸¹Õ±°ì(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘ÁÁA…•	¥¹…ÉåMÑÉ•…´¡ÍÑÉ•…´¤ì(%½¹ÍÐÉ•…‘•È€ôÍÑÉ•…´¹•ÑI•…‘•È ¤ì(%½¹ÍÐ¡Õ¹­Ì€ômtì(%±•ÐÑ½Ñ…±1•¹Ñ €ô€Àì(%™½È€ ìì¤ì($%½¹ÍÐì‘½¹”°Ù…±Õ”ô€ô…Ý…¥ÐÉ•…‘•È¹É•… ¤ì($%¥˜€¡‘½¹”¤‰É•…¬ì($%¡Õ¹­Ì¹ÁÕÍ ¡Ù…±Õ”¤ì($%Ñ½Ñ…±1•¹Ñ €¬ôÙ…±Õ”¹‰åÑ•1•¹Ñ ì(%ô(%½¹ÍÐ‰Õ™™•È€ô¹•ÜU¥¹ÐáÉÉ…ä¡Ñ½Ñ…±1•¹Ñ ¤ì(%±•Ð½™™Í•Ð€ô€Àì(%™½È€¡½¹ÍÐ¡Õ¹¬½˜¡Õ¹­Ì¤ì($%‰Õ™™•È¹Í•Ð¡¡Õ¹¬°½™™Í•Ð¤ì($%½™™Í•Ð€¬ô¡Õ¹¬¹‰åÑ•1•¹Ñ ì(%ô(%É•ÑÕÉ¸‰Õ™™•È¹‰Õ™™•Èì)ô)™Õ¹Ñ¥½¸Ñ••ÁÁA…•IÍMÑÉ•…µ½É…ÁÑÕÉ”¡ÍÑÉ•…´°Í¡½Õ±‘…ÁÑÕÉ”¤ì(%¥˜€ …Í¡½Õ±‘…ÁÑÕÉ”¤É•ÑÕÉ¸ìÍÍÉMÑÉ•…´èÍÑÉ•…´ôì(%½¹ÍÐmÍÍÉMÑÉ•…´°Í¥‘•MÑÉ•…µt€ôÍÑÉ•…´¹Ñ•” ¤ì(%É•ÑÕÉ¸ì($%ÍÍÉMÑÉ•…´°($%Í¥‘•MÑÉ•…´(%ôì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•½¹Ñ1¥¹­!•…‘•È¡ÁÉ•±½…‘Ì¤ì(%¥˜€ …ÁÉ•±½…‘ÌñðÁÉ•±½…‘Ì¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸ÁÉ•±½…‘Ì¹µ…À ¡ÁÉ•±½…¤€ôø€ð‘íÁÉ•±½…¹¡É•™ôøìÉ•°õÁÉ•±½…ì…Ìõ™½¹ÐìÑåÁ”ô‘íÁÉ•±½…¹ÑåÁ•ôìÉ½ÍÍ½É¥¥¹€¤¹©½¥¸ ˆ°€ˆ¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉÍŒµ•ÉÉ½ÉÌ¹©Ì)™Õ¹Ñ¥½¸¡…Í¥•ÍÐ¡•ÉÉ½È¤ì(%É•ÑÕÉ¸	½½±•…¸¡•ÉÉ½È€˜˜ÑåÁ•½˜•ÉÉ½È€ôôô€‰½‰©•Ðˆ€˜˜€‰‘¥•ÍÐˆ¥¸•ÉÉ½È¤ì)ô)™Õ¹Ñ¥½¸•ÑQ¡É½Ý¹Y…±Õ•5•ÍÍ…”¡•ÉÉ½È¤ì(%É•ÑÕÉ¸•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÉ½È¹µ•ÍÍ…”€èMÑÉ¥¹œ¡•ÉÉ½È¤ì)ô)™Õ¹Ñ¥½¸•ÑQ¡É½Ý¹Y…±Õ•MÑ…¬¡•ÉÉ½È¤ì(%É•ÑÕÉ¸•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÉ½È¹ÍÑ…¬ñð€ˆˆ€è€ˆˆì)ô(¼¨¨(¨‘©ˆÈ¡…Í µ…Ñ¡¥¹œ9•áÐ¹©ÌÌÍÑÉ¥¹œµ¡…Í Á…­…”™½ÈIM•ÉÉ½È‘¥•ÍÑÌ¸(¨¼)™Õ¹Ñ¥½¸•ÉÉ½É¥•ÍÐ¡¥¹ÁÕÐ¤ì(%±•Ð¡…Í €ô€ÔÌàÄì(%™½È€¡±•Ð¤€ô¥¹ÁÕÐ¹±•¹Ñ €´€Äì¤€øô€Àì¤´´¤¡…Í €ô¡…Í €¨€ÌÌx¥¹ÁÕÐ¹¡…É½‘•Ð¡¤¤ì(%É•ÑÕÉ¸€¡¡…Í €øøø€À¤¹Ñ½MÑÉ¥¹œ ¤ì)ô)™Õ¹Ñ¥½¸Í…¹¥Ñ¥é•ÉÉ½É½É±¥•¹Ð¡•ÉÉ½È°¹½‘•¹Ø€ô€‰ÁÉ½‘ÕÑ¥½¸ˆ¤ì(%¥˜€¡É•Í½±Ù•ÁÁA…•MÁ•¥…±ÉÉ½È¡•ÉÉ½È¤¤É•ÑÕÉ¸•ÉÉ½Èì(%¥˜€¡¹½‘•¹Ø€„ôô€‰ÁÉ½‘ÕÑ¥½¸ˆ¤É•ÑÕÉ¸•ÉÉ½Èì(%½¹ÍÐÍ…¹¥Ñ¥é•€ô€¼¨}}AUI}|€¨¼¹•ÜÉÉ½È ‰¸•ÉÉ½È½ÕÉÉ•¥¸Ñ¡”M•ÉÙ•È½µÁ½¹•¹ÑÌÉ•¹‘•È¸Q¡”ÍÁ•¥™¥Œµ•ÍÍ…”¥Ì½µ¥ÑÑ•¥¸ÁÉ½‘ÕÑ¥½¸‰Õ¥±‘ÌÑ¼…Ù½¥±•…­¥¹œÍ•¹Í¥Ñ¥Ù”‘•Ñ…¥±Ì¸‘¥•ÍÐÁÉ½Á•ÉÑä¥Ì¥¹±Õ‘•½¸Ñ¡¥Ì•ÉÉ½È¥¹ÍÑ…¹”Ý¡¥ µ…äÁÉ½Ù¥‘”…‘‘¥Ñ¥½¹…°‘•Ñ…¥±Ì…‰½ÕÐÑ¡”¹…ÑÕÉ”½˜Ñ¡”•ÉÉ½È¸ˆ¤ì(%Í…¹¥Ñ¥é•¹‘¥•ÍÐ€ô•ÉÉ½É¥•ÍÐ¡•ÑQ¡É½Ý¹Y…±Õ•5•ÍÍ…”¡•ÉÉ½È¤€¬•ÑQ¡É½Ý¹Y…±Õ•MÑ…¬¡•ÉÉ½È¤¤ì(%É•ÑÕÉ¸Í…¹¥Ñ¥é•ì)ô)™Õ¹Ñ¥½¸É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•ÈÄ¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸€¡•ÉÉ½È¤€ôøì($%½¹ÍÐ¹½‘•¹Ø€ô½ÁÑ¥½¹Ì¹¹½‘•¹Ø€üü€‰ÁÉ½‘ÕÑ¥½¸ˆì($%¥˜€¡¡…Í¥•ÍÐ¡•ÉÉ½È¤¤É•ÑÕÉ¸MÑÉ¥¹œ¡•ÉÉ½È¹‘¥•ÍÐ¤ì($%¥˜€¡¹½‘•¹Ø€„ôô€‰ÁÉ½‘ÕÑ¥½¸ˆ€˜˜•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€˜˜•ÉÉ½È¹µ•ÍÍ…”¹¥¹±Õ‘•Ì ‰=¹±äÁ±…¥¸½‰©•ÑÌ°…¹„™•Ü‰Õ¥±Ðµ¥¹Ì°…¸‰”Á…ÍÍ•Ñ¼±¥•¹Ð½µÁ½¹•¹ÑÌˆ¤¤ì($$%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑtIMÍ•É¥…±¥é…Ñ¥½¸•ÉÉ½Èè„¹½¸µÁ±…¥¸½‰©•ÐÝ…ÌÁ…ÍÍ•™É½´„M•ÉÙ•È½µÁ½¹•¹ÐÑ¼„±¥•¹Ð½µÁ½¹•¹Ð¹q¹q¹½µµ½¸…ÕÍ•Ìéq¸€€¨A…ÍÍ¥¹œ„µ½‘Õ±”¹…µ•ÍÁ…”€¡¥µÁ½ÉÐ€¨…Ì`¤‘¥É•Ñ±ä…Ì„ÁÉ½À¹q¸€€€U¹±¥­”9•áÐ¹©Ì€¡Ý•‰Á…¬¤°Y¥Ñ”ÁÉ½‘Õ•ÌÉ•…°M4µ½‘Õ±”¹…µ•ÍÁ…”½‰©•ÑÍq¸€€€Ý¡¥ …É”¹½ÐÍ•É¥…±¥é…‰±”¸¥àèÁ…ÍÌ¥¹‘¥Ù¥‘Õ…°Ù…±Õ•Ì¥¹ÍÑ•…±q¸€€€”¹œ¸€ñ½µÀÙ…±Õ”õíµ½‘Õ±”¹Ù…±Õ•ô€¼ùq¸€€¨A…ÍÍ¥¹œ„±…ÍÌ¥¹ÍÑ…¹”€¡¹•Ü½¼ ¤¤…Ì„ÁÉ½À¹q¸€€€¥àè½¹Ù•ÉÐÑ¼„Á±…¥¸½‰©•Ð°”¹œ¸ì¥è™½¼¹¥°¹…µ”è™½¼¹¹…µ”õq¸€€¨A…ÍÍ¥¹œ„…Ñ”°5…À°½ÈM•Ð¸UÍ”€¹Ñ½%M=MÑÉ¥¹œ ¤°l¸¸¹µ…À¹•¹ÑÉ¥•Ì ¥t°•ÑŒ¹q¸€€¨A…ÍÍ¥¹œ=‰©•Ð¹É•…Ñ”¡¹Õ±°¤¸UÍ”ì€¸¸¹½‰¨ôÑ¼É•ÍÑ½É”„ÁÉ½Ñ½ÑåÁ”¹q¹q¹=É¥¥¹…°•ÉÉ½Èèˆ°•ÉÉ½È¹µ•ÍÍ…”¤ì($$%É•ÑÕÉ¸ì($%ô($%¥˜€¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑ%¹™¼€˜˜½ÁÑ¥½¹Ì¹•ÉÉ½É½¹Ñ•áÐ€˜˜•ÉÉ½È¤½ÁÑ¥½¹Ì¹É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÉ½È€è¹•ÜÉÉ½È¡•ÑQ¡É½Ý¹Y…±Õ•5•ÍÍ…”¡•ÉÉ½È¤¤°½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑ%¹™¼°½ÁÑ¥½¹Ì¹•ÉÉ½É½¹Ñ•áÐ¤ì($%¥˜€¡¹½‘•¹Ø€ôôô€‰ÁÉ½‘ÕÑ¥½¸ˆ€˜˜•ÉÉ½È¤É•ÑÕÉ¸•ÉÉ½É¥•ÍÐ¡•ÑQ¡É½Ý¹Y…±Õ•5•ÍÍ…”¡•ÉÉ½È¤€¬•ÑQ¡É½Ý¹Y…±Õ•MÑ…¬¡•ÉÉ½È¤¤ì(%ôì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉÍŒµ•ÉÉ½Èµ¡…¹‘±•È¹©Ì(¼¨¨(¨	Õ¥±„Á•ÈµÉ•ÅÕ•ÍÐIM•ÉÉ½È¡…¹‘±•ÈÑ¡…Ð•áÑÉ…ÑÌÉ•ÅÕ•ÍÐµ•Ñ…‘…Ñ„™É½´(¨Ñ¡”¥¹½µ¥¹œ]•ˆI•ÅÕ•ÍÑ€°Ý¥É•Ì¥Ð¥¹Ñ¼„É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•É€…±°°(¨…¹‰¥¹‘ÌÑ¡”½¹™¥ÕÉ•É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½É€É•Á½ÉÑ•È¸(¨(¨AÕÉ”™…Ñ½ÉäèÑ…­•Ì…±°‘•ÁÌ•áÁ±¥¥Ñ±äƒŠP¹¼±½ÍÕÉ”½Ù•Èµ½‘Õ±”µ±•Ù•°ÍÑ…Ñ”¸(¨¼)™Õ¹Ñ¥½¸É•…Ñ•ÁÁIÍ=¹ÉÉ½É!…¹‘±•È¡É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È°É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì(%½¹ÍÐÉ•ÅÕ•ÍÑ!•…‘•ÉÌ€ô=‰©•Ð¹™É½µ¹ÑÉ¥•Ì¡É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•¹ÑÉ¥•Ì ¤¤ì(%½¹ÍÐÉ•ÅÕ•ÍÑ%¹™¼€ôì($%Á…Ñ èÁ…Ñ¡¹…µ”°($%µ•Ñ¡½èÉ•ÅÕ•ÍÐ¹µ•Ñ¡½°($%¡•…‘•ÉÌèÉ•ÅÕ•ÍÑ!•…‘•ÉÌ(%ôì(%É•ÑÕÉ¸É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•ÈÄ¡ì($%•ÉÉ½É½¹Ñ•áÐèì($$%É½ÕÑ•É-¥¹è€‰ÁÀI½ÕÑ•Èˆ°($$%É½ÕÑ•A…Ñ èÉ½ÕÑ•A…Ñ ñðÁ…Ñ¡¹…µ”°($$%É½ÕÑ•QåÁ”è€‰É•¹‘•Èˆ($%ô°($%É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È°($%É•ÅÕ•ÍÑ%¹™¼(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½•ÉÉ½Èµ‰½Õ¹‘…Éä¹©Ì)Ù…ÈÉÉ½É	½Õ¹‘…Éä€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€ÉÉ½É	½Õ¹‘…Éäœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆÔäÍ˜ÌÐÑ‘ŒÔÄÀˆ°€‰ÉÉ½É	½Õ¹‘…Éäˆ¤ì)Ù…È½É‰¥‘‘•¹	½Õ¹‘…Éä€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€½É‰¥‘‘•¹	½Õ¹‘…Éäœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆÔäÍ˜ÌÐÑ‘ŒÔÄÀˆ°€‰½É‰¥‘‘•¹	½Õ¹‘…Éäˆ¤ì)Ù…È9½Ñ½Õ¹‘	½Õ¹‘…Éä€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€9½Ñ½Õ¹‘	½Õ¹‘…Éäœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆÔäÍ˜ÌÐÑ‘ŒÔÄÀˆ°€‰9½Ñ½Õ¹‘	½Õ¹‘…Éäˆ¤ì)Ù…ÈI•‘¥É•Ñ	½Õ¹‘…Éä€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€I•‘¥É•Ñ	½Õ¹‘…Éäœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆÔäÍ˜ÌÐÑ‘ŒÔÄÀˆ°€‰I•‘¥É•Ñ	½Õ¹‘…Éäˆ¤ì)Ù…ÈU¹…ÕÑ¡½É¥é•‘	½Õ¹‘…Éä€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€U¹…ÕÑ¡½É¥é•‘	½Õ¹‘…Éäœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆÔäÍ˜ÌÐÑ‘ŒÔÄÀˆ°€‰U¹…ÕÑ¡½É¥é•‘	½Õ¹‘…Éäˆ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½±…å½ÕÐµÍ•µ•¹Ðµ½¹Ñ•áÐ¹©Ì(¼¨¨(¨1…å½ÕÐÍ•µ•¹Ð½¹Ñ•áÐÁÉ½Ù¥‘•È¸(¨(¨5ÕÍÐ‰”€‰ÕÍ”±¥•¹ÐˆÍ¼Ñ¡…ÐY¥Ñ”ÌIM‰Õ¹‘±•ÈÉ•¹‘•ÉÌÑ¡¥Ì½µÁ½¹•¹Ð¥¸(¨Ñ¡”MMH½‰É½ÝÍ•È•¹Ù¥É½¹µ•¹ÐÝ¡•É”I•…Ð¹É•…Ñ•½¹Ñ•áÐ¥Ì…Ù…¥±…‰±”¸Q¡”IM(¨•¹ÑÉä¥µÁ½ÉÑÌ…¹É•¹‘•ÉÌ1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È‘¥É•Ñ±ä°‰ÕÐ‰•…ÕÍ”½˜Ñ¡”(¨€‰ÕÍ”±¥•¹Ðˆ‰½Õ¹‘…ÉäÑ¡”…ÑÕ…°•á•ÕÑ¥½¸¡…ÁÁ•¹Ì½¸Ñ¡”MMH½±¥•¹ÐÍ¥‘”(¨Ý¡•É”Ñ¡”½¹Ñ•áÐ…¸‰”É•…Ñ•…¹½¹ÍÕµ•‰äÕÍ•M•±•Ñ•‘1…å½ÕÑM•µ•¹Ð¡Ì¤¸(¨(¨]¥Ñ¡½ÕÐ€‰ÕÍ”±¥•¹Ðˆ°Ñ¡¥ÌÉÕ¹Ì¥¸Ñ¡”IM•¹Ù¥É½¹µ•¹ÐÝ¡•É”(¨I•…Ð¹É•…Ñ•½¹Ñ•áÐ¥ÌÕ¹‘•™¥¹•°•Ñ1…å½ÕÑM•µ•¹Ñ½¹Ñ•áÐ ¤É•ÑÕÉ¹Ì¹Õ±°°(¨Ñ¡”ÁÉ½Ù¥‘•È‰•½µ•Ì„¹¼µ½À°…¹ÕÍ•M•±•Ñ•‘1…å½ÕÑM•µ•¹ÑÌ…±Ý…åÌÉ•ÑÕÉ¹Ìmt¸(¨(¨Q¡”½¹Ñ•áÐ¥ÌÍ¡…É•Ý¥Ñ ¹…Ù¥…Ñ¥½¸¹ÑÌÙ¥„•Ñ1…å½ÕÑM•µ•¹Ñ½¹Ñ•áÐ ¤(¨Ñ¼…Ù½¥É•…Ñ¥¹œÍ•Á…É…Ñ”½¹Ñ•áÑÌ¥¸‘¥™™•É•¹Ðµ½‘Õ±•Ì¸(¨¼(¼¨¨(¨]É…ÁÌ¡¥±‘É•¸Ý¥Ñ Ñ¡”±…å½ÕÐÍ•µ•¹Ð½¹Ñ•áÐ¸(¨(¨… ±…å½ÕÐ¥¸Ñ¡”ÁÀI½ÕÑ•ÈÑÉ•”ÝÉ…ÁÌ¥ÑÌ¡¥±‘É•¸Ý¥Ñ Ñ¡¥ÌÁÉ½Ù¥‘•È°(¨Á…ÍÍ¥¹œ„µ…À½˜Á…É…±±•°É½ÕÑ”­•äÑ¼Í•µ•¹ÐÁ…Ñ ¸Q¡”€‰¡¥±‘É•¸ˆ­•ä¥Ì(¨…±Ý…åÌÁÉ•Í•¹Ð€¡Ñ¡”‘•™…Õ±ÐÁ…É…±±•°É½ÕÑ”¤¸9…µ•Á…É…±±•°Í±½ÑÌ…ÐÑ¡¥Ì(¨±…å½ÕÐ±•Ù•°…‘Ñ¡•¥È½Ý¸­•åÌ¸(¨(¨½µÁ½¹•¹ÑÌ¥¹Í¥‘”Ñ¡”ÁÉ½Ù¥‘•È…±°ÕÍ•M•±•Ñ•‘1…å½ÕÑM•µ•¹ÑÌ¡Á…É…±±•±I½ÕÑ•Í-•ä¤(¨Ñ¼É•…Ñ¡”Í•µ•¹ÑÌ™½È„ÍÁ•¥™¥ŒÁ…É…±±•°É½ÕÑ”¸(¨¼)Ù…È1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•Èœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆÄÕŒÄá™…••™˜ˆ°€‰1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•Èˆ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½Í±½Ð¹©Ì(¼¨¨(¨!½±‘ÌÉ•Í½±Ù•ÁÁ±•µ•¹ÑÌ€¡¹½Ð„AÉ½µ¥Í”¤¸I•…Ð€ÄäÌÕÍ”¡AÉ½µ¥Í”¤‘ÕÉ¥¹œ(¨¡å‘É…Ñ¥½¸ÑÉ¥•ÉÌ€‰…Íå¹Œ±¥•¹Ð½µÁ½¹•¹Ðˆ™½È¹…Ñ¥Ù”AÉ½µ¥Í•ÌÑ¡…Ð±…¬(¨I•…ÐÌ¥¹Ñ•É¹…°€¹ÍÑ…ÑÕÌÁÉ½Á•ÉÑä¸MÑ½É¥¹œÉ•Í½±Ù•Ù…±Õ•ÌÍ¥‘•ÍÑ•ÁÌÑ¡¥Ì¸(¨¼)Ù…È¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€¡¥±‘É•¸œ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆáŒÁ˜ÈÄÙŒÐØÀÐˆ°€‰¡¥±‘É•¸ˆ¤ì)Ù…ÈA…É…±±•±M±½Ð€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€A…É…±±•±M±½Ðœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆáŒÁ˜ÈÄÙŒÐØÀÐˆ°€‰A…É…±±•±M±½Ðˆ¤ì)Ù…ÈM±½Ð€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€M±½Ðœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€ˆáŒÁ˜ÈÄÙŒÐØÀÐˆ°€‰M±½Ðˆ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ•¹‘•Èµ‘•Á•¹‘•¹ä¹©Ì)™Õ¹Ñ¥½¸É•…Ñ•ÁÁI•¹‘•É•Á•¹‘•¹ä ¤ì(%±•ÐÉ•±•…Í•€ô™…±Í”ì(%±•ÐÉ•Í½±Ù”ì(%É•ÑÕÉ¸ì($%ÁÉ½µ¥Í”è¹•ÜAÉ½µ¥Í” ¡ÁÉ½µ¥Í•I•Í½±Ù”¤€ôøì($$%É•Í½±Ù”€ôÁÉ½µ¥Í•I•Í½±Ù”ì($%ô¤°($%É•±•…Í” ¤ì($$%¥˜€¡É•±•…Í•¤É•ÑÕÉ¸ì($$%É•±•…Í•€ôÑÉÕ”ì($$%É•Í½±Ù” ¤ì($%ô(%ôì)ô)™Õ¹Ñ¥½¸É•¹‘•É™Ñ•ÉÁÁ•Á•¹‘•¹¥•Ì¡¡¥±‘É•¸°‘•Á•¹‘•¹¥•Ì¤ì(%¥˜€¡‘•Á•¹‘•¹¥•Ì¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸¡¥±‘É•¸ì(%…Íå¹Œ™Õ¹Ñ¥½¸Ý…¥ÑÁÁI•¹‘•É•Á•¹‘•¹¥•Ì ¤ì($%…Ý…¥ÐAÉ½µ¥Í”¹…±°¡‘•Á•¹‘•¹¥•Ì¹µ…À ¡‘•Á•¹‘•¹ä¤€ôø‘•Á•¹‘•¹ä¹ÁÉ½µ¥Í”¤¤ì($%É•ÑÕÉ¸¡¥±‘É•¸ì(%ô(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Ý…¥ÑÁÁI•¹‘•É•Á•¹‘•¹¥•Ì°íô¤ì)ô)™Õ¹Ñ¥½¸É•¹‘•É]¥Ñ¡ÁÁ•Á•¹‘•¹å	…ÉÉ¥•È¡¡¥±‘É•¸°‘•Á•¹‘•¹ä¤ì(%™Õ¹Ñ¥½¸I•±•…Í•ÁÁI•¹‘•É•Á•¹‘•¹ä ¤ì($%‘•Á•¹‘•¹ä¹É•±•…Í” ¤ì($%É•ÑÕÉ¸¹Õ±°ì(%ô(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èm¡¥±‘É•¸°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡I•±•…Í•ÁÁI•¹‘•É•Á•¹‘•¹ä°íô¥tô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÍ•µ•¹ÐµÍÑ…Ñ”¹©Ì)™Õ¹Ñ¥½¸¥Í=ÁÑ¥½¹…±…Ñ¡±±M•µ•¹Ð¡Í•µ•¹Ð¤ì(%É•ÑÕÉ¸Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰ml¸¸¸ˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ‰utˆ¤€˜˜Í•µ•¹Ð¹±•¹Ñ €ø€Üì)ô)™Õ¹Ñ¥½¸¥Í…Ñ¡±±M•µ•¹Ð¡Í•µ•¹Ð¤ì(%É•ÑÕÉ¸Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰l¸¸¸ˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ‰tˆ¤€˜˜Í•µ•¹Ð¹±•¹Ñ €ø€Ôì)ô)™Õ¹Ñ¥½¸¥Íå¹…µ¥M•µ•¹Ð¡Í•µ•¹Ð¤ì(%É•ÑÕÉ¸Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰lˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ‰tˆ¤€˜˜€…Í•µ•¹Ð¹¥¹±Õ‘•Ì ˆ¸ˆ¤ì)ô)™Õ¹Ñ¥½¸¥ÍI½ÕÑ•É½ÕÁM•µ•¹Ð¡Í•µ•¹Ð¤ì(%É•ÑÕÉ¸Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ˆ ˆ¤€˜˜Í•µ•¹Ð¹•¹‘Í]¥Ñ  ˆ¤ˆ¤ì)ô)™Õ¹Ñ¥½¸™½Éµ…ÑA…É…µM•µ•¹ÑY…±Õ”¡Ù…±Õ”¤ì(%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤¤É•ÑÕÉ¸Ù…±Õ”¹©½¥¸ ˆ¼ˆ¤ì(%É•ÑÕÉ¸Ù…±Õ”ì)ô)™Õ¹Ñ¥½¸É•…‘M•µ•¹ÑA…É…´¡Í•µ•¹Ð¤ì(%¥˜€¡¥Í=ÁÑ¥½¹…±…Ñ¡±±M•µ•¹Ð¡Í•µ•¹Ð¤¤É•ÑÕÉ¸ì($%¹…µ”èÍ•µ•¹Ð¹Í±¥” Ô°€´È¤°($%ÑåÁ”è€‰½Œˆ(%ôì(%¥˜€¡¥Í…Ñ¡±±M•µ•¹Ð¡Í•µ•¹Ð¤¤É•ÑÕÉ¸ì($%¹…µ”èÍ•µ•¹Ð¹Í±¥” Ð°€´Ä¤°($%ÑåÁ”è€‰Œˆ(%ôì(%¥˜€¡¥Íå¹…µ¥M•µ•¹Ð¡Í•µ•¹Ð¤¤É•ÑÕÉ¸ì($%¹…µ”èÍ•µ•¹Ð¹Í±¥” Ä°€´Ä¤°($%ÑåÁ”è€‰ˆ(%ôì(%É•ÑÕÉ¸¹Õ±°ì)ô)™Õ¹Ñ¥½¸™½Éµ…ÑM•µ•¹ÑMÑ…Ñ•A…É…µY…±Õ”¡Á…É…´°Á…É…µÌ°™…±±‰…­M•µ•¹Ð¤ì(%½¹ÍÐÙ…±Õ”€ôÁ…É…µÍmÁ…É…´¹¹…µ•tì(%¥˜€¡Á…É…´¹ÑåÁ”€ôôô€‰½Œˆ€˜˜€¡Ù…±Õ”€ôôôÙ½¥€ÀñðÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤€˜˜Ù…±Õ”¹±•¹Ñ €ôôô€À¤¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸™½Éµ…ÑA…É…µM•µ•¹ÑY…±Õ”¡Ù…±Õ”¤€üü™…±±‰…­M•µ•¹Ðì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•M¥¹±•M•µ•¹ÑMÑ…Ñ•-•ä¡Í•µ•¹Ð°Á…É…µÌ¤ì(%½¹ÍÐÁ…É…´€ôÉ•…‘M•µ•¹ÑA…É…´¡Í•µ•¹Ð¤ì(%¥˜€ …Á…É…´¤É•ÑÕÉ¸Í•µ•¹Ðì(%É•ÑÕÉ¸€‘íÁ…É…´¹¹…µ•õð‘í™½Éµ…ÑM•µ•¹ÑMÑ…Ñ•A…É…µY…±Õ”¡Á…É…´°Á…É…µÌ°Í•µ•¹Ð¥õð‘íÁ…É…´¹ÑåÁ•õ€ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•¡¥±‘M•µ•¹ÑÌ¡É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸°Á…É…µÌ¤ì(%½¹ÍÐÉ…ÝM•µ•¹ÑÌ€ôÉ½ÕÑ•M•µ•¹ÑÌ¹Í±¥”¡ÑÉ••A½Í¥Ñ¥½¸¤ì(%½¹ÍÐÉ•Í½±Ù•‘M•µ•¹ÑÌ€ômtì(%™½È€¡½¹ÍÐÍ•µ•¹Ð½˜É…ÝM•µ•¹ÑÌ¤ì($%¥˜€¡¥Í=ÁÑ¥½¹…±…Ñ¡±±M•µ•¹Ð¡Í•µ•¹Ð¤¤ì($$%½¹ÍÐÁ…É…µY…±Õ”€ôÁ…É…µÍmÍ•µ•¹Ð¹Í±¥” Ô°€´È¥tì($$%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡Á…É…µY…±Õ”¤€˜˜Á…É…µY…±Õ”¹±•¹Ñ €ôôô€À¤½¹Ñ¥¹Õ”ì($$%½¹ÍÐÉ•Í½±Ù•‘Y…±Õ”€ô™½Éµ…ÑA…É…µM•µ•¹ÑY…±Õ”¡Á…É…µY…±Õ”¤ì($$%¥˜€¡É•Í½±Ù•‘Y…±Õ”€„ôôÙ½¥€À¤É•Í½±Ù•‘M•µ•¹ÑÌ¹ÁÕÍ ¡É•Í½±Ù•‘Y…±Õ”¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%¥˜€¡¥Í…Ñ¡±±M•µ•¹Ð¡Í•µ•¹Ð¤¤ì($$%½¹ÍÐÁ…É…µ9…µ”€ôÍ•µ•¹Ð¹Í±¥” Ð°€´Ä¤ì($$%É•Í½±Ù•‘M•µ•¹ÑÌ¹ÁÕÍ ¡™½Éµ…ÑA…É…µM•µ•¹ÑY…±Õ”¡Á…É…µÍmÁ…É…µ9…µ•t¤€üüÍ•µ•¹Ð¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%¥˜€¡¥Íå¹…µ¥M•µ•¹Ð¡Í•µ•¹Ð¤¤ì($$%½¹ÍÐÁ…É…µ9…µ”€ôÍ•µ•¹Ð¹Í±¥” Ä°€´Ä¤ì($$%É•Í½±Ù•‘M•µ•¹ÑÌ¹ÁÕÍ ¡™½Éµ…ÑA…É…µM•µ•¹ÑY…±Õ”¡Á…É…µÍmÁ…É…µ9…µ•t¤€üüÍ•µ•¹Ð¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%É•Í½±Ù•‘M•µ•¹ÑÌ¹ÁÕÍ ¡Í•µ•¹Ð¤ì(%ô(%É•ÑÕÉ¸É•Í½±Ù•‘M•µ•¹ÑÌì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•M•µ•¹ÑMÑ…Ñ•-•ä¡É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸°Á…É…µÌ¤ì(%™½È€¡½¹ÍÐÍ•µ•¹Ð½˜É½ÕÑ•M•µ•¹ÑÌ¹Í±¥”¡ÑÉ••A½Í¥Ñ¥½¸¤¤¥˜€ …¥ÍI½ÕÑ•É½ÕÁM•µ•¹Ð¡Í•µ•¹Ð¤¤É•ÑÕÉ¸É•Í½±Ù•M¥¹±•M•µ•¹ÑMÑ…Ñ•-•ä¡Í•µ•¹Ð°Á…É…µÌ¤ì(%É•ÑÕÉ¸€ˆˆì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•I½ÕÑ•MÑ…Ñ•-•ä¡É½ÕÑ•M•µ•¹ÑÌ°Á…É…µÌ¤ì(%½¹ÍÐÍÑ…Ñ•A…Ñ €ômtì(%™½È€¡½¹ÍÐÍ•µ•¹Ð½˜É½ÕÑ•M•µ•¹ÑÌ¤¥˜€ …¥ÍI½ÕÑ•É½ÕÁM•µ•¹Ð¡Í•µ•¹Ð¤¤ÍÑ…Ñ•A…Ñ ¹ÁÕÍ ¡É•Í½±Ù•M¥¹±•M•µ•¹ÑMÑ…Ñ•-•ä¡Í•µ•¹Ð°Á…É…µÌ¤¤ì(%É•ÑÕÉ¸ÍÑ…Ñ•A…Ñ ¹±•¹Ñ €ø€À€ü)M=8¹ÍÑÉ¥¹¥™ä¡ÍÑ…Ñ•A…Ñ ¤€è€ˆˆì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÉ½ÕÑ”µÝ¥É¥¹œ¹©Ì)™Õ¹Ñ¥½¸•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡µ½‘Õ±”¤ì(%É•ÑÕÉ¸µ½‘Õ±”ü¹‘•™…Õ±Ð€üü¹Õ±°ì)ô)™Õ¹Ñ¥½¸•ÑÉÉ½É	½Õ¹‘…ÉåáÁ½ÉÐ¡µ½‘Õ±”¤ì(%É•ÑÕÉ¸µ½‘Õ±”ü¹‘•™…Õ±Ð€üü¹Õ±°ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•QÉ••A…Ñ ¡É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸¤ì(%½¹ÍÐÑÉ••A…Ñ¡M•µ•¹ÑÌ€ôÉ½ÕÑ•M•µ•¹ÑÌü¹Í±¥” À°ÑÉ••A½Í¥Ñ¥½¸¤€üümtì(%¥˜€¡ÑÉ••A…Ñ¡M•µ•¹ÑÌ¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸€ˆ¼ˆì(%É•ÑÕÉ¸€¼‘íÑÉ••A…Ñ¡M•µ•¹ÑÌ¹©½¥¸ ˆ¼ˆ¥õ€ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•1…å½ÕÑ¹ÑÉ¥•Ì¡É½ÕÑ”¤ì(%É•ÑÕÉ¸É½ÕÑ”¹±…å½ÕÑÌ¹µ…À ¡±…å½ÕÑ5½‘Õ±”°¥¹‘•à¤€ôøì($%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ôÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹m¥¹‘•át€üü€Àì($%½¹ÍÐÑÉ••A…Ñ €ôÉ•…Ñ•ÁÁA…•QÉ••A…Ñ ¡É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸¤ì($%É•ÑÕÉ¸ì($$%•ÉÉ½É5½‘Õ±”èÉ½ÕÑ”¹•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ì€ü¹Õ±°€èÉ½ÕÑ”¹•ÉÉ½ÉÌü¹m¥¹‘•át€üü¹Õ±°°($$%™½É‰¥‘‘•¹5½‘Õ±”èÉ½ÕÑ”¹™½É‰¥‘‘•¹Ìü¹m¥¹‘•át€üü¹Õ±°°($$%¥èÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•1…å½ÕÑ%¡ÑÉ••A…Ñ ¤°($$%±…å½ÕÑ5½‘Õ±”°($$%¹½Ñ½Õ¹‘5½‘Õ±”èÉ½ÕÑ”¹¹½Ñ½Õ¹‘Ìü¹m¥¹‘•át€üü¹Õ±°°($$%Õ¹…ÕÑ¡½É¥é•‘5½‘Õ±”èÉ½ÕÑ”¹Õ¹…ÕÑ¡½É¥é•‘Ìü¹m¥¹‘•át€üü¹Õ±°°($$%ÑÉ••A…Ñ °($$%ÑÉ••A½Í¥Ñ¥½¸($%ôì(%ô¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•Q•µÁ±…Ñ•¹ÑÉ¥•Ì¡É½ÕÑ”¤ì(%É•ÑÕÉ¸€¡É½ÕÑ”¹Ñ•µÁ±…Ñ•Ì€üümt¤¹µ…À ¡Ñ•µÁ±…Ñ•5½‘Õ±”°¥¹‘•à¤€ôøì($%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ôÉ½ÕÑ”¹Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìü¹m¥¹‘•át€üü€Àì($%½¹ÍÐÑÉ••A…Ñ €ôÉ•…Ñ•ÁÁA…•QÉ••A…Ñ ¡É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸¤ì($%É•ÑÕÉ¸ì($$%¥èÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•Q•µÁ±…Ñ•%¡ÑÉ••A…Ñ ¤°($$%Ñ•µÁ±…Ñ•5½‘Õ±”°($$%ÑÉ••A…Ñ °($$%ÑÉ••A½Í¥Ñ¥½¸($%ôì(%ô¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•ÉÉ½É¹ÑÉ¥•Ì¡É½ÕÑ”¤ì(%É•ÑÕÉ¸€¡É½ÕÑ”¹•ÉÉ½ÉA…Ñ¡Ì€üüÉ½ÕÑ”¹•ÉÉ½ÉÌ€üümt¤¹™±…Ñ5…À ¡•ÉÉ½É5½‘Õ±”°¥¹‘•à¤€ôøì($%¥˜€ …•ÉÉ½É5½‘Õ±”¤É•ÑÕÉ¸mtì($%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ôÉ½ÕÑ”¹•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìü¹m¥¹‘•átì($%¥˜€¡ÑÉ••A½Í¥Ñ¥½¸€ôôôÙ½¥€À¤É•ÑÕÉ¸mtì($%É•ÑÕÉ¸mì($$%•ÉÉ½É5½‘Õ±”°($$%ÑÉ••A½Í¥Ñ¥½¸($%õtì(%ô¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•A…É…±±•±M±½Ñ¹ÑÉ¥•Ì¡±…å½ÕÑ%¹‘•à°±…å½ÕÑ¹ÑÉ¥•Ì°É½ÕÑ”°•Ñ™™•Ñ¥Ù•M±½ÑA…É…µÌ¤ì(%½¹ÍÐÁ…É…±±•±M±½ÑÌ€ôíôì(%™½È€¡½¹ÍÐmÍ±½Ñ-•ä°Í±½Ñt½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡É½ÕÑ”¹Í±½ÑÌ€üüíô¤¤ì($%½¹ÍÐÍ±½Ñ9…µ”€ôÍ±½Ð¹¹…µ”ì($%½¹ÍÐÑ…É•Ñ%¹‘•à€ôÍ±½Ð¹±…å½ÕÑ%¹‘•à€øô€À€üÍ±½Ð¹±…å½ÕÑ%¹‘•à€è±…å½ÕÑ¹ÑÉ¥•Ì¹±•¹Ñ €´€Äì($%¥˜€¡Ñ…É•Ñ%¹‘•à€„ôô±…å½ÕÑ%¹‘•à¤½¹Ñ¥¹Õ”ì($%½¹ÍÐÑÉ••A…Ñ €ô±…å½ÕÑ¹ÑÉ¥•ÍmÑ…É•Ñ%¹‘•átü¹ÑÉ••A…Ñ €üü€ˆ¼ˆì($%½¹ÍÐÍ±½ÑA…É…µÌ€ô•Ñ™™•Ñ¥Ù•M±½ÑA…É…µÌ¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤ì($%Á…É…±±•±M±½ÑÍmÍ±½Ñ9…µ•t€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È°ì($$%Í•µ•¹Ñ5…Àèì¡¥±‘É•¸èÍ±½Ð¹É½ÕÑ•M•µ•¹ÑÌ€üÉ•Í½±Ù•ÁÁA…•¡¥±‘M•µ•¹ÑÌ¡Í±½Ð¹É½ÕÑ•M•µ•¹ÑÌ°€À°Í±½ÑA…É…µÌ¤€èmtô°($$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M±½Ð°ì¥èÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•M±½Ñ%¡Í±½Ñ9…µ”°ÑÉ••A…Ñ ¤ô¤($%ô¤ì(%ô(%É•ÑÕÉ¸=‰©•Ð¹­•åÌ¡Á…É…±±•±M±½ÑÌ¤¹±•¹Ñ €ø€À€üÁ…É…±±•±M±½ÑÌ€èÙ½¥€Àì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•I½ÕÑ•!•…¡µ•Ñ…‘…Ñ„°Ù¥•ÝÁ½ÉÐ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èl($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰µ•Ñ„ˆ°ì¡…ÉM•Ðè€‰ÕÑ˜´àˆô¤°($%µ•Ñ…‘…Ñ„€ü€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡5•Ñ…‘…Ñ…!•…°ìµ•Ñ…‘…Ñ„ô¤€è¹Õ±°°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Y¥•ÝÁ½ÉÑ!•…°ìÙ¥•ÝÁ½ÉÐô¤(%tô¤ì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•±•µ•¹ÑÌ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ€ô½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ€üü¹Õ±°ì(%½¹ÍÐÉ½ÕÑ•M•µ•¹ÑÌ€ô½ÁÑ¥½¹Ì¹É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ€üümtì(%½¹ÍÐÉ½ÕÑ•I•Í•Ñ-•ä€ôÉ•Í½±Ù•ÁÁA…•I½ÕÑ•MÑ…Ñ•-•ä¡É½ÕÑ•M•µ•¹ÑÌ°½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ¤ì(%½¹ÍÐÉ½ÕÑ•%€ôÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•I½ÕÑ•%¡½ÁÑ¥½¹Ì¹É½ÕÑ•A…Ñ °¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì(%½¹ÍÐÁ…•%€ôÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•A…•%¡½ÁÑ¥½¹Ì¹É½ÕÑ•A…Ñ °¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì(%½¹ÍÐ±…å½ÕÑ¹ÑÉ¥•Ì€ôÉ•…Ñ•ÁÁA…•1…å½ÕÑ¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¤ì(%½¹ÍÐÑ•µÁ±…Ñ•¹ÑÉ¥•Ì€ôÉ•…Ñ•ÁÁA…•Q•µÁ±…Ñ•¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¤ì(%½¹ÍÐ•ÉÉ½É¹ÑÉ¥•Ì€ôÉ•…Ñ•ÁÁA…•ÉÉ½É¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¤ì(%½¹ÍÐ±…å½ÕÑ¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%½¹ÍÐÑ•µÁ±…Ñ•¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%½¹ÍÐ•ÉÉ½É¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%™½È€¡½¹ÍÐ±…å½ÕÑ¹ÑÉä½˜±…å½ÕÑ¹ÑÉ¥•Ì¤±…å½ÕÑ¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹Í•Ð¡±…å½ÕÑ¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸°±…å½ÕÑ¹ÑÉä¤ì(%™½È€¡½¹ÍÐÑ•µÁ±…Ñ•¹ÑÉä½˜Ñ•µÁ±…Ñ•¹ÑÉ¥•Ì¤Ñ•µÁ±…Ñ•¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹Í•Ð¡Ñ•µÁ±…Ñ•¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸°Ñ•µÁ±…Ñ•¹ÑÉä¤ì(%™½È€¡½¹ÍÐ•ÉÉ½É¹ÑÉä½˜•ÉÉ½É¹ÑÉ¥•Ì¤•ÉÉ½É¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹Í•Ð¡•ÉÉ½É¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸°•ÉÉ½É¹ÑÉä¤ì(%½¹ÍÐ±…å½ÕÑ%¹‘¥•Í	åQÉ••A½Í¥Ñ¥½¸€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%™½È€¡±•Ð¥¹‘•à€ô€Àì¥¹‘•à€ð±…å½ÕÑ¹ÑÉ¥•Ì¹±•¹Ñ ì¥¹‘•à¬¬¤±…å½ÕÑ%¹‘¥•Í	åQÉ••A½Í¥Ñ¥½¸¹Í•Ð¡±…å½ÕÑ¹ÑÉ¥•Ím¥¹‘•át¹ÑÉ••A½Í¥Ñ¥½¸°¥¹‘•à¤ì(%½¹ÍÐ±…å½ÕÑ•Á•¹‘•¹¥•Í	å%¹‘•à€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%½¹ÍÐ±…å½ÕÑ•Á•¹‘•¹¥•Í	•™½É”€ômtì(%½¹ÍÐÍ±½Ñ•Á•¹‘•¹¥•Í	å1…å½ÕÑ%¹‘•à€ômtì(%½¹ÍÐÑ•µÁ±…Ñ••Á•¹‘•¹¥•Í	å%€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%½¹ÍÐÑ•µÁ±…Ñ••Á•¹‘•¹¥•Í	•™½É•	å%€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%½¹ÍÐÁ…••Á•¹‘•¹¥•Ì€ômtì(%½¹ÍÐÉ½½Ñ1…å½ÕÑQÉ••A…Ñ €ô±…å½ÕÑ¹ÑÉ¥•ÍlÁtü¹ÑÉ••A…Ñ €üü¹Õ±°ì(%½¹ÍÐ•±•µ•¹ÑÌ€ôì€¸¸¹ÁÁ±•µ•¹ÑÍ]¥É”¹É•…Ñ•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡ì($%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°($%±…å½ÕÑ%‘Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”¹¥‘Ìü¹±…å½ÕÑÌ€üü±…å½ÕÑ¹ÑÉ¥•Ì¹µ…À ¡•¹ÑÉä¤€ôø•¹ÑÉä¹¥¤°($%É½½Ñ1…å½ÕÑQÉ••A…Ñ °($%É½ÕÑ•%(%ô¤ôì(%½¹ÍÐÍ±½Ñ9…µ•½Õ¹ÑÌ€ô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(%™½È€¡½¹ÍÐÍ±½Ð½˜=‰©•Ð¹Ù…±Õ•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹Í±½ÑÌ€üüíô¤¤ì($%½¹ÍÐÍ±½Ñ9…µ”€ôÍ±½Ð¹¹…µ”ì($%Í±½Ñ9…µ•½Õ¹ÑÌ¹Í•Ð¡Í±½Ñ9…µ”°€¡Í±½Ñ9…µ•½Õ¹ÑÌ¹•Ð¡Í±½Ñ9…µ”¤€üü€À¤€¬€Ä¤ì(%ô(%½¹ÍÐ½É‘•É•‘QÉ••A½Í¥Ñ¥½¹Ì€ôÉÉ…ä¹™É½´¡¹•ÜM•Ð¡l($$¸¸¹±…å½ÕÑ¹ÑÉ¥•Ì¹µ…À ¡•¹ÑÉä¤€ôø•¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸¤°($$¸¸¹Ñ•µÁ±…Ñ•¹ÑÉ¥•Ì¹µ…À ¡•¹ÑÉä¤€ôø•¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸¤°($$¸¸¹•ÉÉ½É¹ÑÉ¥•Ì¹µ…À ¡•¹ÑÉä¤€ôø•¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸¤(%t¤¤¹Í½ÉÐ ¡±•™Ð°É¥¡Ð¤€ôø±•™Ð€´É¥¡Ð¤ì(%½¹ÍÐÉ•Í½±Ù•M±½Ñ=Ù•ÉÉ¥‘”€ô€¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤€ôøì($%½¹ÍÐ½Ù•ÉÉ¥‘•	å-•ä€ô½ÁÑ¥½¹Ì¹Í±½Ñ=Ù•ÉÉ¥‘•Ìü¹mÍ±½Ñ-•åtì($%¥˜€¡½Ù•ÉÉ¥‘•	å-•ä¤É•ÑÕÉ¸½Ù•ÉÉ¥‘•	å-•äì($%¥˜€¡Í±½Ñ-•ä€ôôôÍ±½Ñ9…µ”ñð€¡Í±½Ñ9…µ•½Õ¹ÑÌ¹•Ð¡Í±½Ñ9…µ”¤€üü€À¤€ôôô€Ä¤É•ÑÕÉ¸½ÁÑ¥½¹Ì¹Í±½Ñ=Ù•ÉÉ¥‘•Ìü¹mÍ±½Ñ9…µ•tì(%ôì(%½¹ÍÐ•Ñ™™•Ñ¥Ù•M±½ÑA…É…µÌ€ô€¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤€ôøÉ•Í½±Ù•M±½Ñ=Ù•ÉÉ¥‘”¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤ü¹Á…É…µÌ€üü½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌì(%™½È€¡½¹ÍÐÑÉ••A½Í¥Ñ¥½¸½˜½É‘•É•‘QÉ••A½Í¥Ñ¥½¹Ì¤ì($%½¹ÍÐ±…å½ÕÑ%¹‘•à€ô±…å½ÕÑ%¹‘¥•Í	åQÉ••A½Í¥Ñ¥½¸¹•Ð¡ÑÉ••A½Í¥Ñ¥½¸¤ì($%¥˜€¡±…å½ÕÑ%¹‘•à€„ôôÙ½¥€À¤ì($$%½¹ÍÐ±…å½ÕÑ¹ÑÉä€ô±…å½ÕÑ¹ÑÉ¥•Ím±…å½ÕÑ%¹‘•átì($$%±…å½ÕÑ•Á•¹‘•¹¥•Í	•™½É•m±…å½ÕÑ%¹‘•át€ôl¸¸¹Á…••Á•¹‘•¹¥•Ítì($$%¥˜€¡•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡±…å½ÕÑ¹ÑÉä¹±…å½ÕÑ5½‘Õ±”¤¤ì($$$%½¹ÍÐ±…å½ÕÑ•Á•¹‘•¹ä€ôÉ•…Ñ•ÁÁI•¹‘•É•Á•¹‘•¹ä ¤ì($$$%±…å½ÕÑ•Á•¹‘•¹¥•Í	å%¹‘•à¹Í•Ð¡±…å½ÕÑ%¹‘•à°±…å½ÕÑ•Á•¹‘•¹ä¤ì($$$%Á…••Á•¹‘•¹¥•Ì¹ÁÕÍ ¡±…å½ÕÑ•Á•¹‘•¹ä¤ì($$%ô($$%Í±½Ñ•Á•¹‘•¹¥•Í	å1…å½ÕÑ%¹‘•ám±…å½ÕÑ%¹‘•át€ôl¸¸¹Á…••Á•¹‘•¹¥•Ítì($%ô($%½¹ÍÐÑ•µÁ±…Ñ•¹ÑÉä€ôÑ•µÁ±…Ñ•¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹•Ð¡ÑÉ••A½Í¥Ñ¥½¸¤ì($%¥˜€ …Ñ•µÁ±…Ñ•¹ÑÉäñð€…•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Ñ•µÁ±…Ñ•¹ÑÉä¹Ñ•µÁ±…Ñ•5½‘Õ±”¤¤½¹Ñ¥¹Õ”ì($%½¹ÍÐÑ•µÁ±…Ñ••Á•¹‘•¹ä€ôÉ•…Ñ•ÁÁI•¹‘•É•Á•¹‘•¹ä ¤ì($%Ñ•µÁ±…Ñ••Á•¹‘•¹¥•Í	å%¹Í•Ð¡Ñ•µÁ±…Ñ•¹ÑÉä¹¥°Ñ•µÁ±…Ñ••Á•¹‘•¹ä¤ì($%Ñ•µÁ±…Ñ••Á•¹‘•¹¥•Í	•™½É•	å%¹Í•Ð¡Ñ•µÁ±…Ñ•¹ÑÉä¹¥°l¸¸¹Á…••Á•¹‘•¹¥•Ít¤ì($%Á…••Á•¹‘•¹¥•Ì¹ÁÕÍ ¡Ñ•µÁ±…Ñ••Á•¹‘•¹ä¤ì(%ô(%•±•µ•¹ÑÍmÁ…•%‘t€ôÉ•¹‘•É™Ñ•ÉÁÁ•Á•¹‘•¹¥•Ì¡½ÁÑ¥½¹Ì¹•±•µ•¹Ð°Á…••Á•¹‘•¹¥•Ì¤ì(%™½È€¡½¹ÍÐÑ•µÁ±…Ñ•¹ÑÉä½˜Ñ•µÁ±…Ñ•¹ÑÉ¥•Ì¤ì($%½¹ÍÐÑ•µÁ±…Ñ•½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Ñ•µÁ±…Ñ•¹ÑÉä¹Ñ•µÁ±…Ñ•5½‘Õ±”¤ì($%¥˜€ …Ñ•µÁ±…Ñ•½µÁ½¹•¹Ð¤½¹Ñ¥¹Õ”ì($%½¹ÍÐQ•µÁ±…Ñ•½µÁ½¹•¹Ð€ôÑ•µÁ±…Ñ•½µÁ½¹•¹Ðì($%½¹ÍÐÑ•µÁ±…Ñ••Á•¹‘•¹ä€ôÑ•µÁ±…Ñ••Á•¹‘•¹¥•Í	å%¹•Ð¡Ñ•µÁ±…Ñ•¹ÑÉä¹¥¤ì($%½¹ÍÐÑ•µÁ±…Ñ•±•µ•¹Ð€ôÑ•µÁ±…Ñ••Á•¹‘•¹ä€üÉ•¹‘•É]¥Ñ¡ÁÁ•Á•¹‘•¹å	…ÉÉ¥•È ¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Q•µÁ±…Ñ•½µÁ½¹•¹Ð°ì($$%Á…É…µÌè½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ°($$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¡¥±‘É•¸°íô¤($%ô¤°Ñ•µÁ±…Ñ••Á•¹‘•¹ä¤€è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Q•µÁ±…Ñ•½µÁ½¹•¹Ð°ì($$%Á…É…µÌè½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ°($$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¡¥±‘É•¸°íô¤($%ô¤ì($%•±•µ•¹ÑÍmÑ•µÁ±…Ñ•¹ÑÉä¹¥‘t€ôÉ•¹‘•É™Ñ•ÉÁÁ•Á•¹‘•¹¥•Ì¡Ñ•µÁ±…Ñ•±•µ•¹Ð°Ñ•µÁ±…Ñ••Á•¹‘•¹¥•Í	•™½É•	å%¹•Ð¡Ñ•µÁ±…Ñ•¹ÑÉä¹¥¤€üümt¤ì(%ô(%™½È€¡±•Ð¥¹‘•à€ô€Àì¥¹‘•à€ð±…å½ÕÑ¹ÑÉ¥•Ì¹±•¹Ñ ì¥¹‘•à¬¬¤ì($%½¹ÍÐ±…å½ÕÑ¹ÑÉä€ô±…å½ÕÑ¹ÑÉ¥•Ím¥¹‘•átì($%½¹ÍÐ±…å½ÕÑ½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡±…å½ÕÑ¹ÑÉä¹±…å½ÕÑ5½‘Õ±”¤ì($%¥˜€ …±…å½ÕÑ½µÁ½¹•¹Ð¤½¹Ñ¥¹Õ”ì($%½¹ÍÐ±…å½ÕÑAÉ½ÁÌ€ôìÁ…É…µÌè½ÁÑ¥½¹Ì¹µ…­•Q¡•¹…‰±•A…É…µÌ¡É•Í½±Ù•ÁÁA…•M•µ•¹ÑA…É…µÌ¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°±…å½ÕÑ¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸°½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ¤¤ôì($%™½È€¡½¹ÍÐÍ±½Ð½˜=‰©•Ð¹Ù…±Õ•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹Í±½ÑÌ€üüíô¤¤ì($$%½¹ÍÐÍ±½Ñ9…µ”€ôÍ±½Ð¹¹…µ”ì($$%¥˜€ ¡Í±½Ð¹±…å½ÕÑ%¹‘•à€øô€À€üÍ±½Ð¹±…å½ÕÑ%¹‘•à€è±…å½ÕÑ¹ÑÉ¥•Ì¹±•¹Ñ €´€Ä¤€„ôô¥¹‘•à¤½¹Ñ¥¹Õ”ì($$%±…å½ÕÑAÉ½ÁÍmÍ±½Ñ9…µ•t€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡A…É…±±•±M±½Ð°ì¹…µ”èÍ±½Ñ9…µ”ô¤ì($%ô($%½¹ÍÐ1…å½ÕÑ½µÁ½¹•¹Ð€ô±…å½ÕÑ½µÁ½¹•¹Ðì($%½¹ÍÐ±…å½ÕÑ•Á•¹‘•¹ä€ô±…å½ÕÑ•Á•¹‘•¹¥•Í	å%¹‘•à¹•Ð¡¥¹‘•à¤ì($%½¹ÍÐ±…å½ÕÑ±•µ•¹Ð€ô±…å½ÕÑ•Á•¹‘•¹ä€üÉ•¹‘•É]¥Ñ¡ÁÁ•Á•¹‘•¹å	…ÉÉ¥•È ¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡1…å½ÕÑ½µÁ½¹•¹Ð°ì($$$¸¸¹±…å½ÕÑAÉ½ÁÌ°($$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¡¥±‘É•¸°íô¤($%ô¤°±…å½ÕÑ•Á•¹‘•¹ä¤€è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡1…å½ÕÑ½µÁ½¹•¹Ð°ì($$$¸¸¹±…å½ÕÑAÉ½ÁÌ°($$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¡¥±‘É•¸°íô¤($%ô¤ì($%•±•µ•¹ÑÍm±…å½ÕÑ¹ÑÉä¹¥‘t€ôÉ•¹‘•É™Ñ•ÉÁÁ•Á•¹‘•¹¥•Ì¡±…å½ÕÑ±•µ•¹Ð°±…å½ÕÑ•Á•¹‘•¹¥•Í	•™½É•m¥¹‘•át€üümt¤ì(%ô(%™½È€¡½¹ÍÐmÍ±½Ñ-•ä°Í±½Ñt½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹Í±½ÑÌ€üüíô¤¤ì($%½¹ÍÐÍ±½Ñ9…µ”€ôÍ±½Ð¹¹…µ”ì($%½¹ÍÐÑ…É•Ñ%¹‘•à€ôÍ±½Ð¹±…å½ÕÑ%¹‘•à€øô€À€üÍ±½Ð¹±…å½ÕÑ%¹‘•à€è±…å½ÕÑ¹ÑÉ¥•Ì¹±•¹Ñ €´€Äì($%½¹ÍÐÑÉ••A…Ñ €ô±…å½ÕÑ¹ÑÉ¥•ÍmÑ…É•Ñ%¹‘•átü¹ÑÉ••A…Ñ €üü€ˆ¼ˆì($%½¹ÍÐÍ±½Ñ%€ôÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•M±½Ñ%¡Í±½Ñ9…µ”°ÑÉ••A…Ñ ¤ì($%½¹ÍÐÍ±½Ñ=Ù•ÉÉ¥‘”€ôÉ•Í½±Ù•M±½Ñ=Ù•ÉÉ¥‘”¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤ì($%½¹ÍÐÍ±½ÑA…É…µÌ€ô•Ñ™™•Ñ¥Ù•M±½ÑA…É…µÌ¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤ì($%½¹ÍÐÍ±½ÑI•Í•Ñ-•ä€ôÉ•Í½±Ù•ÁÁA…•I½ÕÑ•MÑ…Ñ•-•ä¡Í±½Ð¹É½ÕÑ•M•µ•¹ÑÌ€üümt°Í±½ÑA…É…µÌ¤ì($%½¹ÍÐ½Ù•ÉÉ¥‘•=ÉA…•½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Í±½Ñ=Ù•ÉÉ¥‘”ü¹Á…•5½‘Õ±”¤€üü•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Í±½Ð¹Á…”¤ì($%½¹ÍÐ‘•™…Õ±Ñ½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Í±½Ð¹‘•™…Õ±Ð¤ì($%¥˜€ …½Ù•ÉÉ¥‘•=ÉA…•½µÁ½¹•¹Ð€˜˜‘•™…Õ±Ñ½µÁ½¹•¹Ð€˜˜½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€˜˜½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½Ñ%‘Ìü¹¡…Ì¡Í±½Ñ%¤¤½¹Ñ¥¹Õ”ì($%½¹ÍÐÍ±½Ñ½µÁ½¹•¹Ð€ô½Ù•ÉÉ¥‘•=ÉA…•½µÁ½¹•¹Ð€üü‘•™…Õ±Ñ½µÁ½¹•¹Ðì($%¥˜€ …Í±½Ñ½µÁ½¹•¹Ð¤ì($$%•±•µ•¹ÑÍmÍ±½Ñ%‘t€ôÁÁ±•µ•¹ÑÍ]¥É”¹Õ¹µ…Ñ¡•‘M±½ÑY…±Õ”ì($$%½¹Ñ¥¹Õ”ì($%ô($%½¹ÍÐÍ±½ÑQ¡•¹…‰±•A…É…µÌ€ô½ÁÑ¥½¹Ì¹µ…­•Q¡•¹…‰±•A…É…µÌ¡Í±½ÑA…É…µÌ¤ì($%½¹ÍÐÍ±½ÑAÉ½ÁÌ€ôìÁ…É…µÌèÍ±½ÑQ¡•¹…‰±•A…É…µÌôì($%¥˜€¡Í±½Ñ=Ù•ÉÉ¥‘”ü¹ÁÉ½ÁÌ¤=‰©•Ð¹…ÍÍ¥¸¡Í±½ÑAÉ½ÁÌ°Í±½Ñ=Ù•ÉÉ¥‘”¹ÁÉ½ÁÌ¤ì($%±•ÐÍ±½Ñ±•µ•¹Ð€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Í±½Ñ½µÁ½¹•¹Ð°ì€¸¸¹Í±½ÑAÉ½ÁÌô¤ì($%½¹ÍÐ¥¹Ñ•É•ÁÑ1…å½ÕÑÌ€ôÍ±½Ñ=Ù•ÉÉ¥‘”ü¹±…å½ÕÑ5½‘Õ±•Ì€üümtì($%™½È€¡±•Ð±…å½ÕÑ%¹‘•à€ô¥¹Ñ•É•ÁÑ1…å½ÕÑÌ¹±•¹Ñ €´€Äì±…å½ÕÑ%¹‘•à€øô€Àì±…å½ÕÑ%¹‘•à´´¤ì($$%½¹ÍÐ¥¹Ñ•É•ÁÑ1…å½ÕÑ½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡¥¹Ñ•É•ÁÑ1…å½ÕÑÍm±…å½ÕÑ%¹‘•át¤ì($$%¥˜€ …¥¹Ñ•É•ÁÑ1…å½ÕÑ½µÁ½¹•¹Ð¤½¹Ñ¥¹Õ”ì($$%Í±½Ñ±•µ•¹Ð€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¥¹Ñ•É•ÁÑ1…å½ÕÑ½µÁ½¹•¹Ð°ì($$$%Á…É…µÌèÍ±½ÑQ¡•¹…‰±•A…É…µÌ°($$$%¡¥±‘É•¸èÍ±½Ñ±•µ•¹Ð($$%ô¤ì($%ô($%½¹ÍÐÍ±½Ñ1…å½ÕÑ½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Í±½Ð¹±…å½ÕÐ¤ì($%¥˜€¡Í±½Ñ1…å½ÕÑ½µÁ½¹•¹Ð¤Í±½Ñ±•µ•¹Ð€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Í±½Ñ1…å½ÕÑ½µÁ½¹•¹Ð°ì($$%Á…É…µÌèÍ±½ÑQ¡•¹…‰±•A…É…µÌ°($$%¡¥±‘É•¸èÍ±½Ñ±•µ•¹Ð($%ô¤ì($%½¹ÍÐÍ±½Ñ1½…‘¥¹½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Í±½Ð¹±½…‘¥¹œ¤ì($%¥˜€¡Í±½Ñ1½…‘¥¹½µÁ½¹•¹Ð€˜˜€…Í¡½Õ±‘MÕÁÁÉ•ÍÍ1½…‘¥¹	½Õ¹‘…É¥•Ì¡½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”€üü€‰¹…Ù¥…Ñ¥½¸ˆ¤¤Í±½Ñ±•µ•¹Ð€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹MÕÍÁ•¹Í”°ì($$%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Í±½Ñ1½…‘¥¹½µÁ½¹•¹Ð°íô¤°($$%¡¥±‘É•¸èÍ±½Ñ±•µ•¹Ð($%ô°Í±½ÑI•Í•Ñ-•ä¤ì($%½¹ÍÐÍ±½ÑÉÉ½É½µÁ½¹•¹Ð€ô•ÑÉÉ½É	½Õ¹‘…ÉåáÁ½ÉÐ¡Í±½Ð¹•ÉÉ½È¤ì($%¥˜€¡Í±½ÑÉÉ½É½µÁ½¹•¹Ð¤Í±½Ñ±•µ•¹Ð€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡ÉÉ½É	½Õ¹‘…Éä°ì($$%É•Í•Ñ-•äèÍ±½ÑI•Í•Ñ-•ä°($$%™…±±‰…¬èÍ±½ÑÉÉ½É½µÁ½¹•¹Ð°($$%¡¥±‘É•¸èÍ±½Ñ±•µ•¹Ð($%ô¤ì($%•±•µ•¹ÑÍmÍ±½Ñ%‘t€ôÉ•¹‘•É™Ñ•ÉÁÁ•Á•¹‘•¹¥•Ì¡Í±½Ñ±•µ•¹Ð°Ñ…É•Ñ%¹‘•à€øô€À€üÍ±½Ñ•Á•¹‘•¹¥•Í	å1…å½ÕÑ%¹‘•ámÑ…É•Ñ%¹‘•át€üümt€èmt¤ì(%ô(%±•ÐÉ½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È°ì($%Í•µ•¹Ñ5…Àèì¡¥±‘É•¸èmtô°($%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M±½Ð°ì¥èÁ…•%ô¤(%ô¤ì(%É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡I•‘¥É•Ñ	½Õ¹‘…Éä°ì¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸ô¤ì(%½¹ÍÐÉ½ÕÑ•1½…‘¥¹½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹±½…‘¥¹œ¤ì(%¥˜€¡É½ÕÑ•1½…‘¥¹½µÁ½¹•¹Ð€˜˜€…Í¡½Õ±‘MÕÁÁÉ•ÍÍ1½…‘¥¹	½Õ¹‘…É¥•Ì¡½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”€üü€‰¹…Ù¥…Ñ¥½¸ˆ¤¤É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹MÕÍÁ•¹Í”°ì($%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡É½ÕÑ•1½…‘¥¹½µÁ½¹•¹Ð°íô¤°($%¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸(%ô°É½ÕÑ•I•Í•Ñ-•ä¤ì(%½¹ÍÐ±…ÍÑ1…å½ÕÑÉÉ½É5½‘Õ±”€ô•ÉÉ½É¹ÑÉ¥•Ì¹±•¹Ñ €ø€À€ü•ÉÉ½É¹ÑÉ¥•Ím•ÉÉ½É¹ÑÉ¥•Ì¹±•¹Ñ €´€Åt¹•ÉÉ½É5½‘Õ±”€è¹Õ±°ì(%½¹ÍÐ¹½Ñ½Õ¹‘½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹¹½Ñ½Õ¹¤€üü•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”¤ì(%¥˜€¡¹½Ñ½Õ¹‘½µÁ½¹•¹Ð¤É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡9½Ñ½Õ¹‘	½Õ¹‘…Éä°ì($%É•Í•Ñ-•äèÉ½ÕÑ•I•Í•Ñ-•ä°($%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡¹½Ñ½Õ¹‘½µÁ½¹•¹Ð°íô¤°($%¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸(%ô¤ì(%½¹ÍÐ™½É‰¥‘‘•¹½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹™½É‰¥‘‘•¸¤€üü•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½½Ñ½É‰¥‘‘•¹5½‘Õ±”¤ì(%¥˜€¡™½É‰¥‘‘•¹½µÁ½¹•¹Ð¤É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½É‰¥‘‘•¹	½Õ¹‘…Éä°ì($%É•Í•Ñ-•äèÉ½ÕÑ•I•Í•Ñ-•ä°($%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡™½É‰¥‘‘•¹½µÁ½¹•¹Ð°íô¤°($%¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸(%ô¤ì(%½¹ÍÐÕ¹…ÕÑ¡½É¥é•‘½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹Õ¹…ÕÑ¡½É¥é•¤€üü•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡½ÁÑ¥½¹Ì¹É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”¤ì(%¥˜€¡Õ¹…ÕÑ¡½É¥é•‘½µÁ½¹•¹Ð¤É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡U¹…ÕÑ¡½É¥é•‘	½Õ¹‘…Éä°ì($%É•Í•Ñ-•äèÉ½ÕÑ•I•Í•Ñ-•ä°($%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Õ¹…ÕÑ¡½É¥é•‘½µÁ½¹•¹Ð°íô¤°($%¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸(%ô¤ì(%½¹ÍÐÁ…•ÉÉ½É½µÁ½¹•¹Ð€ô•ÑÉÉ½É	½Õ¹‘…ÉåáÁ½ÉÐ¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹•ÉÉ½È¤ì(%¥˜€¡Á…•ÉÉ½É½µÁ½¹•¹Ð€˜˜½ÁÑ¥½¹Ì¹É½ÕÑ”¹•ÉÉ½È€„ôô±…ÍÑ1…å½ÕÑÉÉ½É5½‘Õ±”¤É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡ÉÉ½É	½Õ¹‘…Éä°ì($%É•Í•Ñ-•äèÉ½ÕÑ•I•Í•Ñ-•ä°($%™…±±‰…¬èÁ…•ÉÉ½É½µÁ½¹•¹Ð°($%¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸(%ô¤ì(%™½È€¡±•Ð¥¹‘•à€ô½É‘•É•‘QÉ••A½Í¥Ñ¥½¹Ì¹±•¹Ñ €´€Äì¥¹‘•à€øô€Àì¥¹‘•à´´¤ì($%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ô½É‘•É•‘QÉ••A½Í¥Ñ¥½¹Ím¥¹‘•átì($%½¹ÍÐÍ•µ•¹ÑI•Í•Ñ-•ä€ôÉ•Í½±Ù•ÁÁA…•M•µ•¹ÑMÑ…Ñ•-•ä¡É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸°½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ¤ì($%±•ÐÍ•µ•¹Ñ¡¥±‘É•¸€ôÉ½ÕÑ•¡¥±‘É•¸ì($%½¹ÍÐ±…å½ÕÑ¹ÑÉä€ô±…å½ÕÑ¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹•Ð¡ÑÉ••A½Í¥Ñ¥½¸¤ì($%½¹ÍÐÑ•µÁ±…Ñ•¹ÑÉä€ôÑ•µÁ±…Ñ•¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹•Ð¡ÑÉ••A½Í¥Ñ¥½¸¤ì($%½¹ÍÐ•ÉÉ½É¹ÑÉä€ô•ÉÉ½É¹ÑÉ¥•Í	åQÉ••A½Í¥Ñ¥½¸¹•Ð¡ÑÉ••A½Í¥Ñ¥½¸¤ì($%¥˜€¡±…å½ÕÑ¹ÑÉä¤ì($$%½¹ÍÐ±…å½ÕÑ9½Ñ½Õ¹‘½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡±…å½ÕÑ¹ÑÉä¹¹½Ñ½Õ¹‘5½‘Õ±”¤ì($$%¥˜€¡±…å½ÕÑ9½Ñ½Õ¹‘½µÁ½¹•¹Ð¤Í•µ•¹Ñ¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡9½Ñ½Õ¹‘	½Õ¹‘…Éä°ì($$$%É•Í•Ñ-•äèÍ•µ•¹ÑI•Í•Ñ-•ä°($$$%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡±…å½ÕÑ9½Ñ½Õ¹‘½µÁ½¹•¹Ð°íô¤°($$$%¡¥±‘É•¸èÍ•µ•¹Ñ¡¥±‘É•¸($$%ô¤ì($$%½¹ÍÐ±…å½ÕÑ½É‰¥‘‘•¹½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡±…å½ÕÑ¹ÑÉä¹™½É‰¥‘‘•¹5½‘Õ±”¤ì($$%¥˜€¡±…å½ÕÑ½É‰¥‘‘•¹½µÁ½¹•¹Ð¤Í•µ•¹Ñ¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½É‰¥‘‘•¹	½Õ¹‘…Éä°ì($$$%É•Í•Ñ-•äèÍ•µ•¹ÑI•Í•Ñ-•ä°($$$%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡±…å½ÕÑ½É‰¥‘‘•¹½µÁ½¹•¹Ð°íô¤°($$$%¡¥±‘É•¸èÍ•µ•¹Ñ¡¥±‘É•¸($$%ô¤ì($$%½¹ÍÐ±…å½ÕÑU¹…ÕÑ¡½É¥é•‘½µÁ½¹•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡±…å½ÕÑ¹ÑÉä¹Õ¹…ÕÑ¡½É¥é•‘5½‘Õ±”¤ì($$%¥˜€¡±…å½ÕÑU¹…ÕÑ¡½É¥é•‘½µÁ½¹•¹Ð¤Í•µ•¹Ñ¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡U¹…ÕÑ¡½É¥é•‘	½Õ¹‘…Éä°ì($$$%É•Í•Ñ-•äèÍ•µ•¹ÑI•Í•Ñ-•ä°($$$%™…±±‰…¬è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡±…å½ÕÑU¹…ÕÑ¡½É¥é•‘½µÁ½¹•¹Ð°íô¤°($$$%¡¥±‘É•¸èÍ•µ•¹Ñ¡¥±‘É•¸($$%ô¤ì($%ô($%½¹ÍÐÍ•µ•¹ÑÉÉ½É½µÁ½¹•¹Ð€ô•ÑÉÉ½É	½Õ¹‘…ÉåáÁ½ÉÐ¡•ÉÉ½É¹ÑÉäü¹•ÉÉ½É5½‘Õ±”€üü±…å½ÕÑ¹ÑÉäü¹•ÉÉ½É5½‘Õ±”¤ì($%¥˜€¡Í•µ•¹ÑÉÉ½É½µÁ½¹•¹Ð¤Í•µ•¹Ñ¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡ÉÉ½É	½Õ¹‘…Éä°ì($$%É•Í•Ñ-•äèÍ•µ•¹ÑI•Í•Ñ-•ä°($$%™…±±‰…¬èÍ•µ•¹ÑÉÉ½É½µÁ½¹•¹Ð°($$%¡¥±‘É•¸èÍ•µ•¹Ñ¡¥±‘É•¸($%ô¤ì($%¥˜€¡Ñ•µÁ±…Ñ•¹ÑÉä€˜˜•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡Ñ•µÁ±…Ñ•¹ÑÉä¹Ñ•µÁ±…Ñ•5½‘Õ±”¤¤Í•µ•¹Ñ¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M±½Ð°ì($$%¥èÑ•µÁ±…Ñ•¹ÑÉä¹¥°($$%¡¥±‘É•¸èÍ•µ•¹Ñ¡¥±‘É•¸($%ô°Í•µ•¹ÑI•Í•Ñ-•ä¤ì($%¥˜€ …±…å½ÕÑ¹ÑÉä¤ì($$%É½ÕÑ•¡¥±‘É•¸€ôÍ•µ•¹Ñ¡¥±‘É•¸ì($$%½¹Ñ¥¹Õ”ì($%ô($%½¹ÍÐ±…å½ÕÑ!…Í±•µ•¹Ð€ô•Ñ•™…Õ±ÑáÁ½ÉÐÄ¡±…å½ÕÑ¹ÑÉä¹±…å½ÕÑ5½‘Õ±”¤€„ôô¹Õ±°ì($%½¹ÍÐ±…å½ÕÑ%¹‘•à€ô±…å½ÕÑ%¹‘¥•Í	åQÉ••A½Í¥Ñ¥½¸¹•Ð¡ÑÉ••A½Í¥Ñ¥½¸¤€üü€´Äì($%½¹ÍÐÍ•µ•¹Ñ5…À€ôì¡¥±‘É•¸èÉ•Í½±Ù•ÁÁA…•¡¥±‘M•µ•¹ÑÌ¡É½ÕÑ•M•µ•¹ÑÌ°±…å½ÕÑ¹ÑÉä¹ÑÉ••A½Í¥Ñ¥½¸°½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ¤ôì($%™½È€¡½¹ÍÐmÍ±½Ñ-•ä°Í±½Ñt½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”¹Í±½ÑÌ€üüíô¤¤ì($$%½¹ÍÐÍ±½Ñ9…µ”€ôÍ±½Ð¹¹…µ”ì($$%¥˜€ ¡Í±½Ð¹±…å½ÕÑ%¹‘•à€øô€À€üÍ±½Ð¹±…å½ÕÑ%¹‘•à€è±…å½ÕÑ¹ÑÉ¥•Ì¹±•¹Ñ €´€Ä¤€„ôô±…å½ÕÑ%¹‘•à¤½¹Ñ¥¹Õ”ì($$%½¹ÍÐÍ±½ÑA…É…µÌ€ô•Ñ™™•Ñ¥Ù•M±½ÑA…É…µÌ¡Í±½Ñ-•ä°Í±½Ñ9…µ”¤ì($$%Í•µ•¹Ñ5…ÁmÍ±½Ñ9…µ•t€ôÍ±½Ð¹É½ÕÑ•M•µ•¹ÑÌ€üÉ•Í½±Ù•ÁÁA…•¡¥±‘M•µ•¹ÑÌ¡Í±½Ð¹É½ÕÑ•M•µ•¹ÑÌ°€À°Í±½ÑA…É…µÌ¤€èmtì($%ô($%É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È°ì($$%Í•µ•¹Ñ5…À°($$%¡¥±‘É•¸è±…å½ÕÑ!…Í±•µ•¹Ð€ü€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M±½Ð°ì($$$%¥è±…å½ÕÑ¹ÑÉä¹¥°($$$%Á…É…±±•±M±½ÑÌèÉ•…Ñ•ÁÁA…•A…É…±±•±M±½Ñ¹ÑÉ¥•Ì¡±…å½ÕÑ%¹‘•à°±…å½ÕÑ¹ÑÉ¥•Ì°½ÁÑ¥½¹Ì¹É½ÕÑ”°•Ñ™™•Ñ¥Ù•M±½ÑA…É…µÌ¤°($$$%¡¥±‘É•¸èÍ•µ•¹Ñ¡¥±‘É•¸($$%ô¤€èÍ•µ•¹Ñ¡¥±‘É•¸($%ô¤ì(%ô(%½¹ÍÐ±½‰…±ÉÉ½É½µÁ½¹•¹Ð€ô•ÑÉÉ½É	½Õ¹‘…ÉåáÁ½ÉÐ¡½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É5½‘Õ±”¤ì(%¥˜€¡±½‰…±ÉÉ½É½µÁ½¹•¹Ð¤É½ÕÑ•¡¥±‘É•¸€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡ÉÉ½É	½Õ¹‘…Éä°ì($%™…±±‰…¬è±½‰…±ÉÉ½É½µÁ½¹•¹Ð°($%¡¥±‘É•¸èÉ½ÕÑ•¡¥±‘É•¸(%ô¤ì(%•±•µ•¹ÑÍmÉ½ÕÑ•%‘t€ô€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èmÉ•…Ñ•ÁÁA…•I½ÕÑ•!•…¡½ÁÑ¥½¹Ì¹É•Í½±Ù•‘5•Ñ…‘…Ñ„°½ÁÑ¥½¹Ì¹É•Í½±Ù•‘Y¥•ÝÁ½ÉÐ¤°É½ÕÑ•¡¥±‘É•¹tô¤ì(%É•ÑÕÉ¸•±•µ•¹ÑÌì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½™¥±”µ‰…Í•µµ•Ñ…‘…Ñ„¹©Ì)™Õ¹Ñ¥½¸É½ÕÑ•ÁÁ±¥•Ì¡É½ÕÑ•A…Ñ °É½ÕÑ•AÉ•™¥à¤ì(%¥˜€ …É½ÕÑ•AÉ•™¥à¤É•ÑÕÉ¸ÑÉÕ”ì(%É•ÑÕÉ¸É½ÕÑ•A…Ñ €ôôôÉ½ÕÑ•AÉ•™¥àñðÉ½ÕÑ•A…Ñ ¹ÍÑ…ÉÑÍ]¥Ñ ¡€‘íÉ½ÕÑ•AÉ•™¥áô½€¤ì)ô)™Õ¹Ñ¥½¸É½ÕÑ•M½É”¡É½ÕÑ•AÉ•™¥à¤ì(%É•ÑÕÉ¸É½ÕÑ•AÉ•™¥à¹ÍÁ±¥Ð ˆ¼ˆ¤¹™¥±Ñ•È¡	½½±•…¸¤¹±•¹Ñ ì)ô)™Õ¹Ñ¥½¸É½ÕÑ•M•µ•¹ÑÍÁÁ±ä¡É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¤ì(%¥˜€¡É½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¹±•¹Ñ €øÉ½ÕÑ•M•µ•¹ÑÌ¹±•¹Ñ ¤É•ÑÕÉ¸™…±Í”ì(%™½È€¡±•Ð¥¹‘•à€ô€Àì¥¹‘•à€ðÉ½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¹±•¹Ñ ì¥¹‘•à¬¬¤¥˜€¡É½ÕÑ•M•µ•¹ÑÍm¥¹‘•át€„ôôÉ½ÕÑ•AÉ•™¥áM•µ•¹ÑÍm¥¹‘•át¤É•ÑÕÉ¸™…±Í”ì(%É•ÑÕÉ¸ÑÉÕ”ì)ô)™Õ¹Ñ¥½¸É•µ½Ù•A…É…±±•±I½ÕÑ•M•µ•¹ÑÌ¡É½ÕÑ•M•µ•¹ÑÌ¤ì(%É•ÑÕÉ¸É½ÕÑ•M•µ•¹ÑÌ¹™¥±Ñ•È ¡Í•µ•¹Ð¤€ôø€…Í•µ•¹Ð¹ÍÑ…ÉÑÍ]¥Ñ  ‰ ˆ¤¤ì)ô)™Õ¹Ñ¥½¸É½ÕÑ•M•µ•¹ÑÍÁÁ±å]¥Ñ¡A…É…±±•±M±½ÑÌ¡É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¤ì(%¥˜€¡É½ÕÑ•M•µ•¹ÑÍÁÁ±ä¡É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¤¤É•ÑÕÉ¸ÑÉÕ”ì(%½¹ÍÐÙ¥Í¥‰±•AÉ•™¥áM•µ•¹ÑÌ€ôÉ•µ½Ù•A…É…±±•±I½ÕÑ•M•µ•¹ÑÌ¡É½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¤ì(%É•ÑÕÉ¸Ù¥Í¥‰±•AÉ•™¥áM•µ•¹ÑÌ¹±•¹Ñ €„ôôÉ½ÕÑ•AÉ•™¥áM•µ•¹ÑÌ¹±•¹Ñ €˜˜É½ÕÑ•M•µ•¹ÑÍÁÁ±ä¡É½ÕÑ•M•µ•¹ÑÌ°Ù¥Í¥‰±•AÉ•™¥áM•µ•¹ÑÌ¤ì)ô)™Õ¹Ñ¥½¸É½ÕÑ•MÁ•¥™¥¥Ñä¡É½ÕÑ”¤ì(%É•ÑÕÉ¸É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌü¹±•¹Ñ €üüÉ½ÕÑ•M½É”¡É½ÕÑ”¹É½ÕÑ•AÉ•™¥à¤ì)ô)™Õ¹Ñ¥½¸Í•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°­¥¹°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%¥˜€ …µ•Ñ…‘…Ñ…I½ÕÑ•Ìñðµ•Ñ…‘…Ñ…I½ÕÑ•Ì¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸mtì(%±•ÐÍ•±•Ñ•‘M½É”€ô€´Äì(%½¹ÍÐÍ•±•Ñ•‘I½ÕÑ•Ì€ômtì(%™½È€¡½¹ÍÐÉ½ÕÑ”½˜µ•Ñ…‘…Ñ…I½ÕÑ•Ì¤ì($%¥˜€ ¡É½ÕÑ”¹¡•…‘…Ñ„ü¹­¥¹€üü•Ñ5•Ñ…‘…Ñ…I½ÕÑ•-¥¹¡É½ÕÑ”¤¤€„ôô­¥¹¤½¹Ñ¥¹Õ”ì($%¥˜€¡É½ÕÑ•M•µ•¹ÑÌ€˜˜É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤ì($$%¥˜€ …É½ÕÑ•M•µ•¹ÑÍÁÁ±å]¥Ñ¡A…É…±±•±M±½ÑÌ¡É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤¤½¹Ñ¥¹Õ”ì($$%½¹ÍÐÕÉÉ•¹ÑM½É”€ôÉ½ÕÑ•MÁ•¥™¥¥Ñä¡É½ÕÑ”¤ì($$%¥˜€¡ÕÉÉ•¹ÑM½É”€øÍ•±•Ñ•‘M½É”¤ì($$$%Í•±•Ñ•‘M½É”€ôÕÉÉ•¹ÑM½É”ì($$$%Í•±•Ñ•‘I½ÕÑ•Ì¹±•¹Ñ €ô€Àì($$$%Í•±•Ñ•‘I½ÕÑ•Ì¹ÁÕÍ ¡É½ÕÑ”¤ì($$$%½¹Ñ¥¹Õ”ì($$%ô($$%¥˜€¡ÕÉÉ•¹ÑM½É”€ôôôÍ•±•Ñ•‘M½É”¤Í•±•Ñ•‘I½ÕÑ•Ì¹ÁÕÍ ¡É½ÕÑ”¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%½¹ÍÐÉ½ÕÑ•AÉ•™¥à€ôÉ½ÕÑ”¹É½ÕÑ•AÉ•™¥àì($%½¹ÍÐÉ•Í½±Ù•‘I½ÕÑ•AÉ•™¥à€ô™¥±±I½ÕÑ•A…ÑÑ•É¹M•µ•¹ÑÌ¡É½ÕÑ•AÉ•™¥à°Á…É…µÌ¤ì($%½¹ÍÐ¹½Éµ…±¥é•‘I½ÕÑ•AÉ•™¥à€ôÉ½ÕÑ•A…ÑÑ•É¸¡É½ÕÑ•AÉ•™¥à¤ì($%¥˜€ …É½ÕÑ•ÁÁ±¥•Ì¡É½ÕÑ•A…Ñ °É½ÕÑ•AÉ•™¥à¤€˜˜€…É½ÕÑ•ÁÁ±¥•Ì¡É½ÕÑ•A…Ñ °¹½Éµ…±¥é•‘I½ÕÑ•AÉ•™¥à¤€˜˜€ …É•Í½±Ù•‘I½ÕÑ•AÉ•™¥àñð€…É½ÕÑ•ÁÁ±¥•Ì¡É½ÕÑ•A…Ñ °É•Í½±Ù•‘I½ÕÑ•AÉ•™¥à¤¤¤½¹Ñ¥¹Õ”ì($%½¹ÍÐÕÉÉ•¹ÑM½É”€ôÉ½ÕÑ•MÁ•¥™¥¥Ñä¡É½ÕÑ”¤ì($%¥˜€¡ÕÉÉ•¹ÑM½É”€øÍ•±•Ñ•‘M½É”¤ì($$%Í•±•Ñ•‘M½É”€ôÕÉÉ•¹ÑM½É”ì($$%Í•±•Ñ•‘I½ÕÑ•Ì¹±•¹Ñ €ô€Àì($$%Í•±•Ñ•‘I½ÕÑ•Ì¹ÁÕÍ ¡É½ÕÑ”¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%¥˜€¡ÕÉÉ•¹ÑM½É”€ôôôÍ•±•Ñ•‘M½É”¤Í•±•Ñ•‘I½ÕÑ•Ì¹ÁÕÍ ¡É½ÕÑ”¤ì(%ô(%É•ÑÕÉ¸Í•±•Ñ•‘I½ÕÑ•Ìì)ô)™Õ¹Ñ¥½¸¥ÍMÑÉ¥¹=ÉUÉ°¡Ù…±Õ”¤ì(%É•ÑÕÉ¸ÑåÁ•½˜Ù…±Õ”€ôôô€‰ÍÑÉ¥¹œˆñðÑåÁ•½˜Ù…±Õ”€ôôô€‰½‰©•Ðˆ€˜˜Ù…±Õ”¥¹ÍÑ…¹•½˜UI0ì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•%½¹•ÍÉ¥ÁÑ½È¡Ù…±Õ”¤ì(%¥˜€¡ÑåÁ•½˜Ù…±Õ”€„ôô€‰½‰©•ÐˆñðÙ…±Õ”€ôôô¹Õ±°ñðÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÕÉ±Y…±Õ”€ôI•™±•Ð¹•Ð¡Ù…±Õ”°€‰ÕÉ°ˆ¤ì(%¥˜€ …¥ÍMÑÉ¥¹=ÉUÉ°¡ÕÉ±Y…±Õ”¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ•¹ÑÉä€ôìÕÉ°èÕÉ±Y…±Õ”ôì(%½¹ÍÐÍ¥é•ÍY…±Õ”€ôI•™±•Ð¹•Ð¡Ù…±Õ”°€‰Í¥é•Ìˆ¤ì(%¥˜€¡ÑåÁ•½˜Í¥é•ÍY…±Õ”€ôôô€‰ÍÑÉ¥¹œˆ¤•¹ÑÉä¹Í¥é•Ì€ôÍ¥é•ÍY…±Õ”ì(%½¹ÍÐÑåÁ•Y…±Õ”€ôI•™±•Ð¹•Ð¡Ù…±Õ”°€‰ÑåÁ”ˆ¤ì(%¥˜€¡ÑåÁ•½˜ÑåÁ•Y…±Õ”€ôôô€‰ÍÑÉ¥¹œˆ¤•¹ÑÉä¹ÑåÁ”€ôÑåÁ•Y…±Õ”ì(%½¹ÍÐµ•‘¥…Y…±Õ”€ôI•™±•Ð¹•Ð¡Ù…±Õ”°€‰µ•‘¥„ˆ¤ì(%¥˜€¡ÑåÁ•½˜µ•‘¥…Y…±Õ”€ôôô€‰ÍÑÉ¥¹œˆ¤•¹ÑÉä¹µ•‘¥„€ôµ•‘¥…Y…±Õ”ì(%É•ÑÕÉ¸•¹ÑÉäì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•%½¹Y…±Õ”¡Ù…±Õ”¤ì(%¥˜€¡¥ÍMÑÉ¥¹=ÉUÉ°¡Ù…±Õ”¤¤É•ÑÕÉ¸ìÕÉ°èÙ…±Õ”ôì(%É•ÑÕÉ¸¹½Éµ…±¥é•%½¹•ÍÉ¥ÁÑ½È¡Ù…±Õ”¤ì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•%½¹Y…±Õ•1¥ÍÐ¡Ù…±Õ•Ì¤ì(%½¹ÍÐ¹½Éµ…±¥é•‘¹ÑÉ¥•Ì€ômtì(%™½È€¡½¹ÍÐÙ…±Õ”½˜Ù…±Õ•Ì¤ì($%½¹ÍÐ¹½Éµ…±¥é•‘Y…±Õ”€ô¹½Éµ…±¥é•%½¹Y…±Õ”¡Ù…±Õ”¤ì($%¥˜€¡¹½Éµ…±¥é•‘Y…±Õ”¤¹½Éµ…±¥é•‘¹ÑÉ¥•Ì¹ÁÕÍ ¡¹½Éµ…±¥é•‘Y…±Õ”¤ì(%ô(%É•ÑÕÉ¸¹½Éµ…±¥é•‘¹ÑÉ¥•Ìì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•%½¹¹ÑÉ¥•Ì¡¥½¸¤ì(%½¹ÍÐ¹½Éµ…±¥é•‘Q½Á1•Ù•±Y…±Õ”€ô¹½Éµ…±¥é•%½¹Y…±Õ”¡¥½¸¤ì(%¥˜€¡¹½Éµ…±¥é•‘Q½Á1•Ù•±Y…±Õ”¤É•ÑÕÉ¸m¹½Éµ…±¥é•‘Q½Á1•Ù•±Y…±Õ•tì(%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡¥½¸¤¤É•ÑÕÉ¸¹½Éµ…±¥é•%½¹Y…±Õ•1¥ÍÐ¡¥½¸¤ì(%¥˜€ …¥Í%½¹5…À¡¥½¸¤¤É•ÑÕÉ¸mtì(%½¹ÍÐ¥½¹Y…±Õ”€ô¥½¸¹¥½¸ì(%¥˜€ …¥½¹Y…±Õ”¤É•ÑÕÉ¸mtì(%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡¥½¹Y…±Õ”¤¤É•ÑÕÉ¸¹½Éµ…±¥é•%½¹Y…±Õ•1¥ÍÐ¡¥½¹Y…±Õ”¤ì(%½¹ÍÐ¹½Éµ…±¥é•‘Y…±Õ”€ô¹½Éµ…±¥é•%½¹Y…±Õ”¡¥½¹Y…±Õ”¤ì(%É•ÑÕÉ¸¹½Éµ…±¥é•‘Y…±Õ”€üm¹½Éµ…±¥é•‘Y…±Õ•t€èmtì)ô)™Õ¹Ñ¥½¸¥Í%½¹5…À¡Ù…±Õ”¤ì(%¥˜€ …Ù…±Õ”ñðÑåÁ•½˜Ù…±Õ”€„ôô€‰½‰©•ÐˆñðÙ…±Õ”¥¹ÍÑ…¹•½˜UI0ñðÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤¤É•ÑÕÉ¸™…±Í”ì(%É•ÑÕÉ¸¹½Éµ…±¥é•%½¹Y…±Õ”¡Ù…±Õ”¤€ôôô¹Õ±°ì)ô)™Õ¹Ñ¥½¸±½¹•%½¹5…À¡Ù…±Õ”¤ì(%¥˜€ …Ù…±Õ”¤É•ÑÕÉ¸íôì(%¥˜€¡¥Í%½¹5…À¡Ù…±Õ”¤¤É•ÑÕÉ¸ì€¸¸¹Ù…±Õ”ôì(%½¹ÍÐ¥½¹¹ÑÉ¥•Ì€ô¹½Éµ…±¥é•%½¹¹ÑÉ¥•Ì¡Ù…±Õ”¤ì(%É•ÑÕÉ¸¥½¹¹ÑÉ¥•Ì¹±•¹Ñ €ø€À€üì¥½¸è¥½¹¹ÑÉ¥•Ìô€èíôì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘%½¹¹ÑÉä¡¡•…‘…Ñ„¤ì(%¥˜€¡¡•…‘…Ñ„¹­¥¹€„ôô€‰™…Ù¥½¸ˆ€˜˜¡•…‘…Ñ„¹­¥¹€„ôô€‰¥½¸ˆ¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ¥½¹¹ÑÉä€ôìÕÉ°è¡•…‘…Ñ„¹¡É•˜ôì(%¥˜€¡¡•…‘…Ñ„¹Í¥é•Ì¤¥½¹¹ÑÉä¹Í¥é•Ì€ô¡•…‘…Ñ„¹Í¥é•Ìì(%¥˜€¡¡•…‘…Ñ„¹ÑåÁ”¤¥½¹¹ÑÉä¹ÑåÁ”€ô¡•…‘…Ñ„¹ÑåÁ”ì(%É•ÑÕÉ¸¥½¹¹ÑÉäì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁ±•¹ÑÉä¡¡•…‘…Ñ„¤ì(%¥˜€¡¡•…‘…Ñ„¹­¥¹€„ôô€‰…ÁÁ±”ˆ¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ…ÁÁ±•¹ÑÉä€ôìÕÉ°è¡•…‘…Ñ„¹¡É•˜ôì(%¥˜€¡¡•…‘…Ñ„¹Í¥é•Ì¤…ÁÁ±•¹ÑÉä¹Í¥é•Ì€ô¡•…‘…Ñ„¹Í¥é•Ìì(%¥˜€¡¡•…‘…Ñ„¹ÑåÁ”¤…ÁÁ±•¹ÑÉä¹ÑåÁ”€ô¡•…‘…Ñ„¹ÑåÁ”ì(%É•ÑÕÉ¸…ÁÁ±•¹ÑÉäì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•ÁÁ±•¹ÑÉä¡Ù…±Õ”¤ì(%¥˜€¡¥ÍMÑÉ¥¹=ÉUÉ°¡Ù…±Õ”¤¤É•ÑÕÉ¸ìÕÉ°èÙ…±Õ”ôì(%É•ÑÕÉ¸ì€¸¸¹Ù…±Õ”ôì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘M½¥…±¹ÑÉä¡¡•…‘…Ñ„¤ì(%¥˜€¡¡•…‘…Ñ„¹­¥¹€„ôô€‰½Á•¹É…Á ˆ€˜˜¡•…‘…Ñ„¹­¥¹€„ôô€‰ÑÝ¥ÑÑ•Èˆ¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÍ½¥…±¹ÑÉä€ôìÕÉ°è¡•…‘…Ñ„¹¡É•˜ôì(%¥˜€¡¡•…‘…Ñ„¹Ý¥‘Ñ €„ôôÙ½¥€À¤Í½¥…±¹ÑÉä¹Ý¥‘Ñ €ô¡•…‘…Ñ„¹Ý¥‘Ñ ì(%¥˜€¡¡•…‘…Ñ„¹¡•¥¡Ð€„ôôÙ½¥€À¤Í½¥…±¹ÑÉä¹¡•¥¡Ð€ô¡•…‘…Ñ„¹¡•¥¡Ðì(%¥˜€¡¡•…‘…Ñ„¹…±Ð¤Í½¥…±¹ÑÉä¹…±Ð€ô¡•…‘…Ñ„¹…±Ðì(%¥˜€¡¡•…‘…Ñ„¹ÑåÁ”¤Í½¥…±¹ÑÉä¹ÑåÁ”€ô¡•…‘…Ñ„¹ÑåÁ”ì(%É•ÑÕÉ¸Í½¥…±¹ÑÉäì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•5•Ñ…‘…Ñ…%µ…•%¡É½ÕÑ”°¥¤ì(%½¹ÍÐ¹½Éµ…±¥é•‘%€ôMÑÉ¥¹œ¡¥¤ì(%¥˜€ …¥ÍY…±¥‘5•Ñ…‘…Ñ…%µ…•%¡¹½Éµ…±¥é•‘%¤¤ì($%½¹Í½±”¹Ý…É¸¡mÙ¥¹•áÑtM­¥ÁÁ¥¹œµ•Ñ…‘…Ñ„É½ÕÑ”€‘íÉ½ÕÑ”¹Í•ÉÙ•‘UÉ±ô¥µ…”¥€ˆ‘í¹½Éµ…±¥é•‘%‘ôˆ‰•…ÕÍ”µ•Ñ…‘…Ñ„¥µ…”¥‘ÌµÕÍÐµ…Ñ €½ym„µéµhÀ´äµ|¹t¬¼¹€¤ì($%É•ÑÕÉ¸¹Õ±°ì(%ô(%É•ÑÕÉ¸¹½Éµ…±¥é•‘%ì)ô)™Õ¹Ñ¥½¸Ý¥Ñ¡½¹Ñ•¹Ñ!…Í ¡¡É•˜°½¹Ñ•¹Ñ!…Í ¤ì(%¥˜€ …½¹Ñ•¹Ñ!…Í ¤É•ÑÕÉ¸¡É•˜ì(%É•ÑÕÉ¸€‘í¡É•™ôü‘í½¹Ñ•¹Ñ!…Í¡õ€ì)ô)™Õ¹Ñ¥½¸¡…Í=Ý¹AÉ½Á•ÉÑä¡Í½ÕÉ”°­•ä¤ì(%É•ÑÕÉ¸	½½±•…¸¡Í½ÕÉ”€˜˜=‰©•Ð¹ÁÉ½Ñ½ÑåÁ”¹¡…Í=Ý¹AÉ½Á•ÉÑä¹…±°¡Í½ÕÉ”°­•ä¤¤ì)ô)™Õ¹Ñ¥½¸¡…Í=Á•¹É…Á¡%µ…•Ì¡µ•Ñ…‘…Ñ„¤ì(%É•ÑÕÉ¸¡…Í=Ý¹AÉ½Á•ÉÑä¡µ•Ñ…‘…Ñ„ü¹½Á•¹É…Á °€‰¥µ…•Ìˆ¤ì)ô)™Õ¹Ñ¥½¸¡…ÍQÝ¥ÑÑ•É%µ…•Ì¡µ•Ñ…‘…Ñ„¤ì(%É•ÑÕÉ¸¡…Í=Ý¹AÉ½Á•ÉÑä¡µ•Ñ…‘…Ñ„ü¹ÑÝ¥ÑÑ•È°€‰¥µ…•Ìˆ¤ì)ô)™Õ¹Ñ¥½¸¡…Í%½¹Ì¡µ•Ñ…‘…Ñ„¤ì(%É•ÑÕÉ¸	½½±•…¸¡µ•Ñ…‘…Ñ„ü¹¥½¹Ì¤ì)ô)™Õ¹Ñ¥½¸•Ñ5•Ñ…‘…Ñ…M½ÕÉ•½ÉI½ÕÑ”¡É½ÕÑ”°½ÁÑ¥½¹Ì°™…±±‰…­5•Ñ…‘…Ñ„¤ì(%¥˜€ …½ÁÑ¥½¹Ìü¹µ•Ñ…‘…Ñ…M½ÕÉ•Ì¤É•ÑÕÉ¸™…±±‰…­5•Ñ…‘…Ñ„ì(%¥˜€ …É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤É•ÑÕÉ¸¹Õ±°ì(%™½È€¡±•Ð¥¹‘•à€ô½ÁÑ¥½¹Ì¹µ•Ñ…‘…Ñ…M½ÕÉ•Ì¹±•¹Ñ €´€Äì¥¹‘•à€øô€Àì¥¹‘•à´´¤ì($%½¹ÍÐÍ½ÕÉ”€ô½ÁÑ¥½¹Ì¹µ•Ñ…‘…Ñ…M½ÕÉ•Ím¥¹‘•átì($%¥˜€¡É½ÕÑ•M•µ•¹ÑÍÁÁ±å]¥Ñ¡A…É…±±•±M±½ÑÌ¡Í½ÕÉ”¹É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤¤É•ÑÕÉ¸Í½ÕÉ”¹µ•Ñ…‘…Ñ„ì(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô)™Õ¹Ñ¥½¸Í½¥…±I½ÕÑ•!…ÍáÁ±¥¥Ñ%µ…•ÍÑM½ÕÉ”¡É½ÕÑ”°­¥¹°½ÁÑ¥½¹Ì°™…±±‰…­5•Ñ…‘…Ñ„¤ì(%½¹ÍÐÍ½ÕÉ•5•Ñ…‘…Ñ„€ô•Ñ5•Ñ…‘…Ñ…M½ÕÉ•½ÉI½ÕÑ”¡É½ÕÑ”°½ÁÑ¥½¹Ì°™…±±‰…­5•Ñ…‘…Ñ„¤ì(%É•ÑÕÉ¸­¥¹€ôôô€‰½Á•¹É…Á ˆ€ü¡…Í=Á•¹É…Á¡%µ…•Ì¡Í½ÕÉ•5•Ñ…‘…Ñ„¤€è¡…ÍQÝ¥ÑÑ•É%µ…•Ì¡Í½ÕÉ•5•Ñ…‘…Ñ„¤ì)ô)™Õ¹Ñ¥½¸¥½¹I½ÕÑ•!…ÍáÁ±¥¥Ñ%½¹ÍÑM½ÕÉ”¡É½ÕÑ”°½ÁÑ¥½¹Ì°™…±±‰…­5•Ñ…‘…Ñ„¤ì(%É•ÑÕÉ¸¡…Í%½¹Ì¡™…±±‰…­5•Ñ…‘…Ñ„¤ñð¡…Í%½¹Ì¡•Ñ5•Ñ…‘…Ñ…M½ÕÉ•½ÉI½ÕÑ”¡É½ÕÑ”°½ÁÑ¥½¹Ì°¹Õ±°¤¤ì)ô)™Õ¹Ñ¥½¸É•…‘MÑÉ¥¹AÉ½Á•ÉÑä¡Í½ÕÉ”°­•ä¤ì(%½¹ÍÐÙ…±Õ”€ôI•™±•Ð¹•Ð¡Í½ÕÉ”°­•ä¤ì(%É•ÑÕÉ¸ÑåÁ•½˜Ù…±Õ”€ôôô€‰ÍÑÉ¥¹œˆ€üÙ…±Õ”€èÙ½¥€Àì)ô)™Õ¹Ñ¥½¸É•…‘9Õµ‰•ÉAÉ½Á•ÉÑä¡Í½ÕÉ”°­•ä¤ì(%½¹ÍÐÙ…±Õ”€ôI•™±•Ð¹•Ð¡Í½ÕÉ”°­•ä¤ì(%É•ÑÕÉ¸ÑåÁ•½˜Ù…±Õ”€ôôô€‰¹Õµ‰•Èˆ€üÙ…±Õ”€èÙ½¥€Àì)ô)™Õ¹Ñ¥½¸É•…‘MÑÉ¥¹=É9Õµ‰•ÉAÉ½Á•ÉÑä¡Í½ÕÉ”°­•ä¤ì(%½¹ÍÐÙ…±Õ”€ôI•™±•Ð¹•Ð¡Í½ÕÉ”°­•ä¤ì(%¥˜€¡ÑåÁ•½˜Ù…±Õ”€ôôô€‰ÍÑÉ¥¹œˆñðÑåÁ•½˜Ù…±Õ”€ôôô€‰¹Õµ‰•Èˆ¤É•ÑÕÉ¸Ù…±Õ”ì)ô)™Õ¹Ñ¥½¸É•…‘M¥é•AÉ½Á•ÉÑä¡Í½ÕÉ”¤ì(%½¹ÍÐÍ¥é•Y…±Õ”€ôI•™±•Ð¹•Ð¡Í½ÕÉ”°€‰Í¥é”ˆ¤ì(%¥˜€¡ÑåÁ•½˜Í¥é•Y…±Õ”€„ôô€‰½‰©•ÐˆñðÍ¥é•Y…±Õ”€ôôô¹Õ±°¤É•ÑÕÉ¸ì(%½¹ÍÐÝ¥‘Ñ €ôÉ•…‘9Õµ‰•ÉAÉ½Á•ÉÑä¡Í¥é•Y…±Õ”°€‰Ý¥‘Ñ ˆ¤ì(%½¹ÍÐ¡•¥¡Ð€ôÉ•…‘9Õµ‰•ÉAÉ½Á•ÉÑä¡Í¥é•Y…±Õ”°€‰¡•¥¡Ðˆ¤ì(%¥˜€¡Ý¥‘Ñ €ôôôÙ½¥€À€˜˜¡•¥¡Ð€ôôôÙ½¥€À¤É•ÑÕÉ¸ì(%É•ÑÕÉ¸ì($%Ý¥‘Ñ °($%¡•¥¡Ð(%ôì)ô)™Õ¹Ñ¥½¸É•…‘å¹…µ¥%µ…•5•Ñ…‘…Ñ…M½ÕÉ”¡Í½ÕÉ”¤ì(%É•ÑÕÉ¸ì($%¥èÉ•…‘MÑÉ¥¹=É9Õµ‰•ÉAÉ½Á•ÉÑä¡Í½ÕÉ”°€‰¥ˆ¤°($%…±ÐèÉ•…‘MÑÉ¥¹AÉ½Á•ÉÑä¡Í½ÕÉ”°€‰…±Ðˆ¤°($%½¹Ñ•¹ÑQåÁ”èÉ•…‘MÑÉ¥¹AÉ½Á•ÉÑä¡Í½ÕÉ”°€‰½¹Ñ•¹ÑQåÁ”ˆ¤°($%Í¥é”èÉ•…‘M¥é•AÉ½Á•ÉÑä¡Í½ÕÉ”¤(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•å¹…µ¥%µ…•5•Ñ…‘…Ñ…M½ÕÉ•Ì¡É½ÕÑ”°Á…É…µÌ¤ì(%¥˜€ …É½ÕÑ”¹µ½‘Õ±”ñðÑåÁ•½˜É½ÕÑ”¹µ½‘Õ±”€„ôô€‰½‰©•Ðˆ¤É•ÑÕÉ¸mtì(%½¹ÍÐ•¹•É…Ñ•%µ…•5•Ñ…‘…Ñ„€ôI•™±•Ð¹•Ð¡É½ÕÑ”¹µ½‘Õ±”°€‰•¹•É…Ñ•%µ…•5•Ñ…‘…Ñ„ˆ¤ì(%¥˜€¡ÑåÁ•½˜•¹•É…Ñ•%µ…•5•Ñ…‘…Ñ„€„ôô€‰™Õ¹Ñ¥½¸ˆ¤É•ÑÕÉ¸mÉ•…‘å¹…µ¥%µ…•5•Ñ…‘…Ñ…M½ÕÉ”¡É½ÕÑ”¹µ½‘Õ±”¥tì(%½¹ÍÐÉ•ÍÕ±Ð€ô…Ý…¥Ð•¹•É…Ñ•%µ…•5•Ñ…‘…Ñ„¡ìÁ…É…µÌèµ…­•Q¡•¹…‰±•A…É…µÌ¡Á…É…µÌ¤ô¤ì(%¥˜€ …ÉÉ…ä¹¥ÍÉÉ…ä¡É•ÍÕ±Ð¤¤É•ÑÕÉ¸mtì(%½¹ÍÐÍ½ÕÉ•Ì€ômtì(%™½È€¡½¹ÍÐ•¹ÑÉä½˜É•ÍÕ±Ð¤¥˜€¡ÑåÁ•½˜•¹ÑÉä€ôôô€‰½‰©•Ðˆ€˜˜•¹ÑÉä€„ôô¹Õ±°¤ì($%½¹ÍÐÍ½ÕÉ”€ôÉ•…‘å¹…µ¥%µ…•5•Ñ…‘…Ñ…M½ÕÉ”¡•¹ÑÉä¤ì($%¥˜€¡Í½ÕÉ”¹¥€ôôôÙ½¥€À¤ì($$%½¹Í½±”¹Ý…É¸¡mÙ¥¹•áÑtM­¥ÁÁ¥¹œµ•Ñ…‘…Ñ„É½ÕÑ”€‘íÉ½ÕÑ”¹Í•ÉÙ•‘UÉ±ô¥µ…”µ•Ñ…‘…Ñ„•¹ÑÉä‰•…ÕÍ”•¹•É…Ñ•%µ…•5•Ñ…‘…Ñ„•¹ÑÉ¥•ÌµÕÍÐ¥¹±Õ‘”…¸¥¹€¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%Í½ÕÉ•Ì¹ÁÕÍ ¡Í½ÕÉ”¤ì(%ô(%É•ÑÕÉ¸Í½ÕÉ•Ìì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•I½ÕÑ•!•…‘…Ñ„¡É½ÕÑ”°Á…É…µÌ¤ì(%¥˜€ …É½ÕÑ”¹¥Íå¹…µ¥Œñð€…É½ÕÑ”¹µ½‘Õ±”ñðÑåÁ•½˜É½ÕÑ”¹µ½‘Õ±”€„ôô€‰½‰©•Ðˆ¤É•ÑÕÉ¸É½ÕÑ”¹¡•…‘…Ñ„€ümÉ½ÕÑ”¹¡•…‘…Ñ…t€èmtì(%½¹ÍÐÉ½ÕÑ•-¥¹€ô•Ñ5•Ñ…‘…Ñ…%µ…•I½ÕÑ•-¥¹¡É½ÕÑ”¤ì(%¥˜€ …É½ÕÑ•-¥¹¤É•ÑÕÉ¸É½ÕÑ”¹¡•…‘…Ñ„€ümÉ½ÕÑ”¹¡•…‘…Ñ…t€èmtì(%½¹ÍÐÉ•Í½±Ù•‘UÉ°€ô™¥±±I½ÕÑ•A…ÑÑ•É¹M•µ•¹ÑÌ¡É½ÕÑ”¹Í•ÉÙ•‘UÉ°°Á…É…µÌ¤ì(%¥˜€ …É•Í½±Ù•‘UÉ°¤ì($%½¹Í½±”¹Ý…É¸¡mÙ¥¹•áÑtM­¥ÁÁ¥¹œµ•Ñ…‘…Ñ„É½ÕÑ”€‘íÉ½ÕÑ”¹Í•ÉÙ•‘UÉ±ô‰•…ÕÍ”Á…É…µÌ‘¥¹½Ð™¥±°…±°‘å¹…µ¥ŒÍ•µ•¹ÑÌ¹€¤ì($%É•ÑÕÉ¸mtì(%ô(%½¹ÍÐµ•Ñ…‘…Ñ…M½ÕÉ•Ì€ô…Ý…¥ÐÉ•Í½±Ù•å¹…µ¥%µ…•5•Ñ…‘…Ñ…M½ÕÉ•Ì¡É½ÕÑ”°Á…É…µÌ¤ì(%½¹ÍÐÉ•Í½±Ù•‘!•…‘…Ñ„€ômtì(%™½È€¡½¹ÍÐµ•Ñ…‘…Ñ…M½ÕÉ”½˜µ•Ñ…‘…Ñ…M½ÕÉ•Ì¤ì($%±•Ð¡É•™	…Í”€ôÉ•Í½±Ù•‘UÉ°ì($%¥˜€¡µ•Ñ…‘…Ñ…M½ÕÉ”¹¥€„ôôÙ½¥€À¤ì($$%½¹ÍÐ¹½Éµ…±¥é•‘%€ô¹½Éµ…±¥é•5•Ñ…‘…Ñ…%µ…•%¡É½ÕÑ”°µ•Ñ…‘…Ñ…M½ÕÉ”¹¥¤ì($$%¥˜€ …¹½Éµ…±¥é•‘%¤½¹Ñ¥¹Õ”ì($$%¡É•™	…Í”€ô€‘íÉ•Í½±Ù•‘UÉ±ô¼‘í¹½Éµ…±¥é•‘%‘õ€ì($%ô($%½¹ÍÐ¡É•˜€ôÝ¥Ñ¡½¹Ñ•¹Ñ!…Í ¡¡É•™	…Í”°É½ÕÑ”¹½¹Ñ•¹Ñ!…Í ¤ì($%½¹ÍÐ½¹Ñ•¹ÑQåÁ”€ôµ•Ñ…‘…Ñ…M½ÕÉ”¹½¹Ñ•¹ÑQåÁ”€üüÉ½ÕÑ”¹½¹Ñ•¹ÑQåÁ”ì($%½¹ÍÐÍ¥é”€ôµ•Ñ…‘…Ñ…M½ÕÉ”¹Í¥é”ì($%¥˜€¡É½ÕÑ•-¥¹€ôôô€‰¥½¸ˆñðÉ½ÕÑ•-¥¹€ôôô€‰…ÁÁ±”ˆ¤ì($$%±•ÐÍ¥é•Ìì($$%¥˜€¡Í¥é”ü¹Ý¥‘Ñ €„ôôÙ½¥€À€˜˜Í¥é”¹¡•¥¡Ð€„ôôÙ½¥€À¤Í¥é•Ì€ô€‘íÍ¥é”¹Ý¥‘Ñ¡õà‘íÍ¥é”¹¡•¥¡Ñõ€ì($$%É•Í½±Ù•‘!•…‘…Ñ„¹ÁÕÍ ¡ì($$$%­¥¹èÉ½ÕÑ•-¥¹°($$$%¡É•˜°($$$%Í¥é•Ì°($$$%ÑåÁ”è½¹Ñ•¹ÑQåÁ”($$%ô¤ì($$%½¹Ñ¥¹Õ”ì($%ô($%É•Í½±Ù•‘!•…‘…Ñ„¹ÁÕÍ ¡ì($$%­¥¹èÉ½ÕÑ•-¥¹°($$%¡É•˜°($$%…±Ðèµ•Ñ…‘…Ñ…M½ÕÉ”¹…±Ð°($$%¡•¥¡ÐèÍ¥é”ü¹¡•¥¡Ð°($$%ÑåÁ”è½¹Ñ•¹ÑQåÁ”°($$%Ý¥‘Ñ èÍ¥é”ü¹Ý¥‘Ñ ($%ô¤ì(%ô(%É•ÑÕÉ¸É•Í½±Ù•‘!•…‘…Ñ„ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡É½ÕÑ•Ì°Á…É…µÌ¤ì(%É•ÑÕÉ¸€¡…Ý…¥ÐAÉ½µ¥Í”¹…±°¡É½ÕÑ•Ì¹µ…À ¡É½ÕÑ”¤€ôøÉ•Í½±Ù•I½ÕÑ•!•…‘…Ñ„¡É½ÕÑ”°Á…É…µÌ¤¤¤¤¹™±…Ð ¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸…ÁÁ±å¥±•	…Í•‘5•Ñ…‘…Ñ„¡µ•Ñ…‘…Ñ„°É½ÕÑ•A…Ñ °Á…É…µÌ°µ•Ñ…‘…Ñ…I½ÕÑ•Ì°½ÁÑ¥½¹Ì¤ì(%¥˜€ …µ•Ñ…‘…Ñ…I½ÕÑ•Ìñðµ•Ñ…‘…Ñ…I½ÕÑ•Ì¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸µ•Ñ…‘…Ñ„ì(%½¹ÍÐÉ½ÕÑ•M•µ•¹ÑÌ€ô½ÁÑ¥½¹Ìü¹É½ÕÑ•M•µ•¹ÑÌ€üü¹Õ±°ì(%½¹ÍÐ™…Ù¥½¹I½ÕÑ•Ì€ôÍ•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°€‰™…Ù¥½¸ˆ°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%½¹ÍÐ¥½¹I½ÕÑ•Ì€ôÍ•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°€‰¥½¸ˆ°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤¹™¥±Ñ•È ¡É½ÕÑ”¤€ôø€…¥½¹I½ÕÑ•!…ÍáÁ±¥¥Ñ%½¹ÍÑM½ÕÉ”¡É½ÕÑ”°½ÁÑ¥½¹Ì°µ•Ñ…‘…Ñ„¤¤ì(%½¹ÍÐ…ÁÁ±•I½ÕÑ•Ì€ôÍ•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°€‰…ÁÁ±”ˆ°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤¹™¥±Ñ•È ¡É½ÕÑ”¤€ôø€…¥½¹I½ÕÑ•!…ÍáÁ±¥¥Ñ%½¹ÍÑM½ÕÉ”¡É½ÕÑ”°½ÁÑ¥½¹Ì°µ•Ñ…‘…Ñ„¤¤ì(%½¹ÍÐ½Á•¹É…Á¡I½ÕÑ•Ì€ôÍ•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°€‰½Á•¹É…Á ˆ°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤¹™¥±Ñ•È ¡É½ÕÑ”¤€ôø€…Í½¥…±I½ÕÑ•!…ÍáÁ±¥¥Ñ%µ…•ÍÑM½ÕÉ”¡É½ÕÑ”°€‰½Á•¹É…Á ˆ°½ÁÑ¥½¹Ì°µ•Ñ…‘…Ñ„¤¤ì(%½¹ÍÐÑÝ¥ÑÑ•ÉI½ÕÑ•Ì€ôÍ•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°€‰ÑÝ¥ÑÑ•Èˆ°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤¹™¥±Ñ•È ¡É½ÕÑ”¤€ôø€…Í½¥…±I½ÕÑ•!…ÍáÁ±¥¥Ñ%µ…•ÍÑM½ÕÉ”¡É½ÕÑ”°€‰ÑÝ¥ÑÑ•Èˆ°½ÁÑ¥½¹Ì°µ•Ñ…‘…Ñ„¤¤ì(%½¹ÍÐµ…¹¥™•ÍÑI½ÕÑ•Ì€ôÍ•±•Ñ••Á•ÍÑI½ÕÑ•Ì¡µ•Ñ…‘…Ñ…I½ÕÑ•Ì°€‰µ…¹¥™•ÍÐˆ°É½ÕÑ•A…Ñ °Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%½¹ÍÐm™…Ù¥½¹!•…‘…Ñ„°¥½¹!•…‘…Ñ„°…ÁÁ±•!•…‘…Ñ„°½Á•¹É…Á¡!•…‘…Ñ„°ÑÝ¥ÑÑ•É!•…‘…Ñ„°µ…¹¥™•ÍÑ!•…‘…Ñ…t€ô…Ý…¥ÐAÉ½µ¥Í”¹…±°¡l($%É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡™…Ù¥½¹I½ÕÑ•Ì°Á…É…µÌ¤°($%É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡¥½¹I½ÕÑ•Ì°Á…É…µÌ¤°($%É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡…ÁÁ±•I½ÕÑ•Ì°Á…É…µÌ¤°($%É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡½Á•¹É…Á¡I½ÕÑ•Ì°Á…É…µÌ¤°($%É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡ÑÝ¥ÑÑ•ÉI½ÕÑ•Ì°Á…É…µÌ¤°($%É•Í½±Ù•!•…‘…Ñ…1¥ÍÐ¡µ…¹¥™•ÍÑI½ÕÑ•Ì°Á…É…µÌ¤(%t¤ì(%¥˜€ …µ•Ñ…‘…Ñ„€˜˜™…Ù¥½¹!•…‘…Ñ„¹±•¹Ñ €ôôô€À€˜˜¥½¹!•…‘…Ñ„¹±•¹Ñ €ôôô€À€˜˜…ÁÁ±•!•…‘…Ñ„¹±•¹Ñ €ôôô€À€˜˜½Á•¹É…Á¡!•…‘…Ñ„¹±•¹Ñ €ôôô€À€˜˜ÑÝ¥ÑÑ•É!•…‘…Ñ„¹±•¹Ñ €ôôô€À€˜˜µ…¹¥™•ÍÑ!•…‘…Ñ„¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ¹•áÑ5•Ñ…‘…Ñ„€ôµ•Ñ…‘…Ñ„€üì€¸¸¹µ•Ñ…‘…Ñ„ô€èíôì(%½¹ÍÐ™…Ù¥½¹¹ÑÉ¥•Ì€ômtì(%™½È€¡½¹ÍÐ¡•…‘…Ñ„½˜™…Ù¥½¹!•…‘…Ñ„¤ì($%½¹ÍÐ¥½¹¹ÑÉä€ô‰Õ¥±‘%½¹¹ÑÉä¡¡•…‘…Ñ„¤ì($%¥˜€¡¥½¹¹ÑÉä¤™…Ù¥½¹¹ÑÉ¥•Ì¹ÁÕÍ ¡¥½¹¹ÑÉä¤ì(%ô(%¥˜€¡™…Ù¥½¹¹ÑÉ¥•Ì¹±•¹Ñ €ø€À¤ì($%½¹ÍÐ¹•áÑ%½¹Ì€ô±½¹•%½¹5…À¡¹•áÑ5•Ñ…‘…Ñ„¹¥½¹Ì¤ì($%½¹ÍÐ¹½Éµ…±¥é•‘%½¹Ì€ô¹½Éµ…±¥é•%½¹¹ÑÉ¥•Ì¡¹•áÑ%½¹Ì¤ì($%¹•áÑ%½¹Ì¹¥½¸€ôl¸¸¹™…Ù¥½¹¹ÑÉ¥•Ì°€¸¸¹¹½Éµ…±¥é•‘%½¹Ítì($%¹•áÑ5•Ñ…‘…Ñ„¹¥½¹Ì€ô¹•áÑ%½¹Ìì(%ô(%ì($%½¹ÍÐ¹•áÑ%½¹Ì€ô±½¹•%½¹5…À¡¹•áÑ5•Ñ…‘…Ñ„¹¥½¹Ì¤ì($%½¹ÍÐ¥½¹¹ÑÉ¥•Ì€ômtì($%™½È€¡½¹ÍÐ¡•…‘…Ñ„½˜¥½¹!•…‘…Ñ„¤ì($$%½¹ÍÐ¥½¹¹ÑÉä€ô‰Õ¥±‘%½¹¹ÑÉä¡¡•…‘…Ñ„¤ì($$%¥˜€¡¥½¹¹ÑÉä¤¥½¹¹ÑÉ¥•Ì¹ÁÕÍ ¡¥½¹¹ÑÉä¤ì($%ô($%¥˜€¡¥½¹¹ÑÉ¥•Ì¹±•¹Ñ €ø€À¤ì($$%½¹ÍÐ¹½Éµ…±¥é•‘%½¹Ì€ô¹½Éµ…±¥é•%½¹¹ÑÉ¥•Ì¡¹•áÑ%½¹Ì¤ì($$%¹•áÑ%½¹Ì¹¥½¸€ôl¸¸¹¥½¹¹ÑÉ¥•Ì°€¸¸¹¹½Éµ…±¥é•‘%½¹Ítì($%ô($%½¹ÍÐ…ÁÁ±•¹ÑÉ¥•Ì€ômtì($%™½È€¡½¹ÍÐ¡•…‘…Ñ„½˜…ÁÁ±•!•…‘…Ñ„¤ì($$%½¹ÍÐ…ÁÁ±•¹ÑÉä€ô‰Õ¥±‘ÁÁ±•¹ÑÉä¡¡•…‘…Ñ„¤ì($$%¥˜€¡…ÁÁ±•¹ÑÉä¤…ÁÁ±•¹ÑÉ¥•Ì¹ÁÕÍ ¡…ÁÁ±•¹ÑÉä¤ì($%ô($%¥˜€¡…ÁÁ±•¹ÑÉ¥•Ì¹±•¹Ñ €ø€À¤ì($$%½¹ÍÐ•á¥ÍÑ¥¹ÁÁ±”€ô¹•áÑ%½¹Ì¹…ÁÁ±”ì($$%½¹ÍÐ¹½Éµ…±¥é•‘ÁÁ±•¹ÑÉ¥•Ì€ômtì($$%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡•á¥ÍÑ¥¹ÁÁ±”¤¤™½È€¡½¹ÍÐ•¹ÑÉä½˜•á¥ÍÑ¥¹ÁÁ±”¤¹½Éµ…±¥é•‘ÁÁ±•¹ÑÉ¥•Ì¹ÁÕÍ ¡¹½Éµ…±¥é•ÁÁ±•¹ÑÉä¡•¹ÑÉä¤¤ì($$%•±Í”¥˜€¡•á¥ÍÑ¥¹ÁÁ±”¤¹½Éµ…±¥é•‘ÁÁ±•¹ÑÉ¥•Ì¹ÁÕÍ ¡¹½Éµ…±¥é•ÁÁ±•¹ÑÉä¡•á¥ÍÑ¥¹ÁÁ±”¤¤ì($$%¹•áÑ%½¹Ì¹…ÁÁ±”€ôl¸¸¹…ÁÁ±•¹ÑÉ¥•Ì°€¸¸¹¹½Éµ…±¥é•‘ÁÁ±•¹ÑÉ¥•Ítì($%ô($%¥˜€¡¥½¹¹ÑÉ¥•Ì¹±•¹Ñ €ø€Àñð…ÁÁ±•¹ÑÉ¥•Ì¹±•¹Ñ €ø€À¤¹•áÑ5•Ñ…‘…Ñ„¹¥½¹Ì€ô¹•áÑ%½¹Ìì(%ô(%¥˜€¡½Á•¹É…Á¡!•…‘…Ñ„¹±•¹Ñ €ø€À¤ì($%½¹ÍÐÍ½¥…±¹ÑÉ¥•Ì€ômtì($%™½È€¡½¹ÍÐ¡•…‘…Ñ„½˜½Á•¹É…Á¡!•…‘…Ñ„¤ì($$%½¹ÍÐÍ½¥…±¹ÑÉä€ô‰Õ¥±‘M½¥…±¹ÑÉä¡¡•…‘…Ñ„¤ì($$%¥˜€¡Í½¥…±¹ÑÉä¤Í½¥…±¹ÑÉ¥•Ì¹ÁÕÍ ¡Í½¥…±¹ÑÉä¤ì($%ô($%¥˜€¡Í½¥…±¹ÑÉ¥•Ì¹±•¹Ñ €ø€À¤ì($$%½¹ÍÐ¹•áÑ=Á•¹É…Á €ô¹•áÑ5•Ñ…‘…Ñ„¹½Á•¹É…Á €üì€¸¸¹¹•áÑ5•Ñ…‘…Ñ„¹½Á•¹É…Á ô€èíôì($$%¹•áÑ=Á•¹É…Á ¹¥µ…•Ì€ôÍ½¥…±¹ÑÉ¥•Ìì($$%¹•áÑ5•Ñ…‘…Ñ„¹½Á•¹É…Á €ô¹•áÑ=Á•¹É…Á ì($%ô(%ô(%¥˜€¡ÑÝ¥ÑÑ•É!•…‘…Ñ„¹±•¹Ñ €ø€À¤ì($%½¹ÍÐÍ½¥…±¹ÑÉ¥•Ì€ômtì($%™½È€¡½¹ÍÐ¡•…‘…Ñ„½˜ÑÝ¥ÑÑ•É!•…‘…Ñ„¤ì($$%½¹ÍÐÍ½¥…±¹ÑÉä€ô‰Õ¥±‘M½¥…±¹ÑÉä¡¡•…‘…Ñ„¤ì($$%¥˜€¡Í½¥…±¹ÑÉä¤Í½¥…±¹ÑÉ¥•Ì¹ÁÕÍ ¡Í½¥…±¹ÑÉä¤ì($%ô($%¥˜€¡Í½¥…±¹ÑÉ¥•Ì¹±•¹Ñ €ø€À¤ì($$%½¹ÍÐ¹•áÑQÝ¥ÑÑ•È€ô¹•áÑ5•Ñ…‘…Ñ„¹ÑÝ¥ÑÑ•È€üì€¸¸¹¹•áÑ5•Ñ…‘…Ñ„¹ÑÝ¥ÑÑ•Èô€èíôì($$%¹•áÑQÝ¥ÑÑ•È¹¥µ…•Ì€ôÍ½¥…±¹ÑÉ¥•Ìì($$%¹•áÑ5•Ñ…‘…Ñ„¹ÑÝ¥ÑÑ•È€ô¹•áÑQÝ¥ÑÑ•Èì($%ô(%ô(%¥˜€¡µ…¹¥™•ÍÑ!•…‘…Ñ„¹±•¹Ñ €ø€À€˜˜µ…¹¥™•ÍÑ!•…‘…Ñ…lÁt¹­¥¹€ôôô€‰µ…¹¥™•ÍÐˆ¤¹•áÑ5•Ñ…‘…Ñ„¹µ…¹¥™•ÍÐ€ôµ…¹¥™•ÍÑ!•…‘…Ñ…lÁt¹¡É•˜ì(%É•ÑÕÉ¸¹•áÑ5•Ñ…‘…Ñ„ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ¡•…¹©Ì)™Õ¹Ñ¥½¸É•Í½±Ù•Ñ¥Ù•A…É…±±•±I½ÕÑ•!•…‘%¹ÁÕÑÌ¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸=‰©•Ð¹•¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹Í±½ÑÌ€üüíô¤¹µ…À ¡mÍ±½Ñ-•ä°Í±½Ñt¤€ôøì($%¥˜€¡½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑM±½Ñ-•ä€ôôôÍ±½Ñ-•ä€˜˜½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑA…”¤É•ÑÕÉ¸ì($$%±…å½ÕÑ5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑ1…å½ÕÑÌ€üümt°($$%Á…•5½‘Õ±”è½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑA…”°($$%Á…É…µÌè½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑA…É…µÌ€üü½ÁÑ¥½¹Ì¹Á…É…µÌ°($$%É½ÕÑ•M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ($%ôì($%É•ÑÕÉ¸ì($$%±…å½ÕÑ5½‘Õ±•ÌèÍ±½Ð¹±…å½ÕÐ€ümÍ±½Ð¹±…å½ÕÑt€èmt°($$%Á…•5½‘Õ±”èÍ±½Ð¹Á…”°($$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ°($$%É½ÕÑ•M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ($%ôì(%ô¤ì)ô)™Õ¹Ñ¥½¸¥ÍAÉ•Í•¹Ð¡Ù…±Õ”¤ì(%É•ÑÕÉ¸Ù…±Õ”€„ôô¹Õ±°€˜˜Ù…±Õ”€„ôôÙ½¥€Àì)ô)™Õ¹Ñ¥½¸½±±•ÑÁÁA…•M•…É¡A…É…µÌ¡Í•…É¡A…É…µÌ¤ì(%½¹ÍÐÁ…•M•…É¡A…É…µÌ€ô=‰©•Ð¹É•…Ñ”¡¹Õ±°¤ì(%±•Ð¡…ÍM•…É¡A…É…µÌ€ô™…±Í”ì(%Í•…É¡A…É…µÌü¹™½É…  ¡Ù…±Õ”°­•ä¤€ôøì($%¡…ÍM•…É¡A…É…µÌ€ôÑÉÕ”ì($%½¹ÍÐÕÉÉ•¹ÑY…±Õ”€ôÁ…•M•…É¡A…É…µÍm­•åtì($%¥˜€¡ÉÉ…ä¹¥ÍÉÉ…ä¡ÕÉÉ•¹ÑY…±Õ”¤¤ì($$%Á…•M•…É¡A…É…µÍm­•åt€ôl¸¸¹ÕÉÉ•¹ÑY…±Õ”°Ù…±Õ•tì($$%É•ÑÕÉ¸ì($%ô($%¥˜€¡ÕÉÉ•¹ÑY…±Õ”€„ôôÙ½¥€À¤ì($$%Á…•M•…É¡A…É…µÍm­•åt€ômÕÉÉ•¹ÑY…±Õ”°Ù…±Õ•tì($$%É•ÑÕÉ¸ì($%ô($%Á…•M•…É¡A…É…µÍm­•åt€ôÙ…±Õ”ì(%ô¤ì(%É•ÑÕÉ¸ì($%¡…ÍM•…É¡A…É…µÌ°($%Á…•M•…É¡A…É…µÌ(%ôì)ô)™Õ¹Ñ¥½¸É•…Ñ•5•Ñ…‘…Ñ…M½ÕÉ•Ì¡µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ°É½ÕÑ•M•µ•¹ÑÌ°±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°Á…•5•Ñ…‘…Ñ„°¥¹±Õ‘•A…•M½ÕÉ”¤ì(%½¹ÍÐµ•Ñ…‘…Ñ…M½ÕÉ•Ì€ôµ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹µ…À ¡µ•Ñ…‘…Ñ„°¥¹‘•à¤€ôø€¡ì($%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ•M•µ•¹ÑÌ¹Í±¥” À°±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ím¥¹‘•át€üü€À¤°($%µ•Ñ…‘…Ñ„(%ô¤¤ì(%¥˜€¡¥¹±Õ‘•A…•M½ÕÉ”¤µ•Ñ…‘…Ñ…M½ÕÉ•Ì¹ÁÕÍ ¡ì($%É½ÕÑ•M•µ•¹ÑÌ°($%µ•Ñ…‘…Ñ„èÁ…•5•Ñ…‘…Ñ„(%ô¤ì(%É•ÑÕÉ¸µ•Ñ…‘…Ñ…M½ÕÉ•Ìì)ô)™Õ¹Ñ¥½¸É•…Ñ•1…å½ÕÑ%¹ÁÕÑÌ¡±…å½ÕÑ5½‘Õ±•Ì°±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì¤ì(%½¹ÍÐ±…å½ÕÑ%¹ÁÕÑÌ€ômtì(%™½È€¡±•Ð¥¹‘•à€ô€Àì¥¹‘•à€ð±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ ì¥¹‘•à¬¬¤ì($%½¹ÍÐ±…å½ÕÑ5½‘Õ±”€ô±…å½ÕÑ5½‘Õ±•Ím¥¹‘•átì($%¥˜€ …¥ÍAÉ•Í•¹Ð¡±…å½ÕÑ5½‘Õ±”¤¤½¹Ñ¥¹Õ”ì($%±…å½ÕÑ%¹ÁÕÑÌ¹ÁÕÍ ¡ì($$%µ½‘Õ±”è±…å½ÕÑ5½‘Õ±”°($$%ÑÉ••A½Í¥Ñ¥½¸è±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ím¥¹‘•át€üü€À($%ô¤ì(%ô(%É•ÑÕÉ¸±…å½ÕÑ%¹ÁÕÑÌì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•1…å½ÕÑ5•Ñ…‘…Ñ„¡±…å½ÕÑ%¹ÁÕÑÌ°Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%½¹ÍÐ±…å½ÕÑ5•Ñ…‘…Ñ…AÉ½µ¥Í•Ì€ômtì(%±•Ð…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„€ôAÉ½µ¥Í”¹É•Í½±Ù”¡íô¤ì(%™½È€¡½¹ÍÐ±…å½ÕÑ%¹ÁÕÐ½˜±…å½ÕÑ%¹ÁÕÑÌ¤ì($%½¹ÍÐÁ…É•¹Ñ½É1…å½ÕÐ€ô…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„ì($%½¹ÍÐ±…å½ÕÑA…É…µÌ€ôÉ•Í½±Ù•ÁÁA…•M•µ•¹ÑA…É…µÌ¡É½ÕÑ•M•µ•¹ÑÌ°±…å½ÕÑ%¹ÁÕÐ¹ÑÉ••A½Í¥Ñ¥½¸°Á…É…µÌ¤ì($%½¹ÍÐµ•Ñ…‘…Ñ…AÉ½µ¥Í”€ôÉ•Í½±Ù•5½‘Õ±•5•Ñ…‘…Ñ„¡±…å½ÕÑ%¹ÁÕÐ¹µ½‘Õ±”°±…å½ÕÑA…É…µÌ°Ù½¥€À°Á…É•¹Ñ½É1…å½ÕÐ¤ì($%±…å½ÕÑ5•Ñ…‘…Ñ…AÉ½µ¥Í•Ì¹ÁÕÍ ¡µ•Ñ…‘…Ñ…AÉ½µ¥Í”¤ì($%µ•Ñ…‘…Ñ…AÉ½µ¥Í”¹…Ñ   ¤€ôø¹Õ±°¤ì($%…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„€ôµ•Ñ…‘…Ñ…AÉ½µ¥Í”¹Ñ¡•¸¡…Íå¹Œ€¡µ•Ñ…‘…Ñ…I•ÍÕ±Ð¤€ôøì($$%¥˜€¡µ•Ñ…‘…Ñ…I•ÍÕ±Ð¤É•ÑÕÉ¸µ•É•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡mìµ•Ñ…‘…Ñ„è…Ý…¥ÐÁ…É•¹Ñ½É1…å½ÕÐô°ìµ•Ñ…‘…Ñ„èµ•Ñ…‘…Ñ…I•ÍÕ±Ðõt¤ì($$%É•ÑÕÉ¸Á…É•¹Ñ½É1…å½ÕÐì($%ô¤ì($%…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„¹…Ñ   ¤€ôø¹Õ±°¤ì(%ô(%É•ÑÕÉ¸AÉ½µ¥Í”¹…±°¡±…å½ÕÑ5•Ñ…‘…Ñ…AÉ½µ¥Í•Ì¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•1…å½ÕÑY¥•ÝÁ½ÉÐ¡±…å½ÕÑ%¹ÁÕÑÌ°Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%É•ÑÕÉ¸AÉ½µ¥Í”¹…±°¡±…å½ÕÑ%¹ÁÕÑÌ¹µ…À ¡±…å½ÕÑ%¹ÁÕÐ¤€ôøì($%½¹ÍÐ±…å½ÕÑA…É…µÌ€ôÉ•Í½±Ù•ÁÁA…•M•µ•¹ÑA…É…µÌ¡É½ÕÑ•M•µ•¹ÑÌ°±…å½ÕÑ%¹ÁÕÐ¹ÑÉ••A½Í¥Ñ¥½¸°Á…É…µÌ¤ì($%É•ÑÕÉ¸É•Í½±Ù•5½‘Õ±•Y¥•ÝÁ½ÉÐ¡±…å½ÕÑ%¹ÁÕÐ¹µ½‘Õ±”°±…å½ÕÑA…É…µÌ¤ì(%ô¤¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•A…É…±±•±I½ÕÑ•!•…¡Á…É…±±•±I½ÕÑ”°™…±±‰…­A…É…µÌ°™…±±‰…­I½ÕÑ•M•µ•¹ÑÌ°Á…•M•…É¡A…É…µÌ°Á…É•¹Ð¤ì(%½¹ÍÐÁ…É…µÌ€ôÁ…É…±±•±I½ÕÑ”¹Á…É…µÌ€üü™…±±‰…­A…É…µÌì(%½¹ÍÐÉ½ÕÑ•M•µ•¹ÑÌ€ôÁ…É…±±•±I½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ€üü™…±±‰…­I½ÕÑ•M•µ•¹ÑÌì(%½¹ÍÐµ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ€ômtì(%½¹ÍÐÙ¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ€ômtì(%½¹ÍÐµ•Ñ…‘…Ñ…M½ÕÉ•Ì€ômtì(%±•Ð…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„€ôÁ…É•¹Ðì(%½¹ÍÐ±…å½ÕÑ5½‘Õ±•Ì€ôl¸¸¹Á…É…±±•±I½ÕÑ”¹±…å½ÕÑ5½‘Õ±•Ì€üümt°Á…É…±±•±I½ÕÑ”¹±…å½ÕÑ5½‘Õ±•t¹™¥±Ñ•È¡¥ÍAÉ•Í•¹Ð¤ì(%½¹ÍÐ±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í•Ì€ô±…å½ÕÑ5½‘Õ±•Ì¹µ…À ¡±…å½ÕÑ5½‘Õ±”¤€ôøÉ•Í½±Ù•5½‘Õ±•Y¥•ÝÁ½ÉÐ¡±…å½ÕÑ5½‘Õ±”°Á…É…µÌ¤¤ì(%½¹ÍÐÁ…•Y¥•ÝÁ½ÉÑAÉ½µ¥Í”€ôÁ…É…±±•±I½ÕÑ”¹Á…•5½‘Õ±”€üÉ•Í½±Ù•5½‘Õ±•Y¥•ÝÁ½ÉÐ¡Á…É…±±•±I½ÕÑ”¹Á…•5½‘Õ±”°Á…É…µÌ¤€èAÉ½µ¥Í”¹É•Í½±Ù”¡¹Õ±°¤ì(%™½È€¡½¹ÍÐ±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í”½˜±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í•Ì¤±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í”¹…Ñ   ¤€ôø¹Õ±°¤ì(%Á…•Y¥•ÝÁ½ÉÑAÉ½µ¥Í”¹…Ñ   ¤€ôø¹Õ±°¤ì(%™½È€¡½¹ÍÐ±…å½ÕÑ5½‘Õ±”½˜±…å½ÕÑ5½‘Õ±•Ì¤ì($%½¹ÍÐ±…å½ÕÑ5•Ñ…‘…Ñ„€ô…Ý…¥ÐÉ•Í½±Ù•5½‘Õ±•5•Ñ…‘…Ñ„¡±…å½ÕÑ5½‘Õ±”°Á…É…µÌ°Ù½¥€À°…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„¤ì($%µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹ÁÕÍ ¡±…å½ÕÑ5•Ñ…‘…Ñ„¤ì($%µ•Ñ…‘…Ñ…M½ÕÉ•Ì¹ÁÕÍ ¡ì($$%µ•Ñ…‘…Ñ„è±…å½ÕÑ5•Ñ…‘…Ñ„°($$%É½ÕÑ•M•µ•¹ÑÌ($%ô¤ì($%¥˜€¡±…å½ÕÑ5•Ñ…‘…Ñ„¤ì($$%…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„€ô…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„¹Ñ¡•¸¡…Íå¹Œ€¡Á…É•¹Ñ5•Ñ…‘…Ñ„¤€ôøµ•É•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡mìµ•Ñ…‘…Ñ„èÁ…É•¹Ñ5•Ñ…‘…Ñ„ô°ìµ•Ñ…‘…Ñ„è±…å½ÕÑ5•Ñ…‘…Ñ„õt¤¤ì($$%…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„¹…Ñ   ¤€ôø¹Õ±°¤ì($%ô(%ô(%¥˜€¡Á…É…±±•±I½ÕÑ”¹Á…•5½‘Õ±”¤ì($%½¹ÍÐÁ…•5•Ñ…‘…Ñ„€ô…Ý…¥ÐÉ•Í½±Ù•5½‘Õ±•5•Ñ…‘…Ñ„¡Á…É…±±•±I½ÕÑ”¹Á…•5½‘Õ±”°Á…É…µÌ°Á…•M•…É¡A…É…µÌ°…ÕµÕ±…Ñ•‘5•Ñ…‘…Ñ„¤ì($%µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹ÁÕÍ ¡Á…•5•Ñ…‘…Ñ„¤ì($%µ•Ñ…‘…Ñ…M½ÕÉ•Ì¹ÁÕÍ ¡ì($$%µ•Ñ…‘…Ñ„èÁ…•5•Ñ…‘…Ñ„°($$%É½ÕÑ•M•µ•¹ÑÌ($%ô¤ì(%ô(%Ù¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ¹ÁÕÍ  ¸¸¹…Ý…¥ÐAÉ½µ¥Í”¹…±°¡±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í•Ì¤¤ì(%½¹ÍÐÁ…•Y¥•ÝÁ½ÉÐ€ô…Ý…¥ÐÁ…•Y¥•ÝÁ½ÉÑAÉ½µ¥Í”ì(%¥˜€¡Á…É…±±•±I½ÕÑ”¹Á…•5½‘Õ±”¤Ù¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ¹ÁÕÍ ¡Á…•Y¥•ÝÁ½ÉÐ¤ì(%É•ÑÕÉ¸ì($%µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ°($%µ•Ñ…‘…Ñ…M½ÕÉ•Ì°($%Ù¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•!•…¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸…Ý…¥ÐÉÕ¹]¥Ñ¡•Ñ¡•‘ÕÁ”  ¤€ôøÉ•Í½±Ù•ÁÁA…•!•…‘%¹¹•È¡½ÁÑ¥½¹Ì¤¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•!•…‘%¹¹•È¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÉ½ÕÑ•M•µ•¹ÑÌ€ô½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ€üümtì(%½¹ÍÐ±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì€ô½ÁÑ¥½¹Ì¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì€üümtì(%½¹ÍÐ±…å½ÕÑ%¹ÁÕÑÌ€ôÉ•…Ñ•1…å½ÕÑ%¹ÁÕÑÌ¡½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ì°±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì¤ì(%½¹ÍÐ±…å½ÕÑM½ÕÉ•A½Í¥Ñ¥½¹Ì€ô±…å½ÕÑ%¹ÁÕÑÌ¹µ…À ¡¥¹ÁÕÐ¤€ôø¥¹ÁÕÐ¹ÑÉ••A½Í¥Ñ¥½¸¤ì(%½¹ÍÐì¡…ÍM•…É¡A…É…µÌ°Á…•M•…É¡A…É…µÌô€ô½±±•ÑÁÁA…•M•…É¡A…É…µÌ¡½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ¤ì(%½¹ÍÐ±…å½ÕÑ5•Ñ…‘…Ñ…AÉ½µ¥Í”€ôÉ•Í½±Ù•1…å½ÕÑ5•Ñ…‘…Ñ„¡±…å½ÕÑ%¹ÁÕÑÌ°½ÁÑ¥½¹Ì¹Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%½¹ÍÐ±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í”€ôÉ•Í½±Ù•1…å½ÕÑY¥•ÝÁ½ÉÐ¡±…å½ÕÑ%¹ÁÕÑÌ°½ÁÑ¥½¹Ì¹Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ¤ì(%½¹ÍÐ±…å½ÕÑ5•Ñ…‘…Ñ…I•ÍÕ±ÑÍ½ÉA…É•¹Ð€ô±…å½ÕÑ5•Ñ…‘…Ñ…AÉ½µ¥Í”¹Ñ¡•¸ ¡µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¤€ôøµ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹™¥±Ñ•È¡¥ÍAÉ•Í•¹Ð¤¤ì(%±…å½ÕÑ5•Ñ…‘…Ñ…I•ÍÕ±ÑÍ½ÉA…É•¹Ð¹…Ñ   ¤€ôø¹Õ±°¤ì(%½¹ÍÐÁ…•A…É•¹ÑAÉ½µ¥Í”€ô±…å½ÕÑ5•Ñ…‘…Ñ…I•ÍÕ±ÑÍ½ÉA…É•¹Ð¹Ñ¡•¸ ¡µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¤€ôøµ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹±•¹Ñ €ø€À€üµ•É•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹µ…À ¡µ•Ñ…‘…Ñ„¤€ôø€¡ìµ•Ñ…‘…Ñ„ô¤¤¤€èíô¤ì(%Á…•A…É•¹ÑAÉ½µ¥Í”¹…Ñ   ¤€ôø¹Õ±°¤ì(%½¹ÍÐÁ…•5•Ñ…‘…Ñ…AÉ½µ¥Í”€ô½ÁÑ¥½¹Ì¹Á…•5½‘Õ±”€üÉ•Í½±Ù•5½‘Õ±•5•Ñ…‘…Ñ„¡½ÁÑ¥½¹Ì¹Á…•5½‘Õ±”°½ÁÑ¥½¹Ì¹Á…É…µÌ°Á…•M•…É¡A…É…µÌ°Á…•A…É•¹ÑAÉ½µ¥Í”¤€èAÉ½µ¥Í”¹É•Í½±Ù”¡¹Õ±°¤ì(%½¹ÍÐÁ…•Y¥•ÝÁ½ÉÑAÉ½µ¥Í”€ô½ÁÑ¥½¹Ì¹Á…•5½‘Õ±”€üÉ•Í½±Ù•5½‘Õ±•Y¥•ÝÁ½ÉÐ¡½ÁÑ¥½¹Ì¹Á…•5½‘Õ±”°½ÁÑ¥½¹Ì¹Á…É…µÌ¤€èAÉ½µ¥Í”¹É•Í½±Ù”¡¹Õ±°¤ì(%½¹ÍÐÁ…É…±±•±I½ÕÑ•!•…‘AÉ½µ¥Í”€ôAÉ½µ¥Í”¹…±° ¡½ÁÑ¥½¹Ì¹Á…É…±±•±I½ÕÑ•Ì€üümt¤¹µ…À ¡Á…É…±±•±I½ÕÑ”¤€ôøÉ•Í½±Ù•A…É…±±•±I½ÕÑ•!•…¡Á…É…±±•±I½ÕÑ”°½ÁÑ¥½¹Ì¹Á…É…µÌ°É½ÕÑ•M•µ•¹ÑÌ°Á…•M•…É¡A…É…µÌ°Á…•A…É•¹ÑAÉ½µ¥Í”¤¤¤ì(%½¹ÍÐm±…å½ÕÑ5•Ñ…‘…Ñ…I•ÍÕ±ÑÌ°±…å½ÕÑY¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ°Á…•5•Ñ…‘…Ñ„°Á…•Y¥•ÝÁ½ÉÐ°Á…É…±±•±I½ÕÑ•!•…‘Ít€ô…Ý…¥ÐAÉ½µ¥Í”¹…±°¡l($%±…å½ÕÑ5•Ñ…‘…Ñ…AÉ½µ¥Í”°($%±…å½ÕÑY¥•ÝÁ½ÉÑAÉ½µ¥Í”°($%Á…•5•Ñ…‘…Ñ…AÉ½µ¥Í”°($%Á…•Y¥•ÝÁ½ÉÑAÉ½µ¥Í”°($%Á…É…±±•±I½ÕÑ•!•…‘AÉ½µ¥Í”(%t¤ì(%½¹ÍÐÁ…É…±±•±5•Ñ…‘…Ñ…I•ÍÕ±ÑÌ€ôÁ…É…±±•±I½ÕÑ•!•…‘Ì¹™±…Ñ5…À ¡¡•…¤€ôø¡•…¹µ•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¤ì(%½¹ÍÐÁ…É…±±•±Y¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ€ôÁ…É…±±•±I½ÕÑ•!•…‘Ì¹™±…Ñ5…À ¡¡•…¤€ôø¡•…¹Ù¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ¤ì(%½¹ÍÐÁ…É…±±•±5•Ñ…‘…Ñ…M½ÕÉ•Ì€ôÁ…É…±±•±I½ÕÑ•!•…‘Ì¹™±…Ñ5…À ¡¡•…¤€ôø¡•…¹µ•Ñ…‘…Ñ…M½ÕÉ•Ì¤ì(%½¹ÍÐµ•Ñ…‘…Ñ…¹ÑÉ¥•Ì€ôl($$¸¸¹±…å½ÕÑ5•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹™¥±Ñ•È¡¥ÍAÉ•Í•¹Ð¤¹µ…À ¡µ•Ñ…‘…Ñ„¤€ôø€¡ìµ•Ñ…‘…Ñ„ô¤¤°($$¸¸¹Á…•5•Ñ…‘…Ñ„€ümì($$%¥ÍA…”èÑÉÕ”°($$%µ•Ñ…‘…Ñ„èÁ…•5•Ñ…‘…Ñ„($%õt€èmt°($$¸¸¹Á…É…±±•±5•Ñ…‘…Ñ…I•ÍÕ±ÑÌ¹™¥±Ñ•È¡¥ÍAÉ•Í•¹Ð¤¹µ…À ¡µ•Ñ…‘…Ñ„¤€ôø€¡ì($$%½¹ÑÉ¥‰ÕÑ•ÍQ¥Ñ±”è™…±Í”°($$%µ•Ñ…‘…Ñ„($%ô¤¤(%tì(%½¹ÍÐÙ¥•ÝÁ½ÉÑ1¥ÍÐ€ôl($$¸¸¹±…å½ÕÑY¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ¹™¥±Ñ•È¡¥ÍAÉ•Í•¹Ð¤°($$¸¸¹Á…•Y¥•ÝÁ½ÉÐ€ümÁ…•Y¥•ÝÁ½ÉÑt€èmt°($$¸¸¹Á…É…±±•±Y¥•ÝÁ½ÉÑI•ÍÕ±ÑÌ¹™¥±Ñ•È¡¥ÍAÉ•Í•¹Ð¤(%tì(%½¹ÍÐÉ•Í½±Ù•‘5•Ñ…‘…Ñ…	…Í”€ôµ•Ñ…‘…Ñ…¹ÑÉ¥•Ì¹±•¹Ñ €ø€À€üµ•É•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡µ•Ñ…‘…Ñ…¹ÑÉ¥•Ì¤€è¹Õ±°ì(%½¹ÍÐµ•Ñ…‘…Ñ…M½ÕÉ•Ì€ôÉ•…Ñ•5•Ñ…‘…Ñ…M½ÕÉ•Ì¡±…å½ÕÑ5•Ñ…‘…Ñ…I•ÍÕ±ÑÌ°É½ÕÑ•M•µ•¹ÑÌ°±…å½ÕÑM½ÕÉ•A½Í¥Ñ¥½¹Ì°Á…•5•Ñ…‘…Ñ„°	½½±•…¸¡½ÁÑ¥½¹Ì¹Á…•5½‘Õ±”¤¤ì(%µ•Ñ…‘…Ñ…M½ÕÉ•Ì¹ÁÕÍ  ¸¸¹Á…É…±±•±5•Ñ…‘…Ñ…M½ÕÉ•Ì¤ì(%±•Ðµ•Ñ…‘…Ñ„€ôÉ•Í½±Ù•‘5•Ñ…‘…Ñ…	…Í”ì(%ÑÉäì($%µ•Ñ…‘…Ñ„€ô…Ý…¥Ð…ÁÁ±å¥±•	…Í•‘5•Ñ…‘…Ñ„¡É•Í½±Ù•‘5•Ñ…‘…Ñ…	…Í”°½ÁÑ¥½¹Ì¹É½ÕÑ•A…Ñ °½ÁÑ¥½¹Ì¹Á…É…µÌ°½ÁÑ¥½¹Ì¹µ•Ñ…‘…Ñ…I½ÕÑ•Ì°ì($$%É½ÕÑ•M•µ•¹ÑÌ°($$%µ•Ñ…‘…Ñ…M½ÕÉ•Ì($%ô¤ì(%ô…Ñ €¡•ÉÉ½È¤ì($%¥˜€ …½ÁÑ¥½¹Ì¹™…±±‰…­=¹¥±•5•Ñ…‘…Ñ…ÉÉ½È¤Ñ¡É½Ü•ÉÉ½Èì($%½¹Í½±”¹•ÉÉ½È¡mÙ¥¹•áÑt¥±”µ‰…Í•µ•Ñ…‘…Ñ„É•Í½±ÕÑ¥½¸™…¥±•Ý¡¥±”É•¹‘•É¥¹œ•ÉÉ½È‰½Õ¹‘…Éä™½È€‘í½ÁÑ¥½¹Ì¹É½ÕÑ•A…Ñ¡ôé€°•ÉÉ½È¤ì(%ô(%¥˜€¡µ•Ñ…‘…Ñ„¤µ•Ñ…‘…Ñ„€ôÁ½ÍÑAÉ½•ÍÍ5•Ñ…‘…Ñ„¡µ•Ñ…‘…Ñ„¤ì(%É•ÑÕÉ¸ì($%¡…ÍM•…É¡A…É…µÌ°($%µ•Ñ…‘…Ñ„°($%Á…•M•…É¡A…É…µÌ°($%Ù¥•ÝÁ½ÉÐèµ•É•Y¥•ÝÁ½ÉÐ¡Ù¥•ÝÁ½ÉÑ1¥ÍÐ¤(%ôì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ‰½Õ¹‘…Éä¹©Ì)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•!ÑÑÁ•ÍÍ	½Õ¹‘…Éå½µÁ½¹•¹Ð¡½ÁÑ¥½¹Ì¤ì(%±•Ð‰½Õ¹‘…Éå5½‘Õ±”ì(%¥˜€¡½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÍ½‘”€ôôô€ÐÀÌ¤‰½Õ¹‘…Éå5½‘Õ±”€ô½ÁÑ¥½¹Ì¹É½ÕÑ•½É‰¥‘‘•¹5½‘Õ±”€üü½ÁÑ¥½¹Ì¹É½½Ñ½É‰¥‘‘•¹5½‘Õ±”ì(%•±Í”¥˜€¡½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÍ½‘”€ôôô€ÐÀÄ¤‰½Õ¹‘…Éå5½‘Õ±”€ô½ÁÑ¥½¹Ì¹É½ÕÑ•U¹…ÕÑ¡½É¥é•‘5½‘Õ±”€üü½ÁÑ¥½¹Ì¹É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”ì(%•±Í”‰½Õ¹‘…Éå5½‘Õ±”€ô½ÁÑ¥½¹Ì¹É½ÕÑ•9½Ñ½Õ¹‘5½‘Õ±”€üü½ÁÑ¥½¹Ì¹É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹•Ñ•™…Õ±ÑáÁ½ÉÐ¡‰½Õ¹‘…Éå5½‘Õ±”¤€üü¹Õ±°ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•A…É•¹Ñ!ÑÑÁ•ÍÍ	½Õ¹‘…Éå5½‘Õ±”¡½ÁÑ¥½¹Ì¤ì(%±•ÐÉ½ÕÑ•5½‘Õ±•Ì€ô½ÁÑ¥½¹Ì¹É½ÕÑ•9½Ñ½Õ¹‘5½‘Õ±•Ìì(%±•ÐÉ½½Ñ5½‘Õ±”€ô½ÁÑ¥½¹Ì¹É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”ì(%¥˜€¡½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÍ½‘”€ôôô€ÐÀÌ¤ì($%É½ÕÑ•5½‘Õ±•Ì€ô½ÁÑ¥½¹Ì¹É½ÕÑ•½É‰¥‘‘•¹5½‘Õ±•Ìì($%É½½Ñ5½‘Õ±”€ô½ÁÑ¥½¹Ì¹É½½Ñ½É‰¥‘‘•¹5½‘Õ±”ì(%ô•±Í”¥˜€¡½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÍ½‘”€ôôô€ÐÀÄ¤ì($%É½ÕÑ•5½‘Õ±•Ì€ô½ÁÑ¥½¹Ì¹É½ÕÑ•U¹…ÕÑ¡½É¥é•‘5½‘Õ±•Ìì($%É½½Ñ5½‘Õ±”€ô½ÁÑ¥½¹Ì¹É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”ì(%ô(%¥˜€¡É½ÕÑ•5½‘Õ±•Ì¤™½È€¡±•Ð¥¹‘•à€ô½ÁÑ¥½¹Ì¹±…å½ÕÑ%¹‘•à€´€Äì¥¹‘•à€øô€Àì¥¹‘•à´´¤ì($%½¹ÍÐµ½‘Õ±”€ôÉ½ÕÑ•5½‘Õ±•Ím¥¹‘•átì($%¥˜€¡µ½‘Õ±”¤É•ÑÕÉ¸µ½‘Õ±”ì(%ô(%É•ÑÕÉ¸É½½Ñ5½‘Õ±”€üü¹Õ±°ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•ÉÉ½É	½Õ¹‘…Éä¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÁ…•ÉÉ½É½µÁ½¹•¹Ð€ô½ÁÑ¥½¹Ì¹•Ñ•™…Õ±ÑáÁ½ÉÐ¡½ÁÑ¥½¹Ì¹Á…•ÉÉ½É5½‘Õ±”¤ì(%¥˜€¡Á…•ÉÉ½É½µÁ½¹•¹Ð¤É•ÑÕÉ¸ì($%½µÁ½¹•¹ÐèÁ…•ÉÉ½É½µÁ½¹•¹Ð°($%¥Í±½‰…±ÉÉ½Èè™…±Í”(%ôì(%½¹ÍÐÍ•µ•¹ÑÉÉ½É5½‘Õ±•Ì€ô½ÁÑ¥½¹Ì¹•ÉÉ½É5½‘Õ±•Ì€üü½ÁÑ¥½¹Ì¹±…å½ÕÑÉÉ½É5½‘Õ±•Ìì(%¥˜€¡Í•µ•¹ÑÉÉ½É5½‘Õ±•Ì¤™½È€¡±•Ð¥¹‘•à€ôÍ•µ•¹ÑÉÉ½É5½‘Õ±•Ì¹±•¹Ñ €´€Äì¥¹‘•à€øô€Àì¥¹‘•à´´¤ì($%½¹ÍÐÍ•µ•¹ÑÉÉ½É½µÁ½¹•¹Ð€ô½ÁÑ¥½¹Ì¹•Ñ•™…Õ±ÑáÁ½ÉÐ¡Í•µ•¹ÑÉÉ½É5½‘Õ±•Ím¥¹‘•át¤ì($%¥˜€¡Í•µ•¹ÑÉÉ½É½µÁ½¹•¹Ð¤É•ÑÕÉ¸ì($$%½µÁ½¹•¹ÐèÍ•µ•¹ÑÉÉ½É½µÁ½¹•¹Ð°($$%¥Í±½‰…±ÉÉ½Èè™…±Í”($%ôì(%ô(%½¹ÍÐ±½‰…±ÉÉ½É½µÁ½¹•¹Ð€ô½ÁÑ¥½¹Ì¹•Ñ•™…Õ±ÑáÁ½ÉÐ¡½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É5½‘Õ±”¤ì(%É•ÑÕÉ¸ì($%½µÁ½¹•¹Ðè±½‰…±ÉÉ½É½µÁ½¹•¹Ð€üü¹Õ±°°($%¥Í±½‰…±ÉÉ½Èè	½½±•…¸¡±½‰…±ÉÉ½É½µÁ½¹•¹Ð¤(%ôì)ô)™Õ¹Ñ¥½¸ÝÉ…ÁÁÁA…•	½Õ¹‘…Éå±•µ•¹Ð¡½ÁÑ¥½¹Ì¤ì(%±•Ð•±•µ•¹Ð€ô½ÁÑ¥½¹Ì¹•±•µ•¹Ðì(%¥˜€ …½ÁÑ¥½¹Ì¹Í­¥Á1…å½ÕÑ]É…ÁÁ¥¹œ¤™½È€¡±•Ð¥¹‘•à€ô½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ €´€Äì¥¹‘•à€øô€Àì¥¹‘•à´´¤ì($%½¹ÍÐ±…å½ÕÑ½µÁ½¹•¹Ð€ô½ÁÑ¥½¹Ì¹•Ñ•™…Õ±ÑáÁ½ÉÐ¡½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ím¥¹‘•át¤ì($%¥˜€ …±…å½ÕÑ½µÁ½¹•¹Ð¤½¹Ñ¥¹Õ”ì($%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ô½ÁÑ¥½¹Ì¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì€ü½ÁÑ¥½¹Ì¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ím¥¹‘•át€è€Àì($%½¹ÍÐ…Íå¹A…É…µÌ€ô½ÁÑ¥½¹Ì¹µ…­•Q¡•¹…‰±•A…É…µÌ¡É•Í½±Ù•ÁÁA…•M•µ•¹ÑA…É…µÌ¡½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸°½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ¤¤ì($%•±•µ•¹Ð€ô½ÁÑ¥½¹Ì¹É•¹‘•É1…å½ÕÐ¡±…å½ÕÑ½µÁ½¹•¹Ð°•±•µ•¹Ð°…Íå¹A…É…µÌ¤ì($%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€˜˜½ÁÑ¥½¹Ì¹É•¹‘•É1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È€˜˜½ÁÑ¥½¹Ì¹É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ¤ì($$%½¹ÍÐ¡¥±‘M•µ•¹ÑÌ€ô½ÁÑ¥½¹Ì¹É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ¡½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ€üümt°ÑÉ••A½Í¥Ñ¥½¸°½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ¤ì($$%•±•µ•¹Ð€ô½ÁÑ¥½¹Ì¹É•¹‘•É1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È¡ì¡¥±‘É•¸è¡¥±‘M•µ•¹ÑÌô°•±•µ•¹Ð¤ì($%ô(%ô(%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€˜˜½ÁÑ¥½¹Ì¹¥¹±Õ‘•±½‰…±ÉÉ½É	½Õ¹‘…Éä€˜˜½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É½µÁ½¹•¹Ð¤•±•µ•¹Ð€ô½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…Éä¡½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É½µÁ½¹•¹Ð°•±•µ•¹Ð¤ì(%É•ÑÕÉ¸•±•µ•¹Ðì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÉÍMÑÉ•…´€ôÉÕ¹]¥Ñ¡•Ñ¡•‘ÕÁ”  ¤€ôø½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´¡½ÁÑ¥½¹Ì¹•±•µ•¹Ð°ì½¹ÉÉ½Èè½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È ¤ô¤¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ¤ì($%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$$‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½àµ½µÁ½¹•¹Ðì¡…ÉÍ•ÐõÕÑ˜´àˆ°($$%Y…ÉäèY%9aQ}IM}YIe}!H($%ô¤ì($%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ€üü¹Õ±°¤ì($%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡ÉÍMÑÉ•…´°ì($$%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÌ°($$%¡•…‘•ÉÌ($%ô¤ì(%ô(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•…Ñ•!Ñµ±I•ÍÁ½¹Í”¡ÉÍMÑÉ•…´°½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÌ¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÍÑÉ•…´¹©Ì)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•½¹Ñ…Ñ„¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸ì($%±¥¹­Ìè½ÁÑ¥½¹Ì¹•Ñ1¥¹­Ì ¤°($%ÁÉ•±½…‘Ìè½ÁÑ¥½¹Ì¹•ÑAÉ•±½…‘Ì ¤°($%ÍÑå±•Ìè½ÁÑ¥½¹Ì¹•ÑMÑå±•Ì ¤(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•!Ñµ±MÑÉ•…´¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÍÍÉ=ÁÑ¥½¹Ì€ôì($%™½ÉµMÑ…Ñ”è½ÁÑ¥½¹Ì¹™½ÉµMÑ…Ñ”€üü¹Õ±°°($%ÍÉ¥ÁÑ9½¹”è½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”°($%Í¥‘•MÑÉ•…´è½ÁÑ¥½¹Ì¹Í¥‘•MÑÉ•…´°($%…ÁÑÕÉ•‘IÍ…Ñ…I•˜è½ÁÑ¥½¹Ì¹…ÁÑÕÉ•‘IÍ…Ñ…I•˜°($%Ý…¥Ñ½É±±I•…‘äè½ÁÑ¥½¹Ì¹Ý…¥Ñ½É±±I•…‘ä(%ôì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÍÍÉ!…¹‘±•È¹¡…¹‘±•MÍÈ¡½ÁÑ¥½¹Ì¹ÉÍMÑÉ•…´°½ÁÑ¥½¹Ì¹¹…Ù¥…Ñ¥½¹½¹Ñ•áÐ°½ÁÑ¥½¹Ì¹™½¹Ñ…Ñ„°ÍÍÉ=ÁÑ¥½¹Ì¤ì)ô(¼¨¨(¨]É…ÁÌ„ÍÑÉ•…´Í¼Ñ¡…Ð½¹±ÕÍ¡€¥Ì…±±•Ý¡•¸Ñ¡”±…ÍÐ‰åÑ”¡…Ì‰••¸É•…(¨‰äÑ¡”‘½Ý¹ÍÑÉ•…´½¹ÍÕµ•È€¡¤¹”¸Ý¡•¸Ñ¡”!QQ@±…å•È™¥¹¥Í¡•Ì‘É…¥¹¥¹œÑ¡”(¨É•ÍÁ½¹Í”‰½‘ä¤¸Q¡¥Ì¥ÌÑ¡”½ÉÉ•ÐÁ±…”Ñ¼±•…ÈÁ•ÈµÉ•ÅÕ•ÍÐ½¹Ñ•áÐ°(¨‰•…ÕÍ”Ñ¡”IM½MMHÁ¥Á•±¥¹”¥Ì±…éäƒŠP½µÁ½¹•¹ÑÌ•á•ÕÑ”Ý¡¥±”Ñ¡”ÍÑÉ•…´(¨¥Ì‰•¥¹œ½¹ÍÕµ•°¹½ÐÝ¡•¸Ñ¡”ÍÑÉ•…´¡…¹‘±”¥Ì™¥ÉÍÐ½‰Ñ…¥¹•¸(¨¼)™Õ¹Ñ¥½¸‘•™•ÉU¹Ñ¥±MÑÉ•…µ½¹ÍÕµ•¡ÍÑÉ•…´°½¹±ÕÍ ¤ì(%±•Ð…±±•€ô™…±Í”ì(%½¹ÍÐ½¹”€ô€ ¤€ôøì($%¥˜€ ……±±•¤ì($$%…±±•€ôÑÉÕ”ì($$%½¹±ÕÍ  ¤ì($%ô(%ôì(%½¹ÍÐ±•…¹ÕÀ€ô¹•ÜQÉ…¹Í™½ÉµMÑÉ•…´¡ì™±ÕÍ  ¤ì($%½¹” ¤ì(%ôô¤ì(%½¹ÍÐÉ•…‘•È€ôÍÑÉ•…´¹Á¥Á•Q¡É½Õ ¡±•…¹ÕÀ¤¹•ÑI•…‘•È ¤ì(%É•ÑÕÉ¸¹•ÜI•…‘…‰±•MÑÉ•…´¡ì($%ÁÕ±°¡½¹ÑÉ½±±•È¤ì($$%É•ÑÕÉ¸É•…‘•È¹É•… ¤¹Ñ¡•¸ ¡ì‘½¹”°Ù…±Õ”ô¤€ôøì($$$%¥˜€¡‘½¹”¤½¹ÑÉ½±±•È¹±½Í” ¤ì($$$%•±Í”½¹ÑÉ½±±•È¹•¹ÅÕ•Õ”¡Ù…±Õ”¤ì($$%ô°€¡•ÉÉ½È¤€ôøì($$$%½¹” ¤ì($$$%½¹ÑÉ½±±•È¹•ÉÉ½È¡•ÉÉ½È¤ì($$%ô¤ì($%ô°($%…¹•°¡É•…Í½¸¤ì($$%½¹” ¤ì($$%É•ÑÕÉ¸É•…‘•È¹…¹•°¡É•…Í½¸¤ì($%ô(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•!Ñµ±I•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÍ…™•MÑÉ•…´€ô‘•™•ÉU¹Ñ¥±MÑÉ•…µ½¹ÍÕµ•¡…Ý…¥ÐÉ•¹‘•ÉÁÁA…•!Ñµ±MÑÉ•…´¡½ÁÑ¥½¹Ì¤°€ ¤€ôøì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%ô¤ì(%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½¡Ñµ°ì¡…ÉÍ•ÐõÕÑ˜´àˆ°($%Y…ÉäèY%9aQ}IM}YIe}!H(%ô¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹™½¹Ñ1¥¹­!•…‘•È¤¡•…‘•ÉÌ¹Í•Ð ‰1¥¹¬ˆ°½ÁÑ¥½¹Ì¹™½¹Ñ1¥¹­!•…‘•È¤ì(%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ€üü¹Õ±°¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡Í…™•MÑÉ•…´°ì($%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÌ°($%¡•…‘•ÉÌ(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•!Ñµ±MÑÉ•…µ]¥Ñ¡I•½Ù•Éä¡½ÁÑ¥½¹Ì¤ì(%ÑÉäì($%½¹ÍÐ¡Ñµ±MÑÉ•…´€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•É!Ñµ±MÑÉ•…´ ¤ì($%½ÁÑ¥½¹Ì¹½¹M¡•±±I•¹‘•É•ü¸ ¤ì($%É•ÑÕÉ¸ì($$%¡Ñµ±MÑÉ•…´°($$%É•ÍÁ½¹Í”è¹Õ±°($%ôì(%ô…Ñ €¡•ÉÉ½È¤ì($%½¹ÍÐÍÁ•¥…±ÉÉ½È€ô½ÁÑ¥½¹Ì¹É•Í½±Ù•MÁ•¥…±ÉÉ½È¡•ÉÉ½È¤ì($%¥˜€¡ÍÁ•¥…±ÉÉ½È¤É•ÑÕÉ¸ì($$%¡Ñµ±MÑÉ•…´è¹Õ±°°($$%É•ÍÁ½¹Í”è…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉMÁ•¥…±ÉÉ½ÉI•ÍÁ½¹Í”¡ÍÁ•¥…±ÉÉ½È¤($%ôì($%½¹ÍÐ‰½Õ¹‘…ÉåI•ÍÁ½¹Í”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡•ÉÉ½È¤ì($%¥˜€¡‰½Õ¹‘…ÉåI•ÍÁ½¹Í”¤É•ÑÕÉ¸ì($$%¡Ñµ±MÑÉ•…´è¹Õ±°°($$%É•ÍÁ½¹Í”è‰½Õ¹‘…ÉåI•ÍÁ½¹Í”($%ôì($%Ñ¡É½Ü•ÉÉ½Èì(%ô)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•IÍÉÉ½ÉQÉ…­•È¡‰…Í•=¹ÉÉ½È¤ì(%±•Ð…ÁÑÕÉ•‘ÉÉ½È€ô¹Õ±°ì(%±•Ð…ÁÑÕÉ•‘MÁ•¥…±ÉÉ½È€ô¹Õ±°ì(%É•ÑÕÉ¸ì($%•Ñ…ÁÑÕÉ•‘ÉÉ½È ¤ì($$%É•ÑÕÉ¸…ÁÑÕÉ•‘ÉÉ½Èì($%ô°($%•Ñ…ÁÑÕÉ•‘MÁ•¥…±ÉÉ½È ¤ì($$%É•ÑÕÉ¸…ÁÑÕÉ•‘MÁ•¥…±ÉÉ½Èì($%ô°($%½¹I•¹‘•ÉÉÉ½È¡•ÉÉ½È°É•ÅÕ•ÍÑ%¹™¼°•ÉÉ½É½¹Ñ•áÐ¤ì($$%¥˜€¡•ÉÉ½È€˜˜ÑåÁ•½˜•ÉÉ½È€ôôô€‰½‰©•Ðˆ€˜˜€‰‘¥•ÍÐˆ¥¸•ÉÉ½È¤ì($$$%¥˜€¡…ÁÑÕÉ•‘MÁ•¥…±ÉÉ½È€ôôô¹Õ±°¤…ÁÑÕÉ•‘MÁ•¥…±ÉÉ½È€ô•ÉÉ½Èì($$%ô•±Í”…ÁÑÕÉ•‘ÉÉ½È€ô•ÉÉ½Èì($$%É•ÑÕÉ¸‰…Í•=¹ÉÉ½È¡•ÉÉ½È°É•ÅÕ•ÍÑ%¹™¼°•ÉÉ½É½¹Ñ•áÐ¤ì($%ô(%ôì)ô)™Õ¹Ñ¥½¸Í¡½Õ±‘I•É•¹‘•ÉÁÁA…•]¥Ñ¡±½‰…±ÉÉ½È¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸	½½±•…¸¡½ÁÑ¥½¹Ì¹…ÁÑÕÉ•‘ÉÉ½È¤€˜˜€…½ÁÑ¥½¹Ì¹¡…Í1½…±	½Õ¹‘…Éäì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ‰½Õ¹‘…ÉäµÉ•¹‘•È¹©Ì)™Õ¹Ñ¥½¸•Ñ•™…Õ±ÑáÁ½ÉÐ¡µ½‘Õ±”¤ì(%É•ÑÕÉ¸µ½‘Õ±”ü¹‘•™…Õ±Ð€üü¹Õ±°ì)ô)™Õ¹Ñ¥½¸ÝÉ…ÁI•¹‘•É•‘	½Õ¹‘…Éå±•µ•¹Ð¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸ÝÉ…ÁÁÁA…•	½Õ¹‘…Éå±•µ•¹Ð¡ì($%•±•µ•¹Ðè½ÁÑ¥½¹Ì¹•±•µ•¹Ð°($%•Ñ•™…Õ±ÑáÁ½ÉÐ°($%±½‰…±ÉÉ½É½µÁ½¹•¹Ðè•Ñ•™…Õ±ÑáÁ½ÉÐ¡½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É5½‘Õ±”¤°($%¥¹±Õ‘•±½‰…±ÉÉ½É	½Õ¹‘…Éäè½ÁÑ¥½¹Ì¹¥¹±Õ‘•±½‰…±ÉÉ½É	½Õ¹‘…Éä°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%±…å½ÕÑ5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ì°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìè½ÁÑ¥½¹Ì¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($%µ…­•Q¡•¹…‰±•A…É…µÌè½ÁÑ¥½¹Ì¹µ…­•Q¡•¹…‰±•A…É…µÌ°($%µ…Ñ¡•‘A…É…µÌè½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ°($%É•¹‘•ÉÉÉ½É	½Õ¹‘…Éä¡±½‰…±ÉÉ½É½µÁ½¹•¹Ð°¡¥±‘É•¸¤ì($$%É•ÑÕÉ¸€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡ÉÉ½É	½Õ¹‘…Éä°ì($$$%™…±±‰…¬è±½‰…±ÉÉ½É½µÁ½¹•¹Ð°($$$%¡¥±‘É•¸($$%ô¤ì($%ô°($%É•¹‘•É1…å½ÕÐ¡1…å½ÕÑ½µÁ½¹•¹Ð°¡¥±‘É•¸°…Íå¹A…É…µÌ¤ì($$%É•ÑÕÉ¸€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡1…å½ÕÑ½µÁ½¹•¹Ð°ì($$$%¡¥±‘É•¸°($$$%Á…É…µÌè…Íå¹A…É…µÌ($$%ô¤ì($%ô°($%É•¹‘•É1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È¡Í•µ•¹Ñ5…À°¡¥±‘É•¸¤ì($$%É•ÑÕÉ¸€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡1…å½ÕÑM•µ•¹ÑAÉ½Ù¥‘•È°ìÍ•µ•¹Ñ5…Àô°¡¥±‘É•¸¤ì($%ô°($%É•Í½±Ù•¡¥±‘M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ°($%É½ÕÑ•M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ€üümt°($%Í­¥Á1…å½ÕÑ]É…ÁÁ¥¹œè½ÁÑ¥½¹Ì¹Í­¥Á1…å½ÕÑ]É…ÁÁ¥¹œ(%ô¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•	½Õ¹‘…Éå1…å½ÕÑ¹ÑÉ¥•Ì¡É½ÕÑ”°±…å½ÕÑ5½‘Õ±•Ì¤ì(%¥˜€ …É½ÕÑ”ñð±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸mtì(%É•ÑÕÉ¸É•…Ñ•ÁÁA…•1…å½ÕÑ¹ÑÉ¥•Ì¡ì($%•ÉÉ½ÉÌèÉ½ÕÑ”¹•ÉÉ½ÉÌ°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($%±…å½ÕÑÌè±…å½ÕÑ5½‘Õ±•Ì°($%¹½Ñ½Õ¹‘Ìè¹Õ±°°($%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ(%ô¤ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•!ÑÑÁ•ÍÍ…±±‰…­!•…‘I½ÕÑ•M•µ•¹ÑÌ¡É½ÕÑ”°±…å½ÕÑ5½‘Õ±•Ì¤ì(%¥˜€ …É½ÕÑ”ü¹É½ÕÑ•M•µ•¹ÑÌ¤É•ÑÕÉ¸ì(%¥˜€ …É½ÕÑ”¹±…å½ÕÑÌñð±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ €øôÉ½ÕÑ”¹±…å½ÕÑÌ¹±•¹Ñ ¤É•ÑÕÉ¸É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌì(%½¹ÍÐ±…ÍÑ%¹±Õ‘•‘1…å½ÕÑ%¹‘•à€ô±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ €´€Äì(%¥˜€¡±…ÍÑ%¹±Õ‘•‘1…å½ÕÑ%¹‘•à€ð€À¤É•ÑÕÉ¸mtì(%½¹ÍÐÍ•µ•¹Ñ½Õ¹Ð€ôÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹m±…ÍÑ%¹±Õ‘•‘1…å½ÕÑ%¹‘•át€üü€Àì(%É•ÑÕÉ¸É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¹Í±¥” À°Í•µ•¹Ñ½Õ¹Ð¤ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•!ÑÑÁ•ÍÍ…±±‰…­!•…‘1…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì¡É½ÕÑ”°±…å½ÕÑ5½‘Õ±•Ì¤ì(%¥˜€ …É½ÕÑ”ü¹±…å½ÕÑÌñð±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ €øôÉ½ÕÑ”¹±…å½ÕÑÌ¹±•¹Ñ ¤É•ÑÕÉ¸É½ÕÑ”ü¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìì(%É•ÑÕÉ¸É½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹Í±¥” À°±…å½ÕÑ5½‘Õ±•Ì¹±•¹Ñ ¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•	½Õ¹‘…ÉåIÍA…å±½…¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÉ½ÕÑ•%€ôÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•I½ÕÑ•%¡½ÁÑ¥½¹Ì¹Á…Ñ¡¹…µ”°¹Õ±°¤ì(%½¹ÍÐ±…å½ÕÑ¹ÑÉ¥•Ì€ôÉ•…Ñ•ÁÁA…•	½Õ¹‘…Éå1…å½ÕÑ¹ÑÉ¥•Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”°½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ì¤ì(%É•ÑÕÉ¸ì($$¸¸¹ÁÁ±•µ•¹ÑÍ]¥É”¹É•…Ñ•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡ì($$%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐè¹Õ±°°($$%±…å½ÕÑ%‘Ìè±…å½ÕÑ¹ÑÉ¥•Ì¹µ…À ¡•¹ÑÉä¤€ôø•¹ÑÉä¹¥¤°($$%É½½Ñ1…å½ÕÑQÉ••A…Ñ è±…å½ÕÑ¹ÑÉ¥•ÍlÁtü¹ÑÉ••A…Ñ €üü¹Õ±°°($$%É½ÕÑ•%($%ô¤°($%mÉ½ÕÑ•%‘tè½ÁÑ¥½¹Ì¹•±•µ•¹Ð(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•	½Õ¹‘…Éå±•µ•¹ÑI•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÁ…Ñ¡¹…µ”€ô¹•ÜUI0¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑUÉ°¤¹Á…Ñ¡¹…µ”ì(%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡ì($%…Íå¹ŒÉ•…Ñ•!Ñµ±I•ÍÁ½¹Í”¡ÉÍMÑÉ•…´°É•ÍÁ½¹Í•MÑ…ÑÕÌ¤ì($$%½¹ÍÐ™½¹Ñ…Ñ„€ôÉ•…Ñ•ÁÁA…•½¹Ñ…Ñ„¡ì($$$%•Ñ1¥¹­Ìè½ÁÑ¥½¹Ì¹•Ñ½¹Ñ1¥¹­Ì°($$$%•ÑAÉ•±½…‘Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑAÉ•±½…‘Ì°($$$%•ÑMÑå±•Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑMÑå±•Ì($$%ô¤ì($$%½¹ÍÐÍÍÉ!…¹‘±•È€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹±½…‘MÍÉ!…¹‘±•È ¤ì($$%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•!Ñµ±I•ÍÁ½¹Í”¡ì($$$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$$%™½¹Ñ…Ñ„°($$$%™½¹Ñ1¥¹­!•…‘•Èè½ÁÑ¥½¹Ì¹‰Õ¥±‘½¹Ñ1¥¹­!•…‘•È¡™½¹Ñ…Ñ„¹ÁÉ•±½…‘Ì¤°($$$%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ°($$$%¹…Ù¥…Ñ¥½¹½¹Ñ•áÐè½ÁÑ¥½¹Ì¹•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ ¤°($$$%ÉÍMÑÉ•…´°($$$%ÍÉ¥ÁÑ9½¹”è½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”°($$$%ÍÍÉ!…¹‘±•È°($$$%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í•MÑ…ÑÕÌ($$%ô¤ì($%ô°($%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È ¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡Á…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸€üüÁ…Ñ¡¹…µ”¤ì($%ô°($%•±•µ•¹ÐèÉ•…Ñ•ÁÁA…•	½Õ¹‘…ÉåIÍA…å±½…¡ì($$%•±•µ•¹Ðè½ÁÑ¥½¹Ì¹•±•µ•¹Ð°($$%±…å½ÕÑ5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ì°($$%Á…Ñ¡¹…µ”°($$%É½ÕÑ”è½ÁÑ¥½¹Ì¹É½ÕÑ”($%ô¤°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ°($%É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´è½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´°($%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÌ(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•!ÑÑÁ•ÍÍ…±±‰…¬¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ‰½Õ¹‘…Éå½µÁ½¹•¹Ð€ô½ÁÑ¥½¹Ì¹‰½Õ¹‘…Éå½µÁ½¹•¹Ð€üüÉ•Í½±Ù•ÁÁA…•!ÑÑÁ•ÍÍ	½Õ¹‘…Éå½µÁ½¹•¹Ð¡ì($%•Ñ•™…Õ±ÑáÁ½ÉÐ°($%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”è½ÁÑ¥½¹Ì¹É½½Ñ½É‰¥‘‘•¹5½‘Õ±”°($%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”è½ÁÑ¥½¹Ì¹É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°($%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”è½ÁÑ¥½¹Ì¹É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”°($%É½ÕÑ•½É‰¥‘‘•¹5½‘Õ±”è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹™½É‰¥‘‘•¸°($%É½ÕÑ•9½Ñ½Õ¹‘5½‘Õ±”è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹¹½Ñ½Õ¹°($%É½ÕÑ•U¹…ÕÑ¡½É¥é•‘5½‘Õ±”è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Õ¹…ÕÑ¡½É¥é•°($%ÍÑ…ÑÕÍ½‘”è½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÍ½‘”(%ô¤ì(%¥˜€ …‰½Õ¹‘…Éå½µÁ½¹•¹Ð¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ±…å½ÕÑ5½‘Õ±•Ì€ô½ÁÑ¥½¹Ì¹±…å½ÕÑ5½‘Õ±•Ì€üü½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹±…å½ÕÑÌ€üü½ÁÑ¥½¹Ì¹É½½Ñ1…å½ÕÑÌì(%½¹ÍÐÉ½ÕÑ•M•µ•¹ÑÌ€ôÉ•Í½±Ù•!ÑÑÁ•ÍÍ…±±‰…­!•…‘I½ÕÑ•M•µ•¹ÑÌ¡½ÁÑ¥½¹Ì¹É½ÕÑ”°±…å½ÕÑ5½‘Õ±•Ì¤ì(%½¹ÍÐìµ•Ñ…‘…Ñ„°Ù¥•ÝÁ½ÉÐô€ô…Ý…¥ÐÉ•Í½±Ù•ÁÁA…•!•…¡ì($%±…å½ÕÑ5½‘Õ±•Ì°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèÉ•Í½±Ù•!ÑÑÁ•ÍÍ…±±‰…­!•…‘1…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì¡½ÁÑ¥½¹Ì¹É½ÕÑ”°±…å½ÕÑ5½‘Õ±•Ì¤°($%µ•Ñ…‘…Ñ…I½ÕÑ•Ìè½ÁÑ¥½¹Ì¹µ•Ñ…‘…Ñ…I½ÕÑ•Ì°($%Á…É…µÌè½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ°($%É½ÕÑ•A…Ñ è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Á…ÑÑ•É¸€üü¹•ÜUI0¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑUÉ°¤¹Á…Ñ¡¹…µ”°($%É½ÕÑ•M•µ•¹ÑÌ(%ô¤ì(%½¹ÍÐ¡•…‘±•µ•¹ÑÌ€ôl À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤ ‰µ•Ñ„ˆ°ì($%¡…ÉM•Ðè€‰ÕÑ˜´àˆ°($%­•äè€‰¡…ÉÍ•Ðˆ(%ô¤°€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤ ‰µ•Ñ„ˆ°ì($%½¹Ñ•¹Ðè€‰¹½¥¹‘•àˆ°($%­•äè€‰É½‰½ÑÌˆ°($%¹…µ”è€‰É½‰½ÑÌˆ(%ô¥tì(%¥˜€¡µ•Ñ…‘…Ñ„¤¡•…‘±•µ•¹ÑÌ¹ÁÕÍ   À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡5•Ñ…‘…Ñ…!•…°ì($%­•äè€‰µ•Ñ…‘…Ñ„ˆ°($%µ•Ñ…‘…Ñ„(%ô¤¤ì(%¡•…‘±•µ•¹ÑÌ¹ÁÕÍ   À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡Y¥•ÝÁ½ÉÑ!•…°ì($%­•äè€‰Ù¥•ÝÁ½ÉÐˆ°($%Ù¥•ÝÁ½ÉÐ(%ô¤¤ì(%½¹ÍÐ•±•µ•¹Ð€ôÝÉ…ÁI•¹‘•É•‘	½Õ¹‘…Éå±•µ•¹Ð¡ì($%•±•µ•¹Ðè€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°¹Õ±°°€¸¸¹¡•…‘±•µ•¹ÑÌ°€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡‰½Õ¹‘…Éå½µÁ½¹•¹Ð¤¤°($%±½‰…±ÉÉ½É5½‘Õ±”è½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É5½‘Õ±”°($%¥¹±Õ‘•±½‰…±ÉÉ½É	½Õ¹‘…ÉäèÑÉÕ”°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%±…å½ÕÑ5½‘Õ±•Ì°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($%µ…­•Q¡•¹…‰±•A…É…µÌè½ÁÑ¥½¹Ì¹µ…­•Q¡•¹…‰±•A…É…µÌ°($%µ…Ñ¡•‘A…É…µÌè½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ°($%É•Í½±Ù•¡¥±‘M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ°($%É½ÕÑ•M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹É½ÕÑ•M•µ•¹ÑÌ(%ô¤ì(%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•	½Õ¹‘…Éå±•µ•¹ÑI•ÍÁ½¹Í”¡ì($$¸¸¹½ÁÑ¥½¹Ì°($%•±•µ•¹Ð°($%±…å½ÕÑ5½‘Õ±•Ì°($%É½ÕÑ”è½ÁÑ¥½¹Ì¹É½ÕÑ”°($%É½ÕÑ•A…ÑÑ•É¸è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Á…ÑÑ•É¸°($%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹ÍÑ…ÑÕÍ½‘”(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•ÉÉ½É	½Õ¹‘…Éä¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ•ÉÉ½É	½Õ¹‘…Éä€ôÉ•Í½±Ù•ÁÁA…•ÉÉ½É	½Õ¹‘…Éä¡ì($%•Ñ•™…Õ±ÑáÁ½ÉÐ°($%•ÉÉ½É5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹•ÉÉ½ÉA…Ñ¡Ì°($%±½‰…±ÉÉ½É5½‘Õ±”è½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É5½‘Õ±”°($%±…å½ÕÑÉÉ½É5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹•ÉÉ½ÉÌ°($%Á…•ÉÉ½É5½‘Õ±”è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹•ÉÉ½È(%ô¤ì(%¥˜€ …•ÉÉ½É	½Õ¹‘…Éä¹½µÁ½¹•¹Ð¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐÉ…ÝÉÉ½È€ô½ÁÑ¥½¹Ì¹•ÉÉ½È¥¹ÍÑ…¹•½˜ÉÉ½È€ü½ÁÑ¥½¹Ì¹•ÉÉ½È€è¹•ÜÉÉ½È¡MÑÉ¥¹œ¡½ÁÑ¥½¹Ì¹•ÉÉ½È¤¤ì(%É•ÝÉ¥Ñ•±¥•¹Ñ!½½­ÉÉ½È¡É…ÝÉÉ½È¤ì(%½¹ÍÐ•ÉÉ½É=‰©•Ð€ô½ÁÑ¥½¹Ì¹Í…¹¥Ñ¥é•ÉÉ½É½É±¥•¹Ð¡É…ÝÉÉ½È¤ì(%½¹ÍÐµ…Ñ¡•‘A…É…µÌ€ô½ÁÑ¥½¹Ì¹µ…Ñ¡•‘A…É…µÌ€üü½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Á…É…µÌ€üüíôì(%½¹ÍÐ±…å½ÕÑ5½‘Õ±•Ì€ô½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹±…å½ÕÑÌ€üü½ÁÑ¥½¹Ì¹É½½Ñ1…å½ÕÑÌì(%½¹ÍÐÁ…Ñ¡¹…µ”€ô¹•ÜUI0¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑUÉ°¤¹Á…Ñ¡¹…µ”ì(%½¹ÍÐ¡•…‘±•µ•¹ÑÌ€ôl À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤ ‰µ•Ñ„ˆ°ì($%¡…ÉM•Ðè€‰ÕÑ˜´àˆ°($%­•äè€‰¡…ÉÍ•Ðˆ(%ô¥tì(%¥˜€ …•ÉÉ½É	½Õ¹‘…Éä¹¥Í±½‰…±ÉÉ½È¤ÑÉäì($%½¹ÍÐìµ•Ñ…‘…Ñ„°Ù¥•ÝÁ½ÉÐô€ô…Ý…¥ÐÉ•Í½±Ù•ÁÁA…•!•…¡ì($$%™…±±‰…­=¹¥±•5•Ñ…‘…Ñ…ÉÉ½ÈèÑÉÕ”°($$%±…å½ÕÑ5½‘Õ±•Ì°($$%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($$%µ•Ñ…‘…Ñ…I½ÕÑ•Ìè½ÁÑ¥½¹Ì¹µ•Ñ…‘…Ñ…I½ÕÑ•Ì°($$%Á…É…µÌèµ…Ñ¡•‘A…É…µÌ°($$%É½ÕÑ•A…Ñ è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Á…ÑÑ•É¸€üüÁ…Ñ¡¹…µ”°($$%É½ÕÑ•M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹É½ÕÑ•M•µ•¹ÑÌ($%ô¤ì($%¥˜€¡µ•Ñ…‘…Ñ„¤¡•…‘±•µ•¹ÑÌ¹ÁÕÍ   À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡5•Ñ…‘…Ñ…!•…°ì($$%­•äè€‰µ•Ñ…‘…Ñ„ˆ°($$%µ•Ñ…‘…Ñ„($%ô¤¤ì($%¡•…‘±•µ•¹ÑÌ¹ÁÕÍ   À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡Y¥•ÝÁ½ÉÑ!•…°ì($$%­•äè€‰Ù¥•ÝÁ½ÉÐˆ°($$%Ù¥•ÝÁ½ÉÐ($%ô¤¤ì(%ô…Ñ €¡•ÉÉ½È¤ì($%½¹Í½±”¹•ÉÉ½È¡mÙ¥¹•áÑtÁÀÁ…”•ÉÉ½È‰½Õ¹‘…Éä¡•…É•Í½±ÕÑ¥½¸™…¥±•™½È€‘í½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Á…ÑÑ•É¸€üüÁ…Ñ¡¹…µ•ôé€°•ÉÉ½È¤ì(%ô(%½¹ÍÐ•±•µ•¹Ð€ôÝÉ…ÁI•¹‘•É•‘	½Õ¹‘…Éå±•µ•¹Ð¡ì($%•±•µ•¹Ðè€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°¹Õ±°°€¸¸¹¡•…‘±•µ•¹ÑÌ°€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡•ÉÉ½É	½Õ¹‘…Éä¹½µÁ½¹•¹Ð°ì•ÉÉ½Èè•ÉÉ½É=‰©•Ðô¤¤°($%±½‰…±ÉÉ½É5½‘Õ±”è½ÁÑ¥½¹Ì¹±½‰…±ÉÉ½É5½‘Õ±”°($%¥¹±Õ‘•±½‰…±ÉÉ½É	½Õ¹‘…Éäè€…•ÉÉ½É	½Õ¹‘…Éä¹¥Í±½‰…±ÉÉ½È°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%±…å½ÕÑ5½‘Õ±•Ì°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($%µ…­•Q¡•¹…‰±•A…É…µÌè½ÁÑ¥½¹Ì¹µ…­•Q¡•¹…‰±•A…É…µÌ°($%µ…Ñ¡•‘A…É…µÌ°($%É•Í½±Ù•¡¥±‘M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ°($%É½ÕÑ•M•µ•¹ÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹É½ÕÑ•M•µ•¹ÑÌ°($%Í­¥Á1…å½ÕÑ]É…ÁÁ¥¹œè•ÉÉ½É	½Õ¹‘…Éä¹¥Í±½‰…±ÉÉ½È(%ô¤ì(%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•	½Õ¹‘…Éå±•µ•¹ÑI•ÍÁ½¹Í”¡ì($$¸¸¹½ÁÑ¥½¹Ì°($%•±•µ•¹Ð°($%±…å½ÕÑ5½‘Õ±•Ì°($%É½ÕÑ”è½ÁÑ¥½¹Ì¹É½ÕÑ”°($%É½ÕÑ•A…ÑÑ•É¸è½ÁÑ¥½¹Ì¹É½ÕÑ”ü¹Á…ÑÑ•É¸°($%ÍÑ…ÑÕÌè€ÈÀÀ(%ô¤ì)ô)Ù…È}±¥•¹Ñ!½½­A…ÑÑ•É¸€ô€½qˆ¡ÕÍ•MÑ…Ñ•ñÕÍ•™™•ÑñÕÍ•I•‘Õ•ÉñÕÍ•I•™ñÕÍ•½¹Ñ•áÑñÕÍ•1…å½ÕÑ™™•ÑñÕÍ•%¹Í•ÉÑ¥½¹™™•ÑñÕÍ•Må¹áÑ•É¹…±MÑ½É•ñÕÍ•QÉ…¹Í¥Ñ¥½¹ñÕÍ•%µÁ•É…Ñ¥Ù•!…¹‘±•ñÕÍ••™•ÉÉ•‘Y…±Õ•ñÕÍ•Ñ¥½¹MÑ…Ñ•ñÕÍ•=ÁÑ¥µ¥ÍÑ¥ñÕÍ•™™•ÑÙ•¹Ð¥qˆ¸©¥Ì¹½Ð„™Õ¹Ñ¥½¸¼ì)™Õ¹Ñ¥½¸É•ÝÉ¥Ñ•±¥•¹Ñ!½½­ÉÉ½È¡•ÉÉ½È¤ì(%½¹ÍÐµ…Ñ €ô•ÉÉ½È¹µ•ÍÍ…”¹µ…Ñ ¡}±¥•¹Ñ!½½­A…ÑÑ•É¸¤ì(%¥˜€¡µ…Ñ ¤•ÉÉ½È¹µ•ÍÍ…”€ô‰Õ¥±‘±¥•¹Ñ!½½­ÉÉ½É5•ÍÍ…”¡€‘íµ…Ñ¡lÅuô ¥€¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµ™…±±‰…¬µÉ•¹‘•É•È¹©Ì)Ù…È5AQe}5]}Q`€ôì(%¡•…‘•ÉÌè¹Õ±°°(%ÍÑ…ÑÕÌè¹Õ±°)ôì)™Õ¹Ñ¥½¸É•…Ñ•ÁÁ…±±‰…­I•¹‘•É•È¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐì±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•Èè‰Õ¥±‘IÍ=¹ÉÉ½É!…¹‘±•È°™½¹ÑAÉ½Ù¥‘•ÉÌ°•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°±½‰…±ÉÉ½É5½‘Õ±”°µ…­•Q¡•¹…‰±•A…É…µÌ°µ•Ñ…‘…Ñ…I½ÕÑ•Ì°É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ°É½½Ñ	½Õ¹‘…É¥•Ì°ÉÍI•¹‘•É•È°Í…¹¥Ñ¥é•È°ÍÍÉ1½…‘•Èô€ô½ÁÑ¥½¹Ìì(%½¹ÍÐìÉ½½Ñ½É‰¥‘‘•¹5½‘Õ±”°É½½Ñ1…å½ÕÑÌ°É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”ô€ôÉ½½Ñ	½Õ¹‘…É¥•Ìì(%É•ÑÕÉ¸ì($%É•¹‘•É!ÑÑÁ•ÍÍ…±±‰…¬¡É½ÕÑ”°ÍÑ…ÑÕÍ½‘”°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°½ÁÑÌ°ÍÉ¥ÁÑ9½¹”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•!ÑÑÁ•ÍÍ…±±‰…¬¡ì($$$%‰½Õ¹‘…Éå½µÁ½¹•¹Ðè½ÁÑÌü¹‰½Õ¹‘…Éå½µÁ½¹•¹Ð€üü¹Õ±°°($$$%‰Õ¥±‘½¹Ñ1¥¹­!•…‘•Èè™½¹ÑAÉ½Ù¥‘•ÉÌ¹‰Õ¥±‘½¹Ñ1¥¹­!•…‘•È°($$$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$$%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$$$%É•ÑÕÉ¸‰Õ¥±‘IÍ=¹ÉÉ½É!…¹‘±•È¡É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$$%ô°($$$%•Ñ½¹Ñ1¥¹­Ìè™½¹ÑAÉ½Ù¥‘•ÉÌ¹•Ñ½¹Ñ1¥¹­Ì°($$$%•Ñ½¹ÑAÉ•±½…‘Ìè™½¹ÑAÉ½Ù¥‘•ÉÌ¹•Ñ½¹ÑAÉ•±½…‘Ì°($$$%•Ñ½¹ÑMÑå±•Ìè™½¹ÑAÉ½Ù¥‘•ÉÌ¹•Ñ½¹ÑMÑå±•Ì°($$$%•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($$$%±½‰…±ÉÉ½É5½‘Õ±”°($$$%¥ÍIÍI•ÅÕ•ÍÐ°($$$%±…å½ÕÑ5½‘Õ±•Ìè½ÁÑÌü¹±…å½ÕÑÌ€üü¹Õ±°°($$$%±½…‘MÍÉ!…¹‘±•ÈèÍÍÉ1½…‘•È°($$$%µ…­•Q¡•¹…‰±•A…É…µÌ°($$$%µ…Ñ¡•‘A…É…µÌè½ÁÑÌü¹µ…Ñ¡•‘A…É…µÌ€üüÉ½ÕÑ”ü¹Á…É…µÌ€üüíô°($$$%µ¥‘‘±•Ý…É•½¹Ñ•áÐèµ¥‘‘±•Ý…É•½¹Ñ•áÐ€üü5AQe}5]}Q`°($$$%µ•Ñ…‘…Ñ…I½ÕÑ•Ì°($$$%É•ÅÕ•ÍÑUÉ°èÉ•ÅÕ•ÍÐ¹ÕÉ°°($$$%É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ°($$$%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”°($$$%É½½Ñ1…å½ÕÑÌ°($$$%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°($$$%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”°($$$%É½ÕÑ”°($$$%É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´èÉÍI•¹‘•É•È°($$$%ÍÉ¥ÁÑ9½¹”°($$$%ÍÑ…ÑÕÍ½‘”($$%ô¤ì($%ô°($%É•¹‘•É9½Ñ½Õ¹¡É½ÕÑ”°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°µ…Ñ¡•‘A…É…µÌ°ÍÉ¥ÁÑ9½¹”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$%É•ÑÕÉ¸Ñ¡¥Ì¹É•¹‘•É!ÑÑÁ•ÍÍ…±±‰…¬¡É½ÕÑ”°€ÐÀÐ°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°ìµ…Ñ¡•‘A…É…µÌô°ÍÉ¥ÁÑ9½¹”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($%ô°($%É•¹‘•ÉÉÉ½É	½Õ¹‘…Éä¡É½ÕÑ”°•ÉÉ½È°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°µ…Ñ¡•‘A…É…µÌ°ÍÉ¥ÁÑ9½¹”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•ÉÉ½É	½Õ¹‘…Éä¡ì($$$%‰Õ¥±‘½¹Ñ1¥¹­!•…‘•Èè™½¹ÑAÉ½Ù¥‘•ÉÌ¹‰Õ¥±‘½¹Ñ1¥¹­!•…‘•È°($$$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$$%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$$$%É•ÑÕÉ¸‰Õ¥±‘IÍ=¹ÉÉ½É!…¹‘±•È¡É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$$%ô°($$$%•ÉÉ½È°($$$%•Ñ½¹Ñ1¥¹­Ìè™½¹ÑAÉ½Ù¥‘•ÉÌ¹•Ñ½¹Ñ1¥¹­Ì°($$$%•Ñ½¹ÑAÉ•±½…‘Ìè™½¹ÑAÉ½Ù¥‘•ÉÌ¹•Ñ½¹ÑAÉ•±½…‘Ì°($$$%•Ñ½¹ÑMÑå±•Ìè™½¹ÑAÉ½Ù¥‘•ÉÌ¹•Ñ½¹ÑMÑå±•Ì°($$$%•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($$$%±½‰…±ÉÉ½É5½‘Õ±”°($$$%¥ÍIÍI•ÅÕ•ÍÐ°($$$%±½…‘MÍÉ!…¹‘±•ÈèÍÍÉ1½…‘•È°($$$%µ…­•Q¡•¹…‰±•A…É…µÌ°($$$%µ…Ñ¡•‘A…É…µÌèµ…Ñ¡•‘A…É…µÌ€üüÉ½ÕÑ”ü¹Á…É…µÌ€üüíô°($$$%µ¥‘‘±•Ý…É•½¹Ñ•áÐèµ¥‘‘±•Ý…É•½¹Ñ•áÐ€üü5AQe}5]}Q`°($$$%µ•Ñ…‘…Ñ…I½ÕÑ•Ì°($$$%É•ÅÕ•ÍÑUÉ°èÉ•ÅÕ•ÍÐ¹ÕÉ°°($$$%É•Í½±Ù•¡¥±‘M•µ•¹ÑÌ°($$$%É½½Ñ1…å½ÕÑÌ°($$$%É½ÕÑ”°($$$%É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´èÉÍI•¹‘•É•È°($$$%Í…¹¥Ñ¥é•ÉÉ½É½É±¥•¹ÐèÍ…¹¥Ñ¥é•È°($$$%ÍÉ¥ÁÑ9½¹”($$%ô¤ì($%ô(%ôì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ•±•µ•¹Ðµ‰Õ¥±‘•È¹©Ì(¼¨¨(¨	Õ¥±Ñ¡”ÁÀI½ÕÑ•È•±•µ•¹ÐÑÉ•”™½È„µ…Ñ¡•É½ÕÑ”¸(¨(¨Q¡¥Ì¥ÌÑ¡”•¹ÑÉ…°•±•µ•¹Ðµ½¹ÍÑÉÕÑ¥½¸Á…Ñ ™½ÈÑ¡”ÁÀI½ÕÑ•ÈIM(¨¡…¹‘±•È¸%ÐÉ•Í½±Ù•ÌÁ…”¡•…µ•Ñ…‘…Ñ„€¡¥¹±Õ‘¥¹œÁ…É…±±•°É½ÕÑ”µ•Ñ…‘…Ñ„¤°(¨É•…Ñ•ÌÑ¡”Á…”I•…Ð•±•µ•¹Ð°…¹Ý¥É•Ì¥Ð¥¹Ñ¼Ñ¡”¹•ÍÑ•±…å½ÕÐ€¬(¨‰½Õ¹‘…ÉäÑÉ•”Ù¥„í±¥¹¬‰Õ¥±‘ÁÁA…•±•µ•¹ÑÍô¸(¨(¨Q¡”™Õ¹Ñ¥½¸¥Ì•áÑÉ…Ñ•™É½´Ñ¡”•¹•É…Ñ•IM•¹ÑÉäÑ•µÁ±…Ñ”Í¼¥Ð…¸(¨‰”Õ¹¥ÐµÑ•ÍÑ•¥¹‘•Á•¹‘•¹Ñ±ä½˜Ñ¡”½‘”µ•¹•É…Ñ¥½¸µ…¡¥¹•Éä¸(¨(¨9•áÐ¹©Ì•ÅÕ¥Ù…±•¹ÐèÑ¡”½µÁ½¹•¹ÐÑÉ•”½¹ÍÑÉÕÑ¥½¸¥¸(¨í±¥¹¬¡ÑÑÁÌè¼½¥Ñ¡Õˆ¹½´½Ù•É•°½¹•áÐ¹©Ì½‰±½ˆ½…¹…Éä½Á…­…•Ì½¹•áÐ½ÍÉŒ½Í•ÉÙ•È½…ÁÀµÉ•¹‘•È½É•…Ñ”µ½µÁ½¹•¹ÐµÑÉ•”¹ÑÍáñÉ•…Ñ”µ½µÁ½¹•¹ÐµÑÉ•”¹ÑÍáô(¨…¹Ñ¡”Á…”¡•…É•Í½±ÕÑ¥½¸¥¸(¨í±¥¹¬¡ÑÑÁÌè¼½¥Ñ¡Õˆ¹½´½Ù•É•°½¹•áÐ¹©Ì½‰±½ˆ½…¹…Éä½Á…­…•Ì½¹•áÐ½ÍÉŒ½Í•ÉÙ•È½…ÁÀµÉ•¹‘•È½É•…Ñ”µµ•Ñ…‘…Ñ„¹ÑÍáñÉ•…Ñ”µµ•Ñ…‘…Ñ„¹ÑÍáô¸(¨¼)…Íå¹Œ™Õ¹Ñ¥½¸‰Õ¥±‘A…•±•µ•¹ÑÌÄ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐìÉ½ÕÑ”°Á…É…µÌ°É½ÕÑ•A…Ñ °Á…•I•ÅÕ•ÍÐ°±½‰…±ÉÉ½É5½‘Õ±”°É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°É½½Ñ½É‰¥‘‘•¹5½‘Õ±”°É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”°µ•Ñ…‘…Ñ…I½ÕÑ•Ìô€ô½ÁÑ¥½¹Ìì(%½¹ÍÐì½ÁÑÌ°Í•…É¡A…É…µÌ°¥ÍIÍI•ÅÕ•ÍÐ°µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°É•¹‘•É5½‘”€ôAA}IM}I9I}5=}9Y%Q%=8ô€ôÁ…•I•ÅÕ•ÍÐì(%½¹ÍÐÁ…•5½‘Õ±”€ôÉ½ÕÑ”¹Á…”ì(%½¹ÍÐA…•½µÁ½¹•¹Ð€ôÁ…•5½‘Õ±”ü¹‘•™…Õ±Ðì(%¥˜€ „…Á…•5½‘Õ±”€˜˜€…A…•½µÁ½¹•¹Ð¤ì($%½¹ÍÐ¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ€ô½ÁÑÌü¹¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ€üü¹Õ±°ì($%½¹ÍÐ¹½áÁ½ÉÑI½ÕÑ•%€ôÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•I½ÕÑ•%¡É½ÕÑ•A…Ñ °¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì($%±•Ð¹½áÁ½ÉÑI½½Ñ1…å½ÕÐ€ô¹Õ±°ì($%½¹ÍÐ¹½áÁ½ÉÑ1…å½ÕÑ%‘Ì€ôÉ½ÕÑ”¹¥‘Ìü¹±…å½ÕÑÌ€üüÉ½ÕÑ”¹±…å½ÕÑÌ¹µ…À ¡|°¥¹‘•à¤€ôøÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•1…å½ÕÑ%¡É•…Ñ•ÁÁA…•QÉ••A…Ñ ¡É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹m¥¹‘•át€üü€À¤¤¤ì($%¥˜€¡É½ÕÑ”¹±…å½ÕÑÌü¹±•¹Ñ €ø€À¤ì($$%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ôÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹lÁt€üü€Àì($$%¹½áÁ½ÉÑI½½Ñ1…å½ÕÐ€ôÉ•…Ñ•ÁÁA…•QÉ••A…Ñ ¡É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°ÑÉ••A½Í¥Ñ¥½¸¤ì($%ô($%É•ÑÕÉ¸ì($$$¸¸¹ÁÁ±•µ•¹ÑÍ]¥É”¹É•…Ñ•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡ì($$$%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°($$$%±…å½ÕÑ%‘Ìè¹½áÁ½ÉÑ1…å½ÕÑ%‘Ì°($$$%É½½Ñ1…å½ÕÑQÉ••A…Ñ è¹½áÁ½ÉÑI½½Ñ1…å½ÕÐ°($$$%É½ÕÑ•%è¹½áÁ½ÉÑI½ÕÑ•%($$%ô¤°($$%m¹½áÁ½ÉÑI½ÕÑ•%‘tè€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤ ‰‘¥Øˆ°¹Õ±°°€‰A…”¡…Ì¹¼‘•™…Õ±Ð•áÁ½ÉÐˆ¤($%ôì(%ô(%½¹ÍÐì¡…ÍM•…É¡A…É…µÌ°µ•Ñ…‘…Ñ„èÉ•Í½±Ù•‘5•Ñ…‘…Ñ„°Á…•M•…É¡A…É…µÌ°Ù¥•ÝÁ½ÉÐèÉ•Í½±Ù•‘Y¥•ÝÁ½ÉÐô€ô…Ý…¥ÐÉ•Í½±Ù•ÁÁA…•!•…¡ì($%±…å½ÕÑ5½‘Õ±•ÌèÉ½ÕÑ”¹±…å½ÕÑÌ°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($%µ•Ñ…‘…Ñ…I½ÕÑ•Ì°($%Á…•5½‘Õ±”èÉ½ÕÑ”¹Á…”€üü¹Õ±°°($%Á…É…±±•±I½ÕÑ•ÌèÉ•Í½±Ù•Ñ¥Ù•A…É…±±•±I½ÕÑ•!•…‘%¹ÁÕÑÌ¡ì($$%¥¹Ñ•É•ÁÑ1…å½ÕÑÌè½ÁÑÌü¹¥¹Ñ•É•ÁÑ1…å½ÕÑÌ€üü¹Õ±°°($$%¥¹Ñ•É•ÁÑA…”è½ÁÑÌü¹¥¹Ñ•É•ÁÑA…”€üü¹Õ±°°($$%¥¹Ñ•É•ÁÑA…É…µÌè½ÁÑÌü¹¥¹Ñ•É•ÁÑA…É…µÌ€üü¹Õ±°°($$%¥¹Ñ•É•ÁÑM±½Ñ-•äè½ÁÑÌü¹¥¹Ñ•É•ÁÑM±½Ñ-•ä€üü¹Õ±°°($$%Á…É…µÌ°($$%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ€üümt°($$%Í±½ÑÌèÉ½ÕÑ”¹Í±½ÑÌ€üü¹Õ±°($%ô¤°($%Á…É…µÌ°($%É½ÕÑ•A…Ñ èÉ½ÕÑ”¹Á…ÑÑ•É¸°($%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ€üü¹Õ±°°($%Í•…É¡A…É…µÌ(%ô¤ì(%½¹ÍÐÁ…•AÉ½ÁÌ€ôìÁ…É…µÌèµ…­•Q¡•¹…‰±•A…É…µÌ¡Á…É…µÌ¤ôì(%¥˜€¡Í•…É¡A…É…µÌ¤ì($%Á…•AÉ½ÁÌ¹Í•…É¡A…É…µÌ€ôµ…­•Q¡•¹…‰±•A…É…µÌ¡Á…•M•…É¡A…É…µÌ¤ì($%¥˜€¡¡…ÍM•…É¡A…É…µÌ¤µ…É­å¹…µ¥UÍ…” ¤ì(%ô(%½¹ÍÐµ½Õ¹Ñ•‘M±½Ñ%‘Ì€ôµ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È€ü¹•ÜM•Ð¡µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È¹ÍÁ±¥Ð ˆ€ˆ¤¤€è¹Õ±°ì(%½¹ÍÐÍ±½Ñ=Ù•ÉÉ¥‘•Ì€ô‰Õ¥±‘M±½Ñ=Ù•ÉÉ¥‘•Ì¡É½ÕÑ”°Á…É…µÌ°É½ÕÑ•A…Ñ °½ÁÑÌ¤ì(%É•ÑÕÉ¸‰Õ¥±‘ÁÁA…•±•µ•¹ÑÌ¡ì($%•±•µ•¹ÐèA…•½µÁ½¹•¹Ð€ü€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤¡A…•½µÁ½¹•¹Ð°Á…•AÉ½ÁÌ¤€è¹Õ±°°($%±½‰…±ÉÉ½É5½‘Õ±”è±½‰…±ÉÉ½É5½‘Õ±”€üü¹Õ±°°($%¥ÍIÍI•ÅÕ•ÍÐ°($%µ½Õ¹Ñ•‘M±½Ñ%‘Ì°($%µ…­•Q¡•¹…‰±•A…É…µÌ°($%µ…Ñ¡•‘A…É…µÌèÁ…É…µÌ°($%É•Í½±Ù•‘5•Ñ…‘…Ñ„°($%É•Í½±Ù•‘Y¥•ÝÁ½ÉÐ°($%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐè½ÁÑÌü¹¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ€üü¹Õ±°°($%É½ÕÑ•A…Ñ °($%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”èÉ½½Ñ9½Ñ½Õ¹‘5½‘Õ±”€üü¹Õ±°°($%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”èÉ½½Ñ½É‰¥‘‘•¹5½‘Õ±”€üü¹Õ±°°($%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”èÉ½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”€üü¹Õ±°°($%É½ÕÑ”°($%Í±½Ñ=Ù•ÉÉ¥‘•Ì°($%É•¹‘•É5½‘”(%ô¤ì)ô(¼¨¨(¨	Õ¥±Ñ¡”Á•ÈµÉ•ÅÕ•ÍÐÍ±½Ñ=Ù•ÉÉ¥‘•Í€µ…À¸½µ‰¥¹•Ìè(¨€€´%¹Ñ•É•ÁÑ¥½¸½Ù•ÉÉ¥‘•Ì€¡•á¥ÍÑ¥¹œ‰•¡…Ù¥½ÈƒŠPÍÝ…À¥¸Ñ¡”¥¹Ñ•É•ÁÑ¥¹œÁ…”(¨€€€…¹¥ÑÌ±…å½ÕÑÌÝ¡•¸Ñ¡”É•ÅÕ•ÍÐ¥Ì¥¹Ñ•É•ÁÑ•¥¹Ñ¼Ñ¡¥ÌÍ±½Ð¤¸(¨€€´M±½ÐµÍÁ•¥™¥ŒÁ…É…´•áÑÉ…Ñ¥½¸™½È¥¹¡•É¥Ñ•Í±½ÑÌÝ¡½Í”UI0Á…ÑÑ•É¸(¨€€€¡…Ì‘¥™™•É•¹ÐÁ…É…´¹…µ•ÌÑ¡…¸Ñ¡”É½ÕÑ”Ì¸Q¡”ÉÕ¹Ñ¥µ”µ…Ñ¡•ÌÑ¡”(¨€€€±•…¹•É•ÅÕ•ÍÐÁ…Ñ ……¥¹ÍÐÍ±½Ð¹Í±½ÑA…ÑÑ•É¹A…ÉÑÍ€Ñ¼ÁÉ½‘Õ”(¨€€€Í±½ÐµÍ½Á•Á…É…µÌ°Ý¡¥ …ÁÀµÁ…”µÉ½ÕÑ”µÝ¥É¥¹€Ñ¡•¸¡…¹‘ÌÑ¼Ñ¡”(¨€€€Í±½ÐÁ…”¥¹ÍÑ•…½˜Ñ¡”É½ÕÑ”Ìµ…Ñ¡•Á…É…µÌ¸(¨(¨É½ÕÑ•A…Ñ¡€¥ÌÑ¡”…±É•…‘äµ¹½Éµ…±¥é•É•ÅÕ•ÍÐÁ…Ñ¡¹…µ”€¡‰…Í•A…Ñ ÍÑÉ¥ÁÁ•°(¨IMÍÕ™™¥àÉ•µ½Ù•¤¸I”µÁ…ÉÍ¥¹œÉ•ÅÕ•ÍÐ¹ÕÉ±€¡•É”Ý½Õ±É”µ¥¹ÑÉ½‘Õ”Ñ¡”(¨‰…Í•A…Ñ …¹Í¥±•¹Ñ±ä‰É•…¬Ñ¡”µ…Ñ ™½È…¹ä…ÁÀÑ¡…Ð½¹™¥ÕÉ•Ì½¹”¸(¨¼)™Õ¹Ñ¥½¸‰Õ¥±‘M±½Ñ=Ù•ÉÉ¥‘•Ì¡É½ÕÑ”°É½ÕÑ•A…É…µÌ°É½ÕÑ•A…Ñ °½ÁÑÌ¤ì(%½¹ÍÐ½Ù•ÉÉ¥‘•Ì€ôíôì(%¥˜€¡½ÁÑÌ€˜˜½ÁÑÌ¹¥¹Ñ•É•ÁÑM±½Ñ-•ä€˜˜½ÁÑÌ¹¥¹Ñ•É•ÁÑA…”¤½Ù•ÉÉ¥‘•Ím½ÁÑÌ¹¥¹Ñ•É•ÁÑM±½Ñ-•åt€ôì($%±…å½ÕÑ5½‘Õ±•Ìè½ÁÑÌ¹¥¹Ñ•É•ÁÑ1…å½ÕÑÌñð¹Õ±°°($%Á…•5½‘Õ±”è½ÁÑÌ¹¥¹Ñ•É•ÁÑA…”°($%Á…É…µÌè½ÁÑÌ¹¥¹Ñ•É•ÁÑA…É…µÌñðÉ½ÕÑ•A…É…µÌ(%ôì(%½¹ÍÐÍ±½ÑÌ€ôÉ½ÕÑ”¹Í±½ÑÌì(%¥˜€¡Í±½ÑÌ¤ì($%±•ÐÕÉ±A…ÉÑÌ€ô¹Õ±°ì($%½¹ÍÐÉ½ÕÑ•A…É…µM•Ð€ô½±±•ÑA…É…µ9…µ•M•Ð¡É½ÕÑ”¹Á…É…µÌ¤ì($%™½È€¡½¹ÍÐmÍ±½Ñ-•ä°Í±½Ñt½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡Í±½ÑÌ¤¤ì($$%½¹ÍÐÁ…ÑÑ•É¹A…ÉÑÌ€ôÍ±½Ð¹Í±½ÑA…ÑÑ•É¹A…ÉÑÌì($$%½¹ÍÐÁ…É…µ9…µ•Ì€ôÍ±½Ð¹Í±½ÑA…É…µ9…µ•Ìì($$%¥˜€ …Á…ÑÑ•É¹A…ÉÑÌñðÁ…ÑÑ•É¹A…ÉÑÌ¹±•¹Ñ €ôôô€À¤½¹Ñ¥¹Õ”ì($$%¥˜€¡Á…É…µ9…µ•Ì€˜˜Á…É…µ9…µ•Ì¹•Ù•Éä ¡¹…µ”¤€ôøÉ½ÕÑ•A…É…µM•Ð¹¡…Ì¡¹…µ”¤¤¤½¹Ñ¥¹Õ”ì($$%¥˜€¡ÕÉ±A…ÉÑÌ€ôôô¹Õ±°¤ÕÉ±A…ÉÑÌ€ôÉ½ÕÑ•A…Ñ ¹ÍÁ±¥Ð ˆ¼ˆ¤¹™¥±Ñ•È¡	½½±•…¸¤ì($$%½¹ÍÐµ…Ñ¡•€ôµ…Ñ¡I½ÕÑ•A…ÑÑ•É¸¡ÕÉ±A…ÉÑÌ°Á…ÑÑ•É¹A…ÉÑÌ¤ì($$%¥˜€ …µ…Ñ¡•¤½¹Ñ¥¹Õ”ì($$%½¹ÍÐ•á¥ÍÑ¥¹œ€ô½Ù•ÉÉ¥‘•ÍmÍ±½Ñ-•åtì($$%½Ù•ÉÉ¥‘•ÍmÍ±½Ñ-•åt€ô•á¥ÍÑ¥¹œ€üì($$$$¸¸¹•á¥ÍÑ¥¹œ°($$$%Á…É…µÌèµ…Ñ¡•($$%ô€èìÁ…É…µÌèµ…Ñ¡•ôì($%ô(%ô(%É•ÑÕÉ¸=‰©•Ð¹­•åÌ¡½Ù•ÉÉ¥‘•Ì¤¹±•¹Ñ €ø€À€ü½Ù•ÉÉ¥‘•Ì€è¹Õ±°ì)ô)™Õ¹Ñ¥½¸½±±•ÑA…É…µ9…µ•M•Ð¡Á…É…µÌ¤ì(%½¹ÍÐÍ•Ð€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(%¥˜€¡Á…É…µÌ¤™½È€¡½¹ÍÐ¹…µ”½˜Á…É…µÌ¤Í•Ð¹…‘¡¹…µ”¤ì(%É•ÑÕÉ¸Í•Ðì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½¥ÍÈµ…¡”¹©Ì(¼¨¨(¨%MH€¡%¹É•µ•¹Ñ…°MÑ…Ñ¥ŒI••¹•É…Ñ¥½¸¤…¡”±…å•È¸(¨(¨]É…ÁÌÑ¡”Á±Õ…‰±”…¡•!…¹‘±•ÈÝ¥Ñ ÍÑ…±”µÝ¡¥±”µÉ•Ù…±¥‘…Ñ”Í•µ…¹Ñ¥Ìè(¨€´É•Í ¡¥ÐèÍ•ÉÙ”¥µµ•‘¥…Ñ•±ä(¨€´MÑ…±”¡¥ÐèÍ•ÉÙ”¥µµ•‘¥…Ñ•±ä€¬ÑÉ¥•È‰…­É½Õ¹É••¹•É…Ñ¥½¸(¨€´5¥ÍÌèÉ•¹‘•ÈÍå¹¡É½¹½ÕÍ±ä°…¡”°Í•ÉÙ”(¨(¨	…­É½Õ¹É••¹•É…Ñ¥½¸¥Ì‘•‘ÕÁ•ƒŠP½¹±ä½¹”É••¹•É…Ñ¥½¸Á•È…¡”­•ä(¨ÉÕ¹Ì…Ð„Ñ¥µ”°ÁÉ•Ù•¹Ñ¥¹œÑ¡Õ¹‘•É¥¹œ¡•É½¸Á½ÁÕ±…ÈÁ…•Ì¸(¨(¨Q¡¥Ì±…å•ÈÝ½É­ÌÝ¥Ñ …¹ä…¡•!…¹‘±•È‰…­•¹€¡µ•µ½Éä°I•‘¥Ì°-X°•ÑŒ¸¤(¨‰•…ÕÍ”¥Ð½¹±äÕÍ•ÌÑ¡”ÍÑ…¹‘…É•Ð½Í•Ð¥¹Ñ•É™…”¸(¨¼(¼¨¨(¨•Ð„…¡”•¹ÑÉäÝ¥Ñ ÍÑ…±•¹•ÍÌ¥¹™½Éµ…Ñ¥½¸¸(¨(¨I•ÑÕÉ¹ÌìÙ…±Õ”°¥ÍMÑ…±”è™…±Í”ô™½È™É•Í •¹ÑÉ¥•Ì°(¨ìÙ…±Õ”°¥ÍMÑ…±”èÑÉÕ”ô™½È•áÁ¥É•µ‰ÕÐµÕÍ…‰±”•¹ÑÉ¥•Ì°(¨½È¹Õ±°™½È…¡”µ¥ÍÍ•Ì¸(¨¼)…Íå¹Œ™Õ¹Ñ¥½¸¥ÍÉ•Ð¡­•ä¤ì(%½¹ÍÐÉ•ÍÕ±Ð€ô…Ý…¥Ð•Ñ…¡•!…¹‘±•È ¤¹•Ð¡­•ä¤ì(%¥˜€ …É•ÍÕ±Ðñð€…É•ÍÕ±Ð¹Ù…±Õ”¤É•ÑÕÉ¸¹Õ±°ì(%¥˜€¡É•ÍÕ±Ð¹…¡•MÑ…Ñ”€ôôô€‰•áÁ¥É•ˆ¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸ì($%Ù…±Õ”èÉ•ÍÕ±Ð°($%¥ÍMÑ…±”èÉ•ÍÕ±Ð¹…¡•MÑ…Ñ”€ôôô€‰ÍÑ…±”ˆ(%ôì)ô(¼¨¨(¨MÑ½É”„Ù…±Õ”¥¸Ñ¡”%MH…¡”Ý¥Ñ „É•Ù…±¥‘…Ñ¥½¸Á•É¥½¸(¨¼)…Íå¹Œ™Õ¹Ñ¥½¸¥ÍÉM•Ð¡­•ä°‘…Ñ„°É•Ù…±¥‘…Ñ•M•½¹‘Ì°Ñ…Ì°•áÁ¥É•M•½¹‘Ì¤ì(%…Ý…¥Ð•Ñ…¡•!…¹‘±•È ¤¹Í•Ð¡­•ä°‘…Ñ„°ì($%…¡•½¹ÑÉ½°è•áÁ¥É•M•½¹‘Ì€ôôôÙ½¥€À€üìÉ•Ù…±¥‘…Ñ”èÉ•Ù…±¥‘…Ñ•M•½¹‘Ìô€èì($$%É•Ù…±¥‘…Ñ”èÉ•Ù…±¥‘…Ñ•M•½¹‘Ì°($$%•áÁ¥É”è•áÁ¥É•M•½¹‘Ì($%ô°($%É•Ù…±¥‘…Ñ”èÉ•Ù…±¥‘…Ñ•M•½¹‘Ì°($%Ñ…ÌèÑ…Ì€üümt(%ô¤ì)ô)Ù…È}A9%9}I9}-d€ôMåµ‰½°¹™½È ‰Ù¥¹•áÐ¹¥ÍÉ…¡”¹Á•¹‘¥¹I••¹•É…Ñ¥½¹Ìˆ¤ì)Ù…È}œÄ€ô±½‰…±Q¡¥Ìì)Ù…ÈÁ•¹‘¥¹I••¹•É…Ñ¥½¹Ì€ô}œÅm}A9%9}I9}-et€üüô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(¼¨¨(¨QÉ¥•È„‰…­É½Õ¹É••¹•É…Ñ¥½¸™½È„…¡”­•ä¸(¨(¨%˜„É••¹•É…Ñ¥½¸™½ÈÑ¡¥Ì­•ä¥Ì…±É•…‘ä¥¸ÁÉ½É•ÍÌ°Ñ¡¥Ì¥Ì„¹¼µ½À¸(¨Q¡”É•¹‘•É¸Í¡½Õ±ÁÉ½‘Õ”Ñ¡”¹•Ü…¡”Ù…±Õ”…¹…±°¥ÍÉM•Ð¥¹Ñ•É¹…±±ä¸(¨(¨=¸±½Õ‘™±…É”]½É­•ÉÌÑ¡”É••¹•É…Ñ¥½¸ÁÉ½µ¥Í”¥ÌÉ•¥ÍÑ•É•Ý¥Ñ (¨Ñà¹Ý…¥ÑU¹Ñ¥° ¥€Ù¥„Ñ¡”1Lµ‰…­•á•ÕÑ¥½¹½¹Ñ•áÐ°­••Á¥¹œÑ¡”¥Í½±…Ñ”(¨…±¥Ù”Õ¹Ñ¥°Ñ¡”É••¹•É…Ñ¥½¸½µÁ±•Ñ•Ì•Ù•¸…™Ñ•ÈÑ¡”I•ÍÁ½¹Í”¥ÌÉ•ÑÕÉ¹•¸(¨(¨]¡•¸•ÉÉ½É½¹Ñ•áÑ€¥ÌÁÉ½Ù¥‘•…¹Ñ¡”É•¹‘•È™Õ¹Ñ¥½¸™…¥±Ì°Ñ¡”•ÉÉ½È(¨¥ÌÉ•Á½ÉÑ•Ù¥„É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½É€€¡¥¹ÍÑÉÕµ•¹Ñ…Ñ¥½¸¡½½¬¤Ý¥Ñ (¨É•Ù…±¥‘…Ñ•I•…Í½¸è€‰ÍÑ…±”‰€¸(¨¼)™Õ¹Ñ¥½¸ÑÉ¥•É	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸°•ÉÉ½É½¹Ñ•áÐ¤ì(%¥˜€¡Á•¹‘¥¹I••¹•É…Ñ¥½¹Ì¹¡…Ì¡­•ä¤¤É•ÑÕÉ¸ì(%½¹ÍÐÁÉ½µ¥Í”€ôÉ•¹‘•É¸ ¤¹…Ñ  ¡•ÉÈ¤€ôøì($%½¹Í½±”¹•ÉÉ½È¡mÙ¥¹•áÑt%MH‰…­É½Õ¹É••¹•É…Ñ¥½¸™…¥±•™½È€‘í­•åôé€°•ÉÈ¤ì($%¥˜€¡•ÉÉ½É½¹Ñ•áÐ¤É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È¡•ÉÈ¥¹ÍÑ…¹•½˜ÉÉ½È€ü•ÉÈ€è¹•ÜÉÉ½È¡MÑÉ¥¹œ¡•ÉÈ¤¤°ì($$%Á…Ñ è­•ä°($$%µ•Ñ¡½è€‰Pˆ°($$%¡•…‘•ÉÌèíô($%ô°ì($$%É½ÕÑ•É-¥¹è•ÉÉ½É½¹Ñ•áÐ¹É½ÕÑ•É-¥¹°($$%É½ÕÑ•A…Ñ è•ÉÉ½É½¹Ñ•áÐ¹É½ÕÑ•A…Ñ °($$%É½ÕÑ•QåÁ”è•ÉÉ½É½¹Ñ•áÐ¹É½ÕÑ•QåÁ”°($$%É•Ù…±¥‘…Ñ•I•…Í½¸è€‰ÍÑ…±”ˆ($%ô¤ì(%ô¤¹™¥¹…±±ä  ¤€ôøì($%Á•¹‘¥¹I••¹•É…Ñ¥½¹Ì¹‘•±•Ñ”¡­•ä¤ì(%ô¤ì(%Á•¹‘¥¹I••¹•É…Ñ¥½¹Ì¹Í•Ð¡­•ä°ÁÉ½µ¥Í”¤ì(%•ÑI•ÅÕ•ÍÑá•ÕÑ¥½¹½¹Ñ•áÐ ¤ü¹Ý…¥ÑU¹Ñ¥°¡ÁÉ½µ¥Í”¤ì)ô(¼¨¨(¨	Õ¥±„…¡•‘ÁÁA…•Y…±Õ”™½ÈÑ¡”ÁÀI½ÕÑ•È%MH…¡”¸(¨¼)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•…¡•Y…±Õ”¡¡Ñµ°°ÉÍ…Ñ„°ÍÑ…ÑÕÌ¤ì(%É•ÑÕÉ¸ì($%­¥¹è€‰AA}Aˆ°($%¡Ñµ°°($%ÉÍ…Ñ„°($%¡•…‘•ÉÌèÙ½¥€À°($%Á½ÍÑÁ½¹•èÙ½¥€À°($%ÍÑ…ÑÕÌ(%ôì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•…¡•A…Ñ¡¹…µ”¡Á…Ñ¡¹…µ”¤ì(%É•ÑÕÉ¸Á…Ñ¡¹…µ”€ôôô€ˆ¼ˆ€ü€ˆ¼ˆ€èÁ…Ñ¡¹…µ”¹É•Á±…” ½p¼¼°€ˆˆ¤ì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘…¡•-•ä¡ÁÉ•™¥à°Á…Ñ¡¹…µ”°ÍÕ™™¥à¤ì(%½¹ÍÐ¹½Éµ…±¥é•€ô¹½Éµ…±¥é•…¡•A…Ñ¡¹…µ”¡Á…Ñ¡¹…µ”¤ì(%½¹ÍÐÍÕ™™¥áA…ÉÐ€ôÍÕ™™¥à€ü€è‘íÍÕ™™¥áõ€€è€ˆˆì(%½¹ÍÐ­•ä€ô€‘íÁÉ•™¥áôè‘í¹½Éµ…±¥é•‘ô‘íÍÕ™™¥áA…ÉÑõ€ì(%¥˜€¡­•ä¹±•¹Ñ €ðô€ÈÀÀ¤É•ÑÕÉ¸­•äì(%É•ÑÕÉ¸€‘íÁÉ•™¥áôé}}¡…Í è‘í™¹ØÅ„ØÐ¡¹½Éµ…±¥é•¥ô‘íÍÕ™™¥áA…ÉÑõ€ì)ô(¼¨¨(¨½µÁÕÑ”…¸ÁÀI½ÕÑ•È%MH­•ä™½È½¹”…¡”…ÉÑ¥™…Ð¸(¨(¨ÁÀÁ…•ÌÍÑ½É”!Q50°IMÁ…å±½…‘Ì°…¹É½ÕÑ”µ¡…¹‘±•ÈÉ•ÍÁ½¹Í•ÌÍ•Á…É…Ñ•±ä¸(¨Q¡”ÍÕ™™¥àµ¥ÉÉ½ÉÌ9•áÐ¹©ÌÌÍ•Á…É…Ñ”½¸µ‘¥Í¬…ÁÀ…ÉÑ¥™…ÑÌÝ¡¥±”­••Á¥¹œÑ¡”(¨±½Õ‘™±…É”-X­•äÕ¹‘•È¥ÑÌ€ÔÄÈµ‰åÑ”±¥µ¥Ð™½È±½¹œÁ…Ñ¡¹…µ•Ì¸(¨¼)™Õ¹Ñ¥½¸…ÁÁ%ÍÉ…¡•-•ä¡Á…Ñ¡¹…µ”°ÍÕ™™¥à°‰Õ¥±‘%€ô€ˆÙˆá‰á˜À´ÍÍ˜´Ñ„Å„´àÐÕ„µ‘‰‰Œå•‘™‘…ˆÐˆ¤ì(%É•ÑÕÉ¸‰Õ¥±‘…¡•-•ä¡‰Õ¥±‘%€ü…ÁÀè‘í‰Õ¥±‘%‘õ€€è€‰…ÁÀˆ°Á…Ñ¡¹…µ”°ÍÕ™™¥à¤ì)ô)™Õ¹Ñ¥½¸…ÁÁ%ÍÉ!Ñµ±-•ä¡Á…Ñ¡¹…µ”¤ì(%É•ÑÕÉ¸…ÁÁ%ÍÉ…¡•-•ä¡Á…Ñ¡¹…µ”°€‰¡Ñµ°ˆ¤ì)ô(¼¨¨(¨	Õ¥±Ñ¡”%MH…¡”­•ä™½È…¸IMÁ…å±½…¸(¨(¨9½Ñ”èÑ¡”­•ä™½Éµ…Ð¡…¹•™É½´ÉÍŒèñ¡…Í ù€Ñ¼ÉÍŒéÍ±½ÑÌèñ¡…Í ù€€¡…¹(¨½ÁÑ¥½¹…±±äÉÍŒéÍ±½ÑÌèñ¡…Í øéÁÉ•Í•ÉÙ”µÕ¥€¤¸á¥ÍÑ¥¹œ…¡••¹ÑÉ¥•ÌÕ¹‘•È(¨Ñ¡”½±™½Éµ…ÐÝ¥±°‰•½µ”Õ¹É•…¡…‰±”…™Ñ•È‘•Á±½åµ•¹Ð¸Q¡¥Ì¥Ì…•ÁÑ…‰±”(¨‰•…ÕÍ”%MH•¹ÑÉ¥•Ì¡…Ù”QQ1Ì…¹Ý¥±°‰”É••¹•É…Ñ•½¸Ñ¡”¹•áÐÉ•ÅÕ•ÍÐ¸(¨¼)™Õ¹Ñ¥½¸…ÁÁ%ÍÉIÍ-•ä¡Á…Ñ¡¹…µ”°µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°É•¹‘•É5½‘”€ôAA}IM}I9I}5=}9Y%Q%=8¤ì(%½¹ÍÐ¹½Éµ…±¥é•‘5½Õ¹Ñ•‘M±½ÑÍ!•…‘•È€ô¹½Éµ…±¥é•5½Õ¹Ñ•‘M±½ÑÍ!•…‘•È¡µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È¤ì(%½¹ÍÐÙ…É¥…¹Ð€ôm¹½Éµ…±¥é•‘5½Õ¹Ñ•‘M±½ÑÍ!•…‘•È€üÍ±½ÑÌè‘í™¹ØÅ„ØÐ¡¹½Éµ…±¥é•‘5½Õ¹Ñ•‘M±½ÑÍ!•…‘•È¥õ€€è¹Õ±°°Í¡½Õ±‘UÍ•AÉ•Í•ÉÙ•U¥…¡•Y…É¥…¹Ð¡É•¹‘•É5½‘”¤€ü€‰ÁÉ•Í•ÉÙ”µÕ¤ˆ€è¹Õ±±t¹™¥±Ñ•È ¡Á…ÉÐ¤€ôøÁ…ÉÐ€„ôô¹Õ±°¤¹©½¥¸ ˆèˆ¤ì(%É•ÑÕÉ¸…ÁÁ%ÍÉ…¡•-•ä¡Á…Ñ¡¹…µ”°Ù…É¥…¹Ð€üÉÍŒè‘íÙ…É¥…¹Ñõ€€è€‰ÉÍŒˆ¤ì)ô)™Õ¹Ñ¥½¸…ÁÁ%ÍÉI½ÕÑ•-•ä¡Á…Ñ¡¹…µ”¤ì(%É•ÑÕÉ¸…ÁÁ%ÍÉ…¡•-•ä¡Á…Ñ¡¹…µ”°€‰É½ÕÑ”ˆ¤ì)ô)Ù…È}IY1%Q}-d€ôMåµ‰½°¹™½È ‰Ù¥¹•áÐ¹¥ÍÉ…¡”¹É•Ù…±¥‘…Ñ•ÕÉ…Ñ¥½¹Ìˆ¤ì)}œÅm}IY1%Q}-et€üüô€¼¨}}AUI}|€¨¼¹•Ü5…À ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ…¡”¹©Ì)Ù…È9=}MQ=I}!}=9QI=0€ô€‰¹¼µÍÑ½É”°µÕÍÐµÉ•Ù…±¥‘…Ñ”ˆì)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•…¡•½¹ÑÉ½°¡…¡•MÑ…Ñ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤ì(%É•ÑÕÉ¸‰Õ¥±‘…¡•‘I•Ù…±¥‘…Ñ•…¡•½¹ÑÉ½°¡…¡•MÑ…Ñ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤ì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•…¡•‘!•…‘•ÉÌ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$‰…¡”µ½¹ÑÉ½°ˆè½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°°($$‰½¹Ñ•¹ÐµQåÁ”ˆè½ÁÑ¥½¹Ì¹½¹Ñ•¹ÑQåÁ”°($%Y…ÉäèY%9aQ}IM}YIe}!H°($%mY%9aQ}!}!Itè½ÁÑ¥½¹Ì¹…¡•MÑ…Ñ”(%ô¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È¤¡•…‘•ÉÌ¹Í•Ð¡Y%9aQ}5=U9Q}M1=QM}!H°½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È¤ì(%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ€üü¹Õ±°¤ì(%É•ÑÕÉ¸¡•…‘•ÉÌì)ô)™Õ¹Ñ¥½¸•Ñ…¡•‘ÁÁA…•Y…±Õ”¡•¹ÑÉä¤ì(%É•ÑÕÉ¸•¹ÑÉäü¹Ù…±Õ”¹Ù…±Õ”€˜˜•¹ÑÉä¹Ù…±Õ”¹Ù…±Õ”¹­¥¹€ôôô€‰AA}Aˆ€ü•¹ÑÉä¹Ù…±Õ”¹Ù…±Õ”€è¹Õ±°ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•…¡•]É¥Ñ•A½±¥ä¡½ÁÑ¥½¹Ì¤ì(%±•ÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì(%±•Ð•áÁ¥É•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ìì(%½¹ÍÐÉ•ÅÕ•ÍÑ…¡•1¥™”€ô½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑ…¡•1¥™”ì(%¥˜€¡É•ÅÕ•ÍÑ…¡•1¥™”ü¹É•Ù…±¥‘…Ñ”€„ôôÙ½¥€À¤É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô¹Õ±°€üÉ•ÅÕ•ÍÑ…¡•1¥™”¹É•Ù…±¥‘…Ñ”€è5…Ñ ¹µ¥¸¡É•Ù…±¥‘…Ñ•M•½¹‘Ì°É•ÅÕ•ÍÑ…¡•1¥™”¹É•Ù…±¥‘…Ñ”¤ì(%¥˜€¡É•ÅÕ•ÍÑ…¡•1¥™”ü¹•áÁ¥É”€„ôôÙ½¥€À¤•áÁ¥É•M•½¹‘Ì€ôÉ•ÅÕ•ÍÑ…¡•1¥™”¹•áÁ¥É”ì(%¥˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô¹Õ±°ñðÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ðô€Àñð€…9Õµ‰•È¹¥Í¥¹¥Ñ”¡É•Ù…±¥‘…Ñ•M•½¹‘Ì¤¤É•ÑÕÉ¸¹Õ±°ì(%É•ÑÕÉ¸ì($%•áÁ¥É•M•½¹‘Ì°($%É•Ù…±¥‘…Ñ•M•½¹‘Ì(%ôì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•…¡•‘I•ÍÁ½¹Í”¡…¡•‘Y…±Õ”°½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÍÑ…ÑÕÌ€ô½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•MÑ…ÑÕÌ€üü€¡…¡•‘Y…±Õ”¹ÍÑ…ÑÕÌñð€ÈÀÀ¤ì(%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°ü¹É•Ù…±¥‘…Ñ”€üü½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì(%½¹ÍÐ•áÁ¥É•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°€ôôôÙ½¥€À€üÙ½¥€À€è½ÁÑ¥½¹Ì¹…¡•½¹ÑÉ½°¹•áÁ¥É”€üü½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ìì(%½¹ÍÐ…¡•½¹ÑÉ½°€ô‰Õ¥±‘ÁÁA…•…¡•½¹ÑÉ½°¡½ÁÑ¥½¹Ì¹…¡•MÑ…Ñ”°É•Ù…±¥‘…Ñ•M•½¹‘Ì°•áÁ¥É•M•½¹‘Ì¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ¤ì($%¥˜€ ……¡•‘Y…±Õ”¹ÉÍ…Ñ„¤É•ÑÕÉ¸¹Õ±°ì($%½¹ÍÐÉÍ!•…‘•ÉÌ€ô‰Õ¥±‘ÁÁA…•…¡•‘!•…‘•ÉÌ¡ì($$%…¡•½¹ÑÉ½°°($$%…¡•MÑ…Ñ”è½ÁÑ¥½¹Ì¹…¡•MÑ…Ñ”°($$%½¹Ñ•¹ÑQåÁ”è€‰Ñ•áÐ½àµ½µÁ½¹•¹Ðì¡…ÉÍ•ÐõÕÑ˜´àˆ°($$%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ°($$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È($%ô¤ì($%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡…¡•‘Y…±Õ”¹ÉÍ…Ñ„°ì($$%ÍÑ…ÑÕÌ°($$%¡•…‘•ÉÌèÉÍ!•…‘•ÉÌ($%ô¤ì(%ô(%¥˜€¡ÑåÁ•½˜…¡•‘Y…±Õ”¹¡Ñµ°€„ôô€‰ÍÑÉ¥¹œˆñð…¡•‘Y…±Õ”¹¡Ñµ°¹±•¹Ñ €ôôô€À¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ¡Ñµ±!•…‘•ÉÌ€ô‰Õ¥±‘ÁÁA…•…¡•‘!•…‘•ÉÌ¡ì($%…¡•½¹ÑÉ½°°($%…¡•MÑ…Ñ”è½ÁÑ¥½¹Ì¹…¡•MÑ…Ñ”°($%½¹Ñ•¹ÑQåÁ”è€‰Ñ•áÐ½¡Ñµ°ì¡…ÉÍ•ÐõÕÑ˜´àˆ°($%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ(%ô¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡…¡•‘Y…±Õ”¹¡Ñµ°°ì($%ÍÑ…ÑÕÌ°($%¡•…‘•ÉÌè¡Ñµ±!•…‘•ÉÌ(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•…‘ÁÁA…•…¡•I•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ¥ÍÉ-•ä€ô½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€ü½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”¤€è½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì(%ÑÉäì($%½¹ÍÐ…¡•€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹¥ÍÉ•Ð¡¥ÍÉ-•ä¤ì($%½¹ÍÐ…¡•‘Y…±Õ”€ô•Ñ…¡•‘ÁÁA…•Y…±Õ”¡…¡•¤ì($%¥˜€¡…¡•‘Y…±Õ”€˜˜€……¡•ü¹¥ÍMÑ…±”¤ì($$%½¹ÍÐ¡¥ÑI•ÍÁ½¹Í”€ô‰Õ¥±‘ÁÁA…•…¡•‘I•ÍÁ½¹Í”¡…¡•‘Y…±Õ”°ì($$$%…¡•MÑ…Ñ”è€‰!%Pˆ°($$$%…¡•½¹ÑÉ½°è…¡•ü¹Ù…±Õ”¹…¡•½¹ÑÉ½°°($$$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$$%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($$$%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ°($$$%µ¥‘‘±•Ý…É•MÑ…ÑÕÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•MÑ…ÑÕÌ°($$$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤ì($$%¥˜€¡¡¥ÑI•ÍÁ½¹Í”¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€ü€‰!%P€¡IM¤ˆ€è€‰!%P€¡!Q50¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%É•ÑÕÉ¸¡¥ÑI•ÍÁ½¹Í”ì($$%ô($$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰5%ML€¡•µÁÑä…¡••¹ÑÉä¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($%ô($%¥˜€¡…¡•ü¹¥ÍMÑ…±”€˜˜…¡•‘Y…±Õ”¤ì($$%½¹ÍÐÉ••¹•É…Ñ¥½¹-•ä€ô½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€ü½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”¤€è½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$%½ÁÑ¥½¹Ì¹Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡É••¹•É…Ñ¥½¹-•ä°…Íå¹Œ€ ¤€ôøì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•‘A…”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉÉ•Í¡A…•½É…¡” ¤ì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ôÉ•Ù…±¥‘…Ñ•‘A…”¹…¡•½¹ÑÉ½°ü¹É•Ù…±¥‘…Ñ”€üü½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì($$$%½¹ÍÐ•áÁ¥É•M•½¹‘Ì€ôÉ•Ù…±¥‘…Ñ•‘A…”¹…¡•½¹ÑÉ½°ü¹•áÁ¥É”€üü½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ìì($$$%½¹ÍÐÝÉ¥Ñ•Ì€ôm½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”¤°‰Õ¥±‘ÁÁA…•…¡•Y…±Õ” ˆˆ°É•Ù…±¥‘…Ñ•‘A…”¹ÉÍ…Ñ„°€ÈÀÀ¤°É•Ù…±¥‘…Ñ•M•½¹‘Ì°É•Ù…±¥‘…Ñ•‘A…”¹Ñ…Ì°•áÁ¥É•M•½¹‘Ì¥tì($$$%¥˜€ …½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ¤ÝÉ¥Ñ•Ì¹ÁÕÍ ¡½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤°‰Õ¥±‘ÁÁA…•…¡•Y…±Õ”¡É•Ù…±¥‘…Ñ•‘A…”¹¡Ñµ°°Ù½¥€À°€ÈÀÀ¤°É•Ù…±¥‘…Ñ•M•½¹‘Ì°É•Ù…±¥‘…Ñ•‘A…”¹Ñ…Ì°•áÁ¥É•M•½¹‘Ì¤¤ì($$$%…Ý…¥ÐAÉ½µ¥Í”¹…±°¡ÝÉ¥Ñ•Ì¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰É••¸½µÁ±•Ñ”ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$%ô¤ì($$%½¹ÍÐÍÑ…±•I•ÍÁ½¹Í”€ô‰Õ¥±‘ÁÁA…•…¡•‘I•ÍÁ½¹Í”¡…¡•‘Y…±Õ”°ì($$$%…¡•MÑ…Ñ”è€‰MQ1ˆ°($$$%…¡•½¹ÑÉ½°è…¡•¹Ù…±Õ”¹…¡•½¹ÑÉ½°°($$$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$$%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($$$%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ°($$$%µ¥‘‘±•Ý…É•MÑ…ÑÕÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•MÑ…ÑÕÌ°($$$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤ì($$%¥˜€¡ÍÑ…±•I•ÍÁ½¹Í”¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ€ü€‰MQ1€¡IM¤ˆ€è€‰MQ1€¡!Q50¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($$$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%É•ÑÕÉ¸ÍÑ…±•I•ÍÁ½¹Í”ì($$%ô($$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰MQ15%ML€¡•µÁÑäÍÑ…±”•¹ÑÉä¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì($%ô($%¥˜€ ……¡•¤½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰5%ML€¡¹¼…¡”•¹ÑÉä¤ˆ°½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì(%ô…Ñ €¡¥ÍÉI•…‘ÉÉ½È¤ì($%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt%MH…¡”É•…•ÉÉ½Èèˆ°¥ÍÉI•…‘ÉÉ½È¤ì(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô)™Õ¹Ñ¥½¸™¥¹…±¥é•ÁÁA…•!Ñµ±…¡•I•ÍÁ½¹Í”¡É•ÍÁ½¹Í”°½ÁÑ¥½¹Ì¤ì(%¥˜€ …É•ÍÁ½¹Í”¹‰½‘ä¤É•ÑÕÉ¸É•ÍÁ½¹Í”ì(%½¹ÍÐmÍÑÉ•…µ½É±¥•¹Ð°ÍÑÉ•…µ½É…¡•t€ôÉ•ÍÁ½¹Í”¹‰½‘ä¹Ñ•” ¤ì(%½¹ÍÐ¡Ñµ±-•ä€ô½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”¤ì(%½¹ÍÐÉÍ-•ä€ô½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°¹Õ±°¤ì(%½¹ÍÐ±¥•¹Ñ!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹ÁÉ•Í•ÉÙ•±¥•¹ÑI•ÍÁ½¹Í•!•…‘•ÉÌ€„ôôÑÉÕ”¤ì($%±¥•¹Ñ!•…‘•ÉÌ¹Í•Ð ‰…¡”µ½¹ÑÉ½°ˆ°9=}MQ=I}!}=9QI=0¤ì($%±¥•¹Ñ!•…‘•ÉÌ¹Í•Ð¡Y%9aQ}!}!H°€‰5%MLˆ¤ì(%ô(%½¹ÍÐ…¡•AÉ½µ¥Í”€ô€¡…Íå¹Œ€ ¤€ôøì($%ÑÉäì($$%½¹ÍÐ…¡•‘!Ñµ°€ô…Ý…¥ÐÉ•…‘MÑÉ•…µÍQ•áÐ¡ÍÑÉ•…µ½É…¡”¤ì($$%¥˜€¡½ÁÑ¥½¹Ì¹…ÁÑÕÉ•‘å¹…µ¥UÍ…•	•™½É•½¹Ñ•áÑ±•…¹ÕÀü¸ ¤€ôôôÑÉÕ”ñð½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰!Q50…¡”ÝÉ¥Ñ”Í­¥ÁÁ•€¡‘å¹…µ¥ŒÕÍ…”‘ÕÉ¥¹œÉ•¹‘•È¤ˆ°¡Ñµ±-•ä¤ì($$$%É•ÑÕÉ¸ì($$%ô($$%½¹ÍÐ…¡•A½±¥ä€ôÉ•Í½±Ù•ÁÁA…•…¡•]É¥Ñ•A½±¥ä¡ì($$$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$$%É•ÅÕ•ÍÑ…¡•1¥™”è½ÁÑ¥½¹Ì¹•ÑI•ÅÕ•ÍÑ…¡•1¥™”ü¸ ¤°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤ì($$%¥˜€ ……¡•A½±¥ä¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰!Q50…¡”ÝÉ¥Ñ”Í­¥ÁÁ•€¡¹¼…¡”Á½±¥ä¤ˆ°¡Ñµ±-•ä¤ì($$$%É•ÑÕÉ¸ì($$%ô($$%½¹ÍÐÁ…•Q…Ì€ô½ÁÑ¥½¹Ì¹•ÑA…•Q…Ì ¤ì($$%½¹ÍÐÝÉ¥Ñ•Ì€ôm½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡¡Ñµ±-•ä°‰Õ¥±‘ÁÁA…•…¡•Y…±Õ”¡…¡•‘!Ñµ°°Ù½¥€À°€ÈÀÀ¤°…¡•A½±¥ä¹É•Ù…±¥‘…Ñ•M•½¹‘Ì°Á…•Q…Ì°…¡•A½±¥ä¹•áÁ¥É•M•½¹‘Ì¥tì($$%¥˜€¡½ÁÑ¥½¹Ì¹…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¤ÝÉ¥Ñ•Ì¹ÁÕÍ ¡½ÁÑ¥½¹Ì¹…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¹Ñ¡•¸ ¡ÉÍ…Ñ„¤€ôø½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡ÉÍ-•ä°‰Õ¥±‘ÁÁA…•…¡•Y…±Õ” ˆˆ°ÉÍ…Ñ„°€ÈÀÀ¤°…¡•A½±¥ä¹É•Ù…±¥‘…Ñ•M•½¹‘Ì°Á…•Q…Ì°…¡•A½±¥ä¹•áÁ¥É•M•½¹‘Ì¤¤¤ì($$%…Ý…¥ÐAÉ½µ¥Í”¹…±°¡ÝÉ¥Ñ•Ì¤ì($$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰!Q50…¡”ÝÉ¥ÑÑ•¸ˆ°¡Ñµ±-•ä¤ì($%ô…Ñ €¡…¡•ÉÉ½È¤ì($$%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt%MH…¡”ÝÉ¥Ñ”•ÉÉ½Èèˆ°…¡•ÉÉ½È¤ì($%ô(%ô¤ ¤ì(%½ÁÑ¥½¹Ì¹Ý…¥ÑU¹Ñ¥°ü¸¡…¡•AÉ½µ¥Í”¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡ÍÑÉ•…µ½É±¥•¹Ð°ì($%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%ÍÑ…ÑÕÍQ•áÐèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÍQ•áÐ°($%¡•…‘•ÉÌè±¥•¹Ñ!•…‘•ÉÌ(%ô¤ì)ô)™Õ¹Ñ¥½¸™¥¹…±¥é•ÁÁA…•IÍ…¡•I•ÍÁ½¹Í”¡É•ÍÁ½¹Í”°½ÁÑ¥½¹Ì¤ì(%¥˜€ …Í¡•‘Õ±•ÁÁA…•IÍ…¡•]É¥Ñ”¡½ÁÑ¥½¹Ì¤¤É•ÑÕÉ¸É•ÍÁ½¹Í”ì(%¥˜€¡½ÁÑ¥½¹Ì¹ÁÉ•Í•ÉÙ•±¥•¹ÑI•ÍÁ½¹Í•!•…‘•ÉÌ€ôôôÑÉÕ”¤É•ÑÕÉ¸É•ÍÁ½¹Í”ì(%½¹ÍÐ±¥•¹Ñ!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡É•ÍÁ½¹Í”¹¡•…‘•ÉÌ¤ì(%±¥•¹Ñ!•…‘•ÉÌ¹Í•Ð ‰…¡”µ½¹ÑÉ½°ˆ°9=}MQ=I}!}=9QI=0¤ì(%±¥•¹Ñ!•…‘•ÉÌ¹Í•Ð¡Y%9aQ}!}!H°€‰5%MLˆ¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¹‰½‘ä°ì($%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%ÍÑ…ÑÕÍQ•áÐèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÍQ•áÐ°($%¡•…‘•ÉÌè±¥•¹Ñ!•…‘•ÉÌ(%ô¤ì)ô)™Õ¹Ñ¥½¸Í¡•‘Õ±•ÁÁA…•IÍ…¡•]É¥Ñ”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐ…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”€ô½ÁÑ¥½¹Ì¹…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”ì(%¥˜€ ……ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”ñð½ÁÑ¥½¹Ì¹‘å¹…µ¥UÍ•‘ÕÉ¥¹	Õ¥±¤É•ÑÕÉ¸™…±Í”ì(%½¹ÍÐÉÍ-•ä€ô½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”¤ì(%½¹ÍÐ…¡•AÉ½µ¥Í”€ô€¡…Íå¹Œ€ ¤€ôøì($%ÑÉäì($$%½¹ÍÐÉÍ…Ñ„€ô…Ý…¥Ð…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”ì($$%¥˜€¡½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰IM…¡”ÝÉ¥Ñ”Í­¥ÁÁ•€¡‘å¹…µ¥ŒÕÍ…”‘ÕÉ¥¹œÉ•¹‘•È¤ˆ°ÉÍ-•ä¤ì($$$%É•ÑÕÉ¸ì($$%ô($$%½¹ÍÐ…¡•A½±¥ä€ôÉ•Í½±Ù•ÁÁA…•…¡•]É¥Ñ•A½±¥ä¡ì($$$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$$%É•ÅÕ•ÍÑ…¡•1¥™”è½ÁÑ¥½¹Ì¹•ÑI•ÅÕ•ÍÑ…¡•1¥™”ü¸ ¤°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤ì($$%¥˜€ ……¡•A½±¥ä¤ì($$$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰IM…¡”ÝÉ¥Ñ”Í­¥ÁÁ•€¡¹¼…¡”Á½±¥ä¤ˆ°ÉÍ-•ä¤ì($$$%É•ÑÕÉ¸ì($$%ô($$%…Ý…¥Ð½ÁÑ¥½¹Ì¹¥ÍÉM•Ð¡ÉÍ-•ä°‰Õ¥±‘ÁÁA…•…¡•Y…±Õ” ˆˆ°ÉÍ…Ñ„°€ÈÀÀ¤°…¡•A½±¥ä¹É•Ù…±¥‘…Ñ•M•½¹‘Ì°½ÁÑ¥½¹Ì¹•ÑA…•Q…Ì ¤°…¡•A½±¥ä¹•áÁ¥É•M•½¹‘Ì¤ì($$%½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœü¸ ‰IM…¡”ÝÉ¥ÑÑ•¸ˆ°ÉÍ-•ä¤ì($%ô…Ñ €¡…¡•ÉÉ½È¤ì($$%½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt%MHIM…¡”ÝÉ¥Ñ”•ÉÉ½Èèˆ°…¡•ÉÉ½È¤ì($%ô(%ô¤ ¤ì(%½ÁÑ¥½¹Ì¹Ý…¥ÑU¹Ñ¥°ü¸¡…¡•AÉ½µ¥Í”¤ì(%É•ÑÕÉ¸ÑÉÕ”ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µµ•Ñ¡½¹©Ì)™Õ¹Ñ¥½¸¥Í9½¹•Ñ=É!•…¡µ•Ñ¡½¤ì(%½¹ÍÐ¹½Éµ…±¥é•‘5•Ñ¡½€ôµ•Ñ¡½¹Ñ½UÁÁ•É…Í” ¤ì(%É•ÑÕÉ¸¹½Éµ…±¥é•‘5•Ñ¡½€„ôô€‰Pˆ€˜˜¹½Éµ…±¥é•‘5•Ñ¡½€„ôô€‰!ˆì)ô)™Õ¹Ñ¥½¸¥ÍMÑ…Ñ¥=ÉMÍÁÁA…•…¹‘¥‘…Ñ”¡½ÁÑ¥½¹Ì¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µ‘å¹…µ¥Œˆñð½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô€À¤É•ÑÕÉ¸™…±Í”ì(%¥˜€¡½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µÍÑ…Ñ¥Œˆñð½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆ¤É•ÑÕÉ¸ÑÉÕ”ì(%¥˜€¡½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô¹Õ±°€˜˜½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ø€À¤É•ÑÕÉ¸ÑÉÕ”ì(%¥˜€¡½ÁÑ¥½¹Ì¹¡…Í•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¤É•ÑÕÉ¸ÑÉÕ”ì(%É•ÑÕÉ¸€…½ÁÑ¥½¹Ì¹¥Íå¹…µ¥I½ÕÑ”ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•5•Ñ¡½‘I•ÍÁ½¹Í”¡½ÁÑ¥½¹Ì¤ì(%¥˜€ …¥Í9½¹•Ñ=É!•…¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¹µ•Ñ¡½¤¤É•ÑÕÉ¸¹Õ±°ì(%¥˜€¡¥ÍA½ÍÍ¥‰±•ÁÁI½ÕÑ•Ñ¥½¹I•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¤¤É•ÑÕÉ¸¹Õ±°ì(%¥˜€ …¥ÍMÑ…Ñ¥=ÉMÍÁÁA…•…¹‘¥‘…Ñ”¡½ÁÑ¥½¹Ì¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ¡•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ ¤ì(%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¡•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•!•…‘•ÉÌ€üü¹Õ±°¤ì(%É•ÑÕÉ¸µ•Ñ¡½‘9½Ñ±±½Ý•‘I•ÍÁ½¹Í” ‰P°!ˆ°ì¡•…‘•ÉÌô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÁÉ½‰”¹©Ì)…Íå¹Œ™Õ¹Ñ¥½¸ÁÉ½‰•ÁÁA…•	•™½É•I•¹‘•È¡½ÁÑ¥½¹Ì¤ì(%±•Ð±…å½ÕÑ±…Ì€ôíôì(%¥˜€¡½ÁÑ¥½¹Ì¹±…å½ÕÑ½Õ¹Ð€ø€À¤ì($%½¹ÍÐ±…å½ÕÑAÉ½‰•I•ÍÕ±Ð€ô…Ý…¥ÐÁÉ½‰•ÁÁA…•1…å½ÕÑÌ¡ì($$%±…å½ÕÑ½Õ¹Ðè½ÁÑ¥½¹Ì¹±…å½ÕÑ½Õ¹Ð°($$%…Íå¹Œ½¹1…å½ÕÑÉÉ½È¡±…å½ÕÑÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($$$%½¹ÍÐÍÁ•¥…±ÉÉ½È€ô½ÁÑ¥½¹Ì¹É•Í½±Ù•MÁ•¥…±ÉÉ½È¡±…å½ÕÑÉÉ½È¤ì($$$%¥˜€ …ÍÁ•¥…±ÉÉ½È¤É•ÑÕÉ¸¹Õ±°ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•É1…å½ÕÑMÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($$%ô°($$%ÁÉ½‰•1…å½ÕÑÐè½ÁÑ¥½¹Ì¹ÁÉ½‰•1…å½ÕÑÐ°($$%ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$%ô°($$%±…ÍÍ¥™¥…Ñ¥½¸è½ÁÑ¥½¹Ì¹±…ÍÍ¥™¥…Ñ¥½¸($%ô¤ì($%±…å½ÕÑ±…Ì€ô±…å½ÕÑAÉ½‰•I•ÍÕ±Ð¹±…å½ÕÑ±…Ìì($%¥˜€¡±…å½ÕÑAÉ½‰•I•ÍÕ±Ð¹É•ÍÁ½¹Í”¤É•ÑÕÉ¸ì($$%É•ÍÁ½¹Í”è±…å½ÕÑAÉ½‰•I•ÍÕ±Ð¹É•ÍÁ½¹Í”°($$%±…å½ÕÑ±…Ì($%ôì(%ô(%¥˜€¡½ÁÑ¥½¹Ì¹¡…Í1½…‘¥¹	½Õ¹‘…Éä¤É•ÑÕÉ¸ì($%É•ÍÁ½¹Í”è¹Õ±°°($%±…å½ÕÑ±…Ì(%ôì(%É•ÑÕÉ¸ì($%É•ÍÁ½¹Í”è…Ý…¥ÐÁÉ½‰•ÁÁA…•½µÁ½¹•¹Ð¡ì($$%…Ý…¥ÑÍå¹I•ÍÕ±ÐèÑÉÕ”°($$%…Íå¹Œ½¹ÉÉ½È¡Á…•ÉÉ½È¤ì($$$%½¹ÍÐÍÁ•¥…±ÉÉ½È€ô½ÁÑ¥½¹Ì¹É•Í½±Ù•MÁ•¥…±ÉÉ½È¡Á…•ÉÉ½È¤ì($$$%¥˜€¡ÍÁ•¥…±ÉÉ½È¤É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($$$%É•ÑÕÉ¸¹Õ±°ì($$%ô°($$%ÁÉ½‰•A…”è½ÁÑ¥½¹Ì¹ÁÉ½‰•A…”°($$%ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$%ô($%ô¤°($%±…å½ÕÑ±…Ì(%ôì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µÉ•¹‘•È¹©Ì)™Õ¹Ñ¥½¸‰Õ¥±‘I•ÍÁ½¹Í•Q¥µ¥¹œ¡½ÁÑ¥½¹Ì¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸¤É•ÑÕÉ¸ì(%É•ÑÕÉ¸ì($%½µÁ¥±•¹è½ÁÑ¥½¹Ì¹½µÁ¥±•¹°($%¡…¹‘±•ÉMÑ…ÉÐè½ÁÑ¥½¹Ì¹¡…¹‘±•ÉMÑ…ÉÐ°($%É•¹‘•É¹è½ÁÑ¥½¹Ì¹É•¹‘•É¹°($%É•ÍÁ½¹Í•-¥¹è½ÁÑ¥½¹Ì¹É•ÍÁ½¹Í•-¥¹(%ôì)ô)™Õ¹Ñ¥½¸É•…‘I•ÅÕ•ÍÑ…¡•1¥™•½ÉAÉ•É•¹‘•È¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹Á••­I•ÅÕ•ÍÑ…¡•1¥™”ü¸ ¤€üü½ÁÑ¥½¹Ì¹•ÑI•ÅÕ•ÍÑ…¡•1¥™” ¤ì)ô)™Õ¹Ñ¥½¸…ÁÁ±åI•ÅÕ•ÍÑ…¡•1¥™”¡½ÁÑ¥½¹Ì¤ì(%±•ÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì(%±•Ð•áÁ¥É•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ìì(%½¹ÍÐÉ•ÅÕ•ÍÑ…¡•1¥™”€ô½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÑ…¡•1¥™”ì(%¥˜€¡É•ÅÕ•ÍÑ…¡•1¥™”ü¹É•Ù…±¥‘…Ñ”€„ôôÙ½¥€À¤É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô¹Õ±°€üÉ•ÅÕ•ÍÑ…¡•1¥™”¹É•Ù…±¥‘…Ñ”€è5…Ñ ¹µ¥¸¡É•Ù…±¥‘…Ñ•M•½¹‘Ì°É•ÅÕ•ÍÑ…¡•1¥™”¹É•Ù…±¥‘…Ñ”¤ì(%¥˜€¡É•ÅÕ•ÍÑ…¡•1¥™”ü¹•áÁ¥É”€„ôôÙ½¥€À¤•áÁ¥É•M•½¹‘Ì€ôÉ•ÅÕ•ÍÑ…¡•1¥™”¹•áÁ¥É”ì(%É•ÑÕÉ¸ì($%•áÁ¥É•M•½¹‘Ì°($%É•Ù…±¥‘…Ñ•M•½¹‘Ì(%ôì)ô)™Õ¹Ñ¥½¸É•…‘I½½Ñ	½Õ¹‘…Éå%¡•±•µ•¹Ð¤ì(%½¹ÍÐÉ½½Ñ1…å½ÕÑQÉ••A…Ñ €ô•±•µ•¹ÑmÁÁ±•µ•¹ÑÍ]¥É”¹­•åÌ¹É½½Ñ1…å½ÕÑtì(%É•ÑÕÉ¸ÑåÁ•½˜É½½Ñ1…å½ÕÑQÉ••A…Ñ €ôôô€‰ÍÑÉ¥¹œˆ€üÉ½½Ñ1…å½ÕÑQÉ••A…Ñ €è¹Õ±°ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁA…•ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥Ñä¡•±•µ•¹Ð°É½ÕÑ•A…ÑÑ•É¸¤ì(%¥˜€ …¥ÍÁÁ±•µ•¹ÑÍI•½É¡•±•µ•¹Ð¤¤É•ÑÕÉ¸ì(%½¹ÍÐÉ½½Ñ	½Õ¹‘…Éå%€ôÉ•…‘I½½Ñ	½Õ¹‘…Éå%¡•±•µ•¹Ð¤ì(%É•ÑÕÉ¸É•…Ñ•ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥Ñå¹Ù•±½Á”¡ì($%É…Á¡Y•ÉÍ¥½¸èÉ•…Ñ•ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥ÑåÉ…Á¡Y•ÉÍ¥½¸¡ì($$%É½ÕÑ•A…ÑÑ•É¸°($$%É½½Ñ	½Õ¹‘…Éå%($%ô¤°($%‘•Á±½åµ•¹ÑY•ÉÍ¥½¸è€ˆÙˆá‰á˜À´ÍÍ˜´Ñ„Å„´àÐÕ„µ‘‰‰Œå•‘™‘…ˆÐˆ°($%É½½Ñ	½Õ¹‘…Éå%(%ô¤ì)ô(¼¨¨(¨]É…ÁÌ…¸IMÉ•ÍÁ½¹Í”‰½‘äÑ¼É•Á½ÉÐ¥¹Ù…±¥‘å¹…µ¥ŒÕÍ…”•ÉÉ½ÉÌ…™Ñ•ÈÑ¡”(¨ÍÑÉ•…´¥Ì™Õ±±ä½¹ÍÕµ•¸%¸‘•Øµ½‘”°•ÉÉ½ÉÌ™É½´½½­¥•Ì ¤½¡•…‘•ÉÌ ¤¥¹Í¥‘”(¨€‰ÕÍ”…¡”ˆµ…ä‰”…Õ¡Ð‰äÕÍ•ÈÑÉä½…Ñ …¹Í¥±•¹Ñ±äÍÝ…±±½Ý•ƒŠPÑ¡¥Ì(¨ÝÉ…ÁÁ•ÈÝ…¥ÑÌ™½ÈÑ¡”ÍÑÉ•…´Ñ¼‘É…¥¸…¹ÍÕÉ™…•Ì…¹äÉ•½É‘••ÉÉ½ÈÑ¼Ñ¡”(¨Ñ•Éµ¥¹…°€¡…¹°Ù¥„!5H°Ñ¡”‰É½ÝÍ•È‘•Ø½Ù•É±…ä¤¸(¨A½ÉÑ•™É½´9•áÐ¹©Ìè¡ÑÑÁÌè¼½¥Ñ¡Õˆ¹½´½Ù•É•°½¹•áÐ¹©Ì½½µµ¥Ð½˜Õ”ÔÑŒÀØÜÈÙˆÔÜÅ„ÀÐÉ™”ØÜÐÄÝ”ÐÁ„Èå˜ÙˆàØàä(¨¼)™Õ¹Ñ¥½¸ÝÉ…ÁIÍI•ÍÁ½¹Í•½É•ÙÉÉ½ÉI•Á½ÉÑ¥¹œ¡É•ÍÁ½¹Í”°½¹ÍÕµ•%¹Ù…±¥‘å¹…µ¥UÍ…•ÉÉ½È¤ì(%½¹ÍÐ½É¥¥¹…±	½‘ä€ôÉ•ÍÁ½¹Í”¹‰½‘äì(%¥˜€ …½É¥¥¹…±	½‘ä¤É•ÑÕÉ¸É•ÍÁ½¹Í”ì(%±•Ð½¹ÍÕµ•€ô™…±Í”ì(%½¹ÍÐ½¹½¹ÍÕµ•€ô€ ¤€ôøì($%¥˜€¡½¹ÍÕµ•¤É•ÑÕÉ¸ì($%½¹ÍÕµ•€ôÑÉÕ”ì($%½¹ÍÐ•ÉÉ½È€ô½¹ÍÕµ•%¹Ù…±¥‘å¹…µ¥UÍ…•ÉÉ½È ¤ì($%¥˜€¡•ÉÉ½È¤½¹Í½±”¹•ÉÉ½È ‰mÙ¥¹•áÑt%¹Ù…±¥‘å¹…µ¥ŒÕÍ…”èˆ°•ÉÉ½È¤ì(%ôì(%½¹ÍÐ±•…¹ÕÀ€ô¹•ÜQÉ…¹Í™½ÉµMÑÉ•…´¡ì™±ÕÍ  ¤ì($%½¹½¹ÍÕµ• ¤ì(%ôô¤ì(%½¹ÍÐÉ•…‘•È€ô½É¥¥¹…±	½‘ä¹Á¥Á•Q¡É½Õ ¡±•…¹ÕÀ¤¹•ÑI•…‘•È ¤ì(%½¹ÍÐÝÉ…ÁÁ•‘MÑÉ•…´€ô¹•ÜI•…‘…‰±•MÑÉ•…´¡ì($%ÁÕ±°¡½¹ÑÉ½±±•È¤ì($$%É•ÑÕÉ¸É•…‘•È¹É•… ¤¹Ñ¡•¸ ¡ì‘½¹”°Ù…±Õ”ô¤€ôøì($$$%¥˜€¡‘½¹”¤½¹ÑÉ½±±•È¹±½Í” ¤ì($$$%•±Í”½¹ÑÉ½±±•È¹•¹ÅÕ•Õ”¡Ù…±Õ”¤ì($$%ô°€¡ÍÑÉ•…µÉÉ½È¤€ôøì($$$%½¹½¹ÍÕµ• ¤ì($$$%½¹ÑÉ½±±•È¹•ÉÉ½È¡ÍÑÉ•…µÉÉ½È¤ì($$%ô¤ì($%ô°($%…¹•°¡É•…Í½¸¤ì($$%½¹½¹ÍÕµ• ¤ì($$%É•ÑÕÉ¸É•…‘•È¹…¹•°¡É•…Í½¸¤ì($%ô(%ô¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡ÝÉ…ÁÁ•‘MÑÉ•…´°ì($%ÍÑ…ÑÕÌèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÌ°($%ÍÑ…ÑÕÍQ•áÐèÉ•ÍÁ½¹Í”¹ÍÑ…ÑÕÍQ•áÐ°($%¡•…‘•ÉÌèÉ•ÍÁ½¹Í”¹¡•…‘•ÉÌ(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉÁÁA…•1¥™•å±”¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÁÉ•I•¹‘•ÉI•ÍÕ±Ð€ô…Ý…¥ÐÁÉ½‰•ÁÁA…•	•™½É•I•¹‘•È¡ì($%¡…Í1½…‘¥¹	½Õ¹‘…Éäè½ÁÑ¥½¹Ì¹¡…Í1½…‘¥¹	½Õ¹‘…Éä°($%±…å½ÕÑ½Õ¹Ðè½ÁÑ¥½¹Ì¹±…å½ÕÑ½Õ¹Ð°($%ÁÉ½‰•1…å½ÕÑÐ¡±…å½ÕÑ%¹‘•à¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÁÉ½‰•1…å½ÕÑÐ¡±…å½ÕÑ%¹‘•à¤ì($%ô°($%ÁÉ½‰•A…” ¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÁÉ½‰•A…” ¤ì($%ô°($%É•¹‘•É1…å½ÕÑMÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•É1…å½ÕÑMÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($%ô°($%É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($%ô°($%É•Í½±Ù•MÁ•¥…±ÉÉ½ÈèÉ•Í½±Ù•ÁÁA…•MÁ•¥…±ÉÉ½È°($%ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($%ô°($%±…ÍÍ¥™¥…Ñ¥½¸è½ÁÑ¥½¹Ì¹±…ÍÍ¥™¥…Ñ¥½¸(%ô¤ì(%¥˜€¡ÁÉ•I•¹‘•ÉI•ÍÕ±Ð¹É•ÍÁ½¹Í”¤É•ÑÕÉ¸ÁÉ•I•¹‘•ÉI•ÍÕ±Ð¹É•ÍÁ½¹Í”ì(%½¹ÍÐ±…å½ÕÑ±…Ì€ôÁÉ•I•¹‘•ÉI•ÍÕ±Ð¹±…å½ÕÑ±…Ìì(%½¹ÍÐ…ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥Ñä€ôÉ•…Ñ•ÁÁA…•ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥Ñä¡½ÁÑ¥½¹Ì¹•±•µ•¹Ð°½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸¤ì(%½¹ÍÐ½ÕÑ½¥¹±•µ•¹Ð€ôÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•=ÕÑ½¥¹A…å±½…¡ì($%•±•µ•¹Ðè½ÁÑ¥½¹Ì¹•±•µ•¹Ð°($%±…å½ÕÑ±…Ì°($$¸¸¹…ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥Ñä€üì…ÉÑ¥™…Ñ½µÁ…Ñ¥‰¥±¥Ñäô€èíô(%ô¤ì(%½¹ÍÐ½µÁ¥±•¹€ô½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€üÙ½¥€À€èÁ•É™½Éµ…¹”¹¹½Ü ¤ì(%½¹ÍÐÉÍÉÉ½ÉQÉ…­•È€ôÉ•…Ñ•ÁÁA…•IÍÉÉ½ÉQÉ…­•È¡½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸¤¤ì(%½¹ÍÐÉÍMÑÉ•…´€ôÉÕ¹]¥Ñ¡•Ñ¡•‘ÕÁ”  ¤€ôø½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´¡½ÕÑ½¥¹±•µ•¹Ð°ì½¹ÉÉ½ÈèÉÍÉÉ½ÉQÉ…­•È¹½¹I•¹‘•ÉÉÉ½Èô¤¤ì(%±•ÐÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì(%±•Ð•áÁ¥É•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ìì(%½¹ÍÐÍ¡½Õ±‘…ÁÑÕÉ•IÍ½É…¡•5•Ñ…‘…Ñ„€ô½ÁÑ¥½¹Ì¹¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È€„ôôÑÉÕ”€˜˜€¡½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸ñð½ÁÑ¥½¹Ì¹¥ÍAÉ•É•¹‘•È€ôôôÑÉÕ”¤€˜˜€¡É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô¹Õ±°ñðÉ•Ù…±¥‘…Ñ•M•½¹‘Ì€ø€À€˜˜É•Ù…±¥‘…Ñ•M•½¹‘Ì€„ôô%¹™¥¹¥Ñä¤€˜˜€…½ÁÑ¥½¹Ì¹¥ÍÉ…™Ñ5½‘”€˜˜€…½ÁÑ¥½¹Ì¹¥Í½É•å¹…µ¥Œì(%½¹ÍÐÉÍ…ÁÑÕÉ”€ôÑ••ÁÁA…•IÍMÑÉ•…µ½É…ÁÑÕÉ”¡ÉÍMÑÉ•…´°Í¡½Õ±‘…ÁÑÕÉ•IÍ½É…¡•5•Ñ…‘…Ñ„¤ì(%½¹ÍÐÉÍ½ÉI•ÍÁ½¹Í”€ôÉÍ…ÁÑÕÉ”¹ÍÍÉMÑÉ•…´ì(%½¹ÍÐ…ÁÑÕÉ•‘IÍ…Ñ…I•˜€ôìÙ…±Õ”è¹Õ±°ôì(%¥˜€¡ÉÍ…ÁÑÕÉ”¹Í¥‘•MÑÉ•…´€˜˜½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ¤…ÁÑÕÉ•‘IÍ…Ñ…I•˜¹Ù…±Õ”€ôÉ•…‘ÁÁA…•	¥¹…ÉåMÑÉ•…´¡ÉÍ…ÁÑÕÉ”¹Í¥‘•MÑÉ•…´¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ¤ì($%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍAÉ•É•¹‘•È€ôôôÑÉÕ”¤ì($$%…Ý…¥ÐÍ•ÑÑ±•…ÁÑÕÉ•‘IÍI•¹‘•É½É…¡•5•Ñ…‘…Ñ„¡…ÁÑÕÉ•‘IÍ…Ñ…I•˜¹Ù…±Õ”¤ì($$$¡í•áÁ¥É•M•½¹‘Ì°É•Ù…±¥‘…Ñ•M•½¹‘Íô€ô…ÁÁ±åI•ÅÕ•ÍÑ…¡•1¥™”¡ì($$$%•áÁ¥É•M•½¹‘Ì°($$$%É•ÅÕ•ÍÑ…¡•1¥™”èÉ•…‘I•ÅÕ•ÍÑ…¡•1¥™•½ÉAÉ•É•¹‘•È¡½ÁÑ¥½¹Ì¤°($$$%É•Ù…±¥‘…Ñ•M•½¹‘Ì($$%ô¤¤ì($%ô($%½¹ÍÐ‘å¹…µ¥UÍ•‘ÕÉ¥¹	Õ¥±€ô½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤ì($%½¹ÍÐÉÍI•ÍÁ½¹Í•A½±¥ä€ôÉ•Í½±Ù•ÁÁA…•IÍI•ÍÁ½¹Í•A½±¥ä¡ì($$%‘å¹…µ¥UÍ•‘ÕÉ¥¹	Õ¥±°($$%¥ÍÉ…™Ñ5½‘”è½ÁÑ¥½¹Ì¹¥ÍÉ…™Ñ5½‘”°($$%¥Íå¹…µ¥ÉÉ½Èè½ÁÑ¥½¹Ì¹¥Íå¹…µ¥ÉÉ½È°($$%¥Í½É•å¹…µ¥Œè½ÁÑ¥½¹Ì¹¥Í½É•å¹…µ¥Œ°($$%¥Í½É•MÑ…Ñ¥Œè½ÁÑ¥½¹Ì¹¥Í½É•MÑ…Ñ¥Œ°($$%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($$%•áÁ¥É•M•½¹‘Ì°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ì($%ô¤ì($%½¹ÍÐÉÍI•ÍÁ½¹Í”€ô‰Õ¥±‘ÁÁA…•IÍI•ÍÁ½¹Í”¡ÉÍ½ÉI•ÍÁ½¹Í”°ì($$%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ°($$%Á½±¥äèÉÍI•ÍÁ½¹Í•A½±¥ä°($$%Ñ¥µ¥¹œè‰Õ¥±‘I•ÍÁ½¹Í•Q¥µ¥¹œ¡ì($$$%½µÁ¥±•¹°($$$%¡…¹‘±•ÉMÑ…ÉÐè½ÁÑ¥½¹Ì¹¡…¹‘±•ÉMÑ…ÉÐ°($$$%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($$$%É•ÍÁ½¹Í•-¥¹è€‰ÉÍŒˆ($$%ô¤($%ô¤ì($%É•ÑÕÉ¸™¥¹…±¥é•ÁÁA…•IÍ…¡•I•ÍÁ½¹Í” …½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€˜˜ÉÍI•ÍÁ½¹Í”¹‰½‘ä€˜˜½ÁÑ¥½¹Ì¹½¹ÍÕµ•%¹Ù…±¥‘å¹…µ¥UÍ…•ÉÉ½È€üÝÉ…ÁIÍI•ÍÁ½¹Í•½É•ÙÉÉ½ÉI•Á½ÉÑ¥¹œ¡ÉÍI•ÍÁ½¹Í”°½ÁÑ¥½¹Ì¹½¹ÍÕµ•%¹Ù…±¥‘å¹…µ¥UÍ…•ÉÉ½È¤€èÉÍI•ÍÁ½¹Í”°ì($$%…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€˜˜Í¡½Õ±‘…ÁÑÕÉ•IÍ½É…¡•5•Ñ…‘…Ñ„€ü…ÁÑÕÉ•‘IÍ…Ñ…I•˜¹Ù…±Õ”€è¹Õ±°°($$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%½¹ÍÕµ•å¹…µ¥UÍ…”è½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…”°($$%‘å¹…µ¥UÍ•‘ÕÉ¥¹	Õ¥±°($$%•ÑA…•Q…Ì ¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹•ÑA…•Q…Ì ¤ì($$%ô°($$%•ÑI•ÅÕ•ÍÑ…¡•1¥™” ¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹•ÑI•ÅÕ•ÍÑ…¡•1¥™” ¤ì($$%ô°($$%¥ÍÉ•‰Õœè½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœ°($$%¥ÍÉIÍ-•äè½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä°($$%¥ÍÉM•Ðè½ÁÑ¥½¹Ì¹¥ÍÉM•Ð°($$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$%É•¹‘•É5½‘”è½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”°($$%ÁÉ•Í•ÉÙ•±¥•¹ÑI•ÍÁ½¹Í•!•…‘•ÉÌèÉÍI•ÍÁ½¹Í•A½±¥ä¹…¡•MÑ…Ñ”€„ôô€‰5%MLˆ°($$%•áÁ¥É•M•½¹‘Ì°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ì°($$%Ý…¥ÑU¹Ñ¥°¡ÁÉ½µ¥Í”¤ì($$$%½ÁÑ¥½¹Ì¹Ý…¥ÑU¹Ñ¥°ü¸¡ÁÉ½µ¥Í”¤ì($$%ô($%ô¤ì(%ô(%½¹ÍÐ™½¹Ñ…Ñ„€ôÉ•…Ñ•ÁÁA…•½¹Ñ…Ñ„¡ì($%•Ñ1¥¹­Ìè½ÁÑ¥½¹Ì¹•Ñ½¹Ñ1¥¹­Ì°($%•ÑAÉ•±½…‘Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑAÉ•±½…‘Ì°($%•ÑMÑå±•Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑMÑå±•Ì(%ô¤ì(%½¹ÍÐ™½¹Ñ1¥¹­!•…‘•È€ô‰Õ¥±‘ÁÁA…•½¹Ñ1¥¹­!•…‘•È¡™½¹Ñ…Ñ„¹ÁÉ•±½…‘Ì¤ì(%±•ÐÉ•¹‘•É¹ì(%½¹ÍÐ¡Ñµ±I•¹‘•È€ô…Ý…¥ÐÉ•¹‘•ÉÁÁA…•!Ñµ±MÑÉ•…µ]¥Ñ¡I•½Ù•Éä¡ì($%½¹M¡•±±I•¹‘•É• ¤ì($$%¥˜€ …½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸¤É•¹‘•É¹€ôÁ•É™½Éµ…¹”¹¹½Ü ¤ì($%ô°($%É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡•ÉÉ½È¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡•ÉÉ½È¤ì($%ô°($%…Íå¹ŒÉ•¹‘•É!Ñµ±MÑÉ•…´ ¤ì($$%½¹ÍÐÍÍÉ!…¹‘±•È€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹±½…‘MÍÉ!…¹‘±•È ¤ì($$%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•!Ñµ±MÑÉ•…´¡ì($$$%…ÁÑÕÉ•‘IÍ…Ñ…I•˜°($$$%™½¹Ñ…Ñ„°($$$%¹…Ù¥…Ñ¥½¹½¹Ñ•áÐè½ÁÑ¥½¹Ì¹•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ ¤°($$$%™½ÉµMÑ…Ñ”è½ÁÑ¥½¹Ì¹™½ÉµMÑ…Ñ”€üü¹Õ±°°($$$%ÉÍMÑÉ•…´èÉÍ½ÉI•ÍÁ½¹Í”°($$$%ÍÉ¥ÁÑ9½¹”è½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”°($$$%Í¥‘•MÑÉ•…´èÉÍ…ÁÑÕÉ”¹Í¥‘•MÑÉ•…´°($$$%ÍÍÉ!…¹‘±•È°($$$%Ý…¥Ñ½É±±I•…‘äè½ÁÑ¥½¹Ì¹¥ÍAÉ•É•¹‘•È($$%ô¤ì($%ô°($%É•¹‘•ÉMÁ•¥…±ÉÉ½ÉI•ÍÁ½¹Í”¡ÍÁ•¥…±ÉÉ½È¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($%ô°($%É•Í½±Ù•MÁ•¥…±ÉÉ½ÈèÉ•Í½±Ù•ÁÁA…•MÁ•¥…±ÉÉ½È(%ô¤ì(%¥˜€¡¡Ñµ±I•¹‘•È¹É•ÍÁ½¹Í”¤É•ÑÕÉ¸¡Ñµ±I•¹‘•È¹É•ÍÁ½¹Í”ì(%½¹ÍÐ¡Ñµ±MÑÉ•…´€ô¡Ñµ±I•¹‘•È¹¡Ñµ±MÑÉ•…´ì(%¥˜€ …¡Ñµ±MÑÉ•…´¤Ñ¡É½Ü¹•ÜÉÉ½È ‰mÙ¥¹•áÑtáÁ•Ñ•…¸!Q50ÍÑÉ•…´Ý¡•¸¹¼™…±±‰…¬É•ÍÁ½¹Í”Ý…ÌÉ•ÑÕÉ¹•ˆ¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹¡…Í1½…‘¥¹	½Õ¹‘…Éä¤ì($%½¹ÍÐ…ÁÑÕÉ•€ôÉÍÉÉ½ÉQÉ…­•È¹•Ñ…ÁÑÕÉ•‘MÁ•¥…±ÉÉ½È ¤ì($%¥˜€¡…ÁÑÕÉ•¤ì($$%½¹ÍÐÍÁ•¥…±ÉÉ½È€ôÉ•Í½±Ù•ÁÁA…•MÁ•¥…±ÉÉ½È¡…ÁÑÕÉ•¤ì($$%¥˜€¡ÍÁ•¥…±ÉÉ½È¤ì($$$%¡Ñµ±MÑÉ•…´¹…¹•° ¤¹…Ñ   ¤€ôøíô¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($$%ô($%ô(%ô(%¥˜€¡Í¡½Õ±‘I•É•¹‘•ÉÁÁA…•]¥Ñ¡±½‰…±ÉÉ½È¡ì($%…ÁÑÕÉ•‘ÉÉ½ÈèÉÍÉÉ½ÉQÉ…­•È¹•Ñ…ÁÑÕÉ•‘ÉÉ½È ¤°($%¡…Í1½…±	½Õ¹‘…Éäè½ÁÑ¥½¹Ì¹É½ÕÑ•!…Í1½…±	½Õ¹‘…Éä(%ô¤¤ì($%½¹ÍÐ±•…¹I•ÍÁ½¹Í”€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡ÉÍÉÉ½ÉQÉ…­•È¹•Ñ…ÁÑÕÉ•‘ÉÉ½È ¤¤ì($%¥˜€¡±•…¹I•ÍÁ½¹Í”¤É•ÑÕÉ¸±•…¹I•ÍÁ½¹Í”ì(%ô(%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍAÉ•É•¹‘•È€ôôôÑÉÕ”¤ì($%…Ý…¥ÐÍ•ÑÑ±•…ÁÑÕÉ•‘IÍI•¹‘•É½É…¡•5•Ñ…‘…Ñ„¡…ÁÑÕÉ•‘IÍ…Ñ…I•˜¹Ù…±Õ”¤ì($$¡í•áÁ¥É•M•½¹‘Ì°É•Ù…±¥‘…Ñ•M•½¹‘Íô€ô…ÁÁ±åI•ÅÕ•ÍÑ…¡•1¥™”¡ì($$%•áÁ¥É•M•½¹‘Ì°($$%É•ÅÕ•ÍÑ…¡•1¥™”èÉ•…‘I•ÅÕ•ÍÑ…¡•1¥™•½ÉAÉ•É•¹‘•È¡½ÁÑ¥½¹Ì¤°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ì($%ô¤¤ì(%ô(%½¹ÍÐ‘É…™Ñ½½­¥”€ô½ÁÑ¥½¹Ì¹•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È ¤ì(%½¹ÍÐ‘å¹…µ¥UÍ•‘ÕÉ¥¹I•¹‘•È€ô½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤ì(%±•Ð‘å¹…µ¥UÍ•‘	•™½É•½¹Ñ•áÑ±•…¹ÕÀ€ô‘å¹…µ¥UÍ•‘ÕÉ¥¹I•¹‘•Èì(%½¹ÍÐÍ…™•!Ñµ±MÑÉ•…´€ô‘•™•ÉU¹Ñ¥±MÑÉ•…µ½¹ÍÕµ•¡¡Ñµ±MÑÉ•…´°€ ¤€ôøì($%‘å¹…µ¥UÍ•‘	•™½É•½¹Ñ•áÑ±•…¹ÕÀ€ô‘å¹…µ¥UÍ•‘	•™½É•½¹Ñ•áÑ±•…¹ÕÀñð½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…” ¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%ô¤ì(%½¹ÍÐ¡Ñµ±I•ÍÁ½¹Í•A½±¥ä€ôÉ•Í½±Ù•ÁÁA…•!Ñµ±I•ÍÁ½¹Í•A½±¥ä¡ì($%‘å¹…µ¥UÍ•‘ÕÉ¥¹I•¹‘•È°($%¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•Èè½ÁÑ¥½¹Ì¹¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È€ôôôÑÉÕ”°($%¡…ÍMÉ¥ÁÑ9½¹”è	½½±•…¸¡½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”¤°($%¥ÍÉ…™Ñ5½‘”è½ÁÑ¥½¹Ì¹¥ÍÉ…™Ñ5½‘”°($%¥Íå¹…µ¥ÉÉ½Èè½ÁÑ¥½¹Ì¹¥Íå¹…µ¥ÉÉ½È°($%¥Í½É•å¹…µ¥Œè½ÁÑ¥½¹Ì¹¥Í½É•å¹…µ¥Œ°($%¥Í½É•MÑ…Ñ¥Œè½ÁÑ¥½¹Ì¹¥Í½É•MÑ…Ñ¥Œ°($%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($%•áÁ¥É•M•½¹‘Ì°($%É•Ù…±¥‘…Ñ•M•½¹‘Ì(%ô¤ì(%½¹ÍÐ¡Ñµ±I•ÍÁ½¹Í•Q¥µ¥¹œ€ô‰Õ¥±‘I•ÍÁ½¹Í•Q¥µ¥¹œ¡ì($%½µÁ¥±•¹°($%¡…¹‘±•ÉMÑ…ÉÐè½ÁÑ¥½¹Ì¹¡…¹‘±•ÉMÑ…ÉÐ°($%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($%É•¹‘•É¹°($%É•ÍÁ½¹Í•-¥¹è€‰¡Ñµ°ˆ(%ô¤ì(%½¹ÍÐÍ¡½Õ±‘MÁ•Õ±…Ñ¥Ù•±å]É¥Ñ•…¡”€ô½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€˜˜Í¡½Õ±‘…ÁÑÕÉ•IÍ½É…¡•5•Ñ…‘…Ñ„€˜˜É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô¹Õ±°€˜˜€…½ÁÑ¥½¹Ì¹¥Íå¹…µ¥ÉÉ½È€˜˜€…½ÁÑ¥½¹Ì¹¥Í½É•MÑ…Ñ¥Œ€˜˜€…½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”€˜˜½ÁÑ¥½¹Ì¹¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È€„ôôÑÉÕ”€˜˜€…‘å¹…µ¥UÍ•‘ÕÉ¥¹I•¹‘•Èì(%¥˜€¡¡Ñµ±I•ÍÁ½¹Í•A½±¥ä¹Í¡½Õ±‘]É¥Ñ•Q½…¡”ñðÍ¡½Õ±‘MÁ•Õ±…Ñ¥Ù•±å]É¥Ñ•…¡”¤ì($%½¹ÍÐ¥ÍÉI•ÍÁ½¹Í”€ô‰Õ¥±‘ÁÁA…•!Ñµ±I•ÍÁ½¹Í”¡Í…™•!Ñµ±MÑÉ•…´°ì($$%‘É…™Ñ½½­¥”°($$%™½¹Ñ1¥¹­!•…‘•È°($$%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($$%Á½±¥äè¡Ñµ±I•ÍÁ½¹Í•A½±¥ä°($$%Ñ¥µ¥¹œè¡Ñµ±I•ÍÁ½¹Í•Q¥µ¥¹œ($%ô¤ì($%¥˜€¡½ÁÑ¥½¹Ì¹¥ÍAÉ•É•¹‘•È€ôôôÑÉÕ”¤É•ÑÕÉ¸¥ÍÉI•ÍÁ½¹Í”ì($%É•ÑÕÉ¸™¥¹…±¥é•ÁÁA…•!Ñµ±…¡•I•ÍÁ½¹Í”¡¥ÍÉI•ÍÁ½¹Í”°ì($$%…ÁÑÕÉ•‘å¹…µ¥UÍ…•	•™½É•½¹Ñ•áÑ±•…¹ÕÀ ¤ì($$$%É•ÑÕÉ¸‘å¹…µ¥UÍ•‘	•™½É•½¹Ñ•áÑ±•…¹ÕÀì($$%ô°($$%…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”è…ÁÑÕÉ•‘IÍ…Ñ…I•˜¹Ù…±Õ”°($$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%½¹ÍÕµ•å¹…µ¥UÍ…”è½ÁÑ¥½¹Ì¹½¹ÍÕµ•å¹…µ¥UÍ…”°($$%•ÑA…•Q…Ì ¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹•ÑA…•Q…Ì ¤ì($$%ô°($$%•ÑI•ÅÕ•ÍÑ…¡•1¥™” ¤ì($$$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹•ÑI•ÅÕ•ÍÑ…¡•1¥™” ¤ì($$%ô°($$%¥ÍÉ•‰Õœè½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœ°($$%¥ÍÉ!Ñµ±-•äè½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä°($$%¥ÍÉIÍ-•äè½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä°($$%¥ÍÉM•Ðè½ÁÑ¥½¹Ì¹¥ÍÉM•Ð°($$%ÁÉ•Í•ÉÙ•±¥•¹ÑI•ÍÁ½¹Í•!•…‘•ÉÌè€…¡Ñµ±I•ÍÁ½¹Í•A½±¥ä¹Í¡½Õ±‘]É¥Ñ•Q½…¡”°($$%•áÁ¥É•M•½¹‘Ì°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ì°($$%Ý…¥ÑU¹Ñ¥°¡…¡•AÉ½µ¥Í”¤ì($$$%½ÁÑ¥½¹Ì¹Ý…¥ÑU¹Ñ¥°ü¸¡…¡•AÉ½µ¥Í”¤ì($$%ô($%ô¤ì(%ô(%É•ÑÕÉ¸‰Õ¥±‘ÁÁA…•!Ñµ±I•ÍÁ½¹Í”¡Í…™•!Ñµ±MÑÉ•…´°ì($%‘É…™Ñ½½­¥”°($%™½¹Ñ1¥¹­!•…‘•È°($%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($%Á½±¥äè¡Ñµ±I•ÍÁ½¹Í•A½±¥ä°($%Ñ¥µ¥¹œè¡Ñµ±I•ÍÁ½¹Í•Q¥µ¥¹œ(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸Í•ÑÑ±•…ÁÑÕÉ•‘IÍI•¹‘•É½É…¡•5•Ñ…‘…Ñ„¡…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¤ì(%¥˜€ ……ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¤É•ÑÕÉ¸ì(%ÑÉäì($%…Ý…¥Ð…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”ì(%ô…Ñ íô)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÁ…”µ‘¥ÍÁ…Ñ ¹©Ì)™Õ¹Ñ¥½¸Í¡½Õ±‘I•…‘ÁÁA…•…¡”¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸€˜˜€…½ÁÑ¥½¹Ì¹¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È€˜˜€…½ÁÑ¥½¹Ì¹¥ÍÉ…™Ñ5½‘”€˜˜€…½ÁÑ¥½¹Ì¹¥Í½É•å¹…µ¥Œ€˜˜€¡½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐñð€…½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”¤€˜˜€¡½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôôô¹Õ±°ñð½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ø€À¤ì)ô)™Õ¹Ñ¥½¸‰Õ¥±‘ÁÁA…•Q…Ì¡±•…¹A…Ñ¡¹…µ”°•áÑÉ…Q…Ì°É½ÕÑ•M•µ•¹ÑÌ¤ì(%É•ÑÕÉ¸‰Õ¥±‘A…•…¡•Q…Ì¡±•…¹A…Ñ¡¹…µ”°•áÑÉ…Q…Ì°l¸¸¹É½ÕÑ•M•µ•¹ÑÍt°€‰Á…”ˆ¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸ÉÕ¹ÁÁA…•I•Ù…±¥‘…Ñ¥½¹½¹Ñ•áÐ¡½ÁÑ¥½¹Ì°É•¹‘•É¸¤ì(%É•ÑÕÉ¸ÉÕ¹]¥Ñ¡I•ÅÕ•ÍÑ½¹Ñ•áÐ¡É•…Ñ•I•ÅÕ•ÍÑ½¹Ñ•áÐ¡ì($%¡•…‘•ÉÍ½¹Ñ•áÐèÉ•…Ñ•MÑ…Ñ¥•¹•É…Ñ¥½¹!•…‘•ÉÍ½¹Ñ•áÐ¡ì($$%‘å¹…µ¥½¹™¥œè½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œ°($$%É½ÕÑ•-¥¹è€‰Á…”ˆ°($$%É½ÕÑ•A…ÑÑ•É¸è½ÁÑ¥½¹Ì¹É½ÕÑ•A…ÑÑ•É¸($%ô¤°($%ÕÉÉ•¹Ñ•Ñ¡…¡•5½‘”è½ÁÑ¥½¹Ì¹ÕÉÉ•¹Ñ•Ñ¡…¡•5½‘”€üü¹Õ±°°($%•á•ÕÑ¥½¹½¹Ñ•áÐè•ÑI•ÅÕ•ÍÑá•ÕÑ¥½¹½¹Ñ•áÐ ¤°($%Õ¹ÍÑ…‰±•…¡•I•Ù…±¥‘…Ñ¥½¸è€‰™½É•É½Õ¹ˆ(%ô¤°…Íå¹Œ€ ¤€ôøì($%•¹ÍÕÉ••Ñ¡A…Ñ  ¤ì($%Í•ÑÕÉÉ•¹Ñ•Ñ¡M½™ÑQ…Ì¡‰Õ¥±‘ÁÁA…•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°mt°½ÁÑ¥½¹Ì¹É½ÕÑ•M•µ•¹ÑÌ¤¤ì($%½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡ì($$%Á…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%Í•…É¡A…É…µÌè¹•ÜUI1M•…É¡A…É…µÌ ¤°($$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ($%ô¤ì($%É•ÑÕÉ¸…Ý…¥ÐÉÕ¹]¥Ñ¡•Ñ¡•‘ÕÁ”¡É•¹‘•É¸¤ì(%ô¤ì)ô)™Õ¹Ñ¥½¸•Ñ…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¡…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¤ì(%¥˜€ ……ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¤Ñ¡É½Ü¹•ÜÉÉ½È ‰mÙ¥¹•áÑtáÁ•Ñ•…ÁÑÕÉ•IM‘…Ñ„Ý¡¥±”É••¹•É…Ñ¥¹œ…¸…ÁÀÁ…”…¡”•¹ÑÉäˆ¤ì(%É•ÑÕÉ¸…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”ì)ô)™Õ¹Ñ¥½¸Ñ½%¹Ñ•É•ÁÑ=ÁÑ¥½¹Ì¡¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°¥¹Ñ•É•ÁÐ¤ì(%É•ÑÕÉ¸ì($%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°($%¥¹Ñ•É•ÁÑ1…å½ÕÑÌè¥¹Ñ•É•ÁÐ¹¥¹Ñ•É•ÁÑ1…å½ÕÑÌ°($%¥¹Ñ•É•ÁÑA…”è¥¹Ñ•É•ÁÐ¹Á…”°($%¥¹Ñ•É•ÁÑA…É…µÌè¥¹Ñ•É•ÁÐ¹µ…Ñ¡•‘A…É…µÌ°($%¥¹Ñ•É•ÁÑM±½Ñ-•äè¥¹Ñ•É•ÁÐ¹Í±½Ñ-•ä(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‘¥ÍÁ…Ñ¡ÁÁA…”¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸…Ý…¥ÐÉÕ¹]¥Ñ¡•Ñ¡•‘ÕÁ”  ¤€ôø‘¥ÍÁ…Ñ¡ÁÁA…•%¹¹•È¡½ÁÑ¥½¹Ì¤¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‘¥ÍÁ…Ñ¡ÁÁA…•%¹¹•È¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÉ½ÕÑ”€ô½ÁÑ¥½¹Ì¹É½ÕÑ”ì(%½¹ÍÐ‘å¹…µ¥½¹™¥œ€ô½ÁÑ¥½¹Ì¹‘å¹…µ¥½¹™¥œì(%½¹ÍÐÕÉÉ•¹ÑI•Ù…±¥‘…Ñ•M•½¹‘Ì€ô½ÁÑ¥½¹Ì¹É•Ù…±¥‘…Ñ•M•½¹‘Ìì(%½¹ÍÐ¥Í½É•MÑ…Ñ¥Œ€ô‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µÍÑ…Ñ¥Œˆì(%½¹ÍÐ¥Íå¹…µ¥ÉÉ½È€ô‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆì(%½¹ÍÐ¥Í½É•å¹…µ¥Œ€ô‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µ‘å¹…µ¥Œˆì(%½¹ÍÐ¥ÍÉ…™Ñ5½‘”€ô¥ÍÉ…™Ñ5½‘•I•ÅÕ•ÍÐ¡½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ¤ì(%Í•ÑÕÉÉ•¹Ñ•Ñ¡M½™ÑQ…Ì¡‰Õ¥±‘ÁÁA…•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°mt°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤¤ì(%Í•ÑÕÉÉ•¹Ñ•Ñ¡…¡•5½‘”¡½ÁÑ¥½¹Ì¹™•Ñ¡…¡”€üü¹Õ±°¤ì(%¥˜€¡½ÁÑ¥½¹Ì¹¡…ÍA…•5½‘Õ±”€˜˜€…½ÁÑ¥½¹Ì¹¡…ÍA…••™…Õ±ÑáÁ½ÉÐ¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í” ‰A…”¡…Ì¹¼‘•™…Õ±Ð•áÁ½ÉÐˆ°ìÍÑ…ÑÕÌè€ÔÀÀô¤ì(%ô(%½¹ÍÐµ•Ñ¡½‘I•ÍÁ½¹Í”€ôÉ•Í½±Ù•ÁÁA…•5•Ñ¡½‘I•ÍÁ½¹Í”¡ì($%‘å¹…µ¥½¹™¥œ°($%¡…Í•¹•É…Ñ•MÑ…Ñ¥A…É…µÌè½ÁÑ¥½¹Ì¹¡…Í•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ°($%¥Íå¹…µ¥I½ÕÑ”èÉ½ÕÑ”¹¥Íå¹…µ¥Œ°($%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ°($%É•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°($%É•Ù…±¥‘…Ñ•M•½¹‘ÌèÕÉÉ•¹ÑI•Ù…±¥‘…Ñ•M•½¹‘Ì(%ô¤ì(%¥˜€¡µ•Ñ¡½‘I•ÍÁ½¹Í”¤ì($%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸µ•Ñ¡½‘I•ÍÁ½¹Í”ì(%ô(%¥˜€ ¡¥Í½É•MÑ…Ñ¥Œñð¥Íå¹…µ¥ÉÉ½È¤€˜˜€…¥ÍÉ…™Ñ5½‘”¤ì($%Í•Ñ!•…‘•ÉÍ½¹Ñ•áÐ¡É•…Ñ•MÑ…Ñ¥•¹•É…Ñ¥½¹!•…‘•ÉÍ½¹Ñ•áÐ¡ì($$%‘å¹…µ¥½¹™¥œ°($$%É½ÕÑ•-¥¹è€‰Á…”ˆ°($$%É½ÕÑ•A…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸($%ô¤¤ì($%½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡ì($$%Á…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%Í•…É¡A…É…µÌè¹•ÜUI1M•…É¡A…É…µÌ ¤°($$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ($%ô¤ì(%ô(%¥˜€¡Í¡½Õ±‘I•…‘ÁÁA…•…¡”¡ì($%¥ÍÉ…™Ñ5½‘”°($%¥Í½É•å¹…µ¥Œ°($%¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•Èè½ÁÑ¥½¹Ì¹¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È€ôôôÑÉÕ”°($%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%É•Ù…±¥‘…Ñ•M•½¹‘ÌèÕÉÉ•¹ÑI•Ù…±¥‘…Ñ•M•½¹‘Ì°($%ÍÉ¥ÁÑ9½¹”è½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”(%ô¤¤ì($%½¹ÍÐ…¡•‘A…•I•ÍÁ½¹Í”€ô…Ý…¥ÐÉ•…‘ÁÁA…•…¡•I•ÍÁ½¹Í”¡ì($$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($$%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($$%¥ÍÉ•‰Õœè½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœ°($$%¥ÍÉ•Ðè½ÁÑ¥½¹Ì¹¥ÍÉ•Ð°($$%¥ÍÉ!Ñµ±-•äè½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä°($$%¥ÍÉIÍ-•äè½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä°($$%¥ÍÉM•Ðè½ÁÑ¥½¹Ì¹¥ÍÉM•Ð°($$%µ¥‘‘±•Ý…É•!•…‘•ÉÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ°($$%µ¥‘‘±•Ý…É•MÑ…ÑÕÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹ÍÑ…ÑÕÌ°($$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$%É•¹‘•É5½‘”è½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”°($$%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($$%É•Ù…±¥‘…Ñ•M•½¹‘ÌèÕÉÉ•¹ÑI•Ù…±¥‘…Ñ•M•½¹‘Ì€üü€À°($$%É•¹‘•ÉÉ•Í¡A…•½É…¡”è…Íå¹Œ€ ¤€ôøÉÕ¹ÁÁA…•I•Ù…±¥‘…Ñ¥½¹½¹Ñ•áÐ¡ì($$$%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($$$%ÕÉÉ•¹Ñ•Ñ¡…¡•5½‘”è½ÁÑ¥½¹Ì¹™•Ñ¡…¡”€üü¹Õ±°°($$$%‘å¹…µ¥½¹™¥œ°($$$%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ°($$$%É½ÕÑ•A…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸°($$$%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°($$$%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐè½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ($$%ô°…Íå¹Œ€ ¤€ôøì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•‘±•µ•¹Ð€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•±•µ•¹Ð¡É½ÕÑ”°½ÁÑ¥½¹Ì¹Á…É…µÌ°Ù½¥€À°¹•ÜUI1M•…É¡A…É…µÌ ¤¤ì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•‘=¹ÉÉ½È€ô½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°É½ÕÑ”¹Á…ÑÑ•É¸¤ì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•‘IÍ…ÁÑÕÉ”€ôÑ••ÁÁA…•IÍMÑÉ•…µ½É…ÁÑÕÉ”¡½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´¡É•Ù…±¥‘…Ñ•‘±•µ•¹Ð°ì½¹ÉÉ½ÈèÉ•Ù…±¥‘…Ñ•‘=¹ÉÉ½Èô¤°ÑÉÕ”¤ì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•‘MÍÉ¹ÑÉä€ô…Ý…¥Ð½ÁÑ¥½¹Ì¹±½…‘MÍÉ!…¹‘±•È ¤ì($$$%½¹ÍÐÉ•Ù…±¥‘…Ñ•‘…ÁÑÕÉ•‘IÍI•˜€ôìÙ…±Õ”è¹Õ±°ôì($$$%½¹ÍÐ¡Ñµ°€ô…Ý…¥ÐÉ•…‘MÑÉ•…µÍQ•áÐ¡…Ý…¥ÐÉ•Ù…±¥‘…Ñ•‘MÍÉ¹ÑÉä¹¡…¹‘±•MÍÈ¡É•Ù…±¥‘…Ñ•‘IÍ…ÁÑÕÉ”¹ÍÍÉMÑÉ•…´°½ÁÑ¥½¹Ì¹•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ ¤°ì($$$$%±¥¹­Ìè½ÁÑ¥½¹Ì¹•Ñ½¹Ñ1¥¹­Ì ¤°($$$$%ÍÑå±•Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑMÑå±•Ì ¤°($$$$%ÁÉ•±½…‘Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑAÉ•±½…‘Ì ¤($$$%ô°É•Ù…±¥‘…Ñ•‘IÍ…ÁÑÕÉ”¹Í¥‘•MÑÉ•…´€üì($$$$%Í¥‘•MÑÉ•…´èÉ•Ù…±¥‘…Ñ•‘IÍ…ÁÑÕÉ”¹Í¥‘•MÑÉ•…´°($$$$%…ÁÑÕÉ•‘IÍ…Ñ…I•˜èÉ•Ù…±¥‘…Ñ•‘…ÁÑÕÉ•‘IÍI•˜($$$%ô€èÙ½¥€À¤¤ì($$$%½¹ÍÐÉÍ…Ñ„€ô…Ý…¥Ð•Ñ…ÁÑÕÉ•‘IÍ…Ñ…AÉ½µ¥Í”¡É•Ù…±¥‘…Ñ•‘…ÁÑÕÉ•‘IÍI•˜¹Ù…±Õ”¤ì($$$%½¹ÍÐ…¡•1¥™”€ô}½¹ÍÕµ•I•ÅÕ•ÍÑM½Á•‘…¡•1¥™” ¤ì($$$%½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%É•ÑÕÉ¸ì($$$$%¡Ñµ°°($$$$%ÉÍ…Ñ„°($$$$%Ñ…Ìè‰Õ¥±‘ÁÁA…•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°•Ñ½±±•Ñ•‘•Ñ¡Q…Ì ¤°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤°($$$$%…¡•½¹ÑÉ½°èÑåÁ•½˜…¡•1¥™”ü¹É•Ù…±¥‘…Ñ”€ôôô€‰¹Õµ‰•Èˆ€üì($$$$$%É•Ù…±¥‘…Ñ”è…¡•1¥™”¹É•Ù…±¥‘…Ñ”°($$$$$%•áÁ¥É”è…¡•1¥™”¹•áÁ¥É”($$$$%ô€èÙ½¥€À($$$%ôì($$%ô¤°($$%Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸¤ì($$$%½ÁÑ¥½¹Ì¹Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸°ì($$$$%É½ÕÑ•É-¥¹è€‰ÁÀI½ÕÑ•Èˆ°($$$$%É½ÕÑ•A…Ñ èÉ½ÕÑ”¹Á…ÑÑ•É¸°($$$$%É½ÕÑ•QåÁ”è€‰É•¹‘•Èˆ($$$%ô¤ì($$%ô($%ô¤ì($%¥˜€¡…¡•‘A…•I•ÍÁ½¹Í”¤É•ÑÕÉ¸…¡•‘A…•I•ÍÁ½¹Í”ì(%ô(%½¹ÍÐ‘å¹…µ¥A…É…µÍI•ÍÁ½¹Í”€ô…Ý…¥ÐÙ…±¥‘…Ñ•ÁÁA…•å¹…µ¥A…É…µÌ¡ì($%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($%•¹™½É•MÑ…Ñ¥A…É…µÍ=¹±äè½ÁÑ¥½¹Ì¹‘å¹…µ¥A…É…µÍ½¹™¥œ€ôôô™…±Í”°($%•¹•É…Ñ•MÑ…Ñ¥A…É…µÌè½ÁÑ¥½¹Ì¹•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ°($%¥Íå¹…µ¥I½ÕÑ”èÉ½ÕÑ”¹¥Íå¹…µ¥Œ°($%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ(%ô¤ì(%¥˜€¡‘å¹…µ¥A…É…µÍI•ÍÁ½¹Í”¤É•ÑÕÉ¸‘å¹…µ¥A…É…µÍI•ÍÁ½¹Í”ì(%½¹ÍÐ¥¹Ñ•É•ÁÑI•ÍÕ±Ð€ô…Ý…¥ÐÉ•Í½±Ù•ÁÁA…•%¹Ñ•É•ÁÐ¡ì($%‰Õ¥±‘A…•±•µ•¹Ð¡¥¹Ñ•É•ÁÑI½ÕÑ”°¥¹Ñ•É•ÁÑA…É…µÌ°¥¹Ñ•É•ÁÑ=ÁÑÌ°¥¹Ñ•É•ÁÑM•…É¡A…É…µÌ¤ì($$%Í•ÑÕÉÉ•¹Ñ•Ñ¡…¡•5½‘”¡½ÁÑ¥½¹Ì¹É•Í½±Ù•I½ÕÑ••Ñ¡…¡•5½‘”ü¸¡¥¹Ñ•É•ÁÑI½ÕÑ”¤€üü¹Õ±°¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•±•µ•¹Ð¡¥¹Ñ•É•ÁÑI½ÕÑ”°¥¹Ñ•É•ÁÑA…É…µÌ°¥¹Ñ•É•ÁÑ=ÁÑÌ°¥¹Ñ•É•ÁÑM•…É¡A…É…µÌ¤ì($%ô°($%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%ÕÉÉ•¹ÑI½ÕÑ”èÉ½ÕÑ”°($%™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”¤ì($%ô°($%•ÑI½ÕÑ•A…É…µ9…µ•Ì¡Í½ÕÉ•I½ÕÑ”¤ì($$%É•ÑÕÉ¸Í½ÕÉ•I½ÕÑ”¹Á…É…µÌì($%ô°($%•ÑM½ÕÉ•I½ÕÑ”¡Í½ÕÉ•I½ÕÑ•%¹‘•à¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹•ÑM½ÕÉ•I½ÕÑ”¡Í½ÕÉ•I½ÕÑ•%¹‘•à¤ì($%ô°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%É•¹‘•É%¹Ñ•É•ÁÑI•ÍÁ½¹Í”¡Í½ÕÉ•I½ÕÑ”°¥¹Ñ•É•ÁÑ±•µ•¹Ð¤ì($$%½¹ÍÐ¥¹Ñ•É•ÁÑ=¹ÉÉ½È€ô½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°Í½ÕÉ•I½ÕÑ”¹Á…ÑÑ•É¸¤ì($$%½¹ÍÐ¥¹Ñ•É•ÁÑMÑÉ•…´€ô½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´¡¥¹Ñ•É•ÁÑ±•µ•¹Ð°ì½¹ÉÉ½Èè¥¹Ñ•É•ÁÑ=¹ÉÉ½Èô¤ì($$%½¹ÍÐ¥¹Ñ•É•ÁÑ!•…‘•ÉÌ€ô¹•Ü!•…‘•ÉÌ¡ì($$$$‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½àµ½µÁ½¹•¹Ðì¡…ÉÍ•ÐõÕÑ˜´àˆ°($$$%Y…ÉäèY%9aQ}IM}YIe}!H($$%ô¤ì($$%µ•É•5¥‘‘±•Ý…É•I•ÍÁ½¹Í•!•…‘•ÉÌ¡¥¹Ñ•É•ÁÑ!•…‘•ÉÌ°½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ¤ì($$%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡¥¹Ñ•É•ÁÑMÑÉ•…´°ì($$$%ÍÑ…ÑÕÌè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ¹ÍÑ…ÑÕÌ€üü€ÈÀÀ°($$$%¡•…‘•ÉÌè¥¹Ñ•É•ÁÑ!•…‘•ÉÌ($$%ô¤ì($%ô°($%Í•…É¡A…É…µÌè½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ°($%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐè½ÁÑ¥½¹Ì¹Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($%Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ¡¥¹Ñ•É•ÁÐ¤ì($$%É•ÑÕÉ¸Ñ½%¹Ñ•É•ÁÑ=ÁÑ¥½¹Ì¡½ÁÑ¥½¹Ì¹¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°¥¹Ñ•É•ÁÐ¤ì($%ô(%ô¤ì(%¥˜€¡¥¹Ñ•É•ÁÑI•ÍÕ±Ð¹É•ÍÁ½¹Í”¤É•ÑÕÉ¸¥¹Ñ•É•ÁÑI•ÍÕ±Ð¹É•ÍÁ½¹Í”ì(%½¹ÍÐÁ…•	Õ¥±‘I•ÍÕ±Ð€ô…Ý…¥Ð‰Õ¥±‘ÁÁA…•±•µ•¹Ð¡ì($%‰Õ¥±‘A…•±•µ•¹Ð ¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹‰Õ¥±‘A…•±•µ•¹Ð¡É½ÕÑ”°½ÁÑ¥½¹Ì¹Á…É…µÌ°¥¹Ñ•É•ÁÑI•ÍÕ±Ð¹¥¹Ñ•É•ÁÑ=ÁÑÌ°½ÁÑ¥½¹Ì¹Í•…É¡A…É…µÌ¤ì($%ô°($%É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåA…”¡‰Õ¥±‘ÉÉ½È¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåA…”¡‰Õ¥±‘ÉÉ½È¤ì($%ô°($%É•¹‘•ÉMÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($$%É•ÑÕÉ¸É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡½ÁÑ¥½¹Ì°ÍÁ•¥…±ÉÉ½È¤ì($%ô°($%É•Í½±Ù•MÁ•¥…±ÉÉ½ÈèÉ•Í½±Ù•ÁÁA…•MÁ•¥…±ÉÉ½È(%ô¤ì(%¥˜€¡Á…•	Õ¥±‘I•ÍÕ±Ð¹É•ÍÁ½¹Í”¤É•ÑÕÉ¸Á…•	Õ¥±‘I•ÍÕ±Ð¹É•ÍÁ½¹Í”ì(%É•ÑÕÉ¸É•¹‘•ÉÁÁA…•1¥™•å±”¡ì($%±•…¹A…Ñ¡¹…µ”è½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°($%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($%½¹ÍÕµ•å¹…µ¥UÍ…”°($%½¹ÍÕµ•%¹Ù…±¥‘å¹…µ¥UÍ…•ÉÉ½È°($%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($%ô°($%•±•µ•¹ÐèÁ…•	Õ¥±‘I•ÍÕ±Ð¹•±•µ•¹Ð°($%•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È°($%•Ñ½¹Ñ1¥¹­Ìè½ÁÑ¥½¹Ì¹•Ñ½¹Ñ1¥¹­Ì°($%•Ñ½¹ÑAÉ•±½…‘Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑAÉ•±½…‘Ì°($%•Ñ½¹ÑMÑå±•Ìè½ÁÑ¥½¹Ì¹•Ñ½¹ÑMÑå±•Ì°($%•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐè½ÁÑ¥½¹Ì¹•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($%•ÑA…•Q…Ì ¤ì($$%É•ÑÕÉ¸‰Õ¥±‘ÁÁA…•Q…Ì¡½ÁÑ¥½¹Ì¹±•…¹A…Ñ¡¹…µ”°•Ñ½±±•Ñ•‘•Ñ¡Q…Ì ¤°É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ¤ì($%ô°($%•ÑI•ÅÕ•ÍÑ…¡•1¥™” ¤ì($$%É•ÑÕÉ¸}½¹ÍÕµ•I•ÅÕ•ÍÑM½Á•‘…¡•1¥™” ¤ì($%ô°($%Á••­I•ÅÕ•ÍÑ…¡•1¥™” ¤ì($$%É•ÑÕÉ¸}Á••­I•ÅÕ•ÍÑM½Á•‘…¡•1¥™” ¤ì($%ô°($%¡…¹‘±•ÉMÑ…ÉÐè½ÁÑ¥½¹Ì¹¡…¹‘±•ÉMÑ…ÉÐ°($%¡…Í1½…‘¥¹	½Õ¹‘…ÉäèÍ¡½Õ±‘MÕÁÁÉ•ÍÍ1½…‘¥¹	½Õ¹‘…É¥•Ì¡½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”€üü€‰¹…Ù¥…Ñ¥½¸ˆ¤€ü™…±Í”€è	½½±•…¸¡É½ÕÑ”¹±½…‘¥¹œü¹‘•™…Õ±Ð¤°($%™½ÉµMÑ…Ñ”è½ÁÑ¥½¹Ì¹™½ÉµMÑ…Ñ”€üü¹Õ±°°($%¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•Èè½ÁÑ¥½¹Ì¹¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È€ôôôÑÉÕ”°($%¥Íå¹…µ¥ÉÉ½È°($%¥ÍÉ…™Ñ5½‘”°($%¥Í½É•å¹…µ¥Œ°($%¥Í½É•MÑ…Ñ¥Œ°($%¥ÍAÉ•É•¹‘•ÈèÁÉ½•ÍÌ¹•¹Ø¹Y%9aQ}AII9H€ôôô€ˆÄˆ°($%¥ÍAÉ½‘ÕÑ¥½¸è½ÁÑ¥½¹Ì¹¥ÍAÉ½‘ÕÑ¥½¸°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%¥ÍÉ•‰Õœè½ÁÑ¥½¹Ì¹¥ÍÉ•‰Õœ°($%¥ÍÉ!Ñµ±-•äè½ÁÑ¥½¹Ì¹¥ÍÉ!Ñµ±-•ä°($%¥ÍÉIÍ-•äè½ÁÑ¥½¹Ì¹¥ÍÉIÍ-•ä°($%¥ÍÉM•Ðè½ÁÑ¥½¹Ì¹¥ÍÉM•Ð°($%•áÁ¥É•M•½¹‘Ìè½ÁÑ¥½¹Ì¹•áÁ¥É•M•½¹‘Ì°($%±…å½ÕÑ½Õ¹ÐèÉ½ÕÑ”¹±…å½ÕÑÌ¹±•¹Ñ °($%±½…‘MÍÉ!…¹‘±•Èè½ÁÑ¥½¹Ì¹±½…‘MÍÉ!…¹‘±•È°($%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($%Á…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ°($%ÁÉ½‰•1…å½ÕÑÐ¡±…å½ÕÑ%¹‘•à¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÁÉ½‰•1…å½ÕÑÐ¡±…å½ÕÑ%¹‘•à¤ì($%ô°($%ÁÉ½‰•A…” ¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÁÉ½‰•A…” ¤ì($%ô°($%±…ÍÍ¥™¥…Ñ¥½¸èì($$%•Ñ1…å½ÕÑ%¡¥¹‘•à¤ì($$$%½¹ÍÐÑÉ••A½Í¥Ñ¥½¸€ôÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹m¥¹‘•át€üü€Àì($$$%É•ÑÕÉ¸ÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•1…å½ÕÑ%¡É•…Ñ•ÁÁA…•QÉ••A…Ñ ¡l¸¸¹É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÍt°ÑÉ••A½Í¥Ñ¥½¸¤¤ì($$%ô°($$%‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹ÌèÉ½ÕÑ”¹}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ì°($$%‰Õ¥±‘Q¥µ•I•…Í½¹ÌèÉ½ÕÑ”¹}}‰Õ¥±‘Q¥µ•I•…Í½¹Ì°($$%‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸è½ÁÑ¥½¹Ì¹‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸°($$%…Íå¹ŒÉÕ¹]¥Ñ¡%Í½±…Ñ•‘å¹…µ¥M½Á”¡™¸¤ì($$$%½¹ÍÐÁÉ¥½Éå¹…µ¥Œ€ô½¹ÍÕµ•å¹…µ¥UÍ…” ¤ì($$$%ÑÉäì($$$$%É•ÑÕÉ¸ì($$$$$%É•ÍÕ±Ðè…Ý…¥Ð™¸ ¤°($$$$$%‘å¹…µ¥•Ñ•Ñ•è½¹ÍÕµ•å¹…µ¥UÍ…” ¤($$$$%ôì($$$%ô™¥¹…±±äì($$$$%½¹ÍÕµ•å¹…µ¥UÍ…” ¤ì($$$$%¥˜€¡ÁÉ¥½Éå¹…µ¥Œ¤µ…É­å¹…µ¥UÍ…” ¤ì($$$%ô($$%ô($%ô°($%É•Ù…±¥‘…Ñ•M•½¹‘ÌèÕÉÉ•¹ÑI•Ù…±¥‘…Ñ•M•½¹‘Ì°($%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè½ÁÑ¥½¹Ì¹µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($%É•¹‘•É5½‘”è½ÁÑ¥½¹Ì¹É•¹‘•É5½‘”€üü€‰¹…Ù¥…Ñ¥½¸ˆ°($%É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåI•ÍÁ½¹Í”¡É•¹‘•ÉÉÉ½È¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåA…”¡É•¹‘•ÉÉÉ½È¤ì($%ô°($%É•¹‘•É1…å½ÕÑMÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($$%É•ÑÕÉ¸É•¹‘•É1…å½ÕÑMÁ•¥…±ÉÉ½È¡½ÁÑ¥½¹Ì°ÍÁ•¥…±ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì($%ô°($%É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡ÍÁ•¥…±ÉÉ½È¤ì($$%É•ÑÕÉ¸É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡½ÁÑ¥½¹Ì°ÍÁ•¥…±ÉÉ½È¤ì($%ô°($%É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´è½ÁÑ¥½¹Ì¹É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´°($%É½ÕÑ•!…Í1½…±	½Õ¹‘…Éäè	½½±•…¸¡É½ÕÑ”¹•ÉÉ½Èü¹‘•™…Õ±ÐñðÉ½ÕÑ”¹•ÉÉ½ÉÌü¹Í½µ” ¡•ÉÉ½É5½‘Õ±”¤€ôø•ÉÉ½É5½‘Õ±”ü¹‘•™…Õ±Ð¤¤°($%É½ÕÑ•A…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸°($%ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($%ô°($%ÍÉ¥ÁÑ9½¹”è½ÁÑ¥½¹Ì¹ÍÉ¥ÁÑ9½¹”°($%Ý…¥ÑU¹Ñ¥°¡…¡•AÉ½µ¥Í”¤ì($$%•ÑI•ÅÕ•ÍÑá•ÕÑ¥½¹½¹Ñ•áÐ ¤ü¹Ý…¥ÑU¹Ñ¥°¡…¡•AÉ½µ¥Í”¤ì($%ô(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•É1…å½ÕÑMÁ•¥…±ÉÉ½È¡½ÁÑ¥½¹Ì°ÍÁ•¥…±ÉÉ½È°±…å½ÕÑ%¹‘•à¤ì(%É•ÑÕÉ¸‰Õ¥±‘ÁÁA…•MÁ•¥…±ÉÉ½ÉI•ÍÁ½¹Í”¡ì($%‰…Í•A…Ñ è½ÁÑ¥½¹Ì¹‰…Í•A…Ñ °($%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($%É•¹‘•É…±±‰…­A…”¡ÍÑ…ÑÕÍ½‘”¤ì($$%½¹ÍÐÁ…É•¹Ñ	½Õ¹‘…Éä€ôÉ•Í½±Ù•ÁÁA…•A…É•¹Ñ!ÑÑÁ•ÍÍ	½Õ¹‘…Éå5½‘Õ±”¡ì($$$%±…å½ÕÑ%¹‘•à°($$$%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”è½ÁÑ¥½¹Ì¹É½½Ñ½É‰¥‘‘•¹5½‘Õ±”°($$$%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”è½ÁÑ¥½¹Ì¹É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°($$$%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”è½ÁÑ¥½¹Ì¹É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”°($$$%É½ÕÑ•½É‰¥‘‘•¹5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”¹™½É‰¥‘‘•¹Ì°($$$%É½ÕÑ•9½Ñ½Õ¹‘5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”¹¹½Ñ½Õ¹‘Ì°($$$%É½ÕÑ•U¹…ÕÑ¡½É¥é•‘5½‘Õ±•Ìè½ÁÑ¥½¹Ì¹É½ÕÑ”¹Õ¹…ÕÑ¡½É¥é•‘Ì°($$$%ÍÑ…ÑÕÍ½‘”($$%ô¤ü¹‘•™…Õ±Ðì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•É!ÑÑÁ•ÍÍ…±±‰…­A…”¡ÍÑ…ÑÕÍ½‘”°ì($$$%‰½Õ¹‘…Éå½µÁ½¹•¹ÐèÁ…É•¹Ñ	½Õ¹‘…Éä°($$$%±…å½ÕÑÌè½ÁÑ¥½¹Ì¹É½ÕÑ”¹±…å½ÕÑÌ¹Í±¥” À°±…å½ÕÑ%¹‘•à¤°($$$%µ…Ñ¡•‘A…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌ($$%ô°¹Õ±°¤ì($%ô°($%É•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°($%ÍÁ•¥…±ÉÉ½È(%ô¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸É•¹‘•ÉA…•MÁ•¥…±ÉÉ½È¡½ÁÑ¥½¹Ì°ÍÁ•¥…±ÉÉ½È¤ì(%É•ÑÕÉ¸‰Õ¥±‘ÁÁA…•MÁ•¥…±ÉÉ½ÉI•ÍÁ½¹Í”¡ì($%‰…Í•A…Ñ è½ÁÑ¥½¹Ì¹‰…Í•A…Ñ °($%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐè½ÁÑ¥½¹Ì¹±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ°($%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì°($%¥ÍIÍI•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹¥ÍIÍI•ÅÕ•ÍÐ°($%µ¥‘‘±•Ý…É•½¹Ñ•áÐè½ÁÑ¥½¹Ì¹µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($%É•¹‘•É…±±‰…­A…”¡ÍÑ…ÑÕÍ½‘”¤ì($$%É•ÑÕÉ¸½ÁÑ¥½¹Ì¹É•¹‘•É!ÑÑÁ•ÍÍ…±±‰…­A…”¡ÍÑ…ÑÕÍ½‘”°ìµ…Ñ¡•‘A…É…µÌè½ÁÑ¥½¹Ì¹Á…É…µÌô°¹Õ±°¤ì($%ô°($%É•ÅÕ•ÍÐè½ÁÑ¥½¹Ì¹É•ÅÕ•ÍÐ°($%ÍÁ•¥…±ÉÉ½È(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÍ•µ•¹Ðµ½¹™¥œ¹©Ì)Ù…Èe95%}Y1UL€ô¹•ÜM•Ð¡l($‰…ÕÑ¼ˆ°($‰•ÉÉ½Èˆ°($‰™½É”µ‘å¹…µ¥Œˆ°($‰™½É”µÍÑ…Ñ¥Œˆ)t¤ì)Ù…ÈQ!}!}Y1UL€ô¹•ÜM•Ð¡l($‰…ÕÑ¼ˆ°($‰‘•™…Õ±Ðµ…¡”ˆ°($‰‘•™…Õ±Ðµ¹¼µÍÑ½É”ˆ°($‰™½É”µ…¡”ˆ°($‰™½É”µ¹¼µÍÑ½É”ˆ°($‰½¹±äµ…¡”ˆ°($‰½¹±äµ¹¼µÍÑ½É”ˆ)t¤ì)™Õ¹Ñ¥½¸¥ÍI½ÕÑ•M•µ•¹Ñå¹…µ¥Œ¡Ù…±Õ”¤ì(%É•ÑÕÉ¸e95%}Y1UL¹¡…Ì¡Ù…±Õ”¤ì)ô)™Õ¹Ñ¥½¸¥ÍI½ÕÑ•M•µ•¹Ñ•Ñ¡…¡”¡Ù…±Õ”¤ì(%É•ÑÕÉ¸Q!}!}Y1UL¹¡…Ì¡Ù…±Õ”¤ì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•I•Ù…±¥‘…Ñ•M•½¹‘Ì¡ÕÉÉ•¹Ð°Ù…±Õ”¤ì(%¥˜€¡Ù…±Õ”€ôôô™…±Í”¤ì($%¥˜€¡ÕÉÉ•¹Ð€ôôô¹Õ±°¤É•ÑÕÉ¸%¹™¥¹¥Ñäì($%É•ÑÕÉ¸ÕÉÉ•¹Ð€ôôô%¹™¥¹¥Ñä€ü%¹™¥¹¥Ñä€èÕÉÉ•¹Ðì(%ô(%¥˜€¡ÑåÁ•½˜Ù…±Õ”€„ôô€‰¹Õµ‰•Èˆ¤É•ÑÕÉ¸ÕÉÉ•¹Ðì(%¥˜€¡ÕÉÉ•¹Ð€ôôô¹Õ±°¤É•ÑÕÉ¸Ù…±Õ”ì(%É•ÑÕÉ¸Ù…±Õ”€ðÕÉÉ•¹Ð€üÙ…±Õ”€èÕÉÉ•¹Ðì)ô)™Õ¹Ñ¥½¸¥Í…¡••Ñ¡…¡•5½‘”¡Ù…±Õ”¤ì(%É•ÑÕÉ¸Ù…±Õ”€ôôô€‰‘•™…Õ±Ðµ…¡”ˆñðÙ…±Õ”€ôôô€‰™½É”µ…¡”ˆñðÙ…±Õ”€ôôô€‰½¹±äµ…¡”ˆì)ô)™Õ¹Ñ¥½¸‘•ÍÉ¥‰••Ñ¡…¡•½¹™±¥Ð¡Ù…±Õ”¤ì(%É•ÑÕÉ¸I½ÕÑ”Í•µ•¹Ð½¹™¥œ¡…Ì¥¹½µÁ…Ñ¥‰±”™•Ñ¡…¡”Ù…±Õ•Ì¥¹±Õ‘¥¹œ€ˆ‘íÙ…±Õ•ôˆ¹€ì)ô(¼¨¨(¨I•Í½±Ù”Ñ¡”É½ÕÑ”Í•µ•¹Ð½¹™¥œÑ¡…Ð…ÁÁ±¥•ÌÑ¼…¸ÁÀÁ…”É½ÕÑ”¸(¨(¨9•áÐ¹©Ì½±±•ÑÌ½¹™¥œ™É½´•Ù•ÉäÍ•µ•¹Ð¥¸Ñ¡”±½…‘•ÈÑÉ•”…¹É•‘Õ•Ì¥Ð(¨¥¹Ñ¼Ñ¡”•™™•Ñ¥Ù”É½ÕÑ”½¹™¥œ¸Q¡”•¹•É…Ñ•Ù¥¹•áÐ•¹ÑÉä…±É•…‘ä­¹½ÝÌ(¨Ñ¡”½¹É•Ñ”±…å½ÕÐ½Á…”µ½‘Õ±•Ì™½È„É½ÕÑ”°Í¼¥ÐÍ¡½Õ±½¹±ä‘•ÍÉ¥‰”(¨Ñ¡½Í”µ½‘Õ±•Ì…¹‘•±•…Ñ”Ñ¡”‰•¡…Ù¥½ÈÑ¼Ñ¡¥Ì¡•±Á•È¸(¨¼)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…•M•µ•¹Ñ½¹™¥œ¡½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÍ•µ•¹ÑÌ€ôl¸¸¹½ÁÑ¥½¹Ì¹±…å½ÕÑÌ€üümt°½ÁÑ¥½¹Ì¹Á…•tì(%½¹ÍÐ½¹™¥œ€ôìÉ•Ù…±¥‘…Ñ•M•½¹‘Ìè¹Õ±°ôì(%±•Ð¡…Í½É•…¡”€ô™…±Í”ì(%±•Ð¡…Í½É•9½MÑ½É”€ô™…±Í”ì(%±•Ð¡…Í=¹±å…¡”€ô™…±Í”ì(%±•Ð¡…Í=¹±å9½MÑ½É”€ô™…±Í”ì(%±•Ð¡…ÍA…É•¹Ñ•™…Õ±Ñ9½MÑ½É”€ô™…±Í”ì(%™½È€¡½¹ÍÐÍ•µ•¹Ð½˜Í•µ•¹ÑÌ¤ì($%¥˜€ …Í•µ•¹Ð¤½¹Ñ¥¹Õ”ì($%¥˜€¡¥ÍI½ÕÑ•M•µ•¹Ñå¹…µ¥Œ¡Í•µ•¹Ð¹‘å¹…µ¥Œ¤¤½¹™¥œ¹‘å¹…µ¥½¹™¥œ€ôÍ•µ•¹Ð¹‘å¹…µ¥Œì($%¥˜€¡Í•µ•¹Ð¹‘å¹…µ¥A…É…µÌ€ôôô™…±Í”¤½¹™¥œ¹‘å¹…µ¥A…É…µÍ½¹™¥œ€ô™…±Í”ì($%•±Í”¥˜€¡Í•µ•¹Ð¹‘å¹…µ¥A…É…µÌ€ôôôÑÉÕ”€˜˜½¹™¥œ¹‘å¹…µ¥A…É…µÍ½¹™¥œ€„ôô™…±Í”¤½¹™¥œ¹‘å¹…µ¥A…É…µÍ½¹™¥œ€ôÑÉÕ”ì($%¥˜€¡¥ÍI½ÕÑ•M•µ•¹Ñ•Ñ¡…¡”¡Í•µ•¹Ð¹™•Ñ¡…¡”¤¤ì($$%½¹ÍÐ™•Ñ¡…¡”€ôÍ•µ•¹Ð¹™•Ñ¡…¡”ì($$%¥˜€¡¡…ÍA…É•¹Ñ•™…Õ±Ñ9½MÑ½É”€˜˜€¡™•Ñ¡…¡”€ôôô€‰…ÕÑ¼ˆñð¥Í…¡••Ñ¡…¡•5½‘”¡™•Ñ¡…¡”¤¤¤Ñ¡É½Ü¹•ÜÉÉ½È¡‘•ÍÉ¥‰••Ñ¡…¡•½¹™±¥Ð¡™•Ñ¡…¡”¤¤ì($$%¥˜€¡™•Ñ¡…¡”€ôôô€‰™½É”µ…¡”ˆ¤¡…Í½É•…¡”€ôÑÉÕ”ì($$%¥˜€¡™•Ñ¡…¡”€ôôô€‰™½É”µ¹¼µÍÑ½É”ˆ¤¡…Í½É•9½MÑ½É”€ôÑÉÕ”ì($$%¥˜€¡™•Ñ¡…¡”€ôôô€‰½¹±äµ…¡”ˆ¤¡…Í=¹±å…¡”€ôÑÉÕ”ì($$%¥˜€¡™•Ñ¡…¡”€ôôô€‰½¹±äµ¹¼µÍÑ½É”ˆ¤¡…Í=¹±å9½MÑ½É”€ôÑÉÕ”ì($$%¥˜€ ¡¡…Í½É•…¡”ñð¡…Í=¹±å…¡”¤€˜˜€¡¡…Í½É•9½MÑ½É”ñð¡…Í=¹±å9½MÑ½É”¤¤Ñ¡É½Ü¹•ÜÉÉ½È¡‘•ÍÉ¥‰••Ñ¡…¡•½¹™±¥Ð¡™•Ñ¡…¡”¤¤ì($$%¥˜€¡™•Ñ¡…¡”€ôôô€‰‘•™…Õ±Ðµ¹¼µÍÑ½É”ˆ¤¡…ÍA…É•¹Ñ•™…Õ±Ñ9½MÑ½É”€ôÑÉÕ”ì($$%¥˜€¡¡…Í½É•…¡”¤½¹™¥œ¹™•Ñ¡…¡”€ô€‰™½É”µ…¡”ˆì($$%•±Í”¥˜€¡¡…Í½É•9½MÑ½É”¤½¹™¥œ¹™•Ñ¡…¡”€ô€‰™½É”µ¹¼µÍÑ½É”ˆì($$%•±Í”¥˜€¡¡…Í=¹±å…¡”¤½¹™¥œ¹™•Ñ¡…¡”€ô€‰½¹±äµ…¡”ˆì($$%•±Í”¥˜€¡¡…Í=¹±å9½MÑ½É”¤½¹™¥œ¹™•Ñ¡…¡”€ô€‰½¹±äµ¹¼µÍÑ½É”ˆì($$%•±Í”½¹™¥œ¹™•Ñ¡…¡”€ô™•Ñ¡…¡”ì($%ô($%½¹™¥œ¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ôÉ•Í½±Ù•I•Ù…±¥‘…Ñ•M•½¹‘Ì¡½¹™¥œ¹É•Ù…±¥‘…Ñ•M•½¹‘Ì°Í•µ•¹Ð¹É•Ù…±¥‘…Ñ”¤ì(%ô(%¥˜€¡½¹™¥œ¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µ‘å¹…µ¥Œˆ¤½¹™¥œ¹É•Ù…±¥‘…Ñ•M•½¹‘Ì€ô€Àì(%¥˜€¡½¹™¥œ¹™•Ñ¡…¡”€ôôôÙ½¥€À¤ì($%¥˜€¡½¹™¥œ¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µ‘å¹…µ¥Œˆ¤½¹™¥œ¹™•Ñ¡…¡”€ô€‰™½É”µ¹¼µÍÑ½É”ˆì($%•±Í”¥˜€¡½¹™¥œ¹‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆ¤½¹™¥œ¹™•Ñ¡…¡”€ô€‰½¹±äµ…¡”ˆì(%ô(%¥˜€¡½¹™¥œ¹‘å¹…µ¥A…É…µÍ½¹™¥œ€ôôôÙ½¥€À€˜˜€¡½¹™¥œ¹‘å¹…µ¥½¹™¥œ€ôôô€‰•ÉÉ½Èˆñð½¹™¥œ¹‘å¹…µ¥½¹™¥œ€ôôô€‰™½É”µÍÑ…Ñ¥Œˆ¤¤½¹™¥œ¹‘å¹…µ¥A…É…µÍ½¹™¥œ€ô™…±Í”ì(%É•ÑÕÉ¸½¹™¥œì)ô)™Õ¹Ñ¥½¸É•Í½±Ù•ÁÁA…••Ñ¡…¡•5½‘”¡½ÁÑ¥½¹Ì¤ì(%É•ÑÕÉ¸É•Í½±Ù•ÁÁA…•M•µ•¹Ñ½¹™¥œ¡½ÁÑ¥½¹Ì¤¹™•Ñ¡…¡”€üü¹Õ±°ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½É½ÕÑ¥¹œ½É½ÕÑ”µÑÉ¥”¹©Ì)™Õ¹Ñ¥½¸É•…Ñ•9½‘” ¤ì(%É•ÑÕÉ¸ì($%ÍÑ…Ñ¥¡¥±‘É•¸è€¼¨}}AUI}|€¨¼¹•Ü5…À ¤°($%‘å¹…µ¥¡¥±è¹Õ±°°($%…Ñ¡±±¡¥±è¹Õ±°°($%½ÁÑ¥½¹…±…Ñ¡±±¡¥±è¹Õ±°°($%É½ÕÑ”è¹Õ±°(%ôì)ô(¼¨¨(¨	Õ¥±„ÑÉ¥”™É½´ÁÉ”µÍ½ÉÑ•É½ÕÑ•Ì¸(¨(¨I½ÕÑ•ÌµÕÍÐ¡…Ù”„Á…ÑÑ•É¹A…ÉÑÍ€ÁÉ½Á•ÉÑä€¡ÍÑÉ¥¹mt½˜UI0Í•µ•¹ÑÌ¤¸(¨A…ÑÑ•É¸Í•µ•¹Ð½¹Ù•¹Ñ¥½¹Ìè(¨€€€´€é¹…µ•€€ƒŠP‘å¹…µ¥ŒÍ•µ•¹Ð(¨€€€´€é¹…µ”­€ƒŠP…Ñ µ…±°€ Ä¬Í•µ•¹ÑÌ¤(¨€€€´€é¹…µ”©€ƒŠP½ÁÑ¥½¹…°…Ñ µ…±°€ À¬Í•µ•¹ÑÌ¤(¨€€€´…¹åÑ¡¥¹œ•±Í”ƒŠPÍÑ…Ñ¥ŒÍ•µ•¹Ð(¨(¨¥ÉÍÐÉ½ÕÑ”Ñ¼±…¥´„Ñ•Éµ¥¹…°Á½Í¥Ñ¥½¸Ý¥¹Ì€¡É½ÕÑ•Ì…É”ÁÉ”µÍ½ÉÑ•(¨‰äÁÉ••‘•¹”°Í¼¥¹Í•ÉÑ¥½¸½É‘•ÈÁÉ•Í•ÉÙ•Ì½ÉÉ•ÐÁÉ¥½É¥Ñä¤¸(¨¼)™Õ¹Ñ¥½¸‰Õ¥±‘I½ÕÑ•QÉ¥”¡É½ÕÑ•Ì¤ì(%½¹ÍÐÉ½½Ð€ôÉ•…Ñ•9½‘” ¤ì(%™½È€¡½¹ÍÐÉ½ÕÑ”½˜É½ÕÑ•Ì¤ì($%½¹ÍÐÁ…ÉÑÌ€ôÉ½ÕÑ”¹Á…ÑÑ•É¹A…ÉÑÌì($%¥˜€¡Á…ÉÑÌ¹±•¹Ñ €ôôô€À¤ì($$%¥˜€¡É½½Ð¹É½ÕÑ”€ôôô¹Õ±°¤É½½Ð¹É½ÕÑ”€ôÉ½ÕÑ”ì($$%½¹Ñ¥¹Õ”ì($%ô($%±•Ð¹½‘”€ôÉ½½Ðì($%™½È€¡±•Ð¤€ô€Àì¤€ðÁ…ÉÑÌ¹±•¹Ñ ì¤¬¬¤ì($$%½¹ÍÐÁ…ÉÐ€ôÁ…ÉÑÍm¥tì($$%¥˜€¡Á…ÉÐ¹•¹‘Í]¥Ñ  ˆ¬ˆ¤€˜˜Á…ÉÐ¹ÍÑ…ÉÑÍ]¥Ñ  ˆèˆ¤¤ì($$$%¥˜€¡¤€„ôôÁ…ÉÑÌ¹±•¹Ñ €´€Ä¤‰É•…¬ì($$$%½¹ÍÐÁ…É…µ9…µ”€ôÁ…ÉÐ¹Í±¥” Ä°€´Ä¤ì($$$%¥˜€¡¹½‘”¹…Ñ¡±±¡¥±€ôôô¹Õ±°¤¹½‘”¹…Ñ¡±±¡¥±€ôì($$$$%Á…É…µ9…µ”°($$$$%É½ÕÑ”($$$%ôì($$$%‰É•…¬ì($$%ô($$%¥˜€¡Á…ÉÐ¹•¹‘Í]¥Ñ  ˆ¨ˆ¤€˜˜Á…ÉÐ¹ÍÑ…ÉÑÍ]¥Ñ  ˆèˆ¤¤ì($$$%¥˜€¡¤€„ôôÁ…ÉÑÌ¹±•¹Ñ €´€Ä¤‰É•…¬ì($$$%½¹ÍÐÁ…É…µ9…µ”€ôÁ…ÉÐ¹Í±¥” Ä°€´Ä¤ì($$$%¥˜€¡¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±€ôôô¹Õ±°¤¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±€ôì($$$$%Á…É…µ9…µ”°($$$$%É½ÕÑ”($$$%ôì($$$%‰É•…¬ì($$%ô($$%¥˜€¡Á…ÉÐ¹ÍÑ…ÉÑÍ]¥Ñ  ˆèˆ¤¤ì($$$%½¹ÍÐÁ…É…µ9…µ”€ôÁ…ÉÐ¹Í±¥” Ä¤ì($$$%¥˜€¡¹½‘”¹‘å¹…µ¥¡¥±€ôôô¹Õ±°¤¹½‘”¹‘å¹…µ¥¡¥±€ôì($$$$%Á…É…µ9…µ”°($$$$%¹½‘”èÉ•…Ñ•9½‘” ¤($$$%ôì($$$%¹½‘”€ô¹½‘”¹‘å¹…µ¥¡¥±¹¹½‘”ì($$$%¥˜€¡¤€ôôôÁ…ÉÑÌ¹±•¹Ñ €´€Ä¤ì($$$$%¥˜€¡¹½‘”¹É½ÕÑ”€ôôô¹Õ±°¤¹½‘”¹É½ÕÑ”€ôÉ½ÕÑ”ì($$$%ô($$$%½¹Ñ¥¹Õ”ì($$%ô($$%±•Ð¡¥±€ô¹½‘”¹ÍÑ…Ñ¥¡¥±‘É•¸¹•Ð¡Á…ÉÐ¤ì($$%¥˜€ …¡¥±¤ì($$$%¡¥±€ôÉ•…Ñ•9½‘” ¤ì($$$%¹½‘”¹ÍÑ…Ñ¥¡¥±‘É•¸¹Í•Ð¡Á…ÉÐ°¡¥±¤ì($$%ô($$%¹½‘”€ô¡¥±ì($$%¥˜€¡¤€ôôôÁ…ÉÑÌ¹±•¹Ñ €´€Ä¤ì($$$%¥˜€¡¹½‘”¹É½ÕÑ”€ôôô¹Õ±°¤¹½‘”¹É½ÕÑ”€ôÉ½ÕÑ”ì($$%ô($%ô(%ô(%É•ÑÕÉ¸É½½Ðì)ô(¼¨¨(¨5…Ñ „UI0……¥¹ÍÐÑ¡”ÑÉ¥”¸(¨(¨I•ÑÕÉ¹Ì‘•½‘•Á…É…´Ù…±Õ•ÌƒŠP‘•½‘•UI%½µÁ½¹•¹Ñ€¥Ì…ÁÁ±¥•Ñ¼(¨¥¹‘¥Ù¥‘Õ…°Á…É…´•¹ÑÉ¥•ÌÍ¼Ñ¡…Ð€”É€ƒŠH€½€°€”ÈÍ€ƒŠH€€°•ÑŒ¸(¨M•µ•¹Ð‰½Õ¹‘…É¥•Ì€¡Ñ¡”½É¥¥¹…°€½€ÍÁ±¥ÑÌ¤…É”ÁÉ•Í•ÉÙ•‰äÑ¡”(¨ÕÁÍÑÉ•…´¹½Éµ…±¥é…Ñ¥½¸±…å•ÈìÑ¡¥ÌÍÑ•À½¹±ä‘•½‘•ÌÑ¡”…ÁÑÕÉ•(¨Á…É…´ÍÑÉ¥¹ÌÑ¡”…±±•ÈÍ••Ì¸(¨(¨5¥ÉÉ½ÉÌ9•áÐ¹©ÌÉ½ÕÑ”µµ…Ñ¡•È¹ÑÌèÈÔ´ÈÜ¸(¨(¨Á…É…´É½½Ð€´QÉ¥”É½½Ð‰Õ¥±Ð‰ä‰Õ¥±‘I½ÕÑ•QÉ¥•€(¨Á…É…´ÕÉ±A…ÉÑÌ€´AÉ”µÍÁ±¥ÐUI0Í•µ•¹ÑÌ€¡¹¼•µÁÑäÍÑÉ¥¹Ì¤(¨É•ÑÕÉ¹Ì5…Ñ É•ÍÕ±ÐÝ¥Ñ É½ÕÑ”…¹•áÑÉ…Ñ•Á…É…µÌ°½È¹Õ±°(¨¼)™Õ¹Ñ¥½¸ÑÉ¥•5…Ñ ¡É½½Ð°ÕÉ±A…ÉÑÌ¤ì(%½¹ÍÐÉ•ÍÕ±Ð€ôµ…Ñ ¡É½½Ð°ÕÉ±A…ÉÑÌ°€À¤ì(%¥˜€¡É•ÍÕ±Ð¤‘•½‘•5…Ñ¡•‘A…É…µÌ¡É•ÍÕ±Ð¹Á…É…µÌ¤ì(%É•ÑÕÉ¸É•ÍÕ±Ðì)ô)™Õ¹Ñ¥½¸É•…Ñ•A…É…µÌ ¤ì(%É•ÑÕÉ¸=‰©•Ð¹É•…Ñ”¡¹Õ±°¤ì)ô)™Õ¹Ñ¥½¸µ…Ñ ¡¹½‘”°ÕÉ±A…ÉÑÌ°¥¹‘•à¤ì(%¥˜€¡¥¹‘•à€ôôôÕÉ±A…ÉÑÌ¹±•¹Ñ ¤ì($%¥˜€¡¹½‘”¹É½ÕÑ”€„ôô¹Õ±°¤É•ÑÕÉ¸ì($$%É½ÕÑ”è¹½‘”¹É½ÕÑ”°($$%Á…É…µÌèÉ•…Ñ•A…É…µÌ ¤($%ôì($%¥˜€¡¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±€„ôô¹Õ±°¤É•ÑÕÉ¸ì($$%É½ÕÑ”è¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±¹É½ÕÑ”°($$%Á…É…µÌèÉ•…Ñ•A…É…µÌ ¤($%ôì($%É•ÑÕÉ¸¹Õ±°ì(%ô(%½¹ÍÐÍ•µ•¹Ð€ôÕÉ±A…ÉÑÍm¥¹‘•átì(%½¹ÍÐÍÑ…Ñ¥¡¥±€ô¹½‘”¹ÍÑ…Ñ¥¡¥±‘É•¸¹•Ð¡Í•µ•¹Ð¤ì(%¥˜€¡ÍÑ…Ñ¥¡¥±¤ì($%½¹ÍÐÉ•ÍÕ±Ð€ôµ…Ñ ¡ÍÑ…Ñ¥¡¥±°ÕÉ±A…ÉÑÌ°¥¹‘•à€¬€Ä¤ì($%¥˜€¡É•ÍÕ±Ð€„ôô¹Õ±°¤É•ÑÕÉ¸É•ÍÕ±Ðì(%ô(%¥˜€¡¹½‘”¹‘å¹…µ¥¡¥±€„ôô¹Õ±°¤ì($%½¹ÍÐÉ•ÍÕ±Ð€ôµ…Ñ ¡¹½‘”¹‘å¹…µ¥¡¥±¹¹½‘”°ÕÉ±A…ÉÑÌ°¥¹‘•à€¬€Ä¤ì($%¥˜€¡É•ÍÕ±Ð€„ôô¹Õ±°¤ì($$%É•ÍÕ±Ð¹Á…É…µÍm¹½‘”¹‘å¹…µ¥¡¥±¹Á…É…µ9…µ•t€ôÍ•µ•¹Ðì($$%É•ÑÕÉ¸É•ÍÕ±Ðì($%ô(%ô(%¥˜€¡¹½‘”¹…Ñ¡±±¡¥±€„ôô¹Õ±°¤ì($%½¹ÍÐÉ•µ…¥¹¥¹œ€ôÕÉ±A…ÉÑÌ¹Í±¥”¡¥¹‘•à¤ì($%½¹ÍÐÁ…É…µÌ€ôÉ•…Ñ•A…É…µÌ ¤ì($%Á…É…µÍm¹½‘”¹…Ñ¡±±¡¥±¹Á…É…µ9…µ•t€ôÉ•µ…¥¹¥¹œì($%É•ÑÕÉ¸ì($$%É½ÕÑ”è¹½‘”¹…Ñ¡±±¡¥±¹É½ÕÑ”°($$%Á…É…µÌ($%ôì(%ô(%¥˜€¡¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±€„ôô¹Õ±°¤ì($%½¹ÍÐÉ•µ…¥¹¥¹œ€ôÕÉ±A…ÉÑÌ¹Í±¥”¡¥¹‘•à¤ì($%½¹ÍÐÁ…É…µÌ€ôÉ•…Ñ•A…É…µÌ ¤ì($%Á…É…µÍm¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±¹Á…É…µ9…µ•t€ôÉ•µ…¥¹¥¹œì($%É•ÑÕÉ¸ì($$%É½ÕÑ”è¹½‘”¹½ÁÑ¥½¹…±…Ñ¡±±¡¥±¹É½ÕÑ”°($$%Á…É…µÌ($%ôì(%ô(%É•ÑÕÉ¸¹Õ±°ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉÍŒµÉ½ÕÑ”µµ…Ñ¡¥¹œ¹©Ì)™Õ¹Ñ¥½¸É•…Ñ•I½ÕÑ•A…É…µÌ ¤ì(%É•ÑÕÉ¸=‰©•Ð¹É•…Ñ”¡¹Õ±°¤ì)ô)™Õ¹Ñ¥½¸…ÁÁIÍA…Ñ¡¹…µ•A…ÉÑÌ¡Á…Ñ¡¹…µ”¤ì(%½¹ÍÐÁ…Ñ¡=¹±ä€ôÁ…Ñ¡¹…µ”¹ÍÁ±¥Ð ˆüˆ¥lÁtì(%É•ÑÕÉ¸¹½Éµ…±¥é•A…Ñ¡¹…µ•½ÉI½ÕÑ•5…Ñ ¡Á…Ñ¡=¹±ä€ôôô€ˆ¼ˆ€ü€ˆ¼ˆ€èÁ…Ñ¡=¹±ä¹É•Á±…” ½p¼¼°€ˆˆ¤¤¹ÍÁ±¥Ð ˆ¼ˆ¤¹™¥±Ñ•È¡	½½±•…¸¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•ÁÁIÍI½ÕÑ•5…Ñ¡•È¡É½ÕÑ•Ì¤ì(%½¹ÍÐÉ½ÕÑ•QÉ¥”€ô‰Õ¥±‘I½ÕÑ•QÉ¥”¡É½ÕÑ•Ì¤ì(%½¹ÍÐ¥¹Ñ•É•ÁÑ1½½­ÕÀ€ôÉ•…Ñ•%¹Ñ•É•ÁÑ1½½­ÕÀ¡É½ÕÑ•Ì¤ì(%É•ÑÕÉ¸ì($%µ…Ñ¡I½ÕÑ”¡ÕÉ°¤ì($$%É•ÑÕÉ¸ÑÉ¥•5…Ñ ¡É½ÕÑ•QÉ¥”°…ÁÁIÍA…Ñ¡¹…µ•A…ÉÑÌ¡ÕÉ°¤¤ì($%ô°($%™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”°Í½ÕÉ•A…Ñ¡¹…µ”€ô¹Õ±°¤ì($$%½¹ÍÐÕÉ±A…ÉÑÌ€ô…ÁÁIÍA…Ñ¡¹…µ•A…ÉÑÌ¡Á…Ñ¡¹…µ”¤ì($$%™½È€¡½¹ÍÐ•¹ÑÉä½˜¥¹Ñ•É•ÁÑ1½½­ÕÀ¤ì($$$%½¹ÍÐÁ…É…µÌ€ôµ…Ñ¡ÁÁIÍI½ÕÑ•A…ÑÑ•É¸¡ÕÉ±A…ÉÑÌ°•¹ÑÉä¹Ñ…É•ÑA…ÑÑ•É¹A…ÉÑÌ¤ì($$$%¥˜€¡Á…É…µÌ€„ôô¹Õ±°¤ì($$$$%±•ÐÍ½ÕÉ•A…É…µÌ€ôÉ•…Ñ•I½ÕÑ•A…É…µÌ ¤ì($$$$%¥˜€¡Í½ÕÉ•A…Ñ¡¹…µ”€„ôô¹Õ±°¤ì($$$$$%½¹ÍÐÍ½ÕÉ•I½ÕÑ”€ôÉ½ÕÑ•Ím•¹ÑÉä¹Í½ÕÉ•I½ÕÑ•%¹‘•átì($$$$$%½¹ÍÐÍ½ÕÉ•A…ÉÑÌ€ô…ÁÁIÍA…Ñ¡¹…µ•A…ÉÑÌ¡Í½ÕÉ•A…Ñ¡¹…µ”¤ì($$$$$%½¹ÍÐµ…Ñ¡•‘M½ÕÉ•A…É…µÌ€ôÍ½ÕÉ•I½ÕÑ”€üµ…Ñ¡ÁÁIÍI½ÕÑ•A…ÑÑ•É¸¡Í½ÕÉ•A…ÉÑÌ°Í½ÕÉ•I½ÕÑ”¹Á…ÑÑ•É¹A…ÉÑÌ¤€è¹Õ±°ì($$$$$%¥˜€¡µ…Ñ¡•‘M½ÕÉ•A…É…µÌ€„ôô¹Õ±°¤Í½ÕÉ•A…É…µÌ€ôµ…Ñ¡•‘M½ÕÉ•A…É…µÌì($$$$%ô($$$$%É•ÑÕÉ¸ì($$$$$$¸¸¹•¹ÑÉä°($$$$$%µ…Ñ¡•‘A…É…µÌèµ•É•5…Ñ¡•‘A…É…µÌ¡Í½ÕÉ•A…É…µÌ°Á…É…µÌ¤($$$$%ôì($$$%ô($$%ô($$%É•ÑÕÉ¸¹Õ±°ì($%ô(%ôì)ô)™Õ¹Ñ¥½¸É•…Ñ•%¹Ñ•É•ÁÑ1½½­ÕÀ¡É½ÕÑ•Ì¤ì(%½¹ÍÐ¥¹Ñ•É•ÁÑ1½½­ÕÀ€ômtì(%™½È€¡±•ÐÉ½ÕÑ•%¹‘•à€ô€ÀìÉ½ÕÑ•%¹‘•à€ðÉ½ÕÑ•Ì¹±•¹Ñ ìÉ½ÕÑ•%¹‘•à¬¬¤ì($%½¹ÍÐÉ½ÕÑ”€ôÉ½ÕÑ•ÍmÉ½ÕÑ•%¹‘•átì($%¥˜€ …É½ÕÑ”¹Í±½ÑÌ¤½¹Ñ¥¹Õ”ì($%™½È€¡½¹ÍÐmÍ±½Ñ-•ä°Í±½Ñ5½‘Õ±•t½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡É½ÕÑ”¹Í±½ÑÌ¤¤ì($$%¥˜€ …Í±½Ñ5½‘Õ±”¹¥¹Ñ•É•ÁÑÌ¤½¹Ñ¥¹Õ”ì($$%™½È€¡½¹ÍÐ¥¹Ñ•É•ÁÐ½˜Í±½Ñ5½‘Õ±”¹¥¹Ñ•É•ÁÑÌ¤¥¹Ñ•É•ÁÑ1½½­ÕÀ¹ÁÕÍ ¡ì($$$%Í½ÕÉ•I½ÕÑ•%¹‘•àèÉ½ÕÑ•%¹‘•à°($$$%Í±½Ñ-•ä°($$$%Ñ…É•ÑA…ÑÑ•É¸è¥¹Ñ•É•ÁÐ¹Ñ…É•ÑA…ÑÑ•É¸°($$$%Ñ…É•ÑA…ÑÑ•É¹A…ÉÑÌè¥¹Ñ•É•ÁÐ¹Ñ…É•ÑA…ÑÑ•É¸¹ÍÁ±¥Ð ˆ¼ˆ¤¹™¥±Ñ•È¡	½½±•…¸¤°($$$%¥¹Ñ•É•ÁÑ1…å½ÕÑÌè¥¹Ñ•É•ÁÐ¹¥¹Ñ•É•ÁÑ1…å½ÕÑÌ°($$$%Á…”è¥¹Ñ•É•ÁÐ¹Á…”°($$$%Á…É…µÌè¥¹Ñ•É•ÁÐ¹Á…É…µÌ($$%ô¤ì($%ô(%ô(%É•ÑÕÉ¸¥¹Ñ•É•ÁÑ1½½­ÕÀì)ô)™Õ¹Ñ¥½¸µ…Ñ¡ÁÁIÍI½ÕÑ•A…ÑÑ•É¸¡ÕÉ±A…ÉÑÌ°Á…ÑÑ•É¹A…ÉÑÌ¤ì(%É•ÑÕÉ¸µ…Ñ¡I½ÕÑ•A…ÑÑ•É¸¡ÕÉ±A…ÉÑÌ°Á…ÑÑ•É¹A…ÉÑÌ¤ì)ô)™Õ¹Ñ¥½¸µ•É•5…Ñ¡•‘A…É…µÌ¡Í½ÕÉ•A…É…µÌ°Ñ…É•ÑA…É…µÌ¤ì(%É•ÑÕÉ¸=‰©•Ð¹…ÍÍ¥¸¡É•…Ñ•I½ÕÑ•A…É…µÌ ¤°Í½ÕÉ•A…É…µÌ°Ñ…É•ÑA…É…µÌ¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½¹…Ù¥…Ñ¥½¸µÍÑ…Ñ”¹©Ì(¼¨¨(¨M•ÉÙ•Èµ½¹±ä¹…Ù¥…Ñ¥½¸ÍÑ…Ñ”‰…­•‰äÍå¹1½…±MÑ½É…”¸(¨(¨Q¡¥Ìµ½‘Õ±”ÁÉ½Ù¥‘•ÌÉ•ÅÕ•ÍÐµÍ½Á•¥Í½±…Ñ¥½¸™½È¹…Ù¥…Ñ¥½¸½¹Ñ•áÐ(¨…¹ÕÍ•M•ÉÙ•É%¹Í•ÉÑ•‘!Q50…±±‰…­Ì¸]¥Ñ¡½ÕÐ1L°½¹ÕÉÉ•¹ÐÉ•ÅÕ•ÍÑÌ(¨½¸±½Õ‘™±…É”]½É­•ÉÌÝ½Õ±Í¡…É”µ½‘Õ±”µ±•Ù•°ÍÑ…Ñ”…¹±•…¬‘…Ñ„(¨€¡Á…Ñ¡¹…µ•Ì°Á…É…µÌ°MLµ¥¸µ)LÍÑå±•Ì¤‰•ÑÝ••¸É•ÅÕ•ÍÑÌ¸(¨(¨Q¡¥Ìµ½‘Õ±”¥ÌÍ•ÉÙ•Èµ½¹±äƒŠP¥Ð¥µÁ½ÉÑÌ¹½‘”é…Íå¹}¡½½­Ì…¹µÕÍÐ9=P(¨‰”‰Õ¹‘±•™½ÈÑ¡”‰É½ÝÍ•È¸Q¡”‘Õ…°µ•¹Ù¥É½¹µ•¹Ð¹…Ù¥…Ñ¥½¸¹ÑÌÍ¡¥´(¨ÕÍ•Ì„É•¥ÍÑÉ…Ñ¥½¸Á…ÑÑ•É¸Í¼¥ÐÝ½É­Ì¥¸‰½Ñ •¹Ù¥É½¹µ•¹ÑÌ¸(¨¼)Ù…È}11	-}-d€ôMåµ‰½°¹™½È ‰Ù¥¹•áÐ¹¹…Ù¥…Ñ¥½¸¹™…±±‰…¬ˆ¤ì)Ù…È}œ€ô±½‰…±Q¡¥Ìì)Ù…È}…±Ì€ô•Ñ=ÉÉ•…Ñ•±Ì ‰Ù¥¹•áÐ¹¹…Ù¥…Ñ¥½¸¹…±Ìˆ¤ì)Ù…È}™…±±‰…­MÑ…Ñ”€ô}m}11	-}-et€üüôì(%Í•ÉÙ•É½¹Ñ•áÐè¹Õ±°°(%Í•ÉÙ•É%¹Í•ÉÑ•‘!Q51…±±‰…­Ìèmt)ôì)™Õ¹Ñ¥½¸}•ÑMÑ…Ñ” ¤ì(%¥˜€¡¥Í%¹Í¥‘•U¹¥™¥•‘M½Á” ¤¤É•ÑÕÉ¸•ÑI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%É•ÑÕÉ¸}…±Ì¹•ÑMÑ½É” ¤€üü}™…±±‰…­MÑ…Ñ”ì)ô)Ù…È}…•ÍÍ½ÉÌ€ôì(%•ÑM•ÉÙ•É½¹Ñ•áÐ ¤ì($%É•ÑÕÉ¸}•ÑMÑ…Ñ” ¤¹Í•ÉÙ•É½¹Ñ•áÐì(%ô°(%Í•ÑM•ÉÙ•É½¹Ñ•áÐ¡Ñà¤ì($%}•ÑMÑ…Ñ” ¤¹Í•ÉÙ•É½¹Ñ•áÐ€ôÑàì(%ô°(%•Ñ%¹Í•ÉÑ•‘!Q51…±±‰…­Ì ¤ì($%É•ÑÕÉ¸}•ÑMÑ…Ñ” ¤¹Í•ÉÙ•É%¹Í•ÉÑ•‘!Q51…±±‰…­Ìì(%ô°(%±•…É%¹Í•ÉÑ•‘!Q51…±±‰…­Ì ¤ì($%}•ÑMÑ…Ñ” ¤¹Í•ÉÙ•É%¹Í•ÉÑ•‘!Q51…±±‰…­Ì€ômtì(%ô)ôì)}É•¥ÍÑ•ÉMÑ…Ñ••ÍÍ½ÉÌ¡}…•ÍÍ½ÉÌ¤ì)±½‰…±Q¡¥Ím1=	1}MM=IM}-et€ô}…•ÍÍ½ÉÌì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½‰Õ¥±½½½±”µ™½¹ÑÌ½Í½ÉÐµÙ…É¥…¹ÑÌ¹©Ì)™Õ¹Ñ¥½¸Í½ÉÑ½¹ÑÍY…É¥…¹ÑY…±Õ•Ì¡Ù…±°Ù…±¤ì(%¥˜€¡Ù…±¹¥¹±Õ‘•Ì ˆ°ˆ¤€˜˜Ù…±¹¥¹±Õ‘•Ì ˆ°ˆ¤¤ì($%½¹ÍÐm…AÉ•™¥à°…MÕ™™¥át€ôÙ…±¹ÍÁ±¥Ð ˆ°ˆ°€È¤ì($%½¹ÍÐm‰AÉ•™¥à°‰MÕ™™¥át€ôÙ…±¹ÍÁ±¥Ð ˆ°ˆ°€È¤ì($%¥˜€¡…AÉ•™¥à€ôôô‰AÉ•™¥à¤É•ÑÕÉ¸Á…ÉÍ•%¹Ð¡…MÕ™™¥à¤€´Á…ÉÍ•%¹Ð¡‰MÕ™™¥à¤ì($%É•ÑÕÉ¸Á…ÉÍ•%¹Ð¡…AÉ•™¥à¤€´Á…ÉÍ•%¹Ð¡‰AÉ•™¥à¤ì(%ô(%É•ÑÕÉ¸Á…ÉÍ•%¹Ð¡Ù…±¤€´Á…ÉÍ•%¹Ð¡Ù…±¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½‰Õ¥±½½½±”µ™½¹ÑÌ½‰Õ¥±µÕÉ°¹©Ì)™Õ¹Ñ¥½¸‰Õ¥±‘½½±•½¹ÑÍUÉ°Ä¡™½¹Ñ…µ¥±ä°…á•Ì°‘¥ÍÁ±…ä¤ì(%½¹ÍÐÙ…É¥…¹ÑÌ€ômtì(%¥˜€¡…á•Ì¹Ý¡Ð¤™½È€¡½¹ÍÐÝ¡Ð½˜…á•Ì¹Ý¡Ð¤¥˜€ ……á•Ì¹¥Ñ…°¤Ù…É¥…¹ÑÌ¹ÁÕÍ ¡ml‰Ý¡Ðˆ°Ý¡Ñt°€¸¸¹…á•Ì¹Ù…É¥…‰±•á•Ì€üümut¤ì(%•±Í”™½È€¡½¹ÍÐ¥Ñ…°½˜…á•Ì¹¥Ñ…°¤Ù…É¥…¹ÑÌ¹ÁÕÍ ¡l($%l‰¥Ñ…°ˆ°¥Ñ…±t°($%l‰Ý¡Ðˆ°Ý¡Ñt°($$¸¸¹…á•Ì¹Ù…É¥…‰±•á•Ì€üümt(%t¤ì(%•±Í”¥˜€¡…á•Ì¹Ù…É¥…‰±•á•Ì¤Ù…É¥…¹ÑÌ¹ÁÕÍ ¡l¸¸¹…á•Ì¹Ù…É¥…‰±•á•Ít¤ì(%¥˜€¡…á•Ì¹Ù…É¥…‰±•á•Ì¤™½È€¡½¹ÍÐÙ…É¥…¹Ð½˜Ù…É¥…¹ÑÌ¤Ù…É¥…¹Ð¹Í½ÉÐ ¡m…t°m‰t¤€ôøì($%½¹ÍÐ…%Í1½Ý•É…Í”€ô„¹¡…É½‘•Ð À¤€ø€äØì($%½¹ÍÐ‰%Í1½Ý•É…Í”€ôˆ¹¡…É½‘•Ð À¤€ø€äØì($%¥˜€¡…%Í1½Ý•É…Í”€˜˜€…‰%Í1½Ý•É…Í”¤É•ÑÕÉ¸€´Äì($%¥˜€¡‰%Í1½Ý•É…Í”€˜˜€……%Í1½Ý•É…Í”¤É•ÑÕÉ¸€Äì($%É•ÑÕÉ¸„€øˆ€ü€Ä€è€´Äì(%ô¤ì(%±•ÐÕÉ°€ô¡ÑÑÁÌè¼½™½¹ÑÌ¹½½±•…Á¥Ì¹½´½ÍÌÈý™…µ¥±äô‘í™½¹Ñ…µ¥±ä¹É•Á±…” ¼€½œ°€ˆ¬ˆ¥õ€ì(%¥˜€¡Ù…É¥…¹ÑÌ¹±•¹Ñ €ø€À¤ì($%½¹ÍÐ­•å1¥ÍÐ€ôÙ…É¥…¹ÑÍlÁt¹µ…À ¡m­•åt¤€ôø­•ä¤¹©½¥¸ ˆ°ˆ¤ì($%½¹ÍÐÙ…±Õ•1¥ÍÑÌ€ôÙ…É¥…¹ÑÌ¹µ…À ¡Ù…É¥…¹Ð¤€ôøÙ…É¥…¹Ð¹µ…À ¡l°Ù…±t¤€ôøÙ…°¤¹©½¥¸ ˆ°ˆ¤¤¹Í½ÉÐ¡Í½ÉÑ½¹ÑÍY…É¥…¹ÑY…±Õ•Ì¤¹©½¥¸ ˆìˆ¤ì($%ÕÉ°€ô€‘íÕÉ±ôè‘í­•å1¥ÍÑõ ‘íÙ…±Õ•1¥ÍÑÍõ€ì(%ô(%É•ÑÕÉ¸€‘íÕÉ±ô™‘¥ÍÁ±…äô‘í‘¥ÍÁ±…åõ€ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½™½¹Ðµ½½±”µ‰…Í”¹©Ì(¼¨¨(¨¹•áÐ½™½¹Ð½½½±”Í¡¥´(¨(¨AÉ½Ù¥‘•Ì„½µÁ…Ñ¥‰±”Í¡¥´™½È9•áÐ¹©Ì½½±”½¹ÑÌ¸(¨(¨QÝ¼µ½‘•Ìè(¨€Ä¸€¨©•Ø€¼8µ½‘”¨¨€¡‘•™…Õ±Ð¤è1½…‘Ì™½¹ÑÌ™É½´½½±”½¹ÑÌ8Ù¥„€ñ±¥¹¬øÑ…Ì¸(¨€È¸€¨©M•±˜µ¡½ÍÑ•µ½‘”¨¨€¡ÁÉ½‘ÕÑ¥½¸‰Õ¥±¤èQ¡”Ù¥¹•áÐé½½±”µ™½¹ÑÌY¥Ñ”Á±Õ¥¸(¨€€€™•Ñ¡•Ì™½¹ÐML€¬€¹Ý½™˜È™¥±•Ì…Ð‰Õ¥±Ñ¥µ”°…¡•ÌÑ¡•´±½…±±ä°…¹¥¹©•ÑÌ(¨€€€™½¹Ðµ™…”MLÁ½¥¹Ñ¥¹œ…Ð±½…°…ÍÍ•ÑÌ¸9¼É•ÅÕ•ÍÑÌÑ¼½½±”…ÐÉÕ¹Ñ¥µ”¸(¨(¨UÍ…”è(¨€€¥µÁ½ÉÐì%¹Ñ•Èô™É½´€¹•áÐ½™½¹Ð½½½±”œì(¨€€½¹ÍÐ¥¹Ñ•È€ô%¹Ñ•È¡ìÍÕ‰Í•ÑÌèl±…Ñ¥¸t°Ý•¥¡ÐèlœÐÀÀœ°€œÜÀÀtô¤ì(¨€€€¼¼¥¹Ñ•È¹±…ÍÍ9…µ”€´øÍÑ…‰±”ML±…ÍÌ™½ÈÑ¡¥Ì™½¹Ð½½ÁÑ¥½¹ÌÁ…¥È(¨€€€¼¼¥¹Ñ•È¹ÍÑå±”€´øì™½¹Ñ…µ¥±äè€ˆ%¹Ñ•Èœ°Í…¹ÌµÍ•É¥˜ˆô(¨€€€¼¼¥¹Ñ•È¹Ù…É¥…‰±”€´øML±…ÍÌÑ¡…ÐÍ•ÑÌÑ¡”™½¹ÐMLÙ…É¥…‰±”(¨¼(¼¨¨(¨Í…Á”„ÍÑÉ¥¹œ™½ÈÍ…™”¥¹Ñ•ÉÁ½±…Ñ¥½¸¥¹Í¥‘”„MLÍ¥¹±”µÅÕ½Ñ•ÍÑÉ¥¹œ¸(¨(¨AÉ•Ù•¹ÑÌML¥¹©•Ñ¥½¸‰ä•Í…Á¥¹œ¡…É…Ñ•ÉÌÑ¡…Ð½Õ±‰É•…¬½ÕÐ½˜(¨„€œ¸¸¸€MLÍÑÉ¥¹œ½¹Ñ•áÐè‰…­Í±…Í¡•Ì°Í¥¹±”ÅÕ½Ñ•Ì°…¹¹•Ý±¥¹•Ì¸(¨¼)™Õ¹Ñ¥½¸•Í…Á•MMMÑÉ¥¹œ¡Ù…±Õ”¤ì(%É•ÑÕÉ¸Ù…±Õ”¹É•Á±…” ½qp½œ°€‰qqqpˆ¤¹É•Á±…” ¼œ½œ°€‰qpœˆ¤¹É•Á±…” ½q¸½œ°€‰qq„€ˆ¤¹É•Á±…” ½qÈ½œ°€‰qq€ˆ¤ì)ô(¼¨¨(¨Y…±¥‘…Ñ”„MLÕÍÑ½´ÁÉ½Á•ÉÑä¹…µ”€¡”¹œ¸€´µ™½¹Ðµ¥¹Ñ•É€¤¸(¨(¨ÕÍÑ½´ÁÉ½Á•ÉÑ¥•ÌµÕÍÐÍÑ…ÉÐÝ¥Ñ €´µ€…¹½¹±ä½¹Ñ…¥¸…±Á¡…¹Õµ•É¥Œ(¨¡…É…Ñ•ÉÌ°¡åÁ¡•¹Ì°…¹Õ¹‘•ÉÍ½É•Ì¸¹åÑ¡¥¹œ•±Í”½Õ±‰”ÕÍ•Ñ¼(¨‰É•…¬½ÕÐ½˜Ñ¡”ML‘•±…É…Ñ¥½¸…¹¥¹©•Ð…É‰¥ÑÉ…ÉäÉÕ±•Ì¸(¨(¨I•ÑÕÉ¹ÌÑ¡”¹…µ”¥˜Ù…±¥°Õ¹‘•™¥¹•½Ñ¡•ÉÝ¥Í”¸(¨¼)™Õ¹Ñ¥½¸Í…¹¥Ñ¥é•MMY…É9…µ”¡¹…µ”¤ì(%¥˜€ ½x´µm„µéµhÀ´å|µt¬¼¹Ñ•ÍÐ¡¹…µ”¤¤É•ÑÕÉ¸¹…µ”ì)ô(¼¨¨(¨M…¹¥Ñ¥é”„ML™½¹Ðµ™…µ¥±ä™…±±‰…¬¹…µ”¸(¨(¨•¹•É¥Œ™…µ¥±ä¹…µ•Ì€¡Í…¹ÌµÍ•É¥˜°Í•É¥˜°µ½¹½ÍÁ…”°•ÑŒ¸¤…É”ÕÍ•…Ìµ¥Ì¸(¨9…µ•™…µ¥±¥•Ì…É”ÝÉ…ÁÁ•¥¸•Í…Á•ÅÕ½Ñ•Ì¸Q¡¥ÌÁÉ•Ù•¹ÑÌ¥¹©•Ñ¥½¸Ù¥„(¨É…™Ñ•™…±±‰…¬Ù…±Õ•Ì±¥­”€¤ìô‰½‘äì½±½ÈèÉ•ìô€¹àí€¸(¨¼)™Õ¹Ñ¥½¸Í…¹¥Ñ¥é•…±±‰…¬¡¹…µ”¤ì(%½¹ÍÐ•¹•É¥Ì€ô¹•ÜM•Ð¡l($$‰Í•É¥˜ˆ°($$‰Í…¹ÌµÍ•É¥˜ˆ°($$‰µ½¹½ÍÁ…”ˆ°($$‰ÕÉÍ¥Ù”ˆ°($$‰™…¹Ñ…Íäˆ°($$‰ÍåÍÑ•´µÕ¤ˆ°($$‰Õ¤µÍ•É¥˜ˆ°($$‰Õ¤µÍ…¹ÌµÍ•É¥˜ˆ°($$‰Õ¤µµ½¹½ÍÁ…”ˆ°($$‰Õ¤µÉ½Õ¹‘•ˆ°($$‰•µ½©¤ˆ°($$‰µ…Ñ ˆ°($$‰™…¹Í½¹œˆ(%t¤ì(%½¹ÍÐÑÉ¥µµ•€ô¹…µ”¹ÑÉ¥´ ¤ì(%¥˜€¡•¹•É¥Ì¹¡…Ì¡ÑÉ¥µµ•¤¤É•ÑÕÉ¸ÑÉ¥µµ•ì(%É•ÑÕÉ¸€œ‘í•Í…Á•MMMÑÉ¥¹œ¡ÑÉ¥µµ•¥ô€ì)ô)Ù…È¥¹©•Ñ•‘½¹ÑÌ€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(¼¨¨(¨½¹Ù•ÉÐ„™½¹Ð™…µ¥±ä¹…µ”Ñ¼„MLÙ…É¥…‰±”¹…µ”¸(¨”¹œ¸°€‰%¹Ñ•Èˆ€´ø€ˆ´µ™½¹Ðµ¥¹Ñ•Èˆ°€‰I½‰½Ñ¼5½¹¼ˆ€´ø€ˆ´µ™½¹ÐµÉ½‰½Ñ¼µµ½¹¼ˆ(¨¼)™Õ¹Ñ¥½¸Ñ½Y…É9…µ”¡™…µ¥±ä¤ì(%É•ÑÕÉ¸€ˆ´µ™½¹Ð´ˆ€¬™…µ¥±ä¹Ñ½1½Ý•É…Í” ¤¹É•Á±…” ½qÌ¬½œ°€ˆ´ˆ¤ì)ô)™Õ¹Ñ¥½¸™½¹Ñ±…ÍÍM•µ•¹Ð¡™…µ¥±ä¤ì(%É•ÑÕÉ¸™…µ¥±ä¹Ñ½1½Ý•É…Í” ¤¹É•Á±…” ½my„µèÀ´å|µt¬½œ°€‰|ˆ¤¹É•Á±…” ½y|­ñ|¬½œ°€ˆˆ¤ñð€‰™½¹Ðˆì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•MÑÉ¥¹M•Ñ=ÁÑ¥½¸¡Ù…±Õ”¤ì(%¥˜€ …Ù…±Õ”¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸l¸¸¹¹•ÜM•Ð ¡ÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤€üÙ…±Õ”€èmÙ…±Õ•t¤¹µ…À ¡¥Ñ•´¤€ôø¥Ñ•´¹ÑÉ¥´ ¤¤¹™¥±Ñ•È¡	½½±•…¸¤¥t¹Í½ÉÐ ¤¹©½¥¸ ˆ°ˆ¤ì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•]•¥¡Ñ=ÁÑ¥½¸¡Ù…±Õ”¤ì(%½¹ÍÐ¹½Éµ…±¥é•€ô¹½Éµ…±¥é•MÑÉ¥¹M•Ñ=ÁÑ¥½¸¡Ù…±Õ”¤ì(%É•ÑÕÉ¸¹½Éµ…±¥é•€ôôô€‰Ù…É¥…‰±”ˆ€ü€ˆˆ€è¹½Éµ…±¥é•ì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•MÑå±•=ÁÑ¥½¸¡Ù…±Õ”¤ì(%½¹ÍÐÙ…±Õ•Ì€ô¹•ÜM•Ð ¡ÉÉ…ä¹¥ÍÉÉ…ä¡Ù…±Õ”¤€üÙ…±Õ”€èÙ…±Õ”€ümÙ…±Õ•t€èmt¤¹µ…À ¡¥Ñ•´¤€ôø¥Ñ•´¹ÑÉ¥´ ¤¤¹™¥±Ñ•È¡	½½±•…¸¤¤ì(%½¹ÍÐ¡…Í%Ñ…±¥Œ€ôÙ…±Õ•Ì¹¡…Ì ‰¥Ñ…±¥Œˆ¤ì(%½¹ÍÐ¡…Í9½Éµ…°€ôÙ…±Õ•Ì¹¡…Ì ‰¹½Éµ…°ˆ¤ì(%¥˜€ …¡…Í%Ñ…±¥Œ¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸¡…Í9½Éµ…°€ü€‰¥Ñ…±¥Œ±¹½Éµ…°ˆ€è€‰¥Ñ…±¥Œˆì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•…±±‰…­=ÁÑ¥½¸¡Ù…±Õ”¤ì(%¥˜€ …Ù…±Õ”¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸Ù…±Õ”¹µ…À ¡¥Ñ•´¤€ôø¥Ñ•´¹ÑÉ¥´ ¤¤¹©½¥¸ ˆ°ˆ¤ì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•	½½±•…¹=ÁÑ¥½¸¡Ù…±Õ”¤ì(%¥˜€¡Ù…±Õ”€ôôôÙ½¥€À¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸Ù…±Õ”€ü€ˆÄˆ€è€ˆÀˆì)ô)™Õ¹Ñ¥½¸¹½Éµ…±¥é•MÑÉ¥¹=É	½½±•…¹=ÁÑ¥½¸¡Ù…±Õ”¤ì(%¥˜€¡Ù…±Õ”€ôôôÙ½¥€À¤É•ÑÕÉ¸€ˆˆì(%É•ÑÕÉ¸ÑåÁ•½˜Ù…±Õ”€ôôô€‰‰½½±•…¸ˆ€ü¹½Éµ…±¥é•	½½±•…¹=ÁÑ¥½¸¡Ù…±Õ”¤€èÙ…±Õ”ì)ô)™Õ¹Ñ¥½¸¡…Í¡MÑÉ¥¹œ¡Ù…±Õ”¤ì(%±•Ð¡…Í €ô€ÈÄØØÄÌØÈØÄì(%™½È€¡±•Ð¤€ô€Àì¤€ðÙ…±Õ”¹±•¹Ñ ì¤¬¬¤ì($%¡…Í xôÙ…±Õ”¹¡…É½‘•Ð¡¤¤ì($%¡…Í €ô5…Ñ ¹¥µÕ°¡¡…Í °€ÄØÜÜÜØÄä¤€øøø€Àì(%ô(%É•ÑÕÉ¸¡…Í ¹Ñ½MÑÉ¥¹œ ÌØ¤¹Á…‘MÑ…ÉÐ Ü°€ˆÀˆ¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•½¹Ñ%‘•¹Ñ¥Ñä¡™…µ¥±ä°½ÁÑ¥½¹Ì°ÍÍY…É9…µ”°™…±±‰…¬¤ì(%É•ÑÕÉ¸¡…Í¡MÑÉ¥¹œ¡l($%™…µ¥±ä°($%ÍÍY…É9…µ”°($%¹½Éµ…±¥é•]•¥¡Ñ=ÁÑ¥½¸¡½ÁÑ¥½¹Ì¹Ý•¥¡Ð¤°($%¹½Éµ…±¥é•MÑå±•=ÁÑ¥½¸¡½ÁÑ¥½¹Ì¹ÍÑå±”¤°($%¹½Éµ…±¥é•MÑÉ¥¹M•Ñ=ÁÑ¥½¸¡½ÁÑ¥½¹Ì¹ÍÕ‰Í•ÑÌ¤°($%½ÁÑ¥½¹Ì¹‘¥ÍÁ±…ä€üü€‰ÍÝ…Àˆ°($%¹½Éµ…±¥é•	½½±•…¹=ÁÑ¥½¸¡½ÁÑ¥½¹Ì¹ÁÉ•±½…¤°($%¹½Éµ…±¥é•…±±‰…­=ÁÑ¥½¸¡™…±±‰…¬¤°($%¹½Éµ…±¥é•MÑÉ¥¹=É	½½±•…¹=ÁÑ¥½¸¡½ÁÑ¥½¹Ì¹…‘©ÕÍÑ½¹Ñ…±±‰…¬¤°($%¹½Éµ…±¥é•MÑÉ¥¹M•Ñ=ÁÑ¥½¸¡½ÁÑ¥½¹Ì¹…á•Ì¤°($%½ÁÑ¥½¹Ì¹}Í•±™!½ÍÑ•‘ML€üü€ˆˆ(%t¹©½¥¸ ‰pÀˆ¤¤ì)ô(¼¨¨(¨	Õ¥±„½½±”½¹ÑÌMLUI0¸(¨(¨%¸ÁÉ½‘ÕÑ¥½¸Ñ¡¥Ì½‘”Á…Ñ ¥Ì‘•…¸Q¡”‰Õ¥±Á±Õ¥¸(¨€¡Ù¥¹•áÐé½½±”µ™½¹ÑÍ€¥¸ÍÉŒ½Á±Õ¥¹Ì½™½¹ÑÌ¹ÑÍ€¤ÍÑ…Ñ¥…±±äÉ•Í½±Ù•Ì(¨•… ™½¹Ð…±°Ì…á¥ÌÙ…±Õ•Ì……¥¹ÍÐÑ¡”‰Õ¹‘±•µ•Ñ…‘…Ñ„°™•Ñ¡•ÌÑ¡”(¨½½±”½¹ÑÌML°…¹¥¹©•ÑÌÑ¡”É•ÍÕ±Ñ¥¹œML…Ì}Í•±™!½ÍÑ•‘MM€Í¼(¨Ñ¡”ÉÕ¹Ñ¥µ”¹•Ù•ÈÅÕ•É¥•Ì½½±”¸Q¡”Í¡¥´½¹±äÉ•…¡•ÌÑ¡¥Ì‰Õ¥±‘•È(¨Ý¡•¸Ñ¡”Á±Õ¥¸ÌÍÑ…Ñ¥ŒÁ…ÉÍ•È‰…¥±Ì€¡‘å¹…µ¥Œ½ÁÑ¥½¹Ì°•Ù…°µ½¹±ä(¨Í¡…Á•Ì¤°Ý¡¥ ¥Ì‘•Øµ½¹±ä¸(¨(¨Q¡”‘•Ø™…±±‰…¬¥¹Ñ•¹Ñ¥½¹…±±ä¡…Ì¹¼µ•Ñ…‘…Ñ„èÍ¡¥ÁÁ¥¹œÑ¡”€Ìàà-(¨™½¹Ðµ‘…Ñ„¹©Í½¹€Ñ¼Ñ¡”]½É­•È‰Õ¹‘±”Ý½Õ±‘Ý…É˜Ñ¡”É•ÍÐ½˜Ñ¡”Í¡¥´°(¨…¹Ñ¡”ÁÉ½‘ÕÑ¥½¸Á…Ñ …±É•…‘ä¡…ÌÑ¡”µ•Ñ…‘…Ñ„µ…Ý…É”Ù…É¥…¹Ð¸Q¡”(¨ÑÉ…‘•½™˜¥ÌÑ¡…ÐÑ¡”‘•Ø™…±±‰…¬…¹¹½ÐÉ•Í½±Ù”„Ù…É¥…‰±”™½¹ÐÌ(¨…ÑÕ…°Ý¡Ñ€…á¥ÌÉ…¹”¸%Ð•µ¥ÑÌ¹¼…á¥ÌÍ•µ•¹ÐÝ¡•¸¹¼Ý•¥¡Ñ€¥Ì(¨¥Ù•¸°Ý¡¥ µ…­•Ì½½±”É•ÑÕÉ¸Ñ¡”‘•™…Õ±ÐÍÑ…Ñ¥Œ™…”€ ÈÀÀ¤¥¹ÍÑ•…(¨½˜Ñ¡”‰É½­•¸€éÝ¡Ñ ÄÀÀ¸¸äÀÁ€UI0Ñ¡…Ð¥ÍÍÕ”€ŒààÔÉ•Á½ÉÑÌ¸(¨¼)™Õ¹Ñ¥½¸‰Õ¥±‘½½±•½¹ÑÍUÉ°¡™…µ¥±ä°½ÁÑ¥½¹Ì¤ì(%½¹ÍÐÝ•¥¡ÑÌ€ô½ÁÑ¥½¹Ì¹Ý•¥¡Ð€üÉÉ…ä¹¥ÍÉÉ…ä¡½ÁÑ¥½¹Ì¹Ý•¥¡Ð¤€ü½ÁÑ¥½¹Ì¹Ý•¥¡Ð€èm½ÁÑ¥½¹Ì¹Ý•¥¡Ñt€èmtì(%½¹ÍÐÍÑå±•Ì€ô½ÁÑ¥½¹Ì¹ÍÑå±”€üÉÉ…ä¹¥ÍÉÉ…ä¡½ÁÑ¥½¹Ì¹ÍÑå±”¤€ü½ÁÑ¥½¹Ì¹ÍÑå±”€èm½ÁÑ¥½¹Ì¹ÍÑå±•t€èmtì(%½¹ÍÐ¡…Í%Ñ…±¥Œ€ôÍÑå±•Ì¹¥¹±Õ‘•Ì ‰¥Ñ…±¥Œˆ¤ì(%½¹ÍÐ¡…Í9½Éµ…°€ôÍÑå±•Ì¹¥¹±Õ‘•Ì ‰¹½Éµ…°ˆ¤ì(%½¹ÍÐ¥Ñ…°€ô¡…Í%Ñ…±¥Œ€ül¸¸¹¡…Í9½Éµ…°€ülˆÀ‰t€èmt°€ˆÄ‰t€èÙ½¥€Àì(%½¹ÍÐ¹½Éµ…±¥é•‘]•¥¡ÑÌ€ôÝ•¥¡ÑÌ¹±•¹Ñ €ôôô€Ä€˜˜Ý•¥¡ÑÍlÁt€ôôô€‰Ù…É¥…‰±”ˆ€ümt€èÝ•¥¡ÑÌì(%É•ÑÕÉ¸‰Õ¥±‘½½±•½¹ÑÍUÉ°Ä¡™…µ¥±ä°ì($%Ý¡Ðè¹½Éµ…±¥é•‘]•¥¡ÑÌ¹±•¹Ñ €ø€À€ü¹½Éµ…±¥é•‘]•¥¡ÑÌ€è¥Ñ…°€ülˆÐÀÀ‰t€èÙ½¥€À°($%¥Ñ…°(%ô°½ÁÑ¥½¹Ì¹‘¥ÍÁ±…ä€üü€‰ÍÝ…Àˆ¤ì)ô(¼¨¨(¨%¹©•Ð„€ñ±¥¹¬øÑ…œ™½ÈÑ¡”™½¹Ð€¡±¥•¹ÐµÍ¥‘”½¹±ä¤¸(¨=¸Ñ¡”Í•ÉÙ•È°Ý”ÑÉ…¬™½¹ÐUI1Ì™½ÈMMH¡•…¥¹©•Ñ¥½¸¸(¨¼)™Õ¹Ñ¥½¸¥¹©•Ñ½¹ÑMÑå±•Í¡••Ð¡ÕÉ°¤ì(%¥˜€¡¥¹©•Ñ•‘½¹ÑÌ¹¡…Ì¡ÕÉ°¤¤É•ÑÕÉ¸ì(%¥¹©•Ñ•‘½¹ÑÌ¹…‘¡ÕÉ°¤ì(%¥˜€¡ÑåÁ•½˜‘½Õµ•¹Ð€„ôô€‰Õ¹‘•™¥¹•ˆ¤ì($%½¹ÍÐ±¥¹¬€ô‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰±¥¹¬ˆ¤ì($%±¥¹¬¹É•°€ô€‰ÍÑå±•Í¡••Ðˆì($%±¥¹¬¹¡É•˜€ôÕÉ°ì($%‘½Õµ•¹Ð¹¡•…¹…ÁÁ•¹‘¡¥±¡±¥¹¬¤ì(%ô)ô(¼¨¨QÉ…¬Ý¡¥ ±…ÍÍ9…µ”MLÉÕ±•Ì¡…Ù”‰••¸¥¹©•Ñ•¸€¨¼)Ù…È¥¹©•Ñ•‘±…ÍÍIÕ±•Ì€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(¼¨¨(¨%¹©•Ð„MLÉÕ±”Ñ¡…Ðµ…ÁÌ„±…ÍÍ9…µ”Ñ¼„™½¹Ðµ™…µ¥±ä¸(¨(¨Q¡¥Ì¥ÌÝ¡…Ðµ…­•Ì€ñ‘¥Ø±…ÍÍ9…µ”õí¥¹Ñ•È¹±…ÍÍ9…µ•ôù€…ÁÁ±äÑ¡”™½¹Ð¸(¨9•áÐ¹©Ì•¹•É…Ñ•Ì•ÅÕ¥Ù…±•¹ÐÉÕ±•Ì…Ð‰Õ¥±Ñ¥µ”¸(¨(¨%¸9•áÐ¹©Ì°Ñ¡”€¹±…ÍÍ9…µ”±…ÍÌ=91dÍ•ÑÌ™½¹Ðµ™…µ¥±äƒŠP¥Ð‘½•Ì9=P(¨Í•ÐMLÙ…É¥…‰±•Ì¸MLÙ…É¥…‰±•Ì…É”¡…¹‘±•Í•Á…É…Ñ•±ä‰äÑ¡”€¹Ù…É¥…‰±”±…ÍÌ¸(¨¼)™Õ¹Ñ¥½¸¥¹©•Ñ±…ÍÍ9…µ•IÕ±”¡±…ÍÍ9…µ”°™½¹Ñ…µ¥±ä¤ì(%¥˜€¡¥¹©•Ñ•‘±…ÍÍIÕ±•Ì¹¡…Ì¡±…ÍÍ9…µ”¤¤É•ÑÕÉ¸ì(%¥¹©•Ñ•‘±…ÍÍIÕ±•Ì¹…‘¡±…ÍÍ9…µ”¤ì(%½¹ÍÐÍÌ€ô€¸‘í±…ÍÍ9…µ•ôì™½¹Ðµ™…µ¥±äè€‘í™½¹Ñ…µ¥±åôìõq¹€ì(%¥˜€¡ÑåÁ•½˜‘½Õµ•¹Ð€ôôô€‰Õ¹‘•™¥¹•ˆ¤ì($%ÍÍÉ½¹ÑMÑå±•ÌÄ¹ÁÕÍ ¡ÍÌ¤ì($%É•ÑÕÉ¸ì(%ô(%½¹ÍÐÍÑå±”€ô‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰ÍÑå±”ˆ¤ì(%ÍÑå±”¹Ñ•áÑ½¹Ñ•¹Ð€ôÍÌì(%ÍÑå±”¹Í•ÑÑÑÉ¥‰ÕÑ” ‰‘…Ñ„µÙ¥¹•áÐµ™½¹Ðµ±…ÍÌˆ°±…ÍÍ9…µ”¤ì(%‘½Õµ•¹Ð¹¡•…¹…ÁÁ•¹‘¡¥±¡ÍÑå±”¤ì)ô(¼¨¨QÉ…¬Ý¡¥ Ù…É¥…‰±”±…ÍÌMLÉÕ±•Ì¡…Ù”‰••¸¥¹©•Ñ•¸€¨¼)Ù…È¥¹©•Ñ•‘Y…É¥…‰±•IÕ±•Ì€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(¼¨¨(¨%¹©•Ð„MLÉÕ±”Ñ¡…ÐÍ•ÑÌ„MLÙ…É¥…‰±”½¸…¸•±•µ•¹Ð¸(¨Q¡¥Ì¥ÌÝ¡…Ðµ…­•Ì€ñ¡Ñµ°±…ÍÍ9…µ”õí¥¹Ñ•È¹Ù…É¥…‰±•ôù€Í•ÐÑ¡”MLÙ…É¥…‰±”(¨Ñ¡…Ð…¸‰”É•™•É•¹•‰ä½Ñ¡•ÈÍÑå±•Ì€¡”¹œ¸°Q…¥±Ý¥¹Ì™½¹ÐµÍ…¹Ì¤¸(¨(¨%¸9•áÐ¹©Ì°Ñ¡”€¹Ù…É¥…‰±”±…ÍÌ=91dÍ•ÑÌÑ¡”MLÙ…É¥…‰±”ƒŠP¥Ð‘½•Ì9=P(¨Í•Ð™½¹Ðµ™…µ¥±ä¸Q¡¥Ì¥ÌÉ¥Ñ¥…°‰•…ÕÍ”…ÁÁÌ½µµ½¹±ä…ÁÁ±äµÕ±Ñ¥Á±”(¨€¹Ù…É¥…‰±”±…ÍÍ•ÌÑ¼€ñ‰½‘äø€¡”¹œ¸°•¥ÍÑM…¹Ì¹Ù…É¥…‰±”€¬•¥ÍÑ5½¹¼¹Ù…É¥…‰±”¤¸(¨%˜Ý”…±Í¼Í•Ð™½¹Ðµ™…µ¥±ä¡•É”°Ñ¡”±…ÍÐ±…ÍÌÝ¥¹Ì‘Õ”Ñ¼ML…Í…‘”°(¨…ÕÍ¥¹œ…±°Ñ•áÐÑ¼ÕÍ”Ñ¡…Ð™½¹Ð€¡”¹œ¸°•Ù•ÉåÑ¡¥¹œ‰•½µ•Ìµ½¹½ÍÁ…”¤¸(¨¼)™Õ¹Ñ¥½¸¥¹©•ÑY…É¥…‰±•±…ÍÍIÕ±”¡Ù…É¥…‰±•±…ÍÍ9…µ”°ÍÍY…É9…µ”°™½¹Ñ…µ¥±ä¤ì(%¥˜€¡¥¹©•Ñ•‘Y…É¥…‰±•IÕ±•Ì¹¡…Ì¡Ù…É¥…‰±•±…ÍÍ9…µ”¤¤É•ÑÕÉ¸ì(%¥¹©•Ñ•‘Y…É¥…‰±•IÕ±•Ì¹…‘¡Ù…É¥…‰±•±…ÍÍ9…µ”¤ì(%½¹ÍÐÍÌ€ô€¸‘íÙ…É¥…‰±•±…ÍÍ9…µ•ôì€‘íÍÍY…É9…µ•ôè€‘í™½¹Ñ…µ¥±åôìõq¹€ì(%¥˜€¡ÑåÁ•½˜‘½Õµ•¹Ð€ôôô€‰Õ¹‘•™¥¹•ˆ¤ì($%ÍÍÉ½¹ÑMÑå±•ÌÄ¹ÁÕÍ ¡ÍÌ¤ì($%É•ÑÕÉ¸ì(%ô(%½¹ÍÐÍÑå±”€ô‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰ÍÑå±”ˆ¤ì(%ÍÑå±”¹Ñ•áÑ½¹Ñ•¹Ð€ôÍÌì(%ÍÑå±”¹Í•ÑÑÑÉ¥‰ÕÑ” ‰‘…Ñ„µÙ¥¹•áÐµ™½¹ÐµÙ…É¥…‰±”ˆ°Ù…É¥…‰±•±…ÍÍ9…µ”¤ì(%‘½Õµ•¹Ð¹¡•…¹…ÁÁ•¹‘¡¥±¡ÍÑå±”¤ì)ô)Ù…ÈÍÍÉ½¹ÑMÑå±•ÌÄ€ômtì(¼¨¨(¨•Ð½±±•Ñ•MMH™½¹Ð±…ÍÌÍÑå±•Ì€¡ÕÍ•‰äÑ¡”É•¹‘•É•È¤¸(¨9½Ñ”è]”‘½¸Ð±•…ÈÑ¡”…ÉÉ…åÌ‰•…ÕÍ”™½¹ÑÌ…É”±½…‘•…Ðµ½‘Õ±”¥µÁ½ÉÐ(¨Ñ¥µ”…¹¹••Ñ¼Á•ÉÍ¥ÍÐ…É½ÍÌ…±°É•ÅÕ•ÍÑÌ¥¸Ñ¡”]½É­•ÉÌ•¹Ù¥É½¹µ•¹Ð¸(¨¼)™Õ¹Ñ¥½¸•ÑMMI½¹ÑMÑå±•ÌÄ ¤ì(%É•ÑÕÉ¸l¸¸¹ÍÍÉ½¹ÑMÑå±•ÌÅtì)ô)Ù…ÈÍÍÉ½¹ÑUÉ±Ì€ômtì(¼¨¨(¨•Ð½±±•Ñ•MMH™½¹ÐUI1Ì€¡ÕÍ•‰äÑ¡”É•¹‘•É•È¤¸(¨9½Ñ”è]”‘½¸Ð±•…ÈÑ¡”…ÉÉ…åÌ‰•…ÕÍ”™½¹ÑÌ…É”±½…‘•…Ðµ½‘Õ±”¥µÁ½ÉÐ(¨Ñ¥µ”…¹¹••Ñ¼Á•ÉÍ¥ÍÐ…É½ÍÌ…±°É•ÅÕ•ÍÑÌ¥¸Ñ¡”]½É­•ÉÌ•¹Ù¥É½¹µ•¹Ð¸(¨¼)™Õ¹Ñ¥½¸•ÑMMI½¹Ñ1¥¹­Ì ¤ì(%É•ÑÕÉ¸l¸¸¹ÍÍÉ½¹ÑUÉ±Ítì)ô)Ù…ÈÍÍÉ½¹ÑAÉ•±½…‘ÌÄ€ômtì)Ù…ÈÍÍÉ½¹ÑAÉ•±½…‘!É•™Ì€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(¼¨¨(¨•Ð½±±•Ñ•MMH™½¹ÐÁÉ•±½…‘…Ñ„€¡ÕÍ•‰äÑ¡”É•¹‘•É•È¤¸(¨I•ÑÕÉ¹Ì…¸…ÉÉ…ä½˜ì¡É•˜°ÑåÁ”ô½‰©•ÑÌ™½È•µ¥ÑÑ¥¹œ(¨€ñ±¥¹¬É•°ô‰ÁÉ•±½…ˆ…Ìô‰™½¹Ðˆ€¸¸¸øÑ…Ì¸(¨¼)™Õ¹Ñ¥½¸•ÑMMI½¹ÑAÉ•±½…‘ÌÄ ¤ì(%É•ÑÕÉ¸l¸¸¹ÍÍÉ½¹ÑAÉ•±½…‘ÌÅtì)ô(¼¨¨(¨•Ñ•Éµ¥¹”Ñ¡”5%5ÑåÁ”™½È„™½¹Ð™¥±”‰…Í•½¸¥ÑÌ•áÑ•¹Í¥½¸¸(¨¼)™Õ¹Ñ¥½¸•Ñ½¹Ñ5¥µ•QåÁ”¡Á…Ñ¡=ÉUÉ°¤ì(%¥˜€¡Á…Ñ¡=ÉUÉ°¹•¹‘Í]¥Ñ  ˆ¹Ý½™˜Èˆ¤¤É•ÑÕÉ¸€‰™½¹Ð½Ý½™˜Èˆì(%¥˜€¡Á…Ñ¡=ÉUÉ°¹•¹‘Í]¥Ñ  ˆ¹Ý½™˜ˆ¤¤É•ÑÕÉ¸€‰™½¹Ð½Ý½™˜ˆì(%¥˜€¡Á…Ñ¡=ÉUÉ°¹•¹‘Í]¥Ñ  ˆ¹ÑÑ˜ˆ¤¤É•ÑÕÉ¸€‰™½¹Ð½ÑÑ˜ˆì(%¥˜€¡Á…Ñ¡=ÉUÉ°¹•¹‘Í]¥Ñ  ˆ¹½Ñ˜ˆ¤¤É•ÑÕÉ¸€‰™½¹Ð½½Á•¹ÑåÁ”ˆì(%É•ÑÕÉ¸€‰™½¹Ð½Ý½™˜Èˆì)ô(¼¨¨(¨áÑÉ…Ð™½¹Ð™¥±”UI1Ì™É½´™½¹Ðµ™…”MLÉÕ±•Ì¸(¨A…ÉÍ•ÌÕÉ° œ¸¸¸œ¤É•™•É•¹•Ì™É½´Ñ¡”MLÑ•áÐ¸(¨¼)™Õ¹Ñ¥½¸•áÑÉ…Ñ½¹ÑUÉ±ÍÉ½µML¡ÍÌ¤ì(%½¹ÍÐÕÉ±Ì€ômtì(%½¹ÍÐÕÉ±I••à€ô€½ÕÉ±p¡lœ‰tü¡mxœˆ¥t¬¥lœ‰týp¤½œì(%±•Ðµ…Ñ ì(%Ý¡¥±”€ ¡µ…Ñ €ôÕÉ±I••à¹•á•Œ¡ÍÌ¤¤€„ôô¹Õ±°¤ì($%½¹ÍÐÕÉ°€ôµ…Ñ¡lÅtì($%¥˜€¡ÕÉ°€˜˜ÕÉ°¹ÍÑ…ÉÑÍ]¥Ñ  ˆ¼ˆ¤¤ÕÉ±Ì¹ÁÕÍ ¡ÕÉ°¤ì(%ô(%É•ÑÕÉ¸ÕÉ±Ìì)ô(¼¨¨(¨½±±•Ð™½¹Ð™¥±”UI1Ì™É½´Í•±˜µ¡½ÍÑ•ML™½ÈÁÉ•±½…±¥¹¬•¹•É…Ñ¥½¸¸(¨=¹±ä½±±•ÑÌ½¸Ñ¡”Í•ÉÙ•È€¡MMH¤¸•‘ÕÁ±¥…Ñ•Ì‰ä¡É•˜ÕÍ¥¹œ„M•Ð™½È< Ä¤±½½­ÕÁÌ¸(¨¼)™Õ¹Ñ¥½¸½±±•Ñ½¹ÑAÉ•±½…‘ÍÉ½µML¡ÍÌ¤ì(%¥˜€¡ÑåÁ•½˜‘½Õµ•¹Ð€„ôô€‰Õ¹‘•™¥¹•ˆ¤É•ÑÕÉ¸ì(%½¹ÍÐÕÉ±Ì€ô•áÑÉ…Ñ½¹ÑUÉ±ÍÉ½µML¡ÍÌ¤ì(%™½È€¡½¹ÍÐ¡É•˜½˜ÕÉ±Ì¤¥˜€ …ÍÍÉ½¹ÑAÉ•±½…‘!É•™Ì¹¡…Ì¡¡É•˜¤¤ì($%ÍÍÉ½¹ÑAÉ•±½…‘!É•™Ì¹…‘¡¡É•˜¤ì($%ÍÍÉ½¹ÑAÉ•±½…‘ÌÄ¹ÁÕÍ ¡ì($$%¡É•˜°($$%ÑåÁ”è•Ñ½¹Ñ5¥µ•QåÁ”¡¡É•˜¤($%ô¤ì(%ô)ô(¼¨¨QÉ…¬¥¹©•Ñ•Í•±˜µ¡½ÍÑ•™½¹Ðµ™…”‰±½­Ì€¡‘•‘ÕÁ±¥…Ñ”¤€¨¼)Ù…È¥¹©•Ñ•‘M•±™!½ÍÑ•€ô€¼¨}}AUI}|€¨¼¹•ÜM•Ð ¤ì(¼¨¨(¨%¹©•ÐÍ•±˜µ¡½ÍÑ•™½¹Ðµ™…”ML€¡™É½´Ñ¡”‰Õ¥±Á±Õ¥¸¤¸(¨Q¡¥ÌÉ•Á±…•ÌÑ¡”8€ñ±¥¹¬øÑ…œÝ¥Ñ ¥¹±¥¹”ML¸(¨¼)™Õ¹Ñ¥½¸¥¹©•ÑM•±™!½ÍÑ•‘ML¡ÍÌ¤ì(%¥˜€¡¥¹©•Ñ•‘M•±™!½ÍÑ•¹¡…Ì¡ÍÌ¤¤É•ÑÕÉ¸ì(%¥¹©•Ñ•‘M•±™!½ÍÑ•¹…‘¡ÍÌ¤ì(%½±±•Ñ½¹ÑAÉ•±½…‘ÍÉ½µML¡ÍÌ¤ì(%¥˜€¡ÑåÁ•½˜‘½Õµ•¹Ð€ôôô€‰Õ¹‘•™¥¹•ˆ¤ì($%ÍÍÉ½¹ÑMÑå±•ÌÄ¹ÁÕÍ ¡ÍÌ¤ì($%É•ÑÕÉ¸ì(%ô(%½¹ÍÐÍÑå±”€ô‘½Õµ•¹Ð¹É•…Ñ•±•µ•¹Ð ‰ÍÑå±”ˆ¤ì(%ÍÑå±”¹Ñ•áÑ½¹Ñ•¹Ð€ôÍÌì(%ÍÑå±”¹Í•ÑÑÑÉ¥‰ÕÑ” ‰‘…Ñ„µÙ¥¹•áÐµ™½¹ÐµÍ•±™¡½ÍÑ•ˆ°€‰ÑÉÕ”ˆ¤ì(%‘½Õµ•¹Ð¹¡•…¹…ÁÁ•¹‘¡¥±¡ÍÑå±”¤ì)ô)™Õ¹Ñ¥½¸É•…Ñ•½¹Ñ1½…‘•È¡™…µ¥±ä¤ì(%É•ÑÕÉ¸™Õ¹Ñ¥½¸™½¹Ñ1½…‘•È¡½ÁÑ¥½¹Ì€ôíô¤ì($%½¹ÍÐ™…±±‰…¬€ô½ÁÑ¥½¹Ì¹™…±±‰…¬€üül‰Í…¹ÌµÍ•É¥˜‰tì($%½¹ÍÐ™½¹Ñ…µ¥±ä€ô€œ‘í•Í…Á•MMMÑÉ¥¹œ¡™…µ¥±ä¥ôœ°€‘í™…±±‰…¬¹µ…À¡Í…¹¥Ñ¥é•…±±‰…¬¤¹©½¥¸ ˆ°€ˆ¥õ€ì($%½¹ÍÐ‘•™…Õ±ÑY…É9…µ”€ôÑ½Y…É9…µ”¡™…µ¥±ä¤ì($%½¹ÍÐÍÍY…É9…µ”€ô½ÁÑ¥½¹Ì¹Ù…É¥…‰±”€üÍ…¹¥Ñ¥é•MMY…É9…µ”¡½ÁÑ¥½¹Ì¹Ù…É¥…‰±”¤€üü‘•™…Õ±ÑY…É9…µ”€è‘•™…Õ±ÑY…É9…µ”ì($%½¹ÍÐ¥€ôÉ•…Ñ•½¹Ñ%‘•¹Ñ¥Ñä¡™…µ¥±ä°½ÁÑ¥½¹Ì°ÍÍY…É9…µ”°™…±±‰…¬¤ì($%½¹ÍÐ±…ÍÍM•µ•¹Ð€ô™½¹Ñ±…ÍÍM•µ•¹Ð¡™…µ¥±ä¤ì($%½¹ÍÐ±…ÍÍ9…µ”€ô}}™½¹Ñ|‘í±…ÍÍM•µ•¹Ñõ|‘í¥‘õ€ì($%½¹ÍÐÙ…É¥…‰±•±…ÍÍ9…µ”€ô}}Ù…É¥…‰±•|‘í±…ÍÍM•µ•¹Ñõ|‘í¥‘õ€ì($%¥˜€¡½ÁÑ¥½¹Ì¹}Í•±™!½ÍÑ•‘ML¤¥¹©•ÑM•±™!½ÍÑ•‘ML¡½ÁÑ¥½¹Ì¹}Í•±™!½ÍÑ•‘ML¤ì($%•±Í”ì($$%½¹ÍÐÕÉ°€ô‰Õ¥±‘½½±•½¹ÑÍUÉ°¡™…µ¥±ä°½ÁÑ¥½¹Ì¤ì($$%¥¹©•Ñ½¹ÑMÑå±•Í¡••Ð¡ÕÉ°¤ì($$%¥˜€¡ÑåÁ•½˜‘½Õµ•¹Ð€ôôô€‰Õ¹‘•™¥¹•ˆ¤ì($$$%¥˜€ …ÍÍÉ½¹ÑUÉ±Ì¹¥¹±Õ‘•Ì¡ÕÉ°¤¤ÍÍÉ½¹ÑUÉ±Ì¹ÁÕÍ ¡ÕÉ°¤ì($$%ô($%ô($%¥¹©•Ñ±…ÍÍ9…µ•IÕ±”¡±…ÍÍ9…µ”°™½¹Ñ…µ¥±ä¤ì($%¥¹©•ÑY…É¥…‰±•±…ÍÍIÕ±”¡Ù…É¥…‰±•±…ÍÍ9…µ”°ÍÍY…É9…µ”°™½¹Ñ…µ¥±ä¤ì($%É•ÑÕÉ¸ì($$%±…ÍÍ9…µ”°($$%ÍÑå±”èì™½¹Ñ…µ¥±äô°($$%Ù…É¥…‰±”èÙ…É¥…‰±•±…ÍÍ9…µ”($%ôì(%ôì)ô)Ù…È½½±•½¹ÑÌ€ô¹•ÜAÉ½áä¡íô°ì•Ð¡}Ñ…É•Ð°ÁÉ½À¤ì(%¥˜€¡ÑåÁ•½˜ÁÉ½À€„ôô€‰ÍÑÉ¥¹œˆ¤É•ÑÕÉ¸Ù½¥€Àì(%¥˜€¡ÁÉ½À€ôôô€‰}}•Í5½‘Õ±”ˆ¤É•ÑÕÉ¸ÑÉÕ”ì(%¥˜€¡ÁÉ½À€ôôô€‰‘•™…Õ±Ðˆ¤É•ÑÕÉ¸½½±•½¹ÑÌì(%É•ÑÕÉ¸É•…Ñ•½¹Ñ1½…‘•È¡ÁÉ½À¹É•Á±…” ½|½œ°€ˆ€ˆ¤¹É•Á±…” ¼¡m„µét¤¡mµit¤½œ°€ˆÄ€Èˆ¤¤ì)ôô¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½™½¹Ðµ±½…°¹©Ì)Ù…ÈÍÍÉ½¹ÑMÑå±•Ì€ômtì)Ù…ÈÍÍÉ½¹ÑAÉ•±½…‘Ì€ômtì(¼¨¨(¨•Ð½±±•Ñ•MMH™½¹ÐÍÑå±•Ì€¡ÕÍ•‰äÑ¡”É•¹‘•É•È¤¸(¨9½Ñ”è]”‘½¸Ð±•…ÈÑ¡”…ÉÉ…åÌ‰•…ÕÍ”™½¹ÑÌ…É”±½…‘•…Ðµ½‘Õ±”¥µÁ½ÉÐ(¨Ñ¥µ”…¹¹••Ñ¼Á•ÉÍ¥ÍÐ…É½ÍÌ…±°É•ÅÕ•ÍÑÌ¥¸Ñ¡”]½É­•ÉÌ•¹Ù¥É½¹µ•¹Ð¸(¨¼)™Õ¹Ñ¥½¸•ÑMMI½¹ÑMÑå±•Ì ¤ì(%É•ÑÕÉ¸l¸¸¹ÍÍÉ½¹ÑMÑå±•Ítì)ô(¼¨¨(¨•Ð½±±•Ñ•MMH™½¹ÐÁÉ•±½…‘…Ñ„€¡ÕÍ•‰äÑ¡”É•¹‘•É•È¤¸(¨I•ÑÕÉ¹Ì…¸…ÉÉ…ä½˜ì¡É•˜°ÑåÁ”ô½‰©•ÑÌ™½È•µ¥ÑÑ¥¹œ(¨€ñ±¥¹¬É•°ô‰ÁÉ•±½…ˆ…Ìô‰™½¹Ðˆ€¸¸¸øÑ…Ì¸(¨¼)™Õ¹Ñ¥½¸•ÑMMI½¹ÑAÉ•±½…‘Ì ¤ì(%É•ÑÕÉ¸l¸¸¹ÍÍÉ½¹ÑAÉ•±½…‘Ítì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµ¡½½¬µÝ…É¹¥¹œµÍÕÁÁÉ•ÍÍ¥½¸¹©Ì)Ù…ÈÍÕÁÁÉ•ÍÍ!½½­]…É¹¥¹±Ì€ô¹•ÜÍå¹1½…±MÑ½É…”Ä ¤ì)Ù…È}½É¥½¹Í½±•ÉÉ½È€ô½¹Í½±”¹•ÉÉ½Èì)½¹Í½±”¹•ÉÉ½È€ô€ ¸¸¹…ÉÌ¤€ôøì(%¥˜€¡ÍÕÁÁÉ•ÍÍ!½½­]…É¹¥¹±Ì¹•ÑMÑ½É” ¤€ôôôÑÉÕ”€˜˜ÑåÁ•½˜…ÉÍlÁt€ôôô€‰ÍÑÉ¥¹œˆ€˜˜…ÉÍlÁt¹¥¹±Õ‘•Ì ‰%¹Ù…±¥¡½½¬…±°ˆ¤¤É•ÑÕÉ¸ì(%}½É¥½¹Í½±•ÉÉ½È¹…ÁÁ±ä¡½¹Í½±”°…ÉÌ¤ì)ôì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ•ÅÕ•ÍÐµ½¹Ñ•áÐ¹©Ì(¼¨¨(¨M•Ð¹…Ù¥…Ñ¥½¸½¹Ñ•áÐ¥¸Ñ¡”1Lµ‰…­•ÍÑ½É”¸€‰ÕÍ”±¥•¹Ðˆ½µÁ½¹•¹ÑÌ(¨É•¹‘•É•‘ÕÉ¥¹œMMH¹••Ñ¡”Á…Ñ¡¹…µ”½Í•…É¡A…É…µÌ½Á…É…µÌ‰ÕÐÑ¡”MMH(¨•¹Ù¥É½¹µ•¹Ð¡…Ì„Í•Á…É…Ñ”µ½‘Õ±”¥¹ÍÑ…¹”½˜¹•áÐ½¹…Ù¥…Ñ¥½¸¸(¨(¨±•…É¥¹œ¹…Ø½¹Ñ•áÐ€¡Ñà€ôôô¹Õ±°¤…±Í¼±•…ÉÌÉ½½ÐÁ…É…µÌ¸(¨¼)™Õ¹Ñ¥½¸Í•ÑÁÁ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡Ñà¤ì(%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡Ñà¤ì(%¥˜€¡Ñà€ôôô¹Õ±°¤Í•ÑI½½ÑA…É…µÌ¡¹Õ±°¤ì)ô(¼¨¨(¨±•…È…±°Á•ÈµÉ•ÅÕ•ÍÐ1LÍÑ…Ñ”½Ý¹•‰äÑ¡”ÁÀI½ÕÑ•È¡…¹‘±•È¸(¨5ÕÍÐ‰”…±±•‰•™½É”É•ÑÕÉ¹¥¹œ„¹½¸µÁ…”É•ÍÁ½¹Í”€¡É•‘¥É•Ð°ÁÕ‰±¥Œ(¨™¥±”ÁÉ½áä°•ÑŒ¸¤Ñ¼ÁÉ•Ù•¹ÐÍÑ…Ñ”±•…­¥¹œ‰•ÑÝ••¸É•ÅÕ•ÍÑÌ½¸]½É­•ÉÌ¸(¨(¨±•…ÉÌè¡•…‘•ÉÌ°¹…Ù¥…Ñ¥½¸½¹Ñ•áÐ°É½½ÐÁ…É…µÌ¸(¨¼)™Õ¹Ñ¥½¸±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%Í•Ñ!•…‘•ÉÍ½¹Ñ•áÐ¡¹Õ±°¤ì(%Í•ÑÁÁ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ¡¹Õ±°¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í¡¥µÌ½±¥¹¬¹©Ì)Ù…È±¥¹­}‘•™…Õ±Ð€ô€¼¨}}AUI}|€¨¼É•¥ÍÑ•É±¥•¹ÑI•™•É•¹”  ¤€ôøì(%Ñ¡É½Ü¹•ÜÉÉ½È ‰U¹•áÁ•Ñ•‘±ä±¥•¹ÐÉ•™•É•¹”•áÁ½ÉÐ€‘•™…Õ±Ðœ¥Ì…±±•½¸Í•ÉÙ•Èˆ¤ì)ô°€‰ŒÈÜÐÜàààØÌÁ˜ˆ°€‰‘•™…Õ±Ðˆ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÑÌ¹ÑÍà)Ù…È…Ñ•½É¥•Ì€ôl(%l($$‰M¹•…­•ÉÌˆ°($$‰=Á•¸ÕÉÉ•¹Ð½±±•Ñ¥½¸ˆ°($$‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½Í¡½•Ì¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}…Ñ•½Éå}¥¹‘•àˆ°($$ˆÀÄˆ(%t°(%l($$‰!½½‘¥•Ìˆ°($$‰=Á•¸ÕÉÉ•¹Ð½±±•Ñ¥½¸ˆ°($$‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½¡½½‘¥•ÌµÍÝ•…Ñ•ÉÌ¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}…Ñ•½Éå}¥¹‘•àˆ°($$ˆÀÈˆ(%t°(%l($$‰PµM¡¥ÉÑÌˆ°($$‰=Á•¸ÕÉÉ•¹Ð½±±•Ñ¥½¸ˆ°($$‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÐµÍ¡¥ÉÑÌ¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}…Ñ•½Éå}¥¹‘•àˆ°($$ˆÀÌˆ(%t°(%l($$‰)…­•ÑÌˆ°($$‰=Á•¸ÕÉÉ•¹Ð½±±•Ñ¥½¸ˆ°($$‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½©…­•ÑÌ¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}…Ñ•½Éå}¥¹‘•àˆ°($$ˆÀÐˆ(%t°(%l($$‰	½ÑÑ½µÌˆ°($$‰=Á•¸ÕÉÉ•¹Ð½±±•Ñ¥½¸ˆ°($$‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½Á…¹ÑÌµÍ¡½ÉÑÌ¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}…Ñ•½Éå}¥¹‘•àˆ°($$ˆÀÔˆ(%t°(%l($$‰•ÍÍ½É¥•Ìˆ°($$‰=Á•¸ÕÉÉ•¹Ð½±±•Ñ¥½¸ˆ°($$‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½…•ÍÍ½É¥•Ì¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}…Ñ•½Éå}¥¹‘•àˆ°($$ˆÀØˆ(%t)tì)Ù…ÈÁÉ½‘ÕÑÌ€ôl(%ì($%¹…µ”è€‰5•ÉÑÉ„!½½‘¥”ˆ°($%…Ñ•½Éäè€‰!½½‘¥•Ìˆ°($%ÁÉ¥”è€ˆÌÄ¸ÐÐ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀàÀØ¼Ä´ÈØÁ@ØÄØÌÀÅÔÜ¹Ý•‰Àˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌäÌ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰…¹…‘„½½Í”MÝ•…ÑÍ¡¥ÉÐˆ°($%…Ñ•½Éäè€‰!½½‘¥•Ìˆ°($%ÁÉ¥”è€ˆÌÌ¸äÔ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀÜÈä¼Ä´ÈØÁ äÈÄÈÐÐÔØÄÀ¹Ý•‰Àˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌàÀ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰9¥­”MÝ•…Ñ•Èˆ°($%…Ñ•½Éäè€‰!½½‘¥•Ìˆ°($%ÁÉ¥”è€ˆÌä¸ÄÔ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀÜÈä¼Ä´ÈØÁ äÈÄÄØÈÐØÀÄ¹©Áœˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌÜÔ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰€˜MU@AÕ±±½Ù•ÈMÝ•…ÑÍ¡¥ÉÐˆ°($%…Ñ•½Éäè€‰!½½‘¥•Ìˆ°($%ÁÉ¥”è€ˆÔä¸ÄØ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀÜÈä¼Ä´ÈØÁ äÈÄÄÐÐäØÄÄ¹Ý•‰Àˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌÜÐ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰Q¡”9½ÉÑ …”½Ý¸)…­•Ðˆ°($%…Ñ•½Éäè€‰)…­•ÑÌˆ°($%ÁÉ¥”è€ˆäà¸ÌÄ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀàÀØ¼Ä´ÈØÁ@ØÄØÍ$ÌäÔØ¹Ý•‰Àˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌäØ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰1½Õ¥ÌYÕ¥ÑÑ½¸Y…ÉÍ¥Ñäˆ°($%…Ñ•½Éäè€‰)…­•ÑÌˆ°($%ÁÉ¥”è€ˆÐÈ¸àÔ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀàÀØ¼Ä´ÈØÁ@ØÄØÌØÀÀÅ¹©Áœˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌäÔ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰MÑÕÍÍä)…­•Ðˆ°($%…Ñ•½Éäè€‰)…­•ÑÌˆ°($%ÁÉ¥”è€ˆÈØ¸Ìä•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀàÀØ¼Ä´ÈØÁ@ØÄØÌÐÅ(ÄÀ¹Ý•‰Àˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌäÐ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô°(%ì($%¹…µ”è€‰I…±Á 1…ÕÉ•¸1½¹Í±••Ù”ˆ°($%…Ñ•½Éäè€‰!½½‘¥•Ìˆ°($%ÁÉ¥”è€ˆÌÐ¸ÄÀ•ÍÐ¸ˆ°($%¥µ…”è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½ÕÁ±½…‘Ì½…±±¥µœ¼ÈÀÈØÀÜÀÄ¼Ä´ÈØÁÄÄÔÐäÈÁ8à¹Ý•‰Àˆ°($%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ÌÌÐÀ¹¡Ñµ°ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}ÁÉ½‘ÕÑ}¥¹‘•àˆ°($%¡•­•è€ˆÄÈÕœ€ÈÀÈØˆ(%ô)tì)™Õ¹Ñ¥½¸½¹•ÁÑMÝ¥Ñ¡•È¡ì…Ñ¥Ù”ô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¹…Øˆ°ì($%±…ÍÍ9…µ”è€‰½¹•ÁÐµÍÝ¥Ñ¡•Èˆ°($$‰…É¥„µ±…‰•°ˆè€‰MÝ¥Ñ ‘•Í¥¸½¹•ÁÐˆ°($%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡±¥¹­}‘•™…Õ±Ð°ì($$%±…ÍÍ9…µ”è€‰ÍÝ¥Ñ¡•Èµ¡½µ”ˆ°($$%¡É•˜è€ˆ¼ˆ°($$%¡¥±‘É•¸è€‰±°½¹•ÁÑÌˆ($%ô¤°l($$$‰ˆ°($$$‰ˆ°($$$‰ˆ($%t¹µ…À ¡¥Ñ•´¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡±¥¹­}‘•™…Õ±Ð°ì($$%±…ÍÍ9…µ”è…Ñ¥Ù”€ôôô¥Ñ•´€ü€‰…Ñ¥Ù”ˆ€è€ˆˆ°($$%¡É•˜è€½½¹•ÁÐ´‘í¥Ñ•´¹Ñ½1½Ý•É…Í” ¥õ€°($$%¡¥±‘É•¸è¥Ñ•´($%ô°¥Ñ•´¤¥t(%ô¤ì)ô)™Õ¹Ñ¥½¸M•…É¡	…È¡ì±…‰•°€ô€‰M•…É ÕÉÉ•¹ÐÁÉ½‘ÕÑÌˆ°‰ÕÑÑ½¹1…‰•°€ô€‰M•…É ˆô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰™½É´ˆ°ì($%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÐµÍ•…É ˆ°($%…Ñ¥½¸è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½Í•…É ¹¡Ñµ°ˆ°($%µ•Ñ¡½è€‰•Ðˆ°($%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰±…‰•°ˆ°ì($$$%±…ÍÍ9…µ”è€‰ÍÈµ½¹±äˆ°($$$%¡Ñµ±½ÈèÁÉ½‘ÕÐµÍ•…É ´‘í±…‰•±õ€°($$$%¡¥±‘É•¸è€‰M•…É ÁÉ½‘ÕÑÌˆ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$‰…É¥„µ¡¥‘‘•¸ˆè€‰ÑÉÕ”ˆ°($$$%¡¥±‘É•¸è€‹Š2Tˆ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥¹ÁÕÐˆ°ì($$$%¥èÁÉ½‘ÕÐµÍ•…É ´‘í±…‰•±õ€°($$$%¹…µ”è€‰­•åÝ½É‘Ìˆ°($$$%ÑåÁ”è€‰Í•…É ˆ°($$$%Á±…•¡½±‘•Èè±…‰•°°($$$%…ÕÑ½½µÁ±•Ñ”è€‰½™˜ˆ°($$$%É•ÅÕ¥É•èÑÉÕ”($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥¹ÁÕÐˆ°ì($$$%ÑåÁ”è€‰¡¥‘‘•¸ˆ°($$$%¹…µ”è€‰¡…¹¹•±¥ˆ°($$$%Ù…±Õ”è€ˆÈˆ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥¹ÁÕÐˆ°ì($$$%ÑåÁ”è€‰¡¥‘‘•¸ˆ°($$$%¹…µ”è€‰ÕÑµ}Í½ÕÉ”ˆ°($$$%Ù…±Õ”è€‰…±±¡¥¹…‰Õä¹É¼ˆ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥¹ÁÕÐˆ°ì($$$%ÑåÁ”è€‰¡¥‘‘•¸ˆ°($$$%¹…µ”è€‰ÕÑµ}µ•‘¥Õ´ˆ°($$$%Ù…±Õ”è€‰É•™•ÉÉ…°ˆ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥¹ÁÕÐˆ°ì($$$%ÑåÁ”è€‰¡¥‘‘•¸ˆ°($$$%¹…µ”è€‰ÕÑµ}…µÁ…¥¸ˆ°($$$%Ù…±Õ”è€‰É½}Í•…É ˆ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‰ÕÑÑ½¸ˆ°ì($$$%ÑåÁ”è€‰ÍÕ‰µ¥Ðˆ°($$$%¡¥±‘É•¸èl($$$$%‰ÕÑÑ½¹1…‰•°°($$$$$ˆ€ˆ°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‹Š\ˆô¤($$$%t($$%ô¤($%t(%ô¤ì)ô)™Õ¹Ñ¥½¸AÉ½‘ÕÑ…É¡ìÁÉ½‘ÕÐ°¥¹‘•à€ô€À°µ½‘”€ô€‰„ˆ°ÍÑ…ÑÕÍ1…‰•°€ô€‰¡•­•ˆô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($%±…ÍÍ9…µ”èÁÉ½‘ÕÐµ…ÉÁÉ½‘ÕÐ´‘íµ½‘•õ€°($%¡É•˜èÁÉ½‘ÕÐ¹¡É•˜°($%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($%É•°è€‰¹½½Á•¹•Èˆ°($%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÐµ¥µ…”µÝÉ…Àˆ°($$%¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥µœˆ°ì($$$$%ÍÉŒèÁÉ½‘ÕÐ¹¥µ…”°($$$$%…±ÐèÁÉ½‘ÕÐ¹¹…µ”°($$$$%±½…‘¥¹œè€‰±…éäˆ°($$$$%Ý¥‘Ñ è€ˆØÐÀˆ°($$$$%¡•¥¡Ðè€ˆàÀÀˆ($$$%ô¤°($$$%µ½‘”€ôôô€‰„ˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$%±…ÍÍ9…µ”è€‰Ù•É¥™¥•µ‰…‘”ˆ°($$$$%¡¥±‘É•¸è€‰ÕÉ…Ñ•ˆ($$$%ô¤°($$$%µ½‘”€ôôô€‰ˆˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì($$$$%±…ÍÍ9…µ”è€‰•‘¥Ñ½É¥…°µ¹Õµ‰•Èˆ°($$$$%¡¥±‘É•¸èlˆÀˆ°¥¹‘•à€¬€Åt($$$%ô¤($$%t($%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÐµ½Áäˆ°($$%¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÐµ…Ñ•½Éäˆ°($$$$%¡¥±‘É•¸èÁÉ½‘ÕÐ¹…Ñ•½Éä($$$%ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Ìˆ°ì¡¥±‘É•¸èÁÉ½‘ÕÐ¹¹…µ”ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÐµ‰½ÑÑ½´ˆ°($$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÑÉ½¹œˆ°ì¡¥±‘É•¸èÁÉ½‘ÕÐ¹ÁÉ¥”ô¤°µ½‘”€ôôô€‰Œˆ€ü€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl($$$$$%ÍÑ…ÑÕÍ1…‰•°°($$$$$$ˆƒ
+Ü€ˆ°($$$$$%ÁÉ½‘ÕÐ¹¡•­•($$$$%tô¤€è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰Y¥•Ü™¥¹ƒŠ\ˆô¥t($$$%ô¤($$%t($%ô¥t(%ô¤ì)ô)™Õ¹Ñ¥½¸½½Ñ•È¡ìµ½‘”ô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰™½½Ñ•Èˆ°ì($%±…ÍÍ9…µ”èÍ¥Ñ”µ™½½Ñ•È™½½Ñ•È´‘íµ½‘•õ€°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰‰É…¹µµ…É¬ˆ°($$$%¡¥±‘É•¸è€‰ˆ($$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÑÉ½¹œˆ°ì¡¥±‘É•¸è€‰	ÕäÑ±…Ìˆô¥tô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰%¹‘•Á•¹‘•¹ÐÁÉ½‘ÕÐ‘¥Í½Ù•ÉäÕ¥‘”¸9½Ð…™™¥±¥…Ñ•Ý¥Ñ ±±¡¥¹…	Õä½È…¹ä™•…ÑÕÉ•‰É…¹¸AÉ½‘ÕÐ‘•Ñ…¥±Ì…¹…Ù…¥±…‰¥±¥Ñäµ…ä¡…¹”¸ˆô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰½¹•ÁÐÁÉ•Ù¥•Üƒ
+Ü€ÈÀÈØˆô¤($%t(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÐµŒ½…ÉÑ¥±•Ì¹ÑÌ)Ù…È•¹±¥Í¡ÉÑ¥±•Ì€ôl(%ì($%Ñ¥Ñ±”è€‰!½ÜÑ¼UÍ”…¸±±¡¥¹…	ÕäMÁÉ•…‘Í¡••Ð]¥Ñ¡½ÕÐ•ÑÑ¥¹œ1½ÍÐˆ°($%Í±Õœè€‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($%‘•ÍÉ¥ÁÑ¥½¸è€‰ÁÉ…Ñ¥…°ÍåÍÑ•´™½ÈÑÕÉ¹¥¹œ„±…É”±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¥¹Ñ¼„Ù•É¥™¥•°½µÁ…É…‰±”Í¡½ÉÑ±¥ÍÐ‰•™½É”å½ÔÍÁ•¹µ½¹•ä¸ˆ°($%ÁÉ¥µ…Éå-•åÝ½Éè€‰±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ðˆ°($%Í•½¹‘…Éå-•åÝ½É‘Ìèl($$$‰	ÕäÍÁÉ•…‘Í¡••Ðˆ°($$$‰±±¡¥¹…	Õä™¥¹‘Ìˆ°($$$‰¡½ÜÑ¼ÕÍ”±±¡¥¹…	Õäˆ°($$$‰±±¡¥¹…	ÕäÁÉ½‘ÕÐ±¥¹­Ìˆ($%t°($%É•…‘Q¥µ”è€ˆäµ¥¸É•…ˆ°($%ÕÁ‘…Ñ•è€‰ÕÕÍÐ€ÄÈ°€ÈÀÈØˆ°($%¥¹ÑÉ¼èl‰±…É”ÁÉ½‘ÕÐÍÁÉ•…‘Í¡••Ð™••±ÌÕÍ•™Õ°‰•…ÕÍ”¥ÐÁÕÑÌ¡Õ¹‘É•‘Ì½ÈÑ¡½ÕÍ…¹‘Ì½˜™¥¹‘Ì¥¸½¹”Á±…”¸Q¡”ÁÉ½‰±•´¥ÌÑ¡…ÐÅÕ…¹Ñ¥Ñä…¸É•…Ñ”™…±Í”½¹™¥‘•¹”¸É½ÜÝ¥Ñ „Á¡½Ñ¼°„ÁÉ¥”…¹„±¥¹¬¥Ì¹½ÐÑ¡”Í…µ”Ñ¡¥¹œ…Ì„¡•­•ÁÉ½‘ÕÐ¸1¥ÍÑ¥¹Ì¡…¹”°Ù…É¥…¹ÑÌ…ÉÉä‘¥™™•É•¹ÐÁÉ¥•Ì°Í•±±•ÉÌÉ•Á±…”Á¡½Ñ½Ì…¹Í½µ”±¥¹­Ì•Ù•¹ÑÕ…±±äÍÑ½ÀÝ½É­¥¹œ¸Q¡”É¥¡ÐÝ…äÑ¼ÕÍ”…¸±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¥ÌÑ¡•É•™½É”¹½ÐÑ¼ÍÉ½±°Õ¹Ñ¥°Í½µ•Ñ¡¥¹œ±½½­Ì•á¥Ñ¥¹œ¸%Ð¥ÌÑ¼ÑÉ•…ÐÑ¡”Í¡••Ð…Ì„‘¥Í½Ù•Éä¥¹‘•à°Ñ¡•¸Ù•É¥™ä•… …¹‘¥‘…Ñ”‰•™½É”½É‘•É¥¹œ¸ˆ°€‰Q¡…Ð‘¥ÍÑ¥¹Ñ¥½¸µ…ÑÑ•ÉÌ‰•…ÕÍ”±±¡¥¹…	Õä‘•ÍÉ¥‰•Ì¥ÑÌÍ•ÉÙ¥”…Ì„É½ÍÌµ‰½É‘•ÈÁÕÉ¡…Í¥¹œ…•¹ä½Ù•É¥¹œÁÉ½ÕÉ•µ•¹Ð°½É‘•È™Õ±™¥±µ•¹Ð°ÅÕ…±¥Ñä¥¹ÍÁ•Ñ¥½¸°¥¹Ñ•É¹…Ñ¥½¹…°±½¥ÍÑ¥Ì…¹…™Ñ•ÈµÍ…±•ÌÍ•ÉÙ¥”¸%¸½Ñ¡•ÈÝ½É‘Ì°Ñ¡”Á±…Ñ™½É´Í¥ÑÌ‰•ÑÝ••¸„Í¡½ÁÁ•È…¹Í•±±•ÉÌ¥¸¡¥¹„¸ÍÁÉ•…‘Í¡••Ð…¸¡•±Àå½Ô‘¥Í½Ù•È…¸¥Ñ•´°‰ÕÐÑ¡”±¥Ù”±¥ÍÑ¥¹œ°½É‘•ÈÉ•½É°Ý…É•¡½ÕÍ”Á¡½Ñ½Ì…¹ÕÉÉ•¹ÐÁ…É•°ÅÕ½Ñ”…É”Ñ¡”É•½É‘ÌÑ¡…Ðµ…ÑÑ•È…Ð±…Ñ•ÈÍÑ…•Ì¸Q¡¥ÌÕ¥‘”¥Ù•Ìå½Ô„É•Á•…Ñ…‰±”Ý…äÑ¼µ½Ù”™É½´‘¥Í½Ù•ÉäÑ¼„Í•¹Í¥‰±”Í¡½ÉÑ±¥ÍÐÝ¥Ñ¡½ÕÐ½¹™ÕÍ¥¹œ…¸½±ÍÁÉ•…‘Í¡••Ð•¹ÑÉäÝ¥Ñ „±¥Ù”½™™•È¸‰t°($%Í•Ñ¥½¹Ìèl($$%ì($$$%¡•…‘¥¹œè€‰MÑ…ÉÐÝ¥Ñ Ñ¡”Í•…É ¥¹Ñ•¹Ð°¹½ÐÑ¡”‰¥•ÍÐ…Ñ•½Éäˆ°($$$%Á…É…É…Á¡Ìèl‰	•™½É”½Á•¹¥¹œÑ•¸Ñ…‰Ì°ÝÉ¥Ñ”‘½Ý¸Ý¡…Ðå½Ô…É”…ÑÕ…±±äÑÉå¥¹œÑ¼™¥¹¸ÕÍ•™Õ°Í•…É ‰É¥•˜¥¹±Õ‘•ÌÑ¡”ÁÉ½‘ÕÐÑåÁ”°…•ÁÑ…‰±”ÁÉ¥”É…¹”°ÁÉ•™•ÉÉ•½±½ÕÈ°É•ÅÕ¥É•Í¥é”½Èµ•…ÍÕÉ•µ•¹ÑÌ°…¹Ñ¡”‘•Ñ…¥±ÌÑ¡…ÐÝ½Õ±µ…­”å½ÔÉ•©•ÐÑ¡”¥Ñ•´¸½È„©…­•Ð°Ñ¡…Ðµ¥¡Ðµ•…¸„ÍÁ•¥™¥Œ¡•ÍÐÝ¥‘Ñ °„é¥À±½ÍÕÉ”…¹„Ñ½Ñ…°¥Ñ•´‰Õ‘•Ð‰•±½Ü„¡½Í•¸…µ½Õ¹Ð¸½ÈÍ¡½•Ì°¥Ðµ…äµ•…¸¥¹Í½±”±•¹Ñ °½±½ÕÈ…¹ÕÁÁ•Èµ…Ñ•É¥…°¸Q¡¥Ì‰É¥•˜ÁÉ•Ù•¹ÑÌ„½µµ½¸ÍÁÉ•…‘Í¡••ÐÁÉ½‰±•´è½µÁ…É¥¹œÁÉ½‘ÕÑÌÑ¡…Ð½¹±ä±½½¬Í¥µ¥±…È¥¸Ñ¡Õµ‰¹…¥°™½É´‰ÕÐ…É”¹½ÐÍÕ‰ÍÑ¥ÑÕÑ•Ì™½È½¹”…¹½Ñ¡•È¸ˆ°€‰UÍ”…Ñ•½ÉäÁ…•ÌÑ¼É•‘Õ”Ñ¡”™¥•±°Ñ¡•¸ÕÍ”‘•ÍÉ¥ÁÑ¥Ù”ÅÕ•É¥•ÌÉ…Ñ¡•ÈÑ¡…¸½¹±ä‰É…¹¹…µ•Ì¸Q•ÉµÌÍÕ …ÌƒŠq¡•…ÙåÝ•¥¡Ðé¥À¡½½‘¥”³ŠtƒŠqÝ¥‘”µ±•œÑÉ½ÕÍ•ÉÏŠt½ÈƒŠq±•…Ñ¡•ÈÉ½ÍÍ‰½‘ä‰…ŸŠt‘•ÍÉ¥‰”Ñ¡”½¹ÍÑÉÕÑ¥½¸å½ÔÝ…¹Ð…¹…¸ÍÕÉ™…”…±Ñ•É¹…Ñ¥Ù•Ì¸Q¡”ÍÁÉ•…‘Í¡••ÐÍ¡½Õ±Í¡½ÉÑ•¸É•Í•…É °¹½Ð‘•¥‘”Ñ…ÍÑ”™½Èå½Ô¸%˜•Ù•ÉäÉ•ÍÕ±Ð¥Ì©Õ‘•……¥¹ÍÐÑ¡”Í…µ”ÝÉ¥ÑÑ•¸‰É¥•˜°„±½Ý•ÈµÁÉ¥•¥Ñ•´…¹¹½ÐÝ¥¸µ•É•±ä‰•…ÕÍ”¥Ð…ÁÁ•…É•™¥ÉÍÐ¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰U¹‘•ÉÍÑ…¹Ý¡…Ð„ÍÁÉ•…‘Í¡••ÐÉ½Ü…¸…¹…¹¹½ÐÁÉ½Ù”ˆ°($$$%Á…É…É…Á¡Ìèl‰½½É½Ü…¸Ñ•±°å½ÔÑ¡…Ð„ÁÉ½‘ÕÐÝ…Ì™½Õ¹…Ð„Á…ÉÑ¥Õ±…ÈUI0°Ý…ÌÁ±…•¥¸„…Ñ•½Éä…¹¡…„‘¥ÍÁ±…å•ÁÉ¥”Ý¡•¸Ñ¡”¥¹‘•àÝ…Ì¡•­•¸%Ðµ…ä…±Í¼Í¡½Ü„ÁÉ•Ù¥•Ü¥µ…”¸%Ð¹½Éµ…±±ä…¹¹½ÐÁÉ½Ù”ÕÉÉ•¹ÐÍÑ½¬°Ñ¡”ÁÉ¥”½˜•Ù•Éä½±½ÕÈ½ÈÍ¥é”°µ…Ñ•É¥…°ÅÕ…±¥Ñä°Í•±±•ÈÁ•É™½Éµ…¹”°™¥¹…°Á…­•Ý•¥¡Ð½È¥¹Ñ•É¹…Ñ¥½¹…°Í¡¥ÁÁ¥¹œ½ÍÐ¸Q¡½Í”™…ÑÌ•¥Ñ¡•È¡…¹”½Ù•ÈÑ¥µ”½È‰•½µ”…Ù…¥±…‰±”½¹±ä…™Ñ•È…¸½É‘•ÈÉ•…¡•Ì±…Ñ•ÈÍÑ…•Ì¸ˆ°€‰QÉ•…ÐÑ¡”É½Ü…Ì„Á½¥¹Ñ•È°¹½Ð„Õ…É…¹Ñ•”¸=Á•¸Ñ¡”•á…ÐÁÉ½‘ÕÐÁ…”…¹½µÁ…É”Ñ¡”ÁÉ½‘ÕÐÑ¥Ñ±”°Í•±•Ñ•Ù…É¥…¹Ð°Í•±±•È¥¹™½Éµ…Ñ¥½¸°‘½µ•ÍÑ¥Œ‘•±¥Ù•ÉäÑ•ÉµÌ…¹±¥Ù”ÁÉ¥”Ý¥Ñ Ñ¡”ÍÁÉ•…‘Í¡••Ð•¹ÑÉä¸%˜Ñ¡”±¥Ù”Á…”…¹Ñ¡”É½Ü‘¥Í…É•”°Ñ¡”±¥Ù”Á…”Ñ…­•ÌÁÉ¥½É¥Ñä¸%˜Ñ¡”±¥¹¬½Á•¹Ì„‘¥™™•É•¹ÐÁÉ½‘ÕÐ°„•¹•É¥ŒÍ•…É Á…”½È…¸Õ¹…Ù…¥±…‰±”±¥ÍÑ¥¹œ°É•µ½Ù”¥Ð™É½´Ñ¡”Í¡½ÉÑ±¥ÍÐ¸‰É½­•¸Í¡½ÉÑÕÐÍ¡½Õ±¹•Ù•È‰•½µ”„É•…Í½¸Ñ¼¥µÁÉ½Ù¥Í”Ý¥Ñ …¸Õ¹­¹½Ý¸ÍÕ‰ÍÑ¥ÑÕÑ”¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰	Õ¥±„Í¡½ÉÑ±¥ÍÐÑ¡…Ð…¸‰”½µÁ…É•™…¥É±äˆ°($$$%Á…É…É…Á¡Ìèl‰1¥µ¥ÐÑ¡”™¥ÉÍÐÍ¡½ÉÑ±¥ÍÐÑ¼Ñ¡É•”Ñ¼™¥Ù”…¹‘¥‘…Ñ•ÌÁ•ÈÁÉ½‘ÕÐÑåÁ”¸5½É”¡½¥•ÌÉ…É•±ä¥µÁÉ½Ù”Ñ¡”‘•¥Í¥½¸½¹”Ñ¡”¥µÁ½ÉÑ…¹Ð…ÑÑÉ¥‰ÕÑ•Ì…É”Ù¥Í¥‰±”¸I•½ÉÑ¡”±¥Ù”¥Ñ•´ÁÉ¥”°Ù…É¥…¹Ð°Í•±±•È°…Ù…¥±…‰±”µ•…ÍÕÉ•µ•¹ÑÌ°‘½µ•ÍÑ¥ŒÍ¡¥ÁÁ¥¹œ¡…É”¥˜Í¡½Ý¸°…¹Ñ¡”‘…Ñ”¡•­•¸‘„¹½Ñ•Ì½±Õµ¸™½ÈÕ¹±•…È‘•Ñ…¥±Ì¸Q¡¥ÌÍµ…±°½µÁ…É¥Í½¸Ñ…‰±”¥Ìµ½É”ÕÍ•™Õ°Ñ¡…¸Í…Ù¥¹œÑÝ•¹ÑäÍÉ••¹Í¡½ÑÌ‰•…ÕÍ”¥Ð™½É•Ì•… …¹‘¥‘…Ñ”¥¹Ñ¼Ñ¡”Í…µ”ÍÑÉÕÑÕÉ”¸ˆ°€‰¼¹½ÐÉ…¹¬‰ä¥Ñ•´ÁÉ¥”…±½¹”¸Í±¥¡Ñ±äµ½É”•áÁ•¹Í¥Ù”±¥ÍÑ¥¹œÝ¥Ñ ±•…Èµ•…ÍÕÉ•µ•¹ÑÌ…¹½¹Í¥ÍÑ•¹ÐÁ¡½Ñ½Ìµ…ä‰”•…Í¥•ÈÑ¼•Ù…±Õ…Ñ”Ñ¡…¸„¡•…Á•È±¥ÍÑ¥¹œÝ¥Ñ Ù…Õ”½ÁÑ¥½¹Ì¸½¹Ù•ÉÍ•±ä°Á½±¥Í¡•¥µ…•Ì‘¼¹½ÐÁÉ½Ù”ÅÕ…±¥Ñä¸Q¡”½…°¥Ì¹½ÐÑ¼…Ý…É„Ý¥¹¹•È¥µµ•‘¥…Ñ•±äì¥Ð¥ÌÑ¼¥‘•¹Ñ¥™äÝ¡¥ …¹‘¥‘…Ñ”ÍÕÁÁ±¥•Ì•¹½Õ ¥¹™½Éµ…Ñ¥½¸Ñ¼©ÕÍÑ¥™ä…¸½É‘•È…¹Ý¡¥ ÅÕ•ÍÑ¥½¹ÌµÕÍÐ‰”…¹ÍÝ•É•±…Ñ•ÈÑ¡É½Õ Ñ¡”ÁÕÉ¡…Í¥¹œ½ÈÝ…É•¡½ÕÍ”ÁÉ½•ÍÌ¸‰t°($$$%¡•­±¥ÍÐèl($$$$$‰á…ÐÑ¥Ñ±”…¹±¥Ù”UI0ˆ°($$$$$‰¡½Í•¸½±½ÕÈ°Í¥é”…¹Ù…É¥…¹ÐÁÉ¥”ˆ°($$$$$‰M•±±•È…¹‘½µ•ÍÑ¥ŒÍ¡¥ÁÁ¥¹œ¥¹™½Éµ…Ñ¥½¸ˆ°($$$$$‰5•…ÍÕÉ•µ•¹ÑÌ½ÈÍ¥é”¡…ÉÐˆ°($$$$$‰EÕ•ÍÑ¥½¹ÌÑ¼Ù•É¥™ä¥¸Ý…É•¡½ÕÍ”Á¡½Ñ½Ìˆ($$$%t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰I•…ÁÉ¥•Ì…ÌÁÉ•Ù¥•ÝÌ°¹½Ð™¥¹…°Ñ½Ñ…±Ìˆ°($$$%Á…É…É…Á¡Ìèl‰MÁÉ•…‘Í¡••ÐÁÉ¥•Ì…É”ÕÍ•™Õ°™½ÈÉ½Õ ½µÁ…É¥Í½¸°‰ÕÐÑ¡•ä…É”É…É•±äÑ¡”½µÁ±•Ñ”±…¹‘•½ÍÐ¸±¥ÍÑ¥¹œ…¸ÕÍ”„±½Ü‘•™…Õ±ÐÁÉ¥”Ý¡¥±”„±…É•ÈÍ¥é”°‘¥™™•É•¹Ðµ…Ñ•É¥…°½ÈÁÉ•µ¥Õ´Ù•ÉÍ¥½¸½ÍÑÌµ½É”¸ÕÉÉ•¹ä½¹Ù•ÉÍ¥½¸…±Í¼¡…¹•ÌÑ¡”‘¥ÍÁ±…å••ÅÕ¥Ù…±•¹Ð¸™Ñ•ÈÑ¡”¥Ñ•´ÁÕÉ¡…Í”½µ”½Ñ¡•ÈÁ½ÍÍ¥‰±”½ÍÐ±…å•ÉÌè‘½µ•ÍÑ¥ŒÍ¡¥ÁÁ¥¹œÑ¼Ñ¡”Ý…É•¡½ÕÍ”°½ÁÑ¥½¹…°Í•ÉÙ¥•Ì°Á…­¥¹œ¡½¥•Ì°¥¹Ñ•É¹…Ñ¥½¹…°ÑÉ…¹ÍÁ½ÉÐ…¹‘•ÍÑ¥¹…Ñ¥½¸µ½Õ¹ÑÉäÑ…á•Ì½È…ÉÉ¥•È¡…É•ÌÝ¡•É”…ÁÁ±¥…‰±”¸ˆ°€‰-••ÀÑÝ¼‰Õ‘•ÑÌ™É½´Ñ¡”ÍÑ…ÉÐ¸Q¡”™¥ÉÍÐ¥ÌÑ¡”¥Ñ•´µÍÑ…”‰Õ‘•Ðè½½‘Ì°Í•±•Ñ•Ù…É¥…¹ÑÌ…¹…¹ä‘½µ•ÍÑ¥Œ¡…É•ÌÙ¥Í¥‰±”…Ð½É‘•ÈÑ¥µ”¸Q¡”Í•½¹¥Ì„Á…É•°É•Í•ÉÙ”™½È¥¹Ñ•É¹…Ñ¥½¹…°‘•±¥Ù•Éä…¹Á½ÍÍ¥‰±”‘•ÍÑ¥¹…Ñ¥½¸¡…É•Ì¸±±¡¥¹…	ÕäÁÉ½Ù¥‘•Ì„Í¡¥ÁÁ¥¹œ…±Õ±…Ñ½È°‰ÕÐ¥ÑÌ½Ý¸™½É´É•ÅÕ¥É•Ì‘•ÍÑ¥¹…Ñ¥½¸°ÁÉ½‘ÕÐ…Ñ•½Éä°•ÍÑ¥µ…Ñ•Ý•¥¡Ð…¹½ÁÑ¥½¹…°Á…­•‘¥µ•¹Í¥½¹Ì¸Q¡…Ð‘•Í¥¸¥Ì„É•µ¥¹‘•ÈÑ¡…Ð„Ñ¡Õµ‰¹…¥°ÁÉ¥”…¹¹½ÐÁÉ•‘¥Ð„Á…É•°Ñ½Ñ…°¸UÍ”•ÍÑ¥µ…Ñ•Ì™½ÈÁ±…¹¹¥¹œ…¹Ñ¡”±¥Ù”ÅÕ½Ñ”™½ÈÑ¡”‘•¥Í¥½¸¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰UÍ”Ý…É•¡½ÕÍ”¥¹ÍÁ•Ñ¥½¸…Ì„‘•¥Í¥½¸…Ñ”ˆ°($$$%Á…É…É…Á¡Ìèl‰±±¡¥¹…	ÕçŠeÌ½™™¥¥…°…ÁÀ‘•ÍÉ¥ÁÑ¥½¸¥¹±Õ‘•ÌÅÕ…±¥Ñä¥¹ÍÁ•Ñ¥½¸…µ½¹œ¥ÑÌÍ•ÉÙ¥•Ì¸Q¡…Ðµ…­•ÌÑ¡”Ý…É•¡½ÕÍ”ÍÑ…”µ½É”Ñ¡…¸„Ý…¥Ñ¥¹œÉ½½´¸]¡•¸Á¡½Ñ½Ì‰•½µ”…Ù…¥±…‰±”°½µÁ…É”Ñ¡”É••¥Ù•¥Ñ•´Ý¥Ñ Ñ¡”•á…ÐÙ…É¥…¹Ð¥¸å½ÕÈ½É‘•ÈÉ•½É¸¡•¬½±½ÕÈ°Í¥é”±…‰•°°Ù¥Í¥‰±”Í¡…Á”°™É½¹Ð…¹‰…¬°±½ÍÕÉ•Ì°ÍÑ¥Ñ¡¥¹œ°ÁÉ¥¹ÐÁ±…•µ•¹Ð…¹…¹ä¥¹±Õ‘•Á…ÉÑÌ¸%˜µ•…ÍÕÉ•µ•¹ÑÌµ…ÑÑ•È°½µÁ…É”„ÉÕ±•ÈÁ¡½Ñ¼Ý¥Ñ „Ý•±°µ™¥ÑÑ¥¹œ¥Ñ•´å½Ô…±É•…‘ä½Ý¸É…Ñ¡•ÈÑ¡…¸É•±å¥¹œ½¹±ä½¸Ñ¡”ÁÉ¥¹Ñ•Í¥é”¸ˆ°€‰EÁ¡½Ñ½ÌÉ•‘Õ”Õ¹•ÉÑ…¥¹Ñä…‰½ÕÐÙ¥Í¥‰±”™•…ÑÕÉ•Ì°‰ÕÐÑ¡•ä‘¼¹½ÐÁÉ½Ù”½µ™½ÉÐ°™…‰É¥Œ½µÁ½Í¥Ñ¥½¸°‘ÕÉ…‰¥±¥Ñä°¥¹Ñ•É¹…°½¹ÍÑÉÕÑ¥½¸½È…ÕÑ¡•¹Ñ¥¥Ñä¸1¥¡Ñ¥¹œ…¹…µ•É„…¹±”…¸…±Í¼¡…¹”¡½Ü½±½ÕÈ…¹ÁÉ½Á½ÉÑ¥½¹Ì…ÁÁ•…È¸•¥‘”Ý¡…Ð…¸‰”…•ÁÑ•°Ý¡…Ð¹••‘Ì…¹½Ñ¡•ÈÁ¡½Ñ¼°…¹Ý¡…Ð¥Ì„É•…Í½¸Ñ¼½¹Ñ…ÐÍÕÁÁ½ÉÐ‰•™½É”¥¹Ñ•É¹…Ñ¥½¹…°Í¡¥ÁÁ¥¹œ¸=¹”„Á…É•°±•…Ù•ÌÑ¡”Ý…É•¡½ÕÍ”°½ÉÉ•Ñ¥¹œ„Í•±±•ÈµÍ¥‘”ÁÉ½‰±•´¥Ì¹½Éµ…±±ä¡…É‘•È…¹µ½É”•áÁ•¹Í¥Ù”¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰I•©•Ð½µµ½¸ÍÁÉ•…‘Í¡••ÐÍ¡½ÉÑÕÑÌˆ°($$$%Á…É…É…Á¡Ìèl‰Q¡”™¥ÉÍÐÍ¡½ÉÑÕÐ¥Ì…ÍÍÕµ¥¹œ„¡¥ µ…Ñ Í½É”°ƒŠqÙ•É¥™¥•“Št±…‰•°½ÈÁ½ÁÕ±…ÈÁ½Í¥Ñ¥½¸µ•…¹ÌÑ¡”ÁÉ½‘ÕÐ¡…Ì‰••¸Á¡åÍ¥…±±äÑ•ÍÑ•‰äÑ¡”¥¹‘•à½Ý¹•È¸U¹±•ÍÌÑ¡”µ•Ñ¡½‘½±½ä¥Ì±•…É±ä•áÁ±…¥¹•°Ñ¡½Í”±…‰•±ÌÍ¡½Õ±‰”ÑÉ•…Ñ•…ÌÕÉ…Ñ¥½¸Í¥¹…±Ì½¹±ä¸Q¡”Í•½¹Í¡½ÉÑÕÐ¥Ì½É‘•É¥¹œÍ•Ù•É…°¹•…Èµ¥‘•¹Ñ¥…°¥Ñ•µÌ‰•…ÕÍ”•… ±½½­Ì¥¹•áÁ•¹Í¥Ù”¸½¹Í½±¥‘…Ñ¥½¸…¸É•‘Õ”É•Á•…Ñ•™¥á•½ÍÑÌ°‰ÕÐ•áÑÉ„Ý•¥¡Ð…¹Ù½±Õµ”ÍÑ¥±°µ…ÑÑ•È°…¹½¹”‰Õ±­ä¥Ñ•´…¸¡…¹”…Ù…¥±…‰±”Í¡¥ÁÁ¥¹œ½ÁÑ¥½¹Ì¸ˆ°€‰Q¡”Ñ¡¥ÉÍ¡½ÉÑÕÐ¥Ì½Áå¥¹œÕÍÑ½µ•È½µµ•¹ÑÌÝ¥Ñ¡½ÕÐ½¹Ñ•áÐ¸É•Ù¥•Üµ…ä‘•ÍÉ¥‰”„‘¥™™•É•¹Ð‰…Ñ °Í¥é”°‘•ÍÑ¥¹…Ñ¥½¸°Í¡¥ÁÁ¥¹œ±¥¹”½ÈÑ¥µ”Á•É¥½¸%Ð…¸É•Ù•…°ÅÕ•ÍÑ¥½¹ÌÝ½ÉÑ …Í­¥¹œ°‰ÕÐ¥Ð…¹¹½ÐÉ•Á±…”„¡•¬½˜å½ÕÈ½Ý¸±¥ÍÑ¥¹œ…¹Á…É•°¸¥¹…±±ä°‘¼¹½Ð…ÍÍÕµ”…¸½±ÍÉ••¹Í¡½ÐÁÉ½Ù•Ì„ÕÉÉ•¹ÐÁÉ½µ½Ñ¥½¸°½ÕÁ½¸°É½ÕÑ”½ÈÉ•ÑÕÉ¸ÉÕ±”¸Q¥µ”µÍ•¹Í¥Ñ¥Ù”±…¥µÌÍ¡½Õ±…±Ý…åÌ‰”Ù•É¥™¥•¥¹Í¥‘”Ñ¡”ÕÉÉ•¹ÐÁ±…Ñ™½É´¥¹Ñ•É™…”‰•™½É”Á…åµ•¹Ð¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰½±±½Ü½¹”É•Á•…Ñ…‰±”Ý½É­™±½Üˆ°($$$%Á…É…É…Á¡Ìèl‰‘•Á•¹‘…‰±”Ý½É­™±½Ü¡…Ì™¥Ù”…Ñ•Ì¸¥Í½Ù•ÈÁÉ½‘ÕÑÌÑ¡É½Õ Ñ¡”ÍÁÉ•…‘Í¡••Ð¸Y•É¥™äÑ¡”±¥Ù”±¥ÍÑ¥¹œ…¹¡½Í•¸Ù…É¥…¹Ð¸I•½É„Íµ…±°Í¡½ÉÑ±¥ÍÐÕÍ¥¹œ½¹Í¥ÍÑ•¹Ð™¥•±‘Ì¸%¹ÍÁ•ÐÑ¡”É••¥Ù•¥Ñ•´Ý¡¥±”¥Ð¥ÌÍÑ¥±°¥¸Ñ¡”Ý…É•¡½ÕÍ”¸Q¡•¸½µÁ…É”Ñ¡”ÕÉÉ•¹ÐÁ…É•°½ÁÑ¥½¹ÌÕÍ¥¹œÉ•…°É•½É‘•Ý•¥¡Ð…¹‘¥µ•¹Í¥½¹Ì¸Ð•Ù•Éä…Ñ”°É•µ½Ù”…¹‘¥‘…Ñ•ÌÑ¡…Ð‘¼¹½ÐÍÕÁÁ±ä•¹½Õ ¥¹™½Éµ…Ñ¥½¸¥¹ÍÑ•…½˜…ÉÉå¥¹œÕ¹•ÉÑ…¥¹Ñä™½ÉÝ…É¸ˆ°€‰Q¡¥Ìµ•Ñ¡½µ…ä™••°Í±½Ý•ÈÑ¡…¸±¥­¥¹œÑ¡”™¥ÉÍÐ…ÑÑÉ…Ñ¥Ù”…É°‰ÕÐ¥ÐÕÍÕ…±±äÍ…Ù•ÌÑ¥µ”‰•…ÕÍ”•… ‘•¥Í¥½¸¡…Ì„ÁÕÉÁ½Í”¸%Ð…±Í¼ÁÉ½‘Õ•Ì‰•ÑÑ•ÈÍ•…É ‰•¡…Ù¥½ÕÈèå½ÔÍÑ½À‰É½ÝÍ¥¹œ•¹•É¥ŒƒŠq‰•ÍÐ™¥¹‘ÏŠtÁ…•Ì…¹ÍÑ…ÉÐ±½½­¥¹œ™½ÈÍÁ•¥™¥Œ½¹ÍÑÉÕÑ¥½¸°µ•…ÍÕÉ•µ•¹Ð°E…¹Í¡¥ÁÁ¥¹œ…¹ÍÝ•ÉÌ¸Q¡…Ð¥Ì•á…Ñ±ä¡½Ü„ÍÁÉ•…‘Í¡••Ð‰•½µ•Ì„ÕÍ•™Õ°Í¡½ÁÁ¥¹œÑ½½°É…Ñ¡•ÈÑ¡…¸…¸•¹‘±•ÍÌ™••¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰¥¹…°ÁÉ”µ½É‘•È¡•­±¥ÍÐˆ°($$$%Á…É…É…Á¡Ìèl‰	•™½É”Á±…¥¹œ…¸½É‘•È°½¹™¥É´Ñ¡…ÐÑ¡”UI0ÍÑ¥±°½Á•¹ÌÑ¡”¥¹Ñ•¹‘•±¥ÍÑ¥¹œ°Ñ¡”Í•±•Ñ•Ù…É¥…¹Ð¥Ì½ÉÉ•Ð°Ñ¡”±¥Ù”ÁÉ¥”¥Ì…•ÁÑ…‰±”…¹Ñ¡”Í¥é”‘•¥Í¥½¸¥Ì‰…Í•½¸µ•…ÍÕÉ•µ•¹ÑÌÝ¡•É”…Ù…¥±…‰±”¸M…Ù”Ñ¡”ÁÉ½‘ÕÐÉ•½É…¹¹½Ñ”Ñ¡”‘…Ñ”¡•­•¸•¥‘”Ý¡¥ Ù¥Í¥‰±”‘•Ñ…¥±ÌµÕÍÐ‰”½¹™¥Éµ•¥¸Ý…É•¡½ÕÍ”Á¡½Ñ½Ì¸¥¹…±±ä°­••À•¹½Õ ‰Õ‘•Ð½ÕÑÍ¥‘”Ñ¡”¥Ñ•´ÁÉ¥”™½ÈÁ…É•°½ÍÑÌì‘¼¹½ÐÍÁ•¹Ñ¡”•¹Ñ¥É”‰Õ‘•Ð…ÐÑ¡”ÁÉ½‘ÕÐÍÑ…”¸ˆ°€‰Q¡”‰•ÍÐ±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¥Ì¹½Ð¹••ÍÍ…É¥±äÑ¡”½¹”Ý¥Ñ Ñ¡”±…É•ÍÐ¹Õµ‰•È¥¸¥ÑÌ¡•…‘±¥¹”¸%Ð¥ÌÑ¡”½¹”Ñ¡…Ð¡•±ÁÌå½ÔÉ•… „Íµ…±±•È°±•…É•È…¹ÕÉÉ•¹Ñ±äÙ•É¥™¥…‰±”Í•Ð½˜¡½¥•Ì¸UÍ”Ñ¡”‘…Ñ…‰…Í”™½È‘¥Í½Ù•Éä°Ñ¡”±¥Ù”±¥ÍÑ¥¹œ™½ÈÑ¡”½É‘•È°Ñ¡”Ý…É•¡½ÕÍ”É•½É™½È¥¹ÍÁ•Ñ¥½¸…¹Ñ¡”±¥Ù”Í¡¥ÁÁ¥¹œÅÕ½Ñ”™½ÈÁ…É•°Á±…¹¹¥¹œ¸… Í½ÕÉ”…¹ÍÝ•ÉÌ„‘¥™™•É•¹ÐÅÕ•ÍÑ¥½¸°…¹ÑÉ•…Ñ¥¹œÑ¡•´Ñ¡…ÐÝ…ä¥ÌÑ¡”Í¥µÁ±•ÍÐÁÉ½Ñ•Ñ¥½¸……¥¹ÍÐ½ÕÑ‘…Ñ•±¥¹­Ì…¹Õ¹É•…±¥ÍÑ¥ŒÑ½Ñ…±Ì¸‰t($$%ô($%t°($%Í½ÕÉ•9½Ñ”è€‰I•Í•…É ‰…Í¥Ìè±±¡¥¹…	Õä½™™¥¥…°Ý•‰Í¥Ñ”…¹Í¡¥ÁÁ¥¹œ…±Õ±…Ñ½È°Á±ÕÌÑ¡”½™™¥¥…°±±¡¥¹…	Õä…ÁÀ‘•ÍÉ¥ÁÑ¥½¸½¸½½±”A±…äì¡•­•ÕÕÍÐ€ÄÈ°€ÈÀÈØ¸Y…É¥…‰±”ÁÉ¥•Ì°É½ÕÑ•Ì°ÁÉ½µ½Ñ¥½¹Ì…¹Á½±¥¥•ÌÍ¡½Õ±‰”É•¡•­•¥¸Ñ¡”±¥Ù”Á±…Ñ™½É´¥¹Ñ•É™…”¸ˆ(%ô°(%ì($%Ñ¥Ñ±”è€‰±±¡¥¹…	ÕäEA¡½Ñ½Ìè¥Ù”µ5¥¹ÕÑ”%¹ÍÁ•Ñ¥½¸I½ÕÑ¥¹”ˆ°($%Í±Õœè€‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($%‘•ÍÉ¥ÁÑ¥½¸è€‰ÁÉ…Ñ¥…°±±¡¥¹…	ÕäEÁ¡½Ñ¼¡•­±¥ÍÐ™½È½¹™¥Éµ¥¹œÑ¡”¥Ñ•´°¡•­¥¹œµ•…ÍÕÉ•µ•¹ÑÌ…¹ÍÁ½ÑÑ¥¹œÙ¥Í¥‰±”ÁÉ½‰±•µÌ‰•™½É”Á…É•°ÍÕ‰µ¥ÍÍ¥½¸¸ˆ°($%ÁÉ¥µ…Éå-•åÝ½Éè€‰±±¡¥¹…	ÕäEÁ¡½Ñ½Ìˆ°($%Í•½¹‘…Éå-•åÝ½É‘Ìèl($$$‰	ÕäEˆ°($$$‰¡½ÜÑ¼¡•¬±±¡¥¹…	ÕäEÁ¡½Ñ½Ìˆ°($$$‰Ý…É•¡½ÕÍ”¥¹ÍÁ•Ñ¥½¸Á¡½Ñ½Ìˆ°($$$‰±±¡¥¹…	ÕäÅÕ…±¥Ñä¥¹ÍÁ•Ñ¥½¸ˆ($%t°($%É•…‘Q¥µ”è€ˆÄÀµ¥¸É•…ˆ°($%ÕÁ‘…Ñ•è€‰ÕÕÍÐ€ÄÈ°€ÈÀÈØˆ°($%¥¹ÑÉ¼èl‰EÕ…±¥Ñäµ½¹ÑÉ½°Á¡½Ñ½Ì…É”µ½ÍÐÕÍ•™Õ°Ý¡•¸Ñ¡•ä±•…Ñ¼„‘•¥Í¥½¸¸Q¡•ä…É”¹½Ð‘•½É…Ñ¥½¸°…¹Ñ¡•ä…É”¹½Ð„•ÉÑ¥™¥…Ñ”Ñ¡…Ð…¸¥Ñ•´¥ÌÁ•É™•Ð¸±±¡¥¹…	ÕäÁÕ‰±¥±ä‘•ÍÉ¥‰•ÌÅÕ…±¥Ñä¥¹ÍÁ•Ñ¥½¸…ÌÁ…ÉÐ½˜¥ÑÌÁÕÉ¡…Í¥¹œµ…•¹äÍ•ÉÙ¥”°…±½¹Í¥‘”ÁÉ½ÕÉ•µ•¹Ð°½É‘•È™Õ±™¥±µ•¹Ð°¥¹Ñ•É¹…Ñ¥½¹…°±½¥ÍÑ¥Ì…¹…™Ñ•ÈµÍ…±•ÌÍÕÁÁ½ÉÐ¸Q¡”ÁÉ…Ñ¥…°ÁÕÉÁ½Í”½˜Ñ¡”Ý…É•¡½ÕÍ”Á¡½Ñ½Ì¥ÌÑ¼±•Ðå½Ô½µÁ…É”Ý¡…Ð…ÉÉ¥Ù•Ý¥Ñ Ý¡…Ðå½Ô½É‘•É•‰•™½É”å½Ô½µµ¥Ð¥ÐÑ¼…¸¥¹Ñ•É¹…Ñ¥½¹…°Á…É•°¸ˆ°€‰¥Ù”™½ÕÍ•µ¥¹ÕÑ•Ì…É”ÕÍÕ…±±äµ½É”Ù…±Õ…‰±”Ñ¡…¸ÑÝ•¹Ñäµ¥¹ÕÑ•Ì½˜É…¹‘½´é½½µ¥¹œ¸MÑ…ÉÐÝ¥Ñ ¥‘•¹Ñ¥Ñä°µ½Ù”Ñ¼Í¡…Á”°¡•¬µ•…ÍÕÉ•µ•¹ÑÌ°¥¹ÍÁ•Ð¡¥ µÉ¥Í¬‘•Ñ…¥±Ì…¹™¥¹¥Í Ý¥Ñ „±•…È½ÕÑ½µ”è…•ÁÐ°…Í¬™½È•Ù¥‘•¹”°½È½¹Ñ…ÐÍÕÁÁ½ÉÐ…‰½ÕÐ„É•ÑÕÉ¸½È•á¡…¹”¸Q¡”É½ÕÑ¥¹”‰•±½Ü¥Ì‘•Í¥¹•™½È±½Ñ¡¥¹œ°Í¡½•Ì°‰…Ì…¹•Ù•Éå‘…ä…•ÍÍ½É¥•Ì°‰ÕÐÑ¡”±½¥Œ…ÁÁ±¥•ÌÑ¼µ½ÍÐÁ¡½Ñ¼µ‰…Í•Ý…É•¡½ÕÍ”¥¹ÍÁ•Ñ¥½¹Ì¸‰t°($%Í•Ñ¥½¹Ìèl($$%ì($$$%¡•…‘¥¹œè€‰5¥¹ÕÑ”½¹”è½¹™¥É´Ñ¡…Ð¥Ð¥ÌÑ¡”É¥¡Ð¥Ñ•´ˆ°($$$%Á…É…É…Á¡Ìèl‰=Á•¸Ñ¡”½É‘•ÈÉ•½É…¹Ñ¡”±¥Ù”±¥ÍÑ¥¹œ‰•Í¥‘”Ñ¡”EÍ•Ð¸½µÁ…É”ÁÉ½‘ÕÐÑåÁ”°½±½ÕÈ°Í•±•Ñ•Í¥é”…¹Ù¥Í¥‰±”½ÁÑ¥½¸‘•Ñ…¥±Ì¸½ÉÉ•Ðµ±½½­¥¹œ¡½½‘¥”¥¸Ñ¡”ÝÉ½¹œ½±½ÕÈ½ÈÍ¥é”¥ÌÍÑ¥±°Ñ¡”ÝÉ½¹œ¥Ñ•´¸¡•¬±…‰•±Ì°Ñ…Ì°µ½‘•°½‘•Ì…¹¥¹±Õ‘•Á…ÉÑÌÝ¡•¸Ñ¡•ä…É”Ù¥Í¥‰±”°‰ÕÐ‘¼¹½Ð±•Ð½¹”µ…Ñ¡¥¹œ±…‰•°½Ù•ÉÉ¥‘”½‰Ù¥½ÕÌ‘¥™™•É•¹•Ì•±Í•Ý¡•É”¸M•±±•ÉÌÍ½µ•Ñ¥µ•ÌÕÍ”•¹•É¥ŒÁ…­…¥¹œ°Í¼Ñ¡”¥Ñ•´¥ÑÍ•±˜É•µ…¥¹ÌÑ¡”µ…¥¸•Ù¥‘•¹”¸ˆ°€‰1½½¬…ÐÑ¡”™Õ±°™É½¹Ð…¹‰…¬‰•™½É”é½½µ¥¹œ¥¹Ñ¼Íµ…±°‘•Ñ…¥±Ì¸Í¬Ý¡•Ñ¡•ÈÑ¡”Í¥±¡½Õ•ÑÑ”°Á…¹•°…ÉÉ…¹•µ•¹Ð°½±±…È°Á½­•ÑÌ°Í½±”Í¡…Á”°ÍÑÉ…ÁÌ½È¡…É‘Ý…É”µ…Ñ Ñ¡”Ù•ÉÍ¥½¸½É‘•É•¸%˜Ñ¡”Á±…Ñ™½É´Í¡½ÝÌÑ¡”Á…É•°½È½É‘•È¥‘•¹Ñ¥™¥•ÈÝ¥Ñ Ñ¡”Á¡½Ñ¼Í•Ð°µ…­”ÍÕÉ”¥Ðµ…Ñ¡•Ìå½ÕÈÉ•½É¸Q¡¥Ì™¥ÉÍÐµ¥¹ÕÑ”…Ñ¡•Ì™Õ±™¥±µ•¹Ðµ¥ÍÑ…­•ÌÑ¡…Ð‘•Ñ…¥±•ÍÑ¥Ñ¡¥¹œ¥¹ÍÁ•Ñ¥½¸…¹¹½ÐÍ½±Ù”¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰5¥¹ÕÑ”ÑÝ¼è©Õ‘”½Ù•É…±°Í¡…Á”…¹Íåµµ•ÑÉäˆ°($$$%Á…É…É…Á¡Ìèl‰M¡…Á”ÁÉ½‰±•µÌ…É”•…Í¥•ÈÑ¼Í•”Ý¡•¸Ñ¡”¥Ñ•´¥ÌÁ¡½Ñ½É…Á¡•™±…Ð½ÈÍÅÕ…É”Ñ¼Ñ¡”…µ•É„¸½µÁ…É”Ñ¡”±•™Ð…¹É¥¡ÐÍ¥‘•Ì°Í¡½Õ±‘•È¡•¥¡Ð°Á½­•ÐÁ½Í¥Ñ¥½¸°Ñ½”‰½á•Ì°¡••°…±¥¹µ•¹Ð°‰…œ¡…¹‘±•Ì…¹Ñ¡”Ý…äÁ…¹•±Ìµ••Ð¸M½µ”…ÁÁ…É•¹Ð…Íåµµ•ÑÉä½µ•Ì™É½´™½±‘Ì½È…µ•É„…¹±”°Í¼±½½¬™½ÈÑ¡”Í…µ”¥ÍÍÕ”¥¸µ½É”Ñ¡…¸½¹”Á¡½Ñ¼‰•™½É”‘•¥‘¥¹œ¥Ð¥Ì„‘•™•Ð¸ˆ°€‰½È±½Ñ¡¥¹œ°¡•¬Ý¡•Ñ¡•ÈÑ¡”…Éµ•¹Ð¥Ì±…¥¹…ÑÕÉ…±±äÉ…Ñ¡•ÈÑ¡…¸ÍÑÉ•Ñ¡•¸½ÈÍ¡½•Ì°½µÁ…É”‰½Ñ Í¡½•ÌÉ…Ñ¡•ÈÑ¡…¸¥¹ÍÁ•Ñ¥¹œ½¹±äÑ¡”±•…¹•È½¹”¸½È‰…Ì°¥¹ÍÁ•ÐÝ¡•Ñ¡•ÈÑ¡”‰…Í”Í¥ÑÌ±•Ù•°…¹Ñ¡”ÍÑÉ…ÁÌ…ÁÁ•…È•ÅÕ…°¸Ý…É•¡½ÕÍ”Á¡½Ñ¼…¹¹½ÐÑ•±°å½Ô¡½Ü…¸¥Ñ•´™••±Ì½¸Ñ¡”‰½‘ä°‰ÕÐ¥Ð…¸É•Ù•…°½‰Ù¥½ÕÌ‘¥ÍÑ½ÉÑ¥½¸°µ¥ÍÍ¥¹œ½µÁ½¹•¹ÑÌ…¹Õ¹•Ù•¸…ÍÍ•µ‰±ä¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰5¥¹ÕÑ”Ñ¡É•”èÕÍ”µ•…ÍÕÉ•µ•¹ÑÌ¥¹ÍÑ•…½˜Í¥é”±…‰•±Ìˆ°($$$%Á…É…É…Á¡Ìèl‰ÁÉ¥¹Ñ•Í¥é”¥Ì„…Ñ•½Éä°¹½Ð„‘¥µ•¹Í¥½¸¸¥™™•É•¹ÐÍ•±±•ÉÌµ…äÕÍ”‘¥™™•É•¹ÐÍ¥é”¡…ÉÑÌ°…¹Ñ¡”™¥¹¥Í¡•¥Ñ•´…¸Ù…Éä™É½´Ñ¡”±¥ÍÑ¥¹œ¸]¡•¸™¥Ðµ…ÑÑ•ÉÌ°½µÁ…É”ÉÕ±•È½ÈÑ…Á”Á¡½Ñ½ÌÝ¥Ñ µ•…ÍÕÉ•µ•¹ÑÌ™É½´…¸¥Ñ•´å½Ô…±É•…‘ä½Ý¸…¹±¥­”¸½ÈÑ½ÁÌ°ÕÍ•™Õ°‘¥µ•¹Í¥½¹Ì½™Ñ•¸¥¹±Õ‘”¡•ÍÐÝ¥‘Ñ °‰½‘ä±•¹Ñ …¹Í±••Ù”±•¹Ñ ¸½ÈÑÉ½ÕÍ•ÉÌ°Ý…¥ÍÐ°É¥Í”°Ñ¡¥ …¹¥¹Í•…´µ…äµ…ÑÑ•È¸½ÈÍ¡½•Ì°¥¹Í½±”±•¹Ñ ¥Ì½™Ñ•¸µ½É”¥¹™½Éµ…Ñ¥Ù”Ñ¡…¸Ñ¡”‰½à±…‰•°…±½¹”¸ˆ°€‰I•…Ñ¡”ÉÕ±•È…É•™Õ±±ä¸¡•¬Ý¡•É”Ñ¡”µ•…ÍÕÉ•µ•¹Ð‰•¥¹Ì°Ý¡•Ñ¡•ÈÑ¡”Ñ…Á”¥ÌÍÑÉ…¥¡Ð…¹Ý¡•Ñ¡•ÈÑ¡”…Éµ•¹Ð¥Ì™±…Ð¸Á¡½Ñ¼Ñ¡…ÐÕÑÌ½™˜Ñ¡”é•É¼Á½¥¹Ð½È‰•¹‘Ì…É½Õ¹™…‰É¥Œ‘½•Ì¹½ÐÁÉ½Ù¥‘”„É•±¥…‰±”¹Õµ‰•È¸%˜Ñ¡”É•ÅÕ¥É•‘¥µ•¹Í¥½¸¥Ìµ¥ÍÍ¥¹œ°…¸…‘‘¥Ñ¥½¹…°µ•…ÍÕÉ•µ•¹ÐÁ¡½Ñ¼…¸‰”µ½É”Ù…±Õ…‰±”Ñ¡…¸…¹½Ñ¡•È±½Í”µÕÀ½˜„±½¼½È±…‰•°¸‰t°($$$%¡•­±¥ÍÐèl($$$$$‰½µÁ…É”……¥¹ÍÐ…¸¥Ñ•´å½Ô½Ý¸ˆ°($$$$$‰¡•¬Ñ¡”ÉÕ±•ÈÍÑ…ÉÑÌ…Ðé•É¼ˆ°($$$$$‰5…­”ÍÕÉ”Ñ¡”¥Ñ•´¥Ì±…¥™±…Ðˆ°($$$$$‰±±½Ü™½È¹½Éµ…°Íµ…±°µ…¹Õ™…ÑÕÉ¥¹œÙ…É¥…Ñ¥½¸ˆ°($$$$$‰I•ÅÕ•ÍÐÑ¡”‘¥µ•¹Í¥½¸Ñ¡…Ð¡…¹•Ìå½ÕÈ‘•¥Í¥½¸ˆ($$$%t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰5¥¹ÕÑ”™½ÕÈè¥¹ÍÁ•ÐÑ¡”‘•Ñ…¥±Ìµ½ÍÐ±¥­•±äÑ¼™…¥°ˆ°($$$%Á…É…É…Á¡Ìèl‰¼¹½Ð¥Ù”•Ù•Éä‘•Ñ…¥°•ÅÕ…°…ÑÑ•¹Ñ¥½¸¸½ÕÌ½¸…É•…ÌÑ¡…Ð…ÉÉäÍÑÉ•ÍÌ½È…É”‘¥™™¥Õ±ÐÑ¼™¥àèé¥ÁÌ°‰ÕÑÑ½¹Ì°•å•±•ÑÌ°‰Õ­±•Ì°¡…¹‘±•Ì°Á½­•Ð½Á•¹¥¹Ì°Í½±”©½¥¹Ì…¹µ…©½ÈÍ•…µÌ¸1½½¬™½È±½½Í”Ñ¡É•…‘Ì°Í­¥ÁÁ•ÍÑ¥Ñ¡•Ì°ÍÑ…¥¹Ì°ÍÉ…Ñ¡•Ì°±Õ”µ…É­Ì°Ñ•…ÉÌ°‘•¹ÑÌ…¹µ¥ÍÍ¥¹œ¡…É‘Ý…É”¸=¸ÁÉ¥¹Ñ•¥Ñ•µÌ°½µÁ…É”Á±…•µ•¹Ð…¹…±¥¹µ•¹Ð…É½ÍÌÑ¡”Ý¡½±”…Éµ•¹Ð‰•™½É”é½½µ¥¹œ¥¹Ñ¼Ñ¡”ÁÉ¥¹Ð•‘”¸ˆ°€‰1¥¡Ñ¥¹œ…¸•á…•É…Ñ”ÍÕÉ™…”µ…É­Ì…¹¡¥‘”Ñ•áÑÕÉ”¸‰É¥¡ÐÉ•™±•Ñ¥½¸½¸½…Ñ•±•…Ñ¡•È¥Ì¹½Ð…ÕÑ½µ…Ñ¥…±±ä„ÍÉ…Ñ °…¹„‘…É¬™½±¥Ì¹½Ð…ÕÑ½µ…Ñ¥…±±ä„ÍÑ…¥¸¸1½½¬™½ÈÉ•Á•…Ñ••Ù¥‘•¹”…É½ÍÌ…¹±•Ì¸A¡½Ñ½Ì…¸Í¡½ÜÙ¥Í¥‰±”½¹ÍÑÉÕÑ¥½¸°‰ÕÐÑ¡•ä…¹¹½ÐÁÉ½Ù”µ…Ñ•É¥…°½µÁ½Í¥Ñ¥½¸°Ý…Ñ•ÉÁÉ½½™¥¹œ°Íµ•±°°±½¹œµÑ•É´‘ÕÉ…‰¥±¥Ñä½ÈÝ¡•Ñ¡•È…¸•±•ÑÉ½¹¥Œ¥Ñ•´™Õ¹Ñ¥½¹ÌÕ¹±•ÍÌ„ÍÁ•¥™¥ŒÑ•ÍÐ¥Ì‘½Õµ•¹Ñ•¸-••ÀÑ¡”½¹±ÕÍ¥½¸¥¹Í¥‘”Ý¡…ÐÑ¡”•Ù¥‘•¹”ÍÕÁÁ½ÉÑÌ¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰5¥¹ÕÑ”™¥Ù”è¡½½Í”…•ÁÐ°±…É¥™ä½È•Í…±…Ñ”ˆ°($$$%Á…É…É…Á¡Ìèl‰¹Ñ¡”¥¹ÍÁ•Ñ¥½¸Ý¥Ñ ½¹”½˜Ñ¡É•”½ÕÑ½µ•Ì¸•ÁÐµ•…¹ÌÑ¡”½ÉÉ•Ð¥Ñ•´…ÉÉ¥Ù•…¹Ñ¡”Ù¥Í¥‰±”½¹‘¥Ñ¥½¸¥ÌÝ¥Ñ¡¥¸å½ÕÈÑ½±•É…¹”¸±…É¥™äµ•…¹Ì½¹”µ¥ÍÍ¥¹œ…¹±”°µ•…ÍÕÉ•µ•¹Ð½È±½Í”µÕÀÝ½Õ±¡…¹”Ñ¡”‘•¥Í¥½¸ìÉ•ÅÕ•ÍÐ½¹±äÑ¡…Ð•Ù¥‘•¹”¸Í…±…Ñ”µ•…¹ÌÑ¡”¥Ñ•´…ÁÁ•…ÉÌÝÉ½¹œ°‘…µ…•½Èµ…Ñ•É¥…±±ä‘¥™™•É•¹Ð™É½´Ñ¡”½É‘•È°Í¼½¹Ñ…ÐÑ¡”Á±…Ñ™½É´Ñ¡É½Õ Ñ¡”ÕÉÉ•¹Ð½É‘•È½ÈÝ…É•¡½ÕÍ”ÁÉ½•ÍÌ‰•™½É”Á…É•°ÍÕ‰µ¥ÍÍ¥½¸¸ˆ°€‰Ù½¥Ù…Õ”É•ÅÕ•ÍÑÌÍÕ …ÌƒŠqÑ…­”‰•ÑÑ•ÈÁ¡½Ñ½Ì»ŠtMÑ…Ñ”Ñ¡”•á…Ð…É•„…¹É•…Í½¸èƒŠqA±•…Í”Á¡½Ñ½É…Á Ñ¡”±•™Ðé¥ÀÑ½½Ñ ÍÑÉ…¥¡Ð½¸³Št½ÈƒŠqA±•…Í”µ•…ÍÕÉ”Ñ¡”¥¹Í½±”™É½´¡••°Ñ¼Ñ½”Ý¥Ñ Ñ¡”é•É¼Á½¥¹ÐÙ¥Í¥‰±”»ŠtMÁ•¥™¥ŒÉ•ÅÕ•ÍÑÌÉ•‘Õ”…µ‰¥Õ¥Ñä¸I•ÑÕÉ¸•±¥¥‰¥±¥Ñä°Ñ¥µ¥¹œ°Í•±±•È…•ÁÑ…¹”…¹™••Ì…¸Ù…Éä°Í¼‘¼¹½Ð½Áä…¸½±½µµÕ¹¥ÑäÉÕ±”¥¹Ñ¼„ÕÉÉ•¹Ð…Í”¸I•…Ñ¡”±¥Ù”½É‘•È½ÁÑ¥½¹Ì…¹½¹Ñ…ÐÍÕÁÁ½ÉÐÝ¡•¸Ñ¡”‘•¥Í¥½¸…™™•ÑÌµ½¹•ä¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰]¡…ÐEÁ¡½Ñ½Ì…¹¹½ÐÕ…É…¹Ñ•”ˆ°($$$%Á…É…É…Á¡Ìèl‰±•…¸Á¡½Ñ¼Í•Ð…¹¹½ÐÕ…É…¹Ñ•”Ñ¡…Ð…¸¥Ñ•´Ý¥±°™¥Ð°™••°½µ™½ÉÑ…‰±”½È±…ÍÐ¸%Ð…±Í¼…¹¹½ÐÙ•É¥™ä¡¥‘‘•¸ÍÑ¥Ñ¡¥¹œ°¥¹Ñ•É¹…°Á…‘‘¥¹œ°™¥‰É”½¹Ñ•¹Ð°½±½ÕÈ…ÕÉ…ä½¸å½ÕÈÍÉ••¸½ÈÁ•É™½Éµ…¹”Õ¹‘•ÈÕÍ”¸A¡½Ñ¼¥¹ÍÁ•Ñ¥½¸¥ÌÍÑÉ½¹•ÍÐ™½È¥‘•¹Ñ¥Ñä°µ•…ÍÕÉ•µ•¹ÑÌ°½‰Ù¥½ÕÌ‘…µ…”°µ¥ÍÍ¥¹œÁ¥••Ì…¹Ù¥Í¥‰±”½¹ÍÑÉÕÑ¥½¸¸QÉ•…Ð±…¥µÌ‰•å½¹Ñ¡½Í”…É•…ÌÝ¥Ñ …ÕÑ¥½¸Õ¹±•ÍÌÑ¡”Á±…Ñ™½É´ÁÉ½Ù¥‘•Ì„ÍÁ•¥™¥Œ‘½Õµ•¹Ñ•Ñ•ÍÐ¸ˆ°€‰EÍ¡½Õ±…±Í¼¹½Ð‰”½¹™ÕÍ•Ý¥Ñ …ÕÑ¡•¹Ñ¥…Ñ¥½¸¸Ý…É•¡½ÕÍ”¥µ…”…¸¡•±Àå½Ô½µÁ…É”Ñ¡”É••¥Ù•¥Ñ•´Ý¥Ñ Ñ¡”Í•±±•ËŠeÌ±¥ÍÑ¥¹œ°‰ÕÐ¥Ð‘½•Ì¹½Ð•ÍÑ…‰±¥Í ¥¹Ñ•±±•ÑÕ…°µÁÉ½Á•ÉÑäÍÑ…ÑÕÌ½È±•…±¥Ñä¥¸å½ÕÈ‘•ÍÑ¥¹…Ñ¥½¸¸	Õå•ÉÌÉ•µ…¥¸É•ÍÁ½¹Í¥‰±”™½ÈÝ¡…ÐÑ¡•äÁÕÉ¡…Í”…¹™½È‘•ÍÑ¥¹…Ñ¥½¸µ½Õ¹ÑÉäÉÕ±•Ì¸%˜…¸¥Ñ•´ÑåÁ”¥ÌÉ•ÍÑÉ¥Ñ•½ÈÍ•¹Í¥Ñ¥Ù”°¡•¬ÕÉÉ•¹ÐÁ±…Ñ™½É´…¹ÕÍÑ½µÌ¥¹™½Éµ…Ñ¥½¸‰•™½É”½É‘•É¥¹œ…¹……¥¸‰•™½É”¡½½Í¥¹œ„É½ÕÑ”¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰-••À„Í¥µÁ±”•Ù¥‘•¹”É•½Éˆ°($$$%Á…É…É…Á¡Ìèl‰M…Ù”Ñ¡”½É‘•È¥‘•¹Ñ¥™¥•È°Í•±•Ñ•Ù…É¥…¹Ð°Í•±±•È±¥ÍÑ¥¹œ…¹É•±•Ù…¹ÐEÁ¡½Ñ½ÌÑ½•Ñ¡•È¸%˜å½Ô…Í¬„ÅÕ•ÍÑ¥½¸°­••ÀÑ¡”É•ÍÁ½¹Í”Ý¥Ñ Ñ¡…ÐÉ•½É¸Q¡¥Ì¥ÌÕÍ•™Õ°Ý¡•¸Í•Ù•É…°Í¥µ¥±…È¥Ñ•µÌ…ÉÉ¥Ù”°…¹¥ÐÁÉ•Ù•¹ÑÌå½Ô™É½´É•±å¥¹œ½¸µ•µ½ÉäÝ¡•¸‰Õ¥±‘¥¹œ„Á…É•°‘…åÌ±…Ñ•È¸Í¡½ÉÐ¹½Ñ”ÍÕ …ÌƒŠqÍ¥é”½¹™¥Éµ•‰ä¡•ÍÐµ•…ÍÕÉ•µ•¹ÐìÍµ…±°µ…É¬…•ÁÑ•“Št•áÁ±…¥¹ÌÝ¡äÑ¡”¥Ñ•´Ý…Ì…ÁÁÉ½Ù•¸ˆ°€‰I•½Éµ­••Á¥¹œ…±Í¼µ…­•Ì±…Ñ•ÈÍÕÁÁ½ÉÐ½¹Ù•ÉÍ…Ñ¥½¹Ì±•…É•È¸%¹ÍÑ•…½˜Í…å¥¹œ…¸¥Ñ•´¥ÌƒŠq‰…³Štå½Ô…¸¥‘•¹Ñ¥™äÑ¡”½É‘•È°Í¡½ÜÑ¡”Í•±•Ñ•Ù…É¥…¹Ð…¹Á½¥¹ÐÑ¼Ñ¡”Ù¥Í¥‰±”¥ÍÍÕ”¸Q¡”½…°¥Ì¹½ÐÑ¼É•…Ñ”„±•…°™¥±”ì¥Ð¥ÌÑ¼ÁÉ•Í•ÉÙ”Ñ¡”•Ù¥‘•¹”Ñ¡…Ð•á¥ÍÑ•‰•™½É”¥¹Ñ•É¹…Ñ¥½¹…°Í¡¥ÁÁ¥¹œ¸=¹”¥Ñ•µÌ…É”½µ‰¥¹•…¹É•Á…­•°¥‘•¹Ñ¥™å¥¹œÝ¡•É”„ÁÉ½‰±•´‰•…¸…¸‰•½µ”µ½É”‘¥™™¥Õ±Ð¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰ÁÉ…Ñ¥…°EÍÑ…¹‘…É™½ÈÉ•…°‰Õå•ÉÌˆ°($$$%Á…É…É…Á¡Ìèl‰A•É™•Ñ¥½¸¥Ì¹½Ð„ÕÍ•™Õ°ÍÑ…¹‘…É™½Èµ…ÍÌµÁÉ½‘Õ•½½‘Ì¸•¥‘”¥¸…‘Ù…¹”Ý¡¥ ‘¥™™•É•¹•Ìµ…ÑÑ•ÈèÝÉ½¹œÍ¥é”°µ¥ÍÍ¥¹œÁ…ÉÐ°µ…©½ÈÍÑ…¥¸°‘…µ…•±½ÍÕÉ”½È„µ•…ÍÕÉ•µ•¹Ð½ÕÑÍ¥‘”å½ÕÈ…•ÁÑ…‰±”É…¹”¸Mµ…±°Á…­…¥¹œ‘•¹ÑÌ½ÈÉ•µ½Ù…‰±”Ñ¡É•…‘Ìµ…ä¹½Ð©ÕÍÑ¥™ä‘•±…ä°Ý¡¥±”„ÝÉ½¹œÙ…É¥…¹Ð±•…É±ä‘½•Ì¸½¹Í¥ÍÑ•¹ÐÑ¡É•Í¡½±‘Ì¡•±Àå½Ô…Ù½¥É•©•Ñ¥¹œ½¹”¥Ñ•´™½È„‘•Ñ…¥°å½Ô…•ÁÑ•½¸…¹½Ñ¡•È¸ˆ°€‰Q¡”ÍÑÉ½¹•ÍÐEÉ½ÕÑ¥¹”¥ÌÍ¡½ÉÐ‰•…ÕÍ”¥Ð™½±±½ÝÌ„™¥á•½É‘•Èè¥‘•¹Ñ¥Ñä°Í¡…Á”°‘¥µ•¹Í¥½¹Ì°É¥Í¬‘•Ñ…¥±Ì…¹½ÕÑ½µ”¸%ÐÕÍ•ÌÁ¡½Ñ½Ì™½ÈÝ¡…ÐÁ¡½Ñ½Ì…¸ÁÉ½Ù”…¹É•ÅÕ•ÍÑÌ•áÑÉ„•Ù¥‘•¹”½¹±äÝ¡•¸¥Ð¡…¹•ÌÑ¡”‘•¥Í¥½¸¸Q¡…Ð¥Ì¡½Ü±±¡¥¹…	ÕäEÁ¡½Ñ½Ì‰•½µ”„ÁÉ…Ñ¥…°Ý…É•¡½ÕÍ”¡•­Á½¥¹Ð¥¹ÍÑ•…½˜„…±±•Éäå½Ô±…¹”…Ð‰•™½É”±¥­¥¹œÍÕ‰µ¥Ð¸‰t($$%ô($%t°($%Í½ÕÉ•9½Ñ”è€‰I•Í•…É ‰…Í¥Ìè±±¡¥¹…	ÕçŠeÌ½™™¥¥…°Í•ÉÙ¥”‘•ÍÉ¥ÁÑ¥½¸¥‘•¹Ñ¥™¥•ÌÅÕ…±¥Ñä¥¹ÍÁ•Ñ¥½¸…ÌÁ…ÉÐ½˜¥ÑÌÁÕÉ¡…Í¥¹œÝ½É­™±½Ü¸%¹ÍÁ•Ñ¥½¸±¥µ¥ÑÌ…¹Ñ¡”‘•¥Í¥½¸™É…µ•Ý½É¬…É”•‘¥Ñ½É¥…°Õ¥‘…¹”°¹½Ð„±…¥´Ñ¡…Ð•Ù•Éä½É‘•ÈÉ••¥Ù•Ì¥‘•¹Ñ¥…°¥µ…•Ì½ÈÍ•ÉÙ¥•Ì¸¡•­•ÕÕÍÐ€ÄÈ°€ÈÀÈØ¸ˆ(%ô°(%ì($%Ñ¥Ñ±”è€‰±±¡¥¹…	ÕäAÉ½‘ÕÐAÉ¥”ÙÌA…É•°½ÍÐè]¡…Ðe½ÔÑÕ…±±äA…äˆ°($%Í±Õœè€‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($%‘•ÍÉ¥ÁÑ¥½¸è€‰U¹‘•ÉÍÑ…¹Ý¡ä…¸±±¡¥¹…	Õä¥Ñ•´ÁÉ¥”…¹¹½ÐÁÉ•‘¥ÐÑ¡”¥¹Ñ•É¹…Ñ¥½¹…°Á…É•°Ñ½Ñ…°°…¹‰Õ¥±„É•…±¥ÍÑ¥Œ‰Õ‘•Ð‰•™½É”½É‘•É¥¹œ¸ˆ°($%ÁÉ¥µ…Éå-•åÝ½Éè€‰±±¡¥¹…	ÕäÍ¡¥ÁÁ¥¹œ½ÍÐˆ°($%Í•½¹‘…Éå-•åÝ½É‘Ìèl($$$‰±±¡¥¹…	ÕäÍ¡¥ÁÁ¥¹œ…±Õ±…Ñ½Èˆ°($$$‰	ÕäÍ¡¥ÁÁ¥¹œÁÉ¥”ˆ°($$$‰±±¡¥¹…	ÕäÁ…É•°½ÍÐˆ°($$$‰±±¡¥¹…	ÕäÙ½±Õµ•ÑÉ¥ŒÝ•¥¡Ðˆ($%t°($%É•…‘Q¥µ”è€ˆÄÄµ¥¸É•…ˆ°($%ÕÁ‘…Ñ•è€‰ÕÕÍÐ€ÄÈ°€ÈÀÈØˆ°($%¥¹ÑÉ¼èl‰±½ÜÁÉ½‘ÕÐÁÉ¥”¥Ì¹½Ð„±½Ü‘•±¥Ù•É•ÁÉ¥”¸Q¡¥Ì¥ÌÑ¡”µ½ÍÐ¥µÁ½ÉÑ…¹Ð‰Õ‘•Ñ¥¹œ±•ÍÍ½¸™½È…¹äÁÕÉ¡…Í¥¹œµ…•¹Ð½É‘•È¸±±¡¥¹…	ÕçŠeÌ½™™¥¥…°‘•ÍÉ¥ÁÑ¥½¸Í•Á…É…Ñ•ÌÁÉ½ÕÉ•µ•¹Ð…¹½É‘•È™Õ±™¥±µ•¹Ð™É½´¥¹Ñ•É¹…Ñ¥½¹…°±½¥ÍÑ¥Ì°…¹¥Ð¹½Ñ•ÌÑ¡…Ð¥¹Ñ•É¹…Ñ¥½¹…°Í¡¥ÁÁ¥¹œ¥ÌÁÉ½Ù¥‘•‰äÑ¡¥ÉµÁ…ÉÑäÍ•ÉÙ¥”½µÁ…¹¥•Ì¸Q¡”½™™¥¥…°Í¡¥ÁÁ¥¹œ…±Õ±…Ñ½È…±Í¼…Í­Ì™½È‘•ÍÑ¥¹…Ñ¥½¸°ÁÉ½‘ÕÐ…Ñ•½Éä°•ÍÑ¥µ…Ñ•Ý•¥¡Ð…¹½ÁÑ¥½¹…°Á…­…”‘¥µ•¹Í¥½¹Ì¸Q¡½Í”¥¹ÁÕÑÌ•áÁ±…¥¸Ý¡äÑ¡”¹Õµ‰•È½¸„ÁÉ½‘ÕÐ…É…¹¹½ÐÁÉ•‘¥ÐÑ¡”¹Õµ‰•ÈÍ¡½Ý¸Ý¡•¸„Á…É•°¥ÌÉ•…‘ä¸ˆ°€‰É•…±¥ÍÑ¥Œ‰Õ‘•Ð¥Ì‰Õ¥±Ð¥¸ÍÑ…•Ì¸¥ÉÍÐ½µ•ÌÑ¡”Í•±•Ñ•ÁÉ½‘ÕÐ…¹…¹ä‘½µ•ÍÑ¥Œµ½Ù•µ•¹ÐÑ¼Ñ¡”Ý…É•¡½ÕÍ”¸Q¡•¸Ñ¡”¥Ñ•´¥Ì¥¹ÍÁ•Ñ•°½µ‰¥¹•Ý¥Ñ ½Ñ¡•È½½‘Ì¥˜‘•Í¥É•°Á…­•°µ•…ÍÕÉ•…¹µ…Ñ¡•Ý¥Ñ É½ÕÑ•Ì…Ù…¥±…‰±”™½È¥ÑÌ‘•ÍÑ¥¹…Ñ¥½¸…¹…Ñ•½Éä¸ÕÉÉ•¹ä½¹Ù•ÉÍ¥½¸°½ÁÑ¥½¹…°Í•ÉÙ¥•Ì…¹‘•ÍÑ¥¹…Ñ¥½¸¡…É•Ìµ…ä…‘™ÕÉÑ¡•ÈÕ¹•ÉÑ…¥¹Ñä¸Q¡¥ÌÕ¥‘”Í¡½ÝÌ¡½ÜÑ¼Á±…¸•… ÍÑ…”Ý¥Ñ¡½ÕÐ¥¹Ù•¹Ñ¥¹œ„Õ¹¥Ù•ÉÍ…°Á•Èµ­¥±½É…´É…Ñ”½ÈÁÉ½µ¥Í¥¹œ„‘•±¥Ù•ÉäÑ¥µ”Ñ¡…ÐÑ¡”±¥Ù”ÅÕ½Ñ”µ…ä¹½ÐÍÕÁÁ½ÉÐ¸‰t°($%Í•Ñ¥½¹Ìèl($$%ì($$$%¡•…‘¥¹œè€‰M•Á…É…Ñ”Ñ¡”ÁÉ½‘ÕÐ½É‘•È™É½´Ñ¡”¥¹Ñ•É¹…Ñ¥½¹…°Á…É•°ˆ°($$$%Á…É…É…Á¡Ìèl‰AÕÉ¡…Í¥¹œµ…•¹Ð½É‘•ÉÌÕÍÕ…±±äÉ•…Ñ”ÑÝ¼‘¥™™•É•¹Ðµ½¹•ä‘•¥Í¥½¹Ì¸Q¡”™¥ÉÍÐ¥ÌÝ¡•Ñ¡•ÈÑ¼‰ÕäÑ¡”¥Ñ•´™É½´„Í•±±•È¥¸¡¥¹„¸Q¡”Í•½¹¥ÌÝ¡•Ñ¡•È…¹¡½ÜÑ¼Í¡¥À½¹”½Èµ½É”Ý…É•¡½ÕÍ”¥Ñ•µÌ¥¹Ñ•É¹…Ñ¥½¹…±±ä¸-••Á¥¹œÑ¡½Í”‘•¥Í¥½¹ÌÍ•Á…É…Ñ”ÁÉ•Ù•¹ÑÌÑ¡”ÁÉ½‘ÕÐÁÉ¥”™É½´½¹ÍÕµ¥¹œÑ¡”Á…É•°‰Õ‘•Ð¸€ÈÀ¥Ñ•´¥Ì¹½ÐƒŠpÈÀ‘•±¥Ù•É•“Štµ•É•±ä‰•…ÕÍ”Ñ¡”‘¥Í½Ù•ÉäÁ…”Í¡½ÝÌ€ÈÀ¸ˆ°€‰ÐÑ¡”ÁÉ½‘ÕÐÍÑ…”°É•½ÉÑ¡”•á…ÐÙ…É¥…¹ÐÁÉ¥”…¹…¹ä‘½µ•ÍÑ¥ŒÍ•±±•ÈµÑ¼µÝ…É•¡½ÕÍ”¡…É”Í¡½Ý¸¸ÐÑ¡”Á…É•°ÍÑ…”°ÕÍ”Ñ¡”Ý…É•¡½ÕÍ—ŠeÌÉ•½É‘•¥Ñ•´¥¹™½Éµ…Ñ¥½¸…¹ÕÉÉ•¹ÐÉ½ÕÑ”½ÁÑ¥½¹Ì¸%˜å½ÔÁ±…¸Í•Ù•É…°ÁÉ½‘ÕÑÌ°É•Í•ÉÙ”µ½¹•ä™½ÈÍ¡¥ÁÁ¥¹œ‰•™½É”Á±…¥¹œ•Ù•Éä¥Ñ•´½É‘•È¸=Ñ¡•ÉÝ¥Í”°å½Ô…¸•¹ÕÀÝ¥Ñ ½½‘Ì¥¸ÍÑ½É…”…¹¹¼½µ™½ÉÑ…‰±”É½ÕÑ”Ý¥Ñ¡¥¸Ñ¡”É•µ…¥¹¥¹œ‰Õ‘•Ð¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰UÍ”Ñ¡”½™™¥¥…°…±Õ±…Ñ½È™½ÈÍ•¹…É¥½Ì°¹½ÐÁÉ½µ¥Í•Ìˆ°($$$%Á…É…É…Á¡Ìèl‰±±¡¥¹…	ÕäÁÉ½Ù¥‘•Ì„ÁÕ‰±¥ŒÍ¡¥ÁÁ¥¹œ…±Õ±…Ñ½È¸%ÑÌÙ¥Í¥‰±”¥¹ÁÕÑÌ¥¹±Õ‘”Ñ¡”‘•ÍÑ¥¹…Ñ¥½¸½Õ¹ÑÉä½ÈÉ•¥½¸°Ñ¡”Ý…É•¡½ÕÍ”½É¥¥¸°ÁÉ½‘ÕÐ…Ñ•½Éä°•ÍÑ¥µ…Ñ•Ý•¥¡Ð…¹Á…­…”‘¥µ•¹Í¥½¹Ì™½È±¥¹•ÌÑ¡…Ð…±Õ±…Ñ”Ý¥Ñ Ù½±Õµ•ÑÉ¥ŒÝ•¥¡Ð¸Q¡¥Ìµ…­•Ì¥ÐÕÍ•™Õ°™½È½µÁ…É¥¹œÍ•¹…É¥½Ì‰•™½É”½É‘•É¥¹œè½¹”±¥¡Ð±½Ñ¡¥¹œÁ…É•°°„Á…É•°½¹Ñ…¥¹¥¹œÍ¡½•ÌÝ¥Ñ ‰½á•Ì°½È„‰Õ±­äµ¥á•½É‘•È¸¡…¹”½¹”¥¹ÁÕÐ…Ð„Ñ¥µ”Í¼å½Ô…¸Í•”Ý¡¥ …ÍÍÕµÁÑ¥½¸µ½Ù•ÌÑ¡”•ÍÑ¥µ…Ñ”¸ˆ°€‰Q¡”É•ÍÕ±ÐÉ•µ…¥¹Ì…¸•ÍÑ¥µ…Ñ”‰•…ÕÍ”Ñ¡”™¥¹…°Á…É•°µ…ä‘¥™™•È™É½´å½ÕÈÕ•ÍÌ¸M•±±•ÈÁ…­…¥¹œ°Ý…É•¡½ÕÍ”Á…­¥¹œ°‘¥µ•¹Í¥½¹…°µ•…ÍÕÉ•µ•¹Ð°É½ÕÑ”…Ù…¥±…‰¥±¥Ñä°™Õ•°½È…ÉÉ¥•È…‘©ÕÍÑµ•¹ÑÌ…¹¥Ñ•´É•ÍÑÉ¥Ñ¥½¹Ì…¸¡…¹”Ñ¡”±¥Ù”½ÁÑ¥½¹Ì¸M…Ù”Ñ¡”‘…Ñ”…¹…ÍÍÕµÁÑ¥½¹ÌÝ¡•¸½µÁ…É¥¹œ•ÍÑ¥µ…Ñ•Ì¸…±Õ±…Ñ½ÈÉ•ÍÕ±ÐÝ¥Ñ¡½ÕÐ¥ÑÌ‘•ÍÑ¥¹…Ñ¥½¸°…Ñ•½Éä°Ý•¥¡Ð…¹‘¥µ•¹Í¥½¹Ì¥Ì¹½Ð„É•ÕÍ…‰±”ÅÕ½Ñ”¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰U¹‘•ÉÍÑ…¹…ÑÕ…°Ý•¥¡Ð…¹Ù½±Õµ•ÑÉ¥ŒÝ•¥¡Ðˆ°($$$%Á…É…É…Á¡Ìèl‰ÑÕ…°Ý•¥¡Ð¥ÌÝ¡…ÐÑ¡”Á…­•Á…É•°Á¡åÍ¥…±±äÝ•¥¡Ì¸Y½±Õµ•ÑÉ¥ŒÝ•¥¡Ð¥Ì„…ÉÉ¥•Èµ•Ñ¡½Ñ¡…Ð½¹Ù•ÉÑÌÁ…­…”‘¥µ•¹Í¥½¹Ì¥¹Ñ¼„¡…É•…‰±”™¥ÕÉ”¸Q¡”•á…Ð‘¥Ù¥Í½È½ÈÉÕ±”…¸‘¥™™•È‰äÉ½ÕÑ”°Í¼ÕÍ”Ñ¡”ÉÕ±”Í¡½Ý¸™½ÈÑ¡”ÕÉÉ•¹Ð½ÁÑ¥½¸É…Ñ¡•ÈÑ¡…¸µ•µ½É¥Í¥¹œ½¹”™½ÉµÕ±„¸Á…É•°™Õ±°½˜±¥¡ÑÝ•¥¡Ð‰ÕÐ‰Õ±­äÁ…­…¥¹œ…¸Ñ¡•É•™½É”‰”¡…É•…Ì¥˜¥ÐÝ•É”¡•…Ù¥•ÈÑ¡…¸Ñ¡”Í…±”É•…‘¥¹œ¸ˆ°€‰Q¡¥Ì¥ÌÝ¡äÍ¡½”‰½á•Ì°É¥¥¥™Ð‰½á•Ì°ÁÕ™™ä±½Ñ¡¥¹œ…¹ÁÉ½Ñ•Ñ¥Ù”…¥ÈÍÁ…”µ…ÑÑ•È¸I•µ½Ù¥¹œÕ¹¹••ÍÍ…ÉäÉ•Ñ…¥°Á…­…¥¹œµ…äÉ•‘Õ”Ù½±Õµ”°‰ÕÐ¥Ð…±Í¼É•µ½Ù•ÌÁÉ½Ñ•Ñ¥½¸¸Q¡”Í•¹Í¥‰±”¡½¥”‘•Á•¹‘Ì½¸Ñ¡”¥Ñ•´¸Í½™ÐPµÍ¡¥ÉÐ…¸Ñ½±•É…Ñ”½µÁ…ÐÁ…­¥¹œì™É…¥±”…•ÍÍ½É¥•Ì½ÈÍÑÉÕÑÕÉ•Í¡½•Ìµ…ä¹••É•¥¹™½É•µ•¹Ð¸Í¬Ý¡…ÐÁ…­¥¹œ¡…¹”¥Ì‰•¥¹œµ…‘”…¹©Õ‘”Ñ¡”Í…Ù¥¹œ……¥¹ÍÐÑ¡”‘…µ…”É¥Í¬¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰½¹Í½±¥‘…Ñ¥½¸¡•±ÁÌ½¹±äÝ¡•¸Ñ¡”Á…É•°ÍÑ¥±°µ…­•ÌÍ•¹Í”ˆ°($$$%Á…É…É…Á¡Ìèl‰½µ‰¥¹¥¹œÍ•Ù•É…°Ý…É•¡½ÕÍ”¥Ñ•µÌ…¸…Ù½¥Í•¹‘¥¹œµÕ±Ñ¥Á±”Í•Á…É…Ñ”Á…É•±Ì…¹µ…äÍÁÉ•…Í½µ”™¥á•¡…¹‘±¥¹œ½È™¥ÉÍÐµÝ•¥¡Ð•™™•ÑÌ…É½ÍÌµ½É”½½‘Ì¸%Ð‘½•Ì¹½Ðµ…­”…‘‘•Ý•¥¡Ð½ÈÙ½±Õµ”‘¥Í…ÁÁ•…È¸Ù•Éä•áÑÉ„¡½½‘¥”°Í¡½”‰½à½È…•ÍÍ½Éä¡…¹•ÌÑ¡”Á…É•°°…¹„µ¥á•…Ñ•½Éä…¸…™™•ÐÝ¡¥ ±¥¹•Ì…É”…Ù…¥±…‰±”¸½¹Í½±¥‘…Ñ¥½¸Í¡½Õ±‰”„Á±…¹¹¥¹œÑ½½°°¹½Ð…¸•áÕÍ”Ñ¼…‘ÁÉ½‘ÕÑÌÕ¹Ñ¥°Ñ¡”¥Ñ•´Ñ½Ñ…°±½½­Ì±…É”•¹½Õ ¸ˆ°€‰	•™½É”½µ‰¥¹¥¹œ•Ù•ÉåÑ¡¥¹œ°½µÁ…É”…Ð±•…ÍÐÑÝ¼Í•¹…É¥½Ìè½¹”½µÁ±•Ñ”Á…É•°…¹„Í•¹Í¥‰±”ÍÁ±¥Ð¸ÍÁ±¥Ð…¸½ÍÐµ½É”½Ù•É…±°°‰ÕÐ¥Ðµ…ä­••À•… Á…É•°Ý¥Ñ¡¥¸É½ÕÑ”±¥µ¥ÑÌ°Í•Á…É…Ñ”Í•¹Í¥Ñ¥Ù”¥Ñ•µÌ½ÈÉ•‘Õ”Ñ¡”½¹Í•ÅÕ•¹”½˜„Í¥¹±”‘•±…ä¸Q¡”¡•…Á•ÍÐ‘¥ÍÁ±…å•±¥¹”¥Ì¹½Ð…ÕÑ½µ…Ñ¥…±±äÑ¡”‰•ÍÐÙ…±Õ”¥˜¥ÑÌÉ•ÍÑÉ¥Ñ¥½¹Ì°ÑÉ…­¥¹œ°½µÁ•¹Í…Ñ¥½¸Ñ•ÉµÌ½È•ÍÑ¥µ…Ñ•Í•ÉÙ¥”±•Ù•°‘¼¹½Ð™¥ÐÑ¡”½É‘•È¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰AÉ½‘ÕÐ…Ñ•½Éä…¸¡…¹”É½ÕÑ”…Ù…¥±…‰¥±¥Ñäˆ°($$$%Á…É…É…Á¡Ìèl‰Q¡”½™™¥¥…°…±Õ±…Ñ½È…Í­Ì™½ÈÁÉ½‘ÕÐ…Ñ•½Éä‰•…ÕÍ”…ÉÉ¥•ÉÌ‘¼¹½ÐÑÉ•…Ð•Ù•Éä¥Ñ•´Ñ¡”Í…µ”¸	…ÑÑ•É¥•Ì°±¥ÅÕ¥‘Ì°µ…¹•ÑÌ°•±•ÑÉ½¹¥Ì°™½½°½Íµ•Ñ¥Ì…¹½Ñ¡•ÈÍ•¹Í¥Ñ¥Ù”…Ñ•½É¥•Ìµ…ä¡…Ù”™•Ý•ÈÉ½ÕÑ•Ì½ÈÍÁ•¥…°½¹‘¥Ñ¥½¹Ì¸Ù•¸½É‘¥¹…Éä½½‘Ì…¸™…”‘•ÍÑ¥¹…Ñ¥½¸µÍÁ•¥™¥Œ±¥µ¥ÑÌ¸¼¹½Ðµ…É¬„ÁÉ½‘ÕÐ…Ì„Í…™•È…Ñ•½ÉäÍ¥µÁ±äÑ¼É•Ù•…°„¡•…Á•È•ÍÑ¥µ…Ñ”ìÑ¡”Ý…É•¡½ÕÍ”½È…ÉÉ¥•È…¸É•±…ÍÍ¥™ä¥Ð±…Ñ•È¸ˆ°€‰¡•¬Ñ¡”ÕÉÉ•¹Ð‘•ÍÉ¥ÁÑ¥½¸½˜•… É½ÕÑ”…¹½¹™¥É´Ñ¡…Ð…±°Á…É•°½¹Ñ•¹ÑÌ…É”•±¥¥‰±”¸%˜„±¥ÍÑ¥¹œ¥ÌÕ¹±•…È…‰½ÕÐµ…Ñ•É¥…°½È½µÁ½¹•¹ÑÌ°É•Í½±Ù”Ñ¡…Ð‰•™½É”Á…É•°ÍÕ‰µ¥ÍÍ¥½¸¸É½ÕÑ”Í¡½Ý¸™½È•¹•É¥Œ±½Ñ¡¥¹œ‘½•Ì¹½ÐÁÉ½Ù”¥ÐÝ¥±°…•ÁÐ„Á…É•°½¹Ñ…¥¹¥¹œ„‰…ÑÑ•ÉäµÁ½Ý•É•…•ÍÍ½Éä¸±¥¥‰¥±¥Ñä¥Ì„±¥Ù”½Á•É…Ñ¥½¹…°™…Ð°¹½Ð„Á•Éµ…¹•¹ÐÁÉ½Á•ÉÑä½˜„ÍÁÉ•…‘Í¡••ÐÉ½Ü¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰	Õ‘•Ð™½ÈÑ¡”½ÍÑÌ½ÕÑÍ¥‘”Ñ¡”™É•¥¡Ð±¥¹”ˆ°($$$%Á…É…É…Á¡Ìèl‰Q¡”¥¹Ñ•É¹…Ñ¥½¹…°±¥¹”¥Ñ•´¥Ì¹½Ð…±Ý…åÌÑ¡”Ý¡½±”‘•±¥Ù•É•½ÍÐ¸•Á•¹‘¥¹œ½¸Ñ¡”½É‘•È…¹‘•ÍÑ¥¹…Ñ¥½¸°Ñ¡”Ñ½Ñ…°…¸…±Í¼¥¹Ù½±Ù”ÕÉÉ•¹ä½¹Ù•ÉÍ¥½¸°Á…åµ•¹ÐÁÉ½•ÍÍ¥¹œ°½ÁÑ¥½¹…°¥¹ÍÁ•Ñ¥½¸½ÈÁ…­¥¹œÍ•ÉÙ¥•Ì°¥¹ÍÕÉ…¹”¡½¥•Ì°Ñ…á•Ì°‘ÕÑ¥•Ì°ÕÍÑ½µÌ…ÍÍ•ÍÍµ•¹Ð½È±…ÍÐµµ¥±”…ÉÉ¥•È¡…É•Ì¸9½Ð•Ù•Éä½ÍÐ…ÁÁ±¥•ÌÑ¼•Ù•ÉäÁ…É•°°…¹Ñ¡”Á±…Ñ™½É´…¹¹½ÐÕ…É…¹Ñ•”¡½Ü„‘•ÍÑ¥¹…Ñ¥½¸…ÕÑ¡½É¥ÑäÝ¥±°…ÍÍ•ÍÌ„Í¡¥Áµ•¹Ð¸ˆ°€‰É•…Ñ”Ñ¡É•”‰Õ‘•Ð½±Õµ¹Ìè­¹½Ý¸°•ÍÑ¥µ…Ñ•…¹‘•ÍÑ¥¹…Ñ¥½¸µ‘•Á•¹‘•¹Ð¸AÉ½‘ÕÐ…¹Í•±•Ñ•Ù…É¥…¹ÐÁÉ¥•Ì‰•±½¹œ¥¸­¹½Ý¸½¹”½¹™¥Éµ•¸…±Õ±…Ñ½ÈÍ•¹…É¥¼‰•±½¹Ì¥¸•ÍÑ¥µ…Ñ•¸Q…á•Ì½È…ÉÉ¥•È¡…É•ÌÑ¡…Ð‘•Á•¹½¸‘•ÍÑ¥¹…Ñ¥½¸ÑÉ•…Ñµ•¹Ð‰•±½¹œ¥¸‘•ÍÑ¥¹…Ñ¥½¸µ‘•Á•¹‘•¹ÐÕ¹Ñ¥°Ù•É¥™¥•¸Q¡¥ÌÁÉ•Ù•¹ÑÌ„ÁÉ•¥Í”µ±½½­¥¹œÍÁÉ•…‘Í¡••ÐÑ½Ñ…°™É½´¡¥‘¥¹œÕ¹•ÉÑ…¥¹Ñä…¹µ…­•Ì¥Ð•…Í¥•ÈÑ¼‘•¥‘”¡½ÜµÕ É•Í•ÉÙ”¥Ì½µ™½ÉÑ…‰±”¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰]¡…ÐÕÍÑ½µ•ÈÉ•Ù¥•ÝÌ…»ŠQ…¹…¹¹½ÓŠQÑ•±°å½Ôˆ°($$$%Á…É…É…Á¡Ìèl‰AÕ‰±¥Œ…ÁÀÉ•Ù¥•ÝÌÍ¡½Üµ¥á••áÁ•É¥•¹•Ì¸M½µ”ÕÍ•ÉÌÁÉ…¥Í”Ñ¡”¥¹Ñ•É™…”°½É‘•ÈÑÉ…­¥¹œ½ÈÕÍÑ½µ•ÈÍÕÁÁ½ÉÐ°Ý¡¥±”½Ñ¡•ÉÌ½µÁ±…¥¸Ñ¡…ÐÍ¡¥ÁÁ¥¹œÝ…ÌµÕ ¡¥¡•ÈÑ¡…¸Ñ¡”ÁÉ½‘ÕÐÙ…±Õ”½ÈÑ¡…ÐÉ½ÕÑ”¥¹™½Éµ…Ñ¥½¸™•±ÐÕ¹±•…È¸Q¡•Í”…½Õ¹ÑÌ…É”ÕÍ•™Õ°‰•…ÕÍ”Ñ¡•ä¡¥¡±¥¡ÐÑ¡”ÅÕ•ÍÑ¥½¹Ì„‰Õå•ÈÍ¡½Õ±…Í¬è]¡…ÐÝ•É”Ñ¡”‘•ÍÑ¥¹…Ñ¥½¸°Á…­•Ý•¥¡Ð°‘¥µ•¹Í¥½¹Ì°…Ñ•½Éä°É½ÕÑ”…¹‘…Ñ”ü]…ÌÑ¡”…µ½Õ¹Ð…¸•ÍÑ¥µ…Ñ”½È™¥¹…°¡…É”ü]•É”‘•ÍÑ¥¹…Ñ¥½¸™••Ì¥¹±Õ‘•üˆ°€‰É•Ù¥•Ü¥Ì¹½Ð„Õ¹¥Ù•ÉÍ…°ÁÉ¥”Ñ…‰±”¸=¹”ÕÍ•ËŠeÌÁ…É•°µ…ä‘¥™™•È¥¸½Õ¹ÑÉä°Ù½±Õµ”°±¥¹”°Ñ¥µ¥¹œ…¹½¹Ñ•¹ÑÌ¸UÍ”É•Á•…Ñ•½µÁ±…¥¹ÑÌ…ÌÁÉ½µÁÑÌ™½ÈÙ•É¥™¥…Ñ¥½¸°¹½Ð…ÌÁÉ½½˜Ñ¡…Ðå½ÕÈÁ…É•°Ý¥±°½ÍÐÑ¡”Í…µ”¸1¥­•Ý¥Í”°„Á½Í¥Ñ¥Ù”‘•±¥Ù•ÉäÍÑ½Éä‘½•Ì¹½ÐÕ…É…¹Ñ•”å½ÕÈÉ½ÕÑ”½ÈÕÍÑ½µÌ½ÕÑ½µ”¸‰…±…¹•É•Ù¥•Ü…ÉÑ¥±”Í¡½Õ±ÁÉ•Í•ÉÙ”Ñ¡¥Ì½¹Ñ•áÐ…¹±•…É±ä±…‰•°ÕÍÑ½µ•ÈÍÑ…Ñ•µ•¹ÑÌ…Ì¥¹‘¥Ù¥‘Õ…°•áÁ•É¥•¹•Ì¸‰t°($$$%¡•­±¥ÍÐèl($$$$$‰•ÍÑ¥¹…Ñ¥½¸…¹‘…Ñ”ˆ°($$$$$‰A…­•Ý•¥¡Ð…¹‘¥µ•¹Í¥½¹Ìˆ°($$$$$‰AÉ½‘ÕÐ…Ñ•½É¥•Ì…¹É•ÍÑÉ¥Ñ¥½¹Ìˆ°($$$$$‰M•±•Ñ•É½ÕÑ”…¹ÅÕ½Ñ•Í•ÉÙ¥”±•Ù•°ˆ°($$$$$‰]¡•Ñ¡•ÈÑ…á•Ì½È±…ÍÐµµ¥±”™••ÌÝ•É”¥¹±Õ‘•ˆ($$$%t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰UÍ”„±…¹‘•µ½ÍÐÝ½É­Í¡••Ð‰•™½É”å½Ô‰Õäˆ°($$$%Á…É…É…Á¡Ìèl‰MÑ…ÉÐÝ¥Ñ Ñ¡”±¥Ù”Ù…É¥…¹ÐÁÉ¥”°‘½µ•ÍÑ¥Œ‘•±¥Ù•Éä…¹Ñ¡”¹Õµ‰•È½˜¥Ñ•µÌ¸‘„Í¡¥ÁÁ¥¹œÍ•¹…É¥¼™É½´Ñ¡”½™™¥¥…°…±Õ±…Ñ½ÈÕÍ¥¹œ¡½¹•ÍÐ…Ñ•½Éä°Ý•¥¡Ð…¹Í¥é”…ÍÍÕµÁÑ¥½¹Ì¸‘½ÁÑ¥½¹…°Í•ÉÙ¥•Ìå½Ô…ÑÕ…±±ä¥¹Ñ•¹Ñ¼ÕÍ”¸Q¡•¸Í•Ð…Í¥‘”„‘•ÍÑ¥¹…Ñ¥½¸É•Í•ÉÙ”‰…Í•½¸ÕÉÉ•¹Ð±½…°ÉÕ±•Ì½È…ÉÉ¥•È¥¹™½Éµ…Ñ¥½¸¸¥Ù¥‘”Ñ¡”•ÍÑ¥µ…Ñ•Ñ½Ñ…°‰äÑ¡”¹Õµ‰•È½˜ÕÍ•™Õ°¥Ñ•µÌ½¹±ä…™Ñ•ÈÑ¡”™Õ±°Ñ½Ñ…°¥ÌÙ¥Í¥‰±”ìÑ¡¥ÌÍ¡½ÝÌÝ¡•Ñ¡•È„ƒŠq¡•…ÃŠt•áÑÉ„¥Ñ•´É•…±±ä¥µÁÉ½Ù•ÌÙ…±Õ”¸ˆ°€‰IÕ¸„ÍÑÉ•ÍÌÑ•ÍÐ‰ä¥¹É•…Í¥¹œ•ÍÑ¥µ…Ñ•Á…É•°½ÍÐ‰ä„Á•É•¹Ñ…”å½Ô…¸Ñ½±•É…Ñ”¸%˜Ñ¡”½É‘•È‰•½µ•ÌÕ¹…™™½É‘…‰±”Ý¥Ñ „µ½‘•É…Ñ”¡…¹”°Ñ¡”¥Ñ•´ÍÑ…”¥Ì…±É•…‘äÑ½¼±…É”¸I•µ½Ù”±½ÜµÁÉ¥½É¥ÑäÁÉ½‘ÕÑÌ‰•™½É”ÁÕÉ¡…Í”É…Ñ¡•ÈÑ¡…¸¡½Á¥¹œÑ¡”™¥¹…°ÅÕ½Ñ”Ý¥±°‰”Õ¹ÕÍÕ…±±ä±½Ü¸	Õ‘•Ñ¥¹œ¥Ìµ½ÍÐ•™™•Ñ¥Ù”Ý¡¥±”•Ù•Éä¥Ñ•´¥ÌÍÑ¥±°½ÁÑ¥½¹…°¸‰t($$%ô°($$%ì($$$%¡•…‘¥¹œè€‰Q¡”‘•¥Í¥½¸ÉÕ±”Ñ¡…ÐÁÉ•Ù•¹ÑÌÍ¡¥ÁÁ¥¹œÍ¡½¬ˆ°($$$%Á…É…É…Á¡Ìèl‰9•Ù•È…ÁÁÉ½Ù”Ñ¡”ÁÉ½‘ÕÐ‰…Í­•ÐÕÍ¥¹œ½¹±äÁÉ½‘ÕÐµ…ÉÁÉ¥•Ì¸ÁÁÉ½Ù”¥Ð½¹±äÝ¡•¸Ñ¡”¥Ñ•´µÍÑ…”½ÍÐÁ±ÕÌ„É•…±¥ÍÑ¥ŒÁ…É•°Í•¹…É¥¼Á±ÕÌ„É•Í•ÉÙ”™¥ÑÌÑ¡”Ñ½Ñ…°‰Õ‘•Ð¸]¡•¸Ý…É•¡½ÕÍ”µ•…ÍÕÉ•µ•¹ÑÌ‰•½µ”…Ù…¥±…‰±”°É•Á±…”…ÍÍÕµÁÑ¥½¹ÌÝ¥Ñ É•½É‘•Ù…±Õ•Ì…¹½µÁ…É”±¥Ù”É½ÕÑ•Ì……¥¸¸%˜Ñ¡”™¥¹…°Á…É•°¥Ì¹½Ð…ÑÑÉ…Ñ¥Ù”°É•½¹Í¥‘•ÈÁ…­¥¹œ°É•µ½Ù”½ÁÑ¥½¹…°Á…­…¥¹œÝ¡•É”…ÁÁÉ½ÁÉ¥…Ñ”°½µÁ…É”„ÍÁ±¥Ð½È‘•±…ä…‘‘¥¹œ±½Ý•ÈµÁÉ¥½É¥Ñä½½‘Ì¸ˆ°€‰Q¡•É”¥Ì¹¼¡½¹•ÍÐÍ¥¹±”…¹ÍÝ•ÈÑ¼ƒŠq!½ÜµÕ ¥Ì±±¡¥¹…	ÕäÍ¡¥ÁÁ¥¹œÿŠtÝ¥Ñ¡½ÕÐ‘•ÍÑ¥¹…Ñ¥½¸°½¹Ñ•¹ÑÌ°Ý•¥¡Ð°‘¥µ•¹Í¥½¹Ì…¹Ñ¥µ¥¹œ¸Q¡”ÕÍ•™Õ°…¹ÍÝ•È¥Ì„ÁÉ½•ÍÌè•ÍÑ¥µ…Ñ”‰•™½É”‰Õå¥¹œ°¥¹ÍÁ•Ð…¹µ•…ÍÕÉ”¥¸Ñ¡”Ý…É•¡½ÕÍ”°½µÁ…É”•±¥¥‰±”±¥Ù”É½ÕÑ•Ì°…¹­••ÀÕ¹•ÉÑ…¥¸‘•ÍÑ¥¹…Ñ¥½¸½ÍÑÌÙ¥Í¥‰±”¸Q¡…ÐÁÉ½•ÍÌ‘½•Ì¹½ÐÕ…É…¹Ñ•”Ñ¡”¡•…Á•ÍÐÁ…É•°°‰ÕÐ¥ÐÁÉ•Ù•¹ÑÌ„±½Ü¥Ñ•´ÁÉ¥”™É½´‰•¥¹œµ¥ÍÑ…­•¸™½È„‘•±¥Ù•É•Ñ½Ñ…°¸‰t($$%ô($%t°($%Í½ÕÉ•9½Ñ”è€‰I•Í•…É ‰…Í¥Ìè±±¡¥¹…	Õä½™™¥¥…°Ý•‰Í¥Ñ”°½™™¥¥…°™É•¥¡Ð…±Õ±…Ñ½È…¹½™™¥¥…°…ÁÀ‘•ÍÉ¥ÁÑ¥½¸ì…±Õ±…Ñ½È™¥•±‘Ì…¹Í•ÉÙ¥”‘•ÍÉ¥ÁÑ¥½¸¡•­•ÕÕÍÐ€ÄÈ°€ÈÀÈØ¸ÕÍÑ½µ•ÈµÉ•Ù¥•ÜÁ…ÑÑ•É¹Ì…É”ÑÉ•…Ñ•…Ì…¹•‘½Ñ…°•áÁ•É¥•¹”°¹½ÐÕ¹¥Ù•ÉÍ…°ÁÉ¥¥¹œ•Ù¥‘•¹”¸ˆ(%ô)tì)Ù…È•Ñ¹±¥Í¡ÉÑ¥±”€ô€¡Í±Õœ¤€ôø•¹±¥Í¡ÉÑ¥±•Ì¹™¥¹ ¡…ÉÑ¥±”¤€ôø…ÉÑ¥±”¹Í±Õœ€ôôôÍ±Õœ¤€üü•¹±¥Í¡ÉÑ¥±•ÍlÁtì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÐµŒ½Ñ•Éµ¥¹…°¹ÑÍà)Ù…È±½…±•ÌÄ€ôl($‰•¸ˆ°($‰‘”ˆ°($‰™Èˆ°($‰•Ìˆ°($‰¥Ðˆ°($‰Á°ˆ°($‰É¼ˆ)tì)Ù…È±½…±•½Áä€ôì(%•¸èì($%¹…µ”è€‰¹±¥Í ˆ°($%±…‰•±Ìèl($$$‰…Ñ…‰…Í”ˆ°($$$‰…Ñ•½É¥•Ìˆ°($$$‰EÕ¥‘”ˆ°($$$‰M¡¥ÁÁ¥¹œˆ°($$$‰ÉÑ¥±•Ìˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰M¹•…­•ÉÌˆ°($$$‰!½½‘¥•Ìˆ°($$$‰PµM¡¥ÉÑÌˆ°($$$‰)…­•ÑÌˆ°($$$‰	½ÑÑ½µÌˆ°($$$‰•ÍÍ½É¥•Ìˆ($%t°($%¡•É¼èl($$$‰AI=UP%M=YId9%9ØÌ¸Àˆ°($$$‰M•…É ±•ÍÌ¸¥¹‰•ÑÑ•È¸ˆ°($$$‰™…ÍÐ°ÍÑÉÕÑÕÉ•¥¹‘•à™½È±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••ÐÍ•…É¡•Ì¸½µÁ…É”UMÁÉ¥•Ì…¹½Á•¸Ñ¡”•á…ÐÁÉ½‘ÕÐ±¥ÍÑ¥¹œ¸ˆ($%t°($%Õ¤èl($$$‰	É½ÝÍ”ÁÉ½‘ÕÑÌˆ°($$$‰5•¹Ôˆ°($$$‰1…¹Õ…”ˆ°($$$‰EU%,EUIdˆ°($$$‰%9`MQQULˆ°($$$‰…Ñ¥Ù”É•½É‘Ìˆ°($$$‰%1QILˆ°($$$‰IMPˆ°($$$‰Q=Idˆ°($$$‰AI%}UMˆ°($$$‰MQQULˆ°($$$‰1¥¹¬Ù•É¥™¥•ˆ°($$$‰9•ÜÑ¡¥ÌÝ••¬ˆ°($$$‰5Q!Lˆ°($$$‰UIQˆ°($$$‰]!dQ!%L%9`ˆ°($$$‰I•……ÉÑ¥±”ˆ°($$$‰=Á•¸½±±•Ñ¥½¸ˆ°($$$‰M•…É ÁÉ½‘ÕÑÌ°…Ñ•½É¥•Ì°ÍÑå±•Ì¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰AÉ½‘ÕÐ‘…Ñ…‰…Í”ˆ°€‰	É½ÝÍ”ÕÉ…Ñ•™¥¹‘ÌÝ¥Ñ ÁÉ½‘ÕÐ¥µ…•Ì°UMÁÉ¥”ÁÉ•Ù¥•ÝÌ…¹‘¥É•ÐÁ…Ñ¡ÌÑ¼•á…Ð±¥ÍÑ¥¹Ì¸‰t°($$%…Ñ•½É¥•Ìèl‰	É½ÝÍ”‰ä…Ñ•½Éäˆ°€‰MÑ…ÉÐÝ¥Ñ „™½ÕÍ•‘•Á…ÉÑµ•¹Ð°Ñ¡•¸½Á•¸Ñ¡”µ…Ñ¡¥¹œÍ¡½ÁÁ¥¹œ½±±•Ñ¥½¸¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰!½ÜÑ¼É•…EÁ¡½Ñ½Ìˆ°€‰ÁÉ…Ñ¥…°¥¹ÍÁ•Ñ¥½¸¡•­±¥ÍÐ™½ÈÍ¡…Á”°‘•Ñ…¥±Ì°µ•…ÍÕÉ•µ•¹ÑÌ…¹Ù¥Í¥‰±”‘•™•ÑÌ‰•™½É”Í¡¥ÁÁ¥¹œ¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰A±…¸å½ÕÈÁ…É•°ˆ°€‰U¹‘•ÉÍÑ…¹½ÍÐ¥¹ÁÕÑÌ‰•™½É”ÍÕ‰µ¥ÍÍ¥½¸¸I½ÕÑ•Ì…¹™¥¹…°ÁÉ¥•Ì‘•Á•¹½¸‘•ÍÑ¥¹…Ñ¥½¸°Í¥é”°Ý•¥¡Ð…¹¥Ñ•´ÑåÁ”¸‰t°($$%…ÉÑ¥±•Ìèl‰I•Í•…É ±¥‰É…Éäˆ°€‰…Ðµ±•Õ¥‘•Ì™½ÈÁÉ½‘ÕÐ‘¥Í½Ù•Éä°¥¹ÍÁ•Ñ¥½¸…¹Á…É•°Á±…¹¹¥¹œ¸‰t°($$%™…Äèl‰É•ÅÕ•¹Ñ±ä…Í­•ÅÕ•ÍÑ¥½¹Ìˆ°€‰±•…È…¹ÍÝ•ÉÌ…‰½ÕÐÑ¡¥Ì¥¹‘•Á•¹‘•¹Ð¥¹‘•à°ÁÉ½‘ÕÐ±¥¹­Ì°EÁ¡½Ñ½Ì°ÁÉ¥¥¹œ…¹Í¡¥ÁÁ¥¹œ¸‰t($%ô°($%ÅŒèl($$%l‰½¹™¥É´Ñ¡”¥Ñ•´ˆ°€‰5…Ñ ÁÉ½‘ÕÐ°½±½ÕÈ…¹Í¥é”Ý¥Ñ Ñ¡”½É‘•ÈÉ•½É‰•™½É”¡•­¥¹œÍµ…±±•È‘•Ñ…¥±Ì¸‰t°($$%l‰¡•¬•Ù•Éä…¹±”ˆ°€‰I•Ù¥•Ü™É½¹Ð°‰…¬°Í¥‘”…¹±½Í”µÕÁÌ™½È…Íåµµ•ÑÉä°ÍÑ…¥¹Ì½È‘…µ…”¸‰t°($$%l‰UÍ”µ•…ÍÕÉ•µ•¹ÑÌˆ°€‰±…‰•°¥Ì¹½Ð„µ•…ÍÕÉ•µ•¹Ð¸½µÁ…É”ÉÕ±•ÈÁ¡½Ñ½ÌÝ¥Ñ …¸¥Ñ•´å½Ô½Ý¸¸‰t°($$%l‰%¹ÍÁ•Ð­•ä‘•Ñ…¥±Ìˆ°€‰i½½´¥¸½¸Í•…µÌ°ÁÉ¥¹ÑÌ°•µ‰É½¥‘•Éä°±½ÍÕÉ•Ì…¹¡…É‘Ý…É”¸‰t°($$%l‰•¥‘”‰•™½É”Í¡¥ÁÁ¥¹œˆ°€‰Í¬™½È±…É¥™¥…Ñ¥½¸Ý¡¥±”Ñ¡”¥Ñ•´¥ÌÍÑ¥±°¥¸Ñ¡”Ý…É•¡½ÕÍ”¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰	Õ¥±Ñ¡”Á…É•°ˆ°€‰½µ‰¥¹”½¹±äÉ•…‘ä¥Ñ•µÌ…¹Ù•É¥™äÉ•½É‘•Ý•¥¡Ð…¹‘¥µ•¹Í¥½¹Ì¸‰t°($$%l‰I•Ù¥•ÜÉ•ÍÑÉ¥Ñ¥½¹Ìˆ°€‰	…ÑÑ•É¥•Ì°±¥ÅÕ¥‘Ì…¹Í•¹Í¥Ñ¥Ù”…Ñ•½É¥•Ì…¸¡…¹”…Ù…¥±…‰±”É½ÕÑ•Ì¸‰t°($$%l‰½µÁ…É”¡…É•…‰±”Ý•¥¡Ðˆ°€‰…ÉÉ¥•ÉÌµ…äÕÍ”…ÑÕ…°½ÈÙ½±Õµ•ÑÉ¥ŒÝ•¥¡Ð¸‰t°($$%l‰¡½½Í”ÁÉ½Ñ•Ñ¥½¸ˆ°€‰I•µ½Ù”Õ¹¹••ÍÍ…ÉäÁ…­…¥¹œ°‰ÕÐÉ•¥¹™½É”™É…¥±”¥Ñ•µÌ¸‰t°($$%l‰Y•É¥™äÑ¡”±¥Ù”ÅÕ½Ñ”ˆ°€‰I½ÕÑ•Ì°•ÍÑ¥µ…Ñ•Ì…¹ÁÉ¥•Ì¡…¹”ì½¹™¥É´Ñ¡”ÕÉÉ•¹Ð¡•­½ÕÐÅÕ½Ñ”¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰!½ÜÑ¼UÍ”…¸±±¡¥¹…	ÕäMÁÉ•…‘Í¡••Ð]¥Ñ¡½ÕÐ•ÑÑ¥¹œ1½ÍÐˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰5½Ù”™É½´„¡Õ”±¥ÍÐÑ¼„Í¡½ÉÐ°½µÁ…É…‰±”ÁÉ½‘ÕÐÍ¡½ÉÑ±¥ÍÐ¸ˆ($$%t°($$%l($$$$‰EA¡½Ñ½Ìè¥Ù”µ5¥¹ÕÑ”%¹ÍÁ•Ñ¥½¸I½ÕÑ¥¹”ˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰]¡…ÐÑ¼¡•¬™¥ÉÍÐ…¹Ý¡•¸…¸•áÑÉ„Á¡½Ñ¼¥ÌÝ½ÉÑ É•ÅÕ•ÍÑ¥¹œ¸ˆ($$%t°($$%l($$$$‰AÉ½‘ÕÐAÉ¥”ÙÌA…É•°½ÍÐˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰]¡ä„±½Ü¥Ñ•´ÁÉ¥”‘½•Ì¹½ÐÁÉ•‘¥ÐÑ¡”™¥¹…°Í¡¥ÁÁ¥¹œÑ½Ñ…°¸ˆ($$%t($%t°($%™…Äèl($$%l‰%ÌÑ¡¥ÌÑ¡”½™™¥¥…°±±¡¥¹…	ÕäÝ•‰Í¥Ñ”üˆ°€‰9¼¸Q¡¥Ì¥Ì…¸¥¹‘•Á•¹‘•¹ÐÉ•Í•…É …¹ÁÉ½‘ÕÐµ‘¥Í½Ù•ÉäÍ¥Ñ”¸‰t°($$%l‰]¡•É”‘¼ÁÉ½‘ÕÐ‰ÕÑÑ½¹Ì±•…üˆ°€‰… …É½Á•¹ÌÑ¡”•á…ÐÁÉ½‘ÕÐ…Ð½ÕÈÍ¡½ÁÁ¥¹œ‘•ÍÑ¥¹…Ñ¥½¸°¹½Ð±±¡¥¹…	Õä¸‰t°($$%l‰É”ÁÉ¥•Ì™¥¹…°üˆ°€‰9¼¸UMÙ…±Õ•Ì…É”ÁÉ•Ù¥•ÝÌì½ÁÑ¥½¹Ì°•á¡…¹”É…Ñ•Ì…¹Í¡¥ÁÁ¥¹œ¡…¹”Ñ¡”Ñ½Ñ…°¸‰t°($$%l‰]¡…Ð…É”EÁ¡½Ñ½Ìüˆ°€‰]…É•¡½ÕÍ”¥¹ÍÁ•Ñ¥½¸Á¡½Ñ½ÌÕÍ•‰•™½É”¥¹Ñ•É¹…Ñ¥½¹…°Á…É•°ÍÕ‰µ¥ÍÍ¥½¸¸‰t°($$%l‰¼EÁ¡½Ñ½ÌÕ…É…¹Ñ•”ÅÕ…±¥Ñäüˆ°€‰9¼¸Q¡•ä¡•±ÀÝ¥Ñ Ù¥Í¥‰±”¥ÍÍÕ•Ì‰ÕÐ…¹¹½ÐÉ•Ù•…°•Ù•Éä¡¥‘‘•¸‘•Ñ…¥°¸‰t°($$%l‰…¸$Í•…É ‰äÁÉ½‘ÕÐ¹…µ”üˆ°€‰e•Ì¸Q¡”ÅÕ•Éä¥ÌÍ•¹ÐÑ¼Ñ¡”±¥Ù”Í¡½ÁÁ¥¹œ…Ñ…±½Õ”¸‰t°($$%l‰]¡ä…¸Í¡¥ÁÁ¥¹œ½ÍÐµ½É”Ñ¡…¸Ñ¡”¥Ñ•´üˆ°€‰•ÍÑ¥¹…Ñ¥½¸°É½ÕÑ”°ÑåÁ”°Á…­•Ý•¥¡Ð…¹Ù½±Õµ”‘•Ñ•Éµ¥¹”½ÍÐ¸‰t°($$%l‰¼å½Ô±¥¹¬Ñ¼½µÁ•Ñ¥¹œ…•¹ÑÌüˆ°€‰9¼¸…±±ÌÑ¼…Ñ¥½¸ÕÍ”½¹”½¹Í¥ÍÑ•¹ÐÍ¡½ÁÁ¥¹œ‘•ÍÑ¥¹…Ñ¥½¸¸‰t°($$%l‰]¡…ÐÍ•ÉÙ¥•Ì‘½•Ì±±¡¥¹…	ÕäÁÕ‰±¥±ä‘•ÍÉ¥‰”üˆ°€‰%ÑÌ½™™¥¥…°…ÁÀ‘•ÍÉ¥ÁÑ¥½¸±¥ÍÑÌÁÉ½ÕÉ•µ•¹Ð°½É‘•È™Õ±™¥±µ•¹Ð°ÅÕ…±¥Ñä¥¹ÍÁ•Ñ¥½¸°¥¹Ñ•É¹…Ñ¥½¹…°±½¥ÍÑ¥Ì…¹…™Ñ•ÈµÍ…±•ÌÍ•ÉÙ¥”ì¥¹Ñ•É¹…Ñ¥½¹…°Í¡¥ÁÁ¥¹œ¥ÌÁÉ½Ù¥‘•‰äÑ¡¥ÉµÁ…ÉÑäÍ•ÉÙ¥”½µÁ…¹¥•Ì¸‰t°($$%l‰]¡…Ð¥¹™½Éµ…Ñ¥½¸¥Ì¹••‘•™½È„Í¡¥ÁÁ¥¹œ•ÍÑ¥µ…Ñ”üˆ°€‰Q¡”½™™¥¥…°…±Õ±…Ñ½È…Í­Ì™½È‘•ÍÑ¥¹…Ñ¥½¸°ÁÉ½‘ÕÐ…Ñ•½Éä°•ÍÑ¥µ…Ñ•Ý•¥¡Ð…¹°Ý¡•É”É•±•Ù…¹Ð°Á…­…”‘¥µ•¹Í¥½¹Ì¸‰t°($$%l‰½•Ì„…±Õ±…Ñ½ÈÉ•ÍÕ±ÐÕ…É…¹Ñ•”Ñ¡”™¥¹…°Á…É•°ÁÉ¥”üˆ°€‰9¼¸¥¹…°Á…­•µ•…ÍÕÉ•µ•¹ÑÌ°¥Ñ•´•±¥¥‰¥±¥Ñä…¹ÕÉÉ•¹Ñ±ä…Ù…¥±…‰±”É½ÕÑ•Ì…¸¡…¹”Ñ¡”±¥Ù”ÅÕ½Ñ”¸‰t°($$%l‰]¡…ÐÍ¡½Õ±$Ù•É¥™ä‰•™½É”Á…É•°ÍÕ‰µ¥ÍÍ¥½¸üˆ°€‰½¹™¥É´Ñ¡”É••¥Ù•¥Ñ•´°E•Ù¥‘•¹”°É•½É‘•Ý•¥¡Ð…¹‘¥µ•¹Í¥½¹Ì°É½ÕÑ”•±¥¥‰¥±¥Ñä…¹Ñ¡”ÕÉÉ•¹Ð¡•­½ÕÐÑ½Ñ…°¸‰t($%t(%ô°(%‘”èì($%¹…µ”è€‰•ÕÑÍ ˆ°($%±…‰•±Ìèl($$$‰…Ñ•¹‰…¹¬ˆ°($$$‰-…Ñ•½É¥•¸ˆ°($$$‰EµI…Ñ•‰•Èˆ°($$$‰Y•ÉÍ…¹ˆ°($$$‰ÉÑ¥­•°ˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰M¹•…­•Èˆ°($$$‰!½½‘¥•Ìˆ°($$$‰PµM¡¥ÉÑÌˆ°($$$‰)…­•¸ˆ°($$$‰!½Í•¸ˆ°($$$‰•ÍÍ½¥É•Ìˆ($%t°($%¡•É¼èl($$$‰AI=U-QMU!5M!%9ØÌ¸Àˆ°($$$‰]•¹¥•ÈÍÕ¡•¸¸	•ÍÍ•È™¥¹‘•¸¸ˆ°($$$‰¥¸Í¡¹•±±•È%¹‘•à›ñÈ±±¡¥¹…	ÕäµMÁÉ•…‘Í¡••ÐµMÕ¡•¸¸UMµAÉ•¥Í”Ù•É±•¥¡•¸Õ¹‘¥É•­Ð‘…ÌAÉ½‘Õ­ÐƒÙ™™¹•¸¸ˆ($%t°($%Õ¤èl($$$‰AÉ½‘Õ­Ñ”…¹Í•¡•¸ˆ°($$$‰5•»ðˆ°($$$‰MÁÉ…¡”ˆ°($$$‰M!911MU!ˆ°($$$‰%9aMQQULˆ°($$$‰…­Ñ¥Ù”¥¹ÑË‘”ˆ°($$$‰%1QHˆ°($$$‰iUKq-MQi8ˆ°($$$‰-Q=I%ˆ°($$$‰AI%M}UMˆ°($$$‰MQQULˆ°($$$‰1¥¹¬•ÁËñ™Ðˆ°($$$‰9•Ô‘¥•Í”]½¡”ˆ°($$$‰QIHˆ°($$$‰-UIQ%IPˆ°($$$‰]IU4%MH%9`ˆ°($$$‰ÉÑ¥­•°±•Í•¸ˆ°($$$‰-½±±•­Ñ¥½¸ƒÙ™™¹•¸ˆ°($$$‰AÉ½‘Õ­Ñ”°-…Ñ•½É¥•¸°MÑ¥±”ÍÕ¡•¸¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰AÉ½‘Õ­Ñ‘…Ñ•¹‰…¹¬ˆ°€‰-ÕÉ…Ñ¥•ÉÑ”AÉ½‘Õ­Ñ”µ¥Ð	¥±‘•É¸°UMµAÉ•¥ÍÙ½ÉÍ¡…ÔÕ¹‘¥É•­Ñ•´1¥¹¬¸‰t°($$%…Ñ•½É¥•Ìèl‰9… -…Ñ•½É¥”ˆ°€‰_‘¡±”•¥¹”‰Ñ•¥±Õ¹œÕ¹ƒÙ™™¹”‘¥”Á…ÍÍ•¹‘”-½±±•­Ñ¥½¸¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰Eµ½Ñ½ÌÉ¥¡Ñ¥œÁËñ™•¸ˆ°€‰¡•­±¥ÍÑ”›ñÈ½É´°•Ñ…¥±Ì°5‡}”Õ¹Í¥¡Ñ‰…É”7‘¹•°Ù½È‘•´Y•ÉÍ…¹¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰A…­•ÐÁ±…¹•¸ˆ°€‰-½ÍÑ•¸£‘¹•¸Ù½¸i¥•°°ËÛ}”°•Ý¥¡ÐÕ¹ÉÑ¥­•±…ÉÐ…ˆ¸‰t°($$%…ÉÑ¥±•Ìèl‰I…Ñ•‰•Èµ	¥‰±¥½Ñ¡•¬ˆ°€‰…­Ñ•¹‰…Í¥•ÉÑ”¹±•¥ÑÕ¹•¸éÔMÕ¡”°AËñ™Õ¹œÕ¹A…­•ÑÁ±…¹Õ¹œ¸‰t°($$%™…Äèl‰#‘Õ™¥”É…•¸ˆ°€‰-±…É”¹ÑÝ½ÉÑ•¸éÔ%¹‘•à°1¥¹­Ì°Eµ½Ñ½Ì°AÉ•¥Í•¸Õ¹Y•ÉÍ…¹¸‰t($%ô°($%ÅŒèl($$%l‰ÉÑ¥­•°‰•ÍÓ‘Ñ¥•¸ˆ°€‰9…µ”°…É‰”Õ¹ËÛ}”éÕ•ÉÍÐµ¥Ð‘•È	•ÍÑ•±±Õ¹œ…‰±•¥¡•¸¸‰t°($$%l‰±±”]¥¹­•°ÁËñ™•¸ˆ°€‰Y½É‘•ÉÍ•¥Ñ”°Kñ­Í•¥Ñ”°M•¥Ñ•¸Õ¹9…¡…Õ™¹…¡µ•¸ÁËñ™•¸¸‰t°($$%l‰5‡}”¹ÕÑé•¸ˆ°€‰Ñ¥­•ÑÑ•¸Í¥¹­•¥¹”5‡}”¸5¥Ð•¥•¹•È-±•¥‘Õ¹œÙ•É±•¥¡•¸¸‰t°($$%l‰•Ñ…¥±ÌÙ•ÉËÛ}•É¸ˆ°€‰;‘¡Ñ”°ÉÕ­”°MÑ¥­•É•¤°Y•ÉÍ¡³ñÍÍ”Õ¹	•Í¡³‘”ÁËñ™•¸¸‰t°($$%l‰Y½ÈY•ÉÍ…¹•¹ÑÍ¡•¥‘•¸ˆ°€‰U¹­±…É”•Ñ…¥±Ì­³‘É•¸°Í½±…¹”‘•ÈÉÑ¥­•°¥´1…•È¥ÍÐ¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰A…­•ÐéÕÍ…µµ•¹ÍÑ•±±•¸ˆ°€‰9ÕÈÙ•ÉÍ…¹‘‰•É•¥Ñ”ÉÑ¥­•°‹ñ¹‘•±¸Õ¹5‡}”ÁËñ™•¸¸‰t°($$%l‰¥¹Í¡Ë‘¹­Õ¹•¸ÁËñ™•¸ˆ°€‰­­ÕÌ°³ñÍÍ¥­•¥Ñ•¸Õ¹Í•¹Í¥‰±”]…É•¸¯Ù¹¹•¸I½ÕÑ•¸‰•É•¹é•¸¸‰t°($$%l‰‰É•¡¹Õ¹Í•Ý¥¡ÐÙ•É±•¥¡•¸ˆ°€‰Ì­…¹¸É•…±•Ì½‘•ÈY½±Õµ•¹•Ý¥¡Ð•±Ñ•¸¸‰t°($$%l‰M¡ÕÑèß‘¡±•¸ˆ°€‰U¹»ÙÑ¥”Y•ÉÁ…­Õ¹œ•¹Ñ™•É¹•¸°i•É‰É•¡±¥¡•ÌÍ£ñÑé•¸¸‰t°($$%l‰­ÑÕ•±±•Ì¹•‰½ÐÁËñ™•¸ˆ°€‰I½ÕÑ•¸Õ¹AÉ•¥Í”ƒ‘¹‘•É¸Í¥ ìµ‡}•‰±¥ ¥ÍÐ‘…Ì…­ÑÕ•±±”¹•‰½Ð¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••Ð½¡¹”¡…½Ì¹ÕÑé•¸ˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰Y½¸•¥¹•ÈÉ¿}•¸1¥ÍÑ”éÔ•¥¹•È­ÕÉé•¸AÉ½‘Õ­Ñ…ÕÍÝ…¡°¸ˆ($$%t°($$%l($$$$‰Eµ½Ñ½ÌèAËñ™Õ¹œ¥¸›ñ¹˜5¥¹ÕÑ•¸ˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰]…ÌéÕ•ÉÍÐ•ÁËñ™ÐÝ¥ÉÕ¹Ý…¹¸•¥¸iÕÍ…Ñé™½Ñ¼Í¥¹¹Ù½±°¥ÍÐ¸ˆ($$%t°($$%l($$$$‰AÉ½‘Õ­ÑÁÉ•¥ÌÕ¹A…­•Ñ­½ÍÑ•¸ˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰]…ÉÕ´•¥¸Ÿñ¹ÍÑ¥•ÈÉÑ¥­•°­•¥¹•¸Ÿñ¹ÍÑ¥•¸Y•ÉÍ…¹…É…¹Ñ¥•ÉÐ¸ˆ($$%t($%t°($%™…Äèl($$%l‰%ÍÐ‘¥•Ì‘¥”½™™¥é¥•±±”±±¡¥¹…	ÕäµM•¥Ñ”üˆ°€‰9•¥¸¸¥•Ì¥ÍÐ•¥¹”Õ¹…‰£‘¹¥”AÉ½‘Õ­ÑÍÕ¡”¸‰t°($$%l‰]½¡¥¸›ñ¡É•¸AÉ½‘Õ­Ñ‰ÕÑÑ½¹Ìüˆ°€‰¥É•­ÐéÕ´AÉ½‘Õ­ÐÕ¹Í•É•Ì¥¹­…Õ™Íé¥•±Ì°¹¥¡ÐéÔ±±¡¥¹…	Õä¸‰t°($$%l‰M¥¹AÉ•¥Í”•¹‘Ÿñ±Ñ¥œüˆ°€‰9•¥¸¸=ÁÑ¥½¹•¸°-ÕÉÍ”Õ¹Y•ÉÍ…¹ƒ‘¹‘•É¸‘•¸¹‘‰•ÑÉ…œ¸‰t°($$%l‰]…ÌÍ¥¹Eµ½Ñ½Ìüˆ°€‰1…•É™½Ñ½ÌéÕÈAËñ™Õ¹œÙ½È‘•´¥¹Ñ•É¹…Ñ¥½¹…±•¸Y•ÉÍ…¹¸‰t°($$%l‰…É…¹Ñ¥•É•¸Í¥”EÕ…±¥Ó‘Ðüˆ°€‰9•¥¸¸M¥”é•¥•¸Í¥¡Ñ‰…É”°…‰•È¹¥¡Ð…±±”Ù•ÉÍÑ•­Ñ•¸•Ñ…¥±Ì¸‰t°($$%l‰-…¹¸¥ ¹… 9…µ•¸ÍÕ¡•¸üˆ°€‰)„¸…ÌMÑ¥¡Ý½ÉÐÝ¥É…¸‘•¸AÉ½‘Õ­Ñ­…Ñ…±½œƒñ‰•É•‰•¸¸‰t°($$%l‰]…ÉÕ´­…¹¸Y•ÉÍ…¹Ñ•ÕÉ•ÈÍ•¥¸üˆ°€‰i¥•°°I½ÕÑ”°]…É•¹…ÉÐ°•Ý¥¡ÐÕ¹Y½±Õµ•¸‰•ÍÑ¥µµ•¸‘•¸AÉ•¥Ì¸‰t°($$%l‰¥‰Ð•Ì1¥¹­ÌéÔ…¹‘•É•¸•¹Ñ•¸üˆ°€‰9•¥¸¸±±”!…¹‘±Õ¹Í±¥¹­Ì¹ÕÑé•¸•¥¸¥¹­…Õ™Íé¥•°¸‰t($%t(%ô°(%™Èèì($%¹…µ”è€‰É…»…¥Ìˆ°($%±…‰•±Ìèl($$$‰	…Í”ÁÉ½‘Õ¥ÑÌˆ°($$$‰…Ó¥½É¥•Ìˆ°($$$‰Õ¥‘”Eˆ°($$$‰1¥ÙÉ…¥Í½¸ˆ°($$$‰ÉÑ¥±•Ìˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰	…Í­•ÑÌˆ°($$$‰MÝ•…ÑÌˆ°($$$‰PµÍ¡¥ÉÑÌˆ°($$$‰Y•ÍÑ•Ìˆ°($$$‰A…¹Ñ…±½¹Ìˆ°($$$‰•ÍÍ½¥É•Ìˆ($%t°($%¡•É¼èl($$$‰5=QUH%=UYIQØÌ¸Àˆ°($$$‰¡•É¡•èµ½¥¹Ì¸QÉ½ÕÙ•èµ¥•Õà¸ˆ°($$$‰U¸¥¹‘•àÍÑÉÕÑÕË¤Á½ÕÈ±•ÌÉ•¡•É¡•Ì±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¸½µÁ…É•è±•ÌÁÉ¥àUM•Ð½ÕÙÉ•è±„™¥¡”•á…Ñ”¸ˆ($%t°($%Õ¤èl($$$‰Y½¥È±•ÌÁÉ½‘Õ¥ÑÌˆ°($$$‰5•¹Ôˆ°($$$‰1…¹Õ”ˆ°($$$‰I!I!IA%ˆ°($$$‹%QP3Še%9`ˆ°($$$‰™¥¡•Ì…Ñ¥Ù•Ìˆ°($$$‰%1QILˆ°($$$‰K%%9%Q%1%MHˆ°($$$‰S%=I%ˆ°($$$‰AI%a}UMˆ°($$$‰MQQUPˆ°($$$‰1¥•¸Û¥É¥™§¤ˆ°($$$‰9½ÕÙ•…Ô•ÑÑ”Í•µ…¥¹”ˆ°($$$‰K%MU1QQLˆ°($$$‰O%1Q%=8ˆ°($$$‰A=UIEU=$P%9`ˆ°($$$‰1¥É”³Še…ÉÑ¥±”ˆ°($$$‰=ÕÙÉ¥È±„½±±•Ñ¥½¸ˆ°($$$‰I•¡•É¡•ÈÁÉ½‘Õ¥ÑÌ°…Ó¥½É¥•Ì°ÍÑå±•Ì¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰	…Í”‘”ÁÉ½‘Õ¥ÑÌˆ°€‰AÉ½‘Õ¥ÑÌÏ¥±•Ñ¥½¹»¥Ì…Ù•Œ¥µ…•Ì°ÁÉ¥àUM•Ð±¥•¸‘¥É•Ð¸‰t°($$%…Ñ•½É¥•Ìèl‰A…È…Ó¥½É¥”ˆ°€‰¡½¥Í¥ÍÍ•èÕ¸É…å½¸ÁÕ¥Ì½ÕÙÉ•è±„½±±•Ñ¥½¸¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰1¥É”±•ÌÁ¡½Ñ½ÌEˆ°€‰[¥É¥™¥•è™½Éµ”°“¥Ñ…¥±Ì°µ•ÍÕÉ•Ì•Ð“¥™…ÕÑÌÙ¥Í¥‰±•Ì¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰A±…¹¥™¥•È±”½±¥Ìˆ°€‰1”¿íÐ“¥Á•¹‘ÔÁ…åÌ°‘ÔÙ½±Õµ”°‘ÔÁ½¥‘Ì•Ð‘ÔÑåÁ”“Še…ÉÑ¥±”¸‰t°($$%…ÉÑ¥±•Ìèl‰	¥‰±¥½Ñ£¡ÅÕ”‘”Õ¥‘•Ìˆ°€‰½¹Í•¥±Ì™…ÑÕ•±ÌÍÕÈ±„É•¡•É¡”°±”½¹ÑËÑ±”•Ð³Še•áÃ¥‘¥Ñ¥½¸¸‰t°($$%™…Äèl‰EÕ•ÍÑ¥½¹Ì™Ë¥ÅÕ•¹Ñ•Ìˆ°€‰K¥Á½¹Í•ÌÍÕÈ³Še¥¹‘•à°±•Ì±¥•¹Ì°±•ÌÁ¡½Ñ½ÌE•Ð±•Ì¿íÑÌ¸‰t($%ô°($%ÅŒèl($$%l‰½¹™¥Éµ•È³Še…ÉÑ¥±”ˆ°€‰½µÁ…É•è¹½´°½Õ±•ÕÈ•ÐÑ…¥±±”…Ù•Œ±„½µµ…¹‘”¸‰t°($$%l‰Y½¥ÈÑ½ÕÌ±•Ì…¹±•Ìˆ°€‰½¹ÑËÑ±•è™…”°‘½Ì°ÑÓ¥Ì•ÐÉ½ÌÁ±…¹Ì¸‰t°($$%l‰UÑ¥±¥Í•È±•Ìµ•ÍÕÉ•Ìˆ°€‰½µÁ…É•è±•Ìµ•ÍÕÉ•Ì…Ù•ŒÕ¸Û©Ñ•µ•¹Ð½¹¹Ô¸‰t°($$%l‰i½½µ•ÈÍÕÈ±•Ì“¥Ñ…¥±Ìˆ°€‰%¹ÍÁ•Ñ•è½ÕÑÕÉ•Ì°¥µÁÉ•ÍÍ¥½¹Ì°‰É½‘•É¥•Ì•Ð™•Éµ•ÑÕÉ•Ì¸‰t°($$%l‰¥¥‘•È…Ù…¹Ð³Še•¹Ù½¤ˆ°€‰•µ…¹‘•èÕ¹”ÁË¥¥Í¥½¸Ñ…¹ÐÅÕ”³Še…ÉÑ¥±”•ÍÐƒ€³Še•¹ÑÉ•ÃÑÐ¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰½µÁ½Í•È±”½±¥Ìˆ°€‰I•É½ÕÁ•è±•Ì…ÉÑ¥±•ÌÁË©ÑÌ•ÐÛ¥É¥™¥•è±•Ì‘¥µ•¹Í¥½¹Ì¸‰t°($$%l‰[¥É¥™¥•È±•ÌÉ•ÍÑÉ¥Ñ¥½¹Ìˆ°€‰	…ÑÑ•É¥•Ì°±¥ÅÕ¥‘•Ì•Ð…ÉÑ¥±•ÌÍ•¹Í¥‰±•ÌÁ•ÕÙ•¹Ð±¥µ¥Ñ•È±•Ì±¥¹•Ì¸‰t°($$%l‰½µÁ…É•È±”Á½¥‘Ì™…ÑÕË¤ˆ°€‰1”Á½¥‘ÌË¥•°½ÔÙ½±Õ·¥ÑÉ¥ÅÕ”Á•ÕÐÏŠe…ÁÁ±¥ÅÕ•È¸‰t°($$%l‰¡½¥Í¥È±„ÁÉ½Ñ•Ñ¥½¸ˆ°€‰I•Ñ¥É•è±”ÍÕÁ•É™±Ôµ…¥ÌÁÉ½Ó¥•è±•Ì½‰©•ÑÌ™É…¥±•Ì¸‰t°($$%l‰[¥É¥™¥•È±”‘•Ù¥Ìˆ°€‰1¥¹•Ì•ÐÁÉ¥à¡…¹•¹Ðì½¹™¥Éµ•è…Ôµ½µ•¹Ð‘”³Še•¹Ù½¤¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰UÑ¥±¥Í•ÈÕ¸ÍÁÉ•…‘Í¡••Ð±±¡¥¹…	Õä•™™¥…•µ•¹Ðˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰QÉ…¹Í™½Éµ•ÈÕ¹”±½¹Õ”±¥ÍÑ”•¸½ÕÉÑ”Ï¥±•Ñ¥½¸¸ˆ($$%t°($$%l($$$$‰A¡½Ñ½ÌE€è½¹ÑËÑ±”•¸¥¹Äµ¥¹ÕÑ•Ìˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰1•ÌÁÉ¥½É¥Ó¥Ì•Ð±”‰½¸µ½µ•¹ÐÁ½ÕÈ‘•µ…¹‘•ÈÕ¹”Á¡½Ñ¼¸ˆ($$%t°($$%l($$$$‰AÉ¥àÁÉ½‘Õ¥Ð•Ð¿íÐ‘Ô½±¥Ìˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰A½ÕÉÅÕ½¤Õ¸…ÉÑ¥±”Á•Ô¡•È¹”…É…¹Ñ¥ÐÁ…ÌÕ¸•¹Ù½¤Á•Ô¡•È¸ˆ($$%t($%t°($%™…Äèl($$%l‰ÍÐµ”±”Í¥Ñ”½™™¥¥•°±±¡¥¹…	Õä€üˆ°€‰9½¸¸Še•ÍÐÕ¸Õ¥‘”¥¹“¥Á•¹‘…¹Ð¸‰t°($$%l‰?ä·¡¹•¹Ð±•Ì‰½ÕÑ½¹Ì€üˆ°€‰Y•ÉÌ±„™¥¡”•á…Ñ”‘”¹½ÑÉ”‘•ÍÑ¥¹…Ñ¥½¸°Á…ÌÙ•ÉÌ±±¡¥¹…	Õä¸‰t°($$%l‰1•ÌÁÉ¥àÍ½¹Ðµ¥±Ì“¥™¥¹¥Ñ¥™Ì€üˆ°€‰9½¸¸=ÁÑ¥½¹Ì°¡…¹”•Ð±¥ÙÉ…¥Í½¸µ½‘¥™¥•¹Ð±”Ñ½Ñ…°¸‰t°($$%l‰EÕ”Í½¹Ð±•ÌÁ¡½Ñ½ÌE€üˆ°€‰•ÌÁ¡½Ñ½Ì“Še•¹ÑÉ•ÃÑÐ…Ù…¹Ð³Še•¹Ù½¤¥¹Ñ•É¹…Ñ¥½¹…°¸‰t°($$%l‰…É…¹Ñ¥ÍÍ•¹Ðµ•±±•Ì±„ÅÕ…±¥Ó¤€üˆ°€‰9½¸¸±±•Ìµ½¹ÑÉ•¹Ð•ÉÑ…¥¹Ì“¥™…ÕÑÌ°Á…ÌÑ½ÕÌ±•Ì“¥Ñ…¥±Ì…£¥Ì¸‰t°($$%l‰AÕ¥Ìµ©”¡•É¡•ÈÁ…È¹½´€üˆ°€‰=Õ¤¸1”µ½Ðµ³¤•ÍÐÑÉ…¹Íµ¥Ì…Ô…Ñ…±½Õ”¸‰t°($$%l‰A½ÕÉÅÕ½¤±„±¥ÙÉ…¥Í½¸Á•ÕÐµ•±±”¿íÑ•ÈÁ±ÕÌ€üˆ°€‰A…åÌ°±¥¹”°Á½¥‘Ì•ÐÙ½±Õµ”“¥Ñ•Éµ¥¹•¹Ð±”¿íÐ¸‰t°($$%l‰1¥•¹ÌÙ•ÉÌ“Še…ÕÑÉ•Ì…•¹ÑÌ€üˆ°€‰9½¸¸Q½ÕÌ±•Ì‰½ÕÑ½¹Ì…É‘•¹ÐÕ¹”Í•Õ±”‘•ÍÑ¥¹…Ñ¥½¸¸‰t($%t(%ô°(%•Ìèì($%¹…µ”è€‰ÍÁ‡Å½°ˆ°($%±…‰•±Ìèl($$$‰	…Í”‘”‘…Ñ½Ìˆ°($$$‰…Ñ•½Ëµ…Ìˆ°($$$‰×µ„Eˆ°($$$‰¹Ûµ¼ˆ°($$$‰ÉÓµÕ±½Ìˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰i…Á…Ñ¥±±…Ìˆ°($$$‰MÕ‘…‘•É…Ìˆ°($$$‰…µ¥Í•Ñ…Ìˆ°($$$‰¡…ÅÕ•Ñ…Ìˆ°($$$‰A…¹Ñ…±½¹•Ìˆ°($$$‰•Í½É¥½Ìˆ($%t°($%¡•É¼èl($$$‰5=Q=HAI=UQ=LØÌ¸Àˆ°($$$‰	ÕÍ„µ•¹½Ì¸¹Õ•¹ÑÉ„µ•©½È¸ˆ°($$$‹5¹‘¥”•ÍÑÉÕÑÕÉ…‘¼Á…É„‹éÍÅÕ•‘…Ì±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¸½µÁ…É„ÁÉ•¥½ÌUMä…‰É”•°ÁÉ½‘ÕÑ¼•á…Ñ¼¸ˆ($%t°($%Õ¤èl($$$‰Y•ÈÁÉ½‘ÕÑ½Ìˆ°($$$‰5•»èˆ°($$$‰%‘¥½µ„ˆ°($$$‰iMEUKA%ˆ°($$$‰MQ<0ƒ59%ˆ°($$$‰É•¥ÍÑÉ½Ì…Ñ¥Ù½Ìˆ°($$$‰%1QI=Lˆ°($$$‰I%9%%Hˆ°($$$‰Q=K5ˆ°($$$‰AI%=}UMˆ°($$$‰MQ<ˆ°($$$‰¹±…”Ù•É¥™¥…‘¼ˆ°($$$‰9Õ•Ù¼•ÍÑ„Í•µ…¹„ˆ°($$$‰IMU1Q=Lˆ°($$$‰M1'M8ˆ°($$$‰A=HEW$MQƒ59%ˆ°($$$‰1••È…ÉÓµÕ±¼ˆ°($$$‰‰É¥È½±•§Í¸ˆ°($$$‰	ÕÍ…ÈÁÉ½‘ÕÑ½Ì°…Ñ•½Ëµ…Ì°•ÍÑ¥±½Ì¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰	…Í”‘”ÁÉ½‘ÕÑ½Ìˆ°€‰AÉ½‘ÕÑ½ÌÍ•±•¥½¹…‘½Ì½¸¥·…•¹•Ì°ÁÉ•¥¼UMä•¹±…”‘¥É•Ñ¼¸‰t°($$%…Ñ•½É¥•Ìèl‰áÁ±½É…È…Ñ•½Ëµ…Ìˆ°€‰±¥”Õ¸‘•Á…ÉÑ…µ•¹Ñ¼ä…‰É”ÍÔ½±•§Í¸¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰Íµ¼±••È™½Ñ½ÌEˆ°€‰½µÁÉÕ•‰„™½Éµ„°‘•Ñ…±±•Ì°µ•‘¥‘…Ìä‘•™•Ñ½ÌÙ¥Í¥‰±•Ì¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰A±…¹¥™¥„•°Á…ÅÕ•Ñ”ˆ°€‰°½ÍÑ”‘•Á•¹‘”‘”‘•ÍÑ¥¹¼°Ñ…µ‡Å¼°Á•Í¼äÑ¥Á¼¸‰t°($$%…ÉÑ¥±•Ìèl‰	¥‰±¥½Ñ•„‘”×µ…Ìˆ°€‰½¹Í•©½Ì‰…Í…‘½Ì•¸¡•¡½ÌÍ½‰É”‹éÍÅÕ•‘„°½¹ÑÉ½°ä•¹Ûµ¼¸‰t°($$%™…Äèl‰AÉ•Õ¹Ñ…Ì™É•Õ•¹Ñ•Ìˆ°€‰I•ÍÁÕ•ÍÑ…ÌÍ½‰É”•°ƒµ¹‘¥”°•¹±…•Ì°™½Ñ½ÌEä½ÍÑ•Ì¸‰t($%ô°($%ÅŒèl($$%l‰½¹™¥Éµ…È•°…ÉÓµÕ±¼ˆ°€‰½µÁ…É„¹½µ‰É”°½±½ÈäÑ…±±„½¸•°Á•‘¥‘¼¸‰t°($$%l‰I•Ù¥Í…ÈÑ½‘½Ì±½Ìƒ…¹Õ±½Ìˆ°€‰5¥É„™É•¹Ñ”°•ÍÁ…±‘„°±…Ñ•É…±•ÌäÁÉ¥µ•É½ÌÁ±…¹½Ì¸‰t°($$%l‰UÍ…Èµ•‘¥‘…Ìˆ°€‰½µÁ…É„±„¥¹Ñ„·¥ÑÉ¥„½¸Õ¹„ÁÉ•¹‘„ÁÉ½Á¥„¸‰t°($$%l‰µÁ±¥…È‘•Ñ…±±•Ìˆ°€‰I•Ù¥Í„½ÍÑÕÉ…Ì°•ÍÑ…µÁ…‘½Ì°‰½É‘…‘½Ìä¥•ÉÉ•Ì¸‰t°($$%l‰•¥‘¥È…¹Ñ•Ì‘•°•¹Ûµ¼ˆ°€‰±…É„‘Õ‘…Ìµ¥•¹ÑÉ…Ì•°…ÉÓµÕ±¼Í¥Õ”•¸…±µ…¥¸¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰É•…È•°Á…ÅÕ•Ñ”ˆ°€‰ÉÕÁ„…ÉÓµÕ±½Ì±¥ÍÑ½ÌäÙ•É¥™¥„‘¥µ•¹Í¥½¹•Ì¸‰t°($$%l‰I•Ù¥Í…ÈÉ•ÍÑÉ¥¥½¹•Ìˆ°€‰	…Ñ•Ëµ…Ì°³µÅÕ¥‘½Ìä…ÉÓµÕ±½ÌÍ•¹Í¥‰±•ÌÁÕ•‘•¸±¥µ¥Ñ…ÈÉÕÑ…Ì¸‰t°($$%l‰½µÁ…É…ÈÁ•Í¼™…ÑÕÉ…‰±”ˆ°€‰AÕ•‘”…Á±¥…ÉÍ”Á•Í¼É•…°¼Ù½±Õ·¥ÑÉ¥¼¸‰t°($$%l‰±•¥ÈÁÉ½Ñ•§Í¸ˆ°€‰EÕ¥Ñ„•µ‰…±…©”¥¹¹••Í…É¥¼äÁÉ½Ñ•”±¼™Ë…¥°¸‰t°($$%l‰Y•É¥™¥…È½Ñ¥é…§Í¸ˆ°€‰IÕÑ…ÌäÁÉ•¥½Ì…µ‰¥…¸ì½¹™¥Éµ„•°¥µÁ½ÉÑ”…ÑÕ…°¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰UÍ…ÈÕ¸ÍÁÉ•…‘Í¡••Ð±±¡¥¹…	ÕäÍ¥¸Á•É‘•ÉÍ”ˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰”Õ¹„±¥ÍÑ„•¹½Éµ”„Õ¹„Í•±•§Í¸½µÁ…É…‰±”¸ˆ($$%t°($$%l($$$$‰½Ñ½ÌEèÉ•Ù¥Í§Í¸•¸¥¹¼µ¥¹ÕÑ½Ìˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰E×¤É•Ù¥Í…ÈÁÉ¥µ•É¼ä×…¹‘¼Á•‘¥È½ÑÉ„™½Ñ¼¸ˆ($$%t°($$%l($$$$‰AÉ•¥¼‘•°ÁÉ½‘ÕÑ¼ä½ÍÑ”‘•°Á…ÅÕ•Ñ”ˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰A½ÈÅ×¤Õ¸ÁÉ½‘ÕÑ¼‰…É…Ñ¼¹¼…Í•ÕÉ„Õ¸•¹Ûµ¼‰…É…Ñ¼¸ˆ($$%t($%t°($%™…Äèl($$%l‹
+ýÌ±„Ý•ˆ½™¥¥…°‘”±±¡¥¹…	Õäüˆ°€‰9¼¸ÌÕ¹„×µ„¥¹‘•Á•¹‘¥•¹Ñ”¸‰t°($$%l‹
+ý“Í¹‘”±±•Ù…¸±½Ì‰½Ñ½¹•Ìüˆ°€‰±„™¥¡„•á…Ñ„‘”¹Õ•ÍÑÉ¼‘•ÍÑ¥¹¼°¹¼„±±¡¥¹…	Õä¸‰t°($$%l‹
+ýM½¸ÁÉ•¥½Ì™¥¹…±•Ìüˆ°€‰9¼¸=Á¥½¹•Ì°…µ‰¥¼ä•¹Ûµ¼µ½‘¥™¥…¸•°Ñ½Ñ…°¸‰t°($$%l‹
+ýE×¤Í½¸±…Ì™½Ñ½ÌEüˆ°€‰½Ñ½Ì‘”…±µ…¥¸…¹Ñ•Ì‘•°•¹Ûµ¼¥¹Ñ•É¹…¥½¹…°¸‰t°($$%l‹
+ý…É…¹Ñ¥é…¸…±¥‘…üˆ°€‰9¼¸åÕ‘…¸½¸‘•™•Ñ½ÌÙ¥Í¥‰±•Ì°¹¼½¸Ñ½‘¼±¼½Õ±Ñ¼¸‰t°($$%l‹
+ýAÕ•‘¼‰ÕÍ…ÈÁ½È¹½µ‰É”üˆ°€‰O´¸1„Á…±…‰É„Í”•¹Ûµ„…°…Ó…±½¼¸‰t°($$%l‹
+ýA½ÈÅ×¤•°•¹Ûµ¼ÁÕ•‘”½ÍÑ…È·…Ìüˆ°€‰•ÍÑ¥¹¼°ÉÕÑ„°Á•Í¼äÙ½±Õµ•¸‘•Ñ•Éµ¥¹…¸•°ÁÉ•¥¼¸‰t°($$%l‹
+ý!…ä•¹±…•Ì„½ÑÉ½Ì…•¹Ñ•Ìüˆ°€‰9¼¸Q½‘½Ì±½Ì‰½Ñ½¹•ÌÕÍ…¸Õ¸‘•ÍÑ¥¹¼¸‰t($%t(%ô°(%¥Ðèì($%¹…µ”è€‰%Ñ…±¥…¹¼ˆ°($%±…‰•±Ìèl($$$‰…Ñ…‰…Í”ˆ°($$$‰…Ñ•½É¥”ˆ°($$$‰Õ¥‘„Eˆ°($$$‰MÁ•‘¥é¥½¹”ˆ°($$$‰ÉÑ¥½±¤ˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰M¹•…­•Èˆ°($$$‰•±Á”ˆ°($$$‰PµÍ¡¥ÉÐˆ°($$$‰¥…¡”ˆ°($$$‰A…¹Ñ…±½¹¤ˆ°($$$‰•ÍÍ½É¤ˆ($%t°($%¡•É¼èl($$$‰5=Q=I$I%IØÌ¸Àˆ°($$$‰•É„µ•¹¼¸QÉ½Ù„µ•±¥¼¸ˆ°($$$‰%¹‘¥”ÍÑÉÕÑÑÕÉ…Ñ¼Á•ÈÉ¥•É¡”±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¸½¹™É½¹Ñ„¤ÁÉ•éé¤UM”…ÁÉ¤¥°ÁÉ½‘½ÑÑ¼•Í…ÑÑ¼¸ˆ($%t°($%Õ¤èl($$$‰Y•‘¤ÁÉ½‘½ÑÑ¤ˆ°($$$‰5•¹Ôˆ°($$$‰1¥¹Õ„ˆ°($$$‰I%IIA%ˆ°($$$‰MQQ<%9%ˆ°($$$‰Í¡•‘”…ÑÑ¥Ù”ˆ°($$$‰%1QI$ˆ°($$$‰iiIˆ°($$$‰Q=I%ˆ°($$$‰AIii=}UMˆ°($$$‰MQQ<ˆ°($$$‰1¥¹¬Ù•É¥™¥…Ñ¼ˆ°($$$‰9Õ½Ù¤ÅÕ•ÍÑ„Í•ÑÑ¥µ…¹„ˆ°($$$‰I%MU1QQ$ˆ°($$$‰M1i%=9Q$ˆ°($$$‰AI#$EUMQ<%9%ˆ°($$$‰1•¤…ÉÑ¥½±¼ˆ°($$$‰ÁÉ¤½±±•é¥½¹”ˆ°($$$‰•É„ÁÉ½‘½ÑÑ¤°…Ñ•½É¥”°ÍÑ¥±¤¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰…Ñ…‰…Í”ÁÉ½‘½ÑÑ¤ˆ°€‰AÉ½‘½ÑÑ¤Í•±•é¥½¹…Ñ¤½¸¥µµ…¥¹¤°ÁÉ•éé¤UM”±¥¹¬‘¥É•ÑÑ¼¸‰t°($$%…Ñ•½É¥•Ìèl‰ÍÁ±½É„…Ñ•½É¥”ˆ°€‰M•±¤Õ¸É•Á…ÉÑ¼”…ÁÉ¤±„½±±•é¥½¹”¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰1••É”±”™½Ñ¼Eˆ°€‰½¹ÑÉ½±±„™½Éµ„°‘•ÑÑ…±¤°µ¥ÍÕÉ””‘¥™•ÑÑ¤Ù¥Í¥‰¥±¤¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰A¥…¹¥™¥„¥°Á…¼ˆ°€‰%°½ÍÑ¼‘¥Á•¹‘”‘„‘•ÍÑ¥¹…é¥½¹”°‘¥µ•¹Í¥½¹¤°Á•Í¼”Ñ¥Á¼¸‰t°($$%…ÉÑ¥±•Ìèl‰Õ¥‘””É¥•É¡”ˆ°€‰½¹Ñ•¹ÕÑ¤‰…Í…Ñ¤ÍÔ™…ÑÑ¤Á•ÈÉ¥•É„°½¹ÑÉ½±±¼”ÍÁ•‘¥é¥½¹”¸‰t°($$%™…Äèl‰½µ…¹‘”™É•ÅÕ•¹Ñ¤ˆ°€‰I¥ÍÁ½ÍÑ”ÍÔ¥¹‘¥”°±¥¹¬°™½Ñ¼E”½ÍÑ¤¸‰t($%ô°($%ÅŒèl($$%l‰½¹™•Éµ„³Še…ÉÑ¥½±¼ˆ°€‰½¹™É½¹Ñ„¹½µ”°½±½É””Ñ…±¥„½¸³Še½É‘¥¹”¸‰t°($$%l‰½¹ÑÉ½±±„½¹¤…¹½±¼ˆ°€‰Í…µ¥¹„™É½¹Ñ”°É•ÑÉ¼°±…Ñ¤”ÁÉ¥µ¤Á¥…¹¤¸‰t°($$%l‰UÍ„±”µ¥ÍÕÉ”ˆ°€‰½¹™É½¹Ñ„±”™½Ñ¼½¸Õ¸…Á¼ÑÕ¼¸‰t°($$%l‰%¹É…¹‘¥Í¤¤‘•ÑÑ…±¤ˆ°€‰½¹ÑÉ½±±„Õ¥ÑÕÉ”°ÍÑ…µÁ”°É¥…µ¤”¡¥ÕÍÕÉ”¸‰t°($$%l‰•¥‘¤ÁÉ¥µ„‘•±³Še¥¹Ù¥¼ˆ°€‰¡¥•‘¤¡¥…É¥µ•¹Ñ¤µ•¹ÑÉ”¥°ÁÉ½‘½ÑÑ¼ƒ ¥¸µ……éé¥¹¼¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰½µÁ½¹¤¥°Á…¼ˆ°€‰I…ÉÕÁÁ„…ÉÑ¥½±¤ÁÉ½¹Ñ¤”Ù•É¥™¥„±”‘¥µ•¹Í¥½¹¤¸‰t°($$%l‰½¹ÑÉ½±±„¤±¥µ¥Ñ¤ˆ°€‰	…ÑÑ•É¥”°±¥ÅÕ¥‘¤”…ÉÑ¥½±¤Í•¹Í¥‰¥±¤Á½ÍÍ½¹¼±¥µ¥Ñ…É”±”±¥¹•”¸‰t°($$%l‰½¹™É½¹Ñ„¥°Á•Í¼ˆ°€‰A×ÈÙ…±•É”¥°Á•Í¼É•…±”¼Ù½±Õµ•ÑÉ¥¼¸‰t°($$%l‰M•±¤±„ÁÉ½Ñ•é¥½¹”ˆ°€‰I¥‘Õ¤³Še¥µ‰…±±¼µ„ÁÉ½Ñ•¤±¤½•ÑÑ¤™É…¥±¤¸‰t°($$%l‰Y•É¥™¥„¥°ÁÉ•Ù•¹Ñ¥Ù¼ˆ°€‰1¥¹•””ÁÉ•éé¤…µ‰¥…¹¼ì½¹™•Éµ„¥°‘…Ñ¼…ÑÑÕ…±”¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰UÍ…É”Õ¹¼ÍÁÉ•…‘Í¡••Ð±±¡¥¹…	ÕäÍ•¹é„Á•É‘•ÉÍ¤ˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰„Õ¹„É…¹‘”±¥ÍÑ„„Õ¹„Í•±•é¥½¹”½¹™É½¹Ñ…‰¥±”¸ˆ($$%t°($$%l($$$$‰½Ñ¼Eè½¹ÑÉ½±±¼¥¸¥¹ÅÕ”µ¥¹ÕÑ¤ˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰½Í„Õ…É‘…É”ÁÉ¥µ„”ÅÕ…¹‘¼¡¥•‘•É”Õ¹„™½Ñ¼•áÑÉ„¸ˆ($$%t°($$%l($$$$‰AÉ•éé¼ÁÉ½‘½ÑÑ¼”½ÍÑ¼Á…¼ˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰A•É£¤Õ¸…ÉÑ¥½±¼•½¹½µ¥¼¹½¸…É…¹Ñ¥Í”Õ¹„ÍÁ•‘¥é¥½¹”•½¹½µ¥„¸ˆ($$%t($%t°($%™…Äèl($$%l‹ ¥°Í¥Ñ¼Õ™™¥¥…±”±±¡¥¹…	Õäüˆ°€‰9¼¸ƒ Õ¹„Õ¥‘„¥¹‘¥Á•¹‘•¹Ñ”¸‰t°($$%l‰½Ù”Á½ÉÑ…¹¼¤ÁÕ±Í…¹Ñ¤üˆ°€‰±±„Á…¥¹„•Í…ÑÑ„‘•°¹½ÍÑÉ¼Í¥Ñ¼°¹½¸…±±¡¥¹…	Õä¸‰t°($$%l‰$ÁÉ•éé¤Í½¹¼‘•™¥¹¥Ñ¥Ù¤üˆ°€‰9¼¸=Áé¥½¹¤°…µ‰¥¼”ÍÁ•‘¥é¥½¹”…µ‰¥…¹¼¥°Ñ½Ñ…±”¸‰t°($$%l‰½Í„Í½¹¼±”™½Ñ¼Eüˆ°€‰½Ñ¼‘¤µ……éé¥¹¼ÁÉ¥µ„‘•±±„ÍÁ•‘¥é¥½¹”¸‰t°($$%l‰…É…¹Ñ¥Í½¹¼±„ÅÕ…±¥Ó€üˆ°€‰9¼¸¥ÕÑ…¹¼½¸‘¥™•ÑÑ¤Ù¥Í¥‰¥±¤°¹½¸½¸ÑÕÑÑ¼¸‰t°($$%l‰A½ÍÍ¼•É…É”Á•È¹½µ”üˆ°€‰O°¸1„Á…É½±„Á…ÍÍ„…°…Ñ…±½¼¸‰t°($$%l‰A•É£¤±„ÍÁ•‘¥é¥½¹”Á×È½ÍÑ…É”‘¤Á§äüˆ°€‰•ÍÑ¥¹…é¥½¹”°±¥¹•„°Á•Í¼”Ù½±Õµ”‘•Ñ•Éµ¥¹…¹¼¥°½ÍÑ¼¸‰t°($$%l‰½±±•…Ñ”…±ÑÉ¤…•¹Ñ¤üˆ°€‰9¼¸QÕÑÑ¤¤ÁÕ±Í…¹Ñ¤ÕÍ…¹¼Õ¹„Í½±„‘•ÍÑ¥¹…é¥½¹”¸‰t($%t(%ô°(%Á°èì($%¹…µ”è€‰A½±Í­¤ˆ°($%±…‰•±Ìèl($$$‰	…é„ÁÉ½‘Õ­ÓÍÜˆ°($$$‰-…Ñ•½É¥”ˆ°($$$‰A½É…‘¹¥¬Eˆ°($$$‰]åÍç	­„ˆ°($$$‰ÉÑå­×	äˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰	ÕÑäˆ°($$$‰	±Õéäˆ°($$$‰PµÍ¡¥ÉÑäˆ°($$$‰-ÕÉÑ­¤ˆ°($$$‰MÁ½‘¹¥”ˆ°($$$‰­•Í½É¥„ˆ($%t°($%¡•É¼èl($$$‰]eMiU-%]I-AI=U-SM\ØÌ¸Àˆ°($$$‰MéÕ­…¨µ¹¥•¨¸i¹…©‘Õ¨±•Á¥•¨¸ˆ°($$$‰UÁ½Éë‘­½Ý…¹ä¥¹‘•­Ì‘±„ÝåÍéÕ­¥Ý‡±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¸A½ËÍÝ¹Õ¨•¹äUM¤½ÑÝ¥•É…¨­½¹­É•Ñ¹äÁÉ½‘Õ­Ð¸ˆ($%t°($%Õ¤èl($$$‰i½‰…èÁÉ½‘Õ­Ñäˆ°($$$‰5•¹Ôˆ°($$$‰+eéå¬ˆ°($$$‰Mie	-%]eMiU-%]9%ˆ°($$$‰MQ8%9-MTˆ°($$$‰…­ÑåÝ¹å Á½éå©¤ˆ°($$$‰%1QIdˆ°($$$‰IMQU(ˆ°($$$‰-Q=I%ˆ°($$$‰9}UMˆ°($$$‰MQQULˆ°($$$‰1¥¹¬ÍÁÉ…Ý‘é½¹äˆ°($$$‰9½Ý”ÜÑå´Ñå½‘¹¥Ôˆ°($$$‰]e9%/M\ˆ°($$$‰]e	I9ˆ°($$$‰1i<Q8%9-Lˆ°($$$‰éåÑ…¨…ÉÑå­×ˆ°($$$‰=ÑßÍÉè­½±•­«dˆ°($$$‰MéÕ­…¨ÁÉ½‘Õ­ÓÍÜ°­…Ñ•½É¥¤°ÍÑå³ÍÜ¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰	…é„ÁÉ½‘Õ­ÓÍÜˆ°€‰]å‰É…¹”ÁÉ½‘Õ­Ñäé”é‘«e¥…µ¤°•¹…µ¤UM¤±¥¹­¥•´¸‰t°($$%…Ñ•½É¥•Ìèl‰-…Ñ•½É¥”ˆ°€‰]å‰¥•Éè‘é¥‡¤½ÑßÍÉè­½±•­«d¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰)…¬éåÑ‡é‘«e¥„Eˆ°€‰MÁÉ…Ý“è­ÍéÑ‡	Ð°‘•Ñ…±”°Ýåµ¥…Éä¤Ý¥‘½é¹”Ý…‘ä¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰i…Á±…¹Õ¨Á…é¯dˆ°€‰-½ÍéÐé…±—ñä½­É…©Ô°É½éµ¥…ÉÔ°Ý…¤¤ÑåÁÔ¸‰t°($$%…ÉÑ¥±•Ìèl‰	¥‰±¥½Ñ•­„Á½É…‘¹¥¯ÍÜˆ°€‰Ié•Ñ•±¹”ÑÉ—m¤¼ÝåÍéÕ­¥Ý…¹¥Ô°­½¹ÑÉ½±¤¤ÁÉé•Íç	”¸‰t°($$%™…Äèl‰ëeÍÑ”ÁåÑ…¹¥„ˆ°€‰=‘Á½Ý¥•‘é¤¼¥¹‘•­Í¥”°±¥¹­… °é‘«e¥… E¤­½ÍéÑ… ¸‰t($%ô°($%ÅŒèl($$%l‰A½ÑÝ¥•É“èÁÉ½‘Õ­Ðˆ°€‰A½ËÍÝ¹…¨¹…éßd°­½±½È¤É½éµ¥…Èèé…·ÍÝ¥•¹¥•´¸‰t°($$%l‰MÁÉ…Ý“è­‡ñ‘ä¯Ðˆ°€‰=‰•©Ééå¨ÁÉëÍ°Ñç°‰½­¤¤é‰±§ñ•¹¥„¸‰t°($$%l‰Wñå¨Ýåµ¥…ËÍÜˆ°€‰A½ËÍÝ¹…¨é‘«e¥„èß	…Í»½‘é¥—ó¸‰t°($$%l‰A½Ý§e­ÍèÍéé•ŸÏ	äˆ°€‰MÁÉ…Ý“èÍéÝä°¹…‘ÉÕ­¤°¡…™Ñä¤é…µ­¤¸‰t°($$%l‰i‘•å‘Õ¨ÁÉé•ÝåÍç	¯ˆ°€‰]å©‡m¹¥¨ßÑÁ±¥Ý¿m¤°‘äÁÉ½‘Õ­Ð©•ÍÐÜµ……éå¹¥”¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰i‰Õ‘Õ¨Á…é¯dˆ°€‰A¿è½Ñ½Ý”ÁÉ½‘Õ­Ñä¤ÍÁÉ…Ý“èÝåµ¥…Éä¸‰t°($$%l‰MÁÉ…Ý“è½É…¹¥é•¹¥„ˆ°€‰	…Ñ•É¥”°Ã	å¹ä¤ÝÉ‡ñ±¥Ý”Ñ½Ý…Éäµ½Ÿ½É…¹¥é‡±¥¹¥”¸‰t°($$%l‰A½ËÍÝ¹…¨Ý…Ÿdˆ°€‰5¿ñ”½‰½Ý§éåÝ‡Ý…„Éé•éåÝ¥ÍÑ„±Õˆ½‰«eÑ¿m¥½Ý„¸‰t°($$%l‰]å‰¥•Éèé…‰•éÁ¥•é•¹¥”ˆ°€‰UÍ×é‹e‘¹”½Á…­½Ý…¹¥„¤¡É¿‘•±¥­…Ñ¹”Éé•éä¸‰t°($$%l‰MÁÉ…Ý“èÝå•»dˆ°€‰1¥¹¥”¤•¹äÍ§déµ¥•¹¥…«ìÁ½ÑÝ¥•É“è½™•ÉÓd¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰)…¬×ñåÝ‡±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð‰•è¡…½ÍÔˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰=½É½µ¹•¨±¥ÍÑä‘¼­ËÍÑ­¥•¼Á½ËÍÝ¹…¹¥„¸ˆ($$%t°($$%l($$$$‰i‘«e¥„Eè­½¹ÑÉ½±„ÜÁ§gµ¥¹ÕÐˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰¼ÍÁÉ…Ý‘é§¤­¥•‘äÁ½ÁÉ½Í§¼‘½‘…Ñ­½Ý”é‘«e¥”¸ˆ($$%t°($$%l($$$$‰•¹„ÁÉ½‘Õ­ÑÔ„­½ÍéÐÁ…é­¤ˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰±…é•¼Ñ…¹¤ÁÉ½‘Õ­Ð¹¥”½é¹…é„Ñ…¹¥•¨ÝåÍç	­¤¸ˆ($$%t($%t°($%™…Äèl($$%l‰éäÑ¼½™¥©…±¹„ÍÑÉ½¹„±±¡¥¹…	Õäüˆ°€‰9¥”¸Q¼¹¥•é…±—ñ¹äÁÉé•Ý½‘¹¥¬¸‰t°($$%l‰½¯ÁÉ½Ý…‘ëÁÉéå¥Í­¤üˆ°€‰¼‘½¯	…‘¹•¨­…ÉÑäÁÉ½‘Õ­ÑÔ°¹¥”‘¼±±¡¥¹…	Õä¸‰t°($$%l‰éä•¹äÏ½ÍÑ…Ñ•é¹”üˆ°€‰9¥”¸=Á©”°­ÕÉÌ¤ÝåÍç	­„éµ¥•¹¥…«ÍÕ·d¸‰t°($$%l‰éå´Ïé‘«e¥„Eüˆ°€‰i‘«e¥…µ¤µ……éå¹½Ýåµ¤ÁÉé•ÝåÍç	¯¸‰t°($$%l‰éäÝ…É…¹ÑÕ«©…­¿oüˆ°€‰9¥”¸A½­…éÕ«Ý¥‘½é¹”Ý…‘ä°¹¥”ÝÍéåÍÑ­¥”Õ­ÉåÑ”¸‰t°($$%l‰éäµ½ŸdÍéÕ­‡Á¼¹…éÝ¥”üˆ°€‰Q…¬¸!…Ï	¼ÑÉ…™¥„‘¼­…Ñ…±½Ô¸‰t°($$%l‰±…é•¼ÝåÍç	­„‰åÝ„‘É¿ñÍé„üˆ°€‰-É…¨°±¥¹¥„°Ý…„¤½‰«eÑ¿o½­É—m±…«•»d¸‰t°($$%l‰éä±¥¹­Õ©•¥”¥¹¹å …•¹ÓÍÜüˆ°€‰9¥”¸]ÍéåÍÑ­¥”ÁÉéå¥Í­¤ÁÉ½Ý…‘ë‘¼©•‘¹•¼•±Ô¸‰t($%t(%ô°(%É¼èì($%¹…µ”è€‰I½·‰»ˆ°($%±…‰•±Ìèl($$$‰	…ëÁÉ½‘ÕÍ”ˆ°($$$‰…Ñ•½É¥¤ˆ°($$$‰¡¥Eˆ°($$$‰1¥ÙÉ…É”ˆ°($$$‰ÉÑ¥½±”ˆ°($$$‰Dˆ($%t°($%…ÑÌèl($$$‰A…¹Ñ½™¤ˆ°($$$‰!…¹½É…”ˆ°($$$‰QÉ¥½ÕÉ¤ˆ°($$$‰)…¡•Ñ”ˆ°($$$‰A…¹Ñ…±½¹¤ˆ°($$$‰•Í½É¥¤ˆ($%t°($%¡•É¼èl($$$‰5=Q=H	UQIØÌ¸Àˆ°($$$‰…ÕÓµ…¤Á×"m¥¸¸Í—"eÑ”µ…¤‰¥¹”¸ˆ°($$$‰%¹‘•àÍÑÉÕÑÕÉ…ÐÁ•¹ÑÉÔÕÓÉ¤±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð¸½µÁ…ËÁÉ—"mÕÉ¤UMƒ"e¤‘•Í¡¥‘”ÁÉ½‘ÕÍÕ°•á…Ð¸ˆ($%t°($%Õ¤èl($$$‰Y•é¤ÁÉ½‘ÕÍ•±”ˆ°($$$‰5•¹¥Ôˆ°($$$‰1¥µ‹ˆ°($$$‰	UQIIA%ˆ°($$$‰MQI%9`ˆ°($$$‹¹¹É•¥ÍÑËÉ¤…Ñ¥Ù”ˆ°($$$‰%1QIˆ°($$$‰IMQkˆ°($$$‰Q=I%ˆ°($$$‰AI"i}UMˆ°($$$‰MQIˆ°($$$‰1¥¹¬Ù•É¥™¥…Ðˆ°($$$‰9½ÔÏÁÓ·‰¹„…•…ÍÑ„ˆ°($$$‰IiU1QQˆ°($$$‰M1QQˆ°($$$‰MP%9`ˆ°($$$‰¥Ñ—"eÑ”…ÉÑ¥½±Õ°ˆ°($$$‰•Í¡¥‘”½±•"m¥„ˆ°($$$‰…ÕÓÁÉ½‘ÕÍ”°…Ñ•½É¥¤°ÍÑ¥±ÕÉ¤¸¸¸ˆ($%t°($%Á…•Ìèì($$%ÁÉ½‘ÕÑÌèl‰	…ë‘”ÁÉ½‘ÕÍ”ˆ°€‰AÉ½‘ÕÍ”Í•±•Ñ…Ñ”Ô¥µ…¥¹¤°ÁÉ—"mÕÉ¤UMƒ"e¤±¥¹¬‘¥É•Ð¸‰t°($$%…Ñ•½É¥•Ìèl‰áÁ±½É•…ë…Ñ•½É¥¥±”ˆ°€‰±•”Õ¸‘•Á…ÉÑ…µ•¹Ðƒ"e¤‘•Í¡¥‘”½±•"m¥„¸‰t°($$$‰ÅŒµÕ¥‘”ˆèl‰Õ´¥Ñ—"eÑ¤Á½é•±”Eˆ°€‰Y•É¥™¥™½Éµ„°‘•Ñ…±¥¥±”°·ÍÕÉ¥±”ƒ"e¤‘•™•Ñ•±”Ù¥é¥‰¥±”¸‰t°($$$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰A±…¹¥™¥Á…¡•ÑÕ°ˆ°€‰½ÍÑÕ°‘•Á¥¹‘”‘”‘•ÍÑ¥¹‡"m¥”°‘¥µ•¹Í¥Õ¹”°É•ÕÑ…Ñ”ƒ"e¤Ñ¥À¸‰t°($$%…ÉÑ¥±•Ìèl‰	¥‰±¥½Ñ•‘”¡¥‘ÕÉ¤ˆ°€‰½»"m¥¹ÕÐ‘½Õµ•¹Ñ…Ð‘•ÍÁÉ”ÕÑ…É”°Ù•É¥™¥…É”ƒ"e¤±¥ÙÉ…É”¸‰t°($$%™…Äèl‹9¹ÑÉ•‹É¤™É•Ù•¹Ñ”ˆ°€‰KÍÁÕ¹ÍÕÉ¤‘•ÍÁÉ”¥¹‘•à°±¥¹­ÕÉ¤°Á½é”Eƒ"e¤½ÍÑÕÉ¤¸‰t($%ô°($%ÅŒèl($$%l‰½¹™¥É·ÁÉ½‘ÕÍÕ°ˆ°€‰½µÁ…Ë¹Õµ•±”°Õ±½…É•„ƒ"e¤·É¥µ•„Ô½µ…¹‘„¸‰t°($$%l‰Y•É¥™¥Ñ½…Ñ”Õ¹¡¥ÕÉ¥±”ˆ°€‰AÉ¥Ù—"eÑ”™‡"m„°ÍÁ…Ñ•±”°±…Ñ•É…±•±”ƒ"e¤‘•Ñ…±¥¥±”¸‰t°($$%l‰½±½Í—"eÑ”·ÍÕËÑ½É¥±”ˆ°€‰½µÁ…Ë™½Ñ½É…™¥¥±”Ô¼Á¥•ÏÁ”…É”¼…¤¸‰t°($$%l‰7É—"eÑ”‘•Ñ…±¥¥±”ˆ°€‰Y•É¥™¥ÕÏÑÕÉ¤°¥µÁÉ¥µ•ÕÉ¤°‰É½‘•É¥¤ƒ"e¤™•Éµ½…É”¸‰t°($$%l‰•¥‘”ƒ¹¹…¥¹Ñ”‘”±¥ÙÉ…É”ˆ°€‰•É”±…É¥™¥É¤‰ÐÁÉ½‘ÕÍÕ°•ÍÑ”ƒ¹¸‘•Á½é¥Ð¸‰t($%t°($%Í¡¥ÁÁ¥¹œèl($$%l‰½¹ÍÑÉÕ¥—"eÑ”Á…¡•ÑÕ°ˆ°€‰ÉÕÁ•…ëÁÉ½‘ÕÍ•±”ÁÉ•ŸÑ¥Ñ”ƒ"e¤Ù•É¥™¥‘¥µ•¹Í¥Õ¹¥±”¸‰t°($$%l‰Y•É¥™¥É•ÍÑÉ¥"m¥¥±”ˆ°€‰	…Ñ•É¥¥±”°±¥¡¥‘•±”ƒ"e¤ÁÉ½‘ÕÍ•±”Í•¹Í¥‰¥±”Á½Ð±¥µ¥Ñ„ÉÕÑ•±”¸‰t°($$%l‰½µÁ…ËÉ•ÕÑ…Ñ•„ˆ°€‰M”Á½…Ñ”™½±½Í¤É•ÕÑ…Ñ•„É•…³Í…ÔÙ½±Õµ•ÑÉ¥¸‰t°($$%l‰±•”ÁÉ½Ñ•"m¥„ˆ°€‰±¥µ¥»…µ‰…±…©Õ°¥¹ÕÑ¥°ƒ"e¤ÁÉ½Ñ•©•…ë½‰¥•Ñ•±”™É…¥±”¸‰t°($$%l‰Y•É¥™¥½™•ÉÑ„ˆ°€‰IÕÑ•±”ƒ"e¤ÁÉ—"mÕÉ¥±”Í”Í¡¥µ‹ì½¹™¥É·½™•ÉÑ„…ÑÕ…³¸‰t($%t°($%…ÉÑ¥±•Ìèl($$%l($$$$‰Õ´™½±½Í—"eÑ¤Õ¸±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð•™¥¥•¹Ðˆ°($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆ°($$$$‰”±„¼±¥ÍÓµ…É”±„¼Í•±•"m¥”½µÁ…É…‰¥³¸ˆ($$%t°($$%l($$$$‰A½é”EèÙ•É¥™¥…É”ƒ¹¸¥¹¤µ¥¹ÕÑ”ˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆ°($$$$‰”Ù•É¥™¥¤ƒ"e¤‰¹µ•É¥Ó¼™½Ñ½É…™¥”ÍÕÁ±¥µ•¹Ñ…Ë¸ˆ($$%t°($$%l($$$$‰AÉ—"mÕ°ÁÉ½‘ÕÍÕ±Õ¤ƒ"e¤½ÍÑÕ°Á…¡•ÑÕ±Õ¤ˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆ°($$$$‰””Õ¸ÁÉ½‘ÕÌ¥•™Ñ¥¸¹Ô…É…¹Ñ•…ë¼±¥ÙÉ…É”¥•™Ñ¥»¸ˆ($$%t($%t°($%™…Äèl($$%l‰ÍÑ”Í¥Ñ”µÕ°½™¥¥…°±±¡¥¹…	Õäüˆ°€‰9Ô¸ÍÑ”Õ¸¡¥¥¹‘•Á•¹‘•¹Ð¸‰t°($$%l‰U¹‘”‘ÕŒ‰ÕÑ½…¹•±”ÁÉ½‘ÕÍ•±½Èüˆ°€‰1„Á…¥¹„•á…Ó„ÁÉ½‘ÕÍÕ±Õ¤°¹Ô±„±±¡¥¹…	Õä¸‰t°($$%l‰AÉ—"mÕÉ¥±”ÍÕ¹Ð™¥¹…±”üˆ°€‰9Ô¸=Ã"m¥Õ¹¥±”°ÕÉÍÕ°ƒ"e¤±¥ÙÉ…É•„Í¡¥µ‹Ñ½Ñ…±Õ°¸‰t°($$%l‰”ÍÕ¹ÐÁ½é•±”Eüˆ°€‰½Ñ½É…™¥¤‘¥¸‘•Á½é¥Ðƒ¹¹…¥¹Ñ”‘”ÑÉ…¹ÍÁ½ÉÐ¸‰t°($$%l‰…É…¹Ñ•…ë…±¥Ñ…Ñ•„üˆ°€‰9Ô¸É…ÓÁÉ½‰±•µ”Ù¥é¥‰¥±”°¹ÔÑ½…Ñ”‘•Ñ…±¥¥±”…ÍÕ¹Í”¸‰t°($$%l‰A½ÐÕÑ„‘ÕÃ¹Õµ”üˆ°€‰„¸Q•Éµ•¹Õ°•ÍÑ”ÑÉ¥µ¥ÌÑÉ”…Ñ…±½œ¸‰t°($$%l‰””±¥ÙÉ…É•„Á½…Ñ”½ÍÑ„µ…¤µÕ±Ðüˆ°€‰•ÍÑ¥¹‡"m¥„°ÉÕÑ„°É•ÕÑ…Ñ•„ƒ"e¤Ù½±ÕµÕ°‘•Ñ•Éµ¥»½ÍÑÕ°¸‰t°($$%l‰QÉ¥µ¥Ñ—"m¤ÑÉ”…³"m¤…•»"m¤üˆ°€‰9Ô¸Q½…Ñ”…"m¥Õ¹¥±”™½±½Í•ÍŒ¼Í¥¹ÕË‘•ÍÑ¥¹‡"m¥”¸‰t($%t(%ô)ôì)=‰©•Ð¹…ÍÍ¥¸¡±½…±•½Áä¹•¸°ì(%¡•É¼èl($$‰I=59%AI=UP%M=YIdˆ°($$‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••Ð™½ÈI½µ…¹¥„ˆ°($$‰I½µ…¹¥„µ™½ÕÍ•¥¹‘•à™½ÈÁÉ½‘ÕÐ‘¥Í½Ù•Éä°E¡•­Ì…¹Á…É•°Á±…¹¹¥¹œ¸½µÁ…É”ÕÉÉ•¹ÐUM•ÍÑ¥µ…Ñ•Ì…¹½Á•¸Ñ¡”µ…ÁÁ•ÁÉ½‘ÕÐ±¥ÍÑ¥¹œ¸ˆ(%t°(%Õ¤èl($$‰	É½ÝÍ”ÁÉ½‘ÕÑÌˆ°($$‰5•¹Ôˆ°($$‰1…¹Õ…”ˆ°($$‰EU%,EUIdˆ°($$‰%9`MQQULˆ°($$‰Ù¥Í¥‰±”É•½É‘Ìˆ°($$‰%1QILˆ°($$‰IMPˆ°($$‰Q=Idˆ°($$‰AI%}UMˆ°($$‰MQQULˆ°($$‰1¥¹¬¡•­•ˆ°($$‰UM•ÍÑ¥µ…Ñ”ˆ°($$‰IMU1QLˆ°($$‰UIQˆ°($$‰5Q!==1=dˆ°($$‰I•……ÉÑ¥±”ˆ°($$‰=Á•¸½±±•Ñ¥½¸ˆ°($$‰M•…É ÕÉÉ•¹ÐÁÉ½‘ÕÑÌ¸¸¸ˆ(%t°(%Á…•Ìèì($$¸¸¹±½…±•½Áä¹•¸¹Á…•Ì°($%ÁÉ½‘ÕÑÌèl‰AÉ½‘ÕÐ‘…Ñ…‰…Í”™½ÈI½µ…¹¥„ˆ°€‰	É½ÝÍ”•¥¡ÐÙ¥Í¥‰±”É•½É‘ÌÝ¥Ñ ÕÉÉ•¹Ð¥µ…•Ì°UM•ÍÑ¥µ…Ñ•Ì…¹µ…ÁÁ•Á…Ñ¡ÌÑ¼Ñ¡”±¥Ù”…Ñ…±½Õ”¸‰t°($%…Ñ•½É¥•Ìèl‰	É½ÝÍ”‰ä…Ñ•½Éäˆ°€‰=Á•¸Ñ¡”ÕÉÉ•¹ÐÍ¡½ÁÁ¥¹œ½±±•Ñ¥½¸Ý¥Ñ É•™•ÉÉ…°Á…É…µ•Ñ•ÉÌ¥‘•¹Ñ¥™å¥¹œÑÉ…™™¥Œ™É½´…±±¡¥¹…‰Õä¹É¼¸‰t°($$‰ÅŒµÕ¥‘”ˆèl‰!½ÜÑ¼É•…EÁ¡½Ñ½Ìˆ°€‰ÁÉ…Ñ¥…°¡•­±¥ÍÐ™½ÈI½µ…¹¥…¸‰Õå•ÉÌè¥‘•¹Ñ¥Ñä°‘•Ñ…¥±Ì°µ•…ÍÕÉ•µ•¹ÑÌ…¹Ù¥Í¥‰±”‘•™•ÑÌ‰•™½É”¥¹Ñ•É¹…Ñ¥½¹…°Í¡¥ÁÁ¥¹œ¸‰t°($$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰M¡¥ÁÁ¥¹œÑ¼I½µ…¹¥„ˆ°€‰A±…¸É½ÕÑ”•±¥¥‰¥±¥Ñä°Á…­•Ý•¥¡Ð°YP°ÕÍÑ½µÌÑÉ•…Ñµ•¹Ð…¹Ñ¡”±¥Ù”Á…É•°ÅÕ½Ñ”‰•™½É”ÍÕ‰µ¥ÍÍ¥½¸¸‰t°($%…ÉÑ¥±•Ìèl‰I½µ…¹¥„É•Í•…É ±¥‰É…Éäˆ°€‰…Ðµ±•Õ¥‘•Ì™½ÈÁÉ½‘ÕÐ‘¥Í½Ù•Éä°¥¹ÍÁ•Ñ¥½¸…¹Á…É•°Á±…¹¹¥¹œ™½ÈI½µ…¹¥…¸Í¡½ÁÁ•ÉÌ¸‰t°($%™…Äèl‰É•ÅÕ•¹Ñ±ä…Í­•ÅÕ•ÍÑ¥½¹Ìˆ°€‰±•…È…¹ÍÝ•ÉÌ…‰½ÕÐÑ¡¥Ì¥¹‘•Á•¹‘•¹ÐI½µ…¹¥„Õ¥‘”°ÁÉ½‘ÕÐ±¥¹­Ì°EÁ¡½Ñ½Ì°•ÍÑ¥µ…Ñ•Ì…¹Í¡¥ÁÁ¥¹œ¸‰t(%ô)ô¤ì)=‰©•Ð¹…ÍÍ¥¸¡±½…±•½Áä¹É¼°ì(%¡•É¼èl($$‰!%AI=UMA9QITI=7	9%ˆ°($$‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••ÐÁ•¹ÑÉÔI½·‰¹¥„ˆ°($$‰%¹‘•àÉ½·‰¹•ÍŒÁ•¹ÑÉÔ‘•Í½Á•É¥É•„ÁÉ½‘ÕÍ•±½È°Ù•É¥™¥…É•„Á½é•±½ÈEƒ"e¤Á±…¹¥™¥…É•„½±•ÑÕ±Õ¤¸½µÁ…Ë•ÍÑ¥·É¤UM…ÑÕ…±”ƒ"e¤‘•Í¡¥‘”Á…¥¹„µ…Á…Ó„ÁÉ½‘ÕÍÕ±Õ¤¸ˆ(%t°(%Õ¤èl($$‰Y•é¤ÁÉ½‘ÕÍ•±”ˆ°($$‰5•¹¥Ôˆ°($$‰1¥µ‹ˆ°($$‰	UQIIA%ˆ°($$‰MQI%9`ˆ°($$‹¹¹É•¥ÍÑËÉ¤…™§"e…Ñ”ˆ°($$‰%1QIˆ°($$‰IMQkˆ°($$‰Q=I%ˆ°($$‰AI"i}UMˆ°($$‰MQIˆ°($$‰1¥¹¬Ù•É¥™¥…Ðˆ°($$‰ÍÑ¥µ…É”UMˆ°($$‰IiU1QQˆ°($$‰M1QQˆ°($$‰5Q==1=%ˆ°($$‰¥Ñ—"eÑ”…ÉÑ¥½±Õ°ˆ°($$‰•Í¡¥‘”½±•"m¥„ˆ°($$‰…ÕÓÁÉ½‘ÕÍ”…ÑÕ…±”¸¸¸ˆ(%t°(%Á…•Ìèì($$¸¸¹±½…±•½Áä¹É¼¹Á…•Ì°($%ÁÉ½‘ÕÑÌèl‰	…ë‘”ÁÉ½‘ÕÍ”Á•¹ÑÉÔI½·‰¹¥„ˆ°€‰=ÁÐƒ¹¹É•¥ÍÑËÉ¤Ù¥é¥‰¥±”°Ô¥µ…¥¹¤…ÑÕ…±”°•ÍÑ¥·É¤UMƒ"e¤±¥¹­ÕÉ¤µ…Á…Ñ”ÑÉ”…Ñ…±½Õ°…Ñ¥Ø¸‰t°($%…Ñ•½É¥•Ìèl‰áÁ±½É•…ë…Ñ•½É¥¥±”ˆ°€‰•Í¡¥‘”½±•"m¥„…ÑÕ…³°ÔÁ…É…µ•ÑÉ¤‘”É•½µ…¹‘…É”…É”¥‘•¹Ñ¥™¥ÑÉ…™¥Õ°‘¥¸…±±¡¥¹…‰Õä¹É¼¸‰t°($$‰ÅŒµÕ¥‘”ˆèl‰Õ´¥Ñ—"eÑ¤Á½é•±”Eˆ°€‰1¥ÍÓÁÉ…Ñ¥Á•¹ÑÉÔÕµÃËÑ½É¥¤‘¥¸I½·‰¹¥„è¥‘•¹Ñ¥Ñ…Ñ”°‘•Ñ…±¥¤°·ÍÕÉ¤ƒ"e¤‘•™•Ñ”Ù¥é¥‰¥±”ƒ¹¹…¥¹Ñ”‘”•áÁ•‘¥•É”¸‰t°($$‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆèl‰1¥ÙÉ…É”ÑÉ”I½·‰¹¥„ˆ°€‰A±…¹¥™¥•±¥¥‰¥±¥Ñ…Ñ•„ÉÕÑ•¤°É•ÕÑ…Ñ•„…µ‰…±…Ó°QY°™½Éµ…±¥Ó"m¥±”Ù…µ…±”ƒ"e¤½™•ÉÑ„±¥Ù”ƒ¹¹…¥¹Ñ”‘”ÑÉ¥µ¥Ñ•É”¸‰t°($%…ÉÑ¥±•Ìèl‰	¥‰±¥½Ñ•Á•¹ÑÉÔI½·‰¹¥„ˆ°€‰¡¥‘ÕÉ¤‘½Õµ•¹Ñ…Ñ”‘•ÍÁÉ”ÁÉ½‘ÕÍ”°Eƒ"e¤Á±…¹¥™¥…É•„½±•Ñ•±½ÈÁ•¹ÑÉÔÕµÃËÑ½É¥¤‘¥¸I½·‰¹¥„¸‰t°($%™…Äèl‹9¹ÑÉ•‹É¤™É•Ù•¹Ñ”ˆ°€‰KÍÁÕ¹ÍÕÉ¤‘•ÍÁÉ”…•ÍÐ¡¥É½·‰¹•ÍŒ¥¹‘•Á•¹‘•¹Ð°±¥¹­ÕÉ¤°Á½é”E°•ÍÑ¥·É¤ƒ"e¤±¥ÙÉ…É”¸‰t(%ô)ô¤ì)Ù…ÈÍ¥Ñ•Q•áÐ€ôì(%É¼èì($%¥¹‘•Á•¹‘•¹Ðè€‰¡¥¥¹‘•Á•¹‘•¹ÐÁ•¹ÑÉÔI½·‰¹¥„ƒ
+Ü9Ô•ÍÑ”Í¥Ñ”µÕ°½™¥¥…°±±¡¥¹…	Õäˆ°($%É•½É‘Ìè€‰ÁÉ½‘ÕÍ”Ù¥é¥‰¥±”ˆ°($%¡•­•è€‰1¥¹­ÕÉ¤Ù•É¥™¥…Ñ”±„€ÄÈ…ÕÕÍÐ€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰ÍÑ¥·É¤UM°¹ÔÁÉ—"mÕÉ¤™¥¹…±”ˆ°($%Í½ÕÉ”è€‰MÕÉÏƒ"e¤µ•Ñ½“ˆ°($%½Á•¸è€‰Q1=1%Yˆ°($%Í•…É è€‰…ÕÓˆ(%ô°(%•¸èì($%¥¹‘•Á•¹‘•¹Ðè€‰%¹‘•Á•¹‘•¹ÐI½µ…¹¥„Õ¥‘”ƒ
+Ü9½ÐÑ¡”½™™¥¥…°±±¡¥¹…	ÕäÝ•‰Í¥Ñ”ˆ°($%É•½É‘Ìè€‰Ù¥Í¥‰±”ÁÉ½‘ÕÑÌˆ°($%¡•­•è€‰1¥¹­Ì¡•­•€ÄÈÕÕÍÐ€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰UM•ÍÑ¥µ…Ñ•Ì°¹½Ð™¥¹…°ÁÉ¥•Ìˆ°($%Í½ÕÉ”è€‰M½ÕÉ”…¹µ•Ñ¡½ˆ°($%½Á•¸è€‰1%YQ1=ˆ°($%Í•…É è€‰M•…É ˆ(%ô°(%‘”èì($%¥¹‘•Á•¹‘•¹Ðè€‰U¹…‰£‘¹¥•ÈIÕ·‘¹¥•¸µI…Ñ•‰•Èƒ
+Ü-•¥¹”½™™¥é¥•±±”±±¡¥¹…	Õäµ]•‰Í¥Ñ”ˆ°($%É•½É‘Ìè€‰Í¥¡Ñ‰…É”AÉ½‘Õ­Ñ”ˆ°($%¡•­•è€‰1¥¹­Ì•ÁËñ™Ð…´€ÄÈ¸ÕÕÍÐ€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰UMµM£‘ÑéÕ¹•¸°­•¥¹”¹‘ÁÉ•¥Í”ˆ°($%Í½ÕÉ”è€‰EÕ•±±”Õ¹5•Ñ¡½‘”ˆ°($%½Á•¸è€‰1%Yµ-Q1=ˆ°($%Í•…É è€‰MÕ¡•¸ˆ(%ô°(%™Èèì($%¥¹‘•Á•¹‘•¹Ðè€‰Õ¥‘”¥¹“¥Á•¹‘…¹ÐÁ½ÕÈ±„I½Õµ…¹¥”ƒ
+Ü”»Še•ÍÐÁ…Ì±”Í¥Ñ”½™™¥¥•°±±¡¥¹…	Õäˆ°($%É•½É‘Ìè€‰ÁÉ½‘Õ¥ÑÌÙ¥Í¥‰±•Ìˆ°($%¡•­•è€‰1¥•¹ÌÛ¥É¥™§¥Ì±”€ÄÈ…¿íÐ€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰ÍÑ¥µ…Ñ¥½¹ÌUM°Á…Ì‘•ÌÁÉ¥à™¥¹…Õàˆ°($%Í½ÕÉ”è€‰M½ÕÉ”•Ð·¥Ñ¡½‘”ˆ°($%½Á•¸è€‰Q1=UQU0ˆ°($%Í•…É è€‰I•¡•É¡•Èˆ(%ô°(%•Ìèì($%¥¹‘•Á•¹‘•¹Ðè€‰×µ„¥¹‘•Á•¹‘¥•¹Ñ”Á…É„IÕµ…»µ„ƒ
+Ü9¼•Ì•°Í¥Ñ¥¼½™¥¥…°‘”±±¡¥¹…	Õäˆ°($%É•½É‘Ìè€‰ÁÉ½‘ÕÑ½ÌÙ¥Í¥‰±•Ìˆ°($%¡•­•è€‰¹±…•ÌÉ•Ù¥Í…‘½Ì•°€ÄÈ‘”…½ÍÑ¼‘”€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰ÍÑ¥µ…¥½¹•ÌUM°¹¼ÁÉ•¥½Ì™¥¹…±•Ìˆ°($%Í½ÕÉ”è€‰Õ•¹Ñ”ä·¥Ñ½‘¼ˆ°($%½Á•¸è€‰S1=<QU0ˆ°($%Í•…É è€‰	ÕÍ…Èˆ(%ô°(%¥Ðèì($%¥¹‘•Á•¹‘•¹Ðè€‰Õ¥‘„¥¹‘¥Á•¹‘•¹Ñ”Á•È±„I½µ…¹¥„ƒ
+Ü9½¸ƒ ¥°Í¥Ñ¼Õ™™¥¥…±”±±¡¥¹…	Õäˆ°($%É•½É‘Ìè€‰ÁÉ½‘½ÑÑ¤Ù¥Í¥‰¥±¤ˆ°($%¡•­•è€‰1¥¹¬Ù•É¥™¥…Ñ¤¥°€ÄÈ…½ÍÑ¼€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰MÑ¥µ”UM°¹½¸ÁÉ•éé¤™¥¹…±¤ˆ°($%Í½ÕÉ”è€‰½¹Ñ””µ•Ñ½‘¼ˆ°($%½Á•¸è€‰Q1=<QQU1ˆ°($%Í•…É è€‰•É„ˆ(%ô°(%Á°èì($%¥¹‘•Á•¹‘•¹Ðè€‰9¥•é…±—ñ¹äÁÉé•Ý½‘¹¥¬‘±„IÕµÕ¹¥¤ƒ
+ÜQ¼¹¥”©•ÍÐ½™¥©…±¹„ÍÑÉ½¹„±±¡¥¹…	Õäˆ°($%É•½É‘Ìè€‰Ý¥‘½é¹”ÁÉ½‘Õ­Ñäˆ°($%¡•­•è€‰1¥¹­¤ÍÁÉ…Ý‘é½¹¼€ÄÈÍ¥•ÉÁ¹¥„€ÈÀÈØˆ°($%•ÍÑ¥µ…Ñ”è€‰Mé…Õ¹­¤UM°¹¥”•¹ä­¿½Ý”ˆ°($%Í½ÕÉ”è€‹åËÍ“	¼¤µ•Ñ½‘„ˆ°($%½Á•¸è€‰-QU19d-Q1=ˆ°($%Í•…É è€‰MéÕ­…¨ˆ(%ô)ôì)Ù…È™…ÑÕ…±…ÅáÑÉ…Ì€ôì(%‘”èl($%l‰]•±¡”1•¥ÍÑÕ¹•¸‰•Í¡É•¥‰Ð±±¡¥¹…	ÕäƒÙ™™•¹Ñ±¥ üˆ°€‰¥”½™™¥é¥•±±”ÁÀ¹•¹¹Ð¥¹­…Õ˜°	•ÍÑ•±±…‰Ý¥­±Õ¹œ°EÕ…±¥Ó‘ÑÍÁËñ™Õ¹œ°¥¹Ñ•É¹…Ñ¥½¹…±”1½¥ÍÑ¥¬Õ¹-Õ¹‘•¹‘¥•¹ÍÐì‘•È¥¹Ñ•É¹…Ñ¥½¹…±”Y•ÉÍ…¹•É™½±Ð‘ÕÉ É¥ÑÑ…¹‰¥•Ñ•È¸‰t°($%l‰]•±¡”…Ñ•¸‰É…Õ¡Ð•¥¹”Y•ÉÍ…¹‘Í£‘ÑéÕ¹œüˆ°€‰•È½™™¥é¥•±±”I•¡¹•È™É…Ð¹… i¥•°°]…É•¹­…Ñ•½É¥”°•Í£‘ÑéÑ•´•Ý¥¡ÐÕ¹••‰•¹•¹™…±±ÌA…­•Ñµ‡}•¸¸‰t°($%l‰%ÍÐ‘•ÈI•¡¹•ÉÁÉ•¥Ì•¹‘Ÿñ±Ñ¥œüˆ°€‰9•¥¸¸¹‘µ‡}”°]…É•¹•¥¹Õ¹œÕ¹…­ÑÕ•±°Ù•É›ñ‰…É”1¥¹¥•¸¯Ù¹¹•¸‘…Ì1¥Ù”µ¹•‰½Ðƒ‘¹‘•É¸¸‰t°($%l‰]…ÌÁËñ™”¥ Ù½È‘•´A…­•ÑÙ•ÉÍ…¹üˆ°€‰ÉÑ¥­•°°Eµ9…¡Ý•¥Í”°•Ý¥¡Ð°5‡}”°1¥¹¥•¸µ¥¹Õ¹œÕ¹‘•¸…­ÑÕ•±±•¸•Í…µÑ‰•ÑÉ…œÁËñ™•¸¸‰t(%t°(%™Èèl($%l‰EÕ•±ÌÍ•ÉÙ¥•Ì±±¡¥¹…	Õä“¥É¥Ðµ¥°€üˆ°€‰3Še…ÁÁ±¥…Ñ¥½¸½™™¥¥•±±”¥Ñ”³Še…¡…Ð°±”ÑÉ…¥Ñ•µ•¹Ð‘•Ì½µµ…¹‘•Ì°±”½¹ÑËÑ±”ÅÕ…±¥Ó¤°±„±½¥ÍÑ¥ÅÕ”¥¹Ñ•É¹…Ñ¥½¹…±”•Ð±”Í•ÉÙ¥”…ÁË¡ÌµÙ•¹Ñ”ì³Še•¹Ù½¤¥¹Ñ•É¹…Ñ¥½¹…°•ÍÐ…ÍÍÕË¤Á…È‘•ÌÑ¥•ÉÌ¸‰t°($%l‰EÕ•±±•Ì‘½¹»¥•Ì™…ÕÐµ¥°Á½ÕÈ•ÍÑ¥µ•È³Še•¹Ù½¤€üˆ°€‰1”…±Õ±…Ñ•ÕÈ½™™¥¥•°‘•µ…¹‘”±„‘•ÍÑ¥¹…Ñ¥½¸°±„…Ó¥½É¥”°±”Á½¥‘Ì•ÍÑ¥·¤•Ð°Í¤»¥•ÍÍ…¥É”°±•Ì‘¥µ•¹Í¥½¹Ì¸‰t°($%l‰1”Ë¥ÍÕ±Ñ…Ð‘Ô…±Õ±…Ñ•ÕÈ•ÍÐµ¥°™¥¹…°€üˆ°€‰9½¸¸5•ÍÕÉ•Ì™¥¹…±•Ì°ƒ¥±¥¥‰¥±¥Ó¤•Ð±¥¹•Ì‘¥ÍÁ½¹¥‰±•ÌÁ•ÕÙ•¹Ðµ½‘¥™¥•È±”‘•Ù¥ÌË¥•°¸‰t°($%l‰EÕ”Û¥É¥™¥•È…Ù…¹Ð³Še•¹Ù½¤€üˆ°€‰ÉÑ¥±”É—Ô°ÁÉ•ÕÙ•ÌE°Á½¥‘Ì°‘¥µ•¹Í¥½¹Ì°ƒ¥±¥¥‰¥±¥Ó¤‘”±„±¥¹”•ÐÑ½Ñ…°…ÑÕ•°¸‰t(%t°(%•Ìèl($%l‹
+ýE×¤Í•ÉÙ¥¥½Ì‘•ÍÉ¥‰”±±¡¥¹…	Õäüˆ°€‰1„…ÁÀ½™¥¥…°•¹Õµ•É„½µÁÉ„°•ÍÑ§Í¸‘”Á•‘¥‘½Ì°¥¹ÍÁ•§Í¸‘”…±¥‘…°±½ŸµÍÑ¥„¥¹Ñ•É¹…¥½¹…°äÁ½ÍÙ•¹Ñ„ì•°•¹Ûµ¼¥¹Ñ•É¹…¥½¹…°±¼ÁÉ•ÍÑ…¸Ñ•É•É½Ì¸‰t°($%l‹
+ýE×¤‘…Ñ½Ì¹••Í¥Ñ„Õ¹„•ÍÑ¥µ…§Í¸üˆ°€‰1„…±Õ±…‘½É„½™¥¥…°Í½±¥¥Ñ„‘•ÍÑ¥¹¼°…Ñ•½Ëµ„°Á•Í¼•ÍÑ¥µ…‘¼ä°Õ…¹‘¼½ÉÉ•ÍÁ½¹‘”°‘¥µ•¹Í¥½¹•Ì¸‰t°($%l‹
+ý°É•ÍÕ±Ñ…‘¼•Ì•°ÁÉ•¥¼™¥¹…°üˆ°€‰9¼¸5•‘¥‘…Ì™¥¹…±•Ì°•±•¥‰¥±¥‘…äÉÕÑ…Ì‘¥ÍÁ½¹¥‰±•ÌÁÕ•‘•¸…µ‰¥…È±„½Ñ¥é…§Í¸É•…°¸‰t°($%l‹
+ýE×¤É•Ù¥Í…È…¹Ñ•Ì‘”•¹Ù¥…Èüˆ°€‰AÉ½‘ÕÑ¼°ÁÉÕ•‰…ÌE°Á•Í¼°‘¥µ•¹Í¥½¹•Ì°•±•¥‰¥±¥‘…‘”ÉÕÑ„äÑ½Ñ…°…ÑÕ…°¸‰t(%t°(%¥Ðèl($%l‰EÕ…±¤Í•ÉÙ¥é¤‘•ÍÉ¥Ù”±±¡¥¹…	Õäüˆ°€‰3Še…ÁÀÕ™™¥¥…±”¥¹‘¥„…ÅÕ¥ÍÑ¼°•ÍÑ¥½¹”½É‘¥¹¤°½¹ÑÉ½±±¼ÅÕ…±¥Ó€°±½¥ÍÑ¥„¥¹Ñ•É¹…é¥½¹…±””Á½ÍÐµÙ•¹‘¥Ñ„ì±„ÍÁ•‘¥é¥½¹”¥¹Ñ•É¹…é¥½¹…±”ƒ ™½É¹¥Ñ„‘„Ñ•Éé¤¸‰t°($%l‰EÕ…±¤‘…Ñ¤Í•ÉÙ½¹¼Á•ÈÕ¹„ÍÑ¥µ„üˆ°€‰%°…±½±…Ñ½É”Õ™™¥¥…±”É¥¡¥•‘”‘•ÍÑ¥¹…é¥½¹”°…Ñ•½É¥„°Á•Í¼ÍÑ¥µ…Ñ¼”°Í”¹••ÍÍ…É¥¼°‘¥µ•¹Í¥½¹¤¸‰t°($%l‰%°É¥ÍÕ±Ñ…Ñ¼ƒ ¥°ÁÉ•éé¼™¥¹…±”üˆ°€‰9¼¸5¥ÍÕÉ”™¥¹…±¤°¥‘½¹•¥Ó€”±¥¹•”‘¥ÍÁ½¹¥‰¥±¤Á½ÍÍ½¹¼…µ‰¥…É”¥°ÁÉ•Ù•¹Ñ¥Ù¼É•…±”¸‰t°($%l‰½Í„Ù•É¥™¥…É”ÁÉ¥µ„‘•±±„ÍÁ•‘¥é¥½¹”üˆ°€‰AÉ½‘½ÑÑ¼°ÁÉ½Ù”E°Á•Í¼°‘¥µ•¹Í¥½¹¤°¥‘½¹•¥Ó€‘•±±„±¥¹•„”Ñ½Ñ…±”…ÑÑÕ…±”¸‰t(%t°(%Á°èl($%l‰)…­¥”ÕÏ	Õ¤½Á¥ÍÕ©”±±¡¥¹…	Õäüˆ°€‰=™¥©…±¹„…Á±¥­…©„Ýåµ¥•¹¥„é…­ÕÀ°É•…±¥é…«dé…·ÍÝ¥—°­½¹ÑÉ½³d©…­¿m¤°±½¥ÍÑå¯dµ§e‘éå¹…É½‘½ß¤½‰Ï	ÕŸdÁ½ÍÁÉé•‘‡ñ½ßìÝåÍç	¯dé…Á•Ý¹¥…«™¥Éµäé•Ý»eÑÉé¹”¸‰t°($%l‰)…­¥”‘…¹”ÏÁ½ÑÉé•‰¹”‘¼Ýå•¹äüˆ°€‰=™¥©…±¹ä­…±­Õ±…Ñ½ÈÁåÑ„¼­É…¨°­…Ñ•½É§d°Íé…½Ý…»Ý…Ÿd¤ÜÉ…é¥”Á½ÑÉé•‰äÝåµ¥…Éä¸‰t°($%l‰éäÝå¹¥¬­…±­Õ±…Ñ½É„©•ÍÐ½ÍÑ…Ñ•é¹äüˆ°€‰9¥”¸-¿½Ý”Ýåµ¥…Éä°­Ý…±¥™¥­…©„Ñ½Ý…ÉÔ¤‘½ÍÓeÁ¹”±¥¹¥”µ½Ÿéµ¥•¹§½™•ÉÓd¸‰t°($%l‰¼ÍÁÉ…Ý‘é§ÁÉé•ÝåÍç	¯üˆ°€‰AÉ½‘Õ­Ð°é‘«e¥„E°Ý…Ÿd°Ýåµ¥…Éä°‘½ÍÓeÁ¹¿o±¥¹¥¤¤…­ÑÕ…±»ÍÕ·d¸‰t(%t°(%É¼èl($%l‰”Í•ÉÙ¥¥¤‘•ÍÉ¥”±±¡¥¹…	Õäüˆ°€‰Á±¥‡"m¥„½™¥¥…³•¹Õµ•Ë…¡¥é§"m¥„°ÁÉ½•Í…É•„½µ•¹é¥±½È°½¹ÑÉ½±Õ°…±¥Ó"m¥¤°±½¥ÍÑ¥„¥¹Ñ•É¹‡"m¥½¹…³ƒ"e¤Í•ÉÙ¥¥¥±”Á½ÍÐµÛ‰¹é…É”ìÑÉ…¹ÍÁ½ÉÑÕ°¥¹Ñ•É¹‡"m¥½¹…°•ÍÑ”½™•É¥Ð‘”Ñ•Ë"m¤¸‰t°($%l‰”‘…Ñ”ÍÕ¹Ð¹••Í…É”Á•¹ÑÉÔ•ÍÑ¥µ…É”üˆ°€‰…±Õ±…Ñ½ÉÕ°½™¥¥…°•É”‘•ÍÑ¥¹‡"m¥„°…Ñ•½É¥„°É•ÕÑ…Ñ•„•ÍÑ¥µ…Óƒ"e¤°Õ¹‘”•ÍÑ”…éÕ°°‘¥µ•¹Í¥Õ¹¥±”¸‰t°($%l‰I•éÕ±Ñ…ÑÕ°•ÍÑ”ÁÉ—"mÕ°™¥¹…°üˆ°€‰9Ô¸¥µ•¹Í¥Õ¹¥±”™¥¹…±”°•±¥¥‰¥±¥Ñ…Ñ•„ƒ"e¤ÉÕÑ•±”‘¥ÍÁ½¹¥‰¥±”Á½Ðµ½‘¥™¥„½™•ÉÑ„É•…³¸‰t°($%l‰”Ù•É¥™¥Œƒ¹¹…¥¹Ñ”‘”•áÁ•‘¥•É”üˆ°€‰AÉ½‘ÕÍÕ°°‘½Ù•é¥±”E°É•ÕÑ…Ñ•„°‘¥µ•¹Í¥Õ¹¥±”°•±¥¥‰¥±¥Ñ…Ñ•„ÉÕÑ•¤ƒ"e¤Ñ½Ñ…±Õ°…ÑÕ…°¸‰t(%t)ôì)™½È€¡½¹ÍÐ±½…±”½˜±½…±•ÌÄ¤¥˜€¡±½…±”€„ôô€‰•¸ˆ¤±½…±•½Áåm±½…±•t¹™…Ä¹ÁÕÍ  ¸¸¹™…ÑÕ…±…ÅáÑÉ…Ím±½…±•t¤ì)Ù…Èµ•Ñ¡½‘½±½å½Áä€ôì(%É¼èl($%lˆàƒ99I%MQK	I$Y%i%	%1ˆ°€‰9Õ·ÉÕ°…™§"e…Ð‘•ÍÉ¥”¹Õµ…¤•±”½ÁÐ…É‘ÕÉ¤ÁÕ‰±¥…Ñ”Á”…•…ÍÓÁ…¥»¸9ÔÁÉ•Ñ¥¹‘•´•á¥ÍÓ¼‰…ë…ÍÕ¹ÏÔµ¥¤‘”ÁÉ½‘ÕÍ”¸‰t°($%l‰1%9-UI$5AQˆ°€‰¥•…É”ÁÉ½‘ÕÌ„™½ÍÐÉ•µ…Á…Ð±„¼Á…¥»¹‰Õå¡„¹½´…É”É•ÑÕÉ¹„Õ¸ÁÉ½‘ÕÌÔ…•±‡"e¤¹Õµ”±„Ù•É¥™¥…É•„‘¥¸€ÄÈ…ÕÕÍÐ€ÈÀÈØ¸‰t°($%l‰MQ%7	I$UMˆ°€‰Y…±½É¥±”UMÍÕ¹Ð½É¥•¹Ñ…Ñ¥Ù”°…±Õ±…Ñ”‘¥¸ÁÉ—"mÕÉ¥±”9d…™§"e…Ñ”ƒ"e¤ÕÉÍÕ°‘”É•™•É¥»"o€ÄUM€ô€Ø°ÜÐÐ9d‘¥¸€ÄÈ…ÕÕÍÐ€ÈÀÈØ¸Y…É¥…¹Ñ„ƒ"e¤ÕÉÍÕ°Á½ÐÍ¡¥µ‰„Ñ½Ñ…±Õ°¸‰t(%t°(%•¸èl($%lˆàY%M%	1I=ILˆ°€‰Q¡”½Õ¹Ð‘•ÍÉ¥‰•Ì½¹±äÑ¡”•¥¡ÐÁÉ½‘ÕÐ…É‘ÌÁÕ‰±¥Í¡•½¸Ñ¡¥ÌÁ…”¸]”‘¼¹½Ð±…¥´„¡¥‘‘•¸‘…Ñ…‰…Í”½¹Ñ…¥¹¥¹œÑ¡½ÕÍ…¹‘Ì½˜ÁÉ½‘ÕÑÌ¸‰t°($%l‰5AA1%9-Lˆ°€‰… ÁÉ½‘ÕÐÝ…ÌÉ•µ…ÁÁ•Ñ¼„¹‰Õå¡„¹½´Á…”É•ÑÕÉ¹¥¹œÑ¡”Í…µ”¹…µ•ÁÉ½‘ÕÐÝ¡•¸¡•­•½¸€ÄÈÕÕÍÐ€ÈÀÈØ¸‰t°($%l‰UMMQ%5QLˆ°€‰UMÙ…±Õ•Ì…É”¥¹‘¥…Ñ¥Ù”½¹Ù•ÉÍ¥½¹Ì™É½´‘¥ÍÁ±…å•9dÁÉ¥•ÌÕÍ¥¹œ€ÄUM€ô€Ø¸ÜÐÐ9d½¸€ÄÈÕÕÍÐ€ÈÀÈØ¸Y…É¥…¹Ð…¹•á¡…¹”µÉ…Ñ”¡…¹•Ì…™™•ÐÑ¡”Ñ½Ñ…°¸‰t(%t°(%‘”èl($%lˆàM%!Q	I%9QKˆ°€‰¥”i…¡°‰•Í¡É•¥‰Ð¹ÕÈ‘¥”…¡ÐÙ•ËÙ™™•¹Ñ±¥¡Ñ•¸AÉ½‘Õ­Ñ­…ÉÑ•¸¸ÌÝ¥É­•¥¹”Ù•ÉÍÑ•­Ñ”…Ñ•¹‰…¹¬µ¥ÐQ…ÕÍ•¹‘•¸AÉ½‘Õ­Ñ•¸‰•¡…ÕÁÑ•Ð¸‰t°($%l‰iU=I9Q1%9-Lˆ°€‰)•‘•ÌAÉ½‘Õ­ÐÝÕÉ‘”•¥¹•ÈÁ…ÍÍ•¹‘•¸¹‰Õå¡„¹½´µAÉ½‘Õ­ÑÍ•¥Ñ”éÕ•½É‘¹•ÐÕ¹…´€ÄÈ¸ÕÕÍÐ€ÈÀÈØ•ÁËñ™Ð¸‰t°($%l‰UMµM#QiU98ˆ°€‰¥”UMµ]•ÉÑ”Í¥¹;‘¡•ÉÕ¹•¸…ÕÌ‘•¸…¹•é•¥Ñ•¸9dµAÉ•¥Í•¸‰•¤€ÄUM€ô€Ø°ÜÐÐ9d…´€ÄÈ¸ÕÕÍÐ€ÈÀÈØ¸Y…É¥…¹Ñ”Õ¹]•¡Í•±­ÕÉÌ¯Ù¹¹•¸‘•¸	•ÑÉ…œƒ‘¹‘•É¸¸‰t(%t°(%™Èèl($%lˆà%!LY%M%	1Lˆ°€‰1”¹½µ‰É”“¥É¥ÐÕ¹¥ÅÕ•µ•¹Ð±•Ì¡Õ¥Ð…ÉÑ•ÌÁÕ‰±§¥•ÌÍÕÈ•ÑÑ”Á…”¸9½ÕÌ¹”É•Ù•¹‘¥ÅÕ½¹ÌÁ…ÌÕ¹”‰…Í”…£¥”‘”µ¥±±¥•ÉÌ‘”ÁÉ½‘Õ¥ÑÌ¸‰t°($%l‰1%9L5AC%Lˆ°€‰¡…ÅÕ”ÁÉ½‘Õ¥Ð„ƒ¥Ó¤…ÍÍ½§¤ƒ€Õ¹”™¥¡”¹‰Õå¡„¹½´Á½ÉÑ…¹Ð±”·©µ”¹½´•ÐÛ¥É¥™§¥”±”€ÄÈ…¿íÐ€ÈÀÈØ¸‰t°($%l‰MQ%5Q%=9LUMˆ°€‰1•Ìµ½¹Ñ…¹ÑÌUMÍ½¹Ð‘•Ì½¹Ù•ÉÍ¥½¹Ì¥¹‘¥…Ñ¥Ù•Ì‘•ÌÁÉ¥à9d…Ù•Œ€ÄUM€ô€Ø°ÜÐÐ9d…Ô€ÄÈ…¿íÐ€ÈÀÈØ¸Y…É¥…¹Ñ”•ÐÑ…Õà‘”¡…¹”µ½‘¥™¥•¹Ð±”Ñ½Ñ…°¸‰t(%t°(%•Ìèl($%lˆàI%MQI=LY%M%	1Lˆ°€‰1„¥™É„‘•ÍÉ¥‰”Í½±¼±…Ì½¡¼Ñ…É©•Ñ…ÌÁÕ‰±¥…‘…Ì•¸•ÍÑ„Ã…¥¹„¸9¼…™¥Éµ…µ½ÌÑ•¹•ÈÕ¹„‰…Í”½Õ±Ñ„½¸µ¥±•Ì‘”ÁÉ½‘ÕÑ½Ì¸‰t°($%l‰91L5A=Lˆ°€‰…‘„ÁÉ½‘ÕÑ¼Í”…Í½§Ì½¸Õ¹„™¥¡„‘”¹‰Õå¡„¹½´‘•°µ¥Íµ¼¹½µ‰É”äÍ”É•Ù¥ÏÌ•°€ÄÈ‘”…½ÍÑ¼‘”€ÈÀÈØ¸‰t°($%l‰MQ%5%=9LUMˆ°€‰1½Ì¥µÁ½ÉÑ•ÌUMÍ½¸½¹Ù•ÉÍ¥½¹•Ì½É¥•¹Ñ…Ñ¥Ù…Ì‘”ÁÉ•¥½Ì9d½¸€ÄUM€ô€Ø°ÜÐÐ9d•°€ÄÈ‘”…½ÍÑ¼‘”€ÈÀÈØ¸Y…É¥…¹Ñ”ä…µ‰¥¼ÁÕ•‘•¸µ½‘¥™¥…È•°Ñ½Ñ…°¸‰t(%t°(%¥Ðèl($%lˆàM!Y%M%	%1$ˆ°€‰%°¹Õµ•É¼‘•ÍÉ¥Ù”Í½±Ñ…¹Ñ¼±”½ÑÑ¼Í¡•‘”ÁÕ‰‰±¥…Ñ”¸9½¸‘¥¡¥…É¥…µ¼³Še•Í¥ÍÑ•¹é„‘¤Õ¸‘…Ñ…‰…Í”¹…Í½ÍÑ¼½¸µ¥±¥…¥„‘¤ÁÉ½‘½ÑÑ¤¸‰t°($%l‰1%9,5AAQ$ˆ°€‰=¹¤ÁÉ½‘½ÑÑ¼ƒ ÍÑ…Ñ¼…ÍÍ½¥…Ñ¼„Õ¹„Á…¥¹„¹‰Õå¡„¹½´½¸±¼ÍÑ•ÍÍ¼¹½µ””Ù•É¥™¥…Ñ¼¥°€ÄÈ…½ÍÑ¼€ÈÀÈØ¸‰t°($%l‰MQ%5UMˆ°€‰±¤¥µÁ½ÉÑ¤UMÍ½¹¼½¹Ù•ÉÍ¥½¹¤¥¹‘¥…Ñ¥Ù”‘•¤ÁÉ•éé¤9d½¸€ÄUM€ô€Ø°ÜÐÐ9d…°€ÄÈ…½ÍÑ¼€ÈÀÈØ¸Y…É¥…¹Ñ””…µ‰¥¼Á½ÍÍ½¹¼µ½‘¥™¥…É”¥°Ñ½Ñ…±”¸‰t(%t°(%Á°èl($%lˆà]%=i9e A=ie)$ˆ°€‰1¥é‰„½Á¥ÍÕ©”Ýçé¹¥”½Í¥•´­…ÉÐ½ÁÕ‰±¥­½Ý…¹å ¹„Ñ•¨ÍÑÉ½¹¥”¸9¥”‘•­±…ÉÕ©•µäÕ­ÉåÑ•¨‰…éäèÑåÍ§…µ¤ÁÉ½‘Õ­ÓÍÜ¸‰t°($%l‰=AM=]91%9-$ˆ°€‰-‡ñ‘äÁÉ½‘Õ­ÐÁ¿é½¹¼é”ÍÑÉ½»¹‰Õå¡„¹½´¼Ñ•¨Í…µ•¨¹…éÝ¥”¤ÍÁÉ…Ý‘é½¹¼€ÄÈÍ¥•ÉÁ¹¥„€ÈÀÈØ¸‰t°($%l‰MiU9-$UMˆ°€‰-Ý½ÑäUMÏ½É¥•¹Ñ…å©¹å´ÁÉé•±¥é•¹¥•´•¸9dÁ¼­ÕÉÍ¥”€ÄUM€ô€Ø°ÜÐÐ9dè€ÄÈÍ¥•ÉÁ¹¥„€ÈÀÈØ¸]…É¥…¹Ð¤­ÕÉÌµ½Ÿéµ¥•¹§ÍÕ·d¸‰t(%t)ôì)Ù…ÈÉ½µ…¹¥…Õ¥‘…¹”€ôì(%É¼èl($%l($$$‰QYƒ"e¤‘•±…É‡"m¥„‘”¥µÁ½ÉÐˆ°($$$‰Q½…Ñ”‰Õ¹ÕÉ¥±”…É”¥¹ÑËƒ¹¸U¹••Í¥Ó‘•±…É‡"m¥”‘”¥µÁ½ÉÐ¸A•¹ÑÉÔ•áÁ•‘¥•É¥±”%=ML‘”Ã‰»±„€ÄÔÀUH°QYÁ½…Ñ”™¤½±•Ñ…Ó±„ÕµÃÉ…É”¹Õµ…¤‘…¹Õ·ÉÕ°%=ML…©Õ¹”½É•Ðƒ¹¸µ•Í…©•±”•±•ÑÉ½¹¥”¸ˆ°($$$‰½µ¥Í¥„ÕÉ½Á•…»ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰Q…ãÙ…µ…³Ñ•µÁ½É…Ë‘¥¸€ÈÀÈØˆ°($$$‰”±„€Ä¥Õ±¥”€ÈÀÈØ°U…Á±¥¼Ñ…ãÙ…µ…³Ñ•µÁ½É…Ë‘”€ÌUHÁ•È…ÉÑ¥½°Á•¹ÑÉÔÛ‰¹ëÉ¥±”±„‘¥ÍÑ…»"o‘¥¸½±•Ñ”ÔÙ…±½…É”‘”Ã‰»±„€ÄÔÀUH°Ã‰»±„€Ä¥Õ±¥”€ÈÀÈà¸Y•É¥™¥É•Õ±„ƒ¹¹…¥¹Ñ”‘”•áÁ•‘¥•É”¸ˆ°($$$‰¡¥‘Õ°U€ÈÀÈØˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰=™•ÉÑ„‘”ÑÉ…¹ÍÁ½ÉÐ¹Ô•ÍÑ”½ÍÑÕ°±¥ÙÉ…Ðˆ°($$$‰AÉ—"mÕ°ÉÕÑ•¤¹Ô…É…¹Ñ•…ëQY°Ñ…á•±”Ù…µ…±”°½µ¥Í¥½¹Õ°‘”ÁÉ•é•¹Ñ…É”Í…Ô…±Ñ”½ÍÑÕÉ¤±½…±”¸½¹™¥É·‘½Õµ•¹Ñ•±”%=MLƒ"e¤Ñ…É¥™•±”…ÑÕ…±”…±”½Á•É…Ñ½ÉÕ±Õ¤ƒ¹¹…¥¹Ñ”‘”ÑÉ¥µ¥Ñ•É”¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t°(%•¸èl($%l($$$‰%µÁ½ÉÐYP…¹‘•±…É…Ñ¥½¸ˆ°($$$‰±°½½‘Ì•¹Ñ•É¥¹œÑ¡”TÉ•ÅÕ¥É”…¸¥µÁ½ÉÐ‘•±…É…Ñ¥½¸¸½È%=ML½¹Í¥¹µ•¹ÑÌÕÀÑ¼UH€ÄÔÀ°YP¥ÌÑÉ•…Ñ•…ÌÁ…¥…ÐÁÕÉ¡…Í”½¹±äÝ¡•¸Ù…±¥%=ML‘…Ñ„É•…¡•ÌÑ¡”Á½ÍÑ…°ÕÍÑ½µÌµ•ÍÍ…”¸ˆ°($$$‰ÕÉ½Á•…¸½µµ¥ÍÍ¥½¸ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰Q•µÁ½É…Éä€ÈÀÈØÕÍÑ½µÌ‘ÕÑäˆ°($$$‰É½´€Ä)Õ±ä€ÈÀÈØ°Ñ¡”T…ÁÁ±¥•Ì„Ñ•µÁ½É…ÉäUH€ÌÕÍÑ½µÌ‘ÕÑäÁ•È¥Ñ•´Ñ¼‘¥ÍÑ…¹”Í…±•Ì¥¸½¹Í¥¹µ•¹ÑÌÕÀÑ¼UH€ÄÔÀ°Õ¹Ñ¥°€Ä)Õ±ä€ÈÀÈà¸I•¡•¬Ñ¡”ÉÕ±”‰•™½É”Í¡¥ÁÁ¥¹œ¸ˆ°($$$‰T€ÈÀÈØÕ¥‘…¹”ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰™É•¥¡ÐÅÕ½Ñ”¥Ì¹½Ð±…¹‘•½ÍÐˆ°($$$‰É½ÕÑ”ÁÉ¥”‘½•Ì¹½ÐÕ…É…¹Ñ•”YP°ÕÍÑ½µÌ‘ÕÑä°ÁÉ•Í•¹Ñ…Ñ¥½¸™••Ì½È½Ñ¡•È±½…°¡…É•Ì¸Y•É¥™ä%=ML‘…Ñ„…¹Ñ¡”ÕÉÉ•¹ÐI½µ…¹¥…¸½Á•É…Ñ½ÈÑ…É¥™˜‰•™½É”ÍÕ‰µ¥ÍÍ¥½¸¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t°(%‘”èl($%l($$$‰¥¹™Õ¡ÉÕµÍ…ÑéÍÑ•Õ•ÈÕ¹¹µ•±‘Õ¹œˆ°($$$‰±±”]…É•¸¥¸‘¥”T‰•»ÙÑ¥•¸•¥¹”¥¹™Õ¡É…¹µ•±‘Õ¹œ¸	•¤%=MLµM•¹‘Õ¹•¸‰¥Ì€ÄÔÀUH¥±Ð‘¥”MÑ•Õ•È¹ÕÈ‘…¹¸…±ÌÙ½É…ÕÍ‰•é…¡±Ð°Ý•¹¸Ÿñ±Ñ¥”%=MLµ…Ñ•¸•±•­ÑÉ½¹¥Í ƒñ‰•Éµ¥ÑÑ•±ÐÝ•É‘•¸¸ˆ°($$$‰ÕÉ½Ã‘¥Í¡”-½µµ¥ÍÍ¥½¸ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰	•™É¥ÍÑ•Ñ•Èi½±°€ÈÀÈØˆ°($$$‰M•¥Ð€Ä¸)Õ±¤€ÈÀÈØ¥±ÐÙ½Ëñ‰•É•¡•¹•¥¸i½±°Ù½¸€ÌUH©”ÉÑ¥­•°›ñÈ•É¹Ù•É¯‘Õ™”¥¸M•¹‘Õ¹•¸‰¥Ì€ÄÔÀUH°‰¥Ì€Ä¸)Õ±¤€ÈÀÈà¸Y½ÈY•ÉÍ…¹•É¹•ÕÐÁËñ™•¸¸ˆ°($$$‰Tµ1•¥Ñ™…‘•¸€ÈÀÈØˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰É…¡ÑÁÉ•¥Ì¥ÍÐ¹¥¡Ð¹‘ÁÉ•¥Ìˆ°($$$‰•ÈI½ÕÑ•¹ÁÉ•¥Ì…É…¹Ñ¥•ÉÐÝ•‘•ÈMÑ•Õ•È¹½ i½±°°Y½É±…••‹ñ¡È½‘•ÈÝ•¥Ñ•É”±½­…±”-½ÍÑ•¸¸%=MLµ…Ñ•¸Õ¹…­ÑÕ•±±”Q…É¥™”¥¸IÕ·‘¹¥•¸ÁËñ™•¸¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t°(%™Èèl($%l($$$‰QY•Ð“¥±…É…Ñ¥½¸“Še¥µÁ½ÉÑ…Ñ¥½¸ˆ°($$$‰Q½ÕÑ”µ…É¡…¹‘¥Í”•¹ÑÉ…¹Ð‘…¹Ì³ŠeU•á¥”Õ¹”“¥±…É…Ñ¥½¸¸A½ÕÈ³Še%=ML©ÕÍÅ×Šg€€ÄÔÀUH°±„QY»Še•ÍÐÉ•½¹¹Õ”½µµ”Á…ç¥”ÅÕ”Í¤±•Ì‘½¹»¥•Ì%=MLÙ…±¥‘•ÌÍ½¹ÐÑÉ…¹Íµ¥Í•Ìƒ¥±•ÑÉ½¹¥ÅÕ•µ•¹Ð¸ˆ°($$$‰½µµ¥ÍÍ¥½¸•ÕÉ½Ã¥•¹¹”ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰É½¥ÐÑ•µÁ½É…¥É”€ÈÀÈØˆ°($$$‰•ÁÕ¥Ì±”€Å•È©Õ¥±±•Ð€ÈÀÈØ°Õ¸‘É½¥ÐÑ•µÁ½É…¥É”‘”€ÌUHÁ…È…ÉÑ¥±”ÏŠe…ÁÁ±¥ÅÕ”…ÕàÙ•¹Ñ•Ìƒ€‘¥ÍÑ…¹”‘…¹Ì±•Ì½±¥Ì©ÕÍÅ×Šg€€ÄÔÀUH°©ÕÍÅ×Še…Ô€Å•È©Õ¥±±•Ð€ÈÀÈà¸ƒ É•Û¥É¥™¥•È…Ù…¹Ð³Še•¹Ù½¤¸ˆ°($$$‰Õ¥‘”U€ÈÀÈØˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰1”‘•Ù¥Ì»Še•ÍÐÁ…Ì±”¿íÐ±¥ÙË¤ˆ°($$$‰1”ÁÉ¥à‘”±„±¥¹”¹”…É…¹Ñ¥Ð¹¤QY°¹¤‘É½¥ÑÌ°¹¤™É…¥Ì‘”ÁË¥Í•¹Ñ…Ñ¥½¸±½…Õà¸[¥É¥™¥•è±•Ì‘½¹»¥•Ì%=ML•Ð±•ÌÑ…É¥™ÌÉ½Õµ…¥¹Ì…ÑÕ•±Ì¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t°(%•Ìèl($%l($$$‰%Yä‘•±…É…§Í¸‘”¥µÁ½ÉÑ…§Í¸ˆ°($$$‰Q½‘½Ì±½Ì‰¥•¹•ÌÅÕ”•¹ÑÉ…¸•¸±„UÉ•ÅÕ¥•É•¸‘•±…É…§Í¸¸¸%=ML¡…ÍÑ„€ÄÔÀUH°•°%YÍ½±¼Í”É•½¹½”½µ¼Á……‘¼Í¤±½Ì‘…Ñ½Ì%=MLÛ…±¥‘½ÌÍ”ÑÉ…¹Íµ¥Ñ•¸•±•ÑËÍ¹¥…µ•¹Ñ”¸ˆ°($$$‰½µ¥Í§Í¸ÕÉ½Á•„ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰•É•¡¼Ñ•µÁ½É…°‘”€ÈÀÈØˆ°($$$‰•Í‘”•°€Ä‘”©Õ±¥¼‘”€ÈÀÈØÍ”…Á±¥„Õ¸‘•É•¡¼Ñ•µÁ½É…°‘”€ÌUHÁ½È…ÉÓµÕ±¼„Ù•¹Ñ…Ì„‘¥ÍÑ…¹¥„•¸•¹Ûµ½Ì‘”¡…ÍÑ„€ÄÔÀUH°¡…ÍÑ„•°€Ä‘”©Õ±¥¼‘”€ÈÀÈà¸I•ÛµÍ…±¼…¹Ñ•Ì‘”•¹Ù¥…È¸ˆ°($$$‰×µ„U€ÈÀÈØˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰1„Ñ…É¥™„¹¼•Ì•°½ÍÑ”•¹ÑÉ•…‘¼ˆ°($$$‰°ÁÉ•¥¼‘”±„ÉÕÑ„¹¼…É…¹Ñ¥é„%Y°‘•É•¡½Ì°Ñ…Í…Ì‘”ÁÉ•Í•¹Ñ…§Í¸¹¤½ÑÉ½Ì…É½Ì±½…±•Ì¸Y•É¥™¥„%=MLä±…ÌÑ…É¥™…ÌÙ¥•¹Ñ•Ì•¸IÕµ…»µ„¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t°(%¥Ðèl($%l($$$‰%Y”‘¥¡¥…É…é¥½¹”“Še¥µÁ½ÉÑ…é¥½¹”ˆ°($$$‰QÕÑÑ”±”µ•É¤¡”•¹ÑÉ…¹¼¹•±³ŠeUÉ¥¡¥•‘½¹¼Õ¹„‘¥¡¥…É…é¥½¹”¸A•È%=ML™¥¹¼„€ÄÔÀUH°³Še%YÉ¥ÍÕ±Ñ„Á……Ñ„Í½±¼Í”¤‘…Ñ¤%=MLÙ…±¥‘¤Í½¹¼ÑÉ…Íµ•ÍÍ¤•±•ÑÑÉ½¹¥…µ•¹Ñ”¸ˆ°($$$‰½µµ¥ÍÍ¥½¹”•ÕÉ½Á•„ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰…é¥¼Ñ•µÁ½É…¹•¼€ÈÀÈØˆ°($$$‰…°€Ç
+è±Õ±¥¼€ÈÀÈØÍ¤…ÁÁ±¥„Õ¸‘…é¥¼Ñ•µÁ½É…¹•¼‘¤€ÌUHÁ•È…ÉÑ¥½±¼…±±”Ù•¹‘¥Ñ”„‘¥ÍÑ…¹é„¥¸½±±¤™¥¹¼„€ÄÔÀUH°™¥¹¼…°€Ç
+è±Õ±¥¼€ÈÀÈà¸I¥½¹ÑÉ½±±„ÁÉ¥µ„‘•±±„ÍÁ•‘¥é¥½¹”¸ˆ°($$$‰Õ¥‘„U€ÈÀÈØˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰%°ÁÉ•Ù•¹Ñ¥Ù¼¹½¸ƒ ¥°½ÍÑ¼½¹Í•¹…Ñ¼ˆ°($$$‰%°ÁÉ•éé¼‘•±±„±¥¹•„¹½¸…É…¹Ñ¥Í”%Y°‘…é¤°ÍÁ•Í”‘¤ÁÉ•Í•¹Ñ…é¥½¹”¼…±ÑÉ¤½ÍÑ¤±½…±¤¸Y•É¥™¥„%=ML”±”Ñ…É¥™™”½ÉÉ•¹Ñ¤¥¸I½µ…¹¥„¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t°(%Á°èl($%l($$$‰YP¤éŸ	½Íé•¹¥”¥µÁ½ÉÑ½Ý”ˆ°($$$‰]ÍéåÍÑ­¥”Ñ½Ý…ÉäÝÝ¿ñ½¹”‘¼UÝåµ……«éŸ	½Íé•¹¥„¸±„%=ML‘¼€ÄÔÀUHYPÕé¹…©”Í§dé„é…Ã	…½¹äÑå±­¼Á¼ÁÉ…Ý¥“	½Ýå´•±•­ÑÉ½¹¥é¹å´ÁÉé•­…é…¹¥Ô‘…¹å %=ML¸ˆ°($$$‰-½µ¥Í©„ÕÉ½Á•©Í­„ˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½ÕÍÑ½µÌ½ÕÍÑ½µÌµÁÉ½•‘ÕÉ•Ìµ¥µÁ½ÉÐµ…¹µ•áÁ½ÉÐ½ÕÍÑ½µÌµ½Á•É…Ñ¥½¹Ì½ÕÍÑ½µÌµ™½Éµ…±¥Ñ¥•Ìµ±½ÜµÙ…±Õ”µ½¹Í¥¹µ•¹ÑÍ}•¸ˆ($%t°($%l($$$‰Qåµé…Í½Ý”	¼€ÈÀÈØˆ°($$$‰=€Ä±¥Á„€ÈÀÈØ½‰½Ý§éÕ©”Ñåµé…Í½Ý”	¼€ÌUHé„ÍéÑÕ¯dÜÍÁÉé•‘‡ñä¹„½‘±•Ÿ	¿o‘±„ÁÉé•Íç	•¬‘¼€ÄÔÀUH°‘¼€Ä±¥Á„€ÈÀÈà¸MÁÉ…Ý“èé…Í…‘äÁÉé•ÝåÍç	¯¸ˆ°($$$‰]åÑåé¹”U€ÈÀÈØˆ°($$$‰¡ÑÑÁÌè¼½Ñ…á…Ñ¥½¸µÕÍÑ½µÌ¹•Œ¹•ÕÉ½Á„¹•Ô½¹•ÝÌ½Õ¥‘…¹”µ…¹µ±•…°µÑ•áÐµÑ•µÁ½É…Éäµ™±…Ðµ™•”µ±½ÜµÙ…±Õ”µ¥µÁ½ÉÑÌµÝ¡¥ µÝ¥±°µ…ÁÁ±äµÕ¹Ñ¥°´Äµ©Õ±ä´ÈÀÈà´ÈÀÈØ´ÀØ´Àá}•¸ˆ($%t°($%l($$$‰]å•¹„¹¥”©•ÍÐ­½ÍéÑ•´‘½ÍÑ…Ýäˆ°($$$‰•¹„ÑÉ…Íä¹¥”Ý…É…¹ÑÕ©”YP°	„°½Ã	…ÐÁÉ•é•¹Ñ…å©¹å …¹¤¥¹¹å ­½ÍéÓÍÜ±½­…±¹å ¸MÁÉ…Ý“è%=ML¤…­ÑÕ…±¹”Ñ…Éå™äÜIÕµÕ¹¥¤¸ˆ°($$$‰A¿"eÑ„I½·‰»ˆ°($$$‰¡ÑÑÁÌè¼½ÝÝÜ¹Á½ÍÑ„µÉ½µ…¹„¹É¼½•¸½„ÄÐàà½¤µÝ…¹ÐµÑ¼µÉ••¥Ù”½ÕÍ•™Õ°µ¥¹™½Éµ…Ñ¥½¸¼½Ù…Ðµ…¹µÕÍÑ½µÌµ±•…É…¹”µµ½‘¥™¥…Ñ¥½¹Ì¹¡Ñµ°ˆ($%t(%t)ôì)Ù…ÈÍ±ÕÌ€ôl($‰ÁÉ½‘ÕÑÌˆ°($‰…Ñ•½É¥•Ìˆ°($‰ÅŒµÕ¥‘”ˆ°($‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆ°($‰…ÉÑ¥±•Ìˆ°($‰™…Äˆ)tì)Ù…È¡É•˜€ô€¡±½…±”°Á…Ñ €ô€ˆˆ¤€ôø€‘í±½…±”€ôôô€‰É¼ˆ€ü€ˆˆ€è€¼‘í±½…±•õô‘íÁ…Ñ €ü€¼‘íÁ…Ñ¡õ€€è±½…±”€ôôô€‰É¼ˆ€ü€ˆ¼ˆ€è€ˆ‰õ€ì)™Õ¹Ñ¥½¸!•…‘•È¡ì±½…±”°Á…Ñ ô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•t°ÍÕ™™¥à€ôÁ…Ñ ¹©½¥¸ ˆ¼ˆ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¡•…‘•Èˆ°ì($%±…ÍÍ9…µ”è€‰Í¥Ñ”µ¹…Ø¹…ØµŒÑ•Éµ¥¹…°µ¡•…‘•Èˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µ‰É…¹ˆ°($$$%¡É•˜è¡É•˜¡±½…±”¤°($$$$‰…É¥„µ±…‰•°ˆè€‰±±¡¥¹…	Õä™¥¹‘Ì¡½µ”ˆ°($$$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥µœˆ°ì($$$$%ÍÉŒè€ˆ½…±±¡¥¹…‰Õä¹Á¹œˆ°($$$$%…±Ðè€‰±±¡¥¹…	Õäˆ°($$$$%Ý¥‘Ñ è€ˆÄÜÄàˆ°($$$$%¡•¥¡Ðè€ˆÈÔÌˆ($$$%ô¤($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¹…Øˆ°ì($$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µ¹…Øˆ°($$$%¡¥±‘É•¸èÍ±ÕÌ¹µ…À ¡Í±Õœ°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$%±…ÍÍ9…µ”èÁ…Ñ¡lÁt€ôôôÍ±Õœ€ü€‰…Ñ¥Ù”ˆ€è€ˆˆ°($$$$%¡É•˜è¡É•˜¡±½…±”°Í±Õœ¤°($$$$%¡¥±‘É•¸èÐ¹±…‰•±Ím¥t($$$%ô°Í±Õœ¤¤($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µ…Ñ¥½¹Ìˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘•Ñ…¥±Ìˆ°ì($$$$$%±…ÍÍ9…µ”è€‰±…¹œµµ•¹Ôˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÕµµ…Éäˆ°ì¡¥±‘É•¸èm±½…±”¹Ñ½UÁÁ•É…Í” ¤°€‹Š2‰tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì¡¥±‘É•¸è±½…±•ÌÄ¹µ…À ¡°¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$$%±…ÍÍ9…µ”è°€ôôô±½…±”€ü€‰…Ñ¥Ù”ˆ€è€ˆˆ°($$$$$$%¡É•˜è¡É•˜¡°°ÍÕ™™¥à¤°($$$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è°¹Ñ½UÁÁ•É…Í” ¤ô¤°±½…±•½Áåm±t¹¹…µ•t($$$$$%ô°°¤¤ô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µÑ„ˆ°($$$$$%¡É•˜è€‰¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´½±±AÉ½‘ÕÑÌ¼ýÕÑµ}Í½ÕÉ”õ…±±¡¥¹…‰Õä¹É¼™ÕÑµ}µ•‘¥Õ´õÉ•™•ÉÉ…°™ÕÑµ}…µÁ…¥¸õÉ½}¡•…‘•Èˆ°($$$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$$%É•°è€‰¹½½Á•¹•È¹½É•™•ÉÉ•ÈÍÁ½¹Í½É•ˆ°($$$$$%¡¥±‘É•¸èmÐ¹Õ¥lÁt°€ˆƒŠ\‰t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘•Ñ…¥±Ìˆ°ì($$$$$%±…ÍÍ9…µ”è€‰µ½‰¥±”µµ•¹Ôˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÕµµ…Éäˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÅtô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$$$%Í±ÕÌ¹µ…À ¡Í±Õœ°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$$%¡É•˜è¡É•˜¡±½…±”°Í±Õœ¤°($$$$$$$%¡¥±‘É•¸èÐ¹±…‰•±Ím¥t($$$$$$%ô°Í±Õœ¤¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÉtô¤°($$$$$$%±½…±•ÌÄ¹µ…À ¡°¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$$%¡É•˜è¡É•˜¡°°ÍÕ™™¥à¤°($$$$$$$%¡¥±‘É•¸è±½…±•½Áåm±t¹¹…µ”($$$$$$%ô°°¤¤($$$$$%tô¥t($$$$%ô¤($$$%t($$%ô¤($%t(%ô¤ì)ô)™Õ¹Ñ¥½¸M¥Ñ•½½Ñ•È¡ì±½…±”ô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•tì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰™½½Ñ•Èˆ°ì($%±…ÍÍ9…µ”è€‰Í¥Ñ”µ™½½Ñ•È™½½Ñ•ÈµŒÑ•Éµ¥¹…°µ™½½Ñ•Èˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µ™½½Ñ•Èµ±½¼ˆ°($$$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥µœˆ°ì($$$$%ÍÉŒè€ˆ½…±±¡¥¹…‰Õä¹Á¹œˆ°($$$$%…±Ðè€‰±±¡¥¹…	Õäˆ°($$$$%Ý¥‘Ñ è€ˆÄÜÄàˆ°($$$$%¡•¥¡Ðè€ˆÈÔÌˆ($$$%ô¤($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Àˆ°ì¡¥±‘É•¸èl($$$%Ð¹Á…•Ì¹ÁÉ½‘ÕÑÍlÅt°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÍ¥Ñ•Q•áÑm±½…±•t¹¥¹‘•Á•¹‘•¹Ðô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$%±…ÍÍ9…µ”è€‰™½½Ñ•ÈµÑÉÕÍÐµ±¥¹­Ìˆ°($$$$%¡¥±‘É•¸èl($$$$$%l‰5•Ñ¡½‘½±½äˆ°€ˆ½µ•Ñ¡½‘½±½ä‰t°($$$$$%l‰‰½ÕÐˆ°€ˆ½…‰½ÕÐ‰t°($$$$$%l‰½¹Ñ…Ðˆ°€ˆ½½¹Ñ…Ð‰t°($$$$$%l‰AÉ¥Ù…äˆ°€ˆ½ÁÉ¥Ù…ä‰t°($$$$$%l‰Q•ÉµÌˆ°€ˆ½Ñ•ÉµÌ‰t°($$$$$%l‰™™¥±¥…Ñ”‘¥Í±½ÍÕÉ”ˆ°€ˆ½…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”‰t($$$$%t¹µ…À ¡m±…‰•°°ÕÉ±t¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$%¡É•˜èÕÉ°°($$$$$%¡¥±‘É•¸è±…‰•°($$$$%ô°ÕÉ°¤¤($$$%ô¤($$%tô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰…±±¡¥¹…‰Õä¹É¼ƒ
+Ü€ÈÀÈØˆô¤($%t(%ô¤ì)ô)™Õ¹Ñ¥½¸!½µ”Ä¡ì±½…±”ô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•tì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èl($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$%±…ÍÍ9…µ”è€‰¡•É¼µŒˆ°($$%¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µÁ…Ñ ˆ°($$$$%¡¥±‘É•¸è€ˆ¼%M=YH€¼11}AI=UQLˆ($$$%ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰¡•É¼µŒµÉ¥ˆ°($$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰µ½¹¼µ±…‰•°ˆ°($$$$$$%¡¥±‘É•¸èÐ¹¡•É½lÁt($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Äˆ°ì¡¥±‘É•¸èÐ¹¡•É½lÅt¹É•Á±…” ˆ¸€ˆ°€ˆ¹q¸ˆ¤¹ÍÁ±¥Ð ‰q¸ˆ¤¹µ…À ¡à°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èmà°¤€ôôô€À€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¥tô°à¤¤ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÐ¹¡•É½lÉtô¤($$$$%tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰ÍåÍÑ•´µÁ…¹•°ˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÑtô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÑÉ½¹œˆ°ì¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹±•¹Ñ ô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Íµ…±°ˆ°ì¡¥±‘É•¸èÍ¥Ñ•Q•áÑm±½…±•t¹É•½É‘Ìô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¡Èˆ°íô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°ì¡¥±‘É•¸è€ˆà¼àˆô¤°($$$$$$$$ˆƒ
+Ü€ˆ°($$$$$$$%Í¥Ñ•Q•áÑm±½…±•t¹¡•­•($$$$$$%tô¤($$$$$%t($$$$%ô¥t($$$%ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M•…É¡	…È°ì($$$$%±…‰•°èÐ¹Õ¥lÄát°($$$$%‰ÕÑÑ½¹1…‰•°èÍ¥Ñ•Q•áÑm±½…±•t¹Í•…É ($$$%ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÅÕ¥¬µÅÕ•É¥•Ìˆ°($$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èmÐ¹Õ¥lÍt°€ˆè‰tô¤°…Ñ•½É¥•Ì¹Í±¥” À°€Ô¤¹µ…À ¡l°€°ÕÉ±t°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%¡É•˜èÕÉ°°($$$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$$%É•°è€‰¹½½Á•¹•Èˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$‰lˆ°($$$$$$%Ð¹…ÑÍm¥t¹Ñ½UÁÁ•É…Í” ¤°($$$$$$$‰tˆ($$$$$%t($$$$%ô°ÕÉ°¤¥t($$$%ô¤($$%t($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µ‰½‘äˆ°($$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰…Í¥‘”ˆ°ì($$$%±…ÍÍ9…µ”è€‰™¥±Ñ•ÈµÁ…¹•°ˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰™¥±Ñ•ÈµÑ¥Ñ±”ˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÙtô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÝtô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰±…‰•°ˆ°ì¡¥±‘É•¸èÐ¹Õ¥látô¤°($$$$%…Ñ•½É¥•Ì¹µ…À ¡l°€°ÕÉ±t°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%¡É•˜èÕÉ°°($$$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$$%É•°è€‰¹½½Á•¹•Èˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°ì±…ÍÍ9…µ”è¤€ôôô€À€ü€‰¡•­•ˆ€è€ˆˆô¤°($$$$$$%Ð¹…ÑÍm¥t°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÍ¥Ñ•Q•áÑm±½…±•t¹½Á•¸ô¤($$$$$%t($$$$%ô°ÕÉ°¤¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰±…‰•°ˆ°ì¡¥±‘É•¸èÐ¹Õ¥låtô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰ÁÉ¥”µÉ…¹”ˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆÀˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆàÀ¬ˆô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰É…¹”µ±¥¹”ˆ°($$$$$%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°íô¤($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰±…‰•°ˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÄÁtô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%¡É•˜è€ˆÉ•ÍÕ±ÑÌˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°ì±…ÍÍ9…µ”è€‰¡•­•ˆô¤°($$$$$$%Ð¹Õ¥lÄÅt°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹±•¹Ñ ô¤($$$$$%t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%¡É•˜è€ˆÉ•ÍÕ±ÑÌˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°íô¤°($$$$$$%Ð¹Õ¥lÄÉt°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹±•¹Ñ ô¤($$$$$%t($$$$%ô¤($$$%t($$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰É•ÍÕ±ÑÌµÁ…¹•°ˆ°($$$%¥è€‰É•ÍÕ±ÑÌˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰É•ÍÕ±ÑÌµ¡•…ˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰IMU1Q}MPˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èl($$$$$$%ÁÉ½‘ÕÑÌ¹±•¹Ñ °($$$$$$$ˆ€ˆ°($$$$$$%Ð¹Õ¥lÄÍt($$$$$%tô¥tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‰ÕÑÑ½¸ˆ°ì¡¥±‘É•¸èmÐ¹Õ¥lÄÑt°€ˆƒŠL‰tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰ÕÑÑ½¸ˆ°ì¡¥±‘É•¸è€‰I%ƒŠZ˜ˆô¥tô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÑÌµŒˆ°($$$$$%¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹µ…À ¡À°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡AÉ½‘ÕÑ…É°ì($$$$$$%µ½‘”è€‰Œˆ°($$$$$$%ÁÉ½‘ÕÐèÀ°($$$$$$%¥¹‘•àè¤°($$$$$$%ÍÑ…ÑÕÍ1…‰•°èÐ¹Õ¥lÄÅt($$$$$%ô°À¹¡É•˜¤¤($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µµ½É”ˆ°($$$$$%¡É•˜è¡É•˜¡±½…±”°€‰ÁÉ½‘ÕÑÌˆ¤°($$$$$%¡¥±‘É•¸èmÐ¹Õ¥lÁt°€ˆƒŠH‰t($$$$%ô¤($$$%t($$%ô¥t($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$%±…ÍÍ9…µ”è€‰‘…Ñ„µÁÉ½µ¥Í”ˆ°($$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èÐ¹Õ¥lÄÕtô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èµ•Ñ¡½‘½±½å½Áåm±½…±•t¹µ…À ¡m„°‰t°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰…ÉÑ¥±”ˆ°ì¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èlˆÀˆ°¤€¬€Åtô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸è„ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èˆô¤($$%tô°„¤¤ô¥t($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡!½µ•ÉÑ¥±•Ì°ì±½…±”ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡!½µ•…Ä°ì±½…±”ô¤(%tô¤ì)ô)™Õ¹Ñ¥½¸!½µ•ÉÑ¥±•Ì¡ì±½…±”ô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•tì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($%±…ÍÍ9…µ”è€‰¡½µ”µ±¥‰É…Éäˆ°($%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$%±…ÍÍ9…µ”è€‰¡½µ”µµ½‘Õ±”µ¡•…ˆ°($$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆ¼M=}IQ%1Lˆô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸èÐ¹Á…•Ì¹…ÉÑ¥±•ÍlÁtô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÐ¹Á…•Ì¹…ÉÑ¥±•ÍlÅtô¤($$%tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$%¡É•˜è¡É•˜¡±½…±”°€‰…ÉÑ¥±•Ìˆ¤°($$$%¡¥±‘É•¸èmÐ¹±…‰•±ÍlÑt°€ˆƒŠH‰t($$%ô¥t($%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$%±…ÍÍ9…µ”è€‰…ÉÑ¥±”µÉ¥¡½µ”µ…ÉÑ¥±”µÉ¥ˆ°($$%¡¥±‘É•¸èÐ¹…ÉÑ¥±•Ì¹µ…À ¡mÑ¥Ñ±”°Í±Õœ°ÍÕµµ…Éåt°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$%¡É•˜è¡É•˜¡±½…±”°…ÉÑ¥±•Ì¼‘íÍ±Õõ€¤°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl($$$$$$ˆÀˆ°($$$$$%¤€¬€Ä°($$$$$$ˆƒ
+Ü%19=Qˆ($$$$%tô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸èÑ¥Ñ±”ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÍÕµµ…Éäô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èmÐ¹Õ¥lÄÙt°€ˆƒŠH‰tô¤($$$%t($$%ô°Í±Õœ¤¤($%ô¥t(%ô¤ì)ô)™Õ¹Ñ¥½¸!½µ•…Ä¡ì±½…±”ô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•tì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($%±…ÍÍ9…µ”è€‰¡½µ”µ±¥‰É…Éä¡½µ”µ™…ÄµÍ•Ñ¥½¸ˆ°($%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$%±…ÍÍ9…µ”è€‰¡½µ”µµ½‘Õ±”µ¡•…ˆ°($$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆ¼E}%9`ˆô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸èÐ¹Á…•Ì¹™…ÅlÁtô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÐ¹Á…•Ì¹™…ÅlÅtô¤($$%tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$%¡É•˜è¡É•˜¡±½…±”°€‰™…Äˆ¤°($$$%¡¥±‘É•¸èmÐ¹±…‰•±ÍlÕt°€ˆƒŠH‰t($$%ô¥t($%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$%±…ÍÍ9…µ”è€‰¡½µ”µ™…ÄµÉ¥ˆ°($$%¡¥±‘É•¸èÐ¹™…Ä¹Í±¥” À°€Ð¤¹µ…À ¡mÄ°…t°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$%¡É•˜è¡É•˜¡±½…±”°€‰™…Äˆ¤°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èMÑÉ¥¹œ¡¤€¬€Ä¤¹Á…‘MÑ…ÉÐ È°€ˆÀˆ¤ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Ìˆ°ì¡¥±‘É•¸èÄô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è„ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰DƒŠHˆô¤($$$%t($$%ô°Ä¤¤($%ô¥t(%ô¤ì)ô)™Õ¹Ñ¥½¸A…•!•É¼¡ìÐ°Í•Ñ¥½¸ô¤ì(%½¹ÍÐÀ€ôÐ¹Á…•ÍmÍ•Ñ¥½¹tñðÐ¹Á…•Ì¹…ÉÑ¥±•Ìì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µÁ…”µ¡•É¼ˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èlˆ¼€ˆ°Í•Ñ¥½¸¹Ñ½UÁÁ•É…Í” ¤¹É•Á±…•±° ˆ´ˆ°€‰|ˆ¥tô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Äˆ°ì¡¥±‘É•¸èÁlÁtô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÁlÅtô¤($%t(%ô¤ì)ô)™Õ¹Ñ¥½¸ÉÑ¥±”¡ì±½…±”°Í±Õœô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•t°±½…±¥é•€ôÐ¹…ÉÑ¥±•Ì¹™¥¹ ¡à¤€ôøálÅt€ôôôÍ±Õœ¤ñðÐ¹…ÉÑ¥±•ÍlÁt°…ÉÑ¥±”€ô•Ñ¹±¥Í¡ÉÑ¥±”¡Í±Õœ¤ì(%½¹ÍÐ…ÉÑ¥±•M¡•µ„€ôì($$‰½¹Ñ•áÐˆè€‰¡ÑÑÁÌè¼½Í¡•µ„¹½Éœˆ°($$‰ÑåÁ”ˆè€‰ÉÑ¥±”ˆ°($%¡•…‘±¥¹”è±½…±”€ôôô€‰•¸ˆ€ü…ÉÑ¥±”¹Ñ¥Ñ±”€è±½…±¥é•‘lÁt°($%‘•ÍÉ¥ÁÑ¥½¸è±½…±”€ôôô€‰•¸ˆ€ü…ÉÑ¥±”¹‘•ÍÉ¥ÁÑ¥½¸€è±½…±¥é•‘lÉt°($%‘…Ñ•5½‘¥™¥•è€ˆÈÀÈØ´Àà´ÄÈˆ°($%‘…Ñ•AÕ‰±¥Í¡•è€ˆÈÀÈØ´Àà´ÄÈˆ°($%¥¹1…¹Õ…”è±½…±”°($%µ…¥¹¹Ñ¥Ñå=™A…”è¡ÑÑÁÌè¼½…±±¡¥¹…‰Õä¹É¼‘í¡É•˜¡±½…±”°…ÉÑ¥±•Ì¼‘íÍ±Õõ€¥õ€°($%…ÕÑ¡½Èèì($$$‰ÑåÁ”ˆè€‰=É…¹¥é…Ñ¥½¸ˆ°($$%¹…µ”è€‰…±±¡¥¹…‰Õä¹É¼‘¥Ñ½É¥…°I•Í•…É ˆ($%ô(%ôì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èl($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÉ¥ÁÐˆ°ì($$%ÑåÁ”è€‰…ÁÁ±¥…Ñ¥½¸½±­©Í½¸ˆ°($$%‘…¹•É½ÕÍ±åM•Ñ%¹¹•É!Q50èì}}¡Ñµ°è)M=8¹ÍÑÉ¥¹¥™ä¡…ÉÑ¥±•M¡•µ„¤ô($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$%±…ÍÍ9…µ”è€‰…ÉÑ¥±”µ¡•É¼ˆ°($$%¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$%¡É•˜è¡É•˜¡±½…±”°€‰…ÉÑ¥±•Ìˆ¤°($$$$%¡¥±‘É•¸èl‹Š@€ˆ°Ð¹±…‰•±ÍlÑut($$$%ô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl($$$$$‰%19=Qƒ
+Ü€ˆ°($$$$%…ÉÑ¥±”¹ÕÁ‘…Ñ•¹Ñ½UÁÁ•É…Í” ¤°($$$$$ˆƒ
+Üˆ°($$$$$ˆ€ˆ°($$$$%…ÉÑ¥±”¹É•…‘Q¥µ”¹Ñ½UÁÁ•É…Í” ¤($$$%tô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Äˆ°ì¡¥±‘É•¸è±½…±”€ôôô€‰•¸ˆ€ü…ÉÑ¥±”¹Ñ¥Ñ±”€è±½…±¥é•‘lÁtô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è±½…±”€ôôô€‰•¸ˆ€ü…ÉÑ¥±”¹‘•ÍÉ¥ÁÑ¥½¸€è±½…±¥é•‘lÉtô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰…ÉÑ¥±”µ­•åÝ½É‘Ìˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰AI%5Id-e]=Iˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è…ÉÑ¥±”¹ÁÉ¥µ…Éå-•åÝ½Éô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰MUAA=IQ%9ˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è…ÉÑ¥±”¹Í•½¹‘…Éå-•åÝ½É‘Ì¹©½¥¸ ˆƒ
+Ü€ˆ¤ô¤($$$$%t($$$%ô¤($$%t($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰…ÉÑ¥±”ˆ°ì($$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µ…ÉÑ¥±”ˆ°($$%¡¥±‘É•¸èl($$$%…ÉÑ¥±”¹¥¹ÑÉ¼¹µ…À ¡Á…É…É…Á °¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì($$$$%±…ÍÍ9…µ”è¤€ôôô€À€ü€‰…ÉÑ¥±”µ¥¹ÑÉ¼ˆ€è€‰…ÉÑ¥±”µ±•‘”ˆ°($$$$%¡¥±‘É•¸èÁ…É…É…Á ($$$%ô°Á…É…É…Á ¤¤°($$$%…ÉÑ¥±”¹Í•Ñ¥½¹Ì¹µ…À ¡Í•Ñ¥½¸°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èMÑÉ¥¹œ¡¤€¬€Ä¤¹Á…‘MÑ…ÉÐ È°€ˆÀˆ¤ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸èÍ•Ñ¥½¸¹¡•…‘¥¹œô¤°($$$$%Í•Ñ¥½¸¹Á…É…É…Á¡Ì¹µ…À ¡Á…É…É…Á ¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÁ…É…É…Á ô°Á…É…É…Á ¤¤°($$$$%Í•Ñ¥½¸¹¡•­±¥ÍÐ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Õ°ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰…ÉÑ¥±”µ¡•­±¥ÍÐˆ°($$$$$%¡¥±‘É•¸èÍ•Ñ¥½¸¹¡•­±¥ÍÐ¹µ…À ¡¥Ñ•´¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰±¤ˆ°ì¡¥±‘É•¸è¥Ñ•´ô°¥Ñ•´¤¤($$$$%ô¤($$$%tô¥tô°Í•Ñ¥½¸¹¡•…‘¥¹œ¤¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰…ÉÑ¥±”µ…±±½ÕÐˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰IMI 9=Qˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è…ÉÑ¥±”¹Í½ÕÉ•9½Ñ”ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Àˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰Í½ÕÉ”µ±¥¹­Ìˆ°($$$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰±±¡¥¹…	Õä™É•¥¡Ð…±Õ±…Ñ½Èƒ
+Ü¡•­•€ÄÈÕœ€ÈÀÈØˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰=™™¥¥…°…ÁÀ‘•ÍÉ¥ÁÑ¥½¸ƒ
+Ü¡•­•€ÄÈÕœ€ÈÀÈØˆô¥t($$$$$%ô¤($$$$%t($$$%ô¤($$%t($%ô¤(%tô¤ì)ô)™Õ¹Ñ¥½¸M•Ñ¥½¸¡ì±½…±”°Á…Ñ ô¤ì(%½¹ÍÐÐ€ô±½…±•½Áåm±½…±•t°Í•Ñ¥½¸€ôÁ…Ñ¡lÁtñð€‰ÁÉ½‘ÕÑÌˆì(%¥˜€¡Í•Ñ¥½¸€ôôô€‰…ÉÑ¥±•Ìˆ€˜˜Á…Ñ¡lÅt¤É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡ÉÑ¥±”°ì($%±½…±”°($%Í±ÕœèÁ…Ñ¡lÅt(%ô¤ì(%½¹ÍÐ™…ÅM¡•µ„€ôÍ•Ñ¥½¸€ôôô€‰™…Äˆ€üì($$‰½¹Ñ•áÐˆè€‰¡ÑÑÁÌè¼½Í¡•µ„¹½Éœˆ°($$‰ÑåÁ”ˆè€‰EA…”ˆ°($%µ…¥¹¹Ñ¥ÑäèÐ¹™…Ä¹µ…À ¡mÄ°…t¤€ôø€¡ì($$$‰ÑåÁ”ˆè€‰EÕ•ÍÑ¥½¸ˆ°($$%¹…µ”èÄ°($$%…•ÁÑ•‘¹ÍÝ•Èèì($$$$‰ÑåÁ”ˆè€‰¹ÍÝ•Èˆ°($$$%Ñ•áÐè„($$%ô($%ô¤¤(%ô€è¹Õ±°ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èl($%™…ÅM¡•µ„€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÉ¥ÁÐˆ°ì($$%ÑåÁ”è€‰…ÁÁ±¥…Ñ¥½¸½±­©Í½¸ˆ°($$%‘…¹•É½ÕÍ±åM•Ñ%¹¹•É!Q50èì}}¡Ñµ°è)M=8¹ÍÑÉ¥¹¥™ä¡™…ÅM¡•µ„¤ô($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡A…•!•É¼°ì($$%Ð°($$%Í•Ñ¥½¸($%ô¤°($$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µÁ…”µ½¹Ñ•¹Ðˆ°($$%¡¥±‘É•¸èl($$$%Í•Ñ¥½¸€ôôô€‰ÁÉ½‘ÕÑÌˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰Á…”µÑ½½±‰…Èˆ°($$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl($$$$$%ÁÉ½‘ÕÑÌ¹±•¹Ñ °($$$$$$ˆ€ˆ°($$$$$%Ð¹Õ¥lÄÍt°($$$$$$ˆƒ
+Ü€ˆ°($$$$$%Í¥Ñ•Q•áÑm±½…±•t¹¡•­•($$$$%tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M•…É¡	…È°ì($$$$$%±…‰•°èÐ¹Õ¥lÄát°($$$$$%‰ÕÑÑ½¹1…‰•°èÍ¥Ñ•Q•áÑm±½…±•t¹Í•…É ($$$$%ô¥t($$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÑÌµŒÁ…”µÁÉ½‘ÕÑÌˆ°($$$$%¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹µ…À ¡À°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡AÉ½‘ÕÑ…É°ì($$$$$%µ½‘”è€‰Œˆ°($$$$$%ÁÉ½‘ÕÐèÀ°($$$$$%¥¹‘•àè¤°($$$$$%ÍÑ…ÑÕÍ1…‰•°èÐ¹Õ¥lÄÅt($$$$%ô°À¹¡É•˜¤¤($$$%ô¥tô¤°($$$%Í•Ñ¥½¸€ôôô€‰…Ñ•½É¥•Ìˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰…Ñ•½ÉäµÑ•Éµ¥¹…°µÉ¥ˆ°($$$$%¡¥±‘É•¸è…Ñ•½É¥•Ì¹µ…À ¡l°€°ÕÉ±t°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%¡É•˜èÕÉ°°($$$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$$%É•°è€‰¹½½Á•¹•Èˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èlˆÀˆ°¤€¬€Åtô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸èÐ¹…ÑÍm¥tô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Íµ…±°ˆ°ì¡¥±‘É•¸èÍ¥Ñ•Q•áÑm±½…±•t¹½Á•¸ô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¤ˆ°ì¡¥±‘É•¸èmÐ¹Õ¥lÄÝt°€ˆƒŠ\‰tô¤($$$$$%t($$$$%ô°ÕÉ°¤¤($$$%ô¤°($$$%Í•Ñ¥½¸€ôôô€‰ÅŒµÕ¥‘”ˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡MÑ•ÁÌ°ì¥Ñ•µÌèÐ¹ÅŒô¤°($$$$ˆ€ˆ°($$$%Í•Ñ¥½¸€ôôô€‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤¡¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡MÑ•ÁÌ°ì¥Ñ•µÌèÐ¹Í¡¥ÁÁ¥¹œô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡I•¥½¹…±Õ¥‘…¹”°ì±½…±”ô¥tô¤°($$$$ˆ€ˆ°($$$%Í•Ñ¥½¸€ôôô€‰…ÉÑ¥±•Ìˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰…ÉÑ¥±”µÉ¥ˆ°($$$$%¡¥±‘É•¸èÐ¹…ÉÑ¥±•Ì¹µ…À ¡mÑ¥Ñ±”°Í±Õœ°ÍÕµµ…Éåt°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%¡É•˜è¡É•˜¡±½…±”°…ÉÑ¥±•Ì¼‘íÍ±Õõ€¤°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl($$$$$$$$ˆÀˆ°($$$$$$$%¤€¬€Ä°($$$$$$$$ˆƒ
+Ü%19=Qˆ($$$$$$%tô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸èÑ¥Ñ±”ô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÍÕµµ…Éäô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èmÐ¹Õ¥lÄÙt°€ˆƒŠH‰tô¤($$$$$%t($$$$%ô°Í±Õœ¤¤($$$%ô¤°($$$%Í•Ñ¥½¸€ôôô€‰™…Äˆ€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰™…ÄµÑ•Éµ¥¹…°ˆ°($$$$%¡¥±‘É•¸èÐ¹™…Ä¹µ…À ¡mÄ°…t°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘•Ñ…¥±Ìˆ°ì($$$$$%½Á•¸è¤€ôôô€À°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÕµµ…Éäˆ°ì¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èMÑÉ¥¹œ¡¤€¬€Ä¤¹Á…‘MÑ…ÉÐ È°€ˆÀˆ¤ô¤°($$$$$$%Ä°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€ˆ¬ˆô¤($$$$$%tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è„ô¥t($$$$%ô°Ä¤¤($$$%ô¤($$%t($%ô¤(%tô¤ì)ô)™Õ¹Ñ¥½¸MÑ•ÁÌ¡ì¥Ñ•µÌô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($%±…ÍÍ9…µ”è€‰Ñ•Éµ¥¹…°µÍÑ•ÁÌˆ°($%¡¥±‘É•¸è¥Ñ•µÌ¹µ…À ¡m °Át°¤¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰…ÉÑ¥±”ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èlˆÀˆ°¤€¬€Åtô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸è ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÀô¥tô¥tô° ¤¤(%ô¤ì)ô)™Õ¹Ñ¥½¸I•¥½¹…±Õ¥‘…¹”¡ì±½…±”ô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($%±…ÍÍ9…µ”è€‰É•¥½¹…°µÕ¥‘…¹”ˆ°($$‰…É¥„µ±…‰•°ˆè€‰I½µ…¹¥„¥µÁ½ÉÐÕ¥‘…¹”ˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆ¼I=59%}%5A=IQ}9=QLˆô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èÉ½µ…¹¥…Õ¥‘…¹•m±½…±•t¹µ…À ¡m¡•…‘¥¹œ°Ñ•áÐ°Í½ÕÉ”°ÕÉ±t°¥¹‘•à¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰…ÉÑ¥±”ˆ°ì¡¥±‘É•¸èl($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èlˆÀˆ°¥¹‘•à€¬€Åtô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸è¡•…‘¥¹œô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÑ•áÐô¤°($$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$%¡É•˜èÕÉ°°($$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$%É•°è€‰¹½½Á•¹•È¹½É•™•ÉÉ•Èˆ°($$$$%¡¥±‘É•¸èmÍ½ÕÉ”°€ˆƒŠ\‰t($$$%ô¤($$%tô°¡•…‘¥¹œ¤¤ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì($$$%±…ÍÍ9…µ”è€‰É•¥½¹…°µ¹½Ñ”ˆ°($$$%¡¥±‘É•¸è€‰¡•­•€ÄÈÕÕÍÐ€ÈÀÈØƒ
+ÜIÕ±•Ì°É…Ñ•Ì°É½ÕÑ”…Ù…¥±…‰¥±¥Ñä…¹½Á•É…Ñ½È™••Ì…¸¡…¹”¸½¹™¥É´ÕÉÉ•¹Ð½™™¥¥…°¥¹™½Éµ…Ñ¥½¸‰•™½É”Á…É•°ÍÕ‰µ¥ÍÍ¥½¸¸ˆ($$%ô¤($%t(%ô¤ì)ô)™Õ¹Ñ¥½¸Q•Éµ¥¹…±A…”¡ì±½…±”€ô€‰É¼ˆ°Á…Ñ €ômt°Í¡½ÝMÝ¥Ñ¡•È€ô™…±Í”ô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰µ…¥¸ˆ°ì($%±…ÍÍ9…µ”è€‰Í¥Ñ”½¹•ÁÐµŒˆ°($%±…¹œè±½…±”°($%¡¥±‘É•¸èl($$%Í¡½ÝMÝ¥Ñ¡•È€˜˜€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½¹•ÁÑMÝ¥Ñ¡•È°ì…Ñ¥Ù”è€‰ˆô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡!•…‘•È°ì($$$%±½…±”°($$$%Á…Ñ ($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$%±…ÍÍ9…µ”è€‰¥¹‘•Á•¹‘•¹ÐµÍÑÉ¥Àˆ°($$$%¡¥±‘É•¸èÍ¥Ñ•Q•áÑm±½…±•t¹¥¹‘•Á•¹‘•¹Ð($$%ô¤°($$%Á…Ñ ¹±•¹Ñ €ü€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M•Ñ¥½¸°ì($$$%±½…±”°($$$%Á…Ñ ($$%ô¤€è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡!½µ”Ä°ì±½…±”ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M¥Ñ•½½Ñ•È°ì±½…±”ô¤($%t(%ô¤ì)ô)Ù…È•Ñ1½…±•½Áä€ô€¡±½…±”¤€ôø±½…±•½Áåm±½…±•tì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÄÄ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì‘•™…Õ±Ðè€ ¤€ôø!½µ”ô¤ì)™Õ¹Ñ¥½¸!½µ” ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Q•Éµ¥¹…±A…”°ì±½…±”è€‰É¼ˆô¤ì)ô)Ù…ÈI•Í½ÕÉ•Ì€ô€ ¡I•…Ð°‘•ÁÌ°I•µ½Ù•ÕÁ±¥…Ñ•M•ÉÙ•ÉÍÌ°ÁÉ••‘•¹”¤€ôøì(%É•ÑÕÉ¸™Õ¹Ñ¥½¸I•Í½ÕÉ•Ì ¤ì($%É•ÑÕÉ¸I•…Ð¹É•…Ñ•±•µ•¹Ð¡I•…Ð¹É…µ•¹Ð°¹Õ±°°l¸¸¹‘•ÁÌ¹ÍÌ¹µ…À ¡¡É•˜¤€ôøI•…Ð¹É•…Ñ•±•µ•¹Ð ‰±¥¹¬ˆ°ì($$%­•äè€‰ÍÌèˆ€¬¡É•˜°($$%É•°è€‰ÍÑå±•Í¡••Ðˆ°($$$¸¸¹ÁÉ••‘•¹”€üìÁÉ••‘•¹”ô€èíô°($$%¡É•˜°($$$‰‘…Ñ„µÉÍŒµÍÌµ¡É•˜ˆè¡É•˜($%ô¤¤°I•µ½Ù•ÕÁ±¥…Ñ•M•ÉÙ•ÉÍÌ€˜˜I•…Ð¹É•…Ñ•±•µ•¹Ð¡I•µ½Ù•ÕÁ±¥…Ñ•M•ÉÙ•ÉÍÌ°ì­•äè€‰É•µ½Ù”µ‘ÕÁ±¥…Ñ”µÍÌˆô¥t¤ì(%ôì)ô¤¡¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹‘•™…Õ±Ð°…ÍÍ•ÑÍ5…¹¥™•ÍÐ¹Í•ÉÙ•ÉI•Í½ÕÉ•Íl‰…ÁÀ½±…å½ÕÐ¹ÑÍà‰t°Ù½¥€À°€‰Ù¥Ñ”µÉÍŒ½¥µÁ½ÉÑ•ÈµÉ•Í½ÕÉ•Ìˆ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸pÁÙ¥ÉÑÕ…°éÙ¥¹•áÐµ½½±”µ™½¹ÑÌý™½¹ÑÌõ•¥ÍÐ”É•¥ÍÑ}5½¹¼)Ù…È•¥ÍÐ€ô€¼¨}}AUI}|€¨¼É•…Ñ•½¹Ñ1½…‘•È ‰•¥ÍÐˆ¤ì)Ù…È•¥ÍÑ}5½¹¼€ô€¼¨}}AUI}|€¨¼É•…Ñ•½¹Ñ1½…‘•È ‰•¥ÍÐ5½¹¼ˆ¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½±…å½ÕÐ¹ÑÍà)Ù…È±…å½ÕÑ}•áÁ½ÉÑÌ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôø€‘ÝÉ…Á}I½½Ñ1…å½ÕÐ°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„ä)ô¤ì)Ù…È•¥ÍÑM…¹Ì€ô•¥ÍÐ¡ì(%Ù…É¥…‰±”è€ˆ´µ™½¹Ðµ•¥ÍÐµÍ…¹Ìˆ°(%ÍÕ‰Í•ÑÌèl‰±…Ñ¥¸‰t°(%}Í•±™!½ÍÑ•‘MLè€ˆ¼¨åÉ¥±±¥Œµ•áÐ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐœíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐ´á…ŒÀÐÔÕ”ÜäÝ˜½•¥ÍÐµ™˜ÈÌÄÁ˜Ô¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÐØÀ´ÀÔÉ°T¬ÅàÀ´Åá°T¬ÈÁÐ°T¬ÉÀ´É°T­ØÐÀµØå°T­ÉµÉíq¹õq¸¼¨åÉ¥±±¥Œ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐœíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐ´á…ŒÀÐÔÕ”ÜäÝ˜½•¥ÍÐ´àÜÕ‘Ð¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÌÀÄ°T¬ÀÐÀÀ´ÀÐÕ°T¬ÀÐäÀ´ÀÐäÄ°T¬ÀÑÀ´ÀÑÄ°T¬ÈÄÄØíq¹õq¸¼¨Ù¥•Ñ¹…µ•Í”€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐœíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐ´á…ŒÀÐÔÕ”ÜäÝ˜½•¥ÍÐ´ÔÈÌÀÙ…‰˜¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÄÀÈ´ÀÄÀÌ°T¬ÀÄÄÀ´ÀÄÄÄ°T¬ÀÄÈà´ÀÄÈä°T¬ÀÄØà´ÀÄØä°T¬ÀÅÀ´ÀÅÄ°T¬ÀÅ´ÀÅÀ°T¬ÀÌÀÀ´ÀÌÀÄ°T¬ÀÌÀÌ´ÀÌÀÐ°T¬ÀÌÀà´ÀÌÀä°T¬ÀÌÈÌ°T¬ÀÌÈä°T¬ÅÀ´Åä°T¬ÈÁíq¹õq¸¼¨±…Ñ¥¸µ•áÐ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐœíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐ´á…ŒÀÐÔÕ”ÜäÝ˜½•¥ÍÐ´ÀÀÄÄÜÕˆÄ¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÄÀÀ´ÀÉ	°T¬ÀÉ	´ÀÉÔ°T¬ÀÉÜ´ÀÉ°T¬ÀÉ´ÀÉÜ°T¬ÀÉ´ÀÉ°T¬ÀÌÀÐ°T¬ÀÌÀà°T¬ÀÌÈä°T¬ÅÀÀ´Å	°T¬ÅÀÀ´Åå°T¬ÅÈ´Å°T¬ÈÀÈÀ°T¬ÈÁÀ´ÈÁ°T¬ÈÁ´ÈÁÀ°T¬ÈÄÄÌ°T¬ÉØÀ´ÉÝ°T­ÜÈÀµÝíq¹õq¸¼¨±…Ñ¥¸€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐœíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐ´á…ŒÀÐÔÕ”ÜäÝ˜½•¥ÍÐ´äá‰‰‰ˆ¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÀÀÀ´ÀÁ°T¬ÀÄÌÄ°T¬ÀÄÔÈ´ÀÄÔÌ°T¬ÀÉ	´ÀÉ	°T¬ÀÉØ°T¬ÀÉ°T¬ÀÉ°T¬ÀÌÀÐ°T¬ÀÌÀà°T¬ÀÌÈä°T¬ÈÀÀÀ´ÈÀÙ°T¬ÈÁ°T¬ÈÄÈÈ°T¬ÈÄäÄ°T¬ÈÄäÌ°T¬ÈÈÄÈ°T¬ÈÈÄÔ°T­°T­íq¹õq¸ˆ)ô¤ì)Ù…È•¥ÍÑ5½¹¼€ô•¥ÍÑ}5½¹¼¡ì(%Ù…É¥…‰±”è€ˆ´µ™½¹Ðµ•¥ÍÐµµ½¹¼ˆ°(%ÍÕ‰Í•ÑÌèl‰±…Ñ¥¸‰t°(%}Í•±™!½ÍÑ•‘MLè€ˆ¼¨åÉ¥±±¥Œµ•áÐ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐ5½¹¼œíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐµµ½¹¼´ÀÁ”äàäÄÜàÜäÐ½•¥ÍÐµµ½¹¼µ˜ÙˆÌÌÌÈà¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÐØÀ´ÀÔÉ°T¬ÅàÀ´Åá°T¬ÈÁÐ°T¬ÉÀ´É°T­ØÐÀµØå°T­ÉµÉíq¹õq¸¼¨åÉ¥±±¥Œ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐ5½¹¼œíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐµµ½¹¼´ÀÁ”äàäÄÜàÜäÐ½•¥ÍÐµµ½¹¼´ÐÑ”ÀÌÀÔÈ¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÌÀÄ°T¬ÀÐÀÀ´ÀÐÕ°T¬ÀÐäÀ´ÀÐäÄ°T¬ÀÑÀ´ÀÑÄ°T¬ÈÄÄØíq¹õq¸¼¨Íåµ‰½±ÌÈ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐ5½¹¼œíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐµµ½¹¼´ÀÁ”äàäÄÜàÜäÐ½•¥ÍÐµµ½¹¼´ÀØÌàÐÐå”¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÈÀÀÀ´ÈÀÀÄ°T¬ÈÀÀÐ´ÈÀÀà°T¬ÈÀÁ°T¬ÈÍà´ÈÍ	°T¬ÈÔÀÀ´ÈÔåíq¹õq¸¼¨Ù¥•Ñ¹…µ•Í”€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐ5½¹¼œíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐµµ½¹¼´ÀÁ”äàäÄÜàÜäÐ½•¥ÍÐµµ½¹¼´äÜÅ™ˆÈÜÐ¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÄÀÈ´ÀÄÀÌ°T¬ÀÄÄÀ´ÀÄÄÄ°T¬ÀÄÈà´ÀÄÈä°T¬ÀÄØà´ÀÄØä°T¬ÀÅÀ´ÀÅÄ°T¬ÀÅ´ÀÅÀ°T¬ÀÌÀÀ´ÀÌÀÄ°T¬ÀÌÀÌ´ÀÌÀÐ°T¬ÀÌÀà´ÀÌÀä°T¬ÀÌÈÌ°T¬ÀÌÈä°T¬ÅÀ´Åä°T¬ÈÁíq¹õq¸¼¨±…Ñ¥¸µ•áÐ€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐ5½¹¼œíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐµµ½¹¼´ÀÁ”äàäÄÜàÜäÐ½•¥ÍÐµµ½¹¼´ÐÐÜÐÔÐÐØ¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÄÀÀ´ÀÉ	°T¬ÀÉ	´ÀÉÔ°T¬ÀÉÜ´ÀÉ°T¬ÀÉ´ÀÉÜ°T¬ÀÉ´ÀÉ°T¬ÀÌÀÐ°T¬ÀÌÀà°T¬ÀÌÈä°T¬ÅÀÀ´Å	°T¬ÅÀÀ´Åå°T¬ÅÈ´Å°T¬ÈÀÈÀ°T¬ÈÁÀ´ÈÁ°T¬ÈÁ´ÈÁÀ°T¬ÈÄÄÌ°T¬ÉØÀ´ÉÝ°T­ÜÈÀµÝíq¹õq¸¼¨±…Ñ¥¸€¨½q¹™½¹Ðµ™…”íq¸€™½¹Ðµ™…µ¥±äè€•¥ÍÐ5½¹¼œíq¸€™½¹ÐµÍÑå±”è¹½Éµ…°íq¸€™½¹ÐµÝ•¥¡Ðè€ÄÀÀ€äÀÀíq¸€™½¹Ðµ‘¥ÍÁ±…äèÍÝ…Àíq¸€ÍÉŒèÕÉ° ½…ÍÍ•ÑÌ½}Ù¥¹•áÑ}™½¹ÑÌ½•¥ÍÐµµ½¹¼´ÀÁ”äàäÄÜàÜäÐ½•¥ÍÐµµ½¹¼´ÀÄÍˆÉ˜É˜¹Ý½™˜È¤™½Éµ…Ð Ý½™˜Èœ¤íq¸€Õ¹¥½‘”µÉ…¹”èT¬ÀÀÀÀ´ÀÁ°T¬ÀÄÌÄ°T¬ÀÄÔÈ´ÀÄÔÌ°T¬ÀÉ	´ÀÉ	°T¬ÀÉØ°T¬ÀÉ°T¬ÀÉ°T¬ÀÌÀÐ°T¬ÀÌÀà°T¬ÀÌÈä°T¬ÈÀÀÀ´ÈÀÙ°T¬ÈÁ°T¬ÈÄÈÈ°T¬ÈÄäÄ°T¬ÈÄäÌ°T¬ÈÈÄÈ°T¬ÈÈÄÔ°T­°T­íq¹õq¸ˆ)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„ä€ôì(%µ•Ñ…‘…Ñ…	…Í”è¹•ÜUI0 ‰¡ÑÑÁÌè¼½…±±¡¥¹…‰Õä¹É¼ˆ¤°(%Ñ¥Ñ±”è€‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••ÐI½·‰¹¥„€ÈÀÈØðAÉ½‘ÕÍ”°Eƒ"e¤1¥ÙÉ…É”ˆ°(%‘•ÍÉ¥ÁÑ¥½¸è€‰¡¥¥¹‘•Á•¹‘•¹Ð±±¡¥¹…	ÕäÁ•¹ÑÉÔI½·‰¹¥„èÁÉ½‘ÕÍ”Í•±•Ñ…Ñ”°Á½é”E°½ÍÑÕÉ¤‘”½±•Ð°QY°Ù…·ƒ"e¤Á±…¹¥™¥…É•„±¥ÙËÉ¥¤¸ˆ°(%…±Ñ•É¹…Ñ•Ìèì($%…¹½¹¥…°è€ˆ¼ˆ°($%±…¹Õ…•Ìèì($$$‰àµ‘•™…Õ±Ðˆè€ˆ¼ˆ°($$%É¼è€ˆ¼ˆ°($$%•¸è€ˆ½•¸ˆ°($$%‘”è€ˆ½‘”ˆ°($$%™Èè€ˆ½™Èˆ°($$%•Ìè€ˆ½•Ìˆ°($$%¥Ðè€ˆ½¥Ðˆ°($$%Á°è€ˆ½Á°ˆ($%ô(%ô°(%½Á•¹É…Á èì($%ÑåÁ”è€‰Ý•‰Í¥Ñ”ˆ°($%ÕÉ°è€ˆ¼ˆ°($%Í¥Ñ•9…µ”è€‰…±±¡¥¹…‰Õä¹É¼ˆ°($%±½…±”è€‰É½}I<ˆ°($%Ñ¥Ñ±”è€‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••ÐÁ•¹ÑÉÔI½·‰¹¥„ˆ°($%‘•ÍÉ¥ÁÑ¥½¸è€‰AÉ½‘ÕÍ”°Á½é”Eƒ"e¤¡¥‘ÕÉ¤‘”±¥ÙÉ…É”Á•¹ÑÉÔÕµÃËÑ½É¥¤‘¥¸I½·‰¹¥„¸ˆ°($%¥µ…•Ìèmì($$%ÕÉ°è€ˆ½…±±¡¥¹…‰Õä¹Á¹œˆ°($$%Ý¥‘Ñ è€ÄÈÀÀ°($$%¡•¥¡Ðè€ÄÜÜ°($$%…±Ðè€‰±±¡¥¹…	Õä¥¹‘•Á•¹‘•¹ÐI½µ…¹¥„Õ¥‘”ˆ($%õt(%ô°(%ÑÝ¥ÑÑ•Èèì($%…Éè€‰ÍÕµµ…Éå}±…É•}¥µ…”ˆ°($%Ñ¥Ñ±”è€‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••ÐÁ•¹ÑÉÔI½·‰¹¥„ˆ°($%‘•ÍÉ¥ÁÑ¥½¸è€‰AÉ½‘ÕÍ”°Á½é”Eƒ"e¤¡¥‘ÕÉ¤‘”±¥ÙÉ…É”Á•¹ÑÉÔÕµÃËÑ½É¥¤‘¥¸I½·‰¹¥„¸ˆ°($%¥µ…•Ìèlˆ½…±±¡¥¹…‰Õä¹Á¹œ‰t(%ô°(%É½‰½ÑÌèì($%¥¹‘•àèÑÉÕ”°($%™½±±½ÜèÑÉÕ”(%ô°(%¥½¹Ìèì($%¥½¸è€ˆ½™…Ù¥½¸¹ÍÙœˆ°($%Í¡½ÉÑÕÐè€ˆ½™…Ù¥½¸¹ÍÙœˆ(%ô)ôì)…Íå¹Œ™Õ¹Ñ¥½¸I½½Ñ1…å½ÕÐ¡ì¡¥±‘É•¸ô¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¡Ñµ°ˆ°ì($%±…¹œè€¡…Ý…¥Ð¡•…‘•ÉÌ ¤¤¹•Ð ‰àµÍ¥Ñ”µ±½…±”ˆ¤ñð€‰É¼ˆ°($%¡¥±‘É•¸è€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‰½‘äˆ°ì($$%±…ÍÍ9…µ”è€‘í•¥ÍÑM…¹Ì¹Ù…É¥…‰±•ô€‘í•¥ÍÑ5½¹¼¹Ù…É¥…‰±•õ€°($$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÉ¥ÁÐˆ°ì($$$%ÑåÁ”è€‰…ÁÁ±¥…Ñ¥½¸½±­©Í½¸ˆ°($$$%‘…¹•É½ÕÍ±åM•Ñ%¹¹•É!Q50èì}}¡Ñµ°è)M=8¹ÍÑÉ¥¹¥™ä¡ì($$$$$‰½¹Ñ•áÐˆè€‰¡ÑÑÁÌè¼½Í¡•µ„¹½Éœˆ°($$$$$‰ÑåÁ”ˆè€‰]•‰M¥Ñ”ˆ°($$$$%¹…µ”è€‰…±±¡¥¹…‰Õä¹É¼ˆ°($$$$%ÕÉ°è€‰¡ÑÑÁÌè¼½…±±¡¥¹…‰Õä¹É¼¼ˆ°($$$$%¥¹1…¹Õ…”èl($$$$$$‰É¼ˆ°($$$$$$‰•¸ˆ°($$$$$$‰‘”ˆ°($$$$$$‰™Èˆ°($$$$$$‰•Ìˆ°($$$$$$‰¥Ðˆ°($$$$$$‰Á°ˆ($$$$%t°($$$$%‘•ÍÉ¥ÁÑ¥½¸è€‰%¹‘•Á•¹‘•¹Ð±±¡¥¹…	ÕäÉ•Í•…É …¹ÁÉ½‘ÕÐµ‘¥Í½Ù•ÉäÕ¥‘”™½ÈÍ¡½ÁÁ•ÉÌ¥¸I½µ…¹¥„¸ˆ($$$%ô¤ô($$%ô¤°¡¥±‘É•¹t($%ô¤(%ô¤ì)ô)Ù…È€‘ÝÉ…Á}I½½Ñ1…å½ÕÐ€ô€¼¨}}AUI}|€¨¼}}Ù¥Ñ•}ÉÍ}ÝÉ…Á}ÍÍ}|¡I½½Ñ1…å½ÕÐ°€‰‘•™…Õ±Ðˆ¤ì)™Õ¹Ñ¥½¸}}Ù¥Ñ•}ÉÍ}ÝÉ…Á}ÍÍ}|¡Ù…±Õ”°¹…µ”¤ì(%¥˜€¡ÑåÁ•½˜Ù…±Õ”€„ôô€‰™Õ¹Ñ¥½¸ˆ¤É•ÑÕÉ¸Ù…±Õ”ì(%™Õ¹Ñ¥½¸}}ÝÉ…ÁÁ•È¡ÁÉ½ÁÌ¤ì($%É•ÑÕÉ¸¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¡¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É…µ•¹Ð°¹Õ±°°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¡I•Í½ÕÉ•Ì¤°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¡Ù…±Õ”°ÁÉ½ÁÌ¤¤ì(%ô(%=‰©•Ð¹‘•™¥¹•AÉ½Á•ÉÑä¡}}ÝÉ…ÁÁ•È°€‰¹…µ”ˆ°ìÙ…±Õ”è¹…µ”ô¤ì(%É•ÑÕÉ¸}}ÝÉ…ÁÁ•Èì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½ÑÉÕÍÐµÁ…•Ì¹ÑÍà)Ù…ÈÑÉÕÍÑA…•ÌÄ€ôì(%µ•Ñ¡½‘½±½äèì($%Ñ¥Ñ±”è€‰5•Ñ½‘½±½¥”ˆ°($%ÍÕµµ…Éäè€‰Õ´Ù•É¥™¥´±¥¹­ÕÉ¥±”°¥µ…¥¹¥±”ƒ"e¤•ÍÑ¥·É¥±”ÁÕ‰±¥…Ñ”Á”…±±¡¥¹…‰Õä¹É¼¸ˆ°($%Í•Ñ¥½¹Ìèl($$%l‰”ÁÕ‰±¥´ˆ°€‰A…¥¹„‘”ÁÉ½‘ÕÍ”…™§"e•…ë½ÁÐƒ¹¹É•¥ÍÑËÉ¤Ù¥é¥‰¥±”¸9Ô™½±½Í¥´¹Õµ•É”‘”‰…ë‘”‘…Ñ”°ÁÉ½•¹Ñ”‘”Á½ÑÉ¥Ù¥É”Í…ÔÍÑ…ÑÕÐƒ
+­Ù•É¥™¥…Ó
+ì›Ëµ•Ñ½“ƒ"e¤‘½Ù•é¤ÁÕ‰±¥”¸‰t°($$%l‰Y•É¥™¥…É•„±¥¹­ÕÉ¥±½Èˆ°€‰1„€ÄÈ…ÕÕÍÐ€ÈÀÈØ°™¥•…É”…É„™½ÍÐ…Í½¥…ÐÔ¼Á…¥»¹‰Õå¡„¹½´…É”É•ÑÕÉ¹„Õ¸ÁÉ½‘ÕÌÔ…•±‡"e¤¹Õµ”¸1¥¹­ÕÉ¥±”¥¹±ÕÁ…É…µ•ÑÉ¤UQ4Á•¹ÑÉÔ„¥‘•¹Ñ¥™¥„ÑÉ…™¥Õ°‘¥¸…±±¡¥¹…‰Õä¹É¼¸‰t°($$%l‰ÍÑ¥·É¤ƒ¹¸UMˆ°€‰AÉ—"mÕÉ¥±”9d…™§"e…Ñ”…Ô™½ÍÐÑÉ…¹Í™½Éµ…Ñ”½É¥•¹Ñ…Ñ¥Ø±„ÕÉÍÕ°‘”É•™•É¥»"o€ÄUM€ô€Ø°ÜÐÐ9d‘¥¸€ÄÈ…ÕÕÍÐ€ÈÀÈØ¸M•±•"m¥„Ù…É¥…¹Ñ•¤°ÕÉÍÕ°‘”Í¡¥µˆƒ"e¤…ÑÕ…±¥ëÉ¥±”…Ñ…±½Õ±Õ¤Á½Ðµ½‘¥™¥„ÍÕµ„¸‰t°($$%l‰I•Õ±¤Ù…É¥…‰¥±”ˆ°€‰QÉ…¹ÍÁ½ÉÑÕ°°Ñ…á•±”°QY°ÉÕÑ•±”°É•ÍÑÉ¥"m¥¥±”ƒ"e¤Í•ÉÙ¥¥¥±”Í”Ù•É¥™¥‘¥¸ÍÕÉÍ”½™¥¥…±”±„‘…Ñ„ÁÕ‰±¥É¥¤¸%¹™½Éµ‡"m¥„¹Ôƒ¹¹±½Õ¥—"eÑ”½™•ÉÑ„±¥Ù”°…ÕÑ½É¥Ñ…Ñ•„Ù…µ…³Í…Ô½¹ÍÕ±Ñ…»"m„ÁÉ½™•Í¥½¹…³¸‰t($%t(%ô°(%…‰½ÕÐèì($%Ñ¥Ñ±”è€‰•ÍÁÉ”…•ÍÐ¡¥ˆ°($%ÍÕµµ…Éäè€‰…±±¡¥¹…‰Õä¹É¼•ÍÑ”Õ¸¡¥¥¹‘•Á•¹‘•¹ÐÁ•¹ÑÉÔÕµÃËÑ½É¥¤‘¥¸I½·‰¹¥„¸ˆ°($%Í•Ñ¥½¹Ìèl($$%l‰M½Àˆ°€‰=É…¹¥ë´‘•Í½Á•É¥É•„ÁÉ½‘ÕÍ•±½È°Ù•É¥™¥…É•„Á½é•±½ÈEƒ"e¤Á±…¹¥™¥…É•„½±•Ñ•±½Èƒ¹¹ÑÈµÕ¸™½Éµ…Ð×"e½È‘”Ù•É¥™¥…ÐÁ•¹ÑÉÔÕÑ¥±¥é…Ñ½É¥¤‘¥¸I½·‰¹¥„¸‰t°($$%l‰%¹‘•Á•¹‘•»"oˆ°€‰•ÍÑ„¹Ô•ÍÑ”Í¥Ñ”µÕ°½™¥¥…°±±¡¥¹…	Õäƒ"e¤¹Ô•ÍÑ”…™¥±¥…ÐÔ±±¡¥¹…	ÕäÍ…ÔÔ·É¥±”ÁÉ•é•¹Ñ…Ñ”¸9Õµ•±”Ñ•Ë"m¥±½ÈÍÕ¹Ð™½±½Í¥Ñ”‘•ÍÉ¥ÁÑ¥ØÁ•¹ÑÉÔ„•áÁ±¥„ÍÕ‰¥•ÑÕ°¡¥‘Õ±Õ¤¸‰t°($$%l‰1¥µ¥ÓÉ¤ˆ°€‰9ÔÙ¥¹‘•´ÁÉ½‘ÕÍ•±”…™§"e…Ñ”ƒ"e¤¹Ô½¹ÑÉ½³´…Ñ…±½Õ°°ÍÑ½Õ°°…±¥Ñ…Ñ•„°ÑÉ…¹ÍÁ½ÉÑ…Ñ½É¥¤°Ñ…á•±”½É¤‘•¥é¥¥±”Ù…µ…±”¸Y•É¥™¥‘…Ñ•±”±¥Ù”ƒ¹¹…¥¹Ñ”‘”Á±…Ó¸‰t($%t(%ô°(%½¹Ñ…Ðèì($%Ñ¥Ñ±”è€‰½¹Ñ…Ðˆ°($%ÍÕµµ…Éäè€‰½É•"m¥¤•‘¥Ñ½É¥…±”°±¥¹­ÕÉ¤¹•™Õ¹"m¥½¹…±”ƒ"e¤Í½±¥¥ÓÉ¤ÁÉ¥Ù¥¹½»"m¥¹ÕÑÕ°¸ˆ°($%Í•Ñ¥½¹Ìèl($$%l‰½É•"m¥¤ˆ°€‰9ÔÁÕ‰±¥´¼…‘É•Ï‘”½¹Ñ…Ð¹•Ù•É¥™¥…Ó¸C‰»±„…Ñ¥Ù…É•„Õ¹Õ¤…¹…°•‘¥Ñ½É¥…°½¹™¥Éµ…Ð°Á…¥¹¥±”¥¹‘¥‘…Ñ„Õ±Ñ¥µ•¤Ù•É¥™¥É¤°¥…È±¥¹­ÕÉ¥±”¹•™Õ¹"m¥½¹…±”ÍÕ¹ÐÉ•Ù•É¥™¥…Ñ”±„ÕÉ·Ñ½…É•„É•Ù¥é¥”ÁÉ½É…µ…Ó¸‰t°($$%l‰É•ÁÑÕÉ¤ƒ"e¤·É¤ˆ°€‰A•¹ÑÉÔÍ½±¥¥ÓÉ¤ÁÉ¥Ù¥¹‘É•ÁÑÕÉ¥±”‘”…ÕÑ½ÈÍ…Ô·É¥±”°¥¹±Õ‘”µ…Ñ•É¥…±Õ°•á…Ðƒ"e¤‘½Ù…‘„‘É•ÁÑÕ±Õ¤¥¹Ù½…Ð¸Y½´…¹…±¥é„ƒ"e¤½É•Ñ„½»"m¥¹ÕÑÕ°•‘¥Ñ½É¥…°©ÕÍÑ¥™¥…Ð¸‰t°($$%l‰Í¥ÍÑ•»"oÁ•¹ÑÉÔ½µ•¹é¤ˆ°€‰9Ô…Ù•´…•Ì±„½¹ÑÕÉ¤°½µ•¹é¤°Á³"m¤Í…Ô½±•Ñ”¸A•¹ÑÉÔ¼½µ…¹“½¹É•Ó°™½±½Í—"eÑ”…¹…±Õ°‘”ÍÕÁ½ÉÐ…°Í•ÉÙ¥¥Õ±Õ¤ÁÉ¥¸…É”…¤½µ…¹‘…Ð¸‰t($%t(%ô°(%ÁÉ¥Ù…äèì($%Ñ¥Ñ±”è€‰½¹™¥‘•»"m¥…±¥Ñ…Ñ”ˆ°($%ÍÕµµ…Éäè€‰”‘…Ñ”ÍÕ¹ÐÁÉ½•Í…Ñ”‰¹™½±½Í—"eÑ¤…•ÍÐÍ¥Ñ”¸ˆ°($%Í•Ñ¥½¹Ìèl($$%l‰…Ñ”Ñ•¡¹¥”ˆ°€‰M•ÉÙ•ÉÕ°ƒ"e¤™ÕÉ¹¥é½É¥¤‘”¥¹™É…ÍÑÉÕÑÕËÁ½ÐÁÉ½•Í„‘…Ñ”Ñ•¡¹¥”¹••Í…É”±¥ÙËÉ¥¤ƒ"e¤Í•ÕÉ¥Ó"m¥¤°ÁÉ•Õ´…‘É•Í„%@°Ñ¥ÁÕ°‘”‰É½ÝÍ•È°µ½µ•¹ÑÕ°Í½±¥¥ÓÉ¥¤ƒ"e¤Á…¥¹„…•Í…Ó¸‰t°($$%l‰ÕÓÉ¤ƒ"e¤±¥¹­ÕÉ¤•áÑ•É¹”ˆ°€‰ÕÑ…É•„ƒ"e¤±¥¹­ÕÉ¥±”‘”ÁÉ½‘ÕÌÑÉ¥µ¥ÐÕÑ¥±¥é…Ñ½ÉÕ°ÑÉ”¹‰Õå¡„¹½´¸A…É…µ•ÑÉ¥¤UQ4¥‘•¹Ñ¥™¥ÍÕÉÍ„‘”É•½µ…¹‘…É”°›Ë„¥¹±Õ‘”¹Õµ•±”Í…Ô…‘É•Í„Ñ„‘””µµ…¥°¸‰t°($$%l‰½¹Ñ…Ðˆ°€‰M¥Ñ”µÕ°¹Ô½™•Ëƒ¹¸ÁÉ•é•¹ÐÕ¸™½ÉµÕ±…Èƒ"e¤¹ÔÍ½±¥¥Ó‘…Ñ”Á•ÉÍ½¹…±”ÁÉ¥¸”µµ…¥°¸9ÔÑÉ¥µ¥Ñ”Á…É½±”°‘…Ñ”‘”Á±…ÓÍ…Ô‘½Õµ•¹Ñ”Ù…µ…±”Í•¹Í¥‰¥±”ÑÉ”…‘É•Í”…É”ÁÉ•Ñ¥¹É•ÁÉ•é¥¹Ó…•ÍÐ¡¥¸‰t($%t(%ô°(%Ñ•ÉµÌèì($%Ñ¥Ñ±”è€‰Q•Éµ•¹¤‘”ÕÑ¥±¥é…É”ˆ°($%ÍÕµµ…Éäè€‰½¹‘§"m¥¥±”…Á±¥…‰¥±”½»"m¥¹ÕÑÕ±Õ¤•‘¥Ñ½É¥…°ƒ"e¤±¥¹­ÕÉ¥±½È•áÑ•É¹”¸ˆ°($%Í•Ñ¥½¹Ìèl($$%l‰%¹™½Éµ…É”°¹Ô…É…»"m¥”ˆ°€‰½»"m¥¹ÕÑÕ°•ÍÑ”½™•É¥Ðƒ¹¸Í½À¥¹™½Éµ…Ñ¥Ø¸AÉ—"mÕÉ¥±”ÍÕ¹Ð•ÍÑ¥·É¤°¥…È‘¥ÍÁ½¹¥‰¥±¥Ñ…Ñ•„°Ñ…á•±”°ÉÕÑ•±”ƒ"e¤Á½±¥Ñ¥¥±”Í”Á½ÐÍ¡¥µ‰„›Ë¹½Ñ¥™¥…É”¸‰t°($$%l‰I•ÍÁ½¹Í…‰¥±¥Ñ…Ñ•„ÕÑ¥±¥é…Ñ½ÉÕ±Õ¤ˆ°€‰Y•É¥™¥±•…±¥Ñ…Ñ•„ÁÉ½‘ÕÍÕ±Õ¤°½¹‘§"m¥¥±”½µ•É¥…¹ÑÕ±Õ¤°½ÍÑÕ°±¥Ù”ƒ"e¤É•Õ±¥±”‘”¥µÁ½ÉÐ…Á±¥…‰¥±”ƒ¹¸I½·‰¹¥„ƒ¹¹…¥¹Ñ”‘”½µ…¹“Í…Ô•áÁ•‘¥•É”¸‰t°($$%l‰M¥Ñ”µÕÉ¤•áÑ•É¹”ˆ°€‰9Ô½¹ÑÉ½³´½»"m¥¹ÕÑÕ°½É¤™Õ¹"m¥½¹…É•„Á…¥¹¥±½È•áÑ•É¹”¸U¸±¥¹¬Ù…±¥±„‘…Ñ„Ù•É¥™¥É¥¤Á½…Ñ”™¤µ½‘¥™¥…ÐÍ…Ô•±¥µ¥¹…ÐÕ±Ñ•É¥½È‘”…‘µ¥¹¥ÍÑÉ…Ñ½ÉÕ°‘•ÍÑ¥¹‡"m¥•¤¸‰t($%t(%ô°($‰…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆèì($%Ñ¥Ñ±”è€‰•éÛ±Õ¥É”ÁÉ¥Ù¥¹±¥¹­ÕÉ¥±”ˆ°($%ÍÕµµ…Éäè€‰Õ´™Õ¹"m¥½¹•…ë±¥¹­ÕÉ¥±”ÑÉ”…Ñ…±½Õ°•áÑ•É¸¸ˆ°($%Í•Ñ¥½¹Ìèl($$%l‰1¥¹­ÕÉ¤‘”É•½µ…¹‘…É”ˆ°€‰1¥¹­ÕÉ¥±”ÑÉ”¹‰Õå¡„¹½´¥¹±ÕÁ…É…µ•ÑÉ¤UQ4Á•¹ÑÉÔ…ÑÉ¥‰Õ¥É•„ÑÉ…™¥Õ±Õ¤¸M¥Ñ”µÕ°Á½…Ñ”‰•¹•™¥¥„‘¥É•ÐÍ…Ô¥¹‘¥É•Ð‘”É•½µ…¹“É¤°›Ë„…•…ÍÓÉ•±‡"m¥”ÏÍ¡¥µ‰”ÁÉ—"mÕ°…™§"e…ÐÕÑ¥±¥é…Ñ½ÉÕ±Õ¤¸‰t°($$%l‰M•±•"m¥”•‘¥Ñ½É¥…³ˆ°€‰<Á½Í¥‰¥³É•±‡"m¥”‘”É•½µ…¹‘…É”¹ÔÑÉ…¹Í™½É·Õ¸ÁÉ½‘ÕÌƒ¹¹ÑÈµ¼É•½µ…¹‘…É”…É…¹Ñ…Ó¸…É‘ÕÉ¥±”ÍÕ¹ÐÁÕ¹Ñ”‘”‘•Í½Á•É¥É”ƒ"e¤ÑÉ•‰Õ¥”Ù•É¥™¥…Ñ”ƒ¹¸Á…¥¹„±¥Ù”ƒ"e¤°‰¹•á¥ÍÓ°ÁÉ¥¸‘½Ù•é¥±”E¸‰t°($$%l‰9¥¥¼…™¥±¥•É”½™¥¥…³ˆ°€‰…±±¡¥¹…‰Õä¹É¼•ÍÑ”¥¹‘•Á•¹‘•¹Ðƒ"e¤¹ÔÉ•ÁÉ•é¥¹Ó±±¡¥¹…	ÕäÍ…Ô·É¥±”µ•»"m¥½¹…Ñ”¸1¥¹­ÕÉ¥±”¹Ô½¹ÍÑ¥ÑÕ¥”…ÁÉ½‰…É”½™¥¥…³‘¥¸Á…ÉÑ•„Ñ•Ë"m¥±½È¸‰t($%t(%ô)ôì)™Õ¹Ñ¥½¸ÑÉÕÍÑ5•Ñ…‘…Ñ„¡Í±Õœ¤ì(%½¹ÍÐ½¹Ñ•¹Ð€ôÑÉÕÍÑA…•ÌÅmÍ±Õtì(%É•ÑÕÉ¸ì($%Ñ¥Ñ±”è€‘í½¹Ñ•¹Ð¹Ñ¥Ñ±•ôð…±±¡¥¹…‰Õä¹É½€°($%‘•ÍÉ¥ÁÑ¥½¸è½¹Ñ•¹Ð¹ÍÕµµ…Éä°($%…±Ñ•É¹…Ñ•Ìèì…¹½¹¥…°è€¼‘íÍ±Õõ€ô°($%½Á•¹É…Á èì($$%Ñ¥Ñ±”è½¹Ñ•¹Ð¹Ñ¥Ñ±”°($$%‘•ÍÉ¥ÁÑ¥½¸è½¹Ñ•¹Ð¹ÍÕµµ…Éä°($$%ÕÉ°è€¼‘íÍ±Õõ€°($$%ÑåÁ”è€‰Ý•‰Í¥Ñ”ˆ($%ô(%ôì)ô)™Õ¹Ñ¥½¸QÉÕÍÑA…”¡ìÍ±Õœô¤ì(%½¹ÍÐ½¹Ñ•¹Ð€ôÑÉÕÍÑA…•ÌÅmÍ±Õtì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰µ…¥¸ˆ°ì($%±…ÍÍ9…µ”è€‰ÑÉÕÍÐµÁ…”ˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¡•…‘•Èˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡±¥¹­}‘•™…Õ±Ð°ì($$$%¡É•˜è€ˆ¼ˆ°($$$%¡¥±‘É•¸è€‹Š@…±±¡¥¹…‰Õä¹É¼ˆ($$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰!%%9A99PA9QITI=7	9%ˆô¥tô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰ÑÉÕÍÐµÁ…”µ¡•É¼ˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆ¼QIUMQ}9}QI9MAI9dˆô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Äˆ°ì¡¥±‘É•¸è½¹Ñ•¹Ð¹Ñ¥Ñ±”ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è½¹Ñ•¹Ð¹ÍÕµµ…Éäô¤($$$%t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰ÑÉÕÍÐµÁ…”µ½¹Ñ•¹Ðˆ°($$$%¡¥±‘É•¸èm½¹Ñ•¹Ð¹Í•Ñ¥½¹Ì¹µ…À ¡m¡•…‘¥¹œ°Ñ•áÑt°¥¹‘•à¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰…ÉÑ¥±”ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èlˆÀˆ°¥¹‘•à€¬€Åtô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸è¡•…‘¥¹œô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸èÑ•áÐô¥tô¥tô°¡•…‘¥¹œ¤¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÑÉÕÍÐµÕÁ‘…Ñ•ˆ°($$$$%¡¥±‘É•¸è€‰U±Ñ¥µ„…ÑÕ…±¥é…É”è€ÄÈ…ÕÕÍÐ€ÈÀÈØˆ($$$%ô¥t($$%ô¤($%t(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½…‰½ÕÐ½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÄÀ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøA…”Ô°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„à)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„à€ôÑÉÕÍÑ5•Ñ…‘…Ñ„ ‰…‰½ÕÐˆ¤ì)™Õ¹Ñ¥½¸A…”Ô ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡QÉÕÍÑA…”°ìÍ±Õœè€‰…‰½ÕÐˆô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌä€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøA…”Ð°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„Ü)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„Ü€ôÑÉÕÍÑ5•Ñ…‘…Ñ„ ‰…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆ¤ì)™Õ¹Ñ¥½¸A…”Ð ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡QÉÕÍÑA…”°ìÍ±Õœè€‰…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÐµ„½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌà€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôø½¹•ÁÑ°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„Ø)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„Ø€ôì(%Ñ¥Ñ±”è€‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••Ð€ÈÀÈØƒŠPÕÉ…Ñ•AÉ½‘ÕÐ¥¹‘Ìˆ°(%‘•ÍÉ¥ÁÑ¥½¸è€‰	É½ÝÍ”¥¹‘•Á•¹‘•¹Ð±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð™¥¹‘Ì‰ä…Ñ•½ÉäÝ¥Ñ UMÁÉ¥”ÁÉ•Ù¥•ÝÌ…¹‘¥É•ÐÁÉ½‘ÕÐÁ…Ñ¡Ì¸ˆ°(%É½‰½ÑÌèì($%¥¹‘•àè™…±Í”°($%™½±±½Üè™…±Í”(%ô)ôì)™Õ¹Ñ¥½¸½¹•ÁÑ ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰µ…¥¸ˆ°ì($%±…ÍÍ9…µ”è€‰Í¥Ñ”½¹•ÁÐµ„ˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½¹•ÁÑMÝ¥Ñ¡•È°ì…Ñ¥Ù”è€‰ˆô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¡•…‘•Èˆ°ì($$$%±…ÍÍ9…µ”è€‰Í¥Ñ”µ¹…Ø¹…Øµ„ˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰Í¥Ñ”µ‰É…¹ˆ°($$$$$%¡É•˜è€ˆÑ½Àˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰‰É…¹µµ…É¬ˆ°($$$$$$%¡¥±‘É•¸è€‰ˆ($$$$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰	ÕäÑ±…Ìˆô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¹…Øˆ°ì¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$%¡É•˜è€ˆ…Ñ•½É¥•Ìˆ°($$$$$$%¡¥±‘É•¸è€‰…Ñ•½É¥•Ìˆ($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$%¡É•˜è€ˆ‘É½ÁÌˆ°($$$$$$%¡¥±‘É•¸è€‰9•Ü‘É½ÁÌˆ($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$%¡É•˜è€ˆÕ¥‘”ˆ°($$$$$$%¡¥±‘É•¸è€‰!½Ü¥ÐÝ½É­Ìˆ($$$$$%ô¤($$$$%tô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰¹…ØµÑ„ˆ°($$$$$%¡É•˜è€ˆ‘É½ÁÌˆ°($$$$$%¡¥±‘É•¸èl‰	É½ÝÍ”™¥¹‘Ì€ˆ°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‹Š\ˆô¥t($$$$%ô¤($$$%t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰¡•É¼µ„ˆ°($$$%¥è€‰Ñ½Àˆ°($$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰¡•É¼µ„µ½Áäˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰±¥Ù”µ¡¥Àˆ°($$$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°íô¤°€ˆUAQU€ÄÈƒ
+Ü€ÈÀÈØ‰t($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ Äˆ°ì¡¥±‘É•¸èl($$$$$$$‰¥¹Ñ¡”Á¥•”¸ˆ°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰•´ˆ°ì¡¥±‘É•¸è€‰M­¥ÀÑ¡”¹½¥Í”¸ˆô¤($$$$$%tô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰Í¡…ÉÁ•È±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð•áÁ•É¥•¹—ŠQÕÉ…Ñ•ÁÉ½‘ÕÑÌ°±•…ÈUMÁÉ¥•Ì…¹„‘¥É•ÐÁ…Ñ Ñ¼•Ù•Éä™¥¹¸ˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M•…É¡	…È°íô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰ÑÉÕÍÐµÉ½Üˆ°($$$$$$%¡¥±‘É•¸èl($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€ˆÉ,¬ˆô¤°€ˆÕÉ…Ñ•™¥¹‘Ì‰tô¤°($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€ˆØˆô¤°€ˆ½É”…Ñ•½É¥•Ì‰tô¤°($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰…¥±äˆô¤°€ˆ±¥¹¬¡•­Ì‰tô¤($$$$$$%t($$$$$%ô¤($$$$%t($$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰¡•É¼µ„µÙ¥ÍÕ…°ˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì±…ÍÍ9…µ”è€‰Ù¥ÍÕ…°µ½É‰¥Ð½É‰¥Ðµ½¹”ˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì±…ÍÍ9…µ”è€‰Ù¥ÍÕ…°µ½É‰¥Ð½É‰¥ÐµÑÝ¼ˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰¡•É¼µÁÉ½‘ÕÐ¡•É¼µÁÉ½‘ÕÐµµ…¥¸ˆ°($$$$$$%¡É•˜èÁÉ½‘ÕÑÍlÍt¹¡É•˜°($$$$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$$$%É•°è€‰¹½½Á•¹•Èˆ°($$$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥µœˆ°ì($$$$$$$%ÍÉŒèÁÉ½‘ÕÑÍlÍt¹¥µ…”°($$$$$$$%…±ÐèÁÉ½‘ÕÑÍlÍt¹¹…µ”($$$$$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰%Q=HLA%,ˆô¤°($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÑÉ½¹œˆ°ì¡¥±‘É•¸èÁÉ½‘ÕÑÍlÍt¹¹…µ”ô¤°($$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èmÁÉ½‘ÕÑÍlÍt¹ÁÉ¥”°€ˆƒŠ\‰tô¤($$$$$$%tô¥t($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰™±½…Ðµ…É™±½…Ðµ…Éµ½¹”ˆ°($$$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰Eˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰A¡½Ñ¼µÉ•…‘ä™¥¹‘Ìˆô¥t($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$$%±…ÍÍ9…µ”è€‰™±½…Ðµ…É™±½…Ðµ…ÉµÑÝ¼ˆ°($$$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€ˆäÐ”ˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰ÕÉ…Ñ¥½¸µ…Ñ ˆô¥t($$$$$%ô¤($$$$%t($$$%ô¥t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰…Ñ•½ÉäµÍÑÉ¥Àˆ°($$$%¥è€‰…Ñ•½É¥•Ìˆ°($$$%¡¥±‘É•¸è…Ñ•½É¥•Ì¹µ…À ¡m¹…µ”°¹½Ñ”°¡É•˜°¹t¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$%¡É•˜°($$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$%É•°è€‰¹½½Á•¹•Èˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è¸ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è¹…µ”ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Íµ…±°ˆ°ì¡¥±‘É•¸è¹½Ñ”ô¥tô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°ì¡¥±‘É•¸è€‹Š\ˆô¤($$$$%t($$$%ô°¹…µ”¤¤($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰Í•Ñ¥½¸µ„ˆ°($$$%¥è€‰‘É½ÁÌˆ°($$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰Í•Ñ¥½¸µ¡•…‘¥¹œˆ°($$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰Í•Ñ¥½¸µ­¥­•Èˆ°($$$$$%¡¥±‘É•¸è€‰IM!1d%9aˆ($$$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ Èˆ°ì¡¥±‘É•¸è€‰Q½‘…äÌÉ…‘…Èˆô¥tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰±•…¸Á¥­Ì°É•…°±¥ÍÑ¥¹œÁ¡½Ñ½Ì°é•É¼•¹‘±•ÍÌÍÁÉ•…‘Í¡••ÐÍÉ½±±¥¹œ¸ˆô¥t($$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÑÌµ„ˆ°($$$$%¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹Í±¥” À°€à¤¹µ…À ¡ÁÉ½‘ÕÐ°¥¹‘•à¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡AÉ½‘ÕÑ…É°ì($$$$$%ÁÉ½‘ÕÐ°($$$$$%¥¹‘•à($$$$%ô°ÁÉ½‘ÕÐ¹¡É•˜¤¤($$$%ô¥t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰¡½Üµ„ˆ°($$$%¥è€‰Õ¥‘”ˆ°($$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$%±…ÍÍ9…µ”è€‰Í•Ñ¥½¸µ­¥­•Èˆ°($$$$%¡¥±‘É•¸è€‰Q!M%5A1I=UQˆ($$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ Èˆ°ì¡¥±‘É•¸èl($$$$$‰É½´™¥¹Ñ¼…ÉÐˆ°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$‰¥¸Ñ¡É•”±•…¸µ½Ù•Ì¸ˆ($$$%tô¥tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰½°ˆ°ì¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰±¤ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆÀÄˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰¥Í½Ù•Èˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰M•…É ½È‰É½ÝÍ”„Ñ¥¡Ñ±ä½É…¹¥é•…Ñ•½Éä¸ˆô¥tô¥tô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰±¤ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆÀÈˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰%¹ÍÁ•Ðˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰=Á•¸Ñ¡”ÁÉ½‘ÕÐ±¥ÍÑ¥¹œ…¹É•Ù¥•ÜÑ¡”‘•Ñ…¥±Ì¸ˆô¥tô¥tô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰±¤ˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€ˆÀÌˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€‰½¹Ñ¥¹Õ”ˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰UÍ”Ñ¡”‘¥É•ÐÁÉ½‘ÕÐÁ…Ñ Ý¡•¸å½Ô…É”É•…‘ä¸ˆô¥tô¥tô¤($$$%tô¥t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½½Ñ•È°ìµ½‘”è€‰„ˆô¤($%t(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÐµˆ½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÜ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôø½¹•ÁÑ°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„Ô)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„Ô€ôì(%Ñ¥Ñ±”è€‰Q¡”¥¹‘Ì‘¥ÐƒŠP%¹‘•Á•¹‘•¹Ð±±¡¥¹…	ÕäAÉ½‘ÕÐA¥­Ìˆ°(%‘•ÍÉ¥ÁÑ¥½¸è€‰ÕÉ…Ñ••‘¥Ñ½É¥…°Í¡½ÉÑ±¥ÍÐ½˜™…Í¡¥½¸™¥¹‘Ì™½È±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••ÐÍ¡½ÁÁ•ÉÌ¸ˆ°(%É½‰½ÑÌèì($%¥¹‘•àè™…±Í”°($%™½±±½Üè™…±Í”(%ô)ôì)™Õ¹Ñ¥½¸½¹•ÁÑ ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰µ…¥¸ˆ°ì($%±…ÍÍ9…µ”è€‰Í¥Ñ”½¹•ÁÐµˆˆ°($%¡¥±‘É•¸èl($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½¹•ÁÑMÝ¥Ñ¡•È°ì…Ñ¥Ù”è€‰ˆô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¡•…‘•Èˆ°ì($$$%±…ÍÍ9…µ”è€‰Í¥Ñ”µ¹…Ø¹…Øµˆˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰Í¥Ñ”µ‰É…¹ˆ°($$$$$%¡É•˜è€ˆÑ½Àˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰Q!ˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ˆˆ°ì¡¥±‘É•¸èl($$$$$$$‰%9Lˆ°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$$$‰%Pˆ($$$$$%tô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰¹…Øˆ°ì¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$%¡É•˜è€ˆ•‘¥Ðˆ°($$$$$$%¡¥±‘É•¸è€‰Q¡”•‘¥Ðˆ($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$%¡É•˜è€ˆ‘•Á…ÉÑµ•¹ÑÌˆ°($$$$$$%¡¥±‘É•¸è€‰•Á…ÉÑµ•¹ÑÌˆ($$$$$%ô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$%¡É•˜è€ˆ¹½Ñ•Ìˆ°($$$$$$%¡¥±‘É•¸è€‰¥•±¹½Ñ•Ìˆ($$$$$%ô¤($$$$%tô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$%±…ÍÍ9…µ”è€‰¹…ØµÑ„ˆ°($$$$$%¡É•˜è€ˆ•‘¥Ðˆ°($$$$$%¡¥±‘É•¸è€‰M¡½ÀÑ¡”¥ÍÍÕ”ƒŠ`ˆ($$$$%ô¤($$$%t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰¡•É¼µˆˆ°($$$%¥è€‰Ñ½Àˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰¥ÍÍÕ”µ±…‰•°ˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰%MMUˆô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ˆˆ°ì¡¥±‘É•¸è€ˆÀà€¼€ÈØˆô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°ì¡¥±‘É•¸è€‰%¹‘•Á•¹‘•¹Ð	Õä‘¥Í½Ù•Éäˆô¤($$$$$%t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰¡•É¼µˆµÑ¥Ñ±”ˆ°($$$$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ Äˆ°ì¡¥±‘É•¸èl($$$$$$$‰Q¡¥¹ÌÝ½ÉÑ ˆ°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰•´ˆ°ì¡¥±‘É•¸è€‰™¥¹‘¥¹œ¸ˆô¤($$$$$%tô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰Ý••­±ä•‘¥Ð½˜ÍÑ…¹‘½ÕÐ™…Í¡¥½¸™¥¹‘ÏŠQÍ•±•Ñ•™½ÈÁ•½Á±”Ý¥Ñ Ñ…ÍÑ”°¹½ÐÑ¥µ”¸ˆô¥t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$%±…ÍÍ9…µ”è€‰¡•É¼µˆµ½±±…”ˆ°($$$$$%¡¥±‘É•¸èl($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$$$$%±…ÍÍ9…µ”è€‰½±±…”µ½Áäˆ°($$$$$$$%¡¥±‘É•¸èl($$$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰I=@€ÀÌÈˆô¤°($$$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ÍÑÉ½¹œˆ°ì¡¥±‘É•¸èl($$$$$$$$$$‰9•Üˆ°($$$$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$$$$$$‰M•…Í½¸ˆ°($$$$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$$$$$$‰1…å•ÉÌˆ($$$$$$$$%tô¤°($$$$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰„ˆ°ì($$$$$$$$$%¡É•˜è€ˆ•‘¥Ðˆ°($$$$$$$$$%¡¥±‘É•¸è€‰¹Ñ•ÈÑ¡”•‘¥ÐƒŠ\ˆ($$$$$$$$%ô¤($$$$$$$%t($$$$$$%ô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥µœˆ°ì($$$$$$$%±…ÍÍ9…µ”è€‰½±±…”µµ…¥¸ˆ°($$$$$$$%ÍÉŒèÁÉ½‘ÕÑÍlÑt¹¥µ…”°($$$$$$$%…±ÐèÁÉ½‘ÕÑÍlÑt¹¹…µ”($$$$$$%ô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¥µœˆ°ì($$$$$$$%±…ÍÍ9…µ”è€‰½±±…”µÍµ…±°ˆ°($$$$$$$%ÍÉŒèÁÉ½‘ÕÑÍlÁt¹¥µ…”°($$$$$$$%…±ÐèÁÉ½‘ÕÑÍlÁt¹¹…µ”($$$$$$%ô¤°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì($$$$$$$%±…ÍÍ9…µ”è€‰Ù•ÉÑ¥…°µ¹½Ñ”ˆ°($$$$$$$%¡¥±‘É•¸è€‰UIQ€¼=9M%I€¼UII9Pˆ($$$$$$%ô¤($$$$$%t($$$$%ô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡M•…É¡	…È°ì±…‰•°è€‰]¡…Ð…É”å½Ô±½½­¥¹œ™½Èüˆô¤($$$%t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰‘•Á…ÉÑµ•¹ÑÌµˆˆ°($$$%¥è€‰‘•Á…ÉÑµ•¹ÑÌˆ°($$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰M!=@	dAIQ59Pˆô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì¡¥±‘É•¸è…Ñ•½É¥•Ì¹µ…À ¡m¹…µ”°€°¡É•™t°¥¹‘•à¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰„ˆ°ì($$$$%¡É•˜°($$$$%Ñ…É•Ðè€‰}‰±…¹¬ˆ°($$$$%É•°è€‰¹½½Á•¹•Èˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Íµ…±°ˆ°ì¡¥±‘É•¸èlˆÀˆ°¥¹‘•à€¬€Åtô¤°($$$$$%¹…µ”°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰¤ˆ°ì¡¥±‘É•¸è€‹Š\ˆô¤($$$$%t($$$%ô°¹…µ”¤¤ô¥t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰Í•Ñ¥½¸µˆˆ°($$$%¥è€‰•‘¥Ðˆ°($$$%¡¥±‘É•¸èl¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰•‘¥Ñ½É¥…°µ¡•…‘¥¹œˆ°($$$$%¡¥±‘É•¸èl($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰Q!M!=IQ1%MPƒ
+Ü€Àà¸ÄÈ¸ÈØˆô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰ Èˆ°ì¡¥±‘É•¸èl($$$$$$$‰¥¡Ð½½É•…Í½¹Ìˆ°($$$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰Èˆ°íô¤°($$$$$$$‰Ñ¼ÍÑ½ÀÍÉ½±±¥¹œ¸ˆ($$$$$%tô¤°($$$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰AÉ¥•ÌÍ¡½Ý¸¥¸UM™½È™…ÍÑ•È½µÁ…É¥Í½¸¸=Á•¸…¹ä¥Ñ•´Ñ¼Í•”Ñ¡”™Õ±°ÕÉÉ•¹Ð±¥ÍÑ¥¹œ¸ˆô¤($$$$%t($$$%ô¤°€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‘¥Øˆ°ì($$$$%±…ÍÍ9…µ”è€‰ÁÉ½‘ÕÑÌµˆˆ°($$$$%¡¥±‘É•¸èÁÉ½‘ÕÑÌ¹Í±¥” À°€à¤¹µ…À ¡ÁÉ½‘ÕÐ°¥¹‘•à¤€ôø€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡AÉ½‘ÕÑ…É°ì($$$$$%µ½‘”è€‰ˆˆ°($$$$$%ÁÉ½‘ÕÐ°($$$$$%¥¹‘•à($$$$%ô°ÁÉ½‘ÕÐ¹¡É•˜¤¤($$$%ô¥t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©ÍáÌ¤ ‰Í•Ñ¥½¸ˆ°ì($$$%±…ÍÍ9…µ”è€‰¹½Ñ•Ìµˆˆ°($$$%¥è€‰¹½Ñ•Ìˆ°($$$%¡¥±‘É•¸èl($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰ÍÁ…¸ˆ°ì¡¥±‘É•¸è€‰%19=QƒŠX€ÀÐˆô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰‰±½­ÅÕ½Ñ”ˆ°ì¡¥±‘É•¸è€‹ŠqQ¡”‰•ÍÐÍÁÉ•…‘Í¡••Ð¥Í¸ÐÑ¡”±½¹•ÍÐ½¹”¸%ÐÌÑ¡”½¹”Ñ¡…Ð¡•±ÁÌå½Ô‘•¥‘”»Štˆô¤°($$$$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤ ‰Àˆ°ì¡¥±‘É•¸è€‰	Õ¥±Ð…É½Õ¹±•…É•È…Ñ•½É¥•Ì°É•…°ÁÉ½‘ÕÐ¥µ…•Éä…¹™•Ý•È‘•…•¹‘Ì¸ˆô¤($$$%t($$%ô¤°($$$¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡½½Ñ•È°ìµ½‘”è€‰ˆˆô¤($%t(%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÐµŒ½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌØ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôø½¹•ÁÑ°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„Ð)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„Ð€ôì(%Ñ¥Ñ±”è€‰	Õä¥¹‘Ì…Ñ…‰…Í”ƒŠP±±¡¥¹…	ÕäMÁÉ•…‘Í¡••Ð€˜EÕ¥‘•Ìˆ°(%‘•ÍÉ¥ÁÑ¥½¸è€‰M•…É ÕÉ…Ñ•ÁÉ½‘ÕÐ™¥¹‘Ì…¹½Á•¸¥¹‘•Á•¹‘•¹Ð±±¡¥¹…	ÕäÍÁÉ•…‘Í¡••Ð°EÁ¡½Ñ¼°Í¡¥ÁÁ¥¹œ…¹DÕ¥‘•Ì¸ˆ°(%É½‰½ÑÌèì($%¥¹‘•àè™…±Í”°($%™½±±½Üè™…±Í”(%ô)ôì)™Õ¹Ñ¥½¸½¹•ÁÑ ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Q•Éµ¥¹…±A…”°íô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹Ñ…Ð½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÔ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøA…”Ì°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„Ì)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„Ì€ôÑÉÕÍÑ5•Ñ…‘…Ñ„ ‰½¹Ñ…Ðˆ¤ì)™Õ¹Ñ¥½¸A…”Ì ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡QÉÕÍÑA…”°ìÍ±Õœè€‰½¹Ñ…Ðˆô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½µ•Ñ¡½‘½±½ä½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÐ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøA…”È°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„È)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„È€ôÑÉÕÍÑ5•Ñ…‘…Ñ„ ‰µ•Ñ¡½‘½±½äˆ¤ì)™Õ¹Ñ¥½¸A…”È ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡QÉÕÍÑA…”°ìÍ±Õœè€‰µ•Ñ¡½‘½±½äˆô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½ÁÉ¥Ù…ä½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÌ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøA…”Ä°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„Ä)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„Ä€ôÑÉÕÍÑ5•Ñ…‘…Ñ„ ‰ÁÉ¥Ù…äˆ¤ì)™Õ¹Ñ¥½¸A…”Ä ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡QÉÕÍÑA…”°ìÍ±Õœè€‰ÁÉ¥Ù…äˆô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½Ñ•ÉµÌ½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÈ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøA…”°(%µ•Ñ…‘…Ñ„è€ ¤€ôøµ•Ñ…‘…Ñ„)ô¤ì)Ù…Èµ•Ñ…‘…Ñ„€ôÑÉÕÍÑ5•Ñ…‘…Ñ„ ‰Ñ•ÉµÌˆ¤ì)™Õ¹Ñ¥½¸A…” ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡QÉÕÍÑA…”°ìÍ±Õœè€‰Ñ•ÉµÌˆô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½l¸¸¹É½ÕÑ•t½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌÄ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôøAÕ‰±¥I½ÕÑ”°(%•¹•É…Ñ•5•Ñ…‘…Ñ„è€ ¤€ôø•¹•É…Ñ•5•Ñ…‘…Ñ„Ä)ô¤ì)Ù…ÈÍ•Ñ¥½¹Ì€ôl($‰ÁÉ½‘ÕÑÌˆ°($‰…Ñ•½É¥•Ìˆ°($‰ÅŒµÕ¥‘”ˆ°($‰Í¡¥ÁÁ¥¹œµÕ¥‘”ˆ°($‰…ÉÑ¥±•Ìˆ°($‰™…Äˆ)tì)Ù…È±½…±•5•Ñ„€ôì(%É¼èì($%É•¥½¸è€‰Á•¹ÑÉÔÕµÃËÑ½É¥¤‘¥¸I½·‰¹¥„ˆ°($%½1½…±”è€‰É½}I<ˆ(%ô°(%•¸èì($%É•¥½¸è€‰™½ÈÍ¡½ÁÁ•ÉÌ¥¸I½µ…¹¥„ˆ°($%½1½…±”è€‰•¹}ULˆ(%ô°(%‘”èì($%É•¥½¸è€‰›ñÈ/‘Õ™•È¥¸IÕ·‘¹¥•¸ˆ°($%½1½…±”è€‰‘•}ˆ(%ô°(%™Èèì($%É•¥½¸è€‰Á½ÕÈ±•Ì…¡•Ñ•ÕÉÌ•¸I½Õµ…¹¥”ˆ°($%½1½…±”è€‰™É}Hˆ(%ô°(%•Ìèì($%É•¥½¸è€‰Á…É„½µÁÉ…‘½É•Ì•¸IÕµ…»µ„ˆ°($%½1½…±”è€‰•Í}Lˆ(%ô°(%¥Ðèì($%É•¥½¸è€‰Á•È±¤…ÅÕ¥É•¹Ñ¤¥¸I½µ…¹¥„ˆ°($%½1½…±”è€‰¥Ñ}%Pˆ(%ô°(%Á°èì($%É•¥½¸è€‰‘±„­ÕÁÕ«å ÜIÕµÕ¹¥¤ˆ°($%½1½…±”è€‰Á±}A0ˆ(%ô)ôì)™Õ¹Ñ¥½¸Á…ÉÍ•I½ÕÑ”¡É½ÕÑ”¤ì(%½¹ÍÐ…¹‘¥‘…Ñ”€ôÉ½ÕÑ•lÁtì(%½¹ÍÐ¡…Í1½…±”€ô±½…±•ÌÄ¹¥¹±Õ‘•Ì¡…¹‘¥‘…Ñ”¤ì(%É•ÑÕÉ¸ì($%±½…±”è¡…Í1½…±”€ü…¹‘¥‘…Ñ”€è€‰É¼ˆ°($%Á…Ñ è¡…Í1½…±”€üÉ½ÕÑ”¹Í±¥” Ä¤€èÉ½ÕÑ”(%ôì)ô)™Õ¹Ñ¥½¸±•…¹A…Ñ ¡±½…±”°Á…Ñ ¤ì(%½¹ÍÐÍÕ™™¥à€ôÁ…Ñ ¹±•¹Ñ €ü€¼‘íÁ…Ñ ¹©½¥¸ ˆ¼ˆ¥õ€€è€ˆˆì(%É•ÑÕÉ¸±½…±”€ôôô€‰É¼ˆ€üÍÕ™™¥àñð€ˆ¼ˆ€è€¼‘í±½…±•ô‘íÍÕ™™¥áõ€ì)ô)™Õ¹Ñ¥½¸±…¹Õ…•±Ñ•É¹…Ñ•Ì¡Á…Ñ ¤ì(%½¹ÍÐÍÕ™™¥à€ôÁ…Ñ ¹±•¹Ñ €ü€¼‘íÁ…Ñ ¹©½¥¸ ˆ¼ˆ¥õ€€è€ˆˆì(%É•ÑÕÉ¸ì($$‰àµ‘•™…Õ±ÐˆèÍÕ™™¥àñð€ˆ¼ˆ°($%É¼èÍÕ™™¥àñð€ˆ¼ˆ°($%•¸è€½•¸‘íÍÕ™™¥áõ€°($%‘”è€½‘”‘íÍÕ™™¥áõ€°($%™Èè€½™È‘íÍÕ™™¥áõ€°($%•Ìè€½•Ì‘íÍÕ™™¥áõ€°($%¥Ðè€½¥Ð‘íÍÕ™™¥áõ€°($%Á°è€½Á°‘íÍÕ™™¥áõ€(%ôì)ô)™Õ¹Ñ¥½¸¥ÍY…±¥¡Á…Ñ ¤ì(%¥˜€ …Á…Ñ ¹±•¹Ñ ¤É•ÑÕÉ¸ÑÉÕ”ì(%¥˜€ …Í•Ñ¥½¹Ì¹¥¹±Õ‘•Ì¡Á…Ñ¡lÁt¤¤É•ÑÕÉ¸™…±Í”ì(%¥˜€¡Á…Ñ¡lÁt€„ôô€‰…ÉÑ¥±•Ìˆ¤É•ÑÕÉ¸Á…Ñ ¹±•¹Ñ €ôôô€Äì(%¥˜€¡Á…Ñ ¹±•¹Ñ €ôôô€Ä¤É•ÑÕÉ¸ÑÉÕ”ì(%É•ÑÕÉ¸Á…Ñ ¹±•¹Ñ €ôôô€È€˜˜•¹±¥Í¡ÉÑ¥±•Ì¹Í½µ” ¡…ÉÑ¥±”¤€ôø…ÉÑ¥±”¹Í±Õœ€ôôôÁ…Ñ¡lÅt¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸•¹•É…Ñ•5•Ñ…‘…Ñ„Ä¡ìÁ…É…µÌô¤ì(%½¹ÍÐìÉ½ÕÑ”ô€ô…Ý…¥ÐÁ…É…µÌì(%½¹ÍÐì±½…±”°Á…Ñ ô€ôÁ…ÉÍ•I½ÕÑ”¡É½ÕÑ”¤ì(%¥˜€ …¥ÍY…±¥¡Á…Ñ ¤¤É•ÑÕÉ¸íôì(%½¹ÍÐ…¹½¹¥…°€ô±•…¹A…Ñ ¡±½…±”°Á…Ñ ¤ì(%½¹ÍÐ…±Ñ•É¹…Ñ•Ì€ôì($%…¹½¹¥…°°($%±…¹Õ…•Ìè±…¹Õ…•±Ñ•É¹…Ñ•Ì¡Á…Ñ ¤(%ôì(%½¹ÍÐ½Áä€ô•Ñ1½…±•½Áä¡±½…±”¤ì(%½¹ÍÐ½	…Í”€ôì($%ÕÉ°è…¹½¹¥…°°($%Í¥Ñ•9…µ”è€‰…±±¡¥¹…‰Õä¹É¼ˆ°($%±½…±”è±½…±•5•Ñ…m±½…±•t¹½1½…±”°($%…±Ñ•É¹…Ñ•1½…±”è=‰©•Ð¹Ù…±Õ•Ì¡±½…±•5•Ñ„¤¹™¥±Ñ•È ¡¥Ñ•´¤€ôø¥Ñ•´¹½1½…±”€„ôô±½…±•5•Ñ…m±½…±•t¹½1½…±”¤¹µ…À ¡¥Ñ•´¤€ôø¥Ñ•´¹½1½…±”¤°($%¥µ…•Ìèmì($$%ÕÉ°è€ˆ½…±±¡¥¹…‰Õä¹Á¹œˆ°($$%Ý¥‘Ñ è€ÄÈÀÀ°($$%¡•¥¡Ðè€ÄÜÜ°($$%…±Ðè€‰±±¡¥¹…	Õä¥¹‘•Á•¹‘•¹ÐI½µ…¹¥„Õ¥‘”ˆ($%õt(%ôì(%¥˜€¡Á…Ñ¡lÁt€ôôô€‰…ÉÑ¥±•Ìˆ€˜˜Á…Ñ¡lÅt¤ì($%½¹ÍÐ…ÉÑ¥±”€ô•Ñ¹±¥Í¡ÉÑ¥±”¡Á…Ñ¡lÅt¤ì($%½¹ÍÐ±½…±¥é•€ô½Áä¹…ÉÑ¥±•Ì¹™¥¹ ¡¥Ñ•´¤€ôø¥Ñ•µlÅt€ôôô…ÉÑ¥±”¹Í±Õœ¤ñð½Áä¹…ÉÑ¥±•ÍlÁtì($%½¹ÍÐÑ¥Ñ±”€ô€‘í±½…±”€ôôô€‰•¸ˆ€ü…ÉÑ¥±”¹Ñ¥Ñ±”€è±½…±¥é•‘lÁuôðI½·‰¹¥…€ì($%½¹ÍÐ‘•ÍÉ¥ÁÑ¥½¸€ô€‘í±½…±”€ôôô€‰•¸ˆ€ü…ÉÑ¥±”¹‘•ÍÉ¥ÁÑ¥½¸€è±½…±¥é•‘lÉuôƒŠP€‘í±½…±•5•Ñ…m±½…±•t¹É•¥½¹ô¹€ì($%É•ÑÕÉ¸ì($$%Ñ¥Ñ±”°($$%‘•ÍÉ¥ÁÑ¥½¸°($$%…±Ñ•É¹…Ñ•Ì°($$%½Á•¹É…Á èì($$$$¸¸¹½	…Í”°($$$%ÑåÁ”è€‰…ÉÑ¥±”ˆ°($$$%Ñ¥Ñ±”°($$$%‘•ÍÉ¥ÁÑ¥½¸°($$$%ÁÕ‰±¥Í¡•‘Q¥µ”è€ˆÈÀÈØ´Àà´ÄÉPÀÀèÀÀèÀÁhˆ°($$$%µ½‘¥™¥•‘Q¥µ”è€ˆÈÀÈØ´Àà´ÄÉPÀÀèÀÀèÀÁhˆ($$%ô°($$%ÑÝ¥ÑÑ•Èèì($$$%…Éè€‰ÍÕµµ…Éå}±…É•}¥µ…”ˆ°($$$%Ñ¥Ñ±”°($$$%‘•ÍÉ¥ÁÑ¥½¸°($$$%¥µ…•Ìèlˆ½…±±¡¥¹…‰Õä¹Á¹œ‰t($$%ô($%ôì(%ô(%½¹ÍÐÁ…”€ô½Áä¹Á…•ÍmÁ…Ñ¡lÁtñð€‰ÁÉ½‘ÕÑÌ‰tñð½Áä¹Á…•Ì¹…ÉÑ¥±•Ìì(%½¹ÍÐÑ¥Ñ±”€ô€‘íÁ…•lÁuôð±±¡¥¹…	ÕäI½·‰¹¥…€ì(%½¹ÍÐ‘•ÍÉ¥ÁÑ¥½¸€ô€‘íÁ…•lÅuô€‘í±½…±•5•Ñ…m±½…±•t¹É•¥½¹ô¹€ì(%É•ÑÕÉ¸ì($%Ñ¥Ñ±”°($%‘•ÍÉ¥ÁÑ¥½¸°($%…±Ñ•É¹…Ñ•Ì°($%½Á•¹É…Á èì($$$¸¸¹½	…Í”°($$%ÑåÁ”è€‰Ý•‰Í¥Ñ”ˆ°($$%Ñ¥Ñ±”°($$%‘•ÍÉ¥ÁÑ¥½¸($%ô°($%ÑÝ¥ÑÑ•Èèì($$%…Éè€‰ÍÕµµ…Éå}±…É•}¥µ…”ˆ°($$%Ñ¥Ñ±”°($$%‘•ÍÉ¥ÁÑ¥½¸°($$%¥µ…•Ìèlˆ½…±±¡¥¹…‰Õä¹Á¹œ‰t($%ô(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸AÕ‰±¥I½ÕÑ”¡ìÁ…É…µÌô¤ì(%½¹ÍÐìÉ½ÕÑ”ô€ô…Ý…¥ÐÁ…É…µÌì(%¥˜€¡É½ÕÑ•lÁt€ôôô€‰É¼ˆ¤Á•Éµ…¹•¹ÑI•‘¥É•Ð¡€¼‘íÉ½ÕÑ”¹Í±¥” Ä¤¹©½¥¸ ˆ¼ˆ¥õ€¤ì(%½¹ÍÐì±½…±”°Á…Ñ ô€ôÁ…ÉÍ•I½ÕÑ”¡É½ÕÑ”¤ì(%¥˜€ …¥ÍY…±¥¡Á…Ñ ¤¤¹½Ñ½Õ¹ ¤ì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Q•Éµ¥¹…±A…”°ì($%±½…±”°($%Á…Ñ (%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½½¹•ÁÐµŒ½m±½…±•t½ml¸¸¹Á…Ñ¡ut½Á…”¹ÑÍà)Ù…ÈÁ…•}•áÁ½ÉÑÌ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì(%‘•™…Õ±Ðè€ ¤€ôø1½…±¥é•‘Q•Éµ¥¹…°°(%•¹•É…Ñ•5•Ñ…‘…Ñ„è€ ¤€ôø•¹•É…Ñ•5•Ñ…‘…Ñ„)ô¤ì)…Íå¹Œ™Õ¹Ñ¥½¸•¹•É…Ñ•5•Ñ…‘…Ñ„¡ìÁ…É…µÌô¤ì(%½¹ÍÐì±½…±”èÉ…Ý1½…±”°Á…Ñ €ômtô€ô…Ý…¥ÐÁ…É…µÌì(%½¹ÍÐ½Áä€ô•Ñ1½…±•½Áä¡±½…±•ÌÄ¹¥¹±Õ‘•Ì¡É…Ý1½…±”¤€üÉ…Ý1½…±”€è€‰•¸ˆ¤ì(%¥˜€¡Á…Ñ¡lÁt€ôôô€‰…ÉÑ¥±•Ìˆ€˜˜Á…Ñ¡lÅt¤ì($%½¹ÍÐ…ÉÑ¥±”€ô•Ñ¹±¥Í¡ÉÑ¥±”¡Á…Ñ¡lÅt¤ì($%É•ÑÕÉ¸ì($$%Ñ¥Ñ±”èì($$$$‰ÍÁÉ•…‘Í¡••ÐµÕ¥‘”ˆè€‰±±¡¥¹…	ÕäMÁÉ•…‘Í¡••ÐÕ¥‘”è¥¹	•ÑÑ•ÈAÉ½‘ÕÑÌˆ°($$$$‰ÅŒµÁ¡½Ñ¼µÉ½ÕÑ¥¹”ˆè€‰±±¡¥¹…	ÕäEA¡½Ñ½Ìè€Ôµ5¥¹ÕÑ”%¹ÍÁ•Ñ¥½¸Õ¥‘”ˆ°($$$$‰Á…É•°µ½ÍÐµÕ¥‘”ˆè€‰±±¡¥¹…	ÕäM¡¥ÁÁ¥¹œ½ÍÐèAÉ½‘ÕÐÙÌA…É•°AÉ¥”ˆ($$%õm…ÉÑ¥±”¹Í±Õt°($$%‘•ÍÉ¥ÁÑ¥½¸è…ÉÑ¥±”¹‘•ÍÉ¥ÁÑ¥½¸°($$%É½‰½ÑÌèì($$$%¥¹‘•àè™…±Í”°($$$%™½±±½Üè™…±Í”($$%ô($%ôì(%ô(%½¹ÍÐÁ…”€ô½Áä¹Á…•ÍmÁ…Ñ¡lÁtñð€‰ÁÉ½‘ÕÑÌ‰tñð½Áä¹Á…•Ì¹…ÉÑ¥±•Ìì(%É•ÑÕÉ¸ì($%Ñ¥Ñ±”è€‘íÁ…•lÁuôƒŠP	}%9¼½€°($%‘•ÍÉ¥ÁÑ¥½¸èÁ…•lÅt°($%É½‰½ÑÌèì($$%¥¹‘•àè™…±Í”°($$%™½±±½Üè™…±Í”($%ô(%ôì)ô)…Íå¹Œ™Õ¹Ñ¥½¸1½…±¥é•‘Q•Éµ¥¹…°¡ìÁ…É…µÌô¤ì(%½¹ÍÐì±½…±”èÉ…Ý1½…±”°Á…Ñ €ômtô€ô…Ý…¥ÐÁ…É…µÌì(%É•ÑÕÉ¸€¼¨}}AUI}|€¨¼€ À°¥µÁ½ÉÑ}©Íá}ÉÕ¹Ñ¥µ•}É•…Ñ}Í•ÉÙ•È¹©Íà¤¡Q•Éµ¥¹…±A…”°ì($%±½…±”è±½…±•ÌÄ¹¥¹±Õ‘•Ì¡É…Ý1½…±”¤€üÉ…Ý1½…±”€è€‰•¸ˆ°($%Á…Ñ (%ô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½É½‰½ÑÌ¹ÑÌ)Ù…ÈÉ½‰½ÑÍ}•áÁ½ÉÑÌ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì‘•™…Õ±Ðè€ ¤€ôøÉ½‰½ÑÌô¤ì)™Õ¹Ñ¥½¸É½‰½ÑÌ ¤ì(%É•ÑÕÉ¸ì($%ÉÕ±•Ìèì($$%ÕÍ•É•¹Ðè€ˆ¨ˆ°($$%…±±½Üè€ˆ¼ˆ($%ô°($%Í¥Ñ•µ…Àè€‰¡ÑÑÁÌè¼½…±±¡¥¹…‰Õä¹É¼½Í¥Ñ•µ…À¹áµ°ˆ°($%¡½ÍÐè€‰¡ÑÑÁÌè¼½…±±¡¥¹…‰Õä¹É¼ˆ(%ôì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸…ÁÀ½Í¥Ñ•µ…À¹ÑÌ)Ù…ÈÍ¥Ñ•µ…Á}•áÁ½ÉÑÌ€ô€¼¨}}AUI}|€¨¼}}•áÁ½ÉÑ±°¡ì‘•™…Õ±Ðè€ ¤€ôøÍ¥Ñ•µ…Àô¤ì)Ù…È‰…Í”€ô€‰¡ÑÑÁÌè¼½…±±¡¥¹…‰Õä¹É¼ˆì)Ù…È±½…±•Ì€ôl($ˆˆ°($ˆ½•¸ˆ°($ˆ½‘”ˆ°($ˆ½™Èˆ°($ˆ½•Ìˆ°($ˆ½¥Ðˆ°($ˆ½Á°ˆ)tì)Ù…ÈÁ…•Ì€ôl($ˆˆ°($ˆ½ÁÉ½‘ÕÑÌˆ°($ˆ½…Ñ•½É¥•Ìˆ°($ˆ½ÅŒµÕ¥‘”ˆ°($ˆ½Í¡¥ÁÁ¥¹œµÕ¥‘”ˆ°($ˆ½…ÉÑ¥±•Ìˆ°($ˆ½™…Äˆ)tì)Ù…ÈÑÉÕÍÑA…•Ì€ôl($ˆ½µ•Ñ¡½‘½±½äˆ°($ˆ½…‰½ÕÐˆ°($ˆ½½¹Ñ…Ðˆ°($ˆ½ÁÉ¥Ù…äˆ°($ˆ½Ñ•ÉµÌˆ°($ˆ½…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆ)tì)™Õ¹Ñ¥½¸Í¥Ñ•UÉ°¡±½…±”°Á…”¤ì(%¥˜€ …±½…±”€˜˜€…Á…”¤É•ÑÕÉ¸€‘í‰…Í•ô½€ì(%É•ÑÕÉ¸€‘í‰…Í•ô‘í±½…±•ô‘íÁ…•õ€ì)ô)™Õ¹Ñ¥½¸Í¥Ñ•µ…À ¤ì(%½¹ÍÐÉ½ÕÑ•Ì€ô±½…±•Ì¹™±…Ñ5…À ¡±½…±”¤€ôøÁ…•Ì¹µ…À ¡Á…”¤€ôø€¡ì($%ÕÉ°èÍ¥Ñ•UÉ°¡±½…±”°Á…”¤°($%¡…¹•É•ÅÕ•¹äèÁ…”€ôôô€ˆˆñðÁ…”€ôôô€ˆ½ÁÉ½‘ÕÑÌˆ€ü€‰Ý••­±äˆ€è€‰µ½¹Ñ¡±äˆ°($%ÁÉ¥½É¥ÑäèÁ…”€ôôô€ˆˆ€ü€Ä€èÁ…”€ôôô€ˆ½ÁÉ½‘ÕÑÌˆ€ü€¸ä€è€¸Ü(%ô¤¤¤ì(%½¹ÍÐ…ÉÑ¥±•Ì€ô±½…±•Ì¹™±…Ñ5…À ¡±½…±”¤€ôø•¹±¥Í¡ÉÑ¥±•Ì¹µ…À ¡…ÉÑ¥±”¤€ôø€¡ì($%ÕÉ°è€‘í‰…Í•ô‘í±½…±•ô½…ÉÑ¥±•Ì¼‘í…ÉÑ¥±”¹Í±Õõ€°($%±…ÍÑ5½‘¥™¥•è€¼¨}}AUI}|€¨¼¹•Ü…Ñ” ˆÈÀÈØ´Àà´ÄÈˆ¤°($%¡…¹•É•ÅÕ•¹äè€‰µ½¹Ñ¡±äˆ°($%ÁÉ¥½É¥Ñäè€¸à(%ô¤¤¤ì(%½¹ÍÐÑÉÕÍÐ€ôÑÉÕÍÑA…•Ì¹µ…À ¡Á…”¤€ôø€¡ì($%ÕÉ°è€‘í‰…Í•ô‘íÁ…•õ€°($%±…ÍÑ5½‘¥™¥•è€¼¨}}AUI}|€¨¼¹•Ü…Ñ” ˆÈÀÈØ´Àà´ÄÈˆ¤°($%¡…¹•É•ÅÕ•¹äè€‰å•…É±äˆ°($%ÁÉ¥½É¥Ñäè€¸Ð(%ô¤¤ì(%É•ÑÕÉ¸l($$¸¸¹É½ÕÑ•Ì°($$¸¸¹…ÉÑ¥±•Ì°($$¸¸¹ÑÉÕÍÐ(%tì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸pÁÙ¥ÉÑÕ…°éÙ¥¹•áÐµÉÍŒµ•¹ÑÉä)Ù…ÈÉ•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´€ôÉ•…Ñ•IÍI•¹‘•É•È¡É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´Ä¤ì)™Õ¹Ñ¥½¸}•ÑMMI½¹ÑMÑå±•Ì ¤ì(%É•ÑÕÉ¸l¸¸¹•ÑMMI½¹ÑMÑå±•ÌÄ ¤°€¸¸¹•ÑMMI½¹ÑMÑå±•Ì ¥tì)ô)™Õ¹Ñ¥½¸}•ÑMMI½¹ÑAÉ•±½…‘Ì ¤ì(%É•ÑÕÉ¸l¸¸¹•ÑMMI½¹ÑAÉ•±½…‘ÌÄ ¤°€¸¸¹•ÑMMI½¹ÑAÉ•±½…‘Ì ¥tì)ô)Ù…È}}¥ÍÉ•‰Õœ€ôÁÉ½•ÍÌ¹•¹Ø¹9aQ}AI%YQ}	U}!€ü½¹Í½±”¹‘•‰Õœ¹‰¥¹¡½¹Í½±”°€‰mÙ¥¹•áÑt%MHèˆ¤€èÙ½¥€Àì)Ù…È}}±…ÍÍ•‰Õœ€ôÁÉ½•ÍÌ¹•¹Ø¹Y%9aQ}	U}1MM%%Q%=8€ü™Õ¹Ñ¥½¸¡±…å½ÕÑ%°É•…Í½¸¤ì(%½¹Í½±”¹‘•‰Õœ ‰mÙ¥¹•áÑt1Lèˆ°±…å½ÕÑ%°É•…Í½¸¤ì)ô€èÙ½¥€Àì)™Õ¹Ñ¥½¸}}É•Í½±Ù•I½ÕÑ••Ñ¡…¡•5½‘”¡É½ÕÑ”¤ì(%É•ÑÕÉ¸É•Í½±Ù•ÁÁA…••Ñ¡…¡•5½‘”¡ì($%±…å½ÕÑÌèÉ½ÕÑ”¹±…å½ÕÑÌ°($%Á…”èÉ½ÕÑ”¹Á…”(%ô¤ì)ô)™Õ¹Ñ¥½¸}}Y%9aQ}1ML¡É½ÕÑ•%‘à¤ìÉ•ÑÕÉ¸€ ¡É½ÕÑ•%‘à¤€ôøì(€€€ÍÝ¥Ñ €¡É½ÕÑ•%‘à¤ì(€€€€€‘•™…Õ±ÐèÉ•ÑÕÉ¸¹Õ±°ì(€€€ô(€ô¤¡É½ÕÑ•%‘à¤ìô)™Õ¹Ñ¥½¸}}Y%9aQ}1MM}IM=9L¡É½ÕÑ•%‘à¤ì(%É•ÑÕÉ¸¹Õ±°ì)ô)Ù…ÈÉ½ÕÑ•Ì€ôl(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML À¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L À¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è¼ˆ°($$$‰Á…”ˆè€‰Á…”è¼ˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ¼ˆ°($%Á…ÑÑ•É¹A…ÉÑÌèmt°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÄÄ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèmt°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML Ä¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L Ä¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½…‰½ÕÐˆ°($$$‰Á…”ˆè€‰Á…”è½…‰½ÕÐˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½…‰½ÕÐˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰…‰½ÕÐ‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÄÀ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰…‰½ÕÐ‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML È¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L È¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆ°($$$‰Á…”ˆè€‰Á…”è½…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”ˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌä°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰…™™¥±¥…Ñ”µ‘¥Í±½ÍÕÉ”‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML Ì¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L Ì¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½½¹•ÁÐµ„ˆ°($$$‰Á…”ˆè€‰Á…”è½½¹•ÁÐµ„ˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½½¹•ÁÐµ„ˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰½¹•ÁÐµ„‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌà°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰½¹•ÁÐµ„‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML Ð¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L Ð¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½½¹•ÁÐµˆˆ°($$$‰Á…”ˆè€‰Á…”è½½¹•ÁÐµˆˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½½¹•ÁÐµˆˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰½¹•ÁÐµˆ‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÜ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰½¹•ÁÐµˆ‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML Ô¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L Ô¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½½¹•ÁÐµŒˆ°($$$‰Á…”ˆè€‰Á…”è½½¹•ÁÐµŒˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½½¹•ÁÐµŒˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰½¹•ÁÐµŒ‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌØ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰½¹•ÁÐµŒ‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML Ø¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L Ø¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½½¹Ñ…Ðˆ°($$$‰Á…”ˆè€‰Á…”è½½¹Ñ…Ðˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½½¹Ñ…Ðˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰½¹Ñ…Ð‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÔ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰½¹Ñ…Ð‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML Ü¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L Ü¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½µ•Ñ¡½‘½±½äˆ°($$$‰Á…”ˆè€‰Á…”è½µ•Ñ¡½‘½±½äˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½µ•Ñ¡½‘½±½äˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰µ•Ñ¡½‘½±½ä‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÐ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰µ•Ñ¡½‘½±½ä‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML à¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L à¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½ÁÉ¥Ù…äˆ°($$$‰Á…”ˆè€‰Á…”è½ÁÉ¥Ù…äˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½ÁÉ¥Ù…äˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰ÁÉ¥Ù…ä‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÌ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰ÁÉ¥Ù…ä‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML ä¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L ä¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½Ñ•ÉµÌˆ°($$$‰Á…”ˆè€‰Á…”è½Ñ•ÉµÌˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½Ñ•ÉµÌˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl‰Ñ•ÉµÌ‰t°($%¥Íå¹…µ¥Œè™…±Í”°($%Á…É…µÌèmt°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÈ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰Ñ•ÉµÌ‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML ÄÀ¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L ÄÀ¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è¼éÉ½ÕÑ”¬ˆ°($$$‰Á…”ˆè€‰Á…”è¼éÉ½ÕÑ”¬ˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ¼éÉ½ÕÑ”¬ˆ°($%Á…ÑÑ•É¹A…ÉÑÌèlˆéÉ½ÕÑ”¬‰t°($%¥Íå¹…µ¥ŒèÑÉÕ”°($%Á…É…µÌèl‰É½ÕÑ”‰t°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌÄ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl‰l¸¸¹É½ÕÑ•t‰t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô°(%ì($%}}‰Õ¥±‘Q¥µ•±…ÍÍ¥™¥…Ñ¥½¹Ìè}}Y%9aQ}1ML ÄÄ¤°($%}}‰Õ¥±‘Q¥µ•I•…Í½¹Ìè}}±…ÍÍ•‰Õœ€ü}}Y%9aQ}1MM}IM=9L ÄÄ¤€è¹Õ±°°($%¥‘Ìèì($$$‰É½ÕÑ”ˆè€‰É½ÕÑ”è½½¹•ÁÐµŒ¼é±½…±”¼éÁ…Ñ ¨ˆ°($$$‰Á…”ˆè€‰Á…”è½½¹•ÁÐµŒ¼é±½…±”¼éÁ…Ñ ¨ˆ°($$$‰É½ÕÑ•!…¹‘±•Èˆè¹Õ±°°($$$‰É½½Ñ	½Õ¹‘…Éäˆè€‰É½½Ðµ‰½Õ¹‘…Éäè¼ˆ°($$$‰±…å½ÕÑÌˆèl‰±…å½ÕÐè¼‰t°($$$‰Ñ•µÁ±…Ñ•Ìˆèmt°($$$‰Í±½ÑÌˆèíô($%ô°($%Á…ÑÑ•É¸è€ˆ½½¹•ÁÐµŒ¼é±½…±”¼éÁ…Ñ ¨ˆ°($%Á…ÑÑ•É¹A…ÉÑÌèl($$$‰½¹•ÁÐµŒˆ°($$$ˆé±½…±”ˆ°($$$ˆéÁ…Ñ ¨ˆ($%t°($%¥Íå¹…µ¥ŒèÑÉÕ”°($%Á…É…µÌèl‰±½…±”ˆ°€‰Á…Ñ ‰t°($%É½½ÑA…É…µ9…µ•Ìèmt°($%Á…”èÁ…•}•áÁ½ÉÑÌ°($%É½ÕÑ•!…¹‘±•Èè¹Õ±°°($%±…å½ÕÑÌèm±…å½ÕÑ}•áÁ½ÉÑÍt°($%É½ÕÑ•M•µ•¹ÑÌèl($$$‰½¹•ÁÐµŒˆ°($$$‰m±½…±•tˆ°($$$‰ml¸¸¹Á…Ñ¡utˆ($%t°($%Ñ•µÁ±…Ñ•QÉ••A½Í¥Ñ¥½¹Ìèmt°($%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèlÁt°($%Ñ•µÁ±…Ñ•Ìèmt°($%•ÉÉ½ÉÌèm¹Õ±±t°($%•ÉÉ½ÉA…Ñ¡Ìèmt°($%•ÉÉ½ÉQÉ••A½Í¥Ñ¥½¹Ìèmt°($%Í±½ÑÌèíô°($%±½…‘¥¹œè¹Õ±°°($%•ÉÉ½Èè¹Õ±°°($%¹½Ñ½Õ¹è¹Õ±°°($%¹½Ñ½Õ¹‘Ìèm¹Õ±±t°($%™½É‰¥‘‘•¸è¹Õ±°°($%™½É‰¥‘‘•¹Ìèm¹Õ±±t°($%Õ¹…ÕÑ¡½É¥é•è¹Õ±°°($%Õ¹…ÕÑ¡½É¥é•‘Ìèm¹Õ±±t(%ô)tì)Ù…È}}É½ÕÑ•5…Ñ¡•È€ôÉ•…Ñ•ÁÁIÍI½ÕÑ•5…Ñ¡•È¡É½ÕÑ•Ì¤ì)Ù…Èµ•Ñ…‘…Ñ…I½ÕÑ•Ì€ômì(%ÑåÁ”è€‰É½‰½ÑÌˆ°(%¥Íå¹…µ¥ŒèÑÉÕ”°(%É½ÕÑ•AÉ•™¥àè€ˆˆ°(%É½ÕÑ•M•µ•¹ÑÌèmt°(%Í•ÉÙ•‘UÉ°è€ˆ½É½‰½ÑÌ¹ÑáÐˆ°(%½¹Ñ•¹ÑQåÁ”è€‰Ñ•áÐ½Á±…¥¸ˆ°(%½¹Ñ•¹Ñ!…Í è€ˆÌÕ‰‘ˆÁ•ŒÄÌÀÐå„Üˆ°(%µ½‘Õ±”èÉ½‰½ÑÍ}•áÁ½ÉÑÌ)ô°ì(%ÑåÁ”è€‰Í¥Ñ•µ…Àˆ°(%¥Íå¹…µ¥ŒèÑÉÕ”°(%É½ÕÑ•AÉ•™¥àè€ˆˆ°(%É½ÕÑ•M•µ•¹ÑÌèmt°(%Í•ÉÙ•‘UÉ°è€ˆ½Í¥Ñ•µ…À¹áµ°ˆ°(%½¹Ñ•¹ÑQåÁ”è€‰…ÁÁ±¥…Ñ¥½¸½áµ°ˆ°(%½¹Ñ•¹Ñ!…Í è€‰äÌÜá•˜á˜àÜäå”àÐˆ°(%µ½‘Õ±”èÍ¥Ñ•µ…Á}•áÁ½ÉÑÌ)õtì)Ù…ÈÉ½½Ñ9½Ñ½Õ¹‘5½‘Õ±”€ô¹Õ±°ì)Ù…ÈÉ½½Ñ½É‰¥‘‘•¹5½‘Õ±”€ô¹Õ±°ì)Ù…ÈÉ½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”€ô¹Õ±°ì)Ù…ÈÉ½½Ñ1…å½ÕÑÌ€ôm±…å½ÕÑ}•áÁ½ÉÑÍtì)Ù…ÈÉ•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È€ô€¡É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤€ôøÉ•…Ñ•ÁÁIÍ=¹ÉÉ½É!…¹‘±•È¡É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È°É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì)Ù…È}}™…±±‰…­I•¹‘•É•È€ôÉ•…Ñ•ÁÁ…±±‰…­I•¹‘•É•È¡ì(%É½½Ñ	½Õ¹‘…É¥•Ìèì($%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”°($%É½½Ñ1…å½ÕÑÌ°($%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°($%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”(%ô°(%±½‰…±ÉÉ½É5½‘Õ±”è¹Õ±°°(%µ•Ñ…‘…Ñ…I½ÕÑ•Ì°(%ÍÍÉ1½…‘•È ¤ì($%É•ÑÕÉ¸¥µÁ½ÉÐ ˆ¸½ÍÍÈ½¥¹‘•à¹©Ìˆ¤ì(%ô°(%™½¹ÑAÉ½Ù¥‘•ÉÌèì($%‰Õ¥±‘½¹Ñ1¥¹­!•…‘•Èè‰Õ¥±‘ÁÁA…•½¹Ñ1¥¹­!•…‘•È°($%•Ñ½¹Ñ1¥¹­Ìè•ÑMMI½¹Ñ1¥¹­Ì°($%•Ñ½¹ÑAÉ•±½…‘Ìè}•ÑMMI½¹ÑAÉ•±½…‘Ì°($%•Ñ½¹ÑMÑå±•Ìè}•ÑMMI½¹ÑMÑå±•Ì(%ô°(%µ…­•Q¡•¹…‰±•A…É…µÌ°(%Í…¹¥Ñ¥é•ÈèÍ…¹¥Ñ¥é•ÉÉ½É½É±¥•¹Ð°(%ÉÍI•¹‘•É•ÈèÉ•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´°(%•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°(%É•Í½±Ù•¡¥±‘M•µ•¹ÑÌèÉ•Í½±Ù•ÁÁA…•¡¥±‘M•µ•¹ÑÌ°(%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%ô°(%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($%É•ÑÕÉ¸É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì(%ô)ô¤ì)™Õ¹Ñ¥½¸µ…Ñ¡I½ÕÑ”¡ÕÉ°¤ì(%É•ÑÕÉ¸}}É½ÕÑ•5…Ñ¡•È¹µ…Ñ¡I½ÕÑ”¡ÕÉ°¤ì)ô(¼¨¨(¨¡•¬¥˜„Á…Ñ¡¹…µ”µ…Ñ¡•Ì…¹ä¥¹Ñ•É•ÁÑ¥¹œÉ½ÕÑ”¸(¨I•ÑÕÉ¹ÌÑ¡”µ…Ñ ¥¹™¼½È¹Õ±°¸(¨¼)™Õ¹Ñ¥½¸™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”°Í½ÕÉ•A…Ñ¡¹…µ”€ô¹Õ±°¤ì(%É•ÑÕÉ¸}}É½ÕÑ•5…Ñ¡•È¹™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”°Í½ÕÉ•A…Ñ¡¹…µ”¤ì)ô)…Íå¹Œ™Õ¹Ñ¥½¸‰Õ¥±‘A…•±•µ•¹ÑÌ¡É½ÕÑ”°Á…É…µÌ°É½ÕÑ•A…Ñ °Á…•I•ÅÕ•ÍÐ¤ì(%É•ÑÕÉ¸‰Õ¥±‘A…•±•µ•¹ÑÌÄ¡ì($%É½ÕÑ”°($%Á…É…µÌ°($%É½ÕÑ•A…Ñ °($%Á…•I•ÅÕ•ÍÐ°($%±½‰…±ÉÉ½É5½‘Õ±”è¹Õ±°°($%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”è¹Õ±°°($%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”è¹Õ±°°($%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”è¹Õ±°°($%µ•Ñ…‘…Ñ…I½ÕÑ•Ì(%ô¤ì)ô)Ù…È}}‰…Í•A…Ñ €ô€ˆˆì)Ù…È}}ÑÉ…¥±¥¹M±…Í €ô™…±Í”ì)Ù…È}}¤Äá¹½¹™¥œ€ô¹Õ±°ì)Ù…È}}½¹™¥I•‘¥É•ÑÌ€ômtì)Ù…È}}½¹™¥I•ÝÉ¥Ñ•Ì€ôì($‰‰•™½É•¥±•Ìˆèmt°($‰…™Ñ•É¥±•Ìˆèmt°($‰™…±±‰…¬ˆèmt)ôì)Ù…È}}½¹™¥!•…‘•ÉÌ€ômtì)Ù…È}}ÁÕ‰±¥¥±•Ì€ô¹•ÜM•Ð¡l($ˆ½}¡•…‘•ÉÌˆ°($ˆ½…±±¡¥¹…‰Õä¹Á¹œˆ°($ˆ½™…Ù¥½¸¹ÍÙœˆ°($ˆ½™¥±”¹ÍÙœˆ°($ˆ½±½‰”¹ÍÙœˆ°($ˆ½Ý¥¹‘½Ü¹ÍÙœˆ)t¤ì)Ù…È}}…±±½Ý•‘=É¥¥¹Ì€ômtì)Ù…È}}•áÁ¥É•Q¥µ”€ô€ÌÄÔÌÙ”Ìì)Ù…È}}…±±½Ý•‘•Ù=É¥¥¹Ì€ômtì)Ù…È}}Í…™••Ù!½ÍÑÌ€ôl($‰±½…±¡½ÍÐˆ°($ˆÄÈÜ¸À¸À¸Äˆ°($‰lèèÅtˆ)tì)™Õ¹Ñ¥½¸}}™½É‰¥‘‘•¸ ¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í” ‰½É‰¥‘‘•¸ˆ°ì($%ÍÑ…ÑÕÌè€ÐÀÌ°($%¡•…‘•ÉÌèì€‰½¹Ñ•¹ÐµQåÁ”ˆè€‰Ñ•áÐ½Á±…¥¸ˆô(%ô¤ì)ô)™Õ¹Ñ¥½¸}}Ù…±¥‘…Ñ••ÙI•ÅÕ•ÍÑ=É¥¥¸¡É•ÅÕ•ÍÐ¤ì(%¥˜€¡É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰Í•Œµ™•Ñ µµ½‘”ˆ¤€ôôô€‰¹¼µ½ÉÌˆ€˜˜É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰Í•Œµ™•Ñ µÍ¥Ñ”ˆ¤€ôôô€‰É½ÍÌµÍ¥Ñ”ˆ¤ì($%½¹Í½±”¹Ý…É¸ ‰mÙ¥¹•áÑt	±½­•É½ÍÌµÍ¥Ñ”¹¼µ½ÉÌÉ•ÅÕ•ÍÐÑ¼€ˆ€¬¹•ÜUI0¡É•ÅÕ•ÍÐ¹ÕÉ°¤¹Á…Ñ¡¹…µ”¤ì($%É•ÑÕÉ¸}}™½É‰¥‘‘•¸ ¤ì(%ô(%½¹ÍÐ½É¥¥¸€ôÉ•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰½É¥¥¸ˆ¤ì(%¥˜€ …½É¥¥¸¤É•ÑÕÉ¸¹Õ±°ì(%¥˜€¡½É¥¥¸€ôôô€‰¹Õ±°ˆ¤ì($%¥˜€ …}}…±±½Ý•‘•Ù=É¥¥¹Ì¹¥¹±Õ‘•Ì ‰¹Õ±°ˆ¤¤ì($$%½¹Í½±”¹Ý…É¸ ‰mÙ¥¹•áÑt	±½­•É•ÅÕ•ÍÐÝ¥Ñ =É¥¥¸è¹Õ±°¸‘p‰¹Õ±±pˆÑ¼…±±½Ý•‘•Ù=É¥¥¹ÌÑ¼…±±½ÜÍ…¹‘‰½á•½¹Ñ•áÑÌ¸ˆ¤ì($$%É•ÑÕÉ¸}}™½É‰¥‘‘•¸ ¤ì($%ô($%É•ÑÕÉ¸¹Õ±°ì(%ô(%±•Ð½É¥¥¹!½ÍÑ¹…µ”ì(%ÑÉäì($%½É¥¥¹!½ÍÑ¹…µ”€ô¹•ÜUI0¡½É¥¥¸¤¹¡½ÍÑ¹…µ”¹Ñ½1½Ý•É…Í” ¤ì(%ô…Ñ ì($%É•ÑÕÉ¸}}™½É‰¥‘‘•¸ ¤ì(%ô(%¥˜€¡}}Í…™••Ù!½ÍÑÌ¹¥¹±Õ‘•Ì¡½É¥¥¹!½ÍÑ¹…µ”¤ñð½É¥¥¹!½ÍÑ¹…µ”¹•¹‘Í]¥Ñ  ˆ¹±½…±¡½ÍÐˆ¤¤É•ÑÕÉ¸¹Õ±°ì(%½¹ÍÐ¡½ÍÑ!•…‘•È€ô€¡É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰àµ™½ÉÝ…É‘•µ¡½ÍÐˆ¤ñðÉ•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¹•Ð ‰¡½ÍÐˆ¤ñð€ˆˆ¤¹ÍÁ±¥Ð ˆ°ˆ¥lÁt¹ÑÉ¥´ ¤¹ÍÁ±¥Ð ˆèˆ¥lÁt¹Ñ½1½Ý•É…Í” ¤ì(%¥˜€¡¡½ÍÑ!•…‘•È€˜˜½É¥¥¹!½ÍÑ¹…µ”€ôôô¡½ÍÑ!•…‘•È¤É•ÑÕÉ¸¹Õ±°ì(%™½È€¡½¹ÍÐÁ…ÑÑ•É¸½˜}}…±±½Ý•‘•Ù=É¥¥¹Ì¤¥˜€¡Á…ÑÑ•É¸¹ÍÑ…ÉÑÍ]¥Ñ  ˆ¨¸ˆ¤¤ì($%½¹ÍÐÍÕ™™¥à€ôÁ…ÑÑ•É¸¹Í±¥” Ä¤ì($%¥˜€¡½É¥¥¹!½ÍÑ¹…µ”€ôôôÁ…ÑÑ•É¸¹Í±¥” È¤ñð½É¥¥¹!½ÍÑ¹…µ”¹•¹‘Í]¥Ñ ¡ÍÕ™™¥à¤¤É•ÑÕÉ¸¹Õ±°ì(%ô•±Í”¥˜€¡½É¥¥¹!½ÍÑ¹…µ”€ôôôÁ…ÑÑ•É¸¤É•ÑÕÉ¸¹Õ±°ì(%½¹Í½±”¹Ý…É¸¡mÙ¥¹•áÑt	±½­•É½ÍÌµ½É¥¥¸É•ÅÕ•ÍÐ™É½´€ˆ‘í½É¥¥¹ôˆÑ¼€‘í¹•ÜUI0¡É•ÅÕ•ÍÐ¹ÕÉ°¤¹Á…Ñ¡¹…µ•ô¸Q¼…±±½ÜÑ¡¥Ì½É¥¥¸°…‘¥ÐÑ¼…±±½Ý•‘•Ù=É¥¥¹Ì¥¸¹•áÐ¹½¹™¥œ¹©Ì¹€¤ì(%É•ÑÕÉ¸}}™½É‰¥‘‘•¸ ¤ì)ô(¼¨¨(¨5…á¥µÕ´Í•ÉÙ•Èµ…Ñ¥½¸É•ÅÕ•ÍÐ‰½‘äÍ¥é”¸(¨½¹™¥ÕÉ…‰±”Ù¥„•áÁ•É¥µ•¹Ñ…°¹Í•ÉÙ•ÉÑ¥½¹Ì¹‰½‘åM¥é•1¥µ¥Ð¥¸¹•áÐ¹½¹™¥œ¸(¨•™…Õ±ÑÌÑ¼€Å5°µ…Ñ¡¥¹œÑ¡”9•áÐ¹©Ì‘•™…Õ±Ð¸(¨Í•”¡ÑÑÁÌè¼½¹•áÑ©Ì¹½Éœ½‘½Ì½…ÁÀ½…Á¤µÉ•™•É•¹”½½¹™¥œ½¹•áÐµ½¹™¥œµ©Ì½Í•ÉÙ•ÉÑ¥½¹Ì‰½‘åÍ¥é•±¥µ¥Ð(¨AÉ•Ù•¹ÑÌÕ¹‰½Õ¹‘•É•ÅÕ•ÍÐ‰½‘ä‰Õ™™•É¥¹œ¸(¨¼)Ù…È}}5a}Q%=9}	=e}M%i€ô€ÄÀÐàÔÜØì)Ù…È}Ù¥ÉÑÕ…±}Ù¥¹•áÑ}ÉÍ}•¹ÑÉå}‘•™…Õ±Ð€ôÉ•…Ñ•ÁÁIÍ!…¹‘±•È¡ì(%‰…Í•A…Ñ è}}‰…Í•A…Ñ °(%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($%±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì(%ô°(%½¹™¥!•…‘•ÉÌè}}½¹™¥!•…‘•ÉÌ°(%½¹™¥I•‘¥É•ÑÌè}}½¹™¥I•‘¥É•ÑÌ°(%½¹™¥I•ÝÉ¥Ñ•Ìè}}½¹™¥I•ÝÉ¥Ñ•Ì°(%‘¥ÍÁ…Ñ¡5…Ñ¡•‘A…”¡ì±•…¹A…Ñ¡¹…µ”°™½ÉµMÑ…Ñ”°¡…¹‘±•ÉMÑ…ÉÐ°¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È°¥ÍIÍI•ÅÕ•ÍÐ°µ¥‘‘±•Ý…É•½¹Ñ•áÐ°µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°Á…É…µÌ°É•ÅÕ•ÍÐ°É½ÕÑ”°ÍÉ¥ÁÑ9½¹”°Í•…É¡A…É…µÌ°É•¹‘•É5½‘”ô¤ì($%½¹ÍÐA…•½µÁ½¹•¹Ð€ôÉ½ÕÑ”¹Á…”ü¹‘•™…Õ±Ðì($%½¹ÍÐ}}Í•µ•¹Ñ½¹™¥œ€ôÉ•Í½±Ù•ÁÁA…•M•µ•¹Ñ½¹™¥œ¡ì($$%±…å½ÕÑÌèÉ½ÕÑ”¹±…å½ÕÑÌ°($$%Á…”èÉ½ÕÑ”¹Á…”($%ô¤ì($%½¹ÍÐ}}•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ€ôÉ•Í½±Ù•ÁÁA…••¹•É…Ñ•MÑ…Ñ¥A…É…µÍM½ÕÉ•Ì¡ì($$%±…å½ÕÑÌèÉ½ÕÑ”¹±…å½ÕÑÌ°($$%±…å½ÕÑQÉ••A½Í¥Ñ¥½¹ÌèÉ½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ì°($$%Á…”èÉ½ÕÑ”¹Á…”°($$%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ($%ô¤ì($%½¹ÍÐ}…Íå¹I½ÕÑ•A…É…µÌ€ôµ…­•Q¡•¹…‰±•A…É…µÌ¡Á…É…µÌ¤ì($%É•ÑÕÉ¸‘¥ÍÁ…Ñ¡ÁÁA…”¡ì($$%‰…Í•A…Ñ è}}‰…Í•A…Ñ °($$%‰Õ¥±‘A…•±•µ•¹Ð¡Ñ…É•ÑI½ÕÑ”°Ñ…É•ÑA…É…µÌ°Ñ…É•Ñ=ÁÑÌ°Ñ…É•ÑM•…É¡A…É…µÌ¤ì($$$%É•ÑÕÉ¸‰Õ¥±‘A…•±•µ•¹ÑÌ¡Ñ…É•ÑI½ÕÑ”°Ñ…É•ÑA…É…µÌ°±•…¹A…Ñ¡¹…µ”°ì($$$$%½ÁÑÌèÑ…É•Ñ=ÁÑÌ°($$$$%Í•…É¡A…É…µÌèÑ…É•ÑM•…É¡A…É…µÌ°($$$$%¥ÍIÍI•ÅÕ•ÍÐ°($$$$%É•ÅÕ•ÍÐ°($$$$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$$$%É•¹‘•É5½‘”($$$%ô¤ì($$%ô°($$%±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%ô°($$%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$$%É•ÑÕÉ¸É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡É•ÅÕ•ÍÐ°Á…Ñ¡¹…µ”°É½ÕÑ•A…Ñ ¤ì($$%ô°($$%‘•‰Õ±…ÍÍ¥™¥…Ñ¥½¸è}}±…ÍÍ•‰Õœ°($$%‘å¹…µ¥½¹™¥œè}}Í•µ•¹Ñ½¹™¥œ¹‘å¹…µ¥½¹™¥œ°($$%‘å¹…µ¥A…É…µÍ½¹™¥œè}}Í•µ•¹Ñ½¹™¥œ¹‘å¹…µ¥A…É…µÍ½¹™¥œ°($$%™•Ñ¡…¡”è}}Í•µ•¹Ñ½¹™¥œ¹™•Ñ¡…¡”€üü¹Õ±°°($$%™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”¤ì($$$%É•ÑÕÉ¸™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ”°¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì($$%ô°($$%•¹•É…Ñ•MÑ…Ñ¥A…É…µÌè}}•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ°($$%•Ñ½¹Ñ1¥¹­Ìè•ÑMMI½¹Ñ1¥¹­Ì°($$%•Ñ½¹ÑAÉ•±½…‘Ìè}•ÑMMI½¹ÑAÉ•±½…‘Ì°($$%•Ñ½¹ÑMÑå±•Ìè}•ÑMMI½¹ÑMÑå±•Ì°($$%•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($$%•ÑM½ÕÉ•I½ÕÑ”¡Í½ÕÉ•I½ÕÑ•%¹‘•à¤ì($$$%É•ÑÕÉ¸É½ÕÑ•ÍmÍ½ÕÉ•I½ÕÑ•%¹‘•átì($$%ô°($$%¡…Í•¹•É…Ñ•MÑ…Ñ¥A…É…µÌè}}•¹•É…Ñ•MÑ…Ñ¥A…É…µÌ¹±•¹Ñ €ø€À°($$%¡…ÍA…••™…Õ±ÑáÁ½ÉÐè€„…A…•½µÁ½¹•¹Ð°($$%¡…ÍA…•5½‘Õ±”è€„…É½ÕÑ”¹Á…”°($$%¡…¹‘±•ÉMÑ…ÉÐ°($$%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°($$%•áÁ¥É•M•½¹‘Ìè}}•áÁ¥É•Q¥µ”°($$%™½ÉµMÑ…Ñ”°($$%¥ÍAÉ½É•ÍÍ¥Ù•Ñ¥½¹I•¹‘•È°($$%¥ÍAÉ½‘ÕÑ¥½¸èÑÉÕ”°($$%¥ÍIÍI•ÅÕ•ÍÐ°($$%¥ÍÉ•‰Õœè}}¥ÍÉ•‰Õœ°($$%¥ÍÉ•Ð°($$%¥ÍÉ!Ñµ±-•äè…ÁÁ%ÍÉ!Ñµ±-•ä°($$%¥ÍÉIÍ-•äè…ÁÁ%ÍÉIÍ-•ä°($$%¥ÍÉM•Ð°($$%±½…‘MÍÉ!…¹‘±•È ¤ì($$$%É•ÑÕÉ¸¥µÁ½ÉÐ ˆ¸½ÍÍÈ½¥¹‘•à¹©Ìˆ¤ì($$%ô°($$%µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$%Á…É…µÌ°($$%ÁÉ½‰•1…å½ÕÑÐ¡±¤¤ì($$$%½¹ÍÐ1…å½ÕÑ½µÀ€ôÉ½ÕÑ”¹±…å½ÕÑÍm±¥tü¹‘•™…Õ±Ðì($$$%¥˜€ …1…å½ÕÑ½µÀ¤É•ÑÕÉ¸¹Õ±°ì($$$%É•ÑÕÉ¸1…å½ÕÑ½µÀ¡ì($$$$%Á…É…µÌèµ…­•Q¡•¹…‰±•A…É…µÌ¡É•Í½±Ù•ÁÁA…•M•µ•¹ÑA…É…µÌ¡É½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ°É½ÕÑ”¹±…å½ÕÑQÉ••A½Í¥Ñ¥½¹Ìü¹m±¥t€üü€À°Á…É…µÌ¤¤°($$$$%¡¥±‘É•¸è¹Õ±°($$$%ô¤ì($$%ô°($$%ÁÉ½‰•A…” ¤ì($$$%¥˜€ …A…•½µÁ½¹•¹Ð¤É•ÑÕÉ¸¹Õ±°ì($$$%É•ÑÕÉ¸A…•½µÁ½¹•¹Ð¡ì($$$$%Á…É…µÌè}…Íå¹I½ÕÑ•A…É…µÌ°($$$$%Í•…É¡A…É…µÌèµ…­•Q¡•¹…‰±•A…É…µÌ¡½±±•ÑÁÁA…•M•…É¡A…É…µÌ¡Í•…É¡A…É…µÌ¤¹Í•…É¡A…É…µÍ=‰©•Ð¤($$$%ô¤ì($$%ô°($$%É•¹‘•ÉÉÉ½É	½Õ¹‘…ÉåA…”¡É•¹‘•ÉÉÈ¤ì($$$%É•ÑÕÉ¸}}™…±±‰…­I•¹‘•É•È¹É•¹‘•ÉÉÉ½É	½Õ¹‘…Éä¡É½ÕÑ”°É•¹‘•ÉÉÈ°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°Á…É…µÌ°ÍÉ¥ÁÑ9½¹”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$%ô°($$%É•¹‘•É!ÑÑÁ•ÍÍ…±±‰…­A…”¡ÍÑ…ÑÕÍ½‘”°½ÁÑÌ°ÕÉÉ•¹Ñ5¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$$%É•ÑÕÉ¸}}™…±±‰…­I•¹‘•É•È¹É•¹‘•É!ÑÑÁ•ÍÍ…±±‰…¬¡É½ÕÑ”°ÍÑ…ÑÕÍ½‘”°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°½ÁÑÌ°ÍÉ¥ÁÑ9½¹”°ÕÉÉ•¹Ñ5¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì($$%ô°($$%É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´°($$%É•ÅÕ•ÍÐ°($$%É•Ù…±¥‘…Ñ•M•½¹‘Ìè}}Í•µ•¹Ñ½¹™¥œ¹É•Ù…±¥‘…Ñ•M•½¹‘Ì°($$%É•Í½±Ù•I½ÕÑ••Ñ¡…¡•5½‘”¡Ñ…É•ÑI½ÕÑ”¤ì($$$%É•ÑÕÉ¸}}É•Í½±Ù•I½ÕÑ••Ñ¡…¡•5½‘”¡Ñ…É•ÑI½ÕÑ”¤ì($$%ô°($$%É½½Ñ½É‰¥‘‘•¹5½‘Õ±”°($$%É½½Ñ9½Ñ½Õ¹‘5½‘Õ±”°($$%É½½ÑU¹…ÕÑ¡½É¥é•‘5½‘Õ±”°($$%É½ÕÑ”°($$%ÉÕ¹]¥Ñ¡MÕÁÁÉ•ÍÍ•‘!½½­]…É¹¥¹œ¡ÁÉ½‰”¤ì($$$%É•ÑÕÉ¸ÍÕÁÁÉ•ÍÍ!½½­]…É¹¥¹±Ì¹ÉÕ¸¡ÑÉÕ”°ÁÉ½‰”¤ì($$%ô°($$%Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸°•ÉÉ½É½¹Ñ•áÐ¤ì($$$%ÑÉ¥•É	…­É½Õ¹‘I••¹•É…Ñ¥½¸¡­•ä°É•¹‘•É¸°•ÉÉ½É½¹Ñ•áÐ¤ì($$%ô°($$%ÍÉ¥ÁÑ9½¹”°($$%Í•…É¡A…É…µÌ°($$%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐèÍ•ÑÁÁ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($$%É•¹‘•É5½‘”($%ô¤ì(%ô°(%‘¥ÍÁ…Ñ¡5…Ñ¡•‘I½ÕÑ•!…¹‘±•È¡ì±•…¹A…Ñ¡¹…µ”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ°Á…É…µÌ°É•ÅÕ•ÍÐ°É½ÕÑ”°Í•…É¡A…É…µÌô¤ì($%É•ÑÕÉ¸‘¥ÍÁ…Ñ¡ÁÁI½ÕÑ•!…¹‘±•È¡ì($$%‰…Í•A…Ñ è}}‰…Í•A…Ñ °($$%±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%ô°($$%¤Äá¸è}}¤Äá¹½¹™¥œ°($$%¥ÍÉ•‰Õœè}}¥ÍÉ•‰Õœ°($$%¥ÍÉ•Ð°($$%¥ÍÉI½ÕÑ•-•äè…ÁÁ%ÍÉI½ÕÑ•-•ä°($$%¥ÍÉM•Ð°($$%µ¥‘‘±•Ý…É•½¹Ñ•áÐ°($$%µ¥‘‘±•Ý…É•I•ÅÕ•ÍÑ!•…‘•ÉÌèµ¥‘‘±•Ý…É•½¹Ñ•áÐ¹É•ÅÕ•ÍÑ!•…‘•ÉÌ°($$%Á…É…µÌ°($$%É•ÅÕ•ÍÐ°($$%É½ÕÑ”èì($$$%Á…ÑÑ•É¸èÉ½ÕÑ”¹Á…ÑÑ•É¸°($$$%É½ÕÑ•!…¹‘±•ÈèÉ½ÕÑ”¹É½ÕÑ•!…¹‘±•È°($$$%É½ÕÑ•M•µ•¹ÑÌèÉ½ÕÑ”¹É½ÕÑ•M•µ•¹ÑÌ($$%ô°($$%Í¡•‘Õ±•	…­É½Õ¹‘I••¹•É…Ñ¥½¸èÑÉ¥•É	…­É½Õ¹‘I••¹•É…Ñ¥½¸°($$%Í•…É¡A…É…µÌ($%ô¤ì(%ô°(%¡…¹‘±•AÉ½É•ÍÍ¥Ù•Ñ¥½¹I•ÅÕ•ÍÐ¡ì…Ñ¥½¹%°±•…¹A…Ñ¡¹…µ”°½¹Ñ•¹ÑQåÁ”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ°É•ÅÕ•ÍÐô¤ì($%É•ÑÕÉ¸¡…¹‘±•AÉ½É•ÍÍ¥Ù•M•ÉÙ•ÉÑ¥½¹I•ÅÕ•ÍÐ¡ì($$%…Ñ¥½¹%°($$%…±±½Ý•‘=É¥¥¹Ìè}}…±±½Ý•‘=É¥¥¹Ì°($$%±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%ô°($$%½¹Ñ•¹ÑQåÁ”°($$%‘•½‘•Ñ¥½¸°($$%‘•½‘•½ÉµMÑ…Ñ”°($$%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì°($$%•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È°($$%µ…áÑ¥½¹	½‘åM¥é”è}}5a}Q%=9}	=e}M%i°($$%µ¥‘‘±•Ý…É•!•…‘•ÉÌèµ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ°($$%É•…‘½Éµ…Ñ…]¥Ñ¡1¥µ¥ÐèÉ•…‘Ñ¥½¹½Éµ…Ñ…]¥Ñ¡1¥µ¥Ð°($$%É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È°($$%É•ÅÕ•ÍÐ°($$%Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”($%ô¤ì(%ô°(%¡…¹‘±•M•ÉÙ•ÉÑ¥½¹I•ÅÕ•ÍÐ¡ì…Ñ¥½¹%°±•…¹A…Ñ¡¹…µ”°½¹Ñ•¹ÑQåÁ”°¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°¥ÍIÍI•ÅÕ•ÍÐ°µ¥‘‘±•Ý…É•½¹Ñ•áÐ°µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°É•ÅÕ•ÍÐ°Í•…É¡A…É…µÌô¤ì($%É•ÑÕÉ¸¡…¹‘±•M•ÉÙ•ÉÑ¥½¹IÍI•ÅÕ•ÍÐ¡ì($$%…Ñ¥½¹%°($$%…±±½Ý•‘=É¥¥¹Ìè}}…±±½Ý•‘=É¥¥¹Ì°($$%‰Õ¥±‘A…•±•µ•¹Ð¡ìÉ½ÕÑ”è…Ñ¥½¹I½ÕÑ”°Á…É…µÌè…Ñ¥½¹A…É…µÌ°±•…¹A…Ñ¡¹…µ”è…Ñ¥½¹±•…¹A…Ñ¡¹…µ”°¥¹Ñ•É•ÁÑ=ÁÑÌ°Í•…É¡A…É…µÌè…Ñ¥½¹M•…É¡A…É…µÌ°¥ÍIÍI•ÅÕ•ÍÐè…Ñ¥½¹%ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐè…Ñ¥½¹I•ÅÕ•ÍÐ°µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè…Ñ¥½¹5½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°É•¹‘•É5½‘”è…Ñ¥½¹I•¹‘•É5½‘”ô¤ì($$$%É•ÑÕÉ¸‰Õ¥±‘A…•±•µ•¹ÑÌ¡…Ñ¥½¹I½ÕÑ”°…Ñ¥½¹A…É…µÌ°…Ñ¥½¹±•…¹A…Ñ¡¹…µ”°ì($$$$%½ÁÑÌè¥¹Ñ•É•ÁÑ=ÁÑÌ°($$$$%Í•…É¡A…É…µÌè…Ñ¥½¹M•…É¡A…É…µÌ°($$$$%¥ÍIÍI•ÅÕ•ÍÐè…Ñ¥½¹%ÍIÍI•ÅÕ•ÍÐ°($$$$%É•ÅÕ•ÍÐè…Ñ¥½¹I•ÅÕ•ÍÐ°($$$$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•Èè…Ñ¥½¹5½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$$$%É•¹‘•É5½‘”è…Ñ¥½¹I•¹‘•É5½‘”($$$%ô¤ì($$%ô°($$%±•…¹A…Ñ¡¹…µ”°($$%±•…ÉI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$$%±•…ÉÁÁI•ÅÕ•ÍÑ½¹Ñ•áÐ ¤ì($$%ô°($$%½¹Ñ•¹ÑQåÁ”°($$%É•…Ñ•9½Ñ½Õ¹‘±•µ•¹Ð¡…Ñ¥½¹I½ÕÑ•%¤ì($$$%É•ÑÕÉ¸ì($$$$$¸¸¹ÁÁ±•µ•¹ÑÍ]¥É”¹É•…Ñ•5•Ñ…‘…Ñ…¹ÑÉ¥•Ì¡ì($$$$$%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐè¹Õ±°°($$$$$%É½½Ñ1…å½ÕÑQÉ••A…Ñ è¹Õ±°°($$$$$%É½ÕÑ•%è…Ñ¥½¹I½ÕÑ•%($$$$%ô¤°($$$$%m…Ñ¥½¹I½ÕÑ•%‘tè€ À°¥µÁ½ÉÑ}É•…Ñ}É•…Ñ}Í•ÉÙ•È¹É•…Ñ•±•µ•¹Ð¤ ‰‘¥Øˆ°¹Õ±°°€‰A…”¹½Ð™½Õ¹ˆ¤($$$%ôì($$%ô°($$%É•…Ñ•A…å±½…‘I½ÕÑ•%¡Á…Ñ¡¹…µ•Q½I•¹‘•È°ÕÉÉ•¹Ñ%¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì($$$%É•ÑÕÉ¸ÁÁ±•µ•¹ÑÍ]¥É”¹•¹½‘•I½ÕÑ•%¡Á…Ñ¡¹…µ•Q½I•¹‘•È°ÕÉÉ•¹Ñ%¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì($$%ô°($$%É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡…Ñ¥½¹I•ÅÕ•ÍÐ°…Ñ¥½¹A…Ñ¡¹…µ”°É½ÕÑ•A…ÑÑ•É¸¤ì($$$%É•ÑÕÉ¸É•…Ñ•IÍ=¹ÉÉ½É!…¹‘±•È¡…Ñ¥½¹I•ÅÕ•ÍÐ°…Ñ¥½¹A…Ñ¡¹…µ”°É½ÕÑ•A…ÑÑ•É¸¤ì($$%ô°($$%É•…Ñ•Q•µÁ½É…ÉåI•™•É•¹•M•Ð°($$%‘•½‘•I•Á±ä°($$%™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ•Q½5…Ñ ¤ì($$$%É•ÑÕÉ¸™¥¹‘%¹Ñ•É•ÁÐ¡Á…Ñ¡¹…µ•Q½5…Ñ °¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ¤ì($$%ô°($$%•Ñ¹‘±•…ÉA•¹‘¥¹½½­¥•Ì°($$%•ÑÉ…™Ñ5½‘•½½­¥•!•…‘•È°($$%•ÑI½ÕÑ•A…É…µ9…µ•Ì¡Í½ÕÉ•I½ÕÑ”¤ì($$$%É•ÑÕÉ¸Í½ÕÉ•I½ÕÑ”¹Á…É…µÌì($$%ô°($$%•ÑM½ÕÉ•I½ÕÑ”¡Í½ÕÉ•I½ÕÑ•%¹‘•à¤ì($$$%É•ÑÕÉ¸É½ÕÑ•ÍmÍ½ÕÉ•I½ÕÑ•%¹‘•átì($$%ô°($$%¥ÍIÍI•ÅÕ•ÍÐ°($$%±½…‘M•ÉÙ•ÉÑ¥½¸°($$%µ…Ñ¡I½ÕÑ”¡Á…Ñ¡¹…µ•Q½5…Ñ ¤ì($$$%É•ÑÕÉ¸µ…Ñ¡I½ÕÑ”¡Á…Ñ¡¹…µ•Q½5…Ñ ¤ì($$%ô°($$%µ…áÑ¥½¹	½‘åM¥é”è}}5a}Q%=9}	=e}M%i°($$%µ¥‘‘±•Ý…É•!•…‘•ÉÌèµ¥‘‘±•Ý…É•½¹Ñ•áÐ¹¡•…‘•ÉÌ°($$%µ¥‘‘±•Ý…É•MÑ…ÑÕÌèµ¥‘‘±•Ý…É•½¹Ñ•áÐ¹ÍÑ…ÑÕÌ°($$%µ½Õ¹Ñ•‘M±½ÑÍ!•…‘•È°($$%É•…‘	½‘å]¥Ñ¡1¥µ¥ÐèÉ•…‘Ñ¥½¹	½‘å]¥Ñ¡1¥µ¥Ð°($$%É•…‘½Éµ…Ñ…]¥Ñ¡1¥µ¥ÐèÉ•…‘Ñ¥½¹½Éµ…Ñ…]¥Ñ¡1¥µ¥Ð°($$%É•¹‘•ÉQ½I•…‘…‰±•MÑÉ•…´°($$%É•Á½ÉÑI•ÅÕ•ÍÑÉÉ½È°($$%É•ÅÕ•ÍÐ°($$%Í…¹¥Ñ¥é•ÉÉ½É½É±¥•¹Ð¡•ÉÉ½È¤ì($$$%É•ÑÕÉ¸Í…¹¥Ñ¥é•ÉÉ½É½É±¥•¹Ð¡•ÉÉ½È¤ì($$%ô°($$%Í•…É¡A…É…µÌ°($$%Í•Ñ!•…‘•ÉÍ•ÍÍA¡…Í”°($$%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐèÍ•ÑÁÁ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°($$%Ñ½%¹Ñ•É•ÁÑ=ÁÑÌ¡¥¹Ñ•É•ÁÐ¤ì($$$%É•ÑÕÉ¸ì($$$$%¥¹Ñ•É•ÁÑ¥½¹½¹Ñ•áÐ°($$$$%¥¹Ñ•É•ÁÑ1…å½ÕÑÌè¥¹Ñ•É•ÁÐ¹¥¹Ñ•É•ÁÑ1…å½ÕÑÌ°($$$$%¥¹Ñ•É•ÁÑM±½Ñ-•äè¥¹Ñ•É•ÁÐ¹Í±½Ñ-•ä°($$$$%¥¹Ñ•É•ÁÑA…”è¥¹Ñ•É•ÁÐ¹Á…”°($$$$%¥¹Ñ•É•ÁÑA…É…µÌè¥¹Ñ•É•ÁÐ¹µ…Ñ¡•‘A…É…µÌ($$$%ôì($$%ô($%ô¤ì(%ô°(%¤Äá¹½¹™¥œè}}¤Äá¹½¹™¥œ°(%¥Í5¥‘‘±•Ý…É•AÉ½áäèÑÉÕ”°(%µ…­•Q¡•¹…‰±•A…É…µÌ°(%µ…Ñ¡I½ÕÑ”°(%µ•Ñ…‘…Ñ…I½ÕÑ•Ì°(%µ¥‘‘±•Ý…É•5½‘Õ±”èÁÉ½áå}•áÁ½ÉÑÌ°(%ÁÕ‰±¥¥±•Ìè}}ÁÕ‰±¥¥±•Ì°(%É•¹‘•É9½Ñ½Õ¹¡ì¥ÍIÍI•ÅÕ•ÍÐ°µ…Ñ¡•‘A…É…µÌ°µ¥‘‘±•Ý…É•½¹Ñ•áÐ°É•ÅÕ•ÍÐ°É½ÕÑ”°ÍÉ¥ÁÑ9½¹”ô¤ì($%É•ÑÕÉ¸}}™…±±‰…­I•¹‘•É•È¹É•¹‘•É9½Ñ½Õ¹¡É½ÕÑ”°¥ÍIÍI•ÅÕ•ÍÐ°É•ÅÕ•ÍÐ°µ…Ñ¡•‘A…É…µÌ°ÍÉ¥ÁÑ9½¹”°µ¥‘‘±•Ý…É•½¹Ñ•áÐ¤ì(%ô°(%É½½ÑA…É…µ9…µ•Í	åA…ÑÑ•É¸èíô°(%Í•Ñ9…Ù¥…Ñ¥½¹½¹Ñ•áÐèÍ•ÑÁÁ9…Ù¥…Ñ¥½¹½¹Ñ•áÐ°(%ÍÑ…Ñ¥A…É…µÍ5…Àèì($$ˆ¼éÉ½ÕÑ”¬ˆè¹Õ±°°($$ˆ½½¹•ÁÐµŒ¼é±½…±”¼éÁ…Ñ ¨ˆè¹Õ±°(%ô°(%ÑÉ…¥±¥¹M±…Í è}}ÑÉ…¥±¥¹M±…Í °(%Ù…±¥‘…Ñ••ÙI•ÅÕ•ÍÑ=É¥¥¸è}}Ù…±¥‘…Ñ••ÙI•ÅÕ•ÍÑ=É¥¥¸)ô¤ì(¼¼•¹‘É•¥½¸(¼¼É•¥½¸¹½‘•}µ½‘Õ±•Ì½Ù¥¹•áÐ½‘¥ÍÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ•Èµ•¹ÑÉä¹©Ì(¼¨¨(¨•™…Õ±Ð±½Õ‘™±…É”]½É­•È•¹ÑÉäÁ½¥¹Ð™½ÈÙ¥¹•áÐÁÀI½ÕÑ•È¸(¨(¨UÍ”Ñ¡¥Ì‘¥É•Ñ±ä¥¸ÝÉ…¹±•È¹©Í½¹Œè(¨€€€‰µ…¥¸ˆè€‰Ù¥¹•áÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ•Èµ•¹ÑÉäˆ(¨(¨=È¥µÁ½ÉÐ…¹‘•±•…Ñ”Ñ¼¥Ð™É½´„ÕÍÑ½´Ý½É­•Èè(¨€€¥µÁ½ÉÐ¡…¹‘±•È™É½´€‰Ù¥¹•áÐ½Í•ÉÙ•È½…ÁÀµÉ½ÕÑ•Èµ•¹ÑÉäˆì(¨€€É•ÑÕÉ¸¡…¹‘±•È¹™•Ñ ¡É•ÅÕ•ÍÐ°•¹Ø°Ñà¤ì(¨(¨Q¡¥Ì™¥±”ÉÕ¹Ì¥¸Ñ¡”IM•¹Ù¥É½¹µ•¹Ð¸½¹™¥ÕÉ”Ñ¡”±½Õ‘™±…É”Á±Õ¥¸Ý¥Ñ è(¨€€±½Õ‘™±…É”¡ìÙ¥Ñ•¹Ù¥É½¹µ•¹Ðèì¹…µ”è€‰ÉÍŒˆ°¡¥±‘¹Ù¥É½¹µ•¹ÑÌèl‰ÍÍÈ‰tôô¤(¨¼)Ù…È…ÁÁ}É½ÕÑ•É}•¹ÑÉå}‘•™…Õ±Ð€ôì…Íå¹Œ™•Ñ ¡É•ÅÕ•ÍÐ°•¹Ø°Ñà¤ì(%É•ÑÕÉ¸¡…¹‘±•I•ÅÕ•ÍÐ¡É•ÅÕ•ÍÐ°•¹Ø°Ñà¤ì)ôôì)…Íå¹Œ™Õ¹Ñ¥½¸¡…¹‘±•I•ÅÕ•ÍÐ¡É•ÅÕ•ÍÐ°•¹Ø°Ñà¤ì(%½¹ÍÐÕÉ°€ô¹•ÜUI0¡É•ÅÕ•ÍÐ¹ÕÉ°¤ì(%¥˜€¡¥Í=Á•¹I•‘¥É•ÑM¡…Á•¡ÕÉ°¹Á…Ñ¡¹…µ”¤¤É•ÑÕÉ¸¹½Ñ½Õ¹‘I•ÍÁ½¹Í” ¤ì(%ÑÉäì($%‘•½‘•UI%½µÁ½¹•¹Ð¡ÕÉ°¹Á…Ñ¡¹…µ”¤ì(%ô…Ñ ì($%É•ÑÕÉ¸‰…‘I•ÅÕ•ÍÑI•ÍÁ½¹Í” ¤ì(%ô(%ì($%½¹ÍÐ™¥±Ñ•É•‘!•…‘•ÉÌ€ô™¥±Ñ•É%¹Ñ•É¹…±!•…‘•ÉÌ¡É•ÅÕ•ÍÐ¹¡•…‘•ÉÌ¤ì($%É•ÅÕ•ÍÐ€ô±½¹•I•ÅÕ•ÍÑ]¥Ñ¡!•…‘•ÉÌ¡É•ÅÕ•ÍÐ°™¥±Ñ•É•‘!•…‘•ÉÌ¤ì(%ô(%½¹ÍÐ¡…¹‘±•¸€ô€ ¤€ôø}Ù¥ÉÑÕ…±}Ù¥¹•áÑ}ÉÍ}•¹ÑÉå}‘•™…Õ±Ð¡É•ÅÕ•ÍÐ°Ñà¤ì(%½¹ÍÐÉ•ÍÕ±Ð€ô…Ý…¥Ð€¡Ñà€üÉÕ¹]¥Ñ¡á•ÕÑ¥½¹½¹Ñ•áÐ¡Ñà°¡…¹‘±•¸¤€è¡…¹‘±•¸ ¤¤ì(%¥˜€¡É•ÍÕ±Ð¥¹ÍÑ…¹•½˜I•ÍÁ½¹Í”¤ì($%¥˜€¡•¹Øü¹MMQL¤ì($$%½¹ÍÐ…ÍÍ•Ñ•Ñ¡•È€ô•¹Ø¹MMQLì($$%½¹ÍÐ…ÍÍ•ÑI•ÍÁ½¹Í”€ô…Ý…¥ÐÉ•Í½±Ù•MÑ…Ñ¥ÍÍ•ÑM¥¹…°¡É•ÍÕ±Ð°ì™•Ñ¡ÍÍ•Ðè€¡Á…Ñ ¤€ôøAÉ½µ¥Í”¹É•Í½±Ù”¡…ÍÍ•Ñ•Ñ¡•È¹™•Ñ ¡¹•ÜI•ÅÕ•ÍÐ¡¹•ÜUI0¡Á…Ñ °É•ÅÕ•ÍÐ¹ÕÉ°¤¤¤¤ô¤ì($$%¥˜€¡…ÍÍ•ÑI•ÍÁ½¹Í”¤É•ÑÕÉ¸…ÍÍ•ÑI•ÍÁ½¹Í”ì($%ô($%É•ÑÕÉ¸É•ÍÕ±Ðì(%ô(%¥˜€¡É•ÍÕ±Ð€ôôô¹Õ±°ñðÉ•ÍÕ±Ð€ôôôÙ½¥€À¤É•ÑÕÉ¸¹½Ñ½Õ¹‘I•ÍÁ½¹Í” ¤ì(%É•ÑÕÉ¸¹•ÜI•ÍÁ½¹Í”¡MÑÉ¥¹œ¡É•ÍÕ±Ð¤°ìÍÑ…ÑÕÌè€ÈÀÀô¤ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸Ý½É­•È½¥¹‘•à¹ÑÌ(¼¨¨±½Õ‘™±…É”]½É­•È•¹ÑÉäÁ½¥¹Ð™½ÈÑ¡”Ù¥¹•áÐµÍÑ…ÉÑ•ÈÑ•µÁ±…Ñ”¸€¨¼)Ù…ÈÍ•ÕÉ¥Ñå!•…‘•ÉÌ€ôì($‰MÑÉ¥ÐµQÉ…¹ÍÁ½ÉÐµM•ÕÉ¥Ñäˆè€‰µ…àµ…”ôÌÄÔÌØÀÀÀì¥¹±Õ‘•MÕ‰½µ…¥¹Ìˆ°($‰`µ½¹Ñ•¹ÐµQåÁ”µ=ÁÑ¥½¹Ìˆè€‰¹½Í¹¥™˜ˆ°($‰I•™•ÉÉ•ÈµA½±¥äˆè€‰ÍÑÉ¥Ðµ½É¥¥¸µÝ¡•¸µÉ½ÍÌµ½É¥¥¸ˆ°($‰A•Éµ¥ÍÍ¥½¹ÌµA½±¥äˆè€‰…µ•É„ô ¤°µ¥É½Á¡½¹”ô ¤°•½±½…Ñ¥½¸ô ¤ˆ°($‰½¹Ñ•¹ÐµM•ÕÉ¥ÑäµA½±¥äˆè€‰‘•™…Õ±ÐµÍÉŒ€Í•±˜œìÍÉ¥ÁÐµÍÉŒ€Í•±˜œ€Õ¹Í…™”µ¥¹±¥¹”œìÍÑå±”µÍÉŒ€Í•±˜œ€Õ¹Í…™”µ¥¹±¥¹”œì¥µœµÍÉŒ€Í•±˜œ¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´‘…Ñ„èì™½¹ÐµÍÉŒ€Í•±˜œ‘…Ñ„èì½¹¹•ÐµÍÉŒ€Í•±˜œì™½É´µ…Ñ¥½¸€Í•±˜œ¡ÑÑÁÌè¼½ÝÝÜ¹¹‰Õå¡„¹½´ì™É…µ”µ…¹•ÍÑ½ÉÌ€¹½¹”œì‰…Í”µÕÉ¤€Í•±˜œì½‰©•ÐµÍÉŒ€¹½¹”œìÕÁÉ…‘”µ¥¹Í•ÕÉ”µÉ•ÅÕ•ÍÑÌˆ)ôì)™Õ¹Ñ¥½¸Í•ÕÉ”¡É•ÍÁ½¹Í”¤ì(%½¹ÍÐÍ•ÕÉ•€ô¹•ÜI•ÍÁ½¹Í”¡É•ÍÁ½¹Í”¹‰½‘ä°É•ÍÁ½¹Í”¤ì(%™½È€¡½¹ÍÐm¹…µ”°Ù…±Õ•t½˜=‰©•Ð¹•¹ÑÉ¥•Ì¡Í•ÕÉ¥Ñå!•…‘•ÉÌ¤¤Í•ÕÉ•¹¡•…‘•ÉÌ¹Í•Ð¡¹…µ”°Ù…±Õ”¤ì(%É•ÑÕÉ¸Í•ÕÉ•ì)ô(¼¼•¹‘É•¥½¸(¼¼É•¥½¸pÁÙ¥ÉÑÕ…°é±½Õ‘™±…É”½Ý½É­•Èµ•¹ÑÉä)Ù…ÈÝ½É­•É}•¹ÑÉå}‘•™…Õ±Ð€ôì…Íå¹Œ™•Ñ ¡É•ÅÕ•ÍÐ°•¹Ø°Ñà¤ì(%¥˜€¡¹•ÜUI0¡É•ÅÕ•ÍÐ¹ÕÉ°¤¹Á…Ñ¡¹…µ”€ôôô€ˆ½}Ù¥¹•áÐ½¥µ…”ˆ¤É•ÑÕÉ¸Í•ÕÉ”¡…Ý…¥Ð¡…¹‘±•%µ…•=ÁÑ¥µ¥é…Ñ¥½¸¡É•ÅÕ•ÍÐ°ì($%™•Ñ¡ÍÍ•Ðè€¡Á…Ñ ¤€ôø•¹Ø¹MMQL¹™•Ñ ¡¹•ÜI•ÅÕ•ÍÐ¡¹•ÜUI0¡Á…Ñ °É•ÅÕ•ÍÐ¹ÕÉ°¤¤¤°($%ÑÉ…¹Í™½Éµ%µ…”è…Íå¹Œ€¡‰½‘ä°ìÝ¥‘Ñ °™½Éµ…Ð°ÅÕ…±¥Ñäô¤€ôøì($$%É•ÑÕÉ¸€¡…Ý…¥Ð•¹Ø¹%5L¹¥¹ÁÕÐ¡‰½‘ä¤¹ÑÉ…¹Í™½É´¡Ý¥‘Ñ €ø€À€üìÝ¥‘Ñ ô€èíô¤¹½ÕÑÁÕÐ¡ì($$$%™½Éµ…Ð°($$$%ÅÕ…±¥Ñä($$%ô¤¤¹É•ÍÁ½¹Í” ¤ì($%ô(%ô°l¸¸¹U1Q}Y%}M%iL°€¸¸¹U1Q}%5}M%iMt¤¤ì(%É•ÑÕÉ¸Í•ÕÉ”¡…Ý…¥Ð…ÁÁ}É½ÕÑ•É}•¹ÑÉå}‘•™…Õ±Ð¹™•Ñ ¡É•ÅÕ•ÍÐ°•¹Ø°Ñà¤¤ì)ôôì(¼¼•¹‘É•¥½¸)•áÁ½ÉÐìÝ½É­•É}•¹ÑÉå}‘•™…Õ±Ð…Ì‘•™…Õ±Ðôì(
