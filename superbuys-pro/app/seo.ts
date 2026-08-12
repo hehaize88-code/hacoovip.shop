@@ -15,3 +15,13 @@ export function makeMetadata(path:string, locale:Locale, title:string, descripti
     openGraph:{title,description,type:"website",url:localized(locale),siteName:"Superbuy Product Index"},
   };
 }
+
+export function makeArticleMetadata(path:string, locale:Locale, title:string, description:string):Metadata {
+  const metadata=makeMetadata(path,locale,title,description);
+  const image="https://superbuys.pro/first-order-workflow.svg";
+  return {
+    ...metadata,
+    openGraph:{...metadata.openGraph,type:"article",images:[{url:image,width:1200,height:630,alt:"Superbuy shopping-agent first order workflow from product link to warehouse"}]},
+    twitter:{card:"summary_large_image",title,description,images:[image]},
+  };
+}
