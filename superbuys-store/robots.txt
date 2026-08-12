@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://superbuys.store/sitemap.xml
