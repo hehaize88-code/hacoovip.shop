@@ -85,7 +85,7 @@
       "exampleType": "Clearly labelled decision scenarios and evidence matrices, never fabricated customer orders, fees or outcomes",
       "outline": ["decision question", "Standard strengths", "Premium field roles", "record matching", "three scenarios", "confidence discount", "agent handoff"],
       "faqAngles": ["Is Premium QC always more reliable?", "When are Standard QC photos enough?", "Can Premium measurements predict shipping cost?"],
-      "visuals": ["Five original HTML decision tables plus one existing local editorial catalog image; no customer or external media"],
+      "visuals": ["Four original HTML decision tables plus one existing local editorial catalog image; no customer or external media"],
       "planTrack": "F05",
       "cycle": "C01"
     }
