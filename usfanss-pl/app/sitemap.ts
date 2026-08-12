@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { articleSlugs, locales, routeFor } from "./site-data";
 
 const base = "https://usfanss.pl";
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["home", "finds", "categories", "guides", "articles", "faq"] as const;

@@ -1,0 +1,6 @@
+:HL["/_next/static/css/26d3426696411617.css","style"]
+:HL["/usfans-logo.png","image"]
+:HL["https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6164I0217.webp","image"]
+:HL["https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6163I3956.webp","image"]
+:HL["https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616301A57.webp","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"slug","param":{"type":"c","key":"en/finds","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"VJAcTTgnQRK4QVt2-diDq"}

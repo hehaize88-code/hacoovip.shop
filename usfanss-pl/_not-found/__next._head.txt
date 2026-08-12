@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[646,[],"ViewportBoundary"]
+3:I[646,[],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[5859,[],"IconMark"]
+0:{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"USFanss 2026 — Independent Product Finder"}],["$","meta","1",{"name":"description","content":"Independent, multilingual product discovery directory with categories, finds, guides, and practical articles."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","link","4",{"rel":"shortcut icon","href":"/favicon.svg"}],["$","link","5",{"rel":"icon","href":"/favicon.svg"}],["$","$L5","6",{}]]}]}]}],null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"VJAcTTgnQRK4QVt2-diDq"}
