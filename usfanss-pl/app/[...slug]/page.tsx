@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { articleSlugs, copy, getArticles, locales, parseRoute, routeFor } from "../site-data";
+import { articleSlugs, getArticles, getPageSeo, locales, parseRoute, routeFor } from "../site-data";
 import { SitePage } from "../site-page";
 
 const siteBase = "https://usfanss.pl";
@@ -19,14 +19,19 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
   const route = parseRoute((await params).slug);
   if (!route) return {};
-  const c = copy[route.locale];
-  const pageTitle = route.page === "article" && route.article ? getArticles(route.locale)[route.article].seoTitle ?? getArticles(route.locale)[route.article].title : route.page === "home" ? c.heroLines.join(" ") : route.page === "finds" ? c.findsTitle : route.page === "categories" ? c.categoriesTitle : route.page === "guides" ? c.guidesTitle : route.page === "articles" ? c.articlesTitle : c.faqTitle;
-  const description = route.page === "article" && route.article ? getArticles(route.locale)[route.article].excerpt : c.heroBody;
+  const article = route.page === "article" && route.article ? getArticles(route.locale)[route.article] : null;
+  const seo = route.page === "article" ? null : getPageSeo(route.locale, route.page);
+  const pageTitle = article ? article.seoTitle ?? article.title : seo!.title;
+  const description = article ? article.excerpt : seo!.description;
   const pathname = routeFor(route.locale, route.page, route.article);
+  const isThinLocalizedArticle = route.page === "article" && route.locale !== "en";
+  const languageEntries = route.page === "article"
+    ? [["en", `${siteBase}${routeFor("en", "article", route.article)}`], ["x-default", `${siteBase}${routeFor("en", "article", route.article)}`]]
+    : locales.map((l) => [l.lang, `${siteBase}${routeFor(l.code, route.page)}`]).concat([["x-default", `${siteBase}${routeFor("en", route.page)}`]]);
   return {
     title: pageTitle, description,
-    alternates: { canonical: `${siteBase}${pathname}`, languages: Object.fromEntries(locales.map((l) => [l.lang, `${siteBase}${routeFor(l.code, route.page, route.article)}`]).concat([["x-default", `${siteBase}${routeFor("en", route.page, route.article)}`]])) },
-    robots: { index: true, follow: true }
+    alternates: { canonical: `${siteBase}${pathname}`, languages: Object.fromEntries(languageEntries) },
+    robots: { index: !isThinLocalizedArticle, follow: true }
   };
 }
 

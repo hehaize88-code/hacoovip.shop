@@ -14,12 +14,12 @@ export const locales: Array<{ code: Locale; label: string; short: string; lang: 
 ];
 
 export const products = [
-  { name: "P6000 / Gel-Kayano Mix", category: "Footwear", price: "$43", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6164I0217.webp", href: "https://www.cnbuycha.com/AllProducts/3402.html", tone: "Fresh" },
-  { name: "Down Jacket", category: "Outerwear", price: "$98", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6163I3956.webp", href: "https://www.cnbuycha.com/AllProducts/3396.html", tone: "Cold weather" },
-  { name: "Mertra Hoodie", category: "Hoodies", price: "$31", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616301A57.webp", href: "https://www.cnbuycha.com/AllProducts/3393.html", tone: "Trending" },
-  { name: "Runner Tatic", category: "Footwear", price: "$88", image: "https://www.cnbuycha.com/uploads/allimg/20260804/1-260P4220203120.webp", href: "https://www.cnbuycha.com/AllProducts/3388.html", tone: "New season" },
-  { name: "Everyday Bag", category: "Accessories", price: "$27", image: "https://www.cnbuycha.com/uploads/allimg/20260804/1-260P4220335407.webp", href: "https://www.cnbuycha.com/AllProducts/3389.html", tone: "Daily pick" },
-  { name: "Compact Wallet", category: "Accessories", price: "$17", image: "https://www.cnbuycha.com/uploads/allimg/20260729/1-260H9212KN32.webp", href: "https://www.cnbuycha.com/AllProducts/3382.html", tone: "Under $20" },
+  { name: "P6000 / Gel-Kayano Mix", category: "Footwear", price: "$43", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6164I0217.webp", href: "https://www.cnbuycha.com/AllProducts/3402.html", qcTip: "Compare both shoes, size labels, soles, stitching, and colour panels." },
+  { name: "The North Face Down Jacket", category: "Outerwear", price: "$98", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6163I3956.webp", href: "https://www.cnbuycha.com/AllProducts/3396.html", qcTip: "Check the size label, zip, logo placement, seams, and even down filling." },
+  { name: "Mertra Hoodie", category: "Hoodies", price: "$31", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616301A57.webp", href: "https://www.cnbuycha.com/AllProducts/3393.html", qcTip: "Verify chest length, print alignment, cuffs, stitching, and fabric colour." },
+  { name: "LOUIS VUITTON Runner Tatic", category: "Footwear", price: "$88", image: "https://www.cnbuycha.com/uploads/allimg/20260804/1-260P4220203120.webp", href: "https://www.cnbuycha.com/AllProducts/3388.html", qcTip: "Compare the pair, heel shape, panel alignment, outsole, and size tag." },
+  { name: "Adidas Bag", category: "Accessories", price: "$27", image: "https://www.cnbuycha.com/uploads/allimg/20260804/1-260P4220335407.webp", href: "https://www.cnbuycha.com/AllProducts/3389.html", qcTip: "Inspect the zip, strap hardware, seams, interior, and visible marks." },
+  { name: "Louis Vuitton Wallet", category: "Accessories", price: "$17", image: "https://www.cnbuycha.com/uploads/allimg/20260729/1-260H9212KN32.webp", href: "https://www.cnbuycha.com/AllProducts/3382.html", qcTip: "Check edge paint, stitching, card slots, fold alignment, and surface marks." },
 ];
 
 export const categories = [
@@ -56,7 +56,7 @@ export const copy: Record<Locale, Copy> = {
   pl: {
     nav: { home: "Start", finds: "Znaleziska", categories: "Kategorie", guides: "Poradniki", articles: "Artykuły SEO", faq: "FAQ" },
     browseAll: "Zobacz wszystko", language: "Język", independent: "Niezależny katalog produktów", updated: "Aktualizacja 2026",
-    heroLines: ["Znajdź produkt.", "Sprawdź szczegóły.", "Kupuj rozsądniej."],
+    heroLines: ["USFans Spreadsheet Polska:", "Znaleziska produktów", "i zdjęcia QC."],
     heroBody: "Przejrzysty sposób przeglądania znalezisk z arkuszy USFans — według kategorii, z rzeczywistymi zdjęciami produktów i wygodnie na telefonie.",
     searchLabel: "Przeszukaj katalog produktów", searchPlaceholder: "Wpisz: bluza, buty, torba…", search: "Szukaj", explore: "Zobacz najnowsze znaleziska", howLink: "Jak działa katalog",
     categoriesKicker: "Zacznij szeroko", categoriesTitle: "Wybierz kategorię, potem zawęź wybór.", categoriesBody: "Każda kategoria prowadzi do osobnej, aktualnej kolekcji produktów.",
@@ -68,7 +68,7 @@ export const copy: Record<Locale, Copy> = {
   },
   en: {
     nav: { home: "Home", finds: "Finds", categories: "Categories", guides: "Guides", articles: "SEO Articles", faq: "FAQ" }, browseAll: "Browse all", language: "Language", independent: "Independent product finder", updated: "Updated 2026",
-    heroLines: ["Find the piece.", "Check the details.", "Shop smarter."], heroBody: "A cleaner way to explore USFans-style spreadsheet finds—organized by category, presented with real product imagery, and built for fast mobile browsing.", searchLabel: "Search the product index", searchPlaceholder: "Try hoodie, runner, bag…", search: "Search", explore: "Explore this week's finds", howLink: "How the index works",
+    heroLines: ["USFans Spreadsheet 2026:", "Product Finds, QC Photos", "& Guides."], heroBody: "A cleaner way to explore USFans-style spreadsheet finds—organized by category, presented with real product imagery, and built for fast mobile browsing.", searchLabel: "Search the product index", searchPlaceholder: "Try hoodie, runner, bag…", search: "Search", explore: "Explore this week's finds", howLink: "How the index works",
     categoriesKicker: "Start broad", categoriesTitle: "Pick a category, then go specific.", categoriesBody: "Every category opens a separate, current product collection.", findsKicker: "Fresh index", findsTitle: "Finds worth opening first.", findsBody: "A focused product shortlist instead of thousands of difficult spreadsheet rows.", viewIndex: "View full product index", approx: "approx.", priceNote: "USD prices are approximate guides. The current listing, selected option, domestic delivery, services, and international shipping may change the final amount.", howKicker: "A better route", howTitle: "From inspiration to the product page in three steps.", howBody: "Start with search or a category, compare a short list, then open the full detail page and verify the current information.", steps: [["Search or browse", "Use a keyword or choose one of ten focused collections."], ["Open the detail", "Review product imagery and the information currently available."], ["Verify before deciding", "Check the price, option, seller, QC imagery, and shipping terms."]],
     guidesKicker: "Practical knowledge", guidesTitle: "Guides for real shopping questions.", guidesBody: "Independent pages covering QC photos, parcel costs, and safer listing research.", articleKicker: "Content hub", articlesTitle: "SEO articles written for people.", articlesBody: "Original, fact-checked content that answers a specific user question without filler.", readArticle: "Read article", planned: "Complete guide", faqKicker: "Short answers", faqTitle: "Frequently asked questions", faqIntro: "The essentials to understand before opening a listing or using the index.", faqs: [["What is a USFans spreadsheet?", "It is an organized directory of product links from Chinese marketplaces. This site turns a long spreadsheet into a mobile-friendly catalog."], ["Are displayed prices final?", "No. They are approximate USD conversions. The option, domestic delivery, services, and international shipping can change the total."], ["Does this website sell products?", "No. It is an independent information directory. Product cards open separate detail pages where current information can be checked."], ["Does changing language remove content?", "No. Every language keeps the same pages, modules, products, articles, and FAQ items."]], finalEyebrow: "Less scrolling. Better first clicks.", finalTitle: "Find your next piece.", finalCta: "Open the index", disclaimer: "Independent product discovery directory. Not affiliated with USFans, Taobao, Weidian, 1688, or any shopping agent. Verify the current product, seller, QC, price, and shipping terms before purchase.", backTop: "Back to top", currentPage: "Current page", articleIndex: "All articles", keyTakeaways: "Key takeaways"
   },
@@ -136,9 +136,74 @@ export function getArticles(locale: Locale): Record<ArticleSlug, LocalArticle> {
   return articleTranslations[locale];
 }
 
+type IndexPage = Exclude<PageKind, "article">;
+
+const pageSeo: Record<Locale, Record<IndexPage, { title: string; description: string }>> = {
+  pl: {
+    home: { title: "USFans Spreadsheet Polska 2026: Znaleziska, QC i Kategorie", description: "Przeglądaj USFans Spreadsheet Polska 2026: zweryfikowane znaleziska produktów, kategorie, zdjęcia QC i praktyczne poradniki zakupowe." },
+    finds: { title: "USFans Znaleziska Produktów 2026", description: "Otwórz aktualne znaleziska USFans z pełnymi nazwami, kategoriami, cenami orientacyjnymi USD, zdjęciami oraz wskazówkami kontroli QC." },
+    categories: { title: "Kategorie USFans Spreadsheet Polska", description: "Przeglądaj osobne kategorie USFans Spreadsheet: buty, bluzy, kurtki, koszulki, akcesoria, elektronika i inne zweryfikowane kolekcje." },
+    guides: { title: "Poradniki USFans: QC, Koszty i Weryfikacja", description: "Praktyczne poradniki USFans o czytaniu zdjęć QC, sprawdzaniu wariantów, szacowaniu kosztu paczki i bezpiecznym wyborze oferty." },
+    articles: { title: "Artykuły USFans Spreadsheet i QC", description: "Czytaj oparte na faktach artykuły USFans dotyczące pierwszego zamówienia, zdjęć QC, ceny produktu i kosztów wysyłki międzynarodowej." },
+    faq: { title: "USFans FAQ: Produkty, QC i Wysyłka", description: "Odpowiedzi na najczęstsze pytania o katalog USFans, ceny orientacyjne, zdjęcia QC, dostawę krajową i wysyłkę międzynarodową." },
+  },
+  en: {
+    home: { title: "USFans Spreadsheet 2026: Product Finds, QC Photos & Guides", description: "Explore USFans Spreadsheet 2026 product finds, verified category links, QC photo guidance, approximate USD prices, and practical buying guides." },
+    finds: { title: "USFans Product Finds 2026", description: "Browse current USFans product finds with full names, categories, approximate USD prices, real product images, direct links, and focused QC checks." },
+    categories: { title: "USFans Spreadsheet Product Categories", description: "Open focused USFans Spreadsheet categories for shoes, hoodies, jackets, T-shirts, accessories, jerseys, electronics, and more product finds." },
+    guides: { title: "USFans Guides: QC Photos, Costs & Checks", description: "Use practical USFans guides to read QC photos, verify variants, understand parcel costs, and check current product listings before deciding." },
+    articles: { title: "USFans Spreadsheet & QC Articles", description: "Read fact-checked USFans articles covering first-order research, warehouse QC photos, product prices, parcel costs, and shipping decisions." },
+    faq: { title: "USFans FAQ: Products, QC & Shipping", description: "Find clear answers about the USFans product index, approximate prices, QC photos, domestic delivery, parcel submission, and international shipping." },
+  },
+  de: {
+    home: { title: "USFans Spreadsheet 2026: Produkte, QC-Fotos & Ratgeber", description: "Entdecke USFans Spreadsheet 2026 mit Produktfunden, Kategorien, QC-Hinweisen, ungefähren USD-Preisen und praktischen Einkaufsratgebern." },
+    finds: { title: "USFans Produktfunde 2026", description: "Aktuelle USFans Produktfunde mit vollständigen Namen, Kategorien, USD-Richtpreisen, echten Produktbildern, Direktlinks und konkreten QC-Prüfpunkten." },
+    categories: { title: "USFans Spreadsheet Produktkategorien", description: "Öffne USFans Kategorien für Schuhe, Hoodies, Jacken, T-Shirts, Accessoires, Trikots, Elektronik und weitere geprüfte Produktsammlungen." },
+    guides: { title: "USFans Ratgeber: QC, Kosten & Prüfung", description: "Praktische USFans Ratgeber zu QC-Fotos, Variantenprüfung, Paketkosten und der Kontrolle aktueller Produktangebote vor der Entscheidung." },
+    articles: { title: "USFans Spreadsheet und QC Artikel", description: "Faktengeprüfte USFans Artikel über erste Bestellungen, Lager-QC, Produktpreise, Paketkosten und internationale Versandentscheidungen." },
+    faq: { title: "USFans FAQ: Produkte, QC und Versand", description: "Klare Antworten zum USFans Produktindex, USD-Richtpreisen, QC-Fotos, Inlandsversand, Paketabgabe und internationalem Versand." },
+  },
+  fr: {
+    home: { title: "USFans Spreadsheet 2026 : Produits, photos QC et guides", description: "Explorez USFans Spreadsheet 2026 avec trouvailles, catégories, conseils QC, prix USD indicatifs et guides d’achat pratiques." },
+    finds: { title: "Sélection de produits USFans 2026", description: "Consultez les produits USFans avec noms complets, catégories, prix USD indicatifs, vraies images, liens directs et contrôles QC précis." },
+    categories: { title: "Catégories de produits USFans Spreadsheet", description: "Ouvrez les catégories USFans pour chaussures, sweats, vestes, T-shirts, accessoires, maillots, électronique et autres sélections." },
+    guides: { title: "Guides USFans : QC, coûts et vérification", description: "Guides pratiques USFans pour lire les photos QC, vérifier les variantes, estimer le colis et contrôler une offre avant de décider." },
+    articles: { title: "Articles USFans Spreadsheet et QC", description: "Articles USFans vérifiés sur la première commande, les photos QC, le prix produit, le coût du colis et l’expédition internationale." },
+    faq: { title: "FAQ USFans : produits, QC et expédition", description: "Réponses claires sur l’index USFans, les prix indicatifs, les photos QC, la livraison intérieure et l’expédition internationale." },
+  },
+  it: {
+    home: { title: "USFans Spreadsheet 2026: Prodotti, foto QC e guide", description: "Esplora USFans Spreadsheet 2026 con prodotti, categorie, controlli QC, prezzi indicativi in USD e guide pratiche all’acquisto." },
+    finds: { title: "Prodotti USFans 2026", description: "Scopri prodotti USFans con nomi completi, categorie, prezzi indicativi USD, immagini reali, link diretti e controlli QC specifici." },
+    categories: { title: "Categorie prodotti USFans Spreadsheet", description: "Apri categorie USFans per scarpe, felpe, giacche, T-shirt, accessori, maglie, elettronica e altre raccolte di prodotti." },
+    guides: { title: "Guide USFans: QC, costi e verifica", description: "Guide pratiche USFans per leggere foto QC, controllare varianti, stimare il costo del pacco e verificare l’inserzione attuale." },
+    articles: { title: "Articoli USFans Spreadsheet e QC", description: "Articoli USFans verificati su primo ordine, foto QC, prezzi dei prodotti, costi del pacco e spedizione internazionale." },
+    faq: { title: "FAQ USFans: prodotti, QC e spedizione", description: "Risposte chiare su catalogo USFans, prezzi indicativi, foto QC, consegna nazionale, invio del pacco e spedizione internazionale." },
+  },
+  es: {
+    home: { title: "USFans Spreadsheet 2026: Productos, fotos QC y guías", description: "Explora USFans Spreadsheet 2026 con productos, categorías, consejos QC, precios aproximados en USD y guías de compra prácticas." },
+    finds: { title: "Productos USFans 2026", description: "Consulta productos USFans con nombres completos, categorías, precios aproximados USD, imágenes reales, enlaces directos y controles QC concretos." },
+    categories: { title: "Categorías de productos USFans Spreadsheet", description: "Abre categorías USFans de calzado, sudaderas, chaquetas, camisetas, accesorios, prendas deportivas, electrónica y otros productos." },
+    guides: { title: "Guías USFans: QC, costes y verificación", description: "Guías prácticas USFans para leer fotos QC, revisar variantes, calcular costes del paquete y comprobar un anuncio antes de decidir." },
+    articles: { title: "Artículos USFans Spreadsheet y QC", description: "Artículos USFans verificados sobre primer pedido, fotos QC, precio del producto, coste del paquete y envío internacional." },
+    faq: { title: "FAQ USFans: productos, QC y envío", description: "Respuestas claras sobre el índice USFans, precios aproximados, fotos QC, entrega nacional, paquete y envío internacional." },
+  },
+  ro: {
+    home: { title: "USFans Spreadsheet 2026: Produse, fotografii QC și ghiduri", description: "Explorează USFans Spreadsheet 2026 cu produse, categorii, verificări QC, prețuri USD orientative și ghiduri practice de cumpărare." },
+    finds: { title: "Produse USFans 2026", description: "Vezi produse USFans cu denumiri complete, categorii, prețuri USD orientative, imagini reale, linkuri directe și verificări QC concrete." },
+    categories: { title: "Categorii de produse USFans Spreadsheet", description: "Deschide categorii USFans pentru pantofi, hanorace, jachete, tricouri, accesorii, echipamente sportive, electronice și alte produse." },
+    guides: { title: "Ghiduri USFans: QC, costuri și verificare", description: "Ghiduri practice USFans pentru fotografii QC, verificarea variantelor, estimarea coletului și controlul ofertei înainte de decizie." },
+    articles: { title: "Articole USFans Spreadsheet și QC", description: "Articole USFans verificate despre prima comandă, fotografii QC, prețul produsului, costul coletului și transportul internațional." },
+    faq: { title: "USFans FAQ: produse, QC și transport", description: "Răspunsuri clare despre catalogul USFans, prețuri orientative, fotografii QC, livrare internă, colet și transport internațional." },
+  },
+};
+
+export function getPageSeo(locale: Locale, page: IndexPage) {
+  return pageSeo[locale][page];
+}
+
 export function routeFor(locale: Locale, page: Exclude<PageKind, "article"> | "article", article?: ArticleSlug) {
   const prefix = locale === "pl" ? "" : `/${locale}`;
-  if (page === "home") return prefix || "/";
+  if (page === "home") return prefix ? `${prefix}/` : "/";
   if (page === "article" && article) return `${prefix}/articles/${article}/`;
   return `${prefix}/${page}/`;
 }

@@ -2,6 +2,8 @@ import type { ArticleSlug, Locale, PageKind } from "./site-data";
 import { allProducts, articleSlugs, categories, copy, getArticles, locales, products, routeFor } from "./site-data";
 import { researchedFaqs, researchedSteps } from "./researched-content";
 
+const siteBase = "https://usfanss.pl";
+
 const articleResearchLabels: Record<Locale, string> = {
   pl: "Sprawdzone na publicznych stronach USFans · aktualizacja 12 sierpnia 2026",
   en: "Fact-checked against USFans public pages · updated 12 August 2026",
@@ -22,13 +24,23 @@ const categoryLabels: Record<Locale, string[]> = {
   ro: ["Pantofi", "Hanorace", "Tricouri", "Jachete", "Pantaloni", "Șepci", "Accesorii", "Tricouri sportive", "Electronice", "Altele"],
 };
 
+const productLabels: Record<Locale, { category: string; qc: string; tips: string[] }> = {
+  pl: { category: "Kategoria", qc: "Kontrola QC", tips: ["Porównaj oba buty, metki rozmiaru, podeszwy, szwy i kolory paneli.", "Sprawdź metkę rozmiaru, zamek, położenie logo, szwy i równomierne wypełnienie.", "Sprawdź długość, nadruk, mankiety, szwy i kolor materiału.", "Porównaj parę, kształt pięty, ułożenie paneli, podeszwę i metkę rozmiaru.", "Sprawdź zamek, okucia paska, szwy, wnętrze i widoczne ślady.", "Sprawdź krawędzie, szwy, przegródki, linię zgięcia i ślady na powierzchni."] },
+  en: { category: "Category", qc: "QC check", tips: products.map((product) => product.qcTip) },
+  de: { category: "Kategorie", qc: "QC-Prüfung", tips: ["Beide Schuhe, Größenetiketten, Sohlen, Nähte und Farbflächen vergleichen.", "Größenetikett, Reißverschluss, Logoposition, Nähte und gleichmäßige Füllung prüfen.", "Länge, Druckausrichtung, Bündchen, Nähte und Stofffarbe prüfen.", "Paar, Fersenform, Panelposition, Außensohle und Größenetikett vergleichen.", "Reißverschluss, Riemenbeschläge, Nähte, Innenraum und sichtbare Spuren prüfen.", "Kantenfarbe, Nähte, Kartenfächer, Falz und Oberflächenspuren prüfen."] },
+  fr: { category: "Catégorie", qc: "Contrôle QC", tips: ["Comparez les deux chaussures, tailles, semelles, coutures et panneaux de couleur.", "Vérifiez taille, zip, position du logo, coutures et répartition du rembourrage.", "Vérifiez longueur, alignement de l’imprimé, poignets, coutures et couleur.", "Comparez la paire, le talon, les panneaux, la semelle et l’étiquette de taille.", "Inspectez zip, pièces de sangle, coutures, intérieur et marques visibles.", "Contrôlez bords, coutures, fentes, pli et marques de surface."] },
+  it: { category: "Categoria", qc: "Controllo QC", tips: ["Confronta entrambe le scarpe, taglie, suole, cuciture e pannelli colore.", "Controlla taglia, zip, posizione del logo, cuciture e imbottitura uniforme.", "Verifica lunghezza, stampa, polsini, cuciture e colore del tessuto.", "Confronta paio, forma del tallone, pannelli, suola e taglia.", "Controlla zip, ferramenta, cuciture, interno e segni visibili.", "Controlla bordi, cuciture, scomparti, piega e segni superficiali."] },
+  es: { category: "Categoría", qc: "Control QC", tips: ["Compara ambos zapatos, tallas, suelas, costuras y paneles de color.", "Revisa talla, cremallera, posición del logotipo, costuras y relleno uniforme.", "Comprueba largo, impresión, puños, costuras y color del tejido.", "Compara el par, talón, paneles, suela exterior y etiqueta de talla.", "Inspecciona cremallera, herrajes, costuras, interior y marcas visibles.", "Revisa bordes, costuras, ranuras, pliegue y marcas superficiales."] },
+  ro: { category: "Categorie", qc: "Verificare QC", tips: ["Compară ambii pantofi, etichetele, tălpile, cusăturile și panourile colorate.", "Verifică mărimea, fermoarul, poziția logo-ului, cusăturile și umplutura uniformă.", "Verifică lungimea, imprimeul, manșetele, cusăturile și culoarea materialului.", "Compară perechea, forma călcâiului, panourile, talpa și eticheta mărimii.", "Inspectează fermoarul, accesoriile curelei, cusăturile, interiorul și urmele.", "Verifică marginile, cusăturile, compartimentele, pliul și urmele de suprafață."] },
+};
+
 function Header({ locale, page, article }: { locale: Locale; page: PageKind; article?: ArticleSlug }) {
   const c = copy[locale];
   const activePage = page === "article" ? "articles" : page;
   return (
     <header className="nav-wrap">
       <a className="brand" href={routeFor(locale, "home")} aria-label="USFanss home">
-        <img className="brand-logo" src="/usfans-logo.png" alt="USFans" />
+        <img className="brand-logo" src="/usfans-logo.png" alt="USFans" width="373" height="105" loading="eager" />
         <span className="brand-year">/ 2026</span>
       </a>
       <nav aria-label="Primary navigation">
@@ -84,19 +96,22 @@ function CategoryGrid({ locale, limit }: { locale: Locale; limit?: number }) {
 
 function ProductGrid({ locale, limit }: { locale: Locale; limit?: number }) {
   const c = copy[locale];
+  const labels = productLabels[locale];
+  const localizedCategories = [categoryLabels[locale][0], categoryLabels[locale][3], categoryLabels[locale][1], categoryLabels[locale][0], categoryLabels[locale][6], categoryLabels[locale][6]];
   return (
     <>
       <div className="product-grid">
         {products.slice(0, limit).map((product, index) => (
           <a className="product-card" href={product.href} key={product.href} target="_blank" rel="noopener noreferrer">
             <div className="product-image-wrap">
-              <img src={product.image} alt={product.name} loading={index > 2 ? "lazy" : "eager"} />
+              <img src={product.image} alt={product.name} width="800" height="800" loading="lazy" decoding="async" />
               <span className="product-open">↗</span>
             </div>
             <div className="product-meta">
-              <h3>{product.name}</h3>
+              <div><small className="product-category">{labels.category}: {localizedCategories[index]}</small><h3>{product.name}</h3></div>
               <div className="price"><strong>{product.price}</strong><small>{c.approx}</small></div>
             </div>
+            <p className="product-qc"><strong>{labels.qc}:</strong> {labels.tips[index]}</p>
           </a>
         ))}
       </div>
@@ -147,8 +162,8 @@ function HomePage({ locale }: { locale: Locale }) {
           <div className="hero-actions"><a className="primary-button" href={routeFor(locale, "finds")}>{c.explore}</a><a className="text-button" href={routeFor(locale, "guides")}>{c.howLink} ↓</a></div>
         </div>
         <div className="hero-visual" aria-hidden="true">
-          <figure className="hero-card hero-card-main"><img src={products[0].image} alt="" /></figure>
-          <figure className="hero-card hero-card-small"><img src={products[2].image} alt="" /></figure>
+          <figure className="hero-card hero-card-main"><img src={products[0].image} alt="" width="800" height="800" loading="eager" /></figure>
+          <figure className="hero-card hero-card-small"><img src={products[2].image} alt="" width="800" height="800" loading="eager" /></figure>
         </div>
       </section>
       <section className="quick-nav" aria-label="Independent pages">
@@ -194,10 +209,14 @@ function FAQPage({ locale }: { locale: Locale }) {
 function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
   const c = copy[locale];
   const article = getArticles(locale)[slug];
-  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: routeFor(locale, "article", slug) };
+  const articleUrl = `${siteBase}${routeFor(locale, "article", slug)}`;
+  const articlesUrl = `${siteBase}${routeFor(locale, "articles")}`;
+  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, dateModified: "2026-08-12" };
+  const breadcrumbJson = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${siteBase}${routeFor(locale, "home")}` }, { "@type": "ListItem", position: 2, name: c.nav.articles, item: articlesUrl }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       <article className="article-page">
         <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{articleResearchLabels[locale]}</small></header>
         <div className="article-layout">
@@ -220,17 +239,20 @@ function FinalCTA({ locale }: { locale: Locale }) {
 
 function Footer({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  return <footer><div className="footer-brand"><img className="footer-logo" src="/usfans-logo.png" alt="USFans" /><strong>/ 2026</strong></div><p>{c.disclaimer}</p><div><a href="#top">{c.backTop} ↑</a><span>{locale.toUpperCase()}</span></div></footer>;
+  return <footer><div className="footer-brand"><img className="footer-logo" src="/usfans-logo.png" alt="USFans" width="373" height="105" loading="lazy" /><strong>/ 2026</strong></div><p>{c.disclaimer}</p><div><a href="#top">{c.backTop} ↑</a><span>{locale.toUpperCase()}</span></div></footer>;
 }
 
 export function SitePage({ locale, page, article }: { locale: Locale; page: PageKind; article?: ArticleSlug }) {
-  const c = copy[locale];
   const languageTag = locales.find((item) => item.code === locale)?.lang ?? locale;
   const faqJson = page === "faq" ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: researchedFaqs[locale].map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) } : null;
+  const siteJson = page === "home" ? [{ "@context": "https://schema.org", "@type": "WebSite", name: "USFanss", url: `${siteBase}${routeFor(locale, "home")}`, inLanguage: languageTag }, { "@context": "https://schema.org", "@type": "Organization", name: "USFanss", url: siteBase, logo: `${siteBase}/usfans-logo.png` }] : [];
+  const itemListJson = page === "finds" ? { "@context": "https://schema.org", "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: product.name, url: product.href, image: product.image })) } : null;
   return (
     <main className={`site page-${page}`} id="top">
       <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(languageTag)}` }} />
+      {siteJson.map((json, index) => <script key={`site-json-${index}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }} />)}
       {faqJson && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />}
+      {itemListJson && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJson) }} />}
       <div className="page-shell">
         <Header locale={locale} page={page} article={article} />
         {page === "home" && <HomePage locale={locale} />}

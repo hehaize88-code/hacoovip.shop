@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { SitePage } from "./site-page";
-import { locales, routeFor } from "./site-data";
+import { getPageSeo, locales, routeFor } from "./site-data";
 
 const siteBase = "https://usfanss.pl";
 
 export const metadata: Metadata = {
-  title: "Znajdź produkt. Sprawdź szczegóły. Kupuj rozsądniej.",
-  description: "Niezależny katalog znalezisk z arkuszy USFans: produkty, kategorie, poradniki i artykuły SEO w siedmiu językach.",
+  title: getPageSeo("pl", "home").title,
+  description: getPageSeo("pl", "home").description,
   alternates: {
     canonical: `${siteBase}/`,
     languages: Object.fromEntries(locales.map((locale) => [locale.lang, `${siteBase}${routeFor(locale.code, "home")}`]).concat([["x-default", `${siteBase}/en/`]])),
