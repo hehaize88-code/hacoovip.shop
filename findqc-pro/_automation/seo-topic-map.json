@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-10",
+  "lastUpdated": "2026-08-12",
   "latestPublishedCommit": "24b60e95a3d01e98e2e041108c1e010c7112ef13",
   "articles": [
     {
@@ -76,6 +76,18 @@
       "outline": ["evidence roles", "order identity", "mismatch classification", "three-column comparison", "agent request", "privacy and integrity", "ten-minute triage"],
       "faqAngles": ["Can a FindQC return badge guarantee eligibility?", "Which photos make a warehouse mismatch verifiable?", "What private details should be removed before sharing evidence?"],
       "visuals": ["Four original HTML evidence and request tables plus one existing local editorial apparel image; no customer media"]
+    },
+    {
+      "slug": "findqc-standard-vs-premium-qc",
+      "primaryQuery": "FindQC Standard QC vs Premium QC",
+      "intent": "Choose the least evidence tier that can answer a specific product-research question",
+      "focus": ["photo-only decisions", "Premium video and measurements", "history-signal limits", "identity matching", "agent handoff"],
+      "exampleType": "Clearly labelled decision scenarios and evidence matrices, never fabricated customer orders, fees or outcomes",
+      "outline": ["decision question", "Standard strengths", "Premium field roles", "record matching", "three scenarios", "confidence discount", "agent handoff"],
+      "faqAngles": ["Is Premium QC always more reliable?", "When are Standard QC photos enough?", "Can Premium measurements predict shipping cost?"],
+      "visuals": ["Five original HTML decision tables plus one existing local editorial catalog image; no customer or external media"],
+      "planTrack": "F05",
+      "cycle": "C01"
     }
   ]
 }
