@@ -1273,6 +1273,140 @@ export const articles = [
     related: ["findqc-shopping-agent-workflow", "what-qc-photos-can-prove", "findqc-qc-measurements-size-guide"],
     cta: { eyebrow: "Prepare the warehouse record", title: "Use the complete QC photo checklist before deciding", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
+  {
+    slug: "findqc-standard-vs-premium-qc",
+    title: "FindQC Standard QC vs Premium QC: Which Evidence Do You Actually Need?",
+    shortTitle: "FindQC Standard QC vs Premium QC",
+    description: "Compare FindQC Standard QC and Premium QC by decision value, evidence limits and the questions each record can actually help answer.",
+    excerpt: "A decision-first comparison of photo-only Standard QC and the video, measurements and history signals that may appear in Premium QC.",
+    category: "FindQC Research",
+    readTime: "10 min read",
+    date: "12 August 2026",
+    dateISO: "2026-08-12",
+    updatedISO: "2026-08-12",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-standard-vs-premium-qc"],
+    heroImage: "/products/shoes-60.jpg",
+    heroAlt: "Grey shoes used as an editorial example for choosing the level of QC evidence needed",
+    heroCaption: "Existing FindQC Pro editorial catalog image. It is not a warehouse QC record, customer order or example of Premium QC.",
+    keywords: ["FindQC Standard QC vs Premium QC", "FindQC Premium QC", "standard QC photos", "Premium QC video", "FindQC Product Intelligence"],
+    sourceIntro: "FindQC's current What Is QC, How FindQC Works, Product Intelligence, How to Buy, Beginner Checklist and Terms pages were checked on 12 August 2026. This article reports the fields those pages describe without implying that every record contains them.",
+    intro: [
+      "The useful question is not whether Premium QC sounds more complete. It is whether the extra evidence can change the decision you need to make. If the only uncertainty is an obvious surface mark, a clear Standard QC photo set may be enough. If the uncertainty concerns motion, measured parcel characteristics or a pattern across earlier records, photos alone may leave the important question unanswered.",
+      "FindQC currently describes two evidence levels. Standard QC centers on inspection photographs. Premium QC can add video, measured weight, three-side dimensions, seller and domestic-delivery timing signals, review history, defect history, return history and a Product Intelligence report when those fields are available. These are research inputs, not a purchase or shipping service, and none guarantees that your own item will match an earlier record.",
+    ],
+    sections: [
+      {
+        id: "decision-first",
+        title: "1. Choose by unresolved question, not by the tier name",
+        blocks: [
+          { type: "p", text: "Start by writing one sentence: “Before I decide, I still need to know whether…” Complete it with an observable question. Is the print centered? Does a zipper travel cleanly? Is a bulky outer box likely to matter when an agent later quotes shipping? Do earlier records repeatedly show the same visible defect? A tier is useful only if it contains evidence that bears on that sentence." },
+          { type: "p", text: "This prevents a common mistake: treating more fields as stronger proof of everything. A measured weight does not prove fabric composition. A video does not establish authenticity. A return-history signal does not create a return right for your order. Each field has a narrow job, and the surrounding identity—source link, seller, model, colour, size and date—must still match the item being researched." },
+          { type: "callout", title: "Fast rule", text: "Use Standard QC when clear still images can resolve the visible question. Look for Premium QC when motion, measured dimensions or repeated historical signals could materially change the decision." },
+          { type: "table", headers: ["Unresolved question", "Most relevant evidence", "What it still cannot prove"], rows: [
+            ["Is the visible placement straight?", "Well-oriented Standard QC photos", "Hidden construction or future durability"],
+            ["Does a moving part operate visibly?", "Premium QC video, if the action is recorded", "Long-term reliability"],
+            ["Could size or bulk affect later planning?", "Premium measured weight and three-side dimensions", "A final carrier charge or route eligibility"],
+            ["Does an issue recur across records?", "Premium defect, return and review history", "The condition of your own unit"],
+          ] },
+        ],
+      },
+      {
+        id: "standard-qc",
+        title: "2. What Standard QC can do well",
+        blocks: [
+          { type: "p", text: "Standard QC is the practical starting point for appearance. A coherent photo set can show the overall silhouette, colour under the photographed lighting, panel alignment, print or embroidery placement, labels, accessories, visible stains, scratches, open seams and packaging condition. Wide views establish orientation; close views support the detail. When the issue is plainly visible from a stable angle, a still image is often easier to pause, compare and annotate than a moving clip." },
+          { type: "p", text: "The limitation is not that Standard QC is “bad.” It is that a photograph freezes one moment and one viewpoint. It may not show the back of a component, the inside of a pocket or what happens when hardware moves. Lighting can shift colour, compression can hide texture and perspective can distort proportions. If a critical angle is absent, a large gallery of unrelated views does not fill that gap." },
+          { type: "list", title: "Standard QC is usually sufficient when", items: [
+            "The item identity and chosen variant are clear in the record.",
+            "The deciding feature is visible from at least one wide view and one useful detail view.",
+            "You can compare the same area across more than one angle or photo.",
+            "No motion test, measured parcel characteristic or historical pattern is central to the decision.",
+            "You are willing to mark an unanswered question as unknown instead of inferring it from appearance.",
+          ] },
+        ],
+      },
+      {
+        id: "premium-fields",
+        title: "3. Read each Premium QC field as a separate instrument",
+        blocks: [
+          { type: "p", text: "FindQC's current public explanation says Premium QC can combine detailed photos and video with measured weight, three-side dimensions, seller shipping time, domestic delivery time, review history, defect history and return history. Its Product Intelligence page says some Premium records may also contain an Insights Report that organizes seller fulfillment, review summaries and historical signals. “Can” and “may” matter: the platform warns that records can be incomplete and originate from third parties." },
+          { type: "table", headers: ["Premium field", "Decision it may improve", "Necessary caution"], rows: [
+            ["Video", "Whether a zipper, clasp, sole flex or rotating part moves visibly during the recorded action", "No recorded action means no motion evidence; a short clip is not a durability test"],
+            ["Measured weight", "Whether the recorded item appears materially lighter or heavier than a relevant comparison", "Measurement method, packaging state and item identity must match"],
+            ["Three-side dimensions", "Whether recorded bulk deserves attention before an agent prepares a parcel", "They are not a final billable-volume calculation or route quote"],
+            ["Seller and domestic timing", "Whether earlier seller fulfillment appears consistently quick, mixed or sparse", "Past domestic movement does not predict international delivery"],
+            ["Review summary", "Which themes are worth checking in photos or the live listing", "A summary can omit context and does not replace the original sample"],
+            ["Defect and return history", "Whether a repeated issue deserves a targeted inspection request", "Small or mixed samples cannot establish a defect rate for your unit"],
+          ] },
+          { type: "p", text: "Use the field that matches the question and ignore fields that merely create a sense of completeness. For example, seller timing may be useful when planning an agent purchase, but it contributes nothing to judging stitch alignment. Conversely, a crisp collar close-up may answer an appearance question even when no historical report exists." },
+          { type: "callout", title: "Premium does not mean verified truth", text: "It means a potentially richer record. The identity match, sample size, capture date, missing fields and third-party origin still determine how much weight the evidence deserves." },
+        ],
+      },
+      {
+        id: "compare-records",
+        title: "4. Compare records without merging different products into one story",
+        blocks: [
+          { type: "p", text: "Before combining several QC records, confirm that they describe the same source item rather than a similar recommendation. FindQC says it groups identical-source records separately from visually or categorically similar products, but a researcher should still check the source marketplace, item identifier, seller, model, variant and record date. A different seller's similar hoodie cannot establish the defect history of the hoodie you intend to buy." },
+          { type: "p", text: "Then create a simple comparison sheet with one row per record. Columns should include identity confidence, date, variant, available evidence level, decisive observation and missing information. Do not average incompatible observations. If two records show different colours, packaging states or versions, preserve those differences instead of inventing a single “typical” item." },
+          { type: "table", headers: ["Record status", "How to use it", "Decision wording"], rows: [
+            ["Same item, same variant, clear date", "Direct comparison candidate", "Two matched records show the same visible alignment issue"],
+            ["Same source item, different variant", "Pattern prompt, not variant proof", "Check whether the issue appears on the ordered variant"],
+            ["Similar recommendation only", "Discovery clue", "This similar item suggests an angle to inspect; it is not evidence about the target"],
+            ["Identity unclear or listing replaced", "Hold separately", "No conclusion until the source identity is resolved"],
+          ] },
+        ],
+      },
+      {
+        id: "three-scenarios",
+        title: "5. Three scenarios that show when the extra evidence matters",
+        blocks: [
+          { type: "p", text: "Scenario one: you are checking whether a chest graphic is centered. The Standard set contains a level front view, a second front angle and close details. Premium timing or weight fields would not improve that judgement. Compare the print edges with stable garment seams, allow for fabric folds and stop if the camera itself is tilted." },
+          { type: "table", headers: ["Scenario", "Minimum useful evidence", "Escalation condition"], rows: [
+            ["Centered graphic", "Straight wide and detail photos", "Ask for a new level view if folds or camera angle obscure alignment"],
+            ["Working clasp", "A clear action video", "Treat it as unknown if the clasp is never opened and closed"],
+            ["Bulky boxed item", "Measured weight and three-side dimensions", "Ask the agent for current parcel and route estimates before committing to shipping"],
+            ["Possible recurring flaw", "Several identity-matched records plus visible examples", "Do not call it a rate or prediction when the sample is small"],
+          ] },
+          { type: "p", text: "Scenario two: a bag's clasp position looks correct, but you need to know whether it opens and closes normally. Still photos show the position, not the action. A Premium video helps only if it records that exact operation in focus. If the clip simply rotates the bag, the motion question remains unanswered." },
+          { type: "callout", title: "Scenario three: parcel planning", text: "Recorded weight and dimensions can flag that packaging or bulk deserves attention. They do not tell you what a shopping agent or carrier will charge. Ask the service handling the parcel to calculate its current billable basis, restrictions and options." },
+        ],
+      },
+      {
+        id: "limits",
+        title: "6. Apply an evidence discount for age, identity and sample size",
+        blocks: [
+          { type: "p", text: "Every record deserves a confidence label. Start high only when the source identity, seller, variant and date are clear. Reduce confidence when the listing has changed, the variant differs, the measurement method is unclear or the record is old enough that a seller's batch may have changed. Reduce it again when a historical conclusion rests on very few observations." },
+          { type: "list", title: "Four labels are enough", items: [
+            "Direct: identity-matched evidence that visibly answers the question.",
+            "Supporting: relevant evidence with a known variant, date or method limitation.",
+            "Prompt only: a similar record that tells you what to inspect next.",
+            "Unknown: missing, conflicting or too ambiguous to support a decision.",
+          ] },
+          { type: "p", text: "FindQC's official terms state that third-party QC photos, video, weight, dimensions and defect records may be inaccurate, incomplete or unavailable. That is not a reason to discard the platform. It is a reason to phrase conclusions narrowly: “three matched records show this visible issue” is defensible; “this seller always sends defective items” is not." },
+        ],
+      },
+      {
+        id: "handoff",
+        title: "7. Finish with a decision record and an agent handoff",
+        blocks: [
+          { type: "list", title: "Record the decision in this order", items: [
+            "Target item and variant: save the source identity you actually intend to order.",
+            "Decision question: state the one uncertainty that matters.",
+            "Evidence used: name Standard photos or the specific Premium fields consulted.",
+            "Confidence and limits: note mismatched variants, old records, small samples or missing angles.",
+            "Outcome: proceed, hold for more evidence or reject the candidate.",
+            "Agent request: if proceeding, ask the purchasing service to confirm the current transaction or warehouse detail it controls.",
+          ] },
+          { type: "p", text: "FindQC remains the research layer throughout this process. Its current How to Buy page assigns ordering, payment, warehouse handling, returns, consolidation, packaging and international shipping to shopping agents. Therefore a Premium weight field can inform a question, but the agent handling your parcel must provide the operative warehouse measurement and shipping decision." },
+          { type: "p", text: "The strongest choice is not automatically the record with the most fields. It is the record that answers the important question with the fewest unsupported assumptions. Use Standard QC confidently for clear visible evidence; use Premium QC when its specific additions close a real gap; and preserve “unknown” whenever neither tier actually shows what you need." },
+          { type: "callout", title: "Final check", text: "Can another reader trace your decision from item identity to question, evidence, limitation and next action? If not, improve the record before treating the conclusion as settled." },
+        ],
+      },
+    ],
+    sources: [],
+    related: ["what-qc-photos-can-prove", "findqc-search-methods", "findqc-shopping-agent-workflow"],
+    cta: { eyebrow: "Inspect the evidence itself", title: "Use the full QC photo checklist before a warehouse decision", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
+  },
 ];
 
 export function getArticle(slug) {
