@@ -50,6 +50,23 @@ export const articles = [
       caption: "An original Hacoo Pro status map for following a preorder or backorder before fulfilment.",
     },
   },
+  {
+    slug: "hacoo-wrong-address-evidence",
+    title: "Wrong Address on a Hacoo Order: Evidence and Action Checklist",
+    description: "Collect the right Hacoo order, address and shipment evidence, then choose the fastest support path before or after a tracking number appears.",
+    excerpt: "A privacy-aware workflow for recording the entered address, checking shipment status and asking one precise address-correction question.",
+    published: "2026-08-13",
+    modified: "2026-08-13",
+    checkedLabel: "August 13, 2026",
+    read: "9 min",
+    image: {
+      path: "/articles/hacoo-address-correction-path.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo wrong-address decision path from order record to fulfilment or carrier support",
+      caption: "An original Hacoo Pro decision map for an address error at different shipment stages.",
+    },
+  },
 ];
 
 export function getArticle(slug) {

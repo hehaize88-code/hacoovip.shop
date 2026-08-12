@@ -180,6 +180,7 @@ export default function HacooPreorderSupportArticle() {
             <ul>
               <li><Link className="source-link" href="/guides/shipping-planning/">Shipping planning</Link> — distinguish preparation from delivery estimates.</li>
               <li><Link className="source-link" href="/articles/hacoo-order-missing-item-split-shipment/">Partial-order checklist</Link> — reconcile parcels after another line arrives.</li>
+              <li><Link className="source-link" href="/articles/hacoo-wrong-address-evidence/">Wrong-address checklist</Link> — preserve the order address and shipment state before requesting a correction.</li>
               <li><Link className="source-link" href="/guides/how-to-use-hacoo-spreadsheet/">Research workflow</Link> — verify the live destination before relying on saved details.</li>
               <li><Link className="source-link" href="/faq/">Hacoo Pro FAQ</Link> — understand this independent site's role and limits.</li>
               <li><Link className="source-link" href="/articles/">Research articles</Link> — browse the full English article index.</li>

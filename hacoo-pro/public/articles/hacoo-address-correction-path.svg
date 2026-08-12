@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Hacoo wrong-address support decision path</title>
+  <desc id="desc">A three-stage diagram showing how to record the order address, check shipment assignment, and contact the party controlling the parcel.</desc>
+  <rect width="1200" height="630" fill="#f3efe5"/>
+  <path d="M0 0h1200v22H0z" fill="#d7ef44"/>
+  <text x="72" y="90" fill="#172017" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3">HACOO PRO · SUPPORT FIELD NOTE</text>
+  <text x="72" y="151" fill="#172017" font-family="Arial, sans-serif" font-size="46" font-weight="800">Wrong address: preserve the record first</text>
+  <text x="72" y="192" fill="#4f5b50" font-family="Arial, sans-serif" font-size="21">The shipment stage determines who may still be able to act.</text>
+  <g transform="translate(72 250)">
+    <rect width="300" height="236" rx="22" fill="#172017"/>
+    <circle cx="42" cy="44" r="21" fill="#d7ef44"/>
+    <text x="35" y="52" fill="#172017" font-family="Arial, sans-serif" font-size="22" font-weight="800">1</text>
+    <text x="32" y="94" fill="#ffffff" font-family="Arial, sans-serif" font-size="25" font-weight="800">Record the order</text>
+    <text x="32" y="133" fill="#d9e2d9" font-family="Arial, sans-serif" font-size="18">Current address</text>
+    <text x="32" y="162" fill="#d9e2d9" font-family="Arial, sans-serif" font-size="18">Corrected address</text>
+    <text x="32" y="191" fill="#d9e2d9" font-family="Arial, sans-serif" font-size="18">Status + time checked</text>
+  </g>
+  <path d="M390 368h75" stroke="#819081" stroke-width="5" stroke-linecap="round"/>
+  <path d="m455 355 18 13-18 13" fill="none" stroke="#819081" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(483 250)">
+    <rect width="300" height="236" rx="22" fill="#ffffff" stroke="#c7cfc6" stroke-width="2"/>
+    <circle cx="42" cy="44" r="21" fill="#172017"/>
+    <text x="35" y="52" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" font-weight="800">2</text>
+    <text x="32" y="94" fill="#172017" font-family="Arial, sans-serif" font-size="25" font-weight="800">Check control</text>
+    <text x="32" y="133" fill="#4f5b50" font-family="Arial, sans-serif" font-size="18">No tracking: fulfilment</text>
+    <text x="32" y="162" fill="#4f5b50" font-family="Arial, sans-serif" font-size="18">Tracking: carrier assigned</text>
+    <text x="32" y="191" fill="#4f5b50" font-family="Arial, sans-serif" font-size="18">Never assume correction</text>
+  </g>
+  <path d="M801 368h75" stroke="#819081" stroke-width="5" stroke-linecap="round"/>
+  <path d="m866 355 18 13-18 13" fill="none" stroke="#819081" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(894 250)">
+    <rect width="234" height="236" rx="22" fill="#d7ef44"/>
+    <circle cx="42" cy="44" r="21" fill="#172017"/>
+    <text x="35" y="52" fill="#ffffff" font-family="Arial, sans-serif" font-size="22" font-weight="800">3</text>
+    <text x="32" y="94" fill="#172017" font-family="Arial, sans-serif" font-size="25" font-weight="800">Ask once</text>
+    <text x="32" y="133" fill="#344034" font-family="Arial, sans-serif" font-size="18">Use official support</text>
+    <text x="32" y="162" fill="#344034" font-family="Arial, sans-serif" font-size="18">Send one verified address</text>
+    <text x="32" y="191" fill="#344034" font-family="Arial, sans-serif" font-size="18">Keep the case reference</text>
+  </g>
+  <rect x="72" y="535" width="1056" height="2" fill="#c7cfc6"/>
+  <text x="72" y="580" fill="#4f5b50" font-family="Arial, sans-serif" font-size="18">Privacy rule: names, full addresses, order IDs and tracking numbers stay in official support channels.</text>
+</svg>
