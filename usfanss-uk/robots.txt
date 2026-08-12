@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://usfanss.uk
+Sitemap: https://usfanss.uk/sitemap.xml

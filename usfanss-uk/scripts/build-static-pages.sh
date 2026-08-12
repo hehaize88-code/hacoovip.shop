@@ -13,12 +13,11 @@ if [[ ! -x "${next_bin}" ]]; then
 fi
 
 rm -rf "${pages_dir}" "${static_out}"
-
 cd "${project_root}"
 CLOUDFLARE_PAGES_STATIC=1 "${next_bin}" build
-
 mkdir -p "${project_root}/dist"
 mv "${static_out}" "${pages_dir}"
+node "${project_root}/scripts/postprocess-static.mjs"
 
 required_pages=(
   "index.html"

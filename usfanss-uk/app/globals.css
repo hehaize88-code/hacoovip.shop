@@ -206,6 +206,8 @@ footer { min-height:185px; display:grid; grid-template-columns:.5fr 1.2fr 1fr; g
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
+.mobile-nav{display:none;position:relative}.mobile-nav summary{list-style:none;cursor:pointer}.mobile-nav summary::-webkit-details-marker{display:none}
+
 /* Dense mobile edition: every homepage module remains present, arranged in a
    compact, glanceable grid with no horizontal carousel. */
 @media(max-width:680px){
@@ -227,4 +229,33 @@ footer { min-height:185px; display:grid; grid-template-columns:.5fr 1.2fr 1fr; g
   footer{min-height:110px;grid-template-columns:80px 1fr;padding:18px 14px;gap:12px;align-items:start}footer .logo{width:76px;padding:5px}footer p{font-size:6px;line-height:1.4}footer nav{grid-column:1/-1;gap:9px;font-size:5px}
   .interior-hero{min-height:300px;gap:16px}.interior-hero h1{font-size:42px;margin:16px 0}.interior-hero>div>p:last-child{font-size:11px}.interior-route{min-height:72px}.interior-route span,.interior-route b,.interior-route em{width:30px;height:30px;font-size:6px}.interior-route i{width:26px}.interior-section{min-height:auto}.search-panel{margin-top:28px;padding:16px}.search-panel h2{font-size:27px;margin-bottom:15px}.qc-manual{gap:25px}.manual-intro h2{font-size:34px}.manual-intro p{font-size:10px}.qc-manual li{grid-template-columns:26px 1fr;padding:15px 0;gap:8px}.qc-manual h3{font-size:18px}.qc-manual li p{font-size:9px;line-height:1.4}.articles-page{min-height:auto}.help-page .faq-list summary{min-height:55px}
   .article-hero{min-height:390px}.article-hero small{margin:28px 0 12px;font-size:6px}.article-hero h1{font-size:42px}.article-hero p{font-size:11px}.article-layout{gap:28px}.article-layout aside{max-width:150px}.article-layout aside span,.article-layout aside b{font-size:6px;margin-top:10px}.article-body>section{grid-template-columns:25px 1fr;padding-bottom:25px;margin-bottom:25px}.article-body h2{font-size:27px;margin-bottom:14px}.article-body p{font-size:12px;line-height:1.65}.article-body p+p{margin-top:12px}.article-disclaimer{padding:18px;margin-bottom:28px}
+}
+
+/* Mobile readability pass: preserve every module and every piece of useful
+   copy while keeping the two-column, no-carousel layout compact. */
+@media(max-width:1050px){
+  .site-header{grid-template-columns:1fr auto auto}
+  .mobile-nav{display:block}
+  .mobile-nav summary{width:42px;height:38px;display:grid;place-items:center;border:1px solid var(--ink);background:var(--signal);font-size:18px;font-weight:900}
+  .mobile-nav>div{position:absolute;z-index:30;top:44px;right:0;width:min(270px,80vw);padding:8px;background:var(--white);border:1px solid var(--ink);box-shadow:7px 7px 0 var(--orange)}
+  .mobile-nav a{display:block;padding:12px;border-bottom:1px solid #d5d3ca;font-size:13px;font-weight:800}.mobile-nav a:last-child{border-bottom:0}.mobile-nav a.active{background:var(--signal)}
+}
+
+@media(max-width:680px){
+  .section-wrap{padding:34px 15px}
+  .site-header{height:60px;padding:0 12px}.logo{width:96px}.header-actions{gap:5px}.header-ticket{height:38px}.header-ticket span{display:none}.header-ticket b{width:38px;height:36px}
+  .mobile-nav summary{width:38px;height:36px}
+  .hero-copy{padding:34px 15px 24px}.hero h1{font-size:44px;line-height:.92;margin:20px 0}.hero-lede{font-size:14px;line-height:1.5;margin-bottom:18px}.overline{font-size:10px}.route-stamp{top:72px;width:60px;height:60px}.route-stamp span,.route-stamp small{font-size:9px}
+  .boarding-pass{grid-template-columns:1fr}.pass-label{min-height:54px;border-right:0;border-bottom:1px dashed var(--ink)}.pass-label small{font-size:10px}.pass-label b{font-size:12px}.boarding-pass input{height:52px;font-size:14px}.boarding-pass button{width:100%;min-height:46px;border-left:0;border-top:1px dashed var(--ink);flex-direction:row}.boarding-pass button span{display:inline;font-size:12px}.boarding-pass button b{font-size:17px}
+  .hero-notes span,.hero-notes b{font-size:10px}.route-map{min-height:335px}.map-caption span,.map-pin,.tag-copy small,.route-mini-tag small{font-size:9px}.tag-copy b{font-size:13px}.tag-copy span,.tag-copy span i,.route-mini-tag b,.route-mini-tag em{font-size:10px}
+  .status-ribbon{grid-template-columns:repeat(2,1fr);padding:8px;gap:5px}.status-ribbon span,.status-ribbon b,.status-ribbon span:last-child{display:block;font-size:10px;text-align:center}
+  .route-heading{grid-template-columns:1fr;gap:8px;margin-bottom:16px}.route-heading p,.route-heading>a{font-size:12px;line-height:1.4}.route-heading>a{grid-column:auto;max-width:none}.route-heading h2{font-size:30px}
+  .departure-board{grid-template-columns:1fr 1fr}.departure-board a{grid-template-columns:30px 1fr;grid-template-rows:auto auto auto;min-height:98px;padding:10px 8px;gap:5px}.departure-board a>b{font-size:10px}.departure-board strong{font-size:14px}.departure-board a>span{display:block;grid-column:2;font-size:12px;line-height:1.25}.departure-board em{display:block;grid-column:2;font-size:10px}.departure-board em i{font-size:10px}
+  .belt{grid-template-columns:1fr 1fr;gap:8px}.baggage-tag,.baggage-tag:nth-child(2n){grid-template-columns:30px 58px 1fr;grid-template-rows:auto auto;min-height:110px}.tag-index small{font-size:9px}.tag-index b{font-size:15px}.tag-thumb img{width:50px;height:70px}.tag-main small{font-size:9px}.tag-main strong{font-size:12px;line-height:1.2}.tag-main span{display:block;font-size:10px}.tag-price{display:flex;grid-column:2/-1;min-height:30px;padding:5px 7px;align-items:center;justify-content:space-between;border-top:1px dashed var(--ink)}.tag-price b,.tag-price span{font-size:10px}.mini-barcode{display:none}
+  .inspection{grid-template-columns:1fr;gap:18px}.inspection-copy .section-code,.inspection-copy>a{font-size:11px}.inspection-copy h2{font-size:32px}.inspection-copy>p:not(.section-code){font-size:13px;line-height:1.5}.light-table{min-height:260px}.focus,.light-label{font-size:9px}
+  .article-grid{grid-template-columns:repeat(2,1fr);gap:9px}.article-card,.article-card:last-child{grid-column:auto;min-height:285px;padding:8px}.article-card:last-child{max-width:none}.article-image{height:110px}.article-no{font-size:10px}.article-card small,.article-card>b{font-size:10px;line-height:1.25}.article-card h3{font-size:15px;line-height:1.18}
+  .help{grid-template-columns:1fr;gap:16px}.help-desk span,.help-desk p,.text-link{font-size:12px;line-height:1.45}.help-desk h2{font-size:32px}.faq-list summary{min-height:50px}.faq-list summary>span{font-size:10px}.faq-list summary b{font-size:13px}.faq-list details p{font-size:12px;line-height:1.5}
+  .final-route>span,.final-route a{font-size:10px}.final-route h2{font-size:34px}
+  footer{grid-template-columns:90px 1fr;min-height:150px}footer p{font-size:11px;line-height:1.5}footer nav{font-size:10px;line-height:1.5}
+  .interior-hero>div>p:last-child,.manual-intro p,.qc-manual li p,.article-hero p{font-size:13px}.article-hero small,.article-layout aside span,.article-layout aside b{font-size:10px}.article-body p{font-size:14px}.article-grid+.boarding-pass{margin-top:15px}
 }

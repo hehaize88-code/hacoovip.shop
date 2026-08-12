@@ -7,14 +7,14 @@ export type Locale = "en" | "de" | "fr" | "es" | "it" | "pl";
 export const localeCodes: Locale[] = ["en", "de", "fr", "es", "it", "pl"];
 
 export const categories = [
-  { name: "Sneakers", href: "https://www.cnfanshp.com/shoes/", code: "SNK", note: "Footwear finds" },
-  { name: "Hoodies", href: "https://www.cnfanshp.com/hoodies-sweaters/", code: "HDY", note: "Layers & knits" },
-  { name: "T-Shirts", href: "https://www.cnfanshp.com/t-shirts/", code: "TEE", note: "Daily rotation" },
-  { name: "Jerseys", href: "https://www.cnfanshp.com/jersey/", code: "JSY", note: "Club & country" },
-  { name: "Pants", href: "https://www.cnfanshp.com/pants-shorts/", code: "PNT", note: "Denim & shorts" },
-  { name: "Headwear", href: "https://www.cnfanshp.com/headwear/", code: "CAP", note: "Caps & beanies" },
-  { name: "Accessories", href: "https://www.cnfanshp.com/accessories/", code: "ACC", note: "Small essentials" },
-  { name: "Electronics", href: "https://www.cnfanshp.com/electronics/", code: "ELX", note: "Tech finds" },
+  { name: "Sneakers", href: "https://www.cnbuycha.com/shoes/", code: "SNK", note: "Footwear finds" },
+  { name: "Hoodies", href: "https://www.cnbuycha.com/hoodies-sweaters/", code: "HDY", note: "Layers & knits" },
+  { name: "T-Shirts", href: "https://www.cnbuycha.com/t-shirts/", code: "TEE", note: "Daily rotation" },
+  { name: "Jerseys", href: "https://www.cnbuycha.com/Jersey/", code: "JSY", note: "Club & country" },
+  { name: "Pants", href: "https://www.cnbuycha.com/pants-shorts/", code: "PNT", note: "Denim & shorts" },
+  { name: "Headwear", href: "https://www.cnbuycha.com/headwear/", code: "CAP", note: "Caps & beanies" },
+  { name: "Accessories", href: "https://www.cnbuycha.com/accessories/", code: "ACC", note: "Small essentials" },
+  { name: "Electronics", href: "https://www.cnbuycha.com/electronics/", code: "ELX", note: "Tech finds" },
 ];
 
 export const products = [
@@ -269,7 +269,7 @@ const translatedArticleFallback: Record<Exclude<Locale,"en">, { intro:string; he
 function localePath(locale: Locale, path = "") {
   const clean = path.replace(/^\/+|\/+$/g, "");
   const prefix = locale === "en" ? "" : `/${locale}`;
-  return `${prefix}${clean ? `/${clean}` : "/"}`.replace(/\/$/, clean ? "" : "/");
+  return `${prefix}${clean ? `/${clean}/` : "/"}`;
 }
 
 function Logo({ footer = false }: { footer?: boolean }) {
@@ -285,6 +285,7 @@ function Header({ locale, route }: { locale: Locale; route: string }) {
   return <header className="site-header">
     <a href={localePath(locale)} aria-label={u.ariaHome}><Logo /></a>
     <nav aria-label={u.ariaNav}>{nav.map((path,index)=><a key={path} className={route === path || route.startsWith(`${path}/`) ? "active" : ""} href={localePath(locale,path)}>{c.nav[index]}</a>)}</nav>
+    <details className="mobile-nav"><summary aria-label={u.ariaNav}>☰</summary><div>{nav.map((path,index)=><a key={path} className={route === path || route.startsWith(`${path}/`) ? "active" : ""} href={localePath(locale,path)}>{c.nav[index]}</a>)}</div></details>
     <div className="header-actions"><LanguageSwitcher current={locale} languages={languageLinks} label={u.ariaLang}/><a className="header-ticket" href={`${localePath(locale)}#search`}><span>{c.route}</span><b>↗</b></a></div>
   </header>;
 }
@@ -296,11 +297,12 @@ function Footer({ locale }: { locale: Locale }) {
 
 function SearchForm({ locale }: { locale: Locale }) {
   const c=copy[locale];
-  return <form className="boarding-pass" id="search" action="https://www.cnfanshp.com/search.html" method="get" target="_blank">
+  return <form className="boarding-pass" id="search" action="https://www.cnbuycha.com/search.html" method="get" target="_blank">
     <div className="pass-label"><small>{c.searchLabel}</small><b>{c.searchPrompt}</b></div>
     <label className="sr-only" htmlFor="product-search">{c.searchPrompt}</label>
     <input id="product-search" name="keywords" placeholder={c.searchPlaceholder} required />
     <input type="hidden" name="channelid" value="2"/>
+    <input type="hidden" name="method" value="1"/>
     <button type="submit"><span>{c.searchButton}</span><b>↗</b></button>
   </form>;
 }
@@ -327,8 +329,10 @@ function Home({locale}:{locale:Locale}) {
   const c=copy[locale], u=ui[locale];
   const faqs=localizedFaqs[locale].slice(0,4);
   const faqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(item=>({"@type":"Question",name:item.q,acceptedAnswer:{"@type":"Answer",text:item.a}}))};
+  const websiteSchema={"@context":"https://schema.org","@type":"WebSite",name:"USFans Spreadsheet & QC Guide",url:"https://usfanss.uk/",inLanguage:locale,potentialAction:{"@type":"SearchAction",target:"https://www.cnbuycha.com/search.html?keywords={search_term_string}&channelid=2&method=1","query-input":"required name=search_term_string"}};
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteSchema)}}/>
     <section className="hero">
       <div className="route-stamp" aria-hidden="true"><span>{u.stampRoute.toUpperCase()}</span><b>026</b><small>{u.live.toUpperCase()} / 2026</small></div>
       <div className="hero-copy"><p className="overline"><span/> {c.homeOverline}</p><h1>{c.homeTitle}<br/><em>{c.homeAccent}</em></h1><p className="hero-lede">{c.homeLead}</p><SearchForm locale={locale}/><div className="hero-notes"><span><b>08</b> {u.heroNotes[0]}</span><span><b>USD</b> {u.heroNotes[1]}</span><span><b>QC</b> {u.heroNotes[2]}</span></div></div>
@@ -360,8 +364,10 @@ function HelpPage({locale}:{locale:Locale}) { const c=copy[locale], faqs=localiz
 function ArticlePage({locale,slug}:{locale:Locale;slug:string}) {
   const c=copy[locale], u=ui[locale], meta=articleMeta.find(item=>item.slug===slug) ?? articleMeta[0];
   const content=articleContent[locale][meta.slug];
-  const schema={"@context":"https://schema.org","@type":"Article",headline:meta.titles[locale],datePublished:"2026-08-11",dateModified:"2026-08-11",inLanguage:locale,image:`https://usfanss.uk${meta.image}`,mainEntityOfPage:`https://usfanss.uk${localePath(locale,`articles/${meta.slug}`)}`};
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><article className="article-page"><header className="article-hero section-wrap"><a href={localePath(locale,"articles")}>← {c.back}</a><small>{u.labels[articleMeta.indexOf(meta)]} / {u.updated.toUpperCase()} / {meta.minutes}</small><h1>{meta.titles[locale]}</h1><p>{content.intro}</p></header><div className="article-layout section-wrap"><aside><img src={meta.image} alt="" width="520" height="520"/><span>{u.fieldNote.toUpperCase()}</span><b>{c.route.toUpperCase()} / {meta.slug.slice(-5).toUpperCase()}</b></aside><div className="article-body">{content.sections.map((section,index)=><section key={section.h}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.h}</h2><div>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</div></section>)}<div className="article-disclaimer"><b>{u.important}</b><p>{u.disclaimer}</p></div><SearchForm locale={locale}/></div></div></article></>;
+  const articleUrl=`https://usfanss.uk${localePath(locale,`articles/${meta.slug}`)}`;
+  const schema={"@context":"https://schema.org","@type":"Article",headline:meta.titles[locale],datePublished:"2026-08-11",dateModified:"2026-08-12",inLanguage:locale,image:`https://usfanss.uk${meta.image}`,url:articleUrl,mainEntityOfPage:{"@type":"WebPage","@id":articleUrl}};
+  const breadcrumb={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`https://usfanss.uk${localePath(locale)}`},{"@type":"ListItem",position:2,name:c.nav[3],item:`https://usfanss.uk${localePath(locale,"articles")}`},{"@type":"ListItem",position:3,name:meta.titles[locale],item:articleUrl}]};
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(breadcrumb)}}/><article className="article-page"><header className="article-hero section-wrap"><a href={localePath(locale,"articles")}>← {c.back}</a><small>{u.labels[articleMeta.indexOf(meta)]} / {u.updated.toUpperCase()} / {meta.minutes}</small><h1>{meta.titles[locale]}</h1><p>{content.intro}</p></header><div className="article-layout section-wrap"><aside><img src={meta.image} alt="" width="520" height="520"/><span>{u.fieldNote.toUpperCase()}</span><b>{c.route.toUpperCase()} / {meta.slug.slice(-5).toUpperCase()}</b></aside><div className="article-body">{content.sections.map((section,index)=><section key={section.h}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.h}</h2><div>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</div></section>)}<div className="article-disclaimer"><b>{u.important}</b><p>{u.disclaimer}</p></div><SearchForm locale={locale}/></div></div></article></>;
 }
 
 export function SitePage({locale="en",route=""}:{locale?:Locale;route?:string}) {
@@ -374,16 +380,19 @@ export function SitePage({locale="en",route=""}:{locale?:Locale;route?:string}) 
   else if (route==="help") page=<HelpPage locale={locale}/>;
   else if (route.startsWith("articles/") && articleMeta.some(item=>item.slug===route.split("/")[1])) page=<ArticlePage locale={locale} slug={route.split("/")[1]}/>;
   else notFound();
-  return <main id="top" lang={locale}><Header locale={locale} route={route}/>{page}<Footer locale={locale}/></main>;
+  return <><script dangerouslySetInnerHTML={{__html:`document.documentElement.lang=${JSON.stringify(locale)}`}}/><main id="top" lang={locale}><Header locale={locale} route={route}/>{page}<Footer locale={locale}/></main></>;
 }
 
 export function pageMeta(locale:Locale,route:string) {
   const c=copy[locale];
+  const homeTitles:Record<Locale,string>={en:"USFans Spreadsheet 2026: Product Finds & QC Guide",de:"USFans Spreadsheet 2026: Produktfunde & QC-Ratgeber",fr:"USFans Spreadsheet 2026 : produits et guide QC",es:"USFans Spreadsheet 2026: productos y guía QC",it:"USFans Spreadsheet 2026: prodotti e guida QC",pl:"USFans Spreadsheet 2026: produkty i poradnik QC"};
+  const articleTitles:Record<Locale,string>={en:"USFans SEO Articles & Guides 2026",de:"USFans SEO-Ratgeber & Artikel 2026",fr:"Articles et guides SEO USFans 2026",es:"Artículos y guías SEO de USFans 2026",it:"Articoli e guide SEO USFans 2026",pl:"Artykuły i poradniki SEO USFans 2026"};
+  const helpTitles:Record<Locale,string>={en:"USFans Spreadsheet FAQ 2026",de:"USFans Spreadsheet FAQ 2026 auf Deutsch",fr:"FAQ USFans Spreadsheet 2026 en français",es:"Preguntas frecuentes USFans Spreadsheet 2026",it:"FAQ USFans Spreadsheet 2026 in italiano",pl:"USFans Spreadsheet FAQ 2026 po polsku"};
   if (route==="categories") return {title:`${c.nav[0]} | USFans Spreadsheet 2026`,description:c.categoryLead};
   if (route==="products") return {title:`${c.nav[1]} | USFans Product Finds`,description:c.homeLead};
   if (route==="qc-desk") return {title:`USFans QC Photos Guide 2026 | ${c.nav[2]}`,description:c.qcLead};
-  if (route==="articles") return {title:`USFans SEO Articles & Guides 2026`,description:c.articlesLead};
-  if (route==="help") return {title:`USFans Spreadsheet FAQ 2026`,description:c.helpLead};
+  if (route==="articles") return {title:articleTitles[locale],description:c.articlesLead};
+  if (route==="help") return {title:helpTitles[locale],description:c.helpLead};
   if (route.startsWith("articles/")) { const article=articleMeta.find(item=>item.slug===route.split("/")[1]) ?? articleMeta[0]; return {title:article.titles[locale],description:articleContent[locale][article.slug].intro}; }
-  return {title:"USFans Spreadsheet 2026: Product Finds & QC Guide",description:c.homeLead};
+  return {title:homeTitles[locale],description:c.homeLead};
 }
