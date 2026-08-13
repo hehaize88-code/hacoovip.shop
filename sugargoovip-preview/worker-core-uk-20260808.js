@@ -1,7 +1,10 @@
 const SITE = "https://sugargoovip.uk";
 const MAIN = "https://www.cnfanshp.com";
 const UPDATED = "2026-08-09";
-const NEW_ARTICLE = "/guides/sugargoo-1688-buying-guide-uk.html";
+const NEW_ARTICLES = new Set([
+  "/guides/sugargoo-1688-buying-guide-uk.html",
+  "/guides/sugargoo-uk-address-format.html"
+]);
 const VALID_LANGS = new Set(["en","es","fr","de","it","pt","pl","nl","zh"]);
 const LEGACY_SEO_LANGS = new Set(["de","fr","es","pl"]);
 
@@ -70,7 +73,7 @@ const REVERSE_ARTICLES = {
 const KNOWN_HTML = new Set([
   "/faq.html","/about.html","/disclaimer.html","/privacy.html","/contact.html",
   "/guides/what-is-sugargoo.html","/guides/qc-guide.html","/guides/shipping-guide.html","/guides/alternative.html",
-  "/guides/sugargoo-split-or-consolidate-parcel-guide.html", NEW_ARTICLE,
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html", ...NEW_ARTICLES,
   ...Object.keys(PRIORITY_GUIDES), ...Object.keys(GENERIC_GUIDES), ...Object.keys(REVERSE_ARTICLES),
   ...Object.keys(CATEGORY_META).map(k=>`/categories/${k}.html`)
 ]);
@@ -336,4 +339,3 @@ export default {
     return env.ASSETS.fetch(request);
   }
 };
-
