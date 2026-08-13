@@ -1,8 +1,13 @@
-import { hydrateRoot } from "react-dom/client";
-import { SiteShell, type PageName } from "./site-shell";
+import { createRoot } from "react-dom/client";
+import { SiteShell, type Lang, type PageName } from "./site-shell";
 import type { ArticleSlug } from "./localized-content";
 
-const normalized = window.location.pathname.replace(/\/+$/, "") || "/";
+const supported: Lang[] = ["en","de","es","fr","it","pl","pt","zh-cn"];
+const segments = window.location.pathname.split("/").filter(Boolean);
+const candidateLanguage = segments[0] as Lang | undefined;
+const initialLang: Lang = candidateLanguage && supported.includes(candidateLanguage) && candidateLanguage !== "en" ? candidateLanguage : "en";
+const routeSegments = initialLang === "en" ? segments : segments.slice(1);
+const normalized = `/${routeSegments.join("/")}`.replace(/\/+$/, "") || "/";
 const articles: ArticleSlug[] = [
   "how-to-use-usfans",
   "usfans-qc-photos-guide",
@@ -26,4 +31,4 @@ else if (normalized.startsWith("/articles/")) {
   }
 }
 
-hydrateRoot(document.getElementById("root")!, <SiteShell page={page} article={article} />);
+createRoot(document.getElementById("root")!).render(<SiteShell page={page} article={article} initialLang={initialLang} />);

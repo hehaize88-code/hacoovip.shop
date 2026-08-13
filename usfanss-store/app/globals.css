@@ -71,3 +71,31 @@ footer{min-height:170px;padding:45px 5vw;border-top:1px solid;display:grid;grid-
 @media(max-width:460px){
   .find-grid,.category-grid,.article-grid{display:flex}.find-card,.category-grid>a,.article-grid>a{flex-basis:78vw}.product-image{height:176px}.category-grid img{height:140px}
 }
+
+/* SEO heading keeps the original slogan as the visual anchor without hiding the topic. */
+.atlas-copy h1.seo-heading{font-size:clamp(18px,1.45vw,24px);line-height:1.2;letter-spacing:-.025em;margin:28px 0 12px;max-width:650px}
+.atlas-copy .hero-slogan{font-size:clamp(72px,8.3vw,137px);line-height:.74;letter-spacing:-.09em;margin:0 0 34px;font-weight:700}
+.atlas-copy .hero-slogan em{font-style:normal;color:var(--orange)}
+.guide-notes{margin-top:48px}
+
+/* Mobile uses compact grids and wrapping navigation; no module needs horizontal swiping. */
+@media(max-width:760px){
+  .site-header nav{display:flex;flex-wrap:wrap;overflow:visible;gap:8px 15px;white-space:normal}
+  .atlas-copy h1.seo-heading{font-size:16px;line-height:1.25;margin:18px 0 8px}
+  .atlas-copy .hero-slogan{font-size:50px;line-height:.78;margin-bottom:20px}
+  .trail-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;scroll-snap-type:none}
+  .trail-strip>span{grid-column:1/-1;padding:10px 14px}
+  .trail-strip>a{min-width:0;min-height:54px;padding:7px 9px;grid-template-columns:34px 1fr auto;scroll-snap-align:none}
+  .find-grid,.category-grid,.article-grid{display:grid;overflow:visible;scroll-snap-type:none;padding-bottom:0}
+  .find-grid,.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .article-grid{grid-template-columns:1fr;gap:9px}
+  .find-card,.category-grid>a,.article-grid>a{min-width:0;flex:auto;scroll-snap-align:none}
+  .product-image{height:150px}
+  .category-grid>a{min-height:215px}.category-grid img{height:135px}
+  .article-grid>a{min-height:180px}
+}
+@media(max-width:460px){
+  .find-grid,.category-grid,.article-grid{display:grid}
+  .find-card,.category-grid>a,.article-grid>a{flex-basis:auto}
+  .product-image{height:142px}.category-grid img{height:128px}
+}

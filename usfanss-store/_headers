@@ -1,6 +1,11 @@
+/*
+  Cache-Control: public, max-age=0, s-maxage=86400, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Vary: Accept-Encoding
+
 /static-assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+/products/*
+  Cache-Control: public, max-age=31536000, immutable
