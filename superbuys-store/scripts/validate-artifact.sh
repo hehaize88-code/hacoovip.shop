@@ -9,6 +9,8 @@ fi
 
 worker="${SITES_PROJECT_ROOT}/dist/server/index.js"
 hosting="${SITES_PROJECT_ROOT}/dist/.openai/hosting.json"
+sitemap="${SITES_PROJECT_ROOT}/dist/client/sitemap.xml"
+robots="${SITES_PROJECT_ROOT}/dist/client/robots.txt"
 
 [[ -f "${worker}" ]] || {
   echo "Missing Sites Worker entry: dist/server/index.js" >&2
@@ -16,6 +18,14 @@ hosting="${SITES_PROJECT_ROOT}/dist/.openai/hosting.json"
 }
 [[ -f "${hosting}" ]] || {
   echo "Missing packaged Sites manifest: dist/.openai/hosting.json" >&2
+  exit 66
+}
+[[ -f "${sitemap}" ]] || {
+  echo "Missing static sitemap: dist/client/sitemap.xml" >&2
+  exit 66
+}
+[[ -f "${robots}" ]] || {
+  echo "Missing static robots file: dist/client/robots.txt" >&2
   exit 66
 }
 
