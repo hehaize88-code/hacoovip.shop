@@ -1,2 +1,3 @@
 Cloudflare Pages deployment trigger.
 Static entry: index.html
+Release: 2026-08-13 multilingual SEO and catalog update
