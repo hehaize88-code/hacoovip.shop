@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-09",
+  "lastReviewed": "2026-08-13",
   "entries": [
     {
       "url": "https://kakobuys.pro/articles/how-to-read-kakobuy-qc-photos",
@@ -200,7 +200,20 @@
       "angle": "separates order-level domestic delivery from parcel-level international freight and provides a multi-seller ledger",
       "evidence": "current Kakobuy public seller-to-warehouse process, product-page stage labels and shipping calculator boundary",
       "internalLinkRole": "connects purchase-order tracking with landed-cost and later parcel planning without replacing the international shipping estimate"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-service-payment-fees-audit/",
+      "primaryQuery": "Kakobuy service fees",
+      "relatedTerms": [
+        "Kakobuy payment fees",
+        "Kakobuy fee audit",
+        "Kakobuy checkout charges"
+      ],
+      "intent": "transaction-level service and payment cost verification",
+      "angle": "reconciles checkout, order, balance, provider and parcel records without publishing an unsupported universal rate",
+      "evidence": "current Kakobuy public multi-stage service flow and public balance-detail route; no accessible universal rate table relied on",
+      "internalLinkRole": "connects purchase-stage cost records with domestic-delivery and international-parcel planning while keeping the charge types distinct"
     }
   ],
-  "nextPriority": "Kakobuy service and payment fees only after current live terms can be verified"
+  "nextPriority": "Kakobuy currency conversion and exchange-rate cost audit"
 }
