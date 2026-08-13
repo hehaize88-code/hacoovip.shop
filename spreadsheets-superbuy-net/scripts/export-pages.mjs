@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const clientDirectory = join(projectRoot, "dist", "client");
 const workerPath = join(projectRoot, "dist", "server", "index.js");
+const siteOrigin = "https://spreadsheets-superbuy.net";
 
 const languages = ["en", "fr", "de", "id", "zh-cn"];
 const pageRoutes = ["", "finds", "categories", "qc-guide", "shipping", "articles", "faq"];
@@ -38,7 +39,7 @@ const context = {
 
 for (const pathname of localizedPaths) {
   const response = await worker.fetch(
-    new Request(new URL(pathname, "https://spreadsheets-superbuy.net"), {
+    new Request(new URL(pathname, siteOrigin), {
       headers: { accept: "text/html" },
     }),
     env,
@@ -56,4 +57,23 @@ for (const pathname of localizedPaths) {
   await writeFile(outputPath, await response.text());
 }
 
-console.log(`Exported ${localizedPaths.length} localized HTML pages to dist/client.`);
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...localizedPaths.flatMap((pathname) => [
+    "  <url>",
+    `    <loc>${siteOrigin}${pathname === "/" ? "/" : `${pathname}/`}</loc>`,
+    "    <lastmod>2026-08-13</lastmod>",
+    "  </url>",
+  ]),
+  "</urlset>",
+  "",
+].join("\n");
+
+await writeFile(join(clientDirectory, "sitemap.xml"), sitemap);
+await writeFile(
+  join(clientDirectory, "robots.txt"),
+  `User-agent: *\nAllow: /\n\nSitemap: ${siteOrigin}/sitemap.xml\n`,
+);
+
+console.log(`Exported ${localizedPaths.length} localized HTML pages plus sitemap.xml and robots.txt to dist/client.`);

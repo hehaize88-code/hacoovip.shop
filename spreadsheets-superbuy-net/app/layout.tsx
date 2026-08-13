@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://spreadsheets-superbuy.net"),
   title: "Superbuy Spreadsheet — Curated Product Finds & QC Guides",
   description: "A clean, searchable Superbuy spreadsheet with exact product links, category browsing, QC guidance and shipping research.",
-  robots: { index: false, follow: false },
-  other: { "codex-preview": "development" },
+  robots: { index: true, follow: true },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 
