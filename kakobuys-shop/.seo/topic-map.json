@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-09",
+  "lastReviewed": "2026-08-13",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -200,7 +200,20 @@
       "angle": "controlled query ladder followed by exact-variant and seller evidence checks",
       "evidence": "current Kakobuy public product-link/name search field, mobile keyword scope and seller-to-warehouse service flow",
       "internalLinkRole": "bridges general search discovery to verifiable product records without replacing the spreadsheet comparison guide"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-seller-page-checklist",
+      "primaryQuery": "Kakobuy seller page checklist",
+      "relatedTerms": [
+        "Kakobuy seller reliability",
+        "Kakobuy shop check",
+        "Kakobuy product find verification"
+      ],
+      "intent": "seller-page verification before saving a product find",
+      "angle": "preserves seller identity, exact item and option, current amounts, domestic-delivery context and dated after-sales evidence",
+      "evidence": "current Kakobuy public product-link and keyword input, indexed seller-page context, seller-to-warehouse stage, warehouse inspection and current indexed after-sales wording",
+      "internalLinkRole": "moves keyword-discovery readers from an initial lead to a traceable seller and listing record"
     }
   ],
-  "nextPriority": "Kakobuy image-search workflow when current platform support can be verified"
+  "nextPriority": "Kakobuy bags spreadsheet: dimensions, hardware and shipping"
 }
