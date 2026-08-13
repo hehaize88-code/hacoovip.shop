@@ -28,8 +28,75 @@ export function parseRoute(segments: string[]): ParsedRoute {
 
 export function localizedPath(locale: Locale, path: string) {
   const clean = path === "/" ? "" : path;
-  return locale === "en" ? clean || "/" : `/${locale}${clean}`;
+  const localized = locale === "en" ? clean || "/" : `/${locale}${clean}`;
+  return localized === "/" ? localized : `${localized.replace(/\/$/, "")}/`;
 }
+
+const categoryEditorial = {
+  en: {
+    kicker: "CATEGORY DECISION GUIDE / UPDATED 13 AUG 2026",
+    heading: "Use the directory as a starting point, not a shortcut.",
+    intro: [
+      "A useful Superbuy product category page should help you narrow a search before you open a listing. Start with the type of item, then compare the live title, variant menu, seller photos, measurements and current price on the destination page. Category placement is only a browsing aid: it does not prove that every option shown in one listing has the same material, size or included accessories.",
+      "Before ordering, record the exact colour, size, version and quantity you intend to choose. After warehouse arrival, compare those details with the available QC photos. Finally, consider how the item may affect parcel weight, volume and route eligibility. These checks matter more than a broad category label, especially for shoes with boxes, padded jackets, electronics and fragile accessories.",
+    ],
+    briefs: [
+      ["Shoes", "Compare seller size charts with the insole length of a pair you already own. Check whether the box is included, because a rigid shoe box can increase parcel volume."],
+      ["Hoodies & sweaters", "Review chest width, body length, sleeve length and fabric description. Letter sizes are not reliable across different sellers or cuts."],
+      ["T-shirts", "Check print placement, garment measurements, colour options and whether the lowest displayed price belongs to the full shirt or a different option."],
+      ["Jackets", "Look for fill, lining, detachable parts and packed bulk. A low product price can be offset by the international volume of a thick outer layer."],
+      ["Pants & shorts", "Prioritise waist, rise, thigh and inseam measurements. Compare them with a garment laid flat rather than relying only on a regional size conversion."],
+      ["Headwear", "Confirm circumference or adjustment range, crown shape and included packaging. Structured hats may need protection that adds parcel volume."],
+      ["Accessories", "Verify dimensions, material, hardware colour and included pieces. Small listings often group several different products under one thumbnail."],
+      ["Jerseys", "Check the exact season, player or blank version, patch option and measurements. Names, numbers and badges may be separate variants."],
+      ["Electronics", "Confirm plug type, voltage, battery status and route restrictions before paying. An item being purchasable domestically does not mean every international line accepts it."],
+      ["Other finds", "Use this route for items that do not fit a main department, then apply the same variant, measurement, restriction and parcel-cost checks before ordering."],
+    ],
+    next: "Continue with the listing, QC and shipping checklists",
+  },
+  fr: {
+    kicker: "GUIDE DE CHOIX PAR CATÉGORIE / MIS À JOUR LE 13 AOÛT 2026",
+    heading: "Utilisez le répertoire comme point de départ, pas comme raccourci.",
+    intro: [
+      "Une page de catégories Superbuy utile doit vous aider à réduire la recherche avant d’ouvrir une fiche. Commencez par le type d’article, puis comparez le titre actif, les variantes, les photos vendeur, les mesures et le prix actuel sur la page de destination. Le classement par catégorie sert uniquement à naviguer : il ne prouve pas que toutes les options d’une fiche partagent la même matière, la même taille ou les mêmes accessoires.",
+      "Avant la commande, notez la couleur, la taille, la version et la quantité exactes. Après l’arrivée en entrepôt, comparez ces éléments avec les photos QC disponibles. Pensez enfin au poids, au volume et à l’éligibilité de la ligne d’envoi. Ces contrôles comptent davantage qu’une étiquette générale, surtout pour les chaussures avec boîte, les vestes épaisses, l’électronique et les accessoires fragiles.",
+    ],
+    briefs: [
+      ["Chaussures", "Comparez le tableau du vendeur à la longueur intérieure d’une paire que vous possédez. Vérifiez si la boîte est incluse, car elle peut augmenter le volume du colis."],
+      ["Sweats et pulls", "Contrôlez largeur de poitrine, longueur, manches et matière. Les tailles en lettres varient selon les vendeurs et les coupes."],
+      ["T-shirts", "Vérifiez placement du motif, mesures, couleurs et option correspondant au prix le plus bas affiché."],
+      ["Vestes", "Examinez rembourrage, doublure, pièces amovibles et volume emballé. Une veste épaisse peut coûter davantage à expédier."],
+      ["Pantalons et shorts", "Privilégiez tour de taille, fourche, cuisse et entrejambe, comparés à un vêtement posé à plat."],
+      ["Couvre-chefs", "Confirmez circonférence, réglage, forme de la couronne et emballage. Une casquette structurée peut nécessiter une protection."],
+      ["Accessoires", "Vérifiez dimensions, matière, couleur des éléments métalliques et pièces incluses. Une vignette peut regrouper plusieurs produits."],
+      ["Maillots", "Contrôlez saison, version joueur ou standard, patchs et mesures. Nom, numéro et badges peuvent être des options distinctes."],
+      ["Électronique", "Confirmez prise, tension, batterie et restrictions de ligne. Un achat possible en Chine n’est pas accepté par tous les transports internationaux."],
+      ["Autres trouvailles", "Appliquez les mêmes contrôles de variante, mesures, restrictions et coût probable du colis aux articles hors des rubriques principales."],
+    ],
+    next: "Poursuivre avec les checklists de fiche, QC et expédition",
+  },
+  de: {
+    kicker: "KATEGORIE-ENTSCHEIDUNGSHILFE / AKTUALISIERT 13. AUGUST 2026",
+    heading: "Nutze das Verzeichnis als Ausgangspunkt, nicht als Abkürzung.",
+    intro: [
+      "Eine hilfreiche Superbuy-Kategorieseite grenzt die Suche ein, bevor du ein Listing öffnest. Beginne mit der Produktart und vergleiche anschließend Live-Titel, Variantenmenü, Verkäuferbilder, Maße und aktuellen Preis auf der Zielseite. Die Kategorie ist nur eine Navigationshilfe: Sie beweist nicht, dass alle Optionen eines Listings dasselbe Material, dieselbe Größe oder dasselbe Zubehör enthalten.",
+      "Notiere vor der Bestellung Farbe, Größe, Version und Menge. Vergleiche diese Angaben nach dem Lagereingang mit den verfügbaren QC-Fotos. Berücksichtige danach Gewicht, Volumen und Routeneignung des späteren Pakets. Diese Prüfungen sind wichtiger als eine allgemeine Kategoriebezeichnung – besonders bei Schuhkartons, dicken Jacken, Elektronik und zerbrechlichem Zubehör.",
+    ],
+    briefs: [
+      ["Schuhe", "Vergleiche die Größentabelle mit der Innenlänge eines eigenen Paars. Prüfe, ob der Schuhkarton enthalten ist, weil er das Paketvolumen erhöhen kann."],
+      ["Hoodies & Pullover", "Prüfe Brustweite, Körperlänge, Ärmellänge und Materialangabe. Buchstabengrößen unterscheiden sich je nach Verkäufer und Schnitt."],
+      ["T-Shirts", "Kontrolliere Druckposition, Kleidungsmaße, Farboptionen und welche Variante tatsächlich zum niedrigsten Preis gehört."],
+      ["Jacken", "Achte auf Füllung, Futter, abnehmbare Teile und Packvolumen. Dicke Oberbekleidung kann den internationalen Versand deutlich beeinflussen."],
+      ["Hosen & Shorts", "Nutze Bundweite, Leibhöhe, Oberschenkel und Innenbeinlänge und vergleiche sie mit einem flach liegenden Kleidungsstück."],
+      ["Kopfbedeckung", "Bestätige Umfang, Verstellbereich, Kronenform und Verpackung. Strukturierte Caps benötigen eventuell zusätzlichen Schutz."],
+      ["Accessoires", "Prüfe Maße, Material, Metallfarbe und enthaltene Teile. Kleine Listings bündeln oft verschiedene Produkte unter einem Vorschaubild."],
+      ["Trikots", "Kontrolliere Saison, Spieler- oder Standardversion, Patch-Optionen und Maße. Name, Nummer und Abzeichen können getrennte Varianten sein."],
+      ["Elektronik", "Bestätige Steckertyp, Spannung, Batterie und Routenbeschränkungen. Nicht jede im Inland kaufbare Ware passt zu jeder internationalen Linie."],
+      ["Weitere Funde", "Wende bei sonstigen Artikeln dieselben Varianten-, Maß-, Beschränkungs- und Paketkostenprüfungen an."],
+    ],
+    next: "Weiter zu Listing-, QC- und Versand-Checklisten",
+  },
+} as const;
 
 function Header({ locale, basePath }: { locale: Locale; basePath: string }) {
   const t = copy[locale];
@@ -174,7 +241,45 @@ function InnerHero({ kicker, title, intro }: { kicker: string; title: string; in
 
 function CategoriesPage({ locale, basePath }: { locale: Locale; basePath: string }) {
   const t = copy[locale];
-  return <Shell locale={locale} basePath={basePath}><InnerHero {...t.categoriesPage} /><section className="category-index category-index--inner"><CategoryRows locale={locale} /><Search locale={locale} compact /></section></Shell>;
+  const editorial = categoryEditorial[locale];
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: t.categoriesPage.title,
+    url: `https://superbuys.store${localizedPath(locale, "/categories")}`,
+    inLanguage: locale,
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: categories.length,
+      itemListElement: categories.map((category, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: editorial.briefs[index][0],
+        url: category.href,
+      })),
+    },
+  };
+  return <Shell locale={locale} basePath={basePath}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <InnerHero {...t.categoriesPage} />
+    <section className="category-index category-index--inner"><CategoryRows locale={locale} /><Search locale={locale} compact /></section>
+    <section className="category-guide">
+      <div className="section-kicker"><span>{editorial.kicker}</span><p>{editorial.next}</p></div>
+      <div className="category-guide-intro"><h2>{editorial.heading}</h2><div>{editorial.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div>
+      <div className="category-briefs">
+        {editorial.briefs.map(([name, description], index) => <article key={name}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h2><a href={categories[index].href} target="_blank" rel="noreferrer">{name} ↗</a></h2>
+          <p>{description}</p>
+        </article>)}
+      </div>
+      <nav className="category-next" aria-label={editorial.next}>
+        <a href={localizedPath(locale, "/articles/product-listing-checklist")}>{articles[locale][0].title} →</a>
+        <a href={localizedPath(locale, "/articles/superbuy-qc-photos-guide")}>{articles[locale][1].title} →</a>
+        <a href={localizedPath(locale, "/articles/superbuy-shipping-cost-guide")}>{articles[locale][2].title} →</a>
+      </nav>
+    </section>
+  </Shell>;
 }
 
 function ArticlesGrid({ locale }: { locale: Locale }) {

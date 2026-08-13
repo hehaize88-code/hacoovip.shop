@@ -1,6 +1,6 @@
 export type Locale = "en" | "fr" | "de";
 
-export const ROOT = "https://www.cnfanshp.com";
+export const ROOT = "https://www.cnbuycha.com";
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
@@ -24,26 +24,26 @@ export const categories = [
 export const edit = [
   {
     number: "No. 01",
-    image: `${ROOT}/uploads/allimg/20260427/1-26042G03A3226.webp`,
-    href: `${ROOT}/AllProducts/6049.html`,
+    image: `${ROOT}/uploads/allimg/20260806/1-260P6164I0217.webp`,
+    href: `${ROOT}/AllProducts/3402.html`,
     className: "feature feature--wide",
   },
   {
     number: "No. 02",
-    image: `${ROOT}/uploads/allimg/20260427/1-26042G03505957.webp`,
-    href: `${ROOT}/AllProducts/6048.html`,
+    image: `${ROOT}/uploads/allimg/20260806/1-260P616454QM.webp`,
+    href: `${ROOT}/AllProducts/3401.html`,
     className: "feature feature--portrait",
   },
   {
     number: "No. 03",
-    image: `${ROOT}/uploads/allimg/20260427/1-26042G0310V93.webp`,
-    href: `${ROOT}/AllProducts/6047.html`,
+    image: `${ROOT}/uploads/allimg/20260806/1-260P616440O18.webp`,
+    href: `${ROOT}/AllProducts/3400.html`,
     className: "feature feature--small",
   },
   {
     number: "No. 04",
-    image: `${ROOT}/uploads/allimg/20260427/1-26042G0293E05.webp`,
-    href: `${ROOT}/AllProducts/6046.html`,
+    image: `${ROOT}/uploads/allimg/20260806/1-260P616410T56.webp`,
+    href: `${ROOT}/AllProducts/3398.html`,
     className: "feature feature--offset",
   },
 ] as const;
@@ -125,7 +125,7 @@ export const copy = {
         ["Parcel", "Why product price is only half the decision", "International delivery depends on packed size, weight, route and destination. Consider the likely parcel before building a haul.", "superbuy-shipping-cost-guide"],
       ],
     },
-    categoriesPage: { kicker: "Product directory / 10 routes", title: "Browse by category.", intro: "Each route opens the matching collection on the destination catalog. Use this index when you know the kind of product you want but not the exact listing." },
+    categoriesPage: { kicker: "Superbuy product categories / 10 routes", title: "Superbuy product categories & finds.", intro: "Browse ten product routes, then use the category-specific checks below to verify variants, measurements, QC evidence and likely parcel impact before ordering." },
     guidesPage: { kicker: "Practical guides / 03", title: "Plan before you click.", intro: "Straightforward explanations based on Superbuy’s published shopping-agent flow: ordering, warehouse inspection, storage, consolidation and international delivery." },
     articlesPage: { kicker: "SEO library / Issue 01", title: "Superbuy guides & field notes.", intro: "Three human-written, 1,200–1,800 word guides built around distinct search intent: spreadsheet workflow, QC photos and international shipping cost." },
     faqPage: { kicker: "Help desk / 12 answers", title: "Questions, answered.", intro: "These answers summarize Superbuy’s published guidance as checked on 12 August 2026. Route availability, costs and policies can change." },
@@ -149,7 +149,7 @@ export const copy = {
         ["Colis", "Pourquoi le prix produit n’est que la moitié de la décision", "La livraison internationale dépend du volume emballé, du poids, de l’itinéraire et de la destination. Pensez au colis probable avant de composer un lot.", "superbuy-shipping-cost-guide"],
       ],
     },
-    categoriesPage: { kicker: "Répertoire produits / 10 parcours", title: "Parcourir par catégorie.", intro: "Chaque parcours ouvre la collection correspondante du catalogue de destination. Utilisez l’index quand vous connaissez le type de produit, mais pas encore la fiche exacte." },
+    categoriesPage: { kicker: "Catégories de produits Superbuy / 10 parcours", title: "Catégories et trouvailles Superbuy.", intro: "Parcourez dix itinéraires produits, puis utilisez les contrôles propres à chaque catégorie pour vérifier variantes, mesures, preuves QC et effet probable sur le colis." },
     guidesPage: { kicker: "Guides pratiques / 03", title: "Planifiez avant de cliquer.", intro: "Des explications claires fondées sur le parcours publié par Superbuy : commande, inspection en entrepôt, stockage, regroupement et livraison internationale." },
     articlesPage: { kicker: "Bibliothèque SEO / Numéro 01", title: "Guides Superbuy et notes de terrain.", intro: "Des guides approfondis sur de vraies questions : examiner les fiches, lire les photos QC et estimer la décision complète liée au colis." },
     faqPage: { kicker: "Aide / 10 réponses", title: "Vos questions, nos réponses.", intro: "Ces réponses résument les informations publiées par Superbuy et vérifiées en août 2026. Les lignes, coûts et politiques peuvent évoluer." },
@@ -173,7 +173,7 @@ export const copy = {
         ["Paket", "Warum der Produktpreis nur die halbe Entscheidung ist", "Internationaler Versand hängt von Packmaß, Gewicht, Route und Ziel ab. Denke vor dem Zusammenstellen eines Hauls an das wahrscheinliche Paket.", "superbuy-shipping-cost-guide"],
       ],
     },
-    categoriesPage: { kicker: "Produktverzeichnis / 10 Wege", title: "Nach Kategorie stöbern.", intro: "Jeder Weg öffnet die passende Sammlung im Zielkatalog. Nutze diesen Index, wenn du die Produktart kennst, aber noch kein bestimmtes Listing." },
+    categoriesPage: { kicker: "Superbuy-Produktkategorien / 10 Wege", title: "Superbuy-Kategorien & Produktfunde.", intro: "Durchsuche zehn Produktwege und nutze danach die Kategorie-Checks für Varianten, Maße, QC-Belege und den wahrscheinlichen Paketeffekt." },
     guidesPage: { kicker: "Praxisratgeber / 03", title: "Plane, bevor du klickst.", intro: "Klare Erklärungen auf Grundlage des veröffentlichten Superbuy-Ablaufs: Bestellung, Lagerprüfung, Aufbewahrung, Konsolidierung und internationaler Versand." },
     articlesPage: { kicker: "SEO-Bibliothek / Ausgabe 01", title: "Superbuy-Ratgeber & Praxisnotizen.", intro: "Ausführliche Antworten auf reale Fragen: Listings prüfen, QC-Fotos lesen und die gesamte Paketentscheidung einschätzen." },
     faqPage: { kicker: "Hilfe / 10 Antworten", title: "Fragen, beantwortet.", intro: "Diese Antworten fassen die im August 2026 geprüften Superbuy-Informationen zusammen. Routen, Kosten und Regeln können sich ändern." },

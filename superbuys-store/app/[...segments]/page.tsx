@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
-import { SiteRouter, parseRoute } from "../../components/site";
+import { localizedPath, SiteRouter, parseRoute } from "../../components/site";
 import { articles, copy } from "../../lib/content";
+
+const BASE = "https://superbuys.store";
+
+function absoluteUrl(path: string) {
+  return `${BASE}${path}`;
+}
+
+function alternates(locale: "en" | "fr" | "de", basePath: string) {
+  return {
+    canonical: absoluteUrl(localizedPath(locale, basePath)),
+    languages: {
+      en: absoluteUrl(localizedPath("en", basePath)),
+      "fr-FR": absoluteUrl(localizedPath("fr", basePath)),
+      "de-DE": absoluteUrl(localizedPath("de", basePath)),
+      "x-default": absoluteUrl(localizedPath("en", basePath)),
+    },
+  };
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ segments: string[] }> }): Promise<Metadata> {
   const { segments } = await params;
@@ -8,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
   const t = copy[route.locale];
   if (route.kind === "article") {
     const article = articles[route.locale].find((item) => item.slug === route.slug);
-    return { title: article?.title, description: article?.dek };
+    return { title: article?.title, description: article?.dek, alternates: alternates(route.locale, route.basePath) };
   }
   const titles = {
     categories: t.categoriesPage.title,
@@ -28,7 +46,11 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
   if (route.kind === "not-found") {
     return { title: titles["not-found"], description: descriptions["not-found"], robots: { index: false, follow: false } };
   }
-  return { title: titles[route.kind as keyof typeof titles], description: descriptions[route.kind as keyof typeof descriptions] };
+  return {
+    title: titles[route.kind as keyof typeof titles],
+    description: descriptions[route.kind as keyof typeof descriptions],
+    alternates: alternates(route.locale, route.basePath),
+  };
 }
 
 export default async function RoutedPage({ params }: { params: Promise<{ segments: string[] }> }) {

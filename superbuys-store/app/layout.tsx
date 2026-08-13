@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://superbuys.store"),
   title: {
     default: "Superbuy Spreadsheet 2026 | Product Index & Guides",
     template: "%s | Superbuy Product Index",
