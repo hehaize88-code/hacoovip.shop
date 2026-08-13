@@ -31,3 +31,18 @@ test("renders indexable canonical metadata", async () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/spreadsheets-superbuy\.net\/"\s*\/?>/i);
   assert.doesNotMatch(html, /codex-preview/i);
 });
+
+test("unknown routes return a real 404 instead of the homepage", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("not-found-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("http://localhost/nonexistent-audit-839271", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  assert.equal(response.status, 404);
+  const html = await response.text();
+  assert.match(html, /This page is not in the spreadsheet/i);
+  assert.doesNotMatch(html, /The Superbuy spreadsheet/i);
+});

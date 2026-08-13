@@ -8,7 +8,7 @@ const workerPath = join(projectRoot, "dist", "server", "index.js");
 const siteOrigin = "https://spreadsheets-superbuy.net";
 
 const languages = ["en", "fr", "de", "id", "zh-cn"];
-const pageRoutes = ["", "finds", "categories", "qc-guide", "shipping", "articles", "faq"];
+const pageRoutes = ["", "finds", "categories", "qc-guide", "shipping", "articles", "faq", "about", "editorial-policy", "privacy", "terms"];
 const articleSlugs = [
   "how-to-use-a-superbuy-spreadsheet",
   "superbuy-qc-photo-checklist",
@@ -53,9 +53,20 @@ for (const pathname of localizedPaths) {
   const outputPath = pathname === "/"
     ? join(clientDirectory, "index.html")
     : join(clientDirectory, pathname.slice(1), "index.html");
+  const pathLanguage = pathname.match(/^\/(fr|de|id|zh-cn)(?:\/|$)/)?.[1] ?? "en";
+  const htmlLanguage = pathLanguage === "zh-cn" ? "zh-CN" : pathLanguage;
+  const html = (await response.text()).replace(/<html lang="en">/i, `<html lang="${htmlLanguage}">`);
   await mkdir(dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, await response.text());
+  await writeFile(outputPath, html);
 }
+
+const notFoundResponse = await worker.fetch(
+  new Request(new URL("/__static-export-404__", siteOrigin), { headers: { accept: "text/html" } }),
+  env,
+  context,
+);
+if (notFoundResponse.status !== 404) throw new Error(`Expected real 404 response, received HTTP ${notFoundResponse.status}`);
+await writeFile(join(clientDirectory, "404.html"), await notFoundResponse.text());
 
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
@@ -75,5 +86,9 @@ await writeFile(
   join(clientDirectory, "robots.txt"),
   `User-agent: *\nAllow: /\n\nSitemap: ${siteOrigin}/sitemap.xml\n`,
 );
+await writeFile(
+  join(clientDirectory, "_headers"),
+  `/*\n  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=86400\n\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/products/*\n  Cache-Control: public, max-age=604800\n`,
+);
 
-console.log(`Exported ${localizedPaths.length} localized HTML pages plus sitemap.xml and robots.txt to dist/client.`);
+console.log(`Exported ${localizedPaths.length} localized HTML pages plus 404.html, sitemap.xml, robots.txt and _headers to dist/client.`);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Site from "../site";
 import { articleSlugs, ArticleSlug, copy, Lang, languages, localizedPath, routeKeys, RouteKey } from "../site-data";
+import { homeSeo, pageSeo, trustPages, trustRouteKeys, TrustRoute } from "../seo-data";
 
 type Props = { params: Promise<{ slug?: string[] }> };
 
@@ -17,6 +18,9 @@ function parseSegments(raw: string[] = []) {
   if (routeSegments.length === 1 && routeKeys.includes(routeSegments[0] as RouteKey)) {
     return { lang, route: routeSegments[0] as RouteKey, routePath: routeSegments[0] };
   }
+  if (routeSegments.length === 1 && trustRouteKeys.includes(routeSegments[0] as TrustRoute)) {
+    return { lang, route: "trust" as const, trustRoute: routeSegments[0] as TrustRoute, routePath: routeSegments[0] };
+  }
   return null;
 }
 
@@ -25,9 +29,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parsed = parseSegments(slug);
   if (!parsed) return {};
   const t = copy[parsed.lang];
-  const title = parsed.route === "" ? "Superbuy Spreadsheet — Product Finds & QC Guides" : parsed.route === "article" ? t.articles[parsed.articleSlug!].title : t.pageTitles[parsed.route].title;
-  const description = parsed.route === "" ? t.heroText : parsed.route === "article" ? t.articles[parsed.articleSlug!].excerpt : t.pageTitles[parsed.route].text;
-  const routePath = parsed.route === "article" ? `articles/${parsed.articleSlug}` : parsed.route;
+  const title = parsed.route === ""
+    ? homeSeo[parsed.lang].title
+    : parsed.route === "article"
+      ? t.articles[parsed.articleSlug!].title
+      : parsed.route === "trust"
+        ? trustPages[parsed.lang][parsed.trustRoute!].title
+        : pageSeo[parsed.lang][parsed.route].title;
+  const description = parsed.route === ""
+    ? homeSeo[parsed.lang].description
+    : parsed.route === "article"
+      ? t.articles[parsed.articleSlug!].excerpt
+      : parsed.route === "trust"
+        ? trustPages[parsed.lang][parsed.trustRoute!].description
+        : pageSeo[parsed.lang][parsed.route].description;
+  const routePath = parsed.route === "article" ? `articles/${parsed.articleSlug}` : parsed.route === "trust" ? parsed.trustRoute! : parsed.route;
   const absoluteUrl = (lang: Lang) => `https://spreadsheets-superbuy.net${localizedPath(lang, routePath)}`;
   return {
     title,

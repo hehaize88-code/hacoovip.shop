@@ -42,3 +42,24 @@
   .site-footer{gap:6px;padding:17px 12px;font-size:7px}.footer-logo img{width:92px}
   .page-hero{min-height:250px;padding:35px 12px}.page-hero h1{font-size:42px}.page-hero p{font-size:11px}.search-band{padding:25px 12px}.search-band h2{font-size:27px}.editorial-layout{padding:30px 12px}.shipping-grid{margin:28px 12px}.shipping-grid article{min-height:180px;padding:15px}.shipping-grid h2{margin-top:26px;font-size:25px}.article-promo{padding:30px 12px}.faq-page{padding:30px 12px}
 }
+
+/* Technical SEO additions keep the established layout while making supporting
+   information and editorial navigation easier to read. */
+.price-note{margin:16px 0 0;color:#5f695f;font-size:12px;line-height:1.55}
+.related-guides{display:grid;gap:12px;margin-top:45px;padding:28px;border:1px solid var(--navy);background:var(--lime)}
+.related-guides>span{font-size:10px;font-weight:800;text-transform:uppercase}
+.related-guides>a{width:max-content;max-width:100%;border-bottom:1px solid;font-size:15px;font-weight:700;line-height:1.4}
+.site-footer>div:nth-child(2){text-align:center}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:10px}
+.footer-links a{color:#dce5ef;border-bottom:1px solid #53657b;font-size:9px}
+
+@media(max-width:560px){
+  .hero-copy>p,.section-heading p,.how-section>div:first-child>p,.steps p,.article-grid p,.faq-list p,.page-hero p,.numbered-list p,.shipping-grid p,.price-note{font-size:12px;line-height:1.45}
+  .category-grid p,.product-card>div:not(.product-image),.article-grid>a>span,.article-grid strong,.product-card>strong,.proof span{font-size:10px}
+  .category-grid h3,.product-card>h3{font-size:13px}
+  .category-grid b,.product-card>p,.text-link,.site-footer,.footer-links a{font-size:9px}
+  .site-footer>div:nth-child(2),.site-footer p{text-align:left}
+  .site-footer p{font-size:10px;line-height:1.4}
+  .footer-links{justify-content:flex-start}
+  .related-guides>a{font-size:13px}
+}
