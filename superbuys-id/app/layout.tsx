@@ -8,13 +8,13 @@ const serif = Fraunces({ variable: "--font-serif", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://superbuys.id"),
-  title: "Superbuy Spreadsheet 2026 — Finds, QC & Product Index",
-  description: "Browse Superbuy spreadsheet-style product finds by category, compare listing photos, review QC notes and open direct product routes.",
+  title: "Superbuy Indonesia 2026: Produk, Foto QC & Panduan Pengiriman",
+  description: "Panduan independen Superbuy Indonesia untuk menemukan produk, memeriksa foto QC, dan merencanakan biaya pengiriman.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="id-ID">
       <body className={`${sans.variable} ${display.variable} ${serif.variable}`}>{children}</body>
     </html>
   );
