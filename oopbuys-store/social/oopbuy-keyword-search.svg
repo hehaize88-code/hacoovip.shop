@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Keyword search funnel for product discovery</title>
+  <desc id="desc">A broad product idea narrows through attributes and source checks into a verified live listing.</desc>
+  <rect width="1200" height="630" fill="#f5f2ea"/>
+  <rect x="54" y="54" width="1092" height="522" rx="28" fill="#0b1627"/>
+  <text x="98" y="118" fill="#ff5a36" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">SEARCH WITH A REASON</text>
+  <text x="98" y="176" fill="#ffffff" font-family="Georgia, serif" font-size="42">From a broad idea to a verified find</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="98" y="232" width="205" height="88" rx="12" fill="#fff"/>
+    <text x="120" y="266" fill="#ff5a36" font-size="14" font-weight="700">01 · PRODUCT TYPE</text>
+    <text x="120" y="297" fill="#0b1627" font-size="20">zip hoodie</text>
+    <path d="M315 276h38" stroke="#ff5a36" stroke-width="4"/>
+    <path d="m345 267 10 9-10 9" fill="none" stroke="#ff5a36" stroke-width="4"/>
+    <rect x="367" y="232" width="205" height="88" rx="12" fill="#fff"/>
+    <text x="389" y="266" fill="#ff5a36" font-size="14" font-weight="700">02 · ATTRIBUTE</text>
+    <text x="389" y="297" fill="#0b1627" font-size="20">heavyweight</text>
+    <path d="M584 276h38" stroke="#ff5a36" stroke-width="4"/>
+    <path d="m614 267 10 9-10 9" fill="none" stroke="#ff5a36" stroke-width="4"/>
+    <rect x="636" y="232" width="205" height="88" rx="12" fill="#fff"/>
+    <text x="658" y="266" fill="#ff5a36" font-size="14" font-weight="700">03 · FIT / USE</text>
+    <text x="658" y="297" fill="#0b1627" font-size="20">oversized</text>
+    <path d="M853 276h38" stroke="#ff5a36" stroke-width="4"/>
+    <path d="m883 267 10 9-10 9" fill="none" stroke="#ff5a36" stroke-width="4"/>
+    <rect x="905" y="232" width="197" height="88" rx="12" fill="#ff5a36"/>
+    <text x="927" y="266" fill="#fff" font-size="14" font-weight="700">04 · LIVE CHECK</text>
+    <text x="927" y="297" fill="#fff" font-size="20">exact option</text>
+    <rect x="98" y="368" width="1004" height="130" rx="14" fill="#15243a" stroke="#34455e"/>
+    <text x="126" y="408" fill="#aab7c8" font-size="14" font-weight="700" letter-spacing="1">CANDIDATE RECORD</text>
+    <text x="126" y="448" fill="#fff" font-size="19">query</text><circle cx="220" cy="441" r="5" fill="#ff5a36"/>
+    <text x="246" y="448" fill="#fff" font-size="19">source</text><circle cx="340" cy="441" r="5" fill="#ff5a36"/>
+    <text x="366" y="448" fill="#fff" font-size="19">seller</text><circle cx="446" cy="441" r="5" fill="#ff5a36"/>
+    <text x="472" y="448" fill="#fff" font-size="19">selected variant</text><circle cx="642" cy="441" r="5" fill="#ff5a36"/>
+    <text x="668" y="448" fill="#fff" font-size="19">live price</text><circle cx="777" cy="441" r="5" fill="#ff5a36"/>
+    <text x="803" y="448" fill="#fff" font-size="19">checked date</text>
+    <text x="126" y="478" fill="#aab7c8" font-size="15">Change one variable at a time. Search creates candidates; the live page supplies evidence.</text>
+  </g>
+</svg>
