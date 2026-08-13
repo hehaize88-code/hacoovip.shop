@@ -476,5 +476,92 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public contact and quality-inspection pages plus a currently indexed product-help page describing warehouse photos and seller after-sales handling, reviewed August 11, 2026. The seam-review order, decision thresholds and packing checks are independent editorial methods. Eligibility, photo services, costs and deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-alignment-symmetry-print-placement-qc",
+    title: "Kakobuy Alignment, Symmetry and Print Placement QC",
+    seoTitle: "Kakobuy Alignment QC: Symmetry and Print Placement",
+    seoDescription: "Use a repeatable Kakobuy alignment QC method to compare symmetry, centered prints, panel lines and paired details without mistaking camera angle for defects.",
+    primaryKeyword: "Kakobuy alignment QC",
+    secondaryKeywords: ["Kakobuy symmetry check", "Kakobuy print placement QC", "Kakobuy warehouse photo alignment", "Kakobuy logo placement check"],
+    intro: "Alignment problems are easy to overcall from a tilted warehouse photo and expensive to ignore once an item enters an international parcel. The useful question is not whether every line looks mathematically perfect. It is whether a visible offset remains after you account for camera angle, folds, intentional design and the exact ordered variant—and whether that offset matters to your decision.",
+    quickAnswer: "Match the warehouse item to the order, choose a stable center line, and review the whole shape before zooming in. Compare paired features from equivalent points, use seams or panel edges as reference axes, and check print position against the exact listing rather than a generic image. If perspective, folds or obstruction can explain the difference, request one square-on view. Record the observable displacement and choose ship, clarify or after-sales from the live order state.",
+    sections: [
+      {
+        heading: "Confirm identity before measuring alignment",
+        paragraphs: [
+          "Start with the purchase order and selected option. Confirm item, color, size, model, quantity and any named print or customization. A centered graphic on the wrong colorway is still the wrong item. Different sizes can also place the same artwork at different distances from a collar, pocket or seam, so do not compare a size M warehouse item with an unrelated size shown elsewhere.",
+          "Kakobuy's current public quality-inspection page describes warehouse checking after seller delivery and before global shipping, including visible points such as defects, size and color. That supports an appearance review, not a promise of perfect geometry. Save the exact ordered listing and current warehouse record as your comparison pair."
+        ],
+        bullets: ["Match item and selected variant.", "Preserve the listing image for that design.", "Note any customization or intentional asymmetry.", "Keep wide warehouse views before examining details."]
+      },
+      {
+        heading: "Establish one center line and two horizontal references",
+        paragraphs: [
+          "Choose landmarks that belong to the object. On a hoodie, the collar midpoint, zipper, placket, center seam or equal side edges can define a vertical axis. A hem, pocket edge or shoulder line can provide a horizontal reference. On a bag, use the top opening and central closure; on a shoe pair, use each shoe's toe-to-heel axis rather than the edge of the photograph.",
+          "Do not use the image frame as the product axis unless the item was photographed square to the camera. A rotated garment can make a straight print appear slanted. Sketch the axis mentally or in a private annotation, then compare the graphic and paired features with those product landmarks."
+        ]
+      },
+      {
+        heading: "Remove camera perspective before calling a defect",
+        paragraphs: [
+          "Perspective changes apparent distances. The side closer to the lens looks larger, while parallel lines may seem to converge. Check whether the left and right edges of the item are similar lengths in the image and whether the camera appears centered. If one shoulder, shoe or bag corner is visibly closer, do not measure screen pixels as though the view were orthographic.",
+          "Folds and stuffing create a second distortion. A hoodie laid over a wrinkle can pull a print diagonally; a soft bag may collapse toward one side; laces can hold shoe tongues at different angles. Ask whether the apparent offset follows the object itself or only its current arrangement. A square-on, flattened view is the correct next evidence when the distinction changes the decision."
+        ],
+        bullets: ["Check camera centering.", "Look for unequal scale from left to right.", "Identify folds, stuffing and packaging pressure.", "Avoid pixel measurements from an oblique photo."]
+      },
+      {
+        heading: "Compare symmetry with matched landmarks",
+        paragraphs: [
+          "Symmetry means comparing corresponding features, not demanding that every product be mirror-imaged. Pair left and right pocket corners, sleeve joins, shoe eye stays, bag handles or jersey number edges. Measure from the same type of landmark on both sides. Comparing one print edge to a seam and the other to the outer silhouette creates a false difference.",
+          "First check whether the design is intentionally asymmetric. The exact listing may place a patch on one side, use uneven panel blocking or angle a wordmark by design. Then compare construction around that intended design. State the observation narrowly: 'the right pocket corner sits closer to the center zip than the left' is useful; 'the whole item is badly made' is not."
+        ]
+      },
+      {
+        heading: "Review print placement in three layers",
+        paragraphs: [
+          "Begin with overall position: is the graphic on the correct front, back, sleeve or panel? Next check alignment to the intended center line or named landmark. Finally inspect local interaction: does the artwork cross a seam, pocket or edge where the listing shows clear space? This order catches a wrong placement before attention is consumed by tiny print edges.",
+          "For centered chest artwork, compare the graphic midpoint with the garment center, then compare its upper edge with the collar or shoulder reference. For a back print, use the back-neck midpoint and side seams. A logo may be deliberately off-center, so the listing remains the design reference. Warehouse photos can show visible placement; they cannot prove the printing process, colorfastness or long-term adhesion."
+        ]
+      },
+      {
+        heading: "Check jerseys, shoes and bags with category-specific axes",
+        paragraphs: [
+          "On a jersey, confirm the correct name and number before checking spacing. Compare the number block with the garment center and the name arc with the neckline. Look for letters or digits visibly trapped by seams, folded under or placed at materially different heights. Customization should be checked against the exact order note, not another buyer's example.",
+          "For shoes, compare each shoe separately along its own center axis, then compare the pair. Check tongue labels, toe-box panels, heel tabs, eye stays and outsole joins. A pair photographed at different rotations will look unequal even when the construction matches. Request an overhead paired view when shape or panel placement remains uncertain.",
+          "For bags, use the opening, central closure, base and handle anchors as references. Soft bags should be arranged similarly before symmetry is judged. Hardware position and handle attachment can matter more than a small shift in a decorative stamp because they affect use and load. Keep print placement, structure and function as separate findings."
+        ]
+      },
+      {
+        heading: "Use measurements only when they answer a decision",
+        paragraphs: [
+          "A ruler can test a specified distance, such as graphic width, distance from collar to print or spacing between two anchors. Name both endpoints in the request. 'Measure the logo' is ambiguous; 'measure from the collar seam midpoint to the top edge of the print' creates a repeatable check.",
+          "Do not infer physical millimeters from an on-screen image unless a reliable scale lies in the same plane as the feature. Perspective invalidates that shortcut. If the listing gives no placement specification, use measurements to compare symmetry or document a visible concern, not to invent a factory tolerance."
+        ]
+      },
+      {
+        heading: "Request one decisive photo instead of more random angles",
+        paragraphs: [
+          "A strong request names item, surface, arrangement, camera direction and question: 'Please lay the hoodie flat, center the camera above the chest, and show the print with both side seams visible.' For shoes: 'Please place both shoes parallel and photograph them directly from above with the tongues flat.' These instructions reduce the competing explanations.",
+          "Ask for a ruler only when you have defined endpoints. One direct image can resolve perspective; five oblique images may repeat the same uncertainty. If the platform currently displays a cost or availability for an extra service, use that live information rather than relying on an old article. This guide does not state a universal number of included photos or a universal extra-photo fee."
+        ]
+      },
+      {
+        heading: "Choose ship, clarify or after-sales with a threshold set in advance",
+        paragraphs: [
+          "Ship when identity is correct, important paired features are acceptably balanced, print placement matches the intended design and remaining variation falls inside the threshold you set before reviewing. Clarify when a tilted camera, fold, low resolution or hidden landmark prevents a fair comparison. Use the current after-sales option when a confirmed mismatch or visible offset exceeds your threshold and the order remains eligible.",
+          "Kakobuy's currently indexed product information describes warehouse photographs and a return-application process handled with the seller. The live order is authoritative because deadlines, exclusions, costs and seller response can change. Do not submit an international parcel while a decision-changing alignment problem is unresolved."
+        ],
+        bullets: ["SHIP: evidence is clear and placement is within preset tolerance.", "CLARIFY: one controlled view can separate distortion from displacement.", "AFTER-SALES: confirmed mismatch exceeds tolerance, subject to live eligibility."]
+      },
+      {
+        heading: "Final alignment and print-placement checklist",
+        paragraphs: [
+          "Match the exact order. Save wide views. Identify product axes. Check camera perspective and folds. Compare paired features from matched landmarks. Review overall print position, center or intended offset, and interaction with seams or pockets. Use category-specific references, request one controlled view when needed, and record the decision before parcel submission.",
+          "Good Kakobuy alignment QC is disciplined rather than microscopic. It rejects false precision from tilted photographs, but it also refuses to explain away a persistent visible mismatch. A short evidence chain—order, reference axis, observation, targeted photo and decision—makes the result easier to review and easier to present if after-sales support is needed."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public contact and quality-inspection pages plus currently indexed product information describing warehouse checking, photographs and seller after-sales handling, reviewed August 13, 2026. The alignment axes, perspective controls and decision matrix are independent editorial methods. Photo availability, extra services, eligibility, costs and deadlines can change; follow the live order."
   }
 ];
