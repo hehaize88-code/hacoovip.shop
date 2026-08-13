@@ -27,7 +27,7 @@ export default function Home() {
     </section>
 
     <section className="category-rail" aria-label="Popular categories">
-      {d.categoryNames.map((name, index) => <a key={categorySlugs[index]} href={withLang("/categories")}><span>0{index + 1}</span>{name}<b>↗</b></a>)}
+      {d.categoryNames.map((name, index) => <a key={categorySlugs[index]} href={withLang("/categories/")}><span>0{index + 1}</span>{name}<b>↗</b></a>)}
     </section>
 
     <section className="discover">
@@ -45,10 +45,10 @@ export default function Home() {
 
     <section className="home-articles">
       <div className="section-title"><div><span>{d.pages.articles[0]}</span><h2>{d.pages.articles[1]}</h2></div><p>{d.pages.articles[2]}</p></div>
-      <div className="article-grid">{d.articles.map((article,index)=><a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</div>
-      <a className="all-articles-link" href={withLang("/articles")}>{d.nav[3]} →</a>
+      <div className="article-grid">{d.articles.map((article,index)=><a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</div>
+      <a className="all-articles-link" href={withLang("/articles/")}>{d.nav[3]} →</a>
     </section>
 
-    <section className="faq"><div><span>{d.quick}</span><h2>{d.important}</h2><a href={withLang("/discover")}>{d.start} →</a></div><div className="questions">{d.faqs.map((faq, index) => <details open={index === 0} key={faq[0]}><summary>{faq[0]}<b>+</b></summary><p>{faq[1]}</p></details>)}</div></section>
+    <section className="faq"><div><span>{d.quick}</span><h2>{d.important}</h2><a href={withLang("/discover/")}>{d.start} →</a></div><div className="questions">{d.faqs.map((faq, index) => <details open={index === 0} key={faq[0]}><summary>{faq[0]}<b>+</b></summary><p>{faq[1]}</p></details>)}</div></section>
   </SiteShell>;
 }

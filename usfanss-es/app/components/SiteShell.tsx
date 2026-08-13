@@ -4,7 +4,7 @@ import { useState } from "react";
 import { languageOptions, Lang } from "../i18n";
 import { useLanguage } from "./LanguageProvider";
 
-const routes = ["/discover", "/categories", "/how-it-works", "/articles", "/faq"];
+const routes = ["/discover/", "/categories/", "/how-it-works/", "/articles/", "/faq/"];
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);

@@ -38,7 +38,7 @@ export function HowPage() {
 
 export function ArticlesPage() {
   const { d, withLang } = useLanguage();
-  return <SiteShell><PageHero page="articles"/><section className="inner-section article-grid">{d.articles.map((article,index) => <a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</section></SiteShell>;
+  return <SiteShell><PageHero page="articles"/><section className="inner-section article-grid">{d.articles.map((article,index) => <a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</section></SiteShell>;
 }
 
 export function FaqPage() {
@@ -51,5 +51,5 @@ export function ArticlePage({ slug }: { slug: string }) {
   const index = Math.max(0, articleSlugs.indexOf(slug));
   const article = d.articles[index];
   const content = articleContent[lang][index];
-  return <SiteShell><article className="article-page"><div className="article-inner"><a className="article-back" href={withLang("/articles")}>← {d.pages.articles[1]}</a><div className="article-heading"><span>{article[0]}</span><h1>{article[1]}</h1><p>{article[2]}</p><div><b>{d.updated}</b><b>{d.readTime}: {article[3]}</b></div></div><p className="article-standfirst">{content.standfirst}</p><div className="article-body">{content.sections.map((section,sectionIndex) => <section key={section.heading}><span>{String(sectionIndex+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{item}</li>)}</ul>}</div></section>)}</div><aside className="article-takeaway"><b>{d.important}</b><p>{content.takeaway}</p></aside><a className="article-cta" href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div></article></SiteShell>;
+  return <SiteShell><article className="article-page"><div className="article-inner"><a className="article-back" href={withLang("/articles/")}>← {d.pages.articles[1]}</a><div className="article-heading"><span>{article[0]}</span><h1>{article[1]}</h1><p>{article[2]}</p><div><b>{d.updated}</b><b>{d.readTime}: {article[3]}</b></div></div><p className="article-standfirst">{content.standfirst}</p><div className="article-body">{content.sections.map((section,sectionIndex) => <section key={section.heading}><span>{String(sectionIndex+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{item}</li>)}</ul>}</div></section>)}</div><aside className="article-takeaway"><b>{d.important}</b><p>{content.takeaway}</p></aside><a className="article-cta" href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div></article></SiteShell>;
 }
