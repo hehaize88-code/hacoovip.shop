@@ -4,7 +4,9 @@ import { ArticlePage, ArticlesPage, CategoriesPage, DiscoverPage, FaqPage, HowPa
 import { LanguageProvider } from "./components/LanguageProvider";
 import { articleSlugs } from "./data";
 
-const normalized = window.location.pathname.replace(/\/+$/, "") || "/";
+const prefix = window.location.pathname.split("/").filter(Boolean)[0];
+const initialLang = prefix === "zh-cn" ? "zh" : (["en", "fr", "de", "it", "pl", "pt"].includes(prefix) ? prefix : "es");
+const normalized = window.location.pathname.replace(/^\/(en|fr|de|it|pl|pt|zh-cn)(?=\/|$)/, "").replace(/\/+$/, "") || "/";
 
 function CurrentPage() {
   if (normalized === "/discover") return <DiscoverPage />;
@@ -21,5 +23,5 @@ function CurrentPage() {
 
 hydrateRoot(
   document.getElementById("root")!,
-  <LanguageProvider><CurrentPage /></LanguageProvider>,
+  <LanguageProvider initialLang={initialLang as import("./i18n").Lang}><CurrentPage /></LanguageProvider>,
 );

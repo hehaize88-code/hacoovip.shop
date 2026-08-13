@@ -7,10 +7,9 @@ cd "${project_root}"
 rm -rf static-assets .static-build
 mkdir -p static-assets .static-build
 
-./node_modules/.bin/esbuild app/static-client.tsx \
+./node_modules/.bin/esbuild scripts/static-interactions.ts \
   --bundle \
   --format=esm \
-  --jsx=automatic \
   --minify \
   --outfile=static-assets/app.js
 
