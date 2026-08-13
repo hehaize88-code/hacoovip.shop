@@ -15,6 +15,24 @@ async function render(pathname) {
   );
 }
 
+async function renderPages(pathname) {
+  const workerUrl = new URL("../dist/client/_worker.js", import.meta.url);
+  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
+  const { default: worker } = await import(workerUrl.href);
+  return worker.fetch(
+    new Request(`http://localhost${pathname}`),
+    {
+      ASSETS: {
+        fetch: async (request) =>
+          new Response(`static:${new URL(request.url).pathname}`, {
+            headers: { "content-type": "text/plain" },
+          }),
+      },
+    },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+}
+
 test("renders development preview metadata", async () => {
   const response = await render("/");
 
@@ -38,4 +56,14 @@ test("renders an indexable, substantive category directory", async () => {
   assert.match(html, /https:\/\/www\.cnbuycha\.com\/shoes\//i);
   assert.doesNotMatch(html, /cnfanshp\.com/i);
   assert.ok(html.replace(/<[^>]+>/g, " ").trim().split(/\s+/).length > 500);
+});
+
+test("serves sitemap and robots as exact static assets", async () => {
+  const sitemap = await renderPages("/sitemap.xml");
+  const robots = await renderPages("/robots.txt");
+
+  assert.equal(sitemap.status, 200);
+  assert.equal(await sitemap.text(), "static:/sitemap.xml");
+  assert.equal(robots.status, 200);
+  assert.equal(await robots.text(), "static:/robots.txt");
 });
