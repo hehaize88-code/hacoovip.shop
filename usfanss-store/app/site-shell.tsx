@@ -44,7 +44,7 @@ const products = [
   { key:"bags", name:"Chanel bags", price:"¥390", image:"/products/chanel-bag.webp", href:"https://www.cnfanshp.com/AllProducts/5163.html", category:"https://www.cnfanshp.com/accessories/", code:"03" },
   { key:"jerseys", name:"Amiri B22 Jersey/Shorts Set", price:"¥95", image:"/products/amiri-jersey.webp", href:"https://www.cnfanshp.com/AllProducts/5178.html", category:"https://www.cnfanshp.com/Jersey/", code:"04" },
 ] as const;
-const paths: Record<PageName,string> = { home:"/",categories:"/categories",finds:"/finds",articles:"/articles",article:"/articles",faq:"/faq",qc:"/qc-guide",shipping:"/shipping" };
+const paths: Record<PageName,string> = { home:"/",categories:"/categories/",finds:"/finds/",articles:"/articles/",article:"/articles/",faq:"/faq/",qc:"/qc-guide/",shipping:"/shipping/" };
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 export function SiteShell({ page, article }: { page: PageName; article?: ArticleSlug }) {
@@ -67,7 +67,7 @@ function ProductCards({t}:{t:Copy}) { return <div className="find-grid">{product
 function MapStage({t}:{t:Copy}) { const note={shoes:t.start,hoodies:t.checkpoints,bags:t.hardware,jerseys:t.print}; return <div className="map-stage"><div className="map-lines"/>{products.map(item=><a href={item.href} className={`map-product pin-${item.key}`} target="_blank" rel="noreferrer" key={item.key}><b>{item.code}</b><img src={item.image} alt=""/><span>{t[item.key]}<small>{note[item.key]}</small></span></a>)}<div className="map-key"><span>{t.productTrails}</span><span>{t.qcWaypoints}</span><span>{t.shippingNotes}</span></div></div>; }
 function TrailStrip({t}:{t:Copy}) { return <section className="trail-strip"><span>{t.trail}</span>{products.map(item=><a href={item.href} target="_blank" rel="noreferrer" key={item.key}><img src={item.image} alt=""/><b>{t[item.key]}</b><small>{item.code}</small></a>)}</section>; }
 function CategoryCards({t}:{t:Copy}) { return <div className="category-grid">{products.map(item=><a href={item.category} target="_blank" rel="noreferrer" key={item.key}><span>{item.code}</span><img src={item.image} alt=""/><div><small>{t.from}</small><h3>{t[item.key]}</h3><b>{t.catCta} <Arrow/></b></div></a>)}</div>; }
-function ArticleCards({t,lang}:{t:Copy;lang:Lang}) { return <div className="article-grid">{articleSlugs.map((slug,index)=>{const item=articleData[lang][slug];return <a href={`/articles/${slug}${lang==="en"?"":`?lang=${lang}`}`} key={slug}><span>0{index+1}</span><h3>{item.title}</h3><p>{item.description}</p><b>{t.read} <Arrow/></b></a>})}</div>; }
+function ArticleCards({t,lang}:{t:Copy;lang:Lang}) { return <div className="article-grid">{articleSlugs.map((slug,index)=>{const item=articleData[lang][slug];return <a href={`/articles/${slug}/${lang==="en"?"":`?lang=${lang}`}`} key={slug}><span>0{index+1}</span><h3>{item.title}</h3><p>{item.description}</p><b>{t.read} <Arrow/></b></a>})}</div>; }
 
 function FaqCard({lang,link}:{lang:Lang;link:(p:PageName)=>string}) { const f=faqText[lang]; return <a className="faq-home-card" href={link("faq")}><span>FAQ / 04</span><div><h3>{f.cardTitle}</h3><p>{f.cardBody}</p></div><b>{f.open} <Arrow/></b></a>; }
 
