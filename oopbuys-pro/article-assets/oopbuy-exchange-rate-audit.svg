@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">OOPBUY exchange-rate audit</title>
+  <desc id="desc">A three-stage evidence diagram separating product-page display, payment quote and final settled charge.</desc>
+  <rect width="1200" height="675" fill="#f5f0e6"/>
+  <rect x="58" y="58" width="1084" height="559" rx="32" fill="#101820"/>
+  <text x="104" y="130" fill="#ff6b35" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="3">CNY → HOME CURRENCY</text>
+  <text x="104" y="186" fill="#fff" font-family="Georgia,serif" font-size="45">Audit the transaction, not a remembered rate.</text>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(104 252)"><rect width="292" height="238" rx="18" fill="#f7f2e8"/><text x="25" y="43" fill="#ff5b2d" font-size="16" font-weight="700">01 · DISPLAY</text><text x="25" y="92" fill="#101820" font-size="27" font-weight="700">Planning value</text><text x="25" y="139" fill="#41536a" font-size="18">CNY source amount</text><text x="25" y="171" fill="#41536a" font-size="18">Selected display currency</text><text x="25" y="203" fill="#41536a" font-size="18">Timestamp</text></g>
+    <g transform="translate(454 252)"><rect width="292" height="238" rx="18" fill="#d9eaf0"/><text x="25" y="43" fill="#087e8b" font-size="16" font-weight="700">02 · QUOTE</text><text x="25" y="92" fill="#101820" font-size="27" font-weight="700">Authorization</text><text x="25" y="139" fill="#41536a" font-size="18">Amount + currency</text><text x="25" y="171" fill="#41536a" font-size="18">Itemized charges</text><text x="25" y="203" fill="#41536a" font-size="18">Funding method</text></g>
+    <g transform="translate(804 252)"><rect width="292" height="238" rx="18" fill="#f6d5c7"/><text x="25" y="43" fill="#c6471d" font-size="16" font-weight="700">03 · SETTLEMENT</text><text x="25" y="92" fill="#101820" font-size="27" font-weight="700">Actual cost</text><text x="25" y="139" fill="#41536a" font-size="18">Final posted amount</text><text x="25" y="171" fill="#41536a" font-size="18">Issuer fees</text><text x="25" y="203" fill="#41536a" font-size="18">Settlement date</text></g>
+  </g>
+  <path d="M396 371h58m292 0h58" stroke="#ff6b35" stroke-width="7" stroke-linecap="round"/>
+  <text x="104" y="555" fill="#b7c2ce" font-family="Arial,sans-serif" font-size="18">Effective cost per CNY = final posted home-currency amount ÷ funded CNY amount</text>
+</svg>

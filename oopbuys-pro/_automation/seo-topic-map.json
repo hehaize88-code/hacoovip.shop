@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-12",
+  "updated": "2026-08-14",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -302,6 +302,25 @@
         "OOPBUY Inspection Information"
       ],
       "internalLinkRole": "China-side cost spoke linked to the full cost ledger, QC and return guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-exchange-rate-audit/",
+      "primaryQuery": "oopbuy exchange rate",
+      "secondaryTerms": [
+        "oopbuy currency conversion",
+        "oopbuy payment exchange rate",
+        "oopbuy CNY to USD rate",
+        "oopbuy foreign transaction fee"
+      ],
+      "intent": "commercial cost audit",
+      "angle": "Separate display currency, checkout quote and settled funding-provider charge, then calculate the effective home-currency cost per CNY.",
+      "evidence": [
+        "OOPBUY current public product pages",
+        "OOPBUY Service & Fees notice",
+        "US CFPB foreign transaction fee interpretation",
+        "Visa Foreign Exchange Rates API reference"
+      ],
+      "internalLinkRole": "Currency-cost spoke linked to fees, domestic shipping and refunds"
     }
   ]
 }
