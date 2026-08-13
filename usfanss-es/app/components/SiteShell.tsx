@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { languageOptions, Lang } from "../i18n";
 import { useLanguage } from "./LanguageProvider";
+import { catalogBase } from "../data";
 
 const routes = ["/discover/", "/categories/", "/how-it-works/", "/articles/", "/faq/"];
 
@@ -13,7 +14,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return <main id="top">
     <header className="topbar">
       <a className="logo" href={withLang("/")} aria-label="USFans home">
-        <img src="/usfans-logo.png" alt="USFans" />
+        <img src="/usfans-logo.png" alt="USFans" width="376" height="91" />
       </a>
       <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
         {d.nav.map((label, index) => <a key={routes[index]} href={withLang(routes[index])} onClick={() => setMenuOpen(false)}>{label}</a>)}
@@ -31,7 +32,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             {languageOptions.map(option => <option key={option.code} value={option.code}>{option.short}</option>)}
           </select>
         </label>
-        <a href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noreferrer">{d.explore} <i>↗</i></a>
+        <a href={`${catalogBase}/AllProducts/`} target="_blank" rel="noreferrer">{d.explore} <i>↗</i></a>
       </div>
       <button className="menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu" aria-expanded={menuOpen}><span/><span/></button>
     </header>
@@ -39,9 +40,9 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     {children}
 
     <footer>
-      <a className="footer-logo" href={withLang("/")}><img src="/usfans-logo.png" alt="USFans" /></a>
+      <a className="footer-logo" href={withLang("/")}><img src="/usfans-logo.png" alt="USFans" width="376" height="91" /></a>
       <p>{d.footer}</p>
-      <div><a href="#top">{d.backTop} ↑</a><a href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div>
+      <div><a href="#top">{d.backTop} ↑</a><a href={`${catalogBase}/AllProducts/`} target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div>
     </footer>
   </main>;
 }
