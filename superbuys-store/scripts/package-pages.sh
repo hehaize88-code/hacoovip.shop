@@ -17,7 +17,7 @@ esbuild="${SITES_PROJECT_ROOT}/node_modules/.bin/esbuild"
 }
 
 rm -rf "${pages_root}/server"
-"${esbuild}" "${SITES_PROJECT_ROOT}/dist/server/index.js" \
+"${esbuild}" "${SITES_PROJECT_ROOT}/scripts/pages-worker-entry.mjs" \
   --bundle \
   --format=esm \
   --platform=neutral \
