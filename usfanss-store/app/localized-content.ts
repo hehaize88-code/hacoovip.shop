@@ -1,8 +1,10 @@
 import type { Lang } from "./site-shell";
 import { articleDetails } from "./article-details";
+import { shoesListingArticle } from "./shoes-listing-article";
 
-export type ArticleSlug = "how-to-use-usfans" | "usfans-qc-photos-guide" | "usfans-review-2026";
-export const articleSlugs: ArticleSlug[] = ["how-to-use-usfans", "usfans-qc-photos-guide", "usfans-review-2026"];
+type HistoricArticleSlug = "how-to-use-usfans" | "usfans-qc-photos-guide" | "usfans-review-2026";
+export type ArticleSlug = HistoricArticleSlug | "usfans-shoes-listing-checklist";
+export const articleSlugs: ArticleSlug[] = ["how-to-use-usfans", "usfans-qc-photos-guide", "usfans-review-2026", "usfans-shoes-listing-checklist"];
 
 type FaqLocale = { label:string; eyebrow:string; title:string; body:string; cardTitle:string; cardBody:string; open:string; questions:Array<{q:string;a:string}> };
 
@@ -42,7 +44,7 @@ export const faqText: Record<Lang,FaqLocale> = {
   ]},
 };
 
-type Article = { kicker:string; title:string; description:string; updated:string; readingTime:string; contentsLabel:string; factTitle:string; factNote:string; imageCaption:string; sections:Array<{heading:string;paragraphs:string[]}> };
+export type Article = { kicker:string; title:string; description:string; updated:string; readingTime:string; contentsLabel:string; factTitle:string; factNote:string; imageCaption:string; sections:Array<{heading:string;paragraphs:string[]}> };
 const article = (value:Article)=>value;
 
 const guideEn = article({
@@ -87,7 +89,7 @@ const reviewEn = article({
   ]
 });
 
-const compact = (lang:Exclude<Lang,"en">,kind:ArticleSlug,locale:Omit<Article,"sections"> & {sections:Array<[string,string]>}):Article => ({
+const compact = (lang:Exclude<Lang,"en">,kind:HistoricArticleSlug,locale:Omit<Article,"sections"> & {sections:Array<[string,string]>}):Article => ({
   ...locale,
   sections:locale.sections.map(([heading,lead],index)=>({
     heading,
@@ -95,7 +97,7 @@ const compact = (lang:Exclude<Lang,"en">,kind:ArticleSlug,locale:Omit<Article,"s
   }))
 });
 
-const translated = (lang:Exclude<Lang,"en">, base:Article, kind:ArticleSlug):Article => {
+const translated = (lang:Exclude<Lang,"en">, base:Article, kind:HistoricArticleSlug):Article => {
   const ui:Record<Exclude<Lang,"en">,{updated:string;read:string;contents:string;fact:string;caption:string}>={
     de:{updated:"Aktualisiert am 13. August 2026",read:"Ausführlicher Leitfaden",contents:"INHALT",fact:"Geprüfte Grundlage",caption:"Katalogbilder helfen bei der Zuordnung; entscheidend sind die Lagerfotos des tatsächlich erhaltenen Artikels."},
     es:{updated:"Actualizado el 13 de agosto de 2026",read:"Guía detallada",contents:"CONTENIDO",fact:"Base verificada",caption:"Las fotos de catálogo sirven de referencia; la decisión debe basarse en las imágenes del artículo recibido."},
@@ -110,7 +112,7 @@ const translated = (lang:Exclude<Lang,"en">, base:Article, kind:ArticleSlug):Art
 };
 
 type CompactCore={kicker:string;title:string;description:string;fact:string;sections:Array<[string,string]>};
-const translatedCore:Record<Exclude<Lang,"en">,Record<ArticleSlug,CompactCore>> = {
+const translatedCore:Record<Exclude<Lang,"en">,Record<HistoricArticleSlug,CompactCore>> = {
   de:{
     "how-to-use-usfans":{kicker:"USFANS EINSTEIGERLEITFADEN · 2026",title:"USFans 2026 nutzen: Vom Produktlink zum internationalen Paket",description:"Ein faktenbasierter Ablauf zu Verkäuferlink, Lagerankunft, QC-Fotos, Rückgabe und Paketeinreichung.",fact:"USFans nennt öffentlich Taobao, 1688 und Weidian, Lagerprüfung mit echten Bildern, drei bis sieben kostenlose HD-Fotos und ein fünftägiges Rückgabe-Antragsfenster nach Lagereingang.",sections:[["Zweistufige Bestellung verstehen","Zuerst kauft der Agent beim Marktplatzverkäufer und empfängt die Ware in China; erst danach entscheidet der Käufer über den internationalen Versand. Verkäufer, Lager und Transport sind getrennte Verantwortungsbereiche."],["Mit einem sauberen Produktlink beginnen","Originalangebot, Variante, Größentabelle und Verkäuferhinweise speichern. Ein Angebot kann mehrere Farben, Chargen oder Zubehörteile enthalten; daher nie nur nach dem ersten Bild bestellen."],["Vor der Zahlung prüfen","Preis, Menge, Variante und Inlandsversand kontrollieren. Produktzahlung ist nicht der Endpreis, weil der internationale Versand später anhand des Pakets bezahlt wird."],["Lagerankunft richtig lesen","Nach dem Eingang wird der Artikel zugeordnet, geprüft und fotografiert. Alle drei bis sieben Bilder in voller Größe mit dem gespeicherten Angebot vergleichen."],["Fünf-Tage-Fenster nutzen","USFans nennt fünf Tage für einen Rückgabeantrag. Probleme konkret mit Foto und sichtbarer Abweichung beschreiben; Verkäuferbedingungen können weiterhin gelten."],["Paket bewusst aufbauen","Nur gewünschte Artikel einreichen. Konsolidierung, Schutz, Verpackungsentfernung, Maße und Routengrenzen gegeneinander abwägen."],["Versand mit Enddaten vergleichen","Endgewicht, Volumen, Einschränkungen, Tracking und Lieferfenster zählen mehr als der niedrigste Anfangspreis."],["Checkliste für die erste Bestellung","Klein starten, Links sichern, QC fristgerecht prüfen, Entscheidungen dokumentieren und mindestens zwei geeignete Routen vergleichen."]]},
     "usfans-qc-photos-guide":{kicker:"USFANS QC-FOTO-LEITFADEN · 2026",title:"USFans QC-Fotos richtig prüfen",description:"Eine Methode zum Erkennen sichtbarer Abweichungen vor dem internationalen Versand.",fact:"USFans beschreibt eine Lagerprüfung, drei bis sieben kostenlose HD-Fotos und fünf Tage für einen Rückgabeantrag. Fotos sind keine Echtheits- oder Materialgarantie.",sections:[["Was QC beweisen kann","Fotos zeigen Farbe, Form, Etiketten, Druck und sichtbare Schäden, aber nicht Material, Haltbarkeit, Funktion oder Echtheit."],["Referenz vorbereiten","Angebot, Variante, Größentabelle und wichtige Detailbilder bereits beim Kauf speichern."],["Komplettes Set öffnen","Alle Bilder groß öffnen und Front, Rückseite, Seiten, Etikett und Maße prüfen. Fehlende kritische Winkel gezielt nachfordern."],["Schuhe prüfen","Paarweise Symmetrie, Größe, Zehenform, Nähte, Kleber, Sohlen und Maße vergleichen."],["Kleidung und Trikots","Maße vor Etikett priorisieren; Druck, Stickerei, Kragen, Bündchen, Reißverschluss, Namen und Nummern prüfen."],["Taschen und Zubehör","Form, Beschläge, Riemen, Verschluss, Innenraum und alle abnehmbaren Teile kontrollieren."],["Behalten, fragen oder zurückgeben","Bei Übereinstimmung behalten, bei fehlendem Beweis nachfragen und bei klarer Abweichung fristgerecht zurückgeben."],["QC-Nachweis sichern","Angebot, Bilder, Maße und Supportantworten bis zur Lieferung gemeinsam aufbewahren."]]},
@@ -149,12 +151,12 @@ const translatedCore:Record<Exclude<Lang,"en">,Record<ArticleSlug,CompactCore>> 
 };
 
 export const articleData:Record<Lang,Record<ArticleSlug,Article>> = {
-  en:{"how-to-use-usfans":guideEn,"usfans-qc-photos-guide":qcEn,"usfans-review-2026":reviewEn},
-  de:{"how-to-use-usfans":translated("de",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("de",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("de",reviewEn,"usfans-review-2026")},
-  es:{"how-to-use-usfans":translated("es",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("es",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("es",reviewEn,"usfans-review-2026")},
-  fr:{"how-to-use-usfans":translated("fr",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("fr",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("fr",reviewEn,"usfans-review-2026")},
-  it:{"how-to-use-usfans":translated("it",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("it",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("it",reviewEn,"usfans-review-2026")},
-  pl:{"how-to-use-usfans":translated("pl",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("pl",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("pl",reviewEn,"usfans-review-2026")},
-  pt:{"how-to-use-usfans":translated("pt",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("pt",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("pt",reviewEn,"usfans-review-2026")},
-  "zh-cn":{"how-to-use-usfans":translated("zh-cn",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("zh-cn",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("zh-cn",reviewEn,"usfans-review-2026")},
+  en:{"how-to-use-usfans":guideEn,"usfans-qc-photos-guide":qcEn,"usfans-review-2026":reviewEn,"usfans-shoes-listing-checklist":shoesListingArticle.en},
+  de:{"how-to-use-usfans":translated("de",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("de",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("de",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.de},
+  es:{"how-to-use-usfans":translated("es",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("es",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("es",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.es},
+  fr:{"how-to-use-usfans":translated("fr",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("fr",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("fr",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.fr},
+  it:{"how-to-use-usfans":translated("it",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("it",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("it",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.it},
+  pl:{"how-to-use-usfans":translated("pl",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("pl",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("pl",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.pl},
+  pt:{"how-to-use-usfans":translated("pt",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("pt",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("pt",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.pt},
+  "zh-cn":{"how-to-use-usfans":translated("zh-cn",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("zh-cn",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("zh-cn",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle["zh-cn"]},
 };

@@ -14,6 +14,7 @@ type Route = { path:string; page:PageName; article?:ArticleSlug };
 const routes: Route[] = [
   {path:"/",page:"home"},{path:"/categories/",page:"categories"},{path:"/finds/",page:"finds"},{path:"/articles/",page:"articles"},{path:"/faq/",page:"faq"},{path:"/qc-guide/",page:"qc"},{path:"/shipping/",page:"shipping"},
   {path:"/articles/how-to-use-usfans/",page:"article",article:"how-to-use-usfans"},{path:"/articles/usfans-qc-photos-guide/",page:"article",article:"usfans-qc-photos-guide"},{path:"/articles/usfans-review-2026/",page:"article",article:"usfans-review-2026"},
+  {path:"/articles/usfans-shoes-listing-checklist/",page:"article",article:"usfans-shoes-listing-checklist"},
 ];
 
 const homeMeta: Record<Lang,{title:string;description:string}> = {
@@ -69,6 +70,6 @@ await writeFile(join(root,"404.html"),notFound);
 await cp(join(root,"public","products"),join(root,"products"),{recursive:true});
 for (const file of ["favicon.svg","usfans-logo.png"]) await cp(join(root,"public",file),join(root,file));
 await writeFile(join(root,"robots.txt"),`User-agent: *\nAllow: /\nSitemap: ${site}/sitemap.xml\n`);
-await writeFile(join(root,"sitemap.xml"),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map(url=>`  <url><loc>${url}</loc><lastmod>2026-08-13</lastmod></url>`).join("\n")}\n</urlset>\n`);
+await writeFile(join(root,"sitemap.xml"),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map(url=>`  <url><loc>${url}</loc><lastmod>${url.includes("usfans-shoes-listing-checklist") ? "2026-08-14" : "2026-08-13"}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 await writeFile(join(root,"_headers"),`/*\n  Cache-Control: public, max-age=0, s-maxage=86400, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Vary: Accept-Encoding\n\n/static-assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/products/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 await rm(join(root,".static-build"),{recursive:true,force:true});

@@ -12,6 +12,7 @@ const articles: ArticleSlug[] = [
   "how-to-use-usfans",
   "usfans-qc-photos-guide",
   "usfans-review-2026",
+  "usfans-shoes-listing-checklist",
 ];
 
 let page: PageName = "home";
