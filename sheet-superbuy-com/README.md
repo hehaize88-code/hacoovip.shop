@@ -98,6 +98,13 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
+## Cloudflare Pages static export
+
+The Git-connected Cloudflare Pages project publishes this directory directly.
+Run `npm run export:pages-root` after changing site content. It creates a static
+Next.js export and copies the generated entry files (including `index.html`) to
+the project root, while leaving the Vinext/Sites build unchanged.
+
 Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
 
 The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
