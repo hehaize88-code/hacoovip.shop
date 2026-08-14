@@ -42,6 +42,7 @@ const preservationContract = {
     "findqc-shoes-qc-checklist": { sections: 7, blocks: 27 },
     "findqc-return-evidence-checklist": { sections: 7, blocks: 23 },
     "findqc-standard-vs-premium-qc": { sections: 7, blocks: 25 },
+    "findqc-60-second-workflow": { sections: 7, blocks: 23 },
   },
   homeSections: ["home-hero", "category-band", "home-products", "method-section", "editorial-section", "faq-preview"],
   productSections: ["shortlist-method", "product-category-index", "product-catalog", "product-use-grid", "product-preflight", "product-category-paths", "product-boundary-note"],

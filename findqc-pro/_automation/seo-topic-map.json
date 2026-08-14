@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-12",
+  "lastUpdated": "2026-08-14",
   "latestPublishedCommit": "32385c11c5b5298727c0d9600360bda33e22481d",
   "articles": [
     {
@@ -88,6 +88,18 @@
       "visuals": ["Four original HTML decision tables plus one existing local editorial catalog image; no customer or external media"],
       "planTrack": "F05",
       "cycle": "C01"
+    },
+    {
+      "slug": "findqc-60-second-workflow",
+      "primaryQuery": "FindQC 60-second workflow",
+      "intent": "Run FindQC's official five-step sequence as a time-boxed evidence triage without forcing a premature approval",
+      "focus": ["same-item identity", "decisive visual scan", "relevant Premium fields", "single-purpose video review", "stop-the-clock conditions"],
+      "exampleType": "Editorial second-by-second time boxes, decision tables and wording patterns, never fabricated customer orders or platform outcomes",
+      "outline": ["decision question", "0-10 identity", "10-30 visual scan", "30-45 Premium fields", "45-55 video", "55-60 decision record", "stop-the-clock handoff"],
+      "faqAngles": ["Can a FindQC check really be completed in 60 seconds?", "When should a fast FindQC review stop?", "Who handles actions after the research decision?"],
+      "visuals": ["Five original HTML workflow and decision tables plus one existing local editorial catalog image; no customer or external media"],
+      "planTrack": "F06",
+      "cycle": "C02"
     }
   ]
 }
