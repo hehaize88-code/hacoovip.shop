@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
+const indexableRobotsMeta =
+  /<meta(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*index[^"']*follow[^"']*["'])[^>]*>/i;
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
 workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
@@ -27,7 +27,7 @@ async function render(pathname) {
   return { response, html: await response.text() };
 }
 
-test("renders development preview metadata", async () => {
+test("renders production indexing metadata", async () => {
   const { response, html } = await render("/");
 
   assert.equal(response.status, 200);
@@ -35,7 +35,22 @@ test("renders development preview metadata", async () => {
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(html, developmentPreviewMeta);
+  assert.match(html, indexableRobotsMeta);
+  assert.doesNotMatch(html, /noindex|nofollow|codex-preview|review-build/i);
+});
+
+test("publishes a complete sitemap and robots declaration", async () => {
+  const sitemapResponse = await render("/sitemap.xml");
+  assert.equal(sitemapResponse.response.status, 200);
+  assert.match(sitemapResponse.html, /<urlset\b/);
+  assert.equal((sitemapResponse.html.match(/<url>/g) ?? []).length, 70);
+  assert.match(sitemapResponse.html, /https:\/\/sheet-hipobuy\.net\/articles\/hipobuy-review-2026\//);
+  assert.match(sitemapResponse.html, /https:\/\/sheet-hipobuy\.net\/pl\/articles\/hipobuy-review-2026\//);
+
+  const robotsResponse = await render("/robots.txt");
+  assert.equal(robotsResponse.response.status, 200);
+  assert.match(robotsResponse.html, /Allow: \/\s/);
+  assert.match(robotsResponse.html, /Sitemap: https:\/\/sheet-hipobuy\.net\/sitemap\.xml/);
 });
 
 test("keeps every localized article complete and structurally aligned", async () => {

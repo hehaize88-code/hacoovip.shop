@@ -15,7 +15,7 @@ export function pageMetadata(lang: Lang, page: PageKey): Metadata {
     description,
     alternates: { canonical, languages: { ...alternates, "x-default": `${origin}${pageHref("en", page)}` } },
     openGraph: { type: "website", title, description, url: canonical, siteName: "Hipobuy Sheet", locale: lang },
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -37,6 +37,6 @@ export function articleMetadata(lang: Lang, slug: ArticleSlug): Metadata {
       siteName: "Hipobuy Sheet",
       locale: lang,
     },
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
   };
 }
