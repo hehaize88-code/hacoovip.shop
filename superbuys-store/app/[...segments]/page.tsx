@@ -26,7 +26,16 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
   const t = copy[route.locale];
   if (route.kind === "article") {
     const article = articles[route.locale].find((item) => item.slug === route.slug);
-    return { title: article?.title, description: article?.dek, alternates: alternates(route.locale, route.basePath) };
+    const url = absoluteUrl(localizedPath(route.locale, route.basePath));
+    return {
+      title: article?.title,
+      description: article?.dek,
+      alternates: alternates(route.locale, route.basePath),
+      ...(route.slug === "superbuy-warehouse-arrival-checklist" ? {
+        openGraph: { type: "article" as const, title: article?.title, description: article?.dek, url, siteName: "Superbuy Product Index" },
+        twitter: { card: "summary", title: article?.title, description: article?.dek },
+      } : {}),
+    };
   }
   const titles = {
     categories: t.categoriesPage.title,

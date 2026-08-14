@@ -1,3 +1,5 @@
+import { arrivalChecklist } from "./arrival-checklist";
+
 export type Locale = "en" | "fr" | "de";
 
 export const ROOT = "https://www.cnbuycha.com";
@@ -118,16 +120,17 @@ export const copy = {
       editIntro: "Selected as browsing directions, not endorsements. Open the destination listing and review every detail before making a decision.",
       names: [["Low-profile runner", "Muted palette / daily rotation"], ["Technical sneaker", "Layered upper / bold sole"], ["Statement pair", "High contrast / weekend pick"], ["Quiet essential", "Simple lines / easy styling"]],
       idea: "The idea", statement: ["Fewer tabs.", "Better routes.", "A clearer find."], enter: "Enter the full index",
-      notesKicker: "Reading room / 03", notesTitle: "Field notes", notesIntro: "Practical, fact-checked context for discovery, warehouse review and parcel planning.",
+      notesKicker: "Reading room / 04", notesTitle: "Field notes", notesIntro: "Practical, fact-checked context for discovery, warehouse review and parcel planning.",
       notes: [
         ["Start here", "How to use a Superbuy spreadsheet without guessing", "Move from a promising find to the exact variant, a written inspection brief and a realistic two-stage budget.", "product-listing-checklist"],
         ["QC desk", "What useful QC photos should help you check", "Review shape, color consistency, visible marks and the details that matter to you. A photo is evidence to examine—not a promise of quality.", "superbuy-qc-photos-guide"],
         ["Parcel", "Why product price is only half the decision", "International delivery depends on packed size, weight, route and destination. Consider the likely parcel before building a haul.", "superbuy-shipping-cost-guide"],
+        ["Arrival desk", "What to verify when a Superbuy order reaches the warehouse", "Reconcile order identity, intake data and visible evidence before requesting extras, after-sales help or parcel submission.", "superbuy-warehouse-arrival-checklist"],
       ],
     },
     categoriesPage: { kicker: "Superbuy product categories / 10 routes", title: "Superbuy product categories & finds.", intro: "Browse ten product routes, then use the category-specific checks below to verify variants, measurements, QC evidence and likely parcel impact before ordering." },
     guidesPage: { kicker: "Practical guides / 03", title: "Plan before you click.", intro: "Straightforward explanations based on Superbuy’s published shopping-agent flow: ordering, warehouse inspection, storage, consolidation and international delivery." },
-    articlesPage: { kicker: "SEO library / Issue 01", title: "Superbuy guides & field notes.", intro: "Three human-written, 1,200–1,800 word guides built around distinct search intent: spreadsheet workflow, QC photos and international shipping cost." },
+    articlesPage: { kicker: "SEO library / Issue 01", title: "Superbuy guides & field notes.", intro: "Four human-written guides built around distinct search intent: product discovery, QC photos, shipping cost and warehouse-arrival reconciliation." },
     faqPage: { kicker: "Help desk / 12 answers", title: "Questions, answered.", intro: "These answers summarize Superbuy’s published guidance as checked on 12 August 2026. Route availability, costs and policies can change." },
   },
   fr: {
@@ -142,11 +145,12 @@ export const copy = {
       editIntro: "Des directions de recherche, pas des recommandations. Ouvrez la fiche de destination et vérifiez chaque détail avant de décider.",
       names: [["Runner profil bas", "Palette douce / rotation quotidienne"], ["Sneaker technique", "Tige superposée / semelle forte"], ["Paire affirmée", "Contraste élevé / choix du week-end"], ["Essentiel discret", "Lignes simples / facile à assortir"]],
       idea: "L’idée", statement: ["Moins d’onglets.", "De meilleurs parcours.", "Une trouvaille plus claire."], enter: "Entrer dans l’index complet",
-      notesKicker: "Salle de lecture / 02", notesTitle: "Notes de terrain", notesIntro: "Un contexte pratique pour chercher, vérifier et planifier avant de vous engager.",
+      notesKicker: "Salle de lecture / 04", notesTitle: "Notes de terrain", notesIntro: "Un contexte pratique pour chercher, vérifier et planifier avant de vous engager.",
       notes: [
         ["Commencer ici", "Lire une fiche produit avant de l’ouvrir", "Le titre, les photos du vendeur et les variantes permettent de décider si une trouvaille mérite un examen. Gardez vos questions pour l’étape de contrôle.", "product-listing-checklist"],
         ["Bureau QC", "Ce que des photos QC utiles doivent permettre de vérifier", "Examinez la forme, la cohérence des couleurs, les marques visibles et les détails importants. Une photo est une preuve à étudier, pas une promesse de qualité.", "superbuy-qc-photos-guide"],
         ["Colis", "Pourquoi le prix produit n’est que la moitié de la décision", "La livraison internationale dépend du volume emballé, du poids, de l’itinéraire et de la destination. Pensez au colis probable avant de composer un lot.", "superbuy-shipping-cost-guide"],
+        ["Réception", "Que vérifier à l’arrivée d’une commande Superbuy", "Rapprochez identité, données d’entrée et preuves visibles avant de demander une photo, un après-vente ou l’envoi du colis.", "superbuy-warehouse-arrival-checklist"],
       ],
     },
     categoriesPage: { kicker: "Catégories de produits Superbuy / 10 parcours", title: "Catégories et trouvailles Superbuy.", intro: "Parcourez dix itinéraires produits, puis utilisez les contrôles propres à chaque catégorie pour vérifier variantes, mesures, preuves QC et effet probable sur le colis." },
@@ -166,11 +170,12 @@ export const copy = {
       editIntro: "Als Suchrichtungen ausgewählt, nicht als Empfehlungen. Öffne das Ziel-Listing und prüfe jedes Detail vor deiner Entscheidung.",
       names: [["Flacher Runner", "Ruhige Farben / tägliche Rotation"], ["Technischer Sneaker", "Mehrlagiges Oberteil / starke Sohle"], ["Statement-Paar", "Hoher Kontrast / Wochenendwahl"], ["Ruhiges Essential", "Klare Linien / leicht zu kombinieren"]],
       idea: "Die Idee", statement: ["Weniger Tabs.", "Bessere Wege.", "Ein klarerer Fund."], enter: "Zum vollständigen Index",
-      notesKicker: "Leseraum / 02", notesTitle: "Notizen aus der Praxis", notesIntro: "Praktischer Kontext zum Suchen, Prüfen und Planen vor deiner Entscheidung.",
+      notesKicker: "Leseraum / 04", notesTitle: "Notizen aus der Praxis", notesIntro: "Praktischer Kontext zum Suchen, Prüfen und Planen vor deiner Entscheidung.",
       notes: [
         ["Hier starten", "Ein Produkt-Listing lesen, bevor du es öffnest", "Titel, Verkäuferbilder und Varianten zeigen, ob sich ein genauer Blick lohnt. Notiere Fragen für die spätere Prüfung.", "product-listing-checklist"],
         ["QC-Schreibtisch", "Was hilfreiche QC-Fotos zeigen sollten", "Prüfe Form, Farbkonsistenz, sichtbare Spuren und wichtige Details. Ein Foto ist Material zur Beurteilung – kein Qualitätsversprechen.", "superbuy-qc-photos-guide"],
         ["Paket", "Warum der Produktpreis nur die halbe Entscheidung ist", "Internationaler Versand hängt von Packmaß, Gewicht, Route und Ziel ab. Denke vor dem Zusammenstellen eines Hauls an das wahrscheinliche Paket.", "superbuy-shipping-cost-guide"],
+        ["Wareneingang", "Was beim Superbuy-Lagereingang zu prüfen ist", "Bestellidentität, Eingangsdaten und sichtbare Belege abgleichen, bevor Zusatzfoto, After-Sales oder Paket folgen.", "superbuy-warehouse-arrival-checklist"],
       ],
     },
     categoriesPage: { kicker: "Superbuy-Produktkategorien / 10 Wege", title: "Superbuy-Kategorien & Produktfunde.", intro: "Durchsuche zehn Produktwege und nutze danach die Kategorie-Checks für Varianten, Maße, QC-Belege und den wahrscheinlichen Paketeffekt." },
@@ -221,7 +226,7 @@ export const faq = {
   ],
 } as const;
 
-type Article = { slug: string; title: string; dek: string; sections: { heading: string; paragraphs: string[] }[] };
+export type Article = { slug: string; title: string; dek: string; sections: { heading: string; paragraphs: string[] }[] };
 
 export const articles: Record<Locale, Article[]> = {
   en: [
@@ -310,3 +315,7 @@ translateArticles("de", [
     { heading: "Eine realistische Schätzung bauen", paragraphs: ["Notiere Ziel, Artikelzahl, wahrscheinliche Packmaße, Gewicht, Beschränkungen und Schutzbedarf. Nutze den aktuellen Rechner als Schätzung und plane eine Reserve ein. Prüfe erneut, wenn alle Artikel wirklich im Lager sind.", "Der beste Vergleich ist nicht Produktpreis gegen Produktpreis, sondern Gesamtwert des fertigen Pakets gegen die zum Einreichungszeitpunkt verfügbaren internationalen Optionen."] },
   ] },
 ]);
+
+articles.en.push(arrivalChecklist.en);
+articles.fr.push(arrivalChecklist.fr);
+articles.de.push(arrivalChecklist.de);
