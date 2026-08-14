@@ -3,7 +3,6 @@ import "./globals.css";
 import {
   SITE_NAME,
   SITE_URL,
-  createPageMetadata,
 } from "./seo";
 
 const siteTitle = "Superbuy Spreadsheet Link Checker 2026 | Verified Routes";
@@ -14,11 +13,6 @@ const isCloudflarePagesStaticExport =
   process.env.CF_PAGES === "1";
 
 export const metadata: Metadata = {
-  ...createPageMetadata({
-    title: siteTitle,
-    description: siteDescription,
-    path: "/",
-  }),
   metadataBase: new URL(SITE_URL),
   title: {
     default: siteTitle,

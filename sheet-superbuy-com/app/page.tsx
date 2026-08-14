@@ -1,8 +1,9 @@
 /* Remote source images are intentionally displayed from their exact listing URLs. */
 /* eslint-disable @next/next/no-img-element */
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MAIN_SITE, categories, products, quickFaqs } from "./site-data";
-import { SITE_URL } from "./seo";
+import { SITE_URL, createPageMetadata } from "./seo";
 import {
   ArrowIcon,
   ProductCard,
@@ -11,6 +12,13 @@ import {
   SiteFooter,
   SiteHeader,
 } from "./components";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Superbuy Spreadsheet Link Checker 2026 | Verified Routes",
+  description:
+    "An independent Superbuy spreadsheet link checker for verified routes, stale-link review, primary-image matching, QC evidence, and dated route updates.",
+  path: "/",
+});
 
 const websiteSchema = {
   "@context": "https://schema.org",

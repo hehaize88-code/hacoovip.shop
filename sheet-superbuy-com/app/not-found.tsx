@@ -5,11 +5,6 @@ import { ArrowIcon, SiteFooter, SiteHeader } from "./components";
 export const metadata: Metadata = {
   title: "404 – Page Not Found",
   description: "The requested Sheet Superbuy route does not exist.",
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: { index: false, follow: false },
-  },
 };
 
 export default function NotFound() {
