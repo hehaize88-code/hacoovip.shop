@@ -1,4 +1,5 @@
 import { researchedEnglishArticles } from "./english-articles";
+import { polandPreorderArticle } from "./poland-preorder-article";
 
 export type Locale = "pl" | "en" | "de" | "fr" | "it" | "es" | "ro";
 export type PageKind = "home" | "finds" | "categories" | "guides" | "articles" | "faq" | "article";
@@ -36,7 +37,7 @@ export const categories = [
 ] as const;
 
 export const allProducts = "https://www.cnbuycha.com/AllProducts/";
-export const articleSlugs = ["first-time-spreadsheet-checklist", "read-usfans-qc-photos", "product-price-vs-parcel-cost"] as const;
+export const articleSlugs = ["first-time-spreadsheet-checklist", "read-usfans-qc-photos", "product-price-vs-parcel-cost", "usfans-poland-preorder-checklist"] as const;
 export type ArticleSlug = typeof articleSlugs[number];
 
 type Copy = {
@@ -94,11 +95,12 @@ export const copy: Record<Locale, Copy> = {
   }
 };
 
-type LocalArticle = { seoTitle?: string; title: string; excerpt: string; intro: string; points: string[]; sections: Array<[string, string]> };
+export type LocalArticle = { seoTitle?: string; title: string; excerpt: string; intro: string; points: string[]; sections: Array<[string, string]> };
 
 const englishArticles = researchedEnglishArticles as unknown as Record<ArticleSlug, LocalArticle>;
 
-const articleTranslations: Record<Exclude<Locale, "en">, Record<ArticleSlug, LocalArticle>> = {
+type HistoricArticleSlug = Exclude<ArticleSlug, "usfans-poland-preorder-checklist">;
+const articleTranslations: Record<Exclude<Locale, "en">, Record<HistoricArticleSlug, LocalArticle>> = {
   pl: {
     "read-usfans-qc-photos": { title: "Jak czytać zdjęcia QC USFans przed wysyłką międzynarodową", excerpt: "Praktyczna lista kontroli zdjęć magazynowych, wymiarów i widocznych wad.", intro: "Zdjęcia QC są ostatnim wizualnym punktem kontroli przed wysyłką międzynarodową. Strony produktów USFans informują o kilku zdjęciach inspekcyjnych HD, ale ich wartość zależy od tego, czy wiesz, co mogą — i czego nie mogą — potwierdzić.", points: ["Najpierw sprawdź kolor, metkę z rozmiarem i wybrany wariant.", "Porównaj obie strony, szwy, nadruk, okucia i widoczne uszkodzenia.", "Poproś o zdjęcie z miarką, gdy liczy się dopasowanie lub wymiar.", "Nie traktuj zdjęcia magazynowego jako dowodu autentyczności lub trwałości."], sections: [["Zacznij od zgodności zamówienia", "Potwierdź, że zdjęcia pokazują zamówiony produkt, kolor, rozmiar i liczbę sztuk. Nawet ostre zdjęcie nie pomaga, jeśli przedstawia inny wariant."], ["Sprawdzaj systematycznie", "Przejdź od ogólnego kształtu do detali: szwów, krawędzi, podeszew, zamków, logo, plam, zarysowań i opakowania. Elementy symetryczne porównuj obok siebie."], ["Podejmij decyzję przed końcem okresu zwrotu", "Jeśli widoczna wada ma znaczenie, opisz ją precyzyjnie i skorzystaj z dostępnej obsługi posprzedażowej przed wysyłką międzynarodową. Po opuszczeniu magazynu rozwiązanie problemu jest znacznie trudniejsze."]] },
     "product-price-vs-parcel-cost": { title: "Cena produktu a koszt paczki: czego nie pokazuje arkusz", excerpt: "Dlaczego niska cena oferty nie jest końcowym kosztem dostawy.", intro: "Cena w arkuszu zwykle dotyczy wyłącznie produktu. Końcowa kwota może obejmować dostawę krajową, usługi dodatkowe, opakowanie, wagę rozliczeniową przesyłki, transport międzynarodowy i opłaty w kraju docelowym.", points: ["Traktuj cenę produktu jako punkt startowy, nie koszt z dostawą.", "Oszacuj wagę rzeczywistą i objętościową przed zbudowaniem dużej paczki.", "Porównuj trasy dla tego samego kraju, wymiarów, wagi i typu produktu.", "Oddziel cło oraz opłaty lokalne od wyceny transportu agenta."], sections: [["Rozdziel warstwy kosztów", "Zapisz osobno cenę produktu, dostawę krajową, usługi magazynowe, opakowanie, transport międzynarodowy i możliwe opłaty w kraju odbiorcy."], ["Zrozum wagę rozliczeniową", "Niektóre trasy rozliczają wagę rzeczywistą, inne porównują ją z wagą objętościową. Dlatego lekki, ale duży produkt może kosztować więcej, niż wskazuje waga na skali."], ["Traktuj wycenę jako szacunek", "USFans udostępnia kalkulator wysyłki, jednak dopiero dane gotowej paczki i dostępne trasy określają rzeczywistą ofertę. Zostaw margines zamiast planować co do ostatniego dolara."]] },
@@ -132,8 +134,8 @@ const articleTranslations: Record<Exclude<Locale, "en">, Record<ArticleSlug, Loc
 };
 
 export function getArticles(locale: Locale): Record<ArticleSlug, LocalArticle> {
-  if (locale === "en") return englishArticles;
-  return articleTranslations[locale];
+  const existing = locale === "en" ? englishArticles : articleTranslations[locale];
+  return { ...existing, "usfans-poland-preorder-checklist": polandPreorderArticle[locale] } as Record<ArticleSlug, LocalArticle>;
 }
 
 type IndexPage = Exclude<PageKind, "article">;

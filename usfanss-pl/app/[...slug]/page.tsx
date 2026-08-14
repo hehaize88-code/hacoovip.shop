@@ -24,14 +24,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const pageTitle = article ? article.seoTitle ?? article.title : seo!.title;
   const description = article ? article.excerpt : seo!.description;
   const pathname = routeFor(route.locale, route.page, route.article);
-  const isThinLocalizedArticle = route.page === "article" && route.locale !== "en";
+  const isNewFullArticle = route.article === "usfans-poland-preorder-checklist";
+  const isThinLocalizedArticle = route.page === "article" && route.locale !== "en" && !isNewFullArticle;
   const languageEntries = route.page === "article"
-    ? [["en", `${siteBase}${routeFor("en", "article", route.article)}`], ["x-default", `${siteBase}${routeFor("en", "article", route.article)}`]]
+    ? (isNewFullArticle
+      ? locales.map((l) => [l.lang, `${siteBase}${routeFor(l.code, "article", route.article)}`]).concat([["x-default", `${siteBase}${routeFor("pl", "article", route.article)}`]])
+      : [["en", `${siteBase}${routeFor("en", "article", route.article)}`], ["x-default", `${siteBase}${routeFor("en", "article", route.article)}`]])
     : locales.map((l) => [l.lang, `${siteBase}${routeFor(l.code, route.page)}`]).concat([["x-default", `${siteBase}${routeFor("en", route.page)}`]]);
   return {
     title: pageTitle, description,
     alternates: { canonical: `${siteBase}${pathname}`, languages: Object.fromEntries(languageEntries) },
-    robots: { index: !isThinLocalizedArticle, follow: true }
+    robots: { index: !isThinLocalizedArticle, follow: true },
+    openGraph: { type: "article", title: pageTitle, description, url: `${siteBase}${pathname}`, siteName: "USFanss" },
+    twitter: { card: "summary", title: pageTitle, description }
   };
 }
 

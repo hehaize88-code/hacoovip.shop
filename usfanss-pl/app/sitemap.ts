@@ -12,10 +12,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: page === "home" ? "weekly" as const : "monthly" as const,
       priority: page === "home" ? 1 : .8,
     }))),
-    ...articleSlugs.map((article) => ({
-      url: `${base}${routeFor("en", "article", article)}`,
+    ...articleSlugs.flatMap((article) => (article === "usfans-poland-preorder-checklist" ? locales : [{ code: "en" as const }]).map((locale) => ({
+      url: `${base}${routeFor(locale.code, "article", article)}`,
       changeFrequency: "monthly" as const,
       priority: .7,
-    })),
+    }))),
   ];
 }

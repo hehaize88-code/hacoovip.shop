@@ -211,7 +211,7 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
   const article = getArticles(locale)[slug];
   const articleUrl = `${siteBase}${routeFor(locale, "article", slug)}`;
   const articlesUrl = `${siteBase}${routeFor(locale, "articles")}`;
-  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, dateModified: "2026-08-12" };
+  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: slug === "usfans-poland-preorder-checklist" ? "2026-08-14" : undefined, dateModified: slug === "usfans-poland-preorder-checklist" ? "2026-08-14" : "2026-08-12" };
   const breadcrumbJson = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${siteBase}${routeFor(locale, "home")}` }, { "@type": "ListItem", position: 2, name: c.nav.articles, item: articlesUrl }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   return (
     <>
