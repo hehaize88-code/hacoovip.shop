@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://sheet-superbuy.com
+Sitemap: https://sheet-superbuy.com/sitemap.xml
