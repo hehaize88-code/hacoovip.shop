@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteTitle = "Superbuy Spreadsheet 2026 | Product Index & QC Guide";
+const isCloudflarePagesStaticExport =
+  process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1";
 
 export const metadata: Metadata = {
   title: {
@@ -11,13 +13,16 @@ export const metadata: Metadata = {
   description:
     "An independent Superbuy spreadsheet-style product index with working product routes, QC guidance, shipping planning, and practical buyer checklists.",
   robots: {
-    index: false,
-    follow: false,
-    googleBot: { index: false, follow: false },
+    index: isCloudflarePagesStaticExport,
+    follow: isCloudflarePagesStaticExport,
+    googleBot: {
+      index: isCloudflarePagesStaticExport,
+      follow: isCloudflarePagesStaticExport,
+    },
   },
-  other: {
-    "codex-preview": "development",
-  },
+  ...(isCloudflarePagesStaticExport
+    ? {}
+    : { other: { "codex-preview": "development" } }),
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

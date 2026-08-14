@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         output: "export" as const,
         trailingSlash: true,
         images: { unoptimized: true },
+        generateBuildId: async () => "sheet-superbuy-static",
         typescript: { tsconfigPath: "./tsconfig.pages.json" },
       }
     : {}),
