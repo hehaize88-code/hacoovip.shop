@@ -1407,6 +1407,133 @@ export const articles = [
     related: ["what-qc-photos-can-prove", "findqc-search-methods", "findqc-shopping-agent-workflow"],
     cta: { eyebrow: "Inspect the evidence itself", title: "Use the full QC photo checklist before a warehouse decision", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
+  {
+    slug: "findqc-60-second-workflow",
+    title: "The 60-Second FindQC Workflow: A Fast Evidence Check Before You Decide",
+    shortTitle: "The 60-Second FindQC Workflow",
+    description: "Use FindQC's official five-step sequence as a practical 60-second evidence check, with clear stop conditions for deeper research.",
+    excerpt: "A second-by-second FindQC routine for confirming the item, scanning decisive QC evidence and recording a defensible next action.",
+    category: "FindQC Workflow",
+    readTime: "9 min read",
+    date: "14 August 2026",
+    dateISO: "2026-08-14",
+    updatedISO: "2026-08-14",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-60-second-workflow"],
+    heroImage: "/products/catalog/accessories-5924.webp",
+    heroAlt: "Close editorial product view used to illustrate a rapid evidence scan",
+    heroCaption: "Existing FindQC Pro editorial catalog image. It is not a warehouse QC record, customer order or authenticity example.",
+    keywords: ["FindQC 60-second workflow", "how to use FindQC quickly", "FindQC QC workflow", "quick QC check", "FindQC decision checklist"],
+    sourceIntro: "FindQC's current How FindQC Works, What Is QC, Product Intelligence, How to Buy, Beginner Checklist and Terms pages were checked on 14 August 2026. The time boxes below are an independent editorial implementation of FindQC's published five-step sequence, not a promise that every item can be resolved in one minute.",
+    intro: [
+      "One minute is enough to reject a weak research trail, not enough to prove a product perfect. That distinction makes a fast FindQC check useful. The aim is to confirm that the record appears to match the intended item, inspect the evidence most likely to change your decision and leave the minute with a traceable next action. If identity or a decisive detail remains unclear, the correct result is not approval. It is a deliberate stop for deeper review.",
+      "FindQC's current How FindQC Works page publishes a five-step 60-second workflow: open a same-item group, check key details, use Premium data when available, watch the QC video and take action. This guide keeps that sequence but adds time boxes, failure conditions and a written output. FindQC supplies research evidence; a shopping agent, chosen separately by the buyer, handles ordering, payment, warehouse work, returns, packing and international shipping.",
+    ],
+    sections: [
+      {
+        id: "prepare-the-question",
+        title: "1. Before the clock: write the one question that matters",
+        blocks: [
+          { type: "p", text: "A fast workflow fails when the researcher tries to judge everything at once. Before starting, write a single observable uncertainty: “Is the front graphic aligned with the garment seams?” or “Does the recorded clasp open and close?” Avoid conclusions such as “Is this high quality?” because they hide several different tests. A minute can triage one decision question; it cannot audit every material, hidden seam, seller term and future performance claim." },
+          { type: "table", headers: ["Weak question", "Operational question", "Evidence that could answer it"], rows: [
+            ["Is it good?", "Is the visible print centered between stable seams?", "Level front view plus a useful detail view"],
+            ["Will it fit?", "Does the recorded garment width match my reference garment at the same points?", "Clear ruler placement and matching measurement definitions"],
+            ["Is the hardware fine?", "Does the clasp complete the recorded opening and closing action?", "A focused video of that exact action"],
+          ] },
+          { type: "callout", title: "Start condition", text: "Have the intended source item, variant and one decision question in view. If you do not know which item or variant you are checking, do not start the 60 seconds." },
+        ],
+      },
+      {
+        id: "identity",
+        title: "2. Seconds 0–10: confirm the same-item group",
+        blocks: [
+          { type: "p", text: "Use the first ten seconds for identity, because every later observation depends on it. FindQC distinguishes records grouped from the same source item from similar recommendations. A similar-looking product may be helpful for discovery, but it cannot establish the construction, measurements or history of the target. Confirm the source marketplace and item identifier where visible, then check seller, model, colour, size or other variant details relevant to your question." },
+          { type: "list", title: "Keep the clock running only when", items: [
+            "The result belongs to the same source item rather than a merely similar recommendation.",
+            "The product type, model and visible design cues agree with the intended listing.",
+            "The relevant variant is identified, or the remaining variant difference cannot affect the current question.",
+            "The record date is visible enough to judge whether a changed listing or batch could matter.",
+          ] },
+          { type: "p", text: "Stop immediately when the item identifier conflicts, the seller has changed, a listing appears replaced or the critical variant is unknown. Ten additional photos from the wrong item do not improve confidence. Save the candidate separately and return to link, keyword or image search until the identity chain is clear." },
+        ],
+      },
+      {
+        id: "visual-scan",
+        title: "3. Seconds 10–30: scan the decisive visible details",
+        blocks: [
+          { type: "p", text: "Spend the longest share of the minute on the photographs. Begin with a wide view to establish orientation and overall shape, then move to the area named in your question. FindQC's public QC guidance highlights craftsmanship, stitching, glue or edges; alignment and symmetry; labels and prints; and material texture or surface. These are inspection prompts, not a claim that every set shows every angle." },
+          { type: "table", headers: ["Seconds", "Action", "What earns attention"], rows: [
+            ["10–14", "Read the wide view", "Item count, overall silhouette, orientation and obvious mismatch"],
+            ["14–20", "Locate the decisive area", "The seam, print, label, edge, surface or component named in the question"],
+            ["20–26", "Compare a second view", "Whether the observation survives a changed angle, fold or camera position"],
+            ["26–30", "Mark the limit", "Missing reverse side, hidden interior, glare, blur, compression or uncertain colour"],
+          ] },
+          { type: "p", text: "Do not let visual busyness masquerade as evidence. A gallery can contain many images yet omit the only angle that matters. Lighting can change apparent colour, fabric folds can mimic misalignment and perspective can make two sides look unequal. If the result depends on mentally straightening the camera or guessing beneath glare, mark the observation unresolved." },
+          { type: "callout", title: "Fast evidence rule", text: "Use one wide view to orient the item, one detail view to inspect the question and one second angle to challenge the first impression. More images are useful only when they reduce a named uncertainty." },
+        ],
+      },
+      {
+        id: "premium-data",
+        title: "4. Seconds 30–45: use Premium fields only if they answer the question",
+        blocks: [
+          { type: "p", text: "If the record includes Premium QC, open only the field connected to your decision. FindQC currently describes Premium records as potentially adding video, measured weight, three-side dimensions, seller shipping and domestic-delivery signals, review history, defect history, return history and a Product Intelligence report when sufficient data exists. Availability and completeness vary because the underlying records can come from third parties." },
+          { type: "table", headers: ["Question", "Useful Premium field", "Do not infer"], rows: [
+            ["Does this part move as expected?", "Video showing the exact operation", "Future reliability or hidden internal condition"],
+            ["Could recorded bulk deserve later planning?", "Measured weight and three-side dimensions", "A carrier price, route eligibility or final packed size"],
+            ["Has the same visible issue appeared before?", "Matched defect, return or review history", "A universal rate or the condition of your own unit"],
+            ["How consistent was earlier seller fulfillment?", "Seller and domestic-delivery history", "International transit time"],
+          ] },
+          { type: "p", text: "Skip irrelevant richness. A weight field cannot settle print alignment, and an earlier delivery signal cannot establish material composition. Check identity, date, sample size and missing fields before relying on a history summary. When the record is sparse, “insufficient evidence” is more accurate than turning absence into a positive result." },
+        ],
+      },
+      {
+        id: "video",
+        title: "5. Seconds 45–55: watch video with a single test in mind",
+        blocks: [
+          { type: "p", text: "Video deserves its own ten seconds because motion can answer questions that still photographs cannot. Watch once for the exact action: a zipper travelling, a clasp closing, a flexible part bending or an object rotating to reveal a missing angle. Pause when needed. A general turntable clip is useful for orientation, but it is not evidence that every moving component works." },
+          { type: "list", title: "Downgrade the clip when", items: [
+            "The decisive action never occurs, happens outside the frame or is covered by a hand.",
+            "Focus, lighting or compression hides the surface or edge you need to inspect.",
+            "The clip shows a similar item without a reliable identity match.",
+            "A brief successful motion is being used to claim long-term durability, safety or authenticity.",
+          ] },
+          { type: "p", text: "If still photos already answer the question, do not consume the minute merely because video exists. Conversely, if motion is decisive and no relevant clip appears, stop the workflow and record the missing test. The number of media files is not a substitute for the right evidence." },
+        ],
+      },
+      {
+        id: "decision",
+        title: "6. Seconds 55–60: record an action, confidence and limit",
+        blocks: [
+          { type: "p", text: "Use the final five seconds to write a result that another reader could audit. Choose one of four states: proceed with research complete for this question; ask for specific evidence; hold while identity or policy is confirmed; or reject this candidate. Add a confidence label—direct, supporting, prompt only or unknown—and one sentence explaining the evidence limit." },
+          { type: "table", headers: ["State", "Use it when", "Example wording"], rows: [
+            ["Proceed", "Matched evidence answers the narrow question", "Two level views show the print aligned; colour remains lighting-dependent"],
+            ["Ask", "One obtainable photo or action could resolve the gap", "Need a straight back view showing the full lower seam"],
+            ["Hold", "Identity, variant, listing state or operative policy is unclear", "Do not transfer evidence until the replacement source is verified"],
+            ["Reject", "A verified mismatch or unacceptable visible issue is already decisive", "Target variant conflicts with the matched record"],
+          ] },
+          { type: "callout", title: "Role boundary", text: "A FindQC conclusion is a research decision. The shopping agent chosen by the buyer must confirm the live order, payment, warehouse item, return option, packaging and shipment details it controls." },
+        ],
+      },
+      {
+        id: "stop-the-clock",
+        title: "7. Know when one minute is the wrong tool",
+        blocks: [
+          { type: "p", text: "The 60-second workflow is triage, not a deadline that forces approval. Stop the clock for unclear item identity, conflicting variants, missing decisive angles, ruler photos without visible endpoints, a video that omits the necessary action, or historical summaries with too little context. Also stop when the question concerns product safety, authenticity, hidden construction, chemical composition, long-term durability or a current transaction rule. QC media alone cannot settle those claims." },
+          { type: "list", title: "Second-pass handoff", items: [
+            "Save the exact target identity and the matched record rather than a generic screenshot.",
+            "Write the unresolved question and the specific missing evidence in one sentence.",
+            "Open the relevant full checklist: photos, measurements, safety or agent workflow.",
+            "Verify any current listing, seller or agent-controlled term at the source that governs it.",
+            "Return to the decision only after the new evidence answers the original question.",
+          ] },
+          { type: "p", text: "Used this way, the minute protects attention without pretending uncertainty has disappeared. It quickly separates strong matched evidence from attractive but irrelevant detail. The best outcome is sometimes a confident proceed decision; just as often, it is a precise reason to pause. Both are useful because they replace vague confidence with a record someone else can check." },
+          { type: "callout", title: "The complete one-line output", text: "Item identity + decision question + decisive evidence + confidence + known limit + next action. If any part is missing, the workflow has identified the next research task rather than completed the decision." },
+        ],
+      },
+    ],
+    sources: [],
+    related: ["findqc-standard-vs-premium-qc", "what-qc-photos-can-prove", "findqc-search-methods"],
+    cta: { eyebrow: "Need more than one minute?", title: "Continue with the complete QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
+  },
 ];
 
 export function getArticle(slug) {
