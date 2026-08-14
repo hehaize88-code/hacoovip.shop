@@ -57,6 +57,112 @@ const goodsDetail: GuideSource = {
 
 export const guides: Guide[] = [
   {
+    slug: "allchinabuy-service-payment-fees-before-checkout",
+    title: "AllChinaBuy Service and Payment Fees: A Pre-Checkout Audit",
+    eyebrow: "Fee verification guide",
+    description:
+      "Verify AllChinaBuy product, domestic-delivery, service, payment and international-shipping amounts at the stage where each becomes visible—without relying on stale fee tables.",
+    readingTime: "11 min read",
+    updated: "August 14, 2026",
+    publishedDate: "2026-08-14",
+    modifiedDate: "2026-08-14",
+    hideSourceLinks: true,
+    keyFacts: [
+      "A product-stage total and a later international-parcel total answer different questions and should never be merged into one undocumented number.",
+      "A fee is verified only when its name, amount, currency, calculation base and transaction stage are visible together.",
+      "The current confirmation screen, payment record and parcel quote take priority over old screenshots, forum tables or undated calculators.",
+    ],
+    figure: {
+      src: "/images/guides/checkout-ledger.svg",
+      alt: "Editorial ledger separating AllChinaBuy item, domestic delivery, service, payment and international parcel costs",
+      caption: "A stage-by-stage fee audit keeps product payment separate from the later parcel decision; checked August 14, 2026.",
+      sourceUrl: "",
+    },
+    sections: [
+      {
+        title: "Define the transaction before you compare a fee",
+        paragraphs: [
+          "The phrase ‘AllChinaBuy fees’ can describe several different events. A buyer may be looking at the seller’s product price, domestic delivery to the warehouse, a special purchasing service, a payment-method charge, currency conversion, a warehouse option or international shipping. Those events do not become known at the same time. Putting them into one percentage creates a simple answer, but usually an inaccurate one.",
+          "Begin with two ledgers. The order ledger covers the item until warehouse acceptance: product, chosen variant, quantity, seller-to-warehouse delivery, specifically requested service and payment evidence. The parcel ledger begins only after accepted items are selected for international delivery: packed data, available line, shipping deposit or quote, optional packaging and any later adjustment. Destination tax is a separate local obligation, not a hidden product fee.",
+        ],
+        takeaway: "Name the stage first. A number without a stage cannot be used in a trustworthy landed-cost calculation.",
+      },
+      {
+        title: "Capture the product-stage baseline",
+        paragraphs: [
+          "Open the live listing and choose the exact colour, size, model and quantity. Record the resulting product subtotal rather than the smallest headline price. Marketplace pages can attach a low figure to an accessory, deposit, minimum quantity or different option. A useful audit records what the selected amount buys, not merely the number displayed before selection.",
+          "At order confirmation, look for seller-to-warehouse delivery and any item-specific notice. AllChinaBuy’s public goods-detail page describes the platform as a shopping agent for third-party marketplaces and warns that some exceptional or unverifiable purchases can carry additional service conditions. That does not justify assuming a universal fee. It means the buyer should stop when an extra service is presented and document the live term attached to that exact order.",
+        ],
+        checklist: [
+          "Exact option and quantity selected",
+          "Product subtotal tied to that option",
+          "Domestic delivery recorded separately",
+          "Exceptional-service notice saved before approval",
+        ],
+      },
+      {
+        title: "Verify a service charge with five fields",
+        paragraphs: [
+          "A service charge is publishable or budgetable only when five fields are clear: the service name, the monetary amount or stated rate, the currency, the base to which a rate applies, and the moment it is charged. For example, ‘three percent’ is incomplete if the screen does not say whether the base is product value, a top-up, international freight or another subtotal. Likewise, a fixed amount is incomplete if its currency or refund treatment is unknown.",
+          "Save the confirmation screen before paying and the transaction record afterward. If the amount changes between those two records, compare line by line before blaming an invisible markup. The difference may be a changed product option, domestic delivery, a separate seller request, payment handling or exchange conversion. Evidence should identify the component rather than reverse-engineering a fee from two totals.",
+        ],
+        takeaway: "Never turn an unexplained difference into a claimed service-fee percentage.",
+      },
+      {
+        title: "Audit payment and currency conversion separately",
+        paragraphs: [
+          "A checkout can show one currency while a card or wallet settles another. Record the amount and currency requested by AllChinaBuy, the amount and currency charged by the payment provider, and the timestamp. Your issuer may apply its own exchange rate or foreign-transaction charge. That issuer-side cost should not be labelled as an AllChinaBuy service fee unless the platform record actually identifies it that way.",
+          "When comparing payment methods, use a small controlled amount only if the live interface permits it and you already intend to fund the order. Compare net account credit or paid order value against the final amount on the provider statement. Do not freeze a rate from an old article: payment methods, currencies and pricing rules are variable. The screen shown immediately before authorization is the correct evidence for today’s transaction.",
+        ],
+        checklist: [
+          "Platform-requested amount and currency",
+          "Payment-provider settled amount and currency",
+          "Any separately named handling charge",
+          "Issuer exchange or foreign-transaction cost kept separate",
+        ],
+      },
+      {
+        title: "Use a worked ledger instead of an invented fee table",
+        paragraphs: [
+          "Suppose an order contains two items from one seller. Write Item A, Item B and the live domestic-delivery line exactly as shown. If checkout displays a named service, add it as its own row with the screen date. If no service amount is visible, write ‘not shown’ rather than zero. A blank means unverified; zero means the interface explicitly charged nothing. That distinction prevents optimistic totals.",
+          "After payment, reconcile the ledger to the transaction record. The arithmetic is simple: verified item subtotal plus verified domestic delivery plus verified named order-stage services equals the recorded order-stage commitment. Currency and payment-provider effects occupy their own rows. The example needs no fictional yuan or dollar figures because the decision method works with the buyer’s actual screen.",
+        ],
+        takeaway: "Use ‘not shown’ for uncertainty. Never convert missing evidence into a zero-cost claim.",
+      },
+      {
+        title: "Do not attach international shipping to the item checkout",
+        paragraphs: [
+          "International delivery is chosen after warehouse evidence and parcel inputs are available. The public shipping calculator can support early planning, but the useful comparison needs destination, product characteristics, weight, dimensions and the route rules presented at that time. An estimate cannot establish the final delivered cost for an item that has not been packed.",
+          "When the parcel is ready, record the selected line, chargeable inputs, quote or deposit, optional packing and the final adjustment if one occurs. Compare those values only with other routes available for the same parcel. A product-stage payment and a parcel-stage payment may both appear in the account, but combining them without dates and labels makes troubleshooting difficult and can wrongly attribute shipping differences to a service fee.",
+        ],
+      },
+      {
+        title: "Resolve mismatches in the right order",
+        paragraphs: [
+          "If the charged total is unexpected, first compare the selected variant and quantity. Next check domestic delivery and any message about a changed seller price. Then inspect named services, payment method, settlement currency and provider statement. Only after the order-stage record reconciles should you review parcel charges. This order follows the workflow and prevents an international estimate from being used to explain a domestic purchase.",
+          "A support request should include the order or parcel number, timestamp, expected line item, actual line item and a screenshot that does not expose full payment credentials. Ask one answerable question: ‘What does this named amount apply to?’ or ‘Was this difference returned to balance?’ A general accusation about hidden fees gives staff less evidence to investigate.",
+        ],
+        checklist: [
+          "Variant and quantity",
+          "Seller price and domestic delivery",
+          "Named service and calculation base",
+          "Payment settlement and currency",
+          "Parcel quote and later adjustment",
+        ],
+      },
+      {
+        title: "Run the final pre-payment audit",
+        paragraphs: [
+          "Before authorizing the item purchase, confirm that every visible amount has a label and stage. Check that the option matches the saved listing, domestic delivery is not mistaken for international freight, and any exceptional service has an understandable condition. Save the final confirmation and note which later costs remain unknown. Do the same at parcel submission with the actual accepted items and currently available routes.",
+          "This method will not produce one timeless AllChinaBuy fee percentage, because a responsible answer should not pretend changing services and payment methods are fixed. It produces something more useful: a transaction record that can be recalculated, compared and supported. Readers searching for the cheapest method can then compare complete, current evidence instead of choosing a payment route from an outdated headline.",
+        ],
+        takeaway: "Verify the live charge, preserve the evidence and keep order, payment and parcel stages separate.",
+      },
+    ],
+    sources: [orderConfirmation, goodsDetail, freightCalculator],
+    relatedSlugs: ["allchinabuy-domestic-shipping-seller-to-warehouse", "shipping-cost-planning", "allchinabuy-volumetric-weight"],
+  },
+  {
     slug: "allchinabuy-domestic-shipping-seller-to-warehouse",
     title: "AllChinaBuy Domestic Shipping: Seller to Warehouse Cost Guide",
     eyebrow: "Domestic shipping guide",
