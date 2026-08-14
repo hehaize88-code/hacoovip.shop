@@ -5,6 +5,9 @@ export const SITE_NAME = "Sheet Superbuy";
 export const SOCIAL_IMAGE = `${SITE_URL}/superbuy-logo.png`;
 export const SOCIAL_IMAGE_ALT =
   "Sheet Superbuy independent spreadsheet link verification index";
+const isIndexableBuild =
+  process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1" ||
+  process.env.CF_PAGES === "1";
 
 export function absoluteUrl(path: string) {
   return new URL(path, `${SITE_URL}/`).toString();
@@ -24,6 +27,14 @@ export function createPageMetadata({
   return {
     title,
     description,
+    robots: {
+      index: isIndexableBuild,
+      follow: isIndexableBuild,
+      googleBot: {
+        index: isIndexableBuild,
+        follow: isIndexableBuild,
+      },
+    },
     alternates: { canonical },
     openGraph: {
       type: "website",

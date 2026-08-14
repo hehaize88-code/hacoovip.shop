@@ -24,14 +24,6 @@ export const metadata: Metadata = {
   creator: `${SITE_NAME} editorial`,
   publisher: SITE_NAME,
   category: "shopping research",
-  robots: {
-    index: isCloudflarePagesStaticExport,
-    follow: isCloudflarePagesStaticExport,
-    googleBot: {
-      index: isCloudflarePagesStaticExport,
-      follow: isCloudflarePagesStaticExport,
-    },
-  },
   ...(isCloudflarePagesStaticExport
     ? {}
     : { other: { "codex-preview": "development" } }),
