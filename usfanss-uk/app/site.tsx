@@ -130,6 +130,7 @@ const localizedFaqs: Record<Locale, { q: string; a: string }[]> = {
 };
 
 const articleMeta = [
+  { slug:"usfans-first-order-link-to-warehouse", label:"First order", minutes:"12 min", image:"/products/hoodie.webp", titles:{ en:"USFans First Order: From Product Link to Warehouse", de:"Erste USFans-Bestellung: vom Produktlink zum Lager", fr:"Première commande USFans : du lien à l’entrepôt", es:"Primer pedido USFans: del enlace al almacén", it:"Primo ordine USFans: dal link al magazzino", pl:"Pierwsze zamówienie USFans: od linku do magazynu" } },
   { slug:"usfans-spreadsheet-guide", label:"Spreadsheet guide", minutes:"12 min", image:"/products/hoodie.webp", titles:{ en:"USFans Spreadsheet 2026: How to Find Links Without Buying Blind", de:"USFans Spreadsheet 2026: Produktlinks systematisch prüfen", fr:"USFans Spreadsheet 2026 : trouver et vérifier les liens", es:"USFans Spreadsheet 2026: cómo comprobar enlaces", it:"USFans Spreadsheet 2026: trovare e verificare i link", pl:"USFans Spreadsheet 2026: jak sprawdzać linki" } },
   { slug:"usfans-qc-photos-guide", label:"QC guide", minutes:"11 min", image:"/products/sneakers.jpg", titles:{ en:"USFans QC Photos Guide: A Practical Inspection Order", de:"USFans QC-Fotos: eine praktische Prüfreihenfolge", fr:"Photos QC USFans : une méthode d’inspection pratique", es:"Fotos QC de USFans: un orden práctico de revisión", it:"Foto QC USFans: un metodo pratico di controllo", pl:"Zdjęcia QC USFans: praktyczna kolejność kontroli" } },
   { slug:"usfans-shipping-cost-guide", label:"Parcel planning", minutes:"10 min", image:"/products/crewneck.webp", titles:{ en:"USFans Shipping Cost: Plan Weight, Volume and Packaging", de:"USFans Versandkosten: Gewicht, Volumen und Verpackung", fr:"Frais d’expédition USFans : poids, volume et emballage", es:"Coste de envío USFans: peso, volumen y embalaje", it:"Costo spedizione USFans: peso, volume e imballaggio", pl:"Koszt wysyłki USFans: waga, objętość i opakowanie" } },
@@ -149,7 +150,7 @@ const ui = {
     qcStepText:"Compare the exact ordered variant and ask a specific question when the available view cannot answer it. A photograph is useful visible evidence, not a material or durability guarantee.",
     footer:"Independent product discovery and QC education. Product information, availability, services and routes may change. Confirm the current order and parcel information before payment.",
     updated:"Updated 11 Aug 2026", fieldNote:"Independent field note", important:"Important boundary", disclaimer:"Availability, prices, warehouse services, routes and policies can change. Confirm the live product and account information before paying or submitting a parcel.",
-    labels:["Spreadsheet guide","QC guide","Parcel planning"]
+    labels:["First order","Spreadsheet guide","QC guide","Parcel planning"]
   },
   de: {
     ariaHome:"Startseite USFans Sheets", ariaNav:"Hauptnavigation", ariaLang:"Sprache wählen", board:["Code","Kollektion","Inhalt","Status"],
@@ -164,7 +165,7 @@ const ui = {
     qcStepText:"Vergleiche die genaue bestellte Variante und stelle eine konkrete Frage, wenn die vorhandene Ansicht nicht ausreicht. Ein Foto ist sichtbarer Beleg, aber keine Material- oder Haltbarkeitsgarantie.",
     footer:"Unabhängige Produktsuche und QC-Information. Produktdaten, Verfügbarkeit, Services und Routen können sich ändern. Prüfe vor Zahlung die aktuellen Bestell- und Paketdaten.",
     updated:"Aktualisiert am 11. Aug. 2026", fieldNote:"Unabhängiger Praxisleitfaden", important:"Wichtige Grenze", disclaimer:"Verfügbarkeit, Preise, Lagerleistungen, Routen und Regeln können sich ändern. Prüfe vor Zahlung oder Paketfreigabe die aktuellen Produkt- und Kontodaten.",
-    labels:["Spreadsheet-Leitfaden","QC-Leitfaden","Paketplanung"]
+    labels:["Erste Bestellung","Spreadsheet-Leitfaden","QC-Leitfaden","Paketplanung"]
   },
   fr: {
     ariaHome:"Accueil USFans Sheets", ariaNav:"Navigation principale", ariaLang:"Choisir la langue", board:["Code","Collection","Contenu","Statut"],
@@ -179,7 +180,7 @@ const ui = {
     qcStepText:"Comparez la variante exacte et posez une question précise si la vue disponible ne suffit pas. Une photo apporte une preuve visible, pas une garantie de matière ou de durabilité.",
     footer:"Découverte produit et information QC indépendantes. Produits, disponibilité, services et routes peuvent changer. Confirmez les données actuelles avant paiement.",
     updated:"Mis à jour le 11 août 2026", fieldNote:"Guide de terrain indépendant", important:"Limite importante", disclaimer:"Disponibilité, prix, services d’entrepôt, routes et règles peuvent changer. Confirmez les informations actuelles avant paiement ou soumission du colis.",
-    labels:["Guide spreadsheet","Guide QC","Planification colis"]
+    labels:["Première commande","Guide spreadsheet","Guide QC","Planification colis"]
   },
   es: {
     ariaHome:"Inicio de USFans Sheets", ariaNav:"Navegación principal", ariaLang:"Elegir idioma", board:["Código","Colección","Contenido","Estado"],
@@ -194,7 +195,7 @@ const ui = {
     qcStepText:"Compara la variante exacta y formula una pregunta concreta si la vista no responde. Una foto aporta evidencia visible, no una garantía de material o durabilidad.",
     footer:"Descubrimiento independiente e información QC. Productos, disponibilidad, servicios y rutas pueden cambiar. Confirma los datos actuales antes de pagar.",
     updated:"Actualizado el 11 ago 2026", fieldNote:"Guía de campo independiente", important:"Límite importante", disclaimer:"Disponibilidad, precios, servicios de almacén, rutas y normas pueden cambiar. Confirma la información activa antes de pagar o enviar el paquete.",
-    labels:["Guía spreadsheet","Guía QC","Planificación del paquete"]
+    labels:["Primer pedido","Guía spreadsheet","Guía QC","Planificación del paquete"]
   },
   it: {
     ariaHome:"Home USFans Sheets", ariaNav:"Navigazione principale", ariaLang:"Scegli la lingua", board:["Codice","Collezione","Contenuto","Stato"],
@@ -209,7 +210,7 @@ const ui = {
     qcStepText:"Confronta la variante esatta e fai una domanda precisa se la vista non basta. Una foto è una prova visibile, non una garanzia di materiale o durata.",
     footer:"Scoperta indipendente e informazione QC. Prodotti, disponibilità, servizi e rotte possono cambiare. Verifica i dati attuali prima del pagamento.",
     updated:"Aggiornato l’11 ago 2026", fieldNote:"Guida indipendente", important:"Limite importante", disclaimer:"Disponibilità, prezzi, servizi, rotte e regole possono cambiare. Conferma le informazioni attuali prima di pagare o inviare il pacco.",
-    labels:["Guida spreadsheet","Guida QC","Pianificazione pacco"]
+    labels:["Primo ordine","Guida spreadsheet","Guida QC","Pianificazione pacco"]
   },
   pl: {
     ariaHome:"Strona główna USFans Sheets", ariaNav:"Nawigacja główna", ariaLang:"Wybierz język", board:["Kod","Kolekcja","Zawartość","Status"],
@@ -224,7 +225,7 @@ const ui = {
     qcStepText:"Porównaj dokładnie zamówiony wariant i zadaj konkretne pytanie, jeśli ujęcie nie wystarcza. Zdjęcie jest dowodem widocznym, nie gwarancją materiału ani trwałości.",
     footer:"Niezależne odkrywanie produktów i informacje QC. Produkty, dostępność, usługi i trasy mogą się zmieniać. Przed płatnością sprawdź bieżące dane.",
     updated:"Zaktualizowano 11 sie 2026", fieldNote:"Niezależny poradnik", important:"Ważne ograniczenie", disclaimer:"Dostępność, ceny, usługi magazynowe, trasy i zasady mogą się zmieniać. Przed płatnością potwierdź aktualne informacje.",
-    labels:["Poradnik spreadsheet","Poradnik QC","Planowanie paczki"]
+    labels:["Pierwsze zamówienie","Poradnik spreadsheet","Poradnik QC","Planowanie paczki"]
   }
 } satisfies Record<Locale, Record<string, unknown>>;
 
@@ -365,9 +366,11 @@ function ArticlePage({locale,slug}:{locale:Locale;slug:string}) {
   const c=copy[locale], u=ui[locale], meta=articleMeta.find(item=>item.slug===slug) ?? articleMeta[0];
   const content=articleContent[locale][meta.slug];
   const articleUrl=`https://usfanss.uk${localePath(locale,`articles/${meta.slug}`)}`;
-  const schema={"@context":"https://schema.org","@type":"Article",headline:meta.titles[locale],datePublished:"2026-08-11",dateModified:"2026-08-12",inLanguage:locale,image:`https://usfanss.uk${meta.image}`,url:articleUrl,mainEntityOfPage:{"@type":"WebPage","@id":articleUrl}};
+  const published=meta.slug==="usfans-first-order-link-to-warehouse" ? "2026-08-14" : "2026-08-11";
+  const updated=meta.slug==="usfans-first-order-link-to-warehouse" ? ({en:"Updated 14 Aug 2026",de:"Aktualisiert am 14. Aug. 2026",fr:"Mis à jour le 14 août 2026",es:"Actualizado el 14 ago 2026",it:"Aggiornato il 14 ago 2026",pl:"Aktualizacja: 14 sie 2026"} as Record<Locale,string>)[locale] : u.updated;
+  const schema={"@context":"https://schema.org","@type":meta.slug==="usfans-first-order-link-to-warehouse" ? "BlogPosting" : "Article",headline:meta.titles[locale],datePublished:published,dateModified:meta.slug==="usfans-first-order-link-to-warehouse" ? published : "2026-08-12",inLanguage:locale,image:`https://usfanss.uk${meta.image}`,url:articleUrl,mainEntityOfPage:{"@type":"WebPage","@id":articleUrl}};
   const breadcrumb={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:`https://usfanss.uk${localePath(locale)}`},{"@type":"ListItem",position:2,name:c.nav[3],item:`https://usfanss.uk${localePath(locale,"articles")}`},{"@type":"ListItem",position:3,name:meta.titles[locale],item:articleUrl}]};
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(breadcrumb)}}/><article className="article-page"><header className="article-hero section-wrap"><a href={localePath(locale,"articles")}>← {c.back}</a><small>{u.labels[articleMeta.indexOf(meta)]} / {u.updated.toUpperCase()} / {meta.minutes}</small><h1>{meta.titles[locale]}</h1><p>{content.intro}</p></header><div className="article-layout section-wrap"><aside><img src={meta.image} alt="" width="520" height="520"/><span>{u.fieldNote.toUpperCase()}</span><b>{c.route.toUpperCase()} / {meta.slug.slice(-5).toUpperCase()}</b></aside><div className="article-body">{content.sections.map((section,index)=><section key={section.h}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.h}</h2><div>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</div></section>)}<div className="article-disclaimer"><b>{u.important}</b><p>{u.disclaimer}</p></div><SearchForm locale={locale}/></div></div></article></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(breadcrumb)}}/><article className="article-page"><header className="article-hero section-wrap"><a href={localePath(locale,"articles")}>← {c.back}</a><small>{u.labels[articleMeta.indexOf(meta)]} / {updated.toUpperCase()} / {meta.minutes}</small><h1>{meta.titles[locale]}</h1><p>{content.intro}</p></header><div className="article-layout section-wrap"><aside><img src={meta.image} alt="" width="520" height="520"/><span>{u.fieldNote.toUpperCase()}</span><b>{c.route.toUpperCase()} / {meta.slug.slice(-5).toUpperCase()}</b></aside><div className="article-body">{content.sections.map((section,index)=><section key={section.h}><span>{String(index+1).padStart(2,"0")}</span><h2>{section.h}</h2><div>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</div></section>)}<div className="article-disclaimer"><b>{u.important}</b><p>{u.disclaimer}</p></div><SearchForm locale={locale}/></div></div></article></>;
 }
 
 export function SitePage({locale="en",route=""}:{locale?:Locale;route?:string}) {

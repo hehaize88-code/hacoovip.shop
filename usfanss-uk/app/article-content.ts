@@ -504,4 +504,12 @@ for (const locale of ["de", "fr", "es", "it", "pl"] as const) {
   }
 }
 
-export const articleContent: Record<ArticleLocale, Record<string, ArticleContent>> = { en, ...localized };
+export const articleContent: Record<ArticleLocale, Record<string, ArticleContent>> = {
+  en: { ...en, "usfans-first-order-link-to-warehouse": firstOrderArticle.en },
+  de: { ...localized.de, "usfans-first-order-link-to-warehouse": firstOrderArticle.de },
+  fr: { ...localized.fr, "usfans-first-order-link-to-warehouse": firstOrderArticle.fr },
+  es: { ...localized.es, "usfans-first-order-link-to-warehouse": firstOrderArticle.es },
+  it: { ...localized.it, "usfans-first-order-link-to-warehouse": firstOrderArticle.it },
+  pl: { ...localized.pl, "usfans-first-order-link-to-warehouse": firstOrderArticle.pl },
+};
+import { firstOrderArticle } from "./first-order-article";

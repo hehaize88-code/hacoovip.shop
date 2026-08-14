@@ -7,6 +7,7 @@ const staticRoutes = [
   "qc-desk",
   "articles",
   "help",
+  "articles/usfans-first-order-link-to-warehouse",
   "articles/usfans-spreadsheet-guide",
   "articles/usfans-qc-photos-guide",
   "articles/usfans-shipping-cost-guide",
@@ -34,7 +35,7 @@ function parse(segments:string[]) {
 export async function generateMetadata({params}:{params:Promise<{segments:string[]}>}):Promise<Metadata> {
   const {locale,route}=parse((await params).segments);
   const meta=pageMeta(locale,route);
-  const suffix=route ? `/${route}/` : "/";
+  const suffix=route==="articles/usfans-first-order-link-to-warehouse" ? `/${route}` : route ? `/${route}/` : "/";
   const canonical=`https://usfanss.uk${locale==="en" ? "" : `/${locale}`}${suffix}`;
   const languages=Object.fromEntries(localeCodes.map(code=>[code,`https://usfanss.uk${code==="en" ? "" : `/${code}`}${suffix}`]));
   const image="https://usfanss.uk/usfans.png";
