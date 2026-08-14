@@ -8,11 +8,49 @@ import {
   SiteHeader,
 } from "../components";
 import { categories } from "../site-data";
+import {
+  SITE_URL,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../seo";
 
-export const metadata: Metadata = {
-  title: "Superbuy Spreadsheet Guide",
+export const metadata: Metadata = createPageMetadata({
+  title: "How to Check Superbuy Spreadsheet Links",
   description:
-    "Learn how to use a Superbuy spreadsheet-style product index, verify routes, compare listings, and avoid buying from stale links.",
+    "Check Superbuy spreadsheet links for live destinations, matching primary images, current variants, stale routes, and dated verification evidence.",
+  path: "/spreadsheet/",
+});
+
+const spreadsheetSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HowTo",
+      name: "How to check Superbuy spreadsheet links",
+      description:
+        "A five-step workflow for checking a spreadsheet route before purchase and parcel submission.",
+      url: `${SITE_URL}/spreadsheet/`,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/spreadsheet/`,
+      },
+      step: [
+        "Search broadly",
+        "Open the live listing",
+        "Save the exact variant",
+        "Review warehouse evidence",
+        "Estimate the full parcel",
+      ].map((name, index) => ({
+        "@type": "HowToStep",
+        position: index + 1,
+        name,
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Spreadsheet link checker", path: "/spreadsheet/" },
+    ]),
+  ],
 };
 
 export default function SpreadsheetPage() {
@@ -22,8 +60,8 @@ export default function SpreadsheetPage() {
       <main>
         <PageHero
           eyebrow="Spreadsheet guide"
-          title="Use the index. Keep your judgment."
-          intro="A useful spreadsheet is a starting map—not proof of quality, authenticity, stock, or final cost. This guide shows you how to turn a product route into a deliberate buying decision."
+          title="How to Check Superbuy Spreadsheet Links"
+          intro="Use the index, but keep your judgment. A useful spreadsheet is a starting map—not proof of quality, authenticity, stock, or final cost. This guide shows you how to turn a product route into a deliberate buying decision."
           aside="A route check confirms that a destination and its primary image were reachable when reviewed. It does not endorse the seller or the item."
         />
 
@@ -76,7 +114,7 @@ export default function SpreadsheetPage() {
           <p>These links open the corresponding live collection in a new tab. Re-check the destination and listing details before placing an order.</p>
           <div className="category-grid compact-category-grid">
             {categories.map((category, index) => (
-              <a href={category.url} target="_blank" rel="noopener noreferrer" className="category-card" key={category.name}>
+              <a href={category.url} target="_blank" rel="noopener sponsored nofollow" className="category-card" key={category.name}>
                 <span className="category-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="category-copy"><strong>{category.name}</strong><small>{category.note}</small></span>
                 <ArrowIcon />
@@ -87,10 +125,11 @@ export default function SpreadsheetPage() {
 
         <section className="cta-panel shell">
           <div><p className="eyebrow plain">Next checkpoint</p><h2>Inspect before you ship.</h2></div>
-          <Link className="button button-primary" href="/qc-guide">Open the QC guide <ArrowIcon /></Link>
+          <Link className="button button-primary" href="/qc-guide/">Open the QC guide <ArrowIcon /></Link>
         </section>
       </main>
       <SiteFooter />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(spreadsheetSchema) }} />
     </>
   );
 }

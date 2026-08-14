@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { PageHero, SiteFooter, SiteHeader } from "../components";
+import {
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../seo";
 
-export const metadata: Metadata = {
-  title: "Superbuy FAQ 2026: Fees, QC, Storage & Shipping",
+export const metadata: Metadata = createPageMetadata({
+  title: "Superbuy Spreadsheet Link Checker FAQ",
   description:
-    "Fact-checked answers about Superbuy purchasing fees, QC photos, 90-day storage, consolidation, international shipping deposits, volumetric weight, customs, insurance, returns, and spreadsheets.",
-};
+    "Fact-checked answers about Superbuy spreadsheet links, route checks, fees, QC photos, storage, shipping, customs, insurance, returns, and stale listings.",
+  path: "/faq/",
+});
 
 const faqs = [
   {
@@ -92,12 +97,20 @@ const faqs = [
 
 const faqSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Superbuy spreadsheet FAQ", path: "/faq/" },
+    ]),
+  ],
 };
 
 export default function FaqPage() {
@@ -107,8 +120,8 @@ export default function FaqPage() {
       <main>
         <PageHero
           eyebrow="FAQ · fact checked"
-          title="Straight answers before you buy."
-          intro="Twenty researched answers cover Superbuy fees, QC evidence, storage, consolidation, shipping deposits, volumetric weight, route selection, customs, insurance, returns, and spreadsheet limits."
+          title="Superbuy Spreadsheet and Route Check FAQ"
+          intro="Straight answers before you buy. Twenty researched answers cover Superbuy links, fees, QC evidence, storage, consolidation, shipping deposits, volumetric weight, route selection, customs, insurance, returns, and spreadsheet limits."
           aside="Platform statements were reviewed on 14 August 2026. Live routes, fees, service options, seller remedies, and destination rules can change."
         />
         <section className="content-section content-shell">

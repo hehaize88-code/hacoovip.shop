@@ -11,12 +11,12 @@ export function ArrowIcon() {
 
 export function SiteHeader() {
   const nav = [
-    ["Spreadsheet", "/spreadsheet"],
-    ["Finds", "/finds"],
-    ["QC Guide", "/qc-guide"],
-    ["Shipping", "/shipping"],
-    ["Articles", "/articles"],
-    ["FAQ", "/faq"],
+    ["Spreadsheet", "/spreadsheet/"],
+    ["Finds", "/finds/"],
+    ["QC Guide", "/qc-guide/"],
+    ["Shipping", "/shipping/"],
+    ["Articles", "/articles/"],
+    ["FAQ", "/faq/"],
   ];
 
   return (
@@ -41,7 +41,7 @@ export function SiteHeader() {
           className="nav-cta"
           href={`${MAIN_SITE}/AllProducts/`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener sponsored nofollow"
         >
           Browse products <ArrowIcon />
         </a>
@@ -49,7 +49,7 @@ export function SiteHeader() {
           <summary aria-label="Open navigation"><span /><span /><span /></summary>
           <nav aria-label="Mobile navigation">
             {nav.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
-            <a href={`${MAIN_SITE}/AllProducts/`} target="_blank" rel="noopener noreferrer">Browse products</a>
+            <a href={`${MAIN_SITE}/AllProducts/`} target="_blank" rel="noopener sponsored nofollow">Browse products</a>
           </nav>
         </details>
       </div>
@@ -70,15 +70,15 @@ export function SiteFooter() {
         </div>
         <div>
           <strong>Research</strong>
-          <Link href="/spreadsheet">Spreadsheet guide</Link>
-          <Link href="/qc-guide">QC checklist</Link>
-          <Link href="/shipping">Shipping planner</Link>
+          <Link href="/spreadsheet/">Spreadsheet guide</Link>
+          <Link href="/qc-guide/">QC checklist</Link>
+          <Link href="/shipping/">Shipping planner</Link>
         </div>
         <div>
           <strong>Browse</strong>
-          <Link href="/finds">Product finds</Link>
-          <Link href="/articles">Articles</Link>
-          <Link href="/faq">FAQ</Link>
+          <Link href="/finds/">Product finds</Link>
+          <Link href="/articles/">Articles</Link>
+          <Link href="/faq/">FAQ</Link>
         </div>
         <div>
           <strong>Important</strong>
@@ -141,7 +141,7 @@ export function ProductCard({ product }: { product: Product }) {
       className="product-card"
       href={product.url}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener sponsored nofollow"
     >
       <span className="product-image-wrap">
         <img

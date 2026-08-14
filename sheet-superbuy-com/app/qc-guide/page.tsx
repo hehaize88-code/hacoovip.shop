@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon, PageHero, SiteFooter, SiteHeader } from "../components";
+import {
+  SITE_URL,
+  SOCIAL_IMAGE,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Superbuy QC Photo Checklist: Warehouse Review Guide",
   description:
     "A fact-checked Superbuy QC photo checklist for comparing the ordered variant, reviewing warehouse evidence, requesting measurements, and deciding before international shipping.",
-};
+  path: "/qc-guide/",
+});
 
 const qcSteps = [
   { name: "Preserve the order evidence", text: "Save the live listing, selected variant, size information, quantity, seller notes, and packaging expectations before the listing changes." },
@@ -19,10 +26,28 @@ const qcSteps = [
 
 const qcSchema = {
   "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: "How to review Superbuy warehouse QC photos",
-  description: "A repeatable warehouse-photo review for checking a Superbuy order before international parcel submission.",
-  step: qcSteps.map((step) => ({ "@type": "HowToStep", ...step })),
+  "@graph": [
+    {
+      "@type": "HowTo",
+      name: "How to review Superbuy warehouse QC photos",
+      description: "A repeatable warehouse-photo review for checking a Superbuy order before international parcel submission.",
+      url: `${SITE_URL}/qc-guide/`,
+      image: SOCIAL_IMAGE,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/qc-guide/`,
+      },
+      step: qcSteps.map((step, index) => ({
+        "@type": "HowToStep",
+        position: index + 1,
+        ...step,
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Superbuy QC photo checklist", path: "/qc-guide/" },
+    ]),
+  ],
 };
 
 export default function QcGuidePage() {
@@ -32,8 +57,8 @@ export default function QcGuidePage() {
       <main>
         <PageHero
           eyebrow="Warehouse inspection"
-          title="QC photos are a decision point—not decoration."
-          intro="Superbuy says three standard QC photos are taken after warehouse inspection. This field guide turns those images into a repeatable order-match, condition, measurement, and ship-or-correct decision."
+          title="Superbuy QC Photo Checklist"
+          intro="QC photos are a decision point—not decoration. Superbuy says three standard QC photos are taken after warehouse inspection. This field guide turns those images into a repeatable order-match, condition, measurement, and ship-or-correct decision."
           aside="Official service facts and independent checking advice are separated below. A warehouse image documents visible appearance; it does not prove authenticity, hidden construction, material composition, comfort, or durability."
         />
 
@@ -136,7 +161,7 @@ export default function QcGuidePage() {
 
         <section className="cta-panel shell">
           <div><p className="eyebrow plain">After QC</p><h2>Estimate the parcel, not just the item.</h2></div>
-          <Link className="button button-primary" href="/shipping">Plan shipping <ArrowIcon /></Link>
+          <Link className="button button-primary" href="/shipping/">Plan shipping <ArrowIcon /></Link>
         </section>
       </main>
       <SiteFooter />

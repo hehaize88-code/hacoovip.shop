@@ -3,6 +3,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowIcon, SiteFooter, SiteHeader } from "../../components";
 import { articles, getArticle } from "../../article-data";
+import {
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_IMAGE,
+  SOCIAL_IMAGE_ALT,
+  absoluteUrl,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../../seo";
 
 const articleVisuals: Record<string, {
   label: string;
@@ -55,7 +64,36 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
-  return { title: article.title, description: article.deck };
+  const path = `/articles/${article.slug}/`;
+  const canonical = absoluteUrl(path);
+  const metadata = createPageMetadata({
+    title: article.title,
+    description: article.deck,
+    path,
+  });
+
+  return {
+    ...metadata,
+    openGraph: {
+      type: "article",
+      locale: "en_US",
+      siteName: SITE_NAME,
+      title: article.title,
+      description: article.deck,
+      url: canonical,
+      publishedTime: article.date,
+      modifiedTime: article.date,
+      authors: [`${SITE_NAME} editorial`],
+      images: [
+        {
+          url: SOCIAL_IMAGE,
+          width: 756,
+          height: 126,
+          alt: SOCIAL_IMAGE_ALT,
+        },
+      ],
+    },
+  };
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -63,16 +101,37 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = getArticle(slug);
   if (!article) notFound();
   const visual = articleVisuals[article.slug];
+  const articleUrl = `${SITE_URL}/articles/${article.slug}/`;
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.deck,
-    datePublished: article.date,
-    dateModified: article.date,
-    author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
-    publisher: { "@type": "Organization", name: "SheetSuperbuy" },
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: article.title,
+        description: article.deck,
+        url: articleUrl,
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": articleUrl,
+        },
+        image: [SOCIAL_IMAGE],
+        datePublished: article.date,
+        dateModified: article.date,
+        author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
+        publisher: {
+          "@type": "Organization",
+          name: "Sheet Superbuy",
+          url: `${SITE_URL}/`,
+          logo: { "@type": "ImageObject", url: SOCIAL_IMAGE },
+        },
+      },
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Verification guides", path: "/articles/" },
+        { name: article.title, path: `/articles/${article.slug}/` },
+      ]),
+    ],
   };
 
   return (
@@ -110,7 +169,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <strong>Keep researching</strong>
             <p>Use the live destination for current listing details, then return to the QC and shipping guides before submitting an international parcel.</p>
           </div>
-          <Link className="button button-secondary" href="/articles">Back to all articles <ArrowIcon /></Link>
+          <Link className="button button-secondary" href="/articles/">Back to all articles <ArrowIcon /></Link>
         </article>
         <aside className="article-aside">
           <strong>In this guide</strong>

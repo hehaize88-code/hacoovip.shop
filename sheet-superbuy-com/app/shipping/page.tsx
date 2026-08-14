@@ -1,21 +1,48 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon, PageHero, SiteFooter, SiteHeader } from "../components";
+import {
+  SITE_URL,
+  SOCIAL_IMAGE,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Superbuy Shipping Calculator & Parcel Planning Guide",
   description:
     "A fact-checked Superbuy shipping planner covering two-stage costs, chargeable weight, consolidation, packaging, route restrictions, insurance, customs, and final freight adjustments.",
-};
+  path: "/shipping/",
+});
 
 const shippingSchema = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Superbuy Shipping Calculator & Parcel Planning Guide",
-  description: "How to estimate and plan a Superbuy parcel using current official service facts and independent cost-control advice.",
-  datePublished: "2026-08-14",
-  dateModified: "2026-08-14",
-  author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: "Superbuy Shipping Calculator & Parcel Planning Guide",
+      description: "How to estimate and plan a Superbuy parcel using current official service facts and independent cost-control advice.",
+      url: `${SITE_URL}/shipping/`,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/shipping/`,
+      },
+      image: SOCIAL_IMAGE,
+      datePublished: "2026-08-14",
+      dateModified: "2026-08-14",
+      author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
+      publisher: {
+        "@type": "Organization",
+        name: "Sheet Superbuy",
+        url: `${SITE_URL}/`,
+        logo: { "@type": "ImageObject", url: SOCIAL_IMAGE },
+      },
+    },
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Superbuy shipping guide", path: "/shipping/" },
+    ]),
+  ],
 };
 
 export default function ShippingPage() {
@@ -25,8 +52,8 @@ export default function ShippingPage() {
       <main>
         <PageHero
           eyebrow="Parcel planner"
-          title="The item price is not the landed cost."
-          intro="A defensible estimate separates the purchase-to-warehouse stage from the warehouse-to-destination stage, then replaces guesses with measured parcel data before a shipping line is chosen."
+          title="Superbuy Shipping Cost and Parcel Guide"
+          intro="The item price is not the landed cost. A defensible estimate separates the purchase-to-warehouse stage from the warehouse-to-destination stage, then replaces guesses with measured parcel data before a shipping line is chosen."
           aside="Superbuy currently advertises 90 days of free storage and more than 100 shipping lines. The live options for one parcel will still depend on destination, packed dimensions, item category, restrictions, declared contents, and current route rules."
         />
 
@@ -127,7 +154,7 @@ export default function ShippingPage() {
 
         <section className="cta-panel shell">
           <div><p className="eyebrow plain">Before the parcel</p><h2>Re-check the warehouse evidence.</h2></div>
-          <Link className="button button-primary" href="/qc-guide">Open QC checklist <ArrowIcon /></Link>
+          <Link className="button button-primary" href="/qc-guide/">Open QC checklist <ArrowIcon /></Link>
         </section>
       </main>
       <SiteFooter />

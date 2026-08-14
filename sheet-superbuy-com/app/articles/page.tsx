@@ -2,11 +2,39 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon, PageHero, SiteFooter, SiteHeader } from "../components";
 import { articles } from "../article-data";
+import {
+  SITE_URL,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../seo";
 
-export const metadata: Metadata = {
-  title: "Superbuy Guides 2026: Spreadsheet, QC, Shipping & Review",
+export const metadata: Metadata = createPageMetadata({
+  title: "Superbuy Link Verification & Route Check Guides",
   description:
-    "Four independent Superbuy guides covering spreadsheet verification, QC photos, shipping costs, customs, and a source-aware 2026 customer review.",
+    "Independent Superbuy guides led by spreadsheet link verification, stale-route checks, warehouse evidence, parcel planning, and source-aware review methods.",
+  path: "/articles/",
+});
+
+const articlesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      name: "Superbuy link verification and route check guides",
+      url: `${SITE_URL}/articles/`,
+      numberOfItems: articles.length,
+      itemListElement: articles.map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: article.title,
+        url: `${SITE_URL}/articles/${article.slug}/`,
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Verification guides", path: "/articles/" },
+    ]),
+  ],
 };
 
 export default function ArticlesPage() {
@@ -16,8 +44,8 @@ export default function ArticlesPage() {
       <main>
         <PageHero
           eyebrow="Research library"
-          title="Four guides for the decisions after the click."
-          intro="Start with link verification, move through warehouse evidence and parcel cost, then use the independent review to test whether the workflow fits your needs and risk tolerance."
+          title="Superbuy Link Verification and Route Check Guides"
+          intro="Four guides support the decisions after the click. Start with link verification, move through warehouse evidence and parcel cost, then use the independent review to test whether the workflow fits your needs and risk tolerance."
           aside="Official Superbuy statements are separated from independent recommendations and user-review themes. No article makes fixed promises about price, speed, quality, authenticity, or customs."
         />
         <section className="content-section shell">
@@ -31,7 +59,7 @@ export default function ArticlesPage() {
                 <span>{article.topic} · {article.readingTime}</span>
                 <h2>{article.title}</h2>
                 <p>{article.deck}</p>
-                <Link className="text-link" href={`/articles/${article.slug}`}>Read full guide <ArrowIcon /></Link>
+                <Link className="text-link" href={`/articles/${article.slug}/`}>Read full guide <ArrowIcon /></Link>
               </article>
             ))}
           </div>
@@ -47,6 +75,7 @@ export default function ArticlesPage() {
         </section>
       </main>
       <SiteFooter />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articlesSchema) }} />
     </>
   );
 }

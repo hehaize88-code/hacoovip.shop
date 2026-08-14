@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { MAIN_SITE, categories, products, quickFaqs } from "./site-data";
+import { SITE_URL } from "./seo";
 import {
   ArrowIcon,
   ProductCard,
@@ -13,11 +14,28 @@ import {
 
 const websiteSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Sheet Superbuy",
-  description:
-    "Independent Superbuy spreadsheet-style product research, QC, and shipping guides.",
-  inLanguage: "en",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: "Sheet Superbuy",
+      alternateName: "Verified Superbuy Spreadsheet Link Index",
+      description:
+        "Independent Superbuy spreadsheet link verification, route checks, QC evidence, and dated update guidance.",
+      inLanguage: "en",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Sheet Superbuy",
+      url: `${SITE_URL}/`,
+      logo: `${SITE_URL}/superbuy-logo.png`,
+      description:
+        "An independent research site not affiliated with Superbuy.",
+    },
+  ],
 };
 
 export default function Home() {
@@ -28,30 +46,30 @@ export default function Home() {
         <section className="hero shell">
           <div className="hero-index-line">
             <span>Sheet / 001</span>
-            <span>Product research without the link-dump noise</span>
+            <span>Spreadsheet link verification and route updates</span>
           </div>
 
           <div className="hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="status-dot" /> Independent index · review build</div>
-              <h1>
-                <span>Superbuy</span>
-                <span>Product</span>
+              <h1 className="hero-verification-title">
+                <span>Verified Superbuy</span>
+                <span>Spreadsheet Link</span>
                 <span>Index.</span>
               </h1>
             </div>
             <div className="hero-manifesto">
               <span className="manifesto-code">WHY / 01</span>
               <p className="hero-lede">
-                A spreadsheet rebuilt as an inspectable product desk. Search
-                working routes, compare category picks, then plan QC and
-                shipping before committing to a parcel.
+                A spreadsheet rebuilt as an inspectable link-checking desk.
+                Review working routes, spot stale or mismatched destinations,
+                then plan QC and shipping before committing to a parcel.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href={`${MAIN_SITE}/AllProducts/`} target="_blank" rel="noopener noreferrer">
+                <a className="button button-primary" href={`${MAIN_SITE}/AllProducts/`} target="_blank" rel="noopener sponsored nofollow">
                   Browse all products <ArrowIcon />
                 </a>
-                <Link className="button button-secondary" href="/spreadsheet">Read the method</Link>
+                <Link className="button button-secondary" href="/spreadsheet/">Read the method</Link>
               </div>
               <p className="microcopy">Independent guide. No checkout or payment is processed here.</p>
             </div>
@@ -63,14 +81,14 @@ export default function Home() {
           </div>
 
           <div className="hero-ledger">
-            <a className="hero-feature" href={products[0].url} target="_blank" rel="noopener noreferrer">
+            <a className="hero-feature" href={products[0].url} target="_blank" rel="noopener sponsored nofollow">
               <img src={products[0].image} alt={products[0].title} width="720" height="580" referrerPolicy="no-referrer" />
               <span className="feature-caption"><small>Featured route / 6049</small><strong>{products[0].title}</strong><b>{products[0].price}</b></span>
             </a>
             <div className="route-sheet" aria-label="Route-check ledger">
               <div className="route-sheet-head"><span>Recent route checks</span><span>Status</span></div>
               {products.slice(1, 5).map((product, index) => (
-                <a href={product.url} target="_blank" rel="noopener noreferrer" key={product.url}>
+                <a href={product.url} target="_blank" rel="noopener sponsored nofollow" key={product.url}>
                   <span className="route-id">0{index + 2}</span>
                   <strong>{product.title}</strong>
                   <span>{product.category}</span>
@@ -82,8 +100,8 @@ export default function Home() {
           </div>
 
           <div className="trust-grid">
-            <div><strong>20K+</strong><span>source listings</span></div>
-            <div><strong>10</strong><span>browseable categories</span></div>
+            <div><strong>6</strong><span>verified routes</span></div>
+            <div><strong>20K+</strong><span>source catalogue</span></div>
             <div><strong>USD</strong><span>clear price estimates</span></div>
             <div><strong>14 Aug</strong><span>latest route check</span></div>
           </div>
@@ -101,7 +119,7 @@ export default function Home() {
                 className="category-card"
                 href={category.url}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener sponsored nofollow"
                 key={category.name}
               >
                 <span className="category-number">
@@ -125,7 +143,7 @@ export default function Home() {
                 title="Real routes, not a 10,000-item claim"
                 body="These representative listings were checked for a working destination and a matching primary image. USD figures are estimates; confirm the live listing before ordering."
               />
-              <Link className="text-link" href="/finds">
+              <Link className="text-link" href="/finds/">
                 View the research shelf <ArrowIcon />
               </Link>
             </div>
@@ -146,7 +164,7 @@ export default function Home() {
               decisions. This guide keeps them separate so beginners can judge
               the item before paying for a parcel.
             </p>
-            <Link className="button button-secondary" href="/qc-guide">
+            <Link className="button button-secondary" href="/qc-guide/">
               Open the QC checklist
             </Link>
           </div>
@@ -186,17 +204,17 @@ export default function Home() {
               </p>
             </div>
             <div className="guide-cards">
-              <Link href="/spreadsheet" className="guide-card">
+              <Link href="/spreadsheet/" className="guide-card">
                 <span>Spreadsheet</span>
                 <h3>How to use product links without buying blind</h3>
                 <ArrowIcon />
               </Link>
-              <Link href="/qc-guide" className="guide-card">
+              <Link href="/qc-guide/" className="guide-card">
                 <span>QC photos</span>
                 <h3>A practical warehouse-photo checklist</h3>
                 <ArrowIcon />
               </Link>
-              <Link href="/shipping" className="guide-card">
+              <Link href="/shipping/" className="guide-card">
                 <span>Shipping</span>
                 <h3>Plan weight, packaging, and parcel cost</h3>
                 <ArrowIcon />
@@ -219,7 +237,7 @@ export default function Home() {
               </details>
             ))}
           </div>
-          <Link className="text-link faq-link" href="/faq">
+          <Link className="text-link faq-link" href="/faq/">
             Read all questions <ArrowIcon />
           </Link>
         </section>
@@ -233,7 +251,7 @@ export default function Home() {
             className="button button-primary"
             href={`${MAIN_SITE}/AllProducts/`}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener sponsored nofollow"
           >
             Open all products <ArrowIcon />
           </a>

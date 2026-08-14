@@ -8,11 +8,40 @@ import {
   SiteHeader,
 } from "../components";
 import { MAIN_SITE, categories, products } from "../site-data";
+import {
+  SITE_URL,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "../seo";
 
-export const metadata: Metadata = {
-  title: "Checked Superbuy Finds",
+export const metadata: Metadata = createPageMetadata({
+  title: "Verified Superbuy Product Finds",
   description:
-    "Browse a curated shelf of Superbuy product routes checked for a reachable destination and matching primary image.",
+    "Browse Superbuy product routes checked for a reachable destination, matching primary image, review date, and clearly stated verification limits.",
+  path: "/finds/",
+});
+
+const findsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      name: "Verified Superbuy product routes",
+      url: `${SITE_URL}/finds/`,
+      numberOfItems: products.length,
+      itemListElement: products.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: product.title,
+        url: product.url,
+        image: product.image,
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Verified product finds", path: "/finds/" },
+    ]),
+  ],
 };
 
 export default function FindsPage() {
@@ -22,8 +51,8 @@ export default function FindsPage() {
       <main>
         <PageHero
           eyebrow="Research shelf"
-          title="Fewer claims. Better route checks."
-          intro="This shelf favours inspectable evidence over giant item-count claims. Each representative card opens the exact source destination used for its image."
+          title="Verified Superbuy Product Finds"
+          intro="Fewer claims, better route checks. This shelf favours inspectable evidence over giant item-count claims. Each representative card opens the exact source destination used for its image."
           aside="A checked route can still go out of stock or change after review. Always treat the live destination as the current source of truth."
         />
         <section className="content-section shell">
@@ -33,7 +62,7 @@ export default function FindsPage() {
               <h2>Six routes checked on 14 August 2026</h2>
               <p>Prices are approximate USD conversions for comparison only. Live prices and variants may differ.</p>
             </div>
-            <a className="text-link" href={`${MAIN_SITE}/AllProducts/`} target="_blank" rel="noopener noreferrer">Browse the full catalogue <ArrowIcon /></a>
+            <a className="text-link" href={`${MAIN_SITE}/AllProducts/`} target="_blank" rel="noopener sponsored nofollow">Browse the full catalogue <ArrowIcon /></a>
           </div>
           <div className="product-grid">
             {products.map((product) => <ProductCard product={product} key={product.url} />)}
@@ -51,7 +80,7 @@ export default function FindsPage() {
         <section className="content-section shell">
           <div className="category-grid compact-category-grid">
             {categories.map((category, index) => (
-              <a className="category-card" href={category.url} target="_blank" rel="noopener noreferrer" key={category.name}>
+              <a className="category-card" href={category.url} target="_blank" rel="noopener sponsored nofollow" key={category.name}>
                 <span className="category-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="category-copy"><strong>{category.name}</strong><small>{category.note}</small></span>
                 <ArrowIcon />
@@ -61,6 +90,7 @@ export default function FindsPage() {
         </section>
       </main>
       <SiteFooter />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(findsSchema) }} />
     </>
   );
 }

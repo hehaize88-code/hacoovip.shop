@@ -1,18 +1,35 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {
+  SITE_NAME,
+  SITE_URL,
+  createPageMetadata,
+} from "./seo";
 
-const siteTitle = "Superbuy Spreadsheet 2026 | Product Index & QC Guide";
+const siteTitle = "Superbuy Spreadsheet Link Checker 2026 | Verified Routes";
+const siteDescription =
+  "An independent Superbuy spreadsheet link checker for verified routes, stale-link review, primary-image matching, QC evidence, and dated route updates.";
 const isCloudflarePagesStaticExport =
   process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1" ||
   process.env.CF_PAGES === "1";
 
 export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: siteTitle,
+    description: siteDescription,
+    path: "/",
+  }),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: siteTitle,
-    template: "%s | Sheet Superbuy",
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "An independent Superbuy spreadsheet-style product index with working product routes, QC guidance, shipping planning, and practical buyer checklists.",
+  description: siteDescription,
+  applicationName: SITE_NAME,
+  authors: [{ name: `${SITE_NAME} editorial`, url: SITE_URL }],
+  creator: `${SITE_NAME} editorial`,
+  publisher: SITE_NAME,
+  category: "shopping research",
   robots: {
     index: isCloudflarePagesStaticExport,
     follow: isCloudflarePagesStaticExport,

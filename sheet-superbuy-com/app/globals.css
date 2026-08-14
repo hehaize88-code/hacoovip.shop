@@ -240,6 +240,12 @@ body { top: 0 !important; }
 .hero h1 span:nth-child(2) { color: var(--cobalt-deep); }
 .hero h1 span:nth-child(3) { width: max-content; padding: 9px 16px 12px 6px; background: var(--acid); color: var(--ink); }
 
+.hero h1.hero-verification-title {
+  font-size: clamp(48px, 6.7vw, 94px);
+  line-height: .79;
+  letter-spacing: -.075em;
+}
+
 .hero-manifesto { padding: 35px 0 35px 30px; display: flex; flex-direction: column; border-left: 2px solid var(--line); }
 .manifesto-code { color: var(--orange); font: 900 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .1em; }
 .hero-lede { margin: auto 0 30px; color: #41443d; font-size: 18px; font-weight: 600; line-height: 1.55; letter-spacing: -.025em; }
