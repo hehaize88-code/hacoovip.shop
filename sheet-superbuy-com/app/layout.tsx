@@ -3,7 +3,8 @@ import "./globals.css";
 
 const siteTitle = "Superbuy Spreadsheet 2026 | Product Index & QC Guide";
 const isCloudflarePagesStaticExport =
-  process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1";
+  process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1" ||
+  process.env.CF_PAGES === "1";
 
 export const metadata: Metadata = {
   title: {

@@ -103,7 +103,10 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 The Git-connected Cloudflare Pages project publishes this directory directly.
 Run `npm run export:pages-root` after changing site content. It creates a static
 Next.js export and copies the generated entry files (including `index.html`) to
-the project root, while leaving the Vinext/Sites build unchanged.
+the project root, while leaving the Vinext/Sites build unchanged. In Cloudflare
+Pages, `CF_PAGES=1` makes `npm run build` generate the same static site in
+`out`, `dist`, and `dist/client`, covering the standard Next.js, Vite, and
+Vinext output-directory settings.
 
 Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
 
