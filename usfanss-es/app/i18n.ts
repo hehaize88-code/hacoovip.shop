@@ -216,10 +216,22 @@ const faqExtras: Record<Lang, string[][]> = {
   ],
 };
 
+const spainAddressCards: Record<Lang, string[]> = {
+  es: ["Dirección", "Lista de dirección USFans para España", "Cómo verificar destinatario, vivienda, código postal, provincia y teléfono antes de enviar.", "10 min"],
+  en: ["Address", "USFans Spain Address Checklist", "Verify the recipient, apartment, postcode, province and phone before parcel submission.", "10 min"],
+  fr: ["Adresse", "Liste de contrôle d’adresse USFans pour l’Espagne", "Vérifiez destinataire, logement, code postal, province et téléphone avant l’envoi.", "8 min"],
+  de: ["Adresse", "USFans-Adresscheckliste für Spanien", "Empfänger, Wohnung, Postleitzahl, Provinz und Telefon vor der Paketabgabe prüfen.", "8 Min."],
+  it: ["Indirizzo", "Lista indirizzo USFans per la Spagna", "Verifica destinatario, abitazione, CAP, provincia e telefono prima di inviare.", "8 min"],
+  pl: ["Adres", "Lista adresowa USFans dla Hiszpanii", "Sprawdź odbiorcę, lokal, kod pocztowy, prowincję i telefon przed nadaniem.", "8 min"],
+  pt: ["Morada", "Lista de morada USFans para Espanha", "Confirme destinatário, habitação, código postal, província e telefone antes do envio.", "8 min"],
+  zh: ["地址", "USFans 西班牙收货地址核对清单", "提交包裹前核对收件人、住宅信息、邮编、省份和电话。", "8 分钟"],
+};
+
 const complete = (dictionary: typeof es, lang: Lang, verified: string): typeof es => ({
   ...dictionary,
   verified,
   faqs: [...dictionary.faqs, ...faqExtras[lang]],
+  articles: [...dictionary.articles, spainAddressCards[lang]],
 });
 
 export const dictionaries: Record<Lang, typeof es> = {

@@ -10,6 +10,8 @@ import { dictionaries, Lang } from "../app/i18n";
 const root = process.cwd();
 const site = "https://usfanss.es";
 const checked = "2026-08-13";
+const newArticleSlug = "usfans-spain-address-checklist";
+const checkedFor = (route: BaseRoute) => route.slug === newArticleSlug ? "2026-08-14" : checked;
 const socialImage = `${site}/product-images/product-3359.webp`;
 
 const languageConfig: Record<Lang, { prefix: string; html: string; hreflang: string; homeTitle: string; homeDescription: string }> = {
@@ -59,7 +61,7 @@ const structuredDataFor = (route: BaseRoute, lang: Lang, canonical: string, titl
   if (route.key === "home") entities.push({ "@context": "https://schema.org", "@type": "WebSite", name: "USFans España Guide", url: canonical, inLanguage: languageConfig[lang].html, description });
   if (route.key === "home") entities.push({ "@context": "https://schema.org", "@type": "Organization", name: "USFans España Guide", url: canonical, logo: `${site}/usfans-logo.png` });
   if (route.key === "faq") entities.push({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: d.faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) });
-  if (route.key === "article") entities.push({ "@context": "https://schema.org", "@type": "BlogPosting", headline: title.replace(" | USFans", ""), description, datePublished: checked, dateModified: checked, inLanguage: languageConfig[lang].html, mainEntityOfPage: canonical, image: socialImage, author: { "@type": "Organization", name: "USFans España Guide" }, publisher: { "@type": "Organization", name: "USFans España Guide", logo: { "@type": "ImageObject", url: `${site}/usfans-logo.png` } } });
+  if (route.key === "article") entities.push({ "@context": "https://schema.org", "@type": "BlogPosting", headline: title.replace(" | USFans", ""), description, datePublished: checkedFor(route), dateModified: checkedFor(route), inLanguage: languageConfig[lang].html, mainEntityOfPage: canonical, image: socialImage, author: { "@type": "Organization", name: "USFans España Guide" }, publisher: { "@type": "Organization", name: "USFans España Guide", logo: { "@type": "ImageObject", url: `${site}/usfans-logo.png` } } });
   if (route.key !== "home") entities.push({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "USFans", item: `${site}${localizedPath("/", lang)}` }, { "@type": "ListItem", position: 2, name: title.replace(" | USFans", ""), item: canonical }] });
   return entities.map(jsonLd).join("");
 };
@@ -82,7 +84,7 @@ for (const lang of Object.keys(languageConfig) as Lang[]) {
     const target = path === "/" ? join(root, "index.html") : join(root, path.slice(1), "index.html");
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, html);
-    sitemap.push(canonical);
+    sitemap.push(`${canonical}|${checkedFor(route)}`);
   }
 }
 
@@ -94,7 +96,7 @@ await rm(join(root, "product-images"), { recursive: true, force: true });
 await cp(join(root, "public", "product-images"), join(root, "product-images"), { recursive: true });
 
 await writeFile(join(root, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${site}/sitemap.xml\n`);
-await writeFile(join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap.map(url => `  <url><loc>${url}</loc><lastmod>${checked}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+await writeFile(join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap.map(entry => { const [url, lastmod] = entry.split("|"); return `  <url><loc>${url}</loc><lastmod>${lastmod}</lastmod></url>`; }).join("\n")}\n</urlset>\n`);
 await writeFile(join(root, "_headers"), `/static-assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/product-images/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/*\n  Cache-Control: public, max-age=300, s-maxage=86400\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n`);
 await writeFile(join(root, "_redirects"), `https://www.usfanss.es/* https://usfanss.es/:splat 301\n`);
 

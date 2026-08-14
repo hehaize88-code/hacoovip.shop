@@ -2,6 +2,7 @@ import type { Lang } from "./i18n";
 import { localizedDepth } from "./articleDepth";
 import { localizedDepthExtra } from "./articleDepthExtra";
 import { localizedDepthFinal } from "./articleDepthFinal";
+import { spainAddressArticle } from "./spain-address-article";
 
 export type ArticleSection = { heading: string; paragraphs: string[]; bullets?: string[] };
 export type ArticleContent = { standfirst: string; sections: ArticleSection[]; takeaway: string };
@@ -221,12 +222,12 @@ const zh = buildLocalized("zh", [
 ]);
 
 export const articleContent: Record<Lang, ArticleContent[]> = {
-  es: es.map((article,articleIndex)=>({...article,sections:article.sections.map((section,sectionIndex)=>({...section,paragraphs:section.paragraphs.map((paragraph,paragraphIndex)=>paragraphIndex===section.paragraphs.length-1?[paragraph,localizedDepthExtra.es?.[articleIndex]?.[sectionIndex]].filter(Boolean).join(" "):paragraph)}))})),
-  en,
-  fr,
-  de,
-  it,
-  pl,
-  pt,
-  zh,
+  es: [...es.map((article,articleIndex)=>({...article,sections:article.sections.map((section,sectionIndex)=>({...section,paragraphs:section.paragraphs.map((paragraph,paragraphIndex)=>paragraphIndex===section.paragraphs.length-1?[paragraph,localizedDepthExtra.es?.[articleIndex]?.[sectionIndex]].filter(Boolean).join(" "):paragraph)}))})), spainAddressArticle.es],
+  en: [...en, spainAddressArticle.en],
+  fr: [...fr, spainAddressArticle.fr],
+  de: [...de, spainAddressArticle.de],
+  it: [...it, spainAddressArticle.it],
+  pl: [...pl, spainAddressArticle.pl],
+  pt: [...pt, spainAddressArticle.pt],
+  zh: [...zh, spainAddressArticle.zh],
 };

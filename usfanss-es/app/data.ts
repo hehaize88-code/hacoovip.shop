@@ -11,4 +11,4 @@ export const catalogBase = "https://www.cnbuycha.com";
 export const productUrl = (id: string) => `${catalogBase}/AllProducts/${id}.html`;
 
 export const categorySlugs = ["shoes", "hoodies-sweaters", "t-shirts", "jackets", "jersey", "accessories"];
-export const articleSlugs = ["usfans-index-guide", "qc-photos-guide", "shipping-cost-guide"];
+export const articleSlugs = ["usfans-index-guide", "qc-photos-guide", "shipping-cost-guide", "usfans-spain-address-checklist"];
