@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://sheet-hipobuy.net
+Sitemap: https://sheet-hipobuy.net/sitemap.xml
