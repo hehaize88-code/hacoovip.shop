@@ -10,6 +10,7 @@ const siteOrigin = "https://spreadsheets-superbuy.net";
 const languages = ["en", "fr", "de", "id", "zh-cn"];
 const pageRoutes = ["", "finds", "categories", "qc-guide", "shipping", "articles", "faq", "about", "editorial-policy", "privacy", "terms"];
 const articleSlugs = [
+  "superbuy-spreadsheet-fields-product-record",
   "how-to-use-a-superbuy-spreadsheet",
   "superbuy-qc-photo-checklist",
   "superbuy-shipping-cost-and-consolidation",
@@ -74,7 +75,7 @@ const sitemap = [
   ...localizedPaths.flatMap((pathname) => [
     "  <url>",
     `    <loc>${siteOrigin}${pathname === "/" ? "/" : `${pathname}/`}</loc>`,
-    "    <lastmod>2026-08-13</lastmod>",
+    `    <lastmod>${pathname.includes("superbuy-spreadsheet-fields-product-record") ? "2026-08-14" : "2026-08-13"}</lastmod>`,
     "  </url>",
   ]),
   "</urlset>",

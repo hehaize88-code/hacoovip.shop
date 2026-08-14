@@ -60,6 +60,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "x-default": absoluteUrl("en"),
       },
     },
+    ...(parsed.route === "article" ? {
+      openGraph: { type: "article", title, description, url: absoluteUrl(parsed.lang), siteName: "Spreadsheets Superbuy" },
+      twitter: { card: "summary", title, description },
+    } : {}),
   };
 }
 

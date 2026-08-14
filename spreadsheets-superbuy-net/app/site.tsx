@@ -225,7 +225,8 @@ function ArticlePage({ lang, articleSlug }: { lang: Lang; articleSlug: ArticleSl
   const t = copy[lang]; const article = t.articles[articleSlug];
   const evidence = articleEvidence[lang];
   const pageUrl = `${FORMAL_SITE}${localizedPath(lang, `articles/${articleSlug}`)}`;
-  const schema = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, datePublished: "2026-08-13", dateModified: "2026-08-13", inLanguage: lang === "zh-cn" ? "zh-CN" : lang, author: { "@type": "Organization", name: "Superbuy Spreadsheets Editorial Team" }, publisher: { "@type": "Organization", name: "Superbuy Spreadsheets" }, mainEntityOfPage: pageUrl };
+  const published = articleSlug === "superbuy-spreadsheet-fields-product-record" ? "2026-08-14" : "2026-08-13";
+  const schema = { "@context": "https://schema.org", "@type": articleSlug === "superbuy-spreadsheet-fields-product-record" ? "BlogPosting" : "Article", headline: article.title, description: article.excerpt, datePublished: published, dateModified: published, inLanguage: lang === "zh-cn" ? "zh-CN" : lang, author: { "@type": "Organization", name: "Superbuy Spreadsheets Editorial Team" }, publisher: { "@type": "Organization", name: "Superbuy Spreadsheets" }, mainEntityOfPage: pageUrl };
   return <article className="article-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <header><a href={localizedPath(lang, "articles")}>← {guideUi[lang].nav}</a><span>{article.category} · {article.read}</span><h1>{article.title}</h1><p>{article.excerpt}</p><small>{evidence.updated}</small></header>
