@@ -1,0 +1,63 @@
+name: Publish Sheet Superbuy static site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "sheet-superbuy-com/**"
+      - ".github/workflows/publish-sheet-superbuy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-sheet-superbuy-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+          cache: npm
+          cache-dependency-path: sheet-superbuy-com/package-lock.json
+
+      - name: Install dependencies
+        working-directory: sheet-superbuy-com
+        run: npm ci
+
+      - name: Validate source
+        working-directory: sheet-superbuy-com
+        run: npm run lint
+
+      - name: Export the static Pages site
+        working-directory: sheet-superbuy-com
+        run: npm run export:pages-root
+
+      - name: Publish generated files
+        run: |
+          set -euo pipefail
+          test -f sheet-superbuy-com/index.html
+          test -d sheet-superbuy-com/_next/static
+          printf 'Generated from %s\n' "$GITHUB_SHA" > sheet-superbuy-com/.pages-deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A sheet-superbuy-com
+          if git diff --cached --quiet; then
+            echo "Static export is already current."
+            exit 0
+          fi
+          git commit -m "Publish Sheet Superbuy static export"
+          git pull --rebase origin main
+          git push origin HEAD:main
