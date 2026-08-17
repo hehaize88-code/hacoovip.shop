@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f6fb"/>
+  <rect x="70" y="70" width="1060" height="490" rx="34" fill="#ffffff" stroke="#d9dfeb"/>
+  <text x="120" y="190" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="4" fill="#4c4cff">HIPOBUY SHEET</text>
+  <text x="120" y="285" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700" fill="#101828">Hipobuy Spreadsheet 2026</text>
+  <text x="120" y="350" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#526071">Verified product links · QC · shipping research</text>
+  <rect x="120" y="410" width="260" height="58" rx="29" fill="#101828"/>
+  <text x="250" y="448" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#ffffff">SEARCHABLE PRODUCT LINKS</text>
+  <circle cx="1010" cy="180" r="72" fill="#101828"/>
+  <path d="M965 185c0-30 20-54 45-54s45 24 45 54v24c0 30-20 54-45 54s-45-24-45-54z" fill="#ffffff"/>
+  <circle cx="995" cy="181" r="6" fill="#101828"/><circle cx="1030" cy="181" r="6" fill="#101828"/>
+  <path d="M992 214c13 10 28 10 41 0" fill="none" stroke="#101828" stroke-width="6" stroke-linecap="round"/>
+</svg>
