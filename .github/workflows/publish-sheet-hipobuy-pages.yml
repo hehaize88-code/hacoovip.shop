@@ -45,11 +45,17 @@ jobs:
         working-directory: sheet-hipobuy-net
         run: npm run export:pages-root
 
+      - name: Refine generated HTML
+        working-directory: sheet-hipobuy-net
+        run: node scripts/postprocess-pages.mjs .
+
       - name: Publish generated files
         run: |
           set -euo pipefail
           test -f sheet-hipobuy-net/index.html
           test -d sheet-hipobuy-net/_next/static
+          test -f sheet-hipobuy-net/sitemap.xml
+          test -f sheet-hipobuy-net/robots.txt
           printf 'Generated from %s\n' "$GITHUB_SHA" > sheet-hipobuy-net/.pages-deploy
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
