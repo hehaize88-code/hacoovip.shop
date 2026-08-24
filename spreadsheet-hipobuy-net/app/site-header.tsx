@@ -53,12 +53,12 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
         <span>SHEET</span>
       </Link>
       <nav aria-label="Primary navigation">
-        <a href="/spreadsheet/">Spreadsheet</a>
-        <a href="/categories/">Categories</a>
-        <a href="/qc-guide/">QC guide</a>
-        <a href="/shipping/">Shipping</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/articles/">Articles</a>
+        <Link href="/spreadsheet/">Spreadsheet</Link>
+        <Link href="/categories/">Categories</Link>
+        <Link href="/qc-guide/">QC guide</Link>
+        <Link href="/shipping/">Shipping</Link>
+        <Link href="/faq/">FAQ</Link>
+        <Link href="/articles/">Articles</Link>
       </nav>
       <div className="header-actions">
         <label className="language-select notranslate" data-no-translate>

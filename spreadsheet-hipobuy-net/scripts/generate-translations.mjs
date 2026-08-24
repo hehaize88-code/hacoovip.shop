@@ -1,15 +1,13 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 const routes = [
-  "/", "/spreadsheet", "/categories", "/qc-guide", "/shipping", "/faq", "/articles",
+  "/", "/spreadsheet", "/categories", "/categories/shoes", "/categories/hoodies",
+  "/categories/jerseys", "/categories/bags", "/categories/headwear", "/categories/electronics",
+  "/qc-guide", "/shipping", "/faq", "/articles",
   "/articles/how-to-buy-with-hipobuy", "/articles/hipobuy-qc-photos", "/articles/hipobuy-shipping-cost",
 ];
 const languages = ["de", "es", "fr", "it", "pl", "pt", "zh"];
-const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-workerUrl.searchParams.set("translations", `${process.pid}-${Date.now()}`);
-const { default: worker } = await import(workerUrl.href);
-const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
-const ctx = { waitUntil() {}, passThroughOnException() {} };
+const outputRoot = new URL("../out/", import.meta.url);
 
 function decode(value) {
   return value
@@ -43,9 +41,8 @@ function extract(html) {
 
 const strings = new Set();
 for (const route of routes) {
-  const response = await worker.fetch(new Request(`http://localhost${route}`, { headers: { accept: "text/html" } }), env, ctx);
-  if (response.status !== 200) throw new Error(`${route} rendered ${response.status}`);
-  extract(await response.text()).forEach((value) => strings.add(value));
+  const file = route === "/" ? new URL("index.html", outputRoot) : new URL(`${route.slice(1)}/index.html`, outputRoot);
+  extract(await readFile(file, "utf8")).forEach((value) => strings.add(value));
 }
 
 async function translateText(text, language) {
@@ -83,8 +80,11 @@ const sources = [...strings].sort();
 const outputDirectory = new URL("../app/translations/", import.meta.url);
 await mkdir(outputDirectory, { recursive: true });
 for (const language of languages) {
-  const values = await mapConcurrent(sources, 8, (source) => translateText(source, language));
+  const dictionaryUrl = new URL(`${language}.json`, outputDirectory);
+  let existing = {};
+  try { existing = JSON.parse(await readFile(dictionaryUrl, "utf8")); } catch {}
+  const values = await mapConcurrent(sources, 8, (source) => existing[source] ?? translateText(source, language));
   const translations = Object.fromEntries(sources.map((source, index) => [source, values[index]]));
-  await writeFile(new URL(`${language}.json`, outputDirectory), `${JSON.stringify(translations, null, 2)}\n`, "utf8");
+  await writeFile(dictionaryUrl, `${JSON.stringify(translations, null, 2)}\n`, "utf8");
   process.stdout.write(`${language}: ${sources.length} strings\n`);
 }

@@ -3,7 +3,8 @@ import { ArticleContent,Section } from "../article-content";
 
 export const metadata:Metadata={
   title:"Hipobuy Shipping Cost 2026: Build a Realistic Total",
-  description:"Estimate Hipobuy shipping cost using product cost, chargeable weight, parcel dimensions, packaging, route eligibility, customs and the live quote."
+  description:"Estimate Hipobuy shipping cost using product cost, chargeable weight, parcel dimensions, packaging, route eligibility, customs and the live quote.",
+  alternates:{canonical:"/articles/hipobuy-shipping-cost/"}
 };
 
 const sections:Section[]=[
@@ -98,4 +99,4 @@ const sections:Section[]=[
   }
 ];
 
-export default function Page(){return <ArticleContent tag="SHIPPING COST" title="Hipobuy Shipping Cost 2026: Build a Realistic Total" dek="A practical way to estimate the delivered cost without inventing a universal rate or confusing item price with parcel shipping." sections={sections}/>}
+export default function Page(){return <ArticleContent tag="SHIPPING COST" title="Hipobuy Shipping Cost 2026: Build a Realistic Total" dek="A practical way to estimate the delivered cost without inventing a universal rate or confusing item price with parcel shipping." slug="hipobuy-shipping-cost" sections={sections}/>}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InnerHero, SiteChrome } from "../site-chrome";
-export const metadata:Metadata={title:"Hipobuy QC Photos Guide 2026: A Warehouse Checklist",description:"Use a repeatable checklist to review Hipobuy warehouse QC photos before approval."};
+export const metadata:Metadata={title:"Hipobuy QC Photos Guide 2026: A Warehouse Checklist",description:"Use a repeatable checklist to review Hipobuy warehouse QC photos before approval.",alternates:{canonical:"/qc-guide/"}};
 const checks=[
   ["01","Order match","Compare the photographed color, size label, selected version and quantity with the order record before judging appearance."],
   ["02","Measurements","Request or inspect useful measurements and compare them with a garment or item that already fits—not only a generic size chart."],

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InnerHero, SiteChrome } from "../site-chrome";
-export const metadata:Metadata={title:"Hipobuy Guides 2026: Buying, QC Photos & Shipping",description:"Fact-conscious Hipobuy guides covering product links, warehouse QC photos and shipping estimates."};
+export const metadata:Metadata={title:"Hipobuy Guides 2026: Buying, QC Photos & Shipping",description:"Fact-conscious Hipobuy guides covering product links, warehouse QC photos and shipping estimates.",alternates:{canonical:"/articles/"}};
 const articles=[
   ["C01 · START HERE","How to Buy with Hipobuy in 2026: Product Link to Delivery","A fact-checked workflow for product selection, order notes, warehouse review, 90-day storage planning, consolidation and international shipping.","12 MIN","/articles/how-to-buy-with-hipobuy/"],
   ["C02 · QC PHOTOS","Hipobuy QC Photos: What to Check Before Warehouse Approval","A practical inspection system for variants, measurements, construction, damage, evidence requests and a defensible warehouse decision.","11 MIN","/articles/hipobuy-qc-photos/"],
