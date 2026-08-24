@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InnerHero, SiteChrome } from "../site-chrome";
-export const metadata:Metadata={title:"Hipobuy Spreadsheet FAQ 2026",description:"Clear answers about Hipobuy spreadsheet links, USD references, QC photos and shipping estimates."};
+export const metadata:Metadata={title:"Hipobuy Spreadsheet FAQ 2026",description:"Clear answers about Hipobuy spreadsheet links, USD references, QC photos and shipping estimates.",alternates:{canonical:"/faq/"}};
 const faqs=[
   ["What is Hipobuy?","Hipobuy describes itself as a global shopping app that helps users purchase products from Chinese marketplaces such as Taobao and 1688, then arrange international shipping. It is an intermediary workflow, not the manufacturer of the products shown in seller listings."],
   ["Does Hipobuy ship to more than 200 countries?","The current Apple App Store and Google Play descriptions say the service can deliver to more than 200 countries. That is a platform-level claim, not a guarantee that every route accepts every destination or item. Check live route eligibility for the actual parcel."],

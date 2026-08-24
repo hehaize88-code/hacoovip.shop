@@ -3,7 +3,8 @@ import { ArticleContent,Section } from "../article-content";
 
 export const metadata:Metadata={
   title:"Hipobuy QC Photos: What to Check Before Warehouse Approval",
-  description:"A practical Hipobuy QC photo guide for checking variants, measurements, construction, damage and missing components before international shipping."
+  description:"A practical Hipobuy QC photo guide for checking variants, measurements, construction, damage and missing components before international shipping.",
+  alternates:{canonical:"/articles/hipobuy-qc-photos/"}
 };
 
 const sections:Section[]=[
@@ -97,4 +98,4 @@ const sections:Section[]=[
   }
 ];
 
-export default function Page(){return <ArticleContent tag="QC PHOTOS" title="Hipobuy QC Photos: What to Check Before Warehouse Approval" dek="A repeatable inspection sequence for turning warehouse images into a clear approve, evidence, exchange or return decision." sections={sections}/>}
+export default function Page(){return <ArticleContent tag="QC PHOTOS" title="Hipobuy QC Photos: What to Check Before Warehouse Approval" dek="A repeatable inspection sequence for turning warehouse images into a clear approve, evidence, exchange or return decision." slug="hipobuy-qc-photos" sections={sections}/>}

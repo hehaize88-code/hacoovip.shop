@@ -51,14 +51,14 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <div className="eyebrow"><span /> Independent product directory · 2026 edition</div>
+          <div className="eyebrow"><span /> Checked product directory · 2026 edition</div>
           <h1><span className="notranslate" data-no-translate>Hipobuy</span><br /><em>Spreadsheet</em> 2026.</h1>
-          <p className="hero-lede">Find products by category, open the exact listing and use a repeatable QC checklist before anything leaves the warehouse.</p>
+          <p className="hero-lede">Use a regularly checked catalogue to find products by category, open the exact listing and apply a repeatable verification checklist before ordering or shipping.</p>
           <form className="hero-search" action="https://cnfanshp.com/search.html" method="get" target="_blank">
             <label htmlFor="hero-query">Search the main catalogue</label>
             <div><span>⌕</span><input id="hero-query" name="keywords" required placeholder="Shoes, hoodie, product ID…" /><input type="hidden" name="channelid" value="2" /><button type="submit">Search ↗</button></div>
           </form>
-          <div className="trust-line"><span><b>04</b> checked rows</span><span><b>12</b> category routes</span><span><b>22 AUG</b> last link check</span></div>
+          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>06</b> indexable category pages</span><span><b>24 AUG</b> last link check</span></div>
         </div>
 
         <div className="hero-board" aria-label="Directory preview">
@@ -121,7 +121,7 @@ export default function Home() {
         <div className="faq-card-grid">{faqs.map((faq, index) => <a href="/faq/" key={faq.question}><span>0{index + 1}</span><h3>{faq.question}</h3><p>{faq.answer}</p><b>Read all FAQs →</b></a>)}</div>
       </section>
 
-      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>LINKS CHECKED · 22 AUG 2026</span></div></footer>
+      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>LINKS CHECKED · 24 AUG 2026</span></div></footer>
     </main>
   );
 }

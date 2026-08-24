@@ -3,7 +3,8 @@ import { ArticleContent,Section } from "../article-content";
 
 export const metadata:Metadata={
   title:"How to Buy with Hipobuy in 2026: Product Link to Delivery",
-  description:"A fact-checked, independent Hipobuy buying guide covering product links, Taobao and 1688 orders, warehouse QC, consolidation and international shipping."
+  description:"A fact-checked, independent Hipobuy buying guide covering product links, Taobao and 1688 orders, warehouse QC, consolidation and international shipping.",
+  alternates:{canonical:"/articles/how-to-buy-with-hipobuy/"}
 };
 
 const sections:Section[]=[
@@ -91,4 +92,4 @@ const sections:Section[]=[
   }
 ];
 
-export default function Page(){return <ArticleContent tag="START HERE" title="How to Buy with Hipobuy in 2026: Product Link to Delivery" dek="A fact-checked workflow for using a Hipobuy spreadsheet without confusing discovery, warehouse inspection and international shipping." sections={sections}/>}
+export default function Page(){return <ArticleContent tag="START HERE" title="How to Buy with Hipobuy in 2026: Product Link to Delivery" dek="A fact-checked workflow for using a Hipobuy spreadsheet without confusing discovery, warehouse inspection and international shipping." slug="how-to-buy-with-hipobuy" sections={sections}/>}
