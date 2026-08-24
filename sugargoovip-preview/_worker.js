@@ -2,6 +2,22 @@ import core from './worker-core-uk-20260808.js';
 
 const CANONICAL_HOST = 'sugargoovip.uk';
 const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
+const SEO_LANGS = new Set(['de','fr','es','pl']);
+const SEO_LOCALE_ROUTES = new Set([
+  '/',
+  '/guides/',
+  '/guides/what-is-sugargoo.html',
+  '/guides/qc-guide.html',
+  '/guides/shipping-guide.html',
+  '/guides/alternative.html',
+  '/faq.html'
+]);
+
+function canonicalRoutePath(pathname) {
+  if (pathname === '/index.html') return '/';
+  if (pathname === '/guides/index.html') return '/guides/';
+  return pathname;
+}
 
 function htmlAssetPath(pathname) {
   if (pathname === '/' || pathname === '/index.html') return '/index.html';
@@ -51,6 +67,21 @@ export default {
     }
 
     const pathname = url.pathname;
+    const queryLang = (url.searchParams.get('lang') || '').toLowerCase();
+    const cleanPath = canonicalRoutePath(pathname);
+
+    // Consolidate old query-string language URLs already discovered by search engines.
+    if (queryLang === 'en') {
+      url.pathname = cleanPath;
+      url.searchParams.delete('lang');
+      return Response.redirect(url.toString(), 301);
+    }
+    if (SEO_LANGS.has(queryLang) && SEO_LOCALE_ROUTES.has(cleanPath)) {
+      url.pathname = '/' + queryLang + (cleanPath === '/' ? '/' : cleanPath);
+      url.searchParams.delete('lang');
+      return Response.redirect(url.toString(), 301);
+    }
+
     const legacyLocale = pathname.match(/^\/(de|fr|es|pl)(\/.*)?$/);
     if (legacyLocale) return core.fetch(request, env, ctx);
 
