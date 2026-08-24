@@ -1,0 +1,9 @@
+import type { Metadata } from "next";
+import { InnerHero, SiteChrome } from "../site-chrome";
+export const metadata:Metadata={title:"Hipobuy Guides 2026: Buying, QC Photos & Shipping",description:"Fact-conscious Hipobuy guides covering product links, warehouse QC photos and shipping estimates."};
+const articles=[
+  ["C01 · START HERE","How to Buy with Hipobuy in 2026: Product Link to Delivery","A fact-checked workflow for product selection, order notes, warehouse review, 90-day storage planning, consolidation and international shipping.","12 MIN","/articles/how-to-buy-with-hipobuy/"],
+  ["C02 · QC PHOTOS","Hipobuy QC Photos: What to Check Before Warehouse Approval","A practical inspection system for variants, measurements, construction, damage, evidence requests and a defensible warehouse decision.","11 MIN","/articles/hipobuy-qc-photos/"],
+  ["C03 · COSTS","Hipobuy Shipping Cost 2026: Build a Realistic Total","A transparent cost model covering product price, domestic delivery, packing, chargeable weight, route eligibility and customs uncertainty.","12 MIN","/articles/hipobuy-shipping-cost/"],
+];
+export default function ArticlesPage(){return <SiteChrome><main className="inner-main"><InnerHero eyebrow="Fact-checked editorial sequence" title="Hipobuy guides built around decisions—not slogans." intro="The first three articles follow the order a new buyer actually needs: understand the complete buying workflow, learn to read warehouse evidence, then calculate a realistic delivered cost. Official claims are labelled and third-party reviews are treated as anecdotes."/><section className="article-index">{articles.map((a,i)=><a href={a[4]} key={a[1]}><div><span>{a[0]}</span><small>0{i+1}</small></div><h2>{a[1]}</h2><p>{a[2]}</p><footer><b>{a[3]} READ</b><strong>READ ARTICLE →</strong></footer></a>)}</section></main></SiteChrome>}
