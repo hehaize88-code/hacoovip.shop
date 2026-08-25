@@ -33,5 +33,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       description: "Independent product-discovery and education resource; not affiliated with Hipobuy.",
     },
   ];
-  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />{children}<TranslationBridge /></body></html>;
+  return <html lang="en">
+<head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-KR0Y8RYEX1" />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KR0Y8RYEX1');" }}
+          />
+        </head><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />{children}<TranslationBridge /></body></html>;
 }

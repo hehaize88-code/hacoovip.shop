@@ -36,6 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+<head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-1QS8EWYKPX" />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1QS8EWYKPX');" }}
+          />
+        </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -28,5 +28,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       "query-input": "required name=search_term_string",
     },
   };
-  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />{children}</body></html>;
+  return <html lang="en">
+<head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGRK9E4V6G" />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MGRK9E4V6G');" }}
+          />
+        </head><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />{children}</body></html>;
 }

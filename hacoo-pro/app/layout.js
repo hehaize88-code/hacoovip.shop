@@ -24,5 +24,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const schema = { "@context": "https://schema.org", "@graph": createOrganizationGraph() };
-  return <html lang="en" suppressHydrationWarning><body><StructuredData data={schema}/><Header/><main>{children}</main><Footer/></body></html>;
+  return <html lang="en" suppressHydrationWarning>
+<head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-SJ7LTZ5CP2" />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-SJ7LTZ5CP2');" }}
+          />
+        </head><body><StructuredData data={schema}/><Header/><main>{children}</main><Footer/></body></html>;
 }
