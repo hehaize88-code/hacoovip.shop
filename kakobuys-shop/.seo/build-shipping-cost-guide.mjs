@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const site = path.resolve(here, "..");
 const slug = "kakobuy-shipping-cost-estimate";
-const canonical = `https://kakobuys.shop/articles/${slug}/`;
+const canonical = `https://kakobuys.shop/articles/$%7Bslug%7D/`;
 const published = "2026-07-30";
 
 const pageData = {
@@ -879,15 +879,15 @@ function renderPage(data) {
     inLanguage: "en",
     keywords: ["kakobuy shipping cost", "kakobuy shipping calculator", "how much is Kakobuy shipping", "Kakobuy international freight", "estimate Kakobuy parcel cost"],
     author: { "@type": "Organization", name: "Kakobuys.shop Research Desk" },
-    publisher: { "@type": "Organization", name: "Kakobuys.shop", url: "https://kakobuys.shop", logo: { "@type": "ImageObject", url: "https://kakobuys.shop/kakobuy-logo.png" } },
-    isPartOf: { "@type": "WebSite", "@id": "https://kakobuys.shop/#website", name: "Kakobuys.shop", url: "https://kakobuys.shop" }
+    publisher: { "@type": "Organization", name: "Kakobuys.shop", url: "https://kakobuys.shop/", logo: { "@type": "ImageObject", url: "https://kakobuys.shop/kakobuy-logo.png" } },
+    isPartOf: { "@type": "WebSite", "@id": "https://kakobuys.shop/#website", name: "Kakobuys.shop", url: "https://kakobuys.shop/" }
   });
   const breadcrumbJson = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://kakobuys.shop/" },
-      { "@type": "ListItem", position: 2, name: "SEO Articles", item: "https://kakobuys.shop/articles" },
+      { "@type": "ListItem", position: 2, name: "SEO Articles", item: "https://kakobuys.shop/articles/" },
       { "@type": "ListItem", position: 3, name: pageData.en.title, item: canonical }
     ]
   });
@@ -931,17 +931,17 @@ function renderPage(data) {
     <div class="shell nav-row">
       <a href="/" class="logo" aria-label="Kakobuys Shop home"><img class="logo-image" src="/kakobuy-logo.png" alt="Kakobuy" width="642" height="162"></a>
       <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="/catalog" data-nav="0">${escapeHtml(data.nav[0])}</a><a href="/guides" data-nav="1">${escapeHtml(data.nav[1])}</a><a href="/articles" data-nav="2">${escapeHtml(data.nav[2])}</a><a href="/faq" data-nav="3">${escapeHtml(data.nav[3])}</a><a href="/about" data-nav="4">${escapeHtml(data.nav[4])}</a>
+        <a href="/catalog/" data-nav="0">${escapeHtml(data.nav[0])}</a><a href="/guides/" data-nav="1">${escapeHtml(data.nav[1])}</a><a href="/articles/" data-nav="2">${escapeHtml(data.nav[2])}</a><a href="/faq/" data-nav="3">${escapeHtml(data.nav[3])}</a><a href="/about/" data-nav="4">${escapeHtml(data.nav[4])}</a>
       </nav>
       <details class="language-menu"><summary aria-label="Choose language"><span aria-hidden="true">◎</span><span id="language-short">${data.short}</span><span class="language-caret" aria-hidden="true">⌄</span></summary><div class="language-popover" role="menu" aria-label="Choose language">${renderLanguageButtons()}</div></details>
       <a class="button button-dark nav-cta" href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noopener noreferrer"><span id="browse-label">${escapeHtml(data.browse)}</span> ↗</a>
-      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="/catalog" data-mobile-nav="0">${escapeHtml(data.nav[0])}</a><a href="/guides" data-mobile-nav="1">${escapeHtml(data.nav[1])}</a><a href="/articles" data-mobile-nav="2">${escapeHtml(data.nav[2])}</a><a href="/faq" data-mobile-nav="3">${escapeHtml(data.nav[3])}</a><a href="/about" data-mobile-nav="4">${escapeHtml(data.nav[4])}</a></nav></details>
+      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="/catalog/" data-mobile-nav="0">${escapeHtml(data.nav[0])}</a><a href="/guides/" data-mobile-nav="1">${escapeHtml(data.nav[1])}</a><a href="/articles/" data-mobile-nav="2">${escapeHtml(data.nav[2])}</a><a href="/faq/" data-mobile-nav="3">${escapeHtml(data.nav[3])}</a><a href="/about/" data-mobile-nav="4">${escapeHtml(data.nav[4])}</a></nav></details>
     </div>
   </header>
   <main>
     <section class="page-hero">
       <div class="shell">
-        <div class="breadcrumbs"><a href="/" id="crumb-home">${escapeHtml(data.home)}</a> / <a href="/articles" id="crumb-articles">${escapeHtml(data.articles)}</a> / <span id="crumb-current">${escapeHtml(data.eyebrow)}</span></div>
+        <div class="breadcrumbs"><a href="/" id="crumb-home">${escapeHtml(data.home)}</a> / <a href="/articles/" id="crumb-articles">${escapeHtml(data.articles)}</a> / <span id="crumb-current">${escapeHtml(data.eyebrow)}</span></div>
         <p class="kicker" id="article-eyebrow">${escapeHtml(data.eyebrow)}</p>
         <h1 id="article-title">${escapeHtml(data.title)}</h1>
         <p id="article-description">${escapeHtml(data.description)}</p>
@@ -956,7 +956,7 @@ function renderPage(data) {
           <h3 id="side-title">${escapeHtml(data.sideTitle)}</h3>
           <p id="side-text">${escapeHtml(data.sideText)}</p>
           <a class="button button-dark" href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noopener noreferrer"><span id="search-label">${escapeHtml(data.search)}</span> ↗</a>
-          <a class="button" href="/guides" id="guides-button">${escapeHtml(data.guidesButton)}</a>
+          <a class="button" href="/guides/" id="guides-button">${escapeHtml(data.guidesButton)}</a>
         </aside>
       </div>
       <section class="related-research">
@@ -968,8 +968,8 @@ function renderPage(data) {
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div><a href="/" class="logo"><img class="logo-image" src="/kakobuy-logo.png" alt="Kakobuy" width="642" height="162"></a><p id="footer-description">${escapeHtml(data.footerDescription)}</p></div>
-      <div><strong id="footer-explore">${escapeHtml(data.explore)}</strong><a href="/catalog" id="footer-catalog">${escapeHtml(data.productCatalog)}</a><a href="/guides" data-footer-guides>${escapeHtml(data.nav[1])}</a><a href="/articles" data-footer-articles>${escapeHtml(data.nav[2])}</a><a href="/faq" id="footer-questions">${escapeHtml(data.questions)}</a></div>
-      <div><strong id="footer-project">${escapeHtml(data.project)}</strong><a href="/about" id="footer-about">${escapeHtml(data.aboutSources)}</a><a href="/privacy" id="footer-privacy">${escapeHtml(data.privacy)}</a><a href="/terms" id="footer-terms">${escapeHtml(data.terms)}</a></div>
+      <div><strong id="footer-explore">${escapeHtml(data.explore)}</strong><a href="/catalog/" id="footer-catalog">${escapeHtml(data.productCatalog)}</a><a href="/guides/" data-footer-guides>${escapeHtml(data.nav[1])}</a><a href="/articles/" data-footer-articles>${escapeHtml(data.nav[2])}</a><a href="/faq/" id="footer-questions">${escapeHtml(data.questions)}</a></div>
+      <div><strong id="footer-project">${escapeHtml(data.project)}</strong><a href="/about/" id="footer-about">${escapeHtml(data.aboutSources)}</a><a href="/privacy/" id="footer-privacy">${escapeHtml(data.privacy)}</a><a href="/terms/" id="footer-terms">${escapeHtml(data.terms)}</a></div>
       <div class="footer-note"><span class="status-dot" aria-hidden="true"></span><strong id="footer-status">${escapeHtml(data.status)}</strong><p id="footer-status-text">${escapeHtml(data.statusText)}</p></div>
     </div>
     <div class="shell legal-row"><p id="footer-copyright">${escapeHtml(data.copyright)}</p><p id="footer-disclaimer">${escapeHtml(data.disclaimer)}</p></div>
@@ -1034,7 +1034,7 @@ const topicMap = {
   lastReviewed: published,
   entries: [
     {
-      url: "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
+      url: "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos/",
       primaryQuery: "Kakobuy QC photos",
       relatedTerms: ["Kakobuy QC guide", "how to check Kakobuy QC"],
       intent: "visual inspection guidance",
@@ -1043,7 +1043,7 @@ const topicMap = {
       internalLinkRole: "supports product-level decisions before shipping"
     },
     {
-      url: "https://kakobuys.shop/articles/kakobuy-spreadsheet-vs-search",
+      url: "https://kakobuys.shop/articles/kakobuy-spreadsheet-vs-search/",
       primaryQuery: "Kakobuy spreadsheet",
       relatedTerms: ["Kakobuy product search", "Kakobuy finds"],
       intent: "discovery workflow comparison",
@@ -1052,7 +1052,7 @@ const topicMap = {
       internalLinkRole: "supports catalog discovery"
     },
     {
-      url: "https://kakobuys.shop/articles/warehouse-storage-and-returns",
+      url: "https://kakobuys.shop/articles/warehouse-storage-and-returns/",
       primaryQuery: "Kakobuy warehouse storage",
       relatedTerms: ["Kakobuy return", "Kakobuy five-day return"],
       intent: "policy and deadline guidance",
@@ -1261,7 +1261,7 @@ function updateSitemap() {
   const sitemapPath = path.join(site, "sitemap.xml");
   let source = fs.readFileSync(sitemapPath, "utf8");
   const normalized = source.replace(
-    `<loc>https://kakobuys.shop/articles/${slug}</loc>`,
+    `<loc>https://kakobuys.shop/articles/$%7Bslug%7D</loc>`,
     `<loc>${canonical}</loc>`
   );
   if (normalized.includes(`<loc>${canonical}</loc>`)) {

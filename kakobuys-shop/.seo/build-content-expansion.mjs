@@ -93,18 +93,18 @@ function languageMenu() {
 function header() {
   return `<header class="site-header"><div class="shell nav-row">
     <a href="/" class="logo" aria-label="Kakobuys Shop home"><img class="logo-image" src="/kakobuy-logo.png" alt="Kakobuy" width="642" height="162"></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><a href="/catalog">Catalog</a><a href="/guides">QC Guides</a><a href="/articles">SEO Articles</a><a href="/faq">FAQ</a><a href="/about">About</a></nav>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="/catalog/">Catalog</a><a href="/guides/">QC Guides</a><a href="/articles/">SEO Articles</a><a href="/faq/">FAQ</a><a href="/about/">About</a></nav>
     ${languageMenu()}
     <a class="button button-dark nav-cta" href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noopener noreferrer">Browse all finds <span aria-hidden="true">↗</span></a>
-    <details class="mobile-menu"><summary aria-label="Menu">Menu</summary><nav aria-label="Mobile navigation"><a href="/catalog">Catalog</a><a href="/guides">QC Guides</a><a href="/articles">SEO Articles</a><a href="/faq">FAQ</a><a href="/about">About</a></nav></details>
+    <details class="mobile-menu"><summary aria-label="Menu">Menu</summary><nav aria-label="Mobile navigation"><a href="/catalog/">Catalog</a><a href="/guides/">QC Guides</a><a href="/articles/">SEO Articles</a><a href="/faq/">FAQ</a><a href="/about/">About</a></nav></details>
   </div></header>`;
 }
 
 function footer() {
   return `<footer class="site-footer"><div class="shell footer-grid">
     <div><a href="/" class="logo" aria-label="Kakobuys Shop home"><img class="logo-image" src="/kakobuy-logo.png" alt="Kakobuy" width="642" height="162"></a><p>Independent Kakobuy spreadsheet research, QC education and product-link discovery.</p></div>
-    <div><strong>Explore</strong><a href="/catalog">Product catalog</a><a href="/guides">QC Guides</a><a href="/articles">SEO Articles</a><a href="/faq">Questions</a></div>
-    <div><strong>Project</strong><a href="/about">About &amp; sources</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+    <div><strong>Explore</strong><a href="/catalog/">Product catalog</a><a href="/guides/">QC Guides</a><a href="/articles/">SEO Articles</a><a href="/faq/">Questions</a></div>
+    <div><strong>Project</strong><a href="/about/">About &amp; sources</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
     <div class="footer-note"><span class="status-dot" aria-hidden="true"></span><strong>Research status</strong><p>Expansion facts reviewed July 30, 2026.</p></div>
   </div><div class="shell legal-row"><p>© 2026 Kakobuys.shop. Independent resource.</p><p>Not affiliated with Kakobuy or any marketplace or brand referenced.</p></div></footer>`;
 }
@@ -129,7 +129,7 @@ function documentHead({ title, description, canonical, type = "website", keyword
 }
 
 function articlePage(article) {
-  const canonical = `${site}/articles/${article.slug}`;
+  const canonical = `${site}/articles/${article.slug}/`;
   const count = wordCount(article.body);
   if (count < 1200 || count > 1800) {
     throw new Error(`${article.slug} has ${count} words; expected 1200–1800`);
@@ -158,7 +158,7 @@ function articlePage(article) {
   const related = (relatedArticles[article.slug] || [])
     .map((slug) => allArticles.find((entry) => entry.slug === slug))
     .filter(Boolean)
-    .map((entry) => `<li><a href="/articles/${entry.slug}">${escapeHtml(entry.title)}</a></li>`)
+    .map((entry) => `<li><a href="/articles/${entry.slug}/">${escapeHtml(entry.title)}</a></li>`)
     .join("");
   return `<!doctype html><html lang="en"><head>
   ${documentHead({
@@ -176,7 +176,7 @@ function articlePage(article) {
   ${header()}
   <main>
     <section class="page-hero"><div class="shell">
-      <div class="breadcrumbs"><a href="/">Home</a> / <a href="/articles">SEO Articles</a> / ${escapeHtml(article.eyebrow)}</div>
+      <div class="breadcrumbs"><a href="/">Home</a> / <a href="/articles/">SEO Articles</a> / ${escapeHtml(article.eyebrow)}</div>
       <p class="kicker">${escapeHtml(article.eyebrow)}</p>
       <h1>${escapeHtml(article.title)}</h1>
       <p>${escapeHtml(article.description)}</p>
@@ -191,7 +191,7 @@ function articlePage(article) {
         <h3>Facts and limits stay separate.</h3>
         <p>Platform statements are dated. Examples are labelled, and customer reports are never presented as guarantees.</p>
         <a class="button button-dark" href="https://cnfanshp.com/AllProducts/" target="_blank" rel="noopener noreferrer">Search product index ↗</a>
-        <a class="button" href="/articles">All 12 articles</a>
+        <a class="button" href="/articles/">All 12 articles</a>
       </aside>
     </div></section>
   </main>
@@ -201,7 +201,7 @@ function articlePage(article) {
 }
 
 function articleIndex() {
-  const canonical = `${site}/articles`;
+  const canonical = `${site}/articles/`;
   const itemList = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -209,7 +209,7 @@ function articleIndex() {
     itemListElement: allArticles.map((article, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `${site}/articles/${article.slug}`,
+      url: `${site}/articles/${article.slug}/`,
       name: article.title
     }))
   };
@@ -219,7 +219,7 @@ function articleIndex() {
     <h2>${escapeHtml(article.title)}</h2>
     <p>${escapeHtml(article.description)}</p>
     <div class="article-meta"><span>${escapeHtml(article.readTime)}</span><span>Updated ${escapeHtml(article.updated)}</span></div>
-    <a class="button button-dark" href="/articles/${article.slug}">Read article →</a>
+    <a class="button button-dark" href="/articles/${article.slug}/">Read article →</a>
   </article>`).join("");
   return `<!doctype html><html lang="en"><head>
   ${documentHead({
@@ -252,17 +252,17 @@ function articleIndex() {
 function updateSitemap() {
   const sitemapPath = path.join(root, "sitemap.xml");
   let xml = fs.readFileSync(sitemapPath, "utf8");
-  const refreshedPaths = ["", "/catalog", "/articles", ...[
+  const refreshedPaths = ["/", "/catalog/", "/articles/", ...[
     "shoes", "hoodies", "t-shirts", "jackets", "bags", "accessories",
     "pants-shorts", "headwear", "jerseys", "electronics"
-  ].map((category) => `/catalog/${category}`)];
+  ].map((category) => `/catalog/${category}/`)];
   for (const pathname of refreshedPaths) {
     const loc = `${site}${pathname}`;
     const blockPattern = new RegExp(`(<loc>${loc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}<\\/loc>\\s*<lastmod>)[^<]+`);
     xml = xml.replace(blockPattern, `$1${reviewedDate}T00:00:00.000Z`);
   }
   for (const article of expansionArticles) {
-    const url = `${site}/articles/${article.slug}`;
+    const url = `${site}/articles/${article.slug}/`;
     if (xml.includes(`<loc>${url}</loc>`)) continue;
     const entry = `<url>
 <loc>${url}</loc>
@@ -286,7 +286,7 @@ function updateTopicMap() {
   topicMap.entries = [
     ...oldEntries,
     ...expansionArticles.map((article) => ({
-      url: `${site}/articles/${article.slug}`,
+      url: `${site}/articles/${article.slug}/`,
       primaryQuery: article.primaryQuery,
       relatedTerms: article.keywords.filter((keyword) => keyword !== article.primaryQuery),
       intent: article.intent,
