@@ -94,7 +94,7 @@ export default async function CollectionPage({ params }: PageProps) {
       <section className="content-section">
         <div className="section-heading">
           <div><p className="eyebrow">Research entries</p><h2>Start here, verify there.</h2></div>
-          <p>{category.kicker}. Product cards below use first images matched to their listed item IDs and verified CNFansHP product pages; check the live destination before ordering.</p>
+          <p>{category.kicker}. Product cards below use first images matched to their listed item IDs and verified destination product pages; check the live destination before ordering.</p>
         </div>
         {categoryProducts.length > 0 ? (
           <div className="product-grid">

@@ -11,7 +11,7 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       <a
         href={product.targetUrl}
         className="product-card__image-wrap"
-        aria-label={`Open ${product.title}, item ${product.itemId}, on CNFansHP`}
+        aria-label={`Open ${product.title}, item ${product.itemId}, in the main catalogue`}
         target="_blank"
         rel="nofollow noopener noreferrer"
       >

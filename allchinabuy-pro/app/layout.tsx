@@ -7,18 +7,18 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "AllChinaBuy Pro — Independent Shopping Directory & Buying Guides",
+    default: "AllChinaBuy Guides 2026: Fees, QC Photos & Shipping",
     template: "%s | AllChinaBuy Pro",
   },
   description:
-    "An independent AllChinaBuy shopping directory with curated product routes, link checks, QC guidance and practical international buying guides.",
+    "Research AllChinaBuy fees, QC photos, warehouse rules, shipping lines and 1688 orders with practical, source-checked 2026 guides.",
   keywords: [
-    "AllChinaBuy spreadsheet",
-    "AllChinaBuy sheet",
-    "China shopping directory",
-    "AllChinaBuy finds",
-    "QC photo guide",
-    "China shopping links",
+    "AllChinaBuy fees",
+    "AllChinaBuy QC photos",
+    "AllChinaBuy shipping",
+    "AllChinaBuy warehouse",
+    "AllChinaBuy 1688 guide",
+    "AllChinaBuy buying guide",
   ],
   authors: [{ name: "AllChinaBuy Pro Editorial" }],
   creator: "AllChinaBuy Pro",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "AllChinaBuy Pro",
-    title: "AllChinaBuy Pro — Independent Shopping Directory",
-    description: "Find clearer product routes, link checks and practical China shopping guides.",
+    title: "AllChinaBuy Guides 2026: Fees, QC Photos & Shipping",
+    description: "Source-checked guides to AllChinaBuy fees, QC photos, warehouse rules, shipping lines and 1688 orders.",
     images: [
       {
         url: "/images/social/home.webp",
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AllChinaBuy Pro — Independent Shopping Directory",
-    description: "Find clearer product routes, link checks and practical China shopping guides.",
+    title: "AllChinaBuy Guides 2026: Fees, QC Photos & Shipping",
+    description: "Source-checked guides to AllChinaBuy fees, QC photos, warehouse rules, shipping lines and 1688 orders.",
     images: ["/images/social/home.webp"],
   },
   robots: { index: true, follow: true },

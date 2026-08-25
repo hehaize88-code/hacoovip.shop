@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
       <h2>Search transitions</h2>
       <p>
-        When you submit a catalogue search, your keywords are sent directly to CNFansHP in the destination
+        When you submit a catalogue search, your keywords are sent directly to the destination website in the
         URL. From that point, the destination website&apos;s privacy terms apply. Do not place passwords,
         payment data or other sensitive information in a search field.
       </p>
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
       <p>
         Hosting and security infrastructure may process standard request information such as IP address,
         device or browser data, timestamps and requested pages to deliver and protect the website. The
-        website does not add advertising trackers or a custom analytics script.
+        website uses Google Analytics to measure visits and page performance; it does not process orders or payment data.
       </p>
 
       <h2>Outbound websites</h2>
