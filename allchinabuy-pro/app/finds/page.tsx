@@ -7,7 +7,7 @@ import { buildPageMetadata, socialCard } from "@/lib/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Independent China Shopping Finds",
   description:
-    "Browse source-matched product images and item IDs, then open each exact corresponding product on the CNFansHP main site.",
+    "Browse source-matched product images and item IDs, then open each exact corresponding product in the main catalogue.",
   path: "/finds",
   image: socialCard("finds", "AllChinaBuy Pro independent research finds share card"),
 });

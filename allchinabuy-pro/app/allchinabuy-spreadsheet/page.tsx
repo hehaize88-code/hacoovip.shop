@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/content";
 import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "AllChinaBuy Spreadsheet Alternative — Searchable Finds",
+  title: "AllChinaBuy Spreadsheet 2026: Product Finds",
   description: "A searchable, mobile-friendly alternative to a static AllChinaBuy spreadsheet, with explained product routes and practical verification guides.",
   path: "/allchinabuy-spreadsheet",
   image: socialCard("spreadsheet", "Searchable AllChinaBuy spreadsheet alternative share card"),
@@ -23,7 +23,7 @@ export default function SpreadsheetPage() {
       }} />
       <section className="page-hero page-hero--plain">
         <p className="eyebrow">Spreadsheet alternative</p>
-        <h1>Product routes without the mystery rows.</h1>
+        <h1>Search AllChinaBuy Product Finds by Category</h1>
         <p>
           Looking for an AllChinaBuy spreadsheet? This independent directory uses searchable pages instead:
           each entry explains its destination, review date and the checks still left to you.
@@ -49,8 +49,8 @@ export default function SpreadsheetPage() {
         <h2>Is this the official AllChinaBuy sheet?</h2>
         <p>
           No. AllChinaBuy Pro is independent from the official AllChinaBuy website and is not owned,
-          sponsored or endorsed by AllChinaBuy. Product entries match public source images and item IDs to exact CNFansHP product pages;
-          broad searches and category buttons open the corresponding CNFansHP catalogue pages. The site does
+          sponsored or endorsed by AllChinaBuy. Product entries match public source images and item IDs to exact destination product pages;
+          broad searches and category buttons open the corresponding main catalogue pages. The site does
           not offer a downloadable spreadsheet and does not process transactions.
         </p>
         <h2>What belongs in a trustworthy finds directory?</h2>

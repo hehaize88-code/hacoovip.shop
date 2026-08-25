@@ -468,10 +468,10 @@ export const guides: Guide[] = [
   },
   {
     slug: "qc-photo-checklist",
-    title: "AllChinaBuy QC Photos: A Practical Inspection Checklist",
+    title: "How to Check AllChinaBuy QC Photos (2026)",
     eyebrow: "Quality control",
     description:
-      "What AllChinaBuy’s public order page says standard inspection covers, what warehouse photos cannot prove, and how to request decision-grade evidence.",
+      "Review AllChinaBuy QC photos in six steps: confirm size and colour, request useful measurements, spot visible defects and decide before shipping.",
     readingTime: "6 min read",
     updated: REVIEWED,
     keyFacts: [

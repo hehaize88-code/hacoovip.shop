@@ -105,7 +105,7 @@ export default async function ProductPage({ params }: PageProps) {
             target="_blank"
             rel="nofollow noopener noreferrer"
           >
-            Open matching item on CNFansHP <span aria-hidden="true">↗</span>
+            Open matching item <span aria-hidden="true">↗</span>
           </a>
           <p className="product-detail__notice">
             Image, source label, item ID and main-site product page matched {product.checkedAt}. This does not verify brand authenticity or product quality. Price, options, availability and seller information can change after review.
@@ -128,7 +128,7 @@ export default async function ProductPage({ params }: PageProps) {
         <div className="section-heading section-heading--dark">
           <div><p className="eyebrow">Keep researching</p><h2>Related directory entries.</h2></div>
           <a className="text-link" href={productCategory.targetUrl} target="_blank" rel="nofollow noopener noreferrer">
-            Open {product.category} on CNFansHP ↗
+            Open {product.category} in the main catalogue ↗
           </a>
         </div>
         <div className="product-grid">

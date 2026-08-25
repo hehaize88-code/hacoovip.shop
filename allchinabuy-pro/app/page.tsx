@@ -16,7 +16,7 @@ export default function Home() {
             "@id": `${SITE_URL}/#website`,
             url: SITE_URL,
             name: "AllChinaBuy Pro",
-            description: "Independent China shopping directory and research guides.",
+            description: "Source-checked AllChinaBuy fee, QC photo, warehouse, shipping and 1688 buying guides.",
             potentialAction: {
               "@type": "SearchAction",
               target: "https://www.cnfanshp.com/search.html?channelid=2&keywords={search_term_string}",
@@ -29,7 +29,7 @@ export default function Home() {
             name: "AllChinaBuy Pro Editorial",
             url: SITE_URL,
             logo: `${SITE_URL}/logo-allchinabuy.png`,
-            description: "An editorial shopping directory whose product and category links lead to the associated CNFansHP main catalogue; it is not the official AllChinaBuy website.",
+            description: "An independent editorial directory whose product and category links lead to the associated main catalogue; it is not the official AllChinaBuy website.",
           },
         ],
       }} />
@@ -37,7 +37,7 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-copy">
           <p className="eyebrow">Independent directory · Clearer routes</p>
-          <h1>Find better China shopping links. Faster.</h1>
+          <h1>AllChinaBuy Buying Guides, QC Checks and Shipping Tools</h1>
           <p className="hero-copy__intro">Curated product finds, link checks and practical buying guides — built for international shoppers.</p>
           <SearchBox />
           <div className="hero-actions">
@@ -154,7 +154,7 @@ export default function Home() {
       </section>
 
       <section className="search-cta">
-        <div><p className="eyebrow">Ready to look?</p><h2>Search the main catalogue.</h2><p>Your exact words are passed to the CNFansHP product search — not reduced to a generic “all products” page.</p></div>
+        <div><p className="eyebrow">Ready to look?</p><h2>Search the main catalogue.</h2><p>Your exact words are passed to the matching product search — not reduced to a generic “all products” page.</p></div>
         <SearchBox compact />
       </section>
     </main>

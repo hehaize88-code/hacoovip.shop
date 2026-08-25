@@ -41,8 +41,8 @@ export default function AboutPage() {
       <h2>How destination links work</h2>
       <p>
         Product entries pair public source-listing titles, first images and original item IDs with exact
-        CNFansHP product pages. Search, category and “browse all products” buttons also lead to the matching
-        CNFansHP catalogue pages. AllChinaBuy Pro is not the official AllChinaBuy website, so visitors should
+        destination product pages. Search, category and “browse all products” buttons also lead to the matching
+        main catalogue pages. AllChinaBuy Pro is not the official AllChinaBuy website, so visitors should
         read the destination domain, review its current terms and contact the transaction platform directly
         for support.
       </p>

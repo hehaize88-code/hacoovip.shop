@@ -9,7 +9,7 @@ type SearchBoxProps = {
 export function SearchBox({
   placeholder = "Search shoes, clothing or paste a product name",
   buttonLabel = "Search main site",
-  formLabel = "Search the CNFansHP catalogue",
+  formLabel = "Search the main catalogue",
   inputLabel = "Search products",
   compact = false,
 }: SearchBoxProps) {
