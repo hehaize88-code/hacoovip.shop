@@ -77,7 +77,7 @@ function expandedArticles() {
     const html = fs.readFileSync(path.join(root, "articles", slug, "index.html"), "utf8");
     const title = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() ?? slug;
     const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "Practical Kakobuy research note.";
-    return `<article class="article-card"><div class="article-number">${String(index + 4).padStart(2, "0")}</div><div><p class="kicker">Expanded research file</p><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><div class="article-meta"><span>Long-form guide</span><span>2026 edition</span></div><a href="/articles/${slug}/">Continue the note →</a></div></article>`;
+    return `<article class="article-card"><div class="article-number">${String(index + 4).padStart(2, "0")}</div><div><p class="kicker">Expanded research file</p><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><div class="article-meta"><span>Long-form guide</span><span>2026 edition</span></div><a href="/articles/${slug}/">Read ${escapeHtml(title)} →</a></div></article>`;
   }).join("");
   return `<section class="section shell" data-pro-preserved-content="articles"><div class="section-heading split-heading"><div><p class="kicker">Files 04—12</p><h2>The expanded Kakobuy research archive.</h2></div><p>The later long-form guides remain available inside the restored Kakobuys.pro field-journal template.</p></div><div class="article-grid">${cards}</div></section>`;
 }
