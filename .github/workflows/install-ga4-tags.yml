@@ -133,7 +133,7 @@ jobs:
                   raise SystemExit(f"No rendered HTML or shared layout was tagged for {folder}")
 
               for worker in (root / "_worker.js", root / "worker" / "index.ts", root / "worker" / "index.js"):
-                  if not worker.exists():
+                  if not worker.is_file():
                       continue
                   text = worker.read_text(encoding="utf-8")
                   if "Content-Security-Policy" not in text:
