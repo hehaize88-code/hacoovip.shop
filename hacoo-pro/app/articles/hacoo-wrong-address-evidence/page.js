@@ -185,6 +185,7 @@ export default function HacooWrongAddressArticle() {
             <p>Choose the next page by the status now shown on the order.</p>
             <ul>
               <li><Link className="source-link" href="/guides/shipping-planning/">Shipping planning</Link> — separate preparation from carrier movement.</li>
+              <li><Link className="source-link" href="/articles/hacoo-tracking-not-updating/">Tracking update guide</Link> — preserve the carrier event and status mismatch before contacting support.</li>
               <li><Link className="source-link" href="/articles/hacoo-preorder-backorder-support/">Preorder support</Link> — handle an unavailable item before it receives tracking.</li>
               <li><Link className="source-link" href="/articles/hacoo-order-missing-item-split-shipment/">Partial-order checklist</Link> — reconcile order lines and parcels after delivery.</li>
               <li><Link className="source-link" href="/faq/">Hacoo Pro FAQ</Link> — understand the role and limits of this independent site.</li>

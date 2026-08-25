@@ -67,6 +67,23 @@ export const articles = [
       caption: "An original Hacoo Pro decision map for an address error at different shipment stages.",
     },
   },
+  {
+    slug: "hacoo-tracking-not-updating",
+    title: "Hacoo Tracking Not Updating: Status and Evidence Guide",
+    description: "Check a Hacoo tracking number, last carrier event and order state, then build a precise evidence pack before contacting the carrier or support.",
+    excerpt: "A stage-first method for separating preparation, a missing first scan, normal carrier handoffs and a genuine tracking exception.",
+    published: "2026-08-25",
+    modified: "2026-08-25",
+    checkedLabel: "August 25, 2026",
+    read: "10 min",
+    image: {
+      path: "/articles/hacoo-tracking-update-map.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo tracking update decision map from order preparation to carrier exception",
+      caption: "An original Hacoo Pro decision map for interpreting a tracking record that has not updated.",
+    },
+  },
 ];
 
 export function getArticle(slug) {
