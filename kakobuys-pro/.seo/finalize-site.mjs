@@ -209,19 +209,29 @@ function escapeXml(value) {
 }
 
 function writeSitemap(files, groups) {
+  const sitemapFile = path.join(root, "sitemap.xml");
+  const existingLastmod = new Map();
+  if (fs.existsSync(sitemapFile)) {
+    const currentXml = fs.readFileSync(sitemapFile, "utf8");
+    for (const match of currentXml.matchAll(/<loc>https:\/\/kakobuys\.pro([^<]*)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)) {
+      existingLastmod.set(cleanRoute(match[1] || "/"), match[2]);
+    }
+  }
+  const today = new Date().toISOString().slice(0, 10);
   const rows = files
     .map((file) => fileRoute(file))
     .sort((left, right) => left.route.localeCompare(right.route))
     .map((page) => {
+      const lastmod = existingLastmod.get(page.route) || today;
       const alternates = [...groups.get(page.base).entries()]
         .sort(([left], [right]) => localeOrder.indexOf(left) - localeOrder.indexOf(right))
         .map(([locale, route]) => `    <xhtml:link rel="alternate" hreflang="${locale}" href="${escapeXml(`${site}${route}`)}"/>`)
         .join("\n");
-      return `  <url>\n    <loc>${escapeXml(`${site}${page.route}`)}</loc>\n    <lastmod>2026-07-30</lastmod>\n${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${site}${groups.get(page.base).get("en") || page.route}`)}"/>\n  </url>`;
+      return `  <url>\n    <loc>${escapeXml(`${site}${page.route}`)}</loc>\n    <lastmod>${lastmod}</lastmod>\n${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${site}${groups.get(page.base).get("en") || page.route}`)}"/>\n  </url>`;
     })
     .join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${rows}\n</urlset>\n`;
-  fs.writeFileSync(path.join(root, "sitemap.xml"), xml);
+  fs.writeFileSync(sitemapFile, xml);
 }
 
 const files = collectIndexFiles(root);
