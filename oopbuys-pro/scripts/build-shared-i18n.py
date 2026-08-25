@@ -13,6 +13,7 @@ import json
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Iterable
@@ -66,8 +67,8 @@ TRANSLATED_ATTRIBUTES = ("alt", "aria-label", "placeholder", "title")
 NON_VISIBLE_PARENTS = {"script", "style", "noscript", "svg"}
 MANUAL_TEXT = {
     "de": {
-        "h1\u241fBetter finds.": "Bessere Funde.",
-        "h1\u241fClearer QC.": "Klarere QC.",
+        "h1\u241fOOPBUY Spreadsheet.": "OOPBUY Spreadsheet.",
+        "h1\u241fWarehouse QC.": "Lager-QC.",
         "h1\u241fSmarter shipping.": "Intelligentere Versandplanung.",
         "h2\u241fChoose the answer you need.": "Wähle die Antwort, die du brauchst.",
         "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
@@ -76,8 +77,8 @@ MANUAL_TEXT = {
         ),
     },
     "es": {
-        "h1\u241fBetter finds.": "Mejores hallazgos.",
-        "h1\u241fClearer QC.": "QC más claro.",
+        "h1\u241fOOPBUY Spreadsheet.": "OOPBUY Spreadsheet.",
+        "h1\u241fWarehouse QC.": "QC de almacén.",
         "h1\u241fSmarter shipping.": "Envíos mejor planificados.",
         "h2\u241fChoose the answer you need.": "Elige la respuesta que necesitas.",
         "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
@@ -86,8 +87,8 @@ MANUAL_TEXT = {
         ),
     },
     "nl": {
-        "h1\u241fBetter finds.": "Betere vondsten.",
-        "h1\u241fClearer QC.": "Duidelijkere QC.",
+        "h1\u241fOOPBUY Spreadsheet.": "OOPBUY Spreadsheet.",
+        "h1\u241fWarehouse QC.": "Magazijn-QC.",
         "h1\u241fSmarter shipping.": "Slimmere verzendplanning.",
         "h2\u241fChoose the answer you need.": "Kies het antwoord dat je nodig hebt.",
         "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
@@ -399,6 +400,7 @@ def build_overlay(
     localized_parser: TreeParser,
     locale: str,
     route: str,
+    existing_text: dict[str, str] | None = None,
 ) -> dict[str, object]:
     text: dict[str, str] = {}
     attributes: dict[str, str] = {}
@@ -497,8 +499,8 @@ def build_overlay(
         add_translation(
             text,
             conflicts,
-            f"title\u241f{normalize(english_title.group(1))}",
-            normalize(localized_title.group(1)),
+            f"title\u241f{normalize(unescape(english_title.group(1)))}",
+            normalize(unescape(localized_title.group(1))),
         )
 
     if not route:
@@ -510,6 +512,14 @@ def build_overlay(
         for text_value in node.direct_text
         if normalize(text_value)
     ]
+    visible_values = set(English_visible)
+    for key, value in (existing_text or {}).items():
+        if "\u241f" not in key:
+            continue
+        english_value = key.split("\u241f", 1)[1]
+        if english_value in visible_values and key not in text:
+            text[key] = value
+
     translated_english_values = {
         key.split("\u241f", 1)[1] for key in text if "\u241f" in key
     }
@@ -551,6 +561,18 @@ def main() -> None:
         english_html, english_parser = parse(page_path(None, route))
         route_record: dict[str, object] = {}
         for locale in LOCALES:
+            locale_directory = output_root / locale
+            locale_directory.mkdir(parents=True, exist_ok=True)
+            output_path = locale_directory / f"{route_key(route)}.json"
+            existing_text: dict[str, str] = {}
+            if output_path.exists():
+                try:
+                    existing_overlay = json.loads(
+                        output_path.read_text(encoding="utf-8")
+                    )
+                    existing_text = existing_overlay.get("text", {})
+                except (json.JSONDecodeError, OSError):
+                    existing_text = {}
             localized_html, localized_parser = parse(page_path(locale, route))
             overlay = build_overlay(
                 english_html,
@@ -559,10 +581,8 @@ def main() -> None:
                 localized_parser,
                 locale,
                 route,
+                existing_text,
             )
-            locale_directory = output_root / locale
-            locale_directory.mkdir(parents=True, exist_ok=True)
-            output_path = locale_directory / f"{route_key(route)}.json"
             output_path.write_text(
                 json.dumps(overlay, ensure_ascii=False, separators=(",", ":")),
                 encoding="utf-8",

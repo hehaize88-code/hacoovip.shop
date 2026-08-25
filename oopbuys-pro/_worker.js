@@ -65,7 +65,7 @@ const TRANSLATED_ATTRIBUTES = new Set([
   "placeholder",
   "title",
 ]);
-const overlayCache = new Map();
+const HTML_CACHE_VERSION = "seo-clicks-2026-08-25-v1";
 
 function decodeHtml(value) {
   return value
@@ -288,25 +288,37 @@ function translateCanonicalHtml(html, overlay, locale, pathname) {
 }
 
 async function getOverlay(env, origin, locale, key) {
-  const cacheKey = `${locale}/${key}`;
-  if (!overlayCache.has(cacheKey)) {
-    overlayCache.set(
-      cacheKey,
-      env.ASSETS.fetch(
-        new Request(`${origin}/_i18n/${locale}/${key}.json`),
-      ).then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Missing locale overlay: ${cacheKey}`);
-        }
-        return response.json();
-      }),
-    );
+  const overlayKey = `${locale}/${key}`;
+  const response = await env.ASSETS.fetch(
+    new Request(`${origin}/_i18n/${overlayKey}.json`),
+  );
+  if (!response.ok) {
+    throw new Error(`Missing locale overlay: ${overlayKey}`);
   }
-  return overlayCache.get(cacheKey);
+  return response.json();
+}
+
+function htmlCacheKey(url) {
+  const cacheUrl = new URL(url.toString());
+  cacheUrl.search = "";
+  cacheUrl.searchParams.set("__oopbuys_html", HTML_CACHE_VERSION);
+  return new Request(cacheUrl.toString(), { method: "GET" });
+}
+
+function withBrowserCachePolicy(response, cacheStatus) {
+  const headers = new Headers(response.headers);
+  headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+  headers.set("X-OOPBUYS-Cache", cacheStatus);
+  headers.delete("Content-Length");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (url.hostname === "www.oopbuys.pro") {
@@ -357,6 +369,18 @@ export default {
       });
     }
 
+    const cacheableHtmlRequest =
+      request.method === "GET" &&
+      url.search === "" &&
+      !/\.[a-z0-9]+$/i.test(url.pathname);
+    const pageCacheKey = cacheableHtmlRequest ? htmlCacheKey(url) : null;
+    if (pageCacheKey) {
+      const cachedResponse = await caches.default.match(pageCacheKey);
+      if (cachedResponse) {
+        return withBrowserCachePolicy(cachedResponse, "HIT");
+      }
+    }
+
     const route = localizedRoute(url.pathname);
     let response;
     let overlay = null;
@@ -403,10 +427,24 @@ export default {
     const brandedHtml = html.includes('id="oopbuy-wordmark-logo"')
       ? html
       : html.replace("</head>", `${WORDMARK_STYLE}</head>`);
-    return new Response(brandedHtml, {
+    const sanitizedHtml = brandedHtml.replace(
+      /,"potentialAction":\{"@type":"SearchAction","target":"https:\/\/www\.cnfanshp\.com\/search\.html\?keywords=\{search_term_string\}&channelid=2","query-input":"required name=search_term_string"\}/g,
+      "",
+    );
+    const finalResponse = new Response(sanitizedHtml, {
       status: response.status,
       statusText: response.statusText,
       headers,
     });
+
+    if (pageCacheKey && finalResponse.status === 200) {
+      const cacheResponse = finalResponse.clone();
+      cacheResponse.headers.set("Cache-Control", "public, max-age=86400");
+      cacheResponse.headers.delete("Set-Cookie");
+      ctx.waitUntil(caches.default.put(pageCacheKey, cacheResponse));
+      return withBrowserCachePolicy(finalResponse, "MISS");
+    }
+
+    return finalResponse;
   },
 };
