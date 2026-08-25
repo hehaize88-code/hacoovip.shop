@@ -57,17 +57,6 @@ function localizedUrl(route, language) {
   return `https://findqc.pro${prefix}${route === "/" ? "/" : route}`;
 }
 
-function stripMarkup(value) {
-  return value
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, '"')
-    .replace(/&#x27;|&#39;/g, "'")
-    .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 function enrichHtml(html, route, language) {
   const canonical = localizedUrl(route, language);
   const routeLanguages = languagesForRoute(route);
@@ -79,21 +68,13 @@ function enrichHtml(html, route, language) {
     `<meta property="og:locale" content="${localeMap[language]}"/>`,
   ].join("");
 
-  let output = html
+  return html
     .replace(/<html\s+lang="[^"]*"/, `<html lang="${language}"`)
     .replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/gi, "")
     .replace(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang=["'][^"']+["'])[^>]*>/gi, "")
     .replace(/<meta\b(?=[^>]*\bproperty=["']og:url["'])[^>]*>/gi, "")
     .replace(/<meta\b(?=[^>]*\bproperty=["']og:locale["'])[^>]*>/gi, "")
     .replace("<head>", `<head>${seoTags}`);
-
-  const h1 = output.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-  if (h1) {
-    const pageTitle = stripMarkup(h1[1]);
-    if (pageTitle) output = output.replace(/<title>[\s\S]*?<\/title>/i, `<title>${pageTitle} | FindQC Pro</title>`);
-  }
-
-  return output;
 }
 
 function copyHtmlBuild(language) {
