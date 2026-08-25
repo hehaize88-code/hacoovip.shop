@@ -60,7 +60,7 @@ export const categories = [
     count: "Bottoms edit",
     destination: "/pants-shorts/",
     image: "/products/shorts-utility.webp",
-    description: "A measurement-led selection of trousers, shorts and casual bottoms from the live CNFansHP catalog.",
+    description: "A measurement-led selection of trousers, shorts and casual bottoms from the current live catalog.",
     checklist: ["Compare waist, rise, inseam and leg opening", "Check pocket and panel symmetry", "Read whether the waist is fixed or elasticated"],
   },
   {
@@ -283,7 +283,7 @@ export const guideContent = {
     sections: [
       ["What a spreadsheet can do", "It can shorten the discovery stage by grouping links into recognizable categories such as shoes, T-shirts, jackets or accessories. A well-maintained guide can also explain what to measure and which listing details should be checked before a decision."],
       ["What it cannot guarantee", "A link is not a guarantee of availability, quality, suitability, shipping cost or delivery time. Listings change. Images, options and terms should always be checked on the current destination page."],
-      ["How Hacoo Pro is different", "Hacoo Pro is an independent editorial index rather than an official Hacoo service or a seller. It combines category routes with practical reading, then links to the CNFansHP catalog when you want to inspect current listing details."],
+      ["How Hacoo Pro is different", "Hacoo Pro is an independent editorial index rather than an official Hacoo service or a seller. It combines category routes with practical reading, then links to the live catalog when you want to inspect current listing details."],
       ["How to judge whether an index is maintained", "Look for a visible review date, category-specific guidance and links that reach a current destination without an unnecessary chain of redirects. A useful index also explains which information came from a live listing and which parts are general editorial guidance."],
       ["Who benefits from a category-first route", "A category-first directory is useful when you know the product type but still need to compare fit, construction or compatibility. If you already have an exact product identifier, go to the live catalog and use this guide only for the relevant measurement or verification checklist."],
     ],
@@ -295,7 +295,7 @@ export const guideContent = {
     sections: [
       ["Begin with intent", "Decide whether you are exploring a category, solving a sizing question or looking for a specific type of item. Category pages are faster when the product type is already clear; guides are more useful when a question is blocking the next step."],
       ["Create a short list", "Open only a few promising listings. Compare the same information across each one: measurements, options, material description, included items and the date you last checked the page."],
-      ["Use the live page as the final reference", "Hacoo Pro provides discovery context. The linked CNFansHP page is where you should confirm current images, options and availability. If the information is incomplete, pause rather than guessing."],
+      ["Use the live page as the final reference", "Hacoo Pro provides discovery context. The linked live page is where you should confirm current images, options and availability. If the information is incomplete, pause rather than guessing."],
       ["Record what you actually compared", "Keep the exact option name, important measurements and the date of your check together. This prevents details from one color, size or model being carried over to another option that only looks similar in the product grid."],
       ["Avoid false matches", "A familiar thumbnail or shortened title is not enough to identify a product. Match the destination URL, selected option, model or measurement chart and current images before treating two references as the same item."],
     ],
@@ -340,10 +340,10 @@ export const guideContent = {
 };
 
 export const faqs = [
-  ["What is Hacoo Pro?", "Hacoo Pro is an editorial product-discovery guide operated by the same publishing team as CNFansHP. The two sites have separate research and catalog roles."],
-  ["Is Hacoo Pro the official Hacoo website?", "No. Hacoo Pro is not operated or endorsed by Hacoo. Its shared publisher relationship is with CNFansHP, not Hacoo or any marketplace."],
-  ["Does Hacoo Pro sell products?", "No. Hacoo Pro publishes editorial guidance. Catalog and transaction pages open separately on CNFansHP or another destination under that site's own terms."],
-  ["Where do the product links go?", "Product cards open a matching Hacoo Pro reference page first. From there, visitors can run a current CNFansHP search or open the relevant live category without being sent to an expired detail URL."],
+  ["What is Hacoo Pro?", "Hacoo Pro is an independent editorial product-discovery guide with separate research and external catalog roles."],
+  ["Is Hacoo Pro the official Hacoo website?", "No. Hacoo Pro is not operated or endorsed by Hacoo or any marketplace."],
+  ["Does Hacoo Pro sell products?", "No. Hacoo Pro publishes editorial guidance. Catalog and transaction pages open separately on an external destination under that site's own terms."],
+  ["Where do the product links go?", "Product cards open a matching Hacoo Pro reference page first. From there, visitors can run a current live search or open the relevant external category without being sent to an expired detail URL."],
   ["Are listings always available?", "No. External listings, options and availability can change. Always check the current destination page."],
   ["Does a listing guarantee product quality?", "No. A link or photograph cannot guarantee quality. Use available measurements, listing information and policies to make your own assessment."],
   ["How should I choose a size?", "Compare the listing measurements with a similar item you already own. Do not rely only on familiar size letters or automatic regional conversions."],

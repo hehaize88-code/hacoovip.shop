@@ -171,11 +171,11 @@ export default async function ProductReferencePage({ params }) {
         <div><span className="section-label">Verified route + fallback</span><h2>Keep the match. Avoid a dead end.</h2></div>
         <div className="reference-copy">
           <p className="large-copy">The current detail route, its observed catalog label and a live-search fallback remain together on this page.</p>
-          <p>The observed CNFansHP label was “{product.catalogLabel}”. Listing #{product.listingId} returned successfully on {CATALOG_REVIEW.label}; recheck the selected option after opening it.</p>
+          <p>The observed catalog label was “{product.catalogLabel}”. Listing #{product.listingId} returned successfully on {CATALOG_REVIEW.label}; recheck the selected option after opening it.</p>
           <div className="reference-checks">
             {category.checklist.map((check, index) => <div key={check}><span>0{index + 1}</span><p>{check}</p></div>)}
           </div>
-          <div className="inline-links"><a href={verifiedListing} target="_blank" rel="noopener noreferrer">Open listing #{product.listingId} <Arrow size={16}/></a><a href={liveSearch} target="_blank" rel="noopener noreferrer">Search CNFansHP <Arrow size={16}/></a><a href={`${DESTINATION}${category.destination}`} target="_blank" rel="noopener noreferrer">Browse live {product.category.toLowerCase()} <Arrow size={16}/></a></div>
+          <div className="inline-links"><a href={verifiedListing} target="_blank" rel="noopener noreferrer">Open listing #{product.listingId} <Arrow size={16}/></a><a href={liveSearch} target="_blank" rel="noopener noreferrer">Search live products <Arrow size={16}/></a><a href={`${DESTINATION}${category.destination}`} target="_blank" rel="noopener noreferrer">Browse live {product.category.toLowerCase()} <Arrow size={16}/></a></div>
         </div>
       </div>
     </section>

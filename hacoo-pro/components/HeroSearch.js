@@ -2,12 +2,12 @@ import { DESTINATION } from "@/app/data";
 import { Arrow, SearchIcon } from "./Icons";
 
 const SEARCH_COPY = {
-  en: { label: "Search CNFansHP", placeholder: "Search products...", button: "Search CNFansHP products" },
-  es: { label: "Buscar en CNFansHP", placeholder: "Buscar productos...", button: "Buscar productos en CNFansHP" },
-  fr: { label: "Rechercher sur CNFansHP", placeholder: "Rechercher un produit...", button: "Rechercher des produits sur CNFansHP" },
-  de: { label: "CNFansHP durchsuchen", placeholder: "Produkte suchen...", button: "Produkte auf CNFansHP suchen" },
-  it: { label: "Cerca su CNFansHP", placeholder: "Cerca prodotti...", button: "Cerca prodotti su CNFansHP" },
-  pt: { label: "Pesquisar na CNFansHP", placeholder: "Pesquisar produtos...", button: "Pesquisar produtos na CNFansHP" },
+  en: { label: "Search live products", placeholder: "Search products...", button: "Search live products" },
+  es: { label: "Buscar productos actuales", placeholder: "Buscar productos...", button: "Buscar productos actuales" },
+  fr: { label: "Rechercher des produits", placeholder: "Rechercher un produit...", button: "Rechercher des produits" },
+  de: { label: "Produkte durchsuchen", placeholder: "Produkte suchen...", button: "Produkte durchsuchen" },
+  it: { label: "Cerca prodotti", placeholder: "Cerca prodotti...", button: "Cerca prodotti" },
+  pt: { label: "Pesquisar produtos", placeholder: "Pesquisar produtos...", button: "Pesquisar produtos" },
 };
 
 export default function HeroSearch({ locale = "en" }) {

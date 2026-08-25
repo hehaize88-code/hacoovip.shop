@@ -10,10 +10,11 @@ function canonicalUrl(path, locale = "en") {
 
 export default function sitemap() {
   const now = new Date(CATALOG_REVIEW.iso);
+  const latestArticleUpdate = new Date(Math.max(...articles.map((article) => new Date(article.modified).getTime())));
   const localizedCore = ["/", "/spreadsheet", "/categories", "/products", "/guides", "/faq", "/about"].flatMap((path) =>
     LOCALES.map((locale) => ({
       url: canonicalUrl(path, locale),
-      lastModified: now,
+      lastModified: path === "/" && locale === "en" ? latestArticleUpdate : now,
       changeFrequency: path === "/" ? "weekly" : "monthly",
       priority: path === "/" ? 1 : 0.7,
     })),
@@ -53,7 +54,7 @@ export default function sitemap() {
   );
 
   const englishResearch = [
-    { url: canonicalUrl("/articles"), lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+    { url: canonicalUrl("/articles"), lastModified: latestArticleUpdate, changeFrequency: "weekly", priority: 0.75 },
     ...articles.map((article) => ({
       url: canonicalUrl(`/articles/${article.slug}`),
       lastModified: new Date(article.modified),

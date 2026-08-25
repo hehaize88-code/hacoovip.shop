@@ -1,4 +1,4 @@
-export const articles = [
+const retiredArticles = [
   {
     slug: "acbuy-warehouse-storage-parcel-consolidation",
     title: "ACbuy Warehouse Storage and Parcel Consolidation: A Pre-Shipping Checklist",
@@ -16,6 +16,9 @@ export const articles = [
       caption: "An original Hacoo Pro decision map for the warehouse-to-parcel stage.",
     },
   },
+];
+
+export const articles = [
   {
     slug: "hacoo-order-missing-item-split-shipment",
     title: "Hacoo Order Missing an Item: Split-Shipment Checklist",
@@ -87,5 +90,5 @@ export const articles = [
 ];
 
 export function getArticle(slug) {
-  return articles.find((article) => article.slug === slug);
+  return [...articles, ...retiredArticles].find((article) => article.slug === slug);
 }

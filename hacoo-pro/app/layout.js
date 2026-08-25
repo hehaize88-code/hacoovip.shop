@@ -14,11 +14,11 @@ import { createOrganizationGraph } from "./schema";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Hacoo Spreadsheet Guide, Categories & Product Links | Hacoo Pro", template: "%s | Hacoo Pro" },
-  description: "Independent Hacoo spreadsheet guide for category routes, current product links, sizing, QC photo checks and responsible shopping research.",
+  title: { default: "Hacoo Product Links, Categories & Buying Guides | Hacoo Pro", template: "%s | Hacoo Pro" },
+  description: "Independent Hacoo product discovery for current links, category routes, sizing, QC photo checks and responsible shopping research.",
   alternates: languageAlternates("/", "en"),
-  openGraph: { type: "website", siteName: "Hacoo Pro", locale: "en_US", title: "Hacoo Spreadsheet Guide, Categories & Product Links | Hacoo Pro", description: "A clearer way to explore Hacoo spreadsheet categories, product links and practical guides.", url: SITE_URL, images: [SOCIAL_IMAGE] },
-  twitter: { card: "summary_large_image", title: "Hacoo Spreadsheet Guide & Product Links | Hacoo Pro", description: "Independent Hacoo spreadsheet categories and practical guides.", images: [SOCIAL_IMAGE.url] },
+  openGraph: { type: "website", siteName: "Hacoo Pro", locale: "en_US", title: "Hacoo Product Links, Categories & Buying Guides | Hacoo Pro", description: "A clearer way to explore Hacoo categories, product links and practical guides.", url: SITE_URL, images: [SOCIAL_IMAGE] },
+  twitter: { card: "summary_large_image", title: "Hacoo Product Links & Buying Guides | Hacoo Pro", description: "Independent Hacoo categories, product links and practical guides.", images: [SOCIAL_IMAGE.url] },
   robots: { index: true, follow: true },
 };
 

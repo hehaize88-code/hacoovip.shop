@@ -20,7 +20,7 @@ export default function Home() {
           <div className="eyebrow"><span></span> Independent Hacoo discovery guide</div>
           <h1>Find better.<br/><em>Check smarter.</em></h1>
           <p className="hero-lead">A clearer Hacoo spreadsheet experience for product links, category routes and practical checks—before you open the live listing.</p>
-          <div className="hero-actions"><a className="button primary" href={DESTINATION} target="_blank" rel="noopener noreferrer">Visit CNFansHP main site <Arrow/></a><Link className="button quiet" href="/categories">Browse categories</Link></div>
+          <div className="hero-actions"><a className="button primary" href={DESTINATION} target="_blank" rel="noopener noreferrer">Browse live finds <Arrow/></a><Link className="button quiet" href="/categories">Browse categories</Link></div>
           <div className="trust-row"><span><CheckIcon/> Independent</span><span><CheckIcon/> Category-led</span><span><CheckIcon/> Live-link checks</span></div>
         </div>
         <div className="hero-visual">
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-heading"><div><span className="section-label">04 / Field notes</span><h2>Useful reading,<br/>without the hype.</h2></div><p>Short, practical guides built around the questions that block real decisions: what a spreadsheet is, how to compare links, what to measure and what can change.</p></div>
           <div className="guide-grid">{guides.slice(0, 4).map((g, i) => <Link href={`/guides/${g.slug}`} className="guide-card" key={g.slug}><span className="guide-number">0{i + 1}</span><div><small>{g.read} read</small><h3>{g.title}</h3><p>{g.short}</p><span className="text-link">Read guide <Arrow size={16}/></span></div></Link>)}</div>
-          <div className="featured-research-link"><div><span className="section-label">New research article</span><h3>{articles[0].title}</h3><p>{articles[0].excerpt}</p><p><Link className="text-link" href={`/articles/${newestArticle.slug}/`}>New: {newestArticle.title} <Arrow size={16}/></Link></p><Link className="text-link" href="/articles/">Browse all research articles <Arrow size={16}/></Link></div><Link className="button dark" href={`/articles/${articles[0].slug}/`}>Read the article <Arrow/></Link></div>
+          <div className="featured-research-link"><div><span className="section-label">New research article</span><h3>{newestArticle.title}</h3><p>{newestArticle.excerpt}</p><p><Link className="text-link" href={`/articles/${newestArticle.slug}/`}>New: {newestArticle.title} <Arrow size={16}/></Link></p><Link className="text-link" href="/articles/">Browse all research articles <Arrow size={16}/></Link></div><Link className="button dark" href={`/articles/${newestArticle.slug}/`}>Read the article <Arrow/></Link></div>
         </div>
       </section>
 

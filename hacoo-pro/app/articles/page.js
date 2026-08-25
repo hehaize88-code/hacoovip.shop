@@ -5,8 +5,8 @@ import { createPageMetadata } from "../seo";
 import { articles } from "./data";
 
 export const metadata = createPageMetadata({
-  title: "China Shopping Agent Research Articles",
-  description: "Fact-checked English research on ACbuy, warehouse checks, parcel consolidation and China shopping-agent workflows.",
+  title: "Hacoo Help Articles: Orders, Tracking & Support",
+  description: "Practical Hacoo help articles for order issues, tracking updates, address changes, preorders and support evidence.",
   path: "/articles",
   alternates: { canonical: "/articles" },
 });
@@ -16,9 +16,9 @@ export default function ArticlesPage() {
     <BreadcrumbData path="/articles" items={[{ name: "Home", path: "/" }, { name: "Articles", path: "/articles" }]}/>
     <section className="page-hero simple-hero">
       <div className="wrap">
-        <span className="section-label">Fact-checked field research</span>
-        <h1>Research first.<br/><em>Decide with context.</em></h1>
-        <p>Long-form English articles that separate official platform claims from independent logistics guidance, with visible source links and review dates.</p>
+        <span className="section-label">Independent Hacoo help</span>
+        <h1>Resolve issues.<br/><em>Keep the evidence.</em></h1>
+        <p>Practical Hacoo articles for order, tracking and support questions, with clear decision steps and visible review dates.</p>
       </div>
     </section>
     <section className="section wrap">
