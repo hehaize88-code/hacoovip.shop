@@ -32,7 +32,7 @@ const securityHeaders = {
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
   "Content-Security-Policy":
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://www.cnbuycha.com data:; font-src 'self' data:; connect-src 'self'; form-action 'self' https://www.cnbuycha.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests",
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://www.cnbuycha.com data:; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://www.cnbuycha.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests",
 };
 
 function secure(response: Response) {

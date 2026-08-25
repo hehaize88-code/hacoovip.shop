@@ -18,7 +18,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const languageScript = `(() => { const p = location.pathname.split('/').filter(Boolean)[0]; const map = { de: 'de', es: 'es', it: 'it', pl: 'pl' }; document.documentElement.lang = map[p] || 'en'; })()`;
   return (
     <html lang="en" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: languageScript }} /></head>
+      <head>
+
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-XC17DVXPLC" />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XC17DVXPLC');" }}
+          />
+        <script dangerouslySetInnerHTML={{ __html: languageScript }} /></head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
     </html>
   );

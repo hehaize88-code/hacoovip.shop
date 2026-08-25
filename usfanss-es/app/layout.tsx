@@ -12,4 +12,10 @@ export const metadata:Metadata={
   other:{"codex-preview":"development"}
 };
 
-export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="es"><body className={`${sans.variable} ${serif.variable}`}><LanguageProvider>{children}</LanguageProvider></body></html>}
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="es">
+<head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-56TMQMXE1J" />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-56TMQMXE1J');" }}
+          />
+        </head><body className={`${sans.variable} ${serif.variable}`}><LanguageProvider>{children}</LanguageProvider></body></html>}
