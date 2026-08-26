@@ -87,6 +87,23 @@ export const articles = [
       caption: "An original Hacoo Pro decision map for interpreting a tracking record that has not updated.",
     },
   },
+  {
+    slug: "hacoo-marked-delivered-not-received",
+    title: "Hacoo Marked Delivered but Not Received: Evidence Checklist",
+    description: "Check the Hacoo order, carrier delivery event, address and possible handoff locations, then build a precise missing-delivery evidence pack.",
+    excerpt: "A time-sensitive workflow for checking a delivered scan, locating the parcel and sending the carrier or Hacoo support a clean evidence timeline.",
+    published: "2026-08-27",
+    modified: "2026-08-27",
+    checkedLabel: "August 27, 2026",
+    read: "10 min",
+    image: {
+      path: "/articles/hacoo-delivered-missing-evidence-map.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo delivered-but-missing evidence path from carrier event to local checks and support timeline",
+      caption: "An original Hacoo Pro decision map for a parcel marked delivered but not found.",
+    },
+  },
 ];
 
 export function getArticle(slug) {

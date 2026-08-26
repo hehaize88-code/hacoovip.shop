@@ -148,6 +148,7 @@ export default function HacooTrackingNotUpdatingArticle() {
             <li><Link className="source-link" href="/articles/hacoo-order-missing-item-split-shipment/">Split-shipment checklist</Link> — match items to multiple parcel records.</li>
             <li><Link className="source-link" href="/articles/hacoo-preorder-backorder-support/">Preorder support</Link> — check why an item has not entered a shipment.</li>
             <li><Link className="source-link" href="/articles/hacoo-wrong-address-evidence/">Wrong-address evidence</Link> — act when tracking reveals an address problem.</li>
+            <li><Link className="source-link" href="/articles/hacoo-marked-delivered-not-received/">Delivered-but-missing checklist</Link> — verify a completed carrier scan and local handoff evidence.</li>
             <li><Link className="source-link" href="/faq/">Hacoo Pro FAQ</Link> — understand the limits of this independent guide.</li>
           </ul></section>
 
