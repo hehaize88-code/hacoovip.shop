@@ -18,6 +18,8 @@ const LOCALIZED_PAGE_SLUGS = [
 const ENGLISH_ONLY_PAGES = {
   "kakobuy-warehouse-storage-guide": "Kakobuy Warehouse Storage Guide",
   "kakobuy-returns-after-sales-checklist": "Kakobuy Returns and After-Sales Checklist",
+  "kakobuy-stitching-finish-qc-checklist": "Kakobuy Stitching and Finish QC Checklist",
+  "kakobuy-alignment-symmetry-print-placement-qc": "Kakobuy Alignment, Symmetry and Print Placement QC",
   finds: "Kakobuy Finds: 30 Checked Product Records",
   "find-6059": "Shoes 1 — Record 6059",
   "find-6057": "Shoes 1 — Record 6057",
@@ -206,6 +208,68 @@ const SEO = {
   },
 };
 
+const SEO_COPY_OVERRIDES = {
+  en: {
+    homeTitle: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
+    homeDescription: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+    pages: {
+      categories: "Kakobuy Product Categories and Checked QC Routes",
+      "qc-hub": "Kakobuy QC Checklist: Photos, Sizing and Visible Defects",
+      guides: "Kakobuy QC Guides: Inspection, Evidence and Return Decisions",
+      faq: "Kakobuy QC FAQ: Photos, Returns, Shipping and Storage",
+      articles: "Kakobuy QC Research: Risk, Sizing and Warehouse Decisions",
+      "under-25": "Kakobuy Finds Under $25: Price and QC Checks",
+      "qc-first": "QC-First Kakobuy Finds: Checks Before Shipping",
+      "new-this-week": "Recently Checked Kakobuy Finds",
+    },
+    descriptions: {
+      categories: "Browse Kakobuy product categories and open the matching live catalog route, then use the connected QC guides to verify photos, sizing and visible details.",
+      "qc-hub": "Follow a practical Kakobuy QC checklist for warehouse photos, measurements, stitching, color, alignment and missing evidence before shipping.",
+      guides: "Use Kakobuy QC guides to inspect warehouse evidence, document problems, compare measurements and make a clearer ship, question or return decision.",
+      faq: "Get clear Kakobuy answers about QC photos, measurements, returns, storage, parcel costs, live product links and warehouse decisions.",
+      articles: "Read evidence-based Kakobuy QC research covering photo checks, sizing limits, stitching, alignment, returns, storage and parcel decisions.",
+      "under-25": "Browse lower-price Kakobuy records and confirm the live variant, price, measurements and QC evidence before continuing.",
+      "qc-first": "Open QC-first Kakobuy records and review the visible evidence that matters before choosing international shipping or return.",
+      "new-this-week": "Return to Kakobuy records from the latest completed link review and confirm current availability, variants and price on the live listing.",
+    },
+  },
+  de: {
+    homeTitle: "Kakobuy QC Guide 2026 | Fotos, Größen und Rückgaben",
+    homeDescription: "Prüfe Kakobuy-Lagerfotos, Maße, Nähte, Farben und fehlende Hinweise, bevor du Versand oder Rückgabe entscheidest.",
+    pages: { articles: "Kakobuy QC-Recherche und Ratgeber" },
+  },
+  fr: {
+    homeTitle: "Guide QC Kakobuy 2026 | Photos, tailles et retours",
+    homeDescription: "Vérifiez photos d’entrepôt, mesures, coutures, couleurs et preuves manquantes avant de choisir expédition ou retour.",
+    pages: { articles: "Recherche QC et guides Kakobuy" },
+  },
+  es: {
+    homeTitle: "Guía QC de Kakobuy 2026 | Fotos, tallas y devoluciones",
+    homeDescription: "Revisa fotos de almacén, medidas, costuras, color y pruebas ausentes antes de elegir envío o devolución.",
+    pages: { articles: "Investigación QC y guías de Kakobuy" },
+  },
+  it: {
+    homeTitle: "Guida QC Kakobuy 2026 | Foto, taglie e resi",
+    homeDescription: "Controlla foto di magazzino, misure, cuciture, colore e prove mancanti prima di scegliere spedizione o reso.",
+    pages: { articles: "Ricerca QC e guide Kakobuy" },
+  },
+  pl: {
+    homeTitle: "Poradnik QC Kakobuy 2026 | Zdjęcia, rozmiary i zwroty",
+    homeDescription: "Sprawdź zdjęcia magazynowe, wymiary, szwy, kolor i brakujące dowody przed decyzją o wysyłce lub zwrocie.",
+    pages: { articles: "Analizy QC i poradniki Kakobuy" },
+  },
+  pt: {
+    homeTitle: "Guia QC Kakobuy 2026 | Fotos, tamanhos e devoluções",
+    homeDescription: "Verifique fotos do armazém, medidas, costuras, cor e provas em falta antes de escolher envio ou devolução.",
+    pages: { articles: "Pesquisa QC e guias Kakobuy" },
+  },
+  ro: {
+    homeTitle: "Ghid QC Kakobuy 2026 | Fotografii, mărimi și retururi",
+    homeDescription: "Verifică fotografii din depozit, măsurători, cusături, culoare și dovezi lipsă înainte de expediere sau retur.",
+    pages: { articles: "Cercetare QC și ghiduri Kakobuy" },
+  },
+};
+
 const canonicalPaths = new Set(["/"]);
 for (const slug of LOCALIZED_PAGE_SLUGS) canonicalPaths.add(`/${slug}/`);
 for (const slug of Object.keys(ENGLISH_ONLY_PAGES)) canonicalPaths.add(`/${slug}/`);
@@ -242,6 +306,14 @@ function pageMetadata(language, slug) {
       title: "Kakobuy Returns Policy: After-Sales Checklist (2026)",
       description: "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales.",
     };
+    if (slug === "kakobuy-stitching-finish-qc-checklist") return {
+      title: "Kakobuy Stitching QC Checklist: Seams and Finish",
+      description: "Use this Kakobuy stitching QC checklist to inspect seams, hems, edge finishing and stress points, then decide whether to ship, clarify or return.",
+    };
+    if (slug === "kakobuy-alignment-symmetry-print-placement-qc") return {
+      title: "Kakobuy Alignment QC: Symmetry and Print Placement",
+      description: "Use a repeatable Kakobuy alignment QC method to compare symmetry, centered prints, panel lines and paired details without mistaking camera angle for defects.",
+    };
     if (slug === "finds") return {
       title: "Kakobuy Finds: 30 Checked Product Records (2026)",
       description: "Browse 30 Kakobuy finds with independent detail pages, product images, USD reference prices, destination records and last-checked dates.",
@@ -252,13 +324,17 @@ function pageMetadata(language, slug) {
     };
   }
   const translation = SEO[language];
+  const override = SEO_COPY_OVERRIDES[language] || {};
   if (slug === "home") {
-    return { title: translation.homeTitle, description: translation.homeDescription };
+    return {
+      title: override.homeTitle || translation.homeTitle,
+      description: override.homeDescription || translation.homeDescription,
+    };
   }
-  const page = translation.pages[slug];
+  const page = override.pages?.[slug] || translation.pages[slug];
   return {
     title: `${page} | ${translation.suffix}`,
-    description: translation.description(page),
+    description: override.descriptions?.[slug] || translation.description(page),
   };
 }
 
@@ -353,11 +429,12 @@ export default {
     const pagePath = canonicalPath(url.pathname);
 
     if (
+      url.protocol !== "https:" ||
       url.hostname === "www.kakobuys.store" ||
       url.hostname === "kakobuys-store.pages.dev" ||
       url.hostname.endsWith(".kakobuys-store.pages.dev")
     ) {
-      return Response.redirect(CANONICAL_ORIGIN + url.pathname + url.search, 301);
+      return Response.redirect(CANONICAL_ORIGIN + (pagePath || url.pathname) + url.search, 301);
     }
 
     if (pagePath && url.pathname !== pagePath) {

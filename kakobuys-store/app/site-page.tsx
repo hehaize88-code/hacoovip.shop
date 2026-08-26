@@ -76,6 +76,135 @@ const locales: Record<Lang, Locale> = {
   }
 };
 
+const searchClickCopy: Record<Lang, {
+  homeTitle: string;
+  homeDescription: string;
+  researchLabel: string;
+  researchKicker: string;
+  researchTitle: string;
+  recentName: string;
+  recentNote: string;
+  recentKicker: string;
+  recentTitle: string;
+  recentBody: string;
+}> = {
+  en: {
+    homeTitle: "Kakobuy QC Check Before Shipping",
+    homeDescription: "Use warehouse photos, measurements and visible evidence to check shape, color, stitching and missing details before choosing shipping or return.",
+    researchLabel: "QC Research",
+    researchKicker: "QC RESEARCH / BUYING KNOWLEDGE",
+    researchTitle: "Kakobuy QC research built around real decisions.",
+    recentName: "Recently checked",
+    recentNote: "Latest verified routes",
+    recentKicker: "RECENTLY CHECKED / VERIFIED ROUTE",
+    recentTitle: "Return to the latest checked records.",
+    recentBody: "Records from the latest completed link review. Confirm live availability, variants and price before continuing.",
+  },
+  de: {
+    homeTitle: "Kakobuy QC vor dem Versand",
+    homeDescription: "Nutze Lagerfotos, Maße und sichtbare Hinweise, um Form, Farbe, Nähte und fehlende Details vor Versand oder Rückgabe zu prüfen.",
+    researchLabel: "QC-Recherche",
+    researchKicker: "QC-RECHERCHE / EINKAUFSWISSEN",
+    researchTitle: "Kakobuy-QC-Recherche für konkrete Entscheidungen.",
+    recentName: "Kürzlich geprüft",
+    recentNote: "Zuletzt verifizierte Einträge",
+    recentKicker: "KÜRZLICH GEPRÜFT / VERIFIZIERT",
+    recentTitle: "Zu den zuletzt geprüften Einträgen.",
+    recentBody: "Einträge aus der letzten abgeschlossenen Linkprüfung. Verfügbarkeit, Varianten und Preis auf der Zielseite bestätigen.",
+  },
+  fr: {
+    homeTitle: "Contrôle QC Kakobuy avant expédition",
+    homeDescription: "Utilisez photos d’entrepôt, mesures et preuves visibles pour vérifier forme, couleur, coutures et détails manquants avant expédition ou retour.",
+    researchLabel: "Recherche QC",
+    researchKicker: "RECHERCHE QC / CONSEILS D’ACHAT",
+    researchTitle: "Recherche QC Kakobuy fondée sur des décisions réelles.",
+    recentName: "Vérifié récemment",
+    recentNote: "Dernières fiches vérifiées",
+    recentKicker: "VÉRIFIÉ RÉCEMMENT / PARCOURS VALIDÉ",
+    recentTitle: "Revoir les dernières fiches vérifiées.",
+    recentBody: "Fiches de la dernière vérification complète des liens. Confirmez disponibilité, variantes et prix avant de continuer.",
+  },
+  es: {
+    homeTitle: "Control QC Kakobuy antes del envío",
+    homeDescription: "Usa fotos de almacén, medidas y pruebas visibles para revisar forma, color, costuras y detalles ausentes antes de enviar o devolver.",
+    researchLabel: "Investigación QC",
+    researchKicker: "INVESTIGACIÓN QC / GUÍAS DE COMPRA",
+    researchTitle: "Investigación QC de Kakobuy para decisiones reales.",
+    recentName: "Revisado recientemente",
+    recentNote: "Últimas rutas verificadas",
+    recentKicker: "REVISADO RECIENTEMENTE / RUTA VERIFICADA",
+    recentTitle: "Vuelve a los últimos registros revisados.",
+    recentBody: "Registros de la última revisión completa de enlaces. Confirma disponibilidad, variantes y precio antes de continuar.",
+  },
+  it: {
+    homeTitle: "Controllo QC Kakobuy prima della spedizione",
+    homeDescription: "Usa foto di magazzino, misure e prove visibili per controllare forma, colore, cuciture e dettagli mancanti prima di spedire o restituire.",
+    researchLabel: "Ricerca QC",
+    researchKicker: "RICERCA QC / GUIDE ALL’ACQUISTO",
+    researchTitle: "Ricerca QC Kakobuy per decisioni concrete.",
+    recentName: "Controllati di recente",
+    recentNote: "Ultimi percorsi verificati",
+    recentKicker: "CONTROLLO RECENTE / PERCORSO VERIFICATO",
+    recentTitle: "Rivedi gli ultimi record controllati.",
+    recentBody: "Record dell’ultima verifica completa dei link. Conferma disponibilità, varianti e prezzo prima di continuare.",
+  },
+  pl: {
+    homeTitle: "Kontrola QC Kakobuy przed wysyłką",
+    homeDescription: "Użyj zdjęć magazynowych, wymiarów i widocznych dowodów, aby sprawdzić kształt, kolor, szwy i brakujące detale przed wysyłką lub zwrotem.",
+    researchLabel: "Analizy QC",
+    researchKicker: "ANALIZY QC / WIEDZA ZAKUPOWA",
+    researchTitle: "Analizy QC Kakobuy oparte na realnych decyzjach.",
+    recentName: "Ostatnio sprawdzone",
+    recentNote: "Najnowsze zweryfikowane wpisy",
+    recentKicker: "OSTATNIO SPRAWDZONE / ZWERYFIKOWANE",
+    recentTitle: "Wróć do ostatnio sprawdzonych wpisów.",
+    recentBody: "Wpisy z ostatniej zakończonej kontroli linków. Potwierdź dostępność, warianty i cenę przed przejściem dalej.",
+  },
+  pt: {
+    homeTitle: "Verificação QC Kakobuy antes do envio",
+    homeDescription: "Use fotos do armazém, medidas e provas visíveis para verificar forma, cor, costuras e detalhes em falta antes de enviar ou devolver.",
+    researchLabel: "Pesquisa QC",
+    researchKicker: "PESQUISA QC / CONHECIMENTO DE COMPRA",
+    researchTitle: "Pesquisa QC Kakobuy orientada a decisões reais.",
+    recentName: "Verificado recentemente",
+    recentNote: "Últimos registos verificados",
+    recentKicker: "VERIFICAÇÃO RECENTE / ROTA VALIDADA",
+    recentTitle: "Reveja os últimos registos verificados.",
+    recentBody: "Registos da última verificação completa de links. Confirme disponibilidade, variantes e preço antes de continuar.",
+  },
+  ro: {
+    homeTitle: "Verificare QC Kakobuy înainte de expediere",
+    homeDescription: "Folosește fotografii din depozit, măsurători și dovezi vizibile pentru a verifica forma, culoarea, cusăturile și detaliile lipsă înainte de expediere sau retur.",
+    researchLabel: "Cercetare QC",
+    researchKicker: "CERCETARE QC / GHIDURI DE CUMPĂRARE",
+    researchTitle: "Cercetare QC Kakobuy pentru decizii reale.",
+    recentName: "Verificat recent",
+    recentNote: "Ultimele fișe verificate",
+    recentKicker: "VERIFICAT RECENT / TRASEU VALIDAT",
+    recentTitle: "Revino la ultimele fișe verificate.",
+    recentBody: "Fișe din ultima verificare completă a linkurilor. Confirmă disponibilitatea, variantele și prețul înainte de a continua.",
+  },
+};
+
+for (const language of languages) {
+  const copy = searchClickCopy[language.code];
+  const locale = locales[language.code];
+  locale.title = copy.homeTitle;
+  locale.dek = copy.homeDescription;
+  locale.nav[4] = copy.researchLabel;
+  locale.articleCard[0] = copy.researchLabel;
+  locale.articlesKicker = copy.researchKicker;
+  locale.articlesTitle = copy.researchTitle;
+  locale.journeys[2] = {
+    ...locale.journeys[2],
+    name: copy.recentName,
+    note: copy.recentNote,
+    kicker: copy.recentKicker,
+    title: copy.recentTitle,
+    body: copy.recentBody,
+  };
+}
+
 const extraFaqs: Record<Lang, { q: string; a: string }[]> = {
   en: [
     {q:"Why can a displayed price change?",a:"Product prices, variants, seller discounts and availability can change after a record is checked. Treat the displayed USD amount as a comparison reference and confirm the current total on the destination page."},
@@ -186,14 +315,14 @@ const englishOnlyArticleRoutes = ["kakobuy-warehouse-storage-guide", "kakobuy-re
 const articleRoutes = [...localizedArticleRoutes, ...englishOnlyArticleRoutes] as const;
 const routeNames = ["", "categories", "finds", "qc-hub", "guides", "faq", "articles", "under-25", "qc-first", "new-this-week", ...articleRoutes, ...findRoutes];
 function parseSegments(segments: string[]) { const first=segments[0] as Lang|undefined; const lang=languages.some(x=>x.code===first)?first!:"en"; const rest=lang==="en"?segments:segments.slice(1); const route=routeNames.includes(rest[0]||"")?(rest[0]||""):""; return {lang,route}; }
-function localPath(lang:Lang,route=""){const suffix=route?`/${route}`:"";return lang==="en"?(suffix||"/"):`/${lang}${suffix}`;}
+function localPath(lang:Lang,route=""){const suffix=route?`/${route}/`:"/";return lang==="en"?suffix:`/${lang}${suffix}`;}
 function isEnglishOnlyRoute(route:string){return englishOnlyArticleRoutes.includes(route as (typeof englishOnlyArticleRoutes)[number])||route==="finds"||findRoutes.includes(route);}
 
 function Header({lang,route}:{lang:Lang;route:string}){const t=locales[lang];const nav=["categories","qc-hub","guides","faq","articles"];const availableLanguages=isEnglishOnlyRoute(route)?languages.slice(0,1):languages;return <header className="site-header"><a className="logo-wrap" href={localPath(lang)} aria-label="Kakobuy home"><img src="/brand/kakobuy.png" alt="Kakobuy"/></a><nav aria-label="Primary navigation">{nav.map((item,i)=><a className={route===item||(item==="categories"&&(route==="finds"||findRoutes.includes(route)))||(item==="articles"&&articleRoutes.includes(route as (typeof articleRoutes)[number]))?"active":""} href={localPath(lang,item)} key={item}>{t.nav[i]}</a>)}</nav><details className="language-menu"><summary aria-label="Choose language">{languages.find(x=>x.code===lang)?.short}⌄</summary><div>{availableLanguages.map(x=><a className={x.code===lang?"selected":""} href={localPath(x.code,route)} hrefLang={x.code} key={x.code}>{x.label}<span>{x.short}</span></a>)}</div></details><a className="header-cta" href="https://www.cnfanshp.com/" target="_blank" rel="noopener noreferrer">{t.browse} <span>↗</span></a></header>}
 function Footer({lang}:{lang:Lang}){const t=locales[lang];return <footer><img src="/brand/kakobuy.png" alt="Kakobuy"/><p>{t.footer}</p><a href={localPath(lang)}>{t.back} ↑</a></footer>}
 function ProductGrid({lang,items=products}:{lang:Lang;items?:readonly (typeof products)[number][]}){const t=locales[lang];return <div className="catalog-grid">{items.map(p=><a className="catalog-card" href={p.href} target="_blank" rel="noopener noreferrer" key={p.href}><div className="catalog-image"><img src={p.image} alt={p.name}/><span>{t.productCats[p.category]}</span></div><div><h3>{p.name}</h3><p>{p.price}<small>{t.usd}</small></p><b>{t.viewRecord} ↗</b></div></a>)}</div>}
 
-function FindGrid(){return <div className="catalog-grid finds-grid">{finds.map(item=><a className="catalog-card" href={`/${item.slug}`} key={item.id}><div className="catalog-image"><img src={item.image} alt={item.name}/><span>{item.category}</span></div><div><h3>{item.name}</h3><p>{item.priceUsd}<small>USD reference price</small></p><small className="checked-date">Last checked: {item.lastChecked}</small><b>Open independent details →</b></div></a>)}</div>}
+function FindGrid(){return <div className="catalog-grid finds-grid">{finds.map(item=><a className="catalog-card" href={`/${item.slug}/`} key={item.id}><div className="catalog-image"><img src={item.image} alt={item.name}/><span>{item.category}</span></div><div><h3>{item.name}</h3><p>{item.priceUsd}<small>USD reference price</small></p><small className="checked-date">Last checked: {item.lastChecked}</small><b>Open independent details →</b></div></a>)}</div>}
 
 function FindDetail({route}:{route:string}){const item=finds.find(record=>record.slug===route);if(!item)return null;return <article className="find-detail"><div className="find-detail-image"><img src={item.image} alt={item.name}/><span>{item.category}</span></div><div className="find-detail-copy"><p>PRODUCT RECORD / {item.id}</p><h1>{item.name}</h1><div className="find-price">{item.priceUsd}<small>USD reference price</small></div><p>This independent detail page records the product name, category, reference price and destination checked on {item.lastChecked}. Product availability, variants and the live amount can change; confirm every detail on the destination record before continuing.</p><dl><div><dt>Category</dt><dd>{item.category}</dd></div><div><dt>Last checked</dt><dd>{item.lastChecked}</dd></div><div><dt>Record ID</dt><dd>{item.id}</dd></div></dl><div className="find-actions"><a className="primary-button" href={item.destination} target="_blank" rel="noopener noreferrer"><b>→</b>Open matching product</a><a href="/finds/">← Back to 30 finds</a></div></div></article>}
 
@@ -214,7 +343,7 @@ function ArticlePage({lang,index}:{lang:Lang;index:number}){
   const publicationDate=isAlignment?"2026-08-13":isStitching?"2026-08-11":"2026-08-09";
   const schema=isReturns||isStitching||isAlignment?JSON.stringify({"@context":"https://schema.org","@graph":[{"@type":"Article",headline:article.title,description:article.seoDescription,mainEntityOfPage:canonical,url:canonical,datePublished:publicationDate,dateModified:publicationDate,inLanguage:"en",wordCount,keywords:[article.primaryKeyword,...article.secondaryKeywords],image:["https://kakobuys.store/brand/kakobuy.png"],author:{"@type":"Organization",name:"Kakobuys.store Editorial Desk",url:"https://kakobuys.store/articles/"},publisher:{"@type":"Organization",name:"Kakobuys.store",url:"https://kakobuys.store/",logo:{"@type":"ImageObject",url:"https://kakobuys.store/brand/kakobuy.png"}}},{"@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://kakobuys.store/"},{"@type":"ListItem",position:2,name:"Articles",item:"https://kakobuys.store/articles/"},{"@type":"ListItem",position:3,name:article.title,item:canonical}]}]}).replace(/</g,"\\u003c"):null;
   // eslint-disable-next-line @next/next/no-html-link-for-pages
-  return <>{schema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:schema}}/>}<article className="article-page"><header><p>{t.articlesKicker} / 0{index+1} / {isAlignment?"UPDATED AUG 13, 2026":isStitching?"UPDATED AUG 11, 2026":isReturns?"UPDATED AUG 9, 2026":ui.updated}</p><h1>{article.title}</h1><span>{article.seoDescription}</span></header><div className="article-body"><p className="article-intro">{article.intro}</p><aside className="quick-answer"><strong>{ui.quick}</strong><p>{article.quickAnswer}</p></aside><div className="keyword-line"><b>{ui.primary}:</b> {article.primaryKeyword}<br/><b>{ui.also}:</b> {article.secondaryKeywords.join(" · ")}</div>{article.sections.map((section,i)=><section key={section.heading}><small>{String(i+1).padStart(2,"0")}</small><h2>{section.heading}</h2><div className="article-copy">{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{item}</li>)}</ul>}</div></section>)}<aside className="fact-note"><strong>{ui.research}</strong><p>{article.sourceNote}</p></aside><div className="article-actions"><a className="article-back" href={localPath(lang,"articles")}>← {t.articleCard[2]}</a>{isReturns&&<><a className="article-back" href="/kakobuy-warehouse-storage-guide">Warehouse timing →</a><a className="article-back" href="/read-kakobuy-qc-photos">QC photo checklist →</a><a className="article-back" href="/product-price-vs-parcel-cost">Parcel cost guide →</a></>}{isStitching&&<><a className="article-back" href="/read-kakobuy-qc-photos">QC photo review order →</a><a className="article-back" href="/kakobuy-returns-after-sales-checklist">After-sales evidence →</a></>}{isAlignment&&<><a className="article-back" href="/read-kakobuy-qc-photos">QC photo review order →</a><a className="article-back" href="/kakobuy-stitching-finish-qc-checklist">Stitching and finish →</a><a className="article-back" href="/kakobuy-returns-after-sales-checklist">After-sales evidence →</a></>}<a className="article-back" href={localPath(lang,"qc-hub")}>{t.nav[1]} →</a><a className="article-back" href={localPath(lang,"categories")}>{t.nav[0]} →</a></div></div></article></>}
+  return <>{schema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:schema}}/>}<article className="article-page"><header><p>{t.articlesKicker} / 0{index+1} / {isAlignment?"UPDATED AUG 13, 2026":isStitching?"UPDATED AUG 11, 2026":isReturns?"UPDATED AUG 9, 2026":ui.updated}</p><h1>{article.title}</h1><span>{article.seoDescription}</span></header><div className="article-body"><p className="article-intro">{article.intro}</p><aside className="quick-answer"><strong>{ui.quick}</strong><p>{article.quickAnswer}</p></aside><div className="keyword-line"><b>{ui.primary}:</b> {article.primaryKeyword}<br/><b>{ui.also}:</b> {article.secondaryKeywords.join(" · ")}</div>{article.sections.map((section,i)=><section key={section.heading}><small>{String(i+1).padStart(2,"0")}</small><h2>{section.heading}</h2><div className="article-copy">{section.paragraphs.map(p=><p key={p}>{p}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{item}</li>)}</ul>}</div></section>)}<aside className="fact-note"><strong>{ui.research}</strong><p>{article.sourceNote}</p></aside><div className="article-actions"><a className="article-back" href={localPath(lang,"articles")}>← {t.articleCard[2]}</a>{isReturns&&<><a className="article-back" href="/kakobuy-warehouse-storage-guide/">Warehouse timing →</a><a className="article-back" href="/read-kakobuy-qc-photos/">QC photo checklist →</a><a className="article-back" href="/product-price-vs-parcel-cost/">Parcel cost guide →</a></>}{isStitching&&<><a className="article-back" href="/read-kakobuy-qc-photos/">QC photo review order →</a><a className="article-back" href="/kakobuy-returns-after-sales-checklist/">After-sales evidence →</a></>}{isAlignment&&<><a className="article-back" href="/read-kakobuy-qc-photos/">QC photo review order →</a><a className="article-back" href="/kakobuy-stitching-finish-qc-checklist/">Stitching and finish →</a><a className="article-back" href="/kakobuy-returns-after-sales-checklist/">After-sales evidence →</a></>}<a className="article-back" href={localPath(lang,"qc-hub")}>{t.nav[1]} →</a><a className="article-back" href={localPath(lang,"categories")}>{t.nav[0]} →</a></div></div></article></>}
 
 const relatedGuideLabel: Record<Lang,string> = {en:"Related guide",de:"Passender Ratgeber",fr:"Guide associé",es:"Guía relacionada",it:"Guida correlata",pl:"Powiązany poradnik",pt:"Guia relacionado",ro:"Ghid asociat"};
 function faqRelatedRoute(index:number,lang:Lang){if(index===2||index===4)return "qc-hub";if(lang==="en"&&(index===8||index===12))return "kakobuy-warehouse-storage-guide";if(lang==="en"&&(index===5||index===6))return "finds";return "guides";}
@@ -230,7 +359,7 @@ function InnerPage({lang,route}:{lang:Lang;route:string}){
   if(route==="faq"){
     const faqs=[...t.faqs,...extraFaqs[lang],finalFaqs[lang]];
     const schema=JSON.stringify(faqSchema(faqs)).replace(/</g,"\\u003c");
-    return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:schema}}/><section className="inner-hero acid-page"><p>{t.faqKicker}</p><h1>{t.faqTitle}</h1><span>{t.faqBody}</span></section><section className="faq-list paper-section">{faqs.map((f,i)=>{const related=faqRelatedRoute(i,lang);const target=related==="finds"||related==="kakobuy-warehouse-storage-guide"?`/${related}`:localPath(lang,related);return <details key={f.q}><summary><span>{String(i+1).padStart(2,"0")}</span>{f.q}<b>+</b></summary><div className="faq-answer"><p>{f.a}</p><a href={target}>{relatedGuideLabel[lang]} →</a></div></details>})}</section></>;
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:schema}}/><section className="inner-hero acid-page"><p>{t.faqKicker}</p><h1>{t.faqTitle}</h1><span>{t.faqBody}</span></section><section className="faq-list paper-section">{faqs.map((f,i)=>{const related=faqRelatedRoute(i,lang);const target=related==="finds"||related==="kakobuy-warehouse-storage-guide"?`/${related}/`:localPath(lang,related);return <details key={f.q}><summary><span>{String(i+1).padStart(2,"0")}</span>{f.q}<b>+</b></summary><div className="faq-answer"><p>{f.a}</p><a href={target}>{relatedGuideLabel[lang]} →</a></div></details>})}</section></>;
   }
   if(route==="articles"){
     const entries=lang==="en"?longArticles.map(article=>({title:article.title,excerpt:article.seoDescription})):t.articles;
@@ -243,4 +372,13 @@ function InnerPage({lang,route}:{lang:Lang;route:string}){
   return <><section className={`inner-hero ${i===0?"acid-page":i===1?"blue-page":"coral-page"}`}><p>{journey.kicker}</p><h1>{journey.title}</h1><span>{journey.body}</span></section><section className="catalog route-catalog"><ProductGrid lang={lang} items={items}/></section></>;
 }
 
-export function SitePage({segments}:{segments:string[]}){const {lang,route}=parseSegments(segments);return <main lang={lang} className={route?"site-shell":"site-shell home-page"}><Header lang={lang} route={route}/>{route?<InnerPage lang={lang} route={route}/>:<HomeContent lang={lang}/>}<Footer lang={lang}/></main>}
+const websiteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Kakobuy QC Index",
+  alternateName: "Kakobuys.store",
+  url: "https://kakobuys.store/",
+  inLanguage: "en",
+}).replace(/</g,"\\u003c");
+
+export function SitePage({segments}:{segments:string[]}){const {lang,route}=parseSegments(segments);return <main lang={lang} className={route?"site-shell":"site-shell home-page"}>{lang==="en"&&!route&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:websiteSchema}}/>}<Header lang={lang} route={route}/>{route?<InnerPage lang={lang} route={route}/>:<HomeContent lang={lang}/>}<Footer lang={lang}/></main>}

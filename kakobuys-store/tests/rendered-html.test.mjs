@@ -32,7 +32,7 @@ test("does not render development preview metadata", async () => {
   assert.doesNotMatch(await response.text(), developmentPreviewMeta);
 });
 
-const allowedExternalHosts = new Set(["cnfanshp.com", "www.cnfanshp.com"]);
+const allowedExternalHosts = new Set(["cnfanshp.com", "www.cnfanshp.com", "kakobuys.store"]);
 const articleRoutes = [
   "read-kakobuy-qc-photos",
   "kakobuy-spreadsheet-first-time-guide",
@@ -88,6 +88,73 @@ test("all rendered external links point only to the approved catalog", async () 
       }
     }
   }
+});
+
+test("rendered internal links point directly to canonical trailing-slash URLs", async () => {
+  const worker = await loadWorker();
+
+  for (const language of languagePrefixes) {
+    for (const route of siteRoutes) {
+      const path = routePath(language, route);
+      const response = await worker.fetch(
+        new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
+        { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+        { waitUntil() {}, passThroughOnException() {} },
+      );
+      const html = await response.text();
+      const internalLinks = [...html.matchAll(/<a\b[^>]*href="(\/[^"#?]*)"/g)].map((match) => match[1]);
+      for (const href of internalLinks) {
+        assert.ok(href === "/" || href.endsWith("/"), `${path} links to redirecting internal URL ${href}`);
+      }
+    }
+  }
+});
+
+test("homepage aligns the title, heading and WebSite data to the QC decision lane", async () => {
+  const worker = await loadWorker();
+  const response = await worker.fetch(
+    new Request("http://localhost/", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /Kakobuy QC Guide 2026: Photo Checks, Sizing (?:&amp;|&) Returns/);
+  assert.match(html, /Kakobuy QC[\s\S]*Check Before Shipping/);
+  assert.match(html, /"@type":"WebSite"/);
+  assert.match(html, />QC Research</);
+  assert.doesNotMatch(html, />SEO Articles</);
+});
+
+test("route hubs expose unique canonical metadata and language alternates", async () => {
+  const worker = await loadWorker();
+  const cases = [
+    ["/articles", "Kakobuy QC Research: Risk, Sizing and Warehouse Decisions", "https://kakobuys.store/articles/"],
+    ["/de/qc-hub", "Kakobuy QC-Checkliste", "https://kakobuys.store/de/qc-hub/"],
+  ];
+
+  for (const [path, title, canonical] of cases) {
+    const response = await worker.fetch(
+      new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
+      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+    const html = await response.text();
+    assert.equal(response.status, 200);
+    assert.match(html, new RegExp(`<title>[^<]*${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[^<]*<\\/title>`));
+    assert.match(html, new RegExp(`<link rel="canonical" href="${canonical.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
+    assert.match(html, /<link rel="alternate" hrefLang="x-default"/);
+  }
+});
+
+test("application router returns a real 404 for unknown paths", async () => {
+  const worker = await loadWorker();
+  const response = await worker.fetch(
+    new Request("http://localhost/not-a-real-kakobuy-page", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  assert.equal(response.status, 404);
 });
 
 test("the approved catalog brand name is not visible in page copy", async () => {
@@ -222,7 +289,7 @@ test("expanded Finds page contains thirty unique records and every detail page",
     { waitUntil() {}, passThroughOnException() {} },
   );
   const centerHtml = await center.text();
-  const routes = [...centerHtml.matchAll(/href="\/(find-\d+)"/g)].map((match) => match[1]);
+  const routes = [...centerHtml.matchAll(/href="\/(find-\d+)\/"/g)].map((match) => match[1]);
   assert.equal(new Set(routes).size, 30);
   for (const route of new Set(routes)) {
     const response = await worker.fetch(

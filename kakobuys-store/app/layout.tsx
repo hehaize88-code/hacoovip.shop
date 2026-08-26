@@ -13,8 +13,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kakobuy Spreadsheet 2026 | QC Product Index & Finds",
-  description: "Explore a visual Kakobuy spreadsheet index with current product finds, QC-focused browsing routes and direct links to matching catalog records.",
+  metadataBase: new URL("https://kakobuys.store"),
+  title: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
+  description: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+      de: "/de/",
+      fr: "/fr/",
+      es: "/es/",
+      it: "/it/",
+      pl: "/pl/",
+      pt: "/pt/",
+      ro: "/ro/",
+      "x-default": "/",
+    },
+  },
+  openGraph: {
+    title: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
+    description: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+    type: "website",
+    url: "/",
+    siteName: "Kakobuy QC Index",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   icons: {
     icon: "/brand/kakobuy.png",
     shortcut: "/brand/kakobuy.png",

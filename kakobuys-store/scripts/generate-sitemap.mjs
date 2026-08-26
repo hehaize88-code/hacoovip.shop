@@ -24,7 +24,7 @@ const entries = [];
 for (const language of languages) {
   for (const slug of localized) {
     const alternates = languages.map((alternate) => `    <xhtml:link rel="alternate" hreflang="${alternate}" href="${route(alternate, slug)}" />`).join("\n");
-    entries.push(`  <url>\n    <loc>${route(language, slug)}</loc>\n    <lastmod>2026-08-03</lastmod>\n${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${route("en", slug)}" />\n  </url>`);
+    entries.push(`  <url>\n    <loc>${route(language, slug)}</loc>\n    <lastmod>2026-08-26</lastmod>\n${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${route("en", slug)}" />\n  </url>`);
   }
 }
 
