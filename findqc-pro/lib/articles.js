@@ -1534,6 +1534,134 @@ export const articles = [
     related: ["findqc-standard-vs-premium-qc", "what-qc-photos-can-prove", "findqc-search-methods"],
     cta: { eyebrow: "Need more than one minute?", title: "Continue with the complete QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC checklist" },
   },
+  {
+    slug: "findqc-qc-video-checklist",
+    title: "FindQC QC Video Checklist: What Motion Can Reveal That Photos Miss",
+    shortTitle: "FindQC QC Video Checklist",
+    description: "Use a focused FindQC QC video checklist to test movement, structure and missing angles without treating a short clip as proof of quality.",
+    excerpt: "Turn a QC clip into a series of observable tests for movement, changing reflections, structure and coverage—then record what the video still cannot prove.",
+    category: "QC Video Guide",
+    readTime: "10 min read",
+    date: "26 August 2026",
+    dateISO: "2026-08-26",
+    updatedISO: "2026-08-26",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-qc-video-checklist"],
+    heroImage: "/products/catalog/jackets-5904.webp",
+    heroAlt: "Editorial jacket image used to illustrate how movement can reveal changing folds and reflections",
+    heroCaption: "Existing FindQC Pro editorial catalog image. It is not a warehouse video, customer order or authenticity example.",
+    keywords: ["FindQC QC video checklist", "how to inspect QC video", "QC video vs photos", "warehouse inspection video", "what QC video can show"],
+    sourceIntro: "FindQC's What Is QC, How FindQC Works, Product Intelligence, How to Buy, Beginner Checklist and Terms pages were checked on 26 August 2026. The tests below are an independent editorial method; a video remains third-party evidence and is not an authenticity, safety or durability certificate.",
+    intro: [
+      "A QC video becomes useful when it answers a question that a still image cannot. Motion can show a zipper travelling through its full path, a clasp engaging, a reflective surface changing under light or the shape of an item as it rotates. It can also waste attention: a smooth turntable clip may look persuasive while never showing the underside, the label, the critical closure or the exact variant you intend to evaluate.",
+      "FindQC currently describes QC video as part of Premium QC when that material is available. Its public guidance presents video as evidence for details such as texture, shine, creases and structure, while its terms warn that third-party QC material can be incomplete or inaccurate. The practical response is not to trust video more than photos. Give each medium a narrow job, verify identity first and write down the unanswered question before a buyer-selected agent acts on the order.",
+    ],
+    sections: [
+      {
+        id: "video-question",
+        title: "1. Start with a motion question, not a general impression",
+        blocks: [
+          { type: "p", text: "Before pressing play, write one test that requires time or movement. Useful questions are observable: does the zip pass the suspected snag point, does the clasp stay closed after release, does the bag hold its shape when the hand moves away, or does a mark remain visible as the viewing angle changes? “Does it look good?” is not a test. It invites a mood-based answer and makes it difficult to explain why the clip changed the decision." },
+          { type: "table", headers: ["Question type", "Best evidence", "Why"], rows: [
+            ["Logo placement or label spelling", "Level still photo", "A sharp frame supports precise comparison better than continuous motion"],
+            ["Closure movement or removable part", "Focused video", "The full action and result must be visible in sequence"],
+            ["Changing shine, pile or surface reflection", "Video plus stills", "Motion shows change; stills preserve detail"],
+            ["Exact dimensions", "Measurement still or deliberate measurement video", "Both endpoints and the reading must remain visible"],
+          ] },
+          { type: "callout", title: "One clip, one job", text: "Write the action, area and pass-or-stop condition before watching. A clip that never performs the named test cannot answer it, however polished it appears." },
+        ],
+      },
+      {
+        id: "identity",
+        title: "2. Prove that the clip belongs to the record you are reviewing",
+        blocks: [
+          { type: "p", text: "Video does not repair an identity mismatch. First confirm that the clip sits with the same-item record rather than a similar recommendation. Compare the source item, seller or store where available, product model, colour and the variant details that matter. Then compare fixed visual anchors between the photographs and the opening frames: panel layout, hardware count, print position, sole pattern or another feature unlikely to change as the object moves." },
+          { type: "list", title: "Pause before using the clip when", items: [
+            "The video begins too close to identify the whole item or pair.",
+            "The colour, hardware or visible variant differs from the accompanying record.",
+            "The item leaves the frame before the decisive action or angle appears.",
+            "Editing, cuts or overlays hide the transition you need to evaluate.",
+            "The record date is missing and the source listing may have changed.",
+          ] },
+          { type: "p", text: "A useful practice is to save one identity frame before inspecting motion. Record the fixed feature that links the clip to the photo set. If that link is only assumed, label the video “possible match” and keep it out of any final defect or acceptance conclusion." },
+        ],
+      },
+      {
+        id: "motion-tests",
+        title: "3. Run motion tests that still photos cannot perform",
+        blocks: [
+          { type: "p", text: "Watch the clip once without pausing to understand its sequence. On the second pass, jump directly to the relevant action. For closures, look for the start position, complete travel and final seated position. For hinges or articulated parts, look for controlled movement through the useful range. For a flexible item, observe whether it returns to a stable form after light handling. The goal is not to invent a laboratory test; it is to verify that the visible action actually occurred." },
+          { type: "table", headers: ["Visible action", "What the clip may support", "What it cannot establish"], rows: [
+            ["Zip opens and closes once", "The photographed mechanism completed that recorded cycle", "Long-term reliability or behaviour under load"],
+            ["Clasp closes and remains shut briefly", "Basic engagement during the clip", "Strength, wear resistance or future failure rate"],
+            ["Shoe or bag rotates", "Additional sides, edges and changing silhouette", "Hidden interior construction or fit"],
+            ["Fabric moves under changing light", "How reflection, pile or creasing changes with angle", "Fibre composition or colour accuracy on another display"],
+          ] },
+          { type: "p", text: "Repeat viewing should challenge the first impression, not simply confirm it. Slow down around a suspected snag, reflection or shape change. If the motion is too fast, the hand covers the mechanism or the action happens off camera, record the test as missing rather than converting a partial glimpse into a pass." },
+        ],
+      },
+      {
+        id: "surface-structure",
+        title: "4. Use changing angles to separate surface, lighting and structure",
+        blocks: [
+          { type: "p", text: "A stationary photo freezes one lighting arrangement. Video can show whether a bright patch travels with the light, remains fixed on the product or disappears when the angle changes. A moving highlight may be ordinary reflection; a fixed mark visible through several angles deserves closer inspection. This is a useful distinction, not a certainty. Compression, automatic exposure and motion blur can create or hide apparent defects." },
+          { type: "list", title: "Track four things through the rotation", items: [
+            "Does the suspected mark remain attached to the same physical point?",
+            "Does the surface texture continue across the lit and shaded areas?",
+            "Does the silhouette keep its shape when support from a hand is removed?",
+            "Do folds relax naturally, or does one crease stay sharp from several directions?",
+          ] },
+          { type: "p", text: "Colour remains especially fragile evidence. Warehouse lamps, camera white balance, video encoding and your screen can all alter appearance. Use video to identify instability, such as one panel reacting differently from adjacent panels, but use a neutral, level still and the source listing for comparison. If colour is a deal-breaker, ask for a controlled follow-up rather than naming a mismatch from a single clip." },
+          { type: "callout", title: "Evidence wording", text: "Prefer “the dark line remains visible through three angles” to “the item is scratched.” The first describes the record; the second claims a cause that may require a closer view." },
+        ],
+      },
+      {
+        id: "coverage-audit",
+        title: "5. Audit what the camera never showed",
+        blocks: [
+          { type: "p", text: "Movement can create a false sense of completeness. A product may rotate almost all the way while the base, interior, reverse label or one side stays outside the frame. Make a simple coverage map: front, back, left, right, top, base, interior and the decision-specific detail. Mark each field as clear, partial or absent. Do not count a blurred pass as coverage merely because the area appeared for a fraction of a second." },
+          { type: "table", headers: ["Coverage state", "Meaning", "Next action"], rows: [
+            ["Clear", "Area is identifiable, in focus and visible long enough to inspect", "Use it for the narrow observation"],
+            ["Partial", "Area appears but angle, hand, blur or glare limits interpretation", "Request a stable view if it affects the decision"],
+            ["Absent", "The area or action never appears", "Record an evidence gap; do not infer a pass"],
+          ] },
+          { type: "p", text: "Compare the map with the still-photo set. The two formats should complement each other. A video may supply the missing underside while a photograph supplies the sharp label. If both omit the same decisive area, more media has not reduced the uncertainty." },
+        ],
+      },
+      {
+        id: "decision-log",
+        title: "6. Convert the clip into a defensible decision note",
+        blocks: [
+          { type: "p", text: "Finish with a note that another person could replay. Record the product identity, clip date if shown, timestamp or sequence, observable action, result, confidence and limit. Keep the conclusion narrow. “Closure completes one visible cycle at 00:12; long-term durability unknown” is auditable. “Hardware is perfect” is not. If no timestamp is available, identify the moment by the preceding action or frame." },
+          { type: "table", headers: ["Decision", "Use when", "Minimum note"], rows: [
+            ["Accept this question", "Matched footage directly answers the defined test", "Action observed, result and remaining limit"],
+            ["Request more evidence", "A specific obtainable view or motion would resolve the gap", "Exact part, action, angle and framing"],
+            ["Hold", "Identity, variant, date or governing policy remains unclear", "Conflict to verify before agent action"],
+            ["Reject candidate", "A matched, visible issue exceeds a prewritten tolerance", "Observation and why it is decisive"],
+          ] },
+          { type: "p", text: "Avoid universal pass marks. A stiff zipper may matter differently on a technical jacket than on a decorative pouch. Define the buyer's tolerance before the review, then apply it consistently. The record should show what was observed and why it mattered, not pretend that one editorial score governs every product." },
+        ],
+      },
+      {
+        id: "request-brief",
+        title: "7. Send the chosen agent a precise follow-up brief",
+        blocks: [
+          { type: "p", text: "FindQC provides research evidence; it does not place the order, operate the warehouse or perform the follow-up. The buyer's chosen agent controls any available photo or video request and the related transaction options. Verify the agent's current rules before assuming a request, exchange or return is possible. A concise brief gives the operator a better chance of capturing the missing evidence without interpretation." },
+          { type: "list", title: "A useful video request includes", items: [
+            "The exact order item and variant in the agent account.",
+            "One component or surface area to keep centered in frame.",
+            "One complete action, from starting position to visible result.",
+            "A stable opening identity view and a final close-up when detail matters.",
+            "A request to avoid covering the component and to use steady, neutral light where practical.",
+          ] },
+          { type: "p", text: "For example: “Please begin with the full item and size label in frame, keep the front zipper centered, open it fully and close it fully once, then hold the closed slider still for three seconds.” That wording does not tell the agent whether to accept the item. It defines the evidence needed for the buyer's next decision." },
+          { type: "callout", title: "Final boundary", text: "QC video can document visible movement and coverage at one recorded moment. It cannot certify authenticity, product safety, hidden composition, long-term durability or a future shipping outcome." },
+        ],
+      },
+    ],
+    sources: [],
+    related: ["findqc-60-second-workflow", "what-qc-photos-can-prove", "findqc-return-evidence-checklist"],
+    cta: { eyebrow: "Need a still-photo baseline?", title: "Use the complete QC photo checklist before requesting motion evidence", href: "/guides/qc-photo-checklist", label: "Open the QC photo checklist" },
+  },
 ];
 
 export function getArticle(slug) {
