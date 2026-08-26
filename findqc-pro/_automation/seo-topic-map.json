@@ -112,6 +112,8 @@
       "visuals": ["Four original HTML evidence tables plus one existing local editorial catalog image; no customer or external media"],
       "planTrack": "F09",
       "cycle": "C03",
+      "liveVerified": false,
+      "deploymentStatus": "pending-live-verification",
       "skippedTracks": ["F07 already covered by the existing practical QC photo checklist", "F08 already covered by the warehouse-lighting guide"]
     }
   ]
