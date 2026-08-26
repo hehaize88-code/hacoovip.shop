@@ -100,6 +100,19 @@
       "visuals": ["Five original HTML workflow and decision tables plus one existing local editorial catalog image; no customer or external media"],
       "planTrack": "F06",
       "cycle": "C02"
+    },
+    {
+      "slug": "findqc-qc-video-checklist",
+      "primaryQuery": "FindQC QC video checklist",
+      "intent": "Use motion evidence to test function, changing reflections, structure and missing angles without treating a short clip as a quality guarantee",
+      "focus": ["record identity", "motion questions", "closure and component tests", "changing reflections", "coverage mapping", "agent video request brief"],
+      "exampleType": "Clearly labelled observation matrices and request wording, never fabricated orders, defects, fees or platform outcomes",
+      "outline": ["motion question", "identity", "motion tests", "surface and structure", "coverage audit", "decision log", "agent request brief"],
+      "faqAngles": ["What can QC video show that photos cannot?", "Can one working cycle prove durability?", "How should a buyer request a focused agent video?"],
+      "visuals": ["Four original HTML evidence tables plus one existing local editorial catalog image; no customer or external media"],
+      "planTrack": "F09",
+      "cycle": "C03",
+      "skippedTracks": ["F07 already covered by the existing practical QC photo checklist", "F08 already covered by the warehouse-lighting guide"]
     }
   ]
 }
