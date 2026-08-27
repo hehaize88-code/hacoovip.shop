@@ -213,7 +213,20 @@
       "angle": "reconciles checkout, order, balance, provider and parcel records without publishing an unsupported universal rate",
       "evidence": "current Kakobuy public multi-stage service flow and public balance-detail route; no accessible universal rate table relied on",
       "internalLinkRole": "connects purchase-stage cost records with domestic-delivery and international-parcel planning while keeping the charge types distinct"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-currency-conversion-exchange-rate-cost/",
+      "primaryQuery": "Kakobuy currency conversion",
+      "relatedTerms": [
+        "Kakobuy exchange rate",
+        "Kakobuy currency cost",
+        "Kakobuy observed exchange rate"
+      ],
+      "intent": "transaction-level currency and exchange-rate cost measurement",
+      "angle": "calculates an observed rate from matching platform and provider records while separating named fees, reference rates and timing",
+      "evidence": "current Kakobuy cross-border purchasing-service description plus current Visa and Mastercard calculator limitations; no universal Kakobuy markup asserted",
+      "internalLinkRole": "extends the fee audit with a dedicated currency worksheet and links purchase-stage evidence to later landed-cost planning"
     }
   ],
-  "nextPriority": "Kakobuy currency conversion and exchange-rate cost audit"
+  "nextPriority": "Kakobuy shipping calculator: estimate versus final charge"
 }
