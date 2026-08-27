@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-13",
+  "lastReviewed": "2026-08-27",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -213,7 +213,20 @@
       "angle": "preserves seller identity, exact item and option, current amounts, domestic-delivery context and dated after-sales evidence",
       "evidence": "current Kakobuy public product-link and keyword input, indexed seller-page context, seller-to-warehouse stage, warehouse inspection and current indexed after-sales wording",
       "internalLinkRole": "moves keyword-discovery readers from an initial lead to a traceable seller and listing record"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-bags-spreadsheet-dimensions-hardware-shipping",
+      "primaryQuery": "Kakobuy bags spreadsheet",
+      "relatedTerms": [
+        "Kakobuy bag finds",
+        "Kakobuy bag QC",
+        "Kakobuy bag dimensions"
+      ],
+      "intent": "bag product discovery, QC and parcel planning",
+      "angle": "records measurement endpoints, usable capacity, hardware inventory, structure and packing risk before comparing bag finds",
+      "evidence": "current Kakobuy seller-to-warehouse service and inspection baseline; no universal photo count, fee or freight claim",
+      "internalLinkRole": "connects bag-category discovery to seller verification, QC review and parcel-dimension planning"
     }
   ],
-  "nextPriority": "Kakobuy bags spreadsheet: dimensions, hardware and shipping"
+  "nextPriority": "Kakobuy accessories spreadsheet: low price versus parcel cost"
 }
