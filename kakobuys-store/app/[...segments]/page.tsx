@@ -118,11 +118,12 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
     const isReturns = language === "en" && article.slug === "kakobuy-returns-after-sales-checklist";
     const isStitching = language === "en" && article.slug === "kakobuy-stitching-finish-qc-checklist";
     const isAlignment = language === "en" && article.slug === "kakobuy-alignment-symmetry-print-placement-qc";
-    const canonical = isAlignment ? "https://kakobuys.store/kakobuy-alignment-symmetry-print-placement-qc/" : isStitching ? "https://kakobuys.store/kakobuy-stitching-finish-qc-checklist/" : isReturns ? "https://kakobuys.store/kakobuy-returns-after-sales-checklist/" : canonicalPath;
+    const isMeasurement = language === "en" && article.slug === "kakobuy-size-measurement-qc-photo-limits";
+    const canonical = isMeasurement ? "https://kakobuys.store/kakobuy-size-measurement-qc-photo-limits/" : isAlignment ? "https://kakobuys.store/kakobuy-alignment-symmetry-print-placement-qc/" : isStitching ? "https://kakobuys.store/kakobuy-stitching-finish-qc-checklist/" : isReturns ? "https://kakobuys.store/kakobuy-returns-after-sales-checklist/" : canonicalPath;
     return {
       title: article.seoTitle,
       description: article.seoDescription,
-      robots: isReturns || isStitching || isAlignment ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
+      robots: isReturns || isStitching || isAlignment || isMeasurement ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
       alternates: {
         canonical,
         languages: articleIndex < 3 ? {
@@ -137,7 +138,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
           "x-default": `/${article.slug}/`
         } : { en: canonical, "x-default": canonical }
       },
-      openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: isReturns || isStitching || isAlignment ? canonical : undefined, images: isReturns || isStitching || isAlignment ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
+      openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: isReturns || isStitching || isAlignment || isMeasurement ? canonical : undefined, images: isReturns || isStitching || isAlignment || isMeasurement ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
     };
   }
 

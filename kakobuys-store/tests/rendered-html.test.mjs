@@ -209,11 +209,12 @@ test("English article center includes all English-only guides", async () => {
     { waitUntil() {}, passThroughOnException() {} },
   );
   const centerHtml = await center.text();
-  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 7);
+  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 8);
   assert.match(centerHtml, /Kakobuy Warehouse Storage Guide/);
   assert.match(centerHtml, /Kakobuy Returns and After-Sales Checklist/);
   assert.match(centerHtml, /Kakobuy Stitching and Finish QC Checklist/);
   assert.match(centerHtml, /Kakobuy Alignment, Symmetry and Print Placement QC/);
+  assert.match(centerHtml, /Kakobuy Size Measurement QC: What Photos Can and Cannot Prove/);
 
   const article = await worker.fetch(
     new Request("http://localhost/kakobuy-warehouse-storage-guide", { headers: { accept: "text/html" } }),
@@ -279,6 +280,21 @@ test("English article center includes all English-only guides", async () => {
   assert.match(alignmentHtml, /"@type":"BreadcrumbList"/);
   assert.match(alignmentHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-alignment-symmetry-print-placement-qc\/"/);
   assert.doesNotMatch(alignmentHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+
+  const measurement = await worker.fetch(
+    new Request("http://localhost/kakobuy-size-measurement-qc-photo-limits", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  const measurementHtml = await measurement.text();
+  const measurementArticle = measurementHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
+  const measurementWords = measurementArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  assert.equal(measurement.status, 200);
+  assert.ok(measurementWords >= 1200 && measurementWords <= 1800, `measurement article should contain 1200–1800 visible words, found ${measurementWords}`);
+  assert.match(measurementHtml, /"@type":"Article"/);
+  assert.match(measurementHtml, /"@type":"BreadcrumbList"/);
+  assert.match(measurementHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-size-measurement-qc-photo-limits\/"/);
+  assert.doesNotMatch(measurementHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 });
 
 test("expanded Finds page contains thirty unique records and every detail page", async () => {
@@ -362,7 +378,7 @@ test("production page routing returns real 404s for false article paths", async 
   const pagesWorkerUrl = new URL("../_worker.js", import.meta.url);
   pagesWorkerUrl.searchParams.set("routing", `${process.pid}-${Date.now()}`);
   const pagesWorker = (await import(pagesWorkerUrl.href)).default;
-  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/finds/", "/find-5756/"]);
+  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/finds/", "/find-5756/"]);
   const env = { ASSETS: { fetch: async (request) => {
     const path = new URL(request.url).pathname;
     return validAssets.has(path)

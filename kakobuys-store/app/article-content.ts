@@ -563,5 +563,95 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public contact and quality-inspection pages plus currently indexed product information describing warehouse checking, photographs and seller after-sales handling, reviewed August 13, 2026. The alignment axes, perspective controls and decision matrix are independent editorial methods. Photo availability, extra services, eligibility, costs and deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-size-measurement-qc-photo-limits",
+    title: "Kakobuy Size Measurement QC: What Photos Can and Cannot Prove",
+    seoTitle: "Kakobuy Size Measurement QC: Photo Limits and Checks",
+    seoDescription: "Use this Kakobuy size measurement QC checklist to verify tape placement, endpoints and garment dimensions without treating a photo as a fit guarantee.",
+    primaryKeyword: "Kakobuy size measurement QC",
+    secondaryKeywords: ["Kakobuy measurement photos", "Kakobuy size check", "warehouse garment measurements", "what QC photos cannot prove about fit"],
+    intro: "A measurement photo can answer a narrow question: what distance appears between two visible endpoints while an item is arranged in a particular way. It cannot guarantee how the item will fit a body, how the fabric behaves in motion or whether a hidden construction detail changes comfort. The useful Kakobuy size measurement QC workflow separates the number that can be read from the conclusions that still require judgment.",
+    quickAnswer: "Match the exact item and size first. Define both endpoints, confirm the tape is flat and in the same plane as the garment, check that the zero point and final mark are visible, and compare the result with your own reference garment measured by the same method. Request a new photo only when one controlled measurement can change the ship, clarify or after-sales decision.",
+    sections: [
+      {
+        heading: "Start with identity before reading the tape",
+        paragraphs: [
+          "Open the purchase order and confirm product, selected color, size label, quantity and any customization. Then match those details to the warehouse record. A sharp ruler photo of a size L item does not resolve an order for size M. If several pieces arrived together, make sure the photographed label and the measured item belong to the same warehouse line.",
+          "Kakobuy's current public service information describes warehouse quality inspection and photographs after goods arrive from the seller. Its indexed inspection wording supports visible checks such as model, style and size. That is an appearance checkpoint, not a promise of body fit or laboratory-grade measurement. Preserve the order, size chart and warehouse images as separate evidence."
+        ],
+        bullets: ["Match the warehouse item to the exact order line.", "Confirm the visible size label and selected option.", "Save the seller chart that existed when you ordered.", "Do not infer fit before the measurement method is clear."]
+      },
+      {
+        heading: "Define the measurement with two named endpoints",
+        paragraphs: [
+          "A label such as “length” is incomplete. For a top, it might mean high shoulder point to hem, back neck seam to hem, or the longest visible edge. Chest width might be measured pit to pit with the garment flat, while a seller chart may publish body circumference. Those values cannot be compared until the method and units match.",
+          "Write the request as an operation: “Measure from the shoulder seam at the neck to the bottom hem with the front panel flat,” or “Measure straight across from underarm seam to underarm seam.” For trousers, name waistband state, rise endpoint and inside or outside leg. For a bag, name whether width is measured at the base, opening or widest point."
+        ]
+      },
+      {
+        heading: "Inspect the zero point before the final number",
+        paragraphs: [
+          "The starting point causes many reading errors. Check that the tape's zero mark, not merely the metal hook or a cropped first segment, aligns with the agreed landmark. If the photograph begins at the 2-centimeter mark, the far reading is not the length unless the offset is subtracted and clearly documented.",
+          "Next check the final endpoint. The tape should cross the same plane as the feature being measured, and the relevant mark should remain visible at useful resolution. A finger covering the final line, a folded hem or a tape that leaves the item before the endpoint makes the result ambiguous. Record “unreadable” rather than guessing between two marks."
+        ],
+        bullets: ["Zero mark visible and aligned.", "Agreed starting landmark visible.", "Tape remains readable along the measured path.", "Final landmark and mark both visible."]
+      },
+      {
+        heading: "Control tension, folds and perspective",
+        paragraphs: [
+          "Soft goods change shape. A garment stretched under tension can read longer or wider than the same item resting naturally. A folded side seam can make chest width too small. Ask for the item laid flat and smoothed without obvious pulling. For elastic waistbands, specify relaxed or stretched measurement; one cannot substitute for the other.",
+          "The camera should be close to perpendicular to the measurement plane. An oblique photograph can make equal physical intervals appear different across the image. Do not calculate centimeters from screen pixels. The tape itself provides the scale only when it lies beside the feature in the same plane and remains readable.",
+          "Measurement science treats a result as a value with uncertainty, not perfect truth. NIST's current public guidance explains that even physical measuring tapes have accuracy tolerances. In a warehouse photo, tape accuracy is only one possible uncertainty; endpoint choice, item arrangement, camera angle and reading resolution often matter more."
+        ]
+      },
+      {
+        heading: "Compare like-for-like units and methods",
+        paragraphs: [
+          "Convert units only after recording the original. One inch equals 2.54 centimeters exactly, but rounding the displayed result too early can create a false mismatch. Keep one decimal place in centimeters for ordinary clothing comparisons unless the image cannot support that precision. A blurred photo does not become more accurate because a calculator returns three decimals.",
+          "Distinguish flat width from circumference. A flat chest width is often doubled for an approximate garment circumference, but that calculation assumes the front and back contribute similarly and ignores construction. Body measurements and garment measurements are different. Ease—the extra garment space around the body—depends on style, fabric and preference.",
+          "The strongest comparison is a garment you already own and like, measured with the same endpoints and relaxed arrangement. Compare that reference with the warehouse photo and allow a tolerance based on the product. Do not copy another buyer's fit result when height, build, desired silhouette and measuring method are unknown."
+        ]
+      },
+      {
+        heading: "Know what the photo can prove",
+        paragraphs: [
+          "A controlled image can show the visible distance between defined points, whether the size label matches the order, and whether two paired dimensions appear materially different. It can document that a sleeve, insole, waist or bag panel falls outside a preset range when the endpoints and scale are clear.",
+          "The photo cannot prove fiber composition, stretch recovery, shrinkage after washing, comfort, drape in motion, footwear volume or how a structured bag carries weight. It also cannot prove that every unit from the same listing has identical measurements. Keep those limits explicit instead of turning a warehouse number into a broad quality claim."
+        ],
+        bullets: ["CAN SUPPORT: visible label, endpoints, scale and arranged-item distance.", "CANNOT PROVE: body fit, comfort, hidden construction, shrinkage or long-term behavior.", "REQUIRES JUDGMENT: acceptable tolerance and intended silhouette."]
+      },
+      {
+        heading: "Use a measurement evidence table",
+        paragraphs: [
+          "Create one row for each decision-changing dimension. Record the seller chart value, its method if stated, your reference-garment value, the warehouse reading, image identifier and acceptable range. Add a confidence label: high when endpoints, zero and final mark are clear; medium when the value is readable but arrangement is imperfect; low when one critical part is hidden.",
+          "Do not average a clear measurement with an unclear one. If two images conflict, identify what changed: relaxed versus stretched waistband, front versus back path, a folded hem, or another item. Request a controlled repeat instead of selecting the number that supports the outcome you prefer."
+        ],
+        bullets: ["Dimension and exact endpoints.", "Original unit and displayed reading.", "Seller chart and reference-garment comparison.", "Acceptable range set before review.", "Image ID, confidence and unresolved limitation."]
+      },
+      {
+        heading: "Request one extra photo only when it changes the decision",
+        paragraphs: [
+          "A useful request names the item, arrangement, endpoints, tape position and decision threshold. Example: “Please lay the hoodie flat without stretching it and measure straight across from underarm seam to underarm seam, with the zero and final marks visible.” This reduces the chance of receiving another image that cannot be compared.",
+          "Do not request every possible dimension. Choose the one or two values that determine whether you would ship, clarify or use the current after-sales route. This article does not state a universal number of included photos, an extra-photo price or a response time because the accessible official pages checked did not establish those current terms."
+        ]
+      },
+      {
+        heading: "Choose ship, clarify or after-sales",
+        paragraphs: [
+          "Ship when the ordered identity is correct, the critical measurements are supported by clear images and the values fall inside the range you set from a comparable garment. Clarify when the tape start, endpoint, folds, tension or camera angle could materially change the reading. Use the live after-sales option when a controlled measurement confirms a material mismatch and the order remains eligible.",
+          "Kakobuy's currently indexed information describes warehouse photographs and seller after-sales handling, but live eligibility, deadlines, exclusions and costs can change. Keep the item out of international parcel submission while a decision-changing size question remains open. Save the order, seller chart, measurement image, request and resulting status together."
+        ],
+        bullets: ["SHIP: clear evidence falls inside the preset range.", "CLARIFY: one controlled image can resolve the uncertainty.", "AFTER-SALES: a confirmed mismatch exceeds the range, subject to live eligibility."]
+      },
+      {
+        heading: "Final Kakobuy size measurement QC checklist",
+        paragraphs: [
+          "Match the exact order and label. Define the endpoints. Check the zero and final marks. Confirm that the item is flat, relaxed and not folded. Read the tape in the same plane, preserve original units, and compare the result with a reference garment measured by the same method. Record the confidence level and every conclusion the image cannot support.",
+          "A good Kakobuy size check is not the one with the most numbers. It is the one where each number answers a real decision and can be reproduced from the image. That discipline protects you from both false certainty and unnecessary returns caused by mismatched methods."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public service and quality-inspection pages plus currently indexed product information describing warehouse photographs and seller after-sales handling, reviewed August 27, 2026. Measurement uncertainty principles were checked against current NIST measurement guidance. Endpoint definitions, confidence labels and decision ranges are independent editorial methods. Photo services, eligibility, fees and deadlines can change; follow the live order."
   }
 ];
