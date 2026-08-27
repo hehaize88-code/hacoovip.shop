@@ -339,6 +339,25 @@
         "OOPBUY current public product pages"
       ],
       "internalLinkRole": "Protection-cost spoke linked to fees, consolidation, QC and shipping guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-vacuum-packing-simple-packaging/",
+      "primaryQuery": "oopbuy vacuum packing",
+      "secondaryTerms": [
+        "oopbuy vacuum bag",
+        "oopbuy simple packaging",
+        "vacuum packing shipping cost",
+        "oopbuy packaging add-ons"
+      ],
+      "intent": "commercial packaging-cost decision",
+      "angle": "Decide whether clothing-only simple packaging and vacuum bags reduce live chargeable weight without losing route eligibility or needed protection.",
+      "evidence": [
+        "OOPBUY current Packaging notice",
+        "OOPBUY current Shipping Estimation",
+        "OOPBUY current Inspection Information",
+        "OOPBUY current Service & Fees and tutorial notices"
+      ],
+      "internalLinkRole": "Packaging-cost spoke linked to shipping, reinforcement, consolidation and full-cost guides"
     }
   ]
 }
