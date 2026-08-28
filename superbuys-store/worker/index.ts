@@ -44,7 +44,15 @@ const worker = {
     const contentType = response.headers.get("content-type") || "";
 
     if (response.status === 200 && contentType.includes("text/html")) {
-      const html = await response.text();
+      const documentLanguage = url.pathname === "/fr" || url.pathname.startsWith("/fr/")
+        ? "fr"
+        : url.pathname === "/de" || url.pathname.startsWith("/de/")
+          ? "de"
+          : "en";
+      const html = (await response.text()).replace(
+        '<html lang="en">',
+        `<html lang="${documentLanguage}">`,
+      );
       const isNotFound = html.includes("Page not found | Superbuy Product Index")
         && html.includes('name="robots" content="noindex, nofollow"');
 
@@ -60,3 +68,4 @@ const worker = {
 };
 
 export default worker;
+

@@ -1,3 +1,4 @@
+
 import app from "../dist/server/index.js";
 
 const STATIC_SEO_PATHS = new Set(["/robots.txt", "/sitemap.xml"]);
@@ -14,7 +15,15 @@ export default {
     const contentType = response.headers.get("content-type") || "";
 
     if (response.status === 200 && contentType.includes("text/html")) {
-      const html = await response.text();
+      const documentLanguage = pathname === "/fr" || pathname.startsWith("/fr/")
+        ? "fr"
+        : pathname === "/de" || pathname.startsWith("/de/")
+          ? "de"
+          : "en";
+      const html = (await response.text()).replace(
+        '<html lang="en">',
+        `<html lang="${documentLanguage}">`,
+      );
       const isNotFound = html.includes("Page not found | Superbuy Product Index")
         && html.includes('content="noindex, nofollow"');
 
@@ -28,3 +37,4 @@ export default {
     return response;
   },
 };
+
