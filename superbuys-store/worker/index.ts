@@ -40,7 +40,22 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    const response = await handler.fetch(request, env, ctx);
+    const contentType = response.headers.get("content-type") || "";
+
+    if (response.status === 200 && contentType.includes("text/html")) {
+      const html = await response.text();
+      const isNotFound = html.includes("Page not found | Superbuy Product Index")
+        && html.includes('name="robots" content="noindex, nofollow"');
+
+      if (isNotFound) {
+        return new Response(html, { status: 404, headers: response.headers });
+      }
+
+      return new Response(html, { status: response.status, headers: response.headers });
+    }
+
+    return response;
   },
 };
 
