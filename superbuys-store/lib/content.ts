@@ -1,4 +1,5 @@
 import { arrivalChecklist } from "./arrival-checklist";
+import { orderRemarksArticle } from "./order-remarks-article";
 
 export type Locale = "en" | "fr" | "de";
 
@@ -319,3 +320,6 @@ translateArticles("de", [
 articles.en.push(arrivalChecklist.en);
 articles.fr.push(arrivalChecklist.fr);
 articles.de.push(arrivalChecklist.de);
+articles.en.push(orderRemarksArticle.en);
+articles.fr.push(orderRemarksArticle.fr);
+articles.de.push(orderRemarksArticle.de);
