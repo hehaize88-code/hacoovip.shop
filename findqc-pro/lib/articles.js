@@ -1662,6 +1662,100 @@ export const articles = [
     related: ["findqc-60-second-workflow", "what-qc-photos-can-prove", "findqc-return-evidence-checklist"],
     cta: { eyebrow: "Need a still-photo baseline?", title: "Use the complete QC photo checklist before requesting motion evidence", href: "/guides/qc-photo-checklist", label: "Open the QC photo checklist" },
   },
+  {
+    slug: "findqc-product-intelligence-report-guide",
+    title: "How to Read a FindQC Product Intelligence Report Without Overstating the Data",
+    shortTitle: "FindQC Product Intelligence Report Guide",
+    description: "Read a FindQC Product Intelligence report field by field, discount small or stale samples, and turn historical signals into a limited research decision.",
+    excerpt: "Separate seller timing, review themes, defect and return patterns, and historical shipping data before deciding what the report can actually support.",
+    category: "Product Intelligence Guide",
+    readTime: "11 min read",
+    date: "28 August 2026",
+    dateISO: "2026-08-28",
+    updatedISO: "2026-08-28",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-product-intelligence-report-guide"],
+    heroImage: "/products/catalog/jackets-5904.webp",
+    heroAlt: "Editorial jacket image illustrating a product record that requires field-by-field evidence review",
+    heroCaption: "Existing FindQC Pro editorial catalog image. It is not a customer order, warehouse record or Product Intelligence screenshot.",
+    keywords: ["FindQC Product Intelligence report", "how to read FindQC Product Intelligence", "FindQC seller ship time", "FindQC defect history", "FindQC return history", "FindQC shipping profile"],
+    sourceIntro: "FindQC's What Is QC, How FindQC Works, Product Intelligence, How to Buy and Beginner Checklist pages were checked on 28 August 2026. The report fields are historical research signals, not guarantees about a future unit, seller action, agent policy or international shipment.",
+    intro: [
+      "A FindQC Product Intelligence report is most useful when you read it as several separate evidence streams rather than one score. Seller ship time addresses fulfillment behavior. Review summaries describe recurring public feedback themes. Defect and return history describe recorded problems. Historical weight, dimensions and delivery records provide planning context. These fields can point in the same direction, but they do not have the same source, sample, date or meaning.",
+      "FindQC currently states that Product Intelligence is available only for items with Premium QC and sufficient historical data. It also warns that records may be incomplete, sample sizes may be small and third-party data may contain errors. That boundary should shape the entire review. The report can help a global QC researcher decide what deserves closer attention; it cannot inspect the future unit, place an order, operate a warehouse, approve a return or quote an international shipment. Those actions belong to the seller and the buyer-selected agent or carrier.",
+    ],
+    sections: [
+      {
+        id: "identity-scope",
+        title: "1. Confirm record identity and define one decision question",
+        blocks: [
+          { type: "p", text: "Before reading any metric, confirm that the report belongs to the exact product candidate. Check the source item, seller or store where shown, model, colour, size or version, and the same-item group. FindQC distinguishes same-item groups from visually similar recommendations. A similar result can suggest alternatives, but its seller timing, defect pattern, return history or dimensions must not be transferred to the target as though it were the same record." },
+          { type: "list", title: "Identity gate", items: ["Source item or stable identifier agrees with the candidate.", "The relevant option or version does not conflict with the target.", "The report is attached to a same-item record rather than a similar recommendation.", "The evidence date is useful for the current question.", "Any missing identity field is recorded instead of guessed."] },
+          { type: "p", text: "Then write one question. Examples include whether earlier seller dispatch was consistent enough for a time-sensitive plan, whether one visible defect appears repeatedly, or whether recorded dimensions suggest that final parcel volume deserves attention. Do not ask whether the product is simply good. A broad verdict encourages unrelated signals to be averaged into false certainty." },
+          { type: "callout", title: "Stop condition", text: "If product identity conflicts, do not continue to the attractive charts. Resolve the target first or label the report as contextual only." },
+        ],
+      },
+      {
+        id: "sample-freshness",
+        title: "2. Audit sample size, date range and missing fields",
+        blocks: [
+          { type: "p", text: "A pattern needs both observations and context. Record the number of underlying records when the interface shows it, the earliest and latest relevant dates, and whether the displayed field covers the same seller and item. If sample size is not shown, say that it is unknown. Never reverse-engineer a count from a percentage or chart height unless the interface explicitly supplies the denominator." },
+          { type: "table", headers: ["Audit field", "Useful note", "Unsafe shortcut"], rows: [["Sample", "Displayed count or unknown", "Calling one record a trend"], ["Freshness", "Date range and last observation", "Treating an old history as current policy"], ["Completeness", "Present, partial or absent fields", "Reading missing data as zero problems"], ["Match", "Exact, possible or contextual", "Combining similar products into one sample"]] },
+          { type: "p", text: "Freshness is field-specific. A dimension from an older unit may remain useful as a rough plausibility reference while seller dispatch behavior or a current option changes. Defect patterns can also shift with batches, materials or factory changes. Apply a larger uncertainty discount when the dates are old, the sample is small, the target option differs or the report lacks a clear denominator." },
+          { type: "callout", title: "Honest absence", text: "No displayed defect history can mean no recorded defect, incomplete reporting or insufficient history. It does not prove a defect-free product." },
+        ],
+      },
+      {
+        id: "fulfillment",
+        title: "3. Read seller dispatch and domestic delivery as two clocks",
+        blocks: [
+          { type: "p", text: "FindQC separates seller ship time from domestic delivery. Seller ship time covers the interval before dispatch; domestic delivery covers movement from dispatch to the warehouse. Keep those clocks separate. A slow seller cannot be diagnosed from a long domestic carrier leg, and a quick dispatch does not guarantee fast warehouse arrival." },
+          { type: "table", headers: ["Signal", "It may help answer", "It cannot answer"], rows: [["Seller ship time", "How quickly earlier orders were dispatched", "Current stock or a promised dispatch date"], ["Domestic delivery", "How earlier parcels moved to the warehouse", "International transit time"], ["Variation", "Whether historical timing was consistent", "Why an outlier occurred without supporting evidence"]] },
+          { type: "p", text: "Look at the spread, not just an average. Two clusters can matter more than one mean: for example, routine dispatches and a smaller group of long delays. Do not invent reasons such as restocking, holidays or seller behavior unless the report provides them. Use the signal to set a follow-up question for the live transaction. The chosen agent or seller must confirm current status because FindQC does not control purchasing or fulfillment." },
+        ],
+      },
+      {
+        id: "reviews-defects-returns",
+        title: "4. Keep review themes, defect records and return reasons separate",
+        blocks: [
+          { type: "p", text: "Product Intelligence may summarize review themes and show defect or return signals. These streams overlap, but they are not interchangeable. A review can describe fit or feel without a formal defect. A recorded defect can be visible in warehouse evidence without producing a return. A return may reflect preference, size or transaction circumstances rather than construction quality." },
+          { type: "list", title: "Three-pass reading method", items: ["List recurring review themes without copying one comment as proof.", "List defect types that are tied to observable evidence.", "List return reasons separately and mark ambiguous wording.", "Compare only themes supported by more than one relevant record when counts are available.", "Write the alternative explanations that the summary cannot rule out."] },
+          { type: "p", text: "Weight repeated, decision-relevant patterns more heavily than dramatic isolated anecdotes. If alignment appears in several matched records and alignment is a deal-breaker, inspect that area first on the future unit. If one review praises material feel, treat it as an individual report, not a composition test. Public feedback can improve the inspection prompt, but it cannot substitute for the exact unit's warehouse evidence." },
+          { type: "callout", title: "Evidence language", text: "Write “alignment is a repeated historical concern in the displayed sample” rather than “this item has bad alignment.” The first preserves source, sample and uncertainty." },
+        ],
+      },
+      {
+        id: "shipping-profile",
+        title: "5. Use historical weight, dimensions and delivery only for plausibility",
+        blocks: [
+          { type: "p", text: "FindQC describes a historical shipping profile that may include typical parcel weight ranges, dimensions, items per parcel, shipping lines and average delivery time. These data can reveal whether a product has previously been bulky relative to weight, but they are not a live quote. Packing choices, consolidation, route formulas, rounding, destination, restrictions and carrier terms can change the final result." },
+          { type: "table", headers: ["Displayed field", "Safe use", "Required live check"], rows: [["Measured weight", "Plausibility range for a matched item", "Exact warehouse and final parcel weight"], ["Three-side dimensions", "Flag possible volume sensitivity", "Final packed dimensions and active route formula"], ["Items per parcel", "Understand historical consolidation context", "Your actual item count and packing request"], ["Average delivery time", "Historical descriptive context", "Current line estimate and service conditions"]] },
+          { type: "p", text: "Do not calculate a final freight price from Product Intelligence alone. A useful output is narrower: “Earlier matched records show relatively large dimensions for the recorded weight, so final packed dimensions could matter.” That statement identifies a planning risk without inventing a route, divisor, fee or delivery promise." },
+        ],
+      },
+      {
+        id: "evidence-matrix",
+        title: "6. Build a field-by-field decision matrix",
+        blocks: [
+          { type: "p", text: "Place each relevant field into four columns: observation, sample context, limitation and decision effect. This prevents a favourable result in one area from cancelling a serious unknown elsewhere. Seller timing should affect time tolerance; repeated visible defects should affect the photo checklist; dimensions should affect later parcel planning. None should silently become a general quality score." },
+          { type: "table", headers: ["Field", "Observation", "Limitation", "Decision effect"], rows: [["Identity", "Matched target fields", "One option field absent", "Hold product-level conclusions"], ["Seller timing", "Earlier dispatch appears consistent", "Current stock unknown", "Allow normal plan, confirm live"], ["Defect history", "Repeated edge concern", "Small displayed sample", "Inspect edges on exact unit"], ["Dimensions", "Recorded bulk looks material", "Packing stage unclear", "Recheck final parcel measurements"]] },
+          { type: "p", text: "Choose an evidence state for each row: direct, supporting, prompt only or unknown. Direct evidence answers the narrow question for the matched record. Supporting evidence adds context. Prompt-only evidence tells you what to inspect later. Unknown means the report does not settle the field. This vocabulary is more useful than a percentage invented by the editor." },
+        ],
+      },
+      {
+        id: "decision-boundary",
+        title: "7. Finish with a limited conclusion and the next responsible party",
+        blocks: [
+          { type: "p", text: "End with one of three research outcomes: continue with the candidate and a focused inspection plan; pause until a material identity or data gap is resolved; or remove the candidate because a verified conflict or unacceptable repeated signal is already decisive. State the report fields used, the strongest limitation and the evidence that must be checked on the future unit." },
+          { type: "list", title: "Final report audit", items: ["Exact candidate and option recorded.", "Sample size and freshness stated or marked unknown.", "Seller and domestic timing kept separate.", "Reviews, defects and returns not merged into one claim.", "Historical shipping fields not converted into a live quote.", "Next warehouse or transaction action assigned to the responsible third party."] },
+          { type: "p", text: "A defensible conclusion might read: “The matched Premium record shows a repeated edge-finishing concern in a limited historical sample. Seller dispatch appears broadly consistent, while the current option and future unit remain unverified. Continue only if the chosen agent can confirm the exact option and provide clear edge views at warehouse check-in.” It is specific enough to guide action and modest enough to remain true if the next unit differs." },
+          { type: "callout", title: "Platform boundary", text: "FindQC supplies research evidence. The buyer-selected agent executes purchasing, warehouse checks, exchanges or returns, packaging and shipping under its current terms. Product Intelligence does not transfer control of those actions to FindQC." },
+        ],
+      },
+    ],
+    sources: [],
+    related: ["findqc-standard-vs-premium-qc", "findqc-product-signals", "findqc-60-second-workflow"],
+    cta: { eyebrow: "Need the visual baseline?", title: "Pair historical signals with the complete QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC photo checklist" },
+  },
 ];
 
 export function getArticle(slug) {

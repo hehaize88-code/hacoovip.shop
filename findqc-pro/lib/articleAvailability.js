@@ -7,6 +7,7 @@ export const ARTICLE_LANGUAGE_OVERRIDES = Object.freeze({
   "findqc-standard-vs-premium-qc": ["en"],
   "findqc-60-second-workflow": ["en"],
   "findqc-qc-video-checklist": ["en"],
+  "findqc-product-intelligence-report-guide": ["en"],
 });
 
 export function routeIsAvailableInLanguage(pathname, language) {

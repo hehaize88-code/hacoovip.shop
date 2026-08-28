@@ -112,9 +112,23 @@
       "visuals": ["Four original HTML evidence tables plus one existing local editorial catalog image; no customer or external media"],
       "planTrack": "F09",
       "cycle": "C03",
-      "liveVerified": false,
-      "deploymentStatus": "pending-live-verification",
+      "liveVerified": true,
+      "deploymentStatus": "live-verified-2026-08-28",
       "skippedTracks": ["F07 already covered by the existing practical QC photo checklist", "F08 already covered by the warehouse-lighting guide"]
+    },
+    {
+      "slug": "findqc-product-intelligence-report-guide",
+      "primaryQuery": "FindQC Product Intelligence report",
+      "intent": "Read each Product Intelligence evidence stream with its sample, date and decision limit instead of treating the report as a product score",
+      "focus": ["record identity", "sample and freshness", "seller versus domestic timing", "review defect and return separation", "historical shipping limits", "field-by-field decision matrix"],
+      "exampleType": "Editorial field matrices and limited conclusion wording, never fabricated records, samples, orders, prices or platform outcomes",
+      "outline": ["identity and question", "sample audit", "two timing clocks", "reviews defects and returns", "shipping profile", "evidence matrix", "limited conclusion"],
+      "faqAngles": ["Does Product Intelligence guarantee quality?", "What should be checked when the sample is small?", "Can historical dimensions predict final shipping cost?"],
+      "visuals": ["Five original HTML evidence tables plus one existing local editorial catalog image; no screenshots or customer media"],
+      "planTrack": "F10",
+      "cycle": "C04",
+      "liveVerified": false,
+      "deploymentStatus": "pending-live-verification"
     }
   ]
 }
