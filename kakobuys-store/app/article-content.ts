@@ -653,5 +653,93 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public service and quality-inspection pages plus currently indexed product information describing warehouse photographs and seller after-sales handling, reviewed August 27, 2026. Measurement uncertainty principles were checked against current NIST measurement guidance. Endpoint definitions, confidence labels and decision ranges are independent editorial methods. Photo services, eligibility, fees and deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-qc-color-lighting-errors",
+    title: "Kakobuy QC Color and Lighting Errors: Is the Mismatch Real?",
+    seoTitle: "Kakobuy QC Color and Lighting: Is the Mismatch Real?",
+    seoDescription: "Use this Kakobuy QC color and lighting checklist to separate a real option mismatch from white balance, exposure, reflections and screen differences.",
+    primaryKeyword: "Kakobuy QC color and lighting",
+    secondaryKeywords: ["Kakobuy QC color mismatch", "warehouse photo lighting error", "QC photo white balance", "Kakobuy item color check"],
+    intro: "A warehouse image can make a correct item look too warm, too cool, too bright or too dull. It can also reveal that the seller sent the wrong color. The useful Kakobuy QC color and lighting workflow does not choose between those explanations by instinct. It checks item identity, the whole frame, neutral references, repeated views, exposure and reflective surfaces before deciding whether the evidence supports a mismatch or only an uncertain photograph.",
+    quickAnswer: "First match the ordered color name and item. Then ask whether every object in the frame carries the same color cast. Compare multiple angles under the same and different light, use a neutral reference if one is visible, and separate hue from brightness and saturation. Treat one ambiguous image as unresolved. Request a controlled comparison only when it can change the ship, clarify or after-sales decision.",
+    sections: [
+      {
+        heading: "Confirm the ordered identity before judging color",
+        paragraphs: [
+          "Open the purchase order and record the exact item, seller option name, color text, quantity and any seller reference image saved at checkout. A warehouse photo of the wrong variant is an identity problem before it is a photography problem. If several similar items arrived, match the warehouse line and visible label to the exact order rather than comparing whichever thumbnail looks closest.",
+          "Color names are not standardized measurements. One seller's ‘cream’ can differ from another seller's ‘ivory,’ and a promotional image can be edited. Use the saved listing as a reference for the ordered option, not a calibrated target. Preserve the wording and image separately so a later review can distinguish a wrong option from a tone that was always ambiguous."
+        ],
+        bullets: ["Match product, seller, option and warehouse line.", "Preserve the color name exactly as ordered.", "Save the dated listing reference without treating it as calibrated.", "Check whether labels or packaging identify the variant."]
+      },
+      {
+        heading: "Read the entire frame for a shared color cast",
+        paragraphs: [
+          "Do not begin by sampling one bright patch on the product. Scan the background, table, ruler, label, packaging and other neutral-looking objects. If white paper, a gray floor and the product all shift yellow, blue, green or magenta in the same direction, the frame likely contains a lighting or white-balance cast. That observation weakens a claim that only the product color is wrong.",
+          "A shared cast does not prove the item is correct. It tells you the current image cannot isolate product color confidently. Mark the frame as cast-affected and compare another image. If the background looks stable while the product alone remains materially different in every comparable view, the mismatch hypothesis becomes stronger."
+        ]
+      },
+      {
+        heading: "Understand white balance and mixed light",
+        paragraphs: [
+          "Cameras use white balance to interpret the color of illumination. A setting suited to daylight can render warm indoor light orange; a setting suited to warm light can make daylight look blue. Automatic white balance may also change between frames when the product fills a different share of the image. Therefore, two photos from the same session can display different tones without the item changing.",
+          "Mixed lighting is harder. A ceiling lamp, window and phone light can illuminate different areas with different color temperatures. One part of a garment may look warm and another cool. Look for boundaries where the cast changes across the product and background. A global correction cannot reliably recover true color when several light sources interact, so request a simpler lighting setup when color is decision-critical."
+        ],
+        bullets: ["Global cast: background and product shift together.", "Mixed light: different parts of the frame shift differently.", "Auto white balance: tone changes between otherwise similar frames.", "Unresolved: no stable neutral reference or repeated view."]
+      },
+      {
+        heading: "Separate hue, brightness and saturation",
+        paragraphs: [
+          "‘The color is wrong’ can hide three different observations. Hue describes the color family, such as red moving toward orange or purple. Brightness describes how light or dark it appears. Saturation describes how vivid or muted it looks. Exposure can make a correct dark green look pale; contrast can make a muted blue look stronger; neither necessarily changes the underlying hue in the same way.",
+          "Write the observation precisely: ‘The warehouse image appears brighter and less saturated than the saved option image’ is more useful than ‘wrong blue.’ Compare shadow, midtone and highlight areas separately. If only highlights lose color, overexposure may be clipping detail. If the midtones consistently shift hue while neutral objects remain stable, a real product difference is more plausible."
+        ]
+      },
+      {
+        heading: "Control reflections, texture and viewing angle",
+        paragraphs: [
+          "Glossy coatings, satin, metallic hardware, patent surfaces and some synthetic fabrics reflect the light source and surrounding room. A highlight can take on the lamp's color while a shadow reflects a nearby wall. Brushed or pile materials can look lighter or darker when fibers point in another direction. These are appearance changes, not automatically dye or finish defects.",
+          "Compare an area facing the camera with one viewed at an angle. Look for a diffuse midtone away from glare rather than choosing the brightest reflection. For shoes or bags, compare matched left and right panels under similar angles. For fabric with nap, ask for the surface brushed in one direction before comparison. A single reflective spot should not define the product color."
+        ],
+        bullets: ["Avoid clipped highlights and deep shadows.", "Compare like surfaces at matched angles.", "Use diffuse midtones for the strongest color evidence.", "Record when texture direction changes appearance."]
+      },
+      {
+        heading: "Do not treat a screen or screenshot as a color meter",
+        paragraphs: [
+          "The image passes through a camera, processing software, file compression, the website and the viewer's display. Screen brightness, color mode, night settings and browser handling can all change appearance. Kakobuy's currently indexed help wording specifically warns that product color can be affected by illumination, equipment and computer color difference or resolution. That is a limitation notice, not permission to dismiss every mismatch.",
+          "Use the original warehouse image when available instead of a compressed screenshot sent through another app. Turn off night or comfort modes and compare on a second reasonable display if the decision is important. Do not report a numeric color difference from uncalibrated screenshots. The goal is to classify evidence, not to manufacture laboratory precision from a web image."
+        ]
+      },
+      {
+        heading: "Build a repeatable color evidence table",
+        paragraphs: [
+          "Create one row per relevant photo. Record image ID, angle, light source if visible, background appearance, neutral reference, exposure state, reflection level, observed hue, brightness and saturation, and confidence. Add a separate row for the saved seller reference and label it promotional or listing evidence rather than warehouse evidence.",
+          "Confidence is high only when identity is clear, exposure retains detail, neutral references look plausible and repeated photos agree. Medium evidence may show a consistent difference with one unresolved lighting issue. Low evidence includes strong mixed light, clipped highlights, deep shadow, heavy compression or no comparable reference. Never average low-confidence impressions into a confident verdict."
+        ],
+        bullets: ["Image ID and matched order line.", "Lighting and neutral-reference status.", "Hue, brightness and saturation observations.", "Reflection, exposure and compression limitations.", "Confidence and the next decision-changing action."]
+      },
+      {
+        heading: "Request a controlled comparison, not more random angles",
+        paragraphs: [
+          "A useful request names the uncertainty and controls one variable: ‘Please photograph the item beside a plain white or neutral card under one even light, with no flash glare, and include the label identifying the ordered color.’ The neutral card need not be laboratory-certified to reveal a severe shared cast, but it does not make the image colorimetrically accurate.",
+          "If two colors from the same order are easy to confuse, request a side-by-side view only when both items are physically present and clearly labelled. Keep distance, exposure and angle as similar as possible. Do not request endless photographs when no web image could resolve the underlying question, such as exact dye specification or how the color looks under every future light source."
+        ]
+      },
+      {
+        heading: "Choose ship, clarify or after-sales from the evidence",
+        paragraphs: [
+          "Ship when the exact option is confirmed and repeated, reasonably exposed images show no decision-changing difference after shared casts and reflections are considered. Clarify when one controlled photo can distinguish a global lighting error from a product-only shift. Use the current after-sales route when identity or a persistent material mismatch is supported across comparable images and the order remains eligible.",
+          "Set the tolerance before reviewing the final image. A buyer choosing a neutral uniform color may care about a smaller hue shift than someone buying a deliberately washed item. The threshold is a purchase decision, not a universal defect standard. Keep the item out of international parcel submission while a material question remains open, and preserve the order, references, request and response together."
+        ],
+        bullets: ["SHIP: identity is correct and comparable images support the expected range.", "CLARIFY: one controlled comparison can resolve the cast or exposure question.", "AFTER-SALES: a persistent mismatch or wrong option is supported, subject to live eligibility."]
+      },
+      {
+        heading: "Final Kakobuy QC color checklist",
+        paragraphs: [
+          "Match the order and exact color option. Review the whole frame. Check neutral-looking objects, white balance, mixed lighting, exposure, saturation, reflections and material direction. Compare multiple images with similar angles, use original files where possible, and classify every image by confidence. Request one controlled comparison only when it can change the decision.",
+          "Good Kakobuy QC color review avoids two equal mistakes: rejecting a correct item because a photograph is warm, and explaining away a truly wrong option as ‘just lighting.’ A short chain of identity, frame diagnosis, repeated observation, controlled evidence and preset threshold produces a conclusion that can be reviewed instead of a guess based on one screen."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public service and quality-inspection pages, its current indexed color-difference warning, and current public wording that warehouse inspection includes color checks, reviewed August 29, 2026. Photography limits were checked against current Adobe white-balance guidance and NIST research on color error in digital camera capture. Frame diagnosis, confidence labels and the decision matrix are independent editorial methods. Photo availability, services, eligibility, fees and deadlines can change; follow the live order."
   }
 ];
