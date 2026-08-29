@@ -65,7 +65,7 @@ const TRANSLATED_ATTRIBUTES = new Set([
   "placeholder",
   "title",
 ]);
-const HTML_CACHE_VERSION = "seo-clicks-2026-08-25-v1";
+const HTML_CACHE_VERSION = "seo60-c13-2026-08-30-v1";
 
 function decodeHtml(value) {
   return value
