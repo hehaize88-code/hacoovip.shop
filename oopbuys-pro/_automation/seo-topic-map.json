@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-14",
+  "updated": "2026-08-30",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -358,6 +358,23 @@
         "OOPBUY current Service & Fees and tutorial notices"
       ],
       "internalLinkRole": "Packaging-cost spoke linked to shipping, reinforcement, consolidation and full-cost guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-shipping-line-comparison-framework/",
+      "primaryQuery": "oopbuy shipping line comparison",
+      "secondaryTerms": [
+        "compare oopbuy shipping lines",
+        "oopbuy route selection",
+        "oopbuy shipping method comparison"
+      ],
+      "intent": "commercial route-cost comparison",
+      "angle": "Filter the live route set by parcel eligibility, then compare chargeable weight, payable cost, delivery range, tracking and recovery evidence.",
+      "evidence": [
+        "OOPBUY current Shipping Estimation",
+        "OOPBUY current public shipping interface",
+        "OOPBUY current prohibited and restricted items notice"
+      ],
+      "internalLinkRole": "Route-selection spoke linked to shipping, packaging, consolidation and full-cost guides"
     }
   ]
 }
