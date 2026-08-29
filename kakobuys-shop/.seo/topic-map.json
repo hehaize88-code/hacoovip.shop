@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-27",
+  "lastReviewed": "2026-08-29",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -226,7 +226,20 @@
       "angle": "records measurement endpoints, usable capacity, hardware inventory, structure and packing risk before comparing bag finds",
       "evidence": "current Kakobuy seller-to-warehouse service and inspection baseline; no universal photo count, fee or freight claim",
       "internalLinkRole": "connects bag-category discovery to seller verification, QC review and parcel-dimension planning"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-accessories-spreadsheet-low-price-parcel-cost",
+      "primaryQuery": "Kakobuy accessories spreadsheet",
+      "relatedTerms": [
+        "Kakobuy accessory finds",
+        "cheap Kakobuy accessories",
+        "accessory parcel cost"
+      ],
+      "intent": "accessory discovery with complete purchase and parcel-cost planning",
+      "angle": "separates option, quantity, domestic delivery, packing evidence and incremental parcel effect before a low-price find is saved",
+      "evidence": "current Kakobuy purchase-to-warehouse workflow, estimator inputs and public international-shipping cost factors; no universal rate or final-charge claim",
+      "internalLinkRole": "connects accessory-category discovery to seller verification, QC evidence and dated shipping estimates"
     }
   ],
-  "nextPriority": "Kakobuy accessories spreadsheet: low price versus parcel cost"
+  "nextPriority": "Kakobuy autumn finds 2026: practical non-hype shortlist"
 }
