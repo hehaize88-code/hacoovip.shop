@@ -4,7 +4,8 @@ const UPDATED = "2026-08-09";
 const NEW_ARTICLES = new Set([
   "/guides/sugargoo-1688-buying-guide-uk.html",
   "/guides/sugargoo-uk-address-format.html",
-  "/guides/sugargoo-uk-customs-tax-planning.html"
+  "/guides/sugargoo-uk-customs-tax-planning.html",
+  "/guides/sugargoo-uk-shipping-calculator-guide.html"
 ]);
 const VALID_LANGS = new Set(["en","es","fr","de","it","pt","pl","nl","zh"]);
 const LEGACY_SEO_LANGS = new Set(["de","fr","es","pl"]);
