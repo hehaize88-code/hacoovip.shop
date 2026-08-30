@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-08-30",
-  "latestPublishedCommit": "9a82180f68eb934c92831c821eea22258e9d765d",
+  "latestPublishedCommit": "06495854029477a427f631e09ad4661c6cb272c7",
   "articles": [
     {
       "slug": "before-you-buy-qc-guide",
@@ -141,8 +141,10 @@
       "visuals": ["Four original HTML timing tables plus one existing local editorial catalog image; no customer or external media"],
       "planTrack": "F11",
       "cycle": "C05",
-      "liveVerified": false,
-      "deploymentStatus": "pending-live-verification"
+      "liveVerified": true,
+      "deploymentStatus": "live-verified-2026-08-30",
+      "englishVisibleWords": 1438,
+      "productionDeploymentId": "708b3c52-7d79-4120-8c2f-c63818d4703e"
     }
   ]
 }
