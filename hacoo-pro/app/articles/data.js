@@ -24,6 +24,26 @@ const retiredArticles = [
 
 export const articles = [
   {
+    slug: "hacoo-refund-instructions-checklist",
+    title: "Hacoo Refund Instructions: A Step-by-Step Evidence Checklist",
+    description:
+      "Read the current Hacoo refund instructions carefully, match each request field to evidence, preserve submission records and avoid assuming an outcome.",
+    excerpt:
+      "A field-by-field method for turning the live refund instructions into a complete, factual request without guessing eligibility or resolution.",
+    published: "2026-08-31",
+    modified: "2026-08-31",
+    checkedLabel: "August 31, 2026",
+    read: "10 min",
+    image: {
+      path: "/articles/hacoo-after-sales-deadline-map.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo refund instruction workflow from issue record to evidence and submission receipt",
+      caption:
+        "An original Hacoo Pro support map reused to show the sequence from issue evidence to request submission.",
+    },
+  },
+  {
     slug: "hacoo-order-missing-item-split-shipment",
     title: "Hacoo Order Missing an Item: Split-Shipment Checklist",
     description:

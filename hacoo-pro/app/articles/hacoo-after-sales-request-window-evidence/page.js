@@ -67,7 +67,7 @@ export default function HacooAfterSalesWindowArticle() {
           "Hacoo refund instructions",
         ],
         isAccessibleForFree: true,
-          wordCount: 1633,
+        wordCount: 1633,
       },
       {
         "@type": "ImageObject",
@@ -416,13 +416,13 @@ export default function HacooAfterSalesWindowArticle() {
               </p>
               <p>
                 Photograph in ordinary light when possible and include one
-                overview before close-ups. A close crop can show a loose seam but
-                may not show which garment, side or option it belongs to. When
-                measurement is relevant, show both endpoints and the complete
-                measuring tool in a second image. State the method rather than
-                presenting one reading as a guaranteed fit result. For quantity
-                concerns, photograph all received contents together and retain
-                the outer packaging label in the private case file.
+                overview before close-ups. A close crop can show a loose seam
+                but may not show which garment, side or option it belongs to.
+                When measurement is relevant, show both endpoints and the
+                complete measuring tool in a second image. State the method
+                rather than presenting one reading as a guaranteed fit result.
+                For quantity concerns, photograph all received contents together
+                and retain the outer packaging label in the private case file.
               </p>
             </section>
 
@@ -530,6 +530,15 @@ export default function HacooAfterSalesWindowArticle() {
                 <li>
                   <Link
                     className="source-link"
+                    href="/articles/hacoo-refund-instructions-checklist/"
+                  >
+                    Refund instruction checklist
+                  </Link>{" "}
+                  — match each live request field to a precise evidence record.
+                </li>
+                <li>
+                  <Link
+                    className="source-link"
                     href="/articles/hacoo-marked-delivered-not-received/"
                   >
                     Delivered-but-missing checklist
@@ -556,7 +565,10 @@ export default function HacooAfterSalesWindowArticle() {
                   — preserve the entered address and shipment state.
                 </li>
                 <li>
-                  <Link className="source-link" href="/guides/shipping-planning/">
+                  <Link
+                    className="source-link"
+                    href="/guides/shipping-planning/"
+                  >
                     Shipping planning guide
                   </Link>{" "}
                   — keep fulfilment, transit, delivery and after-sales timing
