@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-26",
+  "lastUpdated": "2026-08-30",
   "latestPublishedCommit": "9a82180f68eb934c92831c821eea22258e9d765d",
   "articles": [
     {
@@ -129,6 +129,20 @@
       "cycle": "C04",
       "liveVerified": true,
       "deploymentStatus": "live-verified-2026-08-28"
+    },
+    {
+      "slug": "findqc-seller-ship-time-domestic-delivery",
+      "primaryQuery": "FindQC seller ship time",
+      "intent": "Separate historical seller dispatch from domestic delivery to a Chinese warehouse without implying current stock or international timing",
+      "focus": ["two timing clocks", "seller and listing identity", "sample freshness", "spread and outliers", "live transaction questions"],
+      "exampleType": "Editorial timing matrices and limited wording, never fabricated orders, averages, seller causes or delivery outcomes",
+      "outline": ["two clocks", "identity gate", "sample audit", "distribution", "decision use", "live follow-up", "timing record"],
+      "faqAngles": ["Does seller ship time include domestic delivery?", "Can historical timing predict current stock?", "Does domestic delivery mean international shipping?"],
+      "visuals": ["Four original HTML timing tables plus one existing local editorial catalog image; no customer or external media"],
+      "planTrack": "F11",
+      "cycle": "C05",
+      "liveVerified": false,
+      "deploymentStatus": "pending-live-verification"
     }
   ]
 }

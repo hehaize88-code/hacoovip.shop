@@ -1756,6 +1756,98 @@ export const articles = [
     related: ["findqc-standard-vs-premium-qc", "findqc-product-signals", "findqc-60-second-workflow"],
     cta: { eyebrow: "Need the visual baseline?", title: "Pair historical signals with the complete QC photo checklist", href: "/guides/qc-photo-checklist", label: "Open the QC photo checklist" },
   },
+  {
+    slug: "findqc-seller-ship-time-domestic-delivery",
+    title: "FindQC Seller Ship Time vs Domestic Delivery: Read the Two Clocks Correctly",
+    shortTitle: "Seller Ship Time vs Domestic Delivery",
+    description: "Learn how to interpret FindQC seller ship-time and domestic-delivery signals without turning historical averages into stock, dispatch or international-shipping promises.",
+    excerpt: "Separate the seller's pre-dispatch interval from the domestic carrier leg, then audit dates, samples and outliers before using either signal in a buying plan.",
+    category: "Product Intelligence Guide",
+    readTime: "10 min read",
+    date: "30 August 2026",
+    dateISO: "2026-08-30",
+    updatedISO: "2026-08-30",
+    languages: ARTICLE_LANGUAGE_OVERRIDES["findqc-seller-ship-time-domestic-delivery"],
+    heroImage: "/products/catalog/jackets-5900.jpg",
+    heroAlt: "Editorial jacket image representing a product whose seller and domestic delivery history must be reviewed separately",
+    heroCaption: "Existing FindQC Pro editorial catalog image. It is not a customer order, seller dashboard or delivery record.",
+    keywords: ["FindQC seller ship time", "FindQC domestic delivery", "seller dispatch history", "China domestic delivery to warehouse", "FindQC fulfillment signals"],
+    sourceIntro: "FindQC's current Product Intelligence, Content Integrity, Terms and platform guidance were checked on 30 August 2026. Timing fields describe historical third-party records and do not promise current stock, dispatch, warehouse arrival or international delivery.",
+    intro: [
+      "A single phrase such as “shipping took four days” hides two different events. The seller first needs to dispatch the item. A domestic carrier then moves that parcel to the Chinese warehouse used by the buyer's chosen agent. FindQC separates these stages into seller ship time and domestic delivery. Reading them as one blended number makes it harder to identify where uncertainty actually sits.",
+      "The distinction is useful, but the fields remain historical research signals. They do not show current inventory, reserve a unit, create a seller deadline or predict an international parcel. FindQC aggregates QC and product evidence; it is not the seller, purchasing agent, warehouse or carrier. Use the history to plan questions and time buffers, while the seller and buyer-selected agent remain responsible for the live transaction.",
+    ],
+    sections: [
+      {
+        id: "two-clocks",
+        title: "1. Define the two clocks before comparing any number",
+        blocks: [
+          { type: "p", text: "Seller ship time is the interval before the seller dispatches the domestic parcel. Domestic delivery begins after dispatch and ends when that parcel reaches the relevant Chinese warehouse in the underlying record. The boundary matters because each interval has different possible causes, different responsible parties and different follow-up questions." },
+          { type: "table", headers: ["Field", "Starts", "Ends", "Safe question"], rows: [["Seller ship time", "Order or purchasing stage represented in the record", "Seller dispatch", "How variable was earlier dispatch behavior?"], ["Domestic delivery", "Seller dispatch", "Arrival at the Chinese warehouse", "How variable was the earlier domestic carrier leg?"], ["International delivery", "Submitted international parcel", "Destination delivery", "Not answered by these two FindQC fields"]] },
+          { type: "p", text: "Do not rename seller ship time as delivery speed. A seller may dispatch quickly while the domestic carrier leg is slow, or dispatch late while the parcel moves quickly once collected. Equally, warehouse check-in can happen after carrier delivery. Unless the displayed record defines that extra handling interval, do not silently attach it to either field." },
+          { type: "callout", title: "Boundary sentence", text: "FindQC timing history helps diagnose where earlier waiting occurred. It does not control or guarantee any step in the current order." },
+        ],
+      },
+      {
+        id: "identity-gate",
+        title: "2. Pass the identity gate before borrowing the history",
+        blocks: [
+          { type: "p", text: "Timing from the wrong seller or wrong listing is weak evidence even when the product looks identical. Confirm the source item, seller or shop, relevant option and record relationship. A similar recommendation can reveal another candidate, but its dispatch history must not be transferred to the target. A replacement listing can also preserve a familiar image while changing seller, inventory or fulfillment behavior." },
+          { type: "list", title: "Identity checks", items: ["The source item or stable identifier matches the candidate.", "The seller or store shown for the history matches where the candidate will be purchased.", "The record is a same-item match rather than a visually similar recommendation.", "No material option conflict is visible, especially for made-to-order or customised variants.", "The capture date is recorded so later listing changes can be detected."] },
+          { type: "p", text: "If one identity field is absent, label the timing as contextual rather than exact. This does not make the record useless. It changes the decision role: exact matched history can support a time-buffer estimate, while contextual history should only prompt a live stock or dispatch question." },
+        ],
+      },
+      {
+        id: "sample-freshness",
+        title: "3. Audit sample size, freshness and coverage",
+        blocks: [
+          { type: "p", text: "An average without its sample and date range is easy to overstate. Record the displayed observation count when available, the earliest and latest relevant dates, and whether all records cover the same seller and item. If the denominator is not shown, write “sample unknown.” Do not infer a count from a chart, percentage or rounded average." },
+          { type: "table", headers: ["Audit", "Stronger context", "Reason to discount"], rows: [["Match", "Same seller and item", "Seller or listing uncertain"], ["Freshness", "Recent records span the current listing", "Only old records or a long gap"], ["Sample", "Several dated observations", "One record or unknown denominator"], ["Coverage", "Both clocks reported", "Dispatch or arrival field missing"]] },
+          { type: "p", text: "Freshness matters more for seller behavior than for some stable visual attributes. Inventory practices, sale events, supplier arrangements and listing status can change. That does not justify inventing a reason for a delay; it means old timing receives a larger uncertainty discount. A recent single observation is also not automatically stronger than a broader history. State both recency and sample limitations." },
+          { type: "callout", title: "Missing is not zero", text: "An absent timing field does not mean immediate dispatch or same-day delivery. It means the record does not support a timing conclusion." },
+        ],
+      },
+      {
+        id: "distribution-outliers",
+        title: "4. Look for spread and outliers instead of trusting one mean",
+        blocks: [
+          { type: "p", text: "A mean compresses routine observations and long delays into one value. When individual dates or a distribution are available, inspect the middle cluster, the slowest observations and whether delays appear in one clock or both. A stable cluster with one extreme outlier suggests a different planning problem from two equally sized fast and slow clusters." },
+          { type: "p", text: "Do not assign causes that the evidence does not show. A long seller interval could involve stock, production, communication, cancellation or a recording issue. A long domestic interval could reflect carrier movement, route disruption, an address problem or incomplete timestamps. The history can locate the interval that needs investigation; it cannot establish the cause by itself." },
+          { type: "table", headers: ["Pattern", "Limited interpretation", "Planning response"], rows: [["Tight seller cluster; variable domestic leg", "Earlier dispatch was more consistent than transit", "Keep a domestic transit buffer"], ["Variable seller interval; tight domestic leg", "Dispatch uncertainty dominated earlier records", "Confirm current availability and dispatch status"], ["Both variable", "The total warehouse-arrival window is uncertain", "Avoid deadline-dependent assumptions"], ["One extreme delay", "An outlier exists; cause unknown", "Keep it visible, but do not call it normal"]] },
+        ],
+      },
+      {
+        id: "decision-use",
+        title: "5. Convert the history into a buffer, not a promise",
+        blocks: [
+          { type: "p", text: "The most responsible output is a planning range or risk label. For a flexible purchase, a variable history may simply justify waiting before escalating. For a time-sensitive use, the same uncertainty may make the candidate unsuitable. The decision depends on the buyer's deadline tolerance, not on a universal pass mark." },
+          { type: "list", title: "Three evidence states", items: ["Usable context: identity is strong, several relevant dates are present and the spread is understood.", "Prompt only: the seller, sample or freshness is uncertain, so the record supplies a question rather than a buffer.", "Not applicable: the record belongs to a different seller, replacement listing or materially different product relationship."] },
+          { type: "p", text: "Never add seller ship time and domestic delivery to a carrier's international estimate and present the total as a promised arrival date. Ordering, warehouse intake, inspection, exchanges, parcel preparation and international submission are separate stages with their own conditions. The historical clocks end at the Chinese warehouse represented by the source data." },
+        ],
+      },
+      {
+        id: "live-follow-up",
+        title: "6. Ask the live transaction questions to the responsible party",
+        blocks: [
+          { type: "p", text: "Once an order exists, current evidence outranks old averages. Ask the buyer-selected agent to confirm whether the purchase was submitted, whether the seller has provided a dispatch status and whether domestic tracking exists. If the seller has not dispatched, a domestic carrier estimate is irrelevant. If tracking shows collection, the seller interval has ended and the question moves to the domestic leg." },
+          { type: "table", headers: ["Observed state", "Useful question", "Responsible source"], rows: [["No seller dispatch", "Has the seller confirmed availability or a current dispatch date?", "Seller through the chosen agent"], ["Domestic tracking active", "What is the latest carrier event and timestamp?", "Domestic carrier or agent order record"], ["Carrier delivered; warehouse absent", "Has the parcel been matched and checked in?", "Chosen agent's warehouse support"], ["Warehouse received", "Does the received option match the order?", "Warehouse QC record"]] },
+          { type: "p", text: "Keep the wording factual. “Earlier matched records showed variable pre-dispatch time; please confirm the current seller status” is defensible. “FindQC says this seller will ship late” is not. FindQC supplies research evidence, while the chosen agent executes purchasing, warehouse handling, any return request, packing and international shipment under its current terms." },
+        ],
+      },
+      {
+        id: "final-checklist",
+        title: "7. Save a compact timing decision record",
+        blocks: [
+          { type: "p", text: "Finish by writing the target item, matched seller, evidence dates, sample context, each clock's pattern, the strongest limitation and the next live check. This short record prevents a later status update from being compared with a vague memory of the historical average." },
+          { type: "list", title: "Final audit", items: ["Seller ship time and domestic delivery are defined separately.", "The target seller and listing relationship are recorded.", "Sample size and date range are stated or marked unknown.", "Spread and outliers remain visible.", "No cause, stock status or current deadline is invented.", "International delivery is excluded from the two-clock conclusion.", "The next action is assigned to the seller, chosen agent, warehouse or carrier that controls it."] },
+          { type: "p", text: "A sound conclusion might read: “The matched records suggest that pre-dispatch time has varied more than the domestic carrier leg, but the displayed sample is limited and does not confirm current stock. Treat the history as a reason to allow a larger dispatch buffer and ask the selected agent for the seller's live status.” It guides action without turning historical aggregation into a guarantee." },
+        ],
+      },
+    ],
+    sources: [],
+    related: ["findqc-product-intelligence-report-guide", "findqc-60-second-workflow", "findqc-shopping-agent-workflow"],
+    cta: { eyebrow: "Need the wider evidence context?", title: "Read every Product Intelligence field with its sample and limits", href: "/articles/findqc-product-intelligence-report-guide", label: "Open the Product Intelligence guide" },
+  },
 ];
 
 export function getArticle(slug) {
