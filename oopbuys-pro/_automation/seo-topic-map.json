@@ -375,6 +375,24 @@
         "OOPBUY current prohibited and restricted items notice"
       ],
       "internalLinkRole": "Route-selection spoke linked to shipping, packaging, consolidation and full-cost guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-restricted-goods-route-availability/",
+      "primaryQuery": "oopbuy restricted goods shipping",
+      "secondaryTerms": [
+        "oopbuy prohibited items",
+        "oopbuy route availability",
+        "oopbuy sensitive goods shipping"
+      ],
+      "intent": "commercial route-eligibility and cost planning",
+      "angle": "Separate purchase acceptance, warehouse item attributes, live carrier eligibility and destination requirements before comparing parcel architectures.",
+      "evidence": [
+        "OOPBUY current Notes Before Purchasing",
+        "OOPBUY current Disclaimer",
+        "OOPBUY current Shipping Estimation",
+        "OOPBUY current Beginner's Guide"
+      ],
+      "internalLinkRole": "Restricted-goods eligibility spoke linked to route selection, consolidation, QC and full-cost guides"
     }
   ]
 }
