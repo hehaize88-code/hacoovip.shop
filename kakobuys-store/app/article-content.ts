@@ -741,5 +741,85 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public service and quality-inspection pages, its current indexed color-difference warning, and current public wording that warehouse inspection includes color checks, reviewed August 29, 2026. Photography limits were checked against current Adobe white-balance guidance and NIST research on color error in digital camera capture. Frame diagnosis, confidence labels and the decision matrix are independent editorial methods. Photo availability, services, eligibility, fees and deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-material-texture-qc-evidence",
+    title: "Kakobuy Material and Texture QC: What Photos Can Prove",
+    seoTitle: "Kakobuy Material and Texture QC: What Photos Prove",
+    seoDescription: "Review Kakobuy material and texture QC evidence without treating warehouse photos as proof of fiber content, feel, durability, warmth or authenticity.",
+    primaryKeyword: "Kakobuy material and texture QC",
+    secondaryKeywords: ["Kakobuy fabric QC photos", "QC photo material check", "what Kakobuy QC photos prove", "Kakobuy texture check"],
+    intro: "A close warehouse photo can show a ribbed knit, a visible weave, a glossy coating, a care label or a damaged surface. It cannot let you touch the fabric, test its fiber content or predict how it will behave after months of wear. The useful Kakobuy material and texture QC workflow separates direct visual observations from seller claims, label text and properties that remain unknown. That boundary helps you request one decision-changing view without turning an ordinary web photo into a laboratory test.",
+    quickAnswer: "Match the exact item first, then classify every material statement by source. Use photos to inspect visible surface, weave, pile direction, coating consistency, labels and construction. Do not infer composition, hand feel, warmth, breathability, shrinkage, water resistance, durability or authenticity from appearance alone. When one visible detail determines the decision, request a controlled close-up with scale, even light and a wider context view.",
+    sections: [
+      {
+        heading: "Start with identity, not a fabric guess",
+        paragraphs: [
+          "Open the order and record the exact seller listing, chosen option, color, size, quantity and warehouse line. A material comparison is meaningless if the photo belongs to another variant or if several similar items arrived together. Match visible labels, packaging and distinctive construction to the order before judging texture. Preserve the seller description as a dated claim rather than rewriting it as an observed fact.",
+          "Create four evidence labels: seller-stated, label-visible, photo-observed and unverified. For example, ‘cotton’ may be seller-stated; ‘80% cotton’ may be text visible on a photographed label; ‘fine diagonal surface’ may be photo-observed; softness remains unverified. These categories can coexist, but they should never be merged into a stronger conclusion than the evidence supports."
+        ],
+        bullets: ["Match the warehouse item to the exact order line.", "Copy seller wording without upgrading it to proof.", "Record label text separately from visible surface observations.", "Mark every sensory or performance claim that remains unknown."]
+      },
+      {
+        heading: "Use a wide view before zooming into texture",
+        paragraphs: [
+          "Begin with the whole item. Check silhouette, panel placement, lining exposure, matching parts and whether folds or packaging distort the surface. A close crop can make a normal seam allowance look like damage or hide that the photographed patch belongs to a pocket rather than the main body. The wide frame establishes location; the close frame supplies detail.",
+          "Next inspect the same area across at least two useful views when available. If the pattern changes with angle, light or pile direction, record that behavior instead of choosing the frame that best matches expectations. Compression and digital sharpening can exaggerate fibers or erase subtle grain, so avoid counting threads or making precise density claims from ordinary warehouse images."
+        ]
+      },
+      {
+        heading: "Separate surface evidence from fiber composition",
+        paragraphs: [
+          "A photograph may support observations such as smooth, visibly brushed, ribbed, loosely knitted, densely woven, pebbled, glossy or matte. Those words describe appearance in the image. They do not identify the fiber. Polyester can imitate a wool-like surface, coated fabric can resemble leather, and blends can look similar to single-fiber textiles. Even an accurate label photo proves what the label says, not an independent test of the contents.",
+          "If composition materially affects your decision, compare the seller statement with a clear care or fiber label and note any conflict. Do not invent a resolution when the label is absent, blurred or written for a different component. A focused request for the complete label is stronger than another decorative close-up, but it still does not establish performance or authenticity."
+        ],
+        bullets: ["Photo can support: visible weave, knit, pile, coating and label text.", "Photo cannot establish: chemical composition or exact blend accuracy.", "Conflict: preserve both claims and request clarification if it changes the decision."]
+      },
+      {
+        heading: "Account for light, angle and pile direction",
+        paragraphs: [
+          "Texture is produced partly by light. Side lighting emphasizes ridges and scratches; flat frontal light can hide them. Velvet, fleece, suede-like surfaces and brushed knits may become lighter or darker when the fibers point another way. Glossy coatings and hardware reflect the room, creating bright streaks that are not automatically scuffs or uneven finish.",
+          "Compare matched areas under similar exposure. Look for a surface issue that stays in the same physical location while light and angle change. If a mark moves with the reflection, it is less likely to be fixed damage; if a gap, snag or bald patch remains visible across views, the evidence becomes stronger. The previous color-and-lighting workflow is useful here, but texture review asks a different question: whether the surface structure is consistent and intact."
+        ]
+      },
+      {
+        heading: "Inspect construction where material changes",
+        paragraphs: [
+          "Material evidence is most useful at boundaries: shell to lining, ribbing to body, upper to sole, coated panel to edge, or strap to bag body. Inspect whether the promised lining is visibly present, whether paired panels use a consistent surface, and whether raw edges, delamination, cracking, peeling or missed stitching appear around joins. A visible construction problem can be decision-changing even when composition remains unknown.",
+          "Do not confuse deliberate variation with a defect. Washed fabrics, marled yarns, natural-looking grain and distressed finishes can vary. Compare symmetric areas and the seller reference, but remember that listing images may show a selected sample and edited lighting. State the observation precisely: ‘left cuff has a persistent smooth patch’ is more useful than ‘bad material.’"
+        ]
+      },
+      {
+        heading: "Know which properties photos cannot prove",
+        paragraphs: [
+          "A warehouse photo cannot reliably prove softness, stiffness, stretch recovery, drape in motion, breathability, warmth, odor, waterproofing, shrinkage, colorfastness, abrasion resistance or long-term durability. It also cannot certify authenticity. Those properties require touch, controlled measurement, a defined test or evidence beyond a normal inspection image. The absence of a visible flaw is not a performance guarantee.",
+          "Treat words such as premium, heavy, breathable or waterproof as claims whose meaning and test method may be unspecified. Weight can be useful when an item-level measurement is clearly attached to the correct record, but weight alone does not identify fiber or quality. Keep the unknowns visible so that a shipping decision reflects actual evidence rather than an attractive close-up."
+        ],
+        bullets: ["Do not infer feel from surface appearance.", "Do not convert label text into independent composition testing.", "Do not infer durability from a clean new sample.", "Do not use appearance as proof of authenticity or safety."]
+      },
+      {
+        heading: "Request one controlled, decision-changing image",
+        paragraphs: [
+          "Ask for another image only when it can separate two realistic decisions. Name the item, exact location, framing and comparison: ‘Please photograph the lower-left front panel in even light, include the adjacent seam for location, and add one wider view showing the whole front.’ For a label, request the complete label unfolded and readable rather than a crop that omits the fiber line or care symbols.",
+          "A useful texture request often pairs a close view with context. The close image reveals the surface; the wider image proves where it is. A ruler may establish the size of a snag or coating gap, but it does not measure softness or performance. Avoid asking warehouse staff to judge whether a fabric feels expensive, genuine or warm, because those subjective conclusions are not reproducible from the returned evidence."
+        ]
+      },
+      {
+        heading: "Build a material evidence ledger",
+        paragraphs: [
+          "Use one row per claim or observation. Record the item and option, source type, exact wording, image identifier, visible location, lighting limitation, confidence and next action. A strong row might read: ‘care label visible; text states 65/35 blend; image 4; label fully readable; seller page states a different blend; clarification required.’ A weak row would read only ‘looks good.’",
+          "Confidence should describe the observation, not the overall product. You can have high confidence that a coating has a visible crack and low confidence about the underlying material. Preserve conflicting rows instead of averaging them. This makes the final ship, clarify or after-sales decision auditable and prevents one favorable image from erasing a persistent concern."
+        ],
+        bullets: ["Claim or observation in exact words.", "Seller, label or photo source.", "Image ID, location and viewing limitation.", "Confidence and decision threshold.", "Ship, clarify or current after-sales action."]
+      },
+      {
+        heading: "Choose ship, clarify or after-sales",
+        paragraphs: [
+          "Ship when identity is correct, the visible surface and construction meet your preset threshold, and the remaining unknown properties are acceptable. Clarify when one controlled image or complete label can resolve a material conflict. Use the live after-sales route when clear evidence shows a wrong option, missing promised component or unacceptable visible damage and the order remains eligible under current terms.",
+          "Kakobuy's public process describes warehouse quality checks and buyer review of photos, but that does not expand what a photograph can prove or guarantee a particular remedy. Keep the item out of parcel submission while a decision-changing question remains open. Save the order, dated seller claim, original QC images, focused request and resulting status together. Good Kakobuy material and texture QC ends with a bounded decision, not a universal verdict about quality."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public purchase and warehouse-inspection flow, plus current service wording about photography and display limitations, reviewed August 31, 2026. Evidence boundaries were checked against current FTC textile-labeling guidance and NIST information on color rendering. The evidence labels and decision ledger are independent editorial methods. Photo availability, after-sales eligibility, services, fees and deadlines can change; follow the live order."
   }
 ];

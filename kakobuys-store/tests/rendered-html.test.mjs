@@ -209,13 +209,14 @@ test("English article center includes all English-only guides", async () => {
     { waitUntil() {}, passThroughOnException() {} },
   );
   const centerHtml = await center.text();
-  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 9);
+  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 10);
   assert.match(centerHtml, /Kakobuy Warehouse Storage Guide/);
   assert.match(centerHtml, /Kakobuy Returns and After-Sales Checklist/);
   assert.match(centerHtml, /Kakobuy Stitching and Finish QC Checklist/);
   assert.match(centerHtml, /Kakobuy Alignment, Symmetry and Print Placement QC/);
   assert.match(centerHtml, /Kakobuy Size Measurement QC: What Photos Can and Cannot Prove/);
   assert.match(centerHtml, /Kakobuy QC Color and Lighting Errors: Is the Mismatch Real/);
+  assert.match(centerHtml, /Kakobuy Material and Texture QC: What Photos Can Prove/);
 
   const article = await worker.fetch(
     new Request("http://localhost/kakobuy-warehouse-storage-guide", { headers: { accept: "text/html" } }),
@@ -312,6 +313,22 @@ test("English article center includes all English-only guides", async () => {
   assert.match(colorHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-qc-color-lighting-errors\/"/);
   assert.match(colorHtml, /<link rel="alternate" hrefLang="en" href="https:\/\/kakobuys\.store\/kakobuy-qc-color-lighting-errors\/"/);
   assert.doesNotMatch(colorHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+
+  const material = await worker.fetch(
+    new Request("http://localhost/kakobuy-material-texture-qc-evidence", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  const materialHtml = await material.text();
+  const materialArticle = materialHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
+  const materialWords = materialArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  assert.equal(material.status, 200);
+  assert.ok(materialWords >= 1200 && materialWords <= 1800, `material article should contain 1200–1800 visible words, found ${materialWords}`);
+  assert.match(materialHtml, /"@type":"Article"/);
+  assert.match(materialHtml, /"@type":"BreadcrumbList"/);
+  assert.match(materialHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-material-texture-qc-evidence\/"/);
+  assert.match(materialHtml, /<link rel="alternate" hrefLang="en" href="https:\/\/kakobuys\.store\/kakobuy-material-texture-qc-evidence\/"/);
+  assert.doesNotMatch(materialHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 });
 
 test("expanded Finds page contains thirty unique records and every detail page", async () => {
@@ -395,7 +412,7 @@ test("production page routing returns real 404s for false article paths", async 
   const pagesWorkerUrl = new URL("../_worker.js", import.meta.url);
   pagesWorkerUrl.searchParams.set("routing", `${process.pid}-${Date.now()}`);
   const pagesWorker = (await import(pagesWorkerUrl.href)).default;
-  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/kakobuy-qc-color-lighting-errors/", "/finds/", "/find-5756/"]);
+  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/kakobuy-qc-color-lighting-errors/", "/kakobuy-material-texture-qc-evidence/", "/finds/", "/find-5756/"]);
   const env = { ASSETS: { fetch: async (request) => {
     const path = new URL(request.url).pathname;
     return validAssets.has(path)
