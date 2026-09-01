@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-30",
+  "lastUpdated": "2026-09-01",
   "latestPublishedCommit": "06495854029477a427f631e09ad4661c6cb272c7",
   "articles": [
     {
@@ -145,6 +145,17 @@
       "deploymentStatus": "live-verified-2026-08-30",
       "englishVisibleWords": 1438,
       "productionDeploymentId": "708b3c52-7d79-4120-8c2f-c63818d4703e"
+    },
+    {
+      "slug": "findqc-defect-history-sample-limits",
+      "primaryQuery": "FindQC defect history",
+      "intent": "Interpret recurring defect signals with item identity, sample, date and severity limits before planning an exact-unit inspection",
+      "focus": ["defect label scope", "identity gate", "sample denominator", "date clustering", "severity and consequence", "exact-unit inspection plan"],
+      "planTrack": "F12",
+      "cycle": "C06",
+      "englishVisibleWords": 1568,
+      "liveVerified": false,
+      "deploymentStatus": "pending"
     }
   ]
 }
