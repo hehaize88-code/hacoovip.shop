@@ -471,7 +471,15 @@ export default function HacooRefundInstructionsArticle() {
                 >
                   wrong-address evidence guide
                 </Link>{" "}
-                when the destination record is the problem.
+                when the destination record is the problem. For a request made
+                before fulfilment or a payment-ledger question, use the{" "}
+                <Link
+                  className="source-link"
+                  href="/articles/hacoo-order-cancellation-billing-evidence/"
+                >
+                  cancellation and billing evidence guide
+                </Link>
+                .
               </p>
             </section>
 

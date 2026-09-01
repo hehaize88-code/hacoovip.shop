@@ -24,6 +24,26 @@ const retiredArticles = [
 
 export const articles = [
   {
+    slug: "hacoo-order-cancellation-billing-evidence",
+    title: "Hacoo Order Cancellation and Billing Questions: Evidence Guide",
+    description:
+      "Separate a Hacoo cancellation request from pending, duplicate or completed billing, preserve the right records and ask support one precise question.",
+    excerpt:
+      "A status-and-ledger workflow for cancellation and billing questions without assuming that an order can still be stopped or that a pending charge is final.",
+    published: "2026-09-02",
+    modified: "2026-09-02",
+    checkedLabel: "September 2, 2026",
+    read: "10 min",
+    image: {
+      path: "/articles/hacoo-after-sales-deadline-map.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo cancellation and billing evidence workflow from order status to transaction record and support question",
+      caption:
+        "An original Hacoo Pro support map reused to show the sequence from order status and billing evidence to a documented support request.",
+    },
+  },
+  {
     slug: "hacoo-refund-instructions-checklist",
     title: "Hacoo Refund Instructions: A Step-by-Step Evidence Checklist",
     description:
