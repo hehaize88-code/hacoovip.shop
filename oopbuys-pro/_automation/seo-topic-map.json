@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30",
+  "updated": "2026-09-03",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
@@ -393,6 +393,23 @@
         "OOPBUY current Beginner's Guide"
       ],
       "internalLinkRole": "Restricted-goods eligibility spoke linked to route selection, consolidation, QC and full-cost guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-shipping-insurance-cost-coverage-claim-limits/",
+      "primaryQuery": "oopbuy shipping insurance",
+      "secondaryTerms": [
+        "oopbuy insurance cost",
+        "oopbuy parcel coverage",
+        "oopbuy claim limits"
+      ],
+      "intent": "commercial insurance-cost and retained-loss planning",
+      "angle": "Audit the route-specific insurance offer, compensation basis, covered events, exclusions, evidence and remaining financial exposure.",
+      "evidence": [
+        "OOPBUY current Insurance and Compensation notice",
+        "OOPBUY current International Parcel Delivery Agreement",
+        "OOPBUY current User Registration Agreement"
+      ],
+      "internalLinkRole": "Insurance-cost spoke linked to restricted-goods, route comparison, tracking and full-cost guides"
     }
   ]
 }
