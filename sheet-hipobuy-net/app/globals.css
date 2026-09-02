@@ -388,6 +388,23 @@ footer > div a { color: var(--indigo); }
 .info-card-grid h3 { margin: auto 0 10px; font-size: 21px; letter-spacing: -.035em; }
 .info-card-grid p { min-height: 50px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
 .inner-shipping .section-shell { padding-block: 58px; }
+.shipping-guide-it { padding-top: 35px; }
+.shipping-guide-it > header { max-width: 940px; margin-bottom: 48px; }
+.shipping-guide-it > header > p:first-child, .shipping-decision-box > div > p { margin: 0 0 14px; color: var(--indigo); font: 720 10px var(--font-geist-mono), monospace; letter-spacing: .1em; text-transform: uppercase; }
+.shipping-guide-it > header h2 { margin: 0; font-size: clamp(38px, 5vw, 67px); line-height: .98; letter-spacing: -.06em; }
+.shipping-guide-it > header > p:last-child { max-width: 820px; margin: 25px 0 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+.shipping-guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.shipping-guide-grid article { min-height: 390px; padding: clamp(25px, 4vw, 46px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+.shipping-guide-grid article > span { color: var(--indigo); font: 720 10px var(--font-geist-mono), monospace; }
+.shipping-guide-grid h3 { max-width: 530px; margin: 72px 0 19px; font-size: clamp(25px, 2.7vw, 37px); line-height: 1.05; letter-spacing: -.045em; }
+.shipping-guide-grid p { margin: 0 0 15px; color: #4d586c; font-size: 14px; line-height: 1.78; }
+.shipping-guide-grid a { color: var(--indigo-dark); font-weight: 720; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.shipping-decision-box { margin-top: 28px; padding: clamp(27px, 5vw, 55px); display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(35px, 7vw, 90px); border-radius: 16px; background: var(--navy); color: #fff; }
+.shipping-decision-box h3 { margin: 0; font-size: clamp(28px, 3.5vw, 45px); line-height: 1.02; letter-spacing: -.05em; }
+.shipping-decision-box ul { list-style: none; margin: 0; padding: 0; }
+.shipping-decision-box li { position: relative; padding: 13px 0 13px 27px; border-bottom: 1px solid #40506a; color: #d8deea; font-size: 13px; line-height: 1.5; }
+.shipping-decision-box li::before { content: "✓"; position: absolute; left: 2px; color: #9da6ff; font-weight: 800; }
+.shipping-decision-box > a { grid-column: 2; width: fit-content; color: #aeb6ff; font-size: 12px; font-weight: 720; }
 .standalone-faq { max-width: 1020px; padding-top: 36px; }
 .article-index { padding-top: 34px; }
 .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
@@ -502,6 +519,11 @@ footer > div a { color: var(--indigo); }
   .article-checklist ol { grid-template-columns: 1fr; }
   .article-cta { grid-template-columns: 1fr; }
   .article-cta > a { width: fit-content; }
+  .shipping-guide-grid { grid-template-columns: 1fr; }
+  .shipping-guide-grid article { min-height: 0; }
+  .shipping-guide-grid h3 { margin-top: 42px; }
+  .shipping-decision-box { grid-template-columns: 1fr; }
+  .shipping-decision-box > a { grid-column: 1; }
 }
 
 @media (max-width: 560px) {

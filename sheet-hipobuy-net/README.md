@@ -21,4 +21,4 @@ Multilingual editorial and spreadsheet site prepared for `sheet-hipobuy.net`.
 
 ## Publishing state
 
-The source intentionally keeps search indexing disabled while it is under review. Enabling production indexing and connecting the final domain should be handled as a separate release step.
+Production indexing is enabled. The canonical public origin is `https://sheet-hipobuy.net`, with localized canonicals and hreflang alternates generated for every route.

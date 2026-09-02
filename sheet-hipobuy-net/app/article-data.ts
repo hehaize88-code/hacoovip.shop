@@ -30,35 +30,35 @@ export type ArticleUi = {
 
 export const articleUi: Record<Lang, ArticleUi> = {
   en: {
-    back: "All SEO articles", minutes: "min read", updated: "Updated 14 August 2026", contents: "In this guide",
+    back: "All buying guides", minutes: "min read", updated: "Updated 2 September 2026", contents: "In this guide",
     keyPoints: "Key points", checklist: "Practical checklist", faq: "Frequently asked questions",
     sourceNote: "Research boundary", sourceText: "Checked 14 August 2026 against Hipobuy’s public landing page, Google Play and Apple App Store listings. Review themes are paraphrased from public app-store and review-site posts; they are individual experiences, not verified platform-wide outcomes. Confirm live terms in your account before paying or approving a parcel.",
     ctaTitle: "Ready to compare product finds?", ctaText: "Use the searchable product index to open the exact listing, then return to this guide before warehouse approval.",
     ctaButton: "Open product index",
   },
   de: {
-    back: "Alle SEO-Artikel", minutes: "Min. Lesezeit", updated: "Aktualisiert am 14. August 2026", contents: "In diesem Ratgeber",
+    back: "Alle Kaufratgeber", minutes: "Min. Lesezeit", updated: "Aktualisiert am 2. September 2026", contents: "In diesem Ratgeber",
     keyPoints: "Das Wichtigste", checklist: "Praktische Checkliste", faq: "Häufige Fragen",
     sourceNote: "Recherchegrenze", sourceText: "Am 14. August 2026 mit öffentlicher Hipobuy-Startseite sowie Google-Play- und Apple-App-Store-Einträgen geprüft. Bewertungsthemen sind aus öffentlichen Beiträgen sinngemäß zusammengefasst; es sind Einzelerfahrungen, keine bestätigten Gesamtergebnisse. Aktuelle Kontobedingungen vor Zahlung oder Freigabe prüfen.",
     ctaTitle: "Produktfundstücke vergleichen?", ctaText: "Öffne über den durchsuchbaren Produktindex den exakten Eintrag und kehre vor der Lagerfreigabe zu diesem Ratgeber zurück.",
     ctaButton: "Produktindex öffnen",
   },
   es: {
-    back: "Todos los artículos SEO", minutes: "min de lectura", updated: "Actualizado el 14 de agosto de 2026", contents: "En esta guía",
+    back: "Todas las guías de compra", minutes: "min de lectura", updated: "Actualizado el 2 de septiembre de 2026", contents: "En esta guía",
     keyPoints: "Puntos clave", checklist: "Lista práctica", faq: "Preguntas frecuentes",
     sourceNote: "Límite de la investigación", sourceText: "Comprobado el 14 de agosto de 2026 con la página pública de Hipobuy y sus fichas de Google Play y Apple App Store. Los temas de opiniones son paráfrasis de publicaciones públicas y representan experiencias individuales, no resultados generales verificados. Confirma las condiciones activas antes de pagar o aprobar.",
     ctaTitle: "¿Listo para comparar productos?", ctaText: "Usa el índice buscable para abrir el anuncio exacto y vuelve a esta guía antes de aprobarlo en el almacén.",
     ctaButton: "Abrir índice de productos",
   },
   it: {
-    back: "Tutti gli articoli SEO", minutes: "min di lettura", updated: "Aggiornato il 14 agosto 2026", contents: "In questa guida",
+    back: "Tutte le guide all’acquisto", minutes: "min di lettura", updated: "Aggiornato il 2 settembre 2026", contents: "In questa guida",
     keyPoints: "Punti chiave", checklist: "Checklist pratica", faq: "Domande frequenti",
     sourceNote: "Limite della ricerca", sourceText: "Controllato il 14 agosto 2026 sulla landing Hipobuy e sulle schede Google Play e Apple App Store. I temi delle recensioni sono parafrasi di post pubblici e restano esperienze individuali, non risultati generali verificati. Conferma le condizioni attive prima di pagare o approvare.",
     ctaTitle: "Vuoi confrontare i prodotti?", ctaText: "Usa l’indice ricercabile per aprire l’inserzione esatta e torna a questa guida prima dell’approvazione in magazzino.",
     ctaButton: "Apri indice prodotti",
   },
   pl: {
-    back: "Wszystkie artykuły SEO", minutes: "min czytania", updated: "Aktualizacja: 14 sierpnia 2026", contents: "W tym poradniku",
+    back: "Wszystkie poradniki zakupowe", minutes: "min czytania", updated: "Aktualizacja: 2 września 2026", contents: "W tym poradniku",
     keyPoints: "Najważniejsze punkty", checklist: "Praktyczna lista", faq: "Najczęstsze pytania",
     sourceNote: "Granica badania", sourceText: "Sprawdzono 14 sierpnia 2026 na publicznej stronie Hipobuy oraz w kartach Google Play i Apple App Store. Tematy opinii są parafrazą publicznych wpisów i pozostają pojedynczymi doświadczeniami, nie potwierdzonym wynikiem całej platformy. Przed płatnością sprawdź warunki konta.",
     ctaTitle: "Chcesz porównać produkty?", ctaText: "Użyj przeszukiwalnego indeksu, otwórz dokładną ofertę i wróć do poradnika przed zatwierdzeniem w magazynie.",

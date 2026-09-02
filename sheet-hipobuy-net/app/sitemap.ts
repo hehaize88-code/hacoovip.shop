@@ -8,7 +8,7 @@ import {
 } from "./site-data";
 
 const origin = "https://sheet-hipobuy.net";
-const lastModified = new Date("2026-08-14T00:00:00.000Z");
+const lastModified = new Date("2026-09-02T00:00:00.000Z");
 export const dynamic = "force-static";
 const pages: PageKey[] = [
   "home",

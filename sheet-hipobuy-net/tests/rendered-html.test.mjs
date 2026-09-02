@@ -53,6 +53,31 @@ test("publishes a complete sitemap and robots declaration", async () => {
   assert.match(robotsResponse.html, /Sitemap: https:\/\/sheet-hipobuy\.net\/sitemap\.xml/);
 });
 
+test("publishes focused Italian snippets, shipping depth and click tracking", async () => {
+  const home = await render("/it");
+  assert.equal(home.response.status, 200);
+  assert.match(home.html, /<title>Lista Hipobuy 2026 \| Prodotti e link verificati<\/title>/);
+  assert.match(home.html, /Consulta la lista Hipobuy 2026 con prodotti, prezzi indicativi e link verificati/);
+  assert.match(home.html, /data-ga-event="search_submit"/);
+  assert.match(home.html, /data-ga-event="product_open"/);
+  assert.match(home.html, /data-ga-event="category_open"/);
+  assert.match(home.html, /data-ga-event="language_change"/);
+
+  const shipping = await render("/it/shipping");
+  assert.equal(shipping.response.status, 200);
+  assert.match(shipping.html, /<title>Costi spedizione Hipobuy 2026 \| Peso, volume e dogana<\/title>/);
+  assert.match(shipping.html, /Come confrontare un preventivo Hipobuy senza fermarsi al prezzo iniziale/);
+  assert.match(shipping.html, /hipobuy-actual-vs-volumetric-weight/);
+  assert.match(shipping.html, /hipobuy-warehouse-qc-photos/);
+
+  const qcArticle = await render("/it/articles/hipobuy-warehouse-qc-photos");
+  assert.match(qcArticle.html, /<title>Foto QC Hipobuy: cosa controllare prima dell.approvazione<\/title>/);
+
+  for (const html of [home.html, shipping.html, qcArticle.html]) {
+    assert.doesNotMatch(html, /SEO Articles|Articoli SEO|contenuti SEO|Biblioteca SEO/i);
+  }
+});
+
 test("keeps every localized article complete and structurally aligned", async () => {
   const languages = ["en", "de", "es", "it", "pl"];
   const slugs = [

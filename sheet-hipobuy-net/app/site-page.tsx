@@ -1,11 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { articleHref, articleSlugs, ArticleSlug, categoryLinks, copies, languageHref, languages, Lang, mainSite, pageHref, PageKey, products } from "./site-data";
 import { articleBodies, articleUi } from "./article-data";
+import ItalianShippingGuide from "./italian-shipping-guide";
 
 type LocalCopy = (typeof copies)[Lang];
 const canonicalOrigin = "https://sheet-hipobuy.net";
+
+function useDocumentLanguage(lang: Lang) {
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+}
 
 function Brand({ lang, page, footer = false }: { lang: Lang; page: PageKey; footer?: boolean }) {
   return (
@@ -40,13 +47,13 @@ function Header({ lang, page, articleSlug }: { lang: Lang; page: PageKey; articl
             <div className="language-popover">
               <p>{t.common.language}</p>
               {languages.map((item) => (
-                <a key={item.code} className={item.code === lang ? "active" : ""} href={articleSlug ? articleHref(item.code, articleSlug) : languageHref(item.code, page)} hrefLang={item.code}>
+                <a key={item.code} className={item.code === lang ? "active" : ""} href={articleSlug ? articleHref(item.code, articleSlug) : languageHref(item.code, page)} hrefLang={item.code} data-ga-event="language_change" data-ga-language={item.code} data-ga-location="header">
                   <span>{item.flag}</span><div><strong>{item.label}</strong><small>{item.market}</small></div><b>{item.code === lang ? "✓" : ""}</b>
                 </a>
               ))}
             </div>
           </details>
-          <a className="header-action" href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener noreferrer">{t.common.openIndex} <span aria-hidden="true">↗</span></a>
+          <a className="header-action" href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener noreferrer" data-ga-event="outbound_click" data-ga-link-url={`${mainSite}/AllProducts/`} data-ga-location="header">{t.common.openIndex} <span aria-hidden="true">↗</span></a>
         </div>
       </header>
     </>
@@ -112,14 +119,14 @@ function ProductTable({ lang }: { lang: Lang }) {
           <div className="table-row product-row" role="row" key={product.href}>
             <div className="product-cell" role="cell">
               <span className="row-number">{String(index + 1).padStart(2, "0")}</span><img src={product.image} alt="" width="72" height="72" loading={index < 3 ? "eager" : "lazy"} />
-              <div><a href={product.href} target="_blank" rel="noopener noreferrer">{product.name}</a><small>{product.id}</small></div>
+              <div><a href={product.href} target="_blank" rel="noopener noreferrer" data-ga-event="product_open" data-ga-item-id={product.id} data-ga-item-name={product.name} data-ga-location="product_name">{product.name}</a><small>{product.id}</small></div>
             </div>
             <div className="mobile-field category-cell" role="cell" data-label={t.common.category}><span>{categoryCopy[product.category]?.[0]}</span></div>
             <div className="mobile-field source-cell" role="cell" data-label={t.common.source}>{product.sourcePrice}</div>
             <div className="mobile-field usd-cell" role="cell" data-label={t.common.usd}><strong>{product.price}</strong></div>
             <div className="mobile-field status-cell" role="cell" data-label={t.common.status}><span><i /> {t.common.live}</span></div>
             <div className="mobile-field checked-cell" role="cell" data-label={t.common.checkedShort}>14/08</div>
-            <a className="row-action" role="cell" href={product.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.common.openProduct}: ${product.name}`}><span>{t.common.openProduct}</span>↗</a>
+            <a className="row-action" role="cell" href={product.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.common.openProduct}: ${product.name}`} data-ga-event="product_open" data-ga-item-id={product.id} data-ga-item-name={product.name} data-ga-location="row_action"><span>{t.common.openProduct}</span>↗</a>
           </div>
         ))}
         {filteredProducts.length === 0 && <div className="empty-state">{t.common.noResults}</div>}
@@ -135,7 +142,7 @@ function CategoryGrid({ lang }: { lang: Lang }) {
   return (
     <div className="category-grid">
       {categoryLinks.map((category, index) => (
-        <a href={category.href} target="_blank" rel="noopener noreferrer" key={category.key}>
+        <a href={category.href} target="_blank" rel="noopener noreferrer" key={category.key} data-ga-event="category_open" data-ga-category={category.key} data-ga-location="category_grid">
           <span>{String(index + 1).padStart(2, "0")}</span><div><strong>{categoryCopy[category.key][0]}</strong><small>{categoryCopy[category.key][1]}</small></div><b aria-hidden="true">↗</b>
         </a>
       ))}
@@ -175,7 +182,7 @@ function HomePage({ lang }: { lang: Lang }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <section className="hero-shell">
         <div className="hero-copy"><p className="overline"><span>{t.home.overline}</span></p><h1>{t.home.title}</h1><p>{t.home.lead}</p>
-          <form className="external-search" action={`${mainSite}/search.html`} method="get" target="_blank"><input type="hidden" name="channelid" value="2" /><label htmlFor={`external-search-${lang}`}>{t.home.searchLabel}</label><div><input id={`external-search-${lang}`} name="keywords" type="search" placeholder={t.home.searchPlaceholder} required /><button type="submit">{t.home.searchButton} <span aria-hidden="true">→</span></button></div></form>
+          <form className="external-search" action={`${mainSite}/search.html`} method="get" target="_blank" data-ga-event="search_submit" data-ga-language={lang} data-ga-location="home_hero"><input type="hidden" name="channelid" value="2" /><label htmlFor={`external-search-${lang}`}>{t.home.searchLabel}</label><div><input id={`external-search-${lang}`} name="keywords" type="search" placeholder={t.home.searchPlaceholder} required /><button type="submit">{t.home.searchButton} <span aria-hidden="true">→</span></button></div></form>
         </div>
         <aside className="hero-summary"><div className="summary-head"><span>{t.home.overview}</span><b><i /> {t.common.updated}</b></div><div className="summary-grid"><div><strong>10</strong><span>{t.home.categoriesMetric}</span></div><div><strong>6</strong><span>{t.home.rowsMetric}</span></div><div><strong>200+</strong><span>{t.home.countriesMetric}</span></div><div><strong>90d</strong><span>{t.home.storageMetric}</span></div></div><p>{t.home.overviewNote}</p></aside>
       </section>
@@ -199,7 +206,7 @@ function InnerPage({ lang, page }: { lang: Lang; page: Exclude<PageKey, "home"> 
       {page === "spreadsheet" && <><section className="directory-section inner-directory"><ProductTable lang={lang} /></section><section className="section-shell support-panel"><div><p>01</p><h2>{t.pageExtras.spreadsheetTitle}</h2></div><ol>{t.pageExtras.spreadsheetItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol></section></>}
       {page === "categories" && <section className="section-shell inner-content"><CategoryGrid lang={lang} /><div className="support-panel compact-support"><div><p>01</p><h2>{t.pageExtras.categoriesTitle}</h2></div><ol>{t.pageExtras.categoriesItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol></div></section>}
       {page === "qc" && <section className="section-shell inner-content"><div className="qc-layout"><QcChecklist t={t} /><aside className="qc-note"><span>{t.home.ruleLabel}</span><h3>{t.home.ruleTitle}</h3><p>{t.home.ruleText}</p></aside></div><h2 className="subsection-title">{t.pageExtras.qcTitle}</h2><div className="info-card-grid">{t.qcTips.map((tip, index) => <article key={tip[0]}><span>0{index + 1}</span><h3>{tip[0]}</h3><p>{tip[1]}</p></article>)}</div></section>}
-      {page === "shipping" && <><section className="shipping-section inner-shipping"><div className="section-shell"><ShippingFlow t={t} /></div></section><section className="section-shell inner-content"><h2 className="subsection-title">{t.pageExtras.shippingTitle}</h2><div className="info-card-grid four-cards">{t.shippingFactors.map((factor, index) => <article key={factor[0]}><span>0{index + 1}</span><h3>{factor[0]}</h3><p>{factor[1]}</p></article>)}</div></section></>}
+      {page === "shipping" && <><section className="shipping-section inner-shipping"><div className="section-shell"><ShippingFlow t={t} /></div></section><section className="section-shell inner-content"><h2 className="subsection-title">{t.pageExtras.shippingTitle}</h2><div className="info-card-grid four-cards">{t.shippingFactors.map((factor, index) => <article key={factor[0]}><span>0{index + 1}</span><h3>{factor[0]}</h3><p>{factor[1]}</p></article>)}</div></section>{lang === "it" && <ItalianShippingGuide />}</>}
       {page === "faq" && <section className="section-shell standalone-faq"><FaqList t={t} /></section>}
       {page === "articles" && <section className="section-shell article-index"><div className="article-grid">{t.articles.map((article, index) => <a className="article-card-link" href={articleHref(lang, articleSlugs[index])} key={article[1]}><article><div><span>{article[0]}</span><b>{String(index + 1).padStart(2, "0")}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{t.pageExtras.articlesCta} →</strong></article></a>)}</div></section>}
     </>
@@ -207,6 +214,7 @@ function InnerPage({ lang, page }: { lang: Lang; page: Exclude<PageKey, "home"> 
 }
 
 export default function SitePage({ lang, page }: { lang: Lang; page: PageKey }) {
+  useDocumentLanguage(lang);
   return (
     <main id="top" lang={lang} className={`page-root page-${page}`}>
       <Header lang={lang} page={page} />
@@ -217,6 +225,7 @@ export default function SitePage({ lang, page }: { lang: Lang; page: PageKey }) 
 }
 
 export function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
+  useDocumentLanguage(lang);
   const t = copies[lang];
   const ui = articleUi[lang];
   const body = articleBodies[lang][slug];
@@ -230,7 +239,7 @@ export function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
     "@type": "Article",
     headline: summary[1],
     description: summary[2],
-    dateModified: "2026-08-14",
+    dateModified: "2026-09-02",
     inLanguage: lang,
     articleSection: summary[0],
     wordCount,
@@ -271,7 +280,7 @@ export function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
             <section className="article-checklist"><p>{ui.checklist}</p><ol>{body.checklist.map((item, itemIndex) => <li key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span>{item}</li>)}</ol></section>
             <section className="article-faq"><h2>{ui.faq}</h2>{body.faqs.map((faq, faqIndex) => <details key={faq[0]} open={faqIndex === 0}><summary>{faq[0]}<b>+</b></summary><p>{faq[1]}</p></details>)}</section>
             <aside className="article-source-note"><strong>{ui.sourceNote}</strong><p>{ui.sourceText}</p></aside>
-            <aside className="article-cta"><div><p>{ui.ctaTitle}</p><span>{ui.ctaText}</span></div><a href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener noreferrer">{ui.ctaButton} ↗</a></aside>
+            <aside className="article-cta"><div><p>{ui.ctaTitle}</p><span>{ui.ctaText}</span></div><a href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener noreferrer" data-ga-event="outbound_click" data-ga-link-url={`${mainSite}/AllProducts/`} data-ga-location="article_cta">{ui.ctaButton} ↗</a></aside>
           </div>
         </div>
       </article>

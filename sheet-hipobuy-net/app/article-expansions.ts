@@ -929,7 +929,7 @@ export const localizedSectionDetails: Record<Lang, Record<LegacySlug, string[]>>
 const reviewSectionDetails: Record<Lang, string[]> = {
   en: [
     "Google Play also carries developer-provided data-safety disclosures about possible collection of location and personal information and possible sharing of device identifiers. Review permissions and deletion options; the disclosure is not an independent security certification.",
-    "Even the displayed review total can vary within a store page. Avoid turning an apparently exact count into permanent SEO copy; keep the check date and scale instead.",
+    "Even the displayed review total can vary within a store page. Avoid turning an apparently exact count into a permanent claim; keep the check date and scale instead.",
     "When a review praises product quality, separate responsibilities. The agent organises purchase and warehouse handling, while manufacture and product characteristics belong to the third-party seller.",
     "Criticism becomes most useful when it creates a control before payment. Without a pre-set gate, the same concern may surface only after too much money is committed.",
     "The moderation warning should sit beside any Trustpilot summary. Hiding it in a distant footnote would separate the most important caveat from the numbers shaping the reader’s impression.",
@@ -938,7 +938,7 @@ const reviewSectionDetails: Record<Lang, string[]> = {
   ],
   de: [
     "Zusätzlich nennt Google Play in der Datensicherheitssektion mögliche Erfassung von Standort und persönlichen Daten sowie eine mögliche Weitergabe von Gerätekennungen. Diese Entwicklerangaben sind ein Anlass, Berechtigungen und Löschoptionen selbst zu prüfen, keine unabhängige Sicherheitszertifizierung.",
-    "Auch die sichtbare Zahl von Bewertungen kann innerhalb einer Store-Seite abweichen. Verwende deshalb keine scheinbar exakte Gesamtzahl als dauerhafte SEO-Aussage, sondern Datum und ungefähre Größenordnung.",
+    "Auch die sichtbare Zahl von Bewertungen kann innerhalb einer Store-Seite abweichen. Verwende deshalb keine scheinbar exakte Gesamtzahl als dauerhafte Aussage, sondern Datum und ungefähre Größenordnung.",
     "Prüfe bei Lob für Produktqualität immer, welche Leistung bewertet wird. Der Agent organisiert Kauf und Lager; Herstellung und tatsächliche Produktmerkmale liegen beim Drittverkäufer.",
     "Kritik wird besonders nützlich, wenn sie in einen vorher festgelegten Kontrollpunkt übersetzt wird. Ohne solche Regeln beeinflusst dieselbe Information die Entscheidung erst, nachdem bereits viel Geld gebunden ist.",
     "Der Moderationshinweis gehört in Überschrift oder unmittelbaren Kontext jeder Trustpilot-Zusammenfassung. Eine versteckte Fußnote würde den wichtigsten Vorbehalt zu weit vom Eindruck der Zahlen trennen.",
@@ -947,7 +947,7 @@ const reviewSectionDetails: Record<Lang, string[]> = {
   ],
   es: [
     "Google Play también declara posible recopilación de ubicación y datos personales y posible intercambio de identificadores. Es información aportada por el desarrollador: invita a revisar permisos y borrado, pero no es una certificación independiente.",
-    "Incluso el número de reseñas puede variar dentro de una misma ficha. Evita una cifra aparentemente exacta como frase SEO permanente; conserva fecha y orden de magnitud.",
+    "Incluso el número de reseñas puede variar dentro de una misma ficha. Evita presentar una cifra aparentemente exacta como dato permanente; conserva fecha y orden de magnitud.",
     "Cuando una opinión elogia la calidad, separa funciones. El agente organiza compra y almacén; fabricación y características pertenecen al vendedor externo.",
     "La crítica resulta más útil cuando se convierte en un control previo. Sin un límite, la misma duda aparece después de haber inmovilizado demasiado dinero.",
     "El aviso de moderación debe estar junto a cualquier resumen de Trustpilot. Una nota lejana separaría la principal cautela de las cifras que condicionan la impresión.",
@@ -956,7 +956,7 @@ const reviewSectionDetails: Record<Lang, string[]> = {
   ],
   it: [
     "Google Play dichiara anche possibile raccolta di posizione e dati personali e condivisione di identificatori. Sono informazioni del developer: richiedono controllo di permessi e cancellazione, non sono una certificazione indipendente.",
-    "Perfino il numero delle recensioni può differire nella stessa scheda. Evita una cifra esatta come frase SEO permanente; conserva data e ordine di grandezza.",
+    "Perfino il numero delle recensioni può differire nella stessa scheda. Evita di presentare una cifra esatta come dato permanente; conserva data e ordine di grandezza.",
     "Quando viene lodata la qualità, separa i ruoli. L’agente gestisce acquisto e magazzino; produzione e caratteristiche dipendono dal venditore esterno.",
     "La critica diventa utile se trasformata in controllo prima del pagamento. Senza una soglia, lo stesso dubbio emerge dopo aver impegnato troppo denaro.",
     "L’avviso di moderazione deve stare vicino a ogni sintesi Trustpilot. Una nota lontana separerebbe il principale limite dai numeri che formano l’impressione.",
@@ -965,7 +965,7 @@ const reviewSectionDetails: Record<Lang, string[]> = {
   ],
   pl: [
     "Google Play deklaruje też możliwe zbieranie lokalizacji i danych osobowych oraz udostępnianie identyfikatorów. To dane dewelopera: warto sprawdzić uprawnienia i usuwanie, lecz nie są niezależnym certyfikatem.",
-    "Nawet liczba recenzji może różnić się w obrębie jednej karty. Nie używaj dokładnej liczby jako stałego hasła SEO; podaj datę i skalę.",
+    "Nawet liczba recenzji może różnić się w obrębie jednej karty. Nie przedstawiaj dokładnej liczby jako stałego faktu; podaj datę i skalę.",
     "Przy pochwałach jakości rozdziel role. Agent organizuje zakup i magazyn, a produkcja oraz cechy rzeczy zależą od zewnętrznego sprzedawcy.",
     "Krytyka pomaga, gdy staje się kontrolą przed płatnością. Bez progu ten sam problem pojawia się dopiero po związaniu dużej kwoty.",
     "Ostrzeżenie moderacyjne musi być obok podsumowania Trustpilot. Odległy przypis oddzieliłby najważniejsze zastrzeżenie od liczb budujących wrażenie.",
