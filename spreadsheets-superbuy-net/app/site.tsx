@@ -86,7 +86,7 @@ const articleEvidence: Record<Lang, { facts: [string, string, string]; note: str
 function SearchForm({ lang, compact = false }: { lang: Lang; compact?: boolean }) {
   const t = copy[lang];
   return (
-    <form className={`search-form${compact ? " compact" : ""}`} action="https://www.cnfanshm.com/search.html" method="get" target="_blank">
+    <form className={`search-form${compact ? " compact" : ""}`} action="https://www.cnfanshm.com/search.html" method="get" target="_blank" data-ga-event="search_submit" data-ga-content={compact ? "page-search" : "homepage-search"}>
       <label className="sr-only" htmlFor={`product-search-${compact ? "compact" : "main"}`}>{t.search}</label>
       <input id={`product-search-${compact ? "compact" : "main"}`} name="keywords" placeholder={t.searchPlaceholder} autoComplete="off" />
       <input type="hidden" name="channelid" value="2" />
@@ -120,10 +120,10 @@ function Header({ lang, routePath }: { lang: Lang; routePath: string }) {
           <summary aria-label={t.language}><span>{activeLang.short}</span><b>{activeLang.label}</b><i>⌄</i></summary>
           <div>{languages.map((item) => <a key={item.code} href={localizedPath(item.code, routePath)} lang={item.code}>{item.label}<span>{item.short}</span></a>)}</div>
         </details>
-        <a className="open-all" href={trackedUrl(ALL_PRODUCTS, "header-open-all")} target="_blank" rel={EXTERNAL_REL}>{t.openAll}</a>
+        <a className="open-all" href={trackedUrl(ALL_PRODUCTS, "header-open-all")} target="_blank" rel={EXTERNAL_REL} data-ga-event="outbound_main_site_click" data-ga-content="header-open-all">{t.openAll}</a>
         <details className="mobile-menu">
           <summary aria-label="Menu">MENU</summary>
-          <div>{nav.map(([path, label]) => <a key={path} href={localizedPath(lang, path)}>{label}</a>)}<a className="mobile-open-all" href={trackedUrl(ALL_PRODUCTS, "mobile-open-all")} target="_blank" rel={EXTERNAL_REL}>{t.openAll}</a></div>
+          <div>{nav.map(([path, label]) => <a key={path} href={localizedPath(lang, path)}>{label}</a>)}<a className="mobile-open-all" href={trackedUrl(ALL_PRODUCTS, "mobile-open-all")} target="_blank" rel={EXTERNAL_REL} data-ga-event="outbound_main_site_click" data-ga-content="mobile-open-all">{t.openAll}</a></div>
         </details>
       </div>
     </header>
@@ -138,7 +138,7 @@ function ProductGrid({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const labels = localizedCatalog[lang].products;
   return <><div className="product-grid">{products.map((product, index) => (
-    <a className="product-card" href={trackedUrl(product.href, `product-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} key={product.href}>
+    <a className="product-card" href={trackedUrl(product.href, `product-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} key={product.href} data-ga-event="product_click" data-ga-content={`product-${index + 1}`} data-ga-item={labels[index].title}>
       {/* Local, verified catalog assets are served directly to avoid transforming product evidence. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <div className="product-image"><img src={product.image} alt={labels[index].title} width="750" height="750" loading="lazy" decoding="async" /><span>{product.price}</span></div>
@@ -151,7 +151,7 @@ function ProductGrid({ lang }: { lang: Lang }) {
 function CategoryGrid({ lang, limit }: { lang: Lang; limit?: number }) {
   const t = copy[lang];
   return <div className="category-grid">{categories.slice(0, limit).map((category, index) => (
-    <a href={trackedUrl(category.href, `category-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} key={category.href}>
+    <a href={trackedUrl(category.href, `category-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} key={category.href} data-ga-event="category_click" data-ga-content={`category-${index + 1}`} data-ga-item={localizedCatalog[lang].categories[index]}>
       <span className={`category-symbol shape-${index % 4}`}>{category.icon}</span><h3>{localizedCatalog[lang].categories[index]}</h3><p>{t.categoryText}</p><b>{t.explore}</b>
     </a>
   ))}</div>;
@@ -160,7 +160,7 @@ function CategoryGrid({ lang, limit }: { lang: Lang; limit?: number }) {
 function ArticleCards({ lang }: { lang: Lang }) {
   const t = copy[lang];
   return <div className="article-grid">{(Object.entries(t.articles) as [ArticleSlug, (typeof t.articles)[ArticleSlug]][]).map(([slug, article], index) => (
-    <a href={localizedPath(lang, `articles/${slug}`)} key={slug}>
+    <a href={localizedPath(lang, `articles/${slug}`)} key={slug} data-ga-event="article_click" data-ga-content={slug}>
       <div className={`article-art art-${index + 1}`}><span>0{index + 1}</span><i></i><b></b></div>
       <span>{article.category} · {article.read}</span><h3>{article.title}</h3><p>{article.excerpt}</p><strong>{t.readArticle}</strong>
     </a>
@@ -176,12 +176,12 @@ function Home({ lang }: { lang: Lang }) {
   return <>
     <section className="home-hero">
       <div className="hero-copy"><span className="eyebrow">{t.eyebrow}</span><h1>{t.heroTitle}<br /><em>{t.heroEm}</em></h1><p>{t.heroText}</p><SearchForm lang={lang} /><div className="proof">{t.proof.map((item, i) => <span key={item}><b>0{i + 1}</b>{item}</span>)}</div></div>
-      <div className="trending-panel"><div><span>{t.trending}</span><a href={localizedPath(lang, "categories")}>{t.viewAll} →</a></div>{categories.slice(0, 4).map((category, index) => <a key={category.href} href={trackedUrl(category.href, `trending-${index + 1}`)} target="_blank" rel={EXTERNAL_REL}><span>{category.icon}</span><b>{localizedCatalog[lang].categories[index]}</b><i>↗</i></a>)}</div>
+      <div className="trending-panel"><div><span>{t.trending}</span><a href={localizedPath(lang, "categories")}>{t.viewAll} →</a></div>{categories.slice(0, 4).map((category, index) => <a key={category.href} href={trackedUrl(category.href, `trending-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} data-ga-event="category_click" data-ga-content={`trending-${index + 1}`} data-ga-item={localizedCatalog[lang].categories[index]}><span>{category.icon}</span><b>{localizedCatalog[lang].categories[index]}</b><i>↗</i></a>)}</div>
     </section>
     <section className="section light"><div className="section-heading"><span>{t.browseLabel}</span><h2>{t.browseTitle}</h2><p>{t.browseText}</p></div><CategoryGrid lang={lang} limit={6} /><a className="text-link" href={localizedPath(lang, "categories")}>{t.viewAll} →</a></section>
     <section className="section soft"><div className="section-heading"><span>{t.findsLabel}</span><h2>{t.findsTitle}</h2><p>{t.findsText}</p></div><ProductGrid lang={lang} /><a className="text-link" href={localizedPath(lang, "finds")}>{t.viewAll} →</a></section>
     <section className="how-section"><div><span>{t.learnLabel}</span><h2>{t.learnTitle}</h2><p>{t.learnText}</p></div><div className="steps">{t.learnSteps.map((step, index) => <article key={step.title}><b>0{index + 1}</b><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>
-    <section className="section articles-home"><div className="section-heading"><span>{t.articlesLabel}</span><h2>{guideUi[lang].title}</h2><p>{guideUi[lang].text}</p></div><ArticleCards lang={lang} /><a className="text-link" href={localizedPath(lang, "articles")}>{t.articleIndexText} →</a></section>
+    <section className="section articles-home"><div className="section-heading"><span>{t.articlesLabel}</span><h2>{guideUi[lang].title}</h2><p>{guideUi[lang].text}</p></div><ArticleCards lang={lang} /><nav className="priority-guide-links" aria-label={guideUi[lang].related}>{(["superbuy-shipping-cost-and-consolidation", "superbuy-qc-photo-checklist", "how-to-use-a-superbuy-spreadsheet"] as ArticleSlug[]).map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="priority_guide_click" data-ga-content={slug}>{t.articles[slug].title} →</a>)}</nav><a className="text-link" href={localizedPath(lang, "articles")}>{t.articleIndexText} →</a></section>
     <section className="faq-section"><div><span>05 / FAQ</span><h2>{t.faqTitle}</h2></div><FaqList lang={lang} /></section>
   </>;
 }
@@ -226,13 +226,16 @@ function ArticlePage({ lang, articleSlug }: { lang: Lang; articleSlug: ArticleSl
   const evidence = articleEvidence[lang];
   const pageUrl = `${FORMAL_SITE}${localizedPath(lang, `articles/${articleSlug}`)}`;
   const published = articleSlug === "superbuy-spreadsheet-fields-product-record" ? "2026-08-14" : "2026-08-13";
-  const schema = { "@context": "https://schema.org", "@type": articleSlug === "superbuy-spreadsheet-fields-product-record" ? "BlogPosting" : "Article", headline: article.title, description: article.excerpt, datePublished: published, dateModified: published, inLanguage: lang === "zh-cn" ? "zh-CN" : lang, author: { "@type": "Organization", name: "Superbuy Spreadsheets Editorial Team" }, publisher: { "@type": "Organization", name: "Superbuy Spreadsheets" }, mainEntityOfPage: pageUrl };
+  const isUpdatedShippingGuide = lang === "en" && articleSlug === "superbuy-shipping-cost-and-consolidation";
+  const modified = isUpdatedShippingGuide ? "2026-09-02" : published;
+  const updatedLabel = isUpdatedShippingGuide ? "Updated September 2, 2026" : evidence.updated;
+  const schema = { "@context": "https://schema.org", "@type": articleSlug === "superbuy-spreadsheet-fields-product-record" ? "BlogPosting" : "Article", headline: article.title, description: article.excerpt, datePublished: published, dateModified: modified, inLanguage: lang === "zh-cn" ? "zh-CN" : lang, author: { "@type": "Organization", name: "Superbuy Spreadsheets Editorial Team" }, publisher: { "@type": "Organization", name: "Superbuy Spreadsheets" }, mainEntityOfPage: pageUrl };
   return <article className="article-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-    <header><a href={localizedPath(lang, "articles")}>← {guideUi[lang].nav}</a><span>{article.category} · {article.read}</span><h1>{article.title}</h1><p>{article.excerpt}</p><small>{evidence.updated}</small></header>
+    <header><a href={localizedPath(lang, "articles")}>← {guideUi[lang].nav}</a><span>{article.category} · {article.read}</span><h1>{article.title}</h1><p>{article.excerpt}</p><small>{updatedLabel}</small></header>
     <div className="article-fact-strip">{evidence.facts.map((fact, index) => <div key={fact}><span>0{index + 1}</span><b>{fact}</b></div>)}</div>
-    <div className="article-body"><p className="method-note">{evidence.note}</p><p className="lead">{article.intro}</p>{article.sections.map((section, index) => <section key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</div></section>)}<aside className="related-guides"><span>{guideUi[lang].related}</span>{articleSlugs.filter((slug) => slug !== articleSlug).map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)}>{t.articles[slug].title} →</a>)}</aside></div>
-    <aside className="article-end"><span>{localizedCatalog[lang].nextStep}</span><h2>{t.findsTitle}</h2><a href={localizedPath(lang, "finds")}>{t.nav.finds} →</a></aside>
+    <div className="article-body"><p className="method-note">{evidence.note}</p><p className="lead">{article.intro}</p>{article.sections.map((section, index) => <section key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</div></section>)}<aside className="related-guides"><span>{guideUi[lang].related}</span>{articleSlugs.filter((slug) => slug !== articleSlug).map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="related_guide_click" data-ga-content={slug}>{t.articles[slug].title} →</a>)}</aside></div>
+    <aside className="article-end"><span>{localizedCatalog[lang].nextStep}</span><h2>{t.findsTitle}</h2><a href={localizedPath(lang, "finds")} data-ga-event="article_to_finds_click" data-ga-content={articleSlug}>{t.nav.finds} →</a></aside>
   </article>;
 }
 

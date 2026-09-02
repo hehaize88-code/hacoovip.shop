@@ -49,6 +49,8 @@
 .related-guides{display:grid;gap:12px;margin-top:45px;padding:28px;border:1px solid var(--navy);background:var(--lime)}
 .related-guides>span{font-size:10px;font-weight:800;text-transform:uppercase}
 .related-guides>a{width:max-content;max-width:100%;border-bottom:1px solid;font-size:15px;font-weight:700;line-height:1.4}
+.priority-guide-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:28px;padding:1px;background:var(--navy)}
+.priority-guide-links>a{display:flex;align-items:center;min-height:76px;padding:16px 18px;background:var(--lime);font-size:13px;font-weight:800;line-height:1.35}
 .site-footer>div:nth-child(2){text-align:center}
 .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:10px}
 .footer-links a{color:#dce5ef;border-bottom:1px solid #53657b;font-size:9px}
@@ -62,4 +64,6 @@
   .site-footer p{font-size:10px;line-height:1.4}
   .footer-links{justify-content:flex-start}
   .related-guides>a{font-size:13px}
+  .priority-guide-links{grid-template-columns:1fr;margin-top:16px}
+  .priority-guide-links>a{min-height:0;padding:12px;font-size:11px}
 }

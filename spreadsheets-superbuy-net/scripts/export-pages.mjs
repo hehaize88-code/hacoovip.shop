@@ -75,7 +75,7 @@ const sitemap = [
   ...localizedPaths.flatMap((pathname) => [
     "  <url>",
     `    <loc>${siteOrigin}${pathname === "/" ? "/" : `${pathname}/`}</loc>`,
-    `    <lastmod>${pathname.includes("superbuy-spreadsheet-fields-product-record") ? "2026-08-14" : "2026-08-13"}</lastmod>`,
+    `    <lastmod>${["/", "/shipping", "/articles", "/articles/superbuy-shipping-cost-and-consolidation"].includes(pathname) ? "2026-09-02" : pathname.includes("superbuy-spreadsheet-fields-product-record") ? "2026-08-14" : "2026-08-13"}</lastmod>`,
     "  </url>",
   ]),
   "</urlset>",
