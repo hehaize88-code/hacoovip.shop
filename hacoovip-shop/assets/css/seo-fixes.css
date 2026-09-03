@@ -1,6 +1,10 @@
 /* Technical SEO and mobile consistency overrides. Loaded after page-level styles. */
 html, body { max-width: 100%; overflow-x: clip; }
 
+/* Keep automatically appended article cards in the same grid as the existing
+   cards, even if an updater accidentally adds a second articleList wrapper. */
+.articleList > .articleList { display: contents; }
+
 /* Width/height attributes reserve space for Core Web Vitals. Keep the rendered
    height controlled by CSS so those attributes never stretch product covers. */
 img { height: auto; }
@@ -143,7 +147,19 @@ details.faqCard p { margin-top: 10px; }
     font-size: 30px;
   }
   .catOpen { padding-top: 10px; }
-  .articleCard { min-height: 205px; padding: 16px; }
+  .articleList .articleCard {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    padding: 16px;
+  }
+  .articleList .articleCard h3,
+  .articleList .articleCard p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+  .articleList .articleCard h3 { -webkit-line-clamp: 3; }
+  .articleList .articleCard p { -webkit-line-clamp: 4; }
   .articleDate { margin-bottom: 10px; }
   .faqCard,
   .infoCard { padding: 18px; }
