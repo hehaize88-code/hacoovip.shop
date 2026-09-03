@@ -1,5 +1,6 @@
 import { arrivalChecklist } from "./arrival-checklist";
 import { orderRemarksArticle } from "./order-remarks-article";
+import { sellerNotShippedArticle } from "./seller-not-shipped-article";
 
 export type Locale = "en" | "fr" | "de";
 
@@ -323,3 +324,6 @@ articles.de.push(arrivalChecklist.de);
 articles.en.push(orderRemarksArticle.en);
 articles.fr.push(orderRemarksArticle.fr);
 articles.de.push(orderRemarksArticle.de);
+articles.en.push(sellerNotShippedArticle.en);
+articles.fr.push(sellerNotShippedArticle.fr);
+articles.de.push(sellerNotShippedArticle.de);

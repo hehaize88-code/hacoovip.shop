@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
       title: article?.title,
       description: article?.dek,
       alternates: alternates(route.locale, route.basePath),
-      ...(["superbuy-warehouse-arrival-checklist", "superbuy-order-remarks-writing-guide"].includes(route.slug) ? {
+      ...(["superbuy-warehouse-arrival-checklist", "superbuy-order-remarks-writing-guide", "superbuy-seller-not-shipped-delay-record"].includes(route.slug) ? {
         openGraph: { type: "article" as const, title: article?.title, description: article?.dek, url, siteName: "Superbuy Product Index" },
         twitter: { card: "summary", title: article?.title, description: article?.dek },
       } : {}),
