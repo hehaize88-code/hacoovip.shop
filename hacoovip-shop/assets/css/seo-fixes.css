@@ -3,7 +3,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 
 /* Keep automatically appended article cards in the same grid as the existing
    cards, even if an updater accidentally adds a second articleList wrapper. */
-.articleList > .articleList { display: contents; }
+.articleList > .articleList,
+.articleGrid > .articleGrid { display: contents; }
 
 /* Width/height attributes reserve space for Core Web Vitals. Keep the rendered
    height controlled by CSS so those attributes never stretch product covers. */
@@ -147,19 +148,24 @@ details.faqCard p { margin-top: 10px; }
     font-size: 30px;
   }
   .catOpen { padding-top: 10px; }
-  .articleList .articleCard {
+  .articleList .articleCard,
+  .articleGrid .articleCard {
     aspect-ratio: 1 / 1;
     min-height: 0;
     padding: 16px;
   }
   .articleList .articleCard h3,
-  .articleList .articleCard p {
+  .articleList .articleCard p,
+  .articleGrid .articleCard h3,
+  .articleGrid .articleCard p {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
   }
-  .articleList .articleCard h3 { -webkit-line-clamp: 3; }
-  .articleList .articleCard p { -webkit-line-clamp: 4; }
+  .articleList .articleCard h3,
+  .articleGrid .articleCard h3 { -webkit-line-clamp: 3; }
+  .articleList .articleCard p,
+  .articleGrid .articleCard p { -webkit-line-clamp: 4; }
   .articleDate { margin-bottom: 10px; }
   .faqCard,
   .infoCard { padding: 18px; }
