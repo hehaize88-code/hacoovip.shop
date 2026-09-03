@@ -27,8 +27,8 @@
     nl:{ind:"Onafhankelijke gids: dit is niet de officiële Hacoo-app website.",cat:"Categorieën",trend:"Trends",seo:"SEO-artikelen",how:"Hoe het werkt",qc:"QC-gids",faq:"FAQ",open:"Spreadsheet openen",catsTitle:"Populaire categorie-ingangen",catsLead:"Bekijk productgroepen zonder terug te gaan naar de homepage.",trendTitle:"Populaire producten",trendLead:"Open productdetails en onderzoek echte coverafbeeldingen.",seoTitle:"SEO-artikelen",seoLead:"Gidsen over spreadsheets, QC-foto's, reverse image search en proxy buying.",howTitle:"Hoe Hacoo VIP werkt",howLead:"Een eenvoudig pad van externe ontdekking naar producten, categorieën en QC-checks.",qcTitle:"QC-gids",qcLead:"Controleer beelden, materialen, maten en details voordat je verdergaat.",faqTitle:"FAQ",faqLead:"Korte antwoorden over Hacoo VIP als onafhankelijke gids.",read:"Pagina openen",products:"Producten",categories:"Categorieën",guides:"Gidsen",help:"Hulp"}
   };
 
-  const LOCALIZED_PAGES = new Set(["", "index.html", "categories.html", "trending.html", "seo-articles.html", "quality-control-guide.html", "faq.html", "how-it-works.html"]);
-  const ARTICLE_PAGES = new Set(["reverse-shopping-guide.html", "hacoo-spreadsheet-2026-guide.html", "hacoo-qc-photos-guide.html", "hacoo-reverse-image-search-workflow.html"]);
+  const LOCALIZED_PAGES = new Set(["", "index", "categories", "trending", "seo-articles", "quality-control-guide", "faq", "how-it-works"]);
+  const ARTICLE_PAGES = new Set(["reverse-shopping-guide", "hacoo-spreadsheet-2026-guide", "hacoo-qc-photos-guide", "hacoo-reverse-image-search-workflow", "hacoo-order-status-explained", "hacoo-tracking-not-updating", "hacoo-delivered-but-not-received", "hacoo-refund-pending", "hacoo-change-delivery-address"]);
 
   function normalizePath(){
     const parts = location.pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
@@ -38,8 +38,8 @@
       currentLang = PREFIX_TO_LANG[parts[0]];
       slugParts = parts.slice(1);
     }
-    let slug = slugParts.join("/");
-    if (!slug || slug === "index.html") slug = "";
+    let slug = slugParts.join("/").replace(/\.html$/, "");
+    if (!slug || slug === "index") slug = "";
     return { currentLang, slug, isPrefixed: !!(parts[0] && PREFIX_TO_LANG[parts[0]]) };
   }
 
@@ -105,7 +105,7 @@
 
   function headerHtml(lang,d){
     const base = getAssetBase();
-    return `<div class="topbar"><div class="container"><b>${d.ind}</b></div></div><header class="header"><div class="container nav"><a class="brand" href="${normalizePath().isPrefixed ? './' : 'index.html'}"><img alt="Hacoo" src="${base}assets/img/hacoo-logo.svg"><span class="vip">VIP</span></a><button class="menu" data-menu aria-label="menu"><span></span><span></span><span></span></button><nav class="navlinks"><a href="categories.html">${d.cat}</a><a href="trending.html">${d.trend}</a><a href="seo-articles.html">${d.seo}</a><a href="how-it-works.html">${d.how}</a><a href="quality-control-guide.html">${d.qc}</a><a href="faq.html">${d.faq}</a><a class="primary" href="https://www.cnbuycha.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_nav">${d.open}</a></nav>${langMenu(lang)}</div></header>`;
+    return `<div class="topbar"><div class="container"><b>${d.ind}</b></div></div><header class="header"><div class="container nav"><a class="brand" href="${normalizePath().isPrefixed ? './' : '/'}"><img alt="Hacoo" src="${base}assets/img/hacoo-logo.svg"><span class="vip">VIP</span></a><button class="menu" data-menu aria-label="menu"><span></span><span></span><span></span></button><nav class="navlinks"><a href="categories">${d.cat}</a><a href="trending">${d.trend}</a><a href="seo-articles">${d.seo}</a><a href="how-it-works">${d.how}</a><a href="quality-control-guide">${d.qc}</a><a href="faq">${d.faq}</a><a class="primary" href="https://www.cnbuycha.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_nav">${d.open}</a></nav>${langMenu(lang)}</div></header>`;
   }
 
   function cardsHtml(items,read){
@@ -138,18 +138,18 @@
     if (page === "seo") {
       title = d.seoTitle; lead = d.seoLead;
       body = cardsHtml([
-        {t:"Hacoo Spreadsheet 2026 Guide",p:lang==="zh-CN"?"把产品表格当作研究地图。":"Use product lists as research maps.",href:"../hacoo-spreadsheet-2026-guide.html"},
-        {t:"Hacoo QC Photos Guide",p:lang==="zh-CN"?"行动前先检查 QC 图片。":"Inspect photos before action.",href:"../hacoo-qc-photos-guide.html"},
-        {t:"Reverse Image Search Workflow",p:lang==="zh-CN"?"验证图片线索和产品匹配。":"Verify image-led product leads.",href:"../hacoo-reverse-image-search-workflow.html"}
+        {t:"Hacoo Spreadsheet 2026 Guide",p:lang==="zh-CN"?"把产品表格当作研究地图。":"Use product lists as research maps.",href:"../hacoo-spreadsheet-2026-guide"},
+        {t:"Hacoo QC Photos Guide",p:lang==="zh-CN"?"行动前先检查 QC 图片。":"Inspect photos before action.",href:"../hacoo-qc-photos-guide"},
+        {t:"Reverse Image Search Workflow",p:lang==="zh-CN"?"验证图片线索和产品匹配。":"Verify image-led product leads.",href:"../hacoo-reverse-image-search-workflow"}
       ], d.read);
     }
     if (page === "how") {
       title = d.howTitle; lead = d.howLead;
       body = cardsHtml([
-        {t:d.products,p:lang==="zh-CN"?"先从真实首图进入产品详情页。":"Start from real product covers and open matching details.",href:"trending.html"},
-        {t:d.categories,p:lang==="zh-CN"?"再进入对应类目继续筛选。":"Then browse matching categories for broader research.",href:"categories.html"},
-        {t:d.qc,p:lang==="zh-CN"?"继续前先看图片、材质和尺码。":"Check images, material cues and sizing before continuing.",href:"quality-control-guide.html"},
-        {t:lang==="zh-CN"?"Hacoo 退款证据清单":"Hacoo refund evidence checklist",p:lang==="zh-CN"?"保存退货、退款和问题商品证据。":"Preserve return, refund and item-condition evidence.",href:`${getAssetBase()}hacoo-return-refund-evidence-guide-2026.html`}
+        {t:d.products,p:lang==="zh-CN"?"先从真实首图进入产品详情页。":"Start from real product covers and open matching details.",href:"trending"},
+        {t:d.categories,p:lang==="zh-CN"?"再进入对应类目继续筛选。":"Then browse matching categories for broader research.",href:"categories"},
+        {t:d.qc,p:lang==="zh-CN"?"继续前先看图片、材质和尺码。":"Check images, material cues and sizing before continuing.",href:"quality-control-guide"},
+        {t:lang==="zh-CN"?"Hacoo 退款证据清单":"Hacoo refund evidence checklist",p:lang==="zh-CN"?"保存退货、退款和问题商品证据。":"Preserve return, refund and item-condition evidence.",href:`${getAssetBase()}hacoo-return-refund-evidence-guide-2026`}
       ], d.read);
     }
     if (page === "qc") {
@@ -168,26 +168,27 @@
         {t:lang==="zh-CN"?"为什么先看 QC？":"Why use QC first?",p:lang==="zh-CN"?"单独首图不足以判断产品。":"A strong cover image is not enough for a safe decision.",href:"quality-control-guide.html"}
       ], d.read);
     }
-    document.body.innerHTML = `${headerHtml(lang,d)}<main><section class="pageHero container"><span class="eyebrow"><i></i><span>Hacoo VIP</span></span><h1>${title}</h1><p class="lead">${lead}</p><div class="actions"><a class="btn btnDark" href="seo-articles.html">${d.seo}</a><a class="btn btnLight" href="quality-control-guide.html">${d.qc}</a></div></section><section class="container">${body}</section></main><section class="container cta"><div><h2>${d.open}</h2><p>${lead}</p></div><div class="actions"><a class="btn btnWhite" href="https://www.cnbuycha.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_bottom">${d.open}</a><a class="btn btnOutline" href="categories.html">${d.categories}</a></div></section>`;
+    document.body.innerHTML = `${headerHtml(lang,d)}<main><section class="pageHero container"><span class="eyebrow"><i></i><span>Hacoo VIP</span></span><h1>${title}</h1><p class="lead">${lead}</p><div class="actions"><a class="btn btnDark" href="seo-articles">${d.seo}</a><a class="btn btnLight" href="quality-control-guide">${d.qc}</a></div></section><section class="container">${body}</section></main><section class="container cta"><div><h2>${d.open}</h2><p>${lead}</p></div><div class="actions"><a class="btn btnWhite" href="https://www.cnbuycha.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_bottom">${d.open}</a><a class="btn btnOutline" href="categories">${d.categories}</a></div></section>`;
   }
 
   function addJsonLd(obj){ const s=document.createElement("script"); s.type="application/ld+json"; s.textContent=JSON.stringify(obj); document.head.appendChild(s); }
 
   function setupStructuredData(){
     const { slug } = normalizePath();
-    const clean = slug || "index.html";
+    const clean = slug || "index";
     const url = location.origin + location.pathname;
     const headline = document.querySelector("h1")?.textContent?.trim() || "Hacoo VIP";
     const description = document.querySelector("meta[name='description']")?.content || "Independent Hacoo VIP shopping discovery and product research guide.";
     addJsonLd({"@context":"https://schema.org","@type":"Organization","@id":"https://hacoovip.shop/#organization",name:"Hacoo VIP",url:"https://hacoovip.shop/",description:"Independent shopping discovery and product research guide. Not the official Hacoo app website.",logo:"https://hacoovip.shop/assets/img/hacoo-logo.svg"});
     addJsonLd({"@context":"https://schema.org","@type":"WebSite","@id":"https://hacoovip.shop/#website",name:"Hacoo VIP",url:"https://hacoovip.shop/",publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
     addJsonLd({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://hacoovip.shop/"},{"@type":"ListItem",position:2,name:headline,item:url}]});
-    addJsonLd({"@context":"https://schema.org","@type":clean==="seo-articles.html"?"CollectionPage":"WebPage","@id":`${url}#webpage`,url,name:headline,description,isPartOf:{"@id":"https://hacoovip.shop/#website"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
-    if (clean === "faq.html") {
+    addJsonLd({"@context":"https://schema.org","@type":clean==="seo-articles"?"CollectionPage":"WebPage","@id":`${url}#webpage`,url,name:headline,description,isPartOf:{"@id":"https://hacoovip.shop/#website"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
+    if (clean === "faq") {
       const qs = Array.from(document.querySelectorAll(".faqCard,.infoCard")).slice(0,12).map(card => ({"@type":"Question",name:card.querySelector("summary,h3")?.textContent?.trim()||"Question",acceptedAnswer:{"@type":"Answer",text:card.querySelector("p")?.textContent?.trim()||"Answer"}}));
       if (qs.length) addJsonLd({"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs});
     }
-    if (ARTICLE_PAGES.has(clean)) addJsonLd({"@context":"https://schema.org","@type":"Article",headline,description,url,datePublished:"2026-07-10",dateModified:"2026-07-10",author:{"@type":"Organization",name:"Hacoo VIP"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
+    const hasArticleSchema = Array.from(document.querySelectorAll('script[type="application/ld+json"]')).some(script => /"@type"\s*:\s*"Article"/.test(script.textContent || ""));
+    if (ARTICLE_PAGES.has(clean) && !hasArticleSchema) addJsonLd({"@context":"https://schema.org","@type":"Article",headline,description,url,datePublished:"2026-07-10",dateModified:"2026-07-10",author:{"@type":"Organization",name:"Hacoo VIP"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
     const items = Array.from(document.querySelectorAll(".articleCard[href], .infoCard[href]")).slice(0,10).map((card,i) => ({"@type":"ListItem",position:i+1,url:new URL(card.getAttribute("href"),location.href).href,name:card.querySelector("h3")?.textContent?.trim()||`Item ${i+1}`}));
     if (items.length) addJsonLd({"@context":"https://schema.org","@type":"ItemList",itemListElement:items});
   }
@@ -211,6 +212,30 @@
     window.addEventListener('resize', sync, { passive: true });
   }
 
+  function setupAnalytics(){
+    if (typeof window.gtag !== "function") return;
+    document.addEventListener("click", event => {
+      const link = event.target.closest("a[href]");
+      if (!link) return;
+      const destination = new URL(link.href, location.href);
+      if (destination.hostname === "www.cnbuycha.com" || destination.hostname === "cnbuycha.com") {
+        window.gtag("event", "outbound_click", {
+          destination_host: destination.hostname,
+          destination_path: destination.pathname,
+          link_text: (link.textContent || "").trim().slice(0, 80)
+        });
+      } else if (link.classList.contains("articleCard") || link.closest(".articleCard")) {
+        window.gtag("event", "article_open", {
+          article_path: destination.pathname,
+          article_title: (link.querySelector("h3")?.textContent || link.textContent || "").trim().slice(0, 100)
+        });
+      }
+    });
+    document.querySelectorAll("form[role='search']").forEach(form => {
+      form.addEventListener("submit", () => window.gtag("event", "site_search_submit", { search_location: location.pathname }));
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     renderLocalizedPage();
     ensureLanguageModule();
@@ -218,5 +243,6 @@
     setupLanguageSwitcher();
     setupFaqAccordions();
     setupStructuredData();
+    setupAnalytics();
   });
 })();

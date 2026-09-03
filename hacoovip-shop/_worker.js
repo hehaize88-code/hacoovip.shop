@@ -28,7 +28,7 @@ export default {
     response.headers.set("X-Frame-Options", "SAMEORIGIN");
 
     if ((response.headers.get("content-type") || "").includes("text/html")) {
-      response.headers.set("Cache-Control", "no-cache, max-age=0, must-revalidate");
+      response.headers.set("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
     }
 
     return response;
