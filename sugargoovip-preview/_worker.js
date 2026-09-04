@@ -31,8 +31,9 @@ async function staticHtmlResponse(request, env, pathname, lang) {
   if (!CLIENT_LANGS.has(lang)) return response;
 
   let html = await response.text();
-  if (/<meta[^>]+name=["']robots["'][^>]*>/i.test(html)) {
-    html = html.replace(/<meta[^>]+name=["']robots["'][^>]*>/i, '<meta name="robots" content="noindex,follow,max-image-preview:large">');
+  const robotsTag = /<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/i;
+  if (robotsTag.test(html)) {
+    html = html.replace(robotsTag, '<meta name="robots" content="noindex,follow,max-image-preview:large">');
   } else {
     html = html.replace(/<\/head>/i, '<meta name="robots" content="noindex,follow,max-image-preview:large"></head>');
   }
