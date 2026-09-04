@@ -1,15 +1,17 @@
 const SITE = "https://sugargoovip.uk";
 const MAIN = "https://www.cnfanshp.com";
-const UPDATED = "2026-08-09";
+const UPDATED = "2026-09-04";
 const NEW_ARTICLES = new Set([
   "/guides/sugargoo-1688-buying-guide-uk.html",
   "/guides/sugargoo-uk-address-format.html",
   "/guides/sugargoo-uk-customs-tax-planning.html",
   "/guides/sugargoo-uk-shipping-calculator-guide.html",
-  "/guides/sugargoo-insurance-claims-uk-guide.html"
+  "/guides/sugargoo-insurance-claims-uk-guide.html",
+  "/guides/sugargoo-uk-review.html",
+  "/guides/sugargoo-fees-uk.html",
+  "/guides/sugargoo-warehouse-storage-time.html"
 ]);
 const VALID_LANGS = new Set(["en","es","fr","de","it","pt","pl","nl","zh"]);
-const LEGACY_SEO_LANGS = new Set(["de","fr","es","pl"]);
 
 const CATEGORY_META = {
   "shoes": {name:"Shoes", main:"/shoes/", focus:"size labels, pair consistency, sole shape, visible stitching and measurements when fit is critical"},
@@ -118,7 +120,7 @@ function stripExternalLinks(body) {
 function robotsMeta(lang) { return noindexForLanguage(lang)?"noindex,follow,max-image-preview:large":"index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"; }
 
 function head({title,description,canonical,image=`${SITE}/assets/11.png`,type="website",lang="en"}) {
-  return `<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${robotsMeta(lang)}"><link rel="canonical" href="${esc(canonical)}"><link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="${type}"><meta property="og:site_name" content="Sugargoo Spreadsheet UK"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(image)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${esc(image)}"><link rel="stylesheet" href="/assets/site.css"></head>`;
+  return `<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-LCE7C7PN4P"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-LCE7C7PN4P');</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="${robotsMeta(lang)}"><link rel="canonical" href="${esc(canonical)}"><link rel="icon" href="/assets/11.png" type="image/png"><meta name="theme-color" content="#050505"><meta property="og:type" content="${type}"><meta property="og:site_name" content="Sugargoo Spreadsheet UK"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(image)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${esc(image)}"><link rel="stylesheet" href="/assets/site.css"></head>`;
 }
 function nav() {
   return `<header class="site-header"><a class="site-logo" href="/"><img src="/assets/11.png" alt="Sugargoo spreadsheet UK guide logo" width="480" height="148"></a><nav class="site-nav"><a href="/" data-i18n="nav.home">Home</a><a href="/#daily-finds" data-i18n="nav.daily">Daily Finds</a><a href="/#categories" data-i18n="nav.categories">Categories</a><a href="/products/" data-i18n="nav.spreadsheet">Spreadsheet</a><a href="/guides/" data-i18n="nav.guides">Guides</a><a href="/faq.html" data-i18n="nav.faq">FAQ</a></nav><select class="language-select" aria-label="Language"></select></header>`;
@@ -134,7 +136,7 @@ function schemaScript(graph) { return `<script type="application/ld+json">${safe
 function shell({title,description,canonical,body,lang="en",image,type="website",graph=[]}) {
   return `<!doctype html><html lang="en-GB">${head({title,description,canonical,image,type,lang})}<body>${nav()}<main class="wrap">${body}${footer()}</main>${graph.length?schemaScript(graph):""}${languageScripts(lang)}</body></html>`;
 }
-function responseHtml(html,status=200) { return new Response(html,{status,headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=0, must-revalidate","x-content-type-options":"nosniff","referrer-policy":"strict-origin-when-cross-origin"}}); }
+function responseHtml(html,status=200) { return new Response(html,{status,headers:{"content-type":"text/html; charset=UTF-8","cache-control":"public, max-age=300, s-maxage=86400, stale-while-revalidate=604800","x-content-type-options":"nosniff","referrer-policy":"strict-origin-when-cross-origin"}}); }
 
 function productCard(p,cat) {
   return `<a class="card product-card" href="/products/${esc(slugFor(p))}.html"><img src="${esc(p.image)}" alt="${esc(p.title)} product find" width="760" height="760" loading="lazy" style="aspect-ratio:1/1;object-fit:cover"><div class="product-meta"><h3>${esc(p.title)}</h3><p>${esc(cat.name)} · source checked ${UPDATED}</p></div></a>`;
@@ -144,9 +146,9 @@ function catalogPage(products,lang) {
     const cards=products.filter(p=>p.category===slug).map(p=>productCard(p,cat)).join("");
     return `<h2 class="section-title">${esc(cat.name)}</h2><section class="grid home-products">${cards}</section>`;
   }).join("");
-  const title="Sugargoo Spreadsheet UK 2026: 40 Curated Product Finds";
-  const description="Browse 40 curated Sugargoo product finds for UK shoppers with stable detail pages, category guides, QC checks and direct main-site shopping links.";
-  const body=`<section class="guide-hub article-card"><h1>Sugargoo Spreadsheet UK 2026: 40 Curated Product Finds</h1><p class="article-lead">A smaller, verifiable catalogue for UK shoppers: each find has a stable detail page and one current shopping link to the connected main catalogue.</p><div class="article-content"><p>This is an independent product-discovery catalogue, not an official Sugargoo inventory. The source URLs and corresponding product images were rechecked on ${UPDATED}. Confirm the live listing, exact variant and any price or availability on the main site before purchase.</p><p><a class="btn" href="${MAIN}/" target="_blank" rel="noopener">Open main product catalogue</a> <a class="btn btn-secondary" href="/guides/sugargoo-spreadsheet-guide.html">How to use this spreadsheet</a></p></div></section>${sections}`;
+  const title="Sugargoo Spreadsheet UK 2026: 40 Checked Product Finds";
+  const description="Browse a Sugargoo spreadsheet for UK shoppers with 40 checked finds, stable product pages, category filters, QC notes and shipping checks.";
+  const body=`<section class="guide-hub article-card"><h1>Sugargoo Spreadsheet UK 2026: 40 Checked Product Finds</h1><p class="article-lead">A smaller, verifiable catalogue for UK shoppers: each find has a stable detail page and one current shopping link to the connected main catalogue.</p><div class="article-content"><p>This is an independent product-discovery catalogue, not an official Sugargoo inventory. The source URLs and corresponding product images were rechecked on ${UPDATED}. Confirm the live listing, exact variant and any price or availability on the main site before purchase.</p><p><a class="btn" href="${MAIN}/" target="_blank" rel="noopener">Open main product catalogue</a> <a class="btn btn-secondary" href="/guides/sugargoo-spreadsheet-guide.html">How to use this spreadsheet</a></p></div></section>${sections}`;
   const graph=[{"@type":"CollectionPage","url":`${SITE}/products/`,"name":title,"description":description,"inLanguage":"en-GB","dateModified":UPDATED},{"@type":"ItemList","numberOfItems":products.length,"itemListElement":products.map((p,i)=>({"@type":"ListItem","position":i+1,"name":p.title,"url":`${SITE}/products/${slugFor(p)}.html`}))}];
   return shell({title,description,canonical:`${SITE}/products/`,body,lang,image:products[0]?.image||`${SITE}/assets/11.png`,graph});
 }
@@ -294,7 +296,7 @@ async function sitemapXml(env,request,products) {
   for(const m of old.matchAll(/<loc>([^<]+)<\/loc>/g)) if(m[1].startsWith(SITE)&&!urls.includes(m[1])) urls.push(m[1]);
   if(!urls.includes(`${SITE}/products/`)) urls.push(`${SITE}/products/`);
   for(const p of products){const u=`${SITE}/products/${slugFor(p)}.html`;if(!urls.includes(u))urls.push(u);}
-  const fresh=new Set([`${SITE}/`,`${SITE}/products/`,`${SITE}/categories/`,`${SITE}${NEW_ARTICLE}`,...Object.keys(PRIORITY_GUIDES).map(p=>SITE+p),...Object.keys(CATEGORY_META).map(k=>`${SITE}/categories/${k}.html`),...products.map(p=>`${SITE}/products/${slugFor(p)}.html`)]);
+  const fresh=new Set([`${SITE}/`,`${SITE}/products/`,`${SITE}/categories/`,...Array.from(NEW_ARTICLES,p=>SITE+p),...Object.keys(PRIORITY_GUIDES).map(p=>SITE+p),...Object.keys(CATEGORY_META).map(k=>`${SITE}/categories/${k}.html`),...products.map(p=>`${SITE}/products/${slugFor(p)}.html`)]);
   const rows=urls.map(u=>`  <url><loc>${esc(u)}</loc><lastmod>${fresh.has(u)?UPDATED:(u===`${SITE}/guides/`?"2026-07-16":"2026-07-10")}</lastmod><changefreq>weekly</changefreq><priority>${u===`${SITE}/`?"1.0":u===`${SITE}/products/`||u===`${SITE}/categories/`||u===`${SITE}/guides/`?"0.9":"0.8"}</priority></url>`).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows}\n</urlset>`;
 }

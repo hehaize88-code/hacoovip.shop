@@ -2,20 +2,11 @@ import core from './worker-core-uk-20260808.js';
 
 const CANONICAL_HOST = 'sugargoovip.uk';
 const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
-const SEO_LANGS = new Set(['de','fr','es','pl']);
-const SEO_LOCALE_ROUTES = new Set([
-  '/',
-  '/guides/',
-  '/guides/what-is-sugargoo.html',
-  '/guides/qc-guide.html',
-  '/guides/shipping-guide.html',
-  '/guides/alternative.html',
-  '/faq.html'
-]);
 
 function canonicalRoutePath(pathname) {
   if (pathname === '/index.html') return '/';
   if (pathname === '/guides/index.html') return '/guides/';
+  if (pathname === '/products/index.html') return '/products/';
   return pathname;
 }
 
@@ -48,10 +39,38 @@ async function staticHtmlResponse(request, env, pathname, lang) {
     status: 200,
     headers: {
       'content-type': 'text/html; charset=UTF-8',
-      'cache-control': 'public, max-age=0, must-revalidate',
+      'cache-control': 'private, no-cache',
       'x-content-type-options': 'nosniff'
     }
   });
+}
+
+async function edgeCachedHtml(request, ctx, createResponse) {
+  const url = new URL(request.url);
+  if (request.method !== 'GET' || url.search) return createResponse();
+
+  const cacheKey = new Request(url.toString(), { method: 'GET' });
+  const cached = await caches.default.match(cacheKey);
+  if (cached) {
+    const headers = new Headers(cached.headers);
+    headers.set('x-sugargoo-edge-cache', 'HIT');
+    return new Response(cached.body, { status: cached.status, headers });
+  }
+
+  const response = await createResponse();
+  if (!response) return response;
+  const contentType = response.headers.get('content-type') || '';
+  if (response.status !== 200 || !contentType.includes('text/html')) return response;
+
+  const headers = new Headers(response.headers);
+  headers.set('cache-control', 'public, max-age=300, s-maxage=86400, stale-while-revalidate=604800');
+  headers.set('x-sugargoo-edge-cache', 'MISS');
+  const cacheable = new Response(response.body, { status: response.status, headers });
+  const storedHeaders = new Headers(headers);
+  storedHeaders.set('x-sugargoo-edge-cache', 'READY');
+  const stored = new Response(cacheable.clone().body, { status: cacheable.status, headers: storedHeaders });
+  ctx.waitUntil(caches.default.put(cacheKey, stored));
+  return cacheable;
 }
 
 export default {
@@ -70,20 +89,25 @@ export default {
     const queryLang = (url.searchParams.get('lang') || '').toLowerCase();
     const cleanPath = canonicalRoutePath(pathname);
 
-    // Consolidate old query-string language URLs already discovered by search engines.
+    if (cleanPath !== pathname) {
+      url.pathname = cleanPath;
+      return Response.redirect(url.toString(), 301);
+    }
+
+    // English query variants consolidate to the clean canonical URL.
     if (queryLang === 'en') {
       url.pathname = cleanPath;
       url.searchParams.delete('lang');
       return Response.redirect(url.toString(), 301);
     }
-    if (SEO_LANGS.has(queryLang) && SEO_LOCALE_ROUTES.has(cleanPath)) {
-      url.pathname = '/' + queryLang + (cleanPath === '/' ? '/' : cleanPath);
-      url.searchParams.delete('lang');
+    // Old locale folders are one-way aliases. They land on the same-page
+    // client translation state and can no longer redirect back into a loop.
+    const legacyLocale = pathname.match(/^\/(es|fr|de|it|pt|pl|nl|zh)(\/.*)?$/);
+    if (legacyLocale) {
+      url.pathname = canonicalRoutePath(legacyLocale[2] || '/');
+      url.searchParams.set('lang', legacyLocale[1]);
       return Response.redirect(url.toString(), 301);
     }
-
-    const legacyLocale = pathname.match(/^\/(de|fr|es|pl)(\/.*)?$/);
-    if (legacyLocale) return core.fetch(request, env, ctx);
 
     if (pathname === '/robots.txt' || pathname === '/sitemap.xml' || pathname === '/sitemap.txt' || pathname === '/sitemap-index.xml') {
       return env.ASSETS.fetch(request);
@@ -102,11 +126,17 @@ export default {
       return core.fetch(request, env, ctx);
     }
 
+    // Generate this landing page from the current catalogue so its search
+    // metadata and visible count cannot drift apart.
+    if (pathname === '/products/') {
+      return edgeCachedHtml(request, ctx, () => core.fetch(request, env, ctx));
+    }
+
     // The generated static catalogue, categories and articles are the source of truth.
     const lang = url.searchParams.get('lang') || 'en';
-    const staticResponse = await staticHtmlResponse(request, env, pathname, lang);
+    const staticResponse = await edgeCachedHtml(request, ctx, () => staticHtmlResponse(request, env, pathname, lang));
     if (staticResponse) return staticResponse;
 
-    return core.fetch(request, env, ctx);
+    return edgeCachedHtml(request, ctx, () => core.fetch(request, env, ctx));
   }
 };
