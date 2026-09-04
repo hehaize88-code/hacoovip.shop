@@ -1,7 +1,7 @@
 import core from './worker-core-uk-20260808.js';
 
 const CANONICAL_HOST = 'sugargoovip.uk';
-const CACHE_VERSION = '20260904-2';
+const CACHE_VERSION = '20260904-3';
 const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
 
 function canonicalRoutePath(pathname) {
@@ -12,8 +12,8 @@ function canonicalRoutePath(pathname) {
 }
 
 function htmlAssetPath(pathname) {
-  if (pathname === '/' || pathname === '/index.html') return '/index.html';
-  if (pathname.endsWith('/')) return pathname + 'index.html';
+  if (pathname === '/' || pathname === '/index.html') return '/';
+  if (pathname.endsWith('/')) return pathname;
   if (pathname.endsWith('.html')) return pathname.slice(0, -5);
   return null;
 }
