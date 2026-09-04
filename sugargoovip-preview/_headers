@@ -51,5 +51,8 @@
 /assets/language-fix-uk-20260808.js
   Cache-Control: no-store
 
+/assets/lang-guard-20260808.js
+  Cache-Control: no-store
+
 /assets/catalog/*
   Cache-Control: public, max-age=604800, immutable
