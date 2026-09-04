@@ -1,6 +1,7 @@
 import core from './worker-core-uk-20260808.js';
 
 const CANONICAL_HOST = 'sugargoovip.uk';
+const CACHE_VERSION = '20260904-2';
 const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
 
 function canonicalRoutePath(pathname) {
@@ -49,7 +50,9 @@ async function edgeCachedHtml(request, ctx, createResponse) {
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.search) return createResponse();
 
-  const cacheKey = new Request(url.toString(), { method: 'GET' });
+  const cacheUrl = new URL(url);
+  cacheUrl.searchParams.set('__edge', CACHE_VERSION);
+  const cacheKey = new Request(cacheUrl.toString(), { method: 'GET' });
   const cached = await caches.default.match(cacheKey);
   if (cached) {
     const headers = new Headers(cached.headers);
