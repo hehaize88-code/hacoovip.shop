@@ -6,9 +6,9 @@
   <url><loc>https://hacoo.store/articles/</loc></url>
   <url><loc>https://hacoo.store/guides/hacoo-shopping-checklist/</loc></url>
   <url><loc>https://hacoo.store/guides/how-hacoo-works/</loc></url>
-  <url><loc>https://hacoo.store/guides/shipping/</loc></url>
+  <url><loc>https://hacoo.store/guides/shipping/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://hacoo.store/guides/size-guide/</loc></url>
-  <url><loc>https://hacoo.store/guides/what-is-hacoo-spreadsheet/</loc></url>
+  <url><loc>https://hacoo.store/guides/what-is-hacoo-spreadsheet/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://hacoo.store/faq/</loc></url>
   <url><loc>https://hacoo.store/about/</loc></url>
   <url><loc>https://hacoo.store/privacy/</loc></url>
@@ -39,7 +39,7 @@
   <url><loc>https://hacoo.store/de/about/</loc></url>
   <url><loc>https://hacoo.store/de/privacy/</loc></url>
   <url><loc>https://hacoo.store/de/terms/</loc></url>
-  <url><loc>https://hacoo.store/it/</loc></url>
+  <url><loc>https://hacoo.store/it/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://hacoo.store/it/finds/</loc></url>
   <url><loc>https://hacoo.store/it/categories/</loc></url>
   <url><loc>https://hacoo.store/it/articles/</loc></url>
@@ -75,4 +75,5 @@
   <url><loc>https://hacoo.store/articles/hacoo-intellectual-property-reporting-workflow/</loc><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://hacoo.store/articles/hacoo-official-vs-creator-claims/</loc><lastmod>2026-08-31</lastmod></url>
   <url><loc>https://hacoo.store/articles/hacoo-authenticity-claims-evidence-limits/</loc><lastmod>2026-09-02</lastmod></url>
+  <url><loc>https://hacoo.store/articles/hacoo-official-website-and-app-check/</loc><lastmod>2026-09-04</lastmod></url>
 </urlset>

@@ -320,7 +320,7 @@ const locales = {
       skip: "Vai al contenuto", home: "Home", homeLabel: "Home di Hacoo Store Guide", openNav: "Apri navigazione", primaryNav: "Navigazione principale",
       finds: "Scoperte", categories: "Categorie", how: "Come funziona", shipping: "Spedizione", faq: "FAQ", independent: "Guida indipendente", notAffiliated: "Non affiliata a Hacoo",
       guides: "Guide", site: "Sito", spreadsheet: "Hacoo spreadsheet", sizeGuide: "Guida alle taglie", about: "Informazioni", privacy: "Privacy", terms: "Termini",
-      reviewed: "Revisione editoriale: 14 luglio 2026", footerCopy: "Informazioni e navigazione indipendenti. Non affiliata a Hacoo. Verifica i dettagli aggiornati sulla destinazione finale prima dell’acquisto.",
+      reviewed: "Revisione editoriale: 4 settembre 2026", footerCopy: "Informazioni e navigazione indipendenti. Non affiliata a Hacoo. Verifica i dettagli aggiornati sulla destinazione finale prima dell’acquisto.",
       guideNav: "Navigazione della guida", browseCategories: "Vedi le categorie"
     },
     catalog: {
@@ -332,9 +332,9 @@ const locales = {
     home: { finder: { searchLabel: "Cerca prodotti", placeholder: "Cerca prodotti, marchi, stili…", searchButton: "Avvia ricerca", choose: "Scegli una categoria", filters: "Filtri categoria", all: "Tutto" } },
     pages: {
       home: {
-        title: "Hacoo Store Guide 2026 | Categorie, acquisti e spedizione", description: "Guida indipendente in italiano a Hacoo: categorie, ordini nell’app, taglie e tempi di consegna pubblicati.",
-        eyebrow: "Guida di ricerca indipendente 2026", h1: "Trova prodotti Hacoo senza scorrere all’infinito", lead: "Una guida verificata a categorie popolari, taglie, consegna e ricerca prodotti, con una distinzione chiara tra l’app ufficiale Hacoo e i database esterni indipendenti.",
-        primary: "Sfoglia le scoperte", secondary: "Leggi la guida acquisti", updated: "Aggiornato luglio 2026", categoryLed: "Navigazione per categoria", cited: "Fonti ufficiali citate",
+        title: "Hacoo Sito 2026: App, Acquisti e Consegna", description: "Cerchi il sito ufficiale Hacoo? Questa guida indipendente spiega come distinguere l’app Hacoo, verificare i link e controllare acquisti, taglie e consegna.",
+        eyebrow: "Guida di ricerca indipendente 2026", h1: "Hacoo sito 2026: app, acquisti e consegna", lead: "Una guida verificata a categorie popolari, taglie, consegna e ricerca prodotti, con una distinzione chiara tra l’app ufficiale Hacoo e i database esterni indipendenti.",
+        primary: "Sfoglia le scoperte", secondary: "Leggi la guida acquisti", updated: "Aggiornato settembre 2026", categoryLed: "Navigazione per categoria", cited: "Fonti ufficiali citate",
         stepsEyebrow: "Un percorso più chiaro", stepsTitle: "Usa questa guida in tre passaggi.", stepsIntro: "Il sito separa le informazioni ufficiali Hacoo dalle destinazioni esterne prima di indirizzarti alla pagina successiva.",
         steps: [["Scegli la fonte giusta", "Usa l’app ufficiale per ordini e assistenza Hacoo. Usa le categorie indipendenti per scoprire altri prodotti."], ["Controlla i dettagli decisivi", "Verifica misure, varianti, prezzo, consegna, resi e chi riceve il pagamento."], ["Continua sulla destinazione", "Disponibilità, pagamento, spedizione e assistenza dipendono dalla destinazione scelta."]],
         factsEyebrow: "Verificato con Hacoo", factsTitle: "Cosa dicono le pagine ufficiali.", factsIntro: "Queste informazioni provengono dalle pagine ufficiali di aiuto e spedizione Hacoo. Controlla sempre la fonte aggiornata.",
@@ -917,6 +917,10 @@ function englishSeoGraph(routeKey, html) {
   const description = (html.match(/<meta name="description" content="([^"]*)">/i) || ["", ""])[1];
   const organizationId = "https://hacoo.store/#organization";
   const websiteId = "https://hacoo.store/#website";
+  const refreshedDates = { shipping: "2026-09-04", spreadsheet: "2026-09-04" };
+  const dateModified = routeKey === "articles"
+    ? latestEditorialPublishedDate()
+    : refreshedDates[routeKey] || "2026-07-14";
   const graph = [{
     "@type": "Organization",
     "@id": organizationId,
@@ -943,7 +947,7 @@ function englishSeoGraph(routeKey, html) {
       description,
       isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },
-      dateModified: routeKey === "articles" ? latestEditorialPublishedDate() : "2026-07-14",
+      dateModified,
       inLanguage: "en"
     }, {
       "@type": "BreadcrumbList",
@@ -962,7 +966,7 @@ function englishSeoGraph(routeKey, html) {
       description,
       mainEntityOfPage: { "@id": `${canonical}#webpage` },
       datePublished: "2026-07-13",
-      dateModified: "2026-07-14",
+      dateModified,
       inLanguage: "en",
       author: { "@id": organizationId },
       publisher: { "@id": organizationId }

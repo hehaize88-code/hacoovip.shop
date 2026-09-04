@@ -125,8 +125,33 @@ async function handleSearch(request, context) {
 
 export default {
   async fetch(request, env, context) {
-    const pathname = new URL(request.url).pathname.replace(/\/+$/, "") || "/";
+    const requestUrl = new URL(request.url);
+    if (requestUrl.hostname === "www.hacoo.store") {
+      requestUrl.hostname = "hacoo.store";
+      return Response.redirect(requestUrl.toString(), 301);
+    }
+
+    const pathname = requestUrl.pathname.replace(/\/+$/, "") || "/";
     if (pathname === "/api/search") return handleSearch(request, context);
-    return env.ASSETS.fetch(request);
+
+    const response = await env.ASSETS.fetch(request);
+    const headers = new Headers(response.headers);
+    const contentType = headers.get("Content-Type") || "";
+
+    if (response.ok) {
+      if (/\.(?:css|js|png|jpe?g|webp|svg|ico|woff2?)$/i.test(requestUrl.pathname)) {
+        headers.set("Cache-Control", "public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000");
+      } else if (contentType.includes("text/html")) {
+        headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
+      } else if (pathname === "/sitemap.xml" || pathname === "/robots.txt") {
+        headers.set("Cache-Control", "public, max-age=3600, s-maxage=86400");
+      }
+    }
+
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    });
   }
 };
