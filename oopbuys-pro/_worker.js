@@ -65,7 +65,7 @@ const TRANSLATED_ATTRIBUTES = new Set([
   "placeholder",
   "title",
 ]);
-const HTML_CACHE_VERSION = "seo60-c15-2026-09-03-v1";
+const HTML_CACHE_VERSION = "manual-warehouse-customs-2026-09-05-v1";
 
 function decodeHtml(value) {
   return value
@@ -307,7 +307,10 @@ function htmlCacheKey(url) {
 
 function withBrowserCachePolicy(response, cacheStatus) {
   const headers = new Headers(response.headers);
-  headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+  headers.set(
+    "Cache-Control",
+    "public, max-age=300, s-maxage=86400, stale-while-revalidate=604800",
+  );
   headers.set("X-OOPBUYS-Cache", cacheStatus);
   headers.delete("Content-Length");
   return new Response(response.body, {
@@ -439,7 +442,10 @@ export default {
 
     if (pageCacheKey && finalResponse.status === 200) {
       const cacheResponse = finalResponse.clone();
-      cacheResponse.headers.set("Cache-Control", "public, max-age=86400");
+      cacheResponse.headers.set(
+        "Cache-Control",
+        "public, max-age=86400, stale-while-revalidate=604800",
+      );
       cacheResponse.headers.delete("Set-Cookie");
       ctx.waitUntil(caches.default.put(pageCacheKey, cacheResponse));
       return withBrowserCachePolicy(finalResponse, "MISS");

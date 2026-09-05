@@ -71,6 +71,53 @@ MANUAL_TEXT = {
         "h1\u241fWarehouse QC.": "Lager-QC.",
         "h1\u241fSmarter shipping.": "Intelligentere Versandplanung.",
         "h2\u241fChoose the answer you need.": "Wähle die Antwort, die du brauchst.",
+        "title\u241fOOPBUY Warehouse & Shipping Cost Guide 2026": "OOPBUY Lager- & Versandkosten-Guide 2026",
+        "h1\u241fOOPBUY warehouse.": "OOPBUY Lager.",
+        "h1\u241fShipping costs.": "Versandkosten.",
+        "h1\u241fSmarter parcels.": "Besser geplante Pakete.",
+        "p\u241fTrack storage deadlines, read warehouse QC and plan parcel weight, customs and landed cost before international shipping.": "Behalte Lagerfristen im Blick, prüfe die Lager-QC und plane Paketgewicht, Zoll und Gesamtkosten vor dem internationalen Versand.",
+        "span\u241fReviewed September 5, 2026": "Geprüft am 5. September 2026",
+        "span\u241f02 · Dated decision guides": "02 · Datierte Entscheidungshilfen",
+        "p\u241fUse dated research to resolve storage, shipping, customs, returns and parcel-risk decisions.": "Nutze datierte Recherche für Entscheidungen zu Lagerung, Versand, Zoll, Rückgaben und Paketrisiken.",
+        "h2\u241fThe warehouse clock and final parcel decide the real cost.": "Lagerfrist und finales Paket bestimmen die tatsächlichen Kosten.",
+        "h3\u241fPlan the OOPBUY 90-day warehouse deadline": "Die 90-Tage-Lagerfrist bei OOPBUY planen",
+        "h3\u241fBuild a destination-specific landed cost": "Zielspezifische Gesamtkosten berechnen",
+        "span\u241fWarehouse, shipping and landed-cost guides": "Lager-, Versand- und Gesamtkosten-Guides",
+        "p\u241fIndependent cost and logistics library": "Unabhängige Kosten- und Logistikbibliothek",
+        "h1\u241fPlan the warehouse, parcel and landed cost.": "Lager, Paket und Gesamtkosten planen.",
+        "p\u241fUse dated evidence and practical checklists for OOPBUY storage, shipping, customs, returns and parcel-risk decisions.": "Nutze datierte Belege und praktische Checklisten für OOPBUY-Lagerung, Versand, Zoll, Rückgaben und Paketrisiken.",
+        "small\u241fWarehouse storage · New": "Lagerung · Neu",
+        "h2\u241fOOPBUY Warehouse Storage: Plan the 90-Day Deadline": "OOPBUY-Lagerung: Die 90-Tage-Frist planen",
+        "p\u241fTrack each item's storage clock, extension decision and safe parcel date before the oldest deadline becomes urgent.": "Behalte Lagerfrist, Verlängerung und sicheren Pakettermin jedes Artikels im Blick.",
+        "small\u241fCustoms and landed cost · New": "Zoll und Gesamtkosten · Neu",
+        "h2\u241fOOPBUY Customs, Import Tax and Declaration": "OOPBUY Zoll, Einfuhrsteuer und Deklaration",
+        "p\u241fSeparate freight, tax, duty, declaration and carrier fees using destination-specific evidence.": "Trenne Fracht, Steuer, Zoll, Deklaration und Beförderergebühren anhand zielspezifischer Belege.",
+        "span\u241fResearch standard": "Recherchestandard",
+        "h2\u241fCheck the evidence before paying.": "Belege vor der Zahlung prüfen.",
+        "small\u241fProduct verification guide": "Leitfaden zur Produktprüfung",
+        "small\u241fWarehouse QC checklist": "Checkliste für Lager-QC",
+        "small\u241fWeight and dimensions guide": "Leitfaden zu Gewicht und Maßen",
+        "small\u241fFirst-order warehouse workflow": "Lagerablauf der ersten Bestellung",
+        "small\u241fWarehouse QC guide": "Lager-QC-Guide",
+        "small\u241fShipping cost guide": "Versandkosten-Guide",
+        "small\u241fFirst-order workflow": "Ablauf der ersten Bestellung",
+        "small\u241fEvidence-led review": "Evidenzbasierte Bewertung",
+        "small\u241fParcel planning guide": "Guide zur Paketplanung",
+        "small\u241fTracking diagnosis guide": "Guide zur Sendungsverfolgung",
+        "small\u241fReturns and refunds guide": "Guide zu Rückgaben und Erstattungen",
+        "small\u241fTotal-cost ledger": "Gesamtkostenübersicht",
+        "small\u241fDomestic shipping guide": "Inlandsversand-Guide",
+        "small\u241fCurrency conversion audit": "Prüfung der Währungsumrechnung",
+        "small\u241fParcel protection guide": "Paketschutz-Guide",
+        "small\u241fPackaging and volume guide": "Guide zu Verpackung und Volumen",
+        "small\u241fShipping-line comparison": "Versandlinienvergleich",
+        "small\u241fRoute eligibility guide": "Guide zur Routeneignung",
+        "small\u241fInsurance coverage audit": "Prüfung des Versicherungsschutzes",
+        "h2\u241fOOPBUY Parcel Reinforcement: Cost vs Damage Risk": "OOPBUY-Paketverstärkung: Kosten gegen Schadensrisiko",
+        "h2\u241fOOPBUY Vacuum Packing: Cost, Route and Protection": "OOPBUY-Vakuumverpackung: Kosten, Route und Schutz",
+        "p\u241fCompare the live reinforcement offer with item exposure, packed measurements and avoidable loss before paying.": "Vergleiche das aktuelle Verstärkungsangebot vor der Zahlung mit Warenrisiko, Paketmaßen und vermeidbarem Verlust.",
+        "p\u241fCheck clothing suitability, route support, packed measurements and the live quote before choosing vacuum bags or simple packaging.": "Prüfe Kleidungseignung, Routenunterstützung, Paketmaße und das aktuelle Angebot vor Vakuumbeutel oder einfacher Verpackung.",
+        "p\u241fClaims are separated into official process, dated third-party evidence and practical interpretation. Product, policy, rating and route details are dated so changing information is never presented as permanent.": "Aussagen werden in offiziellen Ablauf, datierte externe Belege und praktische Einordnung getrennt. Veränderliche Produkt-, Richtlinien-, Bewertungs- und Routendaten sind datiert.",
         "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
             "Ablauf anhand des offiziellen OOPBUY-Einsteigerleitfadens geprüft. "
             "Produktverfügbarkeit, Routenverfügbarkeit und Kosten können sich ändern."
@@ -81,6 +128,53 @@ MANUAL_TEXT = {
         "h1\u241fWarehouse QC.": "QC de almacén.",
         "h1\u241fSmarter shipping.": "Envíos mejor planificados.",
         "h2\u241fChoose the answer you need.": "Elige la respuesta que necesitas.",
+        "title\u241fOOPBUY Warehouse & Shipping Cost Guide 2026": "Guía OOPBUY 2026: almacén y costes de envío",
+        "h1\u241fOOPBUY warehouse.": "Almacén OOPBUY.",
+        "h1\u241fShipping costs.": "Costes de envío.",
+        "h1\u241fSmarter parcels.": "Paquetes mejor planificados.",
+        "p\u241fTrack storage deadlines, read warehouse QC and plan parcel weight, customs and landed cost before international shipping.": "Controla los plazos de almacén, revisa el QC y planifica peso, aduanas y coste final antes del envío internacional.",
+        "span\u241fReviewed September 5, 2026": "Revisado el 5 de septiembre de 2026",
+        "span\u241f02 · Dated decision guides": "02 · Guías con fecha",
+        "p\u241fUse dated research to resolve storage, shipping, customs, returns and parcel-risk decisions.": "Usa investigación fechada para decidir sobre almacenaje, envío, aduanas, devoluciones y riesgos del paquete.",
+        "h2\u241fThe warehouse clock and final parcel decide the real cost.": "El plazo de almacén y el paquete final determinan el coste real.",
+        "h3\u241fPlan the OOPBUY 90-day warehouse deadline": "Planifica el plazo de 90 días del almacén OOPBUY",
+        "h3\u241fBuild a destination-specific landed cost": "Calcula el coste final para tu destino",
+        "span\u241fWarehouse, shipping and landed-cost guides": "Guías de almacén, envío y coste final",
+        "p\u241fIndependent cost and logistics library": "Biblioteca independiente de costes y logística",
+        "h1\u241fPlan the warehouse, parcel and landed cost.": "Planifica el almacén, el paquete y el coste final.",
+        "p\u241fUse dated evidence and practical checklists for OOPBUY storage, shipping, customs, returns and parcel-risk decisions.": "Usa pruebas fechadas y listas prácticas para almacenaje, envío, aduanas, devoluciones y riesgos del paquete.",
+        "small\u241fWarehouse storage · New": "Almacenaje · Nuevo",
+        "h2\u241fOOPBUY Warehouse Storage: Plan the 90-Day Deadline": "Almacén OOPBUY: planifica el plazo de 90 días",
+        "p\u241fTrack each item's storage clock, extension decision and safe parcel date before the oldest deadline becomes urgent.": "Controla el plazo, la prórroga y la fecha segura de envío de cada artículo.",
+        "small\u241fCustoms and landed cost · New": "Aduanas y coste final · Nuevo",
+        "h2\u241fOOPBUY Customs, Import Tax and Declaration": "OOPBUY: aduanas, impuestos y declaración",
+        "p\u241fSeparate freight, tax, duty, declaration and carrier fees using destination-specific evidence.": "Separa transporte, impuestos, aranceles, declaración y cargos del transportista según tu destino.",
+        "span\u241fResearch standard": "Criterio de investigación",
+        "h2\u241fCheck the evidence before paying.": "Comprueba las pruebas antes de pagar.",
+        "small\u241fProduct verification guide": "Guía de verificación del producto",
+        "small\u241fWarehouse QC checklist": "Lista de QC de almacén",
+        "small\u241fWeight and dimensions guide": "Guía de peso y medidas",
+        "small\u241fFirst-order warehouse workflow": "Proceso de almacén del primer pedido",
+        "small\u241fWarehouse QC guide": "Guía de QC de almacén",
+        "small\u241fShipping cost guide": "Guía de costes de envío",
+        "small\u241fFirst-order workflow": "Proceso del primer pedido",
+        "small\u241fEvidence-led review": "Reseña basada en pruebas",
+        "small\u241fParcel planning guide": "Guía de planificación del paquete",
+        "small\u241fTracking diagnosis guide": "Guía de diagnóstico del seguimiento",
+        "small\u241fReturns and refunds guide": "Guía de devoluciones y reembolsos",
+        "small\u241fTotal-cost ledger": "Registro del coste total",
+        "small\u241fDomestic shipping guide": "Guía de envío nacional",
+        "small\u241fCurrency conversion audit": "Auditoría de conversión de moneda",
+        "small\u241fParcel protection guide": "Guía de protección del paquete",
+        "small\u241fPackaging and volume guide": "Guía de embalaje y volumen",
+        "small\u241fShipping-line comparison": "Comparación de líneas de envío",
+        "small\u241fRoute eligibility guide": "Guía de compatibilidad de rutas",
+        "small\u241fInsurance coverage audit": "Auditoría de cobertura del seguro",
+        "h2\u241fOOPBUY Parcel Reinforcement: Cost vs Damage Risk": "Refuerzo de paquetes OOPBUY: coste y riesgo de daños",
+        "h2\u241fOOPBUY Vacuum Packing: Cost, Route and Protection": "Envasado al vacío OOPBUY: coste, ruta y protección",
+        "p\u241fCompare the live reinforcement offer with item exposure, packed measurements and avoidable loss before paying.": "Compara el refuerzo actual con el riesgo del artículo, las medidas y las pérdidas evitables antes de pagar.",
+        "p\u241fCheck clothing suitability, route support, packed measurements and the live quote before choosing vacuum bags or simple packaging.": "Comprueba prendas, ruta, medidas y precio actual antes de elegir bolsas al vacío o embalaje simple.",
+        "p\u241fClaims are separated into official process, dated third-party evidence and practical interpretation. Product, policy, rating and route details are dated so changing information is never presented as permanent.": "Las afirmaciones separan proceso oficial, pruebas externas fechadas e interpretación práctica. Los datos variables de productos, políticas, valoraciones y rutas llevan fecha.",
         "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
             "Proceso comprobado con la guía oficial para principiantes de OOPBUY. "
             "La disponibilidad de productos y rutas, así como los costes, pueden cambiar."
@@ -91,10 +185,78 @@ MANUAL_TEXT = {
         "h1\u241fWarehouse QC.": "Magazijn-QC.",
         "h1\u241fSmarter shipping.": "Slimmere verzendplanning.",
         "h2\u241fChoose the answer you need.": "Kies het antwoord dat je nodig hebt.",
+        "title\u241fOOPBUY Warehouse & Shipping Cost Guide 2026": "OOPBUY magazijn- en verzendkostengids 2026",
+        "h1\u241fOOPBUY warehouse.": "OOPBUY-magazijn.",
+        "h1\u241fShipping costs.": "Verzendkosten.",
+        "h1\u241fSmarter parcels.": "Slimmer geplande pakketten.",
+        "p\u241fTrack storage deadlines, read warehouse QC and plan parcel weight, customs and landed cost before international shipping.": "Volg opslagdeadlines, controleer magazijn-QC en plan gewicht, douane en totale kosten vóór internationale verzending.",
+        "span\u241fReviewed September 5, 2026": "Gecontroleerd op 5 september 2026",
+        "span\u241f02 · Dated decision guides": "02 · Gedateerde keuzehulpen",
+        "p\u241fUse dated research to resolve storage, shipping, customs, returns and parcel-risk decisions.": "Gebruik gedateerd onderzoek voor keuzes over opslag, verzending, douane, retouren en pakketrisico.",
+        "h2\u241fThe warehouse clock and final parcel decide the real cost.": "De opslagtermijn en het definitieve pakket bepalen de echte kosten.",
+        "h3\u241fPlan the OOPBUY 90-day warehouse deadline": "Plan de OOPBUY-opslagtermijn van 90 dagen",
+        "h3\u241fBuild a destination-specific landed cost": "Bereken totale kosten voor jouw bestemming",
+        "span\u241fWarehouse, shipping and landed-cost guides": "Gidsen voor magazijn, verzending en totale kosten",
+        "p\u241fIndependent cost and logistics library": "Onafhankelijke kosten- en logistiekbibliotheek",
+        "h1\u241fPlan the warehouse, parcel and landed cost.": "Plan magazijn, pakket en totale kosten.",
+        "p\u241fUse dated evidence and practical checklists for OOPBUY storage, shipping, customs, returns and parcel-risk decisions.": "Gebruik gedateerd bewijs en praktische checklists voor opslag, verzending, douane, retouren en pakketrisico.",
+        "small\u241fWarehouse storage · New": "Magazijnopslag · Nieuw",
+        "h2\u241fOOPBUY Warehouse Storage: Plan the 90-Day Deadline": "OOPBUY-opslag: plan de termijn van 90 dagen",
+        "p\u241fTrack each item's storage clock, extension decision and safe parcel date before the oldest deadline becomes urgent.": "Volg per artikel de opslagtermijn, verlenging en veilige pakketdatum.",
+        "small\u241fCustoms and landed cost · New": "Douane en totale kosten · Nieuw",
+        "h2\u241fOOPBUY Customs, Import Tax and Declaration": "OOPBUY douane, invoerbelasting en aangifte",
+        "p\u241fSeparate freight, tax, duty, declaration and carrier fees using destination-specific evidence.": "Splits vracht, belasting, invoerrecht, aangifte en vervoerderskosten met bewijs voor jouw bestemming.",
+        "span\u241fResearch standard": "Onderzoeksnorm",
+        "h2\u241fCheck the evidence before paying.": "Controleer het bewijs vóór betaling.",
+        "small\u241fProduct verification guide": "Gids voor productcontrole",
+        "small\u241fWarehouse QC checklist": "Checklist voor magazijn-QC",
+        "small\u241fWeight and dimensions guide": "Gids voor gewicht en afmetingen",
+        "small\u241fFirst-order warehouse workflow": "Magazijnproces voor de eerste bestelling",
+        "small\u241fWarehouse QC guide": "Gids voor magazijn-QC",
+        "small\u241fShipping cost guide": "Gids voor verzendkosten",
+        "small\u241fFirst-order workflow": "Proces voor de eerste bestelling",
+        "small\u241fEvidence-led review": "Review op basis van bewijs",
+        "small\u241fParcel planning guide": "Gids voor pakketplanning",
+        "small\u241fTracking diagnosis guide": "Gids voor trackingdiagnose",
+        "small\u241fReturns and refunds guide": "Gids voor retouren en terugbetalingen",
+        "small\u241fTotal-cost ledger": "Overzicht van totale kosten",
+        "small\u241fDomestic shipping guide": "Gids voor binnenlandse verzending",
+        "small\u241fCurrency conversion audit": "Controle van valutaomrekening",
+        "small\u241fParcel protection guide": "Gids voor pakketbescherming",
+        "small\u241fPackaging and volume guide": "Gids voor verpakking en volume",
+        "small\u241fShipping-line comparison": "Vergelijking van verzendlijnen",
+        "small\u241fRoute eligibility guide": "Gids voor routegeschiktheid",
+        "small\u241fInsurance coverage audit": "Controle van verzekeringsdekking",
+        "h2\u241fOOPBUY Parcel Reinforcement: Cost vs Damage Risk": "OOPBUY-pakketversteviging: kosten en schaderisico",
+        "h2\u241fOOPBUY Vacuum Packing: Cost, Route and Protection": "OOPBUY-vacuümverpakking: kosten, route en bescherming",
+        "p\u241fCompare the live reinforcement offer with item exposure, packed measurements and avoidable loss before paying.": "Vergelijk het actuele verstevigingsaanbod vóór betaling met productrisico, pakketmaten en vermijdbaar verlies.",
+        "p\u241fCheck clothing suitability, route support, packed measurements and the live quote before choosing vacuum bags or simple packaging.": "Controleer kleding, route, pakketmaten en actuele prijs vóór vacuümzakken of eenvoudige verpakking.",
+        "p\u241fClaims are separated into official process, dated third-party evidence and practical interpretation. Product, policy, rating and route details are dated so changing information is never presented as permanent.": "Beweringen worden gescheiden in officieel proces, gedateerd extern bewijs en praktische uitleg. Veranderlijke product-, beleids-, beoordelings- en routegegevens zijn gedateerd.",
         "div\u241fProcess checked against OOPBUY's official beginner guide. Product availability, route availability and costs can change.": (
             "Proces gecontroleerd aan de hand van de officiële beginnersgids van OOPBUY. "
             "Productbeschikbaarheid, routebeschikbaarheid en kosten kunnen veranderen."
         ),
+    },
+}
+
+MANUAL_ATTRIBUTES = {
+    "de": {
+        "meta\u241fcontent\u241fPlan OOPBUY warehouse storage, QC, parcel weight, shipping costs, customs and landed cost with dated independent guides.": "Plane OOPBUY-Lagerung, QC, Paketgewicht, Versandkosten, Zoll und Gesamtkosten mit datierten unabhängigen Guides.",
+        "meta\u241fcontent\u241fOOPBUY Warehouse & Shipping Cost Guide 2026": "OOPBUY Lager- & Versandkosten-Guide 2026",
+        "meta\u241fcontent\u241fIndependent OOPBUY guides for warehouse storage, shipping cost, customs, returns, tracking, parcel protection and landed cost.": "Unabhängige OOPBUY-Guides zu Lagerung, Versandkosten, Zoll, Rückgaben, Tracking, Paketschutz und Gesamtkosten.",
+        "meta\u241fcontent\u241fOOPBUY Warehouse, Shipping Cost & Customs Guides": "OOPBUY-Guides zu Lager, Versandkosten und Zoll",
+    },
+    "es": {
+        "meta\u241fcontent\u241fPlan OOPBUY warehouse storage, QC, parcel weight, shipping costs, customs and landed cost with dated independent guides.": "Planifica almacenaje OOPBUY, QC, peso, envío, aduanas y coste final con guías independientes fechadas.",
+        "meta\u241fcontent\u241fOOPBUY Warehouse & Shipping Cost Guide 2026": "Guía OOPBUY 2026: almacén y costes de envío",
+        "meta\u241fcontent\u241fIndependent OOPBUY guides for warehouse storage, shipping cost, customs, returns, tracking, parcel protection and landed cost.": "Guías OOPBUY independientes sobre almacenaje, envío, aduanas, devoluciones, seguimiento, protección y coste final.",
+        "meta\u241fcontent\u241fOOPBUY Warehouse, Shipping Cost & Customs Guides": "Guías OOPBUY de almacén, envío y aduanas",
+    },
+    "nl": {
+        "meta\u241fcontent\u241fPlan OOPBUY warehouse storage, QC, parcel weight, shipping costs, customs and landed cost with dated independent guides.": "Plan OOPBUY-opslag, QC, pakketgewicht, verzendkosten, douane en totale kosten met gedateerde onafhankelijke gidsen.",
+        "meta\u241fcontent\u241fOOPBUY Warehouse & Shipping Cost Guide 2026": "OOPBUY magazijn- en verzendkostengids 2026",
+        "meta\u241fcontent\u241fIndependent OOPBUY guides for warehouse storage, shipping cost, customs, returns, tracking, parcel protection and landed cost.": "Onafhankelijke OOPBUY-gidsen over opslag, verzendkosten, douane, retouren, tracking, bescherming en totale kosten.",
+        "meta\u241fcontent\u241fOOPBUY Warehouse, Shipping Cost & Customs Guides": "OOPBUY-gidsen voor magazijn, verzendkosten en douane",
     },
 }
 
@@ -503,9 +665,6 @@ def build_overlay(
             normalize(unescape(localized_title.group(1))),
         )
 
-    if not route:
-        text.update(MANUAL_TEXT.get(locale, {}))
-
     English_visible = [
         normalize(text_value)
         for node in visible_elements(english_parser)
@@ -513,6 +672,25 @@ def build_overlay(
         if normalize(text_value)
     ]
     visible_values = set(English_visible)
+    manual_text_values = set(visible_values)
+    if english_title:
+        manual_text_values.add(normalize(unescape(english_title.group(1))))
+    for key, value in MANUAL_TEXT.get(locale, {}).items():
+        english_value = key.split("\u241f", 1)[1]
+        if english_value in manual_text_values:
+            text[key] = value
+
+    english_attribute_values = {
+        value
+        for node in english_parser.elements
+        for value in node.attrs.values()
+        if value
+    }
+    for key, value in MANUAL_ATTRIBUTES.get(locale, {}).items():
+        english_value = key.split("\u241f", 2)[2]
+        if english_value in english_attribute_values:
+            attributes[key] = value
+
     for key, value in (existing_text or {}).items():
         if "\u241f" not in key:
             continue

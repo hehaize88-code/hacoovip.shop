@@ -1,16 +1,16 @@
 {
-  "updated": "2026-09-03",
+  "updated": "2026-09-05",
   "scope": "English canonical content for oopbuys.pro",
   "pages": [
     {
       "url": "https://oopbuys.pro/",
-      "primaryQuery": "oopbuy finds",
+      "primaryQuery": "oopbuy warehouse",
       "secondaryTerms": [
-        "oopbuy shopping guide",
-        "oopbuy products"
+        "oopbuy shipping cost",
+        "oopbuy warehouse storage"
       ],
-      "intent": "mixed discovery",
-      "angle": "Site-wide orientation from product discovery to QC and shipping.",
+      "intent": "informational and commercial planning",
+      "angle": "Site-wide orientation for warehouse timing, shipping cost and landed-cost decisions.",
       "evidence": [
         "Official workflow summary"
       ],
@@ -46,13 +46,13 @@
     },
     {
       "url": "https://oopbuys.pro/articles/",
-      "primaryQuery": "oopbuy seo articles",
+      "primaryQuery": "oopbuy shipping guides",
       "secondaryTerms": [
-        "oopbuy buying guides",
-        "oopbuy research"
+        "oopbuy warehouse guides",
+        "oopbuy customs guide"
       ],
       "intent": "informational navigation",
-      "angle": "Directory of long-form answers grouped by decision.",
+      "angle": "Directory of dated warehouse, parcel, shipping and landed-cost answers grouped by decision.",
       "evidence": [
         "Internal page inventory"
       ],
@@ -410,6 +410,42 @@
         "OOPBUY current User Registration Agreement"
       ],
       "internalLinkRole": "Insurance-cost spoke linked to restricted-goods, route comparison, tracking and full-cost guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-warehouse-storage-90-day-deadline/",
+      "primaryQuery": "oopbuy warehouse",
+      "secondaryTerms": [
+        "oopbuy warehouse storage",
+        "oopbuy 90 day storage",
+        "oopbuy storage extension",
+        "oopbuy parcel deadline"
+      ],
+      "intent": "informational warehouse-timeline planning",
+      "angle": "Track item-level storage clocks, after-sales deadlines, extensions and a safe parcel-submission date.",
+      "evidence": [
+        "OOPBUY current Storage Period notice",
+        "OOPBUY current Platform Protection page",
+        "OOPBUY current Beginner's Guide"
+      ],
+      "internalLinkRole": "Warehouse-timeline spoke linked to QC, workflow and parcel-consolidation guides"
+    },
+    {
+      "url": "https://oopbuys.pro/articles/oopbuy-customs-tax-declaration-landed-cost/",
+      "primaryQuery": "oopbuy customs",
+      "secondaryTerms": [
+        "oopbuy import tax",
+        "oopbuy declaration",
+        "oopbuy customs fees",
+        "oopbuy landed cost"
+      ],
+      "intent": "commercial landed-cost and compliance planning",
+      "angle": "Separate parcel charges, destination tax, duty, declaration evidence and carrier fees without inventing a universal rate.",
+      "evidence": [
+        "OOPBUY current Service & Fees notice",
+        "OOPBUY current Shipping Estimation",
+        "OOPBUY current Beginner's Guide"
+      ],
+      "internalLinkRole": "Destination-cost spoke linked to fees, exchange rate, restricted goods and shipping guides"
     }
   ]
 }

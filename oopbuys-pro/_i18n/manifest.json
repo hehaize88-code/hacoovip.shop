@@ -65,15 +65,15 @@
     "/articles/": {
       "de": {
         "file": "_i18n/de/articles.json",
-        "fallbackEnglishStrings": 3
+        "fallbackEnglishStrings": 0
       },
       "es": {
         "file": "_i18n/es/articles.json",
-        "fallbackEnglishStrings": 3
+        "fallbackEnglishStrings": 0
       },
       "nl": {
         "file": "_i18n/nl/articles.json",
-        "fallbackEnglishStrings": 3
+        "fallbackEnglishStrings": 0
       }
     },
     "/faq/": {
@@ -205,9 +205,9 @@
   },
   "audit": {
     "fallbackEnglishStringsByLocale": {
-      "de": 177,
-      "es": 174,
-      "nl": 168
+      "de": 174,
+      "es": 171,
+      "nl": 165
     }
   }
 }
