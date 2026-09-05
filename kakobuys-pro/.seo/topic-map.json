@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-29",
+  "lastReviewed": "2026-09-05",
   "entries": [
     {
       "url": "https://kakobuys.pro/articles/how-to-read-kakobuy-qc-photos",
@@ -239,7 +239,21 @@
       "angle": "filters the live eligible set before comparing route-specific billable weight, total cost, timing fit, tracking, handoffs and verified protection",
       "evidence": "current Kakobuy estimator inputs and public help wording tying international shipping to weight, method and destination; no fixed route, price or timing claims",
       "internalLinkRole": "connects shipping estimates, volumetric weight, parcel grouping and tracking into one current-route decision record"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-coupon-codes-real-shipping-savings/",
+      "primaryQuery": "Kakobuy coupon codes",
+      "relatedTerms": [
+        "Kakobuy coupons",
+        "Kakobuy shipping coupon",
+        "Kakobuy discount code",
+        "Kakobuy coupon not working"
+      ],
+      "intent": "shipping-discount verification and cost planning",
+      "angle": "separates headline bundle value from one eligible coupon and measures savings from comparable final parcel totals",
+      "evidence": "dated Kakobuy public promotion plus account-level conditions and final payable-total verification; no permanent code or fixed saving promised",
+      "internalLinkRole": "connects shipping estimates, service fees, currency conversion and route comparison without overlapping product-discovery topics"
     }
   ],
-  "nextPriority": "Kakobuy restricted goods and route availability"
+  "nextPriority": "Manual editorial review only; automatic publishing is disabled for kakobuys.pro"
 }
