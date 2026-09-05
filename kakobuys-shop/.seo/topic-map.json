@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-29",
+  "lastReviewed": "2026-09-05",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -239,7 +239,21 @@
       "angle": "separates option, quantity, domestic delivery, packing evidence and incremental parcel effect before a low-price find is saved",
       "evidence": "current Kakobuy purchase-to-warehouse workflow, estimator inputs and public international-shipping cost factors; no universal rate or final-charge claim",
       "internalLinkRole": "connects accessory-category discovery to seller verification, QC evidence and dated shipping estimates"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-shipping-time-how-long-does-delivery-take",
+      "primaryQuery": "Kakobuy shipping time",
+      "relatedTerms": [
+        "how long does Kakobuy take",
+        "Kakobuy delivery time",
+        "Kakobuy shipping to USA",
+        "Kakobuy shipping to UK"
+      ],
+      "intent": "order-to-delivery time planning",
+      "angle": "separates seller, warehouse, parcel and carrier clocks, then shows how to read a current route range without promising delivery",
+      "evidence": "current Kakobuy purchasing-help range, shipping estimator, warehouse and parcel workflow, tracking information and dated holiday notice",
+      "internalLinkRole": "connects shipping-cost, tracking, storage and volumetric-weight guides around a distinct time-planning query"
     }
   ],
-  "nextPriority": "Kakobuy autumn finds 2026: practical non-hype shortlist"
+  "nextPriority": "Manual editorial review only; kakobuys.shop automatic article publishing is disabled"
 }
