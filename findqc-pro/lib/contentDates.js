@@ -1,16 +1,16 @@
-import { articles } from "./articles.js";
+import { articles } from "./articleCatalog.js";
 
 // Update a route only when its visible, indexable content changes materially.
 // Build dates, deployments, styling-only changes, and asset optimizations must
 // not change these values.
 const routeLastModified = Object.freeze({
-  "/": "2026-07-22",
+  "/": "2026-09-05",
   "/products": "2026-07-22",
   "/categories": "2026-07-21",
   "/guides": "2026-07-21",
   "/guides/qc-photo-checklist": "2026-07-22",
   "/guides/how-to-buy": "2026-07-22",
-  "/articles": "2026-08-30",
+  "/articles": "2026-09-05",
   "/faq": "2026-07-21",
   "/about": "2026-07-22",
   "/contact": "2026-07-22",

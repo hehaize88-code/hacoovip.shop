@@ -13,7 +13,7 @@ import {
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getRouteLastModified } from "../lib/contentDates.js";
-import { articles } from "../lib/articles.js";
+import { articles } from "../lib/articleCatalog.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");

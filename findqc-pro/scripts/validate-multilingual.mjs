@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { articles as englishArticles } from "../lib/articles.js";
+import { articles as englishArticles } from "../lib/articleCatalog.js";
 import { MAIN_SITE, categories, products } from "../lib/data.js";
 import { getLocalizedArticles } from "../lib/localizedArticles.js";
 import { imageManifest } from "../lib/imageManifest.js";

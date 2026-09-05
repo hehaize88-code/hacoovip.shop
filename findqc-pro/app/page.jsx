@@ -7,6 +7,7 @@ import ResponsiveImage from "../components/ResponsiveImage";
 import { ArrowIcon, CheckIcon } from "../components/Icons";
 import { useLanguage } from "../components/LanguageProvider";
 import { MAIN_SITE, categories, products } from "../lib/data";
+import { BUILD_LANGUAGE, languageUrl } from "../lib/routing";
 import { preload } from "react-dom";
 
 function StackedText({ value }) {
@@ -43,10 +44,28 @@ export default function HomePage() {
     description: t("footer.description"),
     email: "hello@findqc.pro",
   };
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${languageUrl("/")}#website`,
+    url: languageUrl("/"),
+    name: "FindQC Pro",
+    inLanguage: BUILD_LANGUAGE,
+    publisher: { "@id": "https://findqc.pro/#organization" },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${languageUrl("/search")}?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }} />
       <section className="home-hero shell">
         <div className="hero-copy">
           <span className="eyebrow"><i /> {t("home.eyebrow")}</span>

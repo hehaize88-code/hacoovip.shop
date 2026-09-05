@@ -14,7 +14,7 @@ export const metadata = localizedMetadata({
   },
   description:
     "Search product listings, browse useful finds and learn how to review warehouse QC photos before international shipping.",
-  keywords: ["product finder", "QC photos", "quality check guide", "warehouse inspection", "China shopping guide"],
+  keywords: ["FindQC", "QC finder", "QC photo finder", "find QC photos", "Taobao QC photos", "Weidian QC photos", "1688 QC photos", "warehouse inspection"],
   openGraph: {
     title: "FindQC Pro — Find Better. Check Smarter.",
     description: "Independent product discovery and practical QC education.",
@@ -36,6 +36,15 @@ export const metadata = localizedMetadata({
 export default function RootLayout({ children }) {
   return (
     <html lang={DEFAULT_LANGUAGE}>
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-H87FLTGFRR" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-H87FLTGFRR');
+        ` }} />
+      </head>
       <body>
         <LanguageProvider>
           <SiteHeader />

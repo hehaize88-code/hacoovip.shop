@@ -12,8 +12,8 @@ const OPEN_GRAPH_LOCALES = {
 const CORE_PAGE_SEO = {
   en: {
     "/": {
-      title: "QC Finder Guide & Product Search (2026)",
-      description: "Search 108 mapped product listings, compare exact source links, and use practical QC photo checklists before approving a shopping-agent parcel.",
+      title: "FindQC Pro: QC Finder & Product Search Guide (2026)",
+      description: "Search 108 mapped products, learn how to find QC photos by link, image or keyword, and check warehouse evidence before shipping.",
     },
     "/products": {
       title: "Product Finder: 108 Mapped Listings",
@@ -38,8 +38,8 @@ const CORE_PAGE_SEO = {
   },
   pl: {
     "/": {
-      title: "QC Finder: poradnik i wyszukiwarka produktów (2026)",
-      description: "Przeszukaj 108 przypisanych ofert, porównaj dokładne linki źródłowe i użyj praktycznych list kontroli zdjęć QC przed zatwierdzeniem paczki.",
+      title: "FindQC Pro: wyszukiwarka i zdjęcia QC (2026)",
+      description: "Znajdź zdjęcia QC linkiem, obrazem lub słowem, przeszukaj 108 produktów i sprawdź dowody magazynowe przed wysyłką.",
     },
     "/products": {
       title: "Wyszukiwarka produktów: 108 przypisanych ofert",
@@ -161,7 +161,7 @@ function translatedSeo(metadata, pathname) {
   const coreSeo = CORE_PAGE_SEO[BUILD_LANGUAGE]?.[pathname];
   if (coreSeo) {
     const title = typeof metadata.title === "object" && metadata.title !== null
-      ? { ...metadata.title, default: `${coreSeo.title} | FindQC Pro` }
+      ? { ...metadata.title, default: coreSeo.title.startsWith("FindQC Pro") ? coreSeo.title : `${coreSeo.title} | FindQC Pro` }
       : coreSeo.title;
     const openGraph = metadata.openGraph
       ? { ...metadata.openGraph, title: coreSeo.title, description: coreSeo.description }

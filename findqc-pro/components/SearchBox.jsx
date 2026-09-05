@@ -29,6 +29,10 @@ export default function SearchBox({ compact = false }) {
     event.preventDefault();
     const input = searchInput(query);
     if (!input) return;
+    window.gtag?.("event", "site_search", {
+      search_term: input.query || "approved product link",
+      search_mode: input.directUrl ? "approved_product_url" : "catalog_query",
+    });
     if (input.directUrl) {
       window.location.assign(input.directUrl);
       return;
@@ -40,11 +44,12 @@ export default function SearchBox({ compact = false }) {
   }
 
   return (
-    <form className={`search-box ${compact ? "compact" : ""}`} onSubmit={submit}>
+    <form className={`search-box ${compact ? "compact" : ""}`} action={languagePath("/search", language)} method="get" onSubmit={submit}>
       <div className="search-input-wrap">
         <SearchIcon size={compact ? 18 : 21} />
         <input
           type="search"
+          name="q"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={t("search.placeholder")}

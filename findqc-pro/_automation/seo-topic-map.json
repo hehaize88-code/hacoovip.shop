@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-01",
+  "lastUpdated": "2026-09-05",
   "latestPublishedCommit": "06495854029477a427f631e09ad4661c6cb272c7",
   "articles": [
     {
@@ -154,6 +154,19 @@
       "planTrack": "F12",
       "cycle": "C06",
       "englishVisibleWords": 1568,
+      "liveVerified": false,
+      "deploymentStatus": "pending"
+    },
+    {
+      "slug": "find-qc-photos-by-product-link",
+      "primaryQuery": "QC photo finder by product link",
+      "intent": "Find Taobao, Weidian or 1688 QC photos from a source link and verify the exact listing before relying on the gallery",
+      "focus": ["marketplace item link", "listing identity", "variant matching", "QC photo evidence", "no-match recovery"],
+      "exampleType": "Editorial identity gates, search-recovery steps and decision tables; never fabricated orders, matches or platform outcomes",
+      "outline": ["prepare link", "marketplace identity", "run link search", "identity gate", "photo audit", "no-match recovery", "next click", "search record"],
+      "faqAngles": ["How do I find QC photos from a Taobao link?", "Can a Weidian item ID identify the exact option?", "What should I do when a 1688 link has no QC match?"],
+      "visuals": ["Three original HTML evidence tables plus one existing local editorial catalog image; no marketplace screenshots or customer media"],
+      "source": "Manual SEO gap analysis using Bing Webmaster query data and the existing FindQC Pro article inventory",
       "liveVerified": false,
       "deploymentStatus": "pending"
     }

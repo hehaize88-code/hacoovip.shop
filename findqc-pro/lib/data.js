@@ -271,4 +271,4 @@ export const faqs = [
   },
 ];
 
-export { articles } from "./articles.js";
+export { articles } from "./articleCatalog.js";

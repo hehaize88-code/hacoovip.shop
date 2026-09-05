@@ -21,10 +21,14 @@ export default function ProductCard({ product, priority = false }) {
   const nameKey = `product.name.${product.id}`;
   const translatedName = t(nameKey);
   const productName = translatedName === nameKey ? product.name : translatedName;
+  const trackOutboundProduct = () => window.gtag?.("event", "select_item", {
+    item_list_name: "FindQC Pro mapped products",
+    items: [{ item_id: product.id, item_name: productName, item_category: product.category }],
+  });
 
   return (
     <article className="product-card">
-      <a href={product.href} target="_blank" rel="noopener noreferrer" className="product-image-link" aria-label={t("product.open", { name: productName })}>
+      <a href={product.href} target="_blank" rel="noopener noreferrer" className="product-image-link" aria-label={t("product.open", { name: productName })} onClick={trackOutboundProduct}>
         <ResponsiveImage
           src={product.image}
           alt={productName}
@@ -45,7 +49,7 @@ export default function ProductCard({ product, priority = false }) {
             <strong>¥{product.price}</strong>
             <span className="product-source-views">{t("product.views", { count: product.views })}</span>
           </div>
-          <a href={product.href} target="_blank" rel="noopener noreferrer" aria-label={t("product.view", { name: productName })}>
+          <a href={product.href} target="_blank" rel="noopener noreferrer" aria-label={t("product.view", { name: productName })} onClick={trackOutboundProduct}>
             <ExternalIcon />
           </a>
         </div>

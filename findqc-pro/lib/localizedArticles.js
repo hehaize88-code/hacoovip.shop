@@ -1,4 +1,4 @@
-import { articles as englishArticles } from "./articles.js";
+import { articles as englishArticles } from "./articleCatalog.js";
 import { ARTICLE_LOCALES, ARTICLE_SOURCE_LOCALES, ARTICLE_UI_LOCALES } from "./articleLocales/index.js";
 
 const ENGLISH_UI = {

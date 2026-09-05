@@ -36,7 +36,7 @@ export default function ArticlesPage() {
       <Breadcrumbs items={[{ labelKey: "nav.journal" }]} />
       <PageHero eyebrow={<T id="articles.eyebrow" />} title={<><T id="articles.title1" /><br /><em><T id="articles.title2" /></em></>} intro={<T id="articles.intro" />} />
       <div className="journal-research-note">
-        <span>{articleUi.journalCount}</span>
+        <span>{articleUi.journalCount.replace(/^\d+/, String(articles.length).padStart(2, "0"))}</span>
         <p>{articleUi.journalNote}</p>
       </div>
       <section className="journal-grid">
