@@ -648,6 +648,64 @@
     }, true);
   }
 
+  function trackCatalogActions() {
+    if (document.documentElement.dataset.catalogActionTracking === "true") return;
+    document.documentElement.dataset.catalogActionTracking = "true";
+
+    const send = (eventName, params) => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", eventName, params);
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName, ...params });
+    };
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest && event.target.closest("a[href]");
+      if (!link) return;
+
+      const url = new URL(link.href, location.href);
+      if (!/(^|\.)cnfanshp\.com$/i.test(url.hostname)) return;
+
+      const common = {
+        link_domain: url.hostname,
+        link_url: url.href,
+        link_text: (link.textContent || "").trim().slice(0, 100),
+        page_path: location.pathname,
+        transport_type: "beacon"
+      };
+
+      send("outbound_click", common);
+      if (link.closest(".product-card")) {
+        send("product_click", common);
+      } else if (/\/search\.html$/i.test(url.pathname)) {
+        send("search_click", {
+          ...common,
+          search_term: url.searchParams.get("keywords") || ""
+        });
+      } else if (/category|classify/i.test(url.pathname + url.search)) {
+        send("category_click", common);
+      } else {
+        send("catalog_click", common);
+      }
+    }, true);
+
+    document.addEventListener("submit", (event) => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement)) return;
+      const action = new URL(form.action, location.href);
+      if (!/(^|\.)cnfanshp\.com$/i.test(action.hostname)) return;
+      const values = new FormData(form);
+      send("search_submit", {
+        search_term: String(values.get("keywords") || "").slice(0, 100),
+        page_path: location.pathname,
+        destination_domain: action.hostname,
+        transport_type: "beacon"
+      });
+    }, true);
+  }
+
   function enhance() {
     const lang = pageLanguage();
     const label = labels[lang];
@@ -662,6 +720,7 @@
     ensureRehearsalCard(pageLanguage());
     ensureShoeQcCard(pageLanguage());
     forceStaticArticleNavigation();
+    trackCatalogActions();
   }
 
   if (document.readyState === "loading") {
