@@ -55,10 +55,139 @@ const goodsDetail: GuideSource = {
   scope: "Public product-stage notices, service boundaries, restricted-item prompts and used-item terms.",
 };
 
+const cbpEcommerceFaq: GuideSource = {
+  title: "U.S. Customs and Border Protection E-Commerce FAQs",
+  url: "https://www.cbp.gov/trade/basic-import-export/e-commerce/faqs",
+  scope: "Current U.S. low-value shipment, entry and duty guidance reviewed for destination-side planning.",
+};
+
+const cbpInternetPurchases: GuideSource = {
+  title: "U.S. Customs and Border Protection Internet Purchases",
+  url: "https://www.cbp.gov/trade/basic-import-export/internet-purchases",
+  scope: "Official buyer guidance on import responsibility, duties and costs that may sit outside the purchase price.",
+};
+
 export const guides: Guide[] = [
   {
+    slug: "allchinabuy-shipping-to-usa",
+    title: "AllChinaBuy Shipping to USA 2026: Cost, Customs & Checklist",
+    eyebrow: "USA shipping guide",
+    description:
+      "Plan AllChinaBuy shipping to the USA with current parcel inputs, chargeable-weight checks, route comparisons, customs records and a final payment checklist.",
+    readingTime: "12 min read",
+    updated: "September 5, 2026",
+    publishedDate: "2026-09-05",
+    modifiedDate: "2026-09-05",
+    hideSourceLinks: true,
+    keyFacts: [
+      "An AllChinaBuy USA shipping estimate is useful only when destination, category, packed weight and packed dimensions describe the same parcel.",
+      "The cheapest displayed line is not automatically the lowest delivered cost; eligibility, chargeable weight, tracking, packing and destination charges also matter.",
+      "U.S. duty-free de minimis treatment is suspended as of this review, so a low parcel value should not be treated as proof that no duty, tax or fee can apply.",
+    ],
+    figure: {
+      src: "/images/guides/route-comparison.svg",
+      alt: "Decision board comparing AllChinaBuy shipping routes by eligibility, chargeable weight, tracking and complete cost",
+      caption: "A route comparison should use one final parcel and keep U.S. customs costs separate from the platform freight quote; reviewed September 5, 2026.",
+      sourceUrl: "",
+    },
+    sections: [
+      {
+        title: "Start with the parcel, not a universal USA rate",
+        paragraphs: [
+          "People searching for AllChinaBuy shipping to USA usually want one price and one delivery time. A trustworthy answer begins by explaining why neither number exists for every order. The live quote depends on the receiving warehouse, U.S. destination, product category, packed weight, packed dimensions, available route and the services selected for that parcel. A screenshot from another buyer can show that a line existed for that buyer on that date; it cannot quote your parcel.",
+          "Create one parcel record before opening the AllChinaBuy shipping calculator. List every included order, its warehouse status, the truthful product category and any special handling or packing instruction. Add the U.S. state and postal code requested by the live interface. If the goods have not reached the warehouse, use low, expected and high packing scenarios and label all three as estimates. After packing, replace them with the recorded warehouse measurements rather than averaging old estimates with new facts.",
+        ],
+        checklist: [
+          "U.S. destination and postal code",
+          "Truthful item categories and quantities",
+          "Receiving warehouse for every included order",
+          "Estimated or final packed weight and dimensions",
+        ],
+        takeaway: "A shipping quote belongs to one dated parcel configuration. Change the contents or packing and you need a new comparison.",
+      },
+      {
+        title: "Calculate chargeable weight before comparing lines",
+        paragraphs: [
+          "AllChinaBuy USA shipping cost can be driven by scale weight, volume weight or another route-specific chargeable rule shown in the live calculator. The public calculator identifies routes that calculate by volume and asks for parcel dimensions. That is why a light but bulky carton can cost more than its scale weight suggests. Record length, width and height in the unit requested by the interface, then keep the calculator result beside the actual weight instead of replacing either value.",
+          "Use the same parcel inputs for every route. If one comparison uses an unpacked estimate and another uses final carton dimensions, the ranking is meaningless. Test a safe packaging change only when it is operationally possible: removing an unnecessary seller box may reduce volume, while fragile goods may need protection that increases it. The goal is not the smallest box at any cost. It is the smallest defensible chargeable parcel that still protects the contents and follows the current warehouse and route rules.",
+        ],
+        checklist: [
+          "Actual scale weight",
+          "Final exterior length, width and height",
+          "Displayed volume-weight method",
+          "Chargeable weight used by each route",
+        ],
+      },
+      {
+        title: "Compare complete routes, not the first price",
+        paragraphs: [
+          "A useful AllChinaBuy shipping calculator comparison has one row per currently eligible line. Record the route name exactly as shown, the quote date, chargeable weight, complete displayed freight amount, estimated delivery wording, tracking description and every category or size restriction. Where the interface separates a deposit from a later adjustment, preserve both stages. Do not rewrite an estimate as a guaranteed delivery date or turn an unexplained price difference into a named fee.",
+          "Rank routes against the job the parcel must do. A lower price may be reasonable for a replaceable, time-flexible order; clearer tracking or stricter handling may matter more for a difficult-to-replace parcel. Keep at least one eligible alternative because route availability and pricing can change before payment. If no route appears, revisit the category, warehouse, size and contents rather than relabelling the goods. A route that requires inaccurate information is not a valid saving.",
+        ],
+        takeaway: "The decision is route fit plus complete current cost—not the smallest promotional number on the screen.",
+      },
+      {
+        title: "Check restrictions before warehouse packing",
+        paragraphs: [
+          "International eligibility should be screened before purchase and checked again after warehouse inspection. Batteries, liquids, powders, magnets, pressurised goods, food, cosmetics, medicines and other controlled or sensitive categories may face route limits. Ordinary products can also lose a route because the packed parcel exceeds a dimension or weight rule. The available lines shown for the truthful category and final measurements are stronger evidence than an old list of supposedly unrestricted services.",
+          "Use QC photos and the source listing to confirm what is actually being shipped. A product name can hide a battery, liquid component or material that changes handling. If the warehouse classification differs from your expectation, ask what physical feature produced it and compare legitimate routes. Do not ask for a false description or declaration. Incorrect data can create delay, additional charges, return, seizure or loss of protection under the route terms.",
+        ],
+        checklist: [
+          "Material and functional components checked",
+          "Battery, liquid, powder and magnet status confirmed",
+          "Packed size within the selected line's limits",
+          "Warehouse classification matches the declaration",
+        ],
+      },
+      {
+        title: "Budget for current U.S. customs treatment",
+        paragraphs: [
+          "U.S. customs rules are a destination-side cost layer, not a promise made by an AllChinaBuy route label. U.S. Customs and Border Protection states that duty-free de minimis treatment for low-value shipments has been suspended. CBP also introduced a revised informal-entry process for international mail in 2026. The practical consequence is simple: do not use an old under-$800 rule as proof that an AllChinaBuy parcel will arrive without duty, tax, fee or entry processing.",
+          "The amount cannot be responsibly reduced to one percentage in this guide. Product classification, declared value, country of origin, entry method and current tariff measures can affect the result. A carrier or postal operator may also collect amounts or request information under the applicable process. Before shipping, check the current CBP guidance and the terms of the exact logistics line. Keep a destination-cost reserve in the budget until the applicable treatment is clear.",
+        ],
+        takeaway: "A low declared value is not a customs strategy. Use truthful records and current U.S. guidance.",
+      },
+      {
+        title: "Build a declaration record that matches the parcel",
+        paragraphs: [
+          "Prepare a plain-language inventory with quantity, accurate description, material or function where relevant, purchase value and country of origin. Match it to the order record and parcel contents. Generic labels such as ‘gift,’ ‘sample’ or ‘accessory’ can omit the information needed to identify merchandise. The declaration should describe what is inside, not what you hope will produce a lower charge.",
+          "Save the item invoices or payment records, warehouse photos, parcel measurements, selected route, declaration summary and payment confirmation. If a carrier or customs authority asks a question, those documents help reconcile the shipment without reconstructing the order from memory. Remove full card details and unrelated personal information from any support attachment. AllChinaBuy can provide its transaction and warehouse records, but it does not replace the importer's responsibility to answer destination-side requests accurately.",
+        ],
+        checklist: [
+          "Accurate item description and quantity",
+          "Purchase value supported by records",
+          "Country of origin and material details where needed",
+          "Parcel contents match the saved declaration",
+        ],
+      },
+      {
+        title: "Use a landed-cost worksheet before payment",
+        paragraphs: [
+          "Keep the product order, China domestic delivery, optional warehouse services, international freight and U.S. destination costs on separate rows. This prevents the phrase ‘AllChinaBuy shipping cost USA’ from becoming a misleading total. For uncertain components, enter a labelled low, expected and high scenario. Never enter zero unless the current record explicitly shows zero; use ‘not yet known’ when evidence is missing.",
+          "Recalculate at two gates. The first gate is before buying the products, when route and packing inputs are estimates. The second is immediately before parcel payment, when warehouse measurements and eligible lines are available. Compare the high-case delivered total with your stop price. If the order is no longer sensible, change parcel composition, packing or route only within the actual rules. A sunk product payment should not force an unreviewed international shipment.",
+        ],
+        takeaway: "The best time to discover that the high-case total exceeds your budget is before authorising international freight.",
+      },
+      {
+        title: "Run the final USA shipping checklist",
+        paragraphs: [
+          "Before payment, confirm the included orders, warehouse, final photos, packing instruction, exterior dimensions, actual and chargeable weight, route eligibility, complete quote, tracking wording and declaration. Recheck the U.S. destination address and postal code. Save the dated screen that shows the selected line and the amount you authorised. After submission, add the parcel number, tracking number and first physical carrier scan to the same record.",
+          "If tracking later stalls, diagnose the last verified handoff. A number without a first scan may indicate that data was created before the carrier received the parcel. Export processing, international transit, U.S. entry and last-mile delivery are different stages. Ask a specific evidence question tied to the last event instead of assuming every pause is a warehouse problem. This method will not promise the cheapest or fastest AllChinaBuy shipping to USA; it will give you a current, auditable decision with fewer hidden assumptions.",
+        ],
+        checklist: [
+          "Final parcel data and route saved",
+          "Current U.S. customs guidance checked",
+          "Declaration matched to contents",
+          "Payment, parcel and tracking records retained",
+        ],
+      },
+    ],
+    sources: [freightCalculator, goodsDetail, cbpEcommerceFaq, cbpInternetPurchases],
+    relatedSlugs: ["shipping-cost-planning", "allchinabuy-volumetric-weight", "allchinabuy-shipping-restrictions"],
+  },
+  {
     slug: "allchinabuy-service-payment-fees-before-checkout",
-    title: "AllChinaBuy Service and Payment Fees: A Pre-Checkout Audit",
+    title: "AllChinaBuy Fees 2026: Service & Payment Cost Checklist",
     eyebrow: "Fee verification guide",
     description:
       "Verify AllChinaBuy product, domestic-delivery, service, payment and international-shipping amounts at the stage where each becomes visible—without relying on stale fee tables.",
@@ -468,7 +597,7 @@ export const guides: Guide[] = [
   },
   {
     slug: "qc-photo-checklist",
-    title: "How to Check AllChinaBuy QC Photos (2026)",
+    title: "AllChinaBuy QC Photos 2026: Measurements & Defect Checklist",
     eyebrow: "Quality control",
     description:
       "Review AllChinaBuy QC photos in six steps: confirm size and colour, request useful measurements, spot visible defects and decide before shipping.",
@@ -547,7 +676,7 @@ export const guides: Guide[] = [
   },
   {
     slug: "shipping-cost-planning",
-    title: "AllChinaBuy Shipping Cost: Plan Before You Build a Haul",
+    title: "AllChinaBuy Shipping Cost 2026: Weight, Routes & Calculator",
     eyebrow: "Shipping guide",
     description:
       "A fact-based budgeting method using the fields and warnings in AllChinaBuy’s public shipping calculator.",
@@ -616,7 +745,7 @@ export const guides: Guide[] = [
       },
     ],
     sources: [freightCalculator, orderConfirmation],
-    relatedSlugs: ["allchinabuy-volumetric-weight", "allchinabuy-shipping-lines", "allchinabuy-warehouse-storage"],
+    relatedSlugs: ["allchinabuy-shipping-to-usa", "allchinabuy-volumetric-weight", "allchinabuy-shipping-lines"],
   },
   {
     slug: "product-link-safety",
@@ -1119,7 +1248,7 @@ export const guides: Guide[] = [
       },
     ],
     sources: [freightCalculator],
-    relatedSlugs: ["shipping-cost-planning", "allchinabuy-volumetric-weight", "allchinabuy-shipping-restrictions"],
+    relatedSlugs: ["allchinabuy-shipping-to-usa", "shipping-cost-planning", "allchinabuy-volumetric-weight"],
   },
   {
     slug: "allchinabuy-used-items",

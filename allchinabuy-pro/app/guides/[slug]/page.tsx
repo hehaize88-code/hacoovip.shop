@@ -86,7 +86,7 @@ export default async function GuidePage({ params }: PageProps) {
         <div className="prose-shell prose-shell--guide">
           <aside className="research-note" aria-labelledby="research-note-title">
             <p className="eyebrow" id="research-note-title">Research standard</p>
-            <p>We checked AllChinaBuy’s public English mobile pages on {guide.updated}. {guide.hideSourceLinks ? "The primary pages are identified below without outbound links." : "Platform facts are linked below."} Variable fees, routes, deadlines and account-only terms must be confirmed on the current live order.</p>
+            <p>We checked the named public primary pages on {guide.updated}. {guide.hideSourceLinks ? "The sources are identified below without outbound links." : "Platform facts are linked below."} Variable fees, routes, deadlines, customs rules and account-only terms must be confirmed on the current live order or responsible authority.</p>
           </aside>
           <section className="key-facts" aria-labelledby="key-facts-title">
             <p className="eyebrow">Verified on the public interface</p>
@@ -111,7 +111,7 @@ export default async function GuidePage({ params }: PageProps) {
           <section className="source-list" aria-labelledby="source-list-title">
             <p className="eyebrow">Primary evidence</p>
             <h2 id="source-list-title">Official pages checked</h2>
-            <p>{guide.hideSourceLinks ? "These public AllChinaBuy pages were used as primary evidence. Dynamic content, logged-in prices and availability can change after our review date." : "These links go to AllChinaBuy’s public mobile website. Dynamic content, logged-in prices and availability can change after our review date."}</p>
+            <p>{guide.hideSourceLinks ? "These public primary pages were used as evidence. Dynamic content, logged-in prices, route availability and official rules can change after our review date." : "These links go to AllChinaBuy’s public mobile website. Dynamic content, logged-in prices and availability can change after our review date."}</p>
             <ol>
               {guide.sources.map((source) => (
                 <li key={`${source.title}-${source.url}`}>
