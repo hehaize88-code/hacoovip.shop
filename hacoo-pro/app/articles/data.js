@@ -24,6 +24,26 @@ const retiredArticles = [
 
 export const articles = [
   {
+    slug: "hacoo-delivery-time-uk-spain-europe",
+    title: "How Long Does Hacoo Take to Deliver? UK, Spain & Europe Guide",
+    description:
+      "Check Hacoo delivery times for the UK, Spain and Europe, separate processing from shipping, and estimate a realistic arrival window from official guidance.",
+    excerpt:
+      "Official country ranges, a processing-to-delivery timeline and a practical method for estimating when a Hacoo order may arrive without turning an estimate into a promise.",
+    published: "2026-09-05",
+    modified: "2026-09-05",
+    checkedLabel: "September 5, 2026",
+    read: "10 min",
+    image: {
+      path: "/articles/hacoo-delivery-time-europe.svg",
+      width: 1200,
+      height: 630,
+      alt: "Hacoo delivery time guide showing processing and published delivery ranges for the UK, Spain and Europe",
+      caption:
+        "An original Hacoo Pro timeline based on the delivery ranges published in Hacoo's public shipping guidance.",
+    },
+  },
+  {
     slug: "hacoo-order-cancellation-billing-evidence",
     title: "Hacoo Order Cancellation and Billing Questions: Evidence Guide",
     description:

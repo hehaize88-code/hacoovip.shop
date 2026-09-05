@@ -8,6 +8,7 @@ export const localizedDepth = {
       productLabel: "Producto actual", productTitle: "Una ficha real, comprobada directamente.", openListing: "Abrir ficha verificada", fallback: "Búsqueda alternativa",
       tableLabel: "Tabla de talla y QC", tableTitle: "Registra pruebas, no impresiones.", tableHeaders: ["Comprobación", "Qué anotar", "Prueba útil"], tableRecord: "Anota el valor o la opción exacta.", tableEvidence: "Foto, tabla o texto de la ficha actual.",
       faqTitle: "Preguntas de comprobación", updateLabel: "Registro de cambios", updateTitle: "Producto y guía actualizados", updateText: "Se verificó la ficha, se añadió una búsqueda alternativa y se actualizó la tabla de talla/QC.", disclosure: "La inclusión no verifica stock, calidad, autenticidad ni idoneidad. Confirma la opción actual.",
+      specificationTable: { tableLabel: "Especificaciones, compatibilidad y QC", tableTitle: "Registra datos técnicos, no suposiciones.", tableRecord: "Anota el modelo, valor o estándar exacto.", tableEvidence: "Foto de etiqueta, ficha técnica o texto del anuncio actual.", updateText: "Se verificó la ficha, se añadió una búsqueda alternativa y se actualizó la tabla de especificaciones y QC." },
     },
     guide: {
       label: "Comprobación práctica",
@@ -53,6 +54,7 @@ export const localizedDepth = {
       productLabel: "Produit actuel", productTitle: "Une annonce réelle, vérifiée directement.", openListing: "Ouvrir l’annonce vérifiée", fallback: "Recherche de secours",
       tableLabel: "Tableau taille et QC", tableTitle: "Notez des preuves, pas des impressions.", tableHeaders: ["Contrôle", "À noter", "Preuve utile"], tableRecord: "Notez la valeur ou l’option exacte.", tableEvidence: "Photo, tableau ou texte de l’annonce actuelle.",
       faqTitle: "Questions de vérification", updateLabel: "Journal des mises à jour", updateTitle: "Produit et guide actualisés", updateText: "L’annonce a été vérifiée, une recherche de secours a été ajoutée et le tableau taille/QC a été actualisé.", disclosure: "L’inclusion ne confirme ni stock, qualité, authenticité ni adéquation. Vérifiez l’option actuelle.",
+      specificationTable: { tableLabel: "Spécifications, compatibilité et QC", tableTitle: "Notez les données techniques, pas des suppositions.", tableRecord: "Notez le modèle, la valeur ou la norme exacte.", tableEvidence: "Photo d’étiquette, fiche technique ou texte de l’annonce actuelle.", updateText: "L’annonce a été vérifiée, une recherche de secours a été ajoutée et le tableau de spécifications et QC a été actualisé." },
     },
     guide: {
       label: "Contrôle pratique",
@@ -98,6 +100,7 @@ export const localizedDepth = {
       productLabel: "Aktuelles Produkt", productTitle: "Ein echtes Angebot, direkt geprüft.", openListing: "Geprüftes Angebot öffnen", fallback: "Ersatzsuche",
       tableLabel: "Größen- und QC-Tabelle", tableTitle: "Nachweise statt Eindrücke festhalten.", tableHeaders: ["Prüfung", "Zu notieren", "Nützlicher Nachweis"], tableRecord: "Notiere den genauen Wert oder die Variante.", tableEvidence: "Foto, Tabelle oder Text des aktuellen Angebots.",
       faqTitle: "Prüffragen", updateLabel: "Änderungsprotokoll", updateTitle: "Produkt und Ratgeber aktualisiert", updateText: "Das Angebot wurde geprüft, eine Ersatzsuche ergänzt und die Größen-/QC-Tabelle aktualisiert.", disclosure: "Die Aufnahme bestätigt weder Bestand, Qualität, Echtheit noch Eignung. Prüfe die aktuelle Variante.",
+      specificationTable: { tableLabel: "Spezifikationen, Kompatibilität und QC", tableTitle: "Technische Daten statt Annahmen festhalten.", tableRecord: "Notiere Modell, Wert oder Standard genau.", tableEvidence: "Etikettfoto, Datenblatt oder Text des aktuellen Angebots.", updateText: "Das Angebot wurde geprüft, eine Ersatzsuche ergänzt und die Spezifikations-/QC-Tabelle aktualisiert." },
     },
     guide: {
       label: "Praktische Prüfung",
@@ -143,6 +146,7 @@ export const localizedDepth = {
       productLabel: "Prodotto attuale", productTitle: "Un’inserzione reale, verificata direttamente.", openListing: "Apri inserzione verificata", fallback: "Ricerca alternativa",
       tableLabel: "Tabella taglia e QC", tableTitle: "Registra prove, non impressioni.", tableHeaders: ["Controllo", "Cosa annotare", "Prova utile"], tableRecord: "Annota il valore o l’opzione esatta.", tableEvidence: "Foto, tabella o testo dell’inserzione attuale.",
       faqTitle: "Domande di verifica", updateLabel: "Registro aggiornamenti", updateTitle: "Prodotto e guida aggiornati", updateText: "L’inserzione è stata verificata, è stata aggiunta una ricerca alternativa e la tabella taglia/QC è stata aggiornata.", disclosure: "L’inclusione non conferma disponibilità, qualità, autenticità o idoneità. Verifica l’opzione attuale.",
+      specificationTable: { tableLabel: "Specifiche, compatibilità e QC", tableTitle: "Registra dati tecnici, non supposizioni.", tableRecord: "Annota il modello, il valore o lo standard esatto.", tableEvidence: "Foto dell’etichetta, scheda tecnica o testo dell’inserzione attuale.", updateText: "L’inserzione è stata verificata, è stata aggiunta una ricerca alternativa e la tabella specifiche/QC è stata aggiornata." },
     },
     guide: {
       label: "Controllo pratico",
@@ -188,6 +192,7 @@ export const localizedDepth = {
       productLabel: "Produto atual", productTitle: "Um anúncio real, verificado diretamente.", openListing: "Abrir anúncio verificado", fallback: "Pesquisa alternativa",
       tableLabel: "Tabela de tamanho e QC", tableTitle: "Registe provas, não impressões.", tableHeaders: ["Verificação", "O que registar", "Prova útil"], tableRecord: "Registe o valor ou a opção exata.", tableEvidence: "Fotografia, tabela ou texto do anúncio atual.",
       faqTitle: "Perguntas de verificação", updateLabel: "Registo de atualizações", updateTitle: "Produto e guia atualizados", updateText: "O anúncio foi verificado, foi adicionada uma pesquisa alternativa e a tabela de tamanho/QC foi atualizada.", disclosure: "A inclusão não confirma stock, qualidade, autenticidade ou adequação. Verifique a opção atual.",
+      specificationTable: { tableLabel: "Especificações, compatibilidade e QC", tableTitle: "Registe dados técnicos, não suposições.", tableRecord: "Registe o modelo, valor ou norma exatos.", tableEvidence: "Fotografia da etiqueta, ficha técnica ou texto do anúncio atual.", updateText: "O anúncio foi verificado, foi adicionada uma pesquisa alternativa e a tabela de especificações/QC foi atualizada." },
     },
     guide: {
       label: "Verificação prática",

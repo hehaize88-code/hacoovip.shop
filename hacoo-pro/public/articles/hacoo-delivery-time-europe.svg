@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Hacoo delivery time planning guide</title>
+  <desc id="desc">A timeline showing three to five business days of processing followed by published delivery estimates for the United Kingdom, Spain and selected European countries.</desc>
+  <rect width="1200" height="630" fill="#11130f"/>
+  <rect x="54" y="54" width="1092" height="522" rx="28" fill="#f3f5e9"/>
+  <text x="96" y="128" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700">Hacoo delivery time</text>
+  <text x="96" y="169" fill="#53604b" font-family="Arial, Helvetica, sans-serif" font-size="22">Plan with a range. Confirm with live tracking.</text>
+  <line x1="118" y1="282" x2="1082" y2="282" stroke="#11130f" stroke-width="6"/>
+  <circle cx="172" cy="282" r="27" fill="#d9ff63" stroke="#11130f" stroke-width="5"/>
+  <circle cx="468" cy="282" r="27" fill="#d9ff63" stroke="#11130f" stroke-width="5"/>
+  <circle cx="756" cy="282" r="27" fill="#d9ff63" stroke="#11130f" stroke-width="5"/>
+  <circle cx="1032" cy="282" r="27" fill="#d9ff63" stroke="#11130f" stroke-width="5"/>
+  <text x="112" y="242" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">ORDER</text>
+  <text x="354" y="242" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">PROCESSING</text>
+  <text x="691" y="242" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">TRANSIT</text>
+  <text x="965" y="242" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">DELIVERY</text>
+  <rect x="96" y="350" width="310" height="146" rx="18" fill="#ffffff" stroke="#cbd1bf" stroke-width="2"/>
+  <text x="124" y="392" fill="#53604b" font-family="Arial, Helvetica, sans-serif" font-size="18">NORMAL PROCESSING</text>
+  <text x="124" y="451" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700">3–5 business days</text>
+  <rect x="445" y="350" width="310" height="146" rx="18" fill="#ffffff" stroke="#cbd1bf" stroke-width="2"/>
+  <text x="473" y="392" fill="#53604b" font-family="Arial, Helvetica, sans-serif" font-size="18">UK · FRANCE · GERMANY · ITALY</text>
+  <text x="473" y="451" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700">15–25 days</text>
+  <rect x="794" y="350" width="310" height="146" rx="18" fill="#d9ff63" stroke="#11130f" stroke-width="2"/>
+  <text x="822" y="392" fill="#53604b" font-family="Arial, Helvetica, sans-serif" font-size="18">SPAIN</text>
+  <text x="822" y="451" fill="#11130f" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700">15–30 days</text>
+  <text x="96" y="540" fill="#53604b" font-family="Arial, Helvetica, sans-serif" font-size="17">Published estimates checked 5 Sep 2026 · Individual routes can vary</text>
+</svg>

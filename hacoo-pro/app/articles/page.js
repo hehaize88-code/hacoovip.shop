@@ -5,8 +5,8 @@ import { createPageMetadata } from "../seo";
 import { articles } from "./data";
 
 export const metadata = createPageMetadata({
-  title: "Hacoo Help Articles: Orders, Tracking & Support",
-  description: "Practical Hacoo help articles for order issues, tracking updates, address changes, preorders and support evidence.",
+  title: "Hacoo Guides: Delivery, Orders, Tracking & Support",
+  description: "Practical Hacoo guides for delivery times, shipping, order issues, tracking updates, address changes and support evidence.",
   path: "/articles",
   alternates: { canonical: "/articles" },
 });
@@ -18,7 +18,7 @@ export default function ArticlesPage() {
       <div className="wrap">
         <span className="section-label">Independent Hacoo help</span>
         <h1>Resolve issues.<br/><em>Keep the evidence.</em></h1>
-        <p>Practical Hacoo articles for order, tracking and support questions, with clear decision steps and visible review dates.</p>
+        <p>Practical Hacoo articles for delivery, order, tracking and support questions, with clear decision steps and visible review dates.</p>
       </div>
     </section>
     <section className="section wrap">

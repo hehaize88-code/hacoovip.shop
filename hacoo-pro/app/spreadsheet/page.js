@@ -7,7 +7,7 @@ import { languageAlternates } from "../i18n";
 import { createPageMetadata } from "../seo";
 import BreadcrumbData from "@/components/BreadcrumbData";
 
-export const metadata = createPageMetadata({ title: "Hacoo Spreadsheet 2026: Links & Categories", description: "Use the independent Hacoo spreadsheet directory to find category routes, current product links, sizing help and practical listing checks.", path: "/spreadsheet", alternates: languageAlternates("/spreadsheet", "en") });
+export const metadata = createPageMetadata({ title: "Hacoo Spreadsheet 2026: Updated Product Links & Categories", description: "Browse the independent Hacoo spreadsheet for updated product links, categories, sizing help and practical checks before opening a live listing.", path: "/spreadsheet", alternates: languageAlternates("/spreadsheet", "en") });
 
 export default function SpreadsheetPage() {
   const spreadsheetFaqs = [["Is this an official Hacoo spreadsheet?","No. Hacoo Pro is an independent directory and editorial guide."],["How often should product links be checked?","Check the live destination every time you use a link because stock, options, images and terms can change."],["Does a spreadsheet verify product quality?","No. It organizes discovery and explains useful checks, but it cannot guarantee a product or transaction."]];

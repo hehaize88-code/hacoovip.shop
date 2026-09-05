@@ -10,7 +10,7 @@ import { articles } from "./articles/data";
 export const metadata = { alternates: languageAlternates("/", "en") };
 
 export default function Home() {
-  const newestArticle = articles.at(-1);
+  const newestArticle = articles[0];
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.slice(0, 4).map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };
   return (
     <div className="home-page">
@@ -18,8 +18,8 @@ export default function Home() {
       <section className="hero wrap">
         <div className="hero-copy">
           <div className="eyebrow"><span></span> Independent Hacoo discovery guide</div>
-          <h1>Find better.<br/><em>Check smarter.</em></h1>
-          <p className="hero-lead">A clearer Hacoo spreadsheet experience for product links, category routes and practical checks—before you open the live listing.</p>
+          <h1>Hacoo website guide.<br/><em>Links with context.</em></h1>
+          <p className="hero-lead">Find current Hacoo links, spreadsheet categories, size guidance, delivery information and independent app help—before you open a live listing.</p>
           <div className="hero-actions"><a className="button primary" href={DESTINATION} target="_blank" rel="noopener noreferrer">Browse live finds <Arrow/></a><Link className="button quiet" href="/categories">Browse categories</Link></div>
           <div className="trust-row"><span><CheckIcon/> Independent</span><span><CheckIcon/> Category-led</span><span><CheckIcon/> Live-link checks</span></div>
         </div>
