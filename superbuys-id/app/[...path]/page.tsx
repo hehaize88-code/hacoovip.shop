@@ -30,7 +30,7 @@ const sharedArticles = [
   "shipping-cost-guide",
 ] as const;
 const indonesianOnlyArticles = [
-  "cara-belanja-di-superbuy-indonesia",
+  "cara-belanja-di-superbuy",
   "pajak-bea-cukai-superbuy-indonesia",
   "superbuy-review-indonesia",
 ] as const;

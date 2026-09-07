@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/articles/spreadsheet-guide",
   ];
   const localArticles = [
-    "/articles/cara-belanja-di-superbuy-indonesia",
+    "/articles/cara-belanja-di-superbuy",
     "/articles/pajak-bea-cukai-superbuy-indonesia",
     "/articles/superbuy-review-indonesia",
   ];

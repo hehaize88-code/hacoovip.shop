@@ -14,7 +14,7 @@ type PageName =
 type SharedArticleSlug =
   "qc-photo-checklist" | "shipping-cost-guide" | "spreadsheet-guide";
 type IndonesianArticleSlug =
-  | "cara-belanja-di-superbuy-indonesia"
+  | "cara-belanja-di-superbuy"
   | "pajak-bea-cukai-superbuy-indonesia"
   | "superbuy-review-indonesia";
 type ArticleSlug = SharedArticleSlug | IndonesianArticleSlug;
@@ -46,7 +46,7 @@ export const isIndonesianArticle = (
   value: string,
 ): value is IndonesianArticleSlug =>
   [
-    "cara-belanja-di-superbuy-indonesia",
+    "cara-belanja-di-superbuy",
     "pajak-bea-cukai-superbuy-indonesia",
     "superbuy-review-indonesia",
   ].includes(value);
@@ -1436,7 +1436,7 @@ function ArticleCards({ lang }: { lang: Lang }) {
   const order: ArticleSlug[] =
     lang === "id"
       ? [
-          "cara-belanja-di-superbuy-indonesia",
+          "cara-belanja-di-superbuy",
           "shipping-cost-guide",
           "pajak-bea-cukai-superbuy-indonesia",
           "superbuy-review-indonesia",
