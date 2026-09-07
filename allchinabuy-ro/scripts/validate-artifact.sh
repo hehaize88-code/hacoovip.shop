@@ -9,6 +9,7 @@ fi
 
 worker="${SITES_PROJECT_ROOT}/dist/server/index.js"
 hosting="${SITES_PROJECT_ROOT}/dist/.openai/hosting.json"
+pages_worker="${SITES_PROJECT_ROOT}/dist/client/_worker.js/index.js"
 
 [[ -f "${worker}" ]] || {
   echo "Missing Sites Worker entry: dist/server/index.js" >&2
@@ -16,6 +17,10 @@ hosting="${SITES_PROJECT_ROOT}/dist/.openai/hosting.json"
 }
 [[ -f "${hosting}" ]] || {
   echo "Missing packaged Sites manifest: dist/.openai/hosting.json" >&2
+  exit 66
+}
+[[ -f "${pages_worker}" ]] || {
+  echo "Missing Cloudflare Pages Worker entry: dist/client/_worker.js/index.js" >&2
   exit 66
 }
 
@@ -35,3 +40,4 @@ if (!worker.default || typeof worker.default.fetch !== "function") {
 NODE
 
 echo "Validated Sites artifact: ESM Worker default.fetch and hosting manifest are present."
+echo "Validated Cloudflare Pages artifact: advanced-mode Worker is present."
