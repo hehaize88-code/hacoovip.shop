@@ -87,3 +87,24 @@ test("serves frontend assets without app-router redirects", async () => {
   assert.equal(logo.status, 200);
   assert.equal(await logo.text(), "static:/superbuy-logo.png");
 });
+
+test("renders the packaging guide with search metadata and internal discovery", async () => {
+  const response = await render("/articles/superbuy-packaging-guide/");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /<title>Superbuy Packaging Guide 2026: Boxes, Vacuum Packing and Parcel Size<\/title>/i);
+  assert.match(html, /<link rel="canonical" href="https:\/\/superbuys\.store\/articles\/superbuy-packaging-guide\/"\/>/i);
+  assert.match(html, /"@type":"Article"/i);
+  assert.match(html, /"@type":"BreadcrumbList"/i);
+  assert.match(html, /Superbuy vacuum packaging/i);
+  assert.match(html, /Related Superbuy guides/i);
+});
+
+test("uses search-focused titles for high-impression hubs", async () => {
+  const guides = await (await render("/guides/")).text();
+  const faq = await (await render("/faq/")).text();
+
+  assert.match(guides, /<title>How to use Superbuy in 2026\.<\/title>/i);
+  assert.match(faq, /<title>Superbuy FAQ 2026: shipping cost, storage, QC &amp; packaging\.<\/title>/i);
+});

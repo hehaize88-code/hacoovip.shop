@@ -9,6 +9,27 @@ type ParsedRoute = {
   basePath: string;
 };
 
+const articleDates: Record<string, string> = {
+  "product-listing-checklist": "2026-08-12",
+  "superbuy-qc-photos-guide": "2026-08-12",
+  "superbuy-shipping-cost-guide": "2026-09-07",
+  "superbuy-warehouse-arrival-checklist": "2026-08-14",
+  "superbuy-order-remarks-writing-guide": "2026-08-28",
+  "superbuy-seller-not-shipped-delay-record": "2026-09-03",
+  "superbuy-packaging-guide": "2026-09-07",
+};
+
+function updatedLabel(locale: Locale, slug: string) {
+  const date = articleDates[slug] ?? "2026-08-12";
+  const formatted = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : locale === "de" ? "de-DE" : "en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date}T12:00:00Z`));
+  return locale === "fr" ? `Mis à jour le ${formatted}` : locale === "de" ? `Aktualisiert am ${formatted}` : `Updated ${formatted}`;
+}
+
 export function parseRoute(segments: string[]): ParsedRoute {
   const maybeLocale = segments[0];
   const locale: Locale = maybeLocale === "fr" || maybeLocale === "de" ? maybeLocale : "en";
@@ -284,7 +305,7 @@ function CategoriesPage({ locale, basePath }: { locale: Locale; basePath: string
 
 function ArticlesGrid({ locale }: { locale: Locale }) {
   const t = copy[locale];
-  return <div className="article-grid">{articles[locale].map((article, index) => <article key={article.slug}><span>0{index + 1} / FIELD NOTE</span><h2>{article.title}</h2><p>{article.dek}</p><small>{t.updated}</small><a href={localizedPath(locale, `/articles/${article.slug}`)}>{t.read} →</a></article>)}</div>;
+  return <div className="article-grid">{articles[locale].map((article, index) => <article key={article.slug}><span>0{index + 1} / FIELD NOTE</span><h2>{article.title}</h2><p>{article.dek}</p><small>{updatedLabel(locale, article.slug)}</small><a href={localizedPath(locale, `/articles/${article.slug}`)}>{t.read} →</a></article>)}</div>;
 }
 
 function ArticlesPage({ locale, basePath }: { locale: Locale; basePath: string }) {
@@ -294,19 +315,19 @@ function ArticlesPage({ locale, basePath }: { locale: Locale; basePath: string }
       ["01", "Core workflow", "how to use Superbuy spreadsheet", "Start with discovery, variant checks and the two-payment model."],
       ["02", "Warehouse evidence", "Superbuy QC photos", "Answer the highest-risk question before international shipping."],
       ["03", "Cost decision", "Superbuy shipping cost", "Explain weight, volume, consolidation and packaging trade-offs."],
-      ["04", "Next cluster", "Superbuy warehouse storage", "Expand into storage deadlines, returns, fees and country routes."],
+      ["04", "Packaging decision", "Superbuy packaging", "Compare boxes, vacuum packing, reinforcement and parcel-size trade-offs."],
     ],
     fr: [
       ["01", "Parcours essentiel", "utiliser une spreadsheet Superbuy", "Commencer par la découverte, les variantes et les deux paiements."],
       ["02", "Preuves d’entrepôt", "photos QC Superbuy", "Répondre à la question la plus risquée avant l’envoi international."],
       ["03", "Décision coût", "frais d’envoi Superbuy", "Expliquer poids, volume, regroupement et emballage."],
-      ["04", "Prochain groupe", "stockage entrepôt Superbuy", "Développer stockage, retours, frais et destinations."],
+      ["04", "Décision d’emballage", "emballage Superbuy", "Comparer cartons, mise sous vide, renfort et volume du colis."],
     ],
     de: [
       ["01", "Kernablauf", "Superbuy Spreadsheet verwenden", "Mit Produktsuche, Variantenprüfung und zwei Zahlungen beginnen."],
       ["02", "Lagerbelege", "Superbuy QC Fotos", "Die wichtigste Risikofrage vor dem Auslandsversand klären."],
       ["03", "Kostenentscheidung", "Superbuy Versandkosten", "Gewicht, Volumen, Konsolidierung und Verpackung erklären."],
-      ["04", "Nächstes Cluster", "Superbuy Lagerung", "Lagerfristen, Rückgaben, Gebühren und Länder-Routen ausbauen."],
+      ["04", "Verpackungsentscheidung", "Superbuy Verpackung", "Kartons, Vakuumverpackung, Verstärkung und Paketvolumen vergleichen."],
     ],
   }[locale];
   return <Shell locale={locale} basePath={basePath}><InnerHero {...t.articlesPage} /><section className="content-roadmap"><div className="section-kicker"><span>SEO READING ORDER</span><p>One search intent per page</p></div><div className="roadmap-grid">{roadmap.map((item) => <article key={item[0]}><span>{item[0]}</span><small>{item[1]}</small><h2>{item[2]}</h2><p>{item[3]}</p></article>)}</div></section><section className="reading-index"><ArticlesGrid locale={locale} /></section></Shell>;
@@ -334,22 +355,28 @@ function ArticlePage({ locale, basePath, slug }: { locale: Locale; basePath: str
   const bodyText = article.sections.flatMap((section) => section.paragraphs).join(" ");
   const wordCount = bodyText.trim().split(/\s+/).length;
   const articleUrl = `https://superbuys.store${localizedPath(locale, `/articles/${slug}`)}`;
-  const publishDate = slug === "superbuy-seller-not-shipped-delay-record" ? "2026-09-03" : slug === "superbuy-order-remarks-writing-guide" ? "2026-08-28" : slug === "superbuy-warehouse-arrival-checklist" ? "2026-08-14" : "2026-08-12";
+  const publishDate = articleDates[slug] ?? "2026-08-12";
   const schema = { "@context": "https://schema.org", "@type": "Article", headline: article.title, datePublished: publishDate, dateModified: publishDate, inLanguage: locale, description: article.dek, wordCount, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl } };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: t.nav.home, item: `https://superbuys.store${localizedPath(locale, "/")}` }, { "@type": "ListItem", position: 2, name: t.nav.articles, item: `https://superbuys.store${localizedPath(locale, "/articles")}` }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   const sourceLabel = locale === "fr" ? "Base factuelle" : locale === "de" ? "Faktenbasis" : "Fact-check basis";
   const isArrivalGuide = slug === "superbuy-warehouse-arrival-checklist";
   const isOrderRemarksGuide = slug === "superbuy-order-remarks-writing-guide";
   const isSellerDelayGuide = slug === "superbuy-seller-not-shipped-delay-record";
+  const isPackagingGuide = slug === "superbuy-packaging-guide";
   const sourceText = isSellerDelayGuide
     ? locale === "fr" ? "Vérifié le 3 septembre 2026 à partir du guide Shopping Agent et du centre d'aide publics de Superbuy. Le seuil de relance après trois jours est présenté comme une action de compte, pas comme une garantie de délai vendeur." : locale === "de" ? "Am 3. September 2026 anhand des öffentlichen Superbuy-Shopping-Agent-Leitfadens und Help Centers geprüft. Der Drei-Tage-Punkt wird als Kontoaktion, nicht als garantierte Verkäuferfrist behandelt." : "Checked 3 September 2026 against Superbuy's public Shopping Agent guide and Help Center. The three-day urge point is treated as an account action, not a guaranteed seller deadline."
     : isOrderRemarksGuide
     ? locale === "fr" ? "Vérifié le 28 août 2026 à partir du guide Shopping Agent et des pages publiques d’aide de Superbuy. Les consignes d’achat sont séparées des demandes d’entrepôt et du Parcel Forwarding." : locale === "de" ? "Am 28. August 2026 anhand des Superbuy-Shopping-Agent-Leitfadens und öffentlicher Hilfeseiten geprüft. Kaufhinweise werden von Lagerfragen und Parcel Forwarding getrennt." : "Checked 28 August 2026 against Superbuy’s published Shopping Agent guidance and public help pages. Purchase remarks are kept separate from warehouse requests and Parcel Forwarding."
     : isArrivalGuide
     ? locale === "fr" ? "Vérifié le 14 août 2026 à partir du guide Shopping Agent et du centre d’aide anglais publiés par Superbuy. Ce guide distingue le service d’achat du Parcel Forwarding." : locale === "de" ? "Am 14. August 2026 anhand des englischen Superbuy-Shopping-Agent-Leitfadens und Help Centers geprüft. Shopping Agent und Parcel Forwarding werden getrennt behandelt." : "Checked 14 August 2026 against Superbuy’s published English Shopping Agent guide and Help Center. Shopping Agent and Parcel Forwarding are treated separately."
+    : isPackagingGuide
+    ? locale === "fr" ? "Vérifié le 7 septembre 2026 à partir des guides publics Superbuy sur le Parcel Forwarding, les frais et la livraison. Les services, tarifs et règles de ligne doivent être revérifiés dans le compte actif." : locale === "de" ? "Am 7. September 2026 anhand der öffentlichen Superbuy-Leitfäden zu Parcel Forwarding, Gebühren und Lieferung geprüft. Dienste, Preise und Routenregeln müssen im aktuellen Konto erneut geprüft werden." : "Checked 7 September 2026 against Superbuy’s public Parcel Forwarding, fee and international-delivery guidance. Services, prices and route rules should be rechecked in the live account."
     : locale === "fr" ? "Vérifié le 12 août 2026 à partir des guides anglais publiés par Superbuy sur le service d’achat, la composition des frais, l’entreposage et la livraison internationale. Les tarifs et lignes peuvent évoluer." : locale === "de" ? "Am 12. August 2026 anhand der veröffentlichten englischen Superbuy-Leitfäden zu Shopping Agent, Gebühren, Lagerung und internationalem Versand geprüft. Preise und Routen können sich ändern." : "Checked 12 August 2026 against Superbuy’s published English shopping-agent, fee-composition, warehouse and international-delivery guidance. Prices, services and routes can change.";
-  const displayUpdated = isSellerDelayGuide ? (locale === "fr" ? "Mis à jour le 3 septembre 2026" : locale === "de" ? "Aktualisiert am 3. September 2026" : "Updated 3 September 2026") : isOrderRemarksGuide ? (locale === "fr" ? "Mis à jour le 28 août 2026" : locale === "de" ? "Aktualisiert am 28. August 2026" : "Updated 28 August 2026") : isArrivalGuide ? (locale === "fr" ? "Mis à jour le 14 août 2026" : locale === "de" ? "Aktualisiert am 14. August 2026" : "Updated 14 August 2026") : t.updated;
-  return <Shell locale={locale} basePath={basePath}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />{(isArrivalGuide || isOrderRemarksGuide || isSellerDelayGuide) && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />}<article className="longform"><header><a href={localizedPath(locale, "/articles")}>← {t.nav.articles}</a><span>{displayUpdated}</span><h1>{article.title}</h1><p>{article.dek}</p><div className="article-meta"><span>{wordCount.toLocaleString()} WORDS</span><span>{article.sections.length} SECTIONS</span><span>INDEPENDENT GUIDE</span></div></header><aside className="source-note"><span>{sourceLabel}</span><p>{sourceText}</p></aside><nav className="article-toc" aria-label="Article contents"><span>IN THIS GUIDE</span>{article.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, "0")} {section.heading}</a>)}</nav><div className="longform-body">{article.sections.map((section, index) => <section id={`section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></section>)}</div><Search locale={locale} compact /></article></Shell>;
+  const displayUpdated = updatedLabel(locale, slug);
+  const articleIndex = articles[locale].findIndex((item) => item.slug === slug);
+  const related = Array.from({ length: Math.min(3, articles[locale].length - 1) }, (_, offset) => articles[locale][(articleIndex + offset + 1) % articles[locale].length]);
+  const relatedLabel = locale === "fr" ? "Guides associés" : locale === "de" ? "Ähnliche Ratgeber" : "Related Superbuy guides";
+  return <Shell locale={locale} basePath={basePath}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} /><article className="longform"><header><a href={localizedPath(locale, "/articles")}>← {t.nav.articles}</a><span>{displayUpdated}</span><h1>{article.title}</h1><p>{article.dek}</p><div className="article-meta"><span>{wordCount.toLocaleString()} WORDS</span><span>{article.sections.length} SECTIONS</span><span>INDEPENDENT GUIDE</span></div></header><aside className="source-note"><span>{sourceLabel}</span><p>{sourceText}</p></aside><nav className="article-toc" aria-label="Article contents"><span>IN THIS GUIDE</span>{article.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, "0")} {section.heading}</a>)}</nav><div className="longform-body">{article.sections.map((section, index) => <section id={`section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></section>)}</div><nav className="category-next" aria-label={relatedLabel}>{related.map((item) => <a key={item.slug} href={localizedPath(locale, `/articles/${item.slug}`)}>{item.title} →</a>)}</nav><Search locale={locale} compact /></article></Shell>;
 }
 
 function NotFound({ locale, basePath }: { locale: Locale; basePath: string }) {

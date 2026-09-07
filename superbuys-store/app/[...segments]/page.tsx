@@ -28,13 +28,11 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
     const article = articles[route.locale].find((item) => item.slug === route.slug);
     const url = absoluteUrl(localizedPath(route.locale, route.basePath));
     return {
-      title: article?.title,
+      title: article?.title ? { absolute: article.title } : undefined,
       description: article?.dek,
       alternates: alternates(route.locale, route.basePath),
-      ...(["superbuy-warehouse-arrival-checklist", "superbuy-order-remarks-writing-guide", "superbuy-seller-not-shipped-delay-record"].includes(route.slug) ? {
-        openGraph: { type: "article" as const, title: article?.title, description: article?.dek, url, siteName: "Superbuy Product Index" },
-        twitter: { card: "summary", title: article?.title, description: article?.dek },
-      } : {}),
+      openGraph: { type: "article" as const, title: article?.title, description: article?.dek, url, siteName: "Superbuy Product Index" },
+      twitter: { card: "summary", title: article?.title, description: article?.dek },
     };
   }
   const titles = {
@@ -56,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
     return { title: titles["not-found"], description: descriptions["not-found"], robots: { index: false, follow: false } };
   }
   return {
-    title: titles[route.kind as keyof typeof titles],
+    title: { absolute: titles[route.kind as keyof typeof titles] },
     description: descriptions[route.kind as keyof typeof descriptions],
     alternates: alternates(route.locale, route.basePath),
   };
