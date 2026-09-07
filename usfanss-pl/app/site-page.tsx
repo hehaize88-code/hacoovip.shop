@@ -4,14 +4,23 @@ import { researchedFaqs, researchedSteps } from "./researched-content";
 
 const siteBase = "https://usfanss.pl";
 
+const articleDates: Record<ArticleSlug, string> = {
+  "first-time-spreadsheet-checklist": "2026-08-12",
+  "read-usfans-qc-photos": "2026-08-12",
+  "product-price-vs-parcel-cost": "2026-08-12",
+  "usfans-poland-preorder-checklist": "2026-08-14",
+  "usfans-shipping-to-poland": "2026-09-07",
+  "usfans-tracking-guide": "2026-09-07",
+};
+
 const articleResearchLabels: Record<Locale, string> = {
-  pl: "Sprawdzone na publicznych stronach USFans · aktualizacja 12 sierpnia 2026",
-  en: "Fact-checked against USFans public pages · updated 12 August 2026",
-  de: "An öffentlichen USFans-Seiten geprüft · aktualisiert am 12. August 2026",
-  fr: "Vérifié sur les pages publiques USFans · mis à jour le 12 août 2026",
-  it: "Verificato sulle pagine pubbliche USFans · aggiornato il 12 agosto 2026",
-  es: "Verificado con las páginas públicas de USFans · actualizado el 12 de agosto de 2026",
-  ro: "Verificat pe paginile publice USFans · actualizat la 12 august 2026",
+  pl: "Sprawdzone na publicznych stronach USFans · aktualizacja 7 września 2026",
+  en: "Fact-checked against USFans public pages · updated 7 September 2026",
+  de: "An öffentlichen USFans-Seiten geprüft · aktualisiert am 7. September 2026",
+  fr: "Vérifié sur les pages publiques USFans · mis à jour le 7 septembre 2026",
+  it: "Verificato sulle pagine pubbliche USFans · aggiornato il 7 settembre 2026",
+  es: "Verificado con las páginas públicas de USFans · actualizado el 7 de septiembre de 2026",
+  ro: "Verificat pe paginile publice USFans · actualizat la 7 septembrie 2026",
 };
 
 const categoryLabels: Record<Locale, string[]> = {
@@ -120,12 +129,13 @@ function ProductGrid({ locale, limit }: { locale: Locale; limit?: number }) {
   );
 }
 
-function ArticleCards({ locale }: { locale: Locale }) {
+function ArticleCards({ locale, limit }: { locale: Locale; limit?: number }) {
   const c = copy[locale];
   const articles = getArticles(locale);
+  const visibleSlugs = limit ? [...articleSlugs].reverse().slice(0, limit) : articleSlugs;
   return (
     <div className="article-grid">
-      {articleSlugs.map((slug, index) => (
+      {visibleSlugs.map((slug, index) => (
         <a className={`article-card article-card-${index + 1}`} href={routeFor(locale, "article", slug)} key={slug}>
           <div className="article-top"><span>0{index + 1}</span><i>↗</i></div>
           <p>{c.planned}</p><h3>{articles[slug].title}</h3><small>{articles[slug].excerpt}</small>
@@ -171,7 +181,7 @@ function HomePage({ locale }: { locale: Locale }) {
       </section>
       <section className="section"><SectionHead kicker={c.categoriesKicker} title={c.categoriesTitle} body={c.categoriesBody} /><CategoryGrid locale={locale} limit={6} /><a className="section-route" href={routeFor(locale, "categories")}>{c.nav.categories} →</a></section>
       <section className="section light-panel"><SectionHead kicker={c.findsKicker} title={c.findsTitle} body={c.findsBody} /><ProductGrid locale={locale} limit={3} /><a className="section-route" href={routeFor(locale, "finds")}>{c.nav.finds} →</a></section>
-      <section className="section"><SectionHead kicker={c.articleKicker} title={c.articlesTitle} body={c.articlesBody} /><ArticleCards locale={locale} /><a className="section-route" href={routeFor(locale, "articles")}>{c.articleIndex} →</a></section>
+      <section className="section"><SectionHead kicker={c.articleKicker} title={c.articlesTitle} body={c.articlesBody} /><ArticleCards locale={locale} limit={4} /><a className="section-route" href={routeFor(locale, "articles")}>{c.articleIndex} →</a></section>
       <section className="section faq-home"><div><p className="section-kicker">{c.faqKicker}</p><h2>{c.faqTitle}</h2><p>{c.faqIntro}</p></div><FAQList locale={locale} limit={2} /></section>
     </>
   );
@@ -211,7 +221,9 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
   const article = getArticles(locale)[slug];
   const articleUrl = `${siteBase}${routeFor(locale, "article", slug)}`;
   const articlesUrl = `${siteBase}${routeFor(locale, "articles")}`;
-  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: slug === "usfans-poland-preorder-checklist" ? "2026-08-14" : undefined, dateModified: slug === "usfans-poland-preorder-checklist" ? "2026-08-14" : "2026-08-12" };
+  const currentIndex = articleSlugs.indexOf(slug);
+  const relatedSlugs = [articleSlugs[(currentIndex + articleSlugs.length - 1) % articleSlugs.length], articleSlugs[(currentIndex + 1) % articleSlugs.length]];
+  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: articleDates[slug], dateModified: "2026-09-07" };
   const breadcrumbJson = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${siteBase}${routeFor(locale, "home")}` }, { "@type": "ListItem", position: 2, name: c.nav.articles, item: articlesUrl }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   return (
     <>
@@ -225,6 +237,11 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
             <div className="article-intro">{article.intro.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
             {article.sections.map(([heading, body]) => <section key={heading}><h2>{heading}</h2>{body.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
             <div className="article-check"><strong>{c.disclaimer}</strong></div>
+            <nav className="article-related" aria-label="Related USFans guides">
+              <span>{c.articleIndex}</span>
+              {relatedSlugs.map((relatedSlug) => <a href={routeFor(locale, "article", relatedSlug)} key={relatedSlug}>{getArticles(locale)[relatedSlug].title} →</a>)}
+              <a className="article-related-cta" href={allProducts} target="_blank" rel="noopener noreferrer">{c.finalCta} ↗</a>
+            </nav>
           </div>
         </div>
       </article>
@@ -245,7 +262,7 @@ function Footer({ locale }: { locale: Locale }) {
 export function SitePage({ locale, page, article }: { locale: Locale; page: PageKind; article?: ArticleSlug }) {
   const languageTag = locales.find((item) => item.code === locale)?.lang ?? locale;
   const faqJson = page === "faq" ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: researchedFaqs[locale].map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) } : null;
-  const siteJson = page === "home" ? [{ "@context": "https://schema.org", "@type": "WebSite", name: "USFanss", url: `${siteBase}${routeFor(locale, "home")}`, inLanguage: languageTag }, { "@context": "https://schema.org", "@type": "Organization", name: "USFanss", url: siteBase, logo: `${siteBase}/usfans-logo.png` }] : [];
+  const siteJson = page === "home" ? [{ "@context": "https://schema.org", "@type": "WebSite", name: "USFans Spreadsheet Polska", alternateName: ["USFans", "US Fans Lista"], url: `${siteBase}${routeFor(locale, "home")}`, inLanguage: languageTag }, { "@context": "https://schema.org", "@type": "Organization", name: "USFanss", url: siteBase, logo: `${siteBase}/usfans-logo.png` }] : [];
   const itemListJson = page === "finds" ? { "@context": "https://schema.org", "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: product.name, url: product.href, image: product.image })) } : null;
   return (
     <main className={`site page-${page}`} id="top">

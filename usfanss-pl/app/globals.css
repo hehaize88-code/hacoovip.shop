@@ -212,6 +212,11 @@ img { display: block; max-width: 100%; }
 .article-body h2 { margin: 0 0 15px; font-size: 31px; letter-spacing: -.04em; }
 .article-body p { margin: 0; color: #486762; font-size: 15px; line-height: 1.8; }
 .article-check { margin-top: 60px; padding: 20px; background: #eaf1fb; border-radius: 16px; color: #49645f; font-size: 11px; line-height: 1.65; }
+.article-related { display: grid; gap: 10px; margin-top: 22px; padding-top: 24px; border-top: 1px solid var(--line); }
+.article-related > span { color: var(--mint-dark); font: 800 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.article-related a { padding: 14px 16px; background: #fff; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font-size: 13px; font-weight: 750; line-height: 1.35; transition: .2s ease; }
+.article-related a:hover { transform: translateX(4px); border-color: var(--mint-dark); }
+.article-related .article-related-cta { color: #eafff8; background: #123b36; border-color: #123b36; }
 
 .final-cta { min-height: 500px; margin: 22px 0; padding: 82px 6%; background: linear-gradient(135deg, #74dcb6, #afeed7); border-radius: 32px; }
 .final-cta > p { margin: 0 0 25px; font: 800 10px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }

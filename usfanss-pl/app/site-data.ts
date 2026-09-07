@@ -1,5 +1,6 @@
 import { researchedEnglishArticles } from "./english-articles";
 import { polandPreorderArticle } from "./poland-preorder-article";
+import { priorityEnglishArticles } from "./priority-english-articles";
 
 export type Locale = "pl" | "en" | "de" | "fr" | "it" | "es" | "ro";
 export type PageKind = "home" | "finds" | "categories" | "guides" | "articles" | "faq" | "article";
@@ -37,7 +38,14 @@ export const categories = [
 ] as const;
 
 export const allProducts = "https://cnfanshp.com/AllProducts/";
-export const articleSlugs = ["first-time-spreadsheet-checklist", "read-usfans-qc-photos", "product-price-vs-parcel-cost", "usfans-poland-preorder-checklist"] as const;
+export const articleSlugs = [
+  "first-time-spreadsheet-checklist",
+  "read-usfans-qc-photos",
+  "product-price-vs-parcel-cost",
+  "usfans-poland-preorder-checklist",
+  "usfans-shipping-to-poland",
+  "usfans-tracking-guide",
+] as const;
 export type ArticleSlug = typeof articleSlugs[number];
 
 type Copy = {
@@ -57,8 +65,8 @@ export const copy: Record<Locale, Copy> = {
   pl: {
     nav: { home: "Start", finds: "Znaleziska", categories: "Kategorie", guides: "Poradniki", articles: "Artykuły SEO", faq: "FAQ" },
     browseAll: "Zobacz wszystko", language: "Język", independent: "Niezależny katalog produktów", updated: "Aktualizacja 2026",
-    heroLines: ["USFans Spreadsheet Polska:", "Znaleziska produktów", "i zdjęcia QC."],
-    heroBody: "Przejrzysty sposób przeglądania znalezisk z arkuszy USFans — według kategorii, z rzeczywistymi zdjęciami produktów i wygodnie na telefonie.",
+    heroLines: ["USFans / US Fans Lista 2026:", "Spreadsheet Polska", "Znaleziska i zdjęcia QC."],
+    heroBody: "Aktualna lista USFans i mobilny USFans Spreadsheet Polska: znaleziska produktów, bezpośrednie linki, kategorie oraz praktyczne wskazówki do kontroli zdjęć QC.",
     searchLabel: "Przeszukaj katalog produktów", searchPlaceholder: "Wpisz: bluza, buty, torba…", search: "Szukaj", explore: "Zobacz najnowsze znaleziska", howLink: "Jak działa katalog",
     categoriesKicker: "Zacznij szeroko", categoriesTitle: "Wybierz kategorię, potem zawęź wybór.", categoriesBody: "Każda kategoria prowadzi do osobnej, aktualnej kolekcji produktów.",
     findsKicker: "Aktualny katalog", findsTitle: "Znaleziska warte otwarcia jako pierwsze.", findsBody: "Krótka lista produktów zamiast tysięcy trudnych do przejrzenia wierszy.", viewIndex: "Pełny katalog produktów", approx: "około", priceNote: "Ceny w USD są orientacyjne. Aktualna oferta, wybrany wariant, dostawa krajowa, usługi i wysyłka międzynarodowa mogą zmienić końcową kwotę.",
@@ -97,9 +105,9 @@ export const copy: Record<Locale, Copy> = {
 
 export type LocalArticle = { seoTitle?: string; title: string; excerpt: string; intro: string; points: string[]; sections: Array<[string, string]> };
 
-const englishArticles = researchedEnglishArticles as unknown as Record<ArticleSlug, LocalArticle>;
+const englishArticles = { ...researchedEnglishArticles, ...priorityEnglishArticles } as unknown as Record<ArticleSlug, LocalArticle>;
 
-type HistoricArticleSlug = Exclude<ArticleSlug, "usfans-poland-preorder-checklist">;
+type HistoricArticleSlug = "first-time-spreadsheet-checklist" | "read-usfans-qc-photos" | "product-price-vs-parcel-cost";
 const articleTranslations: Record<Exclude<Locale, "en">, Record<HistoricArticleSlug, LocalArticle>> = {
   pl: {
     "read-usfans-qc-photos": { title: "Jak czytać zdjęcia QC USFans przed wysyłką międzynarodową", excerpt: "Praktyczna lista kontroli zdjęć magazynowych, wymiarów i widocznych wad.", intro: "Zdjęcia QC są ostatnim wizualnym punktem kontroli przed wysyłką międzynarodową. Strony produktów USFans informują o kilku zdjęciach inspekcyjnych HD, ale ich wartość zależy od tego, czy wiesz, co mogą — i czego nie mogą — potwierdzić.", points: ["Najpierw sprawdź kolor, metkę z rozmiarem i wybrany wariant.", "Porównaj obie strony, szwy, nadruk, okucia i widoczne uszkodzenia.", "Poproś o zdjęcie z miarką, gdy liczy się dopasowanie lub wymiar.", "Nie traktuj zdjęcia magazynowego jako dowodu autentyczności lub trwałości."], sections: [["Zacznij od zgodności zamówienia", "Potwierdź, że zdjęcia pokazują zamówiony produkt, kolor, rozmiar i liczbę sztuk. Nawet ostre zdjęcie nie pomaga, jeśli przedstawia inny wariant."], ["Sprawdzaj systematycznie", "Przejdź od ogólnego kształtu do detali: szwów, krawędzi, podeszew, zamków, logo, plam, zarysowań i opakowania. Elementy symetryczne porównuj obok siebie."], ["Podejmij decyzję przed końcem okresu zwrotu", "Jeśli widoczna wada ma znaczenie, opisz ją precyzyjnie i skorzystaj z dostępnej obsługi posprzedażowej przed wysyłką międzynarodową. Po opuszczeniu magazynu rozwiązanie problemu jest znacznie trudniejsze."]] },
@@ -134,7 +142,7 @@ const articleTranslations: Record<Exclude<Locale, "en">, Record<HistoricArticleS
 };
 
 export function getArticles(locale: Locale): Record<ArticleSlug, LocalArticle> {
-  const existing = locale === "en" ? englishArticles : articleTranslations[locale];
+  const existing = locale === "en" ? englishArticles : { ...englishArticles, ...articleTranslations[locale] };
   return { ...existing, "usfans-poland-preorder-checklist": polandPreorderArticle[locale] } as Record<ArticleSlug, LocalArticle>;
 }
 
@@ -142,11 +150,11 @@ type IndexPage = Exclude<PageKind, "article">;
 
 const pageSeo: Record<Locale, Record<IndexPage, { title: string; description: string }>> = {
   pl: {
-    home: { title: "USFans Spreadsheet Polska 2026: Znaleziska, QC i Kategorie", description: "Przeglądaj USFans Spreadsheet Polska 2026: zweryfikowane znaleziska produktów, kategorie, zdjęcia QC i praktyczne poradniki zakupowe." },
+    home: { title: "USFans / US Fans Lista 2026 – Spreadsheet Polska i QC", description: "Aktualna lista USFans 2026: znaleziska, bezpośrednie linki do produktów, zdjęcia QC, kategorie i poradniki dla kupujących z Polski." },
     finds: { title: "USFans Znaleziska Produktów 2026", description: "Otwórz aktualne znaleziska USFans z pełnymi nazwami, kategoriami, cenami orientacyjnymi USD, zdjęciami oraz wskazówkami kontroli QC." },
     categories: { title: "Kategorie USFans Spreadsheet Polska", description: "Przeglądaj osobne kategorie USFans Spreadsheet: buty, bluzy, kurtki, koszulki, akcesoria, elektronika i inne zweryfikowane kolekcje." },
-    guides: { title: "Poradniki USFans: QC, Koszty i Weryfikacja", description: "Praktyczne poradniki USFans o czytaniu zdjęć QC, sprawdzaniu wariantów, szacowaniu kosztu paczki i bezpiecznym wyborze oferty." },
-    articles: { title: "Artykuły USFans Spreadsheet i QC", description: "Czytaj oparte na faktach artykuły USFans dotyczące pierwszego zamówienia, zdjęć QC, ceny produktu i kosztów wysyłki międzynarodowej." },
+    guides: { title: "Poradniki USFans: Lista, QC, Wysyłka i Tracking", description: "Praktyczne poradniki USFans o zdjęciach QC, wysyłce do Polski, trackingu, wariantach oraz rzeczywistym koszcie paczki." },
+    articles: { title: "Artykuły USFans: Spreadsheet, Wysyłka i Tracking", description: "Czytaj oparte na faktach artykuły o USFans Spreadsheet, wysyłce do Polski, trackingu paczki, zdjęciach QC i kosztach dostawy." },
     faq: { title: "USFans FAQ: Produkty, QC i Wysyłka", description: "Odpowiedzi na najczęstsze pytania o katalog USFans, ceny orientacyjne, zdjęcia QC, dostawę krajową i wysyłkę międzynarodową." },
   },
   en: {
@@ -154,7 +162,7 @@ const pageSeo: Record<Locale, Record<IndexPage, { title: string; description: st
     finds: { title: "USFans Product Finds 2026", description: "Browse current USFans product finds with full names, categories, approximate USD prices, real product images, direct links, and focused QC checks." },
     categories: { title: "USFans Spreadsheet Product Categories", description: "Open focused USFans Spreadsheet categories for shoes, hoodies, jackets, T-shirts, accessories, jerseys, electronics, and more product finds." },
     guides: { title: "USFans Guides: QC Photos, Costs & Checks", description: "Use practical USFans guides to read QC photos, verify variants, understand parcel costs, and check current product listings before deciding." },
-    articles: { title: "USFans Spreadsheet & QC Articles", description: "Read fact-checked USFans articles covering first-order research, warehouse QC photos, product prices, parcel costs, and shipping decisions." },
+    articles: { title: "USFans Spreadsheet, Poland Shipping & Tracking Guides", description: "Read fact-checked USFans guides about spreadsheet links, shipping to Poland, parcel tracking, warehouse QC photos, and delivered costs." },
     faq: { title: "USFans FAQ: Products, QC & Shipping", description: "Find clear answers about the USFans product index, approximate prices, QC photos, domestic delivery, parcel submission, and international shipping." },
   },
   de: {

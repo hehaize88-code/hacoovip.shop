@@ -22,3 +22,18 @@ test("exports multilingual pages and SEO endpoints", async () => {
     "out/sitemap.xml",
   ].map((path) => readFile(new URL(`../${path}`, import.meta.url))));
 });
+
+test("exports priority Poland shipping and tracking articles", async () => {
+  const [home, shipping, tracking, sitemap] = await Promise.all([
+    readFile(new URL("../out/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../out/en/articles/usfans-shipping-to-poland/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../out/en/articles/usfans-tracking-guide/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../out/sitemap.xml", import.meta.url), "utf8"),
+  ]);
+  assert.match(home, /US Fans Lista 2026/i);
+  assert.match(home, /click_main_site/);
+  assert.match(shipping, /USFans Shipping to Poland 2026/i);
+  assert.match(tracking, /USFans Tracking Guide 2026/i);
+  assert.match(sitemap, /\/en\/articles\/usfans-shipping-to-poland\//);
+  assert.match(sitemap, /\/en\/articles\/usfans-tracking-guide\//);
+});
