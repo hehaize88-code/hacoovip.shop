@@ -37,14 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: page === "" ? 1 : page === "/products" ? 0.9 : 0.7,
     })),
   );
-  const articles = locales.flatMap((locale) =>
-    englishArticles.map((article) => ({
-      url: `${base}${locale}/articles/${article.slug}`,
-      lastModified: new Date("2026-08-12"),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-  );
+  const articles = englishArticles.map((article) => ({
+    url: `${base}/articles/${article.slug}`,
+    lastModified: new Date("2026-09-07"),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
   const trust = trustPages.map((page) => ({
     url: `${base}${page}`,
     lastModified: new Date("2026-08-12"),

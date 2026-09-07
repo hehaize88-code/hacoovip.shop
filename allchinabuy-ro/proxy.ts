@@ -12,7 +12,12 @@ export function proxy(request: NextRequest) {
   }
 
   const firstSegment = url.pathname.split("/").filter(Boolean)[0];
-  const locale = firstSegment && supportedLocales.has(firstSegment) ? firstSegment : "ro";
+  const locale =
+    firstSegment && supportedLocales.has(firstSegment)
+      ? firstSegment
+      : url.pathname.startsWith("/articles/")
+        ? "en"
+        : "ro";
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-site-locale", locale);
 

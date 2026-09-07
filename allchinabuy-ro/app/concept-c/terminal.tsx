@@ -5,7 +5,7 @@ import {
   products,
   SearchBar,
 } from "../concepts";
-import { getEnglishArticle } from "./articles";
+import { englishArticles, getEnglishArticle } from "./articles";
 
 export const locales = ["en", "de", "fr", "es", "it", "pl", "ro"] as const;
 export type Locale = (typeof locales)[number];
@@ -1893,11 +1893,11 @@ function HomeArticles({ locale }: { locale: Locale }) {
         <a href={href(locale, "articles")}>{t.labels[4]} →</a>
       </div>
       <div className="article-grid home-article-grid">
-        {t.articles.map(([title, slug, summary], i) => (
-          <a href={href(locale, `articles/${slug}`)} key={slug}>
+        {englishArticles.slice(0, 6).map((article, i) => (
+          <a href={`/articles/${article.slug}`} key={article.slug}>
             <span>0{i + 1} · FIELD NOTE</span>
-            <h2>{title}</h2>
-            <p>{summary}</p>
+            <h2>{article.title}</h2>
+            <p>{article.description}</p>
             <b>{t.ui[16]} →</b>
           </a>
         ))}
@@ -1945,17 +1945,21 @@ function PageHero({ t, section }: { t: LocaleCopy; section: string }) {
 
 function Article({ locale, slug }: { locale: Locale; slug: string }) {
   const t = localeCopy[locale],
-    localized = t.articles.find((x) => x[1] === slug) || t.articles[0],
     article = getEnglishArticle(slug);
+  const published = ["shipping-to-romania", "tracking-guide", "how-to-order-romania"].includes(
+    article.slug,
+  )
+    ? "2026-09-07"
+    : "2026-08-12";
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: locale === "en" ? article.title : localized[0],
-    description: locale === "en" ? article.description : localized[2],
-    dateModified: "2026-08-12",
-    datePublished: "2026-08-12",
-    inLanguage: locale,
-    mainEntityOfPage: `https://allchinabuy.ro${href(locale, `articles/${slug}`)}`,
+    headline: article.title,
+    description: article.description,
+    dateModified: "2026-09-07",
+    datePublished: published,
+    inLanguage: "en",
+    mainEntityOfPage: `https://allchinabuy.ro/articles/${slug}`,
     author: {
       "@type": "Organization",
       name: "allchinabuy.ro Editorial Research",
@@ -1973,16 +1977,10 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
           FIELD NOTE · {article.updated.toUpperCase()} ·{" "}
           {article.readTime.toUpperCase()}
         </span>
-        <h1>{locale === "en" ? article.title : localized[0]}</h1>
-        <p>{locale === "en" ? article.description : localized[2]}</p>
-        <div className="article-keywords">
-          <b>PRIMARY KEYWORD</b>
-          <span>{article.primaryKeyword}</span>
-          <b>SUPPORTING</b>
-          <span>{article.secondaryKeywords.join(" · ")}</span>
-        </div>
+        <h1>{article.title}</h1>
+        <p>{article.description}</p>
       </section>
-      <article className="terminal-article">
+      <article className="terminal-article" lang="en">
         {article.intro.map((paragraph, i) => (
           <p
             className={i === 0 ? "article-intro" : "article-lede"}
@@ -2013,8 +2011,9 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
           <b>RESEARCH NOTE</b>
           <p>{article.sourceNote}</p>
           <p className="source-links">
-            <span>AllChinaBuy freight calculator · checked 12 Aug 2026</span>
-            <span>Official app description · checked 12 Aug 2026</span>
+            <span>AllChinaBuy official freight calculator · checked 7 Sep 2026</span>
+            <span>European Commission import guidance · checked 7 Sep 2026</span>
+            <span>EU low-value duty update · checked 7 Sep 2026</span>
           </p>
         </div>
       </article>
@@ -2094,11 +2093,11 @@ function Section({ locale, path }: { locale: Locale; path: string[] }) {
         )}{" "}
         {section === "articles" && (
           <div className="article-grid">
-            {t.articles.map(([title, slug, summary], i) => (
-              <a href={href(locale, `articles/${slug}`)} key={slug}>
+            {englishArticles.map((article, i) => (
+              <a href={`/articles/${article.slug}`} key={article.slug}>
                 <span>0{i + 1} · FIELD NOTE</span>
-                <h2>{title}</h2>
-                <p>{summary}</p>
+                <h2>{article.title}</h2>
+                <p>{article.description}</p>
                 <b>{t.ui[16]} →</b>
               </a>
             ))}
@@ -2155,7 +2154,7 @@ function RegionalGuidance({ locale }: { locale: Locale }) {
         ))}
       </div>
       <p className="regional-note">
-        Checked 12 August 2026 · Rules, rates, route availability and operator
+        Checked 7 September 2026 · Rules, rates, route availability and operator
         fees can change. Confirm current official information before parcel
         submission.
       </p>

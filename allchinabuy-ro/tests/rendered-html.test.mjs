@@ -32,7 +32,7 @@ test("renders production SEO metadata", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /<html lang="ro">/i);
-  assert.match(html, /AllChinaBuy Spreadsheet România 2026/i);
+  assert.match(html, /AllChinaBuy România 2026: Spreadsheet, QC Photos/i);
   assert.doesNotMatch(html, /noindex/i);
   assert.match(html, /rel=["']canonical["']/i);
   assert.match(html, /application\/ld\+json/i);
@@ -85,4 +85,21 @@ test("publishes a normalized sitemap", async () => {
   assert.match(xml, /https:\/\/allchinabuy\.ro\/en<\/loc>/i);
   assert.doesNotMatch(xml, /https:\/\/allchinabuy\.ro\/en\/<\/loc>/i);
   assert.match(xml, /https:\/\/allchinabuy\.ro\/methodology<\/loc>/i);
+  assert.match(
+    xml,
+    /https:\/\/allchinabuy\.ro\/articles\/shipping-to-romania<\/loc>/i,
+  );
+  assert.doesNotMatch(xml, /\/de\/articles\/shipping-to-romania/i);
+});
+
+test("publishes keyword-focused articles without editor labels", async () => {
+  const worker = await getWorker();
+  const response = await fetchRoute(worker, "/articles/tracking-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<html lang="en">/i);
+  assert.match(html, /AllChinaBuy Tracking Guide/i);
+  assert.match(html, /rel="canonical" href="https:\/\/allchinabuy\.ro\/articles\/tracking-guide"/i);
+  assert.doesNotMatch(html, /PRIMARY KEYWORD/i);
+  assert.doesNotMatch(html, /SUPPORTING/i);
 });

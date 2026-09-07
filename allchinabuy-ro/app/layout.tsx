@@ -11,9 +11,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allchinabuy.ro"),
-  title: "AllChinaBuy Spreadsheet România 2026 | Produse, QC și Livrare",
+  title: "AllChinaBuy România 2026: Spreadsheet, QC Photos & Shipping",
   description:
-    "Ghid independent AllChinaBuy pentru România: produse selectate, poze QC, costuri de colet, TVA, vamă și planificarea livrării.",
+    "Ghid independent AllChinaBuy România 2026: spreadsheet cu produse, QC photos, costuri de transport, tracking, TVA și informații vamale.",
   alternates: {
     canonical: "/",
     languages: {
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "allchinabuy.ro",
     locale: "ro_RO",
-    title: "AllChinaBuy Spreadsheet pentru România",
+    title: "AllChinaBuy România 2026: Spreadsheet, QC Photos & Shipping",
     description:
-      "Produse, poze QC și ghiduri de livrare pentru cumpărătorii din România.",
+      "Spreadsheet, produse, QC photos și ghiduri de livrare pentru cumpărătorii din România.",
     images: [
       {
         url: "/allchinabuy.png",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AllChinaBuy Spreadsheet pentru România",
+    title: "AllChinaBuy România 2026: Spreadsheet, QC Photos & Shipping",
     description:
-      "Produse, poze QC și ghiduri de livrare pentru cumpărătorii din România.",
+      "Spreadsheet, produse, QC photos și ghiduri de livrare pentru cumpărătorii din România.",
     images: ["/allchinabuy.png"],
   },
   robots: { index: true, follow: true },

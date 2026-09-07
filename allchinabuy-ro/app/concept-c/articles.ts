@@ -19,10 +19,10 @@ export type FullArticle = {
 
 export const englishArticles: FullArticle[] = [
   {
-    title: "How to Use an AllChinaBuy Spreadsheet Without Getting Lost",
+    title: "AllChinaBuy Spreadsheet 2026: Find Working Links and Better Products",
     slug: "spreadsheet-guide",
     description:
-      "A practical system for turning a large AllChinaBuy spreadsheet into a verified, comparable shortlist before you spend money.",
+      "Use an AllChinaBuy spreadsheet to find working product links, compare live listings and build a verified shortlist before ordering.",
     primaryKeyword: "AllChinaBuy spreadsheet",
     secondaryKeywords: [
       "ACBuy spreadsheet",
@@ -31,7 +31,7 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy product links",
     ],
     readTime: "9 min read",
-    updated: "August 12, 2026",
+    updated: "September 7, 2026",
     intro: [
       "A large product spreadsheet feels useful because it puts hundreds or thousands of finds in one place. The problem is that quantity can create false confidence. A row with a photo, a price and a link is not the same thing as a checked product. Listings change, variants carry different prices, sellers replace photos and some links eventually stop working. The right way to use an AllChinaBuy spreadsheet is therefore not to scroll until something looks exciting. It is to treat the sheet as a discovery index, then verify each candidate before ordering.",
       "That distinction matters because AllChinaBuy describes its service as a cross-border purchasing agency covering procurement, order fulfilment, quality inspection, international logistics and after-sales service. In other words, the platform sits between a shopper and sellers in China. A spreadsheet can help you discover an item, but the live listing, order record, warehouse photos and current parcel quote are the records that matter at later stages. This guide gives you a repeatable way to move from discovery to a sensible shortlist without confusing an old spreadsheet entry with a live offer.",
@@ -105,19 +105,20 @@ export const englishArticles: FullArticle[] = [
       "Research basis: AllChinaBuy official website and shipping calculator, plus the official AllChinaBuy app description on Google Play; checked August 12, 2026. Variable prices, routes, promotions and policies should be rechecked in the live platform interface.",
   },
   {
-    title: "AllChinaBuy QC Photos: A Five-Minute Inspection Routine",
+    title: "AllChinaBuy QC Photos Guide: How to Check QC Pictures",
     slug: "qc-photo-routine",
     description:
-      "A practical AllChinaBuy QC photo checklist for confirming the item, checking measurements and spotting visible problems before parcel submission.",
+      "Learn how to check AllChinaBuy QC photos and QC pictures for measurements, stitching, colour and visible defects before shipping.",
     primaryKeyword: "AllChinaBuy QC photos",
     secondaryKeywords: [
       "ACBuy QC",
       "how to check AllChinaBuy QC photos",
-      "warehouse inspection photos",
+      "QC pictures meaning",
+      "QC photos meaning",
       "AllChinaBuy quality inspection",
     ],
     readTime: "10 min read",
-    updated: "August 12, 2026",
+    updated: "September 7, 2026",
     intro: [
       "Quality-control photos are most useful when they lead to a decision. They are not decoration, and they are not a certificate that an item is perfect. AllChinaBuy publicly describes quality inspection as part of its purchasing-agency service, alongside procurement, order fulfilment, international logistics and after-sales support. The practical purpose of the warehouse photos is to let you compare what arrived with what you ordered before you commit it to an international parcel.",
       "Five focused minutes are usually more valuable than twenty minutes of random zooming. Start with identity, move to shape, check measurements, inspect high-risk details and finish with a clear outcome: accept, ask for evidence, or contact support about a return or exchange. The routine below is designed for clothing, shoes, bags and everyday accessories, but the logic applies to most photo-based warehouse inspections.",
@@ -191,10 +192,10 @@ export const englishArticles: FullArticle[] = [
       "Research basis: AllChinaBuy’s official service description identifies quality inspection as part of its purchasing workflow. Inspection limits and the decision framework are editorial guidance, not a claim that every order receives identical images or services. Checked August 12, 2026.",
   },
   {
-    title: "AllChinaBuy Product Price vs Parcel Cost: What You Actually Pay",
+    title: "AllChinaBuy Shipping Calculator: Actual vs Volumetric Weight",
     slug: "parcel-cost-guide",
     description:
-      "Understand why an AllChinaBuy item price cannot predict the international parcel total, and build a realistic budget before ordering.",
+      "Use the AllChinaBuy shipping calculator correctly and understand actual weight, volumetric weight and the final parcel cost.",
     primaryKeyword: "AllChinaBuy shipping cost",
     secondaryKeywords: [
       "AllChinaBuy shipping calculator",
@@ -203,7 +204,7 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy volumetric weight",
     ],
     readTime: "11 min read",
-    updated: "August 12, 2026",
+    updated: "September 7, 2026",
     intro: [
       "A low product price is not a low delivered price. This is the most important budgeting lesson for any purchasing-agent order. AllChinaBuy’s official description separates procurement and order fulfilment from international logistics, and it notes that international shipping is provided by third-party service companies. The official shipping calculator also asks for destination, product category, estimated weight and optional package dimensions. Those inputs explain why the number on a product card cannot predict the number shown when a parcel is ready.",
       "A realistic budget is built in stages. First comes the selected product and any domestic movement to the warehouse. Then the item is inspected, combined with other goods if desired, packed, measured and matched with routes available for its destination and category. Currency conversion, optional services and destination charges may add further uncertainty. This guide shows how to plan each stage without inventing a universal per-kilogram rate or promising a delivery time that the live quote may not support.",
@@ -282,6 +283,309 @@ export const englishArticles: FullArticle[] = [
     ],
     sourceNote:
       "Research basis: AllChinaBuy official website, official freight calculator and official app description; calculator fields and service description checked August 12, 2026. Customer-review patterns are treated as anecdotal experience, not universal pricing evidence.",
+  },
+  {
+    title: "AllChinaBuy Shipping to Romania: Lines, Delivery and Customs",
+    slug: "shipping-to-romania",
+    description:
+      "Plan AllChinaBuy shipping to Romania with a practical method for comparing lines, delivery estimates, packing, tracking and current EU customs costs.",
+    primaryKeyword: "AllChinaBuy shipping to Romania",
+    secondaryKeywords: [
+      "AllChinaBuy Romania",
+      "AllChinaBuy shipping lines Romania",
+      "AllChinaBuy delivery time Romania",
+      "AllChinaBuy customs Romania",
+      "AllChinaBuy shipping cost Romania",
+    ],
+    readTime: "12 min read",
+    updated: "September 7, 2026",
+    intro: [
+      "AllChinaBuy shipping to Romania cannot be reduced to one permanent price or one best line. The available options depend on the parcel's destination, product category, packed weight, dimensions and the routes visible when the parcel is submitted. A line that works for clothing may not accept a battery, liquid or another sensitive item. A price estimated before the goods reach the warehouse may also change when the final packaging is measured.",
+      "A reliable Romania shipping plan therefore uses checkpoints rather than promises. Estimate before ordering, verify the goods in the warehouse, remove unnecessary volume, compare only eligible live routes, keep current import costs visible and save the tracking records after dispatch. This guide explains that sequence without inventing a fixed delivery time or treating an old community quote as a current offer.",
+    ],
+    sections: [
+      {
+        heading: "Start with route eligibility, not the cheapest number",
+        paragraphs: [
+          "Open the current route list with Romania selected as the destination and describe every item honestly. Product category matters because carriers and customs channels can apply different restrictions to ordinary clothing, branded or sensitive goods, electronics, batteries, liquids, cosmetics and food. If a parcel contains mixed categories, the most restricted item can determine which lines remain available. Hiding or changing a category to reveal a lower estimate creates a weak plan because the warehouse or carrier can reclassify the parcel later.",
+          "Compare the route description, weight and size limits, tracking coverage, compensation terms and declared service estimate before comparing price. A slightly cheaper line is not better when it excludes the item, offers unsuitable tracking or creates a parcel that exceeds its dimensional limit. Availability is also time-sensitive. Save the date of every comparison and treat the line shown at parcel submission as the decision point.",
+        ],
+      },
+      {
+        heading: "Build the first estimate before buying",
+        paragraphs: [
+          "AllChinaBuy's public shipping calculator asks for destination, product category, estimated weight and optional dimensions for volume-based lines. Use those fields to create a range rather than a single confident total. Test a compact clothing parcel, a realistic packed parcel and a high-volume case if the order contains shoe boxes, structured bags or bulky outerwear. Changing one input at a time reveals whether the estimate is driven mainly by weight, volume or category.",
+          "Keep the calculator result with its assumptions. A screenshot showing only a price is not useful later because it does not explain the destination, route, category, weight or dimensions behind the number. The pre-order estimate is a budget gate: if the product basket becomes unaffordable under a reasonable high case, reduce the basket before purchase rather than hoping the final quote will be unusually low.",
+        ],
+      },
+      {
+        heading: "Replace estimates with warehouse measurements",
+        paragraphs: [
+          "Once the goods arrive, use the warehouse record to replace guessed weight and size. Actual weight is the parcel's physical weight. Volumetric weight converts package dimensions into a chargeable figure according to the rule used by a particular route. The divisor or calculation method can differ, so read the current route terms instead of applying one formula to every line. A light but large box may cost more than its scale weight suggests.",
+          "Warehouse values are more useful after the final packing method is chosen. Retail boxes, protective corners, reinforcement and empty space can change dimensions. If rehearsal packing or a similar measurement service is available in the current interface, it can help turn a rough estimate into a more realistic parcel comparison. Recheck the live routes after that measurement because a small dimensional change can move a parcel across a pricing step or line limit.",
+        ],
+      },
+      {
+        heading: "Reduce volume without removing necessary protection",
+        paragraphs: [
+          "Removing unnecessary packaging can reduce volumetric weight, especially for soft clothing and large retail boxes. It is not automatically the right choice for every item. Structured shoes, fragile accessories, electronics or products with delicate surfaces may need protection. The useful question is not whether packaging can be removed, but which layer is unnecessary and which layer prevents damage during multiple carrier handoffs.",
+          "Group soft items compactly, protect sharp hardware from adjacent fabric and avoid a box that is much larger than its contents. If keeping a shoe box matters, include it in the estimate from the beginning. If it does not matter, compare a no-box scenario before submission. Make each packing instruction specific so the warehouse does not have to guess what should be discarded, folded or reinforced.",
+        ],
+        checklist: [
+          "Confirm every item is ready to ship",
+          "Separate fragile and sensitive contents",
+          "Remove only packaging that is not needed",
+          "Request protection for exposed hardware or structure",
+          "Recheck weight and dimensions after packing changes",
+        ],
+      },
+      {
+        heading: "Account for Romania and EU import costs",
+        paragraphs: [
+          "A freight quote is not always the complete delivered cost. Imports into the European Union can involve VAT, customs declarations, duties and operator or last-mile charges depending on the goods, value, sales arrangement and route. The European Commission states that VAT exemption for low-value commercial imports ended in 2021 and that a customs declaration is required for goods entering the EU regardless of value. IOSS and special arrangements are collection methods, not a reason to ignore the declared transaction.",
+          "A major current change applies in 2026. European Commission guidance says that from 1 July 2026 a temporary customs duty of EUR 3 per item applies to distance-sale goods in consignments with an intrinsic value up to EUR 150, subject to the scope and exclusions in the rules. The amount is per item rather than simply per parcel. Because legislation, interpretation and carrier handling can change, verify the current official guidance and the route's tax treatment immediately before submission instead of copying an older pre-July 2026 guide.",
+        ],
+      },
+      {
+        heading: "Use accurate parcel information and keep records",
+        paragraphs: [
+          "The parcel description, quantity and value should reflect the actual shipment and the documents available from the purchase. An unrealistically vague or inaccurate declaration can create delays, reassessment or requests for evidence. Keep the order summary, payment record, parcel contents, declared information and shipping confirmation together. If an authority or carrier asks for documentation, a consistent record is easier to explain than numbers reconstructed from memory.",
+          "Do not treat a declared value as a discount tool. Customs decisions belong to the destination authorities, and a platform or route cannot guarantee the final assessment. If the parcel includes a restricted product or an item whose classification is unclear, check current official guidance before shipping. The lowest apparent charge is not a saving if it depends on information that does not match the goods.",
+        ],
+      },
+      {
+        heading: "Read delivery times as estimates",
+        paragraphs: [
+          "A route's delivery window is an estimate based on its current service conditions, not a deadline. The parcel may pass through warehouse dispatch, carrier collection, export processing, international transport, EU entry, customs processing, transfer to a Romanian delivery partner and last-mile delivery. Weekends, holidays, capacity, weather, documentation checks and flight schedules can change the pace at different stages.",
+          "Compare delivery estimates only when the routes have similar tracking and service definitions. One line may count from warehouse dispatch, another from the first carrier scan. Add personal buffer when the parcel is needed for a fixed date. Ordering early is safer than paying for a faster estimate while leaving no allowance for customs or handoff delays.",
+        ],
+      },
+      {
+        heading: "Track the handoff into Romania",
+        paragraphs: [
+          "Save the AllChinaBuy parcel number and the carrier tracking number because they describe different parts of the journey. Early tracking may show label creation before physical collection. Later events can come from the international carrier, customs channel and Romanian last-mile partner. A new local number may appear after handoff, so check the shipment record for linked identifiers instead of searching only the original number.",
+          "A quiet tracking page does not always mean the parcel is lost. Consolidated transport can move between milestone scans, and customs processing may not create a public event every day. Record the last meaningful event, its location and date. Contact support when the route's stated waiting period has passed, when documentation is requested or when the status clearly reports an exception. A precise timeline is more useful than a message that only says the parcel is late.",
+        ],
+      },
+      {
+        heading: "Final Romania parcel decision",
+        paragraphs: [
+          "Before payment, confirm the final packed weight and dimensions, all product categories, route eligibility, tracking coverage, compensation conditions, estimated service window and the tax or duty treatment described for the line. Add the current EU import rules and a reasonable destination reserve to the displayed freight amount. If the total no longer fits the budget, compare a sensible split or packing change rather than selecting an ineligible line.",
+          "The best AllChinaBuy shipping line to Romania is the eligible option that fits the real parcel, provides acceptable tracking and keeps the complete cost understandable. Estimate early, measure again at the warehouse, verify current official rules and keep the parcel record through delivery. That process produces a stronger decision than any permanent list of supposedly cheapest lines.",
+        ],
+      },
+    ],
+    sourceNote:
+      "Research basis: AllChinaBuy official freight calculator and public service description; European Commission guidance on low-value consignments, IOSS and the temporary EUR 3 per-item customs duty effective 1 July 2026. Checked September 7, 2026. Confirm live routes and current official import rules before submission.",
+  },
+  {
+    title: "AllChinaBuy Tracking Guide: Parcel Status and Delays Explained",
+    slug: "tracking-guide",
+    description:
+      "Understand AllChinaBuy tracking numbers, parcel statuses, carrier handoffs and the evidence to collect when tracking is not updating.",
+    primaryKeyword: "AllChinaBuy tracking",
+    secondaryKeywords: [
+      "AllChinaBuy parcel tracking",
+      "AllChinaBuy tracking not updating",
+      "AllChinaBuy parcel status",
+      "AllChinaBuy delivery tracking",
+      "ACBuy tracking",
+    ],
+    readTime: "11 min read",
+    updated: "September 7, 2026",
+    intro: [
+      "AllChinaBuy tracking becomes easier when the journey is divided into separate systems. The platform order record follows an item from purchase to the warehouse. The parcel record begins when selected warehouse items are packed for international shipping. The international carrier and a destination delivery company may then create their own tracking events and even different tracking numbers. Looking in only one system can make a normal handoff appear to be a missing parcel.",
+      "Tracking also moves in milestones rather than as a live map. Label creation, carrier collection, export departure, arrival, customs processing and last-mile delivery are distinct events, and some stages can be quiet for several days. This guide explains what the common statuses usually indicate, what they do not prove, and how to prepare a useful support request when an update is genuinely overdue.",
+    ],
+    sections: [
+      {
+        heading: "Separate order status from parcel tracking",
+        paragraphs: [
+          "An AllChinaBuy product order and an international parcel are related but not identical records. Before parcel submission, an item can move through purchasing, seller dispatch, warehouse receipt, inspection and storage. Those events describe the product's journey inside the purchasing process. They do not mean an international carrier has collected it. If several items are ordered, each may reach the warehouse on a different date.",
+          "International tracking normally becomes relevant after the buyer selects warehouse items, chooses packing and a route, pays the parcel charge and the warehouse completes dispatch. Use the order identifier when discussing a seller or warehouse item. Use the parcel identifier when discussing packing and international transport. Using the correct reference prevents support from searching the wrong stage.",
+        ],
+      },
+      {
+        heading: "Know the numbers attached to the shipment",
+        paragraphs: [
+          "Save the platform parcel number, the external carrier tracking number and any destination-country number that appears later. The platform number is useful inside the AllChinaBuy account. The carrier number is what external tracking systems usually recognise. A Romanian delivery partner may assign a new number after the parcel enters its network, while the original international number remains visible as a reference.",
+          "Copy the numbers directly from the parcel record and check for confusing characters such as zero and the letter O. Do not assume an order number is a carrier number simply because both contain letters and digits. Keep the selected route name and dispatch date beside the numbers. That small record makes it much easier to identify which carrier should have the next event.",
+        ],
+        checklist: [
+          "AllChinaBuy order number",
+          "AllChinaBuy parcel number",
+          "International carrier number",
+          "Romanian last-mile number if issued",
+          "Route name and dispatch date",
+        ],
+      },
+      {
+        heading: "Label created does not mean collected",
+        paragraphs: [
+          "The first external event may show that shipping information was received or a label was created. This usually means the electronic record exists. It does not necessarily prove that the physical parcel has left the warehouse or entered a transport hub. Warehouses can prepare labels in batches, and a carrier may scan parcels only after collection or arrival at its facility.",
+          "Check the parcel record for a warehouse dispatch event and then allow the route's stated processing interval for the first physical scan. If a label remains the only event beyond that interval, record both dates before contacting support. Asking whether the parcel was handed to the carrier is more precise than reporting that tracking is broken.",
+        ],
+      },
+      {
+        heading: "Read export and line-haul events carefully",
+        paragraphs: [
+          "Events such as accepted, departed facility, handed to airline, line-haul departure or export clearance indicate movement through the origin network. The exact wording varies by carrier. A departure scan can represent departure from a local hub rather than departure from China, so use the location and the next event together instead of interpreting one phrase in isolation.",
+          "International consolidated transport often has fewer public scans than domestic courier delivery. A parcel can move between contracted partners or wait for capacity before the next visible milestone. Repeated generic events do not necessarily mean the parcel is circling the same building; some systems reuse translated status text when data is transferred between partners.",
+        ],
+      },
+      {
+        heading: "Customs status is a process, not a verdict",
+        paragraphs: [
+          "Arrival in the destination region does not mean customs processing is complete. A shipment may be presented for entry, await data, undergo assessment, be released and then wait for transfer to the last-mile carrier. Public tracking sometimes combines several of those steps under one customs label. A status that says customs clearance started is therefore not proof of a problem.",
+          "If the carrier or authority requests evidence, respond through the verified channel shown in the shipment record or official carrier site. Useful documents can include the product order, payment record, parcel contents and shipping information. Keep descriptions and values consistent with the actual transaction. Do not send identity or payment documents to an address found only in an unsolicited message; verify the request first.",
+        ],
+      },
+      {
+        heading: "Expect a handoff to the Romanian carrier",
+        paragraphs: [
+          "After customs release, the parcel may be transferred to a Romanian postal or courier network. The international carrier can show a handoff event before the local carrier completes its first scan. During that gap, one page may say delivered to local partner while the local page still says that it has not received the item. This is usually a data and physical-transfer delay, not final delivery to the recipient.",
+          "Look for a linked local tracking number in the route record or external carrier page. When no new number is displayed, the original number may begin working on the local carrier site later. Use only the carrier identified by the route or tracking history; trying the number on many unrelated tracking pages can produce guessed carrier names and confusing duplicate events.",
+        ],
+      },
+      {
+        heading: "Decide when a quiet period is unusual",
+        paragraphs: [
+          "There is no universal number of quiet days that proves a parcel is lost. The relevant comparison is the current route's normal processing information, the last meaningful scan and the stage where movement stopped. A pause before first collection is different from a pause after customs release. Weekends, public holidays, flight capacity and documentation checks can also affect the next event.",
+          "Treat an explicit exception differently from silence. Address problem, returned to sender, prohibited contents, customs information required and delivery failed are actionable messages. Follow the stated instruction and contact the identified party. For silence, wait within the route's published window, then ask for a carrier trace using the complete timeline rather than opening repeated vague requests.",
+        ],
+      },
+      {
+        heading: "Prepare a support request that can be investigated",
+        paragraphs: [
+          "A useful request contains the parcel number, carrier number, route, destination, dispatch date, last event, last event location and the number of days since that event. State what you need confirmed: physical collection, current carrier, customs document requirement, local tracking number or trace status. Include screenshots only when they show information not already visible in the record.",
+          "Avoid sending several messages with different descriptions of the same parcel. Keep one timeline and add new evidence to it. If the route has a documented inquiry period, mention that it has passed. If the parcel carries compensation or insurance conditions, preserve the purchase and parcel records before any claim deadline. Support can investigate faster when identity, stage and requested action are clear.",
+        ],
+      },
+      {
+        heading: "Protect delivery at the final stage",
+        paragraphs: [
+          "When the local carrier receives the parcel, check the delivery address, contact method and any pickup or rescheduling instruction through the carrier's official channel. A parcel can move quickly after the first local scan. If delivery fails, the time allowed for another attempt or collection can be shorter than the international journey that came before it.",
+          "Inspect the outer parcel when it arrives and photograph significant damage before opening. Compare the contents with the AllChinaBuy parcel record and keep packaging until the order is checked. Tracking proves movement and delivery events; it does not by itself prove the condition or completeness of the contents. Delivery evidence and warehouse records answer different questions.",
+        ],
+      },
+      {
+        heading: "A simple tracking routine",
+        paragraphs: [
+          "Check tracking at meaningful intervals rather than refreshing continuously. Save the initial dispatch record, review the next carrier milestone, note customs entry and identify the local handoff. If the status remains unchanged, compare the waiting time with the route's current information before escalating. This creates a clear sequence without turning ordinary scan gaps into emergencies.",
+          "The practical answer to AllChinaBuy tracking not updating is to identify the stage first. Confirm whether the item is still an order, already a warehouse parcel, electronically labelled, physically collected, in international transit, at customs or with the Romanian carrier. Once the stage is known, the correct number, responsible party and next action are usually much easier to determine.",
+        ],
+      },
+    ],
+    sourceNote:
+      "Research basis: AllChinaBuy's public service workflow and parcel-shipping context, combined with standard multi-carrier tracking and customs handoff principles. Checked September 7, 2026. Status wording, inquiry windows and carrier assignments vary by live route and should be confirmed in the current parcel record.",
+  },
+  {
+    title: "How to Order from AllChinaBuy in Romania: Complete 2026 Guide",
+    slug: "how-to-order-romania",
+    description:
+      "A complete AllChinaBuy Romania order guide covering product links, variants, warehouse inspection, parcel planning, shipping and delivery records.",
+    primaryKeyword: "how to order from AllChinaBuy",
+    secondaryKeywords: [
+      "AllChinaBuy Romania guide",
+      "how to use AllChinaBuy",
+      "AllChinaBuy order process",
+      "AllChinaBuy warehouse",
+      "AllChinaBuy buying guide",
+    ],
+    readTime: "12 min read",
+    updated: "September 7, 2026",
+    intro: [
+      "Ordering through AllChinaBuy involves two connected transactions: buying goods from a seller in China and later creating an international parcel from warehouse items. The product price belongs to the first stage. Packing, route selection, international freight and destination import treatment belong to the second. Understanding that separation is the easiest way to avoid confusing a cheap listing with a cheap delivered order.",
+      "This AllChinaBuy Romania guide follows the process from a product link to delivery. It focuses on the records and decisions a buyer can verify: the live listing, selected variant, warehouse receipt, QC photos, final parcel measurements, eligible shipping lines and tracking handoffs. Platform interfaces and route conditions can change, so each step uses the current account record rather than a screenshot from an older tutorial.",
+    ],
+    sections: [
+      {
+        heading: "Begin with a specific product requirement",
+        paragraphs: [
+          "Write down the product type, acceptable price range, colour, size or measurements and the details that would make you reject the item. This small brief prevents a spreadsheet or social post from deciding the purchase. Two products can look similar in a thumbnail but use different variants, materials, measurements or seller terms. The better the requirement, the easier it is to compare live listings.",
+          "Use a spreadsheet or curated database as a discovery index, not proof of current stock or quality. Open the exact product destination and check that it still represents the item shown. If a link redirects to a search page, a different item or an unavailable listing, do not substitute the first result automatically. Return to the index and choose a candidate that can be verified.",
+        ],
+      },
+      {
+        heading: "Verify the live listing before submitting it",
+        paragraphs: [
+          "Check the seller, listing title, available options, current price, domestic shipping information and size chart where relevant. A displayed starting price can belong to the cheapest option rather than the variant you want. Select the exact colour, size, version and quantity before judging whether the product fits the budget. Save the listing date because seller pages and options can change.",
+          "Read product measurements instead of relying only on familiar size labels. For clothing, compare the seller chart with an item you own. For footwear, check whether insole or foot-length guidance is provided. For bags and accessories, record dimensions when they affect use or shipping volume. If a required detail is missing, decide whether it can be checked later through warehouse photos or whether the listing is too uncertain to order.",
+        ],
+        checklist: [
+          "Exact product URL and seller",
+          "Selected colour, size and version",
+          "Live variant price",
+          "Domestic delivery information",
+          "Measurements and details to verify at the warehouse",
+        ],
+      },
+      {
+        heading: "Understand what the purchasing stage covers",
+        paragraphs: [
+          "AllChinaBuy describes itself as a cross-border purchasing and forwarding platform. In a typical purchasing-agent flow, the platform places or manages the domestic order and the seller sends the item to the platform's warehouse. The order record should show progress through that stage. An item marked as purchased is not yet ready for Romania, and seller dispatch is not international dispatch.",
+          "Keep the platform order number with the selected variant and payment record. If the seller reports a price change, unavailable option or another issue, evaluate the new information against the original requirement. Do not accept a substitute merely because an order has already started. A different colour, size or version should be treated as a new decision.",
+        ],
+      },
+      {
+        heading: "Check the warehouse receipt and QC photos",
+        paragraphs: [
+          "When the item reaches the warehouse, confirm that the received product matches the order. Review the front, back and available detail images before zooming into cosmetic points. Start with identity: product type, colour, selected size and included parts. Then examine shape, symmetry, major seams, closures, prints, hardware and visible damage. A correct-looking product in the wrong option is still incorrect.",
+          "Use measurement photos when fit matters. Compare them with a garment or shoe that already fits rather than relying only on the printed label. QC photos can show visible condition and dimensions, but they cannot prove comfort, fabric composition, hidden construction, durability or authenticity. Request an extra photo only when a specific angle or measurement would change the accept-or-return decision.",
+        ],
+      },
+      {
+        heading: "Resolve problems before international shipping",
+        paragraphs: [
+          "If the item appears wrong, damaged or materially different from the selected listing, use the current order options or contact support while it remains in the warehouse. Return eligibility, seller acceptance, time limits and possible fees can vary. Older community posts may describe another seller or policy period, so the live order record is the relevant source.",
+          "Describe the issue with evidence: order number, selected option, the photo showing the difference and the result requested. A message such as 'wrong colour; ordered black, warehouse photos show navy' is easier to investigate than 'item looks bad.' Keep the response with the order record. Once the item is packed and sent internationally, correcting a seller-stage issue is normally more difficult.",
+        ],
+      },
+      {
+        heading: "Create a parcel only from accepted items",
+        paragraphs: [
+          "Select the warehouse items that have passed inspection and decide whether they belong in one parcel. Consolidation can reduce repeated fixed steps, but it does not remove added weight or volume. A large shoe box or structured bag can change the chargeable size and the routes available to the whole parcel. Compare a combined parcel with a sensible split when the contents are bulky or restricted.",
+          "Choose packing instructions according to the goods. Soft clothing may tolerate compact packaging, while structured or fragile products need protection. Removing retail boxes can reduce volume but may increase damage risk. Ask for a final weight and dimensions after important packing changes, then use those values for the route comparison instead of the original seller estimates.",
+        ],
+      },
+      {
+        heading: "Compare current shipping options to Romania",
+        paragraphs: [
+          "Use Romania as the destination and enter honest product categories, weight and dimensions in the current calculator or parcel interface. Compare eligible routes on more than price. Check category restrictions, parcel limits, tracking coverage, compensation conditions and the estimated service window. A line that does not accept the contents is not a real option even when an estimator displays a lower number.",
+          "Keep product cost and parcel cost separate. The parcel total can reflect actual or volumetric weight, packing choices and route conditions. Destination VAT, customs duty or carrier handling may sit outside the displayed freight amount depending on the route. From 1 July 2026, European Commission guidance describes a temporary EUR 3 customs duty per item for qualifying distance-sale goods in consignments up to EUR 150, so older articles that describe blanket low-value duty relief are no longer current.",
+        ],
+      },
+      {
+        heading: "Use accurate parcel records for customs",
+        paragraphs: [
+          "Keep the product order, payment evidence, parcel contents, shipping payment and declared information together. Goods entering the EU require customs data, and an authority or carrier may request supporting records. Descriptions, quantities and values should correspond to the actual transaction. Inconsistent information can create questions, reassessment or delays.",
+          "Do not assume a route name guarantees a particular customs outcome. Final assessment belongs to the relevant authorities, and rules can change. Check current European Union and Romanian guidance immediately before parcel submission, especially for sensitive or restricted goods. If a message asks for documents or payment, verify it through the official carrier channel before responding.",
+        ],
+      },
+      {
+        heading: "Follow the parcel through carrier handoffs",
+        paragraphs: [
+          "Save the AllChinaBuy parcel number and the external carrier tracking number. The first event may represent electronic label creation rather than physical collection. Later milestones can include export processing, international transport, EU arrival, customs release and transfer to a Romanian last-mile carrier. The local carrier may issue another number after handoff.",
+          "Tracking can remain quiet between milestone scans. Compare the last event and waiting period with the current route information before escalating. If a clear exception appears, follow the carrier instruction. If an update is overdue, provide support with the parcel number, route, dispatch date, last scan and requested action. A precise timeline produces a more useful investigation.",
+        ],
+      },
+      {
+        heading: "Inspect delivery and preserve evidence",
+        paragraphs: [
+          "At delivery, check the outer parcel for major damage and photograph it before opening when necessary. Compare the contents with the warehouse parcel record. Keep packaging until quantity and condition have been checked. Tracking can show that a parcel reached an address, but warehouse photos and delivery evidence are needed to discuss the condition or completeness of individual items.",
+          "Store the final cost beside the original estimate: goods, domestic charges, optional services, international shipping and destination costs. This creates a realistic reference for the next order. Do not turn one parcel into a universal rate; note its weight, dimensions, categories, route and date so the comparison remains honest.",
+        ],
+      },
+      {
+        heading: "The complete AllChinaBuy order workflow",
+        paragraphs: [
+          "The reliable sequence is simple: discover a product, verify the live listing, select the exact variant, follow the seller order, inspect the warehouse receipt, resolve visible problems, pack only accepted items, compare eligible live routes, keep accurate import records and track each carrier handoff. Every stage has its own evidence and should be completed before the next decision.",
+          "For Romanian buyers, the strongest protection is not a promise that every order will be fast or cheap. It is a documented process that keeps current prices, product choices, QC evidence, parcel measurements and import rules visible. That approach makes an AllChinaBuy spreadsheet useful without allowing an old link or attractive thumbnail to replace verification.",
+        ],
+      },
+    ],
+    sourceNote:
+      "Research basis: AllChinaBuy official public service description and freight calculator, plus European Commission guidance on EU low-value import formalities and the temporary customs duty effective 1 July 2026. Checked September 7, 2026. Live product, route and policy records take priority over this guide.",
   },
 ];
 

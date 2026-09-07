@@ -96,22 +96,32 @@ export async function generateMetadata({
   };
   if (path[0] === "articles" && path[1]) {
     const article = getEnglishArticle(path[1]);
-    const localized =
-      copy.articles.find((item) => item[1] === article.slug) ||
-      copy.articles[0];
-    const title = `${locale === "en" ? article.title : localized[0]} | România`;
-    const description = `${locale === "en" ? article.description : localized[2]} — ${localeMeta[locale].region}.`;
+    const title = article.title;
+    const description = article.description;
+    const canonicalArticle = `/articles/${article.slug}`;
+    const publishedTime = [
+      "shipping-to-romania",
+      "tracking-guide",
+      "how-to-order-romania",
+    ].includes(article.slug)
+      ? "2026-09-07T00:00:00Z"
+      : "2026-08-12T00:00:00Z";
     return {
       title,
       description,
-      alternates,
+      alternates: { canonical: canonicalArticle },
+      robots:
+        locale === "ro"
+          ? { index: true, follow: true }
+          : { index: false, follow: true },
       openGraph: {
         ...ogBase,
+        url: canonicalArticle,
         type: "article",
         title,
         description,
-        publishedTime: "2026-08-12T00:00:00Z",
-        modifiedTime: "2026-08-12T00:00:00Z",
+        publishedTime,
+        modifiedTime: "2026-09-07T00:00:00Z",
       },
       twitter: {
         card: "summary_large_image",
@@ -122,8 +132,32 @@ export async function generateMetadata({
     };
   }
   const page = copy.pages[path[0] || "products"] || copy.pages.articles;
-  const title = `${page[0]} | AllChinaBuy România`;
-  const description = `${page[1]} ${localeMeta[locale].region}.`;
+  const roSeo: Record<string, [string, string]> = {
+    products: [
+      "AllChinaBuy Products & Finds 2026 | România",
+      "Browse verified AllChinaBuy product links, current USD price previews and curated finds by category for shoppers in Romania.",
+    ],
+    categories: [
+      "AllChinaBuy Finds by Category | România",
+      "Explore AllChinaBuy spreadsheet finds for sneakers, hoodies, T-shirts, jackets, bottoms and accessories.",
+    ],
+    "qc-guide": [
+      "AllChinaBuy QC Photos Guide 2026 | România",
+      "Learn how to check AllChinaBuy QC photos and QC pictures for measurements, stitching, colour and visible defects.",
+    ],
+    "shipping-guide": [
+      "AllChinaBuy Shipping to Romania: Cost, Lines & Customs",
+      "Plan AllChinaBuy shipping to Romania using packed weight, dimensions, route eligibility, tracking and current EU customs information.",
+    ],
+    articles: [
+      "AllChinaBuy Guides 2026: QC, Shipping & Tracking",
+      "Read independent AllChinaBuy guides about spreadsheets, QC photos, shipping costs, Romania delivery, tracking and ordering.",
+    ],
+  };
+  const optimized = locale === "ro" ? roSeo[path[0] || "products"] : undefined;
+  const title = optimized?.[0] ?? `${page[0]} | AllChinaBuy România`;
+  const description =
+    optimized?.[1] ?? `${page[1]} ${localeMeta[locale].region}.`;
   return {
     title,
     description,

@@ -28,7 +28,7 @@ export async function generateMetadata({
       "parcel-cost-guide": "AllChinaBuy Shipping Cost: Product vs Parcel Price",
     };
     return {
-      title: seoTitles[article.slug],
+      title: seoTitles[article.slug] ?? article.title,
       description: article.description,
       robots: { index: false, follow: false },
     };
