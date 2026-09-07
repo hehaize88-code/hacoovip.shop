@@ -1,0 +1,13 @@
+https://www.usfanss.uk/* https://usfanss.uk/:splat 308
+/articles /articles/ 308
+/categories /categories/ 308
+/products /products/ 308
+/help /help/ 308
+/qc-desk /qc-desk/ 308
+/articles/:slug /articles/:slug/ 308
+/:lang/articles /:lang/articles/ 308
+/:lang/categories /:lang/categories/ 308
+/:lang/products /:lang/products/ 308
+/:lang/help /:lang/help/ 308
+/:lang/qc-desk /:lang/qc-desk/ 308
+/:lang/articles/:slug /:lang/articles/:slug/ 308
