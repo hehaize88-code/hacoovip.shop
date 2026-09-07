@@ -70,7 +70,7 @@ function Header({ locale, page, article }: { locale: Locale; page: PageKind; art
 function Search({ locale }: { locale: Locale }) {
   const c = copy[locale];
   return (
-    <form className="search-box" action="https://www.cnbuycha.com/search.html" method="get" target="_blank">
+    <form className="search-box" action="https://cnfanshp.com/search.html" method="get" target="_blank">
       <input type="hidden" name="channelid" value="2" />
       <label htmlFor={`product-search-${locale}`}>{c.searchLabel}</label>
       <div className="search-row">

@@ -15,28 +15,28 @@ export const locales: Array<{ code: Locale; label: string; short: string; lang: 
 ];
 
 export const products = [
-  { name: "P6000 / Gel-Kayano Mix", category: "Footwear", price: "$43", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6164I0217.webp", href: "https://www.cnbuycha.com/AllProducts/3402.html", qcTip: "Compare both shoes, size labels, soles, stitching, and colour panels." },
-  { name: "The North Face Down Jacket", category: "Outerwear", price: "$98", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6163I3956.webp", href: "https://www.cnbuycha.com/AllProducts/3396.html", qcTip: "Check the size label, zip, logo placement, seams, and even down filling." },
-  { name: "Mertra Hoodie", category: "Hoodies", price: "$31", image: "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616301A57.webp", href: "https://www.cnbuycha.com/AllProducts/3393.html", qcTip: "Verify chest length, print alignment, cuffs, stitching, and fabric colour." },
-  { name: "LOUIS VUITTON Runner Tatic", category: "Footwear", price: "$88", image: "https://www.cnbuycha.com/uploads/allimg/20260804/1-260P4220203120.webp", href: "https://www.cnbuycha.com/AllProducts/3388.html", qcTip: "Compare the pair, heel shape, panel alignment, outsole, and size tag." },
-  { name: "Adidas Bag", category: "Accessories", price: "$27", image: "https://www.cnbuycha.com/uploads/allimg/20260804/1-260P4220335407.webp", href: "https://www.cnbuycha.com/AllProducts/3389.html", qcTip: "Inspect the zip, strap hardware, seams, interior, and visible marks." },
-  { name: "Louis Vuitton Wallet", category: "Accessories", price: "$17", image: "https://www.cnbuycha.com/uploads/allimg/20260729/1-260H9212KN32.webp", href: "https://www.cnbuycha.com/AllProducts/3382.html", qcTip: "Check edge paint, stitching, card slots, fold alignment, and surface marks." },
+  { name: "Nike P6000", category: "Footwear", price: "$39", image: "https://cnfanshp.com/uploads/allimg/20260106/1-260106142P3A4.webp", href: "https://cnfanshp.com/AllProducts/3418.html", qcTip: "Compare both shoes, size labels, soles, stitching, and colour panels." },
+  { name: "The North Face Nuptse Down Jacket", category: "Outerwear", price: "$36", image: "https://cnfanshp.com/uploads/allimg/20260310/1-260310142K3310.webp", href: "https://cnfanshp.com/AllProducts/5157.html", qcTip: "Check the size label, zip, logo placement, seams, and even down filling." },
+  { name: "Mertra Hoodie", category: "Hoodies", price: "$20", image: "https://cnfanshp.com/uploads/allimg/20260131/1-260131121645a6.webp", href: "https://cnfanshp.com/AllProducts/4699.html", qcTip: "Verify chest length, print alignment, cuffs, stitching, and fabric colour." },
+  { name: "Louis Vuitton Trainer Sneakers", category: "Footwear", price: "$31", image: "https://cnfanshp.com/uploads/allimg/20260311/1-260311125P21J.webp", href: "https://cnfanshp.com/AllProducts/5227.html", qcTip: "Compare the pair, heel shape, panel alignment, outsole, and size tag." },
+  { name: "Adidas Bag", category: "Accessories", price: "$16", image: "https://cnfanshp.com/uploads/allimg/20251224/1-251224134PL21.webp", href: "https://cnfanshp.com/AllProducts/2881.html", qcTip: "Inspect the zip, strap hardware, seams, interior, and visible marks." },
+  { name: "Louis Vuitton Wallet", category: "Accessories", price: "$14", image: "https://cnfanshp.com/uploads/allimg/20260317/1-26031G03S62M.webp", href: "https://cnfanshp.com/AllProducts/5563.html", qcTip: "Check edge paint, stitching, card slots, fold alignment, and surface marks." },
 ];
 
 export const categories = [
-  ["Shoes", "01", "https://www.cnbuycha.com/shoes/"],
-  ["Hoodies", "02", "https://www.cnbuycha.com/hoodies-sweaters/"],
-  ["T-Shirts", "03", "https://www.cnbuycha.com/t-shirts/"],
-  ["Jackets", "04", "https://www.cnbuycha.com/jackets/"],
-  ["Pants", "05", "https://www.cnbuycha.com/pants-shorts/"],
-  ["Headwear", "06", "https://www.cnbuycha.com/headwear/"],
-  ["Accessories", "07", "https://www.cnbuycha.com/accessories/"],
-  ["Jerseys", "08", "https://www.cnbuycha.com/Jersey/"],
-  ["Electronics", "09", "https://www.cnbuycha.com/electronics/"],
-  ["Other finds", "10", "https://www.cnbuycha.com/other-stuff/"],
+  ["Shoes", "01", "https://cnfanshp.com/shoes/"],
+  ["Hoodies", "02", "https://cnfanshp.com/hoodies-sweaters/"],
+  ["T-Shirts", "03", "https://cnfanshp.com/t-shirts/"],
+  ["Jackets", "04", "https://cnfanshp.com/jackets/"],
+  ["Pants", "05", "https://cnfanshp.com/pants-shorts/"],
+  ["Headwear", "06", "https://cnfanshp.com/headwear/"],
+  ["Accessories", "07", "https://cnfanshp.com/accessories/"],
+  ["Jerseys", "08", "https://cnfanshp.com/Jersey/"],
+  ["Electronics", "09", "https://cnfanshp.com/electronics/"],
+  ["Other finds", "10", "https://cnfanshp.com/other-stuff/"],
 ] as const;
 
-export const allProducts = "https://www.cnbuycha.com/AllProducts/";
+export const allProducts = "https://cnfanshp.com/AllProducts/";
 export const articleSlugs = ["first-time-spreadsheet-checklist", "read-usfans-qc-photos", "product-price-vs-parcel-cost", "usfans-poland-preorder-checklist"] as const;
 export type ArticleSlug = typeof articleSlugs[number];
 
