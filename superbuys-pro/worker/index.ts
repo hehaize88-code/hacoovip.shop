@@ -64,6 +64,10 @@ const worker = {
     headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
 
     if ((headers.get("content-type") || "").includes("text/html")) {
+      if (request.method === "GET" && response.status === 200) {
+        headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
+        headers.set("CDN-Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
+      }
       const locale = url.pathname.match(/^\/(de|fr|it|nl|ms)(?:\/|$)/)?.[1] || "en";
       const html = (await response.text()).replace(/<html\s+lang=["'][^"']*["']/, `<html lang="${locale}"`);
       headers.delete("content-length");

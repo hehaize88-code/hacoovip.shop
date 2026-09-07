@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Superbuy Spreadsheet 2026: Product Finds & QC Guide",
   description: "Browse an organized Superbuy spreadsheet with product finds, category links, approximate USD prices and a practical QC photo protocol.",
-  keywords: ["superbuy spreadsheet", "superbuy finds", "superbuy product spreadsheet", "superbuy qc photos"],
+  keywords: ["superbuy spreadsheet", "superbuy warehouse", "superbuy fees", "superbuy qc photos", "superbuy shipping calculator", "superbuy parcel forwarding"],
   robots: { index: true, follow: true },
   openGraph: {
     title: "Superbuy Spreadsheet 2026: Product Finds & QC Guide",
@@ -30,9 +30,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   };
   return <html lang="en">
 <head>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGRK9E4V6G" />
+          <script data-analytics="ga4" async src="https://www.googletagmanager.com/gtag/js?id=G-MGRK9E4V6G" />
           <script
-            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MGRK9E4V6G');" }}
+            data-analytics="ga4"
+            dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MGRK9E4V6G');document.addEventListener('click',function(event){var target=event.target instanceof Element?event.target.closest('a[href]'):null;if(!target)return;try{var url=new URL(target.href,location.href);if(url.hostname==='www.cnfanshp.com'||url.hostname==='cnfanshp.com'){gtag('event','outbound_click',{link_url:url.href,link_text:(target.textContent||'').trim().slice(0,100),transport_type:'beacon'});}}catch(_){}});" }}
           />
         </head><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />{children}</body></html>;
 }

@@ -40,7 +40,7 @@ async function render(pathname) {
 function staticHtml(html) {
   return html
     .replace(/<link rel="modulepreload"[^>]*>/g, "")
-    .replace(/<script(?![^>]*type="application\/ld\+json")[^>]*>[\s\S]*?<\/script>/g, "");
+    .replace(/<script(?![^>]*(?:type="application\/ld\+json"|data-analytics="ga4"))[^>]*>[\s\S]*?<\/script>/g, "");
 }
 
 await rm(outputRoot, { recursive: true, force: true });

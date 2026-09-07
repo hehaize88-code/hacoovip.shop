@@ -33,6 +33,8 @@ test("renders the production homepage metadata and primary routes", async () => 
   assert.match(html, /href="\/qc-check\/"/i);
   assert.match(html, /"@type":"FAQPage"/i);
   assert.match(html, />SUPERBUY SPREADSHEET</i);
+  assert.match(html, /data-analytics="ga4"/i);
+  assert.match(html, /href="\/articles\/superbuy-warehouse-storage-qc-guide\/"/i);
   assert.doesNotMatch(html, /https:\/\/www\.cnfanshp\.com\/uploads\//i);
 });
 
@@ -61,5 +63,7 @@ test("uses final slash URLs, localized html lang and product schema", async () =
   const xml=await sitemap.text();
   assert.match(xml,/<loc>https:\/\/superbuys\.pro\/finds\/<\/loc>/i);
   assert.match(xml,/<loc>https:\/\/superbuys\.pro\/de\/products\/patagonia-quick-drying-pants\/<\/loc>/i);
+  assert.match(xml, /<loc>https:\/\/superbuys\.pro\/articles\/superbuy-warehouse-storage-qc-guide\/<\/loc>/i);
+  assert.match(xml, /<loc>https:\/\/superbuys\.pro\/fr\/articles\/superbuy-fees-shopping-agent-vs-parcel-forwarding\/<\/loc>/i);
   assert.doesNotMatch(xml,/<loc>https:\/\/superbuys\.pro\/finds<\/loc>/i);
 });
