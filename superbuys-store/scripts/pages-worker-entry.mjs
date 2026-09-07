@@ -1,13 +1,22 @@
 
 import app from "../dist/server/index.js";
 
-const STATIC_SEO_PATHS = new Set(["/robots.txt", "/sitemap.xml"]);
+const STATIC_ASSET_PATHS = new Set([
+  "/favicon.svg",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/superbuy-logo.png",
+]);
+
+function isStaticAsset(pathname) {
+  return pathname.startsWith("/assets/") || STATIC_ASSET_PATHS.has(pathname);
+}
 
 export default {
   async fetch(request, env, context) {
     const { pathname } = new URL(request.url);
 
-    if (STATIC_SEO_PATHS.has(pathname)) {
+    if (isStaticAsset(pathname)) {
       return env.ASSETS.fetch(request);
     }
 
@@ -37,4 +46,3 @@ export default {
     return response;
   },
 };
-

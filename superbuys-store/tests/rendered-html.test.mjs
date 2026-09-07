@@ -10,7 +10,14 @@ async function render(pathname) {
   const { default: worker } = await import(workerUrl.href);
   return worker.fetch(
     new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    {
+      ASSETS: {
+        fetch: async (request) =>
+          new Response(`static:${new URL(request.url).pathname}`, {
+            headers: { "content-type": "text/plain" },
+          }),
+      },
+    },
     { waitUntil() {}, passThroughOnException() {} },
   );
 }
@@ -66,4 +73,17 @@ test("serves sitemap and robots as exact static assets", async () => {
   assert.equal(await sitemap.text(), "static:/sitemap.xml");
   assert.equal(robots.status, 200);
   assert.equal(await robots.text(), "static:/robots.txt");
+});
+
+test("serves frontend assets without app-router redirects", async () => {
+  const serverCss = await render("/assets/site.css");
+  const pagesJs = await renderPages("/assets/site.js");
+  const logo = await render("/superbuy-logo.png");
+
+  assert.equal(serverCss.status, 200);
+  assert.equal(await serverCss.text(), "static:/assets/site.css");
+  assert.equal(pagesJs.status, 200);
+  assert.equal(await pagesJs.text(), "static:/assets/site.js");
+  assert.equal(logo.status, 200);
+  assert.equal(await logo.text(), "static:/superbuy-logo.png");
 });

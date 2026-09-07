@@ -2,6 +2,17 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 
+const STATIC_ASSET_PATHS = new Set([
+  "/favicon.svg",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/superbuy-logo.png",
+]);
+
+function isStaticAsset(pathname: string): boolean {
+  return pathname.startsWith("/assets/") || STATIC_ASSET_PATHS.has(pathname);
+}
+
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
@@ -28,6 +39,13 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Static files must bypass the app router. With trailingSlash enabled, the
+    // router otherwise redirects files such as site.css to site.css/, which
+    // prevents browsers from loading CSS, JavaScript, fonts, and brand assets.
+    if (isStaticAsset(url.pathname)) {
+      return env.ASSETS.fetch(request);
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
@@ -68,4 +86,3 @@ const worker = {
 };
 
 export default worker;
-
