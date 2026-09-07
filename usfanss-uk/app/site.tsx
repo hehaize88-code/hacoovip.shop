@@ -7,24 +7,24 @@ export type Locale = "en" | "de" | "fr" | "es" | "it" | "pl";
 export const localeCodes: Locale[] = ["en", "de", "fr", "es", "it", "pl"];
 
 export const categories = [
-  { name: "Sneakers", href: "https://www.cnbuycha.com/shoes/", code: "SNK", note: "Footwear finds" },
-  { name: "Hoodies", href: "https://www.cnbuycha.com/hoodies-sweaters/", code: "HDY", note: "Layers & knits" },
-  { name: "T-Shirts", href: "https://www.cnbuycha.com/t-shirts/", code: "TEE", note: "Daily rotation" },
-  { name: "Jerseys", href: "https://www.cnbuycha.com/Jersey/", code: "JSY", note: "Club & country" },
-  { name: "Pants", href: "https://www.cnbuycha.com/pants-shorts/", code: "PNT", note: "Denim & shorts" },
-  { name: "Headwear", href: "https://www.cnbuycha.com/headwear/", code: "CAP", note: "Caps & beanies" },
-  { name: "Accessories", href: "https://www.cnbuycha.com/accessories/", code: "ACC", note: "Small essentials" },
-  { name: "Electronics", href: "https://www.cnbuycha.com/electronics/", code: "ELX", note: "Tech finds" },
+  { name: "Sneakers", href: "https://cnfanshp.com/shoes/", code: "SNK", note: "Footwear finds" },
+  { name: "Hoodies", href: "https://cnfanshp.com/hoodies-sweaters/", code: "HDY", note: "Layers & knits" },
+  { name: "T-Shirts", href: "https://cnfanshp.com/t-shirts/", code: "TEE", note: "Daily rotation" },
+  { name: "Jerseys", href: "https://cnfanshp.com/Jersey/", code: "JSY", note: "Club & country" },
+  { name: "Pants", href: "https://cnfanshp.com/pants-shorts/", code: "PNT", note: "Denim & shorts" },
+  { name: "Headwear", href: "https://cnfanshp.com/headwear/", code: "CAP", note: "Caps & beanies" },
+  { name: "Accessories", href: "https://cnfanshp.com/accessories/", code: "ACC", note: "Small essentials" },
+  { name: "Electronics", href: "https://cnfanshp.com/electronics/", code: "ELX", note: "Tech finds" },
 ];
 
 export const products = [
-  { name: "Stone Island Hoodie · 40 styles", category: "Hoodies", price: "$25 est.", image: "/products/hoodie.webp", href: "https://www.cnfanshp.com/AllProducts/5564.html", gate: "A01" },
-  { name: "Patagonia Loose Crewneck", category: "Sweatshirts", price: "$19 est.", image: "/products/crewneck.webp", href: "https://www.cnfanshp.com/AllProducts/5974.html", gate: "A02" },
-  { name: "Curated Sneaker Find #60", category: "Shoes", price: "$46 est.", image: "/products/sneakers.jpg", href: "https://www.cnfanshp.com/AllProducts/6045.html", gate: "B06" },
-  { name: "Piqué Cotton Short Sleeve", category: "T-Shirts", price: "$30 est.", image: "/products/polo.webp", href: "https://www.cnfanshp.com/AllProducts/5976.html", gate: "B12" },
-  { name: "Letter-Embroidered Cap", category: "Headwear", price: "$12 est.", image: "/products/cap.webp", href: "https://www.cnfanshp.com/AllProducts/5971.html", gate: "C04" },
-  { name: "BIGBOY Relaxed Jeans", category: "Pants", price: "$19 est.", image: "/products/jeans.webp", href: "https://www.cnfanshp.com/AllProducts/5662.html", gate: "C08" },
-  { name: "Everyday Sport Shorts", category: "Shorts", price: "$19 est.", image: "/products/shorts.webp", href: "https://www.cnfanshp.com/AllProducts/5789.html", gate: "D03" },
+  { name: "Stone Island Hoodie · 40 styles", category: "Hoodies", price: "$25 est.", image: "/products/hoodie.webp", href: "https://cnfanshp.com/AllProducts/5564.html", gate: "A01" },
+  { name: "Patagonia Loose Crewneck", category: "Sweatshirts", price: "$19 est.", image: "/products/crewneck.webp", href: "https://cnfanshp.com/AllProducts/5974.html", gate: "A02" },
+  { name: "Curated Sneaker Find #60", category: "Shoes", price: "$46 est.", image: "/products/sneakers.jpg", href: "https://cnfanshp.com/AllProducts/6045.html", gate: "B06" },
+  { name: "Piqué Cotton Short Sleeve", category: "T-Shirts", price: "$30 est.", image: "/products/polo.webp", href: "https://cnfanshp.com/AllProducts/5976.html", gate: "B12" },
+  { name: "Letter-Embroidered Cap", category: "Headwear", price: "$12 est.", image: "/products/cap.webp", href: "https://cnfanshp.com/AllProducts/5971.html", gate: "C04" },
+  { name: "BIGBOY Relaxed Jeans", category: "Pants", price: "$19 est.", image: "/products/jeans.webp", href: "https://cnfanshp.com/AllProducts/5662.html", gate: "C08" },
+  { name: "Everyday Sport Shorts", category: "Shorts", price: "$19 est.", image: "/products/shorts.webp", href: "https://cnfanshp.com/AllProducts/5789.html", gate: "D03" },
 ];
 
 type Copy = {
@@ -298,7 +298,7 @@ function Footer({ locale }: { locale: Locale }) {
 
 function SearchForm({ locale }: { locale: Locale }) {
   const c=copy[locale];
-  return <form className="boarding-pass" id="search" action="https://www.cnbuycha.com/search.html" method="get" target="_blank">
+  return <form className="boarding-pass" id="search" action="https://cnfanshp.com/search.html" method="get" target="_blank">
     <div className="pass-label"><small>{c.searchLabel}</small><b>{c.searchPrompt}</b></div>
     <label className="sr-only" htmlFor="product-search">{c.searchPrompt}</label>
     <input id="product-search" name="keywords" placeholder={c.searchPlaceholder} required />
@@ -318,19 +318,19 @@ function CategoryBoard({ locale, compact=false }: {locale:Locale;compact?:boolea
 
 function ProductBelt({locale}:{locale:Locale}) {
   const c=copy[locale], u=ui[locale];
-  return <div className="belt">{products.map((product,index)=><a className="baggage-tag" key={product.name} href={product.href} target="_blank" rel="noopener"><div className="tag-index"><small>{u.productTag}</small><b>{String(index+1).padStart(2,"0")}</b></div><div className="tag-thumb"><img src={product.image} alt={u.productNames[index]} width="220" height="220" loading="lazy"/></div><div className="tag-main"><small>{product.gate} / {u.productCategories[index]}</small><strong>{u.productNames[index]}</strong><span>{u.priceLabel}</span></div><div className="tag-price"><b>{product.price}</b><span>{c.open.toUpperCase()} ↗</span></div><div className="mini-barcode" aria-hidden="true"/></a>)}</div>;
+  return <div className="belt">{products.map((product,index)=><a className="baggage-tag" key={product.name} href={product.href} target="_blank" rel="noopener"><div className="tag-index"><small>{u.productTag}</small><b>{String(index+1).padStart(2,"0")}</b></div><div className="tag-thumb"><img src={product.image} alt={u.productNames[index]} width="220" height="220" loading="eager"/></div><div className="tag-main"><small>{product.gate} / {u.productCategories[index]}</small><strong>{u.productNames[index]}</strong><span>{u.priceLabel}</span></div><div className="tag-price"><b>{product.price}</b><span>{c.open.toUpperCase()} ↗</span></div><div className="mini-barcode" aria-hidden="true"/></a>)}</div>;
 }
 
 function ArticleCards({ locale }: {locale:Locale}) {
   const c=copy[locale], u=ui[locale];
-  return <div className="article-grid">{articleMeta.map((article,index)=><a className="article-card" href={localePath(locale,`articles/${article.slug}`)} key={article.slug}><span className="article-no">0{index+1}</span><div className="article-image"><img src={article.image} alt="" width="520" height="360" loading="lazy"/></div><small>{u.labels[index]} / {article.minutes}</small><h3>{article.titles[locale]}</h3><b>{c.read.toUpperCase()} ↗</b></a>)}</div>;
+  return <div className="article-grid">{articleMeta.map((article,index)=><a className="article-card" href={localePath(locale,`articles/${article.slug}`)} key={article.slug}><span className="article-no">0{index+1}</span><div className="article-image"><img src={article.image} alt="" width="520" height="360" loading="eager"/></div><small>{u.labels[index]} / {article.minutes}</small><h3>{article.titles[locale]}</h3><b>{c.read.toUpperCase()} ↗</b></a>)}</div>;
 }
 
 function Home({locale}:{locale:Locale}) {
   const c=copy[locale], u=ui[locale];
   const faqs=localizedFaqs[locale].slice(0,4);
   const faqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(item=>({"@type":"Question",name:item.q,acceptedAnswer:{"@type":"Answer",text:item.a}}))};
-  const websiteSchema={"@context":"https://schema.org","@type":"WebSite",name:"USFans Spreadsheet & QC Guide",url:"https://usfanss.uk/",inLanguage:locale,potentialAction:{"@type":"SearchAction",target:"https://www.cnbuycha.com/search.html?keywords={search_term_string}&channelid=2&method=1","query-input":"required name=search_term_string"}};
+  const websiteSchema={"@context":"https://schema.org","@type":"WebSite",name:"USFans Spreadsheet & QC Guide",url:"https://usfanss.uk/",inLanguage:locale,potentialAction:{"@type":"SearchAction",target:"https://cnfanshp.com/search.html?keywords={search_term_string}&channelid=2&method=1","query-input":"required name=search_term_string"}};
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteSchema)}}/>
@@ -347,7 +347,7 @@ function Home({locale}:{locale:Locale}) {
     <section className="status-ribbon"><span>{u.status[0].toUpperCase()}</span><b><i/> {u.status[1].toUpperCase()}</b><span>{u.status[2].toUpperCase()}</span><b>{u.status[3].toUpperCase()}</b><span>{u.status[4].toUpperCase()}</span></section>
     <section className="departures section-wrap"><div className="route-heading"><p>{c.categoryEyebrow}</p><h2>{c.categoryTitle}</h2><a href={localePath(locale,"categories")}>{c.categoryLead} ↗</a></div><CategoryBoard locale={locale} compact/></section>
     <section className="baggage section-wrap"><div className="route-heading route-heading-light"><p>{c.productEyebrow}</p><h2>{c.productTitle}</h2><a href={localePath(locale,"products")}>{c.nav[1]} ↗</a></div><ProductBelt locale={locale}/></section>
-    <section className="inspection section-wrap"><div className="inspection-copy"><p className="section-code">{c.qcEyebrow}</p><h2>{c.qcTitle}</h2><p>{c.qcLead}</p><a href={localePath(locale,"qc-desk")}>{c.nav[2].toUpperCase()} <span>↗</span></a></div><div className="light-table"><div className="crosshair" aria-hidden="true"><i/><i/></div><img src={products[2].image} alt={u.reference} width="700" height="700" loading="lazy"/><span className="focus focus-a">01 {u.focus[0].toUpperCase()}</span><span className="focus focus-b">02 {u.focus[1].toUpperCase()}</span><span className="focus focus-c">03 {u.focus[2].toUpperCase()}</span><div className="light-label">{u.reference.toUpperCase()}</div></div></section>
+    <section className="inspection section-wrap"><div className="inspection-copy"><p className="section-code">{c.qcEyebrow}</p><h2>{c.qcTitle}</h2><p>{c.qcLead}</p><a href={localePath(locale,"qc-desk")}>{c.nav[2].toUpperCase()} <span>↗</span></a></div><div className="light-table"><div className="crosshair" aria-hidden="true"><i/><i/></div><img src={products[2].image} alt={u.reference} width="700" height="700" loading="eager"/><span className="focus focus-a">01 {u.focus[0].toUpperCase()}</span><span className="focus focus-b">02 {u.focus[1].toUpperCase()}</span><span className="focus focus-c">03 {u.focus[2].toUpperCase()}</span><div className="light-label">{u.reference.toUpperCase()}</div></div></section>
     <section className="articles-home section-wrap"><div className="route-heading"><p>{c.articlesEyebrow}</p><h2>{c.articlesTitle}</h2><a href={localePath(locale,"articles")}>{c.nav[3]} ↗</a></div><ArticleCards locale={locale}/></section>
     <section className="help section-wrap"><div className="help-desk"><span>{c.helpEyebrow}</span><h2>{c.helpTitle}</h2><p>{c.helpLead}</p><a className="text-link" href={localePath(locale,"help")}>{c.nav[4]} ↗</a></div><div className="faq-list">{faqs.map((faq,index)=><details key={faq.q} open={index===0}><summary><span>{String(index+1).padStart(2,"0")}</span><b>{faq.q}</b><i>+</i></summary><p>{faq.a}</p></details>)}</div></section>
     <section className="final-route section-wrap"><span>{u.next.toUpperCase()}</span><h2>{u.nextTitle}</h2><a href="#search"><b>{c.searchButton.toUpperCase()}</b><i>↗</i></a></section>
