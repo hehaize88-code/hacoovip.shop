@@ -40,6 +40,18 @@ const worker = {
       return Response.redirect(url.toString(), 308);
     }
 
+    const shouldCache = request.method === "GET" && !url.pathname.startsWith("/cdn-cgi/") && url.pathname !== "/_vinext/image";
+    const edgeCache = typeof caches !== "undefined" ? caches.default : null;
+    const cacheKey = new Request(url.toString(), {method:"GET",headers:request.headers});
+    if (shouldCache && edgeCache) {
+      const cached = await edgeCache.match(cacheKey);
+      if (cached) {
+        const cachedHeaders = new Headers(cached.headers);
+        cachedHeaders.set("X-Edge-Cache", "HIT");
+        return new Response(cached.body,{status:cached.status,statusText:cached.statusText,headers:cachedHeaders});
+      }
+    }
+
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(request, {
@@ -71,10 +83,14 @@ const worker = {
       const locale = url.pathname.match(/^\/(de|fr|it|nl|ms)(?:\/|$)/)?.[1] || "en";
       const html = (await response.text()).replace(/<html\s+lang=["'][^"']*["']/, `<html lang="${locale}"`);
       headers.delete("content-length");
-      return new Response(html,{status:response.status,statusText:response.statusText,headers});
+      const finalResponse = new Response(html,{status:response.status,statusText:response.statusText,headers});
+      if (shouldCache && edgeCache && response.status === 200) ctx.waitUntil(edgeCache.put(cacheKey,finalResponse.clone()));
+      return finalResponse;
     }
 
-    return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+    const finalResponse = new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+    if (shouldCache && edgeCache && response.status === 200) ctx.waitUntil(edgeCache.put(cacheKey,finalResponse.clone()));
+    return finalResponse;
   },
 };
 
