@@ -40,7 +40,16 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    const response = await handler.fetch(request, env, ctx);
+    if (request.method !== "GET" || response.status !== 200) return response;
+
+    const contentType = response.headers.get("content-type") ?? "";
+    if (!contentType.startsWith("text/html")) return response;
+
+    const headers = new Headers(response.headers);
+    headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
+    headers.set("Vary", "Accept-Encoding");
+    return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
   },
 };
 

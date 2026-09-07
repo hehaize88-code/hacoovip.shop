@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kakobuys.store"),
-  title: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
-  description: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+  title: "Kakobuy QC Checklist 2026: Photos, Sizing & Returns",
+  description: "Check Kakobuy warehouse QC photos for size, stitching, color and defects, then decide whether to ship, request evidence or return.",
   alternates: {
     canonical: "/",
     languages: {
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
-    description: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+    title: "Kakobuy QC Checklist 2026: Photos, Sizing & Returns",
+    description: "Check Kakobuy warehouse QC photos for size, stitching, color and defects, then decide whether to ship, request evidence or return.",
     type: "website",
     url: "/",
     siteName: "Kakobuy QC Index",
@@ -59,6 +59,9 @@ export default function RootLayout({
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9YML1CM7K" />
           <script
             dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L9YML1CM7K');" }}
+          />
+          <script
+            dangerouslySetInnerHTML={{ __html: "window.addEventListener('click',function(event){var link=event.target&&event.target.closest?event.target.closest('a'):null;if(!link)return;try{var url=new URL(link.href,location.href);if(url.hostname==='www.cnfanshp.com'||url.hostname==='cnfanshp.com'){gtag('event','outbound_catalog_click',{link_url:url.href,link_text:(link.innerText||'').trim().slice(0,100),page_path:location.pathname,transport_type:'beacon'});}}catch(error){}},true);window.addEventListener('submit',function(event){var form=event.target;if(!form||!form.matches||!form.matches('form.search'))return;var input=form.querySelector('input[name=keywords]');gtag('event','catalog_search',{search_term:input&&input.value?input.value.trim():'',page_path:location.pathname,transport_type:'beacon'});},true);" }}
           />
         </head>
       <body

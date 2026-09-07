@@ -119,7 +119,7 @@ test("homepage aligns the title, heading and WebSite data to the QC decision lan
   );
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /Kakobuy QC Guide 2026: Photo Checks, Sizing (?:&amp;|&) Returns/);
+  assert.match(html, /Kakobuy QC Checklist 2026: Photos, Sizing (?:&amp;|&) Returns/);
   assert.match(html, /Kakobuy QC[\s\S]*Check Before Shipping/);
   assert.match(html, /"@type":"WebSite"/);
   assert.match(html, />QC Research</);
@@ -209,7 +209,7 @@ test("English article center includes all English-only guides", async () => {
     { waitUntil() {}, passThroughOnException() {} },
   );
   const centerHtml = await center.text();
-  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 10);
+  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 12);
   assert.match(centerHtml, /Kakobuy Warehouse Storage Guide/);
   assert.match(centerHtml, /Kakobuy Returns and After-Sales Checklist/);
   assert.match(centerHtml, /Kakobuy Stitching and Finish QC Checklist/);
@@ -217,6 +217,8 @@ test("English article center includes all English-only guides", async () => {
   assert.match(centerHtml, /Kakobuy Size Measurement QC: What Photos Can and Cannot Prove/);
   assert.match(centerHtml, /Kakobuy QC Color and Lighting Errors: Is the Mismatch Real/);
   assert.match(centerHtml, /Kakobuy Material and Texture QC: What Photos Can Prove/);
+  assert.match(centerHtml, /Kakobuy Shoe QC Checklist: Shape, Size Tag, Sole and Packaging/);
+  assert.match(centerHtml, /Kakobuy QC Finder vs Warehouse Photos: What Each Can Prove/);
 
   const article = await worker.fetch(
     new Request("http://localhost/kakobuy-warehouse-storage-guide", { headers: { accept: "text/html" } }),
@@ -329,6 +331,22 @@ test("English article center includes all English-only guides", async () => {
   assert.match(materialHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-material-texture-qc-evidence\/"/);
   assert.match(materialHtml, /<link rel="alternate" hrefLang="en" href="https:\/\/kakobuys\.store\/kakobuy-material-texture-qc-evidence\/"/);
   assert.doesNotMatch(materialHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+
+  for (const route of ["kakobuy-shoe-qc-checklist", "kakobuy-qc-finder-vs-warehouse-photos"]) {
+    const response = await worker.fetch(
+      new Request(`http://localhost/${route}`, { headers: { accept: "text/html" } }),
+      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+    const html = await response.text();
+    const articleBody = html.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
+    const words = articleBody.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+    assert.equal(response.status, 200);
+    assert.ok(words >= 1200 && words <= 1800, `${route} should contain 1200–1800 visible words, found ${words}`);
+    assert.match(html, /"@type":"Article"/);
+    assert.match(html, /"@type":"BreadcrumbList"/);
+    assert.match(html, new RegExp(`<link rel="canonical" href="https:\\/\\/kakobuys\\.store\\/${route}\\/"`));
+  }
 });
 
 test("expanded Finds page contains thirty unique records and every detail page", async () => {
@@ -352,6 +370,18 @@ test("expanded Finds page contains thirty unique records and every detail page",
     assert.match(html, /Last checked/);
     assert.match(html, /Open matching product/);
   }
+});
+
+test("thin find detail pages remain usable but are excluded from indexing", async () => {
+  const worker = await loadWorker();
+  const response = await worker.fetch(
+    new Request("http://localhost/find-5756", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /<meta name="robots" content="noindex, follow"/);
 });
 
 test("article interface labels follow the selected language", async () => {

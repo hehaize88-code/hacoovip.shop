@@ -232,17 +232,17 @@ export const longArticles: LongArticle[] = [
   {
     slug: "kakobuy-warehouse-storage-guide",
     title: "Kakobuy Warehouse Storage Guide: Timing, QC and Parcel Planning",
-    seoTitle: "Kakobuy Warehouse Storage Guide (2026): 100-Day Planning",
-    seoDescription: "Learn how Kakobuy warehouse storage works, what to inspect on arrival, how to track deadlines and when to consolidate or submit a parcel.",
-    primaryKeyword: "Kakobuy warehouse storage",
-    secondaryKeywords: ["Kakobuy 100 days storage", "Kakobuy warehouse guide", "Kakobuy parcel consolidation", "Kakobuy storage time"],
-    intro: "Warehouse storage is most useful when it creates time for better decisions. Kakobuy publicly advertises 100 days of free storage, allowing items from different sellers to arrive before parcel submission. That window can support quality-control review and consolidation, but it should not be mistaken for a 100-day return period or a reason to ignore an order. Inspection, seller-return eligibility, parcel planning and storage expiration follow different clocks.",
+    seoTitle: "Kakobuy Parcel Warehouse Policy: 100-Day Storage Guide",
+    seoDescription: "Check the Kakobuy parcel warehouse policy, normal 100-day storage duration, 90-day reminder, QC deadlines and parcel planning steps.",
+    primaryKeyword: "Kakobuy parcel warehouse policy storage duration",
+    secondaryKeywords: ["Kakobuy 100 days storage", "Kakobuy warehouse storage time", "Kakobuy 90 day reminder", "Kakobuy parcel consolidation"],
+    intro: "The current Kakobuy parcel warehouse policy describes a normal storage duration of 100 days and a reminder after 90 days. That window can support quality-control review and consolidation, but it should not be mistaken for a 100-day return period or a reason to ignore an order. Inspection, seller-return eligibility, parcel planning and storage expiration follow different clocks, so the useful approach is to record each deadline separately and act on the shortest one first.",
     quickAnswer: "Check every item as soon as it is stocked, record the storage and return deadlines shown for that order, resolve QC problems immediately, and consolidate only after every keep-or-return decision is complete. Use the remaining storage time to compare measured weight, dimensions, packaging and shipping routes—not to postpone inspection.",
     sections: [
       {
         heading: "What Kakobuy says about warehouse storage",
         paragraphs: [
-          "Kakobuy describes its service as a purchasing and freight-forwarding workflow. Its public service pages say that goods are sent to the Kakobuy warehouse, inspected and stored, and that users can select items in the warehouse to submit as one parcel. The same public material advertises 100 days of free storage. This creates a practical gap between domestic arrival and international dispatch.",
+          "Kakobuy describes its service as a purchasing and freight-forwarding workflow. Its public help page says the normal storage period is 100 days and that a storage reminder is sent after 90 days. Its service pages also say that goods are sent to the Kakobuy warehouse, inspected and stored, and that users can select warehouse items to submit as one parcel. This creates a practical gap between domestic arrival and international dispatch.",
           "The advertised period is a platform-level statement, not a substitute for the live information attached to an individual order. Policies can change, special items may be handled differently, and the day count displayed in the account is the operational record to follow. Save the stocking date, note the displayed deadline and recheck it before planning around the full period."
         ],
         bullets: ["Confirm the warehouse stocking date for each item.", "Record the storage deadline shown in the live account.", "Treat policy summaries as guidance and the live order as the current record."]
@@ -308,7 +308,7 @@ export const longArticles: LongArticle[] = [
         ]
       }
     ],
-    sourceNote: "Fact-check basis: Kakobuy public service overview, warehouse information, shipping estimator and return/exchange guidance, reviewed August 3, 2026. Storage periods, eligibility, fees and order-specific deadlines can change; confirm them in the live account."
+    sourceNote: "Fact-check basis: Kakobuy public service overview, warehouse help, shipping estimator and return/exchange guidance, reviewed September 7, 2026. The help page stated a normal 100-day storage period and a reminder after 90 days. Storage periods, eligibility, fees and order-specific deadlines can change; confirm them in the live account."
   },
   {
     slug: "kakobuy-returns-after-sales-checklist",
@@ -821,5 +821,179 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public purchase and warehouse-inspection flow, plus current service wording about photography and display limitations, reviewed August 31, 2026. Evidence boundaries were checked against current FTC textile-labeling guidance and NIST information on color rendering. The evidence labels and decision ledger are independent editorial methods. Photo availability, after-sales eligibility, services, fees and deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-shoe-qc-checklist",
+    title: "Kakobuy Shoe QC Checklist: Shape, Size Tag, Sole and Packaging",
+    seoTitle: "Kakobuy Shoe QC Checklist: Photos, Size Tag and Sole",
+    seoDescription: "Use this Kakobuy shoe QC checklist to review warehouse photos for shape, pair symmetry, size tags, outsole, stitching, glue and packaging.",
+    primaryKeyword: "Kakobuy shoe QC",
+    secondaryKeywords: ["Kakobuy shoes QC photos", "Kakobuy sneaker QC checklist", "Kakobuy shoe size tag", "Kakobuy outsole QC"],
+    intro: "Shoe quality control is a sequence of comparisons, not a hunt for one perfect photograph. A useful Kakobuy shoe QC review first proves that the pair matches the ordered model, color and size, then checks both shoes for consistent shape, construction and visible condition. Warehouse photos can reveal a wrong variant, a distorted upper, uneven placement, open stitching, heavy glue, outsole damage or missing components. They cannot prove comfort, long-term durability, material composition, traction or authenticity.",
+    quickAnswer: "Confirm the box or shoe size label, count both shoes and match the ordered colorway. Compare left and right from front, side, heel and top views; inspect toe shape, panel alignment, stitching, sole attachment, outsole, hardware and included parts. Request one targeted photo or measurement only when it can change the decision, and keep the pair out of parcel submission while a material mismatch remains unresolved.",
+    sections: [
+      {
+        heading: "Start with pair identity and the ordered option",
+        paragraphs: [
+          "Open the live order beside the warehouse gallery. Record the seller listing, chosen model, color, size system, quantity and any option wording that distinguishes similar versions. Confirm that the gallery shows a left and a right shoe rather than two views of one shoe. Match the dominant colors, visible panel layout, closure type and sole shape before examining small finish details.",
+          "Treat a box label, hang tag and shoe label as separate pieces of evidence. A matching box label does not prove that the shoes inside match it, and a visible size number is incomplete without its sizing system. If the order uses EU, US, UK or another scale, preserve that context. When a label is blurred or hidden, mark identity as incomplete instead of guessing from the apparent length."
+        ],
+        bullets: ["Match model, colorway and selected option.", "Confirm one left shoe and one right shoe.", "Read the size number together with its size system.", "Compare shoe labels with packaging labels without assuming they are identical proof."]
+      },
+      {
+        heading: "Compare the overall shape before zooming in",
+        paragraphs: [
+          "Use front, side, heel and top views to understand the silhouette. Compare the height of both heel counters, the curve of both toe boxes, the opening shape and the way each upper sits on its sole. Temporary packing pressure, loose laces and camera angle can make a shoe look asymmetric, so look for the same difference across more than one useful view.",
+          "Place the imagined center line through each shoe and compare matched landmarks rather than comparing the outer edge of a left shoe with the outer edge of a right shoe. The pair need not be photographically identical, but a persistent twist, collapsed panel or visibly different height deserves clarification. Shape review should happen before micro-details because a major silhouette issue is more decision-relevant than a loose thread."
+        ]
+      },
+      {
+        heading: "Read toe-box and vamp evidence carefully",
+        paragraphs: [
+          "Inspect the toe from directly above and from the front. Look for a smooth transition between paired panels, comparable perforation or decorative placement, and a consistent edge where the upper meets the sole. A three-quarter camera angle can make the nearer toe look wider, so do not diagnose width asymmetry from perspective alone. Use a centered view when the difference matters.",
+          "Creasing can come from handling, soft material or packing and is not automatically structural damage. Distinguish a shallow fold from a deep permanent-looking collapse, cut, stain or missing surface finish. If stuffing is present in only one shoe, shape comparison is weak. A useful request asks for both shoes placed parallel, similarly stuffed and photographed from directly above rather than asking whether the toe boxes are good."
+        ]
+      },
+      {
+        heading: "Check panels, stitching and paired placement",
+        paragraphs: [
+          "Follow the major seam lines on both shoes. Look for skipped stitches, open joins, thread nests, abrupt line changes and a seam that ends before the panel edge. Then compare paired design elements such as overlays, stripes, embroidery, perforations and eye rows. Use fixed anchors—the sole edge, center seam or eyelet line—so the comparison is repeatable.",
+          "Small variation can be normal manufacturing tolerance, while camera tilt can amplify it. The useful question is whether the difference is visible, persistent and above your preset acceptance threshold. Do not turn a warehouse image into a claim about factory method or authenticity. Record the observable fact: for example, the rear overlay on the right shoe sits visibly closer to the collar seam than the corresponding overlay on the left."
+        ],
+        bullets: ["Trace main seams from start to finish.", "Compare matched panels from the same angle.", "Use a nearby edge as the placement anchor.", "Describe the visible difference without assigning an unsupported cause."]
+      },
+      {
+        heading: "Inspect the midsole join and visible glue",
+        paragraphs: [
+          "Examine the boundary where the upper meets the midsole around the whole pair. Look for an open gap, lifted edge, cracked surface, deep dent or glue that crosses onto a prominent upper panel. Bright reflections can resemble glue and a dark shadow can resemble separation, so compare adjacent frames and ask whether the mark remains in the same physical place.",
+          "A small finish trace and a true attachment gap are different decisions. Zooming a compressed photo far beyond its useful detail can make ordinary edges look rough. When the evidence is unclear, request an even-lit side image of the exact area plus a wider frame that identifies the shoe and location. Do not ask warehouse staff to predict whether an attachment will fail during wear; photographs cannot establish that."
+        ]
+      },
+      {
+        heading: "Review heel structure and rear alignment",
+        paragraphs: [
+          "Use a centered rear view with both shoes on the same surface. Compare heel counter height, rear seam direction, pull-tab placement and the level where each upper meets its sole. If one shoe is closer to the lens or rotated, apparent height and centering will change. Check a side view before treating a rear-view difference as confirmed.",
+          "Look for crushing, deep folds, exposed edges or a rear panel that remains visibly twisted across views. Soft shoes can lean when unfilled, and removable packing can affect the outline. Separate a presentation issue that can be corrected by repositioning from a construction difference that persists after the pair is aligned. A controlled new view is more useful than several more angled photographs."
+        ]
+      },
+      {
+        heading: "Verify size evidence without promising fit",
+        paragraphs: [
+          "A readable size tag can confirm the marked size; it cannot prove that the shoe will fit a particular foot. Match the tag to the order and note every displayed system. If fit risk is high, an insole or outsole measurement may add evidence, but only when the ruler starts at a clear edge, remains flat, reaches the endpoint and belongs to the correct shoe.",
+          "Compare any visible measurement with a shoe or removable insole you already use, measured by the same method. Seller charts may define length differently, and outsole length is not the same as internal usable length. Do not convert one measurement into guaranteed comfort, width or arch support. The outcome is a better-informed size decision, not a fit certificate."
+        ],
+        bullets: ["Confirm marked size and system.", "Specify whether a request is for insole, internal or outsole length.", "Require visible ruler endpoints.", "Keep fit and comfort as unknowns that photos cannot settle."]
+      },
+      {
+        heading: "Turn the pair over and inspect the outsole",
+        paragraphs: [
+          "An outsole view can reveal whether both tread patterns match, whether the pair appears unused at the warehouse, and whether there are visible cuts, missing sections, deep contamination or major molding differences. Ask for both outsoles in one frame when direct comparison matters. Check that the image really shows the same pair as the upper views by matching size or other visible identifiers where possible.",
+          "Normal molding lines, light dust and photographic glare should not be upgraded into defects without supporting evidence. An outsole photo also cannot prove grip, compound, flexibility or wear life. Record only what the surface shows. If a suspicious area is at the edge, request a second angle that includes both the outsole face and the sidewall so a shadow is not mistaken for missing material."
+        ]
+      },
+      {
+        heading: "Count accessories and assess packaging risk",
+        paragraphs: [
+          "Compare the order with visible contents: laces, removable insoles, tags, dust bags, decorative parts or other promised components. Packaging can also affect the parcel decision. A retail box may help protect shape but adds volume and may already be damaged; removing it can reduce space but changes protection. Treat this as a packaging choice after QC, not proof of product quality.",
+          "If a component is essential, ask for one arranged contents photo with the pair visible. Do not infer that an unseen accessory is missing until the available images and order record are checked. Save the evidence before requesting any packaging change, because later repacking may alter what can be photographed. Fragile ornaments, rigid heel pieces and soft uppers may need different protection even within one shoe parcel."
+        ]
+      },
+      {
+        heading: "Make a ship, clarify or after-sales decision",
+        paragraphs: [
+          "Ship when identity is complete, both shoes are present, the visible pair passes your preset shape and finish thresholds, and the remaining unknowns are acceptable. Clarify when one controlled view, label photo or measurement can change the outcome. Use the current after-sales route when the live order remains eligible and clear evidence shows a wrong option, missing component or visible condition problem above your threshold.",
+          "Keep the request factual and localized: order fact, observed fact, image location and desired next step. Avoid a general message such as ‘check quality again.’ Save the original gallery, your selected evidence and the resulting status together. A strong Kakobuy shoe QC record does not claim that photographs prove everything; it shows that the most important visible risks were reviewed before international shipping made the decision harder to reverse."
+        ],
+        bullets: ["SHIP: visible evidence passes the threshold and unknowns are acceptable.", "CLARIFY: one specific image or measurement can decide the case.", "AFTER-SALES: a material mismatch is visible and the current order offers a route.", "HOLD: do not submit the pair while a decision-changing issue remains open."]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public purchase, warehouse inspection and photo-review flow, reviewed September 7, 2026. The paired-view sequence, evidence thresholds and shoe checklist are independent editorial methods. Warehouse photos cannot verify comfort, composition, durability, performance or authenticity. Photo availability, services, eligibility, fees and deadlines can change; follow the live order."
+  },
+  {
+    slug: "kakobuy-qc-finder-vs-warehouse-photos",
+    title: "Kakobuy QC Finder vs Warehouse Photos: What Each Can Prove",
+    seoTitle: "Kakobuy QC Finder vs Warehouse Photos: Evidence Guide",
+    seoDescription: "Compare a Kakobuy QC finder with your actual warehouse photos, learn what sample images can reveal, and avoid approving the wrong item evidence.",
+    primaryKeyword: "QC finder Kakobuy",
+    secondaryKeywords: ["Kakobuy QC finder", "Kakobuy QC photos", "Kakobuy warehouse photos", "Kakobuy quality check"],
+    intro: "A QC finder and a live warehouse gallery answer different questions. A finder may surface sample inspection images associated with a product reference, seller or similar listing. Your warehouse photos document the item attached to your own order. Sample images can help you learn what details to inspect, but they do not prove that your pair, garment or accessory has the same size, batch, condition or construction. The safest workflow uses finder images to prepare questions and the live order gallery to make the decision.",
+    quickAnswer: "Use a QC finder for discovery and comparison, never as approval evidence for your own order. Match your warehouse gallery to the exact order ID, option, size, color and quantity. Compare sample images only after noting possible seller, batch, date and variant differences. Base ship, clarification or after-sales action on your current order record and request one targeted image when the live gallery cannot show a decision-critical detail.",
+    sections: [
+      {
+        heading: "Define the two evidence sets before comparing them",
+        paragraphs: [
+          "Call the first set reference evidence: images found through a public QC search, catalog index, shared link or older inspection record. Call the second set order evidence: photographs, labels, measurements and status attached to your current Kakobuy warehouse item. Keeping the names separate prevents a clean sample image from silently replacing the less convenient evidence in your own gallery.",
+          "Record where each image came from, the date shown if any, seller or listing reference, product option, size and color. Missing fields are not permission to assume a match. A sample can still be useful when provenance is incomplete, but its role becomes narrower: it may suggest camera angles, common construction points or questions to ask, not establish the condition of the item you own."
+        ],
+        bullets: ["REFERENCE: found sample, previous record or public QC image.", "ORDER: image or measurement attached to the current warehouse item.", "UNKNOWN: provenance, batch, variant or date is not confirmed.", "DECISION: action must be tied back to current order evidence."]
+      },
+      {
+        heading: "What a QC finder is useful for",
+        paragraphs: [
+          "A finder can shorten research by gathering examples that might otherwise be scattered across listings or shared records. It can show which parts are commonly photographed, whether a size label may be visible, how a print is positioned on an example, or which details require a close view. This is valuable before ordering and again when planning a focused warehouse request.",
+          "It can also improve your inspection vocabulary. Instead of writing ‘looks wrong,’ you can identify a toe-box curve, rear seam, graphic anchor, pocket opening or hardware attachment. Reference images help form a checklist and a decision threshold. They are weakest when treated as a master sample, especially when the source does not establish exact seller, option, date or production batch."
+        ]
+      },
+      {
+        heading: "What sample QC images cannot prove",
+        paragraphs: [
+          "A sample image cannot prove what arrived under your order number. It cannot confirm your item's quantity, selected size, exact color, current condition, included components or warehouse status. Even images associated with the same product URL may represent another option or an earlier seller version. Listings and seller inventory can change without making the old image disappear from a finder.",
+          "The sample also cannot establish sensory or performance properties such as feel, odor, comfort, flexibility, warmth, waterproofing or durability. Nor does a visual similarity prove authenticity. Use precise language: an image can show a visible label or surface; it cannot independently verify that every label claim is true. These limits apply to both finder images and ordinary warehouse photos, but the identity gap makes public samples weaker."
+        ],
+        bullets: ["Not your order identity or current condition.", "Not proof of the same seller batch or option.", "Not a test of material, comfort or performance.", "Not authentication or a durability forecast."]
+      },
+      {
+        heading: "Match reference images without forcing a match",
+        paragraphs: [
+          "Begin with stable identifiers: product model, distinctive panel layout, graphic version, closure type and visible SKU or option text. Then check seller or source listing, color, size and date. Give every field a status—matched, different or unknown. A useful reference does not need perfect identity, but the number of unknowns should control how strongly you rely on it.",
+          "Do not crop away contradictory details. If the reference shows a different label, color or panel, preserve that difference. It may indicate a separate version rather than a defect in your item. The goal is not to prove that the warehouse item matches the favorite sample. The goal is to discover which visible facts should be compared with the ordered specification and seller record."
+        ]
+      },
+      {
+        heading: "Use the live Kakobuy gallery as the decision record",
+        paragraphs: [
+          "Open the current order directly rather than relying on a downloaded thumbnail or a shared screenshot. Confirm the order ID, selected variant, warehouse status and full image set. Review identity first, then overall form, measurements, construction, color and included parts. Note any detail that is absent, obscured or too compressed to judge.",
+          "When a finder image reveals a useful angle missing from the live gallery, convert it into a request about your item: ‘Please photograph the rear label straight on and include the full item in a second frame.’ Do not ask staff to confirm that your item is the same as an external sample. A bounded visual request produces evidence that remains attached to the order and can support a later decision."
+        ]
+      },
+      {
+        heading: "Control for lighting, angle and image processing",
+        paragraphs: [
+          "Two correct images can look different because of white balance, exposure, camera distance, lens perspective, background and compression. Compare neutral areas in the frame, observe whether the same color difference appears across multiple angles, and avoid measuring proportions from images taken at noticeably different distances. A nearer object looks larger even when the physical dimensions match.",
+          "Public finder images may have been resized, sharpened, recompressed or captured from another screen. Those steps can erase texture and exaggerate edges. Prefer original-sized order images for detail review. When color is the issue, ask for both the whole item and a neutral reference in even light if the service makes that possible. Do not average unrelated frames into a false certainty."
+        ]
+      },
+      {
+        heading: "Build a comparison table that preserves uncertainty",
+        paragraphs: [
+          "Use one row per decision-relevant feature. Add columns for ordered specification, reference observation, current warehouse observation, confidence, limitation and next action. For example, the ordered color may be navy, the reference appears navy under cool light, while the warehouse item appears nearly black under mixed light. The correct status is unresolved color evidence, not automatically wrong color.",
+          "A table prevents one attractive sample from dominating the review. It also reveals when the finder adds no useful information. If seller, variant and date are all unknown, keep the reference observation but lower its decision weight. High confidence about a visible mismatch in the live order should outweigh visual similarity to an unrelated sample. Confidence belongs to each observation, not to the product as a whole."
+        ],
+        bullets: ["Ordered fact or saved seller claim.", "Reference image observation and provenance.", "Current warehouse observation and image ID.", "Confidence, limitation and decision-changing next step."]
+      },
+      {
+        heading: "Recognize four common QC finder mistakes",
+        paragraphs: [
+          "The first mistake is approving before your own gallery arrives because a sample looks good. The second is rejecting because your camera angle differs from a selected reference. The third is assuming the same product link always means the same batch or option. The fourth is treating a finder ranking, community label or repeated image as an independent quality certificate.",
+          "Correct each mistake by returning to the order. Wait for its evidence, compare like-for-like views, verify option identity and describe only visible facts. Repetition across public images can help identify a question worth checking, but it does not determine the condition of a later item. If a repeated concern matters, add it to your checklist and look for it in the live gallery."
+        ]
+      },
+      {
+        heading: "Request extra evidence only when it changes the decision",
+        paragraphs: [
+          "A useful request names the exact item, location, angle and purpose. Ask for a flat measurement with both ruler endpoints visible, a centered rear view, a close image of one seam plus wider context, or a readable label. Avoid asking for more photos in general. More frames can increase noise without answering the unresolved question.",
+          "Before requesting evidence, write two outcomes: what you will do if the detail passes and what you will do if it fails. If both outcomes are the same, the request is unlikely to be worth the time or fee. Check the live order for current photo options, after-sales eligibility and deadlines, because a public guide cannot show the controls available for a particular item today."
+        ],
+        bullets: ["Name one unresolved fact.", "Specify a reproducible view or measurement.", "Define pass and fail outcomes before requesting it.", "Keep the item out of parcel submission until a material question is settled."]
+      },
+      {
+        heading: "Choose the correct source for ship, clarify or after-sales",
+        paragraphs: [
+          "Use reference images to prepare and the current Kakobuy order to decide. Ship when the order identity is correct, current visible evidence passes your thresholds and remaining unknowns are acceptable. Clarify when one targeted order image can distinguish the options. Use the live after-sales path when clear current evidence shows a material mismatch and the order remains eligible under the displayed terms.",
+          "Save the order details, original warehouse images, relevant reference provenance, comparison notes and final status together. If you later explain the decision, label samples as samples rather than implying they photographed your item. The best QC finder Kakobuy workflow is therefore modest but useful: discover patterns, form better questions, inspect the actual order and keep every conclusion proportional to the evidence that produced it."
+        ]
+      }
+    ],
+    sourceNote: "Fact-check basis: Kakobuy's current public purchase, warehouse inspection and photo-review workflow, reviewed September 7, 2026. The distinction between reference evidence and order evidence, comparison table and confidence method are independent editorial tools. Public or shared QC images may represent another seller, option, date or batch. Photo availability, services, eligibility, fees and deadlines can change; follow the live order."
   }
 ];

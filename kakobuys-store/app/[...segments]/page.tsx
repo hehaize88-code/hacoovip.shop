@@ -18,8 +18,8 @@ const localeSeo: Record<string, {
 }> = {
   en: {
     suffix: "Kakobuy QC Index 2026",
-    homeTitle: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
-    homeDescription: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+    homeTitle: "Kakobuy QC Checklist 2026: Photos, Sizing & Returns",
+    homeDescription: "Check Kakobuy warehouse QC photos for size, stitching, color and defects, then decide whether to ship, request evidence or return.",
     description: (page) => `Explore ${page} with practical photo checks, measurement guidance and visible-evidence steps for a clearer Kakobuy warehouse decision.`,
     pages: {
       categories: "Kakobuy Product Categories and Checked QC Routes",
@@ -105,6 +105,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
   if (find) return {
     title: `${find.name} | Kakobuy Finds Record`,
     description: `Independent details for ${find.name}, including category, reference price, destination record and the last-checked date.`,
+    robots: { index: false, follow: true },
     alternates: { canonical: `/${find.slug}/` },
     openGraph: { title: `${find.name} | Kakobuy Finds Record`, description: `Independent checked details for ${find.name}.`, type: "website" }
   };
@@ -115,16 +116,12 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
   };
   if (article) {
     const canonicalPath = language === "en" ? `/${article.slug}/` : `/${language}/${article.slug}/`;
-    const isReturns = language === "en" && article.slug === "kakobuy-returns-after-sales-checklist";
-    const isStitching = language === "en" && article.slug === "kakobuy-stitching-finish-qc-checklist";
-    const isAlignment = language === "en" && article.slug === "kakobuy-alignment-symmetry-print-placement-qc";
-    const isMeasurement = language === "en" && article.slug === "kakobuy-size-measurement-qc-photo-limits";
-    const isColor = language === "en" && article.slug === "kakobuy-qc-color-lighting-errors";
-    const canonical = isColor ? "https://kakobuys.store/kakobuy-qc-color-lighting-errors/" : isMeasurement ? "https://kakobuys.store/kakobuy-size-measurement-qc-photo-limits/" : isAlignment ? "https://kakobuys.store/kakobuy-alignment-symmetry-print-placement-qc/" : isStitching ? "https://kakobuys.store/kakobuy-stitching-finish-qc-checklist/" : isReturns ? "https://kakobuys.store/kakobuy-returns-after-sales-checklist/" : canonicalPath;
+    const isEnglishOnlyArticle = language === "en" && articleIndex >= 3;
+    const canonical = isEnglishOnlyArticle ? `https://kakobuys.store/${article.slug}/` : canonicalPath;
     return {
       title: article.seoTitle,
       description: article.seoDescription,
-      robots: isReturns || isStitching || isAlignment || isMeasurement || isColor ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
+      robots: isEnglishOnlyArticle ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
       alternates: {
         canonical,
         languages: articleIndex < 3 ? {
@@ -139,7 +136,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
           "x-default": `/${article.slug}/`
         } : { en: canonical, "x-default": canonical }
       },
-      openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: isReturns || isStitching || isAlignment || isMeasurement || isColor ? canonical : undefined, images: isReturns || isStitching || isAlignment || isMeasurement || isColor ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
+      openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: canonical, images: isEnglishOnlyArticle ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
     };
   }
 

@@ -1,6 +1,4 @@
 import { writeFile } from "node:fs/promises";
-import { findRoutes } from "../app/finds-data.ts";
-
 const origin = "https://kakobuys.store";
 const languages = ["en", "de", "fr", "es", "it", "pl", "pt", "ro"];
 const localized = [
@@ -17,7 +15,7 @@ const localized = [
   "kakobuy-spreadsheet-first-time-guide",
   "product-price-vs-parcel-cost",
 ];
-const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "kakobuy-stitching-finish-qc-checklist", "kakobuy-alignment-symmetry-print-placement-qc", "kakobuy-size-measurement-qc-photo-limits", "kakobuy-qc-color-lighting-errors", "kakobuy-material-texture-qc-evidence", "finds", ...findRoutes];
+const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "kakobuy-stitching-finish-qc-checklist", "kakobuy-alignment-symmetry-print-placement-qc", "kakobuy-size-measurement-qc-photo-limits", "kakobuy-qc-color-lighting-errors", "kakobuy-material-texture-qc-evidence", "kakobuy-shoe-qc-checklist", "kakobuy-qc-finder-vs-warehouse-photos", "finds"];
 const route = (language, slug) => `${origin}/${language === "en" ? "" : `${language}/`}${slug ? `${slug}/` : ""}`;
 const entries = [];
 
@@ -29,7 +27,7 @@ for (const language of languages) {
 }
 
 for (const slug of englishOnly) {
-  const lastmod = slug === "kakobuy-material-texture-qc-evidence" ? "2026-08-31" : slug === "kakobuy-qc-color-lighting-errors" ? "2026-08-29" : slug === "kakobuy-size-measurement-qc-photo-limits" ? "2026-08-27" : slug === "kakobuy-alignment-symmetry-print-placement-qc" ? "2026-08-13" : slug === "kakobuy-stitching-finish-qc-checklist" ? "2026-08-11" : slug === "kakobuy-returns-after-sales-checklist" ? "2026-08-09" : "2026-08-03";
+  const lastmod = slug === "kakobuy-shoe-qc-checklist" || slug === "kakobuy-qc-finder-vs-warehouse-photos" || slug === "kakobuy-warehouse-storage-guide" ? "2026-09-07" : slug === "kakobuy-material-texture-qc-evidence" ? "2026-08-31" : slug === "kakobuy-qc-color-lighting-errors" ? "2026-08-29" : slug === "kakobuy-size-measurement-qc-photo-limits" ? "2026-08-27" : slug === "kakobuy-alignment-symmetry-print-placement-qc" ? "2026-08-13" : slug === "kakobuy-stitching-finish-qc-checklist" ? "2026-08-11" : slug === "kakobuy-returns-after-sales-checklist" ? "2026-08-09" : "2026-08-03";
   entries.push(`  <url>\n    <loc>${route("en", slug)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <xhtml:link rel="alternate" hreflang="en" href="${route("en", slug)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${route("en", slug)}" />\n  </url>`);
 }
 
