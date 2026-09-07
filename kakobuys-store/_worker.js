@@ -20,6 +20,11 @@ const ENGLISH_ONLY_PAGES = {
   "kakobuy-returns-after-sales-checklist": "Kakobuy Returns and After-Sales Checklist",
   "kakobuy-stitching-finish-qc-checklist": "Kakobuy Stitching and Finish QC Checklist",
   "kakobuy-alignment-symmetry-print-placement-qc": "Kakobuy Alignment, Symmetry and Print Placement QC",
+  "kakobuy-size-measurement-qc-photo-limits": "Kakobuy Size Measurement QC",
+  "kakobuy-qc-color-lighting-errors": "Kakobuy QC Color and Lighting Errors",
+  "kakobuy-material-texture-qc-evidence": "Kakobuy Material and Texture QC",
+  "kakobuy-shoe-qc-checklist": "Kakobuy Shoe QC Checklist",
+  "kakobuy-qc-finder-vs-warehouse-photos": "Kakobuy QC Finder vs Warehouse Photos",
   finds: "Kakobuy Finds: 30 Checked Product Records",
   "find-6059": "Shoes 1 — Record 6059",
   "find-6057": "Shoes 1 — Record 6057",
@@ -51,6 +56,45 @@ const ENGLISH_ONLY_PAGES = {
   "find-5753": "Cartier and Rolex Watch Record",
   "find-5752": "Armani Watch",
   "find-5693": "Watch Ultra 2",
+};
+
+const ARTICLE_METADATA = {
+  "kakobuy-warehouse-storage-guide": {
+    title: "Kakobuy Parcel Warehouse Policy: 100-Day Storage Guide",
+    description: "Check the Kakobuy parcel warehouse policy, normal 100-day storage duration, 90-day reminder, QC deadlines and parcel planning steps.",
+  },
+  "kakobuy-returns-after-sales-checklist": {
+    title: "Kakobuy Returns Policy: After-Sales Checklist (2026)",
+    description: "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales.",
+  },
+  "kakobuy-stitching-finish-qc-checklist": {
+    title: "Kakobuy Stitching QC Checklist: Seams and Finish",
+    description: "Use this Kakobuy stitching QC checklist to inspect seams, hems, edge finishing and stress points, then decide whether to ship, clarify or return.",
+  },
+  "kakobuy-alignment-symmetry-print-placement-qc": {
+    title: "Kakobuy Alignment QC: Symmetry and Print Placement",
+    description: "Use a repeatable Kakobuy alignment QC method to compare symmetry, centered prints, panel lines and paired details without mistaking camera angle for defects.",
+  },
+  "kakobuy-size-measurement-qc-photo-limits": {
+    title: "Kakobuy Size Measurement QC: Photo Limits and Checks",
+    description: "Use visible ruler endpoints, garment landmarks and repeatable comparisons to understand what Kakobuy size measurement QC photos can and cannot prove.",
+  },
+  "kakobuy-qc-color-lighting-errors": {
+    title: "Kakobuy QC Color and Lighting: Is the Mismatch Real?",
+    description: "Review Kakobuy QC color photos for white balance, mixed light, exposure and repeated differences before deciding whether a mismatch is real.",
+  },
+  "kakobuy-material-texture-qc-evidence": {
+    title: "Kakobuy Material and Texture QC: What Photos Prove",
+    description: "Review Kakobuy material and texture QC evidence without treating warehouse photos as proof of fiber content, feel, durability, warmth or authenticity.",
+  },
+  "kakobuy-shoe-qc-checklist": {
+    title: "Kakobuy Shoe QC Checklist: Photos, Size Tag and Sole",
+    description: "Use this Kakobuy shoe QC checklist to review warehouse photos for shape, pair symmetry, size tags, outsole, stitching, glue and packaging.",
+  },
+  "kakobuy-qc-finder-vs-warehouse-photos": {
+    title: "Kakobuy QC Finder vs Warehouse Photos: Evidence Guide",
+    description: "Compare a Kakobuy QC finder with your actual warehouse photos, learn what sample images can reveal, and avoid approving the wrong item evidence.",
+  },
 };
 
 const SEO = {
@@ -210,8 +254,8 @@ const SEO = {
 
 const SEO_COPY_OVERRIDES = {
   en: {
-    homeTitle: "Kakobuy QC Guide 2026: Photo Checks, Sizing & Returns",
-    homeDescription: "Use this practical Kakobuy QC guide to check warehouse photos, measurements, stitching, color and missing evidence before choosing shipping or return.",
+    homeTitle: "Kakobuy QC Checklist 2026: Photos, Sizing & Returns",
+    homeDescription: "Check Kakobuy warehouse QC photos for size, stitching, color and defects, then decide whether to ship, request evidence or return.",
     pages: {
       categories: "Kakobuy Product Categories and Checked QC Routes",
       "qc-hub": "Kakobuy QC Checklist: Photos, Sizing and Visible Defects",
@@ -298,22 +342,7 @@ function languagePath(language, slug) {
 function pageMetadata(language, slug) {
   if (language === "en" && ENGLISH_ONLY_PAGES[slug]) {
     const page = ENGLISH_ONLY_PAGES[slug];
-    if (slug === "kakobuy-warehouse-storage-guide") return {
-      title: "Kakobuy Warehouse Storage Guide (2026): 100-Day Planning",
-      description: "Learn how Kakobuy warehouse storage works, what to inspect on arrival, how to track deadlines and when to consolidate or submit a parcel.",
-    };
-    if (slug === "kakobuy-returns-after-sales-checklist") return {
-      title: "Kakobuy Returns Policy: After-Sales Checklist (2026)",
-      description: "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales.",
-    };
-    if (slug === "kakobuy-stitching-finish-qc-checklist") return {
-      title: "Kakobuy Stitching QC Checklist: Seams and Finish",
-      description: "Use this Kakobuy stitching QC checklist to inspect seams, hems, edge finishing and stress points, then decide whether to ship, clarify or return.",
-    };
-    if (slug === "kakobuy-alignment-symmetry-print-placement-qc") return {
-      title: "Kakobuy Alignment QC: Symmetry and Print Placement",
-      description: "Use a repeatable Kakobuy alignment QC method to compare symmetry, centered prints, panel lines and paired details without mistaking camera angle for defects.",
-    };
+    if (ARTICLE_METADATA[slug]) return ARTICLE_METADATA[slug];
     if (slug === "finds") return {
       title: "Kakobuy Finds: 30 Checked Product Records (2026)",
       description: "Browse 30 Kakobuy finds with independent detail pages, product images, USD reference prices, destination records and last-checked dates.",
@@ -471,7 +500,9 @@ export default {
     }
 
     headers.set("Content-Type", "text/html; charset=utf-8");
+    headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
     const { language, slug } = pageContext(pagePath);
+    if (slug.startsWith("find-")) headers.set("X-Robots-Tag", "noindex, follow");
     const canonicalUrl = CANONICAL_ORIGIN + pagePath;
     const metadata = pageMetadata(language, slug);
     const htmlResponse = new Response(response.body, {

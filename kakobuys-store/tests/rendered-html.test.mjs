@@ -442,7 +442,7 @@ test("production page routing returns real 404s for false article paths", async 
   const pagesWorkerUrl = new URL("../_worker.js", import.meta.url);
   pagesWorkerUrl.searchParams.set("routing", `${process.pid}-${Date.now()}`);
   const pagesWorker = (await import(pagesWorkerUrl.href)).default;
-  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/kakobuy-qc-color-lighting-errors/", "/kakobuy-material-texture-qc-evidence/", "/finds/", "/find-5756/"]);
+  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/kakobuy-qc-color-lighting-errors/", "/kakobuy-material-texture-qc-evidence/", "/kakobuy-shoe-qc-checklist/", "/kakobuy-qc-finder-vs-warehouse-photos/", "/finds/", "/find-5756/"]);
   const env = { ASSETS: { fetch: async (request) => {
     const path = new URL(request.url).pathname;
     return validAssets.has(path)
