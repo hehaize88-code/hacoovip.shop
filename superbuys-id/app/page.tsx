@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { SitePage } from "./site-page";
 
 export const metadata: Metadata = {
-  title: "Superbuy Indonesia 2026: Produk, Foto QC & Panduan Pengiriman",
-  description: "Panduan Superbuy Indonesia untuk menemukan produk aktif, memeriksa foto QC, memahami biaya, dan merencanakan pengiriman paket ke Indonesia.",
+  title: "Superbuy Indonesia 2026: Spreadsheet, QC & Panduan Ongkir",
+  description:
+    "Temukan spreadsheet Superbuy, panduan foto QC, estimasi ongkir, pajak, dan cara kirim paket ke Indonesia. Cek produk aktif sebelum membeli.",
   alternates: {
     canonical: "https://superbuys.id/",
     languages: {
@@ -18,8 +19,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: "https://superbuys.id/",
-    title: "Superbuy Indonesia 2026: Produk, Foto QC & Panduan Pengiriman",
-    description: "Temukan produk, cek foto QC, dan rencanakan pengiriman Superbuy ke Indonesia.",
+    title: "Superbuy Indonesia 2026: Spreadsheet, QC & Panduan Ongkir",
+    description:
+      "Temukan spreadsheet Superbuy, cek foto QC, hitung ongkir dan pahami pajak pengiriman ke Indonesia.",
     siteName: "superbuys.id",
     locale: "id_ID",
   },
