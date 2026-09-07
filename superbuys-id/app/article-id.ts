@@ -254,7 +254,7 @@ export const indonesianArticles: Record<string, LongArticle> = {
       },
     ],
   },
-  "cara-belanja-superbuy-indonesia": {
+  "cara-belanja-di-superbuy-indonesia": {
     title:
       "Cara Belanja di Superbuy dari Indonesia: Taobao, 1688, QC hingga Pengiriman",
     description:
