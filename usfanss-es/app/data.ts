@@ -1,3 +1,5 @@
+import { spanishGrowthSlugs } from "./growthArticles";
+
 export const products = [
   { id:"3359", name:"HOKA One One Speedgoat 5 Trail Running Shoes", image:"/product-images/product-3359.webp", price:"$218", verified:"13 Aug 2026", category:"shoes", tone:"peach" },
   { id:"3368", name:"Corteiz C Star Sweater [15 styles]", image:"/product-images/product-3368.webp", price:"$363.48", verified:"13 Aug 2026", category:"hoodies", tone:"mint" },
@@ -11,4 +13,6 @@ export const catalogBase = "https://cnfanshp.com";
 export const productUrl = (id: string) => `${catalogBase}/AllProducts/${id}.html`;
 
 export const categorySlugs = ["shoes", "hoodies-sweaters", "t-shirts", "jackets", "jersey", "accessories"];
-export const articleSlugs = ["usfans-index-guide", "qc-photos-guide", "shipping-cost-guide", "usfans-spain-address-checklist"];
+export const coreArticleSlugs = ["usfans-index-guide", "qc-photos-guide", "shipping-cost-guide", "usfans-spain-address-checklist"];
+export const spanishOnlyArticleSlugs = [...spanishGrowthSlugs];
+export const articleSlugs = [...coreArticleSlugs, ...spanishOnlyArticleSlugs];

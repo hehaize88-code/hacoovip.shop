@@ -4,14 +4,14 @@ import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../app/page";
 import { ArticlePage, ArticlesPage, CategoriesPage, DiscoverPage, FaqPage, HowPage } from "../app/components/IndependentPages";
 import { LanguageProvider } from "../app/components/LanguageProvider";
-import { articleSlugs } from "../app/data";
+import { articleSlugs, spanishOnlyArticleSlugs } from "../app/data";
 import { dictionaries, Lang } from "../app/i18n";
 
 const root = process.cwd();
 const site = "https://usfanss.es";
-const checked = "2026-08-13";
-const newArticleSlug = "usfans-spain-address-checklist";
-const checkedFor = (route: BaseRoute) => route.slug === newArticleSlug ? "2026-08-14" : checked;
+const originalChecked = "2026-08-13";
+const addressArticleSlug = "usfans-spain-address-checklist";
+const growthPublished = "2026-09-08";
 const socialImage = `${site}/product-images/product-3359.webp`;
 
 const languageConfig: Record<Lang, { prefix: string; html: string; hreflang: string; homeTitle: string; homeDescription: string }> = {
@@ -36,6 +36,10 @@ const baseRoutes: BaseRoute[] = [
   ...articleSlugs.map(slug => ({ path: `/articles/${slug}/`, key: "article" as const, slug, content: <ArticlePage slug={slug} /> })),
 ];
 
+const isSpanishOnlyRoute = (route: BaseRoute) => route.key === "article" && spanishOnlyArticleSlugs.includes(route.slug as (typeof spanishOnlyArticleSlugs)[number]);
+const publishedFor = (route: BaseRoute) => isSpanishOnlyRoute(route) ? growthPublished : route.slug === addressArticleSlug ? "2026-08-14" : originalChecked;
+const modifiedFor = (route: BaseRoute) => ["categories", "how", "articles", "article"].includes(route.key) ? growthPublished : publishedFor(route);
+
 const localizedPath = (path: string, lang: Lang) => {
   const prefix = languageConfig[lang].prefix;
   return prefix ? `/${prefix}${path}`.replace(/\/{2,}/g, "/") : path;
@@ -49,7 +53,7 @@ const metadataFor = (route: BaseRoute, lang: Lang) => {
   if (route.key === "home") return { title: languageConfig[lang].homeTitle, description: languageConfig[lang].homeDescription };
   if (route.key === "article") {
     const index = Math.max(0, articleSlugs.indexOf(route.slug ?? ""));
-    return { title: `${d.articles[index][1]} | USFans`, description: d.articles[index][2] };
+    return { title: d.articles[index][1], description: d.articles[index][2] };
   }
   const page = d.pages[route.key];
   return { title: `${page[1]} | USFans`, description: page[2] };
@@ -61,7 +65,7 @@ const structuredDataFor = (route: BaseRoute, lang: Lang, canonical: string, titl
   if (route.key === "home") entities.push({ "@context": "https://schema.org", "@type": "WebSite", name: "USFans España Guide", url: canonical, inLanguage: languageConfig[lang].html, description });
   if (route.key === "home") entities.push({ "@context": "https://schema.org", "@type": "Organization", name: "USFans España Guide", url: canonical, logo: `${site}/usfans-logo.png` });
   if (route.key === "faq") entities.push({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: d.faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) });
-  if (route.key === "article") entities.push({ "@context": "https://schema.org", "@type": "BlogPosting", headline: title.replace(" | USFans", ""), description, datePublished: checkedFor(route), dateModified: checkedFor(route), inLanguage: languageConfig[lang].html, mainEntityOfPage: canonical, image: socialImage, author: { "@type": "Organization", name: "USFans España Guide" }, publisher: { "@type": "Organization", name: "USFans España Guide", logo: { "@type": "ImageObject", url: `${site}/usfans-logo.png` } } });
+  if (route.key === "article") entities.push({ "@context": "https://schema.org", "@type": "BlogPosting", headline: title.replace(" | USFans", ""), description, datePublished: publishedFor(route), dateModified: modifiedFor(route), inLanguage: languageConfig[lang].html, mainEntityOfPage: canonical, image: socialImage, author: { "@type": "Organization", name: "USFans España Guide" }, publisher: { "@type": "Organization", name: "USFans España Guide", logo: { "@type": "ImageObject", url: `${site}/usfans-logo.png` } } });
   if (route.key !== "home") entities.push({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "USFans", item: `${site}${localizedPath("/", lang)}` }, { "@type": "ListItem", position: 2, name: title.replace(" | USFans", ""), item: canonical }] });
   return entities.map(jsonLd).join("");
 };
@@ -75,10 +79,12 @@ const analytics = `<script async src="https://www.googletagmanager.com/gtag/js?i
 const sitemap: string[] = [];
 for (const lang of Object.keys(languageConfig) as Lang[]) {
   for (const route of baseRoutes) {
+    if (lang !== "es" && isSpanishOnlyRoute(route)) continue;
     const path = localizedPath(route.path, lang);
     const canonical = `${site}${path}`;
     const meta = metadataFor(route, lang);
-    const alternates = (Object.keys(languageConfig) as Lang[]).map(other => `<link rel="alternate" hreflang="${languageConfig[other].hreflang}" href="${site}${localizedPath(route.path, other)}"/>`).join("");
+    const alternateLanguages = isSpanishOnlyRoute(route) ? (["es"] as Lang[]) : (Object.keys(languageConfig) as Lang[]);
+    const alternates = alternateLanguages.map(other => `<link rel="alternate" hreflang="${languageConfig[other].hreflang}" href="${site}${localizedPath(route.path, other)}"/>`).join("");
     const body = renderToStaticMarkup(<LanguageProvider initialLang={lang}>{route.content}</LanguageProvider>);
     const schema = structuredDataFor(route, lang, canonical, meta.title, meta.description);
     const ogType = route.key === "article" ? "article" : "website";
@@ -86,7 +92,7 @@ for (const lang of Object.keys(languageConfig) as Lang[]) {
     const target = path === "/" ? join(root, "index.html") : join(root, path.slice(1), "index.html");
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, html);
-    sitemap.push(`${canonical}|${checkedFor(route)}`);
+    sitemap.push(`${canonical}|${modifiedFor(route)}`);
   }
 }
 

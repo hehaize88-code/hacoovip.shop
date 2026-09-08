@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { dictionaries, Lang } from "../i18n";
+import { spanishOnlyArticleSlugs } from "../data";
 
 type LanguageContextValue = {
   lang: Lang;
@@ -25,6 +26,8 @@ const localizePath = (path: string, lang: Lang) => {
   return `/${lang === "zh" ? "zh-cn" : lang}${normalized}`.replace(/\/{2,}/g, "/");
 };
 
+const isSpanishOnlyArticle = (path: string) => spanishOnlyArticleSlugs.some(slug => path === `/articles/${slug}/`);
+
 export function LanguageProvider({ children, initialLang = "es" }: { children: React.ReactNode; initialLang?: Lang }) {
   const [lang, setLangState] = useState<Lang>(initialLang);
 
@@ -46,7 +49,8 @@ export function LanguageProvider({ children, initialLang = "es" }: { children: R
     setLangState(next);
     window.localStorage.setItem("usfans-language", next);
     const basePath = window.location.pathname.replace(/^\/(en|fr|de|it|pl|pt|zh-cn)(?=\/|$)/, "") || "/";
-    window.location.assign(`${localizePath(basePath, next)}${window.location.hash}`);
+    const nextPath = next !== "es" && isSpanishOnlyArticle(basePath) ? "/articles/" : basePath;
+    window.location.assign(`${localizePath(nextPath, next)}${window.location.hash}`);
   };
 
   const value = useMemo<LanguageContextValue>(() => ({

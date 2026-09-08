@@ -1,3 +1,5 @@
+import { spanishGrowthCards } from "./growthArticles";
+
 export type Lang = "es" | "en" | "fr" | "de" | "it" | "pl" | "pt" | "zh";
 
 export const languageOptions: { code: Lang; short: string; label: string }[] = [
@@ -48,19 +50,19 @@ const es = {
   ],
   pages: {
     discover: ["Hallazgos seleccionados", "Descubre la colección", "Explora productos visualmente y abre la ficha exacta para comprobar cada detalle."],
-    categories: ["Navegación rápida", "Compra por categoría", "Entra directamente en la sección que te interesa sin recorrer una hoja interminable."],
-    how: ["Guía paso a paso", "Cómo funciona el proceso", "Desde encontrar un producto hasta revisar el QC y preparar el envío internacional."],
+    categories: ["USFans ropa y enlaces", "USFans ropa por categoría", "Encuentra enlaces de zapatillas, sudaderas, camisetas, chaquetas, jerseys y accesorios sin recorrer una hoja interminable."],
+    how: ["Guía paso a paso", "Qué es USFans y cómo funciona", "Compra, almacén, fotos QC, consolidación y envío a España explicados paso a paso."],
     articles: ["Centro de contenidos", "Guías de compra de USFans", "Consejos prácticos y guías actualizadas basados en información verificable para resolver dudas reales."],
     faq: ["Ayuda clara", "Preguntas frecuentes", "Respuestas sencillas sobre productos, QC, almacenaje, costes y envíos."],
   },
   browseCategory: "Explorar categoría", pageIntro: "Acceso independiente", viewProducts: "Ver productos",
   howFacts: ["Busca o pega un enlace", "Confirma las variantes", "Revisa las fotos QC", "Elige y envía el paquete"],
   articles: [
-    ["Guía", "Cómo utilizar un índice USFans sin perder tiempo", "Una ruta clara desde la búsqueda hasta la ficha final del producto.", "8 min"],
-    ["QC", "Cómo leer fotos QC antes del envío", "Qué mirar en ropa, zapatillas y accesorios antes de consolidar.", "10 min"],
-    ["Envío", "USFans España 2026: coste de envío, IVA y aduanas", "Peso, volumen, Península, islas, IVA y reglas aduaneras vigentes desde julio de 2026.", "12 min"],
+    ["Spreadsheet", "USFans Spreadsheet España 2026: enlaces de ropa y cómo usarlos", "Cómo encontrar enlaces actuales, comparar fichas y comprobar cada producto antes de comprar.", "8 min"],
+    ["Fotos QC", "Fotos QC de USFans: cómo revisar ropa y zapatillas", "Qué mirar en ropa, calzado y accesorios antes de aceptar o devolver un artículo.", "10 min"],
+    ["Envío", "Envíos USFans a España y Canarias (2026): coste, IVA y aduanas", "Peso, volumen, rutas, Península, islas, IVA y reglas aduaneras vigentes desde julio de 2026.", "12 min"],
   ],
-  readArticle: "Leer artículo", updated: "Actualizado en agosto de 2026", readTime: "Lectura",
+  readArticle: "Leer artículo", updated: "Actualizado el 8 de septiembre de 2026", readTime: "Lectura",
   articleSections: ["Qué debes saber", "Pasos prácticos", "Errores que debes evitar", "Lista de comprobación final"],
   articleBody: [
     "Una buena decisión empieza por confirmar la información en la ficha actual. Los enlaces, precios, opciones y disponibilidad pueden cambiar con el tiempo.",
@@ -231,7 +233,7 @@ const complete = (dictionary: typeof es, lang: Lang, verified: string): typeof e
   ...dictionary,
   verified,
   faqs: [...dictionary.faqs, ...faqExtras[lang]],
-  articles: [...dictionary.articles, spainAddressCards[lang]],
+  articles: [...dictionary.articles, spainAddressCards[lang], ...(lang === "es" ? spanishGrowthCards : [])],
 });
 
 export const dictionaries: Record<Lang, typeof es> = {

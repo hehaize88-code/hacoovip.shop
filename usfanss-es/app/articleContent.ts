@@ -3,8 +3,9 @@ import { localizedDepth } from "./articleDepth";
 import { localizedDepthExtra } from "./articleDepthExtra";
 import { localizedDepthFinal } from "./articleDepthFinal";
 import { spainAddressArticle } from "./spain-address-article";
+import { spanishGrowthArticles } from "./growthArticles";
 
-export type ArticleSection = { heading: string; paragraphs: string[]; bullets?: string[] };
+export type ArticleSection = { heading: string; paragraphs: string[]; bullets?: string[]; links?: { label: string; url: string }[] };
 export type ArticleContent = { standfirst: string; sections: ArticleSection[]; takeaway: string };
 
 const en: ArticleContent[] = [
@@ -122,7 +123,7 @@ const en: ArticleContent[] = [
 
 const es: ArticleContent[] = [
   {
-    standfirst: "Un índice de productos USFans útil no es un catálogo mágico ni demuestra que un vendedor, precio o variante siga disponible. Su valor real es ahorrar tiempo: permite pasar de una idea general a una ficha que puedes verificar. Esta guía propone un método repetible para buscar, comparar y documentar cada producto antes de pagar.",
+    standfirst: "Una USFans spreadsheet o índice de productos útil no es un catálogo mágico ni demuestra que un vendedor, precio o variante siga disponible. Su valor real es ahorrar tiempo: permite pasar de una idea general a enlaces de ropa y fichas que puedes verificar. Esta guía propone un método repetible para buscar, comparar y documentar cada producto antes de pagar.",
     sections: [
       { heading:"Empieza por la intención, no por desplazarte sin fin", paragraphs:["Antes de abrir decenas de tarjetas, define categoría, presupuesto aproximado, talla, color, material y detalles irrenunciables. Buscar simplemente «sudadera» genera ruido; buscar una sudadera gruesa con cremallera, gris oscuro y medidas publicadas permite descartar rápido las fichas débiles. El índice ordena enlaces, pero no puede decidir si una prenda encaja con tu cuerpo, clima o expectativas.","Crea una lista corta y abre la ficha actual de cada candidato. USFans se presenta públicamente como agente para compras de Taobao, 1688 y Weidian, por lo que la publicación de origen sigue siendo decisiva: el vendedor puede cambiar precio, fotos, variantes o stock. Guarda nombre, opción elegida y los detalles en los que basaste la compra."],bullets:["Define categoría, presupuesto, talla y detalles imprescindibles.","Primero crea una lista corta; después verifica la ficha vigente.","Registra color, talla y opción exacta antes de comprar."]},
       { heading:"Lee la ficha como una especificación", paragraphs:["El título es una etiqueta, no una descripción completa. Revisa variantes, tabla de tallas, materiales, fotografías, entrega nacional y avisos del agente. Si existen diferentes lotes o versiones, no supongas que el más caro es automáticamente mejor: busca diferencias medibles y pide aclaración cuando la distinción sea imprecisa.","Las fichas indexadas pueden mostrar tiempo estimado al almacén, peso y dimensiones. Son señales de planificación, no garantías. El peso y el volumen conectan la compra con el envío internacional: un artículo barato puede dejar de serlo si es voluminoso, conserva un embalaje pesado o solo admite rutas limitadas."]},
@@ -222,7 +223,7 @@ const zh = buildLocalized("zh", [
 ]);
 
 export const articleContent: Record<Lang, ArticleContent[]> = {
-  es: [...es.map((article,articleIndex)=>({...article,sections:article.sections.map((section,sectionIndex)=>({...section,paragraphs:section.paragraphs.map((paragraph,paragraphIndex)=>paragraphIndex===section.paragraphs.length-1?[paragraph,localizedDepthExtra.es?.[articleIndex]?.[sectionIndex]].filter(Boolean).join(" "):paragraph)}))})), spainAddressArticle.es],
+  es: [...es.map((article,articleIndex)=>({...article,sections:article.sections.map((section,sectionIndex)=>({...section,paragraphs:section.paragraphs.map((paragraph,paragraphIndex)=>paragraphIndex===section.paragraphs.length-1?[paragraph,localizedDepthExtra.es?.[articleIndex]?.[sectionIndex]].filter(Boolean).join(" "):paragraph)}))})), spainAddressArticle.es, ...spanishGrowthArticles],
   en: [...en, spainAddressArticle.en],
   fr: [...fr, spainAddressArticle.fr],
   de: [...de, spainAddressArticle.de],

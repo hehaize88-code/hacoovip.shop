@@ -6,6 +6,7 @@ import { articleSlugs, catalogBase, categorySlugs, productUrl, products } from "
 
 export default function Home() {
   const { d, withLang } = useLanguage();
+  const featuredArticleIndexes = [2, 4, 0, 5, 1, 6, 3].filter(index => d.articles[index]).slice(0, 6);
   return <SiteShell>
     <section className="hero">
       <div className="hero-copy">
@@ -45,7 +46,7 @@ export default function Home() {
 
     <section className="home-articles">
       <div className="section-title"><div><span>{d.pages.articles[0]}</span><h2>{d.pages.articles[1]}</h2></div><p>{d.pages.articles[2]}</p></div>
-      <div className="article-grid">{d.articles.map((article,index)=><a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</div>
+      <div className="article-grid">{featuredArticleIndexes.map(index => { const article = d.articles[index]; return <a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>; })}</div>
       <a className="all-articles-link" href={withLang("/articles/")}>{d.nav[3]} →</a>
     </section>
 
