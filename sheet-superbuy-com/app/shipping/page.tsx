@@ -65,14 +65,14 @@ export default function ShippingPage() {
           </div>
           <ChargeableWeightCalculator />
           <p className="calculator-followup">
-            Looking specifically at an American destination? Read the new <Link href="/articles/superbuy-shipping-to-usa/">Superbuy shipping to USA planning guide</Link> after testing your packed dimensions.
+            After testing your packed dimensions, use the destination guide for the <Link href="/articles/superbuy-shipping-to-usa/">USA</Link>, <Link href="/articles/superbuy-shipping-to-uk/">UK</Link>, <Link href="/articles/superbuy-shipping-to-netherlands/">Netherlands</Link>, <Link href="/articles/superbuy-shipping-to-canada/">Canada</Link>, or <Link href="/articles/superbuy-shipping-to-australia/">Australia</Link>. For timing, read the <Link href="/articles/how-long-does-superbuy-shipping-take/">stage-by-stage delivery guide</Link>.
           </p>
           <h2>Understand the two bills before estimating anything</h2>
           <p>
             Superbuy&apos;s official fee structure separates the journey into two main stages. Stage one covers the product&apos;s original price, seller-to-warehouse domestic delivery, any purchasing service fee that applies to the source, and optional services selected before or during warehousing. Stage two covers international freight after the warehouse items are packed into a parcel, plus any optional parcel services. Local taxes, duties, brokerage, handling, or remote-delivery fees may arise under destination rules and should be treated as a third planning layer even when they are not collected by the shopping agent.
           </p>
           <p>
-            As reviewed on 14 August 2026, Superbuy describes standard purchasing service for mainstream platforms such as Taobao, Tmall, JD.com, and 1688 as free of a percentage service fee. That does not make the whole order free: the item, domestic courier charge, payment or exchange costs, optional photos or services, and international parcel remain separate. Other sources and specialised services can have fees. The official schedule currently lists different treatment for second-hand platforms, unlisted platforms, and Shipping Expert orders, so verify the source category shown on the live order rather than applying one headline to every purchase.
+            As reviewed on 8 September 2026, Superbuy describes standard purchasing service for mainstream platforms such as Taobao, Tmall, JD.com, and 1688 as free of a percentage service fee. That does not make the whole order free: the item, domestic courier charge, payment or exchange costs, optional photos or services, and international parcel remain separate. Other sources and specialised services can have fees. The official schedule currently lists different treatment for second-hand platforms, unlisted platforms, and Shipping Expert orders, so verify the source category shown on the live order rather than applying one headline to every purchase.
           </p>
           <div className="info-grid">
             <article className="info-card"><span>STAGE 01</span><h3>Purchase to warehouse</h3><p>Product, domestic delivery, source-specific purchasing fee where applicable, and optional order or inspection services.</p></article>

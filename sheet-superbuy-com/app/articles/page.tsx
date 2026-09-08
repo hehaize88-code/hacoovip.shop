@@ -15,6 +15,23 @@ export const metadata: Metadata = createPageMetadata({
   path: "/articles/",
 });
 
+const prioritySlugs = [
+  "superbuy-shipping-to-usa",
+  "superbuy-shipping-to-uk",
+  "superbuy-shipping-to-netherlands",
+  "superbuy-shipping-to-canada",
+  "superbuy-shipping-to-australia",
+  "how-long-does-superbuy-shipping-take",
+];
+const displayedArticles = [...articles].sort((left, right) => {
+  const leftIndex = prioritySlugs.indexOf(left.slug);
+  const rightIndex = prioritySlugs.indexOf(right.slug);
+  if (leftIndex === -1 && rightIndex === -1) return 0;
+  if (leftIndex === -1) return 1;
+  if (rightIndex === -1) return -1;
+  return leftIndex - rightIndex;
+});
+
 const articlesSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -22,8 +39,8 @@ const articlesSchema = {
       "@type": "ItemList",
       name: "Superbuy link verification and route check guides",
       url: `${SITE_URL}/articles/`,
-      numberOfItems: articles.length,
-      itemListElement: articles.map((article, index) => ({
+      numberOfItems: displayedArticles.length,
+      itemListElement: displayedArticles.map((article, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: article.title,
@@ -54,7 +71,7 @@ export default function ArticlesPage() {
             <p>Platform facts were checked against current Superbuy official pages. Destination-specific compliance guidance is dated and avoids fixed route, price, delivery, or customs promises.</p>
           </div>
           <div className="article-grid">
-            {articles.map((article) => (
+            {displayedArticles.map((article) => (
               <article className="article-card" key={article.slug}>
                 <span>{article.topic} · {article.readingTime}</span>
                 <h2>{article.title}</h2>
@@ -70,7 +87,8 @@ export default function ArticlesPage() {
             <li><strong>Spreadsheet method:</strong> verify the live destination, preserve the exact option, and recognise stale rows before purchase.</li>
             <li><strong>QC evidence:</strong> match the warehouse item, ask for decision-changing measurements, and understand photo limits.</li>
             <li><strong>Shipping cost:</strong> compare actual and volumetric weight, packaging, route eligibility, customs, and landed cost.</li>
-            <li><strong>USA parcel plan:</strong> turn warehouse measurements into an American-destination budget, route comparison, and customs evidence file.</li>
+            <li><strong>Destination parcel plans:</strong> use the USA, UK, Netherlands, Canada, or Australia guide to add the correct local customs and delivery layer.</li>
+            <li><strong>Delivery timeline:</strong> separate warehouse readiness, parcel processing, carrier movement, customs, and final-mile delivery.</li>
             <li><strong>Independent review:</strong> compare official capabilities with recurring praise and complaints across several review sources.</li>
           </ol>
         </section>

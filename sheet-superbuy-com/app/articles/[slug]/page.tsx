@@ -63,6 +63,51 @@ const articleVisuals: Record<string, {
       { code: "03", title: "Document", text: "Contents, value, payment, parcel, and carrier records." },
     ],
   },
+  "superbuy-shipping-to-netherlands": {
+    label: "NETHERLANDS PARCEL · COST AND IMPORT CHECK",
+    caption: "Compare the packed parcel, the eligible line, and the Dutch import record as separate decisions.",
+    cells: [
+      { code: "01", title: "Measure", text: "Use final dimensions and the line-specific divisor." },
+      { code: "02", title: "Classify", text: "Keep product types, values, and records consistent." },
+      { code: "03", title: "Recheck", text: "Apply the customs rules effective when the parcel imports." },
+    ],
+  },
+  "superbuy-shipping-to-uk": {
+    label: "UK PARCEL · THREE CONTROL POINTS",
+    caption: "The destination, chargeable weight, and declaration must describe the same shipment.",
+    cells: [
+      { code: "01", title: "Region", text: "Confirm Great Britain or Northern Ireland and the full postcode." },
+      { code: "02", title: "Weight", text: "Compare actual and volumetric weight after packing." },
+      { code: "03", title: "Evidence", text: "Retain values, declarations, tax notices, and carrier records." },
+    ],
+  },
+  "superbuy-shipping-to-australia": {
+    label: "AUSTRALIA PARCEL · PLAN BEFORE SUBMIT",
+    caption: "Check line eligibility, biosecurity, and the final packed measurements before payment.",
+    cells: [
+      { code: "01", title: "Pack", text: "Balance protection with dimensional-weight exposure." },
+      { code: "02", title: "Screen", text: "Check restricted goods and biosecurity requirements." },
+      { code: "03", title: "Record", text: "Preserve values, GST evidence, tracking, and border notices." },
+    ],
+  },
+  "superbuy-shipping-to-canada": {
+    label: "CANADA PARCEL · MEASURE, DECLARE, DELIVER",
+    caption: "Use live line data and a consistent customs record instead of an old public rate example.",
+    cells: [
+      { code: "01", title: "Measure", text: "Calculate chargeable weight under each live line's rule." },
+      { code: "02", title: "Declare", text: "Use accurate descriptions, quantities, origins, and values." },
+      { code: "03", title: "Follow", text: "Track customs, courier handoff, charges, and final delivery." },
+    ],
+  },
+  "how-long-does-superbuy-shipping-take": {
+    label: "DELIVERY TIME · SIX SEPARATE STAGES",
+    caption: "A realistic timeline starts before carrier transit and continues through customs and final mile.",
+    cells: [
+      { code: "01", title: "Warehouse", text: "Seller dispatch, intake, inspection, and item readiness." },
+      { code: "02", title: "Transit", text: "Parcel processing, handover, and international movement." },
+      { code: "03", title: "Destination", text: "Customs clearance, local carrier, and final delivery." },
+    ],
+  },
 };
 
 export function generateStaticParams() {
