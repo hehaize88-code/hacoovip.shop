@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/06.xja67je60..js"],""]
-3:I[97933,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/06.xja67je60..js"],"LanguageSwitcher"]
-15:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+2:I[22016,["/_next/static/chunks/0_wpp_om0djtv.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/06.xja67je60..js"],""]
+3:I[97933,["/_next/static/chunks/0_wpp_om0djtv.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/06.xja67je60..js"],"LanguageSwitcher"]
+15:I[97367,["/_next/static/chunks/0_wpp_om0djtv.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 16:"$Sreact.suspense"
 :HL["/superbuy-logo.png","image"]
 :HL["https://www.cnfanshp.com/uploads/allimg/20260427/1-26042G03A3226.webp","image",{"referrerPolicy":"no-referrer"}]
