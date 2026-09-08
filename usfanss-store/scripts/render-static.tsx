@@ -31,6 +31,15 @@ const homeMeta: Record<Lang,{title:string;description:string}> = {
 const localizedPath = (lang:Lang,path:string) => lang === "en" ? path : `/${lang}${path}`;
 const absolute = (lang:Lang,path:string) => `${site}${localizedPath(lang,path)}`;
 const escape = (value:string) => value.replaceAll("&","&amp;").replaceAll('"',"&quot;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+const googleTag = `
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BCNPML3ZE2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BCNPML3ZE2');
+</script>`;
 
 function metadata(route:Route,lang:Lang) {
   if (route.page === "home") return homeMeta[lang];
@@ -56,7 +65,7 @@ for (const lang of languages) {
     const alternates = languages.map(code => `<link rel="alternate" hreflang="${hreflang[code]}" href="${absolute(code,route.path)}"/>`).join("");
     const body = renderToStaticMarkup(<SiteShell page={route.page} article={route.article} initialLang={lang}/>);
     const ogType = route.page === "article" ? "article" : "website";
-    const html = `<!doctype html><html lang="${htmlLang[lang]}"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${escape(meta.title)}</title><meta name="description" content="${escape(meta.description)}"/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="${canonical}"/>${alternates}<link rel="alternate" hreflang="x-default" href="${absolute("en",route.path)}"/><meta property="og:title" content="${escape(meta.title)}"/><meta property="og:description" content="${escape(meta.description)}"/><meta property="og:url" content="${canonical}"/><meta property="og:type" content="${ogType}"/><meta property="og:image" content="${site}/products/product-3402.webp"/><meta property="og:image:width" content="750"/><meta property="og:image:height" content="750"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(meta.title)}"/><meta name="twitter:description" content="${escape(meta.description)}"/><meta name="twitter:image" content="${site}/products/product-3402.webp"/><link rel="icon" href="/favicon.svg"/><link rel="stylesheet" href="/static-assets/app.css"/></head><body><div id="root">${body}</div><script type="module" src="/static-assets/app.js"></script></body></html>`;
+    const html = `<!doctype html><html lang="${htmlLang[lang]}"><head>${googleTag}<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${escape(meta.title)}</title><meta name="description" content="${escape(meta.description)}"/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="${canonical}"/>${alternates}<link rel="alternate" hreflang="x-default" href="${absolute("en",route.path)}"/><meta property="og:title" content="${escape(meta.title)}"/><meta property="og:description" content="${escape(meta.description)}"/><meta property="og:url" content="${canonical}"/><meta property="og:type" content="${ogType}"/><meta property="og:image" content="${site}/products/product-3402.webp"/><meta property="og:image:width" content="750"/><meta property="og:image:height" content="750"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(meta.title)}"/><meta name="twitter:description" content="${escape(meta.description)}"/><meta name="twitter:image" content="${site}/products/product-3402.webp"/><link rel="icon" href="/favicon.svg"/><link rel="stylesheet" href="/static-assets/app.css"/></head><body><div id="root">${body}</div><script type="module" src="/static-assets/app.js"></script></body></html>`;
     const outputPath = localizedPath(lang,route.path);
     const target = outputPath === "/" ? join(root,"index.html") : join(root,outputPath.slice(1),"index.html");
     await mkdir(dirname(target),{recursive:true});
@@ -65,7 +74,7 @@ for (const lang of languages) {
   }
 }
 
-const notFound = `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>Page not found | USFans Product Discovery Atlas</title><link rel="stylesheet" href="/static-assets/app.css"/></head><body><main class="inner-hero"><p class="eyebrow">404</p><h1>Page not found.</h1><p>The requested page does not exist. Return to the <a href="/">product discovery atlas</a>.</p></main></body></html>`;
+const notFound = `<!doctype html><html lang="en"><head>${googleTag}<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>Page not found | USFans Product Discovery Atlas</title><link rel="stylesheet" href="/static-assets/app.css"/></head><body><main class="inner-hero"><p class="eyebrow">404</p><h1>Page not found.</h1><p>The requested page does not exist. Return to the <a href="/">product discovery atlas</a>.</p></main></body></html>`;
 await writeFile(join(root,"404.html"),notFound);
 await cp(join(root,"public","products"),join(root,"products"),{recursive:true});
 for (const file of ["favicon.svg","usfans-logo.png"]) await cp(join(root,"public",file),join(root,file));
