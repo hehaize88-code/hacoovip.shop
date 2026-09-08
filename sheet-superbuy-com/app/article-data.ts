@@ -18,6 +18,96 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "superbuy-shipping-to-usa",
+    topic: "USA parcel planning",
+    title: "Superbuy Shipping to USA: Cost & Customs",
+    deck: "A 2026 planning guide for estimating a Superbuy parcel to the United States without inventing a fixed rate: measure chargeable weight, compare eligible lines, and prepare accurate customs evidence.",
+    date: "2026-09-08",
+    updated: "8 September 2026",
+    readingTime: "10 min read",
+    sections: [
+      {
+        id: "budget",
+        title: "Start with a USA shipping budget, not a product-price guess",
+        paragraphs: [
+          "A useful Superbuy shipping-to-USA estimate begins after you separate the purchase from the parcel. Superbuy's current fee structure describes two main stages. The shopping stage covers the product, seller-to-warehouse delivery, any source-specific purchasing charge, and optional services selected around the order. The international stage begins after stored items are submitted as a parcel. That later bill depends on the final package, selected line, and destination. A spreadsheet price can help you shortlist an item, but it cannot answer the American shipping question by itself.",
+          "Build a working budget with distinct rows for the item, China domestic delivery, confirmed optional services, payment or currency costs, international freight, and a United States import buffer. Do not label an unknown field as zero. If a seller has not published the packed weight, write “unknown before warehouse.” If a route has not been selected, write “live quote required.” This makes uncertainty visible instead of hiding it inside one optimistic total.",
+          "The goal is not a perfect forecast before purchase. It is a decision that remains sensible when the parcel is heavier, larger, or more restricted than expected. If the order only works when international shipping is unusually cheap, treat that as a warning. A conservative estimate protects the buying decision; the live Superbuy parcel screen still determines which routes and charges are actually available.",
+        ],
+      },
+      {
+        id: "chargeable-weight",
+        title: "Model actual, volumetric, and chargeable weight",
+        paragraphs: [
+          "Actual weight is the scale reading. Volumetric weight converts the space occupied by a box into a billing weight. A carrier may compare both and use the larger figure, often called chargeable or billable weight. This is why a dense parcel of hardware and a light parcel containing shoeboxes can produce very different cost patterns even when their scale readings look similar.",
+          "For a planning calculation in centimetres and kilograms, multiply packed length by width by height, then divide by the divisor stated for the route. A 45 × 35 × 25 cm sample box divided by 6,000 produces 6.56 kg of volumetric weight. If the same parcel weighs 2.40 kg on a scale, 6.56 kg is the planning weight before route-specific rounding. The example does not establish Superbuy's final charge because the divisor, weight increments, minimum charge, and oversize rules can differ by eligible line.",
+          "Use the calculator on this site's shipping page to test a box, then repeat the calculation with a compact-pack scenario. The difference shows how much of the risk comes from size rather than mass. Replace the example divisor with the value shown by the current line. Once the warehouse has packed the parcel, replace estimates with its measured dimensions and weight. Those figures are more useful than a seller's product-only measurement because international shipping includes the outer package and protection.",
+        ],
+        bullets: [
+          "Record scale weight and all three packed dimensions in one unit system.",
+          "Use the divisor and rounding rules displayed for the eligible line.",
+          "Calculate both actual and volumetric weight; plan around the larger result.",
+          "Recalculate after package removal, folding, compression, or reinforcement.",
+          "Treat the result as a comparison input, not a final freight quote.",
+        ],
+      },
+      {
+        id: "scenarios",
+        title: "Compare three parcel scenarios before choosing a line",
+        paragraphs: [
+          "One estimate encourages false precision. Create three. The compact scenario removes expendable retail packaging from suitable items and groups compatible soft goods. The protected scenario keeps the boxes or reinforcement needed for shape, breakage risk, storage, or personal value. The split scenario separates an item that is fragile, oversized, urgent, or subject to different route restrictions. Compare the live quotes for all three when the account provides enough parcel data.",
+          "A large consolidated parcel can reduce repeated starting charges, but maximum consolidation is not automatically cheapest. One bulky box may cross a dimension limit, increase volumetric weight, concentrate too much value, or leave fewer eligible lines. Superbuy's current fee page says multiple warehouse items can be consolidated into one parcel without a consolidation charge, yet the international result still depends on the final package and line. Free consolidation is therefore an option, not a command to combine everything.",
+          "Use warehouse time deliberately. Superbuy currently states that items receive 90 days of free storage after arrival. That window can help several purchases reach the warehouse before parcel submission, but it should not delay inspection. Seller return opportunities and warehouse storage are different clocks. Review each arrival, resolve visible mismatches, and record the oldest storage date before waiting for the next item.",
+        ],
+      },
+      {
+        id: "packaging",
+        title: "Turn warehouse evidence into better calculator inputs",
+        paragraphs: [
+          "The best time to improve a Superbuy shipping-cost estimate is after warehouse intake and before international submission. Match every stored item to the order, review its QC photos, and identify packaging that is either necessary or expendable. A shoe box may protect structure or hold personal value, while an ordinary outer seller carton may only add empty space. A soft jacket may tolerate compression; a structured bag or delicate print may not. Cost reduction should never be detached from the contents' physical needs.",
+          "Write a short parcel instruction rather than a vague request to make shipping cheap. List the items to combine, boxes to keep or remove, pieces that must stay together, fragile areas, and acceptable protection. If a change could affect a return or product value, make that decision before approving it. Save the final instruction and the resulting parcel measurements so a later difference can be explained.",
+          "When an input is uncertain enough to change the route or budget, obtain better evidence. A packed-parcel or rehearsal-style service, when currently offered for the account and item, may reduce uncertainty. Do not assume that every option appears for every shipment. The useful output is not merely a smaller number; it is a documented relationship between contents, packing choice, dimensions, chargeable weight, and the lines that remain eligible for a United States address.",
+        ],
+      },
+      {
+        id: "route",
+        title: "Compare eligible USA lines without chasing a universal winner",
+        paragraphs: [
+          "There is no stable answer to “the best Superbuy shipping line to USA.” The useful comparison is the list generated for the current parcel. Destination, item category, batteries, liquids, magnets, brands, declared contents, value, dimensions, and temporary capacity can alter eligibility. A route mentioned in an older review may be unavailable, renamed, repriced, or unsuitable for your contents when you are ready to submit.",
+          "Start with eligibility, then compare total quoted cost, chargeable-weight method, estimated transit range, tracking depth, carrier handoffs, size limits, prohibited-item rules, compensation or insurance terms, and customs model. Read what the estimate includes. A low headline fee is not stronger evidence than the complete live breakdown. Likewise, an estimated delivery range is not a guarantee; export handling, flights, customs, weather, and the American final-mile carrier can create additional time.",
+          "Match the line to the consequences of failure. A low-value, non-urgent parcel may justify a different balance from a fragile or difficult-to-replace shipment. Stronger tracking can matter more than a small price difference when several carriers will handle the package. Insurance or compensation should be judged by covered events, exclusions, evidence requirements, filing deadlines, and maximum amounts—not by the label alone. Save the chosen terms at submission because a later page update may not describe the exact version you purchased.",
+        ],
+      },
+      {
+        id: "customs",
+        title: "Prepare a current United States customs record",
+        paragraphs: [
+          "Buying goods online from abroad makes the American recipient part of an import process. U.S. Customs and Border Protection advises internet buyers to understand admissibility, duty, paperwork, and carrier or broker charges. Rules for low-value e-commerce shipments changed materially before this article's 8 September 2026 fact check, so an old social post about a blanket duty-free threshold is not a safe budget assumption. Check current CBP guidance when the parcel is submitted and again if the carrier requests information.",
+          "Use an accurate product description, quantity, value, and intended use. Preserve the seller listing, order confirmation, payment evidence, warehouse item record, parcel contents, declaration, shipping invoice, and tracking. The details should agree across documents. Calling commercial goods a gift or understating value can create compliance, delay, and claim problems. This guide cannot determine a tariff classification or duty amount for a specific shipment; product composition, origin, value, and applicable rules matter.",
+          "Screen the contents before purchase, not only after packing. Food, plants, animal products, medicines, cosmetics, batteries, liquids, powders, magnets, weapons, and protected cultural or wildlife materials can face agency rules or transport limits beyond ordinary clothing. A route being displayed does not itself prove that every U.S. import requirement has been satisfied. When admissibility is uncertain, use the current official U.S. agency guidance for that product category or seek qualified advice.",
+          "Treat a customs or carrier request as an evidence task. Confirm that the message came through a legitimate account, carrier, broker, or government channel before sending personal records. Respond with the exact document requested and keep a copy of the exchange. A consistent file can shorten clarification and supports a later trace or claim, while conflicting descriptions and missing value evidence make resolution harder.",
+        ],
+      },
+      {
+        id: "submit",
+        title: "Run a final pre-submission check for the USA parcel",
+        paragraphs: [
+          "Before payment, compare the selected contents with the warehouse decision record. Confirm that every item meant to ship is present, every unresolved QC issue is excluded, and the packaging instruction matches the measured parcel. Recalculate chargeable weight with the displayed route formula. Then compare the live eligible options rather than relying on the line you expected before the items arrived.",
+          "Read the final quote as a set of conditions: destination, contents, actual and volumetric inputs, weight increments, route, estimated range, included services, optional cover, declared information, and possible later adjustment. Superbuy's current guidance says the international payment is reconciled against the logistics provider's final bill, with an overpayment refunded or an underpayment collected. Keep enough budget available for that reconciliation instead of treating the first payment as mathematically final.",
+          "After dispatch, record the parcel number, route, handoff carriers, declared contents, amount paid, and first acceptance scan. Interpret tracking as milestones rather than a minute-by-minute location. A quiet period does not alone prove loss, and an estimated date does not override a customs hold. If an inquiry becomes necessary, use the stated service window and submit a chronology supported by the saved parcel and tracking evidence.",
+        ],
+        bullets: [
+          "All stored items have a recorded ship, hold, return, or exclude decision.",
+          "Packed weight and dimensions match the scenario being purchased.",
+          "The line is eligible for the complete contents and U.S. destination.",
+          "Description, quantity, and value are accurate and consistent.",
+          "Tracking, insurance, adjustment, and claim terms are saved.",
+          "A buffer remains for duty, carrier fees, or final freight reconciliation.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "superbuy-order-evidence-checklist",
     topic: "Order evidence",
     title: "Superbuy Order Evidence Checklist: Build a Record Before You Pay",

@@ -54,6 +54,15 @@ const articleVisuals: Record<string, {
       { code: "ADVICE", title: "Editorial test", text: "What the combined evidence supports—and what it does not." },
     ],
   },
+  "superbuy-shipping-to-usa": {
+    label: "USA PARCEL PLAN · THREE DECISIONS",
+    caption: "Estimate the packed parcel, compare only eligible lines, and preserve an accurate import record.",
+    cells: [
+      { code: "01", title: "Measure", text: "Actual weight, packed dimensions, and route divisor." },
+      { code: "02", title: "Compare", text: "Eligible line terms, tracking, protection, and total quote." },
+      { code: "03", title: "Document", text: "Contents, value, payment, parcel, and carrier records." },
+    ],
+  },
 };
 
 export function generateStaticParams() {
@@ -167,7 +176,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           ))}
           <div className="callout">
             <strong>Keep researching</strong>
-            <p>Use the live destination for current listing details, then return to the QC and shipping guides before submitting an international parcel.</p>
+            <p>Use the live destination for current listing details, then return to the <Link href="/qc-guide/">QC checklist</Link> and <Link href="/shipping/">shipping calculator</Link> before submitting an international parcel.</p>
           </div>
           <Link className="button button-secondary" href="/articles/">Back to all articles <ArrowIcon /></Link>
         </article>

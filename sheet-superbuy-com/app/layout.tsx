@@ -4,6 +4,7 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "./seo";
+import { AnalyticsEvents } from "./analytics-events";
 
 const siteTitle = "Superbuy Spreadsheet Link Checker 2026 | Verified Routes";
 const siteDescription =
@@ -46,7 +47,7 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P91GYCQQPL');" }}
           />
         </head>
-      <body>{children}</body>
+      <body><AnalyticsEvents />{children}</body>
     </html>
   );
 }

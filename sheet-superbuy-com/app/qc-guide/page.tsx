@@ -64,12 +64,12 @@ export default function QcGuidePage() {
 
         <section className="content-section content-shell">
           <div className="research-note">
-            <span>FACT CHECK · 14 AUGUST 2026</span>
+          <span>FACT CHECK · 8 SEPTEMBER 2026</span>
             <p>Reviewed against Superbuy&apos;s official homepage, user guidance, parcel-forwarding guide, fee structure, and service terms. Account-level options and seller policies can change, so the live order screen remains the final source for a specific purchase.</p>
           </div>
-          <h2>Start with what Superbuy actually says it provides</h2>
+          <h2>What “Superbuy QC” and “QC photos” mean</h2>
           <p>
-            Superbuy&apos;s current homepage describes warehouse quality inspection, three free QC photos, and 90 days of free storage. Its user guide explains that received items appear in <em>My Superbuy → Warehouse</em>, where buyers can view the inspection evidence before choosing whether to keep purchasing or submit a parcel. Those are useful service facts, but they should not be expanded into a promise that every hidden defect, material claim, or authenticity question has been professionally verified.
+            QC means quality control. In this workflow, Superbuy QC photos are warehouse images that help a buyer compare the received item with the order before international shipping. Superbuy&apos;s current homepage describes warehouse quality inspection, three free QC photos, and 90 days of free storage. Its user guide explains that received items appear in <em>My Superbuy → Warehouse</em>, where buyers can view the inspection evidence before choosing whether to keep purchasing or submit a parcel. Those are useful service facts, but they should not be expanded into a promise that every hidden defect, material claim, or authenticity question has been professionally verified.
           </p>
           <p>
             The official guidance also notes that inspection standards can differ for some sources, including 1688 orders. Superbuy&apos;s service terms describe limits for categories that cannot be opened or professionally tested: for certain electronics, collectibles, tickets, cards, models, custom goods, and similar products, an inspector may only be able to check exterior condition and visible accessories. A careful buyer therefore begins by asking what the available photographs can actually show—not by treating the word “QC” as a universal certification.

@@ -61,7 +61,7 @@ export default function SpreadsheetPage() {
         <PageHero
           eyebrow="Spreadsheet guide"
           title="How to Check Superbuy Spreadsheet Links"
-          intro="Use the index, but keep your judgment. A useful spreadsheet is a starting map—not proof of quality, authenticity, stock, or final cost. This guide shows you how to turn a product route into a deliberate buying decision."
+          intro="Use a Superbuy spreadsheet to discover finds, then verify each live product link, selected variant, QC evidence, and parcel cost. A useful sheet is a starting map—not proof of quality, authenticity, stock, or final cost."
           aside="A route check confirms that a destination and its primary image were reachable when reviewed. It does not endorse the seller or the item."
         />
 

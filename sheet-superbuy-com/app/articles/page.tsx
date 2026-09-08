@@ -45,13 +45,13 @@ export default function ArticlesPage() {
         <PageHero
           eyebrow="Research library"
           title="Superbuy Link Verification and Route Check Guides"
-          intro="Four guides support the decisions after the click. Start with link verification, move through warehouse evidence and parcel cost, then use the independent review to test whether the workflow fits your needs and risk tolerance."
+          intro={`${articles.length} guides support the decisions after the click. Start with link verification, move through warehouse evidence and parcel cost, then use destination and review guides for the decision in front of you.`}
           aside="Official Superbuy statements are separated from independent recommendations and user-review themes. No article makes fixed promises about price, speed, quality, authenticity, or customs."
         />
         <section className="content-section shell">
           <div className="research-note research-note-wide">
-            <span>EDITORIAL STANDARD · UPDATED 14 AUGUST 2026</span>
-            <p>Platform facts were checked against current Superbuy official pages. The review article also compares Trustpilot, Google Play, Apple App Store, and Reddit themes without treating individual comments as representative proof.</p>
+            <span>EDITORIAL STANDARD · UPDATED 8 SEPTEMBER 2026</span>
+            <p>Platform facts were checked against current Superbuy official pages. Destination-specific compliance guidance is dated and avoids fixed route, price, delivery, or customs promises.</p>
           </div>
           <div className="article-grid">
             {articles.map((article) => (
@@ -70,6 +70,7 @@ export default function ArticlesPage() {
             <li><strong>Spreadsheet method:</strong> verify the live destination, preserve the exact option, and recognise stale rows before purchase.</li>
             <li><strong>QC evidence:</strong> match the warehouse item, ask for decision-changing measurements, and understand photo limits.</li>
             <li><strong>Shipping cost:</strong> compare actual and volumetric weight, packaging, route eligibility, customs, and landed cost.</li>
+            <li><strong>USA parcel plan:</strong> turn warehouse measurements into an American-destination budget, route comparison, and customs evidence file.</li>
             <li><strong>Independent review:</strong> compare official capabilities with recurring praise and complaints across several review sources.</li>
           </ol>
         </section>

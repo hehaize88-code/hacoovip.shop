@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon, PageHero, SiteFooter, SiteHeader } from "../components";
+import { ChargeableWeightCalculator } from "./shipping-calculator";
 import {
   SITE_URL,
   SOCIAL_IMAGE,
@@ -9,9 +10,9 @@ import {
 } from "../seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Superbuy Shipping Calculator & Parcel Planning Guide",
+  title: "Superbuy Shipping Calculator & Cost Guide",
   description:
-    "A fact-checked Superbuy shipping planner covering two-stage costs, chargeable weight, consolidation, packaging, route restrictions, insurance, customs, and final freight adjustments.",
+    "Use a free Superbuy chargeable-weight calculator, then plan shipping cost, volumetric weight, consolidation, packaging, routes, customs, and final freight.",
   path: "/shipping/",
 });
 
@@ -20,8 +21,8 @@ const shippingSchema = {
   "@graph": [
     {
       "@type": "Article",
-      headline: "Superbuy Shipping Calculator & Parcel Planning Guide",
-      description: "How to estimate and plan a Superbuy parcel using current official service facts and independent cost-control advice.",
+      headline: "Superbuy Shipping Calculator and Cost Guide",
+      description: "Calculate estimated chargeable weight, then plan a Superbuy parcel using current official service facts and independent cost-control advice.",
       url: `${SITE_URL}/shipping/`,
       mainEntityOfPage: {
         "@type": "WebPage",
@@ -29,7 +30,7 @@ const shippingSchema = {
       },
       image: SOCIAL_IMAGE,
       datePublished: "2026-08-14",
-      dateModified: "2026-08-14",
+      dateModified: "2026-09-08",
       author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
       publisher: {
         "@type": "Organization",
@@ -52,16 +53,20 @@ export default function ShippingPage() {
       <main>
         <PageHero
           eyebrow="Parcel planner"
-          title="Superbuy Shipping Cost and Parcel Guide"
-          intro="The item price is not the landed cost. A defensible estimate separates the purchase-to-warehouse stage from the warehouse-to-destination stage, then replaces guesses with measured parcel data before a shipping line is chosen."
+          title="Superbuy Shipping Calculator and Cost Guide"
+          intro="Calculate a parcel's estimated chargeable weight, then build a defensible Superbuy shipping-cost plan. Separate the purchase-to-warehouse stage from the warehouse-to-destination stage and replace guesses with measured parcel data."
           aside="Superbuy currently advertises 90 days of free storage and more than 100 shipping lines. The live options for one parcel will still depend on destination, packed dimensions, item category, restrictions, declared contents, and current route rules."
         />
 
         <section className="content-section content-shell">
           <div className="research-note">
-            <span>FACT CHECK · 14 AUGUST 2026</span>
+            <span>FACT CHECK · 8 SEPTEMBER 2026</span>
             <p>Reviewed against Superbuy&apos;s official fee structure, user guidance, forwarding guide, shipping calculator, help centre, and service terms. Prices, route names, limits, and temporary notices can change; confirm the live parcel screen before payment.</p>
           </div>
+          <ChargeableWeightCalculator />
+          <p className="calculator-followup">
+            Looking specifically at an American destination? Read the new <Link href="/articles/superbuy-shipping-to-usa/">Superbuy shipping to USA planning guide</Link> after testing your packed dimensions.
+          </p>
           <h2>Understand the two bills before estimating anything</h2>
           <p>
             Superbuy&apos;s official fee structure separates the journey into two main stages. Stage one covers the product&apos;s original price, seller-to-warehouse domestic delivery, any purchasing service fee that applies to the source, and optional services selected before or during warehousing. Stage two covers international freight after the warehouse items are packed into a parcel, plus any optional parcel services. Local taxes, duties, brokerage, handling, or remote-delivery fees may arise under destination rules and should be treated as a third planning layer even when they are not collected by the shopping agent.
