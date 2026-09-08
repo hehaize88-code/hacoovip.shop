@@ -110,7 +110,7 @@ export const articles: Article[] = [
   {
     slug: "superbuy-shipping-to-netherlands",
     topic: "Netherlands parcel planning",
-    title: "Superbuy Shipping to Netherlands: Cost, VAT & Customs",
+    title: "Superbuy Shipping to the Netherlands: Cost & VAT",
     deck: "A Netherlands-specific 2026 guide to estimating a Superbuy parcel using packed weight, live eligible lines, controlled consolidation, accurate import records, and the latest Dutch customs treatment for e-commerce shipments.",
     date: "2026-09-08",
     updated: "8 September 2026",
