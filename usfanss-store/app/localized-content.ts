@@ -1,10 +1,13 @@
 import type { Lang } from "./site-shell";
 import { articleDetails } from "./article-details";
 import { shoesListingArticle } from "./shoes-listing-article";
+import { opportunityArticles, opportunityArticleSlugs, type OpportunityArticleSlug } from "./seo-opportunity-articles";
 
 type HistoricArticleSlug = "how-to-use-usfans" | "usfans-qc-photos-guide" | "usfans-review-2026";
-export type ArticleSlug = HistoricArticleSlug | "usfans-shoes-listing-checklist";
-export const articleSlugs: ArticleSlug[] = ["how-to-use-usfans", "usfans-qc-photos-guide", "usfans-review-2026", "usfans-shoes-listing-checklist"];
+export type ArticleSlug = HistoricArticleSlug | "usfans-shoes-listing-checklist" | OpportunityArticleSlug;
+export const localizedArticleSlugs: ArticleSlug[] = ["how-to-use-usfans", "usfans-qc-photos-guide", "usfans-review-2026", "usfans-shoes-listing-checklist"];
+export const articleSlugs: ArticleSlug[] = [...localizedArticleSlugs, ...opportunityArticleSlugs];
+export const articleSlugsForLanguage = (lang: Lang): ArticleSlug[] => lang === "en" ? articleSlugs : localizedArticleSlugs;
 
 type FaqLocale = { label:string; eyebrow:string; title:string; body:string; cardTitle:string; cardBody:string; open:string; questions:Array<{q:string;a:string}> };
 
@@ -150,8 +153,8 @@ const translatedCore:Record<Exclude<Lang,"en">,Record<HistoricArticleSlug,Compac
   }
 };
 
-export const articleData:Record<Lang,Record<ArticleSlug,Article>> = {
-  en:{"how-to-use-usfans":guideEn,"usfans-qc-photos-guide":qcEn,"usfans-review-2026":reviewEn,"usfans-shoes-listing-checklist":shoesListingArticle.en},
+export const articleData:Record<Lang,Partial<Record<ArticleSlug,Article>>> = {
+  en:{"how-to-use-usfans":guideEn,"usfans-qc-photos-guide":qcEn,"usfans-review-2026":reviewEn,"usfans-shoes-listing-checklist":shoesListingArticle.en,...opportunityArticles},
   de:{"how-to-use-usfans":translated("de",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("de",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("de",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.de},
   es:{"how-to-use-usfans":translated("es",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("es",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("es",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.es},
   fr:{"how-to-use-usfans":translated("fr",guideEn,"how-to-use-usfans"),"usfans-qc-photos-guide":translated("fr",qcEn,"usfans-qc-photos-guide"),"usfans-review-2026":translated("fr",reviewEn,"usfans-review-2026"),"usfans-shoes-listing-checklist":shoesListingArticle.fr},

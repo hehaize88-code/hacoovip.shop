@@ -6,4 +6,20 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-BCNPML3ZE2');
+  document.addEventListener('click', function(event) {
+    var link = event.target.closest && event.target.closest('a[href^="https://cnfanshp.com/"]');
+    if (!link) return;
+    var isProduct = //AllProducts/d+.html/.test(link.href);
+    gtag('event', isProduct ? 'product_click' : 'main_site_click', {
+      link_url: link.href,
+      link_text: (link.textContent || '').trim().slice(0, 100),
+      page_path: location.pathname
+    });
+  }, true);
+  document.addEventListener('submit', function(event) {
+    if (event.target && event.target.matches('.search-box')) gtag('event', 'search_submit', { page_path: location.pathname });
+  }, true);
+  document.addEventListener('change', function(event) {
+    if (event.target && event.target.matches('.language select')) gtag('event', 'language_switch', { language: event.target.value, page_path: location.pathname });
+  }, true);
 </script><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>Page not found | USFans Product Discovery Atlas</title><link rel="stylesheet" href="/static-assets/app.css"/></head><body><main class="inner-hero"><p class="eyebrow">404</p><h1>Page not found.</h1><p>The requested page does not exist. Return to the <a href="/">product discovery atlas</a>.</p></main></body></html>
