@@ -70,6 +70,8 @@ const sourceCss = await readFile(join(root, "app", "globals.css"), "utf8");
 await mkdir(join(root, "static-assets"), { recursive: true });
 await writeFile(join(root, "static-assets", "app.css"), sourceCss.replace(/^@import\s+["']tailwindcss["'];?\s*/m, ""));
 
+const analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-56TMQMXE1J"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-56TMQMXE1J');</script>`;
+
 const sitemap: string[] = [];
 for (const lang of Object.keys(languageConfig) as Lang[]) {
   for (const route of baseRoutes) {
@@ -80,7 +82,7 @@ for (const lang of Object.keys(languageConfig) as Lang[]) {
     const body = renderToStaticMarkup(<LanguageProvider initialLang={lang}>{route.content}</LanguageProvider>);
     const schema = structuredDataFor(route, lang, canonical, meta.title, meta.description);
     const ogType = route.key === "article" ? "article" : "website";
-    const html = `<!doctype html><html lang="${languageConfig[lang].html}"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${escape(meta.title)}</title><meta name="description" content="${escape(meta.description)}"/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="${canonical}"/>${alternates}<link rel="alternate" hreflang="x-default" href="${site}${route.path}"/><meta property="og:title" content="${escape(meta.title)}"/><meta property="og:description" content="${escape(meta.description)}"/><meta property="og:url" content="${canonical}"/><meta property="og:type" content="${ogType}"/><meta property="og:image" content="${socialImage}"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(meta.title)}"/><meta name="twitter:description" content="${escape(meta.description)}"/><meta name="twitter:image" content="${socialImage}"/><link rel="icon" href="/favicon.svg"/><link rel="stylesheet" href="/static-assets/app.css"/>${schema}</head><body style="--font-sans:Arial,sans-serif;--font-serif:Georgia,serif"><div id="root">${body}</div><script type="module" src="/static-assets/app.js"></script></body></html>`;
+    const html = `<!doctype html><html lang="${languageConfig[lang].html}"><head>${analytics}<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${escape(meta.title)}</title><meta name="description" content="${escape(meta.description)}"/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="${canonical}"/>${alternates}<link rel="alternate" hreflang="x-default" href="${site}${route.path}"/><meta property="og:title" content="${escape(meta.title)}"/><meta property="og:description" content="${escape(meta.description)}"/><meta property="og:url" content="${canonical}"/><meta property="og:type" content="${ogType}"/><meta property="og:image" content="${socialImage}"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(meta.title)}"/><meta name="twitter:description" content="${escape(meta.description)}"/><meta name="twitter:image" content="${socialImage}"/><link rel="icon" href="/favicon.svg"/><link rel="stylesheet" href="/static-assets/app.css"/>${schema}</head><body style="--font-sans:Arial,sans-serif;--font-serif:Georgia,serif"><div id="root">${body}</div><script type="module" src="/static-assets/app.js"></script></body></html>`;
     const target = path === "/" ? join(root, "index.html") : join(root, path.slice(1), "index.html");
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, html);
@@ -88,7 +90,7 @@ for (const lang of Object.keys(languageConfig) as Lang[]) {
   }
 }
 
-const notFound = `<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>Página no encontrada | USFans España</title><link rel="stylesheet" href="/static-assets/app.css"/></head><body><main class="inner-section"><p class="section-kicker">404</p><h1>Página no encontrada</h1><p>La dirección solicitada no existe. Vuelve a la <a href="/">página principal</a>.</p></main></body></html>`;
+const notFound = `<!doctype html><html lang="es"><head>${analytics}<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,follow"/><title>Página no encontrada | USFans España</title><link rel="stylesheet" href="/static-assets/app.css"/></head><body><main class="inner-section"><p class="section-kicker">404</p><h1>Página no encontrada</h1><p>La dirección solicitada no existe. Vuelve a la <a href="/">página principal</a>.</p></main></body></html>`;
 await writeFile(join(root, "404.html"), notFound);
 
 for (const file of ["favicon.svg", "usfans-logo.png"]) await cp(join(root, "public", file), join(root, file));

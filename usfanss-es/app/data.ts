@@ -7,7 +7,7 @@ export const products = [
   { id:"3389", name:"Adidas Bag", image:"/product-images/product-3389.webp", price:"$179", verified:"13 Aug 2026", category:"bags", tone:"rose" },
 ];
 
-export const catalogBase = "https://www.cnbuycha.com";
+export const catalogBase = "https://cnfanshp.com";
 export const productUrl = (id: string) => `${catalogBase}/AllProducts/${id}.html`;
 
 export const categorySlugs = ["shoes", "hoodies-sweaters", "t-shirts", "jackets", "jersey", "accessories"];
