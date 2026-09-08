@@ -26,9 +26,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en" suppressHydrationWarning>
 <head>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7Y831DZC2" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FPZG2GLH8" />
           <script
-            dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D7Y831DZC2');
+            dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1FPZG2GLH8');
 document.addEventListener('click',function(event){var el=event.target&&event.target.closest?event.target.closest('[data-track]'):null;if(!el||el.tagName==='FORM')return;gtag('event',el.dataset.track,{page_path:location.pathname,language:document.documentElement.lang||'en',target_url:el.href||'',product:el.dataset.product||'',category:el.dataset.category||'',article:el.dataset.article||'',placement:el.dataset.placement||''});});
 document.addEventListener('submit',function(event){var form=event.target;if(!form||!form.matches||!form.matches('form[data-track]'))return;var input=form.querySelector('input[name="keywords"]');gtag('event',form.dataset.track,{page_path:location.pathname,language:document.documentElement.lang||'en',target_url:form.action||'',search_term:input?input.value:'',placement:form.dataset.placement||''});});` }}
           />
