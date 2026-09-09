@@ -5,6 +5,10 @@ const routes = [
   "/categories/jerseys", "/categories/bags", "/categories/headwear", "/categories/electronics",
   "/qc-guide", "/shipping", "/faq", "/articles",
   "/articles/how-to-buy-with-hipobuy", "/articles/hipobuy-qc-photos", "/articles/hipobuy-shipping-cost",
+  "/articles/hipobuy-shipping-netherlands", "/articles/hipobuy-shipping-uk",
+  "/articles/hipobuy-shipping-france", "/articles/hipobuy-shipping-germany-eu",
+  "/articles/hipobuy-review-legit-safe", "/articles/hipobuy-fees-coupons",
+  "/articles/hipobuy-warehouse-consolidation", "/articles/hipobuy-tracking-returns-refunds",
 ];
 const languages = ["de", "es", "fr", "it", "pl", "pt", "zh"];
 const outputRoot = new URL("../out/", import.meta.url);

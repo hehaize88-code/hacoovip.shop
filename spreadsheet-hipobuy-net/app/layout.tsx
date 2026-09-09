@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TranslationBridge } from "./translation-bridge";
+import { AnalyticsEvents } from "./analytics-events";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spreadsheet-hipobuy.net"),
-  title: "Hipobuy Spreadsheet 2026: Checked Product Directory",
-  description: "Browse an independent Hipobuy product-verification directory with checked links, dated USD references, category pages, QC guidance and practical shipping notes.",
+  title: "Hipobuy Spreadsheet 2026: Updated Finds, QC & Shipping",
+  description: "Browse 60 checked Hipobuy product links, QC guidance and 2026 shipping-cost planning for the UK, France, Germany and the Netherlands.",
   keywords: ["Hipobuy spreadsheet", "Hipobuy spreadsheet 2026", "Hipobuy finds", "Hipobuy QC photos", "Hipobuy shipping"],
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
@@ -39,5 +40,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <script
             dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KR0Y8RYEX1');" }}
           />
-        </head><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />{children}<TranslationBridge /></body></html>;
+        </head><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />{children}<AnalyticsEvents /><TranslationBridge /></body></html>;
 }

@@ -6,7 +6,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   return <>
     <SiteHeader />
     {children}
-    <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery and education resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><Link href="/">Home ↑</Link><span>FACTS REVIEWED · 24 AUG 2026</span></div></footer>
+    <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery and education resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><Link href="/">Home ↑</Link><span>FACTS REVIEWED · 09 SEP 2026</span></div></footer>
   </>;
 }
 

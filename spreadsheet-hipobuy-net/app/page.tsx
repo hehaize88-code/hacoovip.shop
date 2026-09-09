@@ -26,9 +26,12 @@ const products = [
 ];
 
 const guides = [
-  { tag: "START HERE", title: "How to buy with Hipobuy", text: "A decision-by-decision route from product link to warehouse review." },
-  { tag: "QC", title: "Read warehouse photos", text: "Check variants, measurements, construction and visible damage in order." },
-  { tag: "SHIPPING", title: "Build a realistic total", text: "Separate item price, domestic delivery and international chargeable weight." },
+  { tag: "START HERE", title: "How to buy with Hipobuy", text: "A decision-by-decision route from product link to warehouse review.", href: "/articles/how-to-buy-with-hipobuy/" },
+  { tag: "QC", title: "Read warehouse photos", text: "Check variants, measurements, construction and visible damage in order.", href: "/articles/hipobuy-qc-photos/" },
+  { tag: "SHIPPING", title: "Calculate shipping cost", text: "Use packed dimensions, chargeable weight and current eligible routes.", href: "/shipping/" },
+  { tag: "REVIEW", title: "Is Hipobuy legit and safe?", text: "Separate verifiable service facts from seller, parcel and review-platform risk.", href: "/articles/hipobuy-review-legit-safe/" },
+  { tag: "EU", title: "Shipping to France", text: "Plan price per KG, volumetric weight, VAT and customs without false flat rates.", href: "/articles/hipobuy-shipping-france/" },
+  { tag: "UK", title: "Shipping to the UK", text: "Compare parcel routes, packing and the current UK import-cost questions.", href: "/articles/hipobuy-shipping-uk/" },
 ];
 
 const faqs = [
@@ -53,12 +56,12 @@ export default function Home() {
         <div className="hero-copy">
           <div className="eyebrow"><span /> Checked product directory · 2026 edition</div>
           <h1><span className="notranslate" data-no-translate>Hipobuy</span><br /><em>Spreadsheet</em> 2026.</h1>
-          <p className="hero-lede">Use a regularly checked catalogue to find products by category, open the exact listing and apply a repeatable verification checklist before ordering or shipping.</p>
+          <p className="hero-lede">Browse 60 checked product links, then use independent 2026 guides for Hipobuy QC photos, shipping cost, fees, reviews, tracking and country-specific parcel planning.</p>
           <form className="hero-search" action="https://cnfanshp.com/search.html" method="get" target="_blank">
             <label htmlFor="hero-query">Search the main catalogue</label>
             <div><span>⌕</span><input id="hero-query" name="keywords" required placeholder="Shoes, hoodie, product ID…" /><input type="hidden" name="channelid" value="2" /><button type="submit">Search ↗</button></div>
           </form>
-          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>06</b> indexable category pages</span><span><b>24 AUG</b> last link check</span></div>
+          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>11</b> practical articles</span><span><b>09 SEP</b> facts reviewed</span></div>
         </div>
 
         <div className="hero-board" aria-label="Directory preview">
@@ -112,7 +115,7 @@ export default function Home() {
       <section className="guide-section" id="guides">
         <div className="section-kicker">04 / RESEARCH NOTES</div>
         <div className="section-heading compact"><h2>Useful guides,<br />kept practical.</h2><p>Platform facts can change. Each guide separates what the sheet shows from what must be confirmed at checkout.</p></div>
-        <div className="guide-grid">{guides.map((guide, index) => <article key={guide.title}><div><span>{guide.tag}</span><small>0{index + 1}</small></div><h3>{guide.title}</h3><p>{guide.text}</p><a href={index === 0 ? "/articles/how-to-buy-with-hipobuy/" : index === 1 ? "/articles/hipobuy-qc-photos/" : "/articles/hipobuy-shipping-cost/"}>Read guide <b>→</b></a></article>)}</div>
+        <div className="guide-grid">{guides.map((guide, index) => <article key={guide.title}><div><span>{guide.tag}</span><small>{String(index + 1).padStart(2,"0")}</small></div><h3>{guide.title}</h3><p>{guide.text}</p><a href={guide.href}>Read guide <b>→</b></a></article>)}</div>
       </section>
 
       <section className="faq-home" id="faq">
@@ -121,7 +124,7 @@ export default function Home() {
         <div className="faq-card-grid">{faqs.map((faq, index) => <a href="/faq/" key={faq.question}><span>0{index + 1}</span><h3>{faq.question}</h3><p>{faq.answer}</p><b>Read all FAQs →</b></a>)}</div>
       </section>
 
-      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>LINKS CHECKED · 24 AUG 2026</span></div></footer>
+      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>FACTS REVIEWED · 09 SEP 2026</span></div></footer>
     </main>
   );
 }

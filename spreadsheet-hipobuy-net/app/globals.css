@@ -125,6 +125,13 @@ img { display:block; }
 .guide-grid p { color:var(--muted); font-size:13px; line-height:1.65; margin:0; }
 .guide-grid a { margin-top:auto; padding-top:18px; border-top:1px solid var(--line); font-size:10px; font-weight:900; text-transform:uppercase; }
 .guide-grid a b { float:right; color:var(--blue); }
+.shipping-guides { padding-top:72px; }
+.article-sources { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.article-sources a { padding:8px 10px; border:1px solid rgba(16,24,53,.3); color:var(--blue); font-size:9px; font-weight:900; text-transform:uppercase; }
+.article-copy .related-guides { margin-top:70px; padding:38px; border:1px solid var(--ink); background:#f4f5ef; }
+.related-guides nav { display:grid; gap:0; margin-top:22px; }
+.related-guides nav a { display:flex; justify-content:space-between; gap:20px; padding:15px 0; border-top:1px solid var(--line); font-weight:800; }
+.related-guides nav a span { color:var(--blue); }
 .faq-home { padding:0 clamp(22px,7vw,110px) 100px; }
 .faq-card-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
 .faq-card-grid>a { min-height:260px; padding:25px; background:white; border:1px solid var(--line); display:flex; flex-direction:column; transition:transform .2s ease,border-color .2s ease; }
