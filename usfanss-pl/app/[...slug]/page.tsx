@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const pageTitle = article ? article.seoTitle ?? article.title : seo!.title;
   const description = article ? article.excerpt : seo!.description;
   const pathname = routeFor(route.locale, route.page, route.article);
-  const isNewFullArticle = route.article === "usfans-poland-preorder-checklist";
+  const isNewFullArticle = route.article === "usfans-poland-preorder-checklist" || route.article === "usfans-poland-route-availability";
   const isThinLocalizedArticle = route.page === "article" && route.locale !== "en" && !isNewFullArticle;
   const languageEntries = route.page === "article"
     ? (isNewFullArticle
