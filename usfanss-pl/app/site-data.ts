@@ -1,5 +1,6 @@
 import { researchedEnglishArticles } from "./english-articles";
 import { polandPreorderArticle } from "./poland-preorder-article";
+import { polandRouteAvailabilityArticle } from "./poland-route-availability-article";
 import { priorityEnglishArticles } from "./priority-english-articles";
 
 export type Locale = "pl" | "en" | "de" | "fr" | "it" | "es" | "ro";
@@ -43,6 +44,7 @@ export const articleSlugs = [
   "read-usfans-qc-photos",
   "product-price-vs-parcel-cost",
   "usfans-poland-preorder-checklist",
+  "usfans-poland-route-availability",
   "usfans-shipping-to-poland",
   "usfans-tracking-guide",
 ] as const;
@@ -143,7 +145,11 @@ const articleTranslations: Record<Exclude<Locale, "en">, Record<HistoricArticleS
 
 export function getArticles(locale: Locale): Record<ArticleSlug, LocalArticle> {
   const existing = locale === "en" ? englishArticles : { ...englishArticles, ...articleTranslations[locale] };
-  return { ...existing, "usfans-poland-preorder-checklist": polandPreorderArticle[locale] } as Record<ArticleSlug, LocalArticle>;
+  return {
+    ...existing,
+    "usfans-poland-preorder-checklist": polandPreorderArticle[locale],
+    "usfans-poland-route-availability": polandRouteAvailabilityArticle[locale],
+  } as Record<ArticleSlug, LocalArticle>;
 }
 
 type IndexPage = Exclude<PageKind, "article">;
