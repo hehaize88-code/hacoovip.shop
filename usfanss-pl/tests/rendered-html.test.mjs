@@ -37,3 +37,19 @@ test("exports priority Poland shipping and tracking articles", async () => {
   assert.match(sitemap, /\/en\/articles\/usfans-shipping-to-poland\//);
   assert.match(sitemap, /\/en\/articles\/usfans-tracking-guide\//);
 });
+
+test("exports the full multilingual Poland route-availability article", async () => {
+  const pages = await Promise.all([
+    "out/articles/usfans-poland-route-availability/index.html",
+    "out/en/articles/usfans-poland-route-availability/index.html",
+    "out/de/articles/usfans-poland-route-availability/index.html",
+    "out/fr/articles/usfans-poland-route-availability/index.html",
+    "out/it/articles/usfans-poland-route-availability/index.html",
+    "out/es/articles/usfans-poland-route-availability/index.html",
+    "out/ro/articles/usfans-poland-route-availability/index.html",
+  ].map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")));
+  assert.ok(pages.every((html) => (html.match(/<h2/g) ?? []).length === 8));
+  assert.ok(pages.every((html) => /rel="canonical"/.test(html)));
+  const sitemap = await readFile(new URL("../out/sitemap.xml", import.meta.url), "utf8");
+  assert.equal((sitemap.match(/usfans-poland-route-availability/g) ?? []).length, 7);
+});
