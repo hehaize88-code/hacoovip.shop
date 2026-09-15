@@ -9,6 +9,7 @@ const articleDates: Record<ArticleSlug, string> = {
   "read-usfans-qc-photos": "2026-08-12",
   "product-price-vs-parcel-cost": "2026-08-12",
   "usfans-poland-preorder-checklist": "2026-08-14",
+  "usfans-poland-route-availability": "2026-09-15",
   "usfans-shipping-to-poland": "2026-09-07",
   "usfans-tracking-guide": "2026-09-07",
 };
@@ -21,6 +22,16 @@ const articleResearchLabels: Record<Locale, string> = {
   it: "Verificato sulle pagine pubbliche USFans · aggiornato il 7 settembre 2026",
   es: "Verificado con las páginas públicas de USFans · actualizado el 7 de septiembre de 2026",
   ro: "Verificat pe paginile publice USFans · actualizat la 7 septembrie 2026",
+};
+
+const routeResearchLabels: Record<Locale, string> = {
+  pl: "Sprawdzone w publicznym kalkulatorze USFans · aktualizacja 15 września 2026",
+  en: "Checked in the public USFans estimator · updated 15 September 2026",
+  de: "Im öffentlichen USFans-Schätzer geprüft · aktualisiert am 15. September 2026",
+  fr: "Vérifié dans l’estimateur public USFans · mis à jour le 15 septembre 2026",
+  it: "Verificato nello stimatore pubblico USFans · aggiornato il 15 settembre 2026",
+  es: "Verificado en el estimador público de USFans · actualizado el 15 de septiembre de 2026",
+  ro: "Verificat în estimatorul public USFans · actualizat la 15 septembrie 2026",
 };
 
 const categoryLabels: Record<Locale, string[]> = {
@@ -223,14 +234,14 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
   const articlesUrl = `${siteBase}${routeFor(locale, "articles")}`;
   const currentIndex = articleSlugs.indexOf(slug);
   const relatedSlugs = [articleSlugs[(currentIndex + articleSlugs.length - 1) % articleSlugs.length], articleSlugs[(currentIndex + 1) % articleSlugs.length]];
-  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: articleDates[slug], dateModified: "2026-09-07" };
+  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: articleDates[slug], dateModified: articleDates[slug] };
   const breadcrumbJson = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${siteBase}${routeFor(locale, "home")}` }, { "@type": "ListItem", position: 2, name: c.nav.articles, item: articlesUrl }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       <article className="article-page">
-        <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{articleResearchLabels[locale]}</small></header>
+        <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{slug === "usfans-poland-route-availability" ? routeResearchLabels[locale] : articleResearchLabels[locale]}</small></header>
         <div className="article-layout">
           <aside><span>{c.keyTakeaways}</span><ul>{article.points.map((point) => <li key={point}>{point}</li>)}</ul></aside>
           <div className="article-body">
