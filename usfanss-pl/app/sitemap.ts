@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: page === "home" ? "weekly" as const : "monthly" as const,
       priority: page === "home" ? 1 : .8,
     }))),
-    ...articleSlugs.flatMap((article) => (article === "usfans-poland-preorder-checklist" ? locales : [{ code: "en" as const }]).map((locale) => ({
+    ...articleSlugs.flatMap((article) => (["usfans-poland-preorder-checklist", "usfans-poland-route-availability"].includes(article) ? locales : [{ code: "en" as const }]).map((locale) => ({
       url: `${base}${routeFor(locale.code, "article", article)}`,
       changeFrequency: "monthly" as const,
       priority: .7,
