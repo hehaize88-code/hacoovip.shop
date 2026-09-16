@@ -4,7 +4,7 @@ import { Arrow } from "@/components/Icons";
 import { SITE_URL } from "../data";
 import { createPageMetadata } from "../seo";
 import { createBreadcrumbList, ORGANIZATION_ID, pageUrl, WEBSITE_ID } from "../schema";
-import { getPriorityArticle } from "./priority-articles";
+import { getPriorityArticle, priorityArticles } from "./priority-articles";
 
 export function buildPriorityMetadata(slug) {
   const article = getPriorityArticle(slug);
@@ -83,6 +83,8 @@ export default function PriorityArticlePage({ slug }) {
           </section>
 
           <section id="sources" className="sources-panel"><h2>Sources and next checks</h2><p>These links provide the current official or first-party context used for this guide, plus closely related Hacoo Pro pages. Recheck live pages because policies, app listings and product availability can change after publication.</p><ul>{article.sources.map((source) => <li key={`${source.href}-${source.label}`}><SourceLink source={source}/> — {source.note}</li>)}</ul></section>
+
+          <section className="sources-panel"><h2>Continue the buyer verification sequence</h2><p>Each guide answers a different decision question, so use the pages that match the stage you have reached rather than transferring one conclusion to another.</p><ul>{priorityArticles.filter((item) => item.slug !== slug).map((item) => <li key={item.slug}><Link className="source-link" href={`/articles/${item.slug}/`}>{item.title}</Link> — {item.excerpt}</li>)}</ul></section>
 
           <div className="article-callout"><h2>{article.calloutTitle}</h2><p>{article.calloutText}</p><div className="article-callout-actions"><Link className="button light" href="/articles/">Browse all Hacoo articles <Arrow/></Link><Link className="button quiet-dark" href="/spreadsheet/">Open the spreadsheet guide</Link></div></div>
         </div>
