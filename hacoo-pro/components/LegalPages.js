@@ -14,7 +14,7 @@ function PageSchema({ locale, path, name, description }) {
 
 export function ContactPage({ locale = "en" }) {
   const page = getLegalCopy(locale).contact;
-  return <><PageSchema locale={locale} path="/contact" name={page.title} description={page.description}/><section className="page-hero simple-hero full-page" lang={locale}><div className="wrap narrow"><span className="section-label">{page.label}</span><h1>{page.heading[0]}<br/><em>{page.heading[1]}</em></h1><p>{page.intro} <a href="mailto:service@cnfanshp.com">service@cnfanshp.com</a></p><div className="contact-note"><strong>{page.important}</strong><p>{page.note}</p></div></div></section></>;
+  return <><PageSchema locale={locale} path="/contact" name={page.title} description={page.description}/><section className="page-hero simple-hero full-page" lang={locale}><div className="wrap narrow"><span className="section-label">{page.label}</span><h1>{page.heading[0]}<br/><em>{page.heading[1]}</em></h1><p>{page.intro}</p><div className="contact-note"><strong>{page.important}</strong><p>{page.note}</p></div></div></section></>;
 }
 
 export function PrivacyPage({ locale = "en" }) {

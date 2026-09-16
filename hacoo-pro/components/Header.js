@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Arrow, MenuIcon } from "./Icons";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { CATALOG_URL } from "@/app/site-config";
 import { getCopy, localeFromPath, localizePath, stripLocale } from "@/app/i18n";
 
 export default function Header() {
@@ -17,6 +18,7 @@ export default function Header() {
     ["/spreadsheet", copy.nav.spreadsheet],
     ["/categories", copy.nav.categories],
     ["/products", copy.nav.products],
+    ["/articles", locale === "en" ? "Articles" : copy.nav.guides],
     ["/guides", copy.nav.guides],
     ["/faq", copy.nav.faq],
     ["/about", copy.nav.about],
@@ -29,9 +31,9 @@ export default function Header() {
         </Link>
         <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="primary-nav" aria-label="Toggle navigation"><MenuIcon open={open}/></button>
         <nav id="primary-nav" className={open ? "nav-links open" : "nav-links"} aria-label="Primary navigation">
-          {links.map(([href, label]) => <Link key={href} href={localizePath(href, locale)} className={cleanPath === href || cleanPath.startsWith(href + "/") ? "active" : ""} onClick={() => setOpen(false)}>{label}</Link>)}
+          {links.map(([href, label]) => <Link key={href} href={locale === "en" || href !== "/articles" ? localizePath(href, locale) : localizePath("/guides", locale)} className={cleanPath === href || cleanPath.startsWith(href + "/") ? "active" : ""} onClick={() => setOpen(false)}>{label}</Link>)}
           <LanguageSwitcher onNavigate={() => setOpen(false)}/>
-          <a className="nav-cta" href="https://www.cnfanshp.com/AllProducts/" target="_blank" rel="noopener noreferrer">{copy.nav.live} <Arrow size={16}/></a>
+          <a className="nav-cta" href={`${CATALOG_URL}/AllProducts/`} target="_blank" rel="noopener noreferrer">{copy.nav.live} <Arrow size={16}/></a>
         </nav>
       </div>
     </header>

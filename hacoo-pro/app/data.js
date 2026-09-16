@@ -1,5 +1,5 @@
 export const SITE_URL = "https://hacoo.pro";
-export const DESTINATION = "https://www.cnfanshp.com";
+export const DESTINATION = "https://cnfanssp.com";
 export const CATALOG_REVIEW = { iso: "2026-07-16", label: "July 16, 2026" };
 
 export const categories = [

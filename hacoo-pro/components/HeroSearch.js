@@ -1,4 +1,4 @@
-import { DESTINATION } from "@/app/data";
+import { CATALOG_URL } from "@/app/site-config";
 import { Arrow, SearchIcon } from "./Icons";
 
 const SEARCH_COPY = {
@@ -12,32 +12,10 @@ const SEARCH_COPY = {
 
 export default function HeroSearch({ locale = "en" }) {
   const copy = SEARCH_COPY[locale] || SEARCH_COPY.en;
-
-  return (
-    <form
-      className="search-card"
-      role="search"
-      action={`${DESTINATION}/search.html`}
-      method="get"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <SearchIcon/>
-      <label>
-        <span>{copy.label}</span>
-        <input
-          type="search"
-          name="keywords"
-          placeholder={copy.placeholder}
-          aria-label={copy.placeholder}
-          autoComplete="off"
-          maxLength="80"
-          required
-        />
-      </label>
-      <input type="hidden" name="channelid" value="2"/>
-      <input type="hidden" name="method" value="1"/>
-      <button type="submit" aria-label={copy.button}><Arrow/></button>
-    </form>
-  );
+  return <form className="search-card" role="search" action={`${CATALOG_URL}/search.html`} method="get" target="_blank" rel="noopener noreferrer">
+    <SearchIcon/>
+    <label><span>{copy.label}</span><input type="search" name="keywords" placeholder={copy.placeholder} aria-label={copy.placeholder} autoComplete="off" maxLength="80" required/></label>
+    <input type="hidden" name="channelid" value="2"/><input type="hidden" name="method" value="1"/>
+    <button type="submit" aria-label={copy.button}><Arrow/></button>
+  </form>;
 }
