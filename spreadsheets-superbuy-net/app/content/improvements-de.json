@@ -1,0 +1,30 @@
+{
+  "how-to-use-a-superbuy-spreadsheet": {
+    "heading": "Arbeiten Sie sich durch ein Beispiel für eine exakte Option",
+    "paragraphs": [
+      "Nehmen wir eine fiktive Produktseite mit drei Auswahlmöglichkeiten: ein Kapuzenpullover, eine passende Hose und ein zweiteiliges Set. Das Hauptbild zeigt beide Kleidungsstücke, aber der erste wählbare Preis gehört zur Hose. Eine nützliche Tabellenzeile muss die Hoodie-Option identifizieren oder das Set explizit beschreiben; das Kopieren des niedrigsten Betrags neben dem Bild des gesamten Outfits wäre irreführend. Erfassen Sie das gewählte Etikett, die Menge, das entsprechende Optionenbild und das Preisprüfdatum, bevor Sie zur Kasse gehen. Dieses Beispiel zeigt einen Scheck, kein echtes Angebot des Verkäufers.",
+      "Bewahren Sie drei separate Entscheidungen in der Aufzeichnung auf. Zunächst muss die Produktseite dem gewünschten Produkt entsprechen. Zweitens verfügen die gewählte Größe und Ausführung über ausreichend dokumentierte Informationen zur Bestellung. Drittens liefert der erhaltene Artikel nach der Ankunft den Nachweis, der für Ihre Lagerentscheidung erforderlich ist. Eine positive Antwort in einer Phase schließt die späteren Phasen nicht ab. Wenn ein Feld unbekannt bleibt, schreiben Sie die spezifische nächste Aktion daneben. Dadurch wird der Workflow nützlich, wenn Sie später zur Zeile zurückkehren, und es wird vermieden, dass ein gespeicherter Link als abgeschlossene Prüfung behandelt wird."
+    ]
+  },
+  "superbuy-qc-photo-checklist": {
+    "heading": "Verwandeln Sie ein unklares Foto in eine umsetzbare Anfrage",
+    "paragraphs": [
+      "Angenommen, eine fiktive Hoodiebestellung erfordert eine flache Brustweite in der Nähe Ihres Referenzkleidungsstücks, aber das mitgelieferte Foto zeigt nur das Größenetikett. Die Evidenzlücke ist ein Maß, nicht das Fehlen eines anderen attraktiven Überblicks. Fordern Sie ein Foto an, auf dem der Hoodie flach ausgelegt ist, ohne gedehnt zu werden, und ein Lineal von Achselhöhle zu Achselhöhle sichtbar ist. Nehmen Sie die gewünschten Punkte auf und vergleichen Sie das zurückgegebene Bild mit einem auf die gleiche Weise gemessenen Referenzbild. Eine hypothetische 60 cm flache Breite sollte nicht direkt mit der unerklärlichen 120 cm Brustgröße eines Diagramms verglichen werden, bis die Messkonvention klar ist.",
+      "Bei einem Schuhpaar beginnt ein ähnlicher Prozess mit der beobachteten Unsicherheit: Ein Etikett ist unleserlich, ein Absatz ist versteckt oder ein Bauteil fehlt in jeder Ansicht. Fragen Sie nach der kleinsten zusätzlichen Ansicht, die es löst. Halte eine Notiz mit dem Originalbild, der Frage, den neuen Beweisen und deiner Entscheidung bereit. Bezeichnen Sie eine fehlende Ansicht nicht als bestätigten Defekt und bezeichnen Sie eine sichtbare Übereinstimmung nicht als Nachweis der Echtheit oder langfristigen Qualität. Dieser Datensatz unterstützt eine präzise After-Sales-Anfrage, wenn eine echte Missmatch gefunden wird."
+    ]
+  },
+  "superbuy-shipping-cost-and-consolidation": {
+    "heading": "Vergleich zweier Paketpläne mit den gleichen Eingaben",
+    "paragraphs": [
+      "Erstellen Sie eine Zeile für den Versand der akzeptierten Artikel jetzt und eine andere für die Wartezeit, um sie mit einem späteren Kauf zu konsolidieren. Halten Sie die Ziel- und aktuellen Artikelinformationen in beiden sichtbar. Erfassen Sie das geschätzte Verpackungsgewicht, die Abmessungen, die relevanten Kategorien, optionale Verpackungskosten und das Datum jedes Angebots. Fügen Sie für die Warteoption alle nicht aufgelösten Ankunftsdaten und Speicherimplikationen hinzu. Das sind Planungsfelder, keine festen Gebühren oder Versprechungen über das spätere Paket.",
+      "Ändern Sie eine Annahme nach der anderen. Wenn die Verpackung entfernt wird, beachten Sie, dass die Abmessungen und der Schutzbedarf geändert und erneut überprüft werden müssen; ziehen Sie nicht einfach einen geschätzten Betrag von der Fracht ab. Wenn ein dritter Artikel ankommt, bestätigen Sie, dass das komplette Paket noch für die ausgewählte Route qualifiziert ist. Trennen Sie den Schätzwert des Rechner, die angeforderte Anzahlung und die eventuelle endgültige Belastung in Ihrem Datensatz. Der detaillierte Rechner-Leitfaden erklärt eine hypothetische Volumenberechnung, während der Lager-Leitfaden Fristen auf Artikelebene behandelt. Nutzen Sie diese spezifischen Prüfungen, bevor Sie entscheiden, ob sich das Warten oder das Kombinieren lohnt."
+    ]
+  },
+  "superbuy-spreadsheet-fields-product-record": {
+    "heading": "Prüfen Sie eine Beispielzeile und führen Sie ein nützliches Änderungsprotokoll",
+    "paragraphs": [
+      "Verwenden Sie eine fiktive Zeile, um die Struktur zu überprüfen: Produkttyp Kapuzenpullover; Quellen-URL gespeichert; Option Navy, Größe L; Kaufeinheit ein Kleidungsstück; Preisquelle ausgewählte Option Betrag; Preis überprüft Datum aufgezeichnet; Größennachweis Verkäufer Diagramm; fehlende Nachweis flache Brustmaß; nächste Aktion Anfrage Klärung. Der Zweck ist nicht, dieses imaginäre Produkt zu empfehlen. Es soll zeigen, warum ein attraktives Image und ein einheitlicher Preis wichtige Entscheidungen ungelöst lassen. Lassen Sie ein unbekanntes Feld sichtbar unbekannt, anstatt es mit einer Vermutung von einer ähnlichen Produktseite zu füllen.",
+      "Wenn sich das Ziel oder die Option ändert, speichern Sie den vorherigen Datensatz und notieren Sie die geänderten Felder. Ein Seitenbearbeitungsdatum, eine erfolgreiche Linkprüfung und ein vollständiger Titel-Bild-Option-Vergleich können unterschiedliche Ereignisse sein. Melden Sie nur die tatsächlich durchgeführte Prüfung. Wenn zwei Zeilen dieselbe zugrunde liegende Produktkennung mit unterschiedlichen Verweisparametern verwenden, überprüfen Sie, ob es sich um Duplikate handelt. Wenn sich die Optionen wesentlich unterscheiden, behalten Sie diese Unterscheidung bei. Der Leitfaden zur Fehlerbehebung bei Links erklärt, wie Sie ein veraltetes Ziel untersuchen können, ohne ein nicht verwandtes Produkt stillschweigend zu ersetzen."
+    ]
+  }
+}

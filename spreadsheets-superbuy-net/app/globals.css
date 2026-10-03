@@ -67,3 +67,15 @@
   .priority-guide-links{grid-template-columns:1fr;margin-top:16px}
   .priority-guide-links>a{min-height:0;padding:12px;font-size:11px}
 }
+
+.article-toc { display: grid; gap: .65rem; padding: 1.5rem; margin: 2rem 0; background: #f3f5ed; border-radius: 12px; }
+.article-toc a { color: inherit; text-decoration: underline; text-underline-offset: .2em; line-height: 1.55; }
+.article-body section[id] { scroll-margin-top: 7rem; }
+@media (max-width: 600px) {
+  .article-grid { grid-template-columns: 1fr; gap: 20px; }
+  .article-grid > a { padding: 16px; }
+  .article-grid > a > span, .article-grid strong { font-size: 12px; }
+  .article-grid h3 { font-size: 21px; line-height: 1.25; }
+  .article-grid p { font-size: 14px; line-height: 1.55; }
+  .article-art { height: 120px; }
+}

@@ -1,0 +1,392 @@
+{
+  "superbuy-shoes-spreadsheet-sizing-qc": {
+    "title": "Tableau de chaussures Superbuy : sélection, tailles et QC",
+    "category": "Chaussures et tailles",
+    "excerpt": "Utilisez une feuille de calcul de chaussures Superbuy pour comparer les pages de produits exactes, les preuves de taille, les photos de paires et les emballages avant de créer une liste de produits candidats.",
+    "read": "9 min de lecture",
+    "intro": "Une feuille de calcul Superbuy chaussures est très utile lorsqu'elle vous aide à comparer les mêmes faits sur différentes pages de produits. Une photo et un prix de référence bas ne suffisent pas pour choisir une taille, identifier une option ou juger l’article qui arrive à l’entrepôt. Ce guide présente un enregistrement pratique des détails de la chaussure: page produit source, variante sélectionnée, preuve de taille, date de l'image et vérifications non résolues. Il explique comment passer d'une entrée de catégorie à une petite liste de candidats produits bien documentés sans traiter une feuille de calcul comme une garantie de stock ou un service d'authentification de produit.",
+    "sections": [
+      {
+        "heading": "Commencer par le type de chaussure recherché",
+        "paragraphs": [
+          "Choisissez l'utilisation prévue avant d'entrer une marque ou un nom de modèle. Une chaussure basse décontractée, une botte isolée et une chaussure de sport nécessitent des informations différentes. L'apparence peut être votre point de départ, mais elle n'établit pas l'amorti, l'adhérence, la résistance aux intempéries ou l'aptitude au sport. Gardez ces revendications séparées des détails que la page du produit documente réellement. Cette distinction est particulièrement importante lorsqu’un titre de produit attrayant décrit des performances que les photographies ne peuvent pas démontrer. Un guide de découverte devrait vous aider à identifier les informations manquantes, et non à combler ces lacunes avec des suppositions sûres.",
+          "Utilisez la catégorie Chaussures pour établir un groupe gérable, puis enregistrez trois candidats plutôt que de collecter des dizaines de liens sans rapport. La première ligne peut contenir le type de produit, l'utilisation prévue et une raison de le conserver. Par exemple, une exigence hypothétique pour une chaussure de tous les jours pourrait spécifier une tige unie, une semelle amovible si documentée et un tableau des tailles en centimètres. Il s'agit d'un exemple de recherche, pas une recommandation d'un vendeur particulier. Rejeter un candidat inadapté tôt permet de gagner plus de temps que de comparer les prix de chaussures qui n’ont jamais répondu à vos besoins."
+        ]
+      },
+      {
+        "heading": "Conserver la source et la variante choisie",
+        "paragraphs": [
+          "Une page produit peut contenir plusieurs couleurs, tailles et versions sous une même URL. Sauvegardez la destination complète et enregistrez l'option exacte que vous avez l'intention d'acheter. Comparez la première image, l'image d'option et l'étiquette écrite d'option. Une carte représentant une chaussure blanche peut toujours ouvrir une page de produit dont la sélection par défaut est une autre couleur ou une version différente. La ligne de la feuille de calcul doit décrire la sélection que vous avez cochée, plutôt que d'impliquer que chaque option de la page a été examinée. Si aucune option n'est sélectionnée, étiquetez la ligne en conséquence.",
+          "L'enregistrement source a également besoin de la date de votre vérification. Une ancienne capture d'écran peut rester utile comme preuve de ce que vous avez vu, mais elle ne peut pas confirmer la disponibilité actuelle. Ouvrez à nouveau la destination lorsque vous êtes prêt à commander et comparez ses options actuelles avec votre ligne enregistrée. Si la page du produit a été modifiée de manière substantielle, créez une nouvelle version de l'enregistrement. Ne remplacez pas silencieusement la destination par un objet semblable : un nouveau vendeur ou un nouvel identifiant de produit nécessite une nouvelle évaluation, même si la photo d’aperçu semble identique."
+        ]
+      },
+      {
+        "heading": "Comparer les mesures sans inventer de conversion",
+        "paragraphs": [
+          "Commencez par le graphique du vendeur pour la page de produit spécifique. Les étiquettes européennes, britanniques et américaines ne fournissent pas une conversion universelle entre les vendeurs ou les modèles. Notez ce que chaque mesure signifie: longueur du pied, longueur de la semelle intérieure et longueur de la semelle extérieure décrivent des choses différentes. Un graphique avec un nombre mais aucune méthode de mesure a besoin d'être clarifié. Mesurez vos propres pieds en utilisant une méthode cohérente et considérez les deux pieds. Si vous comparez avec une chaussure que vous possédez déjà, notez les dimensions internes ou externes que vous avez mesurées plutôt que de traiter chaque longueur comme interchangeable.",
+          "Supposons qu'une ligne fictive indique une semelle intérieure de 27 cm et une autre une longueur de pied recommandée de 27 cm. Ce ne sont pas des allégations de taille équivalente, et le nombre correspondant n'est pas une raison de choisir la même taille. Marquez le type de mesure dans un champ séparé, à côté de l'unité et de la source. La largeur, la forme des orteils, la doublure et l’ajustement de la tige peuvent également avoir une importance, mais une photographie ne peut pas prouver le confort. Évitez d'ajouter une allocation supplémentaire standard pour chaque chaussure. Utilisez les conseils documentés spécifiques au modèle ou posez une question précise avant de commander."
+        ]
+      },
+      {
+        "heading": "Distinguer les photos du vendeur et celles de l’entrepôt",
+        "paragraphs": [
+          "Les photographies de l'annonce décrivent le produit offert. Les photographies d'entrepôt montrent l'article reçu pour une commande particulière. Aucune ne devrait être présentée comme l'autre. Les directives de Superbuy pour les agents d'achat décrivent l'inspection après l'arrivée et une occasion de revoir les articles entreposés avant l'expédition internationale. Gardez cet ordre des événements clair dans votre feuille de calcul. Une ligne de découverte peut identifier les vues dont vous aurez besoin plus tard, mais elle ne doit pas porter une étiquette telle que approuvée par l'entrepôt lorsqu'il n'existe aucune preuve d'article reçu. De même, les photos d'une autre personne ne prouvent pas que votre future paire correspondra.",
+          "Pour les chaussures, les vues utiles peuvent inclure les deux profils latéraux, les orteils ensemble, les talons ensemble, les semelles et les étiquettes de taille lisibles. Le service photo exact et tout supplément supplémentaire doivent être vérifiés dans l'interface de commande en cours. Enregistrez les vues disponibles et celles qui restent manquantes. Une demande comme photographier les deux étiquettes de taille clairement est plus actionnable que de tout vérifier. Si une mesure est essentielle, nommer la dimension et expliquer où la règle devrait commencer et se terminer, plutôt que de demander à l'entrepôt de deviner votre préoccupation de dimensionnement."
+        ]
+      },
+      {
+        "heading": "Examiner les deux chaussures ensemble",
+        "paragraphs": [
+          "Passez en revue les chaussures gauche et droite ensemble. Recherchez un décalage visible dans la famille de couleurs, l'arrangement des panneaux, la construction de la semelle, les étiquettes ou les accessoires inclus. Comparez les caractéristiques répétées sous plusieurs angles avant de conclure qu'une différence est réelle. La distance de la caméra, la rotation et les ombres peuvent faire apparaître une chaussure plus grande ou plus sombre. Une image unique inclinée mérite donc une conclusion plus étroite qu'une incohérence claire de l'étiquette. Enregistrez l'observation elle-même et la vue qui la soutient; cela rend le suivi plus facile qu'une note générale disant que la paire semble mauvaise.",
+          "Un simple dossier de décision peut utiliser trois résultats : suffisamment de preuves visibles pour continuer, un détail spécifique encore nécessaire ou un écart confirmé nécessitant un soutien. Ce sont des labels de travail éditoriaux, pas des statuts Superbuy officiels. Ils empêchent qu'un champ de contrôle de qualité vide ne soit confondu avec une approbation. Les photos peuvent révéler l'état visible et certaines dimensions, mais elles n'établissent pas l'authenticité, la chimie des matériaux, la durabilité à long terme ou la sensation d'une chaussure sur votre pied. Gardez ces limitations à côté du résultat de l’inspection, surtout si vous partagez ultérieurement la feuille de calcul avec quelqu’un d’autre."
+        ]
+      },
+      {
+        "heading": "Comparer les prix à conditions égales",
+        "paragraphs": [
+          "Vérifiez que la quantité affichée s'applique à la même taille, version et quantité pour chaque candidat. Un prix de départ peut appartenir à l'option la moins chère plutôt qu'à votre paire prévue. Enregistrez la devise et la date de vérification, et séparez le montant de l'article de la livraison nationale, des services optionnels et de l'expédition internationale. Si vous affichez une conversion approximative en USD, identifiez-la comme un chiffre de planification et conservez le montant source. Le paiement final peut utiliser une base de conversion différente, donc une étiquette de dollar arrondi n'est pas une promesse sur le total de la caisse.",
+          "À titre de comparaison, le candidat A peut apparaître moins cher jusqu'à ce que l'option choisie change de prix, tandis que le candidat B peut inclure un ensemble d'accessoires différent. Comparez à nouveau les options sélectionnées avant d'appeler l'une des meilleures valeurs. N'attribuez pas un coût d'expédition fixe à chaque rangée de chaussures à moins qu'il ne provienne d'un devis clairement identifié et actuel pour ce scénario de colis exact. Le poids d'une paire ne détermine pas les dimensions finales de l'emballage ou les options de livraison disponibles. Gardez les frais incertains visibles au lieu de les cacher dans un total tout compris trompeur."
+        ]
+      },
+      {
+        "heading": "Noter les choix d’emballage avant l’expédition",
+        "paragraphs": [
+          "Une boîte à chaussures peut être utile pour la protection, la présentation ou le rangement, mais elle peut aussi occuper de l’espace. Enregistrez si vous en avez besoin et pourquoi. Le retirer n’est pas automatiquement le meilleur choix : les détails fragiles, les exigences du cadeau et le mode d’emballage choisi peuvent changer la décision. Demandez les options d'emballage actuelles seulement après que vous connaissiez l'article et vos priorités. Évitez de considérer une réduction estimée du volume comme une réduction garantie du fret. Les règles de facturation de la ligne sélectionnée et les mesures finales du colis déterminent si le changement affecte les frais.",
+          "Gardez l'acceptation du produit séparée de la préparation à l'expédition. Une paire peut correspondre à l'option commandée alors qu'une ligne de livraison reste indisponible pour sa catégorie, sa destination ou ses dimensions de colis. Enregistrez-les comme des vérifications différentes. Lorsque vous combinez des chaussures avec des vêtements ou des accessoires, comparez le colis complet plutôt que d’additionner des hypothèses isolées. Votre tableur peut stocker le scénario et sa date, mais l'interface de parcelle est la source de l'admissibilité actuelle. Cela empêche une liste de produits candidats utile de se transformer en une recommandation d'expédition non prise en charge."
+        ]
+      },
+      {
+        "heading": "Conserver une sélection facile à revérifier",
+        "paragraphs": [
+          "Avant de passer commande, chaque ligne retenue doit indiquer une destination exacte, une option sélectionnée, les preuves de taille pertinentes et les questions non résolues. Avant l'expédition internationale, ajouter les observations sur l'article reçu et une décision distincte sur le colis. Préservez les dossiers antérieurs lorsque des détails importants changent afin de comprendre pourquoi le choix a été fait. Une feuille de calcul n’a pas besoin d’un grand nombre de produits pour être utile ; elle a besoin de lignes dont la signification reste claire lorsque vous revenez une semaine plus tard ou comparez un deuxième candidat.",
+          "Utilisez le guide des champs de tableur pour la structure de l'enregistrement, la liste de contrôle de la qualité pour l'inspection des articles reçus et le guide du calculateur d'expédition lorsque vous avez un scénario de colis défini. Retourner au répertoire de la catégorie lorsqu'un candidat échoue à un contrôle. Il n'est pas nécessaire de sauver une ligne simplement parce qu'elle a été sauvegardée en premier. L'objectif est un petit ensemble d'options actuelles comparables, avec les inconnues honnêtement marquées et la prochaine action claire. C'est une base plus solide pour un achat qu'une longue liste de meilleures trouvailles non qualifiées."
+        ]
+      }
+    ]
+  },
+  "superbuy-hoodie-finds-measurements-qc": {
+    "title": "Sweats Superbuy : mesures, matières et contrôle QC",
+    "category": "Recherche de vêtements",
+    "excerpt": "Comparez les hoodies Superbuy en utilisant les mesures des vêtements, les options exactes, les preuves de tissu et les contrôles ciblés de l'entrepôt.",
+    "read": "9 min de lecture",
+    "intro": "Les sélections de sweats Superbuy sont plus faciles à comparer lorsque chaque rangée utilise le même langage de mesure. Les étiquettes telles que surdimensionné, poids lourd et taille normale peuvent signifier des choses différentes selon les vendeurs. Un tableur de hoodie utile sépare le produit sélectionné, les mesures fournies, les revendications de tissu du vendeur et ce qui peut être observé dans les photographies. Ce guide explique comment établir ce dossier, le comparer à un vêtement que vous possédez et préparer des demandes de contrôle qualité ciblées. Il ne classe pas les produits non testés et ne transforme pas une image attrayante en une allégation sur le confort, la composition ou la durabilité.",
+    "sections": [
+      {
+        "heading": "Définir la coupe recherchée",
+        "paragraphs": [
+          "Commencez par un sweat à capuche que vous portez déjà et identifiez ce que vous voulez garder ou changer. Vous pourriez vouloir plus de longueur du corps, une poitrine plus large ou moins de volume de manches. Écrivez ces préférences comme des observations, pas comme une recommandation de taille universelle. Une même taille de lettre peut décrire des vêtements très différents, et deux coupes surdimensionnées peuvent placer la couture d'épaule différemment. Une brève description de la coupe que vous souhaitez vous empêche de choisir uniquement sur une photo de modèle dont les mensurations, la pose ou le style peuvent être inconnus.",
+          "Pour une description hypothétique d’un ajustement détendu, notez le vêtement de référence et la façon dont il a été mesuré. Étendez-le à plat sans étirer, utilisez des points cohérents et notez si le tissu est tiré lisse ou laissé détendu. Une mesure de vêtement n'est pas une mesure de corps. La largeur de la poitrine mesurée sur un sweat à capuche plat est également différente d'une circonférence de poitrine complète. Gardez la méthode à côté du nombre afin de pouvoir répéter la comparaison plus tard. Si une autre personne vous aide, demandez-lui d’utiliser les mêmes points plutôt que de simplement fournir une nouvelle étiquette de taille."
+        ]
+      },
+      {
+        "heading": "Confirmer la variante exacte du sweat",
+        "paragraphs": [
+          "Ouvrez la destination actuelle et faites correspondre son image principale, son titre et les options sélectionnables avec la carte de feuille de calcul. Certaines pages combinent des pulls, des sweats à capuche, des ensembles ou plusieurs modèles. Indiquez si le prix se réfère au sweat à capuche seul ou à une autre sélection. Une photographie d'une tenue complète ne signifie pas nécessairement que chaque pièce est incluse. Des couleurs avec des noms traduits similaires peuvent également correspondre à des images différentes. Enregistrez l'image de l'option et l'étiquette écrite ensemble lorsque la couleur ou le placement graphique est important pour votre décision.",
+          "La carte de ce site Stone Island Hoodie est une référence de découverte, pas la preuve d’un essai personnel du vêtement. Le montant en USD affiché est une estimation datée, et la destination en direct reste la source des options et de la disponibilité actuelles. Appliquez les mêmes vérifications à cette carte que sur toute autre page de produit. Une marque familière ne résout pas les mesures manquantes ni ne confirme une allégation matérielle. Si le produit lié change, notez la différence plutôt que de continuer à décrire l'ancienne image comme un exemple vérifié actuel."
+        ]
+      },
+      {
+        "heading": "Lire chaque mesure du tableau des tailles",
+        "paragraphs": [
+          "Les champs utiles comprennent la largeur de la poitrine, la longueur du corps, la largeur des épaules et la longueur des manches, avec les unités indiquées par le vendeur. Notez où commence la longueur du corps, car les mesures à partir d'un point d'épaule peuvent différer de celles prises à partir du centre du dos. La longueur des manches peut commencer à la couture de l'épaule ou inclure une partie de l'épaule. Les modèles raglan et à épaules tombantes rendent les comparaisons directes particulièrement difficiles. Si un graphique n’explique pas ses points de mesure, signalez cette incertitude et demandez des éclaircissements avant de traiter une petite différence numérique comme décisive.",
+          "Considérez une comparaison illustrative: votre sweat à capuche de référence mesure 60 cm sur la poitrine à plat, alors qu'une page de produit indique une poitrine de 120 cm. Ces derniers peuvent décrire la même dimension large si le vendeur veut dire la circonférence, mais cela doit être confirmé. Une autre page de produit peut également indiquer 60 cm tout en mesurant un point différent. Ne convertissez pas automatiquement les chiffres pour présenter ensuite le résultat comme vérifié. Gardez une colonne pour la largeur ou la circonférence plate et une autre pour la source. L’objectif est de comparer des données semblables, et non de créer une apparente précision à partir de données ambiguës."
+        ]
+      },
+      {
+        "heading": "Distinguer les déclarations sur le tissu et les preuves",
+        "paragraphs": [
+          "Séparation de la composition en fibres, du poids du tissu et du poids du vêtement. Une étiquette de composition décrit les fibres; une allégation de grammes par mètre carré décrit le tissu; un poids d'entrepôt décrit l'article tel qu'il est pesé et peut inclure l'emballage. Aucun ne peut se substituer aux autres en toute sécurité. Un colis lourd ne prouve pas un tissu lourd, et un gros plan ne peut pas établir un mélange précis de fibres. Écrivez les déclarations du vendeur à côté des revendications qui proviennent uniquement de la page du produit et évitez de remplacer les preuves manquantes par une hypothèse non vérifiée basée sur l'apparence du vêtement.",
+          "Les photographies peuvent encore soutenir des observations plus étroites: polaire visible à l'intérieur, un poignet côtelé, une couche de doublure ou un agencement de coutures particulier. Demandez l’étiquette d’entretien ou de composition quand cela compte, tout en vous rappelant qu’une étiquette photographiée n’est toujours pas un test de laboratoire. Ne promettez pas de chaleur, de respirabilité, de solidité des couleurs ou de rétrécissement sans preuve appropriée. Pour une liste de produits candidats, il est raisonnable de préférer une documentation plus claire à des superlatifs vagues. Il est également raisonnable de laisser un champ inconnu et de décider que l'incertitude restante est trop importante pour procéder."
+        ]
+      },
+      {
+        "heading": "Demander des photos QC adaptées au risque de taille",
+        "paragraphs": [
+          "Une fois que l'article arrive à l'entrepôt, comparez le vêtement reçu avec la page du produit enregistrée et l'option sélectionnée. Confirmez d'abord le type de vêtement, la famille de couleurs, le design et l'étiquette de taille. Ensuite, identifiez la mesure qui pourrait changer votre décision. Si la longueur du corps est votre principale préoccupation, une photo claire à des points spécifiques est plus utile qu'une autre vue de face générale. Superbuy décrit l'inspection de l'entrepôt dans son processus d'achat-agent, mais le service de photo supplémentaire disponible et tout frais doivent être vérifiés dans l'interface de commande en cours.",
+          "Écrivez une demande qui nomme l'action et la méthode, comme mettre le sweat à capuche à plat sans étirer et montrer la largeur de la poitrine d'aisselle à aisselle. Évitez de demander au personnel si le vêtement vous ira : ils ne connaissent pas votre vêtement de référence ni vos préférences en matière de confort. Pour une coupe à épaules tombantes, un nombre de manches à lui seul peut ne pas résoudre la portée, alors demandez comment elle a été mesurée. Enregistrez l'image et l'observation résultantes ensemble. Si la méthode de mesure diffère de celle utilisée dans le tableau de la page produit, ne présentez pas la comparaison comme exacte."
+        ]
+      },
+      {
+        "heading": "Examiner la confection dans les limites des photos",
+        "paragraphs": [
+          "Examinez le devant, le dos et les gros plans pertinents pour les taches visibles, les trous, les coutures inégales, les cordons de serrage manquants ou un graphique incorrect. Sur un sweat à capuche zippé, vérifiez si les images montrent le style de zip prévu et les composants inclus. Une photographie fixe ne peut pas prouver qu'une fixation fonctionne bien après une utilisation répétée. Utilisez un langage précis tel qu'aucun dommage évident visible dans les vues fournies. Cette méthode est plus utile qu’une étiquette générale approuvée par la qualité, car elle indique au lecteur ce qui a été vérifié et ce qui reste hors de la preuve.",
+          "L’éclairage et les plis peuvent créer des différences apparentes. Une manche peut paraître plus courte parce qu'elle est pliée; un ourlet inégal peut refléter la façon dont le vêtement a été posé. Comparez plusieurs images avant de traiter une empreinte comme un défaut confirmé. Lorsqu'une zone critique est masquée, demandez une vue ciblée. Gardez un problème visible séparé d'une préoccupation non testée concernant la durabilité future. Si une mauvaise option ou un défaut évident est confirmé, utilisez le processus après-vente actuel rapidement plutôt que d'attendre que le vêtement ait été inclus dans un colis international."
+        ]
+      },
+      {
+        "heading": "Comparer le prix et les besoins d’emballage",
+        "paragraphs": [
+          "Pour chaque candidat, inscrivez le montant de l'option sélectionnée, la quantité, la devise source et la date de vérification. Gardez les frais de port intérieurs et les services optionnels séparés. Un prix affiché pour la plus petite taille ou un design différent ne peut pas soutenir une comparaison équitable avec votre variante prévue. L'estimation en USD affichée sur une page de découverte vous aide à naviguer, mais ce n'est pas le prix final. Évitez d'écrire sous un budget fixe à moins d'expliquer exactement quels coûts sont inclus et quand le montant de la source a été vérifié.",
+          "Un sweat à capuche peut être volumineux sans être particulièrement lourd. Les choix d'emballage peuvent modifier le volume du colis, et un colis à plusieurs articles doit être évalué dans son ensemble. La compression est une décision d'emballage, pas une recommandation automatique pour chaque vêtement ou décoration. Demandez-vous si un produit convient lorsqu'il comporte des détails délicats, des pièces structurées ou des exigences de présentation. Gardez la décision d'achat et la décision de colis dans différents champs. Cela empêche un prix bas d'article de masquer une contrainte de transport non résolue et rend les comparaisons de coûts ultérieures plus faciles à expliquer."
+        ]
+      },
+      {
+        "heading": "Tenir une fiche de vêtement réutilisable",
+        "paragraphs": [
+          "Une fiche de sweat bien renseignée contient la page de produit exacte, l'option sélectionnée, la méthode de mesure, les dimensions pertinentes, la source de preuve de tissu, la date de prix et la demande de contrôle de qualité restante. Comparez deux ou trois candidats en utilisant ces champs avant de vous décider. Si les renseignements sont incomplets, indiquez explicitement l'écart. Ne copiez pas une réponse d'un article semblable: le vendeur, la construction et le tableau de mesures peuvent différer. Un compte rendu court et honnête est plus facile à tenir qu'un tableau détaillé rempli d'hypothèses que personne ne peut remonter à une source.",
+          "Après avoir reçu le vêtement, vous pouvez ajouter vos propres résultats de mesure et des observations personnelles clairement étiquetées. Gardez-les spécifiques à cet article et à cette date au lieu de transformer une expérience en une affirmation concernant toutes les commandes futures. Utilisez le guide des champs de tableur pour organiser l'enregistrement et l'article de contrôle qualité pour la séquence d'inspection. Pour les autres vêtements, modifiez les champs de mesure pour les adapter au produit. La méthode reste la même : définir le besoin, vérifier l’option, comparer les données probantes et garder l’incertitude visible jusqu’à ce qu’elle soit résolue."
+        ]
+      }
+    ]
+  },
+  "superbuy-spreadsheet-links-not-working": {
+    "title": "Liens du tableau Superbuy en panne : vérifications et solutions",
+    "category": "Dépannage des liens",
+    "excerpt": "Diagnostiquer les liens de tableur Superbuy qui échouent, redirigent ou ouvrent la mauvaise option, et garder un registre clair de tout remplacement.",
+    "read": "9 min de lecture",
+    "intro": "Un lien de tableur Superbuy peut échouer de plusieurs façons différentes. Il se peut qu'il ne s'ouvre pas, qu'il redirige vers une page générale ou qu'il se charge correctement tout en affichant un produit différent de celui de la ligne. Ces problèmes nécessitent des vérifications différentes. Ce guide explique une séquence pratique de dépannage pour les lecteurs et les éditeurs : préserver les preuves originales, identifier l’échec, comparer la destination finale et documenter toute correction. Un chargement de page réussi n'est que la première vérification. La destination doit toujours correspondre au produit et à l'option sélectionnée que vous avez l'intention de rechercher.",
+    "sections": [
+      {
+        "heading": "Conserver la ligne originale",
+        "paragraphs": [
+          "Copiez l'URL d'origine et enregistrez le titre de la ligne, l'image d'aperçu, l'option sélectionnée si connue et la date à laquelle le problème est apparu. Évitez de remplacer immédiatement le lien par le premier résultat similaire. Sans l'enregistrement d'origine, il devient difficile de distinguer une URL cassée d'une page de produit modifiée. Si vous gérez une feuille de calcul publique, conservez une note de correction privée contenant l'ancienne destination et la raison du changement. La ligne publique peut afficher un statut concis sans exposer les informations personnelles de commande ou les détails de navigation non liés.",
+          "Enregistrez ce qui s’est réellement passé en langage ordinaire : page non chargée, connexion demandée, page de catégorie ouverte, produit indisponible ou image ne correspondant plus. Ces étiquettes décrivent des observations, pas des causes prouvées. Un message du navigateur à lui seul peut ne pas identifier si le problème réside dans la destination, un problème de connexion temporaire ou la façon dont le lien a été copié. En gardant l’observation étroite, un éditeur n’a pas à annoncer qu’un vendeur a supprimé un produit lorsque la seule preuve est une seule visite infructueuse depuis un appareil."
+        ]
+      },
+      {
+        "heading": "Vérifier que l’URL est complète",
+        "paragraphs": [
+          "Recherchez les espaces accidentels, les sauts de ligne, les caractères manquants et la ponctuation attachée à la fin du lien. Une URL copiée à partir d'une phrase peut inclure un point ou une parenthèse de fin qui n'a jamais fait partie de la destination. Inversement, une cellule de tableur peut afficher une étiquette raccourcie tout en stockant un lien complet différent en dessous. Comparez la cible du lien hypertexte réel avec le texte visible. Ne reconstruisez pas un identifiant de produit à partir de la mémoire, et ne supposez pas que deux adresses sont équivalentes simplement parce que leurs premiers caractères sont similaires.",
+          "Certains paramètres décrivent le produit ou la variante sélectionnée, tandis que d'autres décrivent une campagne de parrainage. La suppression de chaque paramètre peut donc casser une destination de travail ou modifier l'élément sélectionné. Enregistrez l'original avant de tester une version nettoyée, et ne modifiez qu'un composant dont vous comprenez le but. Si l'URL inclut un jeton de connexion temporaire ou une autre valeur sensible, ne la publiez pas en tant que lien de remplacement. Obtenez une adresse de produit normalement partageable via l'interface prise en charge par la plateforme. La maintenance des liens doit préserver l'identité sans diffuser d'informations spécifiques à la session."
+        ]
+      },
+      {
+        "heading": "Distinguer accès bloqué et produit indisponible",
+        "paragraphs": [
+          "Une demande de connexion n'établit pas que le produit a été supprimé. Une erreur temporaire ne prouve pas non plus une défaillance permanente. Vérifiez à nouveau à travers l'interface de destination normale et notez si le même produit peut être atteint en utilisant son identifiant connu ou une référence enregistrée existante. Respecter les éventuelles exigences d’accès indiquées par le service. Ne décrivez pas une restriction comme quelque chose que les lecteurs devraient contourner. Si la page du produit reste inaccessible, marquez son état actuel comme non confirmé et évitez de présenter la ligne comme une option d'achat nouvellement vérifiée.",
+          "Si la page indique explicitement que le produit est indisponible, notez ce libellé et la date dans vos propres notes. L'état indisponible peut concerner la totalité de la page produit ou seulement une option particulière. Une taille ou une couleur peut être épuisée tandis que d'autres variantes restent sélectionnables. Gardez ces situations séparées. Lorsque vous ne pouvez pas déterminer la portée, dites que la disponibilité de l'option n'est pas confirmée plutôt que de traiter toutes les variantes comme disponibles ou non disponibles. Le dossier devrait communiquer les preuves dont vous disposez, y compris ses limites, au lieu de créer un statut plus simple mais inexact."
+        ]
+      },
+      {
+        "heading": "Vérifier la destination après redirection",
+        "paragraphs": [
+          "Un lien qui ouvre une page d'accueil, une page de recherche ou une collection de catégories n'a pas passé une vérification de produit exact. La destination peut encore être utile pour la découverte, mais son rôle a changé. Comparez l'identifiant du produit final, le titre et la structure d'option avec la référence enregistrée. Une image de marque, une couleur ou une photographie similaire ne suffit pas à établir une identité. Pour un index public, la réponse correcte consiste à étiqueter ou à réparer la ligne, et non à laisser une revendication de page de produit exacte en place, car le visiteur peut éventuellement rechercher quelque chose de similaire.",
+          "Considérons une ligne hypothétique de sweat à capuche qui ouvre maintenant une catégorie de vêtements. L'URL renvoie toujours une page, mais la destination d'achat d'origine est manquante. Un éditeur devrait conserver l'ancien enregistrement, marquer la page de produit exacte comme non résolue et enquêter séparément sur un remplacement. Si un remplacement est trouvé, identifiez-le comme un nouveau candidat jusqu'à ce que son produit et ses options aient été vérifiés. Cela rend le changement compréhensible pour les lecteurs qui ont sauvegardé la ligne précédente et empêche une substitution silencieuse d'être confondue avec la continuité du même élément."
+        ]
+      },
+      {
+        "heading": "Comparer le titre, l’image et la variante",
+        "paragraphs": [
+          "Après le chargement d’une page produit, comparez trois éléments : la description écrite, l’image principale ou optionnelle et la sélection disponible. Une page peut conserver un ancien titre tout en changeant ses photos, ou montrer une large collection dont l’option la moins chère est un accessoire. Vérifiez si le montant sélectionné permet d'acheter l'article complet, une pièce d'un ensemble, un complément ou un dépôt. Si la ligne ne peut pas expliquer l'unité d'achat, elle n'est pas prête à faire une comparaison de prix précise. Marquez l’ambiguïté et demandez des éclaircissements.",
+          "C'est aussi pourquoi une image familière ne devrait pas être traitée comme un identifiant unique. Les vendeurs peuvent réutiliser des images dans différentes options, et un éditeur peut avoir enregistré un aperçu qui ne représente plus le choix par défaut. Enregistrez l'étiquette de l'option à côté de l'image que vous avez cochée. Si le conflit reste non résolu, supprimez tout libellé vérifié de cette ligne tout en conservant son historique. Une étiquette d'incertitude claire protège mieux l'utilité de l'ensemble de l'index qu'une déclaration confiante qui exige que le lecteur découvre seul l'incohérence."
+        ]
+      },
+      {
+        "heading": "Documenter toute nouvelle vérification",
+        "paragraphs": [
+          "Recherchez un produit de remplacement en utilisant des détails concrets sur le produit et le contexte de la source connue, puis vérifiez-le de manière indépendante. Comparez l'utilisation prévue, les dimensions ou les informations de taille, les composants et l'option sélectionnée. Ne prétendez pas qu'un nouveau vendeur offre la même qualité ou qu'un article visuellement similaire est la version identique. Un remplacement peut être utile sans être décrit comme équivalent. Conservez la raison pour laquelle il a été sélectionné et les différences que vous avez pu observer. Si les preuves sont insuffisantes, laissez l'ancienne ligne inactive plutôt que de fabriquer une allumette.",
+          "Pour un éditeur, un petit journal de modification peut contenir l'ancienne destination, la nouvelle destination, la date de vérification, les champs modifiés et l'incertitude restante. Ceci est un enregistrement éditorial, pas une fonctionnalité officielle de Superbuy. Mettez à jour le titre, l'image et le prix de référence ensemble lorsque le remplacement les modifie. Réparer uniquement l'URL peut laisser une carte apparemment fonctionnelle avec des détails trompeurs. Les lecteurs devraient être en mesure de savoir si une correction a rétabli la destination originale ou introduit un nouveau candidat nécessitant une nouvelle décision d'achat."
+        ]
+      },
+      {
+        "heading": "Éviter les doublons et les dates trompeuses",
+        "paragraphs": [
+          "Deux lignes peuvent pointer vers la même page de produit avec des paramètres de référence différents. Comparez l'identité sous-jacente du produit avant de les appeler des découvertes distinctes. En même temps, deux options sous une page de produit peuvent mériter des enregistrements séparés si leurs dimensions, leur contenu ou leurs prix diffèrent sensiblement. Décidez quelle unité votre feuille de calcul représente et utilisez cette règle de manière cohérente. Un contrôle de doublons basé uniquement sur des titres identiques peut manquer des destinations équivalentes et peut également fusionner des produits véritablement différents dont les noms traduits se ressemblent.",
+          "Utilisez une date de dernière vérification uniquement pour les vérifications qui ont été réellement effectuées. La mise à jour de la date de publication d'une page ne signifie pas que tous les liens de produits ont été rouverts. Distinguez la page éditée, la destination accessible et la correspondance d'option de produit vérifiée si ces événements se sont produits à des moments différents. Sur un petit index, les notes datées claires sont plus utiles qu'un badge de mise à jour quotidienne non pris en charge. La date indique aux lecteurs quand vérifier à nouveau; elle ne garantit pas que la destination restera inchangée après la visite de l'éditeur."
+        ]
+      },
+      {
+        "heading": "Définir la prochaine action utile",
+        "paragraphs": [
+          "Une ligne réparée devrait conduire à une étape suivante claire : ouvrir la destination vérifiée, comparer un candidat nouvellement identifié ou retourner à la catégorie pertinente car l'original n'est pas disponible. Testez la carte visible après l'édition, pas seulement le texte stocké dans le fichier source. Vérifiez que le lien, l’aperçu et la description de l’option correspondent sur la page publiée. Si vous maintenez des versions linguistiques, appliquez la même correction à chacune d'entre elles afin que le changement de langue ne restaure pas une destination obsolète ou une description de produit antérieure.",
+          "Les lecteurs peuvent utiliser la même séquence sur une liste personnelle de candidats produits: préserver, classer, vérifier, comparer et enregistrer. Gardez les questions spécifiques à la commande dans le processus d'assistance pris en charge par la plateforme, en particulier lorsqu'un article a déjà été acheté. Ce guide indépendant ne peut pas restaurer la page produit d'un vendeur ou confirmer le stock. Son but est de rendre la prochaine décision plus claire et de réduire les clics sur le mauvais produit. Une ligne inactive transparente est préférable à un lien fonctionnel dont personne n'a vérifié l'identité."
+        ]
+      }
+    ]
+  },
+  "superbuy-shipping-calculator-estimate-final-cost": {
+    "title": "Calculateur de livraison Superbuy : estimation et coût final",
+    "category": "Estimation des frais",
+    "excerpt": "Utilisez le calculateur d'expédition Superbuy avec des entrées de colis claires et comparez les estimations, les dépôts et les frais finaux sans supposer des taux fixes.",
+    "read": "9 min de lecture",
+    "intro": "Le calculateur d'expédition Superbuy est un outil de planification pour un scénario de colis défini. Son utilité dépend de la destination, du poids, des dimensions et des informations saisies sur l'article. Un résultat d'un scénario incomplet ne devrait pas être traité comme le coût final d'une commande future. Ce guide explique comment enregistrer les données, comparer les emballages alternatifs et comprendre la différence entre une estimation, un dépôt d’expédition et un montant final. Les exemples numériques ci-dessous sont délibérément hypothétiques : ils démontrent une méthode et ne sont pas des prix Superbuy actuels, des règles de transporteurs ou des cotations.",
+    "sections": [
+      {
+        "heading": "Définir le colis avant de comparer les prix",
+        "paragraphs": [
+          "Commencez par la destination et les articles que vous prévoyez d'envoyer. Énumérez chaque article, sa quantité, sa catégorie pertinente et toute incertitude quant à sa taille ou à son poids. Gardez un colis proposé séparé d'un colis d'entrepôt confirmé. Avant l’arrivée, les informations peuvent provenir d’un vendeur ou de votre propre estimation ; après l’emballage, les dimensions enregistrées peuvent être plus précises. Étiquetez ces sources afin qu'un lecteur ultérieur ne confonde pas une première estimation avec une mesure d'entrepôt. Un scénario clair permet d’expliquer pourquoi deux résultats de calculatrice diffèrent.",
+          "L'estimateur public de Superbuy inclut la destination, l'entrepôt, le poids, les dimensions et les entrées de catégorie d'articles. Utilisez les champs et les unités affichés dans l'interface actuelle. Si la destination ou la catégorie prévue n'est pas disponible, ne choisissez pas une autre uniquement pour obtenir un résultat moins attrayant. Ce produit décrirait un autre scénario. Enregistrez les données indisponibles et demandez des éclaircissements par le biais du processus pris en charge par la plateforme. Une calculatrice ne peut pas établir l'admissibilité à l'expédition pour des détails qui ont été omis ou délibérément remplacés, même lorsqu'elle produit un nombre plausible."
+        ]
+      },
+      {
+        "heading": "Préciser les unités et les dimensions",
+        "paragraphs": [
+          "Indiquez si le poids est exprimé en grammes ou en kilogrammes. Entrer le bon numéro dans la mauvaise unité peut produire un scénario entièrement différent. Pour les dimensions, notez la longueur, la largeur et la hauteur dans les unités demandées par l'estimateur. Distinguer les dimensions d’un produit individuel de celles du colis emballé. Une mesure de vêtement, une boîte à chaussures de détail et un carton d'expédition extérieur ne sont pas interchangeables. Inclure l'emballage dans le scénario plutôt que de supposer que la somme des poids des articles décrit entièrement le colis.",
+          "À titre d ' exemple, un colis peut être estimé à 3 kg et mesurer 40 x 30 x 20 cm. Notez les quatre entrées avec la date et la destination. Si le colis emballé ultérieurement mesure différemment, conservez l'ancien scénario et créez-en un révisé. Ne remplacez pas l'original et ne concluez pas que la calculatrice a changé d'avis. Souvent, l'explication la plus utile est que le lot dont le prix a changé. Un simple historique de version rend cette différence visible sans nécessiter un système de suivi compliqué."
+        ]
+      },
+      {
+        "heading": "Vérifier la règle de poids volumétrique",
+        "paragraphs": [
+          "Certaines options de livraison tiennent compte de l'espace occupé ainsi que de la masse physique. La formule, le diviseur, l’arrondissement et les limites dépendent du service sélectionné. Vérifiez la description de la ligne courante plutôt que d'appliquer une seule formule Internet à chaque option. Votre feuille de calcul doit stocker la règle utilisée à côté du résultat. Si les termes d'une ligne ne rendent pas le calcul clair, laissez la base de facturation non résolue et demandez. Une formule inexpliquée peut faire paraître une comparaison précise tout en utilisant une règle qui ne s'applique pas à ce lot.",
+          "En utilisant les dimensions hypothétiques ci-dessus, le volume est de 24 000 centimètres cubes. Si un service fictif utilise un diviseur de 6 000, le poids volumétrique calculé serait de 4 kg. Avec un autre diviseur hypothétique de 5 000, il serait de 4,8 kg. Aucun des diviseurs n'est affirmé ici comme une règle de Superbuy. L'exemple montre pourquoi l'enregistrement de seulement 3 kg peut manquer un facteur de coût important. Il faut vérifier si un service utilise le chiffre le plus élevé, applique un arrondissement ou impose une autre condition en comparant les conditions réelles publiées."
+        ]
+      },
+      {
+        "heading": "Modifier une hypothèse d’emballage à la fois",
+        "paragraphs": [
+          "Comparez un scénario d'emballage original avec une solution de rechange clairement décrite. Par exemple, enregistrez ce qui change lorsque l'emballage de vente au détail inutile est retiré, tout en maintenant la destination et la liste des articles constantes. Comparez ensuite un scénario renforcé séparément. Cela permet de voir plus facilement si la différence provient des dimensions, du poids ou d'une autre entrée. Un devis qui change plusieurs hypothèses à la fois ne peut pas vous dire quel choix a affecté le prix. Gardez les frais de service d'emballage optionnel séparés afin qu'une estimation de fret inférieure ne soit pas confondue avec un total global inférieur.",
+          "Les exigences de protection viennent en premier. Le retrait d'une boîte ou la compression d'un vêtement peut ne pas convenir à certains produits ou besoins de présentation. Ne supposez pas que chaque article peut être emballé dans la plus petite forme possible. Une comparaison utile permet de noter la méthode proposée, la raison pour laquelle elle est acceptable et l'incertitude qui subsiste jusqu'à l'emballage. Si les dimensions finales n'ont pas été mesurées, indiquez-les comme étant estimées. Cela vous permet de planifier un budget tout en évitant une promesse que l'entrepôt atteindra les dimensions exactes utilisées dans la calculatrice."
+        ]
+      },
+      {
+        "heading": "Comparer les options au-delà du prix",
+        "paragraphs": [
+          "Pour chaque résultat disponible, notez le nom du service exactement tel qu'il est affiché, la date de vérification, les restrictions applicables, les renseignements de suivi et la portée de toute estimation indiquée. Vérifiez que l'option accepte la catégorie et la destination réelles de l'article. Un faible montant pour un colis non admissible n'est pas une véritable alternative. Les estimations de livraison ont également besoin de contexte : déterminez quelle étape couvre le délai indiqué et si le traitement, la douane ou la livraison finale introduit une incertitude supplémentaire. Ne transformez pas une fenêtre estimée en une date d'arrivée garantie pour un événement ou une échéance.",
+          "Utilisez un enregistrement de comparaison cohérent plutôt que des lignes de classement universelles. Un acheteur hypothétique envoyant un colis compact ordinaire peut faire un choix différent de celui d’un acheteur envoyant un article volumineux ou fragile. Notez vos priorités et les compromis que vous acceptez. Si l’assurance ou l’indemnisation est pertinente, lisez séparément les exigences actuelles en matière d’admissibilité, d’exclusion et de preuve. L'affichage du prix dans le calculateur ne permet pas de déterminer la valeur ou l'étendue de la protection. Gardez tout terme non vérifié hors de la comparaison jusqu'à ce que vous ayez une source actuelle pour lui."
+        ]
+      },
+      {
+        "heading": "Séparer estimation, acompte et coût final",
+        "paragraphs": [
+          "Une estimation précoce vous aide à planifier. Un acompte de livraison est un paiement demandé à une étape particulière. Les frais définitifs reflètent l'expédition évaluée en vertu du processus applicable. Les conseils d'achat de Superbuy distinguent les quantités estimées des tailles et poids vérifiés pour l'expédition. Conservez chaque montant avec son étiquette, sa devise, sa date et son document justificatif. Ne comparez pas un dépôt pour un lot avec un frais final pour un autre et ne présentez pas la différence comme une preuve qu'une ligne est moins chère ou que l'estimateur est systématiquement inexact.",
+          "Si un montant différent est indiqué ultérieurement, comparez d'abord la liste des articles sous-jacents, les mesures emballées, le service sélectionné et les ajouts facultatifs. Ensuite, inspectez les informations de réglage affichées pour ce colis. Gardez tout remboursement ou paiement supplémentaire comme une entrée distincte plutôt que de modifier silencieusement le paiement précédent. Cela produit un rapprochement compréhensible: ce qui a été estimé, ce qui a été payé et ce qui a été ajusté par la suite. Il donne également une question concrète au support si un écart subsiste. Évitez de promettre un montant ou un calendrier particulier d'ajustement avant que l'enregistrement du compte ne le confirme."
+        ]
+      },
+      {
+        "heading": "Distinguer le budget total des frais de transport",
+        "paragraphs": [
+          "Le fret international n’est qu’une composante du budget d’achat. Les prix des articles, la livraison nationale, les services optionnels, la conversion de paiement et les frais liés à la destination peuvent être distincts. Enregistrez les composants d'une quantité affichée et ceux qui restent inconnus. Ne pas étiqueter une estimation livrée totale simplement parce qu'il est affiché après avoir sélectionné une destination. Les termes de l'itinéraire actuel et l'enregistrement de caisse réel déterminent sa portée. Si des informations fiscales ou douanières sont nécessaires, utilisez les directives officielles actuelles pour la destination plutôt qu'une allocation fixe copiée d'un ancien rapport de commande.",
+          "Évitez un raccourci de coût par kilogramme universel pour différents colis. La taille, les catégories, les frais minimums, les incréments de facturation et les options disponibles peuvent rendre une telle comparaison trompeuse. Un colis passé peut être une référence personnelle utile si ses conditions complètes sont préservées, mais il ne s'agit pas d'un devis actuel pour un nouvel envoi. Marquez les enregistrements historiques comme historiques et rouvrez la calculatrice pour le scénario actuel. C'est particulièrement important lorsque la forme ou la destination d'un colis change même si le poids total de l'article semble similaire."
+        ]
+      },
+      {
+        "heading": "Conserver une estimation explicable",
+        "paragraphs": [
+          "Avant d'utiliser une estimation pour prendre une décision d'achat, enregistrez la destination, les catégories d'articles, le poids, les dimensions, les hypothèses d'emballage, l'option sélectionnée et la date. Ajouter une note claire indiquant les intrants qui sont encore estimés. Recalculez lorsque les entrées de matériaux changent et comparez le résultat révisé avec la version précédente. Une feuille de calcul utile n’est pas celle qui contient le plus petit montant; c’est celle qui vous permet de reconstruire comment ce montant a été obtenu et si elle décrit toujours votre expédition prévue.",
+          "Utilisez le guide d'expédition plus large pour le regroupement des colis et le guide d'entreposage lorsque le calendrier affecte votre plan. Une fois que les renseignements réels sur le colis sont disponibles, utilisez-les pour la comparaison finale. Gardez la feuille de calcul de découverte de produit séparée de l'enregistrement de colis, en reliant les deux à travers les éléments sélectionnés. Cela empêche une ancienne hypothèse d'expédition de devenir attachée de manière permanente à une fiche produit et vous aide à juger la décision complète avec des preuves actuelles et clairement étiquetées."
+        ]
+      }
+    ]
+  },
+  "superbuy-warehouse-storage-deadlines-fees": {
+    "title": "Stockage Superbuy : délais, frais et préparation",
+    "category": "Stockage en entrepôt",
+    "excerpt": "Enregistrez les dates de stockage des entrepôts Superbuy, vérifiez les frais actuels et planifiez la consolidation sans perdre de vue les échéances des articles individuels.",
+    "read": "9 min de lecture",
+    "intro": "Le stockage en entrepôt Superbuy donne aux acheteurs le temps entre la réception des articles en Chine et l'envoi d'un colis à l'international. La question utile est de savoir comment ce délai correspond à vos commandes réelles, à vos décisions d’inspection et à votre plan d’expédition. Une feuille de calcul d’entrepôt devrait enregistrer le statut et la date limite de chaque article, plutôt que d’assigner une date à toute la session d’achat. Ce guide explique la base de référence de stockage publiée actuelle, les enregistrements à conserver et les décisions à prendre avant que l'attente ne devienne coûteuse. Les exemples sont des illustrations de planification, pas des enregistrements de commandes de clients réels ou des garanties concernant une date limite spécifique à un compte.",
+    "sections": [
+      {
+        "heading": "Vérifier la règle de stockage actuelle",
+        "paragraphs": [
+          "La page officielle de composition des frais de Superbuy, consultée le 3 octobre 2026, indique 90 jours de stockage gratuit, puis des frais de 0,1 CNY par article et par jour, avec une durée maximale annoncée de 180 jours. Elle décrit aussi un service de prolongation et les conditions applicables aux articles conservés au-delà de cette limite. Vérifiez ces règles publiées dans le dossier actuel de chaque article et selon le service applicable. Ce résumé ne couvre pas nécessairement tous les types de commande, toutes les exceptions ou les changements futurs.",
+          "Inscrivez la date de vérification de la police à côté de vos notes de planification. Plus important encore, notez la date limite réellement affichée pour l'élément ou confirmée par le support. Un calcul de calendrier que vous faites vous-même est une aide de rappel, pas un substitut à la date limite opérationnelle du compte. Si les deux sont en désaccord, résolvez le différend tôt. Évitez d’attendre le dernier jour pour demander quelle interprétation s’applique. Un plan d’entreposage utile vous donne le temps d’inspecter, de clarifier et d’organiser l’expédition pendant que ces options sont encore disponibles."
+        ]
+      },
+      {
+        "heading": "Tenir une fiche pour chaque article",
+        "paragraphs": [
+          "Les commandes passées le même jour peuvent arriver à l'entrepôt à des jours différents. Une commande peut également comporter plusieurs articles dont la manutention diffère. Gardez une ligne distincte pour chaque article identifiable de l'entrepôt, avec la page du produit source, l'option sélectionnée, la référence de la commande, la date d'arrivée ou de stockage affichée et son statut actuel. Utilisez les identifiants de la plateforme tels qu'ils sont enregistrés; ne les remplacez pas par un surnom informel. Un surnom peut vous aider à reconnaître l'élément, mais la référence réelle est nécessaire lors de la comparaison des enregistrements ou de la prise de contact avec le support.",
+          "Distinguez la date d'achat, la date d'expédition du vendeur, la date de réception de l'entrepôt et les informations de stockage affichées dans le compte. Ils décrivent différents événements. Si l'une est inconnue, laissez-la inconnue plutôt que de copier une autre date dans le champ. Cela est important lorsqu'un plan de colis comprend des articles de différents vendeurs. Un article récemment commandé ne réinitialise pas le temps déjà utilisé par un article d'entrepôt précédent. La feuille de calcul devrait rendre la date limite la plus ancienne non résolue facile à voir sans supposer que toutes les lignes passent par le processus ensemble."
+        ]
+      },
+      {
+        "heading": "Terminer l’inspection à temps",
+        "paragraphs": [
+          "Utilisez l'étape de l'entrepôt pour comparer l'article reçu avec l'option prévue. Noter si l'identité du produit, l'état visible et toute mesure critique ont été vérifiés. Une période d'entreposage ne doit pas être interprétée comme une période de retour ou d'échange aussi longue. Les conditions du vendeur, le type d'article et le processus après-vente applicable peuvent imposer des conditions différentes. Gardez les questions d’inspection et d’après-vente séparées du calendrier d’entreposage et soulevez rapidement un écart confirmé via les outils de commande actuels plutôt que de supposer que l’attente n’a pas de conséquences.",
+          "Un dossier de travail pratique peut distinguer en attente d'inspection, détail demandé, accepté pour la planification de colis et après-vente ouvert. Ce sont vos propres étiquettes de planification, pas les statuts officiels de la plateforme. Utilisez-les en plus du statut d'origine affiché dans le compte. Pour chaque ligne non résolue, écrivez une prochaine action et une date pour la réviser. Cela empêche un élément de rester indéfiniment sous une étiquette en attente vague. Si vous demandez une photo, notez l’incertitude exacte qu’elle devrait résoudre afin que la réception d’une autre image fasse avancer la décision."
+        ]
+      },
+      {
+        "heading": "Planifier le regroupement selon la première échéance",
+        "paragraphs": [
+          "Combiner des articles admissibles peut réduire les frais de colis répétés, mais attendre un autre achat peut entraîner des frais d’entreposage ou laisser moins de temps pour l’emballage. Commencez par les éléments déjà acceptés et identifiez la première échéance non résolue. Ensuite, considérez l’arrivée prévue des achats ultérieurs sans traiter une estimation non confirmée du vendeur comme certaine. Un plan de consolidation devrait avoir un point de décision : si l’article ultérieur n’est pas arrivé à ce moment-là, réévaluez le colis plutôt que de prolonger automatiquement l’attente chaque fois que la liste d’achats s’agrandit.",
+          "Pour illustrer ce cas, imaginez deux articles acceptés déjà entreposés et un troisième encore en attente d’expédition par le vendeur. Comparez l'envoi des articles prêts maintenant avec l'attente du troisième. La comparaison nécessite des estimations actuelles du colis, des implications en matière d'entreposage et le risque que l'article ultérieur soit retardé ou ne puisse pas partager l'itinéraire choisi. On ne peut pas décider de cela uniquement par le nombre d'articles. Noter les hypothèses et la date de l'examen. Cela rend plus facile de changer le plan pour une raison plutôt que d'attendre simplement parce que la consolidation était l'intention initiale."
+        ]
+      },
+      {
+        "heading": "Comprendre le calcul sans le confondre avec une facture",
+        "paragraphs": [
+          "À titre d’illustration, trois articles ayant chacun dix jours facturables après leur période gratuite applicable donnent le calcul suivant : 3 × 10 × 0,1 CNY = 3 CNY, avant tout autre service ou condition particulière. Ce calcul explique le suivi par article et par jour. Il ne constitue ni un devis pour votre compte, ni une règle sur le décompte des journées partielles, ni une garantie que les trois articles ont la même période facturable. Vérifiez le montant et la règle effectivement affichés avant de vous appuyer sur ce calcul.",
+          "Gardez le calcul dans la devise source. Si vous ajoutez un équivalent approximatif en dollars pour votre propre budget, enregistrez la base de conversion et la date et étiquetez-le comme une estimation. Ne supposez pas qu'une ancienne conversion de carte de produit correspond à la conversion de paiement pour le stockage. Séparez les frais de service d'extension des frais de stockage ordinaires, car une extension peut avoir ses propres conditions. Un enregistrement de coûts utile indique quelle partie est confirmée, quelle partie est calculée et quelle partie nécessite encore des éclaircissements."
+        ]
+      },
+      {
+        "heading": "Vérifier les restrictions avant d’attendre",
+        "paragraphs": [
+          "Un article restreint n'est pas admissible à un itinéraire s'il est entreposé plus longtemps. Avant d'ajouter un produit à un futur colis, vérifiez les options actuelles pour sa catégorie, sa destination et son emballage prévu. Un colis mixte peut nécessiter un agencement différent de celui que vous avez imaginé au départ. Gardez cette question d'admissibilité séparée de l'acceptation du produit. Un article peut être correct et intact tout en nécessitant un plan d'expédition différent. Découvrir cela tôt vous donne plus de temps pour considérer les options prises en charge.",
+          "Posez des questions ciblées lorsque le plan n'est pas clair. Indiquez la référence de l'article, la destination et le problème d'emballage ou d'acheminement spécifique. Évitez une demande générale pour trouver le moyen le moins cher sans expliquer le contenu ou les exigences. Conservez toute réponse avec sa date et son champ d’application. Les conseils concernant un colis ne devraient pas être automatiquement copiés sur un colis ultérieur contenant des articles différents. Si un itinéraire proposé disparaît ou que l'emballage change, réexaminez la décision plutôt que de supposer qu'une réponse de soutien antérieure reste valide indéfiniment."
+        ]
+      },
+      {
+        "heading": "Décider de la prolongation avant la limite",
+        "paragraphs": [
+          "Si vous prévoyez avoir besoin de plus de temps, vérifiez le processus de prolongation actuel avant d'atteindre la limite correspondante. Confirmez ce qu’elle couvre, son coût, la nouvelle date limite et toute action requise de votre part. Ne présumez pas que le paiement de frais de retard ordinaires entraîne automatiquement l'achat d'une extension ou empêche les conséquences décrites dans la politique de stockage maximal. Enregistrez la confirmation et mettez à jour les enregistrements d'éléments concernés. Une demande envoyée au support n'est pas la même chose qu'une extension approuvée, alors gardez son statut explicite jusqu'à ce qu'elle soit résolue.",
+          "Utilisez des rappels bien avant la date limite et prévoyez du temps pour répondre, emballer et changer de plan. L'intervalle exact de rappel est un choix personnel de planification, pas une règle de Superbuy. Choisissez un nom qui reflète le nombre de points non résolus et l'importance de la décision. Lorsqu’un article approche d’une limite, réduisez l’incertitude plutôt que d’ajouter plus d’achats au même plan. La question clé est de savoir quelles mesures prises peuvent être réalisées à temps, en utilisant les renseignements actuels sur le compte et les conditions documentées."
+        ]
+      },
+      {
+        "heading": "Clore la fiche après la sortie du stock",
+        "paragraphs": [
+          "Lorsqu'un article est inclus dans un colis soumis, inscrivez la référence du colis et l'état d'entrepôt qui en résulte. Gardez les frais d'entreposage, les services optionnels et le fret international comme des entrées distinctes afin que le coût final puisse être compris. Ne supprimez pas les dates antérieures : elles expliquent la séquence si une question se pose plus tard. Si un article est retourné ou manipulé par un processus pris en charge, enregistrez ce résultat au lieu de le laisser marqué comme prêt à être expédié. Un dossier complet décrit où l'élément est allé et quelle décision a fermé la ligne.",
+          "Utilisez l'article Champs de tableur pour une structure d'enregistrement cohérente et l'article Calculatrice d'expédition pour les scénarios de colis datés. Examinez d’abord les plus anciens éléments en suspens, confirmez la politique actuelle lorsqu’une échéance est importante et conservez les preuves de toute exception ou prolongation. Le stockage est utile lorsqu’il soutient un plan délibéré. Il devient plus difficile de gérer quand chaque nouvel achat reporte silencieusement la décision précédente. Une action claire pour chaque article est plus précieuse qu’une longue liste d’entrepôt sans calendrier fiable."
+        ]
+      }
+    ]
+  },
+  "superbuy-shipping-to-usa-parcel-options": {
+    "title": "Livraison Superbuy aux États-Unis : comparer les options",
+    "category": "Livraison aux États-Unis",
+    "excerpt": "Comparez les frais de livraison Superbuy vers les États-Unis par code postal, les mesures du colis, l'éligibilité de l'article, le suivi et la portée des devis actuels.",
+    "read": "9 min de lecture",
+    "intro": "L'expédition Superbuy aux États-Unis doit être planifiée en fonction du destinataire et du colis. Une ligne utilisée avec succès par un autre acheteur peut décrire une catégorie d'article, un code postal, un poids ou un arrangement d'emballage différent. Ce guide fournit une méthode de comparaison des options actuelles sans publier une ligne la moins chère universelle, une promesse de transport fixe ou un résultat fiscal présumé. Il met l'accent sur les renseignements à recueillir avant la soumission et les dossiers qui facilitent la résolution d'une question ultérieure de suivi ou de coût. Tous les scénarios de colis dans ce guide sont à titre indicatif et non des témoignages de clients.",
+    "sections": [
+      {
+        "heading": "Vérifier l’adresse et le destinataire",
+        "paragraphs": [
+          "Vérifiez le nom du destinataire, l'adresse, l'appartement ou l'unité, la ville, l'état et le code postal dans le formulaire requis par l'interface d'expédition actuelle. Gardez le code postal avec l'adresse plutôt que de traiter le pays seul comme une destination complète. Si vous utilisez un lieu de travail, un campus, une adresse de transfert ou un autre emplacement géré, confirmez ses exigences de réception avant de soumettre. Un colis peut arriver à la zone prévue tout en étant difficile à livrer si l'adresse omet une unité ou utilise un nom que le bureau de réception ne peut pas reconnaître.",
+          "Ne supposez pas que chaque option affichée pour les États-Unis accepte tous les types d'adresses ou tous les emplacements. Vérifiez les conditions actuelles du service sélectionné pour la destination spécifique. Si un champ ou une adresse n’est pas clair, clarifiez-le via la plateforme avant de payer. Évitez de changer le code postal simplement pour faire apparaître une option indisponible. Cela coûterait un scénario de livraison différent. Enregistrez la confirmation d'adresse soumise en toute sécurité et ne publiez pas vos coordonnées personnelles dans une feuille de calcul publique, une capture d'écran ou un article que vous partagerez ultérieurement au sujet de l'envoi."
+        ]
+      },
+      {
+        "heading": "Décrire les articles avant de choisir le transport",
+        "paragraphs": [
+          "Noter le type de produit, la quantité et toute caractéristique pouvant affecter le transport. Séparez un vêtement ordinaire d’un article contenant une pile, un liquide ou un autre composant potentiellement restreint. Ne présumez pas qu'une étiquette de catégorie générale résout toutes les questions d'admissibilité. La plateforme actuelle et les conditions de service sélectionnées déterminent si un élément particulier peut utiliser une option. Les directives de Superbuy précisent que la livraison internationale est effectuée par des tiers et que les restrictions d'articles peuvent affecter les choix disponibles pour un colis.",
+          "Utilisez des descriptions de produits précises et véridiques lorsque des renseignements sont demandés. Le Service des douanes et de la protection des frontières des États-Unis publie des exemples pour distinguer les descriptions vagues des marchandises des descriptions qui identifient les marchandises plus clairement. Un nom de marque ne décrit pas à lui seul ce qu’est un objet. Suivez le formulaire actuel et les directives prises en charge pour vos articles réels plutôt que de copier une description générique d'une autre commande. Ce guide ne fournit pas de valeur de déclaration ou de méthode pour éviter les frais. Préserver la preuve d'achat afin que les informations que vous fournissez puissent être réconciliées avec le contenu."
+        ]
+      },
+      {
+        "heading": "Mesurer le colis complet",
+        "paragraphs": [
+          "Utilisez le poids et les dimensions de l'emballage final lorsque ceux-ci sont disponibles. Avant d'emballer, étiquetez les intrants comme estimations et notez leur provenance. La somme des poids des articles ne décrit pas entièrement une boîte contenant l'emballage de détail, le matériel de protection et l'espace vide. La ligne sélectionnée peut appliquer des conditions relatives aux dimensions ainsi qu'à la masse. Gardez la longueur, la largeur, la hauteur et leurs unités ensemble. Vérifiez à nouveau le scénario lorsqu'un article est ajouté, supprimé ou réemballé, car le résultat précédent peut ne plus décrire le colis soumis.",
+          "Imaginez un colis hypothétique à destination des États-Unis contenant deux sweats à capuche et une paire de chaussures. Comparez un scénario consistant à conserver la boîte à chaussures avec un autre arrangement d'emballage uniquement si l'alternative répond à vos besoins de protection. Gardez la destination et la liste des articles constants tout en changeant l'hypothèse d'emballage. Il est ainsi plus facile de déterminer la raison d'une estimation différente. Aucun des deux scénarios ne doit être décrit comme un devis courant tant qu'il n'a pas été entré avec des détails précis dans l'interface courante. Une feuille de calcul ne peut pas remplacer les mesures réelles de l'entrepôt."
+        ]
+      },
+      {
+        "heading": "Comparer les options disponibles",
+        "paragraphs": [
+          "Pour chaque option admissible, enregistrez son nom affiché, sa date de vérification, son montant et sa devise, les limites de poids ou de taille applicables, les restrictions d'articles pertinentes et la portée de son estimation de livraison. Noter si un coût ou une condition important reste non résolu. Comparez les options qui décrivent le même colis et la même destination. Une capture d'écran antérieure avec un autre code postal ou une autre catégorie d'article peut fournir du contexte, mais elle ne peut pas établir le prix ou la disponibilité d'aujourd'hui pour votre envoi. Étiquetez clairement les exemples historiques si vous les conservez dans un dossier de planification personnel.",
+          "Décidez quel compromis est important : budget, clarté du suivi, exigences de manutention ou fenêtre de livraison avec une marge d’incertitude suffisante. Ne transformez pas ces préférences en un classement universel pour chaque acheteur américain. Une option qui convient à un colis de vêtements compact peut ne pas convenir à un colis volumineux ou fragile. Gardez la raison de votre choix en une seule phrase. Si vos priorités changent, revenez à la comparaison au lieu de conserver le choix précédent simplement parce qu'il était le premier sur la liste ou qu'il semblait le moins cher dans une discussion sans rapport."
+        ]
+      },
+      {
+        "heading": "Séparer transport et frais liés à la destination",
+        "paragraphs": [
+          "Lisez ce que le devis actuel comprend et ce qu'il exclut. Le fret international, les services optionnels et tout montant lié à la destination devraient être identifiables comme des composantes distinctes, à moins que les conditions applicables ne les combinent explicitement. Ne présumez pas qu'un nom d'itinéraire contenant un mot rassurant établit un résultat fiscal ou douanier garanti. Les règles, l’admissibilité et les conditions de service peuvent changer. Lorsque les exigences ou les frais d'importation affectent la décision, consultez les directives officielles actuelles des États-Unis et les conditions de service réelles pour le contenu, plutôt que de vous fier à un seuil fixe d'un ancien guide d'achat.",
+          "Gardez les factures, les relevés de paiement et une description précise de l’article à disposition pour une demande d’information légitime. Vérifiez ces demandes par le biais du transporteur ou du canal de plateforme connu avant d'envoyer des renseignements personnels. Un budget devrait distinguer les montants confirmés des charges non résolues; entrer zéro pour un montant inconnu rend une comparaison faussement précise. Cet article ne prescrit pas intentionnellement un taux de droit universel ou un montant de déclaration. Ces questions dépendent des exigences actuelles et des marchandises réelles, et ne peuvent pas être répondues de manière responsable à partir du poids du colis seul."
+        ]
+      },
+      {
+        "heading": "Comprendre la portée du délai annoncé",
+        "paragraphs": [
+          "Identifier l'étape à laquelle s'applique une estimation de temps. L’expédition du vendeur, l’arrivée à l’entrepôt, l’inspection, l’emballage, le transport international, le dédouanement et la livraison finale sont des événements distincts. Une estimation de transport ne peut pas être appliquée automatiquement à toute la période allant du clic sur un lien de produit à la réception d'un colis. Noter le point de départ et toute qualification indiquée avec l'estimation. Si vous avez besoin d'un article pour une occasion précise, prenez en compte l'incertitude au lieu de considérer la fenêtre la plus courte comme une promesse que chaque étape précédente se terminera également à temps.",
+          "Gardez une chronologie des événements réels une fois que le colis est soumis. Utilisez le libellé et l'horodatage fournis par la source de suivi pertinente plutôt que de traduire chaque pause en un diagnostic. Un intervalle entre les balayages ne prouve pas en soi la perte, et un événement d'information électronique ne décrit pas nécessairement un mouvement physique. Si le colis change de transporteur, inscrivez la nouvelle référence lorsque celle-ci est fournie. Cela permet de distinguer plus facilement un transfert ordinaire d’un statut véritablement non résolu qui nécessite une enquête ciblée par le canal de support approprié."
+        ]
+      },
+      {
+        "heading": "Vérifier les garanties et les preuves requises",
+        "paragraphs": [
+          "Si vous envisagez d’acheter une assurance ou un autre service de protection, lisez les couvertures, exclusions, limites, processus de réclamation et exigences en matière de preuve. Ne présumez pas que le paiement d’un montant supplémentaire garantit le remboursement de tous les types de dommages, de retards ou de pertes. Enregistrez ce qui s'applique à votre colis et enregistrez la confirmation. Les choix d'emballage peuvent avoir une incidence sur le résultat pratique, alors conservez vos instructions et toute preuve d'emballage disponible avec le dossier du colis. Un énoncé promotionnel générique ne remplace pas les conditions attachées au service que vous avez réellement sélectionné.",
+          "Lorsque le colis arrive, conservez l’emballage et documentez un problème visible avant de jeter le matériel qui pourrait être pertinent pour une réclamation. Enregistrez le délai de livraison et le problème spécifique, puis utilisez rapidement le processus pris en charge actuel. Il s’agit d’une suggestion pour la tenue de dossiers, et non d’une garantie d’admissibilité. Si le suivi indique livré mais que vous n'avez pas trouvé le colis, vérifiez d'abord l'adresse, le domicile ou le bureau de réception et les informations de livraison du transporteur. Un rapport précis de ce qui a été vérifié aide le support à comprendre la partie non résolue de la situation."
+        ]
+      },
+      {
+        "heading": "Contrôler le dossier avant validation",
+        "paragraphs": [
+          "Avant de payer, examinez ensemble les détails du destinataire, les articles acceptés, les mesures finales, le service sélectionné, les instructions d'emballage et le devis actuel. Vérifiez qu'aucun ajout de dernière minute n'a invalidé la comparaison antérieure. Gardez le devis, le dépôt et le compte de frais finals distincts afin que tout ajustement puisse être expliqué. Ne réutilisez pas un ancien plan de parcelle sans rouvrir ses hypothèses. Une expédition antérieure réussie est une expérience utile, mais elle ne peut pas établir que les mêmes conditions s'appliquent toujours à une nouvelle combinaison d'articles et à une nouvelle date de soumission.",
+          "Utilisez le guide de la calculatrice d'expédition pour comparer les scénarios et le guide de stockage de l'entrepôt lorsque l'attente de plus d'articles affecte votre calendrier. Sur ce site, les liens vers les produits et les catégories sont des itinéraires de découverte; l'interface de colis proprement dite reste l'endroit où confirmer les options d'expédition actuelles. Le meilleur plan d'expédition aux États-Unis est celui que vous pouvez expliquer à partir d'entrées précises et de conditions actuelles, avec des questions non résolues abordées avant le paiement. Cette approche est plus reproductible que de suivre un prix affiché ou une demande de livraison détachée du colis qui l’a produite."
+        ]
+      }
+    ]
+  }
+}

@@ -14,6 +14,12 @@ const articleSlugs = [
   "how-to-use-a-superbuy-spreadsheet",
   "superbuy-qc-photo-checklist",
   "superbuy-shipping-cost-and-consolidation",
+  "superbuy-shoes-spreadsheet-sizing-qc",
+  "superbuy-hoodie-finds-measurements-qc",
+  "superbuy-spreadsheet-links-not-working",
+  "superbuy-shipping-calculator-estimate-final-cost",
+  "superbuy-warehouse-storage-deadlines-fees",
+  "superbuy-shipping-to-usa-parcel-options",
 ];
 
 const localizedPaths = languages.flatMap((language) => {
@@ -75,7 +81,7 @@ const sitemap = [
   ...localizedPaths.flatMap((pathname) => [
     "  <url>",
     `    <loc>${siteOrigin}${pathname === "/" ? "/" : `${pathname}/`}</loc>`,
-    `    <lastmod>${["/", "/shipping", "/articles", "/articles/superbuy-shipping-cost-and-consolidation"].includes(pathname) ? "2026-09-02" : pathname.includes("superbuy-spreadsheet-fields-product-record") ? "2026-08-14" : "2026-08-13"}</lastmod>`,
+    `    <lastmod>${/^(\/(fr|de|id|zh-cn))?(\/articles(?:\/.*)?|\/?)$/.test(pathname) ? "2026-10-03" : pathname === "/shipping" ? "2026-09-02" : "2026-08-13"}</lastmod>`,
     "  </url>",
   ]),
   "</urlset>",

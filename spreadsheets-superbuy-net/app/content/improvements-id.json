@@ -1,0 +1,30 @@
+{
+  "how-to-use-a-superbuy-spreadsheet": {
+    "heading": "Lakukan satu contoh pilihan-tepat",
+    "paragraphs": [
+      "Misalkan sebuah halaman produk fiksi dengan tiga pilihan: hoodie, celana yang cocok dan set dua bagian. Gambar utama menunjukkan kedua pakaian, tetapi harga yang dapat dipilih pertama adalah celana. Baris spreadsheet yang berguna harus mengidentifikasi opsi hoodie atau secara eksplisit menggambarkan set; menyalin jumlah terendah di samping gambar full-outfit akan menyesatkan. Rekam label yang dipilih, kuantitas, gambar opsi yang sesuai dan tanggal periksa harga sebelum pindah ke pembayaran. Contoh ini menggambarkan cek, bukan penawaran penjual yang sebenarnya.",
+      "Simpan tiga keputusan terpisah dalam catatan. Pertama, halaman produk sesuai dengan produk yang Anda inginkan. Kedua, ukuran dan versi yang dipilih memiliki cukup informasi terdokumentasikan untuk memesan. Ketiga, setelah tiba, item yang diterima memberikan bukti yang diperlukan untuk keputusan gudang Anda. Jawaban positif pada satu tahap tidak menyelesaikan tahap-tahap berikutnya. Jika sebuah bidang tetap tidak diketahui, tulis tindakan selanjutnya yang spesifik di sebelahnya. Ini membuat aliran kerja berguna ketika Anda kembali ke baris kemudian, dan menghindari memperlakukan tautan yang disimpan sebagai inspeksi yang selesai."
+    ]
+  },
+  "superbuy-qc-photo-checklist": {
+    "heading": "Ubah satu foto yang tidak pasti menjadi permintaan yang dapat dilaksanakan",
+    "paragraphs": [
+      "Misalkan sebuah pesanan hoodie fiksi membutuhkan lebar dada datar dekat dengan pakaian referensi Anda, tetapi foto yang disediakan hanya menunjukkan label ukuran. Kesenjangan bukti adalah sebuah ukuran, bukan ketidakhadiran overview yang menarik. Minta foto dengan hoodie yang datar tanpa meregang dan sebuah penentu yang terlihat dari ketiak ke ketiak. Rekam titik yang diminta dan bandingkan gambar yang dikembalikan dengan referensi yang diukur dengan cara yang sama. Lebar datar hipotetis 60 cm tidak harus dibandingkan secara langsung dengan gambar dada 120 cm yang tidak dijelaskan hingga konvensi pengukuran jelas.",
+      "Untuk sepasang sepatu, proses yang sama dimulai dengan ketidakpastian yang diamati: satu label tidak dapat dibaca, satu tumit tersembunyi atau satu komponen hilang dari setiap pandangan. Mintalah pandangan tambahan terkecil yang menyelesaikannya. Simpan catatan yang berisi gambar asli, pertanyaan, bukti baru dan keputusanmu. Jangan label tampilan yang hilang sebagai kerusakan yang dikonfirmasi, dan jangan label sebuah kecocokan yang terlihat sebagai bukti keaslian atau kualitas jangka panjang. Rekor ini mendukung penyelidikan pasca-penjualan yang tepat jika ketidakcocokan sejati ditemukan."
+    ]
+  },
+  "superbuy-shipping-cost-and-consolidation": {
+    "heading": "Bandingkan dua rencana parcel dengan input yang sama",
+    "paragraphs": [
+      "Buat satu baris untuk mengirimkan item yang diterima sekarang dan yang lain untuk menunggu untuk mengkonsolidasikan dengan pembelian selanjutnya. Jaga informasi tujuan dan item saat ini terlihat di keduanya. Catat berat yang diperkirakan, dimensi, kategori yang relevan, biaya pembungkus pilihan dan tanggal setiap kutipan. Untuk opsi menunggu, tambahkan tanggal kedatangan dan implikasi penyimpanan yang belum terpecahkan. Ini adalah bidang perencanaan, bukan biaya tetap atau janji tentang paket kemudian.",
+      "Ubah satu asumsi per satu. Jika kemasan ritel dihilangkan, perhatikan bahwa perubahan dan periksa ulang dimensi dan kebutuhan perlindungan; jangan hanya mengurangi jumlah yang diperkirakan dari kargo. Jika ada item ketiga yang tiba, konfirmasikan bahwa paket lengkap masih memenuhi syarat untuk rute yang dipilih. Memisahkan perkiraan kalkulator, deposit yang diminta dan biaya akhir yang diminta dalam catatan Anda. Panduan kalkulator rinci menjelaskan perhitungan volume hipotetis, sementara panduan penyimpanan mencakup batas waktu tingkat item. Gunakan periksa spesifik sebelum memutuskan apakah menunggu atau menggabungkan adalah layak."
+    ]
+  },
+  "superbuy-spreadsheet-fields-product-record": {
+    "heading": "Audit baris contoh dan simpan log perubahan yang berguna",
+    "paragraphs": [
+      "Gunakan baris fiktif untuk memeriksa struktur: jenis produk hoodie; URL sumber disimpan; pilihan angkatan laut, ukuran L; membeli satuan satu pakaian; harga sumber jumlah pilihan yang dipilih; harga diperiksa tanggal tercatat; ukuran bukti diagram penjual; hilang bukti pengukuran dada datar; permintaan tindakan berikutnya penjelasan. Tujuannya bukan untuk merekomendasikan produk imajiner ini. Ini untuk menunjukkan mengapa citra menarik dan harga tunggal meninggalkan keputusan penting yang belum terpecahkan. Jaga sebuah bidang yang tidak diketahui terlihat tidak diketahui daripada mengisi dengan tebakan dari halaman produk yang serupa.",
+      "Ketika tujuan atau pilihan berubah, simpan rekaman sebelumnya dan perhatikan bidang yang berubah. Tanggal penyuntingan halaman, periksa tautan yang berhasil dan perbandingan judul-gambar-opsi penuh dapat menjadi peristiwa yang berbeda. Laporkan hanya periksa yang sebenarnya dilakukan. Jika dua baris menggunakan identifikator produk dasar yang sama dengan parameter referensi yang berbeda, periksa apakah mereka duplikat; jika pilihan mereka berbeda secara material, pertahankan perbedaan itu. Panduan penyelesaian masalah tautan menjelaskan bagaimana menyelidiki tujuan yang usang tanpa secara diam-diam menggantikan produk yang tidak terkait."
+    ]
+  }
+}

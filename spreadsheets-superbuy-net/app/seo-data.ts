@@ -9,11 +9,26 @@ export type TrustRoute = (typeof trustRouteKeys)[number];
 type SeoEntry = { title: string; h1: string; description: string };
 
 export const homeSeo: Record<Lang, { title: string; description: string }> = {
-  en: { title: "Superbuy Spreadsheet 2026 | Verified Product Index", description: "Browse a curated Superbuy spreadsheet with verified product links, category indexes, USD estimates, QC checkpoints and last-checked listing data." },
-  fr: { title: "Tableau Superbuy 2026 | Index de produits vérifiés", description: "Parcourez un tableau Superbuy organisé avec liens produits vérifiés, catégories, estimations en USD et points de contrôle QC." },
-  de: { title: "Superbuy Spreadsheet 2026 | Geprüfter Produktindex", description: "Ein kuratiertes Superbuy-Spreadsheet mit geprüften Produktlinks, Kategorien, USD-Schätzungen und QC-Prüfpunkten." },
-  id: { title: "Spreadsheet Superbuy 2026 | Indeks Produk Terverifikasi", description: "Jelajahi spreadsheet Superbuy dengan tautan produk terverifikasi, kategori, estimasi USD, dan titik pemeriksaan QC." },
-  "zh-cn": { title: "Superbuy 表格 2026｜已核验商品索引", description: "浏览整理后的 Superbuy 商品表格，包含已核验商品链接、分类、美元估价、核验日期和 QC 检查重点。" },
+  "en": {
+    "title": "Superbuy Spreadsheet 2026 | Shoes, Clothing & QC Guides",
+    "description": "Browse Superbuy spreadsheet finds for shoes, hoodies and more. Compare sizing, QC photos, shipping estimates and storage deadlines before ordering."
+  },
+  "fr": {
+    "title": "Tableau Superbuy 2026 | Chaussures, vêtements et QC",
+    "description": "Explorez les sélections Superbuy : chaussures, sweats et autres produits. Comparez tailles, photos QC, estimations de transport et délais de stockage."
+  },
+  "de": {
+    "title": "Superbuy Spreadsheet 2026 | Schuhe, Kleidung & QC",
+    "description": "Superbuy-Funde für Schuhe, Hoodies und mehr. Größen, QC-Fotos, Versandkostenschätzungen und Lagerfristen vor der Bestellung vergleichen."
+  },
+  "id": {
+    "title": "Spreadsheet Superbuy 2026 | Sepatu, Pakaian & QC",
+    "description": "Jelajahi pilihan sepatu, hoodie, dan produk lain di spreadsheet Superbuy. Bandingkan ukuran, foto QC, estimasi ongkir, dan batas waktu penyimpanan."
+  },
+  "zh-cn": {
+    "title": "Superbuy 表格 2026｜鞋类、服装与 QC 指南",
+    "description": "浏览 Superbuy 鞋类、卫衣等商品表格，比较尺寸、QC 图片、运费估算和仓储期限，再决定下单与发货。"
+  }
 };
 
 export const pageSeo: Record<Lang, Record<SeoRoute, SeoEntry>> = {

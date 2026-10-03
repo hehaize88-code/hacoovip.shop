@@ -1,0 +1,30 @@
+{
+  "how-to-use-a-superbuy-spreadsheet": {
+    "heading": "Travaillez à travers un exemple d'option exacte",
+    "paragraphs": [
+      "Imaginez une page produit fictive avec trois choix : un sweat à capuche, un pantalon assorti et un ensemble deux pièces. L'image principale montre les deux vêtements, mais le premier prix sélectionnable appartient au pantalon. Une ligne utile dans un tableur doit identifier l'option sweat à capuche ou décrire explicitement l'ensemble; copier le montant le plus bas à côté de l'image de la tenue complète serait trompeur. Enregistrez l'étiquette sélectionnée, la quantité, l'image de l'option correspondante et la date de vérification du prix avant de passer au paiement. Cet exemple illustre un chèque, pas une véritable offre du vendeur.",
+      "Conservez trois décisions distinctes au dossier. Tout d'abord, la page du produit correspond au produit que vous voulez. Deuxièmement, la taille et la version sélectionnées ont suffisamment d'informations documentées pour commander. Troisièmement, après l'arrivée, l'article reçu fournit les preuves nécessaires à votre décision d'entrepôt. Une réponse positive à une étape ne complète pas les étapes ultérieures. Si un champ reste inconnu, écrivez l'action suivante spécifique à côté de celui-ci. Cela rend le workflow utile lorsque vous revenez à la ligne plus tard, et évite de traiter un lien enregistré comme une inspection terminée."
+    ]
+  },
+  "superbuy-qc-photo-checklist": {
+    "heading": "Transformez une photo incertaine en une demande actionnable",
+    "paragraphs": [
+      "Supposons qu'une commande fictive de sweat à capuche nécessite une largeur de poitrine plate proche de votre vêtement de référence, mais la photo fournie ne montre que l'étiquette de taille. Le manque de données probantes est une mesure, et non l’absence d’un autre aperçu attrayant. Demandez une photo avec le sweat à capuche à plat sans étirement et une règle visible d'aisselle à aisselle. Enregistrez les points demandés et comparez l'image retournée avec une référence mesurée de la même manière. Une largeur hypothétique de 60 cm ne devrait pas être comparée directement avec la figure de poitrine inexpliquée de 120 cm d'un tableau jusqu'à ce que la convention de mesure soit claire.",
+      "Pour une paire de chaussures, un processus similaire commence par l’incertitude observée : une étiquette est illisible, un talon est caché ou un composant manque dans chaque vue. Demandez la plus petite vue supplémentaire qui le résout. Gardez une note contenant l'image originale, la question, la nouvelle preuve et votre décision. Ne pas étiqueter une vue manquante comme un défaut confirmé, et ne pas étiqueter une correspondance visible comme une preuve d'authenticité ou de qualité à long terme. Ce dossier permet une enquête après-vente précise si une véritable inadéquation est trouvée."
+    ]
+  },
+  "superbuy-shipping-cost-and-consolidation": {
+    "heading": "Comparer deux plans de parcelle avec les mêmes entrées",
+    "paragraphs": [
+      "Créez une ligne pour expédier les articles acceptés maintenant et une autre pour attendre de les consolider avec un achat ultérieur. Gardez la destination et les informations de l'élément actuel visibles dans les deux. Enregistrez le poids emballé estimé, les dimensions, les catégories pertinentes, les frais d'emballage facultatifs et la date de chaque devis. Pour l'option d'attente, ajoutez toute date d'arrivée non résolue et toute implication de stockage. Ce sont des champs de planification, pas des frais fixes ou des promesses sur le colis ultérieur.",
+      "Changez une hypothèse à la fois. Si l'emballage de détail est retiré, notez que le changement et la révision des dimensions et des besoins de protection; ne soustrayez pas simplement un montant estimé du fret. Si un troisième article arrive, confirmez que le colis complet est toujours admissible pour l'itinéraire sélectionné. Séparez l’estimation de la calculatrice, le dépôt demandé et les éventuels frais finaux dans votre dossier. Le guide détaillé de la calculatrice explique un calcul hypothétique du volume, tandis que le guide de stockage couvre les délais au niveau des articles. Utilisez ces vérifications spécifiques avant de décider si attendre ou combiner en vaut la peine."
+    ]
+  },
+  "superbuy-spreadsheet-fields-product-record": {
+    "heading": "Auditer une ligne d'échantillon et conserver un journal des modifications utile",
+    "paragraphs": [
+      "Utilisez une ligne fictive pour vérifier la structure : type de produit sweat à capuche ; URL source enregistrée ; option bleu marine, taille L ; unité d'achat d'un vêtement ; prix source sélectionné-montant de l'option ; date de vérification du prix enregistrée ; tableau des vendeurs de preuves de taille ; preuve manquante de mesure de poitrine plate ; demande de clarification de la prochaine action. Le but n'est pas de recommander ce produit imaginaire. Il s’agit de montrer pourquoi une image attrayante et un prix unique laissent des décisions importantes en suspens. Gardez un champ inconnu visiblement inconnu au lieu de le remplir avec une supposition d'une page de produit similaire.",
+      "Lorsque la destination ou l'option change, enregistrez l'enregistrement précédent et notez les champs qui ont changé. Une date de modification de page, une vérification de lien réussie et une comparaison complète titre-image-option peuvent être des événements différents. Ne signalez que la vérification effectivement effectuée. Si deux lignes utilisent le même identifiant de produit sous-jacent avec des paramètres de référence différents, vérifiez s'il s'agit de doublons. Si leurs options diffèrent sensiblement, conservez cette distinction. Le guide de dépannage de liens explique comment enquêter sur une destination obsolète sans remplacer silencieusement un produit non lié."
+    ]
+  }
+}

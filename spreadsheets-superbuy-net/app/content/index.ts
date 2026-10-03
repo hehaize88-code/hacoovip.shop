@@ -1,0 +1,13 @@
+import new_en from "./new-en.json";
+import improvements_en from "./improvements-en.json";
+import new_fr from "./new-fr.json";
+import improvements_fr from "./improvements-fr.json";
+import new_de from "./new-de.json";
+import improvements_de from "./improvements-de.json";
+import new_id from "./new-id.json";
+import improvements_id from "./improvements-id.json";
+import new_zh_cn from "./new-zh-cn.json";
+import improvements_zh_cn from "./improvements-zh-cn.json";
+import type { ArticleCopy, ArticleSlug, Lang } from "../site-data";
+export const newArticles: Record<Lang, Partial<Record<ArticleSlug, ArticleCopy>>> = {"en": new_en,"fr": new_fr,"de": new_de,"id": new_id,"zh-cn": new_zh_cn};
+export const articleImprovements: Record<Lang, Partial<Record<ArticleSlug, ArticleCopy["sections"][number]>>> = {"en": improvements_en,"fr": improvements_fr,"de": improvements_de,"id": improvements_id,"zh-cn": improvements_zh_cn};

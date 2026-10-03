@@ -1,0 +1,30 @@
+{
+  "how-to-use-a-superbuy-spreadsheet": {
+    "heading": "Work through one exact-option example",
+    "paragraphs": [
+      "Consider a fictional listing with three selections: a hoodie, matching trousers and a two-piece set. The main picture shows both garments, but the first selectable price belongs to the trousers. A useful spreadsheet row must identify the hoodie option or explicitly describe the set; copying the lowest amount beside the full-outfit image would be misleading. Record the selected label, quantity, corresponding option image and the price check date before moving to payment. This example illustrates a check, not a real seller's offer.",
+      "Keep three separate decisions in the record. First, the listing matches the product you want. Second, the selected size and version have enough documented information to order. Third, after arrival, the received item provides the evidence needed for your warehouse decision. A positive answer at one stage does not complete the later stages. If a field remains unknown, write the specific next action beside it. This makes the workflow useful when you return to the row later, and avoids treating a saved link as a completed inspection."
+    ]
+  },
+  "superbuy-qc-photo-checklist": {
+    "heading": "Turn one uncertain photo into an actionable request",
+    "paragraphs": [
+      "Suppose a fictional hoodie order requires a flat chest width close to your reference garment, but the supplied photo shows only the size label. The evidence gap is a measurement, not the absence of another attractive overview. Request a photo with the hoodie laid flat without stretching and a ruler visible from armpit to armpit. Record the requested points and compare the returned image with a reference measured the same way. A hypothetical 60 cm flat width should not be compared directly with a chart's unexplained 120 cm chest figure until the measurement convention is clear.",
+      "For a shoe pair, a similar process starts with the observed uncertainty: one label is unreadable, one heel is hidden or one component is missing from every view. Ask for the smallest additional view that resolves it. Keep a note containing the original image, the question, the new evidence and your decision. Do not label a missing view as a confirmed defect, and do not label a visible match as proof of authenticity or long-term quality. This record supports a precise after-sales enquiry if a genuine mismatch is found."
+    ]
+  },
+  "superbuy-shipping-cost-and-consolidation": {
+    "heading": "Compare two parcel plans with the same inputs",
+    "paragraphs": [
+      "Create one row for shipping the accepted items now and another for waiting to consolidate with a later purchase. Keep the destination and current item information visible in both. Record estimated packed weight, dimensions, the relevant categories, optional packing charges and the date of each quote. For the waiting option, add any unresolved arrival date and storage implication. These are planning fields, not fixed fees or promises about the later parcel.",
+      "Change one assumption at a time. If retail packaging is removed, note that change and recheck the dimensions and protection needs; do not simply subtract a guessed amount from the freight. If a third item arrives, confirm that the complete parcel still qualifies for the selected route. Separate the calculator estimate, the requested deposit and the eventual final charge in your record. The detailed calculator guide explains a hypothetical volume calculation, while the storage guide covers item-level deadlines. Use those specific checks before deciding whether waiting or combining is worthwhile."
+    ]
+  },
+  "superbuy-spreadsheet-fields-product-record": {
+    "heading": "Audit a sample row and keep a useful change log",
+    "paragraphs": [
+      "Use a fictional row to check the structure: product type hoodie; source URL saved; option navy, size L; purchase unit one garment; price source selected-option amount; price checked date recorded; size evidence seller chart; missing evidence flat chest measurement; next action request clarification. The purpose is not to recommend this imaginary product. It is to show why an attractive image and a single price leave important decisions unresolved. Keep an unknown field visibly unknown instead of filling it with a guess from a similar listing.",
+      "When the destination or option changes, save the previous record and note the fields that changed. A page edit date, a successful link check and a full title-image-option comparison can be different events. Report only the check actually performed. If two rows use the same underlying product identifier with different referral parameters, review whether they are duplicates; if their options differ materially, preserve that distinction. The link-troubleshooting guide explains how to investigate a stale destination without silently substituting an unrelated product."
+    ]
+  }
+}

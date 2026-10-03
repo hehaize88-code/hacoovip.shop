@@ -1,0 +1,392 @@
+{
+  "superbuy-shoes-spreadsheet-sizing-qc": {
+    "title": "Superbuy Shoes Spreadsheet: Finds, Sizing & QC",
+    "category": "Shoes & sizing",
+    "excerpt": "Use a Superbuy shoes spreadsheet to compare exact listings, size evidence, pair photos and packaging before building a shortlist.",
+    "read": "9 min read",
+    "intro": "A Superbuy shoes spreadsheet is most useful when it helps you compare the same facts across different listings. A picture and a low reference price are not enough to choose a size, identify an option or judge the item that reaches the warehouse. This guide sets out a practical shoe record: source listing, selected variant, size evidence, image date and unresolved checks. It explains how to move from a category entry to a small, defensible shortlist without treating a spreadsheet as a stock guarantee or a product authentication service.",
+    "sections": [
+      {
+        "heading": "Start with the kind of shoe you need",
+        "paragraphs": [
+          "Choose the intended use before entering a brand or model name. A casual low-top, an insulated boot and a running-style trainer require different information. Appearance may be your starting point, but it does not establish cushioning, traction, weather resistance or suitability for sport. Keep those claims separate from details that the listing actually documents. This distinction is particularly important when an attractive product title describes performance that the photographs cannot demonstrate. A discovery guide should help you identify missing information, not fill those gaps with confident guesses.",
+          "Use the Shoes category to establish a manageable group, then record three candidates rather than collecting dozens of unrelated links. Your first row can contain the product type, intended use and one reason for keeping it. For example, a hypothetical everyday shoe brief might specify a plain upper, a removable insole if documented and a size chart in centimetres. This is a research example, not a recommendation of a particular seller. Rejecting an unsuitable candidate early saves more time than comparing prices for shoes that never met your needs."
+        ]
+      },
+      {
+        "heading": "Keep the source and the selected variant together",
+        "paragraphs": [
+          "A listing can contain several colours, sizes and versions under one URL. Save the complete destination and record the exact option you intend to buy. Compare the first image, option image and written option label. A card showing a white shoe can still open a listing whose default selection is another colour or a different version. The spreadsheet row should describe the selection you have checked, rather than implying that every option on the page has been reviewed. If no option is selected, label the row accordingly.",
+          "The source record also needs the date of your check. An old screenshot may remain useful as evidence of what you saw, but it cannot confirm present availability. Reopen the destination when you are ready to order and compare its current options with your saved row. If the listing has changed substantially, make a new version of the record. Do not silently replace the destination with a similar-looking item: a new seller or product identifier requires a fresh assessment, even when the preview photograph appears identical."
+        ]
+      },
+      {
+        "heading": "Compare measurements without inventing a size conversion",
+        "paragraphs": [
+          "Start with the seller's chart for the specific listing. EU, UK and US labels do not provide a universal conversion across sellers or models. Record what each measurement means: foot length, insole length and outsole length describe different things. A chart with a number but no measurement method needs clarification. Measure your own feet using a consistent method and consider both feet. If you compare with a shoe you already own, record which internal or external dimension you measured rather than treating every length as interchangeable.",
+          "Suppose a fictional row lists a 27 cm insole and another lists a 27 cm recommended foot length. Those are not equivalent size claims, and the matching number is not a reason to choose the same size. Mark the measurement type in a separate field, alongside the unit and source. Width, toe shape, lining and how the upper fits can also matter, but a photograph cannot prove comfort. Avoid adding a standard extra allowance for every shoe. Use documented model-specific guidance or ask a precise question before ordering."
+        ]
+      },
+      {
+        "heading": "Separate listing images from warehouse evidence",
+        "paragraphs": [
+          "Listing photographs describe the product being offered. Warehouse photographs show the item received for a particular order. Neither should be presented as the other. Superbuy's shopping-agent guidance describes inspection after arrival and an opportunity to review stored items before international shipment. Keep that order of events clear in your spreadsheet. A discovery row can identify the views you will need later, but it should not carry a label such as warehouse-approved when no received-item evidence exists. Likewise, another person's photos do not prove your future pair will match.",
+          "For shoes, useful views may include both side profiles, the toes together, the heels together, the soles and readable size labels. The exact photo service and any additional charge should be checked in the current order interface. Record which views are available and which remain missing. A request such as photograph both size labels clearly is more actionable than check everything. If a measurement is essential, name the dimension and explain where the ruler should begin and end, rather than asking the warehouse to guess your sizing concern."
+        ]
+      },
+      {
+        "heading": "Read a pair as two related objects",
+        "paragraphs": [
+          "Review left and right shoes together. Look for a visible mismatch in colour family, panel arrangement, sole construction, labels or included accessories. Compare repeated features across several angles before concluding that a difference is real. Camera distance, rotation and shadows can make one shoe appear larger or darker. A single angled image therefore deserves a narrower conclusion than a clear label mismatch. Record the observation itself and the view that supports it; this makes follow-up easier than a general note saying the pair looks wrong.",
+          "A simple decision record can use three outcomes: enough visible evidence to continue, one specific detail still needed, or a confirmed mismatch requiring support. These are editorial working labels, not official Superbuy statuses. They prevent a blank QC field from being mistaken for approval. Photos can reveal visible condition and some dimensions, but they do not establish authenticity, material chemistry, long-term durability or how a shoe feels on your foot. Keep those limitations alongside the inspection result, especially if you later share the spreadsheet with someone else."
+        ]
+      },
+      {
+        "heading": "Compare reference prices on an equal basis",
+        "paragraphs": [
+          "Check whether the displayed amount applies to the same size, version and quantity for every candidate. A starting price may belong to the cheapest option rather than your intended pair. Record currency and check date, and separate the item amount from domestic delivery, optional services and international shipping. If you display an approximate USD conversion, identify it as a planning figure and preserve the source amount. The final payment can use a different conversion basis, so a rounded dollar label is not a promise about the checkout total.",
+          "For an illustrative comparison, Candidate A may appear cheaper until the chosen option changes its price, while Candidate B may include a different accessory bundle. Compare the selected options again before calling either one better value. Do not assign a fixed shipping cost to each shoe row unless it comes from a clearly identified, current quote for that exact parcel scenario. A single pair's item weight does not establish the final packed dimensions or the available delivery options. Keep uncertain charges visible instead of hiding them inside a misleading all-in total."
+        ]
+      },
+      {
+        "heading": "Record packaging decisions before parcel planning",
+        "paragraphs": [
+          "A shoe box can matter for protection, presentation or storage, but it may also occupy space. Record whether you need it and why. Removing it is not automatically the best choice: fragile details, gift requirements and the selected packing method can change the decision. Ask for current packaging options only after you know the item and your priorities. Avoid treating an estimated reduction in volume as a guaranteed reduction in freight. The selected line's billing rules and final parcel measurements determine whether the change affects the charge.",
+          "Keep product acceptance separate from shipping readiness. A pair may match the ordered option while a delivery line remains unavailable for its category, destination or parcel dimensions. Record these as different checks. When combining shoes with clothing or accessories, compare the complete packed parcel rather than adding up isolated assumptions. Your spreadsheet can store the scenario and its date, but the parcel interface is the source for current eligibility. This keeps a useful shoe shortlist from turning into an unsupported shipping recommendation."
+        ]
+      },
+      {
+        "heading": "Finish with a shortlist you can recheck",
+        "paragraphs": [
+          "Before ordering, each retained row should identify one exact destination, one selected option, the relevant size evidence and the unresolved questions. Before international shipment, add the received-item observations and a separate parcel decision. Preserve earlier records when important details change so you can understand why the choice was made. A spreadsheet does not need a large product count to be useful; it needs rows whose meaning remains clear when you return a week later or compare a second candidate.",
+          "Use the spreadsheet fields guide for the record structure, the QC checklist for received-item inspection and the shipping calculator guide when you have a defined parcel scenario. Return to the category directory when a candidate fails a check. There is no need to rescue a row simply because it was saved first. The goal is a small set of current, comparable options, with unknowns honestly marked and the next action clear. That is a stronger basis for a purchase than a long list of unqualified best finds."
+        ]
+      }
+    ]
+  },
+  "superbuy-hoodie-finds-measurements-qc": {
+    "title": "Superbuy Hoodie Finds: Measurements, Fabric & QC",
+    "category": "Clothing research",
+    "excerpt": "Compare Superbuy hoodie finds using garment measurements, exact options, fabric evidence and targeted warehouse checks.",
+    "read": "9 min read",
+    "intro": "Superbuy hoodie finds are easier to compare when every row uses the same measurement language. Labels such as oversized, heavyweight and true to size can mean different things across sellers. A useful hoodie spreadsheet separates the selected product, the measurements supplied, the seller's fabric claims and what can be observed in photographs. This guide explains how to build that record, compare it with a garment you own and prepare focused QC requests. It does not rank untested products or turn an attractive image into a claim about comfort, composition or durability.",
+    "sections": [
+      {
+        "heading": "Define the fit before choosing the listing",
+        "paragraphs": [
+          "Begin with a hoodie you already wear and identify what you want to keep or change. You might want more body length, a wider chest or less sleeve volume. Write those preferences as observations, not as a universal size recommendation. The same letter size can describe very different garments, and two oversized cuts can place the shoulder seam differently. A short fit brief stops you from choosing solely on a model photograph whose body measurements, pose or styling may be unknown.",
+          "For a hypothetical relaxed-fit brief, record the reference garment and the way it was measured. Lay it flat without stretching, use consistent points and note whether the fabric is pulled smooth or left relaxed. A garment measurement is not a body measurement. Chest width measured across a flat hoodie is also different from a full chest circumference. Keep the method beside the number so you can repeat the comparison later. If another person helps, have them use the same points rather than simply supplying a new size label."
+        ]
+      },
+      {
+        "heading": "Confirm the exact hoodie option",
+        "paragraphs": [
+          "Open the current destination and match its main image, title and selectable options with the spreadsheet card. Some pages combine pullovers, zip hoodies, sets or several designs. Record whether the price refers to the hoodie alone or to another selection. A photograph of a full outfit does not necessarily mean every piece is included. Colours with similar translated names can also correspond to different images. Save the option image and written label together when colour or graphic placement is important to your decision.",
+          "This site's Stone Island Hoodie card is a discovery reference, not evidence of personal wear testing. Its displayed USD amount is a dated estimate, and the live destination remains the source for current options and availability. Apply the same checks to that card as to any other listing. A familiar brand name does not resolve missing measurements or confirm a material claim. If the linked product changes, record the difference rather than continuing to describe the old image as a current, checked example."
+        ]
+      },
+      {
+        "heading": "Read the measurement table field by field",
+        "paragraphs": [
+          "Useful fields include flat chest width, body length, shoulder width and sleeve length, with the seller's stated units. Record where body length begins, since measurements from a shoulder point can differ from those taken from the centre back. Sleeve length can start at the shoulder seam or include part of the shoulder. Raglan and dropped-shoulder designs make direct comparisons especially difficult. If a chart does not explain its measurement points, mark that uncertainty and ask for clarification before treating a small numerical difference as decisive.",
+          "Consider an illustrative comparison: your reference hoodie measures 60 cm across the chest when flat, while a listing says chest 120 cm. These may describe the same broad dimension if the seller means circumference, but that must be confirmed. Another listing may also say 60 cm while measuring a different point. Do not convert the numbers automatically and label the result verified. Keep a column for flat width or circumference and another for the source. The goal is to compare like with like, not to create apparent precision from ambiguous data."
+        ]
+      },
+      {
+        "heading": "Treat fabric descriptions as claims until supported",
+        "paragraphs": [
+          "Separate fibre composition, fabric weight and garment weight. A composition label describes fibres; a grams-per-square-metre claim describes the fabric; a warehouse weight describes the item as weighed and may include packaging. None can safely substitute for the others. A heavy parcel does not prove a heavy fabric, and a close-up cannot establish a precise fibre blend. Write seller states beside claims that come only from the listing, and avoid replacing missing evidence with a confident assumption based on the way the garment looks.",
+          "Photographs can still support narrower observations: visible fleece on the inside, a ribbed cuff, a lining layer or a particular seam arrangement. Ask for the care or composition label when it matters, while remembering that a photographed label is still not a laboratory test. Do not promise warmth, breathability, colourfastness or shrinkage performance without appropriate evidence. For a shortlist, it is reasonable to prefer clearer documentation over vague superlatives. It is also reasonable to leave a field unknown and decide that the remaining uncertainty is too important to proceed."
+        ]
+      },
+      {
+        "heading": "Prepare QC requests around the fit risk",
+        "paragraphs": [
+          "After the item reaches the warehouse, compare the received garment with the saved listing and selected option. First confirm the garment type, colour family, design and size label. Then identify the measurement that could change your decision. If body length is your main concern, a clear ruler photo at specified points is more useful than another general front view. Superbuy describes warehouse inspection within its shopping-agent process, but the available extra-photo service and any charge should be checked in the current order interface.",
+          "Write a request that names the action and method, such as lay the hoodie flat without stretching and show chest width from armpit to armpit. Avoid asking staff whether it will fit you: they do not have your reference garment or your comfort preferences. For a dropped-shoulder cut, a sleeve number alone may not resolve reach, so ask how it was measured. Record the resulting image and observation together. If the measurement method differs from the listing chart, do not present the comparison as exact."
+        ]
+      },
+      {
+        "heading": "Inspect construction without overstating the photos",
+        "paragraphs": [
+          "Review front, back and relevant close-ups for visible stains, holes, uneven seams, missing drawcords or an incorrect graphic. On a zip hoodie, check whether the images show the intended zip style and included components. A still photograph cannot prove that a fastening works smoothly through repeated use. Use precise language such as no obvious damage visible in the supplied views. This is more useful than a blanket quality-approved label, because it tells a later reader what was actually checked and what remains outside the evidence.",
+          "Lighting and folds can create apparent differences. A sleeve may look shorter because it is bent; an uneven hem may reflect the way the garment was laid down. Compare several images before treating one impression as a confirmed defect. When a decision-critical area is hidden, request a focused view. Keep a visible problem separate from an untested concern about future durability. If a wrong option or clear defect is confirmed, use the current after-sales process promptly rather than waiting until the garment has been included in an international parcel."
+        ]
+      },
+      {
+        "heading": "Compare the price and packing context",
+        "paragraphs": [
+          "For every candidate, record the selected-option amount, quantity, source currency and check date. Keep domestic shipping and optional services separate. A displayed price for the smallest size or a different design cannot support a fair comparison with your intended variant. The USD estimate shown on a discovery page helps with rough browsing, but it is not the final delivered price. Avoid writing under a fixed budget unless you explain exactly which costs are included and when the source amount was checked.",
+          "A hoodie can be bulky without being especially heavy. Packaging choices may change the parcel volume, and a multi-item parcel must be assessed as a whole. Compression is a packing decision, not an automatic recommendation for every garment or decoration. Ask about suitability where a product has delicate details, structured parts or presentation requirements. Keep the shopping decision and parcel decision in different fields. That prevents a low item price from disguising an unresolved transport constraint and makes later cost comparisons easier to explain."
+        ]
+      },
+      {
+        "heading": "Keep a repeatable clothing record",
+        "paragraphs": [
+          "A strong hoodie row contains the exact listing, selected option, measurement method, relevant dimensions, fabric evidence source, price date and the remaining QC request. Compare two or three candidates using those fields before deciding. If the information is incomplete, label the gap explicitly. Do not copy an answer from a similar-looking item: the seller, construction and measurement chart may differ. A short, honest record is easier to maintain than a detailed table filled with assumptions that nobody can trace back to a source.",
+          "After receiving the garment, you can add your own measured results and clearly labelled personal observations. Keep them specific to that item and date instead of turning one experience into a claim about every future order. Use the spreadsheet fields guide to organize the record and the QC article for the inspection sequence. For other garments, change the measurement fields to suit the product. The method remains the same: define the need, verify the option, compare consistent evidence and keep uncertainty visible until it is resolved."
+        ]
+      }
+    ]
+  },
+  "superbuy-spreadsheet-links-not-working": {
+    "title": "Superbuy Spreadsheet Links Not Working: Checks & Fixes",
+    "category": "Link troubleshooting",
+    "excerpt": "Diagnose Superbuy spreadsheet links that fail, redirect or open the wrong option, and keep a clear record of any replacement.",
+    "read": "9 min read",
+    "intro": "A Superbuy spreadsheet link can fail in several different ways. It may not open, it may redirect to a general page, or it may load successfully while showing a different product from the one in the row. These problems require different checks. This guide explains a practical troubleshooting sequence for readers and editors: preserve the original evidence, identify the failure, compare the final destination and document any correction. A successful page load is only the first check. The destination still needs to match the product and selected option you intended to research.",
+    "sections": [
+      {
+        "heading": "Preserve the original row before changing anything",
+        "paragraphs": [
+          "Copy the original URL and save the row title, preview image, selected option if known and the date when the problem appeared. Avoid immediately replacing the link with the first similar result. Without the original record, it becomes difficult to distinguish a broken URL from a changed listing. If you are maintaining a public spreadsheet, keep a private correction note containing the old destination and reason for the change. The public row can show a concise status without exposing personal order information or unrelated browsing details.",
+          "Record what actually happened in ordinary language: page did not load, sign-in requested, category page opened, product unavailable or image no longer matches. These labels describe observations, not proven causes. A browser message alone may not identify whether the problem lies with the destination, a temporary connection issue or the way the link was copied. Keeping the observation narrow prevents an editor from announcing that a seller removed a product when the only evidence is a single unsuccessful visit from one device."
+        ]
+      },
+      {
+        "heading": "Check whether the URL was copied completely",
+        "paragraphs": [
+          "Look for accidental spaces, line breaks, missing characters and punctuation attached to the end of the link. A URL copied from a sentence can include a final bracket or full stop that was never part of the destination. Conversely, a spreadsheet cell may display a shortened label while storing a different full link underneath. Compare the actual hyperlink target with the visible text. Do not reconstruct a product identifier from memory, and do not assume two addresses are equivalent merely because their first few characters look alike.",
+          "Some parameters describe the product or selected variant, while others describe a referral campaign. Removing every parameter can therefore break a working destination or change the selected item. Save the original before testing a cleaned version, and change only a component whose purpose you understand. If the URL includes a temporary sign-in token or another sensitive value, do not publish it as a replacement link. Obtain a normal shareable product address through the platform's supported interface. Link maintenance should preserve identity without spreading session-specific information."
+        ]
+      },
+      {
+        "heading": "Distinguish an access problem from an unavailable product",
+        "paragraphs": [
+          "A request to sign in does not establish that the product has been deleted. A temporary error likewise does not prove a permanent failure. Recheck through the normal destination interface and note whether the same product can be reached using its known identifier or an existing saved reference. Respect any access requirements shown by the service. Do not describe a restriction as something readers should bypass. If the listing remains inaccessible, mark its current state as unconfirmed and avoid presenting the row as a freshly verified buying option.",
+          "If the page explicitly says the product is unavailable, record that wording and date in your own notes. The unavailable state may concern the entire listing or only a particular option. A size or colour can sell out while other variants remain selectable. Keep those situations separate. Where you cannot determine the scope, say option availability not confirmed rather than treating all variants as available or unavailable. The record should communicate the evidence you have, including its limitations, instead of creating a simpler but inaccurate status."
+        ]
+      },
+      {
+        "heading": "Verify the final destination after a redirect",
+        "paragraphs": [
+          "A link that opens a homepage, search page or category collection has not passed an exact-product check. The destination may still be useful for discovery, but its role has changed. Compare the final product identifier, title and option structure with the saved reference. Similar branding, colour or photography is not enough to establish identity. For a public index, the correct response is to label or repair the row, not to leave an exact-listing claim in place because the visitor can eventually search for something similar.",
+          "Consider a hypothetical hoodie row that now opens a clothing category. The URL still returns a page, yet the original purchase destination is missing. An editor should preserve the old record, mark the exact listing unresolved and investigate a replacement separately. If a replacement is found, identify it as a new candidate until its product and options have been checked. This makes the change understandable to readers who saved the earlier row and prevents a silent substitution from being mistaken for continuity of the same item."
+        ]
+      },
+      {
+        "heading": "Reconcile the title, image and selectable option",
+        "paragraphs": [
+          "After a product page loads, compare three elements: the written description, the main or option image and the available selection. A page may retain an old title while changing its photos, or show a broad collection whose cheapest option is an accessory. Check whether the selected amount buys the full item, one piece of a set, an add-on or a deposit. If the row cannot explain the purchase unit, it is not ready to make a precise price comparison. Mark the ambiguity and seek clarification.",
+          "This is also why a familiar picture should not be treated as a unique identifier. Sellers can reuse images across options, and an editor may have saved a preview that no longer represents the default choice. Record the option label alongside the image you checked. If the conflict remains unresolved, remove any verified wording from that row while keeping its history. A clear uncertainty label protects the usefulness of the whole index better than a confident claim that requires the reader to discover the mismatch alone."
+        ]
+      },
+      {
+        "heading": "Replace a stale link with a documented new check",
+        "paragraphs": [
+          "Search for a replacement using concrete product details and the known source context, then verify it independently. Compare the intended use, dimensions or size information, components and selected option. Do not claim that a new seller offers the same quality or that a visually similar item is the identical version. A replacement can be useful without being described as equivalent. Keep the reason it was selected and the differences you could observe. If the evidence is insufficient, leave the old row inactive rather than manufacturing a match.",
+          "For an editor, a small change log can contain old destination, new destination, check date, changed fields and remaining uncertainty. This is an editorial record, not an official Superbuy feature. Update the title, image and reference price together when the replacement changes them. Fixing only the URL can leave an apparently working card with misleading details. Readers should be able to tell whether a correction restored the original destination or introduced a new candidate requiring a new buying decision."
+        ]
+      },
+      {
+        "heading": "Avoid duplicates and misleading freshness labels",
+        "paragraphs": [
+          "Two rows may point to the same listing with different referral parameters. Compare the underlying product identity before calling them separate finds. At the same time, two options under one listing may deserve separate records if their dimensions, contents or prices differ materially. Decide which unit your spreadsheet represents and use that rule consistently. A duplicate check based only on identical titles can miss equivalent destinations and can also merge genuinely different products whose translated names happen to resemble each other.",
+          "Use a last-checked date only for checks that were actually performed. Updating a page's publication date does not mean every product link has been reopened. Distinguish page edited, destination reachable and product-option match checked if those events happened at different times. On a small index, clear dated notes are more useful than an unsupported updated-daily badge. The date tells readers when to recheck; it does not guarantee that the destination will remain unchanged after the editor's visit."
+        ]
+      },
+      {
+        "heading": "Close the loop with the next usable action",
+        "paragraphs": [
+          "A repaired row should lead to one clear next step: open the verified destination, compare a newly identified candidate or return to the relevant category because the original is unavailable. Test the visible card after editing, not just the text stored in the source file. Confirm that the link, preview and option description agree on the published page. If you maintain language versions, apply the same correction to each one so that switching language does not restore an outdated destination or an earlier product description.",
+          "Readers can use the same sequence on a personal shortlist: preserve, classify, check, compare and record. Keep order-specific questions within the platform's supported assistance process, particularly when an item has already been purchased. This independent guide cannot restore a seller's listing or confirm stock. Its purpose is to make the next decision clearer and reduce wrong-product clicks. A transparent inactive row is preferable to a working link whose identity nobody has checked."
+        ]
+      }
+    ]
+  },
+  "superbuy-shipping-calculator-estimate-final-cost": {
+    "title": "Superbuy Shipping Calculator: Estimate vs Final Cost",
+    "category": "Shipping estimates",
+    "excerpt": "Use the Superbuy shipping calculator with clear parcel inputs and compare estimates, deposits and final charges without assuming fixed rates.",
+    "read": "9 min read",
+    "intro": "The Superbuy shipping calculator is a planning tool for a defined parcel scenario. Its usefulness depends on the destination, weight, dimensions and item information entered. A result from an incomplete scenario should not be treated as the final cost of a future haul. This guide explains how to record the inputs, compare packing alternatives and understand the difference between an estimate, a shipping deposit and a final charge. Numerical examples below are deliberately hypothetical: they demonstrate a method and are not current Superbuy prices, carrier rules or quotations.",
+    "sections": [
+      {
+        "heading": "Build the parcel scenario before comparing prices",
+        "paragraphs": [
+          "Start with the destination and the items you actually expect to send. List each item, quantity, relevant category and any uncertainty about size or weight. Keep a proposed parcel separate from a confirmed warehouse parcel. Before arrival, the information may come from a seller or your own estimate; after packing, the recorded dimensions can be more specific. Label those sources so a later reader does not mistake an early guess for a warehouse measurement. A clear scenario makes it possible to explain why two calculator results differ.",
+          "Superbuy's public estimator includes destination, warehouse, weight, dimensions and item-category inputs. Use the fields and units shown in the current interface. If the intended destination or category is unavailable, do not choose a different one merely to obtain a lower-looking result. That output would describe another scenario. Record the unavailable input and seek clarification through the platform's supported process. A calculator cannot establish shipping eligibility for details that were omitted or deliberately substituted, even when it produces a plausible number."
+        ]
+      },
+      {
+        "heading": "Keep weight units and dimensions explicit",
+        "paragraphs": [
+          "Record whether a weight is expressed in grams or kilograms. Entering the right number in the wrong unit can produce an entirely different scenario. For dimensions, note length, width and height in the units requested by the estimator. Distinguish the dimensions of an individual product from those of the packed parcel. A clothing measurement, a retail shoe box and an outer shipping carton are not interchangeable. Include packaging in the scenario rather than assuming that the sum of item weights fully describes the parcel.",
+          "For an illustrative record, a parcel might be estimated at 3 kg with dimensions of 40 by 30 by 20 cm. Write all four inputs down together with the date and destination. If the later packed parcel measures differently, preserve the old scenario and create a revised one. Do not overwrite the original and then conclude that the calculator changed its mind. Often the more useful explanation is that the parcel being priced changed. A simple version history makes this difference visible without requiring a complicated tracking system."
+        ]
+      },
+      {
+        "heading": "Understand volumetric weight without assuming one divisor",
+        "paragraphs": [
+          "Some delivery options account for the space occupied as well as physical mass. The relevant formula, divisor, rounding and limits depend on the selected service. Check the current line description rather than applying a single internet formula to every option. Your worksheet should store the rule used beside the result. If a line's terms do not make the calculation clear, leave the billing basis unresolved and ask. An unexplained formula can make a comparison look precise while using a rule that does not apply to that parcel.",
+          "Using the hypothetical dimensions above, the volume is 24,000 cubic centimetres. If a fictional service used a divisor of 6,000, the calculated volumetric weight would be 4 kg. With a different hypothetical divisor of 5,000 it would be 4.8 kg. Neither divisor is asserted here as a Superbuy rule. The example shows why recording only 3 kg can miss an important cost factor. Whether a service uses the higher figure, applies rounding or imposes another condition must be checked against its actual published terms."
+        ]
+      },
+      {
+        "heading": "Change one packing assumption at a time",
+        "paragraphs": [
+          "Compare an original packing scenario with a clearly described alternative. For example, record what changes when unnecessary retail packaging is removed, while keeping the destination and item list constant. Then compare a reinforced scenario separately. This makes it easier to see whether the difference comes from dimensions, weight or another input. A quote that changes several assumptions at once cannot tell you which choice affected the price. Keep any optional packing-service charge separate so a lower freight estimate is not mistaken for a lower overall total.",
+          "Protection requirements come first. Removing a box or compressing a garment may be unsuitable for particular products or presentation needs. Do not assume that every item can be packed in the smallest possible shape. A useful comparison records the proposed method, the reason it is acceptable and the uncertainty that remains until packing. If the final dimensions have not been measured, label them estimated. This allows you to plan a budget while avoiding a promise that the warehouse will achieve the exact dimensions used in the calculator."
+        ]
+      },
+      {
+        "heading": "Compare eligible options on more than the headline amount",
+        "paragraphs": [
+          "For each available result, record the service name exactly as displayed, check date, applicable restrictions, tracking information and the scope of any stated estimate. Verify that the option accepts the actual item category and destination. A low amount for an ineligible parcel is not a genuine alternative. Delivery estimates also need context: determine what stage the stated time covers and whether processing, customs or final delivery introduces additional uncertainty. Do not turn an estimated window into a guaranteed arrival date for an event or deadline.",
+          "Use a consistent comparison record rather than ranking lines universally. A hypothetical buyer sending an ordinary compact parcel may make a different choice from someone sending a bulky or fragile item. Record your priorities and the trade-off you accept. If insurance or compensation is relevant, read the current eligibility, exclusions and evidence requirements separately. The calculator's price display does not by itself establish the value or scope of protection. Keep any unverified term out of the comparison until you have a current source for it."
+        ]
+      },
+      {
+        "heading": "Separate estimate, deposit and final charge",
+        "paragraphs": [
+          "An early estimate helps you plan. A shipping deposit is a payment requested at a particular stage. A final charge reflects the assessed shipment under the applicable process. Superbuy's shopping guidance distinguishes estimated inputs from the size and weight verified for shipping. Preserve each amount with its label, currency, date and supporting record. Do not compare a deposit for one parcel with a final charge for another and present the difference as evidence that a line is cheaper or that the estimator is consistently inaccurate.",
+          "When a later amount differs, first compare the underlying item list, packed measurements, selected service and optional additions. Then inspect the adjustment information shown for that parcel. Keep any refund or extra payment as its own entry rather than silently editing the earlier payment. This produces an understandable reconciliation: what was estimated, what was paid and what was later adjusted. It also gives support a concrete question if a discrepancy remains. Avoid promising a particular adjustment amount or timing before the account record confirms it."
+        ]
+      },
+      {
+        "heading": "Keep the wider budget outside the freight figure",
+        "paragraphs": [
+          "International freight is only one component of a buying budget. Item prices, domestic delivery, optional services, payment conversion and destination-related charges can be separate. Record which components a displayed amount includes and which remain unknown. Do not label an estimate delivered total merely because it is shown after selecting a destination. Current route terms and the actual checkout record determine its scope. If tax or customs information is needed, use current official guidance for the destination rather than a fixed allowance copied from an old haul report.",
+          "Avoid a universal cost-per-kilogram shortcut for different parcels. Size, categories, minimum charges, billing increments and available options can make such a comparison misleading. A past parcel can be a useful personal reference if its full conditions are preserved, but it is not a current quote for a new shipment. Mark historical records as historical and reopen the calculator for the current scenario. This is especially important when a parcel's shape or destination changes even though its total item weight appears similar."
+        ]
+      },
+      {
+        "heading": "Save a result that can be explained later",
+        "paragraphs": [
+          "Before using an estimate to make a purchase decision, save the destination, item categories, weight, dimensions, packing assumptions, selected option and date. Add a clear note identifying any input that is still estimated. Recalculate when a material input changes, and compare the revised result with the earlier version. A useful worksheet is not the one with the smallest amount; it is the one that lets you reconstruct how that amount was obtained and whether it still describes your intended shipment.",
+          "Use the broader shipping guide for parcel grouping and the warehouse-storage guide when timing affects your plan. Once the actual parcel information is available, use that information for the final comparison. Keep the product-discovery spreadsheet separate from the parcel record, linking the two through the selected items. This prevents an old shipping assumption from becoming attached permanently to a product card and helps you judge the full decision with current, clearly labelled evidence."
+        ]
+      }
+    ]
+  },
+  "superbuy-warehouse-storage-deadlines-fees": {
+    "title": "Superbuy Warehouse Storage: Deadlines, Fees & Planning",
+    "category": "Warehouse planning",
+    "excerpt": "Record Superbuy warehouse storage dates, verify current fees and plan consolidation without losing track of individual item deadlines.",
+    "read": "9 min read",
+    "intro": "Superbuy warehouse storage gives buyers time between receiving items in China and sending a parcel internationally. The useful question is how that time fits your actual orders, inspection decisions and shipping plan. A warehouse spreadsheet should record the status and deadline for each item, rather than assigning one date to the whole shopping session. This guide explains the current published storage baseline, the records to keep and the decisions to make before waiting becomes costly. Examples are planning illustrations, not records of real customer orders or guarantees about an account-specific deadline.",
+    "sections": [
+      {
+        "heading": "Read the current storage rule before making a plan",
+        "paragraphs": [
+          "Superbuy's fee-composition page reviewed on October 3, 2026 states a 90-day free storage period, followed by a listed storage charge of CN¥0.1 per item per day, with a stated maximum storage period of 180 days. It also describes an extension service and conditions concerning items left beyond the maximum period. Treat these as published policy details to confirm against the current warehouse record and applicable service. Do not assume that every order type, exception or future policy change is covered by a short summary.",
+          "Write the policy check date next to your planning notes. More importantly, record the deadline actually displayed for the item or confirmed through support. A calendar calculation you make yourself is a reminder aid, not a substitute for the account's operative deadline. If the two disagree, resolve the difference early. Avoid waiting until the final day to ask which interpretation applies. A useful storage plan gives you time to inspect, clarify and arrange shipping while those options are still available."
+        ]
+      },
+      {
+        "heading": "Keep an item record rather than a single haul date",
+        "paragraphs": [
+          "Orders placed on the same day may arrive at the warehouse on different days. One order can also involve several items whose handling differs. Keep a separate row for each identifiable warehouse item, with the source listing, selected option, order reference, arrival or storage date shown and its current status. Use the platform's identifiers as recorded; do not replace them with an informal nickname alone. A nickname can help you recognize the item, but the actual reference is needed when comparing records or contacting support.",
+          "Distinguish purchase date, seller dispatch date, warehouse receipt date and the storage information displayed in the account. They describe different events. If one is unknown, leave it unknown rather than copying another date into the field. This matters when a parcel plan includes items from different sellers. A recently ordered item does not reset the time already used by an earlier warehouse item. The spreadsheet should make the oldest unresolved deadline easy to see without assuming that all rows move through the process together."
+        ]
+      },
+      {
+        "heading": "Finish inspection while you still have choices",
+        "paragraphs": [
+          "Use the warehouse stage to compare the received item with the intended option. Record whether the product identity, visible condition and any decision-critical measurements have been checked. A storage allowance should not be interpreted as an equally long return or exchange window. Seller terms, item type and the applicable after-sales process may impose different conditions. Keep inspection and after-sales questions separate from storage timing, and raise a confirmed mismatch promptly through the current order tools rather than assuming that waiting has no consequences.",
+          "A practical working record can distinguish awaiting inspection, detail requested, accepted for parcel planning and after-sales issue open. These are your own planning labels, not official platform statuses. Use them alongside the original status shown in the account. For each unresolved row, write one next action and a date to review it. This prevents an item from sitting indefinitely under a vague pending label. If you request a photo, note the exact uncertainty it should resolve so that receiving another image actually moves the decision forward."
+        ]
+      },
+      {
+        "heading": "Plan consolidation around the oldest deadline",
+        "paragraphs": [
+          "Combining eligible items may reduce repeated parcel charges, but waiting for one more purchase can introduce storage costs or leave less time for packing. Begin with the items already accepted and identify the earliest unresolved deadline. Then consider the expected arrival of later purchases without treating an unconfirmed seller estimate as certain. A consolidation plan should have a decision point: if the later item has not arrived by that point, reassess the parcel rather than automatically extending the wait every time the shopping list grows.",
+          "For an illustrative case, imagine two accepted items already stored and a third still awaiting seller dispatch. Compare sending the ready items now with waiting for the third. The comparison needs current parcel estimates, storage implications and the risk that the later item is delayed or cannot share the chosen route. It cannot be decided by the number of items alone. Record the assumptions and the review date. This makes it easier to change the plan for a reason instead of waiting simply because consolidation was the original intention."
+        ]
+      },
+      {
+        "heading": "Calculate an example without treating it as an invoice",
+        "paragraphs": [
+          "Using the published daily figure above purely as an illustration, three items each spending ten chargeable days beyond their applicable free period would produce 3 × 10 × CN¥0.1, or CN¥3, before any different conditions or services. This arithmetic demonstrates how an item-day record works. It is not a quote for your account, a promise about how partial days are counted or a guarantee that all items share the same chargeable period. Confirm the actual amount and rule shown before relying on the calculation.",
+          "Keep the calculation in the source currency. If you add an approximate USD equivalent for your own budget, record the conversion basis and date and label it an estimate. Do not assume that an older product-card conversion matches the payment conversion for storage. Separate any extension-service amount from ordinary storage charges, because an extension may have its own conditions. A useful cost record shows which part is confirmed, which part is calculated and which part still requires clarification."
+        ]
+      },
+      {
+        "heading": "Check restrictions before deciding to wait",
+        "paragraphs": [
+          "More time in storage does not make a restricted item eligible for a route. Before adding a product to a future parcel, check the current options for its category, destination and intended packing. A mixed parcel may need a different arrangement from the one you first imagined. Keep this eligibility question separate from product acceptance. An item can be correct and undamaged while still requiring a different shipping plan. Discovering that early gives you more time to consider the supported options.",
+          "Ask focused questions when the plan is unclear. Identify the item reference, destination and the specific packing or routing issue. Avoid a broad request to find the cheapest way without explaining the contents or requirements. Keep any answer with its date and scope. Advice about one parcel should not be copied automatically to a later parcel with different items. If a proposed route disappears or the packing changes, revisit the decision rather than assuming an earlier support response remains current indefinitely."
+        ]
+      },
+      {
+        "heading": "Treat extension and maximum storage as active decisions",
+        "paragraphs": [
+          "If you expect to need more time, check the current extension process before reaching the relevant limit. Confirm what it covers, its cost, the new deadline and any action required from you. Do not infer that paying an ordinary overdue charge automatically purchases an extension or prevents the consequences described in the maximum-storage policy. Save the confirmation and update the affected item records. A request sent to support is not the same as an approved extension, so keep its status explicit until it is resolved.",
+          "Use reminders well before the deadline and allow time for responses, packing and a change of plan. The exact reminder interval is a personal planning choice, not a Superbuy rule. Choose one that reflects the number of unresolved items and the importance of the decision. When an item approaches a limit, reduce uncertainty rather than adding more purchases to the same plan. The key question is which supported action can be completed in time, using the current account information and documented conditions."
+        ]
+      },
+      {
+        "heading": "Close the record when the item leaves storage",
+        "paragraphs": [
+          "When an item is included in a submitted parcel, record the parcel reference and the resulting warehouse status. Keep storage charges, optional services and international freight as separate entries so the final cost can be understood. Do not delete the earlier dates: they explain the sequence if a later question arises. If an item is returned or otherwise handled through a supported process, record that outcome instead of leaving it marked ready to ship. A complete record describes where the item went and which decision closed the row.",
+          "Use the spreadsheet fields article for a consistent record structure and the shipping calculator article for dated parcel scenarios. Review the oldest open items first, confirm current policy when a deadline matters and preserve evidence of any exception or extension. Storage is useful when it supports a deliberate plan. It becomes harder to manage when every new purchase silently postpones the previous decision. A clear next action for each item is more valuable than a large warehouse list with no reliable timeline."
+        ]
+      }
+    ]
+  },
+  "superbuy-shipping-to-usa-parcel-options": {
+    "title": "Superbuy Shipping to the USA: Compare Parcel Options",
+    "category": "USA parcel planning",
+    "excerpt": "Compare Superbuy shipping to the USA by postcode, parcel measurements, item eligibility, tracking and the scope of current quotes.",
+    "read": "9 min read",
+    "intro": "Superbuy shipping to the USA should be planned around the recipient and the actual parcel. A line used successfully by another buyer may describe a different item category, postcode, weight or packing arrangement. This guide provides a comparison method for current options without publishing a universal cheapest line, a fixed transit promise or an assumed tax outcome. It focuses on the information to collect before submission and the records that make a later tracking or cost question easier to resolve. All parcel scenarios in this guide are illustrative, not customer testimonials.",
+    "sections": [
+      {
+        "heading": "Start with the delivery address and recipient details",
+        "paragraphs": [
+          "Check the recipient name, street address, apartment or unit, city, state and ZIP code in the form required by the current shipping interface. Keep the postcode with the address rather than treating the country alone as a complete destination. If you use a workplace, campus, forwarding address or another managed location, confirm its receiving requirements before submitting. A parcel can reach the intended area while still being difficult to deliver if the address omits a unit or uses a name the receiving desk cannot recognize.",
+          "Do not assume that every option shown for the United States accepts every address type or location. Check the selected service's current conditions for the specific destination. If a field or address requirement is unclear, clarify it through the platform before paying. Avoid changing the postcode simply to make an unavailable option appear. That would price a different delivery scenario. Save the submitted address confirmation securely, and keep personal contact details out of any public spreadsheet, screenshot or article you later share about the shipment."
+        ]
+      },
+      {
+        "heading": "Describe the contents accurately before selecting a line",
+        "paragraphs": [
+          "Record the product type, quantity and any characteristic that may affect carriage. Separate an ordinary garment from an item containing a battery, liquid or other potentially restricted component. Do not assume that a broad category label resolves every eligibility question. The current platform and selected service conditions control whether a particular item can use an option. Superbuy's guidance makes clear that international delivery is operated by third parties and that item restrictions can affect the choices available for a parcel.",
+          "Use truthful, specific product descriptions when information is requested. U.S. Customs and Border Protection publishes examples distinguishing vague cargo descriptions from descriptions that identify the goods more clearly. A brand name alone does not describe what an object is. Follow the current form and supported guidance for your actual items rather than copying a generic description from another haul. This guide does not supply a declaration value or a method to avoid charges. Preserve the purchase evidence so the information you provide can be reconciled with the contents."
+        ]
+      },
+      {
+        "heading": "Measure the complete parcel scenario",
+        "paragraphs": [
+          "Use the final packed weight and dimensions when available. Before packing, label the inputs as estimates and record where they came from. A sum of item weights does not fully describe a box containing retail packaging, protective material and empty space. The selected line may apply conditions related to dimensions as well as mass. Keep length, width, height and their units together. Recheck the scenario when an item is added, removed or repacked, because the earlier result may no longer describe the parcel being submitted.",
+          "Imagine a hypothetical US-bound parcel containing two hoodies and a pair of shoes. Compare a scenario retaining the shoe box with another packing arrangement only if the alternative meets your protection needs. Keep the destination and item list constant while changing the packing assumption. This makes the reason for a different estimate easier to identify. Neither scenario should be described as a current quote until it has been entered with accurate details in the current interface. A neat spreadsheet cannot substitute for the warehouse's actual measurements."
+        ]
+      },
+      {
+        "heading": "Build a comparison record for the available options",
+        "paragraphs": [
+          "For each eligible option, save its displayed name, check date, amount and currency, applicable weight or size limits, relevant item restrictions and the scope of its delivery estimate. Record whether any important cost or condition remains unresolved. Compare options that describe the same parcel and destination. A past screenshot with another ZIP code or a different item category can provide context, but it cannot establish today's price or availability for your shipment. Clearly label historical examples if you retain them in a personal planning record.",
+          "Decide which trade-off matters: budget, tracking clarity, handling requirements or a delivery window with enough margin for uncertainty. Do not turn those preferences into a universal ranking for every US buyer. An option that suits a compact clothing parcel may not suit a bulky or fragile one. Keep the reason for your choice in one sentence. If your priorities change, return to the comparison instead of retaining the earlier choice simply because it was first on the list or appeared cheapest in an unrelated discussion."
+        ]
+      },
+      {
+        "heading": "Separate freight from destination-related costs",
+        "paragraphs": [
+          "Read what the current quote includes and what it excludes. International freight, optional services and any destination-related amounts should be identifiable as separate components unless the applicable terms explicitly combine them. Do not assume that a route name containing a reassuring word establishes a guaranteed tax or customs outcome. Rules, eligibility and service conditions can change. Where import requirements or charges affect the decision, consult current official U.S. guidance and the actual service terms for the contents, rather than relying on a fixed threshold from an older buying guide.",
+          "Keep invoices, payment records and an accurate item description available for a legitimate information request. Check such requests through the known carrier or platform channel before sending personal information. A budget should distinguish confirmed amounts from unresolved charges; entering zero for an unknown amount makes a comparison falsely precise. This article intentionally does not prescribe a universal duty rate or declaration amount. Those questions depend on current requirements and the actual goods, and cannot be answered responsibly from parcel weight alone."
+        ]
+      },
+      {
+        "heading": "Understand what the delivery estimate covers",
+        "paragraphs": [
+          "Identify the stage to which a stated time estimate applies. Seller dispatch, arrival at the warehouse, inspection, packing, international transport, clearance and final delivery are separate events. A transport estimate cannot automatically be applied to the entire period from clicking a product link to receiving a parcel. Record the starting point and any qualification shown with the estimate. If you need an item for a fixed occasion, allow for uncertainty instead of treating the shortest displayed window as a promise that every preceding stage will also finish on time.",
+          "Keep a timeline of actual events once the parcel is submitted. Use the wording and timestamp provided by the relevant tracking source rather than translating every pause into a diagnosis. A gap between scans does not by itself prove loss, and an electronic information event does not necessarily describe physical movement. If the parcel changes carrier, record the new reference when provided. This makes it easier to distinguish an ordinary handoff from a genuinely unresolved status that needs a focused enquiry through the appropriate support channel."
+        ]
+      },
+      {
+        "heading": "Check protection and evidence requirements before paying",
+        "paragraphs": [
+          "If you consider insurance or another protection service, read its current coverage, exclusions, limits, claim process and evidence requirements. Do not assume that paying an additional amount guarantees reimbursement for every type of damage, delay or loss. Record what applies to your parcel and save the confirmation. Packaging choices may matter to the practical outcome, so keep your instructions and any available packing evidence with the parcel record. A generic promotional statement is not a substitute for the terms attached to the service you actually selected.",
+          "When the parcel arrives, preserve the packaging and document a visible problem before discarding material that may be relevant to a claim. Record the delivery time and the specific issue, then use the current supported process promptly. This is a recordkeeping suggestion, not a guarantee of eligibility. If tracking says delivered but you have not found the parcel, first check the address, household or receiving desk and the carrier's delivery information. A precise report of what has been checked helps support understand the unresolved part of the situation."
+        ]
+      },
+      {
+        "heading": "Make the final submission a separate checkpoint",
+        "paragraphs": [
+          "Before paying, review the recipient details, accepted items, final measurements, selected service, packing instructions and current quote together. Confirm that no last-minute addition has invalidated the earlier comparison. Keep the estimate, deposit and later final-charge record distinct so any adjustment can be explained. Do not reuse an old parcel plan without reopening its assumptions. A successful previous shipment is useful experience, but it cannot establish that the same conditions still apply to a new combination of items and a new submission date.",
+          "Use the shipping calculator guide for scenario comparisons and the warehouse-storage guide when waiting for more items affects your timing. On this site, product and category links are discovery routes; the actual parcel interface remains the place to confirm current shipping options. The best US shipping plan is one you can explain from accurate inputs and current terms, with unresolved questions addressed before payment. That approach is more repeatable than following a headline price or a delivery claim detached from the parcel that produced it."
+        ]
+      }
+    ]
+  }
+}

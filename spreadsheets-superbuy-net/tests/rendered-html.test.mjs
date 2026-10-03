@@ -72,6 +72,23 @@ test("shipping pages use query-aligned metadata and measurable conversion links"
   assert.equal(articleResponse.status, 200);
   const articleHtml = await articleResponse.text();
   assert.match(articleHtml, /Superbuy International Shipping 2026: Cost, Weight &amp; Routes/i);
-  assert.match(articleHtml, /"dateModified":"2026-09-02"/i);
+  assert.match(articleHtml, /"dateModified":"2026-10-03"/i);
   assert.match(articleHtml, /data-ga-event="article_to_finds_click"/i);
+});
+
+test("new guides have canonical, language alternates, dates and usable navigation", async () => {
+  const { default: worker } = await import(new URL("../dist/server/index.js", import.meta.url));
+  for (const prefix of ["", "/fr", "/de", "/id", "/zh-cn"]) {
+    const path = `${prefix}/articles/superbuy-shipping-calculator-estimate-final-cost`;
+    const response = await worker.fetch(new Request(`http://localhost${path}`), { ASSETS: { fetch: async () => new Response("", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.ok(html.includes(`rel="canonical" href="https://spreadsheets-superbuy.net${path}/"`));
+    assert.equal((html.match(/hreflang=/gi) ?? []).length, 6);
+    assert.match(html, /"datePublished":"2026-10-03"/);
+    assert.match(html, /"dateModified":"2026-10-03"/);
+    assert.match(html, /href="#section-8"/);
+    assert.match(html, /data-ga-event="related_guide_click"/);
+    assert.doesNotMatch(html, /▁/);
+  }
 });

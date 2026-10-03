@@ -1,3 +1,4 @@
+import { newArticles, articleImprovements } from "./content";
 import { articleExpansions } from "./article-expansions";
 import { spreadsheetFieldsArticle } from "./spreadsheet-fields-article";
 
@@ -19,6 +20,12 @@ export const articleSlugs = [
   "how-to-use-a-superbuy-spreadsheet",
   "superbuy-qc-photo-checklist",
   "superbuy-shipping-cost-and-consolidation",
+  "superbuy-shoes-spreadsheet-sizing-qc",
+  "superbuy-hoodie-finds-measurements-qc",
+  "superbuy-spreadsheet-links-not-working",
+  "superbuy-shipping-calculator-estimate-final-cost",
+  "superbuy-warehouse-storage-deadlines-fees",
+  "superbuy-shipping-to-usa-parcel-options",
 ] as const;
 export type ArticleSlug = (typeof articleSlugs)[number];
 
@@ -430,18 +437,18 @@ const articleComplements: Partial<Record<Lang, Partial<Record<ArticleSlug, (stri
 function completedArticles(lang: Lang): Record<ArticleSlug, ArticleCopy> {
   const complements = articleComplements[lang];
   const expansions = articleExpansions[lang];
-  const articles = { ...baseArticles[lang], "superbuy-spreadsheet-fields-product-record": spreadsheetFieldsArticle[lang] } as Record<ArticleSlug, ArticleCopy>;
+  const articles = { ...newArticles[lang], ...baseArticles[lang], "superbuy-spreadsheet-fields-product-record": spreadsheetFieldsArticle[lang] } as Record<ArticleSlug, ArticleCopy>;
   if (!complements && !expansions) return articles;
   return Object.fromEntries((Object.entries(articles) as [ArticleSlug, ArticleCopy][]).map(([slug, article]) => [slug, {
     ...article,
-    sections: article.sections.map((section, index) => {
+    sections: [...article.sections.map((section, index) => {
       const complement = complements?.[slug]?.[index];
       const expansion = expansions?.[slug]?.[index];
       const paragraphs = [...section.paragraphs];
       if (complement && paragraphs.length === 1) paragraphs.push(complement);
       if (expansion) paragraphs.push(expansion);
       return { ...section, paragraphs };
-    }),
+    }), ...(articleImprovements[lang][slug] ? [articleImprovements[lang][slug]!] : [])],
   }])) as Record<ArticleSlug, ArticleCopy>;
 }
 
