@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 
 test("renders indexable canonical metadata", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -85,6 +86,10 @@ test("new guides have canonical, language alternates, dates and usable navigatio
     const html = await response.text();
     assert.ok(html.includes(`rel="canonical" href="https://spreadsheets-superbuy.net${path}/"`));
     assert.equal((html.match(/hreflang=/gi) ?? []).length, 6);
+    const language = prefix.slice(1) || "en";
+    const expected = JSON.parse(readFileSync(new URL(`../app/content/new-${language}.json`, import.meta.url), "utf8"))["superbuy-shipping-calculator-estimate-final-cost"];
+    const schema = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(value => value["@type"] === "Article");
+    assert.equal(schema?.headline, expected.title, `${language}: rendered final copy`);
     assert.match(html, /"datePublished":"2026-10-03"/);
     assert.match(html, /"dateModified":"2026-10-03"/);
     assert.match(html, /href="#section-8"/);
