@@ -63,6 +63,15 @@ for (const pathname of localizedPaths) {
   const pathLanguage = pathname.match(/^\/(fr|de|id|zh-cn)(?:\/|$)/)?.[1] ?? "en";
   const htmlLanguage = pathLanguage === "zh-cn" ? "zh-CN" : pathLanguage;
   const html = (await response.text()).replace(/<html lang="en">/i, `<html lang="${htmlLanguage}">`);
+  // Check the exact static HTML shipped to Pages, not just the source data.
+  // A cached or stale build must not silently publish the old four-card index.
+  if (/\/articles$/.test(pathname)) {
+    const cards = [...html.matchAll(/<a\b[^>]*data-ga-event="article_click"[^>]*>/g)];
+    const slugs = cards.map(([tag]) => tag.match(/data-ga-content="([^"]+)"/)?.[1]);
+    if (slugs.length !== articleSlugs.length || articleSlugs.some((slug) => !slugs.includes(slug))) {
+      throw new Error(`Incomplete article index at ${pathname}: expected ${articleSlugs.length} unique guides, received ${slugs.length}`);
+    }
+  }
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, html);
 }
@@ -95,7 +104,9 @@ await writeFile(
 );
 await writeFile(
   join(clientDirectory, "_headers"),
-  `/*\n  Cache-Control: public, max-age=0, s-maxage=3600, stale-while-revalidate=86400\n\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/products/*\n  Cache-Control: public, max-age=604800\n`,
+  // Leave HTML on Pages' deployment-aware defaults and ETag revalidation.
+  // A global s-maxage/stale-while-revalidate rule can serve old article lists.
+  `# HTML uses Cloudflare Pages default cache revalidation.\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/products/*\n  Cache-Control: public, max-age=604800\n`,
 );
 
 console.log(`Exported ${localizedPaths.length} localized HTML pages plus 404.html, sitemap.xml, robots.txt and _headers to dist/client.`);

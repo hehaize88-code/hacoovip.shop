@@ -208,7 +208,15 @@ function ShippingPage({ lang }: { lang: Lang }) {
 
 function ArticlesPage({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  return <><PageHero {...t.pageTitles.articles} seoTitle={pageSeo[lang].articles.h1} /><section className="section articles-index no-top"><ArticleCards lang={lang} /></section></>;
+  const count = Object.keys(t.articles).length;
+  const summary = {
+    en: `${count} buying guides · Newest first`,
+    fr: `${count} guides d’achat · Les plus récents en premier`,
+    de: `${count} Kaufratgeber · Neueste zuerst`,
+    id: `${count} panduan belanja · Terbaru lebih dahulu`,
+    "zh-cn": `共 ${count} 篇购买指南 · 最新文章在前`,
+  }[lang];
+  return <><PageHero {...t.pageTitles.articles} seoTitle={pageSeo[lang].articles.h1} /><section className="section articles-index no-top"><p className="article-index-summary">{summary}</p><ArticleCards lang={lang} /></section></>;
 }
 
 function FaqPage({ lang }: { lang: Lang }) {

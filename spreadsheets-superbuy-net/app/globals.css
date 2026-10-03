@@ -71,6 +71,7 @@
 .article-toc { display: grid; gap: .65rem; padding: 1.5rem; margin: 2rem 0; background: #f3f5ed; border-radius: 12px; }
 .article-toc a { color: inherit; text-decoration: underline; text-underline-offset: .2em; line-height: 1.55; }
 .article-body section[id] { scroll-margin-top: 7rem; }
+.article-index-summary { margin: 18px 0; font-size: 14px; font-weight: 700; line-height: 1.5; }
 @media (max-width: 600px) {
   .article-grid { grid-template-columns: 1fr; gap: 20px; }
   .article-grid > a { padding: 16px; }
