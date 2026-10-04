@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[95341,["/_next/static/chunks/01te8_4zrefik.js","/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/11hcb-tm565gw.js"],"ArticlePage"]
+2:I[95341,["/_next/static/chunks/01te8_4zrefik.js","/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/0mzi06et9duit.js"],"ArticlePage"]
 3:I[97367,["/_next/static/chunks/01te8_4zrefik.js","/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"lang":"es","slug":"hipobuy-review-2026"}],[["$","script","script-0",{"src":"/_next/static/chunks/11hcb-tm565gw.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"sheet-hipobuy-static"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"lang":"es","slug":"hipobuy-review-2026"}],[["$","script","script-0",{"src":"/_next/static/chunks/0mzi06et9duit.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"sheet-hipobuy-static"}
 5:null
