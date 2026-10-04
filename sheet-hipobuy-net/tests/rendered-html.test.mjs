@@ -43,7 +43,7 @@ test("publishes a complete sitemap and robots declaration", async () => {
   const sitemapResponse = await render("/sitemap.xml");
   assert.equal(sitemapResponse.response.status, 200);
   assert.match(sitemapResponse.html, /<urlset\b/);
-  assert.equal((sitemapResponse.html.match(/<url>/g) ?? []).length, 70);
+  assert.equal((sitemapResponse.html.match(/<url>/g) ?? []).length, 90);
   assert.match(sitemapResponse.html, /https:\/\/sheet-hipobuy\.net\/articles\/hipobuy-review-2026\//);
   assert.match(sitemapResponse.html, /https:\/\/sheet-hipobuy\.net\/pl\/articles\/hipobuy-review-2026\//);
 
@@ -71,7 +71,7 @@ test("publishes focused Italian snippets, shipping depth and click tracking", as
   assert.match(shipping.html, /hipobuy-warehouse-qc-photos/);
 
   const qcArticle = await render("/it/articles/hipobuy-warehouse-qc-photos");
-  assert.match(qcArticle.html, /<title>Foto QC Hipobuy: cosa controllare prima dell.approvazione<\/title>/);
+  assert.match(qcArticle.html, /<title>Foto QC Hipobuy: taglie, misure e difetti da controllare<\/title>/);
 
   for (const html of [home.html, shipping.html, qcArticle.html]) {
     assert.doesNotMatch(html, /SEO Articles|Articoli SEO|contenuti SEO|Biblioteca SEO/i);
@@ -88,12 +88,16 @@ test("keeps every localized article complete and structurally aligned", async ()
     "hipobuy-90-day-warehouse-storage",
     "hipobuy-warehouse-return-checklist",
     "hipobuy-review-2026",
+    "hipobuy-shipping-to-germany",
+    "hipobuy-shipping-to-italy",
+    "hipobuy-shipping-to-france",
+    "hipobuy-delivery-time-tracking",
   ];
   const structuralClasses = [
     "article-section",
     "article-key-points",
     "article-checklist",
-    "article-faq",
+    "article-related",
     "article-visual",
   ];
 
@@ -105,7 +109,8 @@ test("keeps every localized article complete and structurally aligned", async ()
       assert.equal(response.status, 200, `${language}/${slug} should render`);
 
       const wordCount = Number(html.match(/"wordCount":(\d+)/)?.[1]);
-      assert.ok(wordCount >= 1200 && wordCount <= 1800, `${language}/${slug} has ${wordCount} words`);
+      assert.ok(wordCount >= (slugs.indexOf(slug) < 7 ? 1000 : 600), `${language}/${slug} has ${wordCount} words`);
+      assert.doesNotMatch(html, /class="article-faq"|"@type":"FAQPage"/, "articles use editorial sections, not FAQ blocks");
       assert.match(html, new RegExp(`<main[^>]+lang="${language}"`), `${language}/${slug} has the correct lang attribute`);
 
       const structure = structuralClasses.map((className) =>

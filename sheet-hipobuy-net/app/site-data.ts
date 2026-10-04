@@ -1,3 +1,6 @@
+import { newArticleSlugs, newArticleContent } from "./new-articles";
+import articleUpdates from "./content/article-updates.json";
+
 export type Lang = "en" | "de" | "es" | "it" | "pl";
 export type PageKey = "home" | "spreadsheet" | "categories" | "qc" | "shipping" | "faq" | "articles";
 
@@ -9,6 +12,7 @@ export const articleSlugs = [
   "hipobuy-90-day-warehouse-storage",
   "hipobuy-warehouse-return-checklist",
   "hipobuy-review-2026",
+  ...newArticleSlugs,
 ] as const;
 
 export type ArticleSlug = (typeof articleSlugs)[number];
@@ -285,6 +289,10 @@ const pl = {
 };
 
 export const copies = { en, de, es, it, pl };
+for (const { code } of languages) {
+  copies[code].articles = copies[code].articles.map((article, index) => [article[0], articleUpdates[code][index][0], articleUpdates[code][index][1]]);
+  copies[code].articles.push(...newArticleContent[code].map((article) => article.meta));
+}
 
 export function pageHref(lang: Lang, page: PageKey) {
   const prefix = lang === "en" ? "" : `/${lang}`;

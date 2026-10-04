@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { articleHref, articleSlugs, ArticleSlug, categoryLinks, copies, languageHref, languages, Lang, mainSite, pageHref, PageKey, products } from "./site-data";
 import { articleBodies, articleUi } from "./article-data";
+import { isNewArticle, newArticleSlugs } from "./new-articles";
+import { editorialUi } from "./editorial-ui";
 import ItalianShippingGuide from "./italian-shipping-guide";
 
 type LocalCopy = (typeof copies)[Lang];
@@ -118,7 +120,7 @@ function ProductTable({ lang }: { lang: Lang }) {
         {filteredProducts.map((product, index) => (
           <div className="table-row product-row" role="row" key={product.href}>
             <div className="product-cell" role="cell">
-              <span className="row-number">{String(index + 1).padStart(2, "0")}</span><img src={product.image} alt="" width="72" height="72" loading={index < 3 ? "eager" : "lazy"} />
+              <span className="row-number">{String(index + 1).padStart(2, "0")}</span><img src={product.image} alt={product.name} width="72" height="72" loading={index < 3 ? "eager" : "lazy"} />
               <div><a href={product.href} target="_blank" rel="noopener noreferrer" data-ga-event="product_open" data-ga-item-id={product.id} data-ga-item-name={product.name} data-ga-location="product_name">{product.name}</a><small>{product.id}</small></div>
             </div>
             <div className="mobile-field category-cell" role="cell" data-label={t.common.category}><span>{categoryCopy[product.category]?.[0]}</span></div>
@@ -191,7 +193,7 @@ function HomePage({ lang }: { lang: Lang }) {
       <section className="facts-band"><div><span>{t.home.storageLabel}</span><strong>90 d</strong></div><div><span>{t.home.downloadsLabel}</span><strong>500K+</strong></div><div><span>{t.home.countriesLabel}</span><strong>200+</strong></div><div><span>{t.home.deliveryLabel}</span><strong>5 d</strong></div><p>*{t.common.factsNote}</p></section>
       <section className="qc-section section-shell"><SectionTitle kicker={t.home.qcKicker} title={t.home.qcTitle} intro={t.home.qcIntro} /><div className="qc-layout"><QcChecklist t={t} /><aside className="qc-note"><span>{t.home.ruleLabel}</span><h3>{t.home.ruleTitle}</h3><p>{t.home.ruleText}</p><a href={pageHref(lang, "qc")}>{t.home.ruleLink} →</a></aside></div></section>
       <section className="shipping-section"><div className="section-shell"><SectionTitle kicker={t.home.shipKicker} title={t.home.shipTitle} intro={t.home.shipIntro} light /><ShippingFlow t={t} /></div></section>
-      <section className="guides-section section-shell"><SectionTitle kicker={t.home.guidesKicker} title={t.home.guidesTitle} intro={t.home.guidesIntro} /><div className="guide-grid">{t.articles.slice(0,3).map((article, index) => <a className="guide-card-link" href={articleHref(lang, articleSlugs[index])} key={article[1]}><article><span>{article[0]} · {index + 6} min</span><h3>{article[1]}</h3><p>{article[2]}</p><b>{t.pageExtras.articlesCta} →</b></article></a>)}</div></section>
+      <section className="guides-section section-shell"><SectionTitle kicker={t.home.guidesKicker} title={t.home.guidesTitle} intro={t.home.guidesIntro} /><div className="guide-grid">{t.articles.slice(-4).map((article, index) => <a className="guide-card-link" href={articleHref(lang, newArticleSlugs[index])} data-ga-event="guide_open" data-ga-location="home" data-ga-article={newArticleSlugs[index]} key={article[1]}><article><span>{article[0]}</span><h3>{article[1]}</h3><p>{article[2]}</p><b>{t.pageExtras.articlesCta} →</b></article></a>)}</div></section>
       <section className="faq-section"><div className="section-shell faq-layout"><div className="faq-intro"><p>{t.home.faqKicker}</p><h2>{t.home.faqTitle}</h2><span>{t.home.faqBadge}</span></div><FaqList t={t} /></div></section>
     </>
   );
@@ -206,9 +208,9 @@ function InnerPage({ lang, page }: { lang: Lang; page: Exclude<PageKey, "home"> 
       {page === "spreadsheet" && <><section className="directory-section inner-directory"><ProductTable lang={lang} /></section><section className="section-shell support-panel"><div><p>01</p><h2>{t.pageExtras.spreadsheetTitle}</h2></div><ol>{t.pageExtras.spreadsheetItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol></section></>}
       {page === "categories" && <section className="section-shell inner-content"><CategoryGrid lang={lang} /><div className="support-panel compact-support"><div><p>01</p><h2>{t.pageExtras.categoriesTitle}</h2></div><ol>{t.pageExtras.categoriesItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol></div></section>}
       {page === "qc" && <section className="section-shell inner-content"><div className="qc-layout"><QcChecklist t={t} /><aside className="qc-note"><span>{t.home.ruleLabel}</span><h3>{t.home.ruleTitle}</h3><p>{t.home.ruleText}</p></aside></div><h2 className="subsection-title">{t.pageExtras.qcTitle}</h2><div className="info-card-grid">{t.qcTips.map((tip, index) => <article key={tip[0]}><span>0{index + 1}</span><h3>{tip[0]}</h3><p>{tip[1]}</p></article>)}</div></section>}
-      {page === "shipping" && <><section className="shipping-section inner-shipping"><div className="section-shell"><ShippingFlow t={t} /></div></section><section className="section-shell inner-content"><h2 className="subsection-title">{t.pageExtras.shippingTitle}</h2><div className="info-card-grid four-cards">{t.shippingFactors.map((factor, index) => <article key={factor[0]}><span>0{index + 1}</span><h3>{factor[0]}</h3><p>{factor[1]}</p></article>)}</div></section>{lang === "it" && <ItalianShippingGuide />}</>}
+      {page === "shipping" && <><section className="shipping-section inner-shipping"><div className="section-shell"><ShippingFlow t={t} /></div></section><section className="section-shell inner-content"><h2 className="subsection-title">{t.pageExtras.shippingTitle}</h2><div className="info-card-grid four-cards">{t.shippingFactors.map((factor, index) => <article key={factor[0]}><span>0{index + 1}</span><h3>{factor[0]}</h3><p>{factor[1]}</p></article>)}</div></section><section className="section-shell country-guides"><h2>{editorialUi[lang].countryGuides}</h2><div className="guide-grid">{newArticleSlugs.map((guideSlug) => <a className="guide-card-link" key={guideSlug} href={articleHref(lang, guideSlug)} data-ga-event="guide_open" data-ga-location="shipping_hub" data-ga-article={guideSlug}><article><h3>{t.articles[articleSlugs.indexOf(guideSlug)][1]}</h3><p>{t.articles[articleSlugs.indexOf(guideSlug)][2]}</p><b>{t.pageExtras.articlesCta} →</b></article></a>)}</div></section>{lang === "it" && <ItalianShippingGuide />}</>}
       {page === "faq" && <section className="section-shell standalone-faq"><FaqList t={t} /></section>}
-      {page === "articles" && <section className="section-shell article-index"><div className="article-grid">{t.articles.map((article, index) => <a className="article-card-link" href={articleHref(lang, articleSlugs[index])} key={article[1]}><article><div><span>{article[0]}</span><b>{String(index + 1).padStart(2, "0")}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{t.pageExtras.articlesCta} →</strong></article></a>)}</div></section>}
+      {page === "articles" && <section className="section-shell article-index"><div className="article-grid">{articleSlugs.map((slug, index) => ({ slug, index, article: t.articles[index] })).sort((a, b) => Number(isNewArticle(b.slug)) - Number(isNewArticle(a.slug))).map(({ article, index, slug }) => <a className="article-card-link" data-ga-event="guide_open" data-ga-location="article_index" data-ga-article={slug} href={articleHref(lang, slug)} key={article[1]}><article><div><span>{article[0]}</span><b>{String(index + 1).padStart(2, "0")}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{t.pageExtras.articlesCta} →</strong></article></a>)}</div></section>}
     </>
   );
 }
@@ -231,27 +233,34 @@ export function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
   const body = articleBodies[lang][slug];
   const index = articleSlugs.indexOf(slug);
   const summary = t.articles[index];
+  const editorial = editorialUi[lang];
+  const preferred: ArticleSlug[] = isNewArticle(slug)
+    ? ["hipobuy-shipping-cost-guide", "hipobuy-actual-vs-volumetric-weight", "hipobuy-delivery-time-tracking", ...newArticleSlugs]
+    : ["hipobuy-shipping-to-germany", "hipobuy-shipping-to-italy", "hipobuy-shipping-to-france", "hipobuy-delivery-time-tracking"];
+  const related = [...new Set(preferred)].filter((item) => item !== slug).slice(0, 4);
   const articleText = [body.lead, ...body.keyPoints, ...body.sections.flatMap((section) => [section.title, ...section.paragraphs, ...(section.bullets ?? [])]), ...body.checklist, ...body.faqs.flat()].join(" ");
   const wordCount = articleText.trim().split(/\s+/).filter(Boolean).length;
-  const readingMinutes = Math.max(6, Math.ceil(wordCount / 210));
+  const readingMinutes = Math.max(1, Math.ceil(wordCount / 210));
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: summary[1],
     description: summary[2],
-    dateModified: "2026-09-02",
+    dateModified: "2026-10-04",
     inLanguage: lang,
     articleSection: summary[0],
     wordCount,
     isAccessibleForFree: true,
-    datePublished: "2026-08-14",
+    datePublished: isNewArticle(slug) ? "2026-10-04" : "2026-08-14",
     mainEntityOfPage: `${canonicalOrigin}${articleHref(lang, slug)}`,
-    author: { "@type": "Organization", name: "Hipobuy Sheet Research" },
+    author: { "@type": "Organization", name: "Hipobuy Sheet Research", url: canonicalOrigin },
+    publisher: { "@type": "Organization", name: "Hipobuy Sheet", url: canonicalOrigin, logo: { "@type": "ImageObject", url: `${canonicalOrigin}/hipobuy-logo.png`, width: 494, height: 111 } },
+    image: [`${canonicalOrigin}/og-image.png`],
   };
 
   return (
     <main id="top" lang={lang} className="page-root page-article">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([schema, { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: t.nav.home, item: `${canonicalOrigin}${pageHref(lang, "home")}` }, { "@type": "ListItem", position: 2, name: t.nav.articles, item: `${canonicalOrigin}${pageHref(lang, "articles")}` }, { "@type": "ListItem", position: 3, name: summary[1], item: `${canonicalOrigin}${articleHref(lang, slug)}` }] }]) }} />
       <Header lang={lang} page="articles" articleSlug={slug} />
       <article className="longform-article">
         <div className="article-breadcrumb"><a href={pageHref(lang, "articles")}>← {ui.back}</a><span>{ui.updated}</span></div>
@@ -278,8 +287,8 @@ export function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
               </section>
             ))}
             <section className="article-checklist"><p>{ui.checklist}</p><ol>{body.checklist.map((item, itemIndex) => <li key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span>{item}</li>)}</ol></section>
-            <section className="article-faq"><h2>{ui.faq}</h2>{body.faqs.map((faq, faqIndex) => <details key={faq[0]} open={faqIndex === 0}><summary>{faq[0]}<b>+</b></summary><p>{faq[1]}</p></details>)}</section>
-            <aside className="article-source-note"><strong>{ui.sourceNote}</strong><p>{ui.sourceText}</p></aside>
+            <nav className="article-related" aria-label={editorial.related}><h2>{editorial.related}</h2><ul>{related.map((relatedSlug) => <li key={relatedSlug}><a href={articleHref(lang, relatedSlug)} data-ga-event="guide_open" data-ga-location="related_guides" data-ga-article={relatedSlug}>{t.articles[articleSlugs.indexOf(relatedSlug)][1]} <span aria-hidden="true">→</span></a></li>)}</ul></nav>
+            <aside className="article-source-note"><strong>{ui.sourceNote}</strong><p>{isNewArticle(slug) ? editorial.sources : `${ui.sourceText} ${editorial.revision}`}</p></aside>
             <aside className="article-cta"><div><p>{ui.ctaTitle}</p><span>{ui.ctaText}</span></div><a href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener noreferrer" data-ga-event="outbound_click" data-ga-link-url={`${mainSite}/AllProducts/`} data-ga-location="article_cta">{ui.ctaButton} ↗</a></aside>
           </div>
         </div>

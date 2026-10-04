@@ -48,3 +48,29 @@
   .site-header.expanded-header nav a { text-align: center; }
   .header-action { font-size: 10px; }
 }
+
+/* October editorial update: readable guide previews and contextual navigation. */
+.page-home .guides-section .guide-grid, .country-guides .guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.country-guides { padding-block: 40px 65px; }
+.country-guides > h2 { margin-bottom: 26px; font-size: clamp(26px, 4vw, 42px); letter-spacing: -.035em; }
+.country-guides .guide-grid h3 { margin-top: 16px; }
+.article-related { margin: 50px 0; padding: 28px; background: #f2f4ff; border: 1px solid #d7dcef; border-radius: 16px; }
+.article-related h2 { margin: 0 0 18px; font-size: 25px; line-height: 1.2; letter-spacing: -.025em; }
+.article-related ul { margin: 0; padding: 0; list-style: none; }
+.article-related li + li { border-top: 1px solid #d7dcef; }
+.article-related a { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; color: var(--indigo-dark); font-size: 16px; font-weight: 650; line-height: 1.45; }
+.article-related a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.article-related a:focus-visible, .guide-card-link:focus-visible, .article-card-link:focus-visible { outline: 3px solid #5b55e7; outline-offset: 4px; }
+@media (max-width: 700px) {
+  .page-home .guides-section .guide-grid, .country-guides .guide-grid { grid-template-columns: 1fr; overflow: visible; }
+  .page-home .guides-section .guide-grid article { min-height: 210px; padding: 22px; }
+  .page-home .guides-section .guide-grid article > span { font-size: 12px; }
+  .page-home .guides-section .guide-grid h3 { font-size: 25px; line-height: 1.15; }
+  .page-home .guides-section .guide-grid article > p { font-size: 14px; line-height: 1.6; }
+  .page-home .guides-section .guide-card-link article > b { font-size: 13px; padding-top: 15px; }
+  .article-visual figcaption p, .article-visual td { font-size: 13px; line-height: 1.6; }
+  .article-visual th { font-size: 11px; }
+  .article-related { padding: 22px; }
+  .article-section p, .article-section li { font-size: 16px; line-height: 1.8; }
+  .article-source-note p { font-size: 13px; line-height: 1.7; }
+}

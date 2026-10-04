@@ -1,7 +1,8 @@
+import type { NewArticleSlug } from "./new-articles";
 import type { ArticleSlug, Lang } from "./site-data";
 
 type LocalizedLang = Exclude<Lang, "en">;
-type LegacySlug = Exclude<ArticleSlug, "hipobuy-review-2026">;
+type LegacySlug = Exclude<ArticleSlug, "hipobuy-review-2026" | NewArticleSlug>;
 
 export const localizedParityDetails: Record<LocalizedLang, Record<LegacySlug, string[]>> = {
   de: {

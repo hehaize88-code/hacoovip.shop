@@ -26,7 +26,7 @@ export default function AnalyticsTracking() {
 
     const onClick = (event: MouseEvent) => {
       const origin = event.target instanceof Element ? event.target : null;
-      const tracked = origin?.closest<HTMLElement>("[data-ga-event]");
+      const tracked = origin?.closest<HTMLElement>("a[data-ga-event], button[data-ga-event]");
       if (tracked?.dataset.gaEvent) {
         send(tracked.dataset.gaEvent, analyticsParams(tracked));
         return;
@@ -53,9 +53,21 @@ export default function AnalyticsTracking() {
       send(form.dataset.gaEvent, params);
     };
 
+    let readSent = false;
+    const onScroll = () => {
+      const article = document.querySelector<HTMLElement>(".longform-article");
+      if (!article || readSent) return;
+      const rect = article.getBoundingClientRect();
+      if (window.innerHeight - rect.top < rect.height * 0.75) return;
+      readSent = true;
+      send("guide_read", { page_path: window.location.pathname, reading_progress: "75_percent" });
+    };
+
     document.addEventListener("click", onClick);
+    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("submit", onSubmit);
     return () => {
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick);
       document.removeEventListener("submit", onSubmit);
     };

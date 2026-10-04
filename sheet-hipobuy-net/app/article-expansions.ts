@@ -1,3 +1,4 @@
+import type { NewArticleSlug } from "./new-articles";
 import type { ArticleSlug, Lang } from "./site-data";
 import { reviewParityDetails } from "./article-parity";
 
@@ -10,7 +11,7 @@ export type ArticleVisual = {
 };
 
 type Section = { title: string; paragraphs: string[]; bullets?: string[] };
-type LegacySlug = Exclude<ArticleSlug, "hipobuy-review-2026">;
+type LegacySlug = Exclude<ArticleSlug, "hipobuy-review-2026" | NewArticleSlug>;
 
 export type ArticleExpansion = {
   sections: Section[];

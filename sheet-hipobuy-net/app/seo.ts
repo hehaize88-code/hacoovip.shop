@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { articleHref, articleSlugs, copies, languages, pageHref, type ArticleSlug, type Lang, type PageKey } from "./site-data";
 
 const origin = "https://sheet-hipobuy.net";
-const ogImage = { url: `${origin}/og-image.svg`, width: 1200, height: 630, alt: "Hipobuy Spreadsheet 2026" };
+const ogImage = { url: `${origin}/og-image.png`, width: 1200, height: 630, alt: "Hipobuy Spreadsheet 2026" };
 
 const pageSeoTitles: Record<Lang, Record<PageKey, string>> = {
   en: { home: "Hipobuy Spreadsheet 2026 | Verified Product Links", spreadsheet: "Hipobuy Spreadsheet | Searchable Product Links", categories: "Hipobuy Product Categories | Shoes, Shirts & More", qc: "Hipobuy QC Photos Guide | Warehouse Checklist", shipping: "Hipobuy Shipping Cost & Parcel Planning Guide", faq: "Hipobuy FAQ | QC, Storage, Shipping & Returns", articles: "Hipobuy Buying Guides | Spreadsheet, QC & Shipping" },

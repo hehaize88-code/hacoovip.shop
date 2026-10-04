@@ -20,7 +20,7 @@ const replacements = [
 
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name === "_next") continue;
+    if (entry.name.startsWith(".") || ["_next", "out", "node_modules", "dist"].includes(entry.name)) continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full);
     else if (entry.isFile() && entry.name.endsWith(".html")) processFile(full);
