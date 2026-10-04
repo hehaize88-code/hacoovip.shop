@@ -881,7 +881,7 @@ ${socialMeta(page, canonical, route.type)}
 ${structuredData(locale, routeKey, canonical)}
 </head>
 <body>${header(locale, routeKey, prefix)}${main}${footer(locale, prefix)}
-  <script src="${prefix}assets/site.js" defer></script>
+  <script src="${prefix}assets/site.js?v=20261004-search" defer></script>
 </body>
 </html>\n`;
 }
