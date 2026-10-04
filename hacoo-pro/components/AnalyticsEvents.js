@@ -2,6 +2,9 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { CATALOG_URL } from "@/app/site-config";
+
+const CATALOG_HOST = new URL(CATALOG_URL).hostname;
 
 function sendEvent(name, params = {}) {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
@@ -25,7 +28,7 @@ export default function AnalyticsEvents() {
         link_text: (link.textContent || "").trim().slice(0, 100),
         page_path: window.location.pathname,
       };
-      if (url.hostname === "cnfanssp.com" || url.hostname === "www.cnfanssp.com") {
+      if (url.hostname.replace(/^www\./, "") === CATALOG_HOST.replace(/^www\./, "")) {
         const linkType = link.closest(".product-card, .related-product-card")
           ? "product"
           : link.closest(".category-card")
