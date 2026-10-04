@@ -105,7 +105,7 @@
 
   function headerHtml(lang,d){
     const base = getAssetBase();
-    return `<div class="topbar"><div class="container"><b>${d.ind}</b></div></div><header class="header"><div class="container nav"><a class="brand" href="${normalizePath().isPrefixed ? './' : '/'}"><img alt="Hacoo" src="${base}assets/img/hacoo-logo.svg"><span class="vip">VIP</span></a><button class="menu" data-menu aria-label="menu"><span></span><span></span><span></span></button><nav class="navlinks"><a href="categories">${d.cat}</a><a href="trending">${d.trend}</a><a href="seo-articles">${d.seo}</a><a href="how-it-works">${d.how}</a><a href="quality-control-guide">${d.qc}</a><a href="faq">${d.faq}</a><a class="primary" href="https://www.cnbuycha.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_nav">${d.open}</a></nav>${langMenu(lang)}</div></header>`;
+    return `<div class="topbar"><div class="container"><b>${d.ind}</b></div></div><header class="header"><div class="container nav"><a class="brand" href="${normalizePath().isPrefixed ? './' : '/'}"><img alt="Hacoo" src="${base}assets/img/hacoo-logo.svg"><span class="vip">VIP</span></a><button class="menu" data-menu aria-label="menu"><span></span><span></span><span></span></button><nav class="navlinks"><a href="categories">${d.cat}</a><a href="trending">${d.trend}</a><a href="seo-articles">${d.seo}</a><a href="how-it-works">${d.how}</a><a href="quality-control-guide">${d.qc}</a><a href="faq">${d.faq}</a><a class="primary" href="https://cnfanshp.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_nav">${d.open}</a></nav>${langMenu(lang)}</div></header>`;
   }
 
   function cardsHtml(items,read){
@@ -122,17 +122,17 @@
     if (page === "categories") {
       title = d.catsTitle; lead = d.catsLead;
       body = cardsHtml([
-        {t:lang==="zh-CN"?"鞋":"Shoes",p:lang==="zh-CN"?"运动鞋和鞋类分类入口。":"Sneaker and footwear category entry.",href:"https://www.cnbuycha.com/shoes/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_shoes"},
-        {t:lang==="zh-CN"?"连帽衫":"Hoodies",p:lang==="zh-CN"?"卫衣、毛衣和层搭单品。":"Sweatshirts, hoodies and layering pieces.",href:"https://www.cnbuycha.com/hoodies-sweaters/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_hoodies"},
-        {t:lang==="zh-CN"?"夹克":"Jackets",p:lang==="zh-CN"?"外套和季节性单品入口。":"Outerwear and seasonal jacket finds.",href:"https://www.cnbuycha.com/jackets/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_jackets"}
+        {t:lang==="zh-CN"?"鞋":"Shoes",p:lang==="zh-CN"?"运动鞋和鞋类分类入口。":"Sneaker and footwear category entry.",href:"https://cnfanshp.com/shoes/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_shoes"},
+        {t:lang==="zh-CN"?"连帽衫":"Hoodies",p:lang==="zh-CN"?"卫衣、毛衣和层搭单品。":"Sweatshirts, hoodies and layering pieces.",href:"https://cnfanshp.com/hoodies-sweaters/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_hoodies"},
+        {t:lang==="zh-CN"?"夹克":"Jackets",p:lang==="zh-CN"?"外套和季节性单品入口。":"Outerwear and seasonal jacket finds.",href:"https://cnfanshp.com/jackets/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_cat_jackets"}
       ], d.read);
     }
     if (page === "trending") {
       title = d.trendTitle; lead = d.trendLead;
       body = cardsHtml([
-        {t:"Running / Streetwear Sneaker",p:lang==="zh-CN"?"打开匹配的产品详情页。":"Open the matching product-detail page.",href:"https://www.cnbuycha.com/AllProducts/3402.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_shoes"},
-        {t:"Sweatshirt",p:lang==="zh-CN"?"检查图片和材质线索。":"Inspect photos and material cues.",href:"https://www.cnbuycha.com/AllProducts/3393.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_sweatshirt"},
-        {t:"Jacket",p:lang==="zh-CN"?"查看颜色、细节和质检说明。":"Review colors, details and QC notes.",href:"https://www.cnbuycha.com/AllProducts/3394.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_jacket"}
+        {t:"ASICS Gel-Kayano 14 Sneakers [18 styles]",p:lang==="zh-CN"?"打开匹配的产品详情页。":"Open the matching product-detail page.",href:"https://cnfanshp.com/AllProducts/5932.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_shoes"},
+        {t:"Mertra Hoodie",p:lang==="zh-CN"?"检查图片和材质线索。":"Inspect photos and material cues.",href:"https://cnfanshp.com/AllProducts/4699.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_sweatshirt"},
+        {t:"Stussy Jacket",p:lang==="zh-CN"?"查看颜色、细节和质检说明。":"Review colors, details and QC notes.",href:"https://cnfanshp.com/AllProducts/3678.html?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=localized_trend_jacket"}
       ], d.read);
     }
     if (page === "seo") {
@@ -168,7 +168,7 @@
         {t:lang==="zh-CN"?"为什么先看 QC？":"Why use QC first?",p:lang==="zh-CN"?"单独首图不足以判断产品。":"A strong cover image is not enough for a safe decision.",href:"quality-control-guide.html"}
       ], d.read);
     }
-    document.body.innerHTML = `${headerHtml(lang,d)}<main><section class="pageHero container"><span class="eyebrow"><i></i><span>Hacoo VIP</span></span><h1>${title}</h1><p class="lead">${lead}</p><div class="actions"><a class="btn btnDark" href="seo-articles">${d.seo}</a><a class="btn btnLight" href="quality-control-guide">${d.qc}</a></div></section><section class="container">${body}</section></main><section class="container cta"><div><h2>${d.open}</h2><p>${lead}</p></div><div class="actions"><a class="btn btnWhite" href="https://www.cnbuycha.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_bottom">${d.open}</a><a class="btn btnOutline" href="categories">${d.categories}</a></div></section>`;
+    document.body.innerHTML = `${headerHtml(lang,d)}<main><section class="pageHero container"><span class="eyebrow"><i></i><span>Hacoo VIP</span></span><h1>${title}</h1><p class="lead">${lead}</p><div class="actions"><a class="btn btnDark" href="seo-articles">${d.seo}</a><a class="btn btnLight" href="quality-control-guide">${d.qc}</a></div></section><section class="container">${body}</section></main><section class="container cta"><div><h2>${d.open}</h2><p>${lead}</p></div><div class="actions"><a class="btn btnWhite" href="https://cnfanshp.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_bottom">${d.open}</a><a class="btn btnOutline" href="categories">${d.categories}</a></div></section>`;
   }
 
   function addJsonLd(obj){ const s=document.createElement("script"); s.type="application/ld+json"; s.textContent=JSON.stringify(obj); document.head.appendChild(s); }
@@ -218,7 +218,7 @@
       const link = event.target.closest("a[href]");
       if (!link) return;
       const destination = new URL(link.href, location.href);
-      if (destination.hostname === "www.cnbuycha.com" || destination.hostname === "cnbuycha.com") {
+      if (destination.hostname === "www.cnfanshp.com" || destination.hostname === "cnfanshp.com") {
         window.gtag("event", "outbound_click", {
           destination_host: destination.hostname,
           destination_path: destination.pathname,
