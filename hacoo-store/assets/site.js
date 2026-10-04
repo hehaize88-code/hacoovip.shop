@@ -337,7 +337,19 @@
     });
   });
 
-  searchButton.addEventListener("click", searchProducts);
+  function openMainSearch() {
+    const term = input.value.trim();
+    window.clearTimeout(searchTimer);
+    requestSequence += 1;
+    if (!term) {
+      input.focus();
+      renderFeatured();
+      return;
+    }
+    window.location.assign(mainSearchUrl(term));
+  }
+
+  searchButton.addEventListener("click", openMainSearch);
   input.addEventListener("input", function () {
     window.clearTimeout(searchTimer);
     const term = input.value.trim();
@@ -349,10 +361,9 @@
     searchTimer = window.setTimeout(searchProducts, 450);
   });
   input.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !event.isComposing) {
       event.preventDefault();
-      window.clearTimeout(searchTimer);
-      searchProducts();
+      openMainSearch();
     }
   });
 
