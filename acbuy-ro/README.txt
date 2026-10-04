@@ -1,13 +1,16 @@
-ACBuy.ro preview v7
+ACBuy.ro production static site
 
-Open index.html first.
+Deployment source: acbuy-ro/ on the existing GitHub main branch.
+Canonical origin: https://acbuy.ro
+No build command is required for this static directory.
 
-Changes in v7:
-- Replaced sample products with a first batch of real catalogue products.
-- Uses each product's current title, first image, displayed price and displayed weight.
-- Clicking any product card opens its exact product detail URL in a new tab.
-- Search and category filters remain active.
-- Guides, FAQ and multilingual switching remain available.
-- The preview directly references remote first-image URLs. For production, cache images locally or through Cloudflare.
+Editorial update: 4 October 2026
+- 13 English guides, including four new payment, risk-reminder, rehearsal and tracking articles.
+- Five complete Romanian articles with reciprocal language links.
+- Existing product records, catalogue destinations and category paths retained.
+- Product cards are present in HTML and remain searchable with JavaScript.
+- Existing GA4 tag retained; catalogue clicks and search submissions have custom events.
+- Sitemap contains canonical public pages and language alternates.
 
-This remains a noindex preview build.
+Automatic article publishing for this site is paused; updates are manual.
+Other sites and publishing schedules in this repository are outside this directory's scope.
