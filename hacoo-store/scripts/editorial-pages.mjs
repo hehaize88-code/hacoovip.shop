@@ -122,8 +122,10 @@ export function refreshEditorial() {
     const home = `${base}index.html`;
     html = read(home);
     const latest = `<section class="section latest-guides"><div class="shell"><div class="section-head"><div><p class="eyebrow">${labels[code][0]}</p><h2>${labels[code][1]}</h2></div><a class="btn btn-small" href="/${base}articles/">${labels[code][3]} →</a></div><div class="latest-guides-grid">${newest.map((article) => card(article, code, true)).join("\n")}</div></div></section>`;
-    html = replaceBlock(html, "latest-guides", latest, '<section class="cta-band">');
+    html = html.replace(/<!-- latest-guides:start -->[\s\S]*?<!-- latest-guides:end -->\s*/, "");
+    html = replaceBlock(html, "latest-guides", latest, '<section class="section section-soft home-steps">');
     html = html.replace(/Updated July 2026/g, "Updated October 2026").replace(/Mis à jour en juillet 2026/g, "Mis à jour en octobre 2026").replace(/Aktualisiert Juli 2026/g, "Aktualisiert Oktober 2026").replace(/Aggiornato settembre 2026/g, "Aggiornato ottobre 2026").replace(/Actualizado en julio de 2026/g, "Actualizado en octubre de 2026");
+    html = html.replace(/(<div class="footer-bottom">[\s\S]*?<\/div>)/, (footer) => footer.replace("July 14, 2026", "October 4, 2026").replace("14 juillet 2026", "4 octobre 2026").replace("14. Juli 2026", "4. Oktober 2026").replace("14 luglio 2026", "4 ottobre 2026").replace("4 settembre 2026", "4 ottobre 2026").replace("14 de julio de 2026", "4 de octubre de 2026"));
     if (code === "fr") html = syncMetadata(html, "Hacoo site en ligne : application, produits et livraison", "Hacoo site en ligne : guide indépendant pour trouver des produits, vérifier les liens, comparer les tailles et consulter les délais de livraison.", "Hacoo site en ligne : produits, application et livraison");
     if (code === "it") html = syncMetadata(html, "Hacoo Sito: Prodotti, App e Consegna | Guida 2026", "Hacoo sito e acquisti: guida indipendente a scarpe, abbigliamento e borse, con controlli su link, taglie, app ufficiale e consegna.", "Hacoo sito: prodotti, app e consegna");
     save(home, html);
