@@ -36,7 +36,7 @@ function Header({ lang, page, articleSlug }: { lang: Lang; page: PageKey; articl
   return (
     <>
       <div className="review-bar">
-        <span><i /> {t.common.independent}</span><span>{t.common.checked}</span><span>{t.common.review}</span>
+        <span><i /> {t.common.independent}</span><span>{t.common.checked}</span><span>{page === "articles" ? articleUi[lang].updated : t.common.review}</span>
       </div>
       <header className="site-header expanded-header">
         <Brand lang={lang} page={page} />
@@ -68,7 +68,7 @@ function Footer({ lang, page }: { lang: Lang; page: PageKey }) {
     <footer>
       <Brand lang={lang} page={page} footer />
       <p>{t.common.footer}</p>
-      <div><a href="#top">{t.common.back} ↑</a><span>{t.common.review}</span></div>
+      <div><a href="#top">{t.common.back} ↑</a><span>{page === "articles" ? articleUi[lang].updated : t.common.review}</span></div>
     </footer>
   );
 }
@@ -253,7 +253,7 @@ export function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
     isAccessibleForFree: true,
     datePublished: isNewArticle(slug) ? "2026-10-04" : "2026-08-14",
     mainEntityOfPage: `${canonicalOrigin}${articleHref(lang, slug)}`,
-    author: { "@type": "Organization", name: "Hipobuy Sheet Research", url: canonicalOrigin },
+    author: { "@type": "Organization", name: "Hipobuy Sheet Research", url: canonicalOrigin, logo: { "@type": "ImageObject", url: `${canonicalOrigin}/hipobuy-logo.png`, width: 494, height: 111 } },
     publisher: { "@type": "Organization", name: "Hipobuy Sheet", url: canonicalOrigin, logo: { "@type": "ImageObject", url: `${canonicalOrigin}/hipobuy-logo.png`, width: 494, height: 111 } },
     image: [`${canonicalOrigin}/og-image.png`],
   };
