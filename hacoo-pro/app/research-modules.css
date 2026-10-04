@@ -148,3 +148,11 @@
   .update-log li { grid-template-columns: 1fr; gap: 10px; }
   .update-layout h2 { font-size: 38px; }
 }
+
+/* Research discovery and square editorial reference images. */
+.research-reading-home{margin-top:48px;padding-top:36px;border-top:1px solid var(--line)}
+.comparison-cover img{aspect-ratio:1/1;max-width:750px;margin-inline:auto;object-fit:contain;display:block}
+.comparison-cover figcaption{max-width:750px;margin-inline:auto}
+.article-head>p.editorial-review-note{font-size:14px;line-height:1.7;color:var(--muted)}
+.research-copy .research-table-wrap,.article-content .research-table-wrap{max-width:100%;overflow-x:auto}
+.research-copy .research-table,.article-content .research-table{min-width:520px}

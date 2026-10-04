@@ -1,3 +1,5 @@
+import { priorityArticles } from "../app/articles/priority-articles.js";
+import { comparisonArticles } from "../app/articles/comparison-articles.js";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -95,7 +97,7 @@ for (const locale of locales) {
   }
 }
 
-for (const item of articles) {
+for (const item of [...comparisonArticles, ...priorityArticles, ...articles]) {
   const url = `${SITE_URL}/articles/${item.slug}/`;
   const html = await readFile(htmlPathFor(url), "utf8");
   const nodes = schemaNodes(html);

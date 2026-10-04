@@ -260,8 +260,8 @@ export const guides = [
   },
   {
     slug: "qc-photo-checklist",
-    title: "QC Photo Checklist",
-    short: "Learn which views, measurements and construction details are useful when photographs are available.",
+    title: "Hacoo QC Photo Checklist: Shoes & Clothing",
+    short: "Check shoe and clothing photos for matching options, clear measurements and construction details, with a practical evidence worksheet.",
     read: "8 min",
   },
   {
@@ -321,7 +321,7 @@ export const guideContent = {
     sections: [
       ["For tops and jackets", "Record shoulder width, chest width, sleeve length and back length. If you plan to layer clothing underneath, compare with a jacket that already fits that way."],
       ["For pants and shorts", "Compare waist, rise, inseam and leg opening. Confirm whether the listed waist is a flat width, a full circumference or a range for an elasticated waistband."],
-      ["For footwear", "Use foot length and, where available, the internal length of a comfortable shoe. Leave appropriate room for socks and movement, and do not assume a regional conversion is exact."],
+      ["For footwear", "Record foot length using a repeatable method, then read the exact model chart. Foot length, removable insole length and outsole length are different quantities. Follow the chart's stated method rather than adding a universal allowance or assuming regional conversions are exact."],
       ["Use the same measurement method", "A comparison is only useful when both items are measured between the same points. Keep garments flat without stretching, record whether widths need to be doubled and note any elastic range separately."],
       ["Allow for ease and intended fit", "Body measurements and garment measurements are not interchangeable. A fitted T-shirt, relaxed hoodie and layered jacket need different amounts of room, so compare with an item that already has the silhouette you want."],
     ],

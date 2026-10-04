@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Arrow } from "@/components/Icons";
 import StructuredData from "@/components/StructuredData";
+import GuideEvidenceSection from "@/components/GuideEvidenceSection";
+
+const refreshedGuides = new Set(["qc-photo-checklist", "how-to-use-hacoo-spreadsheet", "size-guide"]);
 import { guides, guideContent, SITE_URL } from "../../data";
 import { languageAlternates } from "../../i18n";
 import { createPageMetadata } from "../../seo";
@@ -71,7 +74,7 @@ export default async function GuidePage({ params }) {
         },
         publisher: { "@id": ORGANIZATION_ID },
         datePublished: "2026-07-14",
-        dateModified: "2026-07-16",
+        dateModified: refreshedGuides.has(slug) ? "2026-10-04" : "2026-07-16",
         inLanguage: "en",
       },
       {
@@ -107,7 +110,7 @@ export default async function GuidePage({ params }) {
             <div className="article-meta">
               <span>Hacoo Pro Editorial</span>
               <span>{g.read} read</span>
-              <span>Reviewed July 16, 2026</span>
+              <span>Reviewed {refreshedGuides.has(slug) ? "October 4, 2026" : "July 16, 2026"}</span>
             </div>
             <p>{c.intro}</p>
           </div>
@@ -137,6 +140,7 @@ export default async function GuidePage({ params }) {
                 <p>{p}</p>
               </section>
             ))}
+            <GuideEvidenceSection slug={slug}/>
             <section id="quick-process">
               <h2>Quick process</h2>
               <ol>

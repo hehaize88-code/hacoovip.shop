@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { products, SITE_URL } from "../app/data.js";
 import { articles } from "../app/articles/data.js";
 import { priorityArticles } from "../app/articles/priority-articles.js";
+import { comparisonArticles } from "../app/articles/comparison-articles.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(projectRoot, "out");
@@ -64,7 +65,7 @@ for (const locale of locales) {
 
 const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
 const urls = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g), (match) => match[1]);
-const expectedUrlCount = 186 + 1 + articles.length + priorityArticles.length;
+const expectedUrlCount = 186 + 1 + articles.length + priorityArticles.length + comparisonArticles.length;
 if (urls.length !== expectedUrlCount) problems.push(`sitemap: expected ${expectedUrlCount} URLs, found ${urls.length}`);
 for (const locale of allLocales) {
   for (const product of products) {

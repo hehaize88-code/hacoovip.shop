@@ -1,3 +1,4 @@
+import { comparisonArticles } from "../app/articles/comparison-articles.js";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,7 +9,7 @@ import { SITE_URL } from "../app/data.js";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(root, "out");
 const problems = [];
-const allArticles = [...priorityArticles, ...articles];
+const allArticles = [...comparisonArticles, ...priorityArticles, ...articles];
 
 function decode(text) { return text.replaceAll("&amp;", "&").replaceAll("&quot;", '"').replaceAll("&#x27;", "'").replaceAll("&#39;", "'").replaceAll("&nbsp;", " ").replaceAll("&lt;", "<").replaceAll("&gt;", ">"); }
 function visibleWords(html) { const text = decode(html.replace(/<script\b[\s\S]*?<\/script>/gi, " ").replace(/<style\b[\s\S]*?<\/style>/gi, " ").replace(/<svg\b[\s\S]*?<\/svg>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ")); return text.match(/\b[A-Za-z0-9]+(?:[’'-][A-Za-z0-9]+)*\b/g) || []; }

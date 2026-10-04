@@ -1,3 +1,5 @@
+import { comparisonArticles } from "./comparison-articles.js";
+
 const baseSources = [
   { href: "https://www.hacoo.app/", label: "Hacoo public website", note: "check the current public landing page and regional routing" },
   { href: "https://web.hacoo.app/en-GB/trust-center", label: "Hacoo Trust Center", note: "review current safety and platform guidance" },
@@ -118,6 +120,9 @@ export const priorityArticles = [
   {
     ...common,
     slug: "hacoo-product-links-not-working",
+    modified: "2026-10-04",
+    checkedLabel: "October 4, 2026",
+    editorialNote: "Editorial workflow updated October 4, 2026. This update improves route and option comparisons; it does not reverify stock or every linked policy page.",
     title: "Hacoo Product Links Not Working: Region, Listing Change and Recovery Guide",
     seoTitle: "Hacoo Product Links Not Working: Recovery Guide",
     description: "Diagnose a Hacoo product link that redirects, opens the wrong region, shows unavailable or fails, then recover the listing without guessing.",
@@ -135,7 +140,7 @@ export const priorityArticles = [
         "If the URL contains tracking or language parameters, keep an untouched copy and create a second working copy for tests. Removing parameters indiscriminately can erase the item identifier. Conversely, a clean base route may help when a copied social link contains expired campaign information. Change one element at a time and record which version produced a different result.",
       ] },
       { id: "region", nav: "Region", heading: "Check region and language without forcing a match", paragraphs: [
-        "Open the Hacoo public homepage in a fresh tab and set the intended country or language through its own controls. Then retry the saved item route. If the link works only under another region, do not assume the item can be delivered to yours. Availability, checkout terms and policy wording should be checked in the region that will actually receive the order.",
+        "Identify the host first. For a Hacoo service link, use its own country or language controls. For a Hacoo Pro catalog link, use the external catalog that the reference actually names; do not substitute a Hacoo app route. These are separate services. Retry the saved item route in the appropriate context, then confirm availability and delivery information for the intended destination.",
         "App deep links may behave differently from browser links. Compare the browser destination, the app screen and the app-store identity before concluding that they refer to the same listing. If the app substitutes another product, return to the preserved title, image and item ID. Similar appearance is not enough when measurements, options or materials differ.",
       ] },
       { id: "search", nav: "Search recovery", heading: "Search by the narrowest reliable evidence", paragraphs: [
@@ -144,7 +149,7 @@ export const priorityArticles = [
       ] },
       { id: "spreadsheet", nav: "Spreadsheet", heading: "Use spreadsheet links as dated references", paragraphs: [
         "A spreadsheet or discovery page is a route index, not permanent inventory. Useful indexes show a review date, category context and a fallback search rather than promising that every detail URL will remain active. Check when the row was reviewed and whether the destination still matches the stored item ID, image and option.",
-        "If a reference page has no date or source context, lower its reliability. Do not repeatedly publish a replaced link under the old title simply to avoid a dead row. It is better to mark the item unavailable and provide a transparent search method. That preserves the difference between the verified historical reference and a new candidate.",
+        "If a detail link fails, open the category or search fallback on the same catalog and search for the preserved identifier or a distinctive description. On Hacoo Pro, the dated shoe reference is a research starting point, not proof that a search result is the old listing. Keep the old row and compare any replacement as a new candidate; a working route alone does not restore its previous evidence.",
       ] },
       { id: "stop", nav: "Stop rules", heading: "Know when not to recover the listing", paragraphs: [
         "Stop when the route asks for credentials on an unverified host, requires an installation outside a recognized app store, redirects through unexplained domains or requests private payment. Also stop when the candidate listing lacks enough measurements or option detail to distinguish it from similar items. Recovery should not turn uncertainty into false confidence.",
@@ -160,7 +165,7 @@ export const priorityArticles = [
       { title: "Compare replacement evidence", text: "Treat a result as new if title, images, options, measurements or seller context differ." },
       { title: "Publish a dated status", text: "Mark the link active, limited, unavailable, changed or unverified with the review date." },
     ],
-    sources: [...baseSources, { href: "/spreadsheet/", label: "Hacoo spreadsheet route guide", note: "use dated categories and current search fallbacks" }, { href: "/products/", label: "Checked product references", note: "compare live routes with preserved listing context" }],
+    sources: [...baseSources, { href: "/spreadsheet/", label: "Hacoo spreadsheet route guide", note: "use dated categories and current search fallbacks" }, { href: "/articles/hacoo-spreadsheet-compare-product-links/", label: "Compare replacement product options", note: "match identity, measurements and image scope after recovering a route" }],
     calloutTitle: "Recover the evidence, not only the click.",
     calloutText: "A working replacement is useful only when its item identity and current options have been checked as a new listing.",
   },
@@ -314,6 +319,9 @@ export const priorityArticles = [
   {
     ...common,
     slug: "hacoo-seller-listing-verification-checklist",
+    modified: "2026-10-04",
+    checkedLabel: "October 4, 2026",
+    editorialNote: "Editorial workflow updated October 4, 2026. This update improves route and option comparisons; it does not reverify stock or every linked policy page.",
     title: "Hacoo Seller and Listing Verification: A Buyer Evidence Checklist",
     seoTitle: "Hacoo Seller & Listing Verification Checklist",
     description: "Verify a Hacoo listing with identifiers, option-specific images, measurements, price, delivery and policy evidence before checkout.",
@@ -328,7 +336,7 @@ export const priorityArticles = [
       ] },
       { id: "option", nav: "Selected option", heading: "Verify the exact option, not the gallery in general", paragraphs: [
         "Select the intended color, size, model and bundle, then watch for changes in image, price, stock and description. Some galleries combine several variants. An attractive photo for one option does not prove that another option has the same materials, accessories or finish. Save the selector and matching image together.",
-        "List everything stated as included. Do not assume that styled props, packaging or accessories are part of the order. If bundle names are unclear, compare the contents image and checkout line. The final order record should use the same option wording you evaluated.",
+        "List everything stated as included and preserve quantity. A single item and a pictured bundle are not equivalent comparisons. Changing color, size or version may change the chart or included pieces; reopen those fields after each selection. Do not combine the first option's measurements with the second option's price. The final record should describe one coherent selection.",
       ] },
       { id: "measurements", nav: "Measurements", heading: "Demand product-specific measurements and specifications", paragraphs: [
         "For clothing, compare garment measurements with an item you own and note how each point is measured. For footwear, compare foot or internal length and shape rather than trusting a regional size conversion. For electronics, confirm exact model, plug, voltage and included parts. For accessories, use dimensions rather than visual scale.",
@@ -356,7 +364,7 @@ export const priorityArticles = [
       { title: "Save current terms", text: "Keep delivery and after-sales wording with the regional listing and check date." },
       { title: "Reconcile checkout", text: "Confirm that the final order summary matches the exact option and evidence reviewed." },
     ],
-    sources: [...baseSources, { href: "/guides/qc-photo-checklist/", label: "QC photo checklist", note: "turn images into defined product-specific checks" }, { href: "/products/", label: "Hacoo Pro product references", note: "see dated route, image and measurement research examples" }],
+    sources: [...baseSources, { href: "/guides/qc-photo-checklist/", label: "QC photo checklist", note: "turn images into defined product-specific checks" }, { href: "/articles/hacoo-budget-finds-total-cost/", label: "Compare the visible total cost", note: "separate selected-item amounts, conditional charges and unknowns" }],
     calloutTitle: "Verify the selected option, not the idea of the product.",
     calloutText: "The strongest listing record connects identity, measurements, images, terms and checkout to one dated option.",
   },
@@ -412,5 +420,5 @@ export const priorityArticles = [
 ];
 
 export function getPriorityArticle(slug) {
-  return priorityArticles.find((article) => article.slug === slug);
+  return [...priorityArticles, ...comparisonArticles].find((article) => article.slug === slug);
 }
