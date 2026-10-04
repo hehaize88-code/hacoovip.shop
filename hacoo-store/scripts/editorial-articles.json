@@ -7,7 +7,8 @@
   {
     "slug": "how-to-verify-hacoo-reviews",
     "url": "https://hacoo.store/articles/how-to-verify-hacoo-reviews/",
-    "published": "2026-07-15"
+    "published": "2026-07-15",
+    "modified": "2026-10-04"
   },
   {
     "slug": "change-hacoo-shipping-address",
@@ -53,5 +54,33 @@
     "slug": "hacoo-official-website-and-app-check",
     "url": "https://hacoo.store/articles/hacoo-official-website-and-app-check/",
     "published": "2026-09-04"
+  },
+  {
+    "slug": "hacoo-shoes-finds",
+    "url": "https://hacoo.store/articles/hacoo-shoes-finds/",
+    "published": "2026-10-04",
+    "modified": "2026-10-04",
+    "image": "shoes.webp"
+  },
+  {
+    "slug": "hacoo-clothing-finds",
+    "url": "https://hacoo.store/articles/hacoo-clothing-finds/",
+    "published": "2026-10-04",
+    "modified": "2026-10-04",
+    "image": "clothing.webp"
+  },
+  {
+    "slug": "hacoo-bags-accessories",
+    "url": "https://hacoo.store/articles/hacoo-bags-accessories/",
+    "published": "2026-10-04",
+    "modified": "2026-10-04",
+    "image": "bags.webp"
+  },
+  {
+    "slug": "hacoo-order-tracking",
+    "url": "https://hacoo.store/articles/hacoo-order-tracking/",
+    "published": "2026-10-04",
+    "modified": "2026-10-04",
+    "image": "tracking.svg"
   }
 ]

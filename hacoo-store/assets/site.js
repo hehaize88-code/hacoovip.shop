@@ -15,9 +15,9 @@
   }) ? currentLocaleCode : "en";
 
   function siteRootPrefix() {
-    const stylesheet = document.querySelector('link[rel="stylesheet"][href$="assets/styles.css"]');
+    const stylesheet = document.querySelector('link[rel="stylesheet"][href*="assets/styles.css"]');
     if (!stylesheet) return "";
-    const href = stylesheet.getAttribute("href") || "";
+    const href = (stylesheet.getAttribute("href") || "").split(/[?#]/)[0];
     return href.slice(0, -"assets/styles.css".length);
   }
 
@@ -37,7 +37,15 @@
   }
 
   function languageDestination(code) {
-    return rootPrefix + (code === "en" ? "" : code + "/") + currentRoutePath();
+    const alternate = document.querySelector('link[rel="alternate"][hreflang="' + code + '"]');
+    if (alternate) {
+      return rootPrefix + new URL(alternate.href, window.location.href).pathname.replace(/^\/+/, "");
+    }
+    const route = currentRoutePath();
+    // English-only editorial articles have no translated detail URL. Send a
+    // language change to the corresponding guide hub, which labels them clearly.
+    const destination = code !== "en" && /^articles\/.+/.test(route) ? "articles/" : route;
+    return rootPrefix + (code === "en" ? "" : code + "/") + destination;
   }
 
   function addLanguageSwitcher() {
@@ -345,6 +353,17 @@
       input.focus();
       renderFeatured();
       return;
+    }
+    // Count successful search submissions without sending raw queries or order
+    // references to analytics. Navigation still works when analytics is blocked.
+    if (typeof window.gtag === "function") {
+      try {
+        window.gtag("event", "main_site_search", {
+          destination_host: "www.cnfanshp.com",
+          site_language: document.documentElement.lang || "en",
+          transport_type: "beacon"
+        });
+      } catch (_) { /* Analytics must never prevent the requested navigation. */ }
     }
     window.location.assign(mainSearchUrl(term));
   }

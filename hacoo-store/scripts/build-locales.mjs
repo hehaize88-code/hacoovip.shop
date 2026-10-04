@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { refreshEditorial } from "./editorial-pages.mjs";
 
 const root = path.resolve(import.meta.dirname, "..");
 const languageCodes = ["en", "fr", "de", "it", "es"];
@@ -869,6 +870,8 @@ function renderDocument(locale, routeKey) {
   return `<!doctype html>
 <html lang="${locale.code}">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KVZZSJN8W2"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KVZZSJN8W2');</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${page.title}</title>
@@ -1005,16 +1008,16 @@ for (const [routeKey, route] of Object.entries(routes)) {
   }
 
   const primaryNavMatch = html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/);
-  if (primaryNavMatch && !primaryNavMatch[0].includes(">SEO Articles</a>")) {
-    const articlesLink = `<li><a class="nav-featured" href="${prefix}${routes.articles.file}">SEO Articles</a></li>`;
+  if (primaryNavMatch && !/href="[^"]*articles\//.test(primaryNavMatch[0])) {
+    const articlesLink = `<li><a class="nav-featured" href="${prefix}${routes.articles.file}">Guides</a></li>`;
     const updatedNav = primaryNavMatch[0].replace(/(<li><a[^>]*>How it works<\/a><\/li>)/, `${articlesLink}$1`);
     html = html.replace(primaryNavMatch[0], updatedNav);
   }
 
   const footerGuideStart = '<div class="footer-title">Guides</div><nav class="footer-links">';
   const footerMatch = html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/);
-  if (footerMatch && html.includes(footerGuideStart) && !footerMatch[0].includes(">SEO Articles</a>")) {
-    html = html.replace(footerGuideStart, `${footerGuideStart}<a href="${prefix}${routes.articles.file}">SEO Articles</a>`);
+  if (footerMatch && html.includes(footerGuideStart) && !/href="[^"]*articles\//.test(footerMatch[0])) {
+    html = html.replace(footerGuideStart, `${footerGuideStart}<a href="${prefix}${routes.articles.file}">Guides</a>`);
   }
 
   if (!html.includes('hreflang="fr"')) {
@@ -1069,3 +1072,4 @@ const sitemapEntries = [...sitemapUrls].map((url) => `  <url><loc>${url}</loc></
 fs.writeFileSync(path.join(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join("\n")}\n</urlset>\n`);
 
 console.log("Localized routes, English alternates, navigation, and sitemap generated.");
+refreshEditorial();
