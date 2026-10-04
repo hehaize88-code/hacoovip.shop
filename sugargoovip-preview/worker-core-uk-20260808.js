@@ -76,6 +76,10 @@ const REVERSE_ARTICLES = {
 };
 
 const KNOWN_HTML = new Set([
+  "/guides/sugargoo-qc-finder-guide.html",
+  "/guides/sugargoo-shoes-spreadsheet-uk.html",
+  "/guides/sugargoo-hoodies-spreadsheet-uk.html",
+  "/guides/sugargoo-vs-superbuy-uk.html",
   "/faq.html","/about.html","/disclaimer.html","/privacy.html","/contact.html",
   "/guides/what-is-sugargoo.html","/guides/qc-guide.html","/guides/shipping-guide.html","/guides/alternative.html",
   "/guides/sugargoo-split-or-consolidate-parcel-guide.html", ...NEW_ARTICLES,
@@ -146,10 +150,10 @@ function catalogPage(products,lang) {
     const cards=products.filter(p=>p.category===slug).map(p=>productCard(p,cat)).join("");
     return `<h2 class="section-title">${esc(cat.name)}</h2><section class="grid home-products">${cards}</section>`;
   }).join("");
-  const title="Sugargoo Spreadsheet UK 2026: 40 Checked Product Finds";
-  const description="Browse a Sugargoo spreadsheet for UK shoppers with 40 checked finds, stable product pages, category filters, QC notes and shipping checks.";
-  const body=`<section class="guide-hub article-card"><h1>Sugargoo Spreadsheet UK 2026: 40 Checked Product Finds</h1><p class="article-lead">A smaller, verifiable catalogue for UK shoppers: each find has a stable detail page and one current shopping link to the connected main catalogue.</p><div class="article-content"><p>This is an independent product-discovery catalogue, not an official Sugargoo inventory. The source URLs and corresponding product images were rechecked on ${UPDATED}. Confirm the live listing, exact variant and any price or availability on the main site before purchase.</p><p><a class="btn" href="${MAIN}/" target="_blank" rel="noopener">Open main product catalogue</a> <a class="btn btn-secondary" href="/guides/sugargoo-spreadsheet-guide.html">How to use this spreadsheet</a></p></div></section>${sections}`;
-  const graph=[{"@type":"CollectionPage","url":`${SITE}/products/`,"name":title,"description":description,"inLanguage":"en-GB","dateModified":UPDATED},{"@type":"ItemList","numberOfItems":products.length,"itemListElement":products.map((p,i)=>({"@type":"ListItem","position":i+1,"name":p.title,"url":`${SITE}/products/${slugFor(p)}.html`}))}];
+  const title="Sugargoo Spreadsheet UK: 40 Finds, Shoes, Hoodies & QC";
+  const description="Browse 40 product links across eight categories. Use shoe and hoodie sizing guides, find warehouse QC photos and plan shipping to the UK.";
+  const body=`<section class="guide-hub article-card"><h1>Sugargoo Spreadsheet UK: 40 Product Finds</h1><p class="article-lead">A smaller, verifiable catalogue for UK shoppers: each find has a stable detail page and one current shopping link to the connected main catalogue.</p><div class="article-content"><p>This is an independent product-discovery catalogue, not an official Sugargoo inventory. The source URLs and corresponding product images were rechecked on ${UPDATED}. Confirm the live listing, exact variant and any price or availability on the main site before purchase.</p><h2>Choose a guide for your next step</h2><p><a href="/guides/sugargoo-shoes-spreadsheet-uk.html">Shoes: sizing, QC and packing</a> · <a href="/guides/sugargoo-hoodies-spreadsheet-uk.html">Hoodies and sweaters: measurements</a> · <a href="/guides/sugargoo-qc-finder-guide.html">Find your warehouse QC photos</a></p><p><a class="btn" href="${MAIN}/" target="_blank" rel="noopener">Open main product catalogue</a> <a class="btn btn-secondary" href="/guides/sugargoo-spreadsheet-guide.html">How to use this spreadsheet</a></p></div></section>${sections}`;
+  const graph=[{"@type":"CollectionPage","url":`${SITE}/products/`,"name":title,"description":description,"inLanguage":"en-GB","dateModified":"2026-10-04"},{"@type":"ItemList","numberOfItems":products.length,"itemListElement":products.map((p,i)=>({"@type":"ListItem","position":i+1,"name":p.title,"url":`${SITE}/products/${slugFor(p)}.html`}))}];
   return shell({title,description,canonical:`${SITE}/products/`,body,lang,image:products[0]?.image||`${SITE}/assets/11.png`,graph});
 }
 function productPage(p,lang) {

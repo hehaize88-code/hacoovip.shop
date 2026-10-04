@@ -1,7 +1,7 @@
 import core from './worker-core-uk-20260808.js';
 
 const CANONICAL_HOST = 'sugargoovip.uk';
-const CACHE_VERSION = '20261004-home-search1';
+const CACHE_VERSION = '20261004-seo1';
 const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
 
 function canonicalRoutePath(pathname) {
@@ -47,9 +47,22 @@ async function staticHtmlResponse(request, env, pathname, lang) {
   });
 }
 
+async function withSiteEvents(response) {
+  if (!response || response.status !== 200 || !(response.headers.get('content-type') || '').includes('text/html')) return response;
+  let html = await response.text();
+  if (!html.includes('/assets/site-events-20261004.js')) {
+    html = html.replace(/<\/body>/i, '<script defer src="/assets/site-events-20261004.js"></script></body>');
+  }
+  const headers = new Headers(response.headers);
+  headers.delete('content-length');
+  headers.delete('etag');
+  headers.delete('content-encoding');
+  return new Response(html, { status: response.status, headers });
+}
+
 async function edgeCachedHtml(request, ctx, createResponse) {
   const url = new URL(request.url);
-  if (request.method !== 'GET' || url.search) return createResponse();
+  if (request.method !== 'GET' || url.search) return withSiteEvents(await createResponse());
 
   const cacheUrl = new URL(url);
   cacheUrl.searchParams.set('__edge', CACHE_VERSION);
@@ -61,7 +74,7 @@ async function edgeCachedHtml(request, ctx, createResponse) {
     return new Response(cached.body, { status: cached.status, headers });
   }
 
-  const response = await createResponse();
+  const response = await withSiteEvents(await createResponse());
   if (!response) return response;
   const contentType = response.headers.get('content-type') || '';
   if (response.status !== 200 || !contentType.includes('text/html')) return response;
