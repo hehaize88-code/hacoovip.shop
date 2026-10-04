@@ -155,3 +155,12 @@ body{line-height:1.42}
 .guide-card p{font-size:10px}
 .faq-compact .card{font-size:11px}
 }
+
+/* Homepage product search */
+.home-search{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;max-width:560px;margin:16px 0 0;align-items:stretch}
+.home-search .search-label{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.home-search-input{display:block;width:100%;min-width:0;min-height:46px;border:1px solid #c7b6a4;border-radius:10px;padding:11px 13px;background:#fff;color:#111;font:400 16px/1.3 Arial,Helvetica,sans-serif}
+.home-search-input::placeholder{color:#686058;opacity:1}
+.home-search-input:focus-visible,.home-search button:focus-visible{outline:3px solid #9c4500;outline-offset:3px}
+.home-search button{min-height:46px;cursor:pointer;font:700 15px/1.3 Arial,Helvetica,sans-serif}
+@media(max-width:640px){.home-search{margin-top:12px;gap:7px}.home-search-input{padding:10px 11px;border-radius:8px}.home-search button{padding:10px 14px}}

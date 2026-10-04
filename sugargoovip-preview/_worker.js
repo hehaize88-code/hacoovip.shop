@@ -1,7 +1,7 @@
 import core from './worker-core-uk-20260808.js';
 
 const CANONICAL_HOST = 'sugargoovip.uk';
-const CACHE_VERSION = '20261004-home-4';
+const CACHE_VERSION = '20261004-home-search1';
 const CLIENT_LANGS = new Set(['es','fr','de','it','pt','pl','nl','zh']);
 
 function canonicalRoutePath(pathname) {
