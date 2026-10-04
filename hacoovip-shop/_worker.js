@@ -11,14 +11,13 @@ function permanentRedirect(request, mutate) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const hasEnglishAlias = url.pathname === "/en" || url.pathname === "/en/" || url.pathname.startsWith("/en/");
+    let canonicalPath = url.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+    canonicalPath = canonicalPath.replace(/\/index(?:\.html)?$/, "/").replace(/\.html$/, "");
+    if (/^\/(zh|es|fr|de|it|pt|pl|nl)$/.test(canonicalPath)) canonicalPath += "/";
     const hasNonCanonicalOrigin = url.protocol !== "https:" || url.hostname.toLowerCase() !== CANONICAL_HOST;
 
-    if (hasNonCanonicalOrigin || hasEnglishAlias) {
-      return permanentRedirect(request, target => {
-        if (url.pathname === "/en" || url.pathname === "/en/") target.pathname = "/";
-        else if (url.pathname.startsWith("/en/")) target.pathname = url.pathname.slice(3) || "/";
-      });
+    if (hasNonCanonicalOrigin || canonicalPath !== url.pathname) {
+      return permanentRedirect(request, target => { target.pathname = canonicalPath; });
     }
 
     const assetResponse = await env.ASSETS.fetch(request);
@@ -28,7 +27,7 @@ export default {
     response.headers.set("X-Frame-Options", "SAMEORIGIN");
 
     if ((response.headers.get("content-type") || "").includes("text/html")) {
-      response.headers.set("Cache-Control", "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400");
+      response.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
     }
 
     return response;

@@ -1,6 +1,32 @@
 /* Technical SEO and mobile consistency overrides. Loaded after page-level styles. */
 html, body { max-width: 100%; overflow-x: clip; }
 
+/* Shared static article hubs use the same card layout in every language. */
+.articleList, .articleGrid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+.articleList > a.articleCard, .articleGrid > a.articleCard {
+  display: flex; flex-direction: column; min-width: 0; min-height: 0; aspect-ratio: 1;
+  padding: 20px; border: 1px solid var(--line); border-radius: 24px;
+  background: rgba(255,250,242,.96); color: #24160e; overflow: hidden;
+  box-shadow: 0 14px 34px rgba(66,43,22,.09);
+}
+.articleList > a.articleCard h3, .articleGrid > a.articleCard h3 {
+  margin: 8px 0; font-size: 20px; line-height: 1.2; display: -webkit-box;
+  -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+}
+.articleList > a.articleCard p, .articleGrid > a.articleCard p {
+  font-size: 13px; line-height: 1.5; margin: 0 0 12px; color: #685d53;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+}
+.articleList .articleMeta, .articleGrid .articleDate { font-size: 11px; font-weight: 800; color: #667a56; }
+.articleList .articleOpen, .articleGrid .articleOpen { margin-top: auto; font-size: 12px; font-weight: 800; }
+@media (max-width: 920px) { .articleList { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 600px) {
+  .articleList > a.articleCard, .articleGrid > a.articleCard { padding: 12px; border-radius: 17px; }
+  .articleList > a.articleCard h3, .articleGrid > a.articleCard h3 { font-size: 15px; }
+  .articleList > a.articleCard p, .articleGrid > a.articleCard p { font-size: 11px; -webkit-line-clamp: 2; }
+  .articleList .articleOpen, .articleGrid .articleOpen { font-size: 10px; }
+}
+
 /* Keep automatically appended article cards in the same grid as the existing
    cards, even if an updater accidentally adds a second articleList wrapper. */
 .articleList > .articleList,

@@ -28,7 +28,7 @@
   };
 
   const LOCALIZED_PAGES = new Set(["", "index", "categories", "trending", "seo-articles", "quality-control-guide", "faq", "how-it-works"]);
-  const ARTICLE_PAGES = new Set(["reverse-shopping-guide", "hacoo-spreadsheet-2026-guide", "hacoo-qc-photos-guide", "hacoo-reverse-image-search-workflow", "hacoo-order-status-explained", "hacoo-tracking-not-updating", "hacoo-delivered-but-not-received", "hacoo-refund-pending", "hacoo-change-delivery-address"]);
+  const ARTICLE_PAGES = new Set(["hacoo-bags-accessories-product-page-checklist", "hacoo-bottoms-sizing-fit-guide", "hacoo-change-delivery-address", "hacoo-delivered-but-not-received", "hacoo-dress-sizing-fit-guide", "hacoo-missing-items-incomplete-order", "hacoo-order-status-explained", "hacoo-payment-failure-currency-conversion-guide-2026", "hacoo-product-link-safety-guide", "hacoo-product-page-checklist", "hacoo-qc-photos-guide", "hacoo-refund-pending", "hacoo-return-refund-evidence-guide-2026", "hacoo-return-request-rejected", "hacoo-return-shipping-costs", "hacoo-returned-to-sender", "hacoo-reverse-image-search-workflow", "hacoo-reviews-evidence-checklist", "hacoo-shipping-time-tracking-guide-2026", "hacoo-shoes-sizing-buyer-evidence-guide", "hacoo-size-guide-measurements-fit", "hacoo-spreadsheet-2026-guide", "hacoo-tops-sizing-material-guide", "hacoo-tracking-not-updating", "reverse-shopping-guide"]);
 
   function normalizePath(){
     const parts = location.pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
@@ -115,7 +115,7 @@
   function renderLocalizedPage(){
     const page = document.body.dataset.localPage;
     const lang = document.body.dataset.localLang || normalizePath().currentLang;
-    if (!page || !UI[lang]) return;
+    if (!page || !UI[lang] || document.body.dataset.prerendered === "true") return;
     const d = UI[lang];
     document.documentElement.lang = lang === "zh-CN" ? "zh-CN" : lang;
     let title = d.catsTitle, lead = d.catsLead, body = "";
@@ -155,17 +155,17 @@
     if (page === "qc") {
       title = d.qcTitle; lead = d.qcLead;
       body = cardsHtml([
-        {t:lang==="zh-CN"?"检查首图":"Check cover image",p:lang==="zh-CN"?"确认图片、标题和目标页面匹配。":"Confirm image, title and destination match.",href:"quality-control-guide.html"},
-        {t:lang==="zh-CN"?"查看细节":"Review details",p:lang==="zh-CN"?"检查材质、走线、颜色和尺码。":"Look at material, stitching, color and sizing.",href:"quality-control-guide.html"},
-        {t:d.seo,p:lang==="zh-CN"?"阅读更完整的研究流程。":"Open the deeper research workflow.",href:"seo-articles.html"}
+        {t:lang==="zh-CN"?"检查首图":"Check cover image",p:lang==="zh-CN"?"确认图片、标题和目标页面匹配。":"Confirm image, title and destination match.",href:"quality-control-guide"},
+        {t:lang==="zh-CN"?"查看细节":"Review details",p:lang==="zh-CN"?"检查材质、走线、颜色和尺码。":"Look at material, stitching, color and sizing.",href:"quality-control-guide"},
+        {t:d.seo,p:lang==="zh-CN"?"阅读更完整的研究流程。":"Open the deeper research workflow.",href:"seo-articles"}
       ], d.read);
     }
     if (page === "faq") {
       title = d.faqTitle; lead = d.faqLead;
       body = cardsHtml([
-        {t:lang==="zh-CN"?"这是官网吗？":"Is this official?",p:lang==="zh-CN"?"不是，这是独立指南。":"No. It is an independent guide, not official Hacoo.",href:"faq.html"},
-        {t:lang==="zh-CN"?"本站销售产品吗？":"Does it sell products?",p:lang==="zh-CN"?"不销售，只提供研究入口和类目链接。":"No. It links to product research pages and categories.",href:"faq.html"},
-        {t:lang==="zh-CN"?"为什么先看 QC？":"Why use QC first?",p:lang==="zh-CN"?"单独首图不足以判断产品。":"A strong cover image is not enough for a safe decision.",href:"quality-control-guide.html"}
+        {t:lang==="zh-CN"?"这是官网吗？":"Is this official?",p:lang==="zh-CN"?"不是，这是独立指南。":"No. It is an independent guide, not official Hacoo.",href:"faq"},
+        {t:lang==="zh-CN"?"本站销售产品吗？":"Does it sell products?",p:lang==="zh-CN"?"不销售，只提供研究入口和类目链接。":"No. It links to product research pages and categories.",href:"faq"},
+        {t:lang==="zh-CN"?"为什么先看 QC？":"Why use QC first?",p:lang==="zh-CN"?"单独首图不足以判断产品。":"A strong cover image is not enough for a safe decision.",href:"quality-control-guide"}
       ], d.read);
     }
     document.body.innerHTML = `${headerHtml(lang,d)}<main><section class="pageHero container"><span class="eyebrow"><i></i><span>Hacoo VIP</span></span><h1>${title}</h1><p class="lead">${lead}</p><div class="actions"><a class="btn btnDark" href="seo-articles">${d.seo}</a><a class="btn btnLight" href="quality-control-guide">${d.qc}</a></div></section><section class="container">${body}</section></main><section class="container cta"><div><h2>${d.open}</h2><p>${lead}</p></div><div class="actions"><a class="btn btnWhite" href="https://www.cnfanshp.com/?utm_source=hacoovip.shop&utm_medium=referral&utm_campaign=${lang}_bottom">${d.open}</a><a class="btn btnOutline" href="categories">${d.categories}</a></div></section>`;
@@ -176,12 +176,12 @@
   function setupStructuredData(){
     const { slug } = normalizePath();
     const clean = slug || "index";
-    const url = location.origin + location.pathname;
+    const url = document.querySelector('link[rel="canonical"]')?.href || ("https://hacoovip.shop" + location.pathname);
     const headline = document.querySelector("h1")?.textContent?.trim() || "Hacoo VIP";
     const description = document.querySelector("meta[name='description']")?.content || "Independent Hacoo VIP shopping discovery and product research guide.";
     addJsonLd({"@context":"https://schema.org","@type":"Organization","@id":"https://hacoovip.shop/#organization",name:"Hacoo VIP",url:"https://hacoovip.shop/",description:"Independent shopping discovery and product research guide. Not the official Hacoo app website.",logo:"https://hacoovip.shop/assets/img/hacoo-logo.svg"});
     addJsonLd({"@context":"https://schema.org","@type":"WebSite","@id":"https://hacoovip.shop/#website",name:"Hacoo VIP",url:"https://hacoovip.shop/",publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
-    addJsonLd({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://hacoovip.shop/"},{"@type":"ListItem",position:2,name:headline,item:url}]});
+    if (!Array.from(document.querySelectorAll('script[type="application/ld+json"]')).some(s => /"@type"\s*:\s*"BreadcrumbList"/.test(s.textContent || ""))) addJsonLd({"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://hacoovip.shop/"},{"@type":"ListItem",position:2,name:headline,item:url}]});
     addJsonLd({"@context":"https://schema.org","@type":clean==="seo-articles"?"CollectionPage":"WebPage","@id":`${url}#webpage`,url,name:headline,description,isPartOf:{"@id":"https://hacoovip.shop/#website"},publisher:{"@id":"https://hacoovip.shop/#organization"},inLanguage:document.documentElement.lang||"en"});
     if (clean === "faq") {
       const qs = Array.from(document.querySelectorAll(".faqCard,.infoCard")).slice(0,12).map(card => ({"@type":"Question",name:card.querySelector("summary,h3")?.textContent?.trim()||"Question",acceptedAnswer:{"@type":"Answer",text:card.querySelector("p")?.textContent?.trim()||"Answer"}}));
@@ -220,19 +220,22 @@
       const destination = new URL(link.href, location.href);
       if (destination.hostname === "www.cnfanshp.com" || destination.hostname === "cnfanshp.com") {
         window.gtag("event", "outbound_click", {
+          source_path: location.pathname,
+          link_location: link.closest("header") ? "header" : link.closest("footer") ? "footer" : "content",
           destination_host: destination.hostname,
           destination_path: destination.pathname,
           link_text: (link.textContent || "").trim().slice(0, 80)
         });
-      } else if (link.classList.contains("articleCard") || link.closest(".articleCard")) {
+      } else if (destination.origin === location.origin && ARTICLE_PAGES.has(destination.pathname.replace(/^\//, "").replace(/\.html$/, ""))) {
         window.gtag("event", "article_open", {
+          source_path: location.pathname,
           article_path: destination.pathname,
           article_title: (link.querySelector("h3")?.textContent || link.textContent || "").trim().slice(0, 100)
         });
       }
     });
     document.querySelectorAll("form[role='search']").forEach(form => {
-      form.addEventListener("submit", () => window.gtag("event", "site_search_submit", { search_location: location.pathname }));
+      form.addEventListener("submit", () => window.gtag("event", "site_search_submit", { search_location: location.pathname, destination_host: "www.cnfanshp.com", search_language: document.documentElement.lang }));
     });
   }
 
