@@ -1,0 +1,30 @@
+{
+  "shoes": {
+    "slug": "oopbuy-shoes-spreadsheet-finds-sizing-qc",
+    "title": "OOPBUY Shoes Spreadsheet: 3 Finds, Sizing & QC",
+    "description": "Compare three OOPBUY shoe finds with matching product links, USD reference prices, seller sizing checks, warehouse QC and shoe-box shipping considerations.",
+    "category": "Shoes spreadsheet",
+    "takeaways": ["Match product IDs and the selected seller option.", "Compare foot or insole measurements using the same method.", "Budget shipping with explicit shoe-box instructions."]
+  },
+  "hoodies": {
+    "slug": "oopbuy-hoodies-spreadsheet-fit-qc",
+    "title": "OOPBUY Hoodies Spreadsheet: 3 Finds & Fit Checks",
+    "description": "Compare three OOPBUY hoodie listings, USD reference prices, chest and sleeve measurements, set options and warehouse QC before choosing a size.",
+    "category": "Hoodies spreadsheet",
+    "takeaways": ["Confirm whether the listing is a hoodie or a set.", "Compare chest width, body length and sleeve measurements.", "Separate fabric claims from what photographs can verify."]
+  },
+  "jackets": {
+    "slug": "oopbuy-jackets-spreadsheet-fit-packed-size",
+    "title": "OOPBUY Jackets Spreadsheet: 3 Finds, Fit & Shipping",
+    "description": "Compare three OOPBUY jacket finds with matching links, USD price references, layering measurements, QC checks and packed-size shipping guidance.",
+    "category": "Jackets spreadsheet",
+    "takeaways": ["Match the exact option and leave room for intended layers.", "Check closures, lining and visible construction in QC.", "Compare final parcel dimensions before choosing freight."]
+  },
+  "fees": {
+    "slug": "oopbuy-fees-total-haul-cost",
+    "title": "OOPBUY Fees: Calculate Your Total Haul Cost",
+    "description": "Build an OOPBUY haul budget covering products, domestic freight, optional services, payment costs and international shipping, with a worked USD example.",
+    "category": "Fees and haul budget",
+    "takeaways": ["Keep product, service and shipping charges separate.", "Distinguish estimates, confirmed charges and paid amounts.", "Use the worked USD budget without treating it as a live quote."]
+  }
+}

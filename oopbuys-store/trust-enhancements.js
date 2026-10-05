@@ -677,14 +677,14 @@
       };
 
       send("outbound_click", common);
-      if (link.closest(".product-card")) {
+      if (link.closest(".product-card, .editorial-product-card")) {
         send("product_click", common);
       } else if (/\/search\.html$/i.test(url.pathname)) {
         send("search_click", {
           ...common,
           search_term: url.searchParams.get("keywords") || ""
         });
-      } else if (/category|classify/i.test(url.pathname + url.search)) {
+      } else if (/category|classify/i.test(url.pathname + url.search) || /^\/(shoes|hoodies-sweaters|t-shirts|jackets|pants-shorts|headwear|accessories|Jersey|electronics|other-stuff)\/$/i.test(url.pathname)) {
         send("category_click", common);
       } else {
         send("catalog_click", common);
@@ -706,6 +706,45 @@
     }, true);
   }
 
+  function trackEditorialActions() {
+    if (document.documentElement.dataset.editorialTracking === "true") return;
+    document.documentElement.dataset.editorialTracking = "true";
+    const send = (name, params) => {
+      if (typeof window.gtag === "function") window.gtag("event", name, params);
+    };
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest && event.target.closest("a[href]");
+      if (!link) return;
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin || !/^\/(?:de\/|fr\/|es\/|it\/)?articles\/[^/]+\/$/.test(url.pathname) || url.pathname === location.pathname) return;
+      send("article_click", {
+        page_path: location.pathname,
+        article_path: url.pathname,
+        placement: link.closest(".journal-section") ? "homepage" : link.closest(".article-directory-grid") ? "directory" : "related",
+        transport_type: "beacon"
+      });
+    }, true);
+    const article = document.querySelector(".longform");
+    if (!article) return;
+    const reached = new Set();
+    let scheduled = false;
+    const measure = () => {
+      scheduled = false;
+      const rect = article.getBoundingClientRect();
+      if (rect.height <= 0) return;
+      const progress = Math.max(0, Math.min(100, 100 * (window.innerHeight - rect.top) / rect.height));
+      [50, 90].forEach((threshold) => {
+        if (progress < threshold || reached.has(threshold)) return;
+        reached.add(threshold);
+        send("article_engagement", { article_path: location.pathname, percent_scrolled: threshold, transport_type: "beacon" });
+      });
+    };
+    window.addEventListener("scroll", () => {
+      if (!scheduled) { scheduled = true; requestAnimationFrame(measure); }
+    }, { passive: true });
+    measure();
+  }
+
   function enhance() {
     const lang = pageLanguage();
     const label = labels[lang];
@@ -715,12 +754,11 @@
     addArticleByline(label);
     ensureHomeTrustCopy(label);
     loadCatalogHealth(label, lang);
-    ensureLocalizedShippingCard(pageLanguage());
-    ensureWarehouseCard(pageLanguage());
-    ensureRehearsalCard(pageLanguage());
-    ensureShoeQcCard(pageLanguage());
+    // The complete localized article selection is now rendered in static HTML.
+    // Legacy runtime insertions would overwrite its count and duplicate old cards.
     forceStaticArticleNavigation();
     trackCatalogActions();
+    trackEditorialActions();
   }
 
   if (document.readyState === "loading") {
