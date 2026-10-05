@@ -1,11 +1,12 @@
 import { articles as englishArticles } from "./articleCatalog.js";
+import { getRouteLastModified } from "./contentDates.js";
 import { ARTICLE_LOCALES, ARTICLE_SOURCE_LOCALES, ARTICLE_UI_LOCALES } from "./articleLocales/index.js";
 
 const ENGLISH_UI = {
   journalMetadataTitle: "FindQC Guides: Search, QC Photos, Sizing & Agents",
   journalMetadataDescription: "Fact-checked guides to FindQC search, QC measurement photos, Discord research, product signals and shopping-agent workflows.",
   journalSchemaName: "FindQC Pro research journal",
-  journalCount: "12 in-depth guides",
+  journalCount: "21 in-depth guides",
   journalNote: "Every article is checked against current primary sources and, where relevant, independent public-safety references. Images are clearly marked editorial examples rather than warehouse QC evidence.",
   editorialDesk: "FindQC Pro Editorial Desk",
   factChecked: "Fact-checked",
@@ -43,6 +44,8 @@ function localizeArticle(article, language) {
     slug: article.slug,
     heroImage: article.heroImage,
     dateISO: article.dateISO,
+    updatedISO: translated.updatedISO || getRouteLastModified(`/articles/${article.slug}`, language),
+    sourceIntro: translated.sourceIntro,
     related: article.related,
     sources: localizeSources(article.sources, language),
     cta: { ...article.cta, ...translated.cta, href: article.cta.href, external: article.cta.external },

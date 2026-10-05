@@ -4,13 +4,13 @@ import { articles } from "./articleCatalog.js";
 // Build dates, deployments, styling-only changes, and asset optimizations must
 // not change these values.
 const routeLastModified = Object.freeze({
-  "/": "2026-09-05",
+  "/": "2026-10-05",
   "/products": "2026-07-22",
   "/categories": "2026-07-21",
   "/guides": "2026-07-21",
   "/guides/qc-photo-checklist": "2026-07-22",
   "/guides/how-to-buy": "2026-07-22",
-  "/articles": "2026-09-05",
+  "/articles": "2026-10-05",
   "/faq": "2026-07-21",
   "/about": "2026-07-22",
   "/contact": "2026-07-22",
@@ -18,8 +18,8 @@ const routeLastModified = Object.freeze({
   "/privacy": "2026-07-21",
   "/terms": "2026-07-21",
   "/categories/shoes": "2026-07-22",
-  "/categories/hoodies-sweaters": "2026-07-22",
-  "/categories/t-shirts": "2026-07-22",
+  "/categories/hoodies-sweaters": "2026-10-05",
+  "/categories/t-shirts": "2026-10-05",
   "/categories/jackets": "2026-07-22",
   "/categories/pants-shorts": "2026-07-22",
   "/categories/headwear": "2026-07-22",
@@ -44,6 +44,7 @@ function articleDate(route) {
 
 export function getRouteLastModified(route, language = "en") {
   if (language !== "en") {
+    if (route === "/") return "2026-10-05";
     const localizedDate = localizedRouteLastModified[language];
     if (!localizedDate) throw new Error(`Unknown sitemap language: ${language}`);
     return localizedDate;

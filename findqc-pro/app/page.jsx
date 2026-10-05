@@ -9,6 +9,7 @@ import { useLanguage } from "../components/LanguageProvider";
 import { MAIN_SITE, categories, products } from "../lib/data";
 import { BUILD_LANGUAGE, languageUrl } from "../lib/routing";
 import { preload } from "react-dom";
+import { featuredReading } from "../lib/featuredReading";
 
 function StackedText({ value }) {
   const lines = value.split("\n");
@@ -56,7 +57,7 @@ export default function HomePage() {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${languageUrl("/search")}?q={search_term_string}`,
+        urlTemplate: `${MAIN_SITE}/search.html?keywords={search_term_string}&channelid=2`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -79,6 +80,10 @@ export default function HomePage() {
             <span><CheckIcon size={15} /> {t("home.featureLinks")}</span>
             <span><CheckIcon size={15} /> {t("home.featureGuides")}</span>
           </div>
+          <nav className="hero-guide-links" aria-label={t("home.guideLinks")}>
+            <Link href="/articles/findqc-search-methods">{t("home.searchGuide")} <ArrowIcon size={14} /></Link>
+            <Link href="/articles/before-you-buy-qc-guide">{t("home.photoChecklist")} <ArrowIcon size={14} /></Link>
+          </nav>
         </div>
 
         <div className="inspection-board" aria-label={t("home.reviewDesk")}>
@@ -141,6 +146,27 @@ export default function HomePage() {
         </div>
         <p className="price-note">{t("home.priceNote")}</p>
       </section>
+
+      {BUILD_LANGUAGE === "en" && <section className="section shell latest-reading" aria-labelledby="latest-reading-title">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">{t("home.readingEyebrow")}</span>
+            <h2 id="latest-reading-title">{t("home.readingTitle")}</h2>
+            <p>{t("home.readingIntro")}</p>
+          </div>
+          <Link href="/articles" className="outline-button">{t("home.allGuides")} <ArrowIcon /></Link>
+        </div>
+        <div className="related-article-grid latest-reading-grid">
+          {featuredReading.map((article) => (
+            <Link href={`/articles/${article.slug}`} key={article.slug}>
+              <span>{t("home.englishGuide")}</span>
+              <h3>{article.title}</h3>
+              <p>{article.description}</p>
+              <b>{t("home.readNote")} <ArrowIcon /></b>
+            </Link>
+          ))}
+        </div>
+      </section>}
 
       <section className="method-section">
         <div className="shell method-grid">

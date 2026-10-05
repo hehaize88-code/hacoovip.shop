@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-05",
+  "lastUpdated": "2026-10-05",
   "latestPublishedCommit": "06495854029477a427f631e09ad4661c6cb272c7",
   "articles": [
     {
@@ -169,6 +169,66 @@
       "source": "Manual SEO gap analysis using Bing Webmaster query data and the existing FindQC Pro article inventory",
       "liveVerified": false,
       "deploymentStatus": "pending"
+    },
+    {
+      "slug": "findqc-vs-finderqc",
+      "primaryQuery": "FindQC vs FinderQC",
+      "intent": "Compare documented QC discovery methods and evaluate a specific result",
+      "focus": [
+        "documented feature comparison",
+        "listing identity",
+        "coverage worksheet",
+        "bounded conclusions"
+      ],
+      "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
+      "languages": [
+        "en"
+      ]
+    },
+    {
+      "slug": "hoodie-qc-checklist",
+      "primaryQuery": "hoodie QC checklist",
+      "intent": "Inspect an exact hoodie before warehouse approval",
+      "focus": [
+        "measurement definitions",
+        "hood and pocket",
+        "seam and cuff checks",
+        "print placement"
+      ],
+      "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
+      "languages": [
+        "en"
+      ]
+    },
+    {
+      "slug": "t-shirt-qc-checklist",
+      "primaryQuery": "T-shirt QC checklist",
+      "intent": "Check T-shirt fit and visible construction before shipping",
+      "focus": [
+        "chest and body length",
+        "neckline",
+        "sleeve balance",
+        "graphic alignment"
+      ],
+      "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
+      "languages": [
+        "en"
+      ]
+    },
+    {
+      "slug": "qc-weight-dimensions-shipping-estimates",
+      "primaryQuery": "QC weight and dimensions",
+      "intent": "Separate historical product measurements from a final parcel shipping estimate",
+      "focus": [
+        "measurement object",
+        "actual versus volumetric weight",
+        "worked examples",
+        "quote inputs"
+      ],
+      "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
+      "languages": [
+        "en"
+      ]
     }
   ]
 }

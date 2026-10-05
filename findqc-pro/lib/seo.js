@@ -12,8 +12,8 @@ const OPEN_GRAPH_LOCALES = {
 const CORE_PAGE_SEO = {
   en: {
     "/": {
-      title: "FindQC Pro: QC Finder & Product Search Guide (2026)",
-      description: "Search 108 mapped products, learn how to find QC photos by link, image or keyword, and check warehouse evidence before shipping.",
+      title: "FindQC Pro: QC Finder Guides & Photo Checklists",
+      description: "Find QC photos with independent search guides. Use hoodie and T-shirt checklists, compare QC tools, and search matching products in the main catalog.",
     },
     "/products": {
       title: "Product Finder: 108 Mapped Listings",
@@ -28,8 +28,8 @@ const CORE_PAGE_SEO = {
       description: "Learn when to use FindQC link, image or keyword search, how to verify results, and what QC photos can and cannot prove.",
     },
     "/articles": {
-      title: "QC Photo & Shopping Agent Guides",
-      description: "Read fact-checked guides to FindQC search, product signals, warehouse QC photos and shopping-agent decisions before shipment.",
+      title: "QC Guides: Photo Checklists, Search & Shipping",
+      description: "Read 21 independent QC guides: FindQC vs FinderQC, hoodie and T-shirt checklists, product-link searches, measurements and shipping estimates.",
     },
     "/faq": {
       title: "FindQC FAQ: Search, QC Photos & Agents",
@@ -38,8 +38,8 @@ const CORE_PAGE_SEO = {
   },
   pl: {
     "/": {
-      title: "FindQC Pro: wyszukiwarka i zdjęcia QC (2026)",
-      description: "Znajdź zdjęcia QC linkiem, obrazem lub słowem, przeszukaj 108 produktów i sprawdź dowody magazynowe przed wysyłką.",
+      title: "FindQC Pro: poradniki zdjęć QC i wyszukiwanie",
+      description: "Niezależne poradniki wyszukiwania i kontroli zdjęć QC. Porównuj wymiary, sprawdzaj ubrania i wyszukuj produkty w głównym katalogu.",
     },
     "/products": {
       title: "Wyszukiwarka produktów: 108 przypisanych ofert",
@@ -64,8 +64,8 @@ const CORE_PAGE_SEO = {
   },
   es: {
     "/": {
-      title: "QC Finder: guía y búsqueda de productos (2026)",
-      description: "Busca entre 108 productos mapeados, compara enlaces de origen exactos y usa listas prácticas de fotos QC antes de aprobar un paquete.",
+      title: "FindQC Pro: guías de fotos QC y búsqueda",
+      description: "Guías independientes para buscar y revisar fotos QC. Compara medidas, revisa prendas y busca productos en el catálogo principal.",
     },
     "/products": {
       title: "Buscador de productos: 108 listados mapeados",
@@ -90,8 +90,8 @@ const CORE_PAGE_SEO = {
   },
   de: {
     "/": {
-      title: "QC Finder: Ratgeber & Produktsuche (2026)",
-      description: "Durchsuche 108 zugeordnete Produktangebote, vergleiche exakte Quelllinks und nutze praktische QC-Fotochecklisten vor der Paketfreigabe.",
+      title: "FindQC Pro: QC-Foto-Ratgeber & Produktsuche",
+      description: "Unabhängige Ratgeber zur Suche und Prüfung von QC-Fotos. Vergleiche Maße, prüfe Kleidung und suche Produkte im Hauptkatalog.",
     },
     "/products": {
       title: "Produktsuche: 108 zugeordnete Angebote",
@@ -116,8 +116,8 @@ const CORE_PAGE_SEO = {
   },
   ro: {
     "/": {
-      title: "QC Finder: ghid și căutare de produse (2026)",
-      description: "Caută în 108 produse asociate, compară linkurile-sursă exacte și folosește liste practice pentru poze QC înainte de aprobarea coletului.",
+      title: "FindQC Pro: ghiduri foto QC și căutare",
+      description: "Ghiduri independente pentru căutarea și verificarea pozelor QC. Compară măsurători, verifică haine și caută produse în catalogul principal.",
     },
     "/products": {
       title: "Căutare produse: 108 listări asociate",
@@ -184,11 +184,11 @@ function translatedSeo(metadata, pathname) {
     const slug = categoryMatch[1];
     const categoryName = translate(BUILD_LANGUAGE, `category.${slug}.name`);
     const categoryTitles = {
-      en: `${categoryName} QC Photos & Inspection Checklist`,
-      pl: `${categoryName}: zdjęcia QC i lista kontroli`,
-      es: `${categoryName}: fotos QC y lista de inspección`,
-      de: `${categoryName}: QC-Fotos & Prüfcheckliste`,
-      ro: `${categoryName}: poze QC și listă de verificare`,
+      en: `${categoryName} Finds & QC Checklist`,
+      pl: `${categoryName}: produkty i lista kontroli QC`,
+      es: `${categoryName}: productos y lista de revisión QC`,
+      de: `${categoryName}: Produkte & QC-Checkliste`,
+      ro: `${categoryName}: produse și listă de verificare QC`,
     };
     return {
       ...metadata,

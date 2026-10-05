@@ -3279,6 +3279,29 @@ main {
   border-left: 1px solid var(--line);
 }
 
+.hero-guide-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 22px;
+}
+
+.hero-guide-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.latest-reading-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.category-article-link { margin-top: 18px; }
+
 .related-article-grid > a {
   display: flex;
   flex-direction: column;
@@ -3317,6 +3340,9 @@ main {
   margin-top: auto;
   font-size: 11px;
 }
+
+.latest-reading-grid > a { min-height: 260px; }
+.latest-reading-grid h3 { margin-top: 28px; }
 
 .not-found {
   display: flex;

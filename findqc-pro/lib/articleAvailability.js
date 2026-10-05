@@ -1,4 +1,8 @@
 export const ARTICLE_LANGUAGE_OVERRIDES = Object.freeze({
+  "findqc-vs-finderqc": ["en"],
+  "hoodie-qc-checklist": ["en"],
+  "t-shirt-qc-checklist": ["en"],
+  "qc-weight-dimensions-shipping-estimates": ["en"],
   "findqc-discord-bot-guide": ["en"],
   "findqc-qc-measurements-size-guide": ["en"],
   "findqc-product-safety-check": ["en"],

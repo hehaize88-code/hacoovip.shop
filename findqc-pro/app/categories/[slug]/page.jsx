@@ -85,6 +85,11 @@ export default async function CategoryPage({ params }) {
           <h2><T id="categoryDetail.quickTitle" /></h2>
           <ol>{[1, 2, 3].map((number, index) => <li key={number}><span>0{index + 1}</span><p><T id={`category.${category.slug}.prompts.${number}`} /></p><CheckIcon /></li>)}</ol>
           <Link href="/guides/qc-photo-checklist"><T id="categoryDetail.complete" /> <ArrowIcon /></Link>
+          {BUILD_LANGUAGE === "en" && ["hoodies-sweaters", "t-shirts"].includes(category.slug) && (
+            <Link className="category-article-link" href={`/articles/${category.slug === "hoodies-sweaters" ? "hoodie-qc-checklist" : "t-shirt-qc-checklist"}`}>
+              Read the {category.slug === "hoodies-sweaters" ? "hoodie" : "T-shirt"} QC checklist <ArrowIcon />
+            </Link>
+          )}
         </aside>
       </section>
 

@@ -162,6 +162,9 @@ export default async function ArticlePage({ params }) {
         <div>
           <Link className="article-author-link" href="/editorial-policy#editorial-desk">{articleUi.editorialDesk} <ArrowIcon /></Link>
           <time dateTime={article.dateISO}>{article.date}</time>
+          {BUILD_LANGUAGE === "en" && article.updatedISO && article.updatedISO !== article.dateISO && (
+            <time dateTime={article.updatedISO}>Updated {new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${article.updatedISO}T00:00:00Z`))}</time>
+          )}
           <span>{articleUi.factChecked}</span>
         </div>
       </header>

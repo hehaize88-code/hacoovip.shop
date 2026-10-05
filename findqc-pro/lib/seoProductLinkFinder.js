@@ -8,7 +8,7 @@ export const productLinkFinderArticle = {
   readTime: "10 min read",
   date: "5 September 2026",
   dateISO: "2026-09-05",
-  updatedISO: "2026-09-05",
+  updatedISO: "2026-10-05",
   languages: ["en"],
   heroImage: "/products/shoes-60.jpg",
   heroAlt: "Editorial footwear image illustrating a product-link QC photo search and listing identity check",
@@ -21,7 +21,7 @@ export const productLinkFinderArticle = {
     "1688 QC photos",
     "FindQC link search",
   ],
-  sourceIntro: "FindQC's official search-method guide, privacy policy and terms were checked on 5 September 2026. Marketplace interfaces and listing URLs can change, so the workflow below focuses on identity and evidence checks rather than undocumented controls.",
+  sourceIntro: "FindQC's official search-method guide was rechecked on 5 October 2026; the linked legal references were last reviewed on 5 September 2026. Marketplace interfaces and listing URLs can change, so the workflow below focuses on identity and evidence checks rather than undocumented controls.",
   intro: [
     "A product link is usually the cleanest starting point for a QC photo finder because it may carry a stable item identifier that free-text searches do not. FindQC's published search guidance describes link search for supported marketplaces including Taobao, Weidian and 1688. The useful result, however, is not simply a gallery that looks similar. It is a gallery tied closely enough to the intended source listing that its QC photos can answer a specific pre-purchase question.",
     "This guide shows how to find QC photos by product link without turning a possible match into a guarantee. It covers link preparation, marketplace identity, result verification, photo-set review and failure recovery. FindQC remains a research layer: a buyer's selected shopping agent controls the live order, warehouse photography, return or exchange handling, packaging and shipment under that agent's current terms.",
@@ -40,6 +40,7 @@ export const productLinkFinderArticle = {
       id: "marketplace-links",
       title: "2. Recognize what a Taobao, Weidian or 1688 link can identify",
       blocks: [
+        { type: "callout", title: "Item identity is marketplace-specific", text: "Keep the marketplace beside the item ID in your notes. An identical numeric string on two different marketplaces is not the same product. A seller page, an order page and a source item page also play different roles: use the public item URL for discovery and keep private order details out of shared searches. If a copied URL carries the item identity but not your selected size or colour, record that option separately before examining any gallery." },
         { type: "p", text: "A Taobao QC photo search, a Weidian QC photo search and a 1688 QC photo search follow the same evidence rule: the marketplace item is the anchor, but the selected variant still matters. A product page may contain many sizes, colours, materials, batches or bundles under one item identifier. A matched page therefore supports listing-level relevance before it supports option-level relevance." },
         { type: "table", headers: ["Input", "What it can support", "What still needs checking"], rows: [["Taobao item link", "A search anchored to the linked Taobao listing", "Seller, option, date and exact photographed unit"], ["Weidian item link", "A search anchored to the linked Weidian item", "Store relationship, version, size and colour"], ["1688 item link", "A search anchored to the linked wholesale listing", "Variant, quantity or bundle, specifications and included parts"], ["Item ID only", "A recovery search when the full URL is rejected", "Correct marketplace and current live listing"]] },
         { type: "p", text: "The same numerical string can appear in unrelated contexts, so record the marketplace with the ID. If a result changes the source domain, seller or product family, treat it as a different candidate until the page provides a clear relationship. Visual resemblance is useful for discovery, not proof that two records describe the same listing." },

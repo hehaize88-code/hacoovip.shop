@@ -8,7 +8,7 @@ import T from "../../components/LocalizedText";
 import ResponsiveImage from "../../components/ResponsiveImage";
 import { localizedMetadata } from "../../lib/seo";
 
-const articles = getLocalizedArticles(BUILD_LANGUAGE);
+const articles = getLocalizedArticles(BUILD_LANGUAGE).sort((a, b) => b.dateISO.localeCompare(a.dateISO));
 const articleUi = getArticleUi(BUILD_LANGUAGE);
 
 export const metadata = localizedMetadata({
@@ -42,7 +42,7 @@ export default function ArticlesPage() {
       <section className="journal-grid">
         {articles.map((article, index) => (
           <Link href={`/articles/${article.slug}`} className="journal-card" key={article.slug}>
-            <span>0{index + 1}</span>
+            <span>{String(index + 1).padStart(2, "0")}</span>
             <div className="journal-card-image"><ResponsiveImage src={article.heroImage} alt="" sizes="170px" /></div>
             <div className="journal-card-copy">
               <small>{article.category} · {article.readTime}</small>

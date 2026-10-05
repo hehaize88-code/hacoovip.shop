@@ -1,15 +1,15 @@
 export const recoveredArticles = [
   {
     "slug": "before-you-buy-qc-guide",
-    "title": "How to Use FindQC Before You Buy: A Practical QC Photo Checklist",
+    "title": "FindQC Photo Checklist: What to Check Before Shipping",
     "shortTitle": "A Practical FindQC Photo Checklist",
-    "description": "A fact-checked workflow for using FindQC records and warehouse QC photos before placing or approving a shopping-agent order.",
-    "excerpt": "Turn a FindQC result into a repeatable pre-purchase check: confirm the listing, read the full photo set, compare measurements and understand what the evidence cannot prove.",
+    "description": "Learn how to check QC photos for the correct item, readable measurements, visible defects and missing views before approving warehouse shipment.",
+    "excerpt": "An actionable QC check: confirm the option, review the whole photo set, compare measurements and decide when to request more evidence.",
     "category": "FindQC Guide",
     "readTime": "10 min read",
     "date": "20 July 2026",
     "dateISO": "2026-07-20",
-    "updatedISO": "2026-07-22",
+    "updatedISO": "2026-10-05",
     "languages": [
       "en",
       "pl",
@@ -25,9 +25,12 @@ export const recoveredArticles = [
       "FindQC guide",
       "QC photos",
       "warehouse QC checklist",
-      "shopping agent QC"
+      "shopping agent QC",
+      "QC check",
+      "how to check QC photos",
+      "QC photo checklist"
     ],
-    "sourceIntro": "This independent editorial guide's source set was last reviewed on 29 July 2026. Features, policies and safety notices can change, so verify current details at the linked source.",
+    "sourceIntro": "Search and QC feature descriptions were rechecked against FindQC’s official guide on 5 October 2026. The decision checklist is independent editorial guidance, not an inspection of a customer order.",
     "intro": [
       "A useful QC check begins before you zoom in on a logo or count stitches. First, you need to know that the record belongs to the product you are considering. Then you need to separate visible evidence from assumptions. FindQC can shorten the discovery stage by bringing product records and QC material into one research interface, but the final judgement still belongs to the buyer.",
       "This guide turns that research into a calm, repeatable process. It is based on FindQC's current public pages and legal documentation, not on a claim that every listing contains the same fields. Use it before ordering and again when your shopping agent supplies photos of the exact item in your warehouse account."
@@ -121,6 +124,11 @@ export const recoveredArticles = [
             "type": "callout",
             "title": "Practical rule",
             "text": "Compare like with like: flat garment to flat garment, insole to insole and the same measurement points on both the seller chart and the QC image."
+          },
+          {
+            "type": "callout",
+            "title": "A practical measurement decision",
+            "text": "Hypothetical example: your reference T-shirt measures 56 cm flat across the chest, while the warehouse image seems to show 53 cm. First check that both measurements start below the armholes and use relaxed fabric. If the endpoints are unreadable, request a retake. If the difference is confirmed, compare it with your own fit preference before approval; there is no universal acceptable tolerance."
           }
         ]
       },
@@ -164,6 +172,36 @@ export const recoveredArticles = [
         "id": "workflow",
         "title": "7. A ten-minute decision workflow",
         "blocks": [
+          {
+            "type": "table",
+            "headers": [
+              "QC check result",
+              "Action before shipping",
+              "Evidence to retain"
+            ],
+            "rows": [
+              [
+                "Correct option; decisive views readable",
+                "Record the limited checks completed",
+                "Order option and exact-unit images"
+              ],
+              [
+                "Size label or ruler unclear",
+                "Request the specific missing view",
+                "Measurement points and agent response"
+              ],
+              [
+                "Visible mismatch with the order",
+                "Ask the agent to verify available remedies",
+                "Listing, order option and mismatch photo"
+              ],
+              [
+                "Only older or similar-item photos available",
+                "Treat the purchase research as incomplete",
+                "Record identity and exact-unit check still needed"
+              ]
+            ]
+          },
           {
             "type": "list",
             "items": [
@@ -219,7 +257,9 @@ export const recoveredArticles = [
       "findqc-search-methods",
       "what-qc-photos-can-prove",
       "findqc-shopping-agent-workflow",
-      "findqc-qc-measurements-size-guide"
+      "findqc-qc-measurements-size-guide",
+      "hoodie-qc-checklist",
+      "t-shirt-qc-checklist"
     ],
     "cta": {
       "eyebrow": "Continue the check",
@@ -230,15 +270,15 @@ export const recoveredArticles = [
   },
   {
     "slug": "findqc-search-methods",
-    "title": "FindQC Search Methods Explained: Link Search vs Image Search vs Keywords",
+    "title": "FindQC Search: Find QC Photos by Link, Image or Keyword",
     "shortTitle": "Link vs Image vs Keyword Search",
-    "description": "Learn when to use FindQC link search, image search or keyword search, how each method can fail and how to verify the result before buying.",
-    "excerpt": "Choose the right FindQC search path for the evidence you have, then validate the result instead of assuming the first visual match is the correct listing.",
+    "description": "Choose a FindQC search method from the evidence you have, verify the item and seller, and recover when a product link or keyword returns no useful QC photos.",
+    "excerpt": "Start with a product link, image or keyword, then follow a concrete recovery path when the result does not establish the intended item.",
     "category": "Search Strategy",
     "readTime": "9 min read",
     "date": "20 July 2026",
     "dateISO": "2026-07-20",
-    "updatedISO": "2026-07-22",
+    "updatedISO": "2026-10-05",
     "languages": [
       "en",
       "pl",
@@ -256,7 +296,7 @@ export const recoveredArticles = [
       "FindQC keyword search",
       "find QC photos"
     ],
-    "sourceIntro": "This independent editorial guide's source set was last reviewed on 29 July 2026. Features, policies and safety notices can change, so verify current details at the linked source.",
+    "sourceIntro": "FindQC’s documented search methods were rechecked on 5 October 2026. The recovery examples below are editorial guidance, not measured search-success claims.",
     "intro": [
       "Search quality depends on the clue you start with. A complete marketplace link, a cropped screenshot and a vague product name do not carry the same information, so they should not be entered in the same way. FindQC supports several discovery paths, and its Academy specifically compares link, image and keyword search.",
       "The best method is not the most advanced-looking one. It is the method that preserves the strongest identifier you already have. This guide explains the trade-offs stated by FindQC, then adds a practical verification routine so that a search result becomes evidence rather than a shortcut to the wrong listing."
@@ -303,6 +343,11 @@ export const recoveredArticles = [
           {
             "type": "p",
             "text": "This evidence-first approach prevents a common mistake: throwing away a precise source link and searching a generic name instead. Every step away from a unique identifier creates more candidates to filter."
+          },
+          {
+            "type": "callout",
+            "title": "Choose the right search destination",
+            "text": "The FindQC Pro search box opens product results on cnfanshp.com. The link, image and keyword QC methods discussed here describe the separate FindQC research service. To learn the difference between the similarly named research tools, use the FindQC vs FinderQC comparison in related reading."
           }
         ]
       },
@@ -415,6 +460,36 @@ export const recoveredArticles = [
           {
             "type": "p",
             "text": "For repeated research, FindQC says certain signed-in features include My Collection and History. Its privacy policy explains that views, clicks and searches are used to calculate popularity and improve systems, while saved items support the user's collection. Decide whether those conveniences fit your privacy preferences; a simple local note with exact URLs also works."
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Search problem",
+              "Next useful attempt",
+              "Keep checking"
+            ],
+            "rows": [
+              [
+                "Shared link returns no useful record",
+                "Open the source item page and copy its current full URL",
+                "Marketplace, item identifier and seller"
+              ],
+              [
+                "Keyword results are too broad",
+                "Use a category plus one distinguishing feature",
+                "Do not equate a similar title with the same item"
+              ],
+              [
+                "Image finds a look-alike",
+                "Locate and inspect the candidate source listing",
+                "Graphic, construction and option differences"
+              ],
+              [
+                "Same listing, unreadable size",
+                "Look for a labelled variant or request exact-unit evidence",
+                "A listing match is not a size match"
+              ]
+            ]
           }
         ]
       },
@@ -456,6 +531,8 @@ export const recoveredArticles = [
       }
     ],
     "related": [
+      "findqc-vs-finderqc",
+      "find-qc-photos-by-product-link",
       "before-you-buy-qc-guide",
       "findqc-product-signals",
       "findqc-shopping-agent-workflow",
