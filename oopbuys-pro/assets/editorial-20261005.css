@@ -1,0 +1,19 @@
+.longform .comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.75rem 0;
+}
+.longform .comparison-card {
+  min-width: 0;
+  padding: 1.5rem;
+  border: 1px solid #d8ded7;
+  border-radius: 14px;
+  background: #f6f8f3;
+}
+.longform .comparison-card h3 { margin-top: 0; }
+.longform .comparison-card p:last-child { margin-bottom: 0; }
+@media (max-width: 760px) {
+  .longform .comparison-grid { grid-template-columns: 1fr; }
+  .longform .comparison-card { padding: 1.15rem; }
+}

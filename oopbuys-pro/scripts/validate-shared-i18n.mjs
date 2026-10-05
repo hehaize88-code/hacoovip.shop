@@ -127,6 +127,28 @@ for (const [canonicalPath, localeRecords] of Object.entries(
     if (pageTitle(localizedHtml) === pageTitle(canonicalHtml)) {
       pageFailures.push("localized-title");
     }
+    const description = (html) => html.match(/<meta\b[^>]*name="description"[^>]*content="([^"]*)"/i)?.[1];
+    if (description(localizedHtml) === description(canonicalHtml)) {
+      pageFailures.push("localized-description");
+    }
+    if (canonicalPath.startsWith("/articles/") && canonicalPath !== "/articles/") {
+      for (const sibling of ["en", ...manifest.locales, "x-default"]) {
+        const expected = `https://oopbuys.pro${["en", "x-default"].includes(sibling) ? canonicalPath : `/${sibling}${canonicalPath}`}`;
+        if (!localizedHtml.includes(`hreflang="${sibling}" href="${expected}"`)) {
+          pageFailures.push(`article-hreflang-${sibling}`);
+        }
+      }
+      if (!localizedHtml.includes(`href="${localizedPath}" aria-current="page"`)) {
+        pageFailures.push("article-language-menu");
+      }
+      const data = [...localizedHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+        .map((match) => JSON.parse(match[1]));
+      const article = data.find((item) => ["Article", "BlogPosting"].includes(item["@type"]));
+      const mainEntity = typeof article?.mainEntityOfPage === "object" ? article.mainEntityOfPage["@id"] : article?.mainEntityOfPage;
+      if (!article || article.inLanguage !== locale || mainEntity !== `https://oopbuys.pro${localizedPath}`) {
+        pageFailures.push("article-structured-data");
+      }
+    }
     if (/CNFans/.test(localizedHtml)) {
       pageFailures.push("visible-main-brand");
     }

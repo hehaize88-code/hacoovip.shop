@@ -65,7 +65,28 @@ const TRANSLATED_ATTRIBUTES = new Set([
   "placeholder",
   "title",
 ]);
-const HTML_CACHE_VERSION = "manual-warehouse-customs-2026-09-05-v1";
+const HTML_CACHE_VERSION = "warehouse-usa-tracking-2026-10-05-v1";
+
+// Reuse the existing Google tag and measure useful navigation without search text.
+const NAVIGATION_EVENTS = `<script id="oopbuy-navigation-events">
+document.addEventListener('click',function(event){
+  var link=event.target.closest&&event.target.closest('a[href]');
+  if(!link||typeof window.gtag!=='function')return;
+  var target=new URL(link.href,location.href),name;
+  if(target.hostname==='www.cnfanshp.com'){
+    name=/^\\/AllProducts\\/[^/]+\\.html$/.test(target.pathname)?'product_click':'catalog_click';
+  }else if(target.origin===location.origin&&/^(?:\\/(?:de|es|nl))?\\/(?:articles|guides)\\/[^/]+\\/$/.test(target.pathname)){
+    name='guide_click';
+  }
+  if(name)window.gtag('event',name,{page_path:location.pathname,destination_path:target.pathname,transport_type:'beacon'});
+});
+document.addEventListener('submit',function(event){
+  var form=event.target;
+  if(form.matches&&form.matches('form.search-box')&&typeof window.gtag==='function'){
+    window.gtag('event','catalog_search',{page_path:location.pathname,transport_type:'beacon'});
+  }
+});
+</script>`;
 
 function decodeHtml(value) {
   return value
@@ -148,7 +169,7 @@ function localizeInternalHref(value, locale, inLanguageMenu) {
 function translateTag(tag, tagName, overlay, locale, context) {
   const attributePattern =
     /(\s)([^\s=/>]+)(?:=(["'])([\s\S]*?)\3)?/g;
-  return tag.replace(
+  let translated = tag.replace(
     attributePattern,
     (match, spacing, rawName, quote, rawValue) => {
       if (!quote) {
@@ -160,10 +181,17 @@ function translateTag(tag, tagName, overlay, locale, context) {
       let value = decodedValue;
       const key = `${tagName}\u241f${attributeName}\u241f${decodedValue}`;
 
-      if (TRANSLATED_ATTRIBUTES.has(attributeName)) {
+      if (TRANSLATED_ATTRIBUTES.has(attributeName) ||
+          (tagName === "meta" && attributeName === "content")) {
         value = overlay.attributes[key] || value;
       }
+      if (tagName === "summary" && attributeName === "aria-label" && decodedValue.startsWith("Language:")) {
+        value = { de: "Sprache: Deutsch", es: "Idioma: Español", nl: "Taal: Nederlands" }[locale];
+      }
       if (attributeName === "href") {
+        if (tagName === "a" && value.startsWith("https://oopbuys.pro/")) {
+          value = value.slice("https://oopbuys.pro".length);
+        }
         value = localizeInternalHref(
           value,
           locale,
@@ -176,6 +204,13 @@ function translateTag(tag, tagName, overlay, locale, context) {
       )}${quote}`;
     },
   );
+  if (tagName === "a" && context.inLanguageMenu) {
+    translated = translated.replace(/\saria-current=(["'])[^"']*\1/g, "");
+    if (new RegExp('href=["\']/'+locale+'/').test(translated)) {
+      translated = translated.replace(/>$/, ' aria-current="page">');
+    }
+  }
+  return translated;
 }
 
 function translateCanonicalHtml(html, overlay, locale, pathname) {
@@ -256,6 +291,10 @@ function translateCanonicalHtml(html, overlay, locale, pathname) {
     if (!normalized) {
       return token;
     }
+    if (parent.tagName === "summary" && normalized === "EN" &&
+        stack.some((entry) => entry.classes.has("language-switcher"))) {
+      return locale.toUpperCase();
+    }
     const key = `${parent.tagName}\u241f${normalized}`;
     const translation = overlay.text[key];
     if (!translation) {
@@ -293,7 +332,8 @@ async function getOverlay(env, origin, locale, key) {
     new Request(`${origin}/_i18n/${overlayKey}.json`),
   );
   if (!response.ok) {
-    throw new Error(`Missing locale overlay: ${overlayKey}`);
+    if (response.status === 404) return null;
+    throw new Error(`Locale overlay unavailable: ${overlayKey}`);
   }
   return response.json();
 }
@@ -387,7 +427,7 @@ export default {
     const route = localizedRoute(url.pathname);
     let response;
     let overlay = null;
-    if (request.method === "GET" && route) {
+    if ((request.method === "GET" || request.method === "HEAD") && route) {
       const canonicalUrl = new URL(route.canonicalPath, url.origin);
       const [canonicalResponse, localizedOverlay] = await Promise.all([
         env.ASSETS.fetch(new Request(canonicalUrl, request)),
@@ -395,6 +435,12 @@ export default {
       ]);
       response = canonicalResponse;
       overlay = localizedOverlay;
+      if (!canonicalResponse.ok || !overlay) {
+        return new Response("Page not found", {
+          status: 404,
+          headers: { "Content-Type": "text/plain; charset=utf-8" },
+        });
+      }
     } else {
       response = await env.ASSETS.fetch(request);
     }
@@ -434,7 +480,10 @@ export default {
       /,"potentialAction":\{"@type":"SearchAction","target":"https:\/\/www\.cnfanshp\.com\/search\.html\?keywords=\{search_term_string\}&channelid=2","query-input":"required name=search_term_string"\}/g,
       "",
     );
-    const finalResponse = new Response(sanitizedHtml, {
+    const measuredHtml = sanitizedHtml.includes('id="oopbuy-navigation-events"')
+      ? sanitizedHtml
+      : sanitizedHtml.replace("</body>", `${NAVIGATION_EVENTS}</body>`);
+    const finalResponse = new Response(measuredHtml, {
       status: response.status,
       statusText: response.statusText,
       headers,

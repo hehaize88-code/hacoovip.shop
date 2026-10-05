@@ -10,6 +10,7 @@ drop a component merely because its old exported HTML was incomplete.
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
@@ -734,8 +735,11 @@ def main() -> None:
         "routes": {},
     }
     total_fallbacks = Counter()
+    manifest_path = output_root / "manifest.json"
+    prior_manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    routes = list(dict.fromkeys([*ROUTES, *[r.strip("/") for r in prior_manifest.get("routes", {})]]))
 
-    for route in ROUTES:
+    for route in routes:
         english_html, english_parser = parse(page_path(None, route))
         route_record: dict[str, object] = {}
         for locale in LOCALES:
@@ -743,6 +747,7 @@ def main() -> None:
             locale_directory.mkdir(parents=True, exist_ok=True)
             output_path = locale_directory / f"{route_key(route)}.json"
             existing_text: dict[str, str] = {}
+            existing_overlay = {}
             if output_path.exists():
                 try:
                     existing_overlay = json.loads(
@@ -751,6 +756,20 @@ def main() -> None:
                     existing_text = existing_overlay.get("text", {})
                 except (json.JSONDecodeError, OSError):
                     existing_text = {}
+            # Reviewed overlays use the canonical source hash. Keep their full
+            # translations and metadata instead of rebuilding from older exports.
+            source_hash = hashlib.sha256(english_html.encode("utf-8")).hexdigest()
+            if existing_overlay.get("sourceSha256") == source_hash:
+                fallbacks = existing_overlay.get("audit", {}).get("fallbackEnglishStrings", 0)
+                fallback_count = len(fallbacks) if isinstance(fallbacks, list) else fallbacks
+                total_fallbacks[locale] += fallback_count
+                route_record[locale] = {
+                    "file": str(output_path.relative_to(ROOT)),
+                    "fallbackEnglishStrings": fallback_count,
+                }
+                continue
+            if existing_overlay.get("sourceSha256"):
+                raise ValueError(f"Canonical content changed: update and review {output_path} before rebuilding.")
             localized_html, localized_parser = parse(page_path(locale, route))
             overlay = build_overlay(
                 english_html,

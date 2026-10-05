@@ -9,7 +9,7 @@
     "/": {
       "de": {
         "file": "_i18n/de/root.json",
-        "fallbackEnglishStrings": 0
+        "fallbackEnglishStrings": 4
       },
       "es": {
         "file": "_i18n/es/root.json",
@@ -17,7 +17,7 @@
       },
       "nl": {
         "file": "_i18n/nl/root.json",
-        "fallbackEnglishStrings": 0
+        "fallbackEnglishStrings": 3
       }
     },
     "/finds/": {
@@ -65,7 +65,7 @@
     "/articles/": {
       "de": {
         "file": "_i18n/de/articles.json",
-        "fallbackEnglishStrings": 0
+        "fallbackEnglishStrings": 2
       },
       "es": {
         "file": "_i18n/es/articles.json",
@@ -73,7 +73,7 @@
       },
       "nl": {
         "file": "_i18n/nl/articles.json",
-        "fallbackEnglishStrings": 0
+        "fallbackEnglishStrings": 1
       }
     },
     "/faq/": {
@@ -191,23 +191,247 @@
     "/guides/shipping/": {
       "de": {
         "file": "_i18n/de/guides--shipping.json",
-        "fallbackEnglishStrings": 45
+        "fallbackEnglishStrings": 3
       },
       "es": {
         "file": "_i18n/es/guides--shipping.json",
-        "fallbackEnglishStrings": 45
+        "fallbackEnglishStrings": 0
       },
       "nl": {
         "file": "_i18n/nl/guides--shipping.json",
-        "fallbackEnglishStrings": 43
+        "fallbackEnglishStrings": 3
+      }
+    },
+    "/articles/oopbuy-customs-tax-declaration-landed-cost/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-customs-tax-declaration-landed-cost.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-customs-tax-declaration-landed-cost.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-customs-tax-declaration-landed-cost.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-domestic-shipping/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-domestic-shipping.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-domestic-shipping.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-domestic-shipping.json",
+        "fallbackEnglishStrings": 2
+      }
+    },
+    "/articles/oopbuy-exchange-rate-audit/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-exchange-rate-audit.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-exchange-rate-audit.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-exchange-rate-audit.json",
+        "fallbackEnglishStrings": 2
+      }
+    },
+    "/articles/oopbuy-fees-total-cost/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-fees-total-cost.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-fees-total-cost.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-fees-total-cost.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-parcel-consolidation/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-parcel-consolidation.json",
+        "fallbackEnglishStrings": 4
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-parcel-consolidation.json",
+        "fallbackEnglishStrings": 1
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-parcel-consolidation.json",
+        "fallbackEnglishStrings": 2
+      }
+    },
+    "/articles/oopbuy-parcel-reinforcement-cost-risk/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-parcel-reinforcement-cost-risk.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-parcel-reinforcement-cost-risk.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-parcel-reinforcement-cost-risk.json",
+        "fallbackEnglishStrings": 4
+      }
+    },
+    "/articles/oopbuy-restricted-goods-route-availability/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-restricted-goods-route-availability.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-restricted-goods-route-availability.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-restricted-goods-route-availability.json",
+        "fallbackEnglishStrings": 2
+      }
+    },
+    "/articles/oopbuy-return-refund/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-return-refund.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-return-refund.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-return-refund.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-shipping-estimate-final-charge-refund/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-shipping-estimate-final-charge-refund.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-shipping-estimate-final-charge-refund.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-shipping-estimate-final-charge-refund.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-shipping-insurance-cost-coverage-claim-limits/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-shipping-insurance-cost-coverage-claim-limits.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-shipping-insurance-cost-coverage-claim-limits.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-shipping-insurance-cost-coverage-claim-limits.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-shipping-line-comparison-framework/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-shipping-line-comparison-framework.json",
+        "fallbackEnglishStrings": 3
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-shipping-line-comparison-framework.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-shipping-line-comparison-framework.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-shipping-to-usa/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-shipping-to-usa.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-shipping-to-usa.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-shipping-to-usa.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-tracking-not-updating/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-tracking-not-updating.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-tracking-not-updating.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-tracking-not-updating.json",
+        "fallbackEnglishStrings": 2
+      }
+    },
+    "/articles/oopbuy-vacuum-packing-simple-packaging/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-vacuum-packing-simple-packaging.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-vacuum-packing-simple-packaging.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-vacuum-packing-simple-packaging.json",
+        "fallbackEnglishStrings": 2
+      }
+    },
+    "/articles/oopbuy-warehouse-location/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-warehouse-location.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-warehouse-location.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-warehouse-location.json",
+        "fallbackEnglishStrings": 1
+      }
+    },
+    "/articles/oopbuy-warehouse-storage-90-day-deadline/": {
+      "de": {
+        "file": "_i18n/de/articles--oopbuy-warehouse-storage-90-day-deadline.json",
+        "fallbackEnglishStrings": 2
+      },
+      "es": {
+        "file": "_i18n/es/articles--oopbuy-warehouse-storage-90-day-deadline.json",
+        "fallbackEnglishStrings": 0
+      },
+      "nl": {
+        "file": "_i18n/nl/articles--oopbuy-warehouse-storage-90-day-deadline.json",
+        "fallbackEnglishStrings": 3
       }
     }
   },
   "audit": {
     "fallbackEnglishStringsByLocale": {
-      "de": 174,
-      "es": 171,
-      "nl": 165
+      "de": 173,
+      "es": 127,
+      "nl": 156
     }
   }
 }
