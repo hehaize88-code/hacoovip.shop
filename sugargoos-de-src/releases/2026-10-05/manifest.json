@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-05",
+  "articles": [
+    {
+      "key": "tracking",
+      "slug": "sugargoo-tracking-not-updating",
+      "en": {
+        "title": "Sugargoo Tracking Not Updating: Status-by-Status Troubleshooting",
+        "seo_title": "Sugargoo Tracking Not Updating: Status Checks & Next Steps",
+        "description": "Check a missing Sugargoo scan, unrecognised tracking number or Germany delivery handover. Use the last event to choose the next action.",
+        "related": [["articles/sugargoo-tracking-package-status", "Find your Sugargoo tracking number"], ["articles/sugargoo-dhl-germany-tracking-handover", "DHL Germany handover and delivery"], ["articles/sugargoo-germany-address-format", "Check a Germany delivery address"]]
+      },
+      "de": {
+        "title": "Sugargoo-Tracking aktualisiert sich nicht: Status prüfen und handeln",
+        "seo_title": "Sugargoo-Tracking aktualisiert sich nicht: Nächste Schritte",
+        "description": "Fehlende Scans, unbekannte Sendungsnummern und Übergaben in Deutschland prüfen. Den nächsten Schritt aus dem letzten Ereignis ableiten.",
+        "related": [["articles/sugargoo-tracking-package-status", "Sugargoo-Sendungsnummer finden"], ["articles/sugargoo-dhl-germany-tracking-handover", "DHL-Übergabe und Zustellung in Deutschland"], ["articles/sugargoo-germany-address-format", "Deutsche Lieferadresse prüfen"]]
+      },
+      "sources": [
+        ["Sugargoo — Tracking Guide", "https://blog.sugargoo.com/sugargoo-tracking-guide/"],
+        ["Sugargoo — Tracking Issues", "https://blog.sugargoo.com/sugargoo-tracking-issues/"],
+        ["Sugargoo — Lost, Damaged or Delayed Parcels", "https://blog.sugargoo.com/what-to-do-if-your-package-is-lost-damaged-or-delayed/"],
+        ["DHL — General questions about international parcels", "https://www.dhl.de/en/privatkunden/hilfe-kundenservice/themen/international/probleme-loesungen.html"]
+      ]
+    },
+    {
+      "key": "qc",
+      "slug": "sugargoo-qc-photos-not-showing",
+      "en": {
+        "title": "Sugargoo QC Photos Not Showing: Find Your Images and Request More",
+        "seo_title": "Sugargoo QC Photos Not Showing: Find Images & Request More",
+        "description": "Find your own Sugargoo warehouse QC photos, check missing images and request useful angles or measurements before international shipping.",
+        "related": [["guides/sugargoo-qc-photos-guide", "Read and compare warehouse QC photos"], ["guides/w2c-and-qc-explained", "Understand W2C links and QC evidence"], ["articles/sugargoo-warehouse-storage-returns", "Keep storage and return deadlines separate"]]
+      },
+      "de": {
+        "title": "Sugargoo-QC-Fotos fehlen: Lagerbilder finden und Zusatzfotos anfordern",
+        "seo_title": "Sugargoo-QC-Fotos fehlen: Bilder finden und ergänzen",
+        "description": "Eigene Sugargoo-Lagerfotos finden, fehlende Aufnahmen prüfen und passende Zusatzfotos oder Maße vor dem internationalen Versand anfordern.",
+        "related": [["guides/sugargoo-qc-photos-guide", "Lagerfotos prüfen und vergleichen"], ["guides/w2c-and-qc-explained", "W2C-Links und QC-Nachweise verstehen"], ["articles/sugargoo-warehouse-storage-returns", "Lager- und Rückgabefristen trennen"]]
+      },
+      "sources": [
+        ["Sugargoo — How ordering works", "https://blog.sugargoo.com/how-does-ordering-from-sugargoo-work-learn-how-to-buy-from-china-step-by-step/"],
+        ["Sugargoo — Proxy quality checks and photos", "https://blog.sugargoo.com/taobao-proxy-quality-check-qc-photos/"],
+        ["Sugargoo — Checking QC photos", "https://blog.sugargoo.com/sugargoo-superbuy-mulebuy-kakobuy-check-qc-photos/"],
+        ["Sugargoo — Taobao shipper and buying agent roles", "https://blog.sugargoo.com/taobao-shipper-vs-buying-agent/"]
+      ]
+    },
+    {
+      "key": "payment",
+      "slug": "sugargoo-payment-failed",
+      "en": {
+        "title": "Sugargoo Payment Failed: Checkout Errors and Next Steps",
+        "seo_title": "Sugargoo Payment Failed: Card Declines & Pending Payments",
+        "description": "Separate a declined, pending or completed Sugargoo payment. Check verification and receipts, avoid duplicate attempts and contact the right provider.",
+        "related": [["articles/sugargoo-payment-methods-germany", "Compare payment methods and checkout totals"], ["guides/how-to-buy-with-sugargoo", "Understand product and shipping payment stages"], ["articles/sugargoo-warehouse-storage-returns", "Follow the correct after-sales record"]]
+      },
+      "de": {
+        "title": "Sugargoo-Zahlung fehlgeschlagen: Kartenfehler und offene Zahlungen klären",
+        "seo_title": "Sugargoo-Zahlung fehlgeschlagen: Kartenfehler klären",
+        "description": "Abgelehnte, ausstehende und abgeschlossene Zahlungen unterscheiden. Freigabe und Belege prüfen, Doppelzahlungen vermeiden und Zuständigkeit klären.",
+        "related": [["articles/sugargoo-payment-methods-germany", "Zahlungsmethoden und Endbeträge vergleichen"], ["guides/how-to-buy-with-sugargoo", "Waren- und Versandzahlung unterscheiden"], ["articles/sugargoo-warehouse-storage-returns", "Den richtigen After-Sales-Datensatz nutzen"]]
+      },
+      "sources": [
+        ["Sugargoo — Complete payment guide", "https://blog.sugargoo.com/how-to-complete-your-payment-on-sugargoo-a-complete-guide-for-international-shoppers/"],
+        ["Sugargoo — Payment methods explained", "https://blog.sugargoo.com/how-do-i-pay-for-goods-from-china-on-sugargoo-payment-methods-explained/"],
+        ["Visa — Consumer support and card declines", "https://www.visa.co.uk/support.html"],
+        ["Visa — Changes in payment security", "https://www.visa.co.uk/pay-with-visa/changes-in-payment-security.html"]
+      ]
+    },
+    {
+      "key": "rehearsal",
+      "slug": "sugargoo-rehearsal-shipping-cost",
+      "en": {
+        "title": "Sugargoo Rehearsal Shipping: Estimate vs Final Parcel Cost",
+        "seo_title": "Sugargoo Rehearsal Shipping: Estimate vs Final Cost",
+        "description": "Compare Sugargoo estimates, rehearsal results and final parcel costs using packing, dimensions and route rules. Includes a labelled calculation example.",
+        "related": [["articles/sugargoo-shipping-calculator-germany-eu", "Build a Germany shipping estimate"], ["articles/sugargoo-volumetric-weight-explained", "Check actual and volumetric weight"], ["articles/sugargoo-consolidate-split-parcels-germany-eu", "Compare combined and split parcels"]]
+      },
+      "de": {
+        "title": "Sugargoo Rehearsal Shipping: Schätzung und endgültige Versandkosten vergleichen",
+        "seo_title": "Sugargoo Rehearsal Shipping: Versandkosten vergleichen",
+        "description": "Schätzung, Rehearsal-Ergebnis und Endpreis anhand von Verpackung, Maßen und Linienregeln vergleichen. Mit ausdrücklich fiktivem Rechenbeispiel.",
+        "related": [["articles/sugargoo-shipping-calculator-germany-eu", "Versandkosten für Deutschland schätzen"], ["articles/sugargoo-volumetric-weight-explained", "Tatsächliches Gewicht und Volumengewicht prüfen"], ["articles/sugargoo-consolidate-split-parcels-germany-eu", "Gemeinsame und getrennte Pakete vergleichen"]]
+      },
+      "sources": [
+        ["Sugargoo — Pre-shipment package simulation", "https://blog.sugargoo.com/sugargoo-pre-shipment-package-simulation-guide/"],
+        ["Sugargoo — Estimate international shipping costs", "https://blog.sugargoo.com/estimate-international-shipping-costs-sugargoo/"],
+        ["Sugargoo — Shipping calculator comparison", "https://blog.sugargoo.com/sugargoo-superbuy-mulebuy-kakobuy-shipping-calculator/"],
+        ["Sugargoo — Save on international shipping", "https://blog.sugargoo.com/save-money-international-shipping-sugargoo/"]
+      ]
+    }
+  ]
+}

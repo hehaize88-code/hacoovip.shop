@@ -4,7 +4,24 @@ This directory contains the maintainable data, editorial copy, local product
 images and static-site generator for the Cloudflare Pages output in
 `../sugargoos-de`.
 
-Build into a temporary directory first:
+## Current publication workflow
+
+The checked-in `../sugargoos-de` directory is the current production output.
+The July generator below contains only eight original article topics and does
+not include the later published articles or all subsequent UI changes. Do not
+replace production with its output.
+
+The October editorial release preserves the complete current publication and
+updates only its specified pages, navigation and sitemaps:
+
+```bash
+python -m pip install beautifulsoup4
+python sugargoos-de-src/releases/2026-10-05/publish.py sugargoos-de
+```
+
+See `releases/2026-10-05/README.md` for scope and release verification.
+
+For investigation of the original July build only, use a temporary directory:
 
 ```bash
 python sugargoos-de-src/build.py /tmp/sugargoos-de-build
