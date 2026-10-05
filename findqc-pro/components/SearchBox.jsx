@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowIcon, SearchIcon } from "./Icons";
 import { useLanguage } from "./LanguageProvider";
-import { languagePath } from "../lib/routing";
+import { MAIN_SITE } from "../lib/data";
 
 function searchInput(value) {
   const trimmed = value.trim();
@@ -23,7 +23,7 @@ function searchInput(value) {
 
 export default function SearchBox({ compact = false }) {
   const [query, setQuery] = useState("");
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   function submit(event) {
     event.preventDefault();
@@ -38,18 +38,21 @@ export default function SearchBox({ compact = false }) {
       return;
     }
 
-    const destination = new URL(languagePath("/search", language), window.location.origin);
-    destination.searchParams.set("q", input.query);
+    const destination = new URL("/search.html", MAIN_SITE);
+    destination.searchParams.set("keywords", input.query);
+    destination.searchParams.set("channelid", "2");
     window.location.assign(destination.toString());
   }
 
   return (
-    <form className={`search-box ${compact ? "compact" : ""}`} action={languagePath("/search", language)} method="get" onSubmit={submit}>
+    <form className={`search-box ${compact ? "compact" : ""}`} action={`${MAIN_SITE}/search.html`} method="get" onSubmit={submit}>
+      <input type="hidden" name="channelid" value="2" />
       <div className="search-input-wrap">
         <SearchIcon size={compact ? 18 : 21} />
         <input
           type="search"
-          name="q"
+          name="keywords"
+          required
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={t("search.placeholder")}
