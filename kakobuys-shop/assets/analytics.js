@@ -27,9 +27,9 @@
 
     if (url.origin !== window.location.origin) {
       window.gtag("event", "outbound_click", params);
-    } else if (url.pathname.startsWith("/articles/")) {
+    } else if (/^\/(?:de\/|es\/|fr\/|it\/)?articles\//.test(url.pathname)) {
       window.gtag("event", "guide_click", params);
-    } else if (url.pathname.startsWith("/products/")) {
+    } else if (/^\/(?:de\/|es\/|fr\/|it\/)?products\//.test(url.pathname)) {
       window.gtag("event", "product_click", params);
     }
   }, { capture: true });

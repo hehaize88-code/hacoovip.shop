@@ -261,3 +261,14 @@
     font-size: 16px;
   }
 }
+
+/* Product evidence cards, October 2026. */
+.review-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0}
+.review-products figure{min-width:0;margin:0;padding:12px;border:1px solid #dce1dc;border-radius:14px;background:#fff}
+.review-products img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:#f7f7f3;border-radius:8px}
+.review-products figcaption{padding-top:12px;overflow-wrap:anywhere;font-size:14px;line-height:1.5}
+.review-products figcaption p{margin:8px 0}
+.review-price-note{padding:16px;border-left:3px solid #64703b;background:#f3f5ec;font-size:14px!important}
+.october-update{padding:0 0 20px;border-bottom:1px solid #dce1dc;margin-bottom:30px}
+.article-layout>article{min-width:0}.side-card .button{white-space:normal}
+@media(max-width:540px){.review-products{gap:10px}.review-products figure{padding:8px}.review-products figcaption{font-size:12px}.content-article .prose{overflow-wrap:break-word}}
