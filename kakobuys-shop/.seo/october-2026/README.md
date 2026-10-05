@@ -7,9 +7,9 @@ Four new topics, each published in English, German, Spanish, French and Italian:
 - Oakley: separate apparel fit from ski-goggle condition and unverified protective specifications.
 - Budget finds under a $30 reference price: distinguish item cost from incremental parcel cost.
 
-Existing QC, footwear and shipping-cost articles receive substantive comparison sections and links to the new guides. The homepage retains four guide cards. Relevant category pages link to these guides. Article indexes retain all existing cards, and their counts reflect pages actually available in that language. Two older English-only posts do not advertise nonexistent translated URLs.
+Existing QC, footwear and shipping-cost articles receive substantive comparison sections and links to the new guides. The homepage retains four guide cards. Relevant category pages and the QC hub link to these guides. Article indexes retain all existing cards. The formerly English-only delivery-time and holiday-planning guides now have German, Spanish, French and Italian versions, bringing every language library to 25 articles. Language controls stay on the corresponding article.
 
-The HTML drafts and translations here were authored locally. Run `python .seo/october-2026/build.py` from the site directory, followed by `python .seo/october-2026/finalize.py`. Shared CSS additions are maintained in the checked-in assets. Python requires BeautifulSoup.
+The HTML drafts and translations here were authored locally. From the site directory run, in order, `python .seo/october-2026/build.py`, `python .seo/october-2026/finalize.py`, `python .seo/october-2026/restore.py`, and `python .seo/october-2026/complete.py`. Shared CSS additions are maintained in the checked-in assets. Python requires BeautifulSoup. Complete.py adds localized library metadata, ItemList structured data, square guide images and the eight restored language pages to the existing sitemap selection. Re-running the pipeline preserves article counts.
 
 Source review on 2026-10-05:
 
@@ -21,4 +21,6 @@ Source review on 2026-10-05:
 
 Manufacturer references do not authenticate marketplace listings. Reference USD amounts retain the catalog conversion convention of 6.7663 source units per dollar; this is not a current FX quote. No sample testing, customer testimonials, stock guarantee or protective certification is claimed.
 
-Validation before publication: 20 new pages, 15 improved article pages, canonical/hreflang and Article JSON-LD checked, no broken internal links, 207 sitemap URLs. English article bodies including product cards: 1,336–1,421 words. Guide and product click tracking now recognises locale prefixes. Asset cache headers revalidate stable filenames.
+Validation before publication: 20 new topic pages, 15 improved article pages, eight restored localized pages, canonical/hreflang and Article JSON-LD checked, no broken article links, 215 sitemap URLs. English article bodies including product cards: 1,336–1,421 words. Guide and product click tracking recognises locale prefixes. Asset cache headers revalidate stable filenames. Desktop and 390px mobile layout checks showed no horizontal overflow. Main-site images were verified loading on the live New Era article.
+
+Research context: GSC queries through October 2 included `new era cap kakobuy`, `new era kakobuy`, `asics kakobuy`, and `kakobuy oakley`, at very small impression counts. Budget discovery was selected from observed competitor coverage, not from claimed keyword volume. Bing API configuration and GA4 authorization were unavailable; no Bing/GA4 traffic results are claimed. The completion was reconciled onto upstream commit de9ed75 before publication.

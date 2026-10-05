@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-09-05",
+  "lastReviewed": "2026-10-05",
   "entries": [
     {
       "url": "https://kakobuys.shop/articles/how-to-read-kakobuy-qc-photos",
@@ -253,6 +253,34 @@
       "angle": "separates seller, warehouse, parcel and carrier clocks, then shows how to read a current route range without promising delivery",
       "evidence": "current Kakobuy purchasing-help range, shipping estimator, warehouse and parcel workflow, tracking information and dated holiday notice",
       "internalLinkRole": "connects shipping-cost, tracking, storage and volumetric-weight guides around a distinct time-planning query"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/new-era-caps-kakobuy-sizing-qc/",
+      "primaryQuery": "new era cap kakobuy",
+      "intent": "specific product comparison",
+      "evidence": "Product record IDs and source photographs checked 2026-10-05; manufacturer measurement guidance; no purchase or wear testing",
+      "internalLinkRole": "connects category discovery with QC and parcel decisions"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/asics-kakobuy-model-size-qc/",
+      "primaryQuery": "asics kakobuy",
+      "intent": "specific product comparison",
+      "evidence": "Product record IDs and source photographs checked 2026-10-05; manufacturer measurement guidance; no purchase or wear testing",
+      "internalLinkRole": "connects category discovery with QC and parcel decisions"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/oakley-kakobuy-finds-apparel-goggles/",
+      "primaryQuery": "kakobuy oakley",
+      "intent": "specific product comparison",
+      "evidence": "Product record IDs and source photographs checked 2026-10-05; manufacturer measurement guidance; no purchase or wear testing",
+      "internalLinkRole": "connects category discovery with QC and parcel decisions"
+    },
+    {
+      "url": "https://kakobuys.shop/articles/kakobuy-budget-finds-under-30/",
+      "primaryQuery": "kakobuy budget finds",
+      "intent": "specific product comparison",
+      "evidence": "Product record IDs and source photographs checked 2026-10-05; manufacturer measurement guidance; no purchase or wear testing",
+      "internalLinkRole": "connects category discovery with QC and parcel decisions"
     }
   ],
   "nextPriority": "Manual editorial review only; kakobuys.shop automatic article publishing is disabled"

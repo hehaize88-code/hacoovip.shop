@@ -22,7 +22,7 @@ def prefix(lang):return '' if lang=='en' else '/'+lang
 def locale_links(doc,lang,slug=None):
  pre=prefix(lang)
  for a in doc.select('a[href]'):
-  if a.find_parent(class_='language-menu'):continue
+  if a.find_parent(class_='language-menu') or a.find_parent(class_='language-popover'):continue
   h=a['href']
   if h.startswith('/') and not h.startswith('//'):
    h=re.sub(r'^/(de|es|fr|it)(?=/|$)','',h)
