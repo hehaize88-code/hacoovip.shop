@@ -33,7 +33,7 @@
     "p␟Warehouse parcel decision guide": "Entscheidungsleitfaden für Lagerpakete",
     "h1␟OOPBUY parcel consolidation: when to combine items and when to split.": "OOPBUY-Paketkonsolidierung: Wann werden Artikel kombiniert und wann werden sie aufgeteilt?",
     "p␟Use warehouse evidence, route eligibility and packed dimensions to decide whether one international parcel is actually better than two.": "Entscheiden Sie anhand von Lagernachweisen, Routenberechtigungen und Packmaßen, ob ein internationales Paket tatsächlich besser ist als zwei.",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked July 27, 2026": "Veröffentlicht und faktengeprüft am 27. Juli 2026",
     "span␟Approx. 12 minute read": "Ca. 12-minütige Lektüre",
     "p␟OOPBUY parcel consolidation is not a rule that says “put everything in one box.” It is a comparison. You are deciding whether several warehouse items should share one international shipment or be separated into parcels with different route, timing or protection needs. Combining can remove repeated outer packaging and may reduce repeated base charges, but it can also create a larger box, eliminate eligible lines or make one difficult item control the whole shipment. The right answer comes from the current parcel data—not a universal kilogram target.": "Bei der OOPBUY-Paketkonsolidierung handelt es sich nicht um eine Regel, die besagt: „Alles in eine Kiste packen.“ Es ist ein Vergleich. Sie entscheiden, ob sich mehrere Lagerartikel eine internationale Sendung teilen oder in Pakete mit unterschiedlicher Route, Zeitplanung oder Schutzbedarf aufgeteilt werden sollen. Durch die Kombination können wiederholte Umverpackungen entfernt und wiederholte Grundgebühren gesenkt werden, es kann aber auch zu einem größeren Karton führen, berechtigte Positionen eliminieren oder es einem schwierigen Artikel erschweren, die gesamte Sendung zu kontrollieren. Die richtige Antwort ergibt sich aus den aktuellen Paketdaten – kein universelles Kilogramm-Ziel.",
@@ -175,7 +175,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "aside␟aria-label␟Evidence keys used in this article": "In diesem Artikel verwendete Beweisschlüssel",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels",
     "img␟alt␟OOPBUY parcel consolidation decision flow for combining or splitting warehouse items": "OOPBUY-Paketkonsolidierungs-Entscheidungsablauf zum Kombinieren oder Aufteilen von Lagerartikeln"

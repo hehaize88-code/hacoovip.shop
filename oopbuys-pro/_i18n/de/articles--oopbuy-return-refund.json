@@ -33,7 +33,7 @@
     "p␟Warehouse aftersales decision guide": "Entscheidungsleitfaden für den Kundendienst im Lager",
     "h1␟OOPBUY return and refund: act from the order status, not a generic clock.": "OOPBUY-Rückgabe und Rückerstattung: Handeln Sie anhand des Bestellstatus, nicht anhand einer generischen Uhr.",
     "p␟Separate cancellation, seller approval, warehouse return, exchange, wallet credit and payment-method refund before choosing the next action.": "Separate Stornierung, Verkäufergenehmigung, Lagerrückgabe, Umtausch, Gutschrift und Rückerstattung der Zahlungsmethode, bevor Sie die nächste Aktion auswählen.",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked August 2, 2026": "Veröffentlicht und faktengeprüft am 2. August 2026",
     "span␟Approx. 11 minute read": "1.200–1.800 Wörter / palabras / woorden",
     "p␟An OOPBUY return and refund is not one process. A cancellation before purchase, an aftersales request while the seller is shipping, a warehouse return after QC and a product sent back internationally all have different evidence, costs and decision makers. Start with the exact order status and its timestamp. Then identify whether the next approval belongs to OOPBUY, the marketplace seller, the warehouse, your payment provider or an international carrier. That prevents a buyer from waiting for a bank refund when the money has only moved to an OOPBUY wallet—or missing a warehouse return window while assuming free storage also preserves aftersales rights.": "Eine OOPBUY-Rückgabe und Rückerstattung ist kein einzelner Vorgang. Eine Stornierung vor dem Kauf, eine After-Sales-Anfrage während des Versands durch den Verkäufer, eine Lagerrückgabe nach der Qualitätskontrolle und ein international zurückgesandtes Produkt erfordern jeweils unterschiedliche Beweise, Kosten und Entscheidungsträger. Beginnen Sie mit dem genauen Bestellstatus und seinem Zeitstempel. Stellen Sie dann fest, ob die nächste Genehmigung OOPBUY, dem Marktplatzverkäufer, dem Lager, Ihrem Zahlungsanbieter oder einem internationalen Spediteur gehört. Dadurch wird verhindert, dass ein Käufer auf eine Bankrückerstattung wartet, wenn das Geld lediglich auf ein OOPBUY-Wallet überwiesen wurde – oder dass ein Rückgabefenster im Lager verpasst wird, während man davon ausgeht, dass die kostenlose Lagerung auch die After-Sales-Rechte wahrt.",
@@ -176,7 +176,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "aside␟aria-label␟Evidence keys used in this article": "In diesem Artikel verwendete Beweisschlüssel",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels",
     "img␟alt␟OOPBUY return and refund decision flow from order status to evidence and refund verification": "Die Rückgabe- und Rückerstattungsentscheidung von OOPBUY reicht vom Bestellstatus bis hin zum Nachweis und der Rückerstattungsüberprüfung"

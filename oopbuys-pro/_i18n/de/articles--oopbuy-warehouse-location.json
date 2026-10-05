@@ -34,7 +34,7 @@
     "h1␟OOPBUY warehouse location: verify the address and arrival.": "OOPBUY-Lagerstandort: Adresse und Wareneingang prüfen.",
     "p␟Verify the receiving instructions, match the seller shipment and know what warehouse arrival actually proves.": "Überprüfen Sie die Empfangsanweisungen, vergleichen Sie die Lieferung mit der Verkäufersendung und erfahren Sie, was der Lagereingang tatsächlich beweist.",
     "span␟Published October 5, 2026": "Veröffentlicht am 5. Oktober 2026",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Approx. 8 minute read": "Ca. 8-minütige Lektüre",
     "p␟OOPBUY's published beginner guide describes a warehouse in China, where purchased items are received, inspected and stored before international parcel submission. That establishes the country and the role of the warehouse. It does not establish a permanent street address for every order. If you need the OOPBUY warehouse location for a delivery, use receiving instructions confirmed for your current order. This guide explains how to connect those instructions with the seller shipment, warehouse record and QC photographs, so an address search turns into a useful receiving check.": "Der von OOPBUY veröffentlichte Einsteigerleitfaden beschreibt ein Lager in China, in dem gekaufte Artikel empfangen, geprüft und gelagert werden, bevor internationale Pakete verschickt werden. Dadurch werden das Land und die Rolle des Lagers festgelegt. Es wird nicht für jede Bestellung eine dauerhafte Straßenadresse festgelegt. Wenn Sie für eine Lieferung den OOPBUY-Lagerstandort benötigen, verwenden Sie die für Ihre aktuelle Bestellung bestätigten Empfangsanweisungen. In diesem Leitfaden wird erläutert, wie Sie diese Anweisungen mit der Verkäufersendung, den Lagerunterlagen und den Qualitätskontrollfotos verknüpfen, sodass eine Adresssuche zu einer nützlichen Empfangskontrolle wird.",
     "span␟In this guide": "In diesem Ratgeber",
@@ -105,7 +105,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "nav␟aria-label␟On this page": "Auf dieser Seite"
   },
   "structuredData": [

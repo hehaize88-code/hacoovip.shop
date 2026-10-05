@@ -65,7 +65,7 @@ const TRANSLATED_ATTRIBUTES = new Set([
   "placeholder",
   "title",
 ]);
-const HTML_CACHE_VERSION = "warehouse-usa-tracking-2026-10-05-v1";
+const HTML_CACHE_VERSION = "warehouse-usa-tracking-2026-10-05-v2";
 
 // Reuse the existing Google tag and measure useful navigation without search text.
 const NAVIGATION_EVENTS = `<script id="oopbuy-navigation-events">

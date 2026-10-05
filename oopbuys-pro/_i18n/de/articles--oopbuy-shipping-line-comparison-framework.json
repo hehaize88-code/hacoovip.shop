@@ -33,7 +33,7 @@
     "p␟Advanced route-cost planning": "Erweiterte Routenkostenplanung",
     "h1␟OOPBUY shipping line comparison: choose with parcel evidence.": "Vergleich der OOPBUY-Versandlinien: Wählen Sie mit Paketnachweis.",
     "p␟The best route is the eligible option that fits this parcel’s weight, dimensions, contents, timing needs and acceptable risk—not the line with the lowest headline quote.": "Die beste Route ist die geeignete Option, die dem Gewicht, den Abmessungen, dem Inhalt, den zeitlichen Anforderungen und dem akzeptablen Risiko dieses Pakets entspricht – nicht die Linie mit dem niedrigsten Angebot in der Schlagzeile.",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked August 30, 2026": "Veröffentlicht und faktengeprüft am 30. August 2026",
     "span␟Approx. 12 minute read": "Ca. 12-minütige Lektüre",
     "p␟An OOPBUY shipping line comparison only becomes useful after the parcel is defined. OOPBUY’s current estimator asks for a destination and returns routes available for that location. Its live interface also distinguishes actual and volumetric weight, while individual options can differ in eligibility, shipping cycle and cost. That means a route name copied from somebody else’s parcel is weak planning evidence. Build a shortlist from your own packed record, eliminate invalid options, and compare the survivors on the same cost and service basis.": "Ein OOPBUY-Versandlinienvergleich wird erst dann sinnvoll, wenn das Paket definiert ist. Der aktuelle Schätzer von OOPBUY fragt nach einem Ziel und gibt die für diesen Standort verfügbaren Routen zurück. Die Live-Schnittstelle unterscheidet außerdem zwischen tatsächlichem und volumetrischem Gewicht, während einzelne Optionen hinsichtlich der Berechtigung, des Versandzyklus und der Kosten unterschiedlich sein können. Das bedeutet, dass ein Routenname, der von der Parzelle einer anderen Person kopiert wurde, ein schwacher Planungsbeweis ist. Erstellen Sie eine Auswahlliste aus Ihrem eigenen umfangreichen Datensatz, eliminieren Sie ungültige Optionen und vergleichen Sie die Überlebenden auf der gleichen Kosten- und Servicebasis.",
@@ -150,7 +150,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels"
   },
   "structuredData": [

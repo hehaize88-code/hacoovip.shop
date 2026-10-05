@@ -144,7 +144,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel"
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation"
   },
   "structuredData": [
     "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Startseite\",\"item\":\"https://oopbuys.pro/de/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lager-, Versand- und Gesamtkosten-Guides\",\"item\":\"https://oopbuys.pro/de/articles/\"}]}",

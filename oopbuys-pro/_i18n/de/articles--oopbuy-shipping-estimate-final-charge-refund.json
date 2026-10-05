@@ -34,7 +34,7 @@
     "h1␟OOPBUY shipping estimate, final charge and refund checks.": "OOPBUY-Versandkosten: Schätzung, Endabrechnung und Erstattung prüfen.",
     "p␟Reconcile the original quote, final measurements and account transactions using three worked examples.": "Vergleichen Sie das ursprüngliche Angebot, die endgültigen Messungen und die Kontobewegungen anhand von drei Beispielen.",
     "span␟Published October 5, 2026": "Veröffentlicht am 5. Oktober 2026",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Approx. 8 minute read": "Ca. 8-minütige Lektüre",
     "p␟An OOPBUY shipping estimate and the final shipping charge can describe different measurement stages. The useful task is to reconcile the original quote, the parcel you authorized and the transaction that settled afterward. A lower final freight amount is different from a product return, a currency-conversion change or a bank refund. This guide gives you a practical record and worked examples for identifying the difference before asking support to explain a missing adjustment.": "Ein OOPBUY-Versandvoranschlag und die endgültige Versandkostenpauschale können verschiedene Messphasen beschreiben. Die nützliche Aufgabe besteht darin, das ursprüngliche Angebot, das von Ihnen autorisierte Paket und die anschließend abgewickelte Transaktion abzugleichen. Ein niedrigerer endgültiger Frachtbetrag unterscheidet sich von einer Produktrückgabe, einer Währungsumrechnungsänderung oder einer Bankrückerstattung. Dieser Leitfaden bietet Ihnen eine praktische Aufzeichnung und praktische Beispiele zum Erkennen des Unterschieds, bevor Sie den Support bitten, eine fehlende Anpassung zu erklären.",
     "span␟In this guide": "In diesem Ratgeber",
@@ -110,7 +110,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "nav␟aria-label␟On this page": "Auf dieser Seite"
   },
   "structuredData": [

@@ -33,7 +33,7 @@
     "p␟Advanced eligibility and cost planning": "Erweiterte Förderfähigkeits- und Kostenplanung",
     "h1␟OOPBUY restricted goods: check route availability before shipping.": "OOPBUY eingeschränkte Waren: Überprüfen Sie vor dem Versand die Routenverfügbarkeit.",
     "p␟A product link, warehouse arrival and international route are three different permissions. Screen each one before treating the item as shippable.": "Eine Produktverknüpfung, eine Lagerankunft und eine internationale Route sind drei verschiedene Berechtigungen. Überprüfen Sie jedes einzelne, bevor Sie den Artikel als versandfähig behandeln.",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked September 1, 2026": "Veröffentlicht und faktengeprüft am 1. September 2026",
     "span␟Approx. 12 minute read": "Ca. 12-minütige Lektüre",
     "p␟OOPBUY restricted goods shipping is not a single yes-or-no list. Current OOPBuy guidance separates items it will not accept, goods whose export is limited, product attributes that create extra handling risk, and routes available for a selected destination. A product may pass the order stage yet leave only a narrow shipping set after warehouse classification. For a cost planner, the right question is not “Does somebody else ship this category?” It is “What evidence proves that this exact item, parcel and destination still have an acceptable route today?”": "Der eingeschränkte Warenversand von OOPBUY ist keine einzelne Ja-oder-Nein-Liste. Die aktuellen OOPBuy-Richtlinien unterscheiden Artikel, die nicht akzeptiert werden, Waren, deren Export begrenzt ist, Produktattribute, die ein zusätzliches Handhabungsrisiko darstellen, und Routen, die für einen ausgewählten Bestimmungsort verfügbar sind. Es kann sein, dass ein Produkt die Bestellphase durchläuft, nach der Lagerklassifizierung jedoch nur einen begrenzten Versandumfang hinterlässt. Für einen Kostenplaner lautet die richtige Frage nicht: „Versendet jemand anderes diese Kategorie?“ Es lautet: „Welche Beweise beweisen, dass genau dieser Artikel, dieses Paket und dieser Bestimmungsort auch heute noch eine akzeptable Route haben?“",
@@ -147,7 +147,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels"
   },
   "structuredData": [

@@ -33,7 +33,7 @@
     "p␟Currency conversion cost guide": "Kostenführer für die Währungsumrechnung",
     "h1␟OOPBUY exchange rate: audit what one CNY actually costs.": "OOPBUY-Wechselkurs: Prüfen Sie, was ein CNY tatsächlich kostet.",
     "p␟Separate the site display, payment quote and final settled charge before comparing a rate or payment method.": "Trennen Sie die Website-Anzeige, das Zahlungsangebot und die endgültige Abrechnung, bevor Sie einen Tarif oder eine Zahlungsmethode vergleichen.",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked August 14, 2026": "Veröffentlicht und faktengeprüft am 14. August 2026",
     "span␟Approx. 11 minute read": "1.200–1.800 Wörter / palabras / woorden",
     "p␟An OOPBUY exchange rate is not one permanent number. The public interface currently lets visitors display product values in currencies including CNY, USD, EUR, GBP, CAD, AUD, PLN and others, but a display conversion is not automatically the rate a bank, card network or wallet uses when money settles. Advanced cost planning therefore needs an audit trail: preserve the CNY source amount, capture the amount and currency offered at payment, then compare the final amount actually posted by the funding provider.": "Ein OOPBUY-Wechselkurs ist keine dauerhafte Zahl. Über die öffentliche Schnittstelle können Besucher derzeit Produktwerte in Währungen wie CNY, USD, EUR, GBP, CAD, AUD, PLN und anderen anzeigen. Eine angezeigte Umrechnung ist jedoch nicht automatisch der Kurs, den eine Bank, ein Kartennetzwerk oder ein Wallet bei der Geldabrechnung verwendet. Für die erweiterte Kostenplanung ist daher ein Prüfpfad erforderlich: Bewahren Sie den CNY-Quellenbetrag auf, erfassen Sie den bei der Zahlung angebotenen Betrag und die angebotene Währung und vergleichen Sie dann den tatsächlich vom Finanzierungsgeber verbuchten Endbetrag.",
@@ -172,7 +172,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "aside␟aria-label␟Evidence keys used in this article": "In diesem Artikel verwendete Beweisschlüssel",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels",
     "img␟alt␟OOPBUY currency conversion audit from CNY source amount to final settled home-currency cost": "OOPBUY-Währungsumrechnungsprüfung vom CNY-Quellenbetrag in die endgültig abgerechneten Kosten in der Heimatwährung"

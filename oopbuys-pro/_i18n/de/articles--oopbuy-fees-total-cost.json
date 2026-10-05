@@ -34,7 +34,7 @@
     "h1␟OOPBUY fees explained: build the true cost before you pay.": "OOPBUY-Gebühren erklärt: Berechnen Sie die tatsächlichen Kosten, bevor Sie bezahlen.",
     "p␟Separate seller charges, warehouse options, international freight, border costs and payment terms instead of trusting one early subtotal.": "Separate Verkäufergebühren, Lageroptionen, internationale Fracht, Grenzkosten und Zahlungsbedingungen, anstatt sich auf eine frühe Zwischensumme zu verlassen.",
     "span␟Updated October 5, 2026": "Aktualisiert am 5. Oktober 2026",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked August 10, 2026": "Veröffentlicht und faktengeprüft am 10. August 2026",
     "p␟The useful answer to “What are the OOPBUY fees?” is not one percentage. A buying-agent order moves through several checkpoints, and each checkpoint can create a different charge. The seller stage has the item price and delivery inside China. The warehouse can add only the services you request. Parcel submission creates the international freight quote. Declaration and destination rules can add border costs. Finally, the selected payment method can have its own displayed currency, schedule or provider terms. Build a dated ledger from the live screens and you can compare a purchase before sunk costs make the decision harder.": "Die nützliche Antwort auf „Wie hoch sind die OOPBUY-Gebühren?“ ist nicht ein Prozent. Eine Einkäuferbestellung durchläuft mehrere Kontrollpunkte, und jeder Kontrollpunkt kann eine andere Gebühr verursachen. In der Verkäuferphase werden der Artikelpreis und die Lieferung innerhalb Chinas festgelegt. Das Lager kann nur die von Ihnen angeforderten Dienste hinzufügen. Durch die Paketübermittlung wird das internationale Frachtangebot erstellt. Durch Deklarations- und Bestimmungsbestimmungen können Grenzkosten entstehen. Schließlich kann die ausgewählte Zahlungsmethode über eine eigene angezeigte Währung, einen eigenen Zeitplan oder eigene Anbieterbedingungen verfügen. Erstellen Sie anhand der Live-Bildschirme ein aktuelles Hauptbuch und vergleichen Sie einen Kauf, bevor versunkene Kosten die Entscheidung erschweren.",
     "strong␟Evidence keys used in this article:": "In diesem Artikel verwendete Evidenzschlüssel:",
@@ -189,7 +189,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "aside␟aria-label␟Evidence keys used in this article": "In diesem Artikel verwendete Beweisschlüssel",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels",
     "img␟alt␟Five-stage OOPBUY fees ledger covering the order, warehouse, parcel, border and payment stages": "Fünfstufiges OOPBUY-Gebührenbuch, das die Phasen Bestellung, Lager, Paket, Grenze und Zahlung abdeckt"

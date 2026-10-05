@@ -80,7 +80,7 @@
     "h2␟Compare the value of consolidation with the cost of delay": "Vergleichen Sie den Wert der Konsolidierung mit den Verzögerungskosten",
     "p␟Waiting can be rational when several confirmed items will soon be ready and one consolidated parcel is compatible with their routes. It becomes risky when a seller has not dispatched, an exchange is uncertain, the oldest item is close to expiry or the combined package may become too large for a preferred line.": "Warten kann sinnvoll sein, wenn mehrere bestätigte Sendungen bald fertig sind und ein Sammelpaket mit ihren Routen kompatibel ist. Es wird riskant, wenn ein Verkäufer nicht versendet hat, ein Umtausch ungewiss ist, der älteste Artikel kurz vor dem Ablaufdatum steht oder das Gesamtpaket für eine bevorzugte Linie zu groß wird.",
     "p␟Model at least two plans. Plan A ships ready items by a safe date. Plan B waits for the late item and shows the later submission date, possible extension charge, estimated parcel size and route effect. Compare total cost and retained risk, not just the number of cartons. The": "Modellieren Sie mindestens zwei Pläne. Plan A versendet fertige Artikel zu einem sicheren Datum. Plan B wartet auf den verspäteten Artikel und zeigt das spätere Einreichungsdatum, mögliche Verlängerungsgebühren, geschätzte Paketgröße und Routenauswirkungen an. Vergleichen Sie die Gesamtkosten und das einbehaltene Risiko, nicht nur die Anzahl der Kartons. Die",
-    "a␟combine-or-split guide": "Combine-or-Split-Führung",
+    "a␟combine-or-split guide": "Ratgeber zum Zusammenlegen oder Aufteilen",
     "p␟helps test those parcel scenarios.": "hilft beim Testen dieser Paketszenarien.",
     "p␟A small late item can still be expensive if waiting causes an extension, removes a route, delays a seasonal need or forces the oldest goods into a rushed decision. A bulky arrival can change volumetric weight. A restricted item can narrow routes for an otherwise ordinary clothing parcel. Set a latest acceptable arrival date for every unfinished order, then split the parcel if the evidence no longer supports waiting.": "Ein kleiner verspäteter Artikel kann immer noch teuer sein, wenn das Warten zu einer Verlängerung führt, eine Route entfernt, einen saisonalen Bedarf verzögert oder die ältesten Waren zu einer überstürzten Entscheidung zwingt. Eine sperrige Ankunft kann das Volumengewicht verändern. Ein eingeschränkter Artikel kann den Weg für ein ansonsten gewöhnliches Bekleidungspaket einschränken. Legen Sie für jede noch nicht abgeschlossene Bestellung ein spätestes akzeptables Ankunftsdatum fest und teilen Sie das Paket dann auf, wenn die Beweise das Warten nicht mehr rechtfertigen.",
     "p␟05 · Use extensions deliberately": "05 · Setzen Sie Erweiterungen bewusst ein",
@@ -137,7 +137,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "nav␟aria-label␟On this page": "Auf dieser Seite"
   },
   "structuredData": [

@@ -34,7 +34,7 @@
     "h1␟OOPBUY tracking: track your order and read the last scan.": "OOPBUY-Tracking: Verfolgen Sie Ihre Bestellung und lesen Sie den letzten Scan.",
     "p␟A status-by-status method for separating an uncollected label, normal cross-border silence, customs action and a genuine delivery exception.": "Eine Status-für-Status-Methode zur Trennung eines nicht abgeholten Etiketts, einer normalen grenzüberschreitenden Schweigepflicht, einer Zollmaßnahme und einer echten Lieferausnahme.",
     "span␟Updated October 5, 2026": "Aktualisiert am 5. Oktober 2026",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked July 29, 2026": "Veröffentlicht und faktengeprüft am 29. Juli 2026",
     "span␟Approx. 11 minute read": "1.200–1.800 Wörter / palabras / woorden",
     "p␟When OOPBUY tracking is not updating, the useful question is not “How many days has it been?” It is “Who recorded the last event, what did that event prove, and what action does the selected route require?” A tracking number can exist before a carrier possesses the parcel. A parcel can also move between hubs without a public scan, wait for a cross-border data handoff, enter customs processing, or encounter an exception that needs an immediate response. Those situations look similar on a quiet tracking page but require different decisions.": "Wenn das OOPBUY-Tracking nicht aktualisiert wird, lautet die nützliche Frage nicht „Wie viele Tage sind es her?“ Es lautet: „Wer hat das letzte Ereignis aufgezeichnet, was hat dieses Ereignis bewiesen und welche Maßnahmen erfordert die ausgewählte Route?“ Eine Sendungsverfolgungsnummer kann vorhanden sein, bevor ein Spediteur das Paket in Besitz nimmt. Ein Paket kann sich auch ohne öffentlichen Scan zwischen Hubs bewegen, auf eine grenzüberschreitende Datenübergabe warten, in die Zollabwicklung gelangen oder auf eine Ausnahme stoßen, die eine sofortige Reaktion erfordert. Diese Situationen sehen auf einer ruhigen Tracking-Seite ähnlich aus, erfordern jedoch unterschiedliche Entscheidungen.",
@@ -182,7 +182,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "aside␟aria-label␟Evidence keys used in this article": "In diesem Artikel verwendete Beweisschlüssel",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels",
     "img␟alt␟OOPBUY tracking not updating decision flow from last carrier scan to evidence-led escalation": "Die OOPBUY-Verfolgung aktualisiert den Entscheidungsfluss vom letzten Carrier-Scan bis zur evidenzbasierten Eskalation nicht"

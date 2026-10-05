@@ -33,7 +33,7 @@
     "p␟Advanced parcel-protection planning": "Erweiterte Paketschutzplanung",
     "h1␟OOPBUY parcel reinforcement: price the risk before adding protection.": "OOPBUY-Paketverstärkung: Bewerten Sie das Risiko, bevor Sie Schutz hinzufügen.",
     "p␟Use packed evidence and expected loss—not anxiety—to decide whether the live reinforcement offer earns its place in the parcel.": "Entscheiden Sie anhand der komprimierten Beweise und des erwarteten Verlusts – nicht der Angst –, ob das Live-Verstärkungsangebot seinen Platz im Paket verdient.",
-    "span␟Independent editorial guide": "Unabhängiger Redaktionsführer",
+    "span␟Independent editorial guide": "Unabhängiger Ratgeber",
     "span␟Published and fact-checked August 26, 2026": "Veröffentlicht und faktengeprüft am 26. August 2026",
     "span␟Approx. 12 minute read": "Ca. 12-minütige Lektüre",
     "p␟OOPBUY parcel reinforcement is not automatically a bargain or a waste. OOPBUY’s current beginner guide says the warehouse can integrate and package items, reinforce the packaging, weigh the result and estimate international shipping before payment. It does not establish one permanent reinforcement price or promise that reinforcement prevents every loss. An advanced planner should therefore compare the live service quote with the parcel’s specific exposure, the extra billable weight or dimensions it may create, and the value of the damage it can realistically reduce.": "OOPBUY-Paketverstärkung ist nicht automatisch ein Schnäppchen oder eine Verschwendung. Im aktuellen Einsteigerleitfaden von OOPBUY heißt es, dass das Lager Artikel integrieren und verpacken, die Verpackung verstärken, das Ergebnis wiegen und den internationalen Versand vor der Zahlung abschätzen kann. Es legt keinen dauerhaften Verstärkungspreis fest und verspricht auch nicht, dass die Verstärkung jeden Verlust verhindert. Ein erfahrener Planer sollte daher das Live-Service-Angebot mit der spezifischen Gefährdung des Pakets, dem dadurch verursachten zusätzlichen abrechnungsfähigen Gewicht oder den zusätzlichen Abmessungen und dem Wert des Schadens vergleichen, der dadurch realistischerweise reduziert werden kann.",
@@ -168,7 +168,7 @@
     "a␟title␟Browse product catalog": "Produktkatalog öffnen",
     "summary␟aria-label␟Open navigation": "Navigation öffnen",
     "nav␟aria-label␟Mobile navigation": "Mobile Navigation",
-    "nav␟aria-label␟Breadcrumb": "Semmelbrösel",
+    "nav␟aria-label␟Breadcrumb": "Breadcrumb-Navigation",
     "aside␟aria-label␟Evidence keys used in this article": "In diesem Artikel verwendete Beweisschlüssel",
     "nav␟aria-label␟Article contents": "Inhalt des Artikels",
     "img␟alt␟OOPBUY parcel reinforcement decision model using exposure, packing evidence and the live quote": "OOPBUY-Entscheidungsmodell zur Paketverstärkung unter Verwendung von Exposition, Verpackungsnachweisen und dem Live-Angebot"
