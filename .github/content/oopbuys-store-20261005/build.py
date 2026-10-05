@@ -66,8 +66,18 @@ def tr(value, lang):
 
 def localize(value, lang):
     soup = parse(value)
+    # Translate linked sentences as complete sentences so articles/prepositions
+    # agree with the translated link label. Link destinations must remain exact.
+    for block in soup.select('p'):
+        if lang != 'en' and block.find('a'):
+            raw=block.decode_contents()
+            translated=parse(tr(raw,lang))
+            before=[a.get('href') for a in block.select('a')]
+            after=[a.get('href') for a in translated.select('a')]
+            if before != after:raise ValueError(f'Translation changed link destinations: {lang}: {raw[:80]}')
+            block.clear();block.append(translated);block['data-localized-block']='true'
     for node in list(soup.find_all(string=True)):
-        if isinstance(node, Comment) or node.parent.name in ['script', 'style'] or node.find_parent(attrs={'translate': 'no'}):
+        if isinstance(node, Comment) or node.parent.name in ['script', 'style'] or node.find_parent(attrs={'translate': 'no'}) or node.find_parent(attrs={'data-localized-block':'true'}):
             continue
         text = str(node)
         stripped = text.strip()
@@ -77,6 +87,7 @@ def localize(value, lang):
         node['alt'] = tr(node['alt'], lang)
     for link in soup.select('a[href^="/"]'):
         link['href'] = prefix(lang) + link['href']
+    for block in soup.select('[data-localized-block]'):del block['data-localized-block']
     return soup
 
 
@@ -94,7 +105,7 @@ def body_markup(key):
     soup = parse((SOURCE / (key + '.html')).read_text())
     for node in soup.select('[data-products]'):
         node.replace_with(parse(product_markup(key)))
-    for i, section in enumerate(soup.select(':scope > section'), 1):
+    for i, section in enumerate(soup.find_all('section',recursive=False), 1):
         index = soup.new_tag('span', attrs={'class': 'longform-index'})
         index.string = f'{i:02d}'
         section.insert(0, index)
@@ -104,6 +115,9 @@ def body_markup(key):
 def append_style(soup):
     if not soup.select_one('link[href="/editorial-20261005.css"]'):
         soup.head.append(soup.new_tag('link', rel='stylesheet', href='/editorial-20261005.css'))
+    for link in soup.select('header a[href$="/articles/"],footer a[href$="/articles/"]'):
+        lang=soup.html.get('lang','en').split('-')[0]
+        link.string={'en':'Buyer Guides','de':'Kaufratgeber','fr':"Guides d’achat",'es':'Guías de compra','it':"Guide all’acquisto"}.get(lang,'Buyer Guides')
 
 
 def set_meta(soup, name, value, attribute='name'):
