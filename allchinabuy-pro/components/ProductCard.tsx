@@ -7,6 +7,8 @@ export function ProductCard({ product, compact = false }: { product: Product; co
       className={compact ? "product-card product-card--compact" : "product-card"}
       data-item-id={product.itemId}
       data-main-product-id={product.mainProductId}
+      data-category={product.categorySlug}
+      data-search-tags={product.tags.join(" ")}
     >
       <a
         href={product.targetUrl}

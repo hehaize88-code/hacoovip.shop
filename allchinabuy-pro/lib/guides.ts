@@ -1,3 +1,5 @@
+import { octoberGuides } from "./october-guides";
+
 export type GuideSource = {
   title: string;
   url: string;
@@ -33,6 +35,7 @@ export type Guide = {
   publishedDate?: string;
   modifiedDate?: string;
   hideSourceLinks?: boolean;
+  evidenceNote?: string;
 };
 
 const REVIEWED = "July 17, 2026";
@@ -68,6 +71,7 @@ const cbpInternetPurchases: GuideSource = {
 };
 
 export const guides: Guide[] = [
+  ...octoberGuides,
   {
     slug: "allchinabuy-shipping-to-usa",
     title: "AllChinaBuy Shipping to USA 2026: Cost, Customs & Checklist",
@@ -597,12 +601,14 @@ export const guides: Guide[] = [
   },
   {
     slug: "qc-photo-checklist",
-    title: "AllChinaBuy QC Photos 2026: Measurements & Defect Checklist",
+    title: "AllChinaBuy QC Photos: Measurements and Defect Checklist",
     eyebrow: "Quality control",
     description:
       "Review AllChinaBuy QC photos in six steps: confirm size and colour, request useful measurements, spot visible defects and decide before shipping.",
     readingTime: "6 min read",
     updated: REVIEWED,
+    modifiedDate: "2026-10-05",
+    evidenceNote: "The public inspection and photo-service descriptions below were recorded on July 17, 2026. On October 5 we added worked QC examples and links to sizing and after-sales guidance. The official homepage now shows maintenance; current photo services, fees and deadlines are not confirmed.",
     keyFacts: [
       "Public order text describes standard checks for quantity, colour and size with inspection photos.",
       "Sealed packages are not normally opened, inspected or photographed by default.",
@@ -682,6 +688,7 @@ export const guides: Guide[] = [
       "A fact-based budgeting method using the fields and warnings in AllChinaBuy’s public shipping calculator.",
     readingTime: "5 min read",
     updated: REVIEWED,
+    modifiedDate: "2026-10-05",
     keyFacts: [
       "The calculator asks for destination, category, warehouse, packed dimensions and weight.",
       "Its public formula converts centimetre dimensions to volume weight with L × W × H ÷ 5,000.",

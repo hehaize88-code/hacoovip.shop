@@ -31,6 +31,8 @@ export function SiteHeader() {
   const localized = locale ? localeContent[locale] : undefined;
   const chrome = localized?.chrome ?? defaultChromeContent;
   const homeHref = locale ? `/${locale}` : "/";
+  const contentPath = (pathname ?? "/").replace(/^\/(fr|de|it|es)(?=\/|$)/, "") || "/";
+  const languageHref = (code: string) => `${code === "EN" ? "" : `/${code.toLowerCase()}`}${contentPath === "/" ? "/" : `${contentPath.replace(/\/$/, "")}/`}`;
   const nav = [
     { label: chrome.nav.finds, href: "/finds" },
     { label: chrome.nav.shoes, href: categoryTarget("shoes"), external: true },
@@ -67,8 +69,8 @@ export function SiteHeader() {
               <span aria-hidden="true">◎</span> {chrome.languageLabel} <span aria-hidden="true">⌄</span>
             </summary>
             <div>
-              {languages.map(([label, href]) => (
-                <Link key={label} href={href} hrefLang={label.toLowerCase()}>{label}</Link>
+              {languages.map(([label]) => (
+                <a key={label} href={languageHref(label)} hrefLang={label.toLowerCase()}>{label}</a>
               ))}
             </div>
           </details>
@@ -81,7 +83,7 @@ export function SiteHeader() {
                 <Link key={item.href} href={item.href}>{item.label}</Link>
               ))}
               <div className="mobile-menu__languages">
-                {languages.map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}
+                {languages.map(([label]) => <a key={label} href={languageHref(label)} hrefLang={label.toLowerCase()}>{label}</a>)}
               </div>
             </nav>
           </details>

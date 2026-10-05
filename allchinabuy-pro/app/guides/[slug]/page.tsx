@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { getGuide, guides, SITE_URL } from "@/lib/content";
 import { buildPageMetadata, guideSocialCard } from "@/lib/metadata";
+import { PlatformStatus } from "@/components/PlatformStatus";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -50,8 +51,9 @@ export default async function GuidePage({ params }: PageProps) {
             url: `${SITE_URL}/guides/${guide.slug}`,
             datePublished: publishedDate,
             dateModified: modifiedDate,
-            author: { "@type": "Organization", name: "AllChinaBuy Pro Editorial" },
-            publisher: { "@type": "Organization", name: "AllChinaBuy Pro" },
+            author: { "@type": "Organization", name: "AllChinaBuy Pro Editorial", url: `${SITE_URL}/about/`, logo: `${SITE_URL}/logo-allchinabuy.png` },
+            publisher: { "@type": "Organization", name: "AllChinaBuy Pro", logo: { "@type": "ImageObject", url: `${SITE_URL}/logo-allchinabuy.png` } },
+            inLanguage: "en",
             image: `${SITE_URL}${guide.figure.src}`,
             ...(!guide.hideSourceLinks && { isBasedOn: guide.sources.map((source) => source.url) }),
             mainEntityOfPage: `${SITE_URL}/guides/${guide.slug}`,
@@ -72,31 +74,32 @@ export default async function GuidePage({ params }: PageProps) {
           <p className="eyebrow">{guide.eyebrow}</p>
           <h1>{guide.title}</h1>
           <p>{guide.description}</p>
-          <div className="article-meta"><span>{guide.readingTime}</span><span>Fact-checked {guide.updated}</span><span>{guide.sources.length} official source{guide.sources.length === 1 ? "" : "s"}</span></div>
+          <div className="article-meta"><span>{guide.readingTime}</span><span>Updated {guide.modifiedDate ?? guide.updated}</span><span>AllChinaBuy Pro Editorial</span></div>
         </header>
+        {guide.slug !== "allchinabuy-website-status-maintenance" && <PlatformStatus />}
         <div className="article-figure-wrap">
           <figure className="article-figure">
             <Image src={guide.figure.src} alt={guide.figure.alt} width={1600} height={900} priority />
             <figcaption>
               {guide.figure.caption}{" "}
-              {!guide.hideSourceLinks && <a href={guide.figure.sourceUrl} rel="noreferrer" target="_blank">Open the official page ↗</a>}
             </figcaption>
           </figure>
         </div>
         <div className="prose-shell prose-shell--guide">
           <aside className="research-note" aria-labelledby="research-note-title">
             <p className="eyebrow" id="research-note-title">Research standard</p>
-            <p>We checked the named public primary pages on {guide.updated}. {guide.hideSourceLinks ? "The sources are identified below without outbound links." : "Platform facts are linked below."} Variable fees, routes, deadlines, customs rules and account-only terms must be confirmed on the current live order or responsible authority.</p>
+            <p>{guide.evidenceNote ?? `The platform descriptions cited in this guide were reviewed on ${guide.updated}. They are dated reference material, not confirmation that the services are available during the current maintenance period. Recheck current fees, routes, deadlines and account terms before acting.`}</p>
           </aside>
+          <nav className="article-toc" aria-label="Article contents"><strong>In this guide</strong><ol>{guide.sections.map((section, index) => <li key={section.title}><a href={`#section-${index + 1}`}>{section.title}</a></li>)}</ol></nav>
           <section className="key-facts" aria-labelledby="key-facts-title">
-            <p className="eyebrow">Verified on the public interface</p>
-            <h2 id="key-facts-title">Three facts to carry forward</h2>
+            <p className="eyebrow">Key points</p>
+            <h2 id="key-facts-title">Before you begin</h2>
             <ol>
               {guide.keyFacts.map((fact) => <li key={fact}>{fact}</li>)}
             </ol>
           </section>
           {guide.sections.map((section, index) => (
-            <section key={section.title}>
+            <section key={section.title} id={`section-${index + 1}`}>
               <p className="eyebrow">Section {String(index + 1).padStart(2, "0")}</p>
               <h2>{section.title}</h2>
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -108,14 +111,29 @@ export default async function GuidePage({ params }: PageProps) {
               {section.takeaway && <div className="article-takeaway"><strong>Practical takeaway</strong><p>{section.takeaway}</p></div>}
             </section>
           ))}
+          {guide.slug === "qc-photo-checklist" && <section className="qc-worked-example">
+            <h2>A practical QC record: observation, evidence and action</h2>
+            <p>Use this editorial example to turn a general QC check into a specific decision. These are hypothetical situations, not customer results or photographs of a tested product.</p>
+            <div className="table-wrap"><table><thead><tr><th>Visible observation</th><th>Evidence to request</th><th>Next action</th></tr></thead><tbody>
+              <tr><td>The ordered size and photographed label differ.</td><td>Order option and readable labels from both shoes.</td><td>Clarify the item identity before approving shipment.</td></tr>
+              <tr><td>A shirt looks narrower than expected.</td><td>Flat chest width, armpit seam to armpit seam, in centimetres.</td><td>Compare the same method with a well-fitting garment.</td></tr>
+              <tr><td>A seam appears open in a distant photo.</td><td>A close view plus an overview locating the seam.</td><td>Describe the visible opening; check the actual after-sales options.</td></tr>
+            </tbody></table></div>
+            <p>Record the original picture, your exact request, the response and the decision separately. For footwear, use the <Link href="/guides/allchinabuy-shoe-sizing-insole-qc/">shoe sizing and insole measurement guide</Link>. For an unresolved mismatch, read the <Link href="/guides/allchinabuy-return-refund-stages/">return and refund stages</Link> before international packing.</p>
+          </section>}
+          {guide.slug === "shipping-cost-planning" && <section>
+            <h2>A weight comparison you can reproduce</h2>
+            <p>For illustration only, a carton measuring 40 × 30 × 20 cm has a volume of 24,000 cubic centimetres. With a hypothetical divisor of 5,000, its volumetric weight is 4.8 kg. If its scale weight is 3 kg, a line charging the higher of those two values would start from 4.8 kg before its own rounding rules. This is a calculation example, not a current route quote or confirmation that a line is available.</p>
+            <p>Write the selected line’s actual divisor, minimum charge, rounding and surcharges beside your measurements. Recalculate only after the parcel configuration is known. The <Link href="/guides/allchinabuy-shipping-to-usa/">USA shipping guide</Link> separates parcel planning from destination rules; the <Link href="/guides/allchinabuy-tracking-not-updating/">tracking guide</Link> explains what to save after dispatch.</p>
+          </section>}
           <section className="source-list" aria-labelledby="source-list-title">
             <p className="eyebrow">Primary evidence</p>
-            <h2 id="source-list-title">Official pages checked</h2>
-            <p>{guide.hideSourceLinks ? "These public primary pages were used as evidence. Dynamic content, logged-in prices, route availability and official rules can change after our review date." : "These links go to AllChinaBuy’s public mobile website. Dynamic content, logged-in prices and availability can change after our review date."}</p>
+            <h2 id="source-list-title">Sources and evidence limits</h2>
+            <p>Source names and their scope are recorded below. The review date matters: historical service descriptions do not establish current availability, account terms or the outcome of an individual order.</p>
             <ol>
               {guide.sources.map((source) => (
                 <li key={`${source.title}-${source.url}`}>
-                  {guide.hideSourceLinks ? <strong>{source.title}</strong> : <a href={source.url} rel="noreferrer" target="_blank">{source.title} ↗</a>}
+                  <strong>{source.title}</strong>
                   <span>{source.scope}</span>
                 </li>
               ))}
@@ -125,7 +143,7 @@ export default async function GuidePage({ params }: PageProps) {
       </article>
       <section className="related-guides" aria-labelledby="related-guides-title">
         <div className="section-heading">
-          <div><p className="eyebrow">Continue the research</p><h2 id="related-guides-title">Related fact-checked guides.</h2></div>
+          <div><p className="eyebrow">Continue the research</p><h2 id="related-guides-title">Related buying guides.</h2></div>
         </div>
         <div className="related-guides__grid">
           {relatedGuides.map((related) => (
@@ -139,12 +157,8 @@ export default async function GuidePage({ params }: PageProps) {
         </div>
       </section>
       <section className="page-cta">
-        <div><p className="eyebrow">Use current data</p><h2>{guide.hideSourceLinks ? "Continue with the related planning guides." : "Check the live official page before you pay."}</h2></div>
-        {guide.hideSourceLinks ? (
-          <Link className="button button--lime" href="/guides">Browse related guides <span aria-hidden="true">→</span></Link>
-        ) : (
-          <a className="button button--lime" href={guide.sources[0].url} rel="noreferrer" target="_blank">Open official source <span aria-hidden="true">↗</span></a>
-        )}
+        <div><p className="eyebrow">Continue your research</p><h2>Compare product finds and keep the evidence.</h2></div>
+        <Link className="button button--lime" href="/allchinabuy-spreadsheet/">Browse the product directory</Link>
       </section>
     </main>
   );

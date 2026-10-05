@@ -7,11 +7,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "AllChinaBuy Guides 2026: Shipping, Fees, QC & 1688",
+    default: "AllChinaBuy Finds, QC Photos & Buying Guides",
     template: "%s | AllChinaBuy Pro",
   },
   description:
-    "Plan AllChinaBuy shipping, fees, QC photos, warehouse rules and 1688 orders with practical, source-checked 2026 guides for international buyers.",
+      "Explore AllChinaBuy product finds, QC photo checks, tracking help and shipping guides, with a dated maintenance update and clear evidence limits.",
   keywords: [
     "AllChinaBuy fees",
     "AllChinaBuy QC photos",
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "AllChinaBuy Pro",
-    title: "AllChinaBuy Guides 2026: Shipping, Fees, QC & 1688",
-    description: "Source-checked guides to AllChinaBuy USA shipping, fees, QC photos, warehouse rules, shipping lines and 1688 orders.",
+    title: "AllChinaBuy Finds, QC Photos & Buying Guides",
+    description: "Product finds, QC photo checks, tracking and shipping guides, plus the dated official maintenance notice.",
     images: [
       {
         url: "/images/social/home.webp",
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AllChinaBuy Guides 2026: Shipping, Fees, QC & 1688",
-    description: "Source-checked guides to AllChinaBuy USA shipping, fees, QC photos, warehouse rules, shipping lines and 1688 orders.",
+    title: "AllChinaBuy Finds, QC Photos & Buying Guides",
+    description: "Product finds, QC photo checks, tracking and shipping guides, plus the dated official maintenance notice.",
     images: ["/images/social/home.webp"],
   },
   robots: { index: true, follow: true },
@@ -76,6 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <script
             dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4S8LT5M79M');" }}
           />
+          <script defer src="/site-tools.js" />
         </head>
       <body>
         <SiteHeader />

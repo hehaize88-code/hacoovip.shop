@@ -3,10 +3,11 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { guides, SITE_URL } from "@/lib/content";
 import { buildPageMetadata, socialCard } from "@/lib/metadata";
+import { PlatformStatus } from "@/components/PlatformStatus";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "AllChinaBuy Guides 2026: Shipping, Fees, QC & 1688",
-  description: "Source-checked 2026 AllChinaBuy guides for USA shipping, costs, fees, QC photos, warehouse packing, restrictions and 1688 orders.",
+  title: "AllChinaBuy Guides: Tracking, QC, Refunds and Shipping",
+  description: "Read 21 AllChinaBuy guides covering maintenance, tracking, returns, shoe sizing, QC photos, shipping costs and product discovery.",
   path: "/guides",
   image: socialCard("guides", "AllChinaBuy Pro fact-checked guides share card"),
 });
@@ -30,15 +31,16 @@ export default function GuidesPage() {
         },
       }} />
       <section className="page-hero page-hero--plain">
-        <p className="eyebrow">{guides.length} source-linked guides</p>
-        <h1>AllChinaBuy research you can audit.</h1>
-        <p>We checked AllChinaBuy’s public English mobile pages and turned the visible rules into practical workflows. Every article names its official sources, review date and evidence limits.</p>
+        <p className="eyebrow">{guides.length} practical guides</p>
+        <h1>AllChinaBuy guides for your next decision.</h1>
+        <p>Find help with product discovery, QC photos, shoe measurements, tracking and after-sales records. Each guide separates dated platform evidence from practical editorial advice.</p>
         <ul className="page-hero__facts">
-          <li>Official pages linked</li>
-          <li>Latest guide fact-checked September 5, 2026</li>
+          <li>Sources and review dates identified</li>
+          <li>Latest editorial update October 5, 2026</li>
           <li>No invented fees or delivery promises</li>
         </ul>
       </section>
+      <PlatformStatus />
       <section className="content-section">
         <div className="guide-list">
           {guides.map((guide, index) => (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
 import { SearchBox } from "@/components/SearchBox";
+import { PlatformStatus } from "@/components/PlatformStatus";
 import { MAIN_CATALOGUE_URL, categories, featuredFaqs, guides, products, SITE_URL } from "@/lib/content";
 
 export default function Home() {
@@ -37,8 +38,8 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-copy">
           <p className="eyebrow">Independent directory · Clearer routes</p>
-          <h1>AllChinaBuy Buying Guides, QC Checks and Shipping Tools</h1>
-          <p className="hero-copy__intro">Curated product finds, link checks and practical buying guides — built for international shoppers.</p>
+          <h1>AllChinaBuy Finds, QC Photos and Buying Guides</h1>
+          <p className="hero-copy__intro">Browse product categories, compare QC evidence and understand order, tracking and shipping records.</p>
           <SearchBox />
           <div className="hero-actions">
             <a
@@ -49,7 +50,7 @@ export default function Home() {
             >
               Browse all products <span aria-hidden="true">↗</span>
             </a>
-            <Link href="/guides/how-a-china-shopping-directory-works" className="button button--outline">How it works</Link>
+            <Link href="/allchinabuy-spreadsheet/" className="button button--outline">Spreadsheet and finds</Link>
           </div>
           <ul className="trust-chips" aria-label="Directory principles">
             <li><span aria-hidden="true">✓</span> Routes checked</li>
@@ -71,11 +72,13 @@ export default function Home() {
         </div>
       </section>
 
+      <PlatformStatus />
+
       <section className="home-trending" aria-labelledby="home-trending-heading">
         <div className="home-trending__heading">
           <div>
-            <p className="eyebrow">Freshly checked</p>
-            <h2 id="home-trending-heading">Trending research routes</h2>
+            <p className="eyebrow">Product directory</p>
+            <h2 id="home-trending-heading">Selected product routes</h2>
           </div>
           <Link className="text-link" href="/finds">View all finds <span aria-hidden="true">↗</span></Link>
         </div>
@@ -132,7 +135,7 @@ export default function Home() {
           <Link className="text-link" href="/guides">All guides <span aria-hidden="true">→</span></Link>
         </div>
         <div className="guide-grid">
-          {guides.slice(0, 5).map((guide, index) => (
+          {guides.slice(0, 4).map((guide, index) => (
             <article className="guide-card" key={guide.slug}>
               <span className="guide-card__index">{String(index + 1).padStart(2, "0")}</span>
               <p className="eyebrow">{guide.eyebrow}</p>

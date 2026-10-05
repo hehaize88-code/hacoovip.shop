@@ -25,9 +25,9 @@ export function FindsExplorer({ products, categories }: { products: Product[]; c
           <input value={query} onChange={(event) => setQuery(event.target.value)} type="search" placeholder="Filter these directory entries" />
         </label>
         <div className="filter-pills" aria-label="Filter by category">
-          <button className={category === "all" ? "is-active" : ""} onClick={() => setCategory("all")}>All</button>
+          <button data-category="all" className={category === "all" ? "is-active" : ""} onClick={() => setCategory("all")}>All</button>
           {categories.map((item) => (
-            <button key={item.slug} className={category === item.slug ? "is-active" : ""} onClick={() => setCategory(item.slug)}>{item.title}</button>
+            <button data-category={item.slug} key={item.slug} className={category === item.slug ? "is-active" : ""} onClick={() => setCategory(item.slug)}>{item.title}</button>
           ))}
         </div>
       </div>

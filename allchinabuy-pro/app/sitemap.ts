@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date("2026-07-17T00:00:00.000Z");
-  const discoveryModified = new Date("2026-09-05T00:00:00.000Z");
+  const discoveryModified = new Date("2026-10-05T00:00:00.000Z");
   const staticRoutes = [
     "",
     "/finds",
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((route, index) => ({
       url: route ? `${SITE_URL}${route}/` : `${SITE_URL}/`,
-      lastModified: route === "" || route === "/guides" ? discoveryModified : lastModified,
+      lastModified: route === "" || route === "/guides" || route === "/allchinabuy-spreadsheet" ? discoveryModified : lastModified,
       changeFrequency: index === 0 ? "weekly" as const : "monthly" as const,
       priority: index === 0 ? 1 : route === "/finds" || route === "/guides" ? 0.9 : 0.6,
     })),
