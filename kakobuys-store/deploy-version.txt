@@ -1,2 +1,4 @@
-Production SEO routing release: dc1ba305c255fc2daeddab52096cc3c08cd850d9
-Published: 2026-08-03
+kakobuys.store SEO and editorial release
+Release: 2026-10-06-qc-guides-v2
+Articles: 16 English guides; 4 new; 3 core guides improved
+Automation: existing single-site exclusion preserved

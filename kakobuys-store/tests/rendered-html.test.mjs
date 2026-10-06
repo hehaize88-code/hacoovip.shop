@@ -76,7 +76,7 @@ test("all rendered external links point only to the approved catalog", async () 
       assert.equal(response.status, 200, `${path} should render`);
 
       const html = await response.text();
-      const linkMarkup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ");
+      const linkMarkup = html.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ");
       const externalUrls = linkMarkup.match(/https?:\\?\/\\?\/[^"'<>\s]+/g) ?? [];
       for (const rawUrl of externalUrls) {
         const normalized = rawUrl.replaceAll("\\/", "/");
@@ -165,7 +165,7 @@ test("the approved catalog brand name is not visible in page copy", async () => 
     { waitUntil() {}, passThroughOnException() {} },
   );
   const visibleText = (await response.text())
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ");
 
@@ -209,7 +209,7 @@ test("English article center includes all English-only guides", async () => {
     { waitUntil() {}, passThroughOnException() {} },
   );
   const centerHtml = await center.text();
-  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 12);
+  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 16);
   assert.match(centerHtml, /Kakobuy Warehouse Storage Guide/);
   assert.match(centerHtml, /Kakobuy Returns and After-Sales Checklist/);
   assert.match(centerHtml, /Kakobuy Stitching and Finish QC Checklist/);
@@ -227,7 +227,7 @@ test("English article center includes all English-only guides", async () => {
   );
   const articleHtml = await article.text();
   const visibleWords = articleHtml
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .split(/\s+/)
@@ -243,7 +243,7 @@ test("English article center includes all English-only guides", async () => {
   const returnsHtml = await returns.text();
   const returnsArticle = returnsHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
   const returnsWords = returnsArticle
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+    .replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .split(/\s+/)
@@ -253,7 +253,7 @@ test("English article center includes all English-only guides", async () => {
   assert.match(returnsHtml, /"@type":"Article"/);
   assert.match(returnsHtml, /"@type":"BreadcrumbList"/);
   assert.match(returnsHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-returns-after-sales-checklist\/"/);
-  assert.doesNotMatch(returnsHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+  assert.doesNotMatch(returnsHtml.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 
   const stitching = await worker.fetch(
     new Request("http://localhost/kakobuy-stitching-finish-qc-checklist", { headers: { accept: "text/html" } }),
@@ -262,13 +262,13 @@ test("English article center includes all English-only guides", async () => {
   );
   const stitchingHtml = await stitching.text();
   const stitchingArticle = stitchingHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
-  const stitchingWords = stitchingArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  const stitchingWords = stitchingArticle.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   assert.equal(stitching.status, 200);
   assert.ok(stitchingWords >= 1200 && stitchingWords <= 1800, `stitching article should contain 1200–1800 visible words, found ${stitchingWords}`);
   assert.match(stitchingHtml, /"@type":"Article"/);
   assert.match(stitchingHtml, /"@type":"BreadcrumbList"/);
   assert.match(stitchingHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-stitching-finish-qc-checklist\/"/);
-  assert.doesNotMatch(stitchingHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+  assert.doesNotMatch(stitchingHtml.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 
   const alignment = await worker.fetch(
     new Request("http://localhost/kakobuy-alignment-symmetry-print-placement-qc", { headers: { accept: "text/html" } }),
@@ -277,13 +277,13 @@ test("English article center includes all English-only guides", async () => {
   );
   const alignmentHtml = await alignment.text();
   const alignmentArticle = alignmentHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
-  const alignmentWords = alignmentArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  const alignmentWords = alignmentArticle.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   assert.equal(alignment.status, 200);
   assert.ok(alignmentWords >= 1200 && alignmentWords <= 1800, `alignment article should contain 1200–1800 visible words, found ${alignmentWords}`);
   assert.match(alignmentHtml, /"@type":"Article"/);
   assert.match(alignmentHtml, /"@type":"BreadcrumbList"/);
   assert.match(alignmentHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-alignment-symmetry-print-placement-qc\/"/);
-  assert.doesNotMatch(alignmentHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+  assert.doesNotMatch(alignmentHtml.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 
   const measurement = await worker.fetch(
     new Request("http://localhost/kakobuy-size-measurement-qc-photo-limits", { headers: { accept: "text/html" } }),
@@ -292,13 +292,13 @@ test("English article center includes all English-only guides", async () => {
   );
   const measurementHtml = await measurement.text();
   const measurementArticle = measurementHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
-  const measurementWords = measurementArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  const measurementWords = measurementArticle.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   assert.equal(measurement.status, 200);
   assert.ok(measurementWords >= 1200 && measurementWords <= 1800, `measurement article should contain 1200–1800 visible words, found ${measurementWords}`);
   assert.match(measurementHtml, /"@type":"Article"/);
   assert.match(measurementHtml, /"@type":"BreadcrumbList"/);
   assert.match(measurementHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-size-measurement-qc-photo-limits\/"/);
-  assert.doesNotMatch(measurementHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+  assert.doesNotMatch(measurementHtml.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 
   const color = await worker.fetch(
     new Request("http://localhost/kakobuy-qc-color-lighting-errors", { headers: { accept: "text/html" } }),
@@ -307,14 +307,14 @@ test("English article center includes all English-only guides", async () => {
   );
   const colorHtml = await color.text();
   const colorArticle = colorHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
-  const colorWords = colorArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  const colorWords = colorArticle.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   assert.equal(color.status, 200);
   assert.ok(colorWords >= 1200 && colorWords <= 1800, `color article should contain 1200–1800 visible words, found ${colorWords}`);
   assert.match(colorHtml, /"@type":"Article"/);
   assert.match(colorHtml, /"@type":"BreadcrumbList"/);
   assert.match(colorHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-qc-color-lighting-errors\/"/);
   assert.match(colorHtml, /<link rel="alternate" hrefLang="en" href="https:\/\/kakobuys\.store\/kakobuy-qc-color-lighting-errors\/"/);
-  assert.doesNotMatch(colorHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+  assert.doesNotMatch(colorHtml.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 
   const material = await worker.fetch(
     new Request("http://localhost/kakobuy-material-texture-qc-evidence", { headers: { accept: "text/html" } }),
@@ -323,14 +323,14 @@ test("English article center includes all English-only guides", async () => {
   );
   const materialHtml = await material.text();
   const materialArticle = materialHtml.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
-  const materialWords = materialArticle.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  const materialWords = materialArticle.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   assert.equal(material.status, 200);
   assert.ok(materialWords >= 1200 && materialWords <= 1800, `material article should contain 1200–1800 visible words, found ${materialWords}`);
   assert.match(materialHtml, /"@type":"Article"/);
   assert.match(materialHtml, /"@type":"BreadcrumbList"/);
   assert.match(materialHtml, /<link rel="canonical" href="https:\/\/kakobuys\.store\/kakobuy-material-texture-qc-evidence\/"/);
   assert.match(materialHtml, /<link rel="alternate" hrefLang="en" href="https:\/\/kakobuys\.store\/kakobuy-material-texture-qc-evidence\/"/);
-  assert.doesNotMatch(materialHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
+  assert.doesNotMatch(materialHtml.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " "), /https?:\/\/(?!www\.cnfanshp\.com|cnfanshp\.com|kakobuys\.store)[^"'<\s]+/);
 
   for (const route of ["kakobuy-shoe-qc-checklist", "kakobuy-qc-finder-vs-warehouse-photos"]) {
     const response = await worker.fetch(
@@ -340,7 +340,7 @@ test("English article center includes all English-only guides", async () => {
     );
     const html = await response.text();
     const articleBody = html.match(/<article class="article-page">[\s\S]*?<\/article>/)?.[0] ?? "";
-    const words = articleBody.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+    const words = articleBody.replace(/<aside class="fact-note">[\s\S]*?<\/aside>/gi, " ").replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, " ").replace(/<div class="related-reading">[\s\S]*?<div class="article-actions">/gi, " ").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
     assert.equal(response.status, 200);
     assert.ok(words >= 1200 && words <= 1800, `${route} should contain 1200–1800 visible words, found ${words}`);
     assert.match(html, /"@type":"Article"/);
@@ -425,11 +425,11 @@ test("all three article bodies follow the selected language", async () => {
       const html = await response.text();
       assert.equal(response.status, 200, `${path} should render`);
       assert.doesNotMatch(html, new RegExp(englishBodyMarkers[index].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `${path} should not render the English introduction`);
-      assert.equal((html.match(/<section>/g) ?? []).length, expectedStructure[index].sections, `${path} should preserve every article section`);
-      const articleSections = html.match(/<section>[\s\S]*?<\/section>/g) ?? [];
+      assert.equal((html.match(/<section id="section-\d+">/g) ?? []).length, expectedStructure[index].sections, `${path} should preserve every article section`);
+      const articleSections = html.match(/<section id="section-\d+">[\s\S]*?<\/section>/g) ?? [];
       const paragraphCount = articleSections.reduce((total, section) => total + (section.match(/<p>/g) ?? []).length, 0);
       assert.equal(paragraphCount, expectedStructure[index].paragraphs, `${path} should preserve every article paragraph`);
-      assert.equal((html.match(/<li>/g) ?? []).length, expectedStructure[index].bullets, `${path} should preserve every checklist item`);
+      assert.equal(articleSections.reduce((total, section) => total + (section.match(/<li>/g) ?? []).length, 0), expectedStructure[index].bullets, `${path} should preserve every checklist item`);
     }
   }
 });

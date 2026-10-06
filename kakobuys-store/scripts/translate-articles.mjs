@@ -1,12 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 
-const sourcePath = new URL("../app/article-content.ts", import.meta.url);
+const { longArticles } = await import("../app/article-content.ts");
 const outputPath = new URL("../app/article-translations.json", import.meta.url);
-const source = await readFile(sourcePath, "utf8");
-const match = source.match(/export const longArticles: LongArticle\[\] = (\[[\s\S]*\n\]);\s*$/);
-if (!match) throw new Error("Could not locate longArticles in article-content.ts");
-
-const englishArticles = Function(`"use strict"; return (${match[1]});`)();
+const englishArticles = longArticles.slice(0, 3);
 const targets = ["de", "fr", "es", "it", "pl", "pt", "ro"];
 const MAX_BATCH_CHARS = 4500;
 const CONCURRENCY = 1;

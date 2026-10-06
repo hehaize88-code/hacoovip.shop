@@ -136,7 +136,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
           "x-default": `/${article.slug}/`
         } : { en: canonical, "x-default": canonical }
       },
-      openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: canonical, images: isEnglishOnlyArticle ? ["https://kakobuys.store/brand/kakobuy.png"] : undefined }
+      openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: canonical }
     };
   }
 

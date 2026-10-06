@@ -1,4 +1,5 @@
-export type ArticleSection = { heading: string; paragraphs: string[]; bullets?: string[] };
+import { newArticles } from "./article-expansion.ts";
+export type ArticleSection = { heading: string; paragraphs: string[]; bullets?: string[]; table?: { headers: string[]; rows: string[][] } };
 export type LongArticle = {
   slug: string; title: string; seoTitle: string; seoDescription: string;
   primaryKeyword: string; secondaryKeywords: string[]; intro: string; quickAnswer: string;
@@ -50,7 +51,7 @@ export const longArticles: LongArticle[] = [
         heading: "Know when an extra photo is worth requesting",
         paragraphs: [
           "Additional photos are useful when they can resolve a specific uncertainty before a return deadline or parcel submission. Ask for an angle, measurement or detail that changes the decision: insole length with the tape flat, the back of a print, a zipper fully closed, the underside of a sole, the contents of the package, or a close-up of a suspected stain. A vague request for ‘more QC’ often produces images that do not answer the real question.",
-          "Kakobuy's public help content describes a five-day return or exchange guarantee for qualifying purchases, counted from warehouse signing or stocking. Conditions and exclusions may apply, seller cooperation can matter, and return domestic shipping may create a cost. Policies can change, so verify the live order deadline and eligibility before relying on a general guide. The practical lesson is to inspect promptly; waiting until parcel submission can remove options that existed earlier."
+          "Check the current order's return or exchange eligibility, deadline and possible domestic return cost before waiting for more images. Do not assume a photo request pauses that deadline or that warehouse storage extends it. Inspect promptly and keep the item out of parcel submission while a decision-changing question remains open."
         ]
       },
       {
@@ -995,5 +996,44 @@ export const longArticles: LongArticle[] = [
       }
     ],
     sourceNote: "Fact-check basis: Kakobuy's current public purchase, warehouse inspection and photo-review workflow, reviewed September 7, 2026. The distinction between reference evidence and order evidence, comparison table and confidence method are independent editorial tools. Public or shared QC images may represent another seller, option, date or batch. Photo availability, services, eligibility, fees and deadlines can change; follow the live order."
-  }
+  },
+  ...newArticles
 ];
+
+// Substantive October 6 review: practical evidence examples for the core guides.
+const coreUpdates: Record<string, ArticleSection> = {
+  "read-kakobuy-qc-photos": {
+    heading: "Turn a photo concern into a specific next step",
+    paragraphs: ["Use this short decision table after the first pass through the gallery. These are illustrative situations, not reports of customer orders. Choose the smallest request that resolves the important uncertainty and keep the original image with the response."],
+    table: {headers:["Visible evidence", "Still unresolved", "Useful next step"],rows:[
+      ["Size tag matches the order", "Whether the dimensions suit your reference garment", "Request the one measurement that determines your fit decision."],
+      ["A bright line appears on hardware", "Reflection, protective film or surface mark", "Request a located close-up and another angle."],
+      ["A strap is not shown", "Missing component or simply outside the frame", "Request an arranged contents photo against the order list."],
+      ["A clear label shows the wrong ordered option", "Available correction and eligibility", "Save the order and label evidence; use the live after-sales route."]
+    ]}
+  },
+  "kakobuy-size-measurement-qc-photo-limits": {
+    heading: "A worked measurement example with an unclear zero point",
+    paragraphs: ["Hypothetical example: a flat chest photo ends at 59 cm, but the tape begins at the 2 cm mark on the opposite seam. If the endpoints and flat arrangement are genuinely clear, the indicated distance is 57 cm, not 59 cm. If the start is cropped, do not assume the same offset; request a repeat with zero and both seams visible.","Compare the resulting measurement with a reference garment using the same endpoints and units. Decide your acceptable range before looking for a favorable number. The invented values illustrate an error check and are not a size recommendation or a universal manufacturing tolerance."],
+    table:{headers:["Check", "Usable evidence", "Reason to clarify"],rows:[
+      ["Start", "Zero and starting landmark visible", "Tape begins outside the frame"],
+      ["Method", "Same endpoints as your reference", "Seller chart uses another length path"],
+      ["Arrangement", "Flat and relaxed as requested", "Side fold or visible stretching"],
+      ["Reading", "Final mark and endpoint readable", "Finger or fold covers the endpoint"]
+    ]}
+  },
+  "kakobuy-shoe-qc-checklist": {
+    heading: "Choose a useful shoe view",
+    paragraphs:["Match each concern to an observable view. These independent checks do not promise included services; confirm photo availability and charges in your order."],
+    table:{headers:["Concern", "Request", "Limit"],rows:[
+      ["Different toe shapes", "Both shoes parallel in one straight top view", "Stuffing and packing can still alter soft uppers"],
+      ["Possible sole gap", "Located close-up plus side view in even light", "A photo does not predict bond durability"],
+      ["Unreadable size", "Labels from both shoes with surrounding context", "Marked size cannot guarantee fit"],
+      ["Possible missing accessory", "Pair and ordered accessories arranged together", "Compare with the actual promised contents"]
+    ]}
+  }
+};
+for (const article of longArticles) {
+  const update = coreUpdates[article.slug];
+  if (update) article.sections.splice(article.sections.length - 1, 0, update);
+}

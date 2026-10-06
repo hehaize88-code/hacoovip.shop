@@ -16,6 +16,10 @@ const LOCALIZED_PAGE_SLUGS = [
 ];
 
 const ENGLISH_ONLY_PAGES = {
+  "kakobuy-extra-qc-photos": "Kakobuy Extra QC Photos: Requests That Resolve a Real Doubt",
+  "kakobuy-hoodie-qc-checklist": "Kakobuy Hoodie QC Checklist: Measurements, Print and Seams",
+  "kakobuy-bag-qc-checklist": "Kakobuy Bag QC Checklist: Shape, Hardware, Lining and Straps",
+  "kakobuy-jacket-qc-checklist": "Kakobuy Jacket QC Checklist: Measurements, Zipper and Lining",
   "kakobuy-warehouse-storage-guide": "Kakobuy Warehouse Storage Guide",
   "kakobuy-returns-after-sales-checklist": "Kakobuy Returns and After-Sales Checklist",
   "kakobuy-stitching-finish-qc-checklist": "Kakobuy Stitching and Finish QC Checklist",
@@ -59,42 +63,70 @@ const ENGLISH_ONLY_PAGES = {
 };
 
 const ARTICLE_METADATA = {
+  "read-kakobuy-qc-photos": {
+    "title": "How to Read Kakobuy QC Photos Before Shipping (2026)",
+    "description": "Use this practical Kakobuy QC photo checklist to review shape, size, color, stitching and details before choosing return or international shipping."
+  },
+  "kakobuy-spreadsheet-first-time-guide": {
+    "title": "Kakobuy Spreadsheet Guide for Beginners (2026)",
+    "description": "Learn how to use a Kakobuy spreadsheet safely: verify product links, compare variants, plan QC checks and avoid common first-order mistakes."
+  },
+  "product-price-vs-parcel-cost": {
+    "title": "Kakobuy Shipping Cost: Product Price vs Parcel Total",
+    "description": "Understand Kakobuy shipping cost, domestic delivery, parcel weight, dimensional weight and the variables that turn an item price into a delivered total."
+  },
   "kakobuy-warehouse-storage-guide": {
-    title: "Kakobuy Parcel Warehouse Policy: 100-Day Storage Guide",
-    description: "Check the Kakobuy parcel warehouse policy, normal 100-day storage duration, 90-day reminder, QC deadlines and parcel planning steps.",
+    "title": "Kakobuy Parcel Warehouse Policy: 100-Day Storage Guide",
+    "description": "Check the Kakobuy parcel warehouse policy, normal 100-day storage duration, 90-day reminder, QC deadlines and parcel planning steps."
   },
   "kakobuy-returns-after-sales-checklist": {
-    title: "Kakobuy Returns Policy: After-Sales Checklist (2026)",
-    description: "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales.",
+    "title": "Kakobuy Returns Policy: After-Sales Checklist (2026)",
+    "description": "Use this Kakobuy returns checklist to record the order, warehouse evidence, seller mismatch, deadline and requested outcome before contacting after-sales."
   },
   "kakobuy-stitching-finish-qc-checklist": {
-    title: "Kakobuy Stitching QC Checklist: Seams and Finish",
-    description: "Use this Kakobuy stitching QC checklist to inspect seams, hems, edge finishing and stress points, then decide whether to ship, clarify or return.",
+    "title": "Kakobuy Stitching QC Checklist: Seams and Finish",
+    "description": "Use this Kakobuy stitching QC checklist to inspect seams, hems, edge finishing and stress points, then decide whether to ship, clarify or return."
   },
   "kakobuy-alignment-symmetry-print-placement-qc": {
-    title: "Kakobuy Alignment QC: Symmetry and Print Placement",
-    description: "Use a repeatable Kakobuy alignment QC method to compare symmetry, centered prints, panel lines and paired details without mistaking camera angle for defects.",
+    "title": "Kakobuy Alignment QC: Symmetry and Print Placement",
+    "description": "Use a repeatable Kakobuy alignment QC method to compare symmetry, centered prints, panel lines and paired details without mistaking camera angle for defects."
   },
   "kakobuy-size-measurement-qc-photo-limits": {
-    title: "Kakobuy Size Measurement QC: Photo Limits and Checks",
-    description: "Use visible ruler endpoints, garment landmarks and repeatable comparisons to understand what Kakobuy size measurement QC photos can and cannot prove.",
+    "title": "Kakobuy Size Measurement QC: Photo Limits and Checks",
+    "description": "Use this Kakobuy size measurement QC checklist to verify tape placement, endpoints and garment dimensions without treating a photo as a fit guarantee."
   },
   "kakobuy-qc-color-lighting-errors": {
-    title: "Kakobuy QC Color and Lighting: Is the Mismatch Real?",
-    description: "Review Kakobuy QC color photos for white balance, mixed light, exposure and repeated differences before deciding whether a mismatch is real.",
+    "title": "Kakobuy QC Color and Lighting: Is the Mismatch Real?",
+    "description": "Use this Kakobuy QC color and lighting checklist to separate a real option mismatch from white balance, exposure, reflections and screen differences."
   },
   "kakobuy-material-texture-qc-evidence": {
-    title: "Kakobuy Material and Texture QC: What Photos Prove",
-    description: "Review Kakobuy material and texture QC evidence without treating warehouse photos as proof of fiber content, feel, durability, warmth or authenticity.",
+    "title": "Kakobuy Material and Texture QC: What Photos Prove",
+    "description": "Review Kakobuy material and texture QC evidence without treating warehouse photos as proof of fiber content, feel, durability, warmth or authenticity."
   },
   "kakobuy-shoe-qc-checklist": {
-    title: "Kakobuy Shoe QC Checklist: Photos, Size Tag and Sole",
-    description: "Use this Kakobuy shoe QC checklist to review warehouse photos for shape, pair symmetry, size tags, outsole, stitching, glue and packaging.",
+    "title": "Kakobuy Shoe QC Checklist: Photos, Size Tag and Sole",
+    "description": "Use this Kakobuy shoe QC checklist to review warehouse photos for shape, pair symmetry, size tags, outsole, stitching, glue and packaging."
   },
   "kakobuy-qc-finder-vs-warehouse-photos": {
-    title: "Kakobuy QC Finder vs Warehouse Photos: Evidence Guide",
-    description: "Compare a Kakobuy QC finder with your actual warehouse photos, learn what sample images can reveal, and avoid approving the wrong item evidence.",
+    "title": "Kakobuy QC Finder vs Warehouse Photos: Evidence Guide",
+    "description": "Compare a Kakobuy QC finder with your actual warehouse photos, learn what sample images can reveal, and avoid approving the wrong item evidence."
   },
+  "kakobuy-extra-qc-photos": {
+    "title": "Kakobuy Extra QC Photos: Angles & Request Templates",
+    "description": "Request useful Kakobuy extra QC photos with clear templates for measurements, labels, marks and missing parts. Know what to check before shipping."
+  },
+  "kakobuy-hoodie-qc-checklist": {
+    "title": "Kakobuy Hoodie QC: Measurements, Print & Stitching",
+    "description": "Check Kakobuy hoodie QC photos for chest width, length, sleeve method, print placement, hood shape and seams before deciding whether to ship."
+  },
+  "kakobuy-bag-qc-checklist": {
+    "title": "Kakobuy Bag QC Checklist: Hardware, Lining & Straps",
+    "description": "Review Kakobuy bag QC photos for dimensions, panel shape, hardware, lining, strap attachments and included parts before international shipping."
+  },
+  "kakobuy-jacket-qc-checklist": {
+    "title": "Kakobuy Jacket QC: Measurements, Zipper & Lining",
+    "description": "Check Kakobuy jacket QC photos for chest and sleeve measurements, front alignment, zipper details, lining, pockets and visible construction."
+  }
 };
 
 const SEO = {
@@ -340,6 +372,7 @@ function languagePath(language, slug) {
 }
 
 function pageMetadata(language, slug) {
+  if (language === "en" && ARTICLE_METADATA[slug]) return ARTICLE_METADATA[slug];
   if (language === "en" && ENGLISH_ONLY_PAGES[slug]) {
     const page = ENGLISH_ONLY_PAGES[slug];
     if (ARTICLE_METADATA[slug]) return ARTICLE_METADATA[slug];
@@ -389,7 +422,7 @@ function seoMarkup({ language, slug, canonicalUrl, title, description }) {
     `<link rel="canonical" href="${canonicalUrl}">` +
     alternates +
     `<link rel="alternate" hreflang="x-default" href="${CANONICAL_ORIGIN}${languagePath("en", slug)}">` +
-    `<meta property="og:type" content="website">` +
+    `<meta property="og:type" content="${ARTICLE_METADATA[slug] ? "article" : "website"}">` +
     `<meta property="og:site_name" content="Kakobuy QC Index">` +
     `<meta property="og:locale" content="${locale}">` +
     `<meta property="og:title" content="${safeTitle}">` +
