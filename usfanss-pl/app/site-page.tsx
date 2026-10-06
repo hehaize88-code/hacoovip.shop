@@ -12,16 +12,20 @@ const articleDates: Record<ArticleSlug, string> = {
   "usfans-poland-route-availability": "2026-09-15",
   "usfans-shipping-to-poland": "2026-09-07",
   "usfans-tracking-guide": "2026-09-07",
+  "usfans-sizing-poland": "2026-10-06",
+  "usfans-returns-before-shipping-poland": "2026-10-06",
+  "usfans-hoodies-poland-selection": "2026-10-06",
+  "usfans-shoes-poland-shoebox": "2026-10-06",
 };
 
 const articleResearchLabels: Record<Locale, string> = {
-  pl: "Sprawdzone na publicznych stronach USFans · aktualizacja 7 września 2026",
-  en: "Fact-checked against USFans public pages · updated 7 September 2026",
-  de: "An öffentlichen USFans-Seiten geprüft · aktualisiert am 7. September 2026",
-  fr: "Vérifié sur les pages publiques USFans · mis à jour le 7 septembre 2026",
-  it: "Verificato sulle pagine pubbliche USFans · aggiornato il 7 settembre 2026",
-  es: "Verificado con las páginas públicas de USFans · actualizado el 7 de septiembre de 2026",
-  ro: "Verificat pe paginile publice USFans · actualizat la 7 septembrie 2026",
+  pl: "Przegląd redakcyjny · aktualizacja 6 października 2026",
+  en: "Editorial review · updated 6 October 2026",
+  de: "Redaktionelle Prüfung · aktualisiert am 6. Oktober 2026",
+  fr: "Revue éditoriale · mis à jour le 6 octobre 2026",
+  it: "Revisione editoriale · aggiornato il 6 ottobre 2026",
+  es: "Revisión editorial · actualizado el 6 de octubre de 2026",
+  ro: "Revizuire editorială · actualizat la 6 octombrie 2026",
 };
 
 const routeResearchLabels: Record<Locale, string> = {
@@ -143,12 +147,13 @@ function ProductGrid({ locale, limit }: { locale: Locale; limit?: number }) {
 function ArticleCards({ locale, limit }: { locale: Locale; limit?: number }) {
   const c = copy[locale];
   const articles = getArticles(locale);
-  const visibleSlugs = limit ? [...articleSlugs].reverse().slice(0, limit) : articleSlugs;
+  const orderedSlugs = [...articleSlugs].sort((a, b) => articleDates[b].localeCompare(articleDates[a]));
+  const visibleSlugs = limit ? orderedSlugs.slice(0, limit) : orderedSlugs;
   return (
     <div className="article-grid">
       {visibleSlugs.map((slug, index) => (
         <a className={`article-card article-card-${index + 1}`} href={routeFor(locale, "article", slug)} key={slug}>
-          <div className="article-top"><span>0{index + 1}</span><i>↗</i></div>
+          <div className="article-top"><span>{String(index + 1).padStart(2, "0")}</span><i>↗</i></div>
           <p>{c.planned}</p><h3>{articles[slug].title}</h3><small>{articles[slug].excerpt}</small>
           <b>{c.readArticle} →</b>
         </a>
@@ -232,26 +237,46 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
   const article = getArticles(locale)[slug];
   const articleUrl = `${siteBase}${routeFor(locale, "article", slug)}`;
   const articlesUrl = `${siteBase}${routeFor(locale, "articles")}`;
-  const currentIndex = articleSlugs.indexOf(slug);
-  const relatedSlugs = [articleSlugs[(currentIndex + articleSlugs.length - 1) % articleSlugs.length], articleSlugs[(currentIndex + 1) % articleSlugs.length]];
-  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: articleDates[slug], dateModified: articleDates[slug] };
+  const relatedMap: Record<ArticleSlug, ArticleSlug[]> = {
+    "first-time-spreadsheet-checklist": ["usfans-sizing-poland", "read-usfans-qc-photos", "product-price-vs-parcel-cost"],
+    "read-usfans-qc-photos": ["usfans-sizing-poland", "usfans-returns-before-shipping-poland", "usfans-shipping-to-poland"],
+    "product-price-vs-parcel-cost": ["usfans-shipping-to-poland", "usfans-shoes-poland-shoebox", "usfans-poland-route-availability"],
+    "usfans-poland-preorder-checklist": ["first-time-spreadsheet-checklist", "usfans-sizing-poland", "usfans-shipping-to-poland"],
+    "usfans-poland-route-availability": ["usfans-shipping-to-poland", "product-price-vs-parcel-cost", "usfans-tracking-guide"],
+    "usfans-shipping-to-poland": ["product-price-vs-parcel-cost", "usfans-shoes-poland-shoebox", "usfans-tracking-guide"],
+    "usfans-tracking-guide": ["usfans-shipping-to-poland", "usfans-returns-before-shipping-poland", "read-usfans-qc-photos"],
+    "usfans-sizing-poland": ["usfans-hoodies-poland-selection", "usfans-shoes-poland-shoebox", "usfans-returns-before-shipping-poland"],
+    "usfans-returns-before-shipping-poland": ["read-usfans-qc-photos", "usfans-sizing-poland", "usfans-shipping-to-poland"],
+    "usfans-hoodies-poland-selection": ["usfans-sizing-poland", "read-usfans-qc-photos", "usfans-shipping-to-poland"],
+    "usfans-shoes-poland-shoebox": ["usfans-sizing-poland", "product-price-vs-parcel-cost", "usfans-shipping-to-poland"],
+  };
+  const relatedSlugs = relatedMap[slug];
+  const isHistorical = slug === "usfans-poland-preorder-checklist" || slug === "usfans-poland-route-availability";
+  const isNew = articleDates[slug] === "2026-10-06";
+  const isRefreshed = !isHistorical && (locale === "pl" || (locale === "en" && slug !== "usfans-tracking-guide"));
+  const modifiedDate = isNew || isRefreshed ? "2026-10-06" : articleDates[slug];
+  const categoryIndex = slug === "usfans-hoodies-poland-selection" ? 1 : slug === "usfans-shoes-poland-shoebox" ? 0 : null;
+  const articleCtaHref = categoryIndex === null ? allProducts : categories[categoryIndex][2];
+  const articleCtaLabel = categoryIndex === null ? c.finalCta : categoryLabels[locale][categoryIndex];
+  const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.excerpt, inLanguage: locales.find((l) => l.code === locale)?.lang, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl }, author: { "@type": "Organization", name: "USFanss" }, publisher: { "@type": "Organization", name: "USFanss", url: siteBase }, datePublished: articleDates[slug], dateModified: modifiedDate };
   const breadcrumbJson = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: c.nav.home, item: `${siteBase}${routeFor(locale, "home")}` }, { "@type": "ListItem", position: 2, name: c.nav.articles, item: articlesUrl }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       <article className="article-page">
-        <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{slug === "usfans-poland-route-availability" ? routeResearchLabels[locale] : articleResearchLabels[locale]}</small></header>
+        <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{slug === "usfans-poland-route-availability" ? routeResearchLabels[locale] : modifiedDate === "2026-10-06" ? articleResearchLabels[locale] : modifiedDate}</small></header>
         <div className="article-layout">
-          <aside><span>{c.keyTakeaways}</span><ul>{article.points.map((point) => <li key={point}>{point}</li>)}</ul></aside>
+          <aside><span>{c.keyTakeaways}</span><ul>{article.points.map((point) => <li key={point}>{point}</li>)}</ul><nav className="article-toc" aria-label={c.nav.articles}>{article.sections.map(([heading], index) => <a href={`#section-${index + 1}`} key={heading}>{heading}</a>)}</nav></aside>
           <div className="article-body">
             <div className="article-intro">{article.intro.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-            {article.sections.map(([heading, body]) => <section key={heading}><h2>{heading}</h2>{body.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
+            {article.sections.map(([heading, body], index) => <section id={`section-${index + 1}`} key={heading}><h2>{heading}</h2>{body.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
+            {article.sources && <div className="article-sources"><h2>{({pl:"Źródła i zakres weryfikacji",en:"Sources and verification scope",de:"Quellen und Prüfumfang",fr:"Sources et portée de la vérification",it:"Fonti e ambito della verifica",es:"Fuentes y alcance de la verificación",ro:"Surse și limitele verificării"})[locale]}</h2><ul>{article.sources.map(source => <li key={source}>{source}</li>)}</ul></div>}
             <div className="article-check"><strong>{c.disclaimer}</strong></div>
             <nav className="article-related" aria-label="Related USFans guides">
               <span>{c.articleIndex}</span>
               {relatedSlugs.map((relatedSlug) => <a href={routeFor(locale, "article", relatedSlug)} key={relatedSlug}>{getArticles(locale)[relatedSlug].title} →</a>)}
-              <a className="article-related-cta" href={allProducts} target="_blank" rel="noopener noreferrer">{c.finalCta} ↗</a>
+              <a className="article-related-cta" href={articleCtaHref} target="_blank" rel="noopener noreferrer">{articleCtaLabel} ↗</a>
             </nav>
           </div>
         </div>

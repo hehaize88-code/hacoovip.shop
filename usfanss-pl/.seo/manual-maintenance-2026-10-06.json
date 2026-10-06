@@ -1,0 +1,28 @@
+{
+  "site": "https://usfanss.pl/",
+  "date": "2026-10-06",
+  "automatic_article_updates": {
+    "enabled": false,
+    "scope": "Only usfanss.pl and the usfanss-pl/ repository directory",
+    "reason": "Explicit user instruction",
+    "resume_requires": "Explicit user instruction to restore automatic updates",
+    "shared_task": "Remains enabled with its existing schedule; every other site's status, cursor and publishing rules remain unchanged",
+    "cursor": "Preserve UFP history without advancing, resetting, rewinding or backfilling while paused",
+    "manual_work": "This user-authorized maintenance and four-article publication are allowed"
+  },
+  "measurement_limit": "No current private GSC, Bing or GA4 metrics were available through the connected analytics service. No search volumes, CTR gains or traffic gains are asserted.",
+  "research_basis": {
+    "public_competitors": ["https://usfinds.net/", "https://usfanswithqc.com/", "https://us-fansspreadsheet.com/guides/"],
+    "official_references": ["https://www.usfans.com/", "https://www.usfans.com/product/3/7773857914", "https://www.usfans.com/product/3/7453674531", "https://www.usfans.com/product/3/7627419009"],
+    "selection_method": "Cover distinct pre-purchase and warehouse decisions missing from the existing shipping, tracking, first-order, QC and budget guides. These are editorial priorities, not a volume-ranked keyword report."
+  },
+  "new_topics": [
+    {"slug":"usfans-sizing-poland","keywords":["usfans rozmiary","usfans tabela rozmiarów","usfans size guide"]},
+    {"slug":"usfans-returns-before-shipping-poland","keywords":["usfans zwroty","usfans zwrot z magazynu","usfans returns"]},
+    {"slug":"usfans-hoodies-poland-selection","keywords":["usfans bluzy","usfans hoodie","usfans hoodies Poland"]},
+    {"slug":"usfans-shoes-poland-shoebox","keywords":["usfans buty","usfans shoebox","usfans shoes Poland"]}
+  ],
+  "content_changes": ["Four new articles in seven locales", "Five complete refreshed Polish guides", "Corrected route-weight and return-window generalizations in existing English articles and multilingual guide/FAQ copy", "Preserved historical dated route observations"],
+  "technical_changes": ["Topic-related internal links and article contents navigation", "Full Polish article indexing with reciprocal language alternates", "Sitemap includes only supported indexable article languages", "Latest four articles on the homepage", "Article-specific category destinations for hoodies and shoes", "Retained existing GA4 main-site click and search events"],
+  "deployment": "Publish only usfanss-pl/ through the existing GitHub main to Cloudflare Pages integration; do not change other site directories or deployment configuration."
+}

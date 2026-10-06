@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { articleSlugs, getArticles, getPageSeo, locales, parseRoute, routeFor } from "../site-data";
+import { articleSlugs, getArticles, getArticleLocales, getPageSeo, locales, parseRoute, routeFor } from "../site-data";
 import { SitePage } from "../site-page";
 
 const siteBase = "https://usfanss.pl";
@@ -24,18 +24,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const pageTitle = article ? article.seoTitle ?? article.title : seo!.title;
   const description = article ? article.excerpt : seo!.description;
   const pathname = routeFor(route.locale, route.page, route.article);
-  const isNewFullArticle = route.article === "usfans-poland-preorder-checklist" || route.article === "usfans-poland-route-availability";
-  const isThinLocalizedArticle = route.page === "article" && route.locale !== "en" && !isNewFullArticle;
-  const languageEntries = route.page === "article"
-    ? (isNewFullArticle
-      ? locales.map((l) => [l.lang, `${siteBase}${routeFor(l.code, "article", route.article)}`]).concat([["x-default", `${siteBase}${routeFor("pl", "article", route.article)}`]])
-      : [["en", `${siteBase}${routeFor("en", "article", route.article)}`], ["x-default", `${siteBase}${routeFor("en", "article", route.article)}`]])
-    : locales.map((l) => [l.lang, `${siteBase}${routeFor(l.code, route.page)}`]).concat([["x-default", `${siteBase}${routeFor("en", route.page)}`]]);
+  const articleLocales = route.article ? getArticleLocales(route.article) : locales;
+  const isThinLocalizedArticle = route.page === "article" && !articleLocales.some(l => l.code === route.locale);
+  const languageEntries = (route.page === "article" ? articleLocales : locales)
+    .map(l => [l.lang, `${siteBase}${routeFor(l.code, route.page, route.article)}`])
+    .concat([["x-default", `${siteBase}${routeFor("pl", route.page, route.article)}`]]);
   return {
     title: pageTitle, description,
     alternates: { canonical: `${siteBase}${pathname}`, languages: Object.fromEntries(languageEntries) },
     robots: { index: !isThinLocalizedArticle, follow: true },
-    openGraph: { type: "article", title: pageTitle, description, url: `${siteBase}${pathname}`, siteName: "USFanss" },
+    openGraph: { type: article ? "article" : "website", title: pageTitle, description, url: `${siteBase}${pathname}`, siteName: "USFanss" },
     twitter: { card: "summary", title: pageTitle, description }
   };
 }
@@ -45,3 +43,4 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug: 
   if (!route) notFound();
   return <SitePage locale={route.locale} page={route.page} article={route.article} />;
 }
+

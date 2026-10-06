@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://usfanss.pl"),
-  title: { default: "USFans / US Fans Lista 2026 – Spreadsheet Polska i QC", template: "%s | USFans" },
+  title: { default: "USFans Spreadsheet Polska 2026 | US Fans Lista", template: "%s" },
   description: "Independent, multilingual product discovery directory with categories, finds, guides, and practical articles.",
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
