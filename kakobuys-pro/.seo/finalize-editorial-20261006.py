@@ -83,12 +83,16 @@ def main():
   # Refresh page-level schema from the visible page, without changing publication dates.
   h1=r.xpath('//h1');title=h1[0].text_content() if h1 else ''
   metas=r.xpath('//meta[@name="description"]');desc=metas[0].get('content','') if metas else ''
+  if key=='articles':set_text(head.find('title'),title)
   for script in r.xpath('//script[@type="application/ld+json"]'):
    try:
     data=json.loads(script.text)
     def visit(x):
      if isinstance(x,dict):
       typ=x.get('@type')
+      if typ=='Organization' and 'Kakobuys.pro' in x.get('name',''):
+       x.setdefault('url',ORIGIN)
+       x.setdefault('logo',{'@type':'ImageObject','url':ORIGIN+'/kakobuy-logo.png'})
       if typ in ['Article','BlogPosting']:
        x.update(headline=title,description=desc,url=url,mainEntityOfPage=url,inLanguage=lang)
        if r.xpath('//section[@data-editorial="20261006"]'):x['dateModified']=DATE
@@ -102,7 +106,7 @@ def main():
     visit(data)
     if key=='articles':
      pages=sorted((p.parent).glob('*/index.html'))
-     data={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':desc,'url':url,'inLanguage':lang,'hasPart':[{'@type':'Article','url':ORIGIN+route(a),'name':html.parse(str(a)).xpath('//h1')[0].text_content()} for a in pages]}
+     data={'@context':'https://schema.org','@type':'CollectionPage','name':title,'description':desc,'url':url,'inLanguage':lang,'mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'url':ORIGIN+route(a),'name':html.parse(str(a)).xpath('//h1')[0].text_content()} for i,a in enumerate(pages)]}}
     script.text=json.dumps(data,ensure_ascii=False)
    except (ValueError,TypeError):pass
   # Normalize internal links to static routes and avoid locale links to nonexistent pages.
