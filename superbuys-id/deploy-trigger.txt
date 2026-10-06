@@ -1,1 +1,3 @@
-Superbuys Pages deployment trigger: 2026-08-13T07:03:00Z
+Superbuys.id Pages deployment trigger: 2026-10-06
+Main shop: https://cnfanshp.com
+Source fix: a89be17fbd12155f65b95352e887af747c9b2e49
