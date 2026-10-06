@@ -36,8 +36,8 @@ test("renders production SEO metadata", async () => {
   assert.doesNotMatch(html, /noindex/i);
   assert.match(html, /rel=["']canonical["']/i);
   assert.match(html, /application\/ld\+json/i);
-  assert.match(html, /https:\/\/www\.cnbuycha\.com/i);
-  assert.doesNotMatch(html, /cnfanshp\.com/i);
+  assert.match(html, /https:\/\/cnfanshp\.com/i);
+  assert.doesNotMatch(html, /cnbuycha\.com/i);
   assert.doesNotMatch(html, />2,044</i);
   assert.doesNotMatch(html, /98\.7%/i);
   assert.doesNotMatch(html, /Match\s+\d+%/i);

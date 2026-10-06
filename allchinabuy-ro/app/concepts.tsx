@@ -4,114 +4,106 @@ export const categories = [
   [
     "Sneakers",
     "Open current collection",
-    "https://www.cnbuycha.com/shoes/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
+    "https://cnfanshp.com/shoes/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
     "01",
   ],
   [
     "Hoodies",
     "Open current collection",
-    "https://www.cnbuycha.com/hoodies-sweaters/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
+    "https://cnfanshp.com/hoodies-sweaters/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
     "02",
   ],
   [
     "T-Shirts",
     "Open current collection",
-    "https://www.cnbuycha.com/t-shirts/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
+    "https://cnfanshp.com/t-shirts/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
     "03",
   ],
   [
     "Jackets",
     "Open current collection",
-    "https://www.cnbuycha.com/jackets/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
+    "https://cnfanshp.com/jackets/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
     "04",
   ],
   [
     "Bottoms",
     "Open current collection",
-    "https://www.cnbuycha.com/pants-shorts/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
+    "https://cnfanshp.com/pants-shorts/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
     "05",
   ],
   [
     "Accessories",
     "Open current collection",
-    "https://www.cnbuycha.com/accessories/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
+    "https://cnfanshp.com/accessories/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_category_index",
     "06",
   ],
 ];
 
 export const products = [
   {
-    name: "Mertra Hoodie",
-    category: "Hoodies",
-    price: "$31.44 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616301A57.webp",
-    href: "https://www.cnbuycha.com/AllProducts/3393.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Gucci pique cotton breathable and versatile short",
+    "category": "T-Shirts",
+    "price": "$31.88 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1121Q55.webp",
+    "href": "https://cnfanshp.com/AllProducts/5976.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "Canada Goose Sweatshirt",
-    category: "Hoodies",
-    price: "$33.95 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260729/1-260H9212445610.webp",
-    href: "https://www.cnbuycha.com/AllProducts/3380.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Polo shirt（5 styles）",
+    "category": "T-Shirts",
+    "price": "$16.16 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G04619608.webp",
+    "href": "https://cnfanshp.com/AllProducts/5953.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "Nike Sweater",
-    category: "Hoodies",
-    price: "$39.15 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260729/1-260H9211624601.jpg",
-    href: "https://www.cnbuycha.com/AllProducts/3375.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Off White T-shirt",
+    "category": "T-Shirts",
+    "price": "$16.31 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G02630c8.webp",
+    "href": "https://cnfanshp.com/AllProducts/5934.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "ACG & SUP Pullover Sweatshirt",
-    category: "Hoodies",
-    price: "$59.16 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260729/1-260H9211449611.webp",
-    href: "https://www.cnbuycha.com/AllProducts/3374.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Celine embroidered chocolate-",
+    "category": "Jackets",
+    "price": "$44.19 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1193O56.webp",
+    "href": "https://cnfanshp.com/AllProducts/5981.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "The North Face Down Jacket",
-    category: "Jackets",
-    price: "$98.31 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6163I3956.webp",
-    href: "https://www.cnbuycha.com/AllProducts/3396.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Miu Miu new arrival Knitted",
+    "category": "Jackets",
+    "price": "$47.45 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G10240Z1.webp",
+    "href": "https://cnfanshp.com/AllProducts/5969.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "Louis Vuitton Varsity",
-    category: "Jackets",
-    price: "$42.85 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P61636001B.jpg",
-    href: "https://www.cnbuycha.com/AllProducts/3395.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Maison Margiela Casual Business",
+    "category": "Jackets",
+    "price": "$67.47 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G05126214.webp",
+    "href": "https://cnfanshp.com/AllProducts/5958.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "Stussy Jacket",
-    category: "Jackets",
-    price: "$26.39 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616341J10.webp",
-    href: "https://www.cnbuycha.com/AllProducts/3394.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
+    "name": "Patagonia classic loose-fitting crew neck",
+    "category": "Hoodies",
+    "price": "$20.76 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1101D39.webp",
+    "href": "https://cnfanshp.com/AllProducts/5974.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
   },
   {
-    name: "Ralph Lauren Longsleeve",
-    category: "Hoodies",
-    price: "$34.10 est.",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260701/1-260F1154920N8.webp",
-    href: "https://www.cnbuycha.com/AllProducts/3340.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
-    checked: "12 Aug 2026",
-  },
+    "name": "Miu Miu's new collared patchwork casual",
+    "category": "Hoodies",
+    "price": "$23.72 est.",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1054H39.webp",
+    "href": "https://cnfanshp.com/AllProducts/5970.html?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_product_index",
+    "checked": "06 Oct 2026"
+  }
 ];
 
 export function ConceptSwitcher({ active }: { active: "A" | "B" | "C" }) {
@@ -143,7 +135,7 @@ export function SearchBar({
   return (
     <form
       className="product-search"
-      action="https://www.cnbuycha.com/search.html"
+      action="https://cnfanshp.com/search.html"
       method="get"
       target="_blank"
     >

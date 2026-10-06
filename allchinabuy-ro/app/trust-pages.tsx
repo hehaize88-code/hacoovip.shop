@@ -19,7 +19,7 @@ export const trustPages: Record<string, TrustContent> = {
       ],
       [
         "Verificarea linkurilor",
-        "La 12 august 2026, fiecare card a fost asociat cu o pagină cnbuycha.com care returna un produs cu același nume. Linkurile includ parametri UTM pentru a identifica traficul din allchinabuy.ro.",
+        "La 6 octombrie 2026, fiecare card a fost asociat cu o pagină cnfanshp.com care returna un produs cu același nume. Linkurile includ parametri UTM pentru a identifica traficul din allchinabuy.ro.",
       ],
       [
         "Estimări în USD",
@@ -79,7 +79,7 @@ export const trustPages: Record<string, TrustContent> = {
       ],
       [
         "Căutări și linkuri externe",
-        "Căutarea și linkurile de produs trimit utilizatorul către cnbuycha.com. Parametrii UTM identifică sursa de recomandare, fără a include numele sau adresa ta de e-mail.",
+        "Căutarea și linkurile de produs trimit utilizatorul către cnfanshp.com. Parametrii UTM identifică sursa de recomandare, fără a include numele sau adresa ta de e-mail.",
       ],
       [
         "Contact",
@@ -112,7 +112,7 @@ export const trustPages: Record<string, TrustContent> = {
     sections: [
       [
         "Linkuri de recomandare",
-        "Linkurile către cnbuycha.com includ parametri UTM pentru atribuirea traficului. Site-ul poate beneficia direct sau indirect de recomandări, fără ca această relație să schimbe prețul afișat utilizatorului.",
+        "Linkurile către cnfanshp.com includ parametri UTM pentru atribuirea traficului. Site-ul poate beneficia direct sau indirect de recomandări, fără ca această relație să schimbe prețul afișat utilizatorului.",
       ],
       [
         "Selecție editorială",
@@ -164,7 +164,7 @@ export function TrustPage({ slug }: { slug: string }) {
             </div>
           </article>
         ))}
-        <p className="trust-updated">Ultima actualizare: 12 august 2026</p>
+        <p className="trust-updated">Ultima actualizare: 6 octombrie 2026</p>
       </section>
     </main>
   );

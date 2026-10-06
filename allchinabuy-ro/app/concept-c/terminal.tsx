@@ -1209,7 +1209,7 @@ const siteText: Record<
     independent:
       "Ghid independent pentru România · Nu este site-ul oficial AllChinaBuy",
     records: "produse vizibile",
-    checked: "Linkuri verificate la 12 august 2026",
+    checked: "Linkuri verificate la 6 octombrie 2026",
     estimate: "Estimări USD, nu prețuri finale",
     source: "Sursă și metodă",
     open: "CATALOG LIVE",
@@ -1219,7 +1219,7 @@ const siteText: Record<
     independent:
       "Independent Romania guide · Not the official AllChinaBuy website",
     records: "visible products",
-    checked: "Links checked 12 August 2026",
+    checked: "Links checked 6 October 2026",
     estimate: "USD estimates, not final prices",
     source: "Source and method",
     open: "LIVE CATALOG",
@@ -1229,7 +1229,7 @@ const siteText: Record<
     independent:
       "Unabhängiger Rumänien-Ratgeber · Keine offizielle AllChinaBuy-Website",
     records: "sichtbare Produkte",
-    checked: "Links geprüft am 12. August 2026",
+    checked: "Links geprüft am 6. Oktober 2026",
     estimate: "USD-Schätzungen, keine Endpreise",
     source: "Quelle und Methode",
     open: "LIVE-KATALOG",
@@ -1239,7 +1239,7 @@ const siteText: Record<
     independent:
       "Guide indépendant pour la Roumanie · Ce n’est pas le site officiel AllChinaBuy",
     records: "produits visibles",
-    checked: "Liens vérifiés le 12 août 2026",
+    checked: "Liens vérifiés le 6 octobre 2026",
     estimate: "Estimations USD, pas des prix finaux",
     source: "Source et méthode",
     open: "CATALOGUE ACTUEL",
@@ -1249,7 +1249,7 @@ const siteText: Record<
     independent:
       "Guía independiente para Rumanía · No es el sitio oficial de AllChinaBuy",
     records: "productos visibles",
-    checked: "Enlaces revisados el 12 de agosto de 2026",
+    checked: "Enlaces revisados el 6 de octubre de 2026",
     estimate: "Estimaciones USD, no precios finales",
     source: "Fuente y método",
     open: "CATÁLOGO ACTUAL",
@@ -1259,7 +1259,7 @@ const siteText: Record<
     independent:
       "Guida indipendente per la Romania · Non è il sito ufficiale AllChinaBuy",
     records: "prodotti visibili",
-    checked: "Link verificati il 12 agosto 2026",
+    checked: "Link verificati il 6 ottobre 2026",
     estimate: "Stime USD, non prezzi finali",
     source: "Fonte e metodo",
     open: "CATALOGO ATTUALE",
@@ -1269,7 +1269,7 @@ const siteText: Record<
     independent:
       "Niezależny przewodnik dla Rumunii · To nie jest oficjalna strona AllChinaBuy",
     records: "widoczne produkty",
-    checked: "Linki sprawdzono 12 sierpnia 2026",
+    checked: "Linki sprawdzono 6 października 2026",
     estimate: "Szacunki USD, nie ceny końcowe",
     source: "Źródło i metoda",
     open: "AKTUALNY KATALOG",
@@ -1400,7 +1400,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "LINKURI MAPATE",
-      "Fiecare produs a fost remapat la o pagină cnbuycha.com care returna un produs cu același nume la verificarea din 12 august 2026.",
+      "Fiecare produs a fost remapat la o pagină cnfanshp.com care returna un produs cu același nume la verificarea din 6 octombrie 2026.",
     ],
     [
       "ESTIMĂRI USD",
@@ -1414,7 +1414,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "MAPPED LINKS",
-      "Each product was remapped to a cnbuycha.com page returning the same named product when checked on 12 August 2026.",
+      "Each product was remapped to a cnfanshp.com page returning the same named product when checked on 6 October 2026.",
     ],
     [
       "USD ESTIMATES",
@@ -1428,7 +1428,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "ZUGEORDNETE LINKS",
-      "Jedes Produkt wurde einer passenden cnbuycha.com-Produktseite zugeordnet und am 12. August 2026 geprüft.",
+      "Jedes Produkt wurde einer passenden cnfanshp.com-Produktseite zugeordnet und am 6. Oktober 2026 geprüft.",
     ],
     [
       "USD-SCHÄTZUNGEN",
@@ -1442,7 +1442,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "LIENS MAPPÉS",
-      "Chaque produit a été associé à une fiche cnbuycha.com portant le même nom et vérifiée le 12 août 2026.",
+      "Chaque produit a été associé à une fiche cnfanshp.com portant le même nom et vérifiée le 6 octobre 2026.",
     ],
     [
       "ESTIMATIONS USD",
@@ -1456,7 +1456,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "ENLACES MAPEADOS",
-      "Cada producto se asoció con una ficha de cnbuycha.com del mismo nombre y se revisó el 12 de agosto de 2026.",
+      "Cada producto se asoció con una ficha de cnfanshp.com del mismo nombre y se revisó el 6 de octubre de 2026.",
     ],
     [
       "ESTIMACIONES USD",
@@ -1470,7 +1470,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "LINK MAPPATI",
-      "Ogni prodotto è stato associato a una pagina cnbuycha.com con lo stesso nome e verificato il 12 agosto 2026.",
+      "Ogni prodotto è stato associato a una pagina cnfanshp.com con lo stesso nome e verificato il 6 ottobre 2026.",
     ],
     [
       "STIME USD",
@@ -1484,7 +1484,7 @@ const methodologyCopy: Record<Locale, [string, string][]> = {
     ],
     [
       "DOPASOWANE LINKI",
-      "Każdy produkt połączono ze stroną cnbuycha.com o tej samej nazwie i sprawdzono 12 sierpnia 2026.",
+      "Każdy produkt połączono ze stroną cnfanshp.com o tej samej nazwie i sprawdzono 6 października 2026.",
     ],
     [
       "SZACUNKI USD",
@@ -1693,7 +1693,7 @@ function Header({ locale, path }: { locale: Locale; path: string[] }) {
         </details>
         <a
           className="terminal-cta"
-          href="https://www.cnbuycha.com/AllProducts/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_header"
+          href="https://cnfanshp.com/AllProducts/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_header"
           target="_blank"
           rel="noopener noreferrer sponsored"
         >
