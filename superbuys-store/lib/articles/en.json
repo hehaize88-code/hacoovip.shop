@@ -1,0 +1,929 @@
+[
+  {
+    "slug": "superbuy-domestic-tracking-guide",
+    "title": "Superbuy Domestic Tracking: Seller Dispatch to Warehouse Arrival",
+    "dek": "Follow a Superbuy order from seller dispatch to warehouse intake, separate domestic tracking from international shipping, and document delays clearly.",
+    "sections": [
+      {
+        "heading": "Read the shipment stage before reading the tracking number",
+        "paragraphs": [
+          "Superbuy domestic tracking concerns the journey from the seller to the warehouse. International parcel tracking concerns a later shipment from the warehouse toward your delivery address. A number associated with the first journey should not be interpreted as evidence that your international parcel has departed. Start by opening the exact shopping order, checking its current stage and identifying which journey the displayed information describes.",
+          "The official Shopping Agent guide separates purchase, warehouse inspection and international parcel submission. This article turns that sequence into a practical tracking record. It does not promise a universal seller dispatch time or warehouse processing deadline. The useful question is which event has actually happened, what evidence supports it, and what action remains possible at that stage."
+        ]
+      },
+      {
+        "heading": "Keep the three identifiers separate",
+        "paragraphs": [
+          "Create separate fields for the shopping order number, the seller's domestic carrier reference and the later international parcel number. Record the carrier name beside each tracking reference where available. A shopping order identifier is useful in an enquiry, but it is not necessarily a carrier tracking code. Likewise, one international parcel can contain several stored orders, so the two records need a deliberate connection.",
+          "Also save the selected variant and quantity. Similar shoes in two sizes can produce almost identical order titles, making a correct tracking update easy to attach to the wrong item. Use a row for each order or clearly distinguish the individual items within it. When a seller sends an order in separate packages, record each observed package reference rather than assuming the first delivered package contains everything."
+        ]
+      },
+      {
+        "heading": "Distinguish label creation from carrier movement",
+        "paragraphs": [
+          "A tracking number can appear before a meaningful carrier scan. Treat the existence of a number as one recorded event, and a collection or movement scan as another. Do not convert a label-created message into a claim that the parcel is already moving. Copy the exact displayed wording into your notes, together with the date you checked it, instead of rewriting every unfamiliar status as shipped.",
+          "A tracking page with no visible updates can have several explanations. Information may not yet be available, the carrier may not match the code, or the seller may still need to complete dispatch. These are possibilities to investigate, not diagnoses. Check that the number was copied without spaces or missing characters, confirm the named carrier, and ask the purchasing agent which event the order record actually confirms."
+        ]
+      },
+      {
+        "heading": "Use a compact domestic tracking log",
+        "paragraphs": [
+          "A useful log has five fields: check time, information source, exact status, supporting reference and next action. The source could be the shopping order screen, a seller message or the domestic carrier record. Keep the original timestamp shown by that source as well as your own check time. Different screens may use different time zones or update at different moments, so a few hours of apparent disagreement need interpretation.",
+          "For example, imagine an order that shows a carrier reference on Monday, a collection scan on Tuesday and delivery on Thursday. These are three distinct milestones in an illustrative workflow, not a normal delivery-time promise. Your notes should preserve that distinction. If the warehouse item does not yet appear, the next action is to reconcile the delivery evidence with intake, not to look for an international flight."
+        ],
+        "table": {
+          "caption": "Domestic tracking checkpoints",
+          "headers": [
+            "Checkpoint",
+            "Reference to save",
+            "What to verify"
+          ],
+          "rows": [
+            [
+              "Seller dispatch",
+              "Shopping order + domestic reference",
+              "Carrier and latest recorded event"
+            ],
+            [
+              "Domestic delivery",
+              "Carrier delivery timestamp",
+              "Match the shipment with warehouse intake"
+            ],
+            [
+              "Warehouse intake",
+              "Stored order + available photos",
+              "Variant, quantity and open questions"
+            ],
+            [
+              "International parcel",
+              "New parcel reference",
+              "Only after parcel submission"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Treat delivered and stored as separate checkpoints",
+        "paragraphs": [
+          "A domestic delivery scan and a completed warehouse record describe different things. The scan concerns the carrier's delivery event; the warehouse record connects received goods with your account and the available inspection information. A delivered message alone does not establish that the correct color, size or quantity was received. It also does not prove that the item is ready for your chosen international shipping route.",
+          "When intake appears, compare the stored order identifier, quantity and visible variant against your original purchase record. Open the available warehouse photos and note any unresolved question. If carrier delivery is visible but the order is not reconciled, prepare the order number, carrier reference, delivery timestamp and relevant screenshot for an enquiry. Avoid declaring a package lost from the gap alone; ask for its current reconciliation status."
+        ]
+      },
+      {
+        "heading": "Handle split shipments and mixed orders carefully",
+        "paragraphs": [
+          "One seller may ship multiple items together, while another order may arrive in separate packages. Do not infer the contents from the size of a tracking update or the first warehouse photo. List what was ordered, what each visible package reference covers if known, and what the warehouse has recorded. An unknown association should stay unknown until the seller or agent clarifies it.",
+          "Consider an illustrative two-item order in which one garment is stored and a second has no intake record. There are several questions to resolve: whether both were dispatched, whether the same domestic number covers both, and whether the warehouse record is complete. Sending one enquiry with those facts is clearer than opening conflicting requests that describe the entire order as both delivered and missing. Keep replies attached to the same timeline."
+        ]
+      },
+      {
+        "heading": "Send an enquiry that identifies the missing event",
+        "paragraphs": [
+          "A useful enquiry can be short: identify the shopping order, the selected item, the domestic reference, the latest recorded event and the decision you need. For instance, ask whether a delivery scan has been matched to the warehouse order, or whether the seller has provided a dispatch reference. These requests give the agent a specific fact to investigate without asking them to infer your concern from several unrelated screenshots.",
+          "Use the currently available order-enquiry controls. Superbuy's Shopping Agent guidance identifies order enquiry as a way to communicate during purchasing. If an action label or eligibility differs in your account, follow the live process and request clarification. Do not repeatedly submit contradictory cancellation and dispatch instructions. Decide whether your immediate goal is information, a dispatch update or an enquiry about cancellation eligibility, and state that goal plainly."
+        ]
+      },
+      {
+        "heading": "Connect tracking with the parcel plan",
+        "paragraphs": [
+          "Domestic progress matters because the rest of a planned haul may already be in storage. Record which items are waiting, their displayed storage deadlines and whether delaying the whole group still makes sense. This is a planning comparison, not a reason to demand an impossible delivery promise. You may decide to wait for a confirmed dispatch, reassess the late item or compare a separate parcel for goods already ready.",
+          "Do not assume that adding one more item will make international shipping cheaper. The eventual parcel depends on packaging, dimensions, restrictions and currently available routes. When an item reaches storage, update the parcel plan using the actual warehouse information. Keep product decisions and shipping estimates connected, but preserve the difference between a seller's domestic delivery and the international service you have not yet selected."
+        ]
+      },
+      {
+        "heading": "Close the domestic record with an evidence check",
+        "paragraphs": [
+          "Before marking domestic tracking complete, confirm that the order association is correct, expected quantities are accounted for and the available intake evidence has been reviewed. Record any unresolved variant, damage or measurement question separately. Completion of the domestic journey is a logistics milestone; it is not a quality certificate or approval to ship every received item immediately.",
+          "Then link the stored order to the later international parcel when one is created. Keep both histories so a future question can be directed to the correct stage. Your final record should make it possible to explain, in a few sentences, what you bought, when dispatch was evidenced, when delivery was recorded, how intake was reconciled and what remains undecided. That is more useful than repeatedly refreshing a number without knowing which event you are waiting for. Keep this record until the item and its later parcel have been reconciled, so the correct reference remains available if a question arises."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-returns-refunds-guide",
+    "title": "Superbuy Returns and Refunds: Steps, Evidence and Costs",
+    "dek": "Prepare a Superbuy return, cancellation or refund enquiry with the correct order stage, clear evidence and a breakdown of the money involved.",
+    "sections": [
+      {
+        "heading": "Start with the order stage and the requested outcome",
+        "paragraphs": [
+          "A Superbuy refund enquiry should begin with two facts: where the order is in its journey and what you want to happen next. Cancelling an uncompleted purchase, returning an item already stored at the warehouse and requesting help after international delivery are different situations. A button labelled refund does not by itself tell you which costs are recoverable or whether the seller will accept the request.",
+          "Use this guide as a preparation method, not a promise of eligibility. Superbuy's public help resources separate purchasing, parcel logistics and after-sales assistance. Your live order, the source marketplace, the seller's conditions and the particular service determine the available process. Preserve the exact status and any displayed deadline before sending an enquiry. If the account instructions are unclear, ask the agent to identify the applicable route for that specific order."
+        ]
+      },
+      {
+        "heading": "Build a small evidence packet",
+        "paragraphs": [
+          "Save the shopping order number, seller listing, selected variant, quantity and purchase confirmation. Add the date the issue was noticed and the current order status. For a visible mismatch, include the warehouse image that shows it and the listing evidence for the ordered option. A short, organized record helps distinguish the seller's description from what was actually selected and what was actually received.",
+          "Choose evidence that answers the disputed point. An incorrect size label needs a clear label photo and the selected-size record. A missing accessory needs evidence of the included components and the received contents. A color complaint may require clarification because lighting affects appearance. Do not describe a hidden defect as confirmed merely because a photograph looks unusual. State what you observed and what still needs checking."
+        ],
+        "table": {
+          "caption": "Return enquiry preparation",
+          "headers": [
+            "Record",
+            "Include"
+          ],
+          "rows": [
+            [
+              "Order",
+              "Order number, option and quantity"
+            ],
+            [
+              "Issue",
+              "Observed mismatch and relevant image"
+            ],
+            [
+              "Request",
+              "Cancellation, correction or return enquiry"
+            ],
+            [
+              "Money",
+              "Item, services, delivery and proposed return costs"
+            ],
+            [
+              "Follow-up",
+              "Last confirmed event and next agreed action"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Separate cancellation from a completed return",
+        "paragraphs": [
+          "Before seller dispatch, your question may concern whether the purchase can still be cancelled. After dispatch, a return may require receiving and sending the item back through an approved process. Do not assume that a cancellation request stops a carrier shipment already underway. Ask for the status of the request itself and distinguish requested, accepted, returned and refunded in your record.",
+          "A useful message identifies the order and asks whether cancellation is still possible at its current stage, what amount is expected to be refunded and whether any costs remain. If dispatch has already occurred, ask which procedure replaces cancellation. This avoids a common misunderstanding: treating the moment you submit a request as the moment the seller has agreed or the money has already been credited."
+        ]
+      },
+      {
+        "heading": "Review warehouse problems before parcel submission",
+        "paragraphs": [
+          "The warehouse stage is a useful opportunity to examine available images and clarify a mismatch before committing to international delivery. Compare the received item with the chosen variant and your written purchase brief. If a material question remains, keep it visible in your notes and ask how to pause the relevant next step while the issue is reviewed. Do not assume that writing a message automatically places an operational hold on the item.",
+          "For an illustrative example, suppose a jacket was ordered in black size L but the warehouse label shows size M. The enquiry should include both records and ask for the available correction or return process. It should not begin with an unsupported claim about fraud or demand an invented deadline. If the photographs are inconclusive, ask for the missing view before describing the mismatch as established."
+        ]
+      },
+      {
+        "heading": "Ask for the refund components separately",
+        "paragraphs": [
+          "Record the item amount, domestic delivery, any purchasing service charge, selected inspection or photo services and any proposed return shipping or handling cost. These amounts may have different treatment. Request a breakdown of what is refundable, what has already been performed, what additional payment is required and what remains uncertain. Avoid treating the original order total as an automatic refund entitlement.",
+          "Use a hypothetical budget to see why the distinction matters. If an order had a $30 item amount, $2 domestic delivery and $1 of optional services, its total would be $33. A proposed refund of $30 does not explain the treatment of the other $3 or any return cost. Those figures are arithmetic examples in USD, not Superbuy prices. Ask for the actual ledger entries before accepting or disputing the calculation."
+        ]
+      },
+      {
+        "heading": "Keep seller approval and payment reconciliation distinct",
+        "paragraphs": [
+          "An accepted return, carrier delivery back to a seller, a refund entry in your account and a withdrawal to a payment method are separate events. Track whichever of these apply to your case. Do not infer that every stage has completed because one message uses the word processed. Copy the exact account wording and ask which financial entry confirms that money has become available to you.",
+          "When checking a payment, record the amount and currency shown, the transaction date and the associated order or service reference. If you later move account funds through an available withdrawal method, review that method's current conditions separately. This guide does not promise an original-payment-method refund or a universal processing time. A transaction record and a clearly identified outstanding step are more reliable than a deadline taken from an unrelated customer's case."
+        ]
+      },
+      {
+        "heading": "Treat special listings and services individually",
+        "paragraphs": [
+          "Before buying, inspect any displayed limitations associated with the source listing or service. A custom option, a used item, a preorder or a purchase from a less familiar marketplace should prompt specific questions about what happens if the seller cannot supply the intended product. Do not infer return eligibility merely because a different listing or a different marketplace previously allowed a return.",
+          "Ask those questions before committing when the answer would change your decision. Save the response with the listing record. If a restriction appears only after payment, document where it was shown and ask how it applies to your exact order. This approach does not establish legal rights or replace applicable consumer rules; it helps keep the platform conversation specific enough to resolve the operational question without inventing a universal policy."
+        ]
+      },
+      {
+        "heading": "Keep a chronological case log",
+        "paragraphs": [
+          "Use one timeline for request submission, agent replies, seller decisions, any return dispatch, any confirmed receipt and the financial adjustment. Include the next agreed action and who is expected to perform it. If a message supplies an expected date, record it as an expectation from that message rather than converting it into a guaranteed deadline. Follow up with the existing case context when the stated next step has not appeared.",
+          "A concise follow-up might identify the order, summarize the last confirmed event and ask whether a particular action has completed. Repeated messages without new evidence can make a case harder to read. If the issue changes, explain the change explicitly. For example, a case that began as a size mismatch may become a question about the return carrier record or the refund breakdown; those require different supporting details."
+        ]
+      },
+      {
+        "heading": "Decide from the remaining cost and uncertainty",
+        "paragraphs": [
+          "Before choosing between keeping an item, seeking a correction and requesting a return, compare the actual available options. Consider the documented mismatch, the cost of any proposed solution, the time constraints displayed in the account and whether the unresolved issue matters to your intended use. Treat this as your own decision framework, not as a recommendation to accept a defect or abandon an eligible claim.",
+          "Close the case only after the requested outcome and the financial record agree. Save the final decision, any relevant tracking and the refund or fee entries. Then update your product and parcel notes so the same item is not accidentally included in a shipping plan or counted twice in the budget. A clear record cannot guarantee acceptance, but it makes the next conversation more precise and helps prevent avoidable confusion about what was requested and what actually happened."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-fees-total-cost-guide",
+    "title": "Superbuy Fees Explained: Product Cost, Services and Shipping",
+    "dek": "Build a clear Superbuy budget by separating product payments, optional services, international shipping deposits and final adjustments.",
+    "sections": [
+      {
+        "heading": "Build a delivered-cost budget before choosing a product",
+        "paragraphs": [
+          "Superbuy fees are easier to understand when you organize them by the decision that creates them. The product amount belongs to the purchase decision. Domestic delivery gets the order toward the warehouse. Optional services respond to a specific inspection or packing need. International delivery concerns the finished parcel and its selected route. One attractive product price cannot describe all of those stages. Keep an unconfirmed-cost column beside the total, and make clear which amounts have already been paid. This prevents a temporary estimate from being mistaken for a complete purchase budget when someone else reviews your shortlist.",
+          "The official Fee Structure and Shopping Agent guide describe purchasing and international shipping as separate stages. Use that structure to build your own budget, while checking the live account for the actual amounts applicable to the source marketplace and services you select. This article provides a comparison method and hypothetical USD examples. It does not publish a fixed shipping tariff, an exchange-rate promise or a universal all-in price."
+        ]
+      },
+      {
+        "heading": "Record the exact variant and the first payment",
+        "paragraphs": [
+          "Start with the current seller listing and the selected option, not a category thumbnail or the lowest price in a range. Save the color, size, version, quantity and item amount. If a listing contains both a complete product and an accessory, confirm that the displayed amount belongs to the product you intend to order. A spreadsheet row is a useful discovery reference, but the live option determines the purchase.",
+          "Add domestic shipping separately and note whether the amount applies to one item, a group of items or the seller order. Record any purchasing fee shown for that source or service. Do not assume that a statement about standard purchasing applies to every marketplace, used-item service or special request. Before confirming payment, the amount on your own order screen should be explainable as a set of line items."
+        ]
+      },
+      {
+        "heading": "Give optional services a specific purpose",
+        "paragraphs": [
+          "A paid photo or inspection request should answer a question that could change your decision. For example, a chest-width measurement may help resolve a clothing-size uncertainty, while a close image of a connector can clarify a visible model detail. Buying extra pictures without knowing what you need to see can increase the order cost without producing useful evidence. Define the question before choosing the service.",
+          "Treat product services and parcel services as different categories in your budget. One concerns an individual received item; the other concerns the later shipment. Record the service name, quantity, displayed charging unit and total. When a screen shows a price per item, per order or per parcel, do not silently convert those into the same unit. The unit matters as much as the headline price when several products are involved."
+        ]
+      },
+      {
+        "heading": "Compare shipping estimates using the same inputs",
+        "paragraphs": [
+          "A useful comparison keeps destination, item restrictions, expected packed dimensions and weight consistent. If one estimate assumes a shoe box and another removes it, the difference cannot be attributed entirely to the shipping line. Record what changed between scenarios. The official shipping calculator asks for destination, weight, dimensions and item characteristics; your saved estimate should preserve those inputs so the result can be interpreted later.",
+          "Read each available route's current conditions and fee breakdown. A low figure may not describe an eligible route for your actual contents or parcel shape. Do not choose a line solely from an old screenshot, another customer's weight or a price-per-kilogram claim. Keep the estimate date and the assumptions beside the amount. Recheck when warehouse measurements and the final packing plan replace your earlier guesses."
+        ]
+      },
+      {
+        "heading": "Separate the shipping deposit from the settled amount",
+        "paragraphs": [
+          "The first international shipping payment is an estimate-based deposit in Superbuy's published purchasing workflow. Final parcel measurements and the logistics calculation can produce an adjustment. In your ledger, give the deposit, any later additional payment and any credited difference separate entries. That keeps cash already paid visible without counting it twice when the final cost becomes available.",
+          "A simple illustrative reconciliation is a $40 deposit followed by a $5 credit, leaving $35 as the shipping amount for that example. If an additional $4 were required instead, the result would be $44. These are hypothetical calculations, not route prices or predictions. Keep optional services and any separately charged destination amount in their own rows rather than assuming that one adjustment settles every component of the delivered cost."
+        ]
+      },
+      {
+        "heading": "Use a worked USD example without treating it as a quote",
+        "paragraphs": [
+          "Consider a hypothetical budget with two product amounts of $24 and $18, domestic delivery of $3, optional services of $2 and a final international shipping amount of $35. The total of those listed components is $82. If destination charges or payment-related costs have not yet been verified, label them unconfirmed; do not enter zero merely to make the total appear complete.",
+          "Now change one assumption. Suppose keeping retail packaging adds $6 to the final shipping estimate in this example. The comparable budget becomes $88 for the listed components, provided everything else stays the same. The question is whether that packaging is worth the difference to you. A scenario table makes the trade-off visible. It is much more useful than claiming that removing every box always saves a particular percentage."
+        ],
+        "table": {
+          "caption": "Hypothetical USD budget — not a quotation",
+          "headers": [
+            "Component",
+            "USD"
+          ],
+          "rows": [
+            [
+              "Product A",
+              "24"
+            ],
+            [
+              "Product B",
+              "18"
+            ],
+            [
+              "Domestic delivery",
+              "3"
+            ],
+            [
+              "Optional services",
+              "2"
+            ],
+            [
+              "Final international shipping",
+              "35"
+            ],
+            [
+              "Listed subtotal",
+              "82"
+            ],
+            [
+              "Destination and payment-related amounts",
+              "Unconfirmed; excluded from subtotal"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Reconcile currency and payment records",
+        "paragraphs": [
+          "Keep the currency displayed for each transaction alongside your USD planning column. If the source amount is in another currency, record the actual conversion used or label the USD figure as an estimate. Do not present a rounded conversion as an official Superbuy tariff. Your payment provider and the platform may show different stages of the transaction, so compare equivalent records before deciding that an unexplained fee exists.",
+          "Separate money added to an account from money spent on a particular order. A top-up can fund several purchases and should not be counted as the cost of every one of them. Reconcile the account balance, order debits and any refund entries. For payment fees or exchange-rate questions, use the current checkout and provider terms. An old community post cannot establish the amount charged on your present transaction."
+        ]
+      },
+      {
+        "heading": "Compare consolidation with realistic parcel alternatives",
+        "paragraphs": [
+          "A single combined parcel may reduce repeated packaging or initial shipment charges, but it can also alter dimensions and route eligibility. Compare the actual alternatives you could choose: one combined parcel, two compatible groups or shipping ready items while a delayed order remains unresolved. Use the same product list and make any excluded item obvious. Otherwise a cheaper scenario may simply contain fewer goods.",
+          "Include the effect of waiting. Record storage deadlines and any currently applicable storage or extension costs before assuming that a later combined parcel is better value. Also distinguish financial savings from the risk of damage or the value of keeping original packaging. The best option is the one that meets your requirements at an understandable total, not necessarily the scenario with the smallest amount on a single line."
+        ]
+      },
+      {
+        "heading": "Finish with a budget you can audit",
+        "paragraphs": [
+          "Before paying, verify the selected variants, quantities, domestic delivery and any purchasing services. Before submitting a parcel, verify the stored items, packaging choices, eligible route and shipping deposit. After dispatch, reconcile the final shipping entry and any adjustments. These three checkpoints help keep a changing order understandable without pretending that the first estimate can predict every later charge.",
+          "Keep your original assumptions after you learn the final result. Record which changes came from additional products, altered packaging, measurement differences, optional services or a different route. That history becomes a useful reference for your next purchase, while remaining specific to the parcel you actually sent. A careful budget does not eliminate uncertainty; it shows which amounts are known, which are estimated and which still need confirmation before the next commitment."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-warehouse-storage-guide",
+    "title": "Superbuy Warehouse Storage: Deadlines, Fees and Extensions",
+    "dek": "Plan Superbuy warehouse storage around each item's arrival record, free-storage window, extension conditions and realistic parcel decisions.",
+    "sections": [
+      {
+        "heading": "Give every stored item its own timeline",
+        "paragraphs": [
+          "Superbuy warehouse storage is most useful when you treat it as a dated planning window for each item. Orders from different sellers can arrive at different times, so a shared haul does not necessarily have a single storage clock. Start with the warehouse record for each order and save its arrival information, the deadline or remaining days displayed in the account and any unresolved inspection or after-sales issue.",
+          "The aim is to make an intentional decision before a deadline becomes urgent. You may be waiting for another seller, a measurement, a return decision or enough compatible items to submit a parcel. Write down which of those reasons applies. An item marked simply waiting can remain overlooked even after the original reason has disappeared. A clear reason and a next review date make the warehouse list easier to manage."
+        ]
+      },
+      {
+        "heading": "Check the published policy and the live order together",
+        "paragraphs": [
+          "Superbuy's Fee Structure reviewed on 6 October 2026 describes 90 days of free storage, a subsequent daily charge of CN¥0.1 per item and a standard maximum storage period of 180 days. It also describes a paid extension service that extends the maximum period without resetting the free-storage allowance. Treat those as the published baseline at the review date and verify the terms and dates displayed for your particular item before relying on them.",
+          "Do not calculate an official deadline solely from the date you paid the seller. Purchasing and warehouse arrival are different stages. If your account shows a date or remaining-day count that you cannot reconcile, ask for clarification while there is time to act. Save the reply with the item record. Public guidance can explain the policy, but it cannot resolve an individual account discrepancy from outside your order."
+        ]
+      },
+      {
+        "heading": "Separate free storage from maximum storage",
+        "paragraphs": [
+          "The end of free storage is a cost checkpoint; the maximum storage limit is a different operational deadline. Paying a daily storage charge does not by itself prove that an item may remain indefinitely. Similarly, buying an extension should not be interpreted as a new free-storage period unless the live terms explicitly say so. Keep separate fields for free-storage expiry, maximum deadline and any approved extension.",
+          "A practical worksheet can also include the item value, reason for waiting and next action. For instance, a stored hoodie may be waiting for a second garment, while a shoe order may be waiting for a measurement. Those are different blockers and may need different responses. Reviewing both as merely unfinished orders hides the decision that would let each item move forward."
+        ],
+        "table": {
+          "caption": "Storage planning checkpoints",
+          "headers": [
+            "Checkpoint",
+            "What to record"
+          ],
+          "rows": [
+            [
+              "Free-storage end",
+              "Displayed date; published baseline: 90 days"
+            ],
+            [
+              "Paid storage",
+              "Published baseline: CN¥0.1 per item per day"
+            ],
+            [
+              "Standard maximum",
+              "Published baseline: 180 days"
+            ],
+            [
+              "Extension",
+              "Eligibility, payment and confirmed new deadline"
+            ],
+            [
+              "Next review",
+              "Your own reminder; not an official extension"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Make a weekly review routine",
+        "paragraphs": [
+          "Choose a regular time to review the warehouse list and sort items by the next meaningful deadline. Open items with unresolved evidence first, then check purchases awaiting a seller update, and finally revisit the planned parcel groups. A review should produce an action or a documented reason for waiting. Looking at the list without updating decisions does little to reduce the chance of overlooking an older order.",
+          "Use a short record: item, arrival, next deadline, unresolved point, planned action and review date. Keep the platform's current displayed date beside your own planning reminder. Your reminder is a personal buffer, not an official extension. If you choose to review an item a week before a displayed deadline, label that as your own precaution. Do not present an invented buffer as a Superbuy service rule."
+        ]
+      },
+      {
+        "heading": "Assess an extension before the deadline",
+        "paragraphs": [
+          "An extension is a choice to evaluate, not an automatic solution for every late item. First confirm that the service is available for the relevant order and identify what it changes. Read the charging unit, extension period, eligibility and any continuing daily storage charge. If you are unsure whether the purchase covers one item or several, ask before paying and save the confirmed scope with the affected order.",
+          "After requesting an extension, verify its completion and the updated deadline in the account. Keep the payment record and any confirmation. A message saying you intend to extend is not evidence that the extension has been applied. If the account still shows the original deadline, ask which event confirms the change. This is especially important when several similar orders are stored and an extension could be attached to the wrong one."
+        ]
+      },
+      {
+        "heading": "Compare waiting with shipping the ready items",
+        "paragraphs": [
+          "Waiting for another product may be convenient, but it is not automatically the cheapest option. Compare the likely parcel choices using the goods already ready, the expected new item and the storage-related amounts that actually apply. Keep route restrictions and packed dimensions visible. A larger combined parcel can change the available options, so product count alone cannot tell you whether waiting will reduce the final cost.",
+          "For an illustrative USD planning example, suppose waiting adds an estimated $3 of storage-related cost while a later packing plan might reduce shipping by $2. The known comparison would not support calling that an assured saving. Both figures are hypothetical and the shipping change is uncertain. Use your real account amounts and current estimates instead. The example shows why storage should be included in the parcel decision, not treated as a separate forgotten expense."
+        ]
+      },
+      {
+        "heading": "Resolve QC and after-sales questions promptly",
+        "paragraphs": [
+          "A long storage window should not be mistaken for an equally long opportunity to request every seller remedy. The process for a return, correction or inspection question has its own conditions. Review the available warehouse evidence when it appears and act through the appropriate order channel if something is unresolved. Do not delay a material mismatch simply because you still have many days of warehouse storage remaining.",
+          "Keep the issue specific: the ordered variant, what the available evidence shows, the missing information and the decision you need. If a return request is open, ask how it affects the next shipping step and any relevant storage timing rather than assuming everything is automatically paused. Store the answer with the case. Separating these timelines makes it easier to avoid both accidental shipping and accidental expiry while a question is being discussed."
+        ]
+      },
+      {
+        "heading": "Recheck parcel readiness before submitting",
+        "paragraphs": [
+          "When you decide to ship, confirm the exact stored items, quantities and remaining evidence questions. Review the destination address, eligible delivery options and packaging preferences using the current parcel screen. If you are retaining retail boxes or requesting protection, include their effect on size in your comparison. The warehouse list tells you what is stored; the parcel process determines how the selected contents will be prepared for international delivery.",
+          "Preserve the submitted parcel reference and verify the actual status after payment or confirmation. Do not assume that creating an unfinished draft automatically resolves every storage obligation. If the item is near a deadline and the account state is ambiguous, ask which completed action is required. A clear account confirmation is stronger evidence than your own intention to ship or a partly completed form left open in another tab."
+        ]
+      },
+      {
+        "heading": "Keep a final record of the decision",
+        "paragraphs": [
+          "For every older item, finish with a documented decision: ship through an available route, continue a confirmed after-sales process, purchase an eligible extension or take another action explicitly available in the account. Record the completion evidence and the next date to review. If you cannot use a proposed option, explain the constraint to support before the deadline instead of assuming that silence preserves the item.",
+          "This method makes storage useful without turning it into an indefinite holding area. The essential information is small enough for a simple spreadsheet, but it must stay current. Keep the arrival record, free-storage checkpoint, maximum deadline, any confirmed extension and parcel or after-sales reference together. When those records agree, you can make a shipping decision from the actual order state rather than from an old estimate or a forgotten plan."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "product-listing-checklist",
+    "title": "How to Use a Superbuy Spreadsheet: Find and Check Products",
+    "dek": "Use a Superbuy spreadsheet to find the exact variant, prepare QC checks and build a clear product-to-parcel budget.",
+    "sections": [
+      {
+        "heading": "A spreadsheet is a discovery layer, not the seller record",
+        "paragraphs": [
+          "People usually search for a Superbuy spreadsheet because they want to skip the least useful part of browsing: opening hundreds of unrelated marketplace results. A good index narrows the field by category and gives you a route to a live product page. That is valuable, but it is only the beginning. The index does not control the seller’s stock, current price, variant labels or description, and it cannot know whether a listing changed after it was added. Treat every card as a lead that needs to be rechecked, not as a frozen catalogue entry.",
+          "Open the destination page and identify five things before you become attached to the item: the current title, the selected variant, the current price, the seller’s measurements or specifications, and what is actually included. A low headline price can belong to an accessory or the smallest option. One product page may also contain several materially different versions. If the title, image and selected option do not describe the same thing, stop and resolve that mismatch before submitting an agent order."
+        ]
+      },
+      {
+        "heading": "Turn the desired variant into a one-line purchase brief",
+        "paragraphs": [
+          "Before ordering, write a compact brief such as: black, size 43, version B, one pair, shoe box not essential. For a hoodie it might include color, tagged size, chest width, length and whether a detachable accessory is expected. This sounds basic, yet it prevents a common failure: remembering the general look while forgetting the exact option. The brief becomes the reference used at the seller page, order review, warehouse photo stage and any after-sales request.",
+          "Measurements deserve more weight than letter sizes. A seller’s M, L or XL is only a label; cut and sizing conventions vary. Compare the seller’s flat measurements with a similar item you already own, using the same measurement points. For shoes, use the measurement method or internal-length guidance shown by the seller if it is available. When a decisive measurement is missing, the honest conclusion is not that the item will probably fit. The conclusion is that one material question remains unanswered."
+        ]
+      },
+      {
+        "heading": "Understand the two-payment structure before building a haul",
+        "paragraphs": [
+          "Superbuy’s current shopping-agent guide explains that the process is divided into two payments. The first stage covers the item, any Chinese domestic delivery and chosen product-level services. After the order arrives at the warehouse, you later create an international parcel and pay the shipping deposit. This structure matters because a cheap product can still be an expensive international parcel item if it is bulky, heavy, fragile or restricted to a costly route.",
+          "The fee-composition page reviewed on 6 October 2026 lists ordinary shopping-agent purchasing at a CN¥0 service fee, while optional and specialized services can add charges. That does not make the total transaction free. Domestic shipping, optional detailed photos or inspections, packaging services, international freight, customs-related charges and payment conversion can all affect the real cost. Build a two-column budget—product stage and parcel stage—rather than comparing only listing prices."
+        ]
+      },
+      {
+        "heading": "Use the warehouse as a decision checkpoint",
+        "paragraphs": [
+          "The current Superbuy agent guidance states that items are weighed and inspected when received and that photos of the actual product are provided. Those images are most useful when you arrive with a checklist. First confirm quantity and visible variant, then compare overall shape, color family, major panels or graphics, obvious surface marks and included accessories. A quick glance at one attractive angle wastes the value of the checkpoint.",
+          "Warehouse photos have limits. They do not authenticate an item, test long-term durability, confirm how clothing fits on a body or reveal every hidden surface. If a critical point is not visible, ask for targeted evidence through the current order workflow when that option is available. A ruler beside one exact dimension is more useful than five general photos. A close image of a connector or label is more useful than digitally zooming a wide shot until the pixels become ambiguous."
+        ]
+      },
+      {
+        "heading": "Plan storage and consolidation rather than drifting into them",
+        "paragraphs": [
+          "Superbuy’s current fee page gives stored items 90 days of free warehouse time. It then states a charge of CN¥0.1 per item per day beyond the free period and a maximum storage period of 180 days. These rules make storage a planning tool, not an unlimited waiting room. Record each item’s arrival date and expected parcel group. If one late seller delays the entire shipment, compare the likely saving from waiting with the risk of storage charges or an approaching deadline.",
+          "The same official material describes basic consolidation of multiple stored items as free. Consolidation can remove repeated outer packaging and combine orders into one shipment, but it does not automatically make every kilogram cheaper. A larger parcel can trigger dimensional-weight pricing, exceed a route limit or combine restricted and ordinary goods in an awkward way. Group items by compatible handling needs and likely route, not simply by the fact that they are all in the warehouse."
+        ]
+      },
+      {
+        "heading": "Choose packaging according to the product, not a universal rule",
+        "paragraphs": [
+          "Superbuy’s published guidance lists optional services such as package removal or replacement, reinforcement and insurance. The current fee page also shows services including vacuum packaging and folding shoe boxes. Each option solves a different problem. Vacuum packing may reduce the volume of soft clothing. Removing an unnecessary retail box may help a lightweight parcel. Reinforcement may be sensible for something crush-sensitive, while a collector may value the original box enough to keep it despite the volume.",
+          "Think in trade-offs. Reducing packaging can lower size but remove protection. Keeping multiple rigid boxes can preserve them while increasing chargeable volume. Insurance can address certain covered losses but cannot make fragile goods physically stronger or eliminate customs risk. Write clear packaging instructions only after checking the current route requirements and service descriptions. A short, item-specific request is more reliable than a generic instruction to make the parcel as small as possible."
+        ]
+      },
+      {
+        "heading": "Make a clean ship, review or reject decision",
+        "paragraphs": [
+          "At warehouse stage, place the result into one of three categories. Ship means the visible item matches the purchase brief closely enough and the parcel plan remains acceptable. Review means one important question can still be answered with a measurement, closer photo or agent clarification. Reject or seek after-sales help means there is a documented mismatch such as the wrong option, missing part or visible damage. This simple classification prevents vague uncertainty from turning into an automatic shipment.",
+          "After-sales options depend on timing, seller cooperation and the live platform process, so review warehouse notifications promptly. Save the active product URL, chosen variant, order note and screenshots of decisive seller details. If a problem appears, mark the relevant area and describe the requested outcome precisely. The best Superbuy spreadsheet workflow is not the one that finds the most products. It is the one that carries a clear product brief, evidence standard and parcel budget from discovery to dispatch."
+        ]
+      },
+      {
+        "heading": "Judge the spreadsheet by transparency, not by its product count",
+        "paragraphs": [
+          "A large spreadsheet can be useful, but the headline number is not a quality metric by itself. Prefer an index that gives clear categories, working destinations and realistic descriptions without promising that every listing is verified forever. Check a few random routes before relying on the collection. If cards repeatedly lead to removed products, unrelated variants or prices that no longer exist, use the index as inspiration only.",
+          "Independent indexes should also be clear about their role. They can organize discovery and teach a checking method; they cannot guarantee seller behavior, warehouse outcomes, international route availability or customs treatment. That boundary is good for the user. It encourages a workflow based on current product pages and current account information instead of treating an attractive catalogue as proof that every later stage will be effortless."
+        ]
+      },
+      {
+        "heading": "Make a shortlist that can survive a listing change",
+        "paragraphs": [
+          "Use a consistent shortlist row: product URL, option, quantity, current price, image reference, measurement source and one unresolved question. Keep the check date beside the record. If the destination changes, compare the new information with the saved option before ordering. A thumbnail that still looks familiar is not sufficient evidence that the same product is available.",
+          "When several candidates appear equivalent, compare the decision-critical information rather than awarding points for promotional adjectives. For shoes, that may be a defined size measurement and the exact colorway. For a garment, it may be chest width, length and the selected fabric option. Leave a field unconfirmed when the listing does not establish it. This gives your later order remark a clear purpose and makes warehouse review a comparison against recorded expectations rather than a fresh guess."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-qc-photos-guide",
+    "title": "Superbuy QC Photos: Checks, Measurements and Next Steps",
+    "dek": "Review Superbuy QC photos for the ordered variant, visible defects and useful measurements before choosing a shipping or after-sales action.",
+    "sections": [
+      {
+        "heading": "Know what Superbuy says the warehouse stage includes",
+        "paragraphs": [
+          "Superbuy’s current English shopping-agent guidance says an item is weighed and inspected after warehouse receipt and that photos of the actual product are provided. Think of this as a visual handover checkpoint between the Chinese seller and the later international parcel. The photos can show whether an obvious wrong item arrived, whether the broad color and model match, and whether visible damage or missing parts deserve attention before international shipping makes correction harder.",
+          "The word inspection can sound broader than the evidence actually available. Three images do not form an authentication service, performance test or full condition report. They cannot reveal hidden stitching, internal electronics, battery health, smell, fabric feel or long-term durability. They also cannot tell you how clothing fits. A useful review begins by separating what can be seen from what you merely hope is true."
+        ]
+      },
+      {
+        "heading": "Prepare the checklist before the photos arrive",
+        "paragraphs": [
+          "QC works best when the standard is written before you see the item. Copy the ordered color, size label, version, quantity and included accessories into a short list. Add two or three visible characteristics that would make you reject the item: perhaps a missing strap, badly shifted graphic, cracked housing or incorrect sole color. This protects you from lowering the standard simply because the seller image looked exciting and the warehouse photos finally arrived.",
+          "Keep the seller’s live listing and key screenshots beside the order record. Product pages can change, so save measurements and included-item claims at purchase time. Do not turn promotional language into a QC requirement unless it points to something visible and specific. “Premium quality” cannot be checked from a wide photo; “two detachable straps included” can. Good criteria are observable, measurable and tied to the selected variant."
+        ]
+      },
+      {
+        "heading": "Review the images in a repeatable order",
+        "paragraphs": [
+          "Start with identity: quantity, color family, visible size tag and model. Then check the overall silhouette and proportions. Move next to alignment—paired shoes, pockets, printed graphics, seams, panels and hardware. Finish with surfaces and included pieces, looking for stains, scratches, dents, glue marks, tears or missing accessories. The order matters because it keeps one clean hero angle from distracting you from a wrong label or absent part.",
+          "Compare the photos side by side with the seller page rather than relying on memory. Lighting, white balance and phone screens can shift subtle colors, so prioritize large differences. Perspective can make a shoe toe or bag shape appear distorted. Look for the same issue across more than one angle before drawing a conclusion. When the decision depends on an exact shade or proportion, the correct status is often unresolved, not automatically defective."
+        ]
+      },
+      {
+        "heading": "Ask for evidence that answers one precise question",
+        "paragraphs": [
+          "If the supplied photos do not answer a material question, a targeted request is more efficient than asking for more pictures in general. Request a ruler across the chest width, a close view of a zipper, the connector panel on an electronic item or all included accessories laid out together. State the option ordered and the reason the detail matters. Specific requests are easier for warehouse staff to execute and easier for you to interpret.",
+          "Measurements are especially useful for apparel, shoes, bags and graphics. Compare them with an item you own using the same points and the same flat-lay method. A ruler image turns “looks small” into evidence. It still does not guarantee fit, because fabric stretch and cut matter, but it narrows uncertainty. Avoid asking QC photos to answer subjective questions such as whether a material feels expensive; the camera cannot provide that information."
+        ]
+      },
+      {
+        "heading": "Handle common categories with different priorities",
+        "paragraphs": [
+          "For footwear, compare pair symmetry, visible size labels, sole shape, upper panels and whether expected accessories are present. For clothing, prioritize tagged size, flat measurements, print position, seam condition and obvious marks. For bags, check hardware, strap count, closures, corners and shape. For electronics, confirm model identifiers, plug type and visible ports, but do not infer functional testing unless the order specifically includes a documented service that performs it.",
+          "Fragile goods need both item review and parcel planning. A clean warehouse photo does not guarantee survival in international transit. If an item has glass, ceramic, sharp protrusions or a crush-sensitive shape, separately consider reinforcement, packaging changes and route restrictions. Superbuy’s official guide lists reinforcement and insurance among optional parcel-stage services, but those services do not eliminate every third-party carrier or customs risk."
+        ]
+      },
+      {
+        "heading": "Respond to a mismatch while the evidence is fresh",
+        "paragraphs": [
+          "If the wrong variant, missing component or visible damage appears, act through the current order page promptly. Crop or mark the relevant image, quote the ordered option and request a concrete next step. “The item is bad” is hard to relay. “The ordered black size 43 pair arrived with a size 42 label; see photo two” gives the agent something exact to communicate. Keep the tone factual because the goal is resolution, not a dramatic review.",
+          "Available after-sales outcomes depend on the seller, timing and current platform rules. Do not rely on an old forum post for a universal return window. Superbuy’s help center includes after-sales paths, but the live order status and instructions should control the action. Store screenshots of the original listing, option and QC issue together so the evidence remains understandable if the seller edits the page."
+        ]
+      },
+      {
+        "heading": "Use a three-state decision instead of chasing certainty",
+        "paragraphs": [
+          "Mark the item acceptable when the visible checks meet your written criteria. Mark it unresolved when an important question is not answered but could be clarified. Mark it mismatched when the photos document a difference or defect that crosses your pre-set threshold. This method prevents two opposite mistakes: approving too quickly because the item looks broadly similar, or rejecting a normal lighting or perspective variation as proof of a flaw.",
+          "QC photos are valuable precisely because they create a pause before international shipment. Use that pause well. Compare with a checklist, request one focused piece of evidence when necessary, and make a timely decision. Do not advertise the photos to yourself as a guarantee. Their real value is narrower and more practical: they can catch certain visible problems while the item is still in the warehouse and the order history is easy to document."
+        ]
+      },
+      {
+        "heading": "Use customer reviews as questions, not universal proof",
+        "paragraphs": [
+          "Public customer reviews can reveal recurring questions worth checking—slow seller dispatch, confusing sizing, weak packaging or a route that produced unexpected dimensional weight. They are less useful as precise predictions. A review usually reflects one seller, one parcel, one country and one moment in time. Without the order details, a dramatic shipping total or delivery time cannot be transferred directly to your purchase.",
+          "When researching reviews, look for repeated patterns across independent reports and then verify the underlying rule on the current platform. Turn a pattern into a question: does this product need a ruler photo, is the retail box unusually large, or is the destination route currently accepting the item? This produces useful evidence without inventing a platform-wide conclusion from a small sample.",
+          "Photographs attached to a review deserve the same discipline as warehouse images. Check whether the reviewer shows the original listing, the received item and the issue from more than one angle. A single close crop may omit normal context; a polished unboxing image may say little about the seller variant. Useful review evidence connects a visible observation to an order detail. It should help you refine your own checklist, not invite you to assume that every future order will reproduce one person’s result. Record the review date as well, because fees, warehouse services and international routes can change after the experience being described."
+        ]
+      },
+      {
+        "heading": "Make measurement requests reproducible",
+        "paragraphs": [
+          "Describe where the measurement should begin and end, the unit you need and how the item should be positioned. For a garment, distinguish a flat chest width from a body circumference. For footwear, distinguish a stated seller size from an insole or outsole measurement. These numbers answer different questions and should not be substituted for one another.",
+          "An illustrative request is to lay the garment flat, show the ruler from one underarm edge to the other and include both ruler endpoints in the image. Compare the result with a similarly measured garment that fits you. This is a personal fit reference, not a universal size conversion. Preserve the request and returned image together, then state whether the measurement resolves the specific uncertainty. If the view is incomplete, ask for the missing evidence rather than inventing a value from perspective."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-shipping-cost-guide",
+    "title": "Superbuy Shipping Calculator: Weight, Volume and Total Cost",
+    "dek": "Compare Superbuy shipping estimates with consistent weight, dimensions, destination and packing assumptions; distinguish the deposit from final cost.",
+    "sections": [
+      {
+        "heading": "Separate product cost from delivered parcel cost",
+        "paragraphs": [
+          "Superbuy’s published shopping-agent flow requires two payment decisions. The first covers the product stage: item price, Chinese domestic delivery and any selected product-level services. The second happens after items reach the warehouse and you submit them for international delivery. If your question is how to calculate shipping costs for Superbuy, begin with this separation: route, destination, packed dimensions, weight and parcel services become concrete only at the second stage. A product can be inexpensive at stage one and still be poor value after stage two.",
+          "Build the budget before ordering. Record product cost, domestic shipping and optional services in one column. In a second column, estimate international freight, packaging choices, payment conversion and a customs reserve appropriate to the destination. Treat the live tool as a Superbuy freight calculator for comparing scenarios, not as a permanent list of shipping prices. The purpose is to identify items—large boxes, rigid objects, heavy shoes or restricted goods—that may dominate the parcel decision later."
+        ]
+      },
+      {
+        "heading": "Understand why the first shipping figure is a deposit",
+        "paragraphs": [
+          "Superbuy’s current international-delivery guidance says the shipping deposit is calculated from estimated product weight, the chosen method and the destination. The final shipping fee is determined after the parcel is packed and the logistics provider verifies its size and weight. If the final amount differs from the deposit, the platform reconciles the difference in the account. The estimate is therefore a planning figure, not a guaranteed quote.",
+          "Net item weight is only one input. The finished parcel includes packaging and may be billed using dimensional weight when its volume is large relative to its mass. A lightweight puffer jacket in a large box can occupy costly space; dense small items can be heavy without being bulky. Route rules also use different charging increments and restrictions. This is why copying another buyer’s cost-per-kilogram rarely predicts your own final bill."
+        ]
+      },
+      {
+        "heading": "Use the current fee breakdown as a checklist",
+        "paragraphs": [
+          "The fee-composition page reviewed on 6 October 2026 describes international shipping as a combination that may include an initial-weight charge, additional-weight units, customs-related charges, fuel surcharge and an operation fee, depending on the route. Not every line displays every component in the same way. Read the live breakdown for the route being considered rather than assuming one screenshot represents the entire platform.",
+          "The same page says ordinary shopping-agent purchasing currently carries a CN¥0 service fee and that multiple items can be consolidated for free. Optional value-added services are charged separately when selected. This distinction is useful: basic purchasing and consolidation may be free as services, while the goods, domestic delivery, add-ons and international logistics still create the total cost. “No service fee” should never be read as “no transaction cost.”"
+        ]
+      },
+      {
+        "heading": "Consolidate compatible items, not every item",
+        "paragraphs": [
+          "Combining orders can remove repeated seller packaging and replace several international shipments with one parcel. That may improve efficiency, especially when each separate parcel would pay its own initial-weight charge. But consolidation is not automatically cheaper. One oversized parcel can attract high dimensional weight, exceed a route’s size limit or force all contents onto a more expensive line because one item is restricted.",
+          "Group products by physical and regulatory compatibility. Soft clothing often works well together. A fragile collectible may need a different protection strategy from vacuum-packed garments. Battery items, liquids or unusually long products can narrow route choices. Before combining everything, compare at least two plausible parcel plans: one consolidated shipment and a split that isolates the bulky, fragile or restricted item. The lower-risk plan can be better value even if the headline freight is slightly higher."
+        ]
+      },
+      {
+        "heading": "Treat warehouse time as a planning window",
+        "paragraphs": [
+          "Superbuy’s current fee page states that items receive 90 days of free storage after arrival. Beyond that, it lists a storage charge of CN¥0.1 per item per day and a maximum period of 180 days, after which unattended goods may be treated as abandoned. Record the arrival date of each item and choose a target parcel date. Do not wait indefinitely for the perfect haul while early items approach a deadline.",
+          "A practical rule is to decide the parcel group before the first product is ordered. If one seller is slow, compare three options: wait and keep the intended group, ship ready items, or cancel the late item if the order stage permits. The right answer depends on expected savings, storage time and route compatibility. The important point is that the warehouse clock belongs in the shipping calculation just as much as weight and volume."
+        ]
+      },
+      {
+        "heading": "Select packaging by modelling the trade-off",
+        "paragraphs": [
+          "Superbuy’s official guidance lists package removal or replacement, reinforcement and insurance among optional services. Its current fee page also lists vacuum packaging and folding shoe boxes. Removing or folding a box can reduce volume; vacuum packing can compress suitable soft goods; reinforcement can help a crush-sensitive parcel. None of these choices is universally best because reducing size, preserving retail packaging and adding physical protection pull in different directions.",
+          "Estimate the value of the original packaging before removing it. For ordinary shoes, a buyer may prefer lower volume. For a collectible, box condition may be part of the value. Vacuum packing is sensible for compressible textiles, not for structured items. Reinforcement adds material and sometimes weight but may be worth it for fragile contents. Insurance addresses defined financial risks under its terms; it cannot prevent customs action, delay or physical mishandling."
+        ]
+      },
+      {
+        "heading": "Compare routes using the parcel you actually have",
+        "paragraphs": [
+          "International delivery availability depends on the destination, parcel dimensions and item characteristics. It also warns that third-party providers and customs affect processing time, restrictions and taxes. A route that appears in a broad guide may not be available for a specific battery item, parcel size or destination postcode when you submit it.",
+          "Once all intended items are stored, revisit the shipping calculator with warehouse weights and a realistic packed shape. Compare the route’s charge, estimated delivery range, tracking, restrictions, compensation terms and customs treatment. Do not rank routes by price alone. A slightly more expensive line can be preferable if it accepts the contents cleanly and provides the service level you need. Recheck the live route notice immediately before payment."
+        ]
+      },
+      {
+        "heading": "Create a final parcel decision sheet",
+        "paragraphs": [
+          "Before submission, write down destination, item list, warehouse weights, likely packed volume, chosen packaging, restricted-item flags, candidate routes and a contingency budget. Note which assumptions are still estimates. This one-page record makes it easier to compare a split parcel with a consolidated one and protects against the false precision of a single calculator result.",
+          "The most useful Superbuy shipping estimate is a range with reasons, not a copied number. It acknowledges that the first charge is a deposit, the finished parcel controls the final bill and route availability can change. Estimate early enough to avoid buying uneconomic items, then calculate again when warehouse data exists. That two-pass method is more reliable than trying to guess the final international cost from product pages alone."
+        ]
+      },
+      {
+        "heading": "Read shipping reviews without copying somebody else’s total",
+        "paragraphs": [
+          "Customer reports are useful for discovering friction, but a bare statement such as “shipping was expensive” has almost no diagnostic value. Look for destination, route, packed weight, box size, item type, packaging services, date and whether the amount discussed was the deposit or final charge. When those details are missing, treat the review as a prompt to investigate rather than a benchmark.",
+          "A responsible review article should compare patterns instead of manufacturing an average from incomparable parcels. Repeated reports of large shoe boxes, slow seller dispatch or confusing route restrictions can shape a practical checklist. The current calculator and warehouse data must still decide the actual shipment. Reviews make the guide more human when their limits are visible; they become misleading when one person’s parcel is presented as a universal price promise."
+        ]
+      },
+      {
+        "heading": "Keep a scenario record beside every estimate",
+        "paragraphs": [
+          "Give each estimate a short scenario name and save the destination, contents, packed dimensions, weight, packaging choice, eligible route and check date. When comparing a retained shoe box with a removed box, change only the relevant assumptions and note what is still estimated. Do not describe the difference as a saving until both scenarios are eligible and comparable.",
+          "For a hypothetical USD comparison, a $36 estimate plus $4 of chosen services totals $40 for those components; a $39 estimate with $1 of the same required service scope also totals $40. Neither is automatically the cheaper delivered option. Review any unconfirmed destination or payment-related amounts separately. These figures are examples, not route quotations. After dispatch, reconcile the final record so the next estimate can use measured information instead of the same untested assumptions."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-warehouse-arrival-checklist",
+    "title": "Superbuy Warehouse Arrival: Match Orders, Photos and Quantities",
+    "dek": "Reconcile a Superbuy warehouse arrival with the shopping order, domestic tracking and visible QC evidence before the next step.",
+    "sections": [
+      {
+        "heading": "Treat warehouse arrival as a new decision point",
+        "paragraphs": [
+          "A Superbuy Shopping Agent order reaching the warehouse means the domestic seller-to-warehouse leg has produced an intake record. It does not mean the product is automatically correct, ready to ship internationally or proven to meet every seller claim. The useful response is to reconcile the order while the original selection and seller page are still easy to retrieve.",
+          "This checklist is for Shopping Agent purchases. Parcel Forwarding begins from a different ownership and service context: the customer sends an already purchased item to a forwarding address. Do not transfer shopping-agent purchasing, seller after-sales or standard inspection assumptions to a forwarded parcel unless the current forwarding terms expressly provide them.",
+          "Open three records side by side: the order confirmation, the live or saved seller listing and the warehouse item page. Your first question is identity, not quality. Confirm that the stored record belongs to the order you intended to evaluate before interpreting photographs or planning a parcel."
+        ]
+      },
+      {
+        "heading": "Reconcile the order identity",
+        "paragraphs": [
+          "Match the warehouse item number with the purchasing order, then compare product title, seller, selected option, colour, size, model, quantity and any included pieces. A translated warehouse title may be shorter than the marketplace title, so use the order number and selected variant rather than demanding identical wording.",
+          "Look for differences that change what you own: one item instead of a set, a different colour code, an unexpected size tag, a deposit-only order, a missing accessory or a substituted model. Record each important field as match, mismatch or not visible. Do not mark an unseen detail as accepted merely because the general silhouette looks familiar.",
+          "Keep the original listing evidence. Seller pages can change after purchase, and a later screenshot may no longer show the option you selected. A saved order screen, option image and concise purchase note create a better comparison than memory."
+        ]
+      },
+      {
+        "heading": "Read the warehouse intake data before the photos",
+        "paragraphs": [
+          "Superbuy's current Shopping Agent guide says received items are weighed and inspected and that photos of the actual product are provided. Read the stored item's recorded weight and any dimensions or status notes that appear in the account. They are intake data, not the final packed parcel measurements.",
+          "An intake weight can help identify a large discrepancy, but it should not be treated as an exact international shipping quote. The later parcel can add or remove seller packaging, combine multiple items and use protective services. Final route pricing depends on the finished parcel and available line rules.",
+          "If the intake record flags an issue, read that message before judging the images. A note about damage, prohibited characteristics, missing pieces or an unusual size may define the action more clearly than a thumbnail."
+        ]
+      },
+      {
+        "heading": "Inspect the standard photographs against a written brief",
+        "paragraphs": [
+          "Use the available standard images as a visual checkpoint, not a universal inspection certificate. First confirm visible product identity, quantity and option. Then examine overall form, major panels, colour family, labels that are shown, surface marks, damaged packaging and included accessories visible in the frame.",
+          "Apply category-specific checks. For shoes, compare the pair, visible size labels, outsole and obvious asymmetry. For clothing, compare the colour, printed or embroidered placement, size label and general construction. For bags, check shape, hardware, strap count and corners. For fragile items, inspect the visible exterior while remembering that photographs do not prove survival in international transport.",
+          "Lighting and perspective can mislead. A single shadow is not automatically a stain, and a wide-angle edge can distort shape. Look for the same issue across images or request one targeted clarification when a material decision depends on it."
+        ]
+      },
+      {
+        "heading": "Classify every open question by the evidence needed",
+        "paragraphs": [
+          "Place an open question into one of four buckets: visible in existing photos, answerable with a targeted photo or measurement, answerable only by a documented optional service, or not reasonably verifiable at the warehouse. This prevents a vague request for more inspection from producing more images without a better decision.",
+          "A chest measurement, insole length, size tag, connector panel or all set pieces laid out together can be a targeted request. Material composition, authenticity, long-term durability, waterproofing and exact fit usually cannot be proven from ordinary warehouse photographs. Functional testing should never be assumed unless a current, clearly described service provides it for the item.",
+          "Write the decision rule before requesting evidence: 'keep if the flat chest is at least 58 cm' or 'seek after-sales help if the second strap is absent.' A rule turns information into an action."
+        ]
+      },
+      {
+        "heading": "Choose accept, clarify or after-sales",
+        "paragraphs": [
+          "Accept means the available evidence matches the selected order closely enough for your risk tolerance. Clarify means one material question could still be resolved by a specific photo, measurement or order message. After-sales means the record documents a wrong option, missing part, visible damage or another mismatch that crosses your pre-set threshold.",
+          "When raising a problem, state the expected field, observed field and supporting image. 'Ordered black, size 42; intake photo shows blue, size 41' is actionable. 'Looks bad' is not. Keep the item out of an international parcel while the case is open, because seller-side correction becomes harder after outbound submission.",
+          "Available remedies depend on current timing, seller cooperation and the live order instructions. Use the current account path and Help Center rather than importing an old return window from a forum or from another platform."
+        ]
+      },
+      {
+        "heading": "Connect intake evidence to storage and parcel planning",
+        "paragraphs": [
+          "Once the item is accepted, record the arrival date and the parcel group it may join. The purpose is not to turn this article into a storage calendar; it is to stop accepted goods from drifting without an owner or next decision. Different seller arrivals may justify consolidation, but the oldest item and current account deadline should remain visible.",
+          "Do not use intake weight as the final parcel total. Decide whether original packaging matters, whether a shoe box can be folded or removed, whether a fragile item needs reinforcement and whether different product types should be split. Then compare routes only after the parcel contents and packaging request are defined.",
+          "Keep the identity evidence until delivery. If the received parcel later has a missing or different item, the order, intake images, parcel submission record and unboxing evidence form a traceable chain."
+        ]
+      },
+      {
+        "heading": "Use a five-minute arrival worksheet",
+        "paragraphs": [
+          "Create one row per item with these columns: order number, seller, selected variant, quantity, intake status, recorded weight, visible match, visible problem, open question, evidence request, decision and next review date. The worksheet can be a note; consistency matters more than software.",
+          "Complete it when the arrival notice appears, not days later. Save only evidence needed to explain the decision and avoid personal address or payment details in shared files. Mark a resolved question rather than deleting it so the reasoning remains visible.",
+          "The warehouse arrival checkpoint is valuable because it sits between seller delivery and international commitment. A disciplined five-minute reconciliation catches wrong identities, separates visible facts from unknowns and gives every stored item a clear next action. That is different from merely watching an order status: it is an evidence-based intake decision."
+        ]
+      },
+      {
+        "heading": "Reconcile split arrivals before closing the checklist",
+        "paragraphs": [
+          "If an order contains several items, compare the expected quantity with the warehouse records and available photographs. One delivered carrier reference does not independently establish the contents of every package. Record each known domestic number and its association with the shopping order. Leave an unclear association unresolved until the seller or purchasing agent clarifies it.",
+          "For example, a two-garment order may show one stored item while the second has no visible intake record. Ask whether both were dispatched and whether the warehouse information is complete. Include the order number, carrier references and the exact missing quantity. This is an illustrative reconciliation method, not a diagnosis of loss. Keep the enquiry separate from later international parcel tracking, and do not include an unaccounted-for item in a shipping budget as though it were already ready."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-order-remarks-writing-guide",
+    "title": "Superbuy Order Remarks: Clear Variant and Purchase Instructions",
+    "dek": "Write Superbuy order remarks that identify the exact variant and substitution rule, with warehouse and packaging requests kept separate.",
+    "sections": [
+      {
+        "heading": "Decide whether a remark is needed at all",
+        "paragraphs": [
+          "A Superbuy Shopping Agent order begins with a product page, selected options and quantity. Those structured fields should carry the basic purchase instruction. An order remark is useful only when one material detail is not represented reliably by those fields or when the listing itself tells the buyer to communicate a specific choice. Repeating every selected option in a long message can introduce a contradiction instead of adding protection.",
+          "Open the live seller page and the imported order form side by side. Confirm seller, product identity, colour, size, model, quantity and included pieces. If they already agree, keep the remark empty or use it only to restate the single detail most vulnerable to translation. If they do not agree, pause. A sentence cannot repair a source page that shows incompatible titles, images and option labels.",
+          "This guide concerns Shopping Agent purchasing. Parcel Forwarding starts from an item the customer has already bought and sent to a forwarding address; the forwarding form and inspection limits are different. Do not use a shopping-agent purchase remark to assume that a forwarding warehouse will negotiate with the original seller or verify product promises."
+        ]
+      },
+      {
+        "heading": "Write observable facts, not quality wishes",
+        "paragraphs": [
+          "A useful remark names something another person can compare with the seller page or received item. ‘Black, size 42, one pair; match the black option image’ is observable. ‘Best quality,’ ‘perfect pair’ and ‘choose a good one’ have no shared test. They ask an agent to make a subjective purchasing decision without a measurable threshold.",
+          "Convert each concern into a field: selected colour, printed model code, quantity, version, plug type, text placement or included accessory. If fit matters, preserve the seller chart and specify the labelled size being ordered; do not ask the purchasing agent to guarantee that it will fit. If material matters, quote the exact published specification while recognizing that normal warehouse images may not prove composition.",
+          "Avoid claims that exceed the listing. A seller photograph may show styling props that are not included. A low price may refer to an add-on or deposit. The remark should not turn an inference into an order term. When included quantity is unclear, ask for clarification before payment rather than writing ‘include everything shown.’"
+        ]
+      },
+      {
+        "heading": "Use a compact four-part remark",
+        "paragraphs": [
+          "A reliable structure has four parts: the exact option, the quantity, one listing reference and the action if the detail is unavailable. For example: ‘Navy, XL, quantity 1; use the option image with the white chest mark; do not substitute—ask before purchase.’ This is short enough to translate and specific enough to audit later.",
+          "Keep punctuation simple and place the most important fact first. Marketplace option names may be machine translated, so retain a model number or source-language option text when it is the only stable identifier. Add an image reference only when the order interface supports it and the image unambiguously identifies the choice. Never place payment credentials, identity documents or unnecessary personal data in an order note.",
+          "One order should have one final instruction set. If support clarifies a detail after submission, keep the dated conversation beside the order and update through the current account action if available. Several conflicting messages create an evidence problem: later staff cannot know which sentence superseded the others."
+        ]
+      },
+      {
+        "heading": "Handle seller price or stock changes without silent approval",
+        "paragraphs": [
+          "The official Superbuy Shopping Agent guidance says agents may contact buyers when more information is needed. A seller can also change stock, domestic delivery or the price attached to an option. Your original remark is evidence of what you requested; it is not blanket permission to accept a different product or amount.",
+          "Pre-write a substitution rule. ‘No substitution without confirmation’ is useful when colour, version or size is material. If a nearby option is acceptable, define the boundary: ‘If navy is unavailable, ask before changing to black.’ Do not authorize ‘similar’ unless you can explain which attributes may change and which must remain fixed.",
+          "When a new amount appears, compare the selected option, seller shipping and any named service line. Approve or reject through the live order record, then save the decision. Do not infer a hidden fee from the difference between two totals. The evidence should show which line changed and why."
+        ]
+      },
+      {
+        "heading": "Plan warehouse evidence separately from purchase remarks",
+        "paragraphs": [
+          "An order remark tells the purchasing stage what to buy. A warehouse evidence request tells the intake stage what visible fact would help you decide. Combining the two can produce false expectations. Superbuy’s public Shopping Agent material describes warehouse inspection and photographs of the actual product, but standard views cannot answer every measurement, internal or functional question.",
+          "Before paying, write a private QC brief beside the order: the views already expected, one possible targeted photo, and the threshold that would change the decision. A shoe buyer might need the size label and insole length; a set buyer might need all included pieces in one frame. Request that evidence through the current warehouse service only if standard material leaves the decision unresolved.",
+          "Do not phrase a purchase note as a guaranteed test. ‘Please make sure it is authentic, waterproof and durable’ cannot be established by ordinary images. Identity, visible label, quantity and a ruler measurement are narrower and auditable. Separating the two briefs makes later after-sales evidence clearer."
+        ]
+      },
+      {
+        "heading": "Use category-specific examples",
+        "paragraphs": [
+          "For footwear, a defensible note is: ‘Grey, EU 43, one pair; match the option image and do not replace the selected size.’ For clothing: ‘Black, size L, quantity 1; use the option labelled heavyweight; no alternate colour.’ For a multi-piece listing: ‘Option B, two-piece set; confirm both named pieces are included before purchase.’ Each instruction points to a visible listing field.",
+          "For electronics or accessories, record model, connector, voltage or compatibility exactly as the seller publishes it, but avoid claiming safety certification or function unless the current service explicitly tests it. For fragile goods, purchase identity belongs in the order remark; reinforcement, outer waterproofing or package removal belongs to the later parcel instruction.",
+          "Manual or DIY orders need even more source detail because automatic parsing may be incomplete. Supply the exact product URL, seller, option, unit price, China domestic delivery, quantity and a neutral description. A clear manual-order record reduces ambiguity, but it still does not expand the platform’s inspection or seller-return boundaries."
+        ]
+      },
+      {
+        "heading": "Create an audit trail before you submit",
+        "paragraphs": [
+          "Save the live URL, seller name, chosen option, item image, quantity, displayed item amount, domestic delivery and your final remark with the check date. After submission, add the order number and confirmation screen. This compact record establishes what the purchasing agent received before the seller page changes.",
+          "When the item reaches the warehouse, compare the intake record with the structured order fields first and the remark second. Mark each material field as match, mismatch or not visible. If a mismatch exists, quote the expected field, observed field and relevant image. ‘Ordered option B with two pieces; intake image shows one’ is actionable. ‘Order ignored my note’ is not enough by itself.",
+          "Keep the remark even after the item is accepted. If a later delivery dispute concerns a missing part or wrong version, the source listing, order instruction, warehouse record and unboxing evidence form one chronology. Store only necessary records and remove personal address or payment information from anything shared publicly."
+        ]
+      },
+      {
+        "heading": "Run the thirty-second final check",
+        "paragraphs": [
+          "Before payment, ask six questions. Does the live listing identify the full product? Do selected fields match the intended option? Is the remark limited to an observable detail? Does it avoid unsupported quality claims? Is the no-substitution rule clear? Is the later warehouse question stored separately? A ‘no’ on identity or option should pause the purchase.",
+          "Read the sentence once as if you were a purchasing agent translating it without the buyer present. Remove adjectives, duplicate instructions and background stories. Put the decision-changing noun and number near the start. If the note needs a paragraph to explain the product, the listing or manual-order data is probably not clear enough yet.",
+          "Superbuy order remarks work best as compact evidence, not insurance against every uncertainty. The seller page defines the offered product, structured selections define the order, the remark resolves one bounded gap, and warehouse evidence supports a later decision. Keeping those roles separate produces fewer contradictions and a stronger record from purchase to parcel."
+        ]
+      },
+      {
+        "heading": "Verify that the final fields and remark agree",
+        "paragraphs": [
+          "Read the selected option and the written remark as a pair before payment. If the option says blue and the note says black, correct the conflict rather than expecting the agent to choose which instruction matters. Keep the final version in your order record so a later enquiry refers to the instructions actually submitted.",
+          "A useful revision removes ambiguity without adding claims that the agent cannot verify. Replace best quality with an observable option, component or measurement request. If the listing does not support the detail you need, ask before treating it as part of the purchase. After any stock or price clarification, save the changed instruction and confirm what was accepted. This creates one current purchase brief instead of several competing versions spread across messages."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-seller-not-shipped-delay-record",
+    "title": "Superbuy Seller Not Shipped: Status Checks and Next Steps",
+    "dek": "Check Superbuy order status, seller messages and domestic tracking before requesting a dispatch update or asking about cancellation.",
+    "sections": [
+      {
+        "heading": "Start with the service and the exact order stage",
+        "paragraphs": [
+          "A Superbuy Shopping Agent order passes through a purchasing stage before the seller sends the item to the warehouse. A quiet order page does not by itself prove that the seller has refused to ship. The agent may still be confirming an option, waiting for a seller response, completing the purchase or recording domestic logistics. Begin with the current order record, not an assumed cause.",
+          "Confirm that the order belongs to Shopping Agent rather than Parcel Forwarding. With Shopping Agent, Superbuy purchases from the seller and the seller sends the item to the selected warehouse. Parcel Forwarding begins with an item the customer has already bought and requires its own submission and logistics record. Mixing those workflows produces the wrong question and the wrong evidence.",
+          "Write down the displayed order number, item, selected variant, payment time and current status exactly as shown. Do not rename the status in your notes or translate it into a stronger conclusion. The useful starting statement is factual: the order shows a particular stage and no seller-to-warehouse tracking number is visible at the time checked."
+        ]
+      },
+      {
+        "heading": "Build a dated delay record before contacting anyone",
+        "paragraphs": [
+          "Create one short timeline instead of opening several disconnected enquiries. Record the time the item payment was confirmed, the time the purchasing stage appeared, every request for missing information, any price or stock message, and the latest time the order page was checked. Attach a saved listing snapshot and the final selected option so a later reply can be compared with the original instruction.",
+          "Use separate fields for facts and unknowns. Facts may include a confirmed order number, a visible status, a dated message and whether domestic tracking is present. Unknowns may include whether the agent has placed the purchase, whether the seller accepted it, whether stock remains, and whether a tracking number has simply not been uploaded. This separation prevents an unverified guess from becoming the premise of the enquiry.",
+          "Keep the record proportionate. A screenshot of the order area, the relevant seller listing and one message thread is usually more useful than a gallery of repeated refreshes. Hide names, addresses, balance details and payment identifiers before sharing anything outside the account. The purpose is to preserve the decision trail, not to publish a private order."
+        ]
+      },
+      {
+        "heading": "Use the official three-day urge point carefully",
+        "paragraphs": [
+          "Superbuy's public Help Center currently states that a Shopping Agent order can be urged for delivery after three days. Treat that as the availability of an account action, not a promise that the seller must dispatch within three days. The seller's own handling time, stock position and domestic carrier collection can still affect what happens next.",
+          "Count from the timestamp that the live account associates with the relevant purchasing stage, not from the moment you first saved a product link. If the account exposes an Urged Delivery action, use that current interface after the stated threshold and record the time. Do not send repeated reminders through several channels on the same day; duplicate messages can fragment the answer and obscure which request is active.",
+          "If the action is unavailable despite the elapsed time, preserve a screenshot of the stage and use the order-enquiry route shown for the order. Describe the dates rather than asserting that the system is broken. Interface labels and eligibility can change, so the live account and current Help Center should override an old tutorial or a remembered button location."
+        ]
+      },
+      {
+        "heading": "Ask for one answer that changes the decision",
+        "paragraphs": [
+          "A useful enquiry contains the order number, current displayed stage, purchase or payment date, absence of visible domestic tracking, and one requested outcome. Ask whether the seller has accepted the order and whether a dispatch date or domestic tracking reference is available. If neither is available, ask what buyer action is currently possible. This gives support a bounded question they can take to the seller.",
+          "Avoid messages such as 'ship now', 'why so slow' or 'please solve urgently' without an order reference. They express frustration but do not identify the missing fact. A clearer note is: 'Order [number] has shown [status] since [date]. No domestic tracking is visible. Please confirm whether the seller accepted the order and advise the next available action if no dispatch date exists.'",
+          "Keep option and substitution rules visible. If the selected size, colour or version is essential, restate that no substitute should be accepted without confirmation. If the seller proposes another option or a higher amount, treat it as a new decision. The earlier order remark is evidence of the original request, not permission for an unrecorded change."
+        ]
+      },
+      {
+        "heading": "Separate four common explanations",
+        "paragraphs": [
+          "First, the agent may still need information from the buyer. Superbuy's Shopping Agent guidance says agents may contact the customer by email or message when details are required. Check the account inbox and the order enquiry before escalating a seller delay. A missed colour choice, manual-order field or price-change confirmation can pause progress even when the listing still looks available.",
+          "Second, the seller may have accepted the purchase but not handed it to a domestic carrier. Third, a parcel may have moved while tracking is absent or incomplete. Fourth, the listing may be out of stock, repriced or no longer consistent with the selected option. These situations can look similar from a single status label but require different responses: complete information, wait for dispatch, request tracking, or decide whether to cancel or approve a change.",
+          "Do not use an international parcel tracker for this stage. The item has not yet completed seller-to-warehouse movement, so international route, customs and delivery estimates are not relevant. Domestic tracking belongs to the purchase record; international tracking begins only after warehouse acceptance, parcel submission, packing and carrier handoff."
+        ]
+      },
+      {
+        "heading": "Choose wait, clarify or cancel from evidence",
+        "paragraphs": [
+          "Waiting is reasonable when the seller has confirmed stock and given a dated dispatch expectation that fits your plan. Clarification is better when the order stage is ambiguous, a message is unanswered or tracking is said to exist but is not visible. A cancellation question becomes appropriate when stock is unavailable, the seller cannot provide a dispatch expectation, a material option has changed, or the delay threatens the buyer's warehouse and parcel plan.",
+          "Do not present cancellation as automatic. Whether it is currently possible can depend on the stage, seller progress and the live rules shown in the account. Ask what action is available and what consequences are recorded before confirming. If a refund follows, keep its request, approval and settlement as separate dated events rather than assuming that cancellation and returned funds occur at the same moment.",
+          "Consider the whole planned parcel without turning the article into a shipping-cost guide. A late item may hold back other stored orders, but dispatching everything else can change grouping and packaging decisions. Record the oldest warehouse arrival, the desired consolidation group and the latest acceptable decision date. This converts vague impatience into a defined trade-off."
+        ]
+      },
+      {
+        "heading": "Close the record when domestic tracking appears",
+        "paragraphs": [
+          "A domestic tracking number is evidence of a logistics record, not proof that the warehouse has received the correct item. Save the number, carrier if shown, first scan time and order association. Watch for the warehouse intake event instead of declaring the delay finished from a number alone. A label can be created before the carrier records meaningful movement.",
+          "When the item arrives, compare the warehouse record with the order number, selected variant, quantity and any seller-change message. Then review the available inspection evidence under the warehouse-arrival workflow. Keep purchase delay, warehouse condition and later parcel submission as distinct stages; each has different actors, records and remedies.",
+          "If tracking stops before warehouse delivery, extend the same chronology with scan dates and the latest account response. Do not invent a loss date or carrier conclusion. Ask whether the seller or agent has opened the appropriate domestic enquiry and what evidence is required from the buyer."
+        ]
+      },
+      {
+        "heading": "Run a final seller-delay checklist",
+        "paragraphs": [
+          "Before sending an enquiry, verify eight fields: service type, order number, item and option, payment or purchase date, current displayed stage, last message, presence of domestic tracking, and the single decision you need. Check whether three days have elapsed according to the live order timeline and whether the Urged Delivery action is available. Remove assumptions and private payment data from the note.",
+          "After sending, add the enquiry time and wait for the current response channel rather than starting parallel threads. When a reply arrives, classify it as information needed, seller accepted, dispatch expected, tracking supplied, stock or price changed, or action available. Set the next review date from that reply; do not let an unresolved order disappear inside a general inbox.",
+          "The practical goal is not to force a prediction from a silent status. It is to show what stage the Shopping Agent order has reached, what seller-to-warehouse evidence is missing, when the official urge action became available, and which next action the buyer can actually choose. A compact dated record makes that conversation faster and protects later decisions if the listing or order changes."
+        ]
+      },
+      {
+        "heading": "Move from seller delay to domestic tracking without losing context",
+        "paragraphs": [
+          "When a carrier reference appears, preserve the seller-delay timeline and add the new logistics events. A label, carrier collection and warehouse arrival are different checkpoints. The question changes from whether dispatch information exists to which movement or delivery event has actually been recorded.",
+          "Use the same shopping order identifier to connect the histories. If several items share a listing title, retain the selected variant and quantity so an update is not applied to the wrong order. Close the seller-delay question when the relevant evidence appears, while keeping any warehouse or product issue open separately. This avoids treating one new number as proof that the full purchase is ready for international shipping."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-packaging-guide",
+    "title": "Superbuy Packaging: Shoe Boxes, Vacuum Packing and Parcel Size",
+    "dek": "Compare Superbuy box removal, vacuum packing and reinforcement using the actual items, parcel dimensions and shipping requirements.",
+    "sections": [
+      {
+        "heading": "Start with the packed parcel, not the product thumbnail",
+        "paragraphs": [
+          "Superbuy packaging becomes a real cost decision after stored items are selected for an international parcel. The product listing may show a light shirt, a pair of shoes or a compact accessory, but the carrier sees the finished parcel: contents, seller packaging, warehouse packing materials and the outer box. That finished shape can affect billable weight, route eligibility and protection. A useful packaging request therefore begins with the items being shipped and the risks they create together, not with a generic instruction to make everything as small as possible.",
+          "Create a short parcel inventory before choosing services. Mark each item as soft, rigid, crush-sensitive, fragile, leak-prone, sharp, valuable to you or restricted by a route. Record whether the retail box is part of the value. A shoe buyer who plans to wear the pair may accept a folded or removed box, while a collector may prefer to keep it. Two customers can make different sensible decisions because their loss thresholds are different. Packaging is a trade-off between volume, protection and preservation, not a universal preset."
+        ]
+      },
+      {
+        "heading": "Understand how box size can change shipping cost",
+        "paragraphs": [
+          "International shipping may use actual weight or a volume-based calculation, depending on the current line and parcel data. That is why a large, light Superbuy box can cost more than its scale weight suggests. Rigid retail boxes, padded jackets and loosely packed soft goods can add space without adding much mass. The exact divisor, charging increment and size limit belong to the live shipping line, so check the current calculator and route details rather than copying a formula from another buyer or an old post.",
+          "Use the shipping calculator for scenarios. Enter a plausible packed weight and dimensions for the parcel with boxes kept, then compare a second scenario with unnecessary packaging removed or soft goods compressed. The result is an estimate, not a final quote: the warehouse still has to pack and measure the parcel, and route availability can change. The comparison is valuable because it shows whether reducing a few centimetres may matter. If both scenarios fall into the same charging band, aggressive packaging removal may create little benefit."
+        ]
+      },
+      {
+        "heading": "Decide whether to keep, fold or remove a shoe box",
+        "paragraphs": [
+          "The search for a Superbuy box option often comes from footwear orders. A shoe box is light but rigid, so it can influence parcel dimensions. Before removing it, decide what the box does for you. It can preserve presentation, hold accessories and add some structure around the shoes. It can also arrive damaged despite being kept, because retaining retail packaging is not a guarantee that the box will remain collector-grade during international handling.",
+          "Choose among three outcomes. Keep the box when its condition or contents matter enough to justify the space. Fold it only when the current service is available and a flattened box still has value to you. Remove it when the shoes, not the packaging, are the priority and the remaining packing plan protects their shape adequately. For multiple pairs, compare keeping every box with retaining only one important box. Write the request in item-specific terms so warehouse staff do not have to guess which packaging matters."
+        ]
+      },
+      {
+        "heading": "Use vacuum packaging for the right type of item",
+        "paragraphs": [
+          "Superbuy vacuum packaging is mainly a volume decision for compressible soft goods. Puffy jackets, some bedding and bulky clothing may occupy less space after air is removed. Dense products, shoes, electronics and rigid accessories do not gain the same advantage. Compression can also crease fabric, flatten padding or distort structured garments, so a smaller parcel is not automatically a better parcel. Check care requirements and decide whether temporary or lasting compression marks would be acceptable.",
+          "Do not combine a vacuum request with vague instructions such as ‘compress everything.’ Name the eligible items and exclude products that should hold their shape. If a printed garment, padded panel or delicate trim concerns you, keep it out of the compressed group. The live account should control whether the service is offered and how it is described for the parcel. Avoid publishing or relying on a fixed fee unless the current checkout confirms it, because optional-service pricing can change."
+        ]
+      },
+      {
+        "heading": "Match reinforcement to the actual damage risk",
+        "paragraphs": [
+          "Superbuy's published forwarding guidance lists package removal, package reinforcement and insurance among additional services that can be requested. Those labels solve different problems. Reinforcement changes the physical packing strategy; insurance addresses only losses or damage that fall within current coverage terms. Neither makes every item safe, and neither removes carrier, customs or route restrictions. Read the live description before selecting a service and keep the packaging objective specific.",
+          "For a crush-sensitive item, the important question may be whether the outer parcel needs stronger structure or internal separation. For glass or ceramic, movement and contact between pieces may matter more than the strength of the outer box alone. For liquid or sharp items, containment and route acceptance require separate checks. Ask what risk you are trying to reduce, then choose the minimum service that addresses it. Adding every available option can increase size and weight without resolving the main failure mode."
+        ]
+      },
+      {
+        "heading": "Consolidate compatible items instead of forcing one parcel",
+        "paragraphs": [
+          "Consolidation can remove repeated seller packaging and combine several stored orders into one international shipment. It can be efficient, but packaging compatibility matters. Soft clothing can fill space around sturdy goods; fragile objects may require separation; a restricted item can reduce the lines available to the entire parcel. One oversized box may also lose access to a preferred route. Compare one consolidated parcel with a split that isolates the bulky, fragile or restricted item before assuming one box is cheaper.",
+          "A practical grouping sheet needs only five columns: item, approximate stored weight, bulk, damage sensitivity and route concern. Use it to build two or three parcel candidates. Keep the oldest warehouse arrival visible so the comparison does not cause an item to drift toward its storage deadline. The goal is not the fewest parcels at any cost. It is a package plan whose likely freight, protection and route choice are acceptable together."
+        ]
+      },
+      {
+        "heading": "Write packaging remarks that can be followed",
+        "paragraphs": [
+          "A strong remark identifies the item, the action and the reason. ‘Remove the seller shipping bag from the two hoodies; keep the branded box for order 123; do not vacuum-pack the structured jacket’ is clearer than ‘pack safely and cheaply.’ Avoid contradictory instructions such as requesting the smallest possible parcel while also asking to preserve every retail box. Rank priorities when they conflict: protect the ceramic first, keep one box second, reduce unused volume third.",
+          "Review the parcel preview or available confirmation before payment when the current workflow offers one. Compare the selected items and services with your written plan. A note cannot override route restrictions or guarantee an exact finished size, so treat it as an operational brief rather than a contract for a particular price. Save the final request with the parcel record; if the delivered package later has a problem, the original instruction helps separate a packing issue from carrier damage or an incorrect expectation."
+        ]
+      },
+      {
+        "heading": "Use a final Superbuy packaging checklist",
+        "paragraphs": [
+          "Before submitting, confirm that every item belongs in the parcel, open warehouse questions are resolved and restricted characteristics have been checked against current lines. Decide which retail packaging must stay, which can be folded or removed, which soft goods may be vacuum-packed and which items need shape or impact protection. Compare at least two plausible calculator scenarios when volume could be material. Then check the live service names, prices and route limits instead of relying on a saved screenshot.",
+          "The best Superbuy packaging choice is not always the smallest box, the most reinforced box or the parcel with the most add-ons. It is the one that fits the actual contents and your priorities while keeping estimated cost and route eligibility visible. A short inventory, two shipping scenarios and an item-specific remark create a better decision than a universal packing rule. Recheck the final measured parcel when it is available, because that record—not the product thumbnail or an early estimate—is what connects packaging to the shipping charge."
+        ]
+      },
+      {
+        "heading": "Turn the packing choice into an item-by-item instruction",
+        "paragraphs": [
+          "Keep a small packing record with one row per stored order: packaging to keep, packaging that may be removed, compression allowed or prohibited, and the visible feature requiring protection. Avoid a single blanket request when the parcel contains both soft garments and structured footwear. The instructions should be consistent with the product decisions already made.",
+          "Before submission, review whether the chosen route remains available for the resulting contents and expected dimensions. Save the original instructions and any warehouse clarification, then compare the final parcel record with the assumptions used in the estimate. If a packing detail matters to you but cannot be confirmed, keep that uncertainty explicit. This is a practical decision record, not a guarantee that retail packaging or contents will arrive undamaged."
+        ]
+      }
+    ]
+  }
+]

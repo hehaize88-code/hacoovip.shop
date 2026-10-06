@@ -1,5 +1,8 @@
 import { articles, categories, copy, edit, faq, localeNames, ROOT, type Locale } from "../lib/content";
 
+import { localizedPath, relatedSlugs, REVIEW_DATE } from "../lib/seo";
+export { localizedPath } from "../lib/seo";
+
 type RouteKind = "home" | "categories" | "guides" | "faq" | "articles" | "article" | "not-found";
 
 type ParsedRoute = {
@@ -20,7 +23,7 @@ const articleDates: Record<string, string> = {
 };
 
 function updatedLabel(locale: Locale, slug: string) {
-  const date = articleDates[slug] ?? "2026-08-12";
+  const date = REVIEW_DATE;
   const formatted = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : locale === "de" ? "de-DE" : "en-GB", {
     day: "numeric",
     month: "long",
@@ -45,12 +48,6 @@ export function parseRoute(segments: string[]): ParsedRoute {
     return { locale, kind: exists ? "article" : "not-found", slug: rest[1], basePath };
   }
   return { locale, kind: "not-found", basePath };
-}
-
-export function localizedPath(locale: Locale, path: string) {
-  const clean = path === "/" ? "" : path;
-  const localized = locale === "en" ? clean || "/" : `/${locale}${clean}`;
-  return localized === "/" ? localized : `${localized.replace(/\/$/, "")}/`;
 }
 
 const categoryEditorial = {
@@ -247,10 +244,11 @@ function Home({ locale, basePath }: { locale: Locale; basePath: string }) {
       <section className="notes" id="notes">
         <div className="notes-head"><span>{t.home.notesKicker}</span><h2>{t.home.notesTitle}</h2><p>{t.home.notesIntro}</p></div>
         <div className="note-columns">
-          {t.home.notes.map((note) => (
-            <article key={note[3]}><span>{note[0]}</span><h3>{note[1]}</h3><p>{note[2]}</p><a href={localizedPath(locale, `/articles/${note[3]}`)}>{t.read} <span>→</span></a></article>
+          {articles[locale].slice(0, 4).map((article, index) => (
+            <article key={article.slug}><span>{String(index + 1).padStart(2, "0")}</span><h3><a href={localizedPath(locale, `/articles/${article.slug}`)}>{article.title}</a></h3><p>{article.dek}</p><a href={localizedPath(locale, `/articles/${article.slug}`)}>{t.read} <span>→</span></a></article>
           ))}
         </div>
+        <a className="all-guides" href={localizedPath(locale, "/articles")}>{locale === "fr" ? "Voir les 11 guides" : locale === "de" ? "Alle 11 Ratgeber lesen" : "Explore all 11 guides"} →</a>
       </section>
     </Shell>
   );
@@ -295,9 +293,9 @@ function CategoriesPage({ locale, basePath }: { locale: Locale; basePath: string
         </article>)}
       </div>
       <nav className="category-next" aria-label={editorial.next}>
-        <a href={localizedPath(locale, "/articles/product-listing-checklist")}>{articles[locale][0].title} →</a>
-        <a href={localizedPath(locale, "/articles/superbuy-qc-photos-guide")}>{articles[locale][1].title} →</a>
-        <a href={localizedPath(locale, "/articles/superbuy-shipping-cost-guide")}>{articles[locale][2].title} →</a>
+        <a href={localizedPath(locale, "/articles/product-listing-checklist")}>{articles[locale].find((item) => item.slug === "product-listing-checklist")!.title} →</a>
+        <a href={localizedPath(locale, "/articles/superbuy-qc-photos-guide")}>{articles[locale].find((item) => item.slug === "superbuy-qc-photos-guide")!.title} →</a>
+        <a href={localizedPath(locale, "/articles/superbuy-shipping-cost-guide")}>{articles[locale].find((item) => item.slug === "superbuy-shipping-cost-guide")!.title} →</a>
       </nav>
     </section>
   </Shell>;
@@ -305,7 +303,7 @@ function CategoriesPage({ locale, basePath }: { locale: Locale; basePath: string
 
 function ArticlesGrid({ locale }: { locale: Locale }) {
   const t = copy[locale];
-  return <div className="article-grid">{articles[locale].map((article, index) => <article key={article.slug}><span>0{index + 1} / FIELD NOTE</span><h2>{article.title}</h2><p>{article.dek}</p><small>{updatedLabel(locale, article.slug)}</small><a href={localizedPath(locale, `/articles/${article.slug}`)}>{t.read} →</a></article>)}</div>;
+  return <div className="article-grid">{articles[locale].map((article, index) => <article key={article.slug}><span>{String(index + 1).padStart(2, "0")} / {locale === "fr" ? "GUIDE" : locale === "de" ? "RATGEBER" : "GUIDE"}</span><h2><a href={localizedPath(locale, `/articles/${article.slug}`)}>{article.title}</a></h2><p>{article.dek}</p><small>{updatedLabel(locale, article.slug)}</small><a href={localizedPath(locale, `/articles/${article.slug}`)}>{t.read} →</a></article>)}</div>;
 }
 
 function ArticlesPage({ locale, basePath }: { locale: Locale; basePath: string }) {
@@ -330,17 +328,22 @@ function ArticlesPage({ locale, basePath }: { locale: Locale; basePath: string }
       ["04", "Verpackungsentscheidung", "Superbuy Verpackung", "Kartons, Vakuumverpackung, Verstärkung und Paketvolumen vergleichen."],
     ],
   }[locale];
-  return <Shell locale={locale} basePath={basePath}><InnerHero {...t.articlesPage} /><section className="content-roadmap"><div className="section-kicker"><span>SEO READING ORDER</span><p>One search intent per page</p></div><div className="roadmap-grid">{roadmap.map((item) => <article key={item[0]}><span>{item[0]}</span><small>{item[1]}</small><h2>{item[2]}</h2><p>{item[3]}</p></article>)}</div></section><section className="reading-index"><ArticlesGrid locale={locale} /></section></Shell>;
+  return <Shell locale={locale} basePath={basePath}><InnerHero {...t.articlesPage} /><section className="content-roadmap"><div className="section-kicker"><span>{locale === "fr" ? "CHOISISSEZ VOTRE PROCHAINE ÉTAPE" : locale === "de" ? "WÄHLE DEINEN NÄCHSTEN SCHRITT" : "CHOOSE YOUR NEXT STEP"}</span><p>{locale === "fr" ? "De la recherche au colis" : locale === "de" ? "Von der Suche zum Paket" : "From discovery to your parcel"}</p></div><div className="roadmap-grid">{roadmap.map((item, index) => <article key={item[0]}><span>{item[0]}</span><small>{item[1]}</small><h2><a href={localizedPath(locale, `/articles/${["product-listing-checklist", "superbuy-qc-photos-guide", "superbuy-shipping-cost-guide", "superbuy-packaging-guide"][index]}`)}>{item[2]} →</a></h2><p>{item[3]}</p></article>)}</div></section><section className="reading-index"><ArticlesGrid locale={locale} /></section></Shell>;
 }
 
 function GuidesPage({ locale, basePath }: { locale: Locale; basePath: string }) {
   const t = copy[locale];
   const flow = {
-    en: [["01", "Choose and verify", "Check the live seller page, exact option, measurements and restrictions."], ["02", "Pay for the order", "Product, Chinese delivery and selected product services form the first payment."], ["03", "Review at warehouse", "Use the three published warehouse photos as visible evidence, not a guarantee."], ["04", "Build the parcel", "Compare consolidation, packaging, route, destination, estimated and final weight."]],
-    fr: [["01", "Choisir et vérifier", "Contrôlez la page vendeur, l’option, les mesures et les restrictions."], ["02", "Payer la commande", "Produit, livraison chinoise et services choisis forment le premier paiement."], ["03", "Contrôler en entrepôt", "Utilisez les trois photos publiées comme preuve visible, pas comme garantie."], ["04", "Composer le colis", "Comparez regroupement, emballage, ligne, destination et poids final."]],
-    de: [["01", "Auswählen und prüfen", "Live-Listing, Option, Maße und Einschränkungen kontrollieren."], ["02", "Bestellung bezahlen", "Produkt, China-Versand und gewählte Dienste bilden die erste Zahlung."], ["03", "Im Lager prüfen", "Die drei veröffentlichten Fotos als sichtbare Hinweise nutzen, nicht als Garantie."], ["04", "Paket planen", "Konsolidierung, Verpackung, Route, Ziel und Endgewicht vergleichen."]],
+    en: [["01", "Choose and verify", "Check the live seller page, exact option, measurements and restrictions."], ["02", "Pay for the order", "Product, Chinese delivery and selected product services form the first payment."], ["03", "Review at warehouse", "Compare the available warehouse photos with your selected variant and any requested measurements."], ["04", "Build the parcel", "Compare consolidation, packaging, route, destination, estimated and final weight."]],
+    fr: [["01", "Choisir et vérifier", "Contrôlez la page vendeur, l’option, les mesures et les restrictions."], ["02", "Payer la commande", "Produit, livraison chinoise et services choisis forment le premier paiement."], ["03", "Contrôler en entrepôt", "Comparez les photos disponibles à la variante choisie et aux mesures demandées."], ["04", "Composer le colis", "Comparez regroupement, emballage, ligne, destination et poids final."]],
+    de: [["01", "Auswählen und prüfen", "Live-Listing, Option, Maße und Einschränkungen kontrollieren."], ["02", "Bestellung bezahlen", "Produkt, China-Versand und gewählte Dienste bilden die erste Zahlung."], ["03", "Im Lager prüfen", "Vergleiche die verfügbaren Lagerfotos mit der gewählten Variante und den angefragten Maßen."], ["04", "Paket planen", "Konsolidierung, Verpackung, Route, Ziel und Endgewicht vergleichen."]],
   }[locale];
-  return <Shell locale={locale} basePath={basePath}><InnerHero {...t.guidesPage} /><section className="guide-flow"><div className="section-kicker"><span>PUBLISHED PROCESS / CHECKED 12 AUG 2026</span><p>Facts first, decisions second</p></div><div className="flow-grid">{flow.map((step) => <article key={step[0]}><span>{step[0]}</span><h2>{step[1]}</h2><p>{step[2]}</p></article>)}</div><div className="fact-band"><div><strong>2</strong><span>PAYMENT STAGES</span></div><div><strong>3</strong><span>WAREHOUSE PHOTOS</span></div><div><strong>90</strong><span>FREE STORAGE DAYS</span></div><div><strong>82+</strong><span>DELIVERY DESTINATIONS</span></div></div></section><section className="reading-index reading-index--guides"><ArticlesGrid locale={locale} /></section></Shell>;
+  return <Shell locale={locale} basePath={basePath}><InnerHero {...t.guidesPage} /><section className="guide-flow"><div className="section-kicker"><span>{locale === "fr" ? "PARCOURS / VÉRIFIÉ LE 6 OCT. 2026" : locale === "de" ? "ABLAUF / GEPRÜFT AM 6. OKT. 2026" : "WORKFLOW / CHECKED 6 OCT 2026"}</span><p>{locale === "fr" ? "Vérifiez avant de confirmer" : locale === "de" ? "Vor der Bestätigung prüfen" : "Check before you confirm"}</p></div><div className="flow-grid">{flow.map((step) => <article key={step[0]}><span>{step[0]}</span><h2>{step[1]}</h2><p>{step[2]}</p></article>)}</div><div className="fact-band">{[
+      ["2", locale === "fr" ? "ÉTAPES DE PAIEMENT" : locale === "de" ? "ZAHLUNGSPHASEN" : "PAYMENT STAGES"],
+      ["11", locale === "fr" ? "GUIDES PRATIQUES" : locale === "de" ? "PRAKTISCHE RATGEBER" : "PRACTICAL GUIDES"],
+      ["10", locale === "fr" ? "CATÉGORIES DE PRODUITS" : locale === "de" ? "PRODUKTKATEGORIEN" : "PRODUCT CATEGORIES"],
+      ["3", locale === "fr" ? "LANGUES DISPONIBLES" : locale === "de" ? "VERFÜGBARE SPRACHEN" : "AVAILABLE LANGUAGES"],
+    ].map(([number, label]) => <div key={label}><strong>{number}</strong><span>{label}</span></div>)}</div></section><section className="reading-index reading-index--guides"><ArticlesGrid locale={locale} /></section></Shell>;
 }
 
 function FaqPage({ locale, basePath }: { locale: Locale; basePath: string }) {
@@ -355,28 +358,27 @@ function ArticlePage({ locale, basePath, slug }: { locale: Locale; basePath: str
   const bodyText = article.sections.flatMap((section) => section.paragraphs).join(" ");
   const wordCount = bodyText.trim().split(/\s+/).length;
   const articleUrl = `https://superbuys.store${localizedPath(locale, `/articles/${slug}`)}`;
-  const publishDate = articleDates[slug] ?? "2026-08-12";
-  const schema = { "@context": "https://schema.org", "@type": "Article", headline: article.title, datePublished: publishDate, dateModified: publishDate, inLanguage: locale, description: article.dek, wordCount, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl } };
+  const publishDate = articleDates[slug] ?? REVIEW_DATE;
+  const schema = { "@context": "https://schema.org", "@type": "Article", headline: article.title, datePublished: publishDate, dateModified: REVIEW_DATE, inLanguage: locale, description: article.dek, wordCount, mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl } };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: t.nav.home, item: `https://superbuys.store${localizedPath(locale, "/")}` }, { "@type": "ListItem", position: 2, name: t.nav.articles, item: `https://superbuys.store${localizedPath(locale, "/articles")}` }, { "@type": "ListItem", position: 3, name: article.title, item: articleUrl }] };
   const sourceLabel = locale === "fr" ? "Base factuelle" : locale === "de" ? "Faktenbasis" : "Fact-check basis";
-  const isArrivalGuide = slug === "superbuy-warehouse-arrival-checklist";
-  const isOrderRemarksGuide = slug === "superbuy-order-remarks-writing-guide";
-  const isSellerDelayGuide = slug === "superbuy-seller-not-shipped-delay-record";
-  const isPackagingGuide = slug === "superbuy-packaging-guide";
-  const sourceText = isSellerDelayGuide
-    ? locale === "fr" ? "Vérifié le 3 septembre 2026 à partir du guide Shopping Agent et du centre d'aide publics de Superbuy. Le seuil de relance après trois jours est présenté comme une action de compte, pas comme une garantie de délai vendeur." : locale === "de" ? "Am 3. September 2026 anhand des öffentlichen Superbuy-Shopping-Agent-Leitfadens und Help Centers geprüft. Der Drei-Tage-Punkt wird als Kontoaktion, nicht als garantierte Verkäuferfrist behandelt." : "Checked 3 September 2026 against Superbuy's public Shopping Agent guide and Help Center. The three-day urge point is treated as an account action, not a guaranteed seller deadline."
-    : isOrderRemarksGuide
-    ? locale === "fr" ? "Vérifié le 28 août 2026 à partir du guide Shopping Agent et des pages publiques d’aide de Superbuy. Les consignes d’achat sont séparées des demandes d’entrepôt et du Parcel Forwarding." : locale === "de" ? "Am 28. August 2026 anhand des Superbuy-Shopping-Agent-Leitfadens und öffentlicher Hilfeseiten geprüft. Kaufhinweise werden von Lagerfragen und Parcel Forwarding getrennt." : "Checked 28 August 2026 against Superbuy’s published Shopping Agent guidance and public help pages. Purchase remarks are kept separate from warehouse requests and Parcel Forwarding."
-    : isArrivalGuide
-    ? locale === "fr" ? "Vérifié le 14 août 2026 à partir du guide Shopping Agent et du centre d’aide anglais publiés par Superbuy. Ce guide distingue le service d’achat du Parcel Forwarding." : locale === "de" ? "Am 14. August 2026 anhand des englischen Superbuy-Shopping-Agent-Leitfadens und Help Centers geprüft. Shopping Agent und Parcel Forwarding werden getrennt behandelt." : "Checked 14 August 2026 against Superbuy’s published English Shopping Agent guide and Help Center. Shopping Agent and Parcel Forwarding are treated separately."
-    : isPackagingGuide
-    ? locale === "fr" ? "Vérifié le 7 septembre 2026 à partir des guides publics Superbuy sur le Parcel Forwarding, les frais et la livraison. Les services, tarifs et règles de ligne doivent être revérifiés dans le compte actif." : locale === "de" ? "Am 7. September 2026 anhand der öffentlichen Superbuy-Leitfäden zu Parcel Forwarding, Gebühren und Lieferung geprüft. Dienste, Preise und Routenregeln müssen im aktuellen Konto erneut geprüft werden." : "Checked 7 September 2026 against Superbuy’s public Parcel Forwarding, fee and international-delivery guidance. Services, prices and route rules should be rechecked in the live account."
-    : locale === "fr" ? "Vérifié le 12 août 2026 à partir des guides anglais publiés par Superbuy sur le service d’achat, la composition des frais, l’entreposage et la livraison internationale. Les tarifs et lignes peuvent évoluer." : locale === "de" ? "Am 12. August 2026 anhand der veröffentlichten englischen Superbuy-Leitfäden zu Shopping Agent, Gebühren, Lagerung und internationalem Versand geprüft. Preise und Routen können sich ändern." : "Checked 12 August 2026 against Superbuy’s published English shopping-agent, fee-composition, warehouse and international-delivery guidance. Prices, services and routes can change.";
+  const sourceText = locale === "fr"
+    ? "Vérifié le 6 octobre 2026 à partir des pages publiques Superbuy : Shopping Agent, Help Center, Fee Structure et calculateur de livraison. Les méthodes et exemples sont des conseils éditoriaux ; les montants en USD sont hypothétiques. Vérifiez les conditions applicables dans votre compte."
+    : locale === "de"
+    ? "Am 6. Oktober 2026 anhand der öffentlichen Superbuy-Seiten Shopping Agent, Help Center, Fee Structure und Versandkostenrechner geprüft. Vorgehensweisen und Beispiele sind redaktionelle Hilfen; USD-Beträge sind hypothetisch. Prüfe die geltenden Bedingungen in deinem Konto."
+    : "Reviewed 6 October 2026 against Superbuy's public Shopping Agent guide, Help Center, Fee Structure and shipping calculator. Workflows and examples are editorial guidance; USD amounts are hypothetical. Check the applicable terms in your current account.";
   const displayUpdated = updatedLabel(locale, slug);
-  const articleIndex = articles[locale].findIndex((item) => item.slug === slug);
-  const related = Array.from({ length: Math.min(3, articles[locale].length - 1) }, (_, offset) => articles[locale][(articleIndex + offset + 1) % articles[locale].length]);
+  const related = (relatedSlugs[slug] ?? []).flatMap((relatedSlug) => {
+    const item = articles[locale].find((candidate) => candidate.slug === relatedSlug);
+    return item ? [item] : [];
+  });
+  const labels = {
+    en: { words: "WORDS", sections: "SECTIONS", independent: "INDEPENDENT GUIDE", contents: "IN THIS GUIDE" },
+    fr: { words: "MOTS", sections: "SECTIONS", independent: "GUIDE INDÉPENDANT", contents: "DANS CE GUIDE" },
+    de: { words: "WÖRTER", sections: "ABSCHNITTE", independent: "UNABHÄNGIGER RATGEBER", contents: "IN DIESEM RATGEBER" },
+  }[locale];
   const relatedLabel = locale === "fr" ? "Guides associés" : locale === "de" ? "Ähnliche Ratgeber" : "Related Superbuy guides";
-  return <Shell locale={locale} basePath={basePath}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} /><article className="longform"><header><a href={localizedPath(locale, "/articles")}>← {t.nav.articles}</a><span>{displayUpdated}</span><h1>{article.title}</h1><p>{article.dek}</p><div className="article-meta"><span>{wordCount.toLocaleString()} WORDS</span><span>{article.sections.length} SECTIONS</span><span>INDEPENDENT GUIDE</span></div></header><aside className="source-note"><span>{sourceLabel}</span><p>{sourceText}</p></aside><nav className="article-toc" aria-label="Article contents"><span>IN THIS GUIDE</span>{article.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, "0")} {section.heading}</a>)}</nav><div className="longform-body">{article.sections.map((section, index) => <section id={`section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></section>)}</div><nav className="category-next" aria-label={relatedLabel}>{related.map((item) => <a key={item.slug} href={localizedPath(locale, `/articles/${item.slug}`)}>{item.title} →</a>)}</nav><Search locale={locale} compact /></article></Shell>;
+  return <Shell locale={locale} basePath={basePath}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} /><article className="longform"><header><a href={localizedPath(locale, "/articles")}>← {t.nav.articles}</a><span>{displayUpdated}</span><h1>{article.title}</h1><p>{article.dek}</p><div className="article-meta"><span>{wordCount.toLocaleString(locale)} {labels.words}</span><span>{article.sections.length} {labels.sections}</span><span>{labels.independent}</span></div></header><aside className="source-note"><span>{sourceLabel}</span><p>{sourceText}</p></aside><nav className="article-toc" aria-label={labels.contents}><span>{labels.contents}</span>{article.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, "0")} {section.heading}</a>)}</nav><div className="longform-body">{article.sections.map((section, index) => <section id={`section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.table && <div className="article-table-wrap" tabIndex={0} role="region" aria-label={section.table.caption}><table><caption>{section.table.caption}</caption><thead><tr>{section.table.headers.map((heading) => <th key={heading} scope="col">{heading}</th>)}</tr></thead><tbody>{section.table.rows.map((row, rowIndex) => <tr key={rowIndex}>{row.map((cell, cellIndex) => cellIndex === 0 ? <th key={cellIndex} scope="row">{cell}</th> : <td key={cellIndex}>{cell}</td>)}</tr>)}</tbody></table></div>}</div></section>)}</div><nav className="category-next" aria-label={relatedLabel}>{related.map((item) => <a key={item.slug} href={localizedPath(locale, `/articles/${item.slug}`)}>{item.title} →</a>)}</nav><Search locale={locale} compact /></article></Shell>;
 }
 
 function NotFound({ locale, basePath }: { locale: Locale; basePath: string }) {

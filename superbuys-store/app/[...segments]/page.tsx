@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
-import { localizedPath, SiteRouter, parseRoute } from "../../components/site";
+import { SiteRouter, parseRoute } from "../../components/site";
 import { articles, copy } from "../../lib/content";
 
-const BASE = "https://superbuys.store";
+import { SITE_URL as BASE, localizedPath, pageAlternates as alternates, homeMetadata } from "../../lib/seo";
 
 function absoluteUrl(path: string) {
   return `${BASE}${path}`;
-}
-
-function alternates(locale: "en" | "fr" | "de", basePath: string) {
-  return {
-    canonical: absoluteUrl(localizedPath(locale, basePath)),
-    languages: {
-      en: absoluteUrl(localizedPath("en", basePath)),
-      "fr-FR": absoluteUrl(localizedPath("fr", basePath)),
-      "de-DE": absoluteUrl(localizedPath("de", basePath)),
-      "x-default": absoluteUrl(localizedPath("en", basePath)),
-    },
-  };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ segments: string[] }> }): Promise<Metadata> {
@@ -49,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ segments:
     articles: t.articlesPage.intro,
     "not-found": "The requested page could not be found.",
   } as const;
-  if (route.kind === "home") return {};
+  if (route.kind === "home") return homeMetadata(route.locale);
   if (route.kind === "not-found") {
     return { title: titles["not-found"], description: descriptions["not-found"], robots: { index: false, follow: false } };
   }

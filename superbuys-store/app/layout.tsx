@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { engagementTracking } from "../lib/analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://superbuys.store"),
@@ -30,6 +31,7 @@ export default function RootLayout({
           <script
             dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1QS8EWYKPX');" }}
           />
+          <script dangerouslySetInnerHTML={{ __html: engagementTracking }} />
         </head>
       <body className="antialiased">
         {children}
