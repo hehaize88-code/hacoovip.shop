@@ -60,8 +60,8 @@ test("renders an indexable, substantive category directory", async () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/superbuys\.store\/categories\/"\/>/i);
   assert.match(html, /"@type":"CollectionPage"/i);
   assert.equal((html.match(/<article/g) ?? []).length, 10);
-  assert.match(html, /https:\/\/www\.cnbuycha\.com\/shoes\//i);
-  assert.doesNotMatch(html, /cnfanshp\.com/i);
+  assert.match(html, /https:\/\/www\.cnfanshp\.com\/shoes\//i);
+  assert.doesNotMatch(html, /cnbuycha\.com/i);
   assert.ok(html.replace(/<[^>]+>/g, " ").trim().split(/\s+/).length > 500);
 });
 

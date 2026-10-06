@@ -5,7 +5,7 @@ import { sellerNotShippedArticle } from "./seller-not-shipped-article";
 
 export type Locale = "en" | "fr" | "de";
 
-export const ROOT = "https://www.cnbuycha.com";
+export const ROOT = "https://www.cnfanshp.com";
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
@@ -29,26 +29,26 @@ export const categories = [
 export const edit = [
   {
     number: "No. 01",
-    image: `${ROOT}/uploads/allimg/20260806/1-260P6164I0217.webp`,
-    href: `${ROOT}/AllProducts/3402.html`,
+    image: `${ROOT}/uploads/allimg/20260427/1-26042G03A3226.webp`,
+    href: `${ROOT}/AllProducts/6049.html`,
     className: "feature feature--wide",
   },
   {
     number: "No. 02",
-    image: `${ROOT}/uploads/allimg/20260806/1-260P616454QM.webp`,
-    href: `${ROOT}/AllProducts/3401.html`,
+    image: `${ROOT}/uploads/allimg/20260427/1-26042G03505957.webp`,
+    href: `${ROOT}/AllProducts/6048.html`,
     className: "feature feature--portrait",
   },
   {
     number: "No. 03",
-    image: `${ROOT}/uploads/allimg/20260806/1-260P616440O18.webp`,
-    href: `${ROOT}/AllProducts/3400.html`,
+    image: `${ROOT}/uploads/allimg/20260427/1-26042G0310V93.webp`,
+    href: `${ROOT}/AllProducts/6047.html`,
     className: "feature feature--small",
   },
   {
     number: "No. 04",
-    image: `${ROOT}/uploads/allimg/20260806/1-260P616410T56.webp`,
-    href: `${ROOT}/AllProducts/3398.html`,
+    image: `${ROOT}/uploads/allimg/20260427/1-26042G0293E05.webp`,
+    href: `${ROOT}/AllProducts/6046.html`,
     className: "feature feature--offset",
   },
 ] as const;
