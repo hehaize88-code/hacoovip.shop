@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Locale } from "./content";
+import {articles, type Locale} from "./content";
 
 const languageMap: Record<Locale, string> = { en:"en", de:"de-DE", fr:"fr-FR", it:"it-IT", nl:"nl-NL", ms:"ms-MY" };
 const allLocales = Object.keys(languageMap) as Locale[];
@@ -18,10 +18,11 @@ export function makeMetadata(path:string, locale:Locale, title:string, descripti
 
 export function makeArticleMetadata(path:string, locale:Locale, title:string, description:string):Metadata {
   const metadata=makeMetadata(path,locale,title,description);
-  const image="https://superbuys.pro/first-order-workflow.svg";
+  const article=articles.find(a=>path===`articles/${a.slug}`);
+  const image=`https://superbuys.pro${article?.image||"/superbuy.png"}`;
   return {
     ...metadata,
-    openGraph:{...metadata.openGraph,type:"article",images:[{url:image,width:1200,height:630,alt:"Superbuy shopping-agent first order workflow from product link to warehouse"}]},
-    twitter:{card:"summary_large_image",title,description,images:[image]},
+    openGraph:{...metadata.openGraph,type:"article",publishedTime:article?.date,modifiedTime:article?.modified,images:[{url:image,alt:title}]},
+    twitter:{card:article?.image?"summary_large_image":"summary",title,description,images:[image]},
   };
 }
