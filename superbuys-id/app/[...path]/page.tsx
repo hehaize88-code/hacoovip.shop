@@ -2,16 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   isArticle,
-  isIndonesianArticle,
   isLang,
   isPage,
   SitePage,
   type Lang,
   type PageName,
 } from "../site-page";
-import { englishArticles } from "../article-content";
-import { localizedArticles } from "../article-localizations";
-import { indonesianArticles } from "../article-id";
+import { articleCatalog, articleSlugs } from "../article-catalog";
 
 type RouteProps = { params: Promise<{ path: string[] }> };
 type CorePage = Exclude<PageName, "article">;
@@ -24,16 +21,7 @@ const pages = [
   "faq",
   "articles",
 ] as const;
-const sharedArticles = [
-  "spreadsheet-guide",
-  "qc-photo-checklist",
-  "shipping-cost-guide",
-] as const;
-const indonesianOnlyArticles = [
-  "cara-belanja-di-superbuy",
-  "pajak-bea-cukai-superbuy-indonesia",
-  "superbuy-review-indonesia",
-] as const;
+
 const hreflang: Record<Lang, string> = {
   id: "id-ID",
   en: "en",
@@ -58,11 +46,8 @@ export function generateStaticParams() {
     const prefix = lang === "id" ? [] : [lang];
     if (prefix.length) routes.push(prefix);
     for (const page of pages) routes.push([...prefix, page]);
-    for (const article of sharedArticles)
+    for (const article of articleSlugs)
       routes.push([...prefix, "articles", article]);
-    if (lang === "id")
-      for (const article of indonesianOnlyArticles)
-        routes.push(["articles", article]);
   }
   return routes.map((path) => ({ path }));
 }
@@ -81,7 +66,6 @@ function resolvePath(parts: string[]) {
     isArticle(rest[1]) &&
     rest.length === 2
   ) {
-    if (lang !== "id" && isIndonesianArticle(rest[1])) return null;
     return { lang, page: "article" as PageName, article: rest[1], rest };
   }
   if (rest.length === 1 && isPage(rest[0]))
@@ -120,9 +104,9 @@ const pageMeta: Record<
         "Jawaban berbasis sumber tentang foto QC, penyimpanan 90 hari, biaya pembelian, konsolidasi, pengiriman, retur, dan pajak tujuan.",
     },
     articles: {
-      title: "Artikel Superbuy Indonesia 2026: Belanja, Ongkir, Pajak & QC",
+      title: "Panduan Superbuy Indonesia: Biaya, QC & Pelacakan",
       description:
-        "Enam panduan berbahasa Indonesia tentang cara belanja di Superbuy, ongkir, bea cukai, review, spreadsheet, dan pemeriksaan foto QC.",
+        "Panduan Superbuy Indonesia: pembayaran, ukuran sepatu, QC, konsolidasi gudang, ongkir, bea cukai, dan pelacakan paket.",
     },
   },
   en: {
@@ -142,7 +126,7 @@ const pageMeta: Record<
         "Open verified category routes for shoes, hoodies, T-shirts, jackets, pants, jerseys, accessories and electronics.",
     },
     "how-it-works": {
-      title: "How to Use a Superbuy Spreadsheet — 2026 Guide",
+      title: "How Superbuy Works: Ordering from Indonesia",
       description:
         "Follow the product, purchase, warehouse QC, storage, consolidation, parcel and tracking workflow.",
     },
@@ -152,7 +136,7 @@ const pageMeta: Record<
         "Fact-checked answers about product links, QC photos, storage, purchasing, consolidation, returns and international shipping.",
     },
     articles: {
-      title: "Superbuy Guides — QC Photos, Shipping & Product Finds",
+      title: "Superbuy Indonesia Guides: Payments, QC & Tracking",
       description:
         "Long-form research for safer product checks, clearer shipping budgets and more deliberate parcel decisions.",
     },
@@ -296,13 +280,7 @@ export async function generateMetadata({
   const canonical = routeUrl(resolved.lang, resolved.rest);
   const alternates = {
     canonical,
-    languages:
-      resolved.page === "article" &&
-      "article" in resolved &&
-      resolved.article &&
-      isIndonesianArticle(resolved.article)
-        ? { "id-ID": canonical, "x-default": canonical }
-        : languageAlternates(resolved.rest),
+    languages: languageAlternates(resolved.rest),
   };
   if (resolved.page === "article" && "article" in resolved) {
     const slug = resolved.article;
@@ -311,18 +289,15 @@ export async function generateMetadata({
         title: "Page not found",
         robots: { index: false, follow: false },
       };
-    const article =
-      resolved.lang === "id"
-        ? indonesianArticles[slug]
-        : resolved.lang === "en"
-          ? englishArticles[slug]
-          : localizedArticles[resolved.lang][slug];
+    const article = articleCatalog[resolved.lang][slug];
     return {
       title: article.title,
       description: article.description,
       alternates,
       openGraph: {
         type: "article",
+        publishedTime: article.publishedAt,
+        modifiedTime: article.modifiedAt,
         url: canonical,
         title: article.title,
         description: article.description,

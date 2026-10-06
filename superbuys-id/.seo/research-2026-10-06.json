@@ -1,0 +1,72 @@
+{
+  "site": "https://superbuys.id/",
+  "catalogDestination": "https://cnfanshp.com/",
+  "checkedAt": "2026-10-06",
+  "method": "Public competitor page and primary source review; no measured keyword volume or private analytics used.",
+  "analyticsAccess": "Private GSC, Bing Webmaster Tools and GA4 reports were not used. This research does not represent measured search performance. Installed event code alone is not proof of data receipt.",
+  "primarySources": [
+    "https://www.superbuy.com/en/page/guide/feecomposition/",
+    "https://www.superbuy.com/en/page/help/",
+    "https://www.superbuy.com/en/page/query/freight/",
+    "https://www.superbuy.com/en/page/query/package/",
+    "https://www.beacukai.go.id/faq-impor-barang-kiriman",
+    "https://www.beacukai.go.id/barangkiriman",
+    "https://www.superbuy.com/en/page/guide/transportagent/",
+    "https://www.superbuy.com/en/",
+    "https://www.superbuy.com/en/page/shopping1688/",
+    "https://www.superbuy.com/en/page/newguide/shoppingagent/",
+    "https://www.superbuy.com/en/page/shoppingagent/"
+  ],
+  "competitorsReviewed": [
+    "https://superbuy.net/",
+    "https://superbuylinks.com/",
+    "https://superbuylinks.com/shoes/",
+    "https://superbuy-spreadsheet.org/"
+  ],
+  "prioritization": [
+    {
+      "slug": "superbuy-payment-fees-indonesia",
+      "intent": "Compare payment debit/credit and staged costs for Indonesian buyers",
+      "keywords": [
+        "biaya Superbuy",
+        "cara bayar Superbuy",
+        "Superbuy payment methods Indonesia"
+      ]
+    },
+    {
+      "slug": "superbuy-shoe-size-qc-guide",
+      "intent": "Resolve shoe fit and visible pair checks before shipment",
+      "keywords": [
+        "Superbuy shoes spreadsheet",
+        "Superbuy size guide",
+        "ukuran sepatu Superbuy"
+      ]
+    },
+    {
+      "slug": "superbuy-warehouse-consolidation-guide",
+      "intent": "Choose parcel grouping using storage deadlines and dimensions",
+      "keywords": [
+        "Superbuy warehouse storage",
+        "Superbuy parcel consolidation",
+        "gabung paket Superbuy"
+      ]
+    },
+    {
+      "slug": "superbuy-tracking-indonesia",
+      "intent": "Diagnose Indonesia tracking gaps and prepare a support request",
+      "keywords": [
+        "Superbuy tracking Indonesia",
+        "cara melacak paket Superbuy",
+        "Superbuy tracking not updating"
+      ]
+    }
+  ],
+  "editorialDecisions": [
+    "Differentiate discovery at cnfanshp.com from official Superbuy account actions.",
+    "Do not advertise payment availability, FX rates, route prices, delivery promises or coupon claims without account-specific evidence.",
+    "Customs overview displays nominal VAT 12%; detailed official FAQ explains 11/12 times 12%. Preserve the distinction and refer readers to their applicable assessment.",
+    "Fee page contains inconsistent example/photo charges and a special-purchase section labelled Shipping Expert; neither exact charge nor mislabel is adopted.",
+    "Existing articles gain actionable sections and related internal guides; publication dates preserved, modification dates updated.",
+    "Translation paragraphs and section counts must match their source. New English articles each have 1200 to 1800 body words."
+  ]
+}

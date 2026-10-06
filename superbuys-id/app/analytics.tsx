@@ -27,6 +27,19 @@ export function Analytics() {
       const url = new URL(link.href, window.location.href);
       const page_language = languageFromPath();
 
+      if (link.closest(".article-toc")) {
+        send("article_toc_click", { section: url.hash, page_language });
+        return;
+      }
+
+      if (link.dataset.articleCatalog) {
+        send("article_catalog_click", {
+          article_slug: link.dataset.articleCatalog,
+          destination_url: url.href,
+          page_language,
+        });
+      }
+
       if (link.closest(".language")) {
         send("language_switch", { destination_url: url.href, page_language });
         return;
@@ -57,7 +70,11 @@ export function Analytics() {
 
       const article = url.pathname.match(/\/articles\/([^/]+)\/$/);
       if (url.hostname === window.location.hostname && article) {
-        send("article_cta_click", { article_slug: article[1], page_language });
+        send("article_cta_click", {
+          article_slug: article[1],
+          link_location: link.closest(".related-guides") ? "related_guides" : link.closest(".articles-preview") ? "home" : "article_index",
+          page_language,
+        });
       }
     };
 
@@ -73,12 +90,20 @@ export function Analytics() {
 
     document.addEventListener("click", onClick);
     document.addEventListener("submit", onSubmit);
+    const end = document.querySelector<HTMLElement>("[data-article-end]");
+    const observer = end && "IntersectionObserver" in window ? new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        send("article_end_reached", { article_slug: end.dataset.articleEnd ?? "", page_language: languageFromPath() });
+        observer?.disconnect();
+      }
+    }, { threshold: 0.15 }) : null;
+    if (end) observer?.observe(end);
     return () => {
       document.removeEventListener("click", onClick);
       document.removeEventListener("submit", onSubmit);
+      observer?.disconnect();
     };
   }, []);
 
   return null;
 }
-

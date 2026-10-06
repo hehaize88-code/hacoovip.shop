@@ -1,6 +1,4 @@
-import { englishArticles } from "./article-content";
-import { localizedArticles } from "./article-localizations";
-import { indonesianArticles } from "./article-id";
+import { articleCatalog, articleSlugs, articleTools, relatedArticles, sourceNames, articleSources, type ArticleSlug } from "./article-catalog";
 
 type Lang = "id" | "en" | "de" | "fr" | "es" | "it";
 type PageName =
@@ -11,13 +9,6 @@ type PageName =
   | "faq"
   | "articles"
   | "article";
-type SharedArticleSlug =
-  "qc-photo-checklist" | "shipping-cost-guide" | "spreadsheet-guide";
-type IndonesianArticleSlug =
-  | "cara-belanja-di-superbuy"
-  | "pajak-bea-cukai-superbuy-indonesia"
-  | "superbuy-review-indonesia";
-type ArticleSlug = SharedArticleSlug | IndonesianArticleSlug;
 
 export type { ArticleSlug, Lang, PageName };
 
@@ -38,20 +29,8 @@ export const isPage = (
   ["hot-drops", "categories", "how-it-works", "faq", "articles"].includes(
     value,
   );
-export const isSharedArticle = (value: string): value is SharedArticleSlug =>
-  ["qc-photo-checklist", "shipping-cost-guide", "spreadsheet-guide"].includes(
-    value,
-  );
-export const isIndonesianArticle = (
-  value: string,
-): value is IndonesianArticleSlug =>
-  [
-    "cara-belanja-di-superbuy",
-    "pajak-bea-cukai-superbuy-indonesia",
-    "superbuy-review-indonesia",
-  ].includes(value);
 export const isArticle = (value: string): value is ArticleSlug =>
-  isSharedArticle(value) || isIndonesianArticle(value);
+  (articleSlugs as readonly string[]).includes(value);
 
 const products = [
   {
@@ -71,7 +50,7 @@ const products = [
   {
     "id": "5555",
     "title": "Boss Polo Shirt  Boss Shorts",
-    "type": "Kleidung · Polo & Shorts & Shorts",
+    "type": "Clothing · Polo & Shorts",
     "price": "$188.00",
     "image": "https://cnfanshp.com/uploads/allimg/20260317/1-26031G0301K51.webp"
   },
@@ -132,7 +111,7 @@ type Copy = {
 
 const copy: Record<Lang, Copy> = {
   id: {
-    nav: ["Temuan baru", "Kategori", "Cara kerja", "FAQ", "Artikel SEO"],
+    nav: ["Temuan baru", "Kategori", "Cara kerja", "FAQ", "Panduan"],
     browse: "LIHAT SEMUA",
     kicker: "SUPERBUY INDONESIA · PANDUAN 2026",
     heroA: "SUPERBUY INDONESIA.",
@@ -163,7 +142,7 @@ const copy: Record<Lang, Copy> = {
       ],
       [
         "Inspeksi dan foto QC",
-        "Layanan saat ini mengiklankan inspeksi gudang serta tiga foto QC gratis untuk pemeriksaan visual.",
+        "Layanan saat ini mengiklankan inspeksi gudang serta foto QC gratis untuk pemeriksaan visual.",
       ],
       [
         "Simpan dan konsolidasikan",
@@ -187,7 +166,7 @@ const copy: Record<Lang, Copy> = {
       "Catatan berbasis sumber mengenai layanan, biaya, QC, penyimpanan, pengiriman, serta batas panduan independen ini.",
     articleTitle: "PANDUAN YANG LAYAK DISIMPAN.",
     articleIntro:
-      "Enam panduan mendalam untuk cara belanja, spreadsheet, foto QC, ongkir, pajak, dan review Superbuy dari sudut pembeli Indonesia.",
+      "Panduan untuk pembayaran, ukuran sepatu, QC, gudang, ongkir, pajak, dan pelacakan Superbuy dari sudut pembeli Indonesia.",
     read: "Baca panduan",
     all: "Lihat semua",
     back: "Kembali ke panduan",
@@ -195,7 +174,7 @@ const copy: Record<Lang, Copy> = {
     est: "perkiraan",
   },
   en: {
-    nav: ["Hot drops", "Categories", "How it works", "FAQ", "SEO Articles"],
+    nav: ["Hot drops", "Categories", "How it works", "FAQ", "Guides"],
     browse: "BROWSE ALL",
     kicker: "SUPERBUY INDONESIA · 2026 GUIDE",
     heroA: "SUPERBUY INDONESIA.",
@@ -226,7 +205,7 @@ const copy: Record<Lang, Copy> = {
       ],
       [
         "QC and photos",
-        "The current service advertises warehouse inspection plus three free QC photos for visible checks.",
+        "The current service advertises warehouse inspection plus free QC photos for visible checks.",
       ],
       [
         "Store and consolidate",
@@ -263,7 +242,7 @@ const copy: Record<Lang, Copy> = {
       "Kategorien",
       "So funktioniert’s",
       "FAQ",
-      "SEO-Artikel",
+      "Ratgeber",
     ],
     browse: "ALLES ANSEHEN",
     kicker: "SUPERBUY-TABELLE · NEU GEDACHT",
@@ -295,7 +274,7 @@ const copy: Record<Lang, Copy> = {
       ],
       [
         "QC und Fotos",
-        "Die aktuelle Leistung nennt Prüfung und drei kostenlose QC-Fotos.",
+        "Die aktuelle Leistung nennt Prüfung und kostenlose QC-Fotos.",
       ],
       [
         "Lagern und bündeln",
@@ -327,7 +306,7 @@ const copy: Record<Lang, Copy> = {
     est: "ca.",
   },
   fr: {
-    nav: ["Nouveautés", "Catégories", "Mode d’emploi", "FAQ", "Articles SEO"],
+    nav: ["Nouveautés", "Catégories", "Mode d’emploi", "FAQ", "Guides"],
     browse: "TOUT VOIR",
     kicker: "TABLEUR SUPERBUY · RÉINVENTÉ",
     heroA: "ARRÊTEZ DE DÉFILER.",
@@ -358,7 +337,7 @@ const copy: Record<Lang, Copy> = {
       ],
       [
         "QC et photos",
-        "Le service actuel annonce une inspection et trois photos QC gratuites.",
+        "Le service actuel annonce une inspection et des photos QC gratuites.",
       ],
       [
         "Stocker et regrouper",
@@ -390,7 +369,7 @@ const copy: Record<Lang, Copy> = {
     est: "estimé",
   },
   es: {
-    nav: ["Novedades", "Categorías", "Cómo funciona", "FAQ", "Artículos SEO"],
+    nav: ["Novedades", "Categorías", "Cómo funciona", "FAQ", "Guías"],
     browse: "VER TODO",
     kicker: "HOJA SUPERBUY · REINVENTADA",
     heroA: "DEJA DE DESLIZAR.",
@@ -421,7 +400,7 @@ const copy: Record<Lang, Copy> = {
       ],
       [
         "QC y fotos",
-        "El servicio actual anuncia inspección y tres fotos QC gratuitas.",
+        "El servicio actual anuncia inspección y fotos QC gratuitas.",
       ],
       [
         "Almacena y consolida",
@@ -453,7 +432,7 @@ const copy: Record<Lang, Copy> = {
     est: "aprox.",
   },
   it: {
-    nav: ["Novità", "Categorie", "Come funziona", "FAQ", "Articoli SEO"],
+    nav: ["Novità", "Categorie", "Come funziona", "FAQ", "Guide"],
     browse: "VEDI TUTTO",
     kicker: "FOGLIO SUPERBUY · RIVISITATO",
     heroA: "SMETTI DI SCORRERE.",
@@ -484,7 +463,7 @@ const copy: Record<Lang, Copy> = {
       ],
       [
         "QC e foto",
-        "Il servizio attuale indica ispezione e tre foto QC gratuite.",
+        "Il servizio attuale indica ispezione e foto QC gratuite.",
       ],
       [
         "Stocca e consolida",
@@ -541,7 +520,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "Berapa foto QC gratis yang diiklankan Superbuy?",
-      "Halaman layanan yang diperiksa pada Agustus 2026 menyebutkan tiga foto QC gratis setelah inspeksi gudang. Foto detail terarah dan pemeriksaan tambahan merupakan layanan opsional.",
+      "Halaman layanan yang diperiksa pada Agustus 2026 menyebutkan foto QC gratis setelah inspeksi gudang. Foto detail terarah dan pemeriksaan tambahan merupakan layanan opsional.",
     ],
     [
       "Berapa lama penyimpanan gratis saat ini?",
@@ -599,7 +578,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "How many free QC photos does Superbuy advertise?",
-      "The current Superbuy homepage states that three free QC photos are taken after warehouse inspection. Targeted detailed photos and other inspection services are optional extras.",
+      "The current Superbuy homepage states that free QC photos are taken after warehouse inspection. Targeted detailed photos and other inspection services are optional extras.",
     ],
     [
       "How long is current free storage?",
@@ -657,7 +636,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "Wie viele kostenlose QC-Fotos werden genannt?",
-      "Die aktuelle Superbuy-Seite nennt drei kostenlose QC-Fotos nach der Lagerprüfung. Gezielte Detailfotos sind Zusatzleistungen.",
+      "Die aktuelle Superbuy-Seite nennt kostenlose QC-Fotos nach der Lagerprüfung. Gezielte Detailfotos sind Zusatzleistungen.",
     ],
     [
       "Wie lange ist Lagerung kostenlos?",
@@ -715,7 +694,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "Combien de photos QC gratuites ?",
-      "La page Superbuy actuelle annonce trois photos QC gratuites après inspection. Les gros plans ciblés sont des services optionnels.",
+      "La page Superbuy actuelle annonce des photos QC gratuites après inspection. Les gros plans ciblés sont des services optionnels.",
     ],
     [
       "Combien de temps le stockage est-il gratuit ?",
@@ -773,7 +752,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "¿Cuántas fotos QC gratuitas hay?",
-      "La página actual de Superbuy anuncia tres fotos QC gratuitas tras la inspección. Los primeros planos son opcionales.",
+      "La página actual de Superbuy anuncia fotos QC gratuitas tras la inspección. Los primeros planos son opcionales.",
     ],
     [
       "¿Cuánto dura el almacenamiento gratuito?",
@@ -831,7 +810,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "Quante foto QC gratuite?",
-      "La pagina Superbuy attuale indica tre foto QC gratuite dopo l’ispezione. I dettagli mirati sono servizi opzionali.",
+      "La pagina Superbuy attuale indica foto QC gratuite dopo l’ispezione. I dettagli mirati sono servizi opzionali.",
     ],
     [
       "Quanto dura lo stoccaggio gratuito?",
@@ -868,160 +847,6 @@ const faq: Record<Lang, [string, string][]> = {
   ],
 };
 
-const articleData: Record<
-  SharedArticleSlug,
-  {
-    title: Record<Exclude<Lang, "id">, string>;
-    deck: Record<Exclude<Lang, "id">, string>;
-    body: Record<Exclude<Lang, "id">, string[]>;
-  }
-> = {
-  "qc-photo-checklist": {
-    title: {
-      en: "How to Read Superbuy QC Photos",
-      de: "Superbuy-QC-Fotos richtig lesen",
-      fr: "Bien lire les photos QC Superbuy",
-      es: "Cómo revisar fotos QC de Superbuy",
-      it: "Come leggere le foto QC di Superbuy",
-    },
-    deck: {
-      en: "A visible-detail checklist for warehouse photos—plus the limits those photos cannot solve.",
-      de: "Eine Checkliste für sichtbare Details und die Grenzen von Lagerfotos.",
-      fr: "Une liste de contrôle des détails visibles et des limites des photos.",
-      es: "Una lista para revisar detalles visibles y entender los límites de las fotos.",
-      it: "Una lista per controllare i dettagli visibili e capire i limiti delle foto.",
-    },
-    body: {
-      en: [
-        "Start with the order details, not the most flattering image. Match the colour, selected size and model against what you submitted. A photo can look correct while the size label tells a different story.",
-        "Next, compare the overall silhouette across every available angle. Look for left-right symmetry, obvious dents, missing accessories, uneven printing and visible stains. Zoom in, but remember that compression and warehouse lighting can shift colour.",
-        "Superbuy’s forwarding guide says three photos are taken during warehousing. Treat them as a basic visible inspection, not proof of authenticity, hidden materials or long-term durability. If a critical angle or label is missing, request a useful close-up before international shipping.",
-        "Keep the decision practical: approve when visible details match and the remaining uncertainty is acceptable; ask for another photo when one specific check is impossible; seek after-sales help when the photos show a clear mismatch.",
-      ],
-      de: [
-        "Beginne mit den Bestelldaten, nicht mit dem schönsten Foto. Vergleiche Farbe, gewählte Größe und Modell. Ein Produkt kann richtig wirken, obwohl das Größenetikett abweicht.",
-        "Vergleiche dann die gesamte Form aus allen verfügbaren Winkeln. Achte auf Symmetrie, Dellen, fehlendes Zubehör, ungleichmäßige Drucke und sichtbare Flecken.",
-        "Der Superbuy-Leitfaden nennt drei Fotos bei der Einlagerung. Sie sind eine sichtbare Basisprüfung, aber kein Nachweis für Echtheit, verdeckte Materialien oder Haltbarkeit. Fordere fehlende Detailaufnahmen vor dem Versand an.",
-        "Entscheide praktisch: Freigeben, wenn sichtbare Details passen; ein Zusatzfoto anfordern, wenn eine konkrete Prüfung fehlt; bei klarer Abweichung den Kundendienst nutzen.",
-      ],
-      fr: [
-        "Commencez par les détails de la commande. Comparez couleur, taille choisie et modèle. Une photo peut sembler correcte alors que l’étiquette indique autre chose.",
-        "Comparez ensuite la silhouette sous tous les angles : symétrie, bosses, accessoires manquants, impressions irrégulières et taches visibles.",
-        "Le guide Superbuy mentionne trois photos lors de l’entreposage. Elles constituent un contrôle visuel de base, pas une preuve d’authenticité, de matières cachées ou de durabilité. Demandez un gros plan utile s’il manque un angle essentiel.",
-        "Décidez simplement : validez si les détails visibles correspondent, demandez une photo ciblée si un contrôle est impossible, et utilisez le service après-vente en cas d’écart clair.",
-      ],
-      es: [
-        "Empieza por los datos del pedido. Compara color, talla elegida y modelo. Una imagen puede parecer correcta aunque la etiqueta indique otra talla.",
-        "Compara la silueta desde todos los ángulos: simetría, golpes, accesorios faltantes, estampados irregulares y manchas visibles.",
-        "La guía de Superbuy indica que se toman tres fotos al almacenar. Son una revisión visual básica, no una prueba de autenticidad, materiales ocultos o durabilidad. Pide un primer plano si falta un ángulo importante.",
-        "Decide de forma práctica: aprueba si lo visible coincide, pide una foto concreta si no puedes revisar algo y usa posventa si existe una diferencia clara.",
-      ],
-      it: [
-        "Inizia dai dettagli dell’ordine. Confronta colore, taglia scelta e modello. Una foto può sembrare corretta anche se l’etichetta mostra una taglia diversa.",
-        "Confronta poi la forma da tutte le angolazioni: simmetria, ammaccature, accessori mancanti, stampe irregolari e macchie visibili.",
-        "La guida Superbuy indica tre foto durante lo stoccaggio. Sono un controllo visivo di base, non una prova di autenticità, materiali nascosti o durata. Chiedi un primo piano se manca un dettaglio importante.",
-        "Decidi in modo pratico: approva se i dettagli visibili coincidono, chiedi una foto mirata se un controllo è impossibile e usa il post-vendita per differenze chiare.",
-      ],
-    },
-  },
-  "shipping-cost-guide": {
-    title: {
-      en: "Superbuy Shipping Cost: Deposit vs Final Charge",
-      de: "Superbuy-Versandkosten: Anzahlung und Endbetrag",
-      fr: "Frais Superbuy : acompte et montant final",
-      es: "Envío Superbuy: depósito y coste final",
-      it: "Spedizione Superbuy: deposito e costo finale",
-    },
-    deck: {
-      en: "Why the first shipping number can change after the parcel is packed and verified.",
-      de: "Warum sich der erste Versandbetrag nach Verpackung und Prüfung ändern kann.",
-      fr: "Pourquoi le premier montant peut changer après emballage et vérification.",
-      es: "Por qué el primer importe puede cambiar tras embalar y verificar el paquete.",
-      it: "Perché il primo importo può cambiare dopo imballaggio e verifica.",
-    },
-    body: {
-      en: [
-        "International shipping is not simply the sum of product prices. Route, destination, restricted-item rules, parcel weight and package dimensions can all affect the available methods and final charge.",
-        "The platform’s guide explains the sequence clearly: the initial deposit is calculated from estimated weight, the selected method and the destination. After packing, the carrier verifies actual size and weight. That verified parcel data determines the final fee.",
-        "This is why removing unnecessary packaging or consolidating items can matter, but the cheapest-looking route is not automatically the best. Compare delivery scope, item restrictions, tracking and compensation terms before selecting a line.",
-        "Budget with a margin rather than treating the estimate as a promise. Check the current calculator close to shipment time, keep parcel choices simple, and review any refund or additional charge after the final measurement.",
-      ],
-      de: [
-        "Internationaler Versand ist nicht einfach die Summe der Produktpreise. Route, Ziel, Einschränkungen, Gewicht und Paketmaße beeinflussen Auswahl und Endpreis.",
-        "Laut Plattformleitfaden basiert die Anzahlung auf Schätzgewicht, Versandart und Ziel. Nach dem Verpacken bestätigt der Dienstleister Maße und Gewicht; daraus ergibt sich der Endbetrag.",
-        "Unnötige Verpackung zu entfernen oder Artikel zusammenzufassen kann helfen. Die günstigste Route ist aber nicht automatisch die beste: Prüfe Einschränkungen, Tracking und Entschädigung.",
-        "Plane einen Puffer ein und behandle die Schätzung nicht als Garantie. Prüfe den aktuellen Rechner kurz vor dem Versand und kontrolliere die Endabrechnung.",
-      ],
-      fr: [
-        "Le transport international ne correspond pas à la somme des prix produits. Itinéraire, destination, restrictions, poids et dimensions influencent le choix et le montant final.",
-        "Le guide explique que l’acompte repose sur le poids estimé, le mode choisi et la destination. Après emballage, le transporteur vérifie dimensions et poids, qui déterminent le coût final.",
-        "Retirer un emballage inutile ou regrouper des articles peut aider. Mais la ligne la moins chère n’est pas toujours la meilleure : vérifiez restrictions, suivi et indemnisation.",
-        "Prévoyez une marge et ne considérez pas l’estimation comme une promesse. Consultez le calculateur près de la date d’envoi et vérifiez la régularisation finale.",
-      ],
-      es: [
-        "El envío internacional no es la suma de los precios. Ruta, destino, restricciones, peso y dimensiones afectan a las opciones y al coste final.",
-        "La guía explica que el depósito usa peso estimado, método y destino. Tras embalar, el transportista verifica tamaño y peso; esos datos determinan el importe final.",
-        "Quitar embalaje innecesario o consolidar artículos puede ayudar. Pero la ruta más barata no siempre es la mejor: revisa restricciones, seguimiento y compensación.",
-        "Deja un margen y no trates la estimación como una promesa. Consulta la calculadora cerca del envío y revisa el ajuste final.",
-      ],
-      it: [
-        "La spedizione internazionale non è la somma dei prezzi dei prodotti. Rotta, destinazione, restrizioni, peso e dimensioni influenzano opzioni e costo finale.",
-        "La guida spiega che il deposito usa peso stimato, metodo scelto e destinazione. Dopo l’imballaggio, il corriere verifica dimensioni e peso; questi dati determinano il costo finale.",
-        "Rimuovere imballaggi inutili o consolidare articoli può aiutare. La rotta più economica non è sempre la migliore: controlla restrizioni, tracciamento e compensazione.",
-        "Prevedi un margine e non considerare la stima una promessa. Controlla il calcolatore vicino alla spedizione e verifica il conguaglio finale.",
-      ],
-    },
-  },
-  "spreadsheet-guide": {
-    title: {
-      en: "How to Use a Superbuy Spreadsheet Safely",
-      de: "Eine Superbuy-Tabelle sinnvoll nutzen",
-      fr: "Bien utiliser un tableur Superbuy",
-      es: "Cómo usar una hoja Superbuy",
-      it: "Come usare un foglio Superbuy",
-    },
-    deck: {
-      en: "A product-first workflow for searching, comparing and opening the right destination page.",
-      de: "Ein produktorientierter Ablauf zum Suchen, Vergleichen und Öffnen der richtigen Seite.",
-      fr: "Une méthode centrée produit pour chercher, comparer et ouvrir la bonne page.",
-      es: "Un proceso centrado en productos para buscar, comparar y abrir la página correcta.",
-      it: "Un metodo centrato sui prodotti per cercare, confrontare e aprire la pagina giusta.",
-    },
-    body: {
-      en: [
-        "A spreadsheet is most useful as a discovery layer, not as evidence that a product is good. Begin with a category or a precise keyword, then open the current destination listing and verify the live options yourself.",
-        "Match the card image, product title and available variants. Prices shown in an independent index are estimates; the destination listing is the current source for options and availability.",
-        "Before ordering, note the selected size, colour and quantity. When warehouse photos arrive, compare them against that record. This makes QC decisions faster and reduces the chance of approving a different variant by mistake.",
-        "Use guides for process knowledge, not guarantees. Seller terms, shipping lines, exchange rates and platform rules can change. Re-check time-sensitive details close to the moment you order or ship.",
-      ],
-      de: [
-        "Eine Tabelle dient am besten zur Entdeckung, nicht als Qualitätsbeweis. Beginne mit Kategorie oder genauem Suchwort und prüfe anschließend das aktuelle Zielangebot selbst.",
-        "Vergleiche Kartenbild, Produkttitel und Varianten. Preise im unabhängigen Index sind Schätzungen; das Zielangebot zeigt aktuelle Optionen und Verfügbarkeit.",
-        "Notiere vor der Bestellung Größe, Farbe und Menge. Vergleiche diese Angaben später mit den Lagerfotos. So wird die QC-Entscheidung schneller und sicherer.",
-        "Nutze Ratgeber als Prozesshilfe, nicht als Garantie. Verkäuferbedingungen, Versandlinien, Wechselkurse und Regeln können sich ändern.",
-      ],
-      fr: [
-        "Un tableur sert à découvrir, pas à prouver la qualité. Commencez par une catégorie ou un mot-clé précis, puis vérifiez vous-même l’annonce actuelle de destination.",
-        "Comparez image, titre et variantes. Les prix d’un index indépendant sont estimatifs ; l’annonce de destination indique les options et disponibilités actuelles.",
-        "Avant de commander, notez taille, couleur et quantité. Comparez-les aux photos d’entrepôt pour éviter de valider la mauvaise variante.",
-        "Utilisez les guides pour comprendre le processus, pas comme garantie. Conditions, lignes d’envoi, change et règles peuvent évoluer.",
-      ],
-      es: [
-        "Una hoja sirve para descubrir, no para demostrar calidad. Empieza por categoría o palabra precisa y después verifica el anuncio actual de destino.",
-        "Compara imagen, título y variantes. Los precios del índice son estimaciones; el anuncio de destino muestra opciones y disponibilidad actuales.",
-        "Antes de pedir, anota talla, color y cantidad. Compáralos con las fotos de almacén para evitar aprobar otra variante por error.",
-        "Usa las guías para entender el proceso, no como garantía. Condiciones, rutas, divisas y reglas pueden cambiar.",
-      ],
-      it: [
-        "Un foglio serve per scoprire, non per dimostrare la qualità. Parti da una categoria o parola precisa e verifica poi l’inserzione di destinazione aggiornata.",
-        "Confronta immagine, titolo e varianti. I prezzi dell’indice sono stime; l’inserzione di destinazione mostra opzioni e disponibilità attuali.",
-        "Prima dell’ordine annota taglia, colore e quantità. Confrontali con le foto del magazzino per evitare di approvare la variante sbagliata.",
-        "Usa le guide per capire il processo, non come garanzia. Condizioni, rotte, cambi e regole possono cambiare.",
-      ],
-    },
-  },
-};
-
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const destination = (id: string) =>
   `https://cnfanshp.com/AllProducts/${id}.html`;
@@ -1051,11 +876,11 @@ const labels: Record<
     newFinds: "TEMUAN BARU",
     noTabs: "TAK ADA TAB HILANG",
     stages: "04 TAHAP UTAMA",
-    seo: "ARTIKEL SEO · 6 PANDUAN MENDALAM",
-    article: "ARTIKEL SEO",
+    seo: "PANDUAN BELANJA",
+    article: "PANDUAN",
     process: "ALUR PRODUK · 2026",
     qc: "QC ≠ AUTENTIKASI",
-    research: "SEO · BERBASIS RISET",
+    research: "PANDUAN · SUMBER RESMI",
     categoryNames: [
       "Sepatu",
       "Hoodie",
@@ -1088,11 +913,11 @@ const labels: Record<
     newFinds: "NEW FINDS",
     noTabs: "NO MORE LOST TABS",
     stages: "04 KEY STAGES",
-    seo: "SEO ARTICLES · 3 LONG-FORM GUIDES",
-    article: "SEO ARTICLE",
+    seo: "BUYING GUIDES",
+    article: "GUIDE",
     process: "PRODUCT ROUTE · 2026",
     qc: "QC ≠ AUTHENTICATION",
-    research: "SEO · RESEARCH-LED",
+    research: "GUIDES · OFFICIAL SOURCES",
     categoryNames: [
       "Shoes",
       "Hoodies",
@@ -1119,11 +944,11 @@ const labels: Record<
     newFinds: "NEUE FUNDE",
     noTabs: "KEINE VERLORENEN TABS",
     stages: "04 HAUPTSCHRITTE",
-    seo: "SEO-ARTIKEL · 3 AUSFÜHRLICHE RATGEBER",
-    article: "SEO-ARTIKEL",
+    seo: "EINKAUFSRATGEBER",
+    article: "RATGEBER",
     process: "PRODUKTWEG · 2026",
     qc: "QC ≠ ECHTHEITSPRÜFUNG",
-    research: "SEO · RECHERCHIERT",
+    research: "RATGEBER · OFFIZIELLE QUELLEN",
     categoryNames: [
       "Schuhe",
       "Hoodies",
@@ -1156,11 +981,11 @@ const labels: Record<
     newFinds: "NOUVELLES TROUVAILLES",
     noTabs: "PLUS D’ONGLETS PERDUS",
     stages: "04 ÉTAPES CLÉS",
-    seo: "ARTICLES SEO · 3 GUIDES APPROFONDIS",
-    article: "ARTICLE SEO",
+    seo: "GUIDES D’ACHAT",
+    article: "GUIDE",
     process: "PARCOURS PRODUIT · 2026",
     qc: "QC ≠ AUTHENTIFICATION",
-    research: "SEO · DOCUMENTÉ",
+    research: "GUIDES · SOURCES OFFICIELLES",
     categoryNames: [
       "Chaussures",
       "Sweats",
@@ -1193,11 +1018,11 @@ const labels: Record<
     newFinds: "NUEVOS HALLAZGOS",
     noTabs: "SIN PESTAÑAS PERDIDAS",
     stages: "04 ETAPAS CLAVE",
-    seo: "ARTÍCULOS SEO · 3 GUÍAS EXTENSAS",
-    article: "ARTÍCULO SEO",
+    seo: "GUÍAS DE COMPRA",
+    article: "GUÍA",
     process: "RUTA DEL PRODUCTO · 2026",
     qc: "QC ≠ AUTENTICACIÓN",
-    research: "SEO · CON INVESTIGACIÓN",
+    research: "GUÍAS · FUENTES OFICIALES",
     categoryNames: [
       "Zapatillas",
       "Sudaderas",
@@ -1230,11 +1055,11 @@ const labels: Record<
     newFinds: "NUOVI PRODOTTI",
     noTabs: "NESSUNA SCHEDA PERSA",
     stages: "04 FASI CHIAVE",
-    seo: "ARTICOLI SEO · 3 GUIDE APPROFONDITE",
-    article: "ARTICOLO SEO",
+    seo: "GUIDE ALL’ACQUISTO",
+    article: "GUIDA",
     process: "PERCORSO PRODOTTO · 2026",
     qc: "QC ≠ AUTENTICAZIONE",
-    research: "SEO · BASATO SU RICERCA",
+    research: "GUIDE · FONTI UFFICIALI",
     categoryNames: [
       "Scarpe",
       "Felpe",
@@ -1313,10 +1138,7 @@ function LanguagePicker({
       : page === "article"
         ? `/articles/${article}`
         : `/${page}`;
-  const choices =
-    article && isIndonesianArticle(article)
-      ? languages.filter((item) => item.code === "id")
-      : languages;
+  const choices = languages;
   return (
     <details className="language">
       <summary>
@@ -1427,40 +1249,17 @@ function CategoryGrid({ lang }: { lang: Lang }) {
   );
 }
 
-function ArticleCards({ lang }: { lang: Lang }) {
+function ArticleCards({ lang, limit }: { lang: Lang; limit?: number }) {
   const t = copy[lang];
-  const order: ArticleSlug[] =
-    lang === "id"
-      ? [
-          "cara-belanja-di-superbuy",
-          "shipping-cost-guide",
-          "pajak-bea-cukai-superbuy-indonesia",
-          "superbuy-review-indonesia",
-          "spreadsheet-guide",
-          "qc-photo-checklist",
-        ]
-      : ["spreadsheet-guide", "qc-photo-checklist", "shipping-cost-guide"];
   return (
     <div className="article-grid">
-      {order.map((slug, i) => {
-        let title: string;
-        let deck: string;
-        if (lang === "id") {
-          const article = indonesianArticles[slug];
-          title = article.title;
-          deck = article.description;
-        } else {
-          const article = articleData[slug as SharedArticleSlug];
-          title = article.title[lang];
-          deck = article.deck[lang];
-        }
+      {articleSlugs.slice(0, limit).map((slug, i) => {
+        const article = articleCatalog[lang][slug];
         return (
           <a href={local(lang, `/articles/${slug}`)} key={slug}>
-            <span>
-              0{i + 1} · {labels[lang].article}
-            </span>
-            <h3>{title}</h3>
-            <p>{deck}</p>
+            <span>{String(i + 1).padStart(2, "0")} · {labels[lang].article}</span>
+            <h3>{article.title}</h3>
+            <p>{article.description}</p>
             <b>{t.read} ↗</b>
           </a>
         );
@@ -1653,7 +1452,7 @@ function Home({ lang }: { lang: Lang }) {
           </div>
           <a href={local(lang, "/articles")}>{t.all} ↗</a>
         </div>
-        <ArticleCards lang={lang} />
+        <ArticleCards lang={lang} limit={4} />
       </section>
     </>
   );
@@ -1676,13 +1475,6 @@ function PageHero({
     </section>
   );
 }
-
-const researchSources = [
-  "fee structure",
-  "forwarding guide",
-  "service overview",
-  "Indonesian customs guidance",
-] as const;
 
 const articleUi: Record<
   Lang,
@@ -1711,7 +1503,7 @@ const articleUi: Record<
       "Panduan barang kiriman Bea Cukai",
     ],
     recheck:
-      "Aturan layanan, pengiriman, dan pungutan dapat berubah. Sumber diperiksa 7 September 2026; periksa kembali ketentuan resmi sebelum membayar.",
+      "Aturan layanan, pengiriman, dan pungutan dapat berubah. Periksa kembali ketentuan resmi sebelum membayar.",
   },
   en: {
     guide: "SUPERBUY GUIDE",
@@ -1795,7 +1587,7 @@ const articleUi: Record<
   },
 };
 
-function SourcePanel({ lang }: { lang: Lang }) {
+function SourcePanel({ lang, slug }: { lang: Lang; slug?: ArticleSlug }) {
   const ui = articleUi[lang];
   return (
     <section className="source-panel">
@@ -1804,13 +1596,13 @@ function SourcePanel({ lang }: { lang: Lang }) {
         <strong>{ui.sources}</strong>
       </div>
       <ul>
-        {researchSources.map((source, i) => (
-          <li key={source}>
-            <span>{ui.sourceLabels[i]}</span>
+        {(slug ? articleSources[slug] : [0, 1, 2, 4]).map((i) => (
+          <li key={i}>
+            <span>{sourceNames[lang][i]}</span>
           </li>
         ))}
       </ul>
-      <p>{ui.recheck}</p>
+      <p>{articleTools[lang].sources}: <time dateTime="2026-10-06">{new Intl.DateTimeFormat(lang, { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date("2026-10-06"))}</time>. {ui.recheck}</p>
     </section>
   );
 }
@@ -1967,12 +1759,8 @@ function InnerPage({
 function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
   const t = copy[lang];
   const ui = articleUi[lang];
-  const long =
-    lang === "id"
-      ? indonesianArticles[slug]
-      : lang === "en"
-        ? englishArticles[slug]
-        : localizedArticles[lang][slug];
+  const long = articleCatalog[lang][slug];
+  const tools = articleTools[lang];
   const headline = long.title;
   const description = long.description;
   const wordCount = long.sections
@@ -1984,7 +1772,7 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
   const guideUrl = `https://superbuys.id${local(lang, "/articles")}`;
   const publishedAt = long.publishedAt ?? "2026-08-12";
   const modifiedAt = long.modifiedAt ?? "2026-08-13";
-  const updatedLabel = long.updatedLabel ?? ui.updated;
+  const updatedLabel = `${tools.updated} ${new Intl.DateTimeFormat(lang, { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(modifiedAt))}`;
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -1997,7 +1785,7 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
         wordCount,
         inLanguage: lang === "id" ? "id-ID" : lang,
         mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
-        image: { "@type": "ImageObject", url: products[0].image },
+        image: { "@type": "ImageObject", url: "https://superbuys.id/superbuy-logo.png" },
         author: {
           "@type": "Organization",
           name: "superbuys.id",
@@ -2046,15 +1834,17 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
       </span>
       <h1>{headline}</h1>
       <p className="article-deck">{description}</p>
-      <div className="keyword-strip">
-        <b>{lang === "id" ? "KATA KUNCI UTAMA" : "PRIMARY KEYWORD"}</b>
-        <span>{long.primaryKeyword}</span>
-        <b>{lang === "id" ? "KATA KUNCI TERKAIT" : "RELATED KEYWORDS"}</b>
-        <small>{long.secondaryKeywords.join(" · ")}</small>
+      <nav className="article-toc" aria-label={tools.toc}>
+        <strong>{tools.toc}</strong>
+        <ol>{long.sections.map((section, i) => <li key={i}><a href={`#section-${i + 1}`}>{section.heading}</a></li>)}</ol>
+      </nav>
+      <div className="article-catalog-cta">
+        <a href={slug === "superbuy-shoe-size-qc-guide" ? "https://cnfanshp.com/shoes/" : "https://cnfanshp.com/AllProducts/"} data-article-catalog={slug} {...ext}>{tools.browse} ↗</a>
+        <small>{tools.shopNote}</small>
       </div>
       <div className="article-body long-form">
         {long.sections.map((section, i) => (
-          <section key={section.heading}>
+          <section key={section.heading} id={`section-${i + 1}`} data-article-end={i === long.sections.length - 1 ? slug : undefined}>
             <b>{String(i + 1).padStart(2, "0")}</b>
             <div>
               <h2>{section.heading}</h2>
@@ -2076,7 +1866,12 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
         <strong>{ui.remember}</strong>
         <p>{faq[lang][4][1]}</p>
       </aside>
-      <SourcePanel lang={lang} />
+      <section className="related-guides">
+        <h2>{tools.related}</h2>
+        <ul>{relatedArticles[slug].map((related) => <li key={related}><a href={local(lang, `/articles/${related}`)}>{articleCatalog[lang][related].title} →</a></li>)}</ul>
+        <a className="article-bottom-cta" href={slug === "superbuy-shoe-size-qc-guide" ? "https://cnfanshp.com/shoes/" : "https://cnfanshp.com/AllProducts/"} data-article-catalog={slug} {...ext}>{tools.browse} ↗</a>
+      </section>
+      <SourcePanel lang={lang} slug={slug} />
     </article>
   );
 }
