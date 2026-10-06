@@ -39,13 +39,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
   const articles = englishArticles.map((article) => ({
     url: `${base}/articles/${article.slug}`,
-    lastModified: new Date("2026-09-07"),
+    lastModified: new Date(article.modified),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
   const trust = trustPages.map((page) => ({
     url: `${base}${page}`,
-    lastModified: new Date("2026-08-12"),
+    lastModified: new Date(["/privacy", "/contact"].includes(page) ? "2026-10-06" : "2026-08-12"),
     changeFrequency: "yearly" as const,
     priority: 0.4,
   }));

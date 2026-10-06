@@ -57,7 +57,7 @@ export const trustPages: Record<string, TrustContent> = {
     sections: [
       [
         "Corecții",
-        "Nu publicăm o adresă de contact neverificată. Până la activarea unui canal editorial confirmat, paginile indică data ultimei verificări, iar linkurile nefuncționale sunt reverificate la următoarea revizie programată.",
+        "Nu publicăm o adresă de contact neverificată. Până la activarea unui canal editorial confirmat, paginile indică data ultimei verificări, iar linkurile nefuncționale sunt reverificate la următoarea revizie editorială.",
       ],
       [
         "Drepturi și mărci",
@@ -80,6 +80,10 @@ export const trustPages: Record<string, TrustContent> = {
       [
         "Căutări și linkuri externe",
         "Căutarea și linkurile de produs trimit utilizatorul către cnfanshp.com. Parametrii UTM identifică sursa de recomandare, fără a include numele sau adresa ta de e-mail.",
+      ],
+      [
+        "Măsurarea utilizării",
+        "Folosim Google Analytics pentru a înțelege vizitele, deschiderea ghidurilor, clicurile către catalog și trimiterea căutărilor. Evenimentele personalizate includ tipul linkului, calea paginii și limba interfeței; nu includ textul introdus în căutare, nume, adrese de e-mail sau date despre comenzi.",
       ],
       [
         "Contact",

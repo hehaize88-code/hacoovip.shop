@@ -1,3 +1,6 @@
+import { newArticles } from "./new-articles";
+import { articleImprovements } from "./article-improvements";
+
 export type ArticleSection = {
   heading: string;
   paragraphs: string[];
@@ -15,9 +18,16 @@ export type FullArticle = {
   intro: string[];
   sections: ArticleSection[];
   sourceNote: string;
+  published: string;
+  modified: string;
+  summary?: string;
+  table?: { caption: string; headers: string[]; rows: string[][] };
+  related?: string[];
+  category?: "shoes" | "hoodies-sweaters" | null;
+
 };
 
-export const englishArticles: FullArticle[] = [
+const legacyArticles: FullArticle[] = [
   {
     title: "AllChinaBuy Spreadsheet 2026: Find Working Links and Better Products",
     slug: "spreadsheet-guide",
@@ -25,13 +35,14 @@ export const englishArticles: FullArticle[] = [
       "Use an AllChinaBuy spreadsheet to find working product links, compare live listings and build a verified shortlist before ordering.",
     primaryKeyword: "AllChinaBuy spreadsheet",
     secondaryKeywords: [
-      "ACBuy spreadsheet",
       "AllChinaBuy finds",
       "how to use AllChinaBuy",
       "AllChinaBuy product links",
     ],
     readTime: "9 min read",
-    updated: "September 7, 2026",
+    updated: "October 6, 2026",
+    published: "2026-08-12",
+    modified: "2026-10-06",
     intro: [
       "A large product spreadsheet feels useful because it puts hundreds or thousands of finds in one place. The problem is that quantity can create false confidence. A row with a photo, a price and a link is not the same thing as a checked product. Listings change, variants carry different prices, sellers replace photos and some links eventually stop working. The right way to use an AllChinaBuy spreadsheet is therefore not to scroll until something looks exciting. It is to treat the sheet as a discovery index, then verify each candidate before ordering.",
       "That distinction matters because AllChinaBuy describes its service as a cross-border purchasing agency covering procurement, order fulfilment, quality inspection, international logistics and after-sales service. In other words, the platform sits between a shopper and sellers in China. A spreadsheet can help you discover an item, but the live listing, order record, warehouse photos and current parcel quote are the records that matter at later stages. This guide gives you a repeatable way to move from discovery to a sensible shortlist without confusing an old spreadsheet entry with a live offer.",
@@ -118,7 +129,9 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy quality inspection",
     ],
     readTime: "10 min read",
-    updated: "September 7, 2026",
+    updated: "October 6, 2026",
+    published: "2026-08-12",
+    modified: "2026-10-06",
     intro: [
       "Quality-control photos are most useful when they lead to a decision. They are not decoration, and they are not a certificate that an item is perfect. AllChinaBuy publicly describes quality inspection as part of its purchasing-agency service, alongside procurement, order fulfilment, international logistics and after-sales support. The practical purpose of the warehouse photos is to let you compare what arrived with what you ordered before you commit it to an international parcel.",
       "Five focused minutes are usually more valuable than twenty minutes of random zooming. Start with identity, move to shape, check measurements, inspect high-risk details and finish with a clear outcome: accept, ask for evidence, or contact support about a return or exchange. The routine below is designed for clothing, shoes, bags and everyday accessories, but the logic applies to most photo-based warehouse inspections.",
@@ -204,7 +217,9 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy volumetric weight",
     ],
     readTime: "11 min read",
-    updated: "September 7, 2026",
+    updated: "October 6, 2026",
+    published: "2026-08-12",
+    modified: "2026-10-06",
     intro: [
       "A low product price is not a low delivered price. This is the most important budgeting lesson for any purchasing-agent order. AllChinaBuy’s official description separates procurement and order fulfilment from international logistics, and it notes that international shipping is provided by third-party service companies. The official shipping calculator also asks for destination, product category, estimated weight and optional package dimensions. Those inputs explain why the number on a product card cannot predict the number shown when a parcel is ready.",
       "A realistic budget is built in stages. First comes the selected product and any domestic movement to the warehouse. Then the item is inspected, combined with other goods if desired, packed, measured and matched with routes available for its destination and category. Currency conversion, optional services and destination charges may add further uncertainty. This guide shows how to plan each stage without inventing a universal per-kilogram rate or promising a delivery time that the live quote may not support.",
@@ -253,10 +268,10 @@ export const englishArticles: FullArticle[] = [
         ],
       },
       {
-        heading: "What customer reviews can—and cannot—tell you",
+        heading: "Compare another parcel only when its inputs are known",
         paragraphs: [
-          "Public app reviews show mixed experiences. Some users praise the interface, order tracking or customer support, while others complain that shipping was much higher than the product value or that route information felt unclear. These accounts are useful because they highlight the questions a buyer should ask: What were the destination, packed weight, dimensions, category, route and date? Was the amount an estimate or final charge? Were destination fees included?",
-          "A review is not a universal price table. One user’s parcel may differ in country, volume, line, timing and contents. Use repeated complaints as prompts for verification, not as proof that your parcel will cost the same. Likewise, a positive delivery story does not guarantee your route or customs outcome. A balanced review article should preserve this context and clearly label customer statements as individual experiences.",
+          "A shipping amount reported by another buyer is useful only when its inputs are known. Ask for destination, packed weight, dimensions, product category, route and date. Establish whether the amount was an estimate, a deposit or a final charge, and whether destination fees were included. Without those details, the number cannot serve as a price benchmark for your own parcel.",
+          "Keep any comparison provisional until the same inputs have been priced on an eligible live route. An unusually low or high charge can reflect a different parcel rather than a change in the service. This guide does not claim to have sampled customer reviews or calculated an average shipping price. Use a documented quote comparison instead of treating an isolated delivery story as a universal rate.",
         ],
         checklist: [
           "Destination and date",
@@ -282,7 +297,7 @@ export const englishArticles: FullArticle[] = [
       },
     ],
     sourceNote:
-      "Research basis: AllChinaBuy official website, official freight calculator and official app description; calculator fields and service description checked August 12, 2026. Customer-review patterns are treated as anecdotal experience, not universal pricing evidence.",
+      "Research basis: AllChinaBuy official website, official freight calculator and official app description; calculator fields and service description checked August 12, 2026. The quote comparison is editorial guidance; no customer-review sample or average price is claimed.",
   },
   {
     title: "AllChinaBuy Shipping to Romania: Lines, Delivery and Customs",
@@ -298,7 +313,9 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy shipping cost Romania",
     ],
     readTime: "12 min read",
-    updated: "September 7, 2026",
+    updated: "October 6, 2026",
+    published: "2026-09-07",
+    modified: "2026-10-06",
     intro: [
       "AllChinaBuy shipping to Romania cannot be reduced to one permanent price or one best line. The available options depend on the parcel's destination, product category, packed weight, dimensions and the routes visible when the parcel is submitted. A line that works for clothing may not accept a battery, liquid or another sensitive item. A price estimated before the goods reach the warehouse may also change when the final packaging is measured.",
       "A reliable Romania shipping plan therefore uses checkpoints rather than promises. Estimate before ordering, verify the goods in the warehouse, remove unnecessary volume, compare only eligible live routes, keep current import costs visible and save the tracking records after dispatch. This guide explains that sequence without inventing a fixed delivery time or treating an old community quote as a current offer.",
@@ -343,7 +360,7 @@ export const englishArticles: FullArticle[] = [
         heading: "Account for Romania and EU import costs",
         paragraphs: [
           "A freight quote is not always the complete delivered cost. Imports into the European Union can involve VAT, customs declarations, duties and operator or last-mile charges depending on the goods, value, sales arrangement and route. The European Commission states that VAT exemption for low-value commercial imports ended in 2021 and that a customs declaration is required for goods entering the EU regardless of value. IOSS and special arrangements are collection methods, not a reason to ignore the declared transaction.",
-          "A major current change applies in 2026. European Commission guidance says that from 1 July 2026 a temporary customs duty of EUR 3 per item applies to distance-sale goods in consignments with an intrinsic value up to EUR 150, subject to the scope and exclusions in the rules. The amount is per item rather than simply per parcel. Because legislation, interpretation and carrier handling can change, verify the current official guidance and the route's tax treatment immediately before submission instead of copying an older pre-July 2026 guide.",
+          "A major current change applies in 2026. European Commission guidance says that from 1 July 2026 a temporary customs duty of EUR 3 per item applies to distance-sale goods in consignments with an intrinsic value up to EUR 150, subject to the scope and exclusions in the rules. The Commission defines the item by tariff classification rather than the number of physical units. Do not multiply EUR 3 by every garment in a parcel; the applicable classification and declaration determine the calculation. Because legislation, interpretation and carrier handling can change, verify the current official guidance and the route's tax treatment immediately before submission instead of copying an older pre-July 2026 guide.",
         ],
       },
       {
@@ -389,10 +406,11 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy tracking not updating",
       "AllChinaBuy parcel status",
       "AllChinaBuy delivery tracking",
-      "ACBuy tracking",
     ],
     readTime: "11 min read",
-    updated: "September 7, 2026",
+    updated: "October 6, 2026",
+    published: "2026-09-07",
+    modified: "2026-10-06",
     intro: [
       "AllChinaBuy tracking becomes easier when the journey is divided into separate systems. The platform order record follows an item from purchase to the warehouse. The parcel record begins when selected warehouse items are packed for international shipping. The international carrier and a destination delivery company may then create their own tracking events and even different tracking numbers. Looking in only one system can make a normal handoff appear to be a missing parcel.",
       "Tracking also moves in milestones rather than as a live map. Label creation, carrier collection, export departure, arrival, customs processing and last-mile delivery are distinct events, and some stages can be quiet for several days. This guide explains what the common statuses usually indicate, what they do not prove, and how to prepare a useful support request when an update is genuinely overdue.",
@@ -493,7 +511,9 @@ export const englishArticles: FullArticle[] = [
       "AllChinaBuy buying guide",
     ],
     readTime: "12 min read",
-    updated: "September 7, 2026",
+    updated: "October 6, 2026",
+    published: "2026-09-07",
+    modified: "2026-10-06",
     intro: [
       "Ordering through AllChinaBuy involves two connected transactions: buying goods from a seller in China and later creating an international parcel from warehouse items. The product price belongs to the first stage. Packing, route selection, international freight and destination import treatment belong to the second. Understanding that separation is the easiest way to avoid confusing a cheap listing with a cheap delivered order.",
       "This AllChinaBuy Romania guide follows the process from a product link to delivery. It focuses on the records and decisions a buyer can verify: the live listing, selected variant, warehouse receipt, QC photos, final parcel measurements, eligible shipping lines and tracking handoffs. Platform interfaces and route conditions can change, so each step uses the current account record rather than a screenshot from an older tutorial.",
@@ -552,7 +572,7 @@ export const englishArticles: FullArticle[] = [
         heading: "Compare current shipping options to Romania",
         paragraphs: [
           "Use Romania as the destination and enter honest product categories, weight and dimensions in the current calculator or parcel interface. Compare eligible routes on more than price. Check category restrictions, parcel limits, tracking coverage, compensation conditions and the estimated service window. A line that does not accept the contents is not a real option even when an estimator displays a lower number.",
-          "Keep product cost and parcel cost separate. The parcel total can reflect actual or volumetric weight, packing choices and route conditions. Destination VAT, customs duty or carrier handling may sit outside the displayed freight amount depending on the route. From 1 July 2026, European Commission guidance describes a temporary EUR 3 customs duty per item for qualifying distance-sale goods in consignments up to EUR 150, so older articles that describe blanket low-value duty relief are no longer current.",
+          "Keep product cost and parcel cost separate. The parcel total can reflect actual or volumetric weight, packing choices and route conditions. Destination VAT, customs duty or carrier handling may sit outside the displayed freight amount depending on the route. From 1 July 2026, European Commission guidance describes a temporary EUR 3 customs duty based on tariff classification, not simply physical quantity, for qualifying distance-sale goods in consignments up to EUR 150, so older articles that describe blanket low-value duty relief are no longer current.",
         ],
       },
       {
@@ -587,6 +607,11 @@ export const englishArticles: FullArticle[] = [
     sourceNote:
       "Research basis: AllChinaBuy official public service description and freight calculator, plus European Commission guidance on EU low-value import formalities and the temporary customs duty effective 1 July 2026. Checked September 7, 2026. Live product, route and policy records take priority over this guide.",
   },
+];
+
+export const englishArticles: FullArticle[] = [
+  ...newArticles,
+  ...legacyArticles.map((article) => ({ ...article, ...articleImprovements[article.slug] })),
 ];
 
 export const getEnglishArticle = (slug: string) =>

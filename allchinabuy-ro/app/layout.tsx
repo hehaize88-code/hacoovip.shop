@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
+import { EngagementTracking } from "./engagement-tracking";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -11,7 +12,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allchinabuy.ro"),
-  title: "AllChinaBuy România 2026: Spreadsheet, QC Photos & Shipping",
+  title: "AllChinaBuy Spreadsheet România | Produse, QC și Transport",
   description:
     "Ghid independent AllChinaBuy România 2026: spreadsheet cu produse, QC photos, costuri de transport, tracking, TVA și informații vamale.",
   alternates: {
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "allchinabuy.ro",
     locale: "ro_RO",
-    title: "AllChinaBuy România 2026: Spreadsheet, QC Photos & Shipping",
+    title: "AllChinaBuy Spreadsheet România | Produse, QC și Transport",
     description:
       "Spreadsheet, produse, QC photos și ghiduri de livrare pentru cumpărătorii din România.",
     images: [
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AllChinaBuy România 2026: Spreadsheet, QC Photos & Shipping",
+    title: "AllChinaBuy Spreadsheet România | Produse, QC și Transport",
     description:
       "Spreadsheet, produse, QC photos și ghiduri de livrare pentru cumpărătorii din România.",
     images: ["/allchinabuy.png"],
@@ -83,6 +84,7 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <EngagementTracking />
         {children}
       </body>
     </html>

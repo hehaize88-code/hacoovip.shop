@@ -99,13 +99,6 @@ export async function generateMetadata({
     const title = article.title;
     const description = article.description;
     const canonicalArticle = `/articles/${article.slug}`;
-    const publishedTime = [
-      "shipping-to-romania",
-      "tracking-guide",
-      "how-to-order-romania",
-    ].includes(article.slug)
-      ? "2026-09-07T00:00:00Z"
-      : "2026-08-12T00:00:00Z";
     return {
       title,
       description,
@@ -120,8 +113,10 @@ export async function generateMetadata({
         type: "article",
         title,
         description,
-        publishedTime,
-        modifiedTime: "2026-09-07T00:00:00Z",
+        locale: "en_US",
+        alternateLocale: [],
+        publishedTime: `${article.published}T00:00:00Z`,
+        modifiedTime: `${article.modified}T00:00:00Z`,
       },
       twitter: {
         card: "summary_large_image",
@@ -134,28 +129,30 @@ export async function generateMetadata({
   const page = copy.pages[path[0] || "products"] || copy.pages.articles;
   const roSeo: Record<string, [string, string]> = {
     products: [
-      "AllChinaBuy Products & Finds 2026 | România",
-      "Browse verified AllChinaBuy product links, current USD price previews and curated finds by category for shoppers in Romania.",
+      "AllChinaBuy Spreadsheet România | Produse și QC",
+      "Descoperă produse din spreadsheet AllChinaBuy, compară estimări USD și verifică mărimea și pozele QC înainte de comandă.",
     ],
     categories: [
-      "AllChinaBuy Finds by Category | România",
-      "Explore AllChinaBuy spreadsheet finds for sneakers, hoodies, T-shirts, jackets, bottoms and accessories.",
+      "AllChinaBuy România: Sneakers, Hanorace și Categorii",
+      "Explorează categorii AllChinaBuy: sneakers, hanorace, tricouri, jachete, pantaloni și accesorii. Deschide colecția potrivită.",
     ],
     "qc-guide": [
-      "AllChinaBuy QC Photos Guide 2026 | România",
-      "Learn how to check AllChinaBuy QC photos and QC pictures for measurements, stitching, colour and visible defects.",
+      "AllChinaBuy QC Photos: Ghid de Verificare | România",
+      "Verifică pozele QC AllChinaBuy: mărimi, măsurători, cusături, culoare și defecte vizibile înainte de expediere.",
     ],
     "shipping-guide": [
-      "AllChinaBuy Shipping to Romania: Cost, Lines & Customs",
-      "Plan AllChinaBuy shipping to Romania using packed weight, dimensions, route eligibility, tracking and current EU customs information.",
+      "AllChinaBuy România: Transport, Costuri și Vamă",
+      "Planifică transportul AllChinaBuy în România: greutate, volum, rute eligibile, tracking și informații vamale datate.",
     ],
     articles: [
-      "AllChinaBuy Guides 2026: QC, Shipping & Tracking",
-      "Read independent AllChinaBuy guides about spreadsheets, QC photos, shipping costs, Romania delivery, tracking and ordering.",
+      "Ghiduri AllChinaBuy: Mărimi, QC, Transport și Tracking",
+      "Ghiduri independente în engleză pentru România: spreadsheet, sneakers, hanorace, QC, costuri de transport, tracking și comenzi.",
     ],
   };
   const optimized = locale === "ro" ? roSeo[path[0] || "products"] : undefined;
-  const title = optimized?.[0] ?? `${page[0]} | AllChinaBuy România`;
+  const title = locale === "en" && !path.length
+    ? "AllChinaBuy Spreadsheet for Romania | Finds & QC Guide"
+    : optimized?.[0] ?? `${page[0]} | AllChinaBuy România`;
   const description =
     optimized?.[1] ?? `${page[1]} ${localeMeta[locale].region}.`;
   return {

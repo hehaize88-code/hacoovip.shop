@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   categories,
   ConceptSwitcher,
@@ -1503,7 +1504,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Taxă vamală temporară din 2026",
-      "De la 1 iulie 2026, UE aplică o taxă vamală temporară de 3 EUR per articol pentru vânzările la distanță din colete cu valoare de până la 150 EUR, până la 1 iulie 2028. Verifică regula înainte de expediere.",
+      "De la 1 iulie 2026, UE aplică o taxă vamală temporară de 3 EUR pe categorie tarifară, nu pe fiecare bucată fizică, pentru vânzările la distanță din colete cu valoare de până la 150 EUR, până la 1 iulie 2028. Verifică regula înainte de expediere.",
       "Ghidul UE 2026",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1523,7 +1524,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Temporary 2026 customs duty",
-      "From 1 July 2026, the EU applies a temporary EUR 3 customs duty per item to distance sales in consignments up to EUR 150, until 1 July 2028. Recheck the rule before shipping.",
+      "From 1 July 2026, the EU applies a temporary EUR 3 customs duty by tariff classification, not physical quantity, on distance sales in consignments up to EUR 150, until 1 July 2028. Recheck the rule before shipping.",
       "EU 2026 guidance",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1543,7 +1544,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Befristeter Zoll 2026",
-      "Seit 1. Juli 2026 gilt vorübergehend ein Zoll von 3 EUR je Artikel für Fernverkäufe in Sendungen bis 150 EUR, bis 1. Juli 2028. Vor Versand erneut prüfen.",
+      "Seit 1. Juli 2026 gilt vorübergehend ein Zoll von 3 EUR je Zolltarifkategorie, nicht je physischem Stück, für Fernverkäufe in Sendungen bis 150 EUR, bis 1. Juli 2028. Vor Versand erneut prüfen.",
       "EU-Leitfaden 2026",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1563,7 +1564,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Droit temporaire 2026",
-      "Depuis le 1er juillet 2026, un droit temporaire de 3 EUR par article s’applique aux ventes à distance dans les colis jusqu’à 150 EUR, jusqu’au 1er juillet 2028. À revérifier avant l’envoi.",
+      "Depuis le 1er juillet 2026, un droit temporaire de 3 EUR par catégorie tarifaire, et non par unité physique, s’applique aux ventes à distance dans les colis jusqu’à 150 EUR, jusqu’au 1er juillet 2028. À revérifier avant l’envoi.",
       "Guide UE 2026",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1583,7 +1584,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Derecho temporal de 2026",
-      "Desde el 1 de julio de 2026 se aplica un derecho temporal de 3 EUR por artículo a ventas a distancia en envíos de hasta 150 EUR, hasta el 1 de julio de 2028. Revísalo antes de enviar.",
+      "Desde el 1 de julio de 2026 se aplica un derecho temporal de 3 EUR por categoría arancelaria, no por unidad física, a ventas a distancia en envíos de hasta 150 EUR, hasta el 1 de julio de 2028. Revísalo antes de enviar.",
       "Guía UE 2026",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1603,7 +1604,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Dazio temporaneo 2026",
-      "Dal 1º luglio 2026 si applica un dazio temporaneo di 3 EUR per articolo alle vendite a distanza in colli fino a 150 EUR, fino al 1º luglio 2028. Ricontrolla prima della spedizione.",
+      "Dal 1º luglio 2026 si applica un dazio temporaneo di 3 EUR per categoria tariffaria, non per singolo pezzo, alle vendite a distanza in colli fino a 150 EUR, fino al 1º luglio 2028. Ricontrolla prima della spedizione.",
       "Guida UE 2026",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1623,7 +1624,7 @@ const romaniaGuidance: Record<Locale, [string, string, string, string][]> = {
     ],
     [
       "Tymczasowe cło 2026",
-      "Od 1 lipca 2026 obowiązuje tymczasowe cło 3 EUR za sztukę w sprzedaży na odległość dla przesyłek do 150 EUR, do 1 lipca 2028. Sprawdź zasady przed wysyłką.",
+      "Od 1 lipca 2026 obowiązuje tymczasowe cło 3 EUR według klasyfikacji taryfowej, a nie liczby sztuk, w sprzedaży na odległość dla przesyłek do 150 EUR, do 1 lipca 2028. Sprawdź zasady przed wysyłką.",
       "Wytyczne UE 2026",
       "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
     ],
@@ -1880,6 +1881,11 @@ function Home({ locale }: { locale: Locale }) {
   );
 }
 
+const articleLanguage: Record<Locale, string> = {
+  en: "ENGLISH GUIDE", ro: "GHID ÎN ENGLEZĂ", de: "RATGEBER AUF ENGLISCH",
+  fr: "GUIDE EN ANGLAIS", es: "GUÍA EN INGLÉS", it: "GUIDA IN INGLESE", pl: "PORADNIK PO ANGIELSKU",
+};
+
 function HomeArticles({ locale }: { locale: Locale }) {
   const t = localeCopy[locale];
   return (
@@ -1893,9 +1899,9 @@ function HomeArticles({ locale }: { locale: Locale }) {
         <a href={href(locale, "articles")}>{t.labels[4]} →</a>
       </div>
       <div className="article-grid home-article-grid">
-        {englishArticles.slice(0, 6).map((article, i) => (
+        {englishArticles.slice(0, 4).map((article, i) => (
           <a href={`/articles/${article.slug}`} key={article.slug}>
-            <span>0{i + 1} · FIELD NOTE</span>
+            <span>{String(i + 1).padStart(2, "0")} · {articleLanguage[locale]}</span>
             <h2>{article.title}</h2>
             <p>{article.description}</p>
             <b>{t.ui[16]} →</b>
@@ -1946,20 +1952,17 @@ function PageHero({ t, section }: { t: LocaleCopy; section: string }) {
 function Article({ locale, slug }: { locale: Locale; slug: string }) {
   const t = localeCopy[locale],
     article = getEnglishArticle(slug);
-  const published = ["shipping-to-romania", "tracking-guide", "how-to-order-romania"].includes(
-    article.slug,
-  )
-    ? "2026-09-07"
-    : "2026-08-12";
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    dateModified: "2026-09-07",
-    datePublished: published,
+    dateModified: article.modified,
+    datePublished: article.published,
     inLanguage: "en",
     mainEntityOfPage: `https://allchinabuy.ro/articles/${slug}`,
+    image: "https://allchinabuy.ro/allchinabuy.png",
+    publisher: { "@type": "Organization", name: "allchinabuy.ro" },
     author: {
       "@type": "Organization",
       name: "allchinabuy.ro Editorial Research",
@@ -1971,16 +1974,34 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <section className="article-hero">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://allchinabuy.ro/" },
+          { "@type": "ListItem", position: 2, name: "Articles", item: "https://allchinabuy.ro/articles" },
+          { "@type": "ListItem", position: 3, name: article.title, item: `https://allchinabuy.ro/articles/${slug}` },
+        ],
+      }) }} />
+      <section className="article-hero" lang="en">
         <a href={href(locale, "articles")}>← {t.labels[4]}</a>
         <span>
-          FIELD NOTE · {article.updated.toUpperCase()} ·{" "}
+          ENGLISH GUIDE · UPDATED {article.updated.toUpperCase()} ·{" "}
           {article.readTime.toUpperCase()}
         </span>
         <h1>{article.title}</h1>
         <p>{article.description}</p>
       </section>
-      <article className="terminal-article" lang="en">
+      <article className="terminal-article" lang="en" data-article-slug={slug}>
+        <p className="article-byline">By allchinabuy.ro Editorial Research · Independent guide</p>
+        {article.summary && <div className="article-callout"><b>AT A GLANCE</b><p>{article.summary}</p></div>}
+        {article.published !== "2026-10-06" && <aside className="article-status">
+          <b>Service check · 6 October 2026</b>
+          <p>The official homepage displayed maintenance when checked. Earlier service descriptions below explain the workflow; they do not confirm current availability. <Link href="/articles/maintenance-orders-romania">Check an existing order during maintenance →</Link></p>
+        </aside>}
+        <nav className="article-toc" aria-label="On this page">
+          <b>ON THIS PAGE</b>
+          <ol>{article.sections.map((section, i) => <li key={section.heading}><a href={`#section-${i + 1}`}>{section.heading}</a></li>)}</ol>
+        </nav>
         {article.intro.map((paragraph, i) => (
           <p
             className={i === 0 ? "article-intro" : "article-lede"}
@@ -1989,8 +2010,15 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
             {paragraph}
           </p>
         ))}
+        {article.table && <div className="article-table-wrap" role="region" aria-label={article.table.caption} tabIndex={0}>
+          <table className="article-table">
+            <caption>{article.table.caption}</caption>
+            <thead><tr>{article.table.headers.map((cell) => <th scope="col" key={cell}>{cell}</th>)}</tr></thead>
+            <tbody>{article.table.rows.map((row, index) => <tr key={index}>{row.map((cell, column) => column === 0 ? <th scope="row" key={column}>{cell}</th> : <td key={column}>{cell}</td>)}</tr>)}</tbody>
+          </table>
+        </div>}
         {article.sections.map((section, i) => (
-          <section key={section.heading}>
+          <section key={section.heading} id={`section-${i + 1}`}>
             <span>{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h2>{section.heading}</h2>
@@ -2010,12 +2038,21 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
         <div className="article-callout">
           <b>RESEARCH NOTE</b>
           <p>{article.sourceNote}</p>
-          <p className="source-links">
-            <span>AllChinaBuy official freight calculator · checked 7 Sep 2026</span>
-            <span>European Commission import guidance · checked 7 Sep 2026</span>
-            <span>EU low-value duty update · checked 7 Sep 2026</span>
-          </p>
+          <p className="source-links">Editorial review: 6 October 2026. Historical checks retain their original dates. Worked examples are illustrative, not live quotes.</p>
+          <Link href="/methodology">How this independent guide checks information →</Link>
         </div>
+        <aside className="article-next">
+          <h2>Continue with the right next step</h2>
+          {article.category ? <>
+            <p>Use the checks above to compare the current {article.category === "shoes" ? "shoe" : "hoodie"} collection. The separate catalogue is for product discovery and cannot access an AllChinaBuy order.</p>
+            <a className="article-action" href={`https://cnfanshp.com/${article.category}/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_article&utm_content=${slug}`} target="_blank" rel="noopener noreferrer">Browse {article.category === "shoes" ? "shoes" : "hoodies"} →</a>
+          </> : <p><Link href="/categories">Explore product categories</Link> or <Link href="/products">compare the current product index</Link> when you are ready to research a new purchase.</p>}
+          <h3>Related guides</h3>
+          <ul>{article.related?.map((relatedSlug) => {
+            const related = getEnglishArticle(relatedSlug);
+            return <li key={relatedSlug}><a href={`/articles/${relatedSlug}`}>{related.title}</a></li>;
+          })}</ul>
+        </aside>
       </article>
     </>
   );
@@ -2095,7 +2132,7 @@ function Section({ locale, path }: { locale: Locale; path: string[] }) {
           <div className="article-grid">
             {englishArticles.map((article, i) => (
               <a href={`/articles/${article.slug}`} key={article.slug}>
-                <span>0{i + 1} · FIELD NOTE</span>
+                <span>{String(i + 1).padStart(2, "0")} · {articleLanguage[locale]}</span>
                 <h2>{article.title}</h2>
                 <p>{article.description}</p>
                 <b>{t.ui[16]} →</b>
@@ -2154,7 +2191,7 @@ function RegionalGuidance({ locale }: { locale: Locale }) {
         ))}
       </div>
       <p className="regional-note">
-        Checked 7 September 2026 · Rules, rates, route availability and operator
+        Reviewed 6 October 2026 · Rules, rates, route availability and operator
         fees can change. Confirm current official information before parcel
         submission.
       </p>

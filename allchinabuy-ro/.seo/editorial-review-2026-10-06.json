@@ -1,0 +1,87 @@
+{
+  "site": "https://allchinabuy.ro",
+  "mainCatalogue": "https://cnfanshp.com",
+  "reviewDate": "2026-10-06",
+  "publicationType": "User-requested manual update; no automation cursor is advanced",
+  "automaticPublishing": "The shared automation explicitly excludes allchinabuy.ro. No separately enabled task for this domain was found. Other task prompts, schedules and enabled states were preserved.",
+  "dataLimitations": "No private GSC, Bing Webmaster Tools or GA4 performance report was accessible. GSC Wizard returned payment_required. Topics are based on public search results, competitor page coverage and editorial intent gaps; no search volumes, rankings, traffic gains or conversion rates are claimed.",
+  "languagePolicy": "Articles remain complete English canonical pages. All seven existing language interfaces retain equivalent article entries, explicitly labelled as English guides. No untranslated article copy is presented as an indexable translation.",
+  "sources": [
+    {
+      "url": "https://www.allchinabuy.com/",
+      "observation": "Public homepage displayed a maintenance notice with no reopening date."
+    },
+    {
+      "url": "https://www.allchinabuy.com/cn/page/customization/expert-service/",
+      "observation": "Indexed official historical form showed packaging, split-parcel, priority and payment-approval choices. Direct fetch returned 404. No current availability, price or service time is claimed."
+    },
+    {
+      "url": "https://www.allchinabuy.com/cn/page/query/freight/",
+      "observation": "Indexed official historical freight page included a volumetric example using divisor 6000 and route-specific weight limits. Direct fetch returned 404. Other divisors are explicitly hypothetical."
+    },
+    {
+      "url": "https://www.allchinabuy.com/cn/page/guide/appagent/",
+      "observation": "Indexed official historical guide described inspection, warehouse and parcel workflow. No current storage allowance or shipping promise is used."
+    },
+    {
+      "url": "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
+      "observation": "Commission clarification calculates the temporary EUR 3 duty by tariff classification, not physical quantity. Existing wording corrected; live declaration and route treatment still require checking."
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/title-link",
+      "observation": "Clear, descriptive titles consistent with page content."
+    },
+    {
+      "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+      "observation": "Language must reflect visible content; do not create false translated equivalents."
+    },
+    {
+      "url": "https://support.google.com/analytics/answer/9216061",
+      "observation": "Existing GA4 enhanced measurement does not by itself supply a business-specific article/category/search funnel. Added custom events without raw search terms."
+    }
+  ],
+  "competitorCoverageReviewed": [
+    "https://allchinabuy.net/",
+    "https://spreadsheetsallchinabuy.com/"
+  ],
+  "ownSiteOverlapReviewed": [
+    "https://allchinabuy.pro/guides/allchinabuy-website-status-maintenance/",
+    "https://allchinabuys.shop/articles/allchinabuy-parcel-packing-consolidation/"
+  ],
+  "newArticles": [
+    {
+      "slug": "maintenance-orders-romania",
+      "primaryQuery": "allchinabuy not working",
+      "intent": "Romania buyer order reconciliation during maintenance, rather than a generic outage-news page",
+      "visibleArticleWords": 1550
+    },
+    {
+      "slug": "shoes-spreadsheet-eu-size-qc",
+      "primaryQuery": "allchinabuy shoes spreadsheet",
+      "intent": "EU size evidence and shoe-specific QC, rather than a general spreadsheet introduction",
+      "visibleArticleWords": 1557
+    },
+    {
+      "slug": "hoodies-spreadsheet-size-fabric-weight",
+      "primaryQuery": "allchinabuy hoodie spreadsheet",
+      "intent": "Garment dimensions, fabric claims and weight distinctions, rather than generic QC",
+      "visibleArticleWords": 1564
+    },
+    {
+      "slug": "shipping-expert-romania",
+      "primaryQuery": "allchinabuy shipping expert romania",
+      "intent": "Romania request preparation and quote approval audit, rather than a general packing guide",
+      "visibleArticleWords": 1537
+    }
+  ],
+  "analyticsEvents": [
+    "catalogue_click: destination_path, link_type, source_article, site_language",
+    "guide_click: article_slug, site_language",
+    "catalogue_search: destination_path, site_language"
+  ],
+  "analyticsLimitation": "Code instrumentation does not confirm GA4 ingestion, reporting configuration or conversion setup. No GA4 property settings were changed.",
+  "wordCountMethod": "Whitespace-separated rendered article text after stripping HTML; includes summary, TOC, table, research note and related navigation; excludes global site header/footer and article hero.",
+  "assets": "Existing brand and product assets preserved. Original HTML tables added; no third-party customer images or generated evidence used.",
+  "validation": "Production build and eight rendered-HTML tests passed; scoped ESLint has zero errors and three existing warnings. Existing old URLs and all seven language entry structures retained. Only allchinabuy-ro files are published.",
+  "validationLimitations": "Full tsc still reports the three pre-existing Cloudflare environment type errors in db/index.ts and worker/index.ts. Browser screenshot verification was unavailable because the browser download was invalid; responsive table containment was checked in source and rendered markup, not a running visual browser."
+}
