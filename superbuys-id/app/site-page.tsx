@@ -55,56 +55,51 @@ export const isArticle = (value: string): value is ArticleSlug =>
 
 const products = [
   {
-    id: "3402",
-    title: "Chanel CC P6000 · Balenciaga · ASICS Gel-Kayano 14 · Saucony",
-    type: "Shoes · Multi-model listing",
-    price: "$42.75",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6164I0217.webp",
+    "id": "3418",
+    "title": "NIKE P6000",
+    "type": "Shoes · Sneakers",
+    "price": "$278.00",
+    "image": "https://cnfanshp.com/uploads/allimg/20260106/1-260106142P3A4.webp"
   },
   {
-    id: "3401",
-    title: "Gucci · Loro Piana Loafers & Skateboard Leather Shoes",
-    type: "Shoes · Loafers",
-    price: "$44.85",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616454QM.webp",
+    "id": "295",
+    "title": "Loro Piana Loafers",
+    "type": "Shoes · Loafers",
+    "price": "$390.00",
+    "image": "https://cnfanshp.com/uploads/allimg/20251103/1-251103115Q5923.webp"
   },
   {
-    id: "3400",
-    title: "Boss Polo",
-    type: "T-Shirts · Polo",
-    price: "$31.10",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616440O18.webp",
+    "id": "5555",
+    "title": "Boss Polo Shirt  Boss Shorts",
+    "type": "T-Shirts · Polo & Shorts",
+    "price": "$188.00",
+    "image": "https://cnfanshp.com/uploads/allimg/20260317/1-26031G0301K51.webp"
   },
   {
-    id: "3398",
-    title: "Paint Splatter Jeans · 12 Styles",
-    type: "Pants · Multi-style listing",
-    price: "$33.45",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P616410T56.webp",
+    "id": "5978",
+    "title": "Acne Studios 1996 Splatter Paint Graffiti Jeans",
+    "type": "Pants · Jeans",
+    "price": "$268.00",
+    "image": "https://cnfanshp.com/uploads/allimg/20260417/1-26041G11524Y0.webp"
   },
   {
-    id: "3396",
-    title: "The North Face Down Jacket",
-    type: "Jackets · Down",
-    price: "$98.15",
-    image:
-      "https://www.cnbuycha.com/uploads/allimg/20260806/1-260P6163I3956.webp",
-  },
+    "id": "5919",
+    "title": "The North Face Nuptse Jacket",
+    "type": "Jackets · Down",
+    "price": "$299.00",
+    "image": "https://cnfanshp.com/uploads/allimg/20260402/1-2604021143443I.webp"
+  }
 ] as const;
 
 const categories = [
-  ["Shoes", "https://www.cnbuycha.com/shoes/", "Current finds"],
-  ["Hoodies", "https://www.cnbuycha.com/hoodies-sweaters/", "New layers"],
-  ["T-Shirts", "https://www.cnbuycha.com/t-shirts/", "Fresh tees"],
-  ["Jackets", "https://www.cnbuycha.com/jackets/", "Outerwear"],
-  ["Pants", "https://www.cnbuycha.com/pants-shorts/", "Daily edit"],
-  ["Jerseys", "https://www.cnbuycha.com/Jersey/", "Match day"],
-  ["Accessories", "https://www.cnbuycha.com/accessories/", "Small details"],
-  ["Electronics", "https://www.cnbuycha.com/electronics/", "Useful tech"],
+  ["Shoes", "https://cnfanshp.com/shoes/", "Current finds"],
+  ["Hoodies", "https://cnfanshp.com/hoodies-sweaters/", "New layers"],
+  ["T-Shirts", "https://cnfanshp.com/t-shirts/", "Fresh tees"],
+  ["Jackets", "https://cnfanshp.com/jackets/", "Outerwear"],
+  ["Pants", "https://cnfanshp.com/pants-shorts/", "Daily edit"],
+  ["Jerseys", "https://cnfanshp.com/Jersey/", "Match day"],
+  ["Accessories", "https://cnfanshp.com/accessories/", "Small details"],
+  ["Electronics", "https://cnfanshp.com/electronics/", "Useful tech"],
 ] as const;
 
 type Copy = {
@@ -530,7 +525,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "Ke mana tautan produk diarahkan?",
-      "Kartu produk dan kategori membuka halaman terkait yang sudah diverifikasi di situs utama cnbuycha.com pada tab baru.",
+      "Kartu produk dan kategori membuka halaman terkait yang sudah diverifikasi di situs utama cnfanshp.com pada tab baru.",
     ],
     [
       "Apakah kolom pencarian memakai hasil produk nyata?",
@@ -1029,7 +1024,7 @@ const articleData: Record<
 
 const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 const destination = (id: string) =>
-  `https://www.cnbuycha.com/AllProducts/${id}.html`;
+  `https://cnfanshp.com/AllProducts/${id}.html`;
 const prefix = (lang: Lang) => (lang === "id" ? "" : `/${lang}`);
 const local = (lang: Lang, path = "") => {
   const route = `${prefix(lang)}${path || "/"}`;
@@ -1283,10 +1278,11 @@ function Search({ lang }: { lang: Lang }) {
   return (
     <form
       className="pop-search"
-      action="https://www.cnbuycha.com/search.html"
+      action="https://cnfanshp.com/search.html"
       method="get"
       {...ext}
     >
+      <input type="hidden" name="channelid" value="2" />
       <label htmlFor="product-search">{t.search}</label>
       <span>⌕</span>
       <input
@@ -1378,7 +1374,7 @@ function Header({
         <LanguagePicker lang={lang} page={page} article={article} />
         <a
           className="browse"
-          href="https://www.cnbuycha.com/AllProducts/"
+          href="https://cnfanshp.com/AllProducts/"
           {...ext}
         >
           {t.browse}
@@ -1482,7 +1478,7 @@ function Footer({ lang }: { lang: Lang }) {
       <div>
         <a href={local(lang, "/faq")}>FAQ</a>
         <a href={local(lang, "/articles")}>{t.nav[4]}</a>
-        <a href="https://www.cnbuycha.com/AllProducts/" {...ext}>
+        <a href="https://cnfanshp.com/AllProducts/" {...ext}>
           {t.browse} ↗
         </a>
       </div>
@@ -1509,7 +1505,7 @@ function Home({ lang }: { lang: Lang }) {
                 potentialAction: {
                   "@type": "SearchAction",
                   target:
-                    "https://www.cnbuycha.com/search.html?keywords={search_term_string}",
+                    "https://cnfanshp.com/search.html?keywords={search_term_string}&channelid=2",
                   "query-input": "required name=search_term_string",
                 },
               },
@@ -2113,3 +2109,4 @@ export function SitePage({
     </div>
   );
 }
+

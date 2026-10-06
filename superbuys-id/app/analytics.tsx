@@ -32,7 +32,7 @@ export function Analytics() {
         return;
       }
 
-      if (url.hostname === "www.cnbuycha.com") {
+      if (["cnfanshp.com", "www.cnfanshp.com"].includes(url.hostname)) {
         const product = url.pathname.match(/^\/AllProducts\/(\d+)\.html$/);
         if (product) {
           send("outbound_product_click", {
@@ -81,3 +81,4 @@ export function Analytics() {
 
   return null;
 }
+
