@@ -1,3 +1,4 @@
 Cloudflare Pages deployment trigger.
 Static entry: index.html
-Release: 2026-09-05 Kakobuys.pro SEO crawl focus, CTR updates and coupon guide
+Release: 2026-10-06 manual SEO, navigation and four original guides
+Automatic article publishing: disabled for kakobuys.pro only.

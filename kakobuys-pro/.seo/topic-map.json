@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-09-05",
+  "lastReviewed": "2026-10-06",
   "entries": [
     {
       "url": "https://kakobuys.pro/articles/how-to-read-kakobuy-qc-photos",
@@ -253,7 +253,64 @@
       "angle": "separates headline bundle value from one eligible coupon and measures savings from comparable final parcel totals",
       "evidence": "dated Kakobuy public promotion plus account-level conditions and final payable-total verification; no permanent code or fixed saving promised",
       "internalLinkRole": "connects shipping estimates, service fees, currency conversion and route comparison without overlapping product-discovery topics"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-shipping-time/",
+      "primaryQuery": "Kakobuy shipping time",
+      "relatedTerms": [
+        "how long does Kakobuy take to ship",
+        "Kakobuy delivery time",
+        "Kakobuy warehouse processing"
+      ],
+      "intent": "Shipping & costs",
+      "angle": "Understand Kakobuy shipping time by stage: seller dispatch, warehouse QC, parcel preparation and delivery. Track delays and plan around a real deadline.",
+      "evidence": "Original editorial guidance; dated catalog examples where explicitly identified",
+      "internalLinkRole": "Linked from home, directory and related existing guides"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-size-guide-measurements/",
+      "primaryQuery": "Kakobuy size guide",
+      "relatedTerms": [
+        "Kakobuy sizing",
+        "Kakobuy shoe size chart",
+        "Kakobuy clothing measurements"
+      ],
+      "intent": "Sizing & QC",
+      "angle": "Choose Kakobuy clothing and shoe sizes using seller charts, garment measurements and warehouse QC. Compare chest, length, waist, inseam and insole evidence.",
+      "evidence": "Original editorial guidance; dated catalog examples where explicitly identified",
+      "internalLinkRole": "Linked from home, directory and related existing guides"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-jackets-spreadsheet-finds-qc/",
+      "primaryQuery": "Kakobuy jackets spreadsheet",
+      "relatedTerms": [
+        "Kakobuy jacket finds",
+        "Kakobuy puffer jacket",
+        "Kakobuy jacket sizing"
+      ],
+      "intent": "Finds & ordering",
+      "angle": "Compare Kakobuy jacket finds with linked catalog examples, layering measurements and QC checks for shells, puffers, zips and lining before parcel submission.",
+      "evidence": "Original editorial guidance; dated catalog examples where explicitly identified",
+      "internalLinkRole": "Linked from home, directory and related existing guides"
+    },
+    {
+      "url": "https://kakobuys.pro/articles/kakobuy-tracksuit-finds-sizing-qc/",
+      "primaryQuery": "Kakobuy tracksuit",
+      "relatedTerms": [
+        "Kakobuy tracksuit finds",
+        "Kakobuy tracksuit spreadsheet",
+        "Kakobuy tracksuit sizing"
+      ],
+      "intent": "Finds & ordering",
+      "angle": "Review Kakobuy tracksuit finds as a complete set. Check top and trouser sizes, included pieces, colour matching, waistband measurements and warehouse QC.",
+      "evidence": "Original editorial guidance; dated catalog examples where explicitly identified",
+      "internalLinkRole": "Linked from home, directory and related existing guides"
     }
   ],
-  "nextPriority": "Manual editorial review only; automatic publishing is disabled for kakobuys.pro"
+  "nextPriority": "Manual editorial review only; automatic publishing is disabled for kakobuys.pro",
+  "automaticPublishing": {
+    "enabled": false,
+    "scope": "kakobuys.pro only",
+    "reason": "Manual editorial maintenance; preserve the existing automation exclusion."
+  }
 }
