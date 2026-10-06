@@ -417,6 +417,7 @@ function seoMarkup({ language, slug, canonicalUrl, title, description }) {
     : `<link rel="alternate" hreflang="en" href="${canonicalUrl}">`;
   const locale = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`;
   return (
+    `<link rel="stylesheet" href="/readability-v2.css">` +
     `<title>${safeTitle}</title>` +
     `<meta name="description" content="${safeDescription}">` +
     `<link rel="canonical" href="${canonicalUrl}">` +
@@ -548,6 +549,7 @@ export default {
     const rewriter = new HTMLRewriter()
       .on("html", new SetDocumentLanguage(language))
       .on('meta[name="codex-preview"]', new RemoveElement())
+      .on('link[href="/readability-v2.css"]', new RemoveElement())
       .on("title", new RemoveElement())
       .on('meta[name="description"]', new RemoveElement())
       .on('link[rel="canonical"]', new RemoveElement())

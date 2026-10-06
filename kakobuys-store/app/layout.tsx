@@ -47,6 +47,7 @@ export default function RootLayout({
     <html lang="en">
 <head>
         <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="/readability-v2.css" />
         <script src="/analytics-v2.js" defer />
       </head>
       <body className="antialiased">
