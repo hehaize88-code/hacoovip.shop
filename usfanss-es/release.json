@@ -2,7 +2,7 @@
   "site": "https://usfanss.es",
   "release": "multilingual-15-2026-10-07",
   "source_commit": "ddf4356046ce106bf5eec84751fdeb9f0c197f10",
-  "verified_export_commit": "b37bb521e46bd423a7d9461789602518eb365766",
+  "verified_export_commit": "585574a8d4dfdfa4df95bad3c21d21230180a811",
   "sitemap_pages": 168,
   "articles_per_language": {
     "es": 15,
@@ -14,6 +14,6 @@
     "pt": 15,
     "zh-cn": 15
   },
-  "deployment_request": "2026-10-07T14:34:45+08:00",
-  "deployment_reason": "Retrigger usfanss.es after project build watch path correction"
+  "deployment_request": "2026-10-07T14:41:19+08:00",
+  "deployment_reason": "Deploy usfanss.es after build watch include rule was confirmed and saved"
 }
