@@ -91,7 +91,14 @@
     "FEES & COUPONS": "GEBÜHREN UND GUTSCHEINE",
     "C09 · FEES & COUPONS": "C09 · GEBÜHREN UND GUTSCHEINE",
     "GUIDES UPDATED · 07 OCT 2026": "RATGEBER AKTUALISIERT · 2026-10-07",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "Der deutsche Zoll und die Europäische Kommission veröffentlichen die aktuellen Regeln für Onlinebestellungen aus Nicht-EU-Ländern. Einfuhrumsatzsteuer und eine Zollanmeldung können erforderlich sein. Seit dem 1. Juli 2026 gilt für erfasste Kleinsendungen ein vorläufiger Zoll von 3 € nach zolltariflicher Einreihung, nicht nach der Anzahl einzelner Stücke. Prüfen Sie vor der Kalkulation die geltenden Anmelde- und Bestimmungsregeln."
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "Der deutsche Zoll und die Europäische Kommission veröffentlichen die aktuellen Regeln für Onlinebestellungen aus Nicht-EU-Ländern. Einfuhrumsatzsteuer und eine Zollanmeldung können erforderlich sein. Seit dem 1. Juli 2026 gilt für erfasste Kleinsendungen ein vorläufiger Zoll von 3 € nach zolltariflicher Einreihung, nicht nach der Anzahl einzelner Stücke. Prüfen Sie vor der Kalkulation die geltenden Anmelde- und Bestimmungsregeln.",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Hipobuy-Ratgeber zu Links, Größen, Qualitätskontrolle und Versand.",
+    "Final quote": "Endgültiges Angebot",
+    "Use this comparison only for a route that charges the greater weight. Confirm the actual route rules before payment.": "Nutzen Sie diesen Vergleich nur für Versandarten, bei denen das höhere Gewicht berechnet wird. Prüfen Sie die geltenden Regeln vor der Zahlung.",
+    "Enter each cost once. Convert other currencies before entering them. Blank fields remain unestimated; a subtotal is not a final quote.": "Tragen Sie jeden Kostenposten nur einmal ein. Rechnen Sie andere Währungen vorher in USD um. Leere Felder bleiben unberücksichtigt; die Zwischensumme ist kein verbindliches Angebot.",
+    "Estimate weight and your own budget": "Paketgewicht und eigenes Budget berechnen",
+    "Larger of actual and volumetric weight": "Höherer Wert aus tatsächlichem Gewicht und Volumengewicht",
+    "Budget in USD": "Kostenplanung in USD"
   },
   "es": {
     "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives": "Enlaces de Hipobuy que no funcionan: qué comprobar",
@@ -185,7 +192,8 @@
     "FEES & COUPONS": "COMISIONES Y CUPONES",
     "C09 · FEES & COUPONS": "C09 · COMISIONES Y CUPONES",
     "GUIDES UPDATED · 07 OCT 2026": "GUÍAS ACTUALIZADAS · 2026-10-07",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "La aduana alemana y la Comisión Europea publican las normas vigentes para compras en línea fuera de la UE. Pueden exigirse IVA de importación y declaración aduanera. Desde el 1 de julio de 2026, los envíos de bajo valor incluidos en la medida están sujetos a un arancel temporal de 3 € según la clasificación arancelaria, no según el número de unidades físicas. Comprueba las normas de declaración y destino antes de calcular el importe."
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "La aduana alemana y la Comisión Europea publican las normas vigentes para compras en línea fuera de la UE. Pueden exigirse IVA de importación y declaración aduanera. Desde el 1 de julio de 2026, los envíos de bajo valor incluidos en la medida están sujetos a un arancel temporal de 3 € según la clasificación arancelaria, no según el número de unidades físicas. Comprueba las normas de declaración y destino antes de calcular el importe.",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Guías Hipobuy sobre enlaces, tallas, control de calidad y envíos."
   },
   "fr": {
     "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives": "Liens Hipobuy inaccessibles : vérifications et alternatives",
@@ -279,7 +287,8 @@
     "FEES & COUPONS": "FRAIS ET COUPONS",
     "C09 · FEES & COUPONS": "C09 · FRAIS ET COUPONS",
     "GUIDES UPDATED · 07 OCT 2026": "GUIDES MIS À JOUR · 2026-10-07",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "Les douanes allemandes et la Commission européenne publient les règles applicables aux achats en ligne hors UE. Une TVA à l’importation et une déclaration en douane peuvent être nécessaires. Depuis le 1er juillet 2026, un droit temporaire de 3 € s’applique aux petits envois concernés selon le classement tarifaire, et non selon le nombre d’unités physiques. Vérifiez les règles de déclaration et de destination avant de calculer le montant."
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "Les douanes allemandes et la Commission européenne publient les règles applicables aux achats en ligne hors UE. Une TVA à l’importation et une déclaration en douane peuvent être nécessaires. Depuis le 1er juillet 2026, un droit temporaire de 3 € s’applique aux petits envois concernés selon le classement tarifaire, et non selon le nombre d’unités physiques. Vérifiez les règles de déclaration et de destination avant de calculer le montant.",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Guides Hipobuy : liens, tailles, contrôle qualité et livraison."
   },
   "it": {
     "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives": "Link Hipobuy non funzionanti: controlli e alternative",
@@ -372,7 +381,8 @@
     "FEES & COUPONS": "COMMISSIONI E COUPON",
     "C09 · FEES & COUPONS": "C09 · COMMISSIONI E COUPON",
     "GUIDES UPDATED · 07 OCT 2026": "GUIDE AGGIORNATE · 2026-10-07",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "La dogana tedesca e la Commissione europea pubblicano le regole vigenti per gli acquisti online da paesi extra UE. Possono essere richiesti IVA all’importazione e dichiarazione doganale. Dal 1° luglio 2026, alle spedizioni di basso valore interessate si applica un dazio temporaneo di 3 € in base alla classificazione tariffaria, non al numero di unità fisiche. Verifica le regole di dichiarazione e destinazione prima di stimare l’importo."
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "La dogana tedesca e la Commissione europea pubblicano le regole vigenti per gli acquisti online da paesi extra UE. Possono essere richiesti IVA all’importazione e dichiarazione doganale. Dal 1° luglio 2026, alle spedizioni di basso valore interessate si applica un dazio temporaneo di 3 € in base alla classificazione tariffaria, non al numero di unità fisiche. Verifica le regole di dichiarazione e destinazione prima di stimare l’importo.",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Guide Hipobuy su link, taglie, controllo qualità e spedizioni."
   },
   "pl": {
     "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives": "Linki Hipobuy nie działają: kontrola i alternatywy",
@@ -465,7 +475,8 @@
     "FEES & COUPONS": "OPŁATY I KUPONY",
     "C09 · FEES & COUPONS": "C09 · OPŁATY I KUPONY",
     "GUIDES UPDATED · 07 OCT 2026": "PORADNIKI ZAKTUALIZOWANO · 2026-10-07",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "Niemiecka służba celna i Komisja Europejska publikują aktualne zasady zakupów internetowych spoza UE. Mogą być wymagane importowy VAT i zgłoszenie celne. Od 1 lipca 2026 r. przesyłki o niskiej wartości objęte przepisami podlegają tymczasowemu cłu 3 € według klasyfikacji taryfowej, a nie liczby fizycznych sztuk. Przed obliczeniem należności sprawdź zasady zgłoszenia i kraju docelowego."
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "Niemiecka służba celna i Komisja Europejska publikują aktualne zasady zakupów internetowych spoza UE. Mogą być wymagane importowy VAT i zgłoszenie celne. Od 1 lipca 2026 r. przesyłki o niskiej wartości objęte przepisami podlegają tymczasowemu cłu 3 € według klasyfikacji taryfowej, a nie liczby fizycznych sztuk. Przed obliczeniem należności sprawdź zasady zgłoszenia i kraju docelowego.",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Poradniki Hipobuy: linki, rozmiary, kontrola jakości i wysyłka."
   },
   "pt": {
     "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives": "Links Hipobuy indisponíveis: verificações e alternativas",
@@ -559,7 +570,8 @@
     "FEES & COUPONS": "TAXAS E CUPÕES",
     "C09 · FEES & COUPONS": "C09 · TAXAS E CUPÕES",
     "GUIDES UPDATED · 07 OCT 2026": "GUIAS ATUALIZADOS · 2026-10-07",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "As alfândegas alemãs e a Comissão Europeia publicam as regras atuais para compras online fora da UE. Podem ser exigidos IVA de importação e declaração aduaneira. Desde 1 de julho de 2026, as remessas de baixo valor abrangidas estão sujeitas a um direito temporário de 3 € com base na classificação pautal, e não no número de unidades físicas. Confirme as regras de declaração e destino antes de estimar o valor."
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "As alfândegas alemãs e a Comissão Europeia publicam as regras atuais para compras online fora da UE. Podem ser exigidos IVA de importação e declaração aduaneira. Desde 1 de julho de 2026, as remessas de baixo valor abrangidas estão sujeitas a um direito temporário de 3 € com base na classificação pautal, e não no número de unidades físicas. Confirme as regras de declaração e destino antes de estimar o valor.",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Guias Hipobuy sobre links, tamanhos, controlo de qualidade e envios."
   },
   "zh": {
     "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives": "Hipobuy 表格链接打不开：排查步骤与替代商品",
@@ -721,6 +733,25 @@
     "Browse the relevant product category": "浏览对应商品分类",
     "Search the product spreadsheet": "搜索商品目录",
     "Review warehouse QC photos": "查看仓库质检照片",
-    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "德国海关与欧盟委员会公布了从非欧盟地区网购的现行规则，进口增值税和海关申报可能适用。自 2026 年 7 月 1 日起，符合该措施范围的低价值包裹按关税分类计收临时 3 欧元关税，并非按每件实物数量逐件计费。估算前应核对适用的申报方式和目的地规则。"
+    "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.": "德国海关与欧盟委员会公布了从非欧盟地区网购的现行规则，进口增值税和海关申报可能适用。自 2026 年 7 月 1 日起，符合该措施范围的低价值包裹按关税分类计收临时 3 欧元关税，并非按每件实物数量逐件计费。估算前应核对适用的申报方式和目的地规则。",
+    "Hipobuy guides for links, sizing, QC and shipping.": "Hipobuy 购物指南：链接检查、尺码、质检与运输",
+    "Start with a shelf,": "先选商品分类，",
+    "not an endless scroll.": "快速找到目标商品。",
+    "Checked product rows.": "商品目录预览",
+    "Approve with a checklist,": "按清单检查，",
+    "not a feeling.": "核对证据后再确认。",
+    "Useful guides,": "实用购物指南，",
+    "kept practical.": "帮助完成每一步。",
+    "Before you open": "打开商品链接前，",
+    "a product link.": "先了解这些事项。",
+    "Browse Hipobuy finds by category, price and product link.": "按分类、价格与商品链接浏览 Hipobuy 好物。",
+    "Calculate shipping cost from the parcel—not a guessed price per KG.": "根据包裹重量、尺寸和线路规划运费。",
+    "Read QC photos in the same order, every time.": "按固定顺序查看每一组质检照片。",
+    "Browse product links by category. Compare hoodie, sneaker and jersey sizing, review QC photos, and plan the full cost before ordering.": "按分类查找商品链接，比较卫衣、运动鞋和球衣尺码，查看质检照片，并在下单前规划总费用。",
+    "15 practical guides · updated 7 Oct 2026": "15 篇实用指南 · 更新于 2026 年 10 月 7 日",
+    "Independent product-discovery and education resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.": "独立商品发现与购物指南网站，与 Hipobuy 及商品页面所提及的平台不存在隶属关系。",
+    "Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.": "独立商品发现网站，与 Hipobuy 及商品页面所提及的平台不存在隶属关系。",
+    "FACTS REVIEWED · 07 OCT 2026": "资料核对 · 2026-10-07",
+    "Start with the buying workflow, then use focused guides for QC, country shipping, fees, storage, reviews, tracking and refunds. Official facts are sourced; live prices and outcomes are never invented.": "从下单流程开始，按需阅读质检、各国运输、费用、仓储、评价、物流跟踪与退款指南。官方资料注明来源，不虚构实时价格或服务结果。"
   }
 }
