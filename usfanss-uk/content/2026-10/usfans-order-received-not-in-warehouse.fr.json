@@ -1,0 +1,94 @@
+{
+  "slug": "usfans-order-received-not-in-warehouse",
+  "lang": "fr",
+  "title": "USFans : statut Received, mais article absent de l’entrepôt",
+  "description": "Distinguez Received et Stored chez USFans. Vérifiez la commande, le traitement en entrepôt et les informations manquantes avant l’expédition.",
+  "intro": "Une commande au statut Received peut ne pas encore apparaître dans Warehouse : réception et mise en stock terminée sont deux étapes distinctes. L’aide officielle précise que les articles sont pesés et inspectés après leur arrivée, puis deviennent disponibles dans l’entrepôt lorsque le statut passe à Stored. Vérifiez d’abord la référence exacte et le statut de la commande. Received ne confirme pas qu’un colis international a déjà été préparé ou expédié.",
+  "sections": [
+    {
+      "heading": "Comprendre le passage officiel de Received à Stored",
+      "paragraphs": [
+        "L'explication USFans est spécifique : Reçu signifie que les articles sont arrivés à son entrepôt. Le pesage et l'inspection suivent, et les articles sont ensuite confirmés et stockés. Stocké est l'état lié à la vue de ces articles sur la page de l'entrepôt et l'organisation de l'expédition. Ceci décrit la séquence; il ne publie pas un délai de traitement garanti pour votre commande individuelle.",
+        "Gardez cette limite claire lors de la lecture du suivi. Un vendeur national livraison, traitement d'entrepôt et un colis international sont des parties différentes du voyage. Le mot reçu peut également apparaître dans les dossiers du transporteur, alors notez toujours quel système l'a affiché. Le message de livraison d'un transporteur national et le statut de la commande USFans doivent être comparés, et non traités comme des éléments de preuve interchangeables."
+      ]
+    },
+    {
+      "heading": "Identifier la commande exacte avant de consulter l’entrepôt",
+      "paragraphs": [
+        "Ouvrez la commande du produit et confirmez la référence, la taille sélectionnée, la couleur et la quantité. Si vous avez plusieurs articles similaires, utilisez le numéro de commande plutôt que la vignette pour identifier celle que vous étudiez. Les vignettes peuvent afficher une image de listage générique et peuvent être identiques sur plusieurs tailles ou ordres.",
+        "Enregistrez la date et l'heure de la dernière mise à jour du statut indiquée dans ce document. Puis ouvrez Entrepôt dans le même compte et examinez les filtres visibles ou les termes de recherche qui pourraient cacher l'article. Si l'écran offre une vue de tous les éléments, utilisez-le pour vérifier la liste complète. Les commandes d'interface disponibles peuvent changer, alors suivez les étiquettes actuelles plutôt qu'une vieille capture d'écran."
+      ]
+    },
+    {
+      "heading": "Distinguer délai de traitement et incohérence des informations",
+      "paragraphs": [
+        "Lorsque l'ordre lui-même dit toujours reçu, la séquence officielle appuie une explication selon laquelle le traitement de l'entrepôt n'a pas encore été marqué. Lorsque la commande dit Stored mais que l'article est absent de la vue Entrepôt correspondante, les enregistrements ne sont pas d'accord et ont besoin d'une vérification plus ciblée. Ces deux situations ne doivent pas être décrites de la même manière lors de la communication avec le support.",
+        "Faites également la distinction entre une page qui n'a pas été rafraîchie d'un enregistrement qui reste manquant après un rechargement normal. Enregistrer l'état actuel avant de rafraîchir. Ne pas placer à plusieurs reprises la même commande de produit ou acheter un remplacement simplement pour faire apparaître un article dans l'entreposage. Une question d'affichage ou de traitement n'établit pas que l'achat initial a été perdu."
+      ]
+    },
+    {
+      "heading": "Vérifier les quantités et les arrivées séparées",
+      "paragraphs": [
+        "Plusieurs articles achetés ensemble peuvent avoir des registres de produits distincts, et un article visible ne devrait pas être supposé représenter chaque quantité dans l'achat. Comparez la quantité commandée avec la quantité indiquée pour le dossier touché. Si un envoi de vendeur contient plus d'un article, conservez sa référence de livraison à côté des références de commande individuelles, le cas échéant.",
+        "Traiter une possible arrivée fractionnée comme quelque chose à confirmer plutôt qu'une explication à inventer. Demander quels articles le dossier reçu couvre et qui restent en suspens. Ceci est particulièrement utile lorsque des couleurs ou des tailles similaires ont été commandées ensemble. Une liste claire d'articles permet de résoudre un problème de quantité sans le confondre avec le traitement en entrepôt d'un produit différent."
+      ]
+    },
+    {
+      "heading": "Préparer les justificatifs pendant la vérification du statut",
+      "paragraphs": [
+        "Sauvegarder la référence de commande, le lien vendeur, l'option sélectionnée, la quantité commandée, l'état visible, l'heure de mise à jour et toute référence de livraison nationale affichée. Gardez les messages déjà attachés à cet ordre. Une courte note chronologique permet d'expliquer plus facilement ce qui a changé : paiement confirmé, envoi du vendeur affiché, reçu enregistré, puis aucune mise à jour stockée ou aucun article d'entrepôt correspondant.",
+        "N'ajoutez pas de numéro de suivi international à moins qu'un colis sortant existe réellement. Fournir une référence de colis non liée peut envoyer une enquête vers la mauvaise partie du processus. De même, ne présumez pas qu'une capture d'écran d'un achat précédent prouve l'état ou l'arrivée de l'article actuel. Chaque preuve doit être liée à l'ordre que vous voulez vérifier.",
+        "Pour un enregistrement pratique, conservez une ligne par événement avec la date, le système l'afficher et le libellé exact de l'état. Ajouter une colonne séparée pour la question suivante à résoudre. Ceci maintient les faits observés en dehors de votre interprétation et empêche une date de livraison estimée d'être confondue avec un délai de traitement confirmé."
+      ]
+    },
+    {
+      "heading": "Poser une question précise lorsque les informations divergent",
+      "paragraphs": [
+        "Pour une commande montrant toujours reçus, demandez si la pesée et l'inspection sont complètes et si quelque chose vous est nécessaire. Pour une commande montrant déjà Stored, demandez l'assistance pour vérifier le lien entre cette commande et l'enregistrement Entrepôt. Inclure la référence et l'état que vous pouvez voir au lieu de décrire le compte entier comme cassé.",
+        "Si vous êtes préoccupé par un retard, demandez l'état actuel du traitement et une attente spécifique. L'explication officielle reçue n'établit pas un nombre universel d'heures après lesquelles chaque article est en retard. Les expériences publiques d'autres utilisateurs peuvent impliquer des dates, des quantités et des conditions différentes. Ils ne peuvent pas remplacer une réponse sur l'étape de traitement de votre propre article."
+      ]
+    },
+    {
+      "heading": "Inspecter l’article dès qu’il apparaît",
+      "paragraphs": [
+        "Lorsque l'article devient visible en entrepôt, comparez-le avec la commande enregistrée plutôt que de l'ajouter immédiatement à l'expédition internationale. Confirmer l'étiquette de taille, la couleur, la quantité et les pièces incluses à l'aide du disque disponible et des photographies. Examinez l'état visible et identifiez toute vue manquante qui pourrait influer sur votre décision. La visibilité du stockage et l'acceptation du produit sont des points de contrôle distincts.",
+        "Le guide général de CQ couvre un ordre d'inspection répétable. Si une mesure ou un gros plan spécifique est nécessaire, le service officiel de photos détaillées décrit les demandes d'images ciblées. Vérifiez les options de service actuelles avant de les commander. Plus de photographies ne sont utiles que lorsqu'elles répondent à une question concrète; elles ne garantissent pas l'authenticité, la durabilité, le confort ou la performance qui ne peuvent être établis visuellement."
+      ]
+    },
+    {
+      "heading": "Distinguer disponibilité en entrepôt et livraison au Royaume-Uni",
+      "paragraphs": [
+        "Une destination au Royaume-Uni ne change pas ce que signifie \"Reçu et entreposé\" dans la séquence de l'entrepôt. L'expédition internationale est une décision ultérieure concernant les articles stockés, les détails du destinataire, l'emballage, l'itinéraire admissible et les frais courants. La présence d'un article dans l'entrepôt ne signifie pas qu'un colis britannique a été réservé ou qu'un compte à rebours de livraison a commencé.",
+        "Avant de soumettre un colis, vérifiez chaque article sélectionné et comparez le plan de colis avec les informations d'expédition actuelles. Si une commande n'est toujours pas réglée, décidez d'attendre ou d'expédier les articles prêts seulement après avoir compris les conséquences pour les registres de coûts et de colis. Ne pas sélectionner un élément peu clair simplement pour que la liste des commandes semble complète."
+      ]
+    },
+    {
+      "heading": "Clore la demande avec un résultat vérifié",
+      "paragraphs": [
+        "Une fois que le support résout le problème, vérifiez à nouveau les pages de l'ordre et de l'entrepôt et notez le résultat. Confirmer que l'article et la quantité corrects sont apparus, que l'état est cohérent et que les preuves d'inspection pertinentes appartiennent au même ordre. Conservez la réponse de soutien jusqu'à ce que les étapes ultérieures de l'expédition soient terminées.",
+        "Cette dernière vérification transforme une vague question manquante en un résultat traçable. Si les dossiers demeurent incohérents, répondez dans le même dossier avec la preuve mise à jour au lieu de commencer plusieurs demandes contradictoires. L'objectif n'est pas de forcer une étiquette de statut particulière; il s'agit de déterminer où se trouve l'article, quel traitement a été effectué et quelle action est maintenant disponible pour vous."
+      ]
+    }
+  ],
+  "image": "/products/crewneck.webp",
+  "related": [
+    "usfans-tracking-to-uk",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-qc-photos-guide"
+  ],
+  "sources": [
+    {
+      "label": "USFans Help Center: My Order Shows Received — Why Cannot I See My Items in My Warehouse?",
+      "url": "https://www.usfans.com/help/HCON_STATIC_010",
+      "checked": "2026-10-07"
+    },
+    {
+      "label": "USFans Help Center: USFans Detailed Photo",
+      "url": "https://www.usfans.com/help/HCON_STATIC_059",
+      "checked": "2026-10-07"
+    }
+  ],
+  "new": true,
+  "published": "2026-10-07",
+  "modified": "2026-10-07"
+}

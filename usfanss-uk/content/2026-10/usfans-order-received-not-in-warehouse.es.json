@@ -1,0 +1,94 @@
+{
+  "slug": "usfans-order-received-not-in-warehouse",
+  "lang": "es",
+  "title": "USFans: estado Received, pero el artículo no aparece en el almacén",
+  "description": "Distingue Received y Stored en USFans. Comprueba el pedido, la gestión del almacén y los datos pendientes antes del envío internacional.",
+  "intro": "Un pedido con estado Received puede no aparecer todavía en Warehouse, porque la recepción y el almacenamiento completado son fases distintas. La ayuda oficial explica que los artículos se pesan e inspeccionan tras llegar y aparecen disponibles en el almacén cuando el estado cambia a Stored. Comprueba primero la referencia y el estado exactos del pedido. Received no confirma que ya se haya preparado o enviado un paquete internacional.",
+  "sections": [
+    {
+      "heading": "Entender el paso oficial de Received a Stored",
+      "paragraphs": [
+        "La explicación de USFans es específica: Recibido significa que los artículos han llegado a su almacén. El pesaje y la inspección siguen, y los artículos son confirmados y almacenados. Almacenado es el estado conectado a ver esos artículos en la página Warehouse y organizar el envío. Esto describe la secuencia; no publica un plazo de procesamiento garantizado para su orden individual.",
+        "Mantenga el límite claro al leer el seguimiento. La entrega de un vendedor doméstico, el procesamiento del almacén y un paquete internacional son partes diferentes del viaje. La palabra recibida también puede aparecer en los registros de portadores, así que siempre tenga en cuenta qué sistema lo mostró. El mensaje de entrega de un transportista nacional y el estado de orden de los USFans deben ser comparados, no tratados como evidencia intercambiable."
+      ]
+    },
+    {
+      "heading": "Identificar el pedido exacto antes de consultar el almacén",
+      "paragraphs": [
+        "Abra el pedido de producto particular y confirme la referencia, tamaño seleccionado, color y cantidad. Si tiene varios artículos similares, utilice el número de pedido en lugar de la miniatura para identificar el que está investigando. Las miniaturas pueden mostrar una imagen de lista genérica y pueden verse idénticas en varios tamaños o pedidos.",
+        "Grabar la fecha y hora de la última actualización de estado mostrada en ese registro. Luego abre Warehouse en la misma cuenta y revisa cualquier filtro visible o términos de búsqueda que puedan ocultar el artículo. Si la pantalla ofrece una vista de todos los elementos, utilícela para comprobar la lista completa. Los controles de interfaz disponibles pueden cambiar, así que siga las etiquetas actuales en lugar de una pantalla vieja."
+      ]
+    },
+    {
+      "heading": "Distinguir una espera de procesamiento de una discrepancia en los registros",
+      "paragraphs": [
+        "Cuando el pedido en sí mismo todavía dice Recibido, la secuencia oficial soporta una explicación de que el procesamiento del almacén aún no ha sido marcado completo. Cuando el pedido dice Stored pero el artículo está ausente de la correspondiente vista Warehouse, los registros discrepan y necesitan un cheque más centrado. Estas dos situaciones no deben describirse de la misma manera al ponerse en contacto con el apoyo.",
+        "También distingue una página que no ha refrescado de un registro que sigue faltando después de una recarga normal. Guardar el estado actual antes de refrescarse. No ponga repetidamente el mismo pedido de producto o compre un reemplazo simplemente para hacer que un artículo aparezca en el almacenamiento. Una pregunta de visualización o procesamiento no establece que la compra original se ha perdido."
+      ]
+    },
+    {
+      "heading": "Revisar las cantidades y las entregas separadas",
+      "paragraphs": [
+        "Varios artículos comprados juntos pueden tener registros de productos separados, y no se debe suponer que un artículo visible represente cada cantidad en la compra. Compare la cantidad ordenada con la cantidad mostrada para el registro afectado. Si un envío de un vendedor contiene más de un artículo, mantenga su referencia de entrega junto con las referencias de pedido individual cuando esté disponible.",
+        "Trate de una posible llegada dividida como algo para confirmar en lugar de una explicación para inventar. Pregunta cuáles son los elementos que cubre el registro recibido y que siguen pendientes. Esto es especialmente útil cuando los colores o tamaños similares fueron ordenados juntos. Una lista clara de artículos por tema permite que el soporte resuelva un problema de cantidad sin confundirlo con el procesamiento del almacén para un producto diferente."
+      ]
+    },
+    {
+      "heading": "Preparar los comprobantes mientras se revisa el estado",
+      "paragraphs": [
+        "Guardar la referencia del pedido, enlace del vendedor, opción seleccionada, cantidad ordenada, estado visible, tiempo de actualización y cualquier referencia de envío nacional mostrada. Mantenga los mensajes ya conectados a ese orden. Una nota cronológica corta hace más fácil explicar lo que cambió: pago confirmado, envío de vendedor mostrado, recibo registrado, luego no actualización guardada o ningún artículo de almacén coincidente.",
+        "No agregue un número de seguimiento internacional a menos que exista un paquete de salida. El suministro de una referencia de paquete no relacionada puede enviar una investigación hacia la parte equivocada del proceso. Asimismo, no asuma que una captura de pantalla de una compra anterior demuestre la condición o la llegada del artículo actual. Todas las pruebas deben estar atadas a la orden que quieras revisar.",
+        "Para un registro práctico, mantenga una línea por evento con la fecha, el sistema que la muestra y la redacción exacta del estado. Agregue una columna separada para resolver la siguiente pregunta. Esto mantiene datos observados aparte de su interpretación y evita que una fecha de entrega estimada sea errónea para un tiempo de procesamiento de almacén confirmado."
+      ]
+    },
+    {
+      "heading": "Hacer una pregunta precisa cuando los registros no coinciden",
+      "paragraphs": [
+        "Para un pedido que aún se muestra Recibido, pregunte si el peso y la inspección son completos y si se requiere algo de usted. Para un pedido que ya muestra a Stored, pida soporte para comprobar el enlace entre ese orden y el registro Warehouse. Incluya la referencia y el estado que puede ver en lugar de describir toda la cuenta como rota.",
+        "Si usted está preocupado por un retraso, pida el estado actual de manejo y una expectativa específica de caso. La explicación recibida oficial no establece un número universal de horas después de las cuales cada artículo es tarde. Las experiencias públicas de otros usuarios pueden implicar diferentes fechas, cantidades y condiciones. No pueden reemplazar una respuesta sobre la etapa de procesamiento de su propio artículo."
+      ]
+    },
+    {
+      "heading": "Inspeccionar el artículo cuando aparezca",
+      "paragraphs": [
+        "Cuando el artículo se hace visible en Warehouse, compare con el orden guardado en lugar de añadirlo inmediatamente al envío internacional. Confirme la etiqueta de tamaño, color, cantidad y piezas incluidas utilizando el registro y las fotografías disponibles. Revise la condición visible e identifique cualquier vista que falta que pueda afectar su decisión. La visibilidad del almacenamiento y la aceptación del producto son puntos de control separados.",
+        "La guía general de QC cubre una orden de inspección repetible. Si es necesario realizar una medición o un cierre específico, el servicio oficial de fotos detalladas describe las solicitudes de imágenes específicas. Compruebe las opciones de servicio actuales antes de ordenarlas. Más fotografías son útiles sólo cuando responden a una pregunta concreta; no garantizan autenticidad, durabilidad, comodidad o rendimiento que no se pueden establecer visualmente."
+      ]
+    },
+    {
+      "heading": "Separar la disponibilidad en almacén del envío al Reino Unido",
+      "paragraphs": [
+        "Un destino del Reino Unido no cambia lo que Recibido y Almacenado significa en la secuencia del almacén. El envío internacional es una decisión posterior con los artículos almacenados, los detalles del destinatario, el embalaje, la ruta elegible y la carga actual. La presencia de un artículo en Warehouse no significa que se haya reservado un paquete del Reino Unido o que se haya iniciado una cuenta atrás de la entrega.",
+        "Antes de enviar un paquete, compruebe cada artículo seleccionado y compare el plan del paquete con la información de envío actual. Si una orden sigue sin resolverse, decida si esperar o enviar los artículos listos sólo después de entender las consecuencias para los registros de costos y paquetes. No seleccione un elemento poco claro simplemente para hacer que la lista de pedidos se vea completa."
+      ]
+    },
+    {
+      "heading": "Cerrar la consulta con un resultado verificado",
+      "paragraphs": [
+        "Una vez que el soporte resuelve el problema, compruebe el orden y las páginas de Warehouse de nuevo y note el resultado. Confirme que el artículo y la cantidad correctos aparecieron, que el estado es consistente y que las pruebas de inspección pertinentes pertenecen al mismo orden. Mantenga la respuesta de soporte hasta que las etapas de envío posteriores hayan finalizado.",
+        "Este cheque final convierte una vaga preocupación de objetos desaparecidos en un resultado rastreable. Si los registros siguen siendo inconsistentes, responda dentro del mismo caso de apoyo con las pruebas actualizadas en lugar de iniciar varias solicitudes contradictorias. El objetivo no es forzar una etiqueta de estado particular; es establecer dónde está el artículo real, qué procesamiento se ha completado y qué acción está disponible ahora para usted."
+      ]
+    }
+  ],
+  "image": "/products/crewneck.webp",
+  "related": [
+    "usfans-tracking-to-uk",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-qc-photos-guide"
+  ],
+  "sources": [
+    {
+      "label": "USFans Help Center: My Order Shows Received — Why Cannot I See My Items in My Warehouse?",
+      "url": "https://www.usfans.com/help/HCON_STATIC_010",
+      "checked": "2026-10-07"
+    },
+    {
+      "label": "USFans Help Center: USFans Detailed Photo",
+      "url": "https://www.usfans.com/help/HCON_STATIC_059",
+      "checked": "2026-10-07"
+    }
+  ],
+  "new": true,
+  "published": "2026-10-07",
+  "modified": "2026-10-07"
+}
