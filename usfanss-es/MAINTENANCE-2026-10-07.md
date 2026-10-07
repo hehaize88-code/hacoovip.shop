@@ -26,3 +26,7 @@ When account reporting is available, compare 28 complete days before/after publi
 ## Validation
 
 Static production build and TypeScript check for the static rendering entrypoints pass. Targeted lint has no errors (existing static img recommendations only). All 91 generated sitemap pages were checked for one H1, canonical, internal destinations, TOC anchors, valid hreflang destinations, JSON-LD and local CSS/JS assets. Home retains six products, six featured articles and twelve FAQs. Full repository TypeScript check additionally includes pre-existing worker code requiring Cloudflare worker type declarations; the static deployment does not use that code.
+
+## Release record
+
+Source and generated files committed in e5e10fee5ebf193f38b101f341eeeb483ae97f41. The complete tree matches the locally validated tree a8296afdd6d457cc576f4333c92ce7883eacea20. A second read of all 25 automation records confirmed unchanged prompts, schedules and enabled states, including the explicit usfanss.es exclusion. Production deployment must be verified against the live site; source submission alone does not establish publication.
