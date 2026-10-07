@@ -97,3 +97,9 @@ footer{min-height:170px;padding:45px 5vw;border-top:1px solid;display:grid;grid-
   .find-card,.category-grid>a,.article-grid>a{flex-basis:auto}
   .product-image{height:142px}.category-grid img{height:128px}
 }
+
+/* Long-form guides stay readable and localized content never forces horizontal scroll. */
+.shipping-article{max-width:880px;margin:0 auto;padding:48px 24px 80px}.shipping-article section{margin:36px 0}.shipping-article h2{font-size:28px;line-height:1.2}.related-guides{margin-top:48px;padding-top:24px;border-top:1px solid}.related-guides ul{padding-left:22px}.related-guides li{margin:12px 0}.related-guides a{text-decoration:underline;text-underline-offset:3px}.article-hero h1,.article-content,.article-grid h3{overflow-wrap:anywhere}.article-image-row{grid-template-columns:1fr}.article-image-row img{max-width:480px;aspect-ratio:1;object-fit:contain;margin:auto}.product-image img,.category-grid img{aspect-ratio:1;object-fit:contain}
+@media(max-width:760px){.article-layout aside{max-height:250px;overflow:auto}.article-hero h1{font-size:clamp(32px,8vw,49px)}}
+
+.find-card .product-image{height:auto;aspect-ratio:1}.category-grid img{height:auto;aspect-ratio:1}

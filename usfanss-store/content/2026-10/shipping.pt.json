@@ -1,0 +1,66 @@
+{
+  "slug": "shipping",
+  "lang": "pt",
+  "title": "Frete USFans: peso, volume e planejamento da embalagem",
+  "description": "Estimar uma parcela USFans usando os custos do produto, dimensões embaladas finais e regras de rota atuais. Saiba como o peso real e volumétrico afetam uma citação.",
+  "kicker": "USFans · GUIA DE COMPRA · 2026",
+  "updated": "Atualizado em 7 de outubro de 2026",
+  "published": "2026-08-13",
+  "modified": "2026-10-07",
+  "readingTime": "4 minutos de leitura",
+  "contentsLabel": "NESTE GUIA",
+  "factTitle": "Fontes e limites",
+  "factNote": "Este guia explica um método de planejamento. Não cita uma tarifa de envio ao vivo, promete uma data de entrega ou fornece aconselhamento fiscal específico de destino. Verifique as regras atuais de rota e os requisitos oficiais de destino.",
+  "imageCaption": "Imagem de catálogo como referência. Compare seu pedido com as fotos reais do armazém.",
+  "sections": [
+    {
+      "heading": "Pagamento de produto separado do transporte internacional",
+      "paragraphs": [
+        "Criar linhas orçamentais separadas para o produto selecionado, entrega doméstica para o armazém, serviços opcionais e a encomenda internacional. Os encargos de conversão de moeda ou de pagamento também podem ser aplicados no check-out real. Um preço do produto exibido em USD não é uma promessa de que todos os custos de envio e destino posteriores estão incluídos.",
+        "Registar os montantes confirmados separadamente das estimativas. Antes de comprar um item volumosa, verifique se existe uma rota adequada para a categoria de destino e produto. Revisitar a estimativa após o armazém ter recebido e embalado os itens reais."
+      ]
+    },
+    {
+      "heading": "Recolha as entradas para uma estimativa útil",
+      "paragraphs": [
+        "Preparar o destino, código postal quando necessário, categorias de itens, contagem de itens e necessidades de embalagem esperadas. Na fase da encomenda, utilizar o peso final embalado, comprimento, largura e altura. Um peso do produto do vendedor e o peso de um cartão de transporte protegido não são necessariamente iguais.",
+        "Leia as condições de cotação: bens elegíveis, dimensões máximas, limites de peso, encargos mínimos, serviços opcionais e o que está excluído. Compare rotas adequadas usando as mesmas entradas de parcela. Uma cotação mais barata para um conjunto diferente de dimensões não é uma comparação tipo-para-como."
+      ]
+    },
+    {
+      "heading": "Compreender o peso real e volumétrico",
+      "paragraphs": [
+        "O peso real é o peso medido da embalagem. Peso volumétrico é um valor calculado com base nas suas dimensões e no divisor especificado pela rota. Algumas rotas comparam os dois valores ou aplicam outras regras de faturamento. Confirmar a regra em vez de assumir um divisor ou método de arredondamento aplica-se em toda parte.",
+        "Uma embalagem de 40 por 30 por 20 cm tem um volume de 24000 centímetros cúbicos. Com um divisor ilustrativo de 6000, o resultado volumétrico é de 4 kg. Se o peso real for de 3 kg e a rota utilizar o valor mais elevado, a comparação inicial é de 4 kg antes de arredondamentos ou mínimos específicos da rota. Este é um exemplo de cálculo, não uma taxa de vida."
+      ]
+    },
+    {
+      "heading": "Compare as alterações de embalagem sem assumir economias",
+      "paragraphs": [
+        "Se a reembalagem adequada reduzir a altura da embalagem ilustrativa para 15 cm, o seu volume torna-se 18000 centímetros cúbicos e o mesmo divisor de exemplo dá 3 kg. Isso explica por que as dimensões importam. Não prova uma poupança porque a rota real pode usar regras diferentes, taxas de serviço ou taxas mínimas.",
+        "Equilibrar o espaço não utilizado contra a proteção. Sacos estruturados, aparas rígidas e peças delicadas podem precisar de mais proteção do que roupas macias. Confirme exatamente qual embalagem será removida e qual proteção permanece. Obter uma cotação atualizada após a decisão final de embalagem."
+      ]
+    },
+    {
+      "heading": "Tratar a consolidação como uma comparação",
+      "paragraphs": [
+        "Combinar compras pode reduzir a embalagem duplicada, mas não garante o menor custo total. Uma parcela maior pode atender a um limite de tamanho, alterar as rotas disponíveis ou aumentar o volume billable. Compare a cotação combinada real com alternativas adequadas quando esses fatores importam.",
+        "Incluir qualquer serviço extra de manipulação ou embalagem na comparação. Mantenha itens com inspeção de qualidade não resolvida ou problemas de devolução fora da submissão de encomendas. Consolidação deve acontecer depois que você decidir quais produtos a reter."
+      ]
+    },
+    {
+      "heading": "Estimativas de leitura de rastreamento e entrega por fase",
+      "paragraphs": [
+        "Envio do vendedor, entrega para o armazém, processamento de armazém, embalagem, aceitação do transportador e trânsito internacional são diferentes etapas. Uma estimativa para um estágio não descreve toda a ordem. Salve as datas e as referências de rastreamento para que você possa identificar o último passo concluído ao pedir uma atualização.",
+        "Compare o intervalo de entrega da rota, disponibilidade de rastreamento, restrições e condições de serviço aplicáveis. O processamento do destino e a entrega final podem adicionar incerteza. Evite planejar uma ordem em torno de uma data de chegada garantida, a menos que um serviço específico realmente fornece esse compromisso em termos que você tenha verificado."
+      ]
+    },
+    {
+      "heading": "Terminar com um registo de encomendas",
+      "paragraphs": [
+        "Antes do pagamento, registe os itens retidos, as dimensões finais, o peso real, o peso de faturamento cotado, a rota selecionada e os encargos discriminados. Confirme os requisitos de endereço e destino utilizando as informações oficiais atuais. Este registro ajuda a explicar por que o custo final difere de uma estimativa anterior.",
+        "Após o envio, preservar as informações de cotação e rastreamento até a entrega. Use o resultado para melhorar a próxima estimativa, enquanto tratá-lo como evidência de uma parcela em vez de uma taxa permanente para todas as ordens. Comece sua próxima citação com novas informações de rota e os bens reais que você pretende enviar."
+      ]
+    }
+  ]
+}

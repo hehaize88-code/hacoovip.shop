@@ -23,4 +23,5 @@ mkdir -p static-assets .static-build
   --outfile=.static-build/render.mjs
 
 node .static-build/render.mjs
+python3 scripts/validate-static.py
 echo "Static Cloudflare Pages output is ready in the project root."

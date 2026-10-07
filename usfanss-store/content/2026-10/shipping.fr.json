@@ -1,0 +1,66 @@
+{
+  "slug": "shipping",
+  "lang": "fr",
+  "title": "Frais de livraison USFans : poids, volume et préparation du colis",
+  "description": "Estimer un colis USFans en utilisant les coûts du produit, les dimensions finales emballées et les règles de route actuelles. Découvrez comment le poids réel et volumétrique affecte un devis.",
+  "kicker": "USFans · GUIDE D’ACHAT · 2026",
+  "updated": "Mis à jour le 7 octobre 2026",
+  "published": "2026-08-13",
+  "modified": "2026-10-07",
+  "readingTime": "4 minutes de lecture",
+  "contentsLabel": "DANS CE GUIDE",
+  "factTitle": "Éléments vérifiés et limites",
+  "factNote": "Ce guide explique une méthode de planification. Il ne cite pas un tarif d'expédition en direct, promet une date de livraison ou fournit des conseils fiscaux spécifiques à la destination. Vérifiez les règles d'itinéraire actuelles et les exigences de destination officielle.",
+  "imageCaption": "Illustration de catalogue à titre indicatif. Comparez votre commande avec ses photos réelles d’entrepôt.",
+  "sections": [
+    {
+      "heading": "Paiement séparé du produit de l'expédition internationale",
+      "paragraphs": [
+        "Créer des lignes budgétaires distinctes pour le produit sélectionné, la livraison nationale à l'entrepôt, les services optionnels et le colis international. Des frais de conversion de devises ou de paiement peuvent également s'appliquer à la caisse. Un prix de produit affiché en USD n'est pas une promesse que tous les frais d'expédition et de destination ultérieurs sont inclus.",
+        "Consigner les montants confirmés séparément des estimations. Avant d'acheter un article volumineux, vérifiez qu'il existe un itinéraire approprié pour la catégorie de destination et de produit. Revoyez l'estimation après que l'entrepôt a reçu et emballé les articles réels."
+      ]
+    },
+    {
+      "heading": "Recueillir les données pour une estimation utile",
+      "paragraphs": [
+        "Préparer la destination, le code postal au besoin, les catégories d'articles, le nombre d'articles et les besoins d'emballage prévus. Au stade du colis, utilisez le poids, la longueur, la largeur et la hauteur finals emballés. Le poids d'un produit vendu et le poids d'un carton d'expédition protégé ne sont pas nécessairement égaux.",
+        "Lisez les conditions de soumission : biens admissibles, dimensions maximales, limites de poids, frais minimums, services optionnels et ce qui est exclu. Comparer les itinéraires appropriés en utilisant les mêmes entrées de colis. Un devis moins cher pour un ensemble de dimensions différent n'est pas une comparaison similaire."
+      ]
+    },
+    {
+      "heading": "Comprendre le poids réel et volumétrique",
+      "paragraphs": [
+        "Le poids réel est le poids mesuré du colis. Le poids volumétrique est une valeur calculée en fonction de ses dimensions et du diviseur spécifié par la route. Certaines routes comparent les deux valeurs ou appliquent d'autres règles de facturation. Confirmez la règle au lieu de supposer qu'une méthode de division ou d'arrondi s'applique partout.",
+        "Un colis de 40 sur 30 sur 20 cm a un volume de 24000 centimètres cubes. Avec un diviseur illustratif de 6000, le résultat volumétrique est de 4 kg. Si le poids réel est de 3 kg et que la route utilise la plus grande valeur, la comparaison de départ est de 4 kg avant l'arrondi ou les minimums propres à la route. Il s'agit d'un exemple de calcul, pas d'un taux réel."
+      ]
+    },
+    {
+      "heading": "Comparer les changements d'emballage sans supposer d'économies",
+      "paragraphs": [
+        "Le cas échéant, le reconditionnement réduit la hauteur du colis à 15 cm, son volume devient de 18000 centimètres cubes et le même exemple diviseur donne 3 kg. Cela explique pourquoi les dimensions comptent. Il ne prouve pas une économie parce que l'itinéraire réel peut utiliser des règles différentes, des frais de service ou des frais minimums.",
+        "Équilibrez l'espace inutilisé contre la protection. Les sacs structurés, les garnitures rigides et les parties délicates peuvent avoir besoin de plus de protection que les vêtements doux. Confirmer exactement quel emballage sera retiré et quelle protection reste. Obtenir un devis mis à jour après la décision finale d'emballage."
+      ]
+    },
+    {
+      "heading": "Traiter la consolidation comme une comparaison",
+      "paragraphs": [
+        "La combinaison d'achats peut réduire l'emballage en double, mais elle ne garantit pas le coût total le plus bas. Une parcelle plus grande peut respecter une limite de taille, modifier les routes disponibles ou augmenter le volume facturable. Comparer la citation combinée réelle avec des solutions de rechange appropriées lorsque ces facteurs comptent.",
+        "Inclure tout service de manutention ou d'emballage supplémentaire dans la comparaison. Tenir les articles avec une inspection de qualité non résolue ou des questions de retour hors de la soumission de colis. La consolidation devrait avoir lieu après que vous ayez décidé quels produits conserver."
+      ]
+    },
+    {
+      "heading": "Lire les estimations de suivi et d'exécution par étape",
+      "paragraphs": [
+        "L'expédition du vendeur, la livraison à l'entrepôt, le traitement de l'entrepôt, l'emballage, l'acceptation du transporteur et le transit international sont des étapes différentes. Une estimation pour une étape ne décrit pas la totalité de l'ordre. Enregistrer les dates et les références de suivi afin que vous puissiez identifier la dernière étape terminée lorsque vous demandez une mise à jour.",
+        "Comparez la plage de livraison de l'itinéraire, la disponibilité du suivi, les restrictions et les conditions de service applicables. Le traitement des destinations et la livraison finale peuvent ajouter de l'incertitude. Évitez de planifier une commande autour d'une date d'arrivée garantie à moins qu'un service spécifique ne fournisse réellement cet engagement selon les conditions que vous avez vérifiées."
+      ]
+    },
+    {
+      "heading": "Terminer avec un dossier de colis",
+      "paragraphs": [
+        "Avant paiement, enregistrez les éléments retenus, les dimensions finales, le poids réel, le poids facturé indiqué, l'itinéraire sélectionné et les frais détaillés. Confirmez les exigences relatives à l'adresse et à la destination en utilisant les informations officielles actuelles. Ce dossier explique pourquoi le coût final diffère d'une estimation antérieure.",
+        "Après l'expédition, conservez le devis et les informations de suivi jusqu'à la livraison. Utilisez le résultat pour améliorer l'estimation suivante, tout en le traitant comme une preuve d'un colis plutôt qu'un taux permanent pour toutes les commandes. Commencez votre prochain devis avec de nouvelles informations sur l'itinéraire et les marchandises réelles que vous comptez expédier."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+var e=document.querySelector(".language select");e?.addEventListener("change",()=>{let n=document.querySelector(`link[rel="alternate"][hreflang="${e.value==="zh-cn"?"zh-CN":e.value}"]`);n&&window.location.assign(n.href)});

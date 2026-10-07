@@ -1,0 +1,66 @@
+{
+  "slug": "shipping",
+  "lang": "en",
+  "title": "USFans Shipping Cost: Weight, Volume & Parcel Planning",
+  "description": "Estimate a USFans parcel using product costs, final packed dimensions and current route rules. Learn how actual and volumetric weight affect a quotation.",
+  "kicker": "USFans · BUYING GUIDE · 2026",
+  "updated": "Updated October 7, 2026",
+  "published": "2026-08-13",
+  "modified": "2026-10-07",
+  "readingTime": "4 minute read",
+  "contentsLabel": "IN THIS GUIDE",
+  "factTitle": "Evidence and scope",
+  "factNote": "This guide explains a planning method. It does not quote a live shipping tariff, promise a delivery date or provide destination-specific tax advice. Check the current route rules and official destination requirements.",
+  "imageCaption": "Catalog illustration for reference. Compare your own order with its actual warehouse photos.",
+  "sections": [
+    {
+      "heading": "Separate product payment from international shipping",
+      "paragraphs": [
+        "Create separate budget lines for the selected product, domestic delivery to the warehouse, optional services and the international parcel. Currency conversion or payment charges may also apply in the actual checkout. A product price displayed in USD is not a promise that all later shipping and destination costs are included.",
+        "Record confirmed amounts separately from estimates. Before purchasing a bulky item, check that a suitable route exists for the destination and product category. Revisit the estimate after the warehouse has received and packed the actual items."
+      ]
+    },
+    {
+      "heading": "Collect the inputs for a useful estimate",
+      "paragraphs": [
+        "Prepare the destination, postal code when required, item categories, item count and expected packing needs. At parcel stage, use the final packed weight, length, width and height. A seller product weight and the weight of a protected shipping carton are not necessarily equal.",
+        "Read the quote conditions: eligible goods, maximum dimensions, weight limits, minimum charges, optional services and what is excluded. Compare suitable routes using the same parcel inputs. A cheaper quotation for a different set of dimensions is not a like-for-like comparison."
+      ]
+    },
+    {
+      "heading": "Understand actual and volumetric weight",
+      "paragraphs": [
+        "Actual weight is the measured weight of the package. Volumetric weight is a calculated value based on its dimensions and the divisor specified by the route. Some routes compare the two values or apply other billing rules. Confirm the rule instead of assuming one divisor or rounding method applies everywhere.",
+        "A package measuring 40 by 30 by 20 cm has a volume of 24000 cubic centimetres. With an illustrative divisor of 6000, the volumetric result is 4 kg. If the actual weight is 3 kg and the route uses the greater value, the starting comparison is 4 kg before route-specific rounding or minimums. This is a calculation example, not a live rate."
+      ]
+    },
+    {
+      "heading": "Compare packing changes without assuming savings",
+      "paragraphs": [
+        "If appropriate repacking reduces that illustrative package height to 15 cm, its volume becomes 18000 cubic centimetres and the same example divisor gives 3 kg. This explains why dimensions matter. It does not prove a saving because the actual route may use different rules, service charges or minimum fees.",
+        "Balance unused space against protection. Structured bags, rigid trims and delicate parts can need more protection than soft clothing. Confirm exactly which packaging will be removed and which protection remains. Obtain an updated quotation after the final packing decision."
+      ]
+    },
+    {
+      "heading": "Treat consolidation as a comparison",
+      "paragraphs": [
+        "Combining purchases may reduce duplicated packaging, but it does not guarantee the lowest total charge. A larger parcel can meet a size limit, change the available routes or increase billable volume. Compare the actual combined quotation with suitable alternatives when those factors matter.",
+        "Include any extra handling or packing service in the comparison. Keep items with unresolved QC or return issues out of parcel submission. Consolidation should happen after you decide which products to retain."
+      ]
+    },
+    {
+      "heading": "Read tracking and delivery estimates by stage",
+      "paragraphs": [
+        "Seller dispatch, delivery to the warehouse, warehouse processing, packing, carrier acceptance and international transit are different stages. An estimate for one stage does not describe the whole order. Save dates and tracking references so you can identify the last completed step when asking for an update.",
+        "Compare the route delivery range, tracking availability, restrictions and applicable service conditions. Destination processing and final delivery can add uncertainty. Avoid planning an order around a guaranteed arrival date unless a specific service actually provides that commitment under terms you have checked."
+      ]
+    },
+    {
+      "heading": "Finish with a parcel record",
+      "paragraphs": [
+        "Before payment, record the retained items, final dimensions, actual weight, quoted billable weight, selected route and itemised charges. Confirm the address and destination requirements using the current official information. This record helps explain why the final cost differs from an earlier estimate.",
+        "After shipment, preserve the quotation and tracking information until delivery. Use the result to improve the next estimate, while treating it as evidence from one parcel rather than a permanent rate for all orders. Start your next quote with fresh route information and the actual goods you intend to ship."
+      ]
+    }
+  ]
+}
