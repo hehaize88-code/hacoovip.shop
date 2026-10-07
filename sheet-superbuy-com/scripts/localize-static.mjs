@@ -20,8 +20,9 @@ const pages=files.map(file=>({file,route:'/'+path.relative(output,path.dirname(f
 const strings=new Set();
 const textualMeta=new Set(['description','og:title','og:description','og:image:alt','twitter:title','twitter:description']);
 function textNodes(node,fn,skip=false){
+ if(node.nodeType===3&&/^<!doctype\b/i.test(node.rawText.trim()))return;
  const skipHere=skip||['SCRIPT','STYLE','NOSCRIPT'].includes(node.tagName)||node.getAttribute?.('translate')==='no';
- if(node.nodeType===3&&!skipHere){const t=norm(node.textContent);if(isText(t)&&!/^<!doctype\b/i.test(t))fn(node,t);}
+ if(node.nodeType===3&&!skipHere){const t=norm(node.textContent);if(isText(t))fn(node,t);}
  for(const c of node.childNodes||[])textNodes(c,fn,skipHere);
 }
 function attributes(doc,fn){for(const e of doc.querySelectorAll('*')){

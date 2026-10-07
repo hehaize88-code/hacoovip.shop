@@ -215,6 +215,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <h1>{article.title}</h1>
           <p className="article-deck">{article.deck}</p>
           <div className="article-meta"><span>Updated {article.updated}</span><span>{article.readingTime}</span><span>Independent guide</span></div>
+          <details className="article-mobile-toc">
+            <summary>In this guide</summary>
+            <nav>{article.sections.map((section) => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>
+          </details>
           {visual && (
             <figure className="article-visual">
               <div className="article-visual-label">{visual.label}</div>

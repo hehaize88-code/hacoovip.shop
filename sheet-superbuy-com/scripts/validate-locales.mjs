@@ -11,7 +11,8 @@ walk(root);
 let links=0;
 for(const file of files){
  const html=fs.readFileSync(file,'utf8');const doc=parse(html);
- assert(/^<!doctype html>/i.test(html),`${file}: missing HTML doctype`);
+ assert(/^<!doctype html>/i.test(html),`${file}: invalid document declaration`);
+ assert(!/[ZQ][XQZO]{1,5}[\s-]*\d{3}/.test(doc.querySelector('body').textContent),`${file}: unresolved translation term`);
  const pathname='/'+path.relative(root,path.dirname(file)).replaceAll(path.sep,'/');const route=pathname==='/'?'/':pathname+'/';
  const lang=langs.slice(1).find(l=>route.startsWith('/'+l+'/'))||'en';const canonical=origin+route;
  assert.equal(doc.querySelector('html').getAttribute('lang'),lang==='zh-cn'?'zh-CN':lang,file);
