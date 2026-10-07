@@ -32,6 +32,15 @@ OLD_LABELS = {
  'Product Tags':1,'Produkt-Tags':1,'Étiquettes':1,'Etiquetas':1,'Etichette':1,'Etykiety':1,
 }
 NEW_SLUGS = ['usfans-size-guide-uk','usfans-payment-failed-uk','usfans-order-received-not-in-warehouse']
+DISCLOSURE = {
+ 'en': 'Independent guidance; this website does not operate USFans or process your USFans orders. Service details can change. Check your current order and the official help entry before acting.',
+ 'de': 'Unabhängiger Ratgeber: Diese Website betreibt USFans nicht und bearbeitet keine USFans-Bestellungen. Die Leistungen können sich ändern. Prüfe vor einer Entscheidung deine aktuelle Bestellung und den offiziellen Hilfeeintrag.',
+ 'fr': 'Guide indépendant : ce site ne gère pas USFans et ne traite pas vos commandes USFans. Les services peuvent évoluer. Vérifiez votre commande actuelle et la rubrique d’aide officielle avant de prendre une décision.',
+ 'es': 'Guía independiente: este sitio no gestiona USFans ni tramita tus pedidos de USFans. Los servicios pueden cambiar. Comprueba tu pedido actual y la sección oficial de ayuda antes de tomar una decisión.',
+ 'it': 'Guida indipendente: questo sito non gestisce USFans né elabora i tuoi ordini USFans. I servizi possono cambiare. Verifica il tuo ordine attuale e la voce ufficiale di assistenza prima di agire.',
+ 'pl': 'Niezależny poradnik: ta witryna nie prowadzi USFans ani nie obsługuje zamówień USFans. Usługi mogą się zmieniać. Przed podjęciem decyzji sprawdź aktualne zamówienie i oficjalną sekcję pomocy.',
+}
+ARTICLE_ORDER = json.loads((ROOT/'content/2026-10/article-order.json').read_text())
 
 def route(slug, lang):
  return ('' if lang=='en' else '/'+lang)+'/articles/'+slug+'/'
@@ -57,17 +66,17 @@ def main_words(data):
  return len(re.findall(r"\b[\w]+(?:['’-][\w]+)*\b",text))
 
 DATA = {}
-for file in sorted((ROOT/'content/2026-10').glob('*.json')):
+for file in sorted((ROOT/'content/2026-10').glob('*.??.json')):
  data=json.loads(file.read_text()); DATA[(data['slug'],data['lang'])]=data
  if data['new'] and data['lang']=='en':
   assert 1200<=main_words(data)<=1800, (file,main_words(data))
 
+# Missing translations are a build error, never an English card or a shorter list.
+for lang in LANGS:
+ assert {slug for slug,code in DATA if code==lang} == set(ARTICLE_ORDER), ('Incomplete language',lang)
+
 def title_for(slug,lang):
- data=DATA.get((slug,lang)) or DATA.get((slug,'en'))
- if data:return data['title']
- file=ROOT/(route(slug,lang).lstrip('/')+'index.html')
- if not file.exists():file=ROOT/(route(slug,'en').lstrip('/')+'index.html')
- return parse(file.read_text()).h1.get_text()
+ return DATA[(slug,lang)]['title']
 
 def body(data):
  lang=data['lang'];c=COPY[lang];slug=data['slug'];parts=[]
@@ -82,14 +91,14 @@ def body(data):
  toc='<nav class="article-toc" aria-label="'+c[8]+'"><b>'+c[8]+'</b><ol>'+''.join(f'<li><a href="#section-{i}">{esc(sec["heading"])}</a></li>' for i,sec in enumerate(data['sections'],1))+'</ol></nav>'
  related=[]
  for other in dict.fromkeys(data['related']):
-  target_lang=lang if (other,lang) in DATA or (ROOT/(route(other,lang).lstrip('/')+'index.html')).exists() else 'en'
+  target_lang=lang
   related.append(f'<p><a href="{route(other,target_lang)}" data-track="article_internal_click" data-article="{other}" data-placement="related_guides">{esc(title_for(other,target_lang))}</a></p>')
  source='<section class="article-sources"><h2>'+c[9]+' · '+DATE+'</h2>'
  for item in data['sources']:
   source+='<p><cite>'+esc(item['label'])+'</cite></p>'
  source+='</section>' if data['sources'] else '</section>'
  if not data['sources']:source=''
- disclosure=('Independent guidance; this website does not operate USFans or process your USFans orders. Service details can change. Check your current order and the official help entry before acting.' if lang=='en' else 'Guida indipendente: questo sito non gestisce USFans né elabora i tuoi ordini USFans. I servizi possono cambiare. Verifica il tuo ordine attuale e la voce ufficiale di assistenza prima di agire.')
+ disclosure=DISCLOSURE[lang]
  return f'''<article class="article-page" data-article="{slug}">
  <header class="article-hero section-wrap"><a href="{'/' if lang=='en' else '/'+lang+'/'}articles/">← {c[0]}</a><small>{c[6]} {data['published']} · {c[7]} {DATE} · {max(6,round(main_words(data)/180))} min</small><h1>{esc(data['title'])}</h1><p>{esc(data['intro'])}</p>{toc}</header>
  <div class="article-layout section-wrap"><aside><img src="{data['image']}" alt="" width="520" height="520" loading="lazy"/><span>{c[11]}</span></aside><div class="article-body">{''.join(parts)}
@@ -122,7 +131,7 @@ for (slug,lang),data in DATA.items():
  dest=ROOT/(route(slug,lang).lstrip('/')+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(str(soup).rstrip()+'\n')
 
 def make_card(slug,lang,placement):
- actual=lang if (slug,lang) in DATA else 'en';data=DATA[(slug,actual)];c=COPY[lang]
+ actual=lang;data=DATA[(slug,actual)];c=COPY[lang]
  language_note='' if actual==lang else ' · '+c[12]
  date_label=c[6] if data['new'] else c[7]
  return parse(f'''<a class="article-card" href="{route(slug,actual)}" data-track="article_internal_click" data-article="{slug}" data-placement="{placement}"><div class="article-image"><img src="{data['image']}" width="520" height="520" loading="lazy" alt=""/></div><small>{date_label} {DATE}{language_note}</small><h3 lang="{actual}">{esc(data['title'])}</h3><b>{c[5]} ↗</b></a>''').a
@@ -144,9 +153,8 @@ for lang in LANGS:
    grid.append(card)
    heading=soup.select_one('.articles-home h2');heading.string=COPY[lang][0]
   else:
-   for a in list(grid.select('a.article-card')):
-    if a.get('data-article') in NEW_SLUGS:a.decompose()
-   for slug in reversed(NEW_SLUGS):grid.insert(0,make_card(slug,lang,'article_cards'))
+   grid.clear()
+   for slug in ARTICLE_ORDER:grid.append(make_card(slug,lang,'article_cards'))
    soup.h1.string=COPY[lang][2];set_title(soup,COPY[lang][2])
   path.write_text(str(soup).rstrip()+'\n')
 
@@ -161,7 +169,8 @@ for path in public_html():
  for node in list(soup.find_all(string=True)):
   if node.parent.name in {'script','style'}:continue
   key=str(node).strip()
-  if key in OLD_LABELS:node.replace_with(c[OLD_LABELS[key]])
+  label=key.removesuffix(' ↗').strip()
+  if label in OLD_LABELS:node.replace_with(c[OLD_LABELS[label]]+(' ↗' if key.endswith(' ↗') else ''))
  # Update all cards pointing at an improved article, including older inbound cards.
  for a in soup.select('a.article-card[data-article]'):
   slug=a['data-article'];target=urlparse(a['href']).path

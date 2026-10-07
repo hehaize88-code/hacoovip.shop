@@ -5,11 +5,20 @@ Production serves the committed HTML documents in this directory. Keep the
 The older `app/` export contains truncated source files and is not the current
 static publication input.
 
-The October article sources live in `content/2026-10/*.json`. Their templates
-are in `templates/`. English and Italian versions have matching sections and
-meaning. Other language hubs retain their existing local articles and mark
-new English destinations explicitly; they do not claim untranslated pages as
-hreflang equivalents.
+The complete article sources live in `content/2026-10/*.{lang}.json`. Their
+templates are in `templates/`. `article-order.json` is the shared article
+registry: every English, German, French, Spanish, Italian and Polish hub must
+contain the same 14 articles. Each translated article preserves the original
+sections, paragraphs, tables, references and related-guide relationships.
+Homepages show the same four featured articles in the selected language.
+
+All article language switches remain on the same article. Related guides stay
+in the selected language, and every article publishes six reciprocal language
+alternates plus `x-default`. Missing translations are a build error; never
+replace a local article with an English fallback or silently hide its card.
+The validator checks the complete source and rendered-page language matrix.
+Local translation drafts were reviewed for titles, terminology and numerical
+examples before rendering; translation models are not part of the deployment.
 
 Refresh content, validate existing routes and export a deployable tree:
 
