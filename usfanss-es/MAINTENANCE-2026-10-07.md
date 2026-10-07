@@ -4,7 +4,7 @@ This change is limited to this directory. Automatic article updates remain disab
 
 ## Research and scope
 
-Public keyword-intent and competitor-page research informed four Spanish articles: costs/fees, sizing, rehearsal/volumetric weight, and broken product links. These are editorial priorities, not measured rankings or keyword volumes. GSC Wizard access returned payment_required, so no private Search Console, Bing Webmaster or GA4 performance figures informed the priority order. Existing Spanish-only publication behavior is preserved; no untranslated pages are advertised as alternate languages.
+Public keyword-intent and competitor-page research informed four Spanish articles: costs/fees, sizing, rehearsal/volumetric weight, and broken product links. These are editorial priorities, not measured rankings or keyword volumes. GSC Wizard access returned payment_required, so no private Search Console, Bing Webmaster or GA4 performance figures informed the priority order. The multilingual follow-up below now supplies every article in all eight languages; alternates only point to complete generated pages.
 
 ## Catalog observations
 
@@ -12,7 +12,7 @@ On 2026-10-07, live browser checks of www.cnfanshp.com verified product IDs 3359
 
 ## Content and measurement
 
-Four original Spanish guides add worked examples and connect to existing articles. Eleven existing Spanish guides gain relevant next-step links; repeated section sentences were removed. Article pages include contents anchors, calculated reading time, visible revision dates and matching BlogPosting dates. Sitemap has 91 URLs. CSS/JS links are fingerprinted to avoid stale assets. GA4 G-56TMQMXE1J remains unchanged; catalog_click gains product/category/catalog context, article_click is added, and catalog_search remains.
+Four original Spanish guides add worked examples and connect to existing articles. Eleven existing Spanish guides gain relevant next-step links; repeated section sentences were removed. Article pages include contents anchors, calculated reading time, visible revision dates and matching BlogPosting dates. The initial Spanish export had 91 sitemap URLs; the multilingual follow-up now has 168. CSS/JS links are fingerprinted to avoid stale assets. GA4 G-56TMQMXE1J remains unchanged; catalog_click gains product/category/catalog context, article_click is added, and catalog_search remains.
 
 When account reporting is available, compare 28 complete days before/after publication: non-brand query impressions/clicks/CTR by landing page and position in GSC/Bing; organic landing sessions, engagement, article_click and catalog_click in GA4. Do not infer ranking or traffic improvement from a successful deployment. Do not install another analytics tag or change other sites' schedules.
 
@@ -34,3 +34,16 @@ Source and generated files committed in e5e10fee5ebf193f38b101f341eeeb483ae97f41
 ## English article correction
 
 The user's screenshot showed /en/articles/ with four guides. Four complete English versions of the new October guides were added after that report. Article lookup now uses explicit slugs and locale availability, rather than assuming every language has identical array positions. The English hub has eight articles, the Spanish hub has fifteen, and both homepages feature six. New guide language switching preserves the article between English and Spanish; hreflang only lists existing translations. The static sitemap contains 95 pages. CI verifies all four new articles in both languages and requires at least eight English hub links. Desktop article cards have reduced empty space.
+
+
+## Complete multilingual collection — 2026-10-07
+
+The language-count defect came from two places: only four core articles existed in most dictionaries, and route availability deliberately restricted the seven growth articles to Spanish and the four October articles to Spanish/English. The registry now joins complete cards and bodies by stable slug, publishes the same ordered set of 15 articles for all eight languages, and fails a build on a missing or duplicate article. Existing core translations and the four authored English October guides are retained.
+
+Added 73 previously missing language variants: seven English guides and eleven each in French, German, Italian, Polish, Portuguese and Simplified Chinese. English and Chinese copy was rewritten and reviewed directly. The other five locales use locally generated translation drafts with reviewed titles, descriptions, terminology, source links and numerical examples; this is not a claim of native-speaker proofreading. All content is committed static data: no browser translation dependency or automatic generation service was added. The calculation examples remain hypothetical; the Italian budget and parcel-volume translation errors were corrected before publication.
+
+Every article has an independent localized URL, canonical, eight language alternates plus the Spanish x-default, localized metadata, related links and a complete body. Original publication dates remain; translated growth articles carry the 2026-10-07 modification date. Language changes retain the stable article slug and the section fragment.
+
+The dedicated publish workflow now runs scripts/verify-article-locales.mjs against generated HTML. The check compares every hub with the Spanish collection, verifies article files/canonicals/sitemap/alternate destinations/internal links, and executes the actual browser bundle for every article-language switch. Local verification passed: eight hubs with 15 articles each, 120 complete article pages, 960 same-article switches and 168 sitemap URLs. The static TypeScript entrypoint check also passed.
+
+Only usfanss-es/ and its dedicated GitHub publish workflow are included. The shared multi-site automatic article task remains unchanged with its pre-existing permanent exclusion for usfanss.es. GitHub build success alone is not evidence that the Cloudflare production site has refreshed; production requires a separate visible check.

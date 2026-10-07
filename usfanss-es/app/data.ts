@@ -16,4 +16,4 @@ export const catalogBase = "https://www.cnfanshp.com";
 export const productUrl = (id: string) => `${catalogBase}/AllProducts/${id}.html`;
 
 export const categorySlugs = ["shoes", "hoodies-sweaters", "t-shirts", "jackets", "Jersey", "accessories"];
-export { coreArticleSlugs, spanishOnlyArticleSlugs, articleSlugs } from "./articleRoutes";
+export { coreArticleSlugs, growthArticleSlugs, articleSlugs } from "./articleRoutes";

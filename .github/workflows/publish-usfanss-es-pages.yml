@@ -42,27 +42,9 @@ jobs:
         working-directory: usfanss-es
         run: npm run build:static
 
-      - name: Verify published article files
+      - name: Verify complete articles in every language
         working-directory: usfanss-es
-        run: |
-          node --input-type=module <<'NODE'
-          import { readFileSync } from 'node:fs';
-          import assert from 'node:assert/strict';
-          const slugs = ['usfans-comisiones-coste-total', 'usfans-guia-tallas', 'usfans-rehearsal-peso-volumetrico', 'usfans-link-no-funciona'];
-          const sitemap = readFileSync('sitemap.xml', 'utf8');
-          for (const prefix of ['', '/en']) {
-            for (const slug of slugs) {
-              const path = prefix + '/articles/' + slug + '/';
-              const html = readFileSync(path.slice(1) + 'index.html', 'utf8');
-              assert.ok(html.includes('class="article-toc"'), 'Missing complete article: ' + path);
-              assert.ok(html.includes('href="https://usfanss.es' + path + '"'), 'Missing canonical: ' + path);
-              assert.ok(sitemap.includes('https://usfanss.es' + path), 'Missing sitemap entry: ' + path);
-            }
-          }
-          const englishHub = readFileSync('en/articles/index.html', 'utf8');
-          const englishArticleLinks = new Set(englishHub.match(/href="\/en\/articles\/[^/]+\/"/g) || []);
-          assert.ok(englishArticleLinks.size >= 8, 'English article hub lost published guides');
-          NODE
+        run: node scripts/verify-article-locales.mjs
 
       - name: Push this site's generated files
         run: |
