@@ -2,11 +2,11 @@
 
 import { SiteShell } from "./components/SiteShell";
 import { useLanguage } from "./components/LanguageProvider";
-import { articleSlugs, catalogBase, categorySlugs, productUrl, products } from "./data";
+import { articleSlugs, catalogBase, categorySlugs, productUrl, products, productCategory } from "./data";
 
 export default function Home() {
-  const { d, withLang } = useLanguage();
-  const featuredArticleIndexes = [2, 4, 0, 5, 1, 6, 3].filter(index => d.articles[index]).slice(0, 6);
+  const { d, lang, withLang } = useLanguage();
+  const featuredArticleIndexes = [11, 12, 13, 14, 2, 1, 0, 3].filter(index => d.articles[index]).slice(0, 6);
   return <SiteShell>
     <section className="hero">
       <div className="hero-copy">
@@ -15,12 +15,12 @@ export default function Home() {
         <p>{d.heroDesc}</p>
         <form className="hero-search" action={`${catalogBase}/search.html`} method="get" target="_blank">
           <span aria-hidden="true">⌕</span><label className="sr-only" htmlFor="search">{d.search}</label>
-          <input id="search" name="keywords" type="search" placeholder={d.searchPlaceholder} required/><button type="submit">{d.search}</button>
+          <input type="hidden" name="channelid" value="2"/><input id="search" name="keywords" type="search" placeholder={d.searchPlaceholder} required/><button type="submit">{d.search}</button>
         </form>
         <div className="micro-trust">{d.trusts.map(item => <span key={item}>{item}</span>)}</div>
       </div>
       <div className="hero-gallery" aria-label="Product selection">
-        <a className="hero-card hero-main" href={productUrl(products[0].id)} target="_blank" rel="noreferrer"><img src={products[0].image} alt={products[0].name} width="750" height="750"/><span>{d.drop}</span><div><small>{d.categoryNames[0]}</small><b>{d.layers}</b></div></a>
+        <a className="hero-card hero-main" href={productUrl(products[0].id)} target="_blank" rel="noreferrer"><img src={products[0].image} alt={products[0].name} width="750" height="750"/><span>{d.drop}</span><div><small>{productCategory(products[0].category, lang, d.categoryNames)}</small><b>{products[0].name}</b></div></a>
         <a className="hero-card hero-mini one" href={productUrl(products[1].id)} target="_blank" rel="noreferrer"><img src={products[1].image} alt={products[1].name} width="750" height="750"/><b>{d.trending} ↗</b></a>
         <a className="hero-card hero-mini two" href={productUrl(products[3].id)} target="_blank" rel="noreferrer"><img src={products[3].image} alt={products[3].name} width="750" height="750"/><b>{d.newest} ↗</b></a>
         <div className="floating-note"><span>{d.curated}</span><b>{d.sixCats}</b></div>
@@ -28,14 +28,14 @@ export default function Home() {
     </section>
 
     <section className="category-rail" aria-label="Popular categories">
-      {d.categoryNames.map((name, index) => <a key={categorySlugs[index]} href={withLang("/categories/")}><span>0{index + 1}</span>{name}<b>↗</b></a>)}
+      {d.categoryNames.map((name, index) => <a key={categorySlugs[index]} href={`${catalogBase}/${categorySlugs[index]}/`} target="_blank" rel="noreferrer"><span>0{index + 1}</span>{name}<b>↗</b></a>)}
     </section>
 
     <section className="discover">
       <div className="section-title"><div><span>{d.current}</span><h2>{d.findsA}<br/><em>{d.findsB}</em></h2></div><p>{d.findsDesc}</p></div>
       <div className="product-grid">{products.map((item,index) => <a className={`product ${item.tone} p${index+1}`} key={item.id} href={productUrl(item.id)} target="_blank" rel="noreferrer">
-        <div className="product-photo"><img src={item.image} alt={item.name} loading={index > 2 ? "lazy" : "eager"} width="750" height="750"/><span>0{index+1}</span><button tabIndex={-1} aria-hidden="true">↗</button></div>
-        <div className="product-copy"><small>{d.categoryNames[index]} · {item.price}</small><h3>{item.name}</h3><p>{d.productOpen} · {d.verified} {item.verified}</p></div>
+        <div className="product-photo"><img src={item.image} alt={item.name} loading={index > 2 ? "lazy" : "eager"} width="750" height="750"/><span>0{index+1}</span><i className="product-arrow" aria-hidden="true">↗</i></div>
+        <div className="product-copy"><small>{productCategory(item.category, lang, d.categoryNames)} · {item.price}</small><h3>{item.name}</h3><p>{d.productOpen} · {d.verified} {item.verified}</p></div>
       </a>)}</div>
       <a className="collection-link" href={`${catalogBase}/AllProducts/`} target="_blank" rel="noreferrer"><span>{d.collection}</span><b>{d.collectionDesc}</b><i>↗</i></a>
     </section>

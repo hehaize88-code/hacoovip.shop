@@ -1,3 +1,4 @@
+import { octoberCards } from "./editorialOctober";
 import { spanishGrowthCards } from "./growthArticles";
 
 export type Lang = "es" | "en" | "fr" | "de" | "it" | "pl" | "pt" | "zh";
@@ -60,7 +61,7 @@ const es = {
   articles: [
     ["Spreadsheet", "USFans Spreadsheet España 2026: enlaces de ropa y cómo usarlos", "Cómo encontrar enlaces actuales, comparar fichas y comprobar cada producto antes de comprar.", "8 min"],
     ["Fotos QC", "Fotos QC de USFans: cómo revisar ropa y zapatillas", "Qué mirar en ropa, calzado y accesorios antes de aceptar o devolver un artículo.", "10 min"],
-    ["Envío", "Envíos USFans a España y Canarias (2026): coste, IVA y aduanas", "Peso, volumen, rutas, Península, islas, IVA y reglas aduaneras vigentes desde julio de 2026.", "12 min"],
+    ["Envío", "Envíos USFans a España: coste, peso y líneas (2026)", "Peso, volumen, rutas, Península, islas, IVA y reglas aduaneras vigentes desde julio de 2026.", "12 min"],
   ],
   readArticle: "Leer artículo", updated: "Actualizado el 8 de septiembre de 2026", readTime: "Lectura",
   articleSections: ["Qué debes saber", "Pasos prácticos", "Errores que debes evitar", "Lista de comprobación final"],
@@ -144,7 +145,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["¿Qué cambia desde el 1 de julio de 2026?", "La Agencia Tributaria informa de un arancel fijo de 3 euros por categoría de artículo para compras de hasta 150 euros enviadas desde fuera de la UE, además del IVA aplicable."],
     ["¿Conviene consolidar todos los artículos?", "No siempre. Un artículo voluminoso o restringido puede encarecer o limitar toda la parcela; compara el paquete conjunto con alternativas separadas antes de pagar."],
     ["¿Las estimaciones son el precio final?", "No. El peso y las medidas embaladas, los servicios opcionales, la ruta y los cargos de destino pueden cambiar el total."],
-    ["¿Cuándo se comprobaron los productos mostrados?", "Los seis enlaces, nombres, imágenes principales, categorías y precios en dólares se verificaron en el catálogo de destino el 13 de agosto de 2026."],
+    ["¿Cuándo se comprobaron los productos mostrados?", "Los seis enlaces, nombres, imágenes principales, categorías y precios en dólares se verificaron en el catálogo de destino el 7 de octubre de 2026."],
   ],
   en: [
     ["How many QC photos does USFans include?", "Many public listings state 3 to 7 free HD QC photos. Always confirm the terms shown on the specific listing when ordering."],
@@ -154,7 +155,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["What changes on 1 July 2026?", "Spain's Tax Agency states that purchases up to €150 shipped from outside the EU face a fixed €3 duty per item category, in addition to applicable VAT."],
     ["Should every item be consolidated?", "Not always. One bulky or restricted item can raise the price or limit routes, so compare combined and separate parcels first."],
     ["Is the estimate the final price?", "No. Packed weight and dimensions, optional services, route and destination charges can change the total."],
-    ["When were the displayed products checked?", "The six links, names, first images, categories and USD prices were verified against the destination catalogue on 13 August 2026."],
+    ["When were the displayed products checked?", "The six links, names, first images, categories and USD prices were verified against the destination catalogue on 7 October 2026."],
   ],
   fr: [
     ["Combien de photos QC sont incluses ?", "De nombreuses fiches indiquent 3 à 7 photos QC HD gratuites. Vérifiez toujours les conditions de la fiche choisie."],
@@ -164,7 +165,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["Que change le 1er juillet 2026 ?", "L'administration fiscale espagnole annonce un droit fixe de 3 € par catégorie pour les achats jusqu'à 150 € expédiés hors UE, en plus de la TVA."],
     ["Faut-il tout regrouper ?", "Pas toujours. Un article volumineux ou restreint peut renchérir ou limiter le colis ; comparez aussi des colis séparés."],
     ["L'estimation est-elle définitive ?", "Non. Poids et mesures emballés, services, ligne et frais de destination peuvent modifier le total."],
-    ["Quand les produits ont-ils été vérifiés ?", "Les six liens, noms, images, catégories et prix USD ont été contrôlés le 13 août 2026."],
+    ["Quand les produits ont-ils été vérifiés ?", "Les six liens, noms, images, catégories et prix USD ont été contrôlés le 7 octobre 2026."],
   ],
   de: [
     ["Wie viele QC-Fotos sind enthalten?", "Viele öffentliche Angebote nennen 3 bis 7 kostenlose HD-QC-Fotos. Prüfe die Bedingungen des konkreten Angebots."],
@@ -174,7 +175,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["Was ändert sich am 1. Juli 2026?", "Die spanische Steuerbehörde nennt 3 € festen Zoll je Warenkategorie für Sendungen bis 150 € aus Nicht-EU-Ländern, zusätzlich zur Mehrwertsteuer."],
     ["Sollte alles gebündelt werden?", "Nicht immer. Ein sperriger oder beschränkter Artikel kann Preis und Linien des ganzen Pakets verschlechtern."],
     ["Ist die Schätzung endgültig?", "Nein. Packgewicht, Maße, Dienste, Linie und Zielgebühren können den Gesamtbetrag ändern."],
-    ["Wann wurden die Produkte geprüft?", "Die sechs Links, Namen, Hauptbilder, Kategorien und USD-Preise wurden am 13. August 2026 geprüft."],
+    ["Wann wurden die Produkte geprüft?", "Die sechs Links, Namen, Hauptbilder, Kategorien und USD-Preise wurden am 7. Oktober 2026 geprüft."],
   ],
   it: [
     ["Quante foto QC sono incluse?", "Molte schede indicano da 3 a 7 foto QC HD gratuite. Controlla sempre le condizioni della scheda scelta."],
@@ -184,7 +185,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["Cosa cambia il 1° luglio 2026?", "L'Agenzia Tributaria spagnola indica un dazio fisso di 3 € per categoria per acquisti fino a 150 € spediti da fuori UE, oltre all'IVA."],
     ["Conviene consolidare tutto?", "Non sempre. Un articolo voluminoso o limitato può aumentare il prezzo o ridurre le linee dell'intero pacco."],
     ["La stima è definitiva?", "No. Peso e misure imballate, servizi, linea e oneri a destinazione possono cambiare il totale."],
-    ["Quando sono stati verificati i prodotti?", "I sei link, nomi, immagini, categorie e prezzi USD sono stati verificati il 13 agosto 2026."],
+    ["Quando sono stati verificati i prodotti?", "I sei link, nomi, immagini, categorie e prezzi USD sono stati verificati il 7 ottobre 2026."],
   ],
   pl: [
     ["Ile zdjęć QC obejmuje usługa?", "Wiele ofert podaje 3–7 darmowych zdjęć QC HD. Zawsze sprawdź warunki konkretnej oferty."],
@@ -194,7 +195,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["Co zmienia się 1 lipca 2026?", "Hiszpański urząd skarbowy podaje stałe cło 3 € za kategorię dla zakupów do 150 € spoza UE, oprócz VAT."],
     ["Czy łączyć wszystkie produkty?", "Nie zawsze. Duży lub ograniczony produkt może podnieść cenę albo ograniczyć linie całej paczki."],
     ["Czy wycena jest ostateczna?", "Nie. Waga i wymiary po spakowaniu, usługi, linia i opłaty docelowe mogą zmienić sumę."],
-    ["Kiedy sprawdzono produkty?", "Sześć linków, nazw, zdjęć, kategorii i cen USD zweryfikowano 13 sierpnia 2026."],
+    ["Kiedy sprawdzono produkty?", "Sześć linków, nazw, zdjęć, kategorii i cen USD zweryfikowano 7 października 2026."],
   ],
   pt: [
     ["Quantas fotos QC estão incluídas?", "Muitas páginas indicam 3 a 7 fotos QC HD gratuitas. Confirme sempre as condições da página escolhida."],
@@ -204,7 +205,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["O que muda em 1 de julho de 2026?", "A Agência Tributária espanhola indica um direito fixo de 3 € por categoria em compras até 150 € enviadas de fora da UE, além do IVA."],
     ["Devo consolidar tudo?", "Nem sempre. Um artigo volumoso ou limitado pode aumentar o custo ou reduzir as linhas de todo o pacote."],
     ["A estimativa é final?", "Não. Peso e medidas embaladas, serviços, linha e encargos no destino podem alterar o total."],
-    ["Quando foram verificados os produtos?", "Os seis links, nomes, imagens, categorias e preços USD foram verificados em 13 de agosto de 2026."],
+    ["Quando foram verificados os produtos?", "Os seis links, nomes, imagens, categorias e preços USD foram verificados em 7 de outubro de 2026."],
   ],
   zh: [
     ["USFans包含多少张QC照片？", "许多公开商品页写明提供3至7张免费高清QC照片，实际应以所选商品页面当前说明为准。"],
@@ -214,7 +215,7 @@ const faqExtras: Record<Lang, string[][]> = {
     ["2026年7月1日起有什么变化？", "西班牙税务局说明，欧盟外发货且金额不超过150欧元的网购，将按商品类别收取每类3欧元固定关税，另加适用增值税。"],
     ["是否应该把所有商品合箱？", "不一定。一个体积大或受限制的商品可能抬高整包价格或减少可用线路，应先比较合箱与分箱方案。"],
     ["估算价格是最终价格吗？", "不是。打包后的重量尺寸、可选服务、线路和目的地费用都可能改变总额。"],
-    ["页面商品什么时候核对过？", "六个商品链接、名称、首图、分类和美元价格均在2026年8月13日通过目标商品目录核对。"],
+    ["页面商品什么时候核对过？", "六个商品链接、名称、首图、分类和美元价格均在2026年10月7日通过目标商品目录核对。"],
   ],
 };
 
@@ -233,7 +234,7 @@ const complete = (dictionary: typeof es, lang: Lang, verified: string): typeof e
   ...dictionary,
   verified,
   faqs: [...dictionary.faqs, ...faqExtras[lang]],
-  articles: [...dictionary.articles, spainAddressCards[lang], ...(lang === "es" ? spanishGrowthCards : [])],
+  articles: [...dictionary.articles, spainAddressCards[lang], ...(lang === "es" ? [...spanishGrowthCards, ...octoberCards] : [])],
 });
 
 export const dictionaries: Record<Lang, typeof es> = {

@@ -1,3 +1,4 @@
+import { octoberArticles } from "./editorialOctober";
 import type { Lang } from "./i18n";
 import { localizedDepth } from "./articleDepth";
 import { localizedDepthExtra } from "./articleDepthExtra";
@@ -223,7 +224,7 @@ const zh = buildLocalized("zh", [
 ]);
 
 export const articleContent: Record<Lang, ArticleContent[]> = {
-  es: [...es.map((article,articleIndex)=>({...article,sections:article.sections.map((section,sectionIndex)=>({...section,paragraphs:section.paragraphs.map((paragraph,paragraphIndex)=>paragraphIndex===section.paragraphs.length-1?[paragraph,localizedDepthExtra.es?.[articleIndex]?.[sectionIndex]].filter(Boolean).join(" "):paragraph)}))})), spainAddressArticle.es, ...spanishGrowthArticles],
+  es: [...es, spainAddressArticle.es, ...spanishGrowthArticles, ...octoberArticles],
   en: [...en, spainAddressArticle.en],
   fr: [...fr, spainAddressArticle.fr],
   de: [...de, spainAddressArticle.de],
@@ -232,3 +233,21 @@ export const articleContent: Record<Lang, ArticleContent[]> = {
   pt: [...pt, spainAddressArticle.pt],
   zh: [...zh, spainAddressArticle.zh],
 };
+
+const nextGuides = [
+  {label:"Calcular comisiones y coste total",url:"/articles/usfans-comisiones-coste-total/"},
+  {label:"Elegir talla con medidas y QC",url:"/articles/usfans-guia-tallas/"},
+  {label:"Comparar rehearsal y peso volumétrico",url:"/articles/usfans-rehearsal-peso-volumetrico/"},
+  {label:"Resolver un enlace que no funciona",url:"/articles/usfans-link-no-funciona/"},
+];
+articleContent.es = articleContent.es.map((article, index) => index < 11 ? {
+  ...article,
+  sections: [...article.sections.map(section => {
+    const seen = new Set<string>();
+    return {...section, paragraphs:section.paragraphs.map(paragraph => paragraph.split(/(?<=[.!?])\s+/).filter(sentence => {if(seen.has(sentence)) return false; seen.add(sentence); return true;}).join(" ")).filter(Boolean)};
+  }), {
+    heading:"Continúa con la decisión que te falta",
+    paragraphs:["Utiliza la guía específica para comprobar los datos de tu pedido antes de avanzar. Conserva la variante elegida, la tabla o cotización que comparaste y las evidencias del almacén: así podrás explicar cualquier diferencia con información concreta."],
+    links: index === 0 || index === 4 || index === 5 ? [nextGuides[3],nextGuides[1],nextGuides[0]] : index === 1 || index === 10 ? [nextGuides[1],nextGuides[0]] : [nextGuides[2],nextGuides[0]],
+  }],
+} : article);

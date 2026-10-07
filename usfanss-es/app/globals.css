@@ -33,3 +33,20 @@
   .process-page{padding:34px 14px;gap:7px}.process-page article{min-height:160px;padding:12px;border-radius:16px}.process-page article>div b{width:32px;height:32px;font-size:8px}.process-page article>div span{font-size:6px;max-width:74px}.process-page h2{font-size:16px;margin:27px 0 7px}.process-page p{font-size:8px;line-height:1.45}.compact-facts{padding-top:28px}
   .article-page{padding:34px 14px 55px}.article-back{margin-bottom:35px}.article-heading h1{font-size:42px}.article-heading>p{font-size:12px}.article-standfirst{margin-top:30px;padding:15px;font-size:11px}.article-body{margin-top:35px}.article-body section{grid-template-columns:30px 1fr;padding:24px 0}.article-body h2{font-size:18px}.article-body p,.article-body li{font-size:10px;line-height:1.65}.article-takeaway{padding:17px;border-radius:18px}.article-takeaway p{font-size:11px}.article-sources a{font-size:9px}.article-related>div{grid-template-columns:1fr}.article-related h2{font-size:22px}
 }
+
+/* October manual maintenance: readable guides and compact, equal-width cards. */
+.product-photo{aspect-ratio:1}.product-photo img{object-fit:contain}
+.product-arrow{position:absolute;right:14px;bottom:14px;width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal}
+.article-toc{padding:22px 26px;margin:28px 0;background:#f0efe9;border-radius:16px;font-size:15px;line-height:1.65}
+.article-toc ol{padding-left:20px;margin:12px 0 0}.article-toc a{text-decoration:underline;text-underline-offset:3px}
+.article-body section{scroll-margin-top:100px}.article-body p,.article-body li{font-size:16px;line-height:1.85}.article-heading time{font-size:13px;color:#666}
+.article-sources a{text-decoration:underline;text-underline-offset:3px}.article-body h2{font-size:25px;line-height:1.3}
+@media(max-width:600px){
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .product-copy h3{font-size:13px;line-height:1.4}.product-copy small{font-size:10px;line-height:1.5}.product-copy p{font-size:10px;line-height:1.5}
+ .article-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.article-grid>a:nth-child(3){grid-column:auto}
+ .article-grid h2{font-size:16px;line-height:1.35}.article-grid p{font-size:12px;line-height:1.55}.article-grid>a{padding:17px 14px}.article-grid strong{font-size:11px}
+ .article-body p,.article-body li{font-size:16px;line-height:1.8}.article-body h2{font-size:23px}.article-standfirst{font-size:17px;line-height:1.7}
+ .article-heading p,.article-takeaway p{font-size:15px;line-height:1.7}.article-toc{padding:18px;font-size:14px}.article-body>section{gap:12px}
+ .article-related a{font-size:14px;line-height:1.6}.hero-main>div b{font-size:14px;line-height:1.25}
+}

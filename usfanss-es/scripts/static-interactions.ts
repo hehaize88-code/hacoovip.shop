@@ -1,5 +1,6 @@
+import { spanishOnlyArticleSlugs } from "../app/articleRoutes";
 const prefixes: Record<string, string> = { es: "", en: "en", fr: "fr", de: "de", it: "it", pl: "pl", pt: "pt", zh: "zh-cn" };
-const spanishOnlyArticles = new Set(["que-es-usfans-como-funciona", "usfans-ropa-guia", "usfans-opiniones-fiabilidad", "usfans-canarias-envios", "spanish-line-packet-usfans", "usfans-tiempos-envio-tracking", "usfans-devoluciones-almacen"]);
+const spanishOnlyArticles = new Set(spanishOnlyArticleSlugs);
 
 const basePath = window.location.pathname.replace(/^\/(en|fr|de|it|pl|pt|zh-cn)(?=\/|$)/, "") || "/";
 
@@ -26,9 +27,10 @@ const track = (name: string, params: Record<string, string>) => {
   gtag?.("event", name, params);
 };
 
-document.querySelectorAll<HTMLAnchorElement>('a[href^="https://cnfanshp.com"]').forEach(link => {
+document.querySelectorAll<HTMLAnchorElement>('a[href^="https://www.cnfanshp.com"]').forEach(link => {
   link.addEventListener("click", () => track("catalog_click", {
     link_url: link.href,
+    link_type: link.href.includes("/AllProducts/") ? (/\/\d+\.html/.test(link.href) ? "product" : "catalog") : "category",
     link_text: link.textContent?.trim().slice(0, 100) || "catalog",
     page_path: window.location.pathname,
   }));
@@ -38,4 +40,8 @@ const searchForm = document.querySelector<HTMLFormElement>(".hero-search");
 searchForm?.addEventListener("submit", () => {
   const term = new FormData(searchForm).get("keywords")?.toString().trim() || "";
   track("catalog_search", { search_term: term, page_path: window.location.pathname });
+});
+
+document.querySelectorAll<HTMLAnchorElement>('a[href*="/articles/"]').forEach(link => {
+  link.addEventListener("click", () => track("article_click", {link_url:link.href,page_path:window.location.pathname}));
 });
