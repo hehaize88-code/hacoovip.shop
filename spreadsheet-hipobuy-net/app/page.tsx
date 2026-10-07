@@ -20,19 +20,12 @@ const categories = [
 
 const products = [
   { id: "HB-5974", name: "Classic loose-fit sweatshirt", category: "Hoodies", price: "$19.45", source: "¥140", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1101D39.webp", href: "https://cnfanshp.com/AllProducts/5974.html", checked: "2026-08-22" },
-  { id: "HB-6045", name: "Everyday trainer · 60", category: "Shoes", price: "$45.85", source: "¥330", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55S9251.jpg", href: "https://cnfanshp.com/AllProducts/6045.html", checked: "2026-08-22" },
+  { id: "HB-6045", name: "Shoes · item 6045", category: "Shoes", price: "$45.85", source: "¥330", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55S9251.jpg", href: "https://cnfanshp.com/AllProducts/6045.html", checked: "2026-08-22" },
   { id: "HB-5971", name: "Letter-embroidered cap", category: "Headwear", price: "$12.35", source: "¥89", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G10Fc05.webp", href: "https://cnfanshp.com/AllProducts/5971.html", checked: "2026-08-22" },
-  { id: "HB-6043", name: "Daily runner · 58", category: "Shoes", price: "$38.90", source: "¥280", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55T15c.jpg", href: "https://cnfanshp.com/AllProducts/6043.html", checked: "2026-08-22" },
+  { id: "HB-6043", name: "Shoes · item 6043", category: "Shoes", price: "$38.90", source: "¥280", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55T15c.jpg", href: "https://cnfanshp.com/AllProducts/6043.html", checked: "2026-08-22" },
 ];
 
-const guides = [
-  { tag: "START HERE", title: "How to buy with Hipobuy", text: "A decision-by-decision route from product link to warehouse review.", href: "/articles/how-to-buy-with-hipobuy/" },
-  { tag: "QC", title: "Read warehouse photos", text: "Check variants, measurements, construction and visible damage in order.", href: "/articles/hipobuy-qc-photos/" },
-  { tag: "SHIPPING", title: "Calculate shipping cost", text: "Use packed dimensions, chargeable weight and current eligible routes.", href: "/shipping/" },
-  { tag: "REVIEW", title: "Is Hipobuy legit and safe?", text: "Separate verifiable service facts from seller, parcel and review-platform risk.", href: "/articles/hipobuy-review-legit-safe/" },
-  { tag: "EU", title: "Shipping to France", text: "Plan price per KG, volumetric weight, VAT and customs without false flat rates.", href: "/articles/hipobuy-shipping-france/" },
-  { tag: "UK", title: "Shipping to the UK", text: "Compare parcel routes, packing and the current UK import-cost questions.", href: "/articles/hipobuy-shipping-uk/" },
-];
+const guides = [{"tag": "LINK CHECKS", "title": "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives", "text": "Check a broken Hipobuy spreadsheet link, distinguish a missing listing from an unavailable option, and compare alternatives without ordering the wrong item.", "href": "/articles/hipobuy-spreadsheet-links-not-working/"}, {"tag": "HOODIE SIZING", "title": "Hipobuy Hoodie Size Guide: Measurements, Fit and QC", "text": "Compare hoodie chest width, body length, shoulders and sleeves with a garment you own, then use warehouse measurements to check your selected size.", "href": "/articles/hipobuy-hoodie-size-guide/"}, {"tag": "SNEAKER SIZING", "title": "Hipobuy Sneaker Sizing: EU, US and Insole Measurements", "text": "Separate shoe labels, foot length and insole measurements, then inspect both shoes before approving a warehouse order.", "href": "/articles/hipobuy-sneaker-size-guide/"}, {"tag": "JERSEY SIZING", "title": "Hipobuy Jersey Sizing: Player vs Fan Versions and QC", "text": "Compare jersey versions, garment measurements, names, numbers and badges before approving a football or basketball jersey for shipping.", "href": "/articles/hipobuy-jersey-size-guide/"}, {"tag": "QC", "title": "Read warehouse photos", "text": "Check variants, measurements, construction and visible damage in order.", "href": "/articles/hipobuy-qc-photos/"}, {"tag": "SHIPPING", "title": "Plan parcel weight and cost", "text": "Compare actual weight, volumetric weight and your own cost estimates.", "href": "/shipping/"}];
 
 const faqs = [
   { question: "What does Hipobuy say it does?", answer: "Its official app listings describe a shopping service for products from Chinese marketplaces, followed by international shipping." },
@@ -56,12 +49,12 @@ export default function Home() {
         <div className="hero-copy">
           <div className="eyebrow"><span /> Checked product directory · 2026 edition</div>
           <h1><span className="notranslate" data-no-translate>Hipobuy</span><br /><em>Spreadsheet</em> 2026.</h1>
-          <p className="hero-lede">Browse 60 checked product links, then use independent 2026 guides for Hipobuy QC photos, shipping cost, fees, reviews, tracking and country-specific parcel planning.</p>
+          <p className="hero-lede">Browse product links by category. Compare hoodie, sneaker and jersey sizing, review QC photos, and plan the full cost before ordering.</p>
           <form className="hero-search" action="https://cnfanshp.com/search.html" method="get" target="_blank">
             <label htmlFor="hero-query">Search the main catalogue</label>
             <div><span>⌕</span><input id="hero-query" name="keywords" required placeholder="Shoes, hoodie, product ID…" /><input type="hidden" name="channelid" value="2" /><button type="submit">Search ↗</button></div>
           </form>
-          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>11</b> practical articles</span><span><b>09 SEP</b> facts reviewed</span></div>
+          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>15</b> practical articles</span><span><b>07 OCT</b> guides updated</span></div>
         </div>
 
         <div className="hero-board" aria-label="Directory preview">
@@ -81,7 +74,7 @@ export default function Home() {
         <div className="section-heading"><h2>Start with a shelf,<br />not an endless scroll.</h2><p>Each route opens the matching live category. Confirm the current listing before making a decision.</p></div>
         <div className="category-image-grid">
           {categories.map((category) => (
-            <a href={category.href} target="_blank" rel="noopener noreferrer" key={category.name} aria-label={`Open ${category.name} on cnfanshp.com`}>
+            <a href={category.href} target="_blank" rel="noopener noreferrer" key={category.name} aria-label={`Open ${category.name} in the product catalogue`}>
               <span className="category-product"><img src={category.image} alt="" loading="lazy" /></span>
               <h3>{category.name}</h3><b aria-hidden="true">↗</b>
             </a>
@@ -112,7 +105,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="guide-section" id="guides">
+      <section className="guide-section" id="guides"><nav className="internal-category-links" aria-label="Product research categories"><a href="/categories/shoes/">Sneaker finds</a><a href="/categories/hoodies/">Hoodie finds</a><a href="/categories/jerseys/">Jersey finds</a><a href="/categories/">All categories</a></nav><a className="all-guides-link" href="/articles/">Browse all 15 guides</a>
         <div className="section-kicker">04 / RESEARCH NOTES</div>
         <div className="section-heading compact"><h2>Useful guides,<br />kept practical.</h2><p>Platform facts can change. Each guide separates what the sheet shows from what must be confirmed at checkout.</p></div>
         <div className="guide-grid">{guides.map((guide, index) => <article key={guide.title}><div><span>{guide.tag}</span><small>{String(index + 1).padStart(2,"0")}</small></div><h3>{guide.title}</h3><p>{guide.text}</p><a href={guide.href}>Read guide <b>→</b></a></article>)}</div>
@@ -124,7 +117,7 @@ export default function Home() {
         <div className="faq-card-grid">{faqs.map((faq, index) => <a href="/faq/" key={faq.question}><span>0{index + 1}</span><h3>{faq.question}</h3><p>{faq.answer}</p><b>Read all FAQs →</b></a>)}</div>
       </section>
 
-      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>FACTS REVIEWED · 09 SEP 2026</span></div></footer>
+      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>FACTS REVIEWED · 07 OCT 2026</span></div></footer>
     </main>
   );
 }
