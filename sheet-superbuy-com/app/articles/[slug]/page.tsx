@@ -18,6 +18,22 @@ const articleVisuals: Record<string, {
   caption: string;
   cells: { code: string; title: string; text: string }[];
 }> = {
+  "superbuy-spreadsheet-links-not-working": {
+    label: "LINK TROUBLESHOOTING", caption: "Record the error, verify the item and check the selected option before restarting your search.",
+    cells: [{code:"01",title:"Open",text:"Identify the exact loading or availability message."},{code:"02",title:"Match",text:"Compare the product, seller and selected option."},{code:"03",title:"Recover",text:"Research an alternative as a new purchase."}],
+  },
+  "superbuy-qc-measurements-detailed-photos": {
+    label: "MEASUREMENT REQUEST", caption: "A useful photograph shows the correct item, the measurement method and both ruler endpoints.",
+    cells: [{code:"01",title:"Identify",text:"Attach the request to the correct order and option."},{code:"02",title:"Measure",text:"Specify the starting point, endpoint and unit."},{code:"03",title:"Decide",text:"Record whether to ship, hold or request a remedy."}],
+  },
+  "superbuy-shoe-size-guide": {
+    label: "SHOE SIZE COMPARISON", caption: "Foot length, insole length and outsole length describe different measurements.",
+    cells: [{code:"01",title:"Foot",text:"Measure both feet using the same method."},{code:"02",title:"Chart",text:"Confirm what the seller's measurements mean."},{code:"03",title:"Warehouse",text:"Match both labels and request useful evidence."}],
+  },
+  "superbuy-hoodie-size-guide": {
+    label: "HOODIE SIZE COMPARISON", caption: "Compare a familiar garment, the seller's chart and the received item using the same method.",
+    cells: [{code:"01",title:"Chest",text:"Measure the garment flat without stretching."},{code:"02",title:"Length",text:"Use the same starting point and hem endpoint."},{code:"03",title:"Sleeves",text:"Interpret shoulder position and sleeve length together."}],
+  },
   "how-to-use-a-superbuy-spreadsheet": {
     label: "ROUTE CHECK · THREE EVIDENCE LAYERS",
     caption: "A spreadsheet starts discovery; the live listing and warehouse record support the purchase decision.",
@@ -136,7 +152,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: article.deck,
       url: canonical,
       publishedTime: article.date,
-      modifiedTime: article.date,
+      modifiedTime: "2026-10-07",
       authors: [`${SITE_NAME} editorial`],
       images: [
         {
@@ -155,6 +171,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = getArticle(slug);
   if (!article) notFound();
   const visual = articleVisuals[article.slug];
+  const relatedArticles = articles.filter((item) => item.slug !== article.slug).slice(0, 4);
   const articleUrl = `${SITE_URL}/articles/${article.slug}/`;
 
   const schema = {
@@ -171,7 +188,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         },
         image: [SOCIAL_IMAGE],
         datePublished: article.date,
-        dateModified: article.date,
+        dateModified: "2026-10-07",
+        inLanguage: "en",
         author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
         publisher: {
           "@type": "Organization",
@@ -212,6 +230,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <figcaption>{visual.caption}</figcaption>
             </figure>
           )}
+          <div className="article-actions">
+            <Link href="/spreadsheet/">Check a product link</Link>
+            <Link href="/qc-guide/">Inspect warehouse photos</Link>
+            <Link href="/shipping/">Estimate chargeable weight</Link>
+          </div>
           {article.sections.map((section) => (
             <section id={section.id} key={section.id}>
               <h2>{section.title}</h2>
@@ -219,6 +242,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
             </section>
           ))}
+          <section className="related-reading">
+            <h2>Continue your research</h2>
+            <ul>{relatedArticles.map((item) => <li key={item.slug}><Link href={`/articles/${item.slug}/`}>{item.title}</Link></li>)}</ul>
+            <p>For current products, browse the <Link href="/finds/">product index</Link> and compare the exact option before ordering.</p>
+          </section>
           <div className="callout">
             <strong>Keep researching</strong>
             <p>Use the live destination for current listing details, then return to the <Link href="/qc-guide/">QC checklist</Link> and <Link href="/shipping/">shipping calculator</Link> before submitting an international parcel.</p>

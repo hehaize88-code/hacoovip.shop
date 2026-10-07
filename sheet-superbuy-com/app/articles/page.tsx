@@ -9,20 +9,13 @@ import {
 } from "../seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Superbuy Link Verification & Route Check Guides",
+  title: "Superbuy Guides: Links, Sizing, QC & Shipping",
   description:
     "Independent Superbuy guides led by spreadsheet link verification, stale-route checks, warehouse evidence, parcel planning, and source-aware review methods.",
   path: "/articles/",
 });
 
-const prioritySlugs = [
-  "superbuy-shipping-to-usa",
-  "superbuy-shipping-to-uk",
-  "superbuy-shipping-to-netherlands",
-  "superbuy-shipping-to-canada",
-  "superbuy-shipping-to-australia",
-  "how-long-does-superbuy-shipping-take",
-];
+const prioritySlugs = ["superbuy-spreadsheet-links-not-working", "superbuy-qc-measurements-detailed-photos", "superbuy-shoe-size-guide", "superbuy-hoodie-size-guide"];
 const displayedArticles = [...articles].sort((left, right) => {
   const leftIndex = prioritySlugs.indexOf(left.slug);
   const rightIndex = prioritySlugs.indexOf(right.slug);
@@ -61,14 +54,14 @@ export default function ArticlesPage() {
       <main>
         <PageHero
           eyebrow="Research library"
-          title="Superbuy Link Verification and Route Check Guides"
+          title="Superbuy Guides: Links, Sizing, QC & Shipping"
           intro={`${articles.length} guides support the decisions after the click. Start with link verification, move through warehouse evidence and parcel cost, then use destination and review guides for the decision in front of you.`}
           aside="Official Superbuy statements are separated from independent recommendations and user-review themes. No article makes fixed promises about price, speed, quality, authenticity, or customs."
         />
         <section className="content-section shell">
           <div className="research-note research-note-wide">
-            <span>EDITORIAL STANDARD · UPDATED 8 SEPTEMBER 2026</span>
-            <p>Platform facts were checked against current Superbuy official pages. Destination-specific compliance guidance is dated and avoids fixed route, price, delivery, or customs promises.</p>
+            <span>EDITORIAL UPDATE · 7 OCTOBER 2026</span>
+            <p>Browse all guides below. New measurement examples are illustrative. Earlier destination-policy references retain their stated review dates; check current official rules before shipping.</p>
           </div>
           <div className="article-grid">
             {displayedArticles.map((article) => (

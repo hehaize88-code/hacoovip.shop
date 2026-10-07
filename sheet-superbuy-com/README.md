@@ -116,3 +116,30 @@ The timeout defaults can be overridden for a controlled canary with `SITES_INSTA
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Multilingual static publication (October 2026)
+
+`npm run export:pages-root` renders the English source, then runs
+`scripts/localize-static.mjs` and validates 154 HTML pages. The seven locales
+are English, French, German, Spanish, Italian, Indonesian and Simplified Chinese.
+Every locale contains the same 15 complete articles and seven core pages.
+
+The translations in `content/translations/*.json` are committed content, not
+a live translation dependency. The publisher refuses missing translations.
+After editing English copy, first run `CLOUDFLARE_PAGES_STATIC_EXPORT=1 npx next build`,
+then `node scripts/localize-static.mjs --extract`, update all six dictionaries,
+and run the complete export. Keep dictionary entries rather than generating
+English fallbacks. Native links preserve language and the current article.
+
+The static publisher removes the English React hydration payload to prevent
+translated content being replaced in the browser. `public/site-interactions.js`
+implements the weight calculator and analytics events on all locales.
+`main_site_click` distinguishes product, category and catalogue clicks;
+`search_submit` records usage without sending free-form search terms.
+The existing Google Analytics measurement ID is preserved.
+
+Source facts for the four October articles were checked against Superbuy's
+Shopping Agent User Guidance, APP User Guidance and official shipping calculator
+on 2026-10-07. Measurement scenarios are original editorial examples; they are
+not fit guarantees or claims of a universal Superbuy size chart. Existing dated
+destination-policy references retain their historical review dates.

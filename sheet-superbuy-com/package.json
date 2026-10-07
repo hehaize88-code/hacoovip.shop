@@ -9,13 +9,14 @@
     "install:ci": "bash scripts/install-ci.sh",
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vite",
     "build": "bash scripts/build.sh",
-    "build:pages": "CLOUDFLARE_PAGES_STATIC_EXPORT=1 next build",
+    "build:pages": "CLOUDFLARE_PAGES_STATIC_EXPORT=1 next build && node scripts/localize-static.mjs && node scripts/validate-locales.mjs",
     "export:pages-root": "bash scripts/export-pages-root.sh",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "validate:artifact": "bash scripts/validate-artifact.sh",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern _next",
-    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
+    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
+    "validate:locales": "node scripts/validate-locales.mjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
@@ -34,6 +35,7 @@
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
+    "node-html-parser": "7.0.1",
     "react-server-dom-webpack": "19.2.6",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",

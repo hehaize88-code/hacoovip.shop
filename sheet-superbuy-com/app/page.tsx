@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import Link from "next/link";
+import { articles } from "./article-data";
 import { MAIN_SITE, categories, products, quickFaqs } from "./site-data";
 import { SITE_URL, createPageMetadata } from "./seo";
 import {
@@ -14,9 +15,9 @@ import {
 } from "./components";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Superbuy Spreadsheet Link Checker 2026 | Verified Routes",
+  title: "Superbuy Spreadsheet: Link Checks & Product Finds",
   description:
-    "An independent Superbuy spreadsheet link checker for verified routes, stale-link review, primary-image matching, QC evidence, and dated route updates.",
+    "Browse Superbuy spreadsheet product links, troubleshoot unavailable listings, compare sizes and review QC photos before planning shipping.",
   path: "/",
 });
 
@@ -59,12 +60,8 @@ export default function Home() {
 
           <div className="hero-grid">
             <div className="hero-copy">
-              <div className="eyebrow"><span className="status-dot" /> Independent index · review build</div>
-              <h1 className="hero-verification-title">
-                <span>Verified Superbuy</span>
-                <span>Spreadsheet Link</span>
-                <span>Index.</span>
-              </h1>
+              <div className="eyebrow"><span className="status-dot" /> Independent product research</div>
+              <h1 className="hero-verification-title">Superbuy Spreadsheet: Links, Finds &amp; QC</h1>
             </div>
             <div className="hero-manifesto">
               <span className="manifesto-code">WHY / 01</span>
@@ -109,7 +106,7 @@ export default function Home() {
 
           <div className="trust-grid">
             <div><strong>6</strong><span>verified routes</span></div>
-            <div><strong>20K+</strong><span>source catalogue</span></div>
+            <div><strong>{articles.length}</strong><span>complete buying guides</span></div>
             <div><strong>USD</strong><span>clear price estimates</span></div>
             <div><strong>14 Aug</strong><span>latest route check</span></div>
           </div>
@@ -148,7 +145,7 @@ export default function Home() {
             <div className="section-toolbar">
               <SectionHeading
                 eyebrow="Recently checked"
-                title="Real routes, not a 10,000-item claim"
+                title="Explore product links by category"
                 body="These representative listings were checked for a working destination and a matching primary image. USD figures are estimates; confirm the live listing before ordering."
               />
               <Link className="text-link" href="/finds/">
@@ -204,7 +201,7 @@ export default function Home() {
         <section className="section dark-ink">
           <div className="shell guide-split">
             <div>
-              <p className="eyebrow invert">Built for useful long-tail searches</p>
+              <p className="eyebrow invert">Product research guides</p>
               <h2>Research that continues after the product click.</h2>
               <p>
                 The product index answers “what can I browse?” The independent
@@ -229,6 +226,17 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </section>
+
+        <section className="section shell latest-guides">
+          <SectionHeading eyebrow="Latest articles" title="Solve the next buying decision" body="Link troubleshooting, size comparisons and warehouse measurements, followed by destination-specific shipping guides." />
+          <div className="article-grid">
+            {articles.slice(0, 4).map((article) => <article className="article-card" key={article.slug}>
+              <span>{article.topic}</span><h2>{article.title}</h2><p>{article.deck}</p>
+              <Link className="text-link" href={`/articles/${article.slug}/`}>Read full guide <ArrowIcon /></Link>
+            </article>)}
+          </div>
+          <Link className="text-link all-guides-link" href="/articles/">Browse all articles <ArrowIcon /></Link>
         </section>
 
         <section className="section shell faq-preview">

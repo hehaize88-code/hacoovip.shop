@@ -1,0 +1,302 @@
+[
+  {
+    "slug": "superbuy-spreadsheet-links-not-working",
+    "topic": "Link troubleshooting",
+    "title": "Superbuy Spreadsheet Links Not Working: A Troubleshooting Guide",
+    "deck": "Identify a broken link, unavailable option or changed listing, then recover a useful product search without confusing a similar item with the original.",
+    "date": "2026-10-07",
+    "updated": "7 October 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "step-1",
+        "title": "Identify which part of the link failed",
+        "paragraphs": [
+          "A Superbuy spreadsheet link can fail at several different points. The spreadsheet row may contain an incomplete address, the destination may require a sign-in, a seller may have removed the listing, or the chosen size may no longer be available. Those situations need different responses. Start by recording what the page actually shows: a missing-page message, a loading error, a product with different pictures, or an unavailable option. A single failed opening does not establish that the product has been permanently removed.",
+          "Keep the original row before changing anything. Save its product label, destination address, thumbnail, displayed price and review date. This gives you a reference when the browser opens a different-looking page. If the link was copied from a message, check whether punctuation or a line break became part of the address. Do not submit payment while the identity of the product is unclear. Resolving the address is only the first check; you still need to inspect the live listing."
+        ]
+      },
+      {
+        "id": "step-2",
+        "title": "Separate a loading problem from an unavailable listing",
+        "paragraphs": [
+          "Try the original address once more in a normal browser tab and read the complete message. A temporary network error is different from a seller saying that an item has been removed. If the platform requests authentication, use the service's established sign-in process. Do not enter credentials into a lookalike domain reached through an unfamiliar redirect. When a service is unavailable, record the time and return later instead of repeatedly changing unrelated browser settings.",
+          "If a product page opens, check the item identifier and gallery. A page that loads successfully can still be the wrong destination. A redirect to a category or homepage is useful for restarting discovery, but it does not preserve the original item. Similarly, a marketplace search result containing a matching photograph is not proof of the same seller, material or stock. Describe the observation accurately: the destination opened, the product matched, or the original listing could not be confirmed."
+        ]
+      },
+      {
+        "id": "step-3",
+        "title": "Check the selected option before calling the link broken",
+        "paragraphs": [
+          "A listing can remain available while one colour or size disappears. Select the option you intended to order, then check the price and availability again. Some listings combine several products, accessories or deposits under one headline. The lowest displayed price may belong to a different option. Save the exact option name rather than relying on the thumbnail from the spreadsheet. If the label is ambiguous, ask for clarification through the current purchasing service before paying.",
+          "For example, imagine a row showing a black hoodie with an estimated price of 25 USD. The destination opens, but the black medium option is unavailable and only a different colour remains. The address is functioning; the required option is unavailable. Replacing the row with the cheapest available option would hide the real change. A useful note records the missing option and the date checked, allowing the next buyer to make a new decision instead of inheriting an incorrect assumption."
+        ]
+      },
+      {
+        "id": "step-4",
+        "title": "Recognise a changed or recycled product page",
+        "paragraphs": [
+          "Compare the current gallery with the saved thumbnail, then inspect the title, seller identity and option structure. Sellers may update photographs or options without changing the page address. Cosmetic changes do not automatically mean a different product, but a different model, construction or bundle deserves a fresh comparison. An old quality-control photograph cannot establish what a seller will send from the current listing. Treat historical evidence as a reference with a date, not a current inventory guarantee.",
+          "Use several identity clues together. The main image alone is weak evidence because photographs can be reused. Compare visible details, measurements, material descriptions, accessories and the exact option. If you cannot reconcile the differences, label the original match as unconfirmed. Avoid claiming that the nearest visually similar result is a replacement for the same item. This is especially important when sizing, compatibility or included components determine whether the purchase will be useful."
+        ]
+      },
+      {
+        "id": "step-5",
+        "title": "Recover the search using descriptive information",
+        "paragraphs": [
+          "Restart from the relevant product category and use a short descriptive search. Product type, colour, construction and a distinctive detail are often more useful than a long copied marketplace title. For a hoodie, begin with the garment type and a visible feature. For shoes, begin with the intended style and then compare the available size information. This site's search opens the linked catalogue; it does not repair an unavailable seller listing or certify a result as equivalent.",
+          "Keep two or three plausible alternatives and compare them using the same fields: current destination, selected option, measurements, gallery, item price and additional purchase costs. Do not let a lower price erase an unresolved difference in the product. If one candidate lacks measurements, mark that information as missing. If another includes an accessory that changes the price, record the bundle. The purpose of recovery is to find a well-supported new candidate, not to force every old row into a purchase."
+        ]
+      },
+      {
+        "id": "step-6",
+        "title": "Preserve useful product identifiers without guessing",
+        "paragraphs": [
+          "An item identifier can help you keep records, but it must remain attached to the correct marketplace and seller context. Do not insert a number into an unfamiliar URL format and assume that the resulting page is equivalent. Different platforms use different identifiers. A catalogue's internal page number may also differ from the seller's original product number. Save both when they are visible, with labels explaining which service each number belongs to.",
+          "Superbuy's shopping-agent guidance describes submitting a product link, choosing options and paying for the item and domestic delivery before warehouse inspection. If the platform cannot recognise a source, its current enquiry or expert-service options may be relevant. Availability and charges should be checked on the live service screen. A failed import does not justify bypassing a purchase restriction. Keep the source address and describe the exact message when requesting help so the service can assess the actual listing."
+        ]
+      },
+      {
+        "id": "step-7",
+        "title": "Recheck the complete purchase after finding an alternative",
+        "paragraphs": [
+          "Once you have a candidate, repeat the checks you would perform for a new order. Confirm the seller, selected size and colour, quantity, current item price, domestic delivery and any applicable service charges. Estimate international shipping separately. A replacement that is bulkier, heavier or more restricted can change the parcel budget even if its item price is similar. Do not copy the old shipping estimate without reconsidering the contents and packing needs.",
+          "Save the listing and size chart at purchase. When the item reaches the warehouse, compare the received option with that saved record rather than the old spreadsheet thumbnail. Review visible condition and request a targeted measurement if a decisive detail is missing. The official shopping-agent guide places warehouse inspection before international parcel submission. Use that stage to resolve a discrepancy while the available seller remedies can still be considered, subject to the current order terms."
+        ]
+      },
+      {
+        "id": "step-8",
+        "title": "Maintain a useful link-check record",
+        "paragraphs": [
+          "A compact record needs five fields: the original destination, the date checked, the observed status, the option checked and the next action. Use precise status labels such as available option, option unavailable, changed listing, temporary access problem or unresolved match. Keep a replacement candidate in a separate entry until it has been compared. This avoids silently turning one product recommendation into another and preserves the reason a user originally saved the row.",
+          "The practical sequence is to diagnose the opening error, confirm the product identity, inspect the required option and then decide whether to wait, enquire or search again. A recent check is still only a dated observation. Stock and seller pages can change after it. Review notes should help a reader reproduce your check, not imply guaranteed quality or permanent availability. Continue with the spreadsheet method, QC checklist and relevant size guide before committing to the new candidate."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-qc-measurements-detailed-photos",
+    "topic": "QC measurements",
+    "title": "Superbuy QC Photos: Request Measurements and Close-Ups",
+    "deck": "Turn an uncertain warehouse photo into a precise request: identify the order, define the measurement, show both ruler endpoints and record the decision.",
+    "date": "2026-10-07",
+    "updated": "7 October 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "step-1",
+        "title": "Start with the decision the photograph must support",
+        "paragraphs": [
+          "Superbuy QC photos are most useful when they answer a specific question about the item received at the warehouse. The official shopping-agent guide describes inspection and photographs after warehouse arrival. Those images can help you compare the received item with the selected option before international shipping. They do not establish every hidden property of a product. Begin with the decision you need to make: confirm a size, check a visible mark, count accessories or verify an option label.",
+          "Review the existing photographs before requesting more. One clear image may already show the required label or detail. If the missing information could change your decision, write it down in one sentence. For example, you may need to know whether the garment's flat chest width matches the seller's chart. That is a measurable question. Asking for a general quality check gives the inspector less guidance and may produce another image that leaves the same uncertainty unresolved."
+        ]
+      },
+      {
+        "id": "step-2",
+        "title": "Identify the order and the exact area",
+        "paragraphs": [
+          "Include the order reference, selected colour, selected size and the part of the item you want photographed. If several similar garments are stored together, identify the specific warehouse item. A request attached to the wrong hoodie is unhelpful even when the photograph is sharp. Compare the visible product and label with your order record before interpreting a measurement. Keep unrelated items out of the request so the result can be connected to one decision.",
+          "A useful request has four parts: item, question, method and next step. An illustrative request is: for the black hoodie in size medium, please photograph the chest width laid flat, from one underarm point to the other, with both ends of the ruler visible. Please confirm the current service charge before carrying out a paid service. This specifies the evidence without assuming that a particular photo option or fee is available for every order."
+        ]
+      },
+      {
+        "id": "step-3",
+        "title": "Define measurements using the same method on both items",
+        "paragraphs": [
+          "Measurements only help when the methods agree. Flat chest width is different from circumference. Garment length measured from a shoulder point is different from length measured down the back from the collar seam. A sleeve measured from the centre back includes a different distance from one measured from the shoulder seam. Read the seller's diagram first, then measure a comfortable garment using the same start and end points. Record the units alongside each number.",
+          "For an illustrative comparison, a familiar sweatshirt might measure 58 cm across the chest when laid flat. A seller's chart showing 116 cm may describe circumference, while a chart showing 58 cm may describe flat width. Do not compare those numbers directly until the definitions are known. Doubling a flat width gives an approximate geometric comparison, not a guarantee of fit; shape, stretch and construction still matter. A ruler image should resolve the definition rather than conceal it."
+        ]
+      },
+      {
+        "id": "step-4",
+        "title": "Request a ruler photograph that can be interpreted",
+        "paragraphs": [
+          "Ask for the item to lie naturally without stretching and for the entire relevant ruler span to appear in the photograph. Both the zero point and the endpoint should be visible. A close crop of a number alone can hide where the measurement began. Ask for the ruler to follow the intended straight measurement rather than a fold or diagonal. If the garment is folded, the image may establish neither full width nor full length.",
+          "Avoid demanding false precision. Soft fabric, curved surfaces, folds and camera perspective can affect a reading. If a small difference would determine whether you keep the item, request a clear repeat of the same method rather than inferring millimetres from a blurry image. Keep the seller's stated measurement tolerance with the comparison when one is provided. Do not invent a universal tolerance for all sellers or assume that a photographed label proves the actual dimensions."
+        ]
+      },
+      {
+        "id": "step-5",
+        "title": "Separate shoe measurements that answer different questions",
+        "paragraphs": [
+          "Foot length, removable insole length and outsole length describe different things. Foot length is measured from the heel to the longest toe. An insole includes the shape and usable internal space of a particular shoe. The outsole includes material beyond the foot and is not a substitute for either measurement. When asking for an insole photograph, first establish whether the insole can be removed without damage. A glued or shaped component may require a different approach.",
+          "For an available removable insole, request a straight view from heel to toe with the ruler endpoints visible. Compare it with an insole from a similar shoe that fits you, measured in the same way. Do not apply a fixed allowance to every shoe style. Toe shape, width, lining and intended use affect fit. If a narrow toe box is the concern, a length photograph alone may not answer it; ask for the relevant width information where the service can provide it."
+        ]
+      },
+      {
+        "id": "step-6",
+        "title": "Make close-ups useful by preserving context",
+        "paragraphs": [
+          "A close-up should be paired with a wider view when location matters. For a mark on a jacket, identify the panel and side, then ask for a detailed view of that specific area. For a printed design, a straight-on view helps with placement, while a close-up helps inspect the visible finish. Reflections and folds can create misleading impressions. Request a different angle when that would distinguish a surface mark from lighting rather than immediately concluding that the item is defective.",
+          "Countable details need countable evidence. If a set should include two straps and a pouch, ask for all included pieces in one photograph. For hardware, specify the clasp, zip or buckle you want to see. A photograph can document its appearance, but it cannot prove long-term strength or reliability. Electronics need similar limits: visible ports and model labels do not establish electrical safety or successful operation. Only rely on testing that was actually specified, performed and documented."
+        ]
+      },
+      {
+        "id": "step-7",
+        "title": "Check service conditions before placing the request",
+        "paragraphs": [
+          "Extra photographs and measurements may be offered through current warehouse service options, and charges or availability can vary. Read the live description and confirm what the service includes. A detailed-photo option should not be treated as a professional authentication or laboratory inspection. If the requested measurement would require disassembly or risk damaging the item, ask whether it can be performed safely. Do not assume that warehouse staff can open every sealed or specialised product.",
+          "Consider the timing of a correction. Warehouse storage and seller return eligibility are separate matters. Review an arrival promptly even when you plan to consolidate several purchases later. If a discrepancy appears, preserve the order details, seller chart and relevant photograph before contacting support. Ask which remedy is available for that exact order and what costs apply. A universal return deadline copied from another listing is not a reliable basis for waiting."
+        ]
+      },
+      {
+        "id": "step-8",
+        "title": "Record the result and make the next action explicit",
+        "paragraphs": [
+          "After receiving the evidence, record the observed measurement or condition, the method used and the decision. A short status such as ready to ship, hold for clarification or request a remedy is more useful than an unstructured folder of images. Keep the decision attached to the order reference so an unresolved item is not accidentally included in an international parcel. If the measurement remains unclear, state precisely what the repeat photograph needs to change.",
+          "Use additional photos selectively. The aim is to obtain enough evidence for a decision, not to maximise the image count. Match the order, define the question, specify the method, check the service terms and assess the result against your saved reference. Continue with the shoe or hoodie sizing guide for the relevant measurement method. Once the item is accepted, use the shipping planner to consider packed weight and dimensions as a separate step."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-shoe-size-guide",
+    "topic": "Shoe sizing",
+    "title": "Superbuy Shoe Size Guide: Foot Length, Insoles and QC Checks",
+    "deck": "Compare the seller’s size chart with repeatable measurements, distinguish foot length from insole length and use warehouse evidence to resolve the remaining uncertainty.",
+    "date": "2026-10-07",
+    "updated": "7 October 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "step-1",
+        "title": "Treat the listing's size chart as the starting point",
+        "paragraphs": [
+          "A Superbuy shoe size guide cannot supply one conversion chart that works for every seller and style. Superbuy is the purchasing and forwarding service; the product listing supplies the size options. Two shoes carrying the same regional size label can differ in internal shape and dimensions. Begin with the chart for the exact listing and selected version. Check whether its numbers refer to foot length, insole length or another measurement before deciding which size to select.",
+          "Save the chart before paying, including any diagram and seller notes. A screenshot helps preserve the information if the listing changes. Keep the selected colour, size and version with that record. A general chart copied from a different product is a weak substitute because the construction may differ. If the listing provides labels without meaningful measurements, recognise the uncertainty and ask for the relevant information instead of assuming that your usual label will produce the usual fit."
+        ]
+      },
+      {
+        "id": "step-2",
+        "title": "Measure both feet consistently",
+        "paragraphs": [
+          "Use a flat surface, paper and a ruler or tape that can be read clearly. Measure in the type of socks you expect to wear with the shoes. Place the heel consistently and mark the longest toe, then measure the distance in a straight line. Repeat the process for the other foot and record both results. A stable standing position and repeatable method are more useful than trying to extract a precise number from an angled photograph.",
+          "Repeat a reading if the marks are uncertain. Your longest toe may not be the big toe, and the two feet may not measure identically. Use the seller's instructions when they define how foot length should be measured and how it relates to the size selection. Do not automatically add a universal number of centimetres. Different charts already account for space differently. Adding an allowance to a chart that already includes it can lead to an unnecessary size increase."
+        ]
+      },
+      {
+        "id": "step-3",
+        "title": "Distinguish foot, insole and outsole length",
+        "paragraphs": [
+          "Foot length describes your foot from heel to longest toe. Insole length describes a component inside a shoe, while outsole length includes the external structure. These are not interchangeable measurements. A sole can extend beyond the usable space at the toe or heel. A shaped insole may also curve rather than lie flat. Before comparing any two numbers, check that they represent the same object measured along the same path.",
+          "Consider an illustrative case: your saved foot measurement is 26 cm and a listing shows 27 cm. That difference alone does not establish the correct size. The listing may be quoting an insole, a recommended foot length or a different unit convention. Read the label attached to the number. If the meaning is missing, ask for clarification. The example demonstrates a comparison problem; it is not a recommended fit allowance or a conversion rule for a particular shoe."
+        ]
+      },
+      {
+        "id": "step-4",
+        "title": "Use a comfortable pair as a second reference",
+        "paragraphs": [
+          "A pair that already fits can provide useful context when it is similar in shape and intended use. Record its size label and, if safely removable, measure the insole using the same method requested from the warehouse. Do not force out a glued component. Note the type of socks, the width at the forefoot and any pressure points. A familiar pair is most informative when you can explain why it fits, rather than relying on the label alone.",
+          "Keep the comparison realistic. A soft running shoe and a rigid formal shoe may not accommodate the foot in the same way. Thick lining, a narrow toe box or a different heel shape can change the experience even when the measured lengths are similar. If the reference pair is heavily worn, its materials may have changed. Treat its measurements as one piece of evidence alongside the exact seller chart, construction and your intended use."
+        ]
+      },
+      {
+        "id": "step-5",
+        "title": "Check width, toe shape and construction",
+        "paragraphs": [
+          "Length is only one part of fit. A shoe can be long enough while feeling tight across the forefoot or loose at the heel. Inspect the listing's visible shape and any width information. Compare the toe box, fastening system, lining and upper structure with shoes you know. Where the seller provides a width measurement, confirm how it was taken. A maximum external width may not describe the available internal space.",
+          "Avoid using warehouse photographs to make claims they cannot support. Images may show visible shape, labels and ruler measurements, but they cannot reproduce how the shoe feels on your foot. They also cannot guarantee cushioning, comfort or durability. If you require a specific fit feature and the listing does not establish it, request clarification before purchase. A larger size is not a universal solution to a width problem, since it also changes other dimensions."
+        ]
+      },
+      {
+        "id": "step-6",
+        "title": "Make the chosen size unambiguous at checkout",
+        "paragraphs": [
+          "Confirm the exact regional label and selected option in the order screen. Keep size labels separate from product identifiers and model numbers. When a listing has multiple versions or bundles, make sure the measurement chart applies to the selected one. Save the final option and current price. The lowest price shown on a product card may refer to a different option, and a size change can affect availability or the item price.",
+          "Superbuy's shopping-agent guidance separates product selection, purchase, warehouse inspection and international delivery. Use an order enquiry when essential sizing information remains ambiguous and check the current service conditions. Do not assume a note can override an unavailable option or create a return right that the seller does not offer. The safest order record describes what was selected and what the seller or service actually confirmed, with the date of that confirmation."
+        ]
+      },
+      {
+        "id": "step-7",
+        "title": "Use warehouse QC to check the received pair",
+        "paragraphs": [
+          "When warehouse images become available, first match the order and count the pair. Check both size labels, the colour, the visible version and any included accessories. Compare the shoes with the saved listing before studying small cosmetic details. A correct label does not prove the internal dimensions, but an incorrect label can reveal an obvious mismatch. Preserve a clear image of the discrepancy and ask about the available remedy before including the pair in a parcel.",
+          "If fit depends on a measurement, request a targeted ruler photograph where the service can provide it. State the object being measured and require both endpoints to be visible. For removable insoles, use the same heel-to-toe method as your reference pair. Avoid substituting an outsole photograph for an insole request without noticing the change. If the resulting image is unclear, ask for the missing evidence rather than making a confident fit judgement from an unreadable number."
+        ]
+      },
+      {
+        "id": "step-8",
+        "title": "Decide before making the international parcel",
+        "paragraphs": [
+          "Record whether the pair is accepted, held for clarification or awaiting a remedy. Seller return eligibility, domestic postage and service charges vary, so check the conditions of the actual order. Warehouse storage time should not be confused with the seller's correction window. A parcel submitted internationally can make a later size problem harder and more expensive to resolve. Keep the evidence and the decision attached to the pair's order reference.",
+          "Once sizing checks are complete, decide whether the retail box is necessary and assess its effect on parcel dimensions. Packaging decisions should protect the shoes while reflecting your priorities. Use the shipping planner for chargeable weight and the live service for an eligible freight quote. The complete sequence is repeatable: measure your feet, understand the listing chart, compare a suitable reference, select the exact option and review warehouse evidence. It reduces avoidable guessing without promising that a remote purchase will fit perfectly."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "superbuy-hoodie-size-guide",
+    "topic": "Hoodie sizing",
+    "title": "Superbuy Hoodie Size Guide: Measurements Before You Order",
+    "deck": "Use flat chest width, body length, shoulder and sleeve measurements to compare hoodie listings and check the received garment before international shipping.",
+    "date": "2026-10-07",
+    "updated": "7 October 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "step-1",
+        "title": "Choose the fit before choosing the size label",
+        "paragraphs": [
+          "A hoodie size label is a shortcut within a particular listing, not a universal measurement. Medium from one seller can differ substantially from medium in another design. Begin by deciding how you want the garment to fit: close to the body, relaxed over a T-shirt or roomy enough for another layer. Then select a hoodie or sweatshirt you already own that gives the relevant fit. Its measurements provide a more useful reference than a letter alone.",
+          "Compare similar constructions where possible. A cropped hoodie, a long sweatshirt and a dropped-shoulder design place their seams differently. A thick fabric can also occupy more internal space than a light fabric with similar external measurements. Your reference does not need to be identical, but you should know which differences matter. Record the fit you want in practical terms, such as sufficient body length or space for layering, rather than assuming that one size increase will solve every concern."
+        ]
+      },
+      {
+        "id": "step-2",
+        "title": "Read the seller's measurement diagram",
+        "paragraphs": [
+          "Save the size chart for the exact product and version. Check the units and the definition of each column. Chest may mean flat width or full circumference; length may begin at the shoulder or another point; sleeve may begin at the shoulder seam or centre back. A chart without a diagram can leave these definitions unclear. Ask for clarification when an ambiguous field would change the selected size instead of making two incompatible measurements look comparable.",
+          "Keep any stated production tolerance with the chart. Soft garments are not rigid objects, and a seller may explain how its measurements vary. Do not apply a universal tolerance that the listing has not supplied. If a measurement is critical for you, preserve the seller's explanation and plan to request a warehouse measurement using the same method. A detailed chart is useful only when its terms and the selected option remain attached to the order."
+        ]
+      },
+      {
+        "id": "step-3",
+        "title": "Measure flat chest width without stretching",
+        "paragraphs": [
+          "Lay your reference garment on a flat surface and arrange it naturally. Measure straight across from one underarm point to the other, without stretching the fabric or pulling the side seams outward. Record the reading as flat chest width and include the unit. If the seller uses circumference, establish that definition before comparing. Doubling a flat width may help interpret a chart, but it does not describe every aspect of internal fit or garment shape.",
+          "For an illustrative comparison, a reference hoodie may measure 60 cm across the chest and a candidate may list 62 cm using the same method. That suggests a wider garment under that measurement, but it does not guarantee the same shape or comfort. Check body length, shoulder position, sleeve and fabric information as well. The numbers are examples for understanding the method, not a recommended allowance or a rule that all hoodies should be purchased two centimetres wider."
+        ]
+      },
+      {
+        "id": "step-4",
+        "title": "Check body length independently of chest width",
+        "paragraphs": [
+          "Use the seller's starting point when measuring body length. A measurement from the highest shoulder point beside the neck is different from one beginning at the centre-back neckline. Keep the tape in a straight line to the specified hem point. Note whether ribbing is included and whether the garment is arranged naturally. If the hoodie has a curved or uneven hem, record the relevant front and back lengths separately when those dimensions matter to you.",
+          "A wider size may still be shorter than you expect if the design is cropped. Conversely, choosing a larger size to gain length may also increase width and change shoulder position. Compare the chart across adjacent sizes before selecting. If the length changes very little while chest width increases, a different cut may be more suitable. This is a design comparison, not a reason to assume that the seller's chart is wrong or that a label guarantees coverage."
+        ]
+      },
+      {
+        "id": "step-5",
+        "title": "Interpret shoulder and sleeve together",
+        "paragraphs": [
+          "A conventional shoulder measurement usually runs between shoulder seams, but dropped-shoulder and raglan designs require a different interpretation. A wider shoulder can move the sleeve seam further down the arm. As a result, the sleeve length measured from that seam may be shorter without producing a shorter overall reach. Read the diagram and compare the complete construction. Do not judge sleeve reach using a single number taken from a different seam arrangement.",
+          "If sleeve reach is critical, request a clearly defined measurement that can be repeated on your reference garment. This might follow the seller's shoulder-to-cuff method or another explicitly described path. Record whether the cuff is included and whether it is folded. A photograph should show the starting point, endpoint and garment arrangement. Avoid combining an unexplained shoulder width with an unexplained sleeve length to produce a precise result that the source measurements do not support."
+        ]
+      },
+      {
+        "id": "step-6",
+        "title": "Consider fabric, hem and hood details",
+        "paragraphs": [
+          "Read the material and construction information that the listing actually provides. Ribbed hems and cuffs may sit differently from loose finishes. Thick fleece, lining and structured panels can affect how the garment feels even when flat dimensions are similar. A zip-front design can also sit differently from a pullover. Treat material descriptions as seller information unless independently established; a warehouse image cannot reliably prove fibre composition, warmth or long-term durability.",
+          "Do not invent a shrinkage percentage from appearance or a generic fabric label. Washing behaviour depends on the actual fabric, construction and care instructions. If garment care is important to the decision, request the visible care label and keep its instructions. Photographs can show that a label exists, but they cannot guarantee the accuracy of every claim printed on it. Choose the size using the evidence available rather than relying on an unsupported expectation that washing will correct the fit."
+        ]
+      },
+      {
+        "id": "step-7",
+        "title": "Confirm the option and request targeted warehouse evidence",
+        "paragraphs": [
+          "Before paying, save the selected colour, size, version, price and chart. Superbuy's official shopping-agent guide describes warehouse inspection after the purchased item arrives. When photos appear, first check that the received garment matches the order. Confirm the size label and colour before assessing measurements or print placement. Several similar garments in storage can be confused, so keep the order reference visible in your own comparison record.",
+          "If the standard views do not answer a crucial fit question, request one targeted measurement through the current service options. An illustrative request is: please lay this hoodie flat without stretching, photograph chest width from underarm to underarm and show the complete ruler. Request body length separately with a stated starting point. Confirm availability and any charge on the live service screen. A vague request for more photos may add images without resolving the sizing uncertainty."
+        ]
+      },
+      {
+        "id": "step-8",
+        "title": "Compare the evidence and record a decision",
+        "paragraphs": [
+          "Put the reference measurement, seller chart and warehouse reading side by side, using the same units and method. Investigate an apparent difference before concluding that the wrong item arrived. Check the selected version, folded hem, ruler start and whether the garment was stretched. If a discrepancy remains important, preserve the relevant image and contact the service about the available remedy. Do not assume that every seller permits the same return or exchange period.",
+          "Record a clear status for the garment before building an international parcel. Keep accepted items separate from those awaiting clarification or a remedy. Once the size is accepted, consider the hoodie's packed bulk and the suitability of any compression or protective packaging. Use the shipping planner for that separate decision. A reliable sizing routine combines a familiar reference, an understood chart, an exact order option and useful warehouse evidence; it does not depend on guessing from small, medium or large."
+        ]
+      }
+    ]
+  }
+]

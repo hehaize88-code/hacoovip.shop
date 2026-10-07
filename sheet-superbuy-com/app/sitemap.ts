@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { articles } from "./article-data";
 
 const siteUrl = "https://sheet-superbuy.com";
-const originalLastModified = "2026-08-14";
-const seoRefreshDate = "2026-09-08";
+const originalLastModified = "2026-10-07";
+const seoRefreshDate = "2026-10-07";
 
 export const dynamic = "force-static";
 
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${siteUrl}/articles/${article.slug}/`,
-    lastModified: article.date,
+    lastModified: seoRefreshDate,
     changeFrequency: "monthly",
     priority: 0.8,
   }));

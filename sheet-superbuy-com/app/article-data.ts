@@ -1,3 +1,5 @@
+import newArticles from "./new-articles.json";
+
 export type ArticleSection = {
   id: string;
   title: string;
@@ -17,6 +19,7 @@ export type Article = {
 };
 
 export const articles: Article[] = [
+  ...newArticles,
   {
     slug: "superbuy-shipping-to-usa",
     topic: "USA parcel planning",
@@ -880,7 +883,7 @@ export const articles: Article[] = [
   {
     slug: "superbuy-review-2026",
     topic: "Independent review",
-    title: "Superbuy review 2026: what the platform offers and users actually report",
+    title: "Superbuy review 2026: Services, Costs and How to Assess Customer Feedback",
     deck: "A source-aware review of Superbuy's shopping-agent workflow, fees, QC photos, storage, shipping, support, and the recurring strengths and complaints found in independent user feedback.",
     date: "2026-08-14",
     updated: "14 August 2026",
@@ -891,7 +894,7 @@ export const articles: Article[] = [
         title: "How this Superbuy review was researched",
         paragraphs: [
           "A useful Superbuy review should not turn one successful parcel or one angry comment into a universal verdict. For this article, platform facts were checked against Superbuy's official homepage, fee structure, user guide, forwarding guide, help centre, and terms on 14 August 2026. User-experience themes were then compared across Trustpilot, Google Play, Apple's App Store, and the Superbuy community on Reddit. Those sources answer different questions and none represents every customer.",
-          "The Trustpilot profile showed just over one thousand reviews and a score in the mid-four-star range on the day checked. Trustpilot also labels the profile as one where the company invites customers to review, which matters when interpreting the sample. App-store reviews are attached to the mobile product rather than the full website journey. Reddit is useful for detailed parcel questions and problem reports, but active communities can over-represent new users, unusually good outcomes, and unusually difficult cases.",
+          "Customer ratings change and depend on the source and date. A review of the mobile app may describe interface behaviour rather than the complete purchasing and shipping service. A forum post may document one parcel in detail without representing other destinations. This guide does not present a new rating calculation or a representative customer survey. Check the date, order context, destination and evidence behind a review before applying it to your purchase.",
           "Accordingly, this review separates three layers. ‘Official fact’ means Superbuy currently states a service or rule. ‘User theme’ means a point appeared repeatedly across independent feedback, not that it will happen to everyone. ‘Editorial advice’ is our practical recommendation for reducing uncertainty. Prices, routes, customs notices, seller remedies, and app ratings can change, so a dated review should help you ask better questions rather than pretend to freeze the service in time.",
         ],
       },
@@ -906,25 +909,25 @@ export const articles: Article[] = [
       },
       {
         id: "positive-themes",
-        title: "What positive reviews mention most often",
+        title: "Evaluate positive customer feedback in context",
         paragraphs: [
-          "Across Trustpilot and the app stores, the most common positive themes are responsive customer service, a manageable ordering interface after the initial learning period, useful warehouse photographs, consolidation, and careful parcel packing. Many reviewers describe the agent as making Chinese marketplace purchases accessible when direct international checkout or forwarding would otherwise be difficult. These reports align with the core function Superbuy advertises: purchasing, warehousing, visual evidence, packing, and international handoff.",
-          "Packaging receives particular attention in user feedback. Positive reviewers frequently describe items arriving securely packed, and some App Store comments mention staff care with fragile goods. That is encouraging, but it is not a reason to ignore packaging choices. A sturdy parcel for one product may be unsuitable for another, and protection can increase chargeable weight. Buyers should still identify fragile areas, decide whether retail boxes matter, and compare optional reinforcement with the value and replaceability of the contents.",
-          "Support is another recurring strength, especially when buyers have questions about seller communication, stored items, or parcel choices. Google Play feedback also notes that the mobile app broadly mirrors the desktop account, which can be convenient for tracking. At the same time, some users mention a learning curve or language clarity issues. The useful conclusion is not that support is always instant; it is that a concise request with an order number, exact discrepancy, and desired evidence gives any service team a better chance of resolving the issue efficiently.",
+          "When reading positive customer reviews, look for specific evidence about communication, warehouse photographs, consolidation and packing. A useful account explains what was purchased, which service was used and what the reviewer could actually verify. General praise alone does not establish how another order will be handled. Compare the described service with the current official workflow and your own requirements, especially when a reviewer used a different product category or destination.",
+          "Assess packaging feedback through the product and packing choices involved. Photographs of an intact outer carton, the internal protection and the received item are more informative than a broad statement that packing was good. A sturdy parcel for one product may be unsuitable for another, and protection can increase chargeable weight. Identify fragile areas, decide whether retail boxes matter, and compare optional reinforcement with the value and replaceability of the contents.",
+          "For customer-service feedback, examine the actual request and its outcome. An account with an order chronology, the question asked and the eventual response is easier to interpret than a simple claim that support was fast or slow. The useful lesson for your own order is to provide an order reference, the exact discrepancy and the evidence needed. Do not treat another person’s response time as a service guarantee for your account.",
         ],
       },
       {
         id: "concerns",
-        title: "Recurring complaints and where expectations break",
+        title: "Investigate complaints using the order evidence",
         paragraphs: [
-          "Shipping cost is the most predictable source of disappointment. A product can look inexpensive while the final parcel is affected by domestic delivery, packaging, actual or volumetric weight, route rounding, surcharges, insurance, and destination charges. App-store and community posts regularly ask why freight is higher than expected or why only a small number of lines are available. That does not establish that a quote is wrong; it shows why estimating the packed parcel before treating an item as ‘cheap’ is essential.",
-          "Users also report frustration when tracking is quiet, a preferred route disappears, or a restricted item narrows the options. Superbuy's own guidance says international transport is performed by third-party logistics providers and is exposed to customs and uncontrollable risks. Route names, capacity, and policy can change. A review written around one person's transit time should therefore not promise that another parcel will be equally fast. Compare the current eligible lines and save the selected terms when you submit.",
-          "Quality control produces mixed expectations. Many users value the photos; some negative reviews say a defect was missed or that the remedy felt limited. Both can be true because standard photographs document visible condition without proving every hidden property. Superbuy's terms also describe limits for items that cannot be opened or professionally tested. Buyers who need a particular measurement or close-up should request that evidence before international shipping instead of assuming a general warehouse inspection answers a product-specific question.",
+          "Shipping-cost complaints need a complete cost breakdown. An inexpensive product can produce a larger final total once domestic delivery, packaging, actual or volumetric weight, route rounding, optional services and destination charges are included. Compare the estimate with the final packed dimensions and the chosen line before deciding what caused a difference. A complaint alone does not establish that a quote was wrong, but it can identify a question worth checking before payment.",
+          "A report about quiet tracking, a disappearing route or a restricted item should be assessed against its date and parcel conditions. Superbuy’s own guidance says international transport is performed by third-party providers and can be affected by customs and other risks. Route availability can change. Compare the current eligible lines and preserve their terms when submitting; do not turn one reviewer’s transit time into a promised delivery schedule.",
+          "For QC complaints, distinguish a visible discrepancy from a property that photographs could not establish. Compare the saved listing, ordered option, warehouse evidence and inspection service actually requested. Standard images do not prove every hidden property, and specialised products can have inspection limits. Request a particular measurement or close-up before international shipping if it is necessary for your decision, rather than assuming a general warehouse inspection answers every product-specific question.",
         ],
       },
       {
         id: "cost",
-        title: "Is Superbuy expensive? Use a complete comparison",
+        title: "Compare the complete Superbuy cost",
         paragraphs: [
           "There is no useful yes-or-no answer without the product, source, destination, packaging, and parcel. The cost has at least two stages: purchase to warehouse, then warehouse to destination. Superbuy says the first international payment is a deposit based on estimated weight, selected method, and destination; the final fee is calculated after parcel size and weight are verified, with a difference returned to the Superbuy account after shipment. A deposit and settled charge can therefore differ legitimately.",
           "For a pre-purchase comparison, include the product, Chinese domestic delivery, any source-specific fee, optional photos or services, expected international freight, payment or exchange costs, and a buffer for local tax, duty, brokerage, or handling. Then test low, expected, and high parcel scenarios. A decision that only works if a bulky item avoids volumetric billing and the cheapest route remains available is not a robust bargain.",
@@ -933,7 +936,7 @@ export const articles: Article[] = [
       },
       {
         id: "safety",
-        title: "Is Superbuy safe or legit? Ask a narrower question",
+        title: "Separate platform legitimacy from individual order risks",
         paragraphs: [
           "A review score cannot guarantee the safety of a future order, and ‘legit’ is too broad to answer every risk. The evidence reviewed shows an established service with official terms, public support channels, longstanding app listings, and a substantial volume of independent customer feedback. That supports the conclusion that Superbuy operates the shopping-agent and forwarding workflow it describes. It does not guarantee a seller's product, customs clearance, a fixed delivery date, or reimbursement outside the applicable terms.",
           "Separate the parties involved. The marketplace seller controls the product listing and domestic fulfilment. Superbuy performs the selected purchasing, warehouse, inspection, and parcel services. Third-party carriers transport the international parcel. Customs and destination authorities apply local rules. A positive experience with one party does not remove the risks controlled by another. Preserve evidence at each handoff: listing and variant, payment, warehouse images, measurements, packing choices, declared contents, route terms, and tracking.",
@@ -945,7 +948,7 @@ export const articles: Article[] = [
         title: "Who Superbuy is best suited to—and our verdict",
         paragraphs: [
           "Superbuy is best suited to buyers who want help purchasing from Chinese marketplaces, value warehouse photographs and consolidation, and are willing to make a separate parcel decision after items arrive. It is less suitable for someone expecting the product-card price to be a delivered total, guaranteed authenticity, professional testing of hidden qualities, a permanent cheapest route, or a fixed customs outcome. The workflow rewards buyers who keep records and ask specific questions.",
-          "Our evidence-based verdict is that Superbuy offers a mature and useful agent workflow, while the main risks remain cost uncertainty, seller quality, inspection limits, route eligibility, third-party transport, and destination customs. Independent reviews lean positive overall and repeatedly praise support, packaging, and convenience, but complaints about freight, tracking, route choice, and missed QC details are material enough to plan around. That balanced picture is more useful than a single star score.",
+          "The official workflow provides purchasing assistance, warehouse evidence and a separate international parcel decision. Its usefulness depends on whether those services address your needs and whether the total cost remains acceptable. Seller quality, inspection limits, route eligibility, third-party transport and destination requirements remain separate considerations. Read customer feedback for documented examples and questions to investigate, not as a numerical prediction of the outcome of your next order.",
           "Before ordering, verify the live listing and exact variant, estimate the complete journey, and save the seller evidence. At the warehouse, compare the three standard photos with the order and request one targeted measurement or close-up if needed. Before shipping, compare only eligible lines using packed data, read cover and customs terms, and keep the records until delivery. If you follow that sequence, user reviews become context for better decisions—not a substitute for your own evidence.",
         ],
         bullets: [

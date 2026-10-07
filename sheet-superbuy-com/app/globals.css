@@ -754,3 +754,48 @@ body { top: 0 !important; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* October 2026: readable multilingual pages and compact research cards. */
+html { overflow-x: clip; }
+body { min-width: 0; }
+.language-options a { display:grid; grid-template-columns:32px minmax(0,1fr); gap:8px; padding:14px; border-bottom:1px solid var(--line); text-decoration:none; color:var(--ink); font-size:13px; }
+.language-options a[aria-current="page"] { background:#e9efff; box-shadow:inset 3px 0 var(--cobalt-deep); }
+.language-options a:hover { background:#eef1f8; }
+.language-panel { max-width:calc(100vw - 24px); }
+.hero h1.hero-verification-title { font-size:clamp(40px,6vw,78px); line-height:1.08; letter-spacing:-.04em; overflow-wrap:anywhere; }
+.page-hero h1, .article-body h1 { font-size:clamp(32px,5vw,64px); line-height:1.12; letter-spacing:-.035em; overflow-wrap:anywhere; }
+.article-body h2, .section-heading h2 { line-height:1.18; overflow-wrap:anywhere; }
+.article-card h2 { margin:24px 0 14px; font-size:25px; line-height:1.18; letter-spacing:-.025em; overflow-wrap:anywhere; }
+.article-card { min-height:300px; }
+.article-card .text-link { padding-top:18px; }
+.article-body p, .article-body li { font-size:16px; line-height:1.8; }
+.article-actions { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
+.article-actions a { border:1px solid var(--line); padding:10px 12px; color:var(--cobalt-deep); font-size:13px; line-height:1.45; }
+.related-reading a, .all-guides-link { color:var(--cobalt-deep); text-decoration:underline; text-underline-offset:3px; }
+.latest-guides .article-grid { margin-top:24px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.all-guides-link { display:inline-flex; margin-top:20px; }
+:lang(zh-CN) h1, :lang(zh-CN) h2, :lang(zh-CN) h3 { line-height:1.4; letter-spacing:0; text-transform:none; }
+.product-image-wrap { aspect-ratio:1; }
+@media(max-width:680px) {
+ .article-grid, .latest-guides .article-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .article-card { min-height:240px; padding:14px 10px; }
+ .article-card h2 { margin:16px 0 10px; font-size:18px; }
+ .article-card p { font-size:12px; line-height:1.55; }
+ .article-card .text-link { font-size:12px; }
+ .article-body h1 { font-size:32px; } .article-body h2 { font-size:26px; }
+ .page-hero h1 { font-size:34px; } .page-hero p { font-size:14px; line-height:1.65; }
+ .section-heading > p:last-child { font-size:12px; }
+ .product-card > strong, .section-tint .product-card > strong { font-size:12px; line-height:1.4; min-height:34px; }
+ .section-tint .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .product-meta, .section-tint .product-meta { font-size:10px; }
+ .section-tint .product-bottom b { font-size:13px; }
+ .faq-list summary { font-size:14px; } .faq-list details p { font-size:13px; }
+ .research-note > p { font-size:13px; }
+ .trust-grid span, .category-copy small { font-size:10px; }
+ .process-list p { font-size:12px; } .process-list h3 { font-size:14px; }
+ .footer-grid p, .footer-grid a:not(.brand) { font-size:12px; }
+ .calculator-results { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .calculator-results > div { padding:10px 8px; }
+ .calculator-results strong { font-size:18px; }
+ .calculator-results span { font-size:11px; }
+}

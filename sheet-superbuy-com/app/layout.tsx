@@ -6,9 +6,9 @@ import {
 } from "./seo";
 import { AnalyticsEvents } from "./analytics-events";
 
-const siteTitle = "Superbuy Spreadsheet Link Checker 2026 | Verified Routes";
+const siteTitle = "Superbuy Spreadsheet: Link Checks & Product Finds";
 const siteDescription =
-  "An independent Superbuy spreadsheet link checker for verified routes, stale-link review, primary-image matching, QC evidence, and dated route updates.";
+  "Browse Superbuy spreadsheet product links, troubleshoot unavailable listings, compare sizes and review QC photos before planning shipping.";
 const isCloudflarePagesStaticExport =
   process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1" ||
   process.env.CF_PAGES === "1";
