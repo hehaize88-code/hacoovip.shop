@@ -1,0 +1,94 @@
+{
+  "slug": "usfans-order-received-not-in-warehouse",
+  "lang": "it",
+  "title": "USFans Received ma non in magazzino: controlli e stato Stored",
+  "description": "Received e Stored indicano fasi diverse su USFans. Verifica riferimenti, lavorazione e quantità prima di organizzare la spedizione internazionale.",
+  "intro": "Un ordine segnato Received può non essere ancora visibile nella pagina Warehouse: ricezione e stoccaggio completato sono fasi distinte. La guida ufficiale spiega che dopo l’arrivo gli articoli vengono pesati e controllati, poi diventano disponibili in Warehouse quando lo stato passa a Stored. Inizia dal riferimento e dallo stato esatti. Received non conferma che un pacco internazionale sia già preparato o spedito.",
+  "sections": [
+    {
+      "heading": "Comprendi la sequenza ufficiale da Received a Stored",
+      "paragraphs": [
+        "La spiegazione USFans è precisa: Received indica che gli articoli sono arrivati al magazzino. Seguono pesatura e ispezione, quindi conferma e stoccaggio. Stored è lo stato collegato alla visualizzazione nella pagina Warehouse e alla possibilità di organizzare la spedizione. È una descrizione della sequenza, non una scadenza garantita per la lavorazione del singolo ordine.",
+        "Mantieni questa distinzione leggendo il tracking. Consegna interna del venditore, lavorazione in magazzino e pacco internazionale sono parti differenti del viaggio. La parola ricevuto può comparire anche nei registri dei corrieri: annota sempre quale sistema la mostra. La consegna indicata dal corriere interno e lo stato dell’ordine USFans vanno confrontati, non considerati prove intercambiabili."
+      ]
+    },
+    {
+      "heading": "Identifica l’ordine prima di controllare il magazzino",
+      "paragraphs": [
+        "Apri l’ordine specifico e verifica riferimento, taglia, colore e quantità. Se hai più articoli simili, usa il numero d’ordine invece della miniatura per individuare quello da controllare. Le miniature possono essere immagini generiche dell’annuncio e risultare uguali per taglie o ordini diversi.",
+        "Annota data e ora dell’ultimo aggiornamento mostrato. Poi apri Warehouse nello stesso account e controlla eventuali filtri o ricerche visibili che potrebbero nascondere l’articolo. Se esiste una vista con tutti gli articoli, usala per verificare l’elenco completo. I controlli dell’interfaccia possono cambiare: segui le etichette attuali, non una vecchia schermata."
+      ]
+    },
+    {
+      "heading": "Distingui l’attesa di lavorazione da una discordanza",
+      "paragraphs": [
+        "Se l’ordine dice ancora Received, la sequenza ufficiale permette di interpretarlo come lavorazione non ancora indicata come completa. Se dice Stored ma manca l’articolo nella vista Warehouse corrispondente, i registri discordano e serve una verifica più mirata. Non descrivere queste situazioni nello stesso modo all’assistenza.",
+        "Distingui anche una pagina non aggiornata da un articolo ancora assente dopo un normale ricaricamento. Salva lo stato prima di ricaricare. Non ordinare ripetutamente lo stesso prodotto e non comprare subito un sostituto per far comparire qualcosa in magazzino. Una domanda sulla visualizzazione o sulla lavorazione non dimostra che l’acquisto originale sia perduto."
+      ]
+    },
+    {
+      "heading": "Verifica quantità ed eventuali arrivi separati",
+      "paragraphs": [
+        "Più articoli comprati insieme possono avere registri distinti; un articolo visibile non rappresenta automaticamente tutte le quantità ordinate. Confronta il numero acquistato con quello mostrato nel registro interessato. Se una spedizione del venditore contiene più articoli, conserva il riferimento della consegna insieme ai singoli numeri d’ordine quando disponibili.",
+        "Considera un arrivo separato una possibilità da verificare, non una spiegazione da inventare. Chiedi quali articoli siano coperti dal registro Received e quali risultino ancora in attesa. È utile soprattutto con colori o taglie simili. Un elenco preciso permette di chiarire una differenza di quantità senza confonderla con la lavorazione di un altro prodotto."
+      ]
+    },
+    {
+      "heading": "Prepara le prove durante la verifica dello stato",
+      "paragraphs": [
+        "Salva numero d’ordine, link del venditore, opzione scelta, quantità, stato visibile, ora dell’aggiornamento ed eventuale riferimento della consegna interna. Conserva i messaggi già collegati all’ordine. Una breve cronologia aiuta a spiegare il passaggio da pagamento a spedizione del venditore, poi a ricezione senza aggiornamento Stored o senza articolo corrispondente.",
+        "Non aggiungere un tracking internazionale se non esiste ancora un pacco in uscita. Un riferimento estraneo può indirizzare l’indagine verso la fase sbagliata. Non presumere neppure che la schermata di un acquisto precedente dimostri condizioni o arrivo dell’articolo attuale. Ogni prova deve riferirsi all’ordine da verificare.",
+        "Per un registro pratico, usa una riga per evento con data, sistema che lo mostra e dicitura esatta. Aggiungi una colonna per il dubbio ancora da risolvere. Così distingui fatti e interpretazioni ed eviti di trattare una consegna stimata come un tempo confermato di lavorazione del magazzino."
+      ]
+    },
+    {
+      "heading": "Fai una domanda precisa quando i registri discordano",
+      "paragraphs": [
+        "Per un ordine ancora Received, chiedi se pesatura e ispezione siano terminate e se serva un’azione da parte tua. Per uno già Stored, chiedi di verificare il collegamento fra quell’ordine e il registro Warehouse. Indica riferimento e stato visibile invece di descrivere l’intero account come non funzionante.",
+        "Se temi un ritardo, chiedi la situazione attuale e una previsione riferita al caso. La spiegazione ufficiale di Received non stabilisce un numero universale di ore dopo il quale ogni articolo sia in ritardo. Le esperienze pubbliche possono riguardare date, quantità e condizioni differenti; non sostituiscono una risposta sulla fase di lavorazione del tuo articolo."
+      ]
+    },
+    {
+      "heading": "Controlla l’articolo quando compare",
+      "paragraphs": [
+        "Quando l’articolo appare in Warehouse, confrontalo con l’ordine salvato invece di aggiungerlo subito alla spedizione internazionale. Verifica etichetta, colore, quantità e componenti inclusi usando registro e fotografie disponibili. Esamina le condizioni visibili e individua le viste mancanti che potrebbero cambiare la decisione. Presenza in magazzino e accettazione del prodotto sono verifiche distinte.",
+        "La guida QC generale propone un ordine di controllo ripetibile. Se serve una misura o un primo piano, il servizio ufficiale Detailed Photo descrive richieste di immagini mirate. Controlla le opzioni attuali prima di acquistarle. Più foto servono solo se rispondono a un dubbio concreto; non garantiscono autenticità, durata, comodità o prestazioni non verificabili visivamente."
+      ]
+    },
+    {
+      "heading": "Separa la spedizione UK dalla disponibilità in magazzino",
+      "paragraphs": [
+        "Una destinazione nel Regno Unito non modifica il significato di Received e Stored. La spedizione internazionale è una decisione successiva che riguarda articoli conservati, destinatario, imballaggio, linea ammessa e prezzo attuale. Vedere un articolo in Warehouse non significa che un pacco UK sia prenotato o che il conteggio dei giorni di consegna sia iniziato.",
+        "Prima di inviare il pacco, controlla ogni articolo selezionato e confronta il piano con le informazioni di spedizione attuali. Se un ordine è irrisolto, valuta se attendere o spedire solo ciò che è pronto dopo aver capito gli effetti su costi e registri. Non selezionare un articolo poco chiaro soltanto per far sembrare completo l’elenco."
+      ]
+    },
+    {
+      "heading": "Chiudi la verifica con un risultato confermato",
+      "paragraphs": [
+        "Dopo la risposta dell’assistenza, ricontrolla ordine e Warehouse e annota l’esito. Conferma che siano comparsi articolo e quantità corretti, che lo stato sia coerente e che le immagini appartengano allo stesso ordine. Conserva la risposta fino al completamento delle fasi successive della spedizione.",
+        "Questa verifica finale trasforma una preoccupazione generica in un risultato documentato. Se la discordanza resta, rispondi nello stesso caso con le prove aggiornate invece di aprire richieste contraddittorie. Lo scopo non è forzare un’etichetta: è stabilire dove si trovi l’articolo, quali lavorazioni siano complete e quale azione sia ora disponibile."
+      ]
+    }
+  ],
+  "image": "/products/crewneck.webp",
+  "related": [
+    "usfans-tracking-to-uk",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-qc-photos-guide"
+  ],
+  "sources": [
+    {
+      "label": "USFans Help Center: My Order Shows Received — Why Cannot I See My Items in My Warehouse?",
+      "url": "https://www.usfans.com/help/HCON_STATIC_010",
+      "checked": "2026-10-07"
+    },
+    {
+      "label": "USFans Help Center: USFans Detailed Photo",
+      "url": "https://www.usfans.com/help/HCON_STATIC_059",
+      "checked": "2026-10-07"
+    }
+  ],
+  "new": true,
+  "published": "2026-10-07",
+  "modified": "2026-10-07"
+}
