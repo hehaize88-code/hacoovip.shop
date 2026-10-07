@@ -1,0 +1,17 @@
+{
+  "site": "https://usfanss.es",
+  "release": "multilingual-15-2026-10-07",
+  "source_commit": "ddf4356046ce106bf5eec84751fdeb9f0c197f10",
+  "verified_export_commit": "f43039744fc24c9ffba0494b597191ca8e7aa308",
+  "sitemap_pages": 168,
+  "articles_per_language": {
+    "es": 15,
+    "en": 15,
+    "fr": 15,
+    "de": 15,
+    "it": 15,
+    "pl": 15,
+    "pt": 15,
+    "zh-cn": 15
+  }
+}
