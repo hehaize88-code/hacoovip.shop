@@ -1,0 +1,43 @@
+name: Publish usfanss.store verified static site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-usfanss-store-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-usfanss-store-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out only usfanss.store
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout: usfanss-store
+      - name: Validate the complete static export
+        working-directory: usfanss-store
+        run: python3 scripts/validate-static.py
+      - name: Publish this site's validated export
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          printf 'Validated static release from %s\n' "$GITHUB_SHA" > usfanss-store/.pages-deploy
+          git add -- usfanss-store/.pages-deploy
+          git diff --cached --name-only | while IFS= read -r file; do
+            case "$file" in usfanss-store/*) ;; *) echo "Unexpected path: $file"; exit 1;; esac
+          done
+          git commit -m "Publish usfanss.store validated multilingual static export"
+          git pull --rebase origin main
+          git push origin HEAD:main
