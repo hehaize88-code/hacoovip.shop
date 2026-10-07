@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { dictionaries, Lang } from "../i18n";
-import { spanishOnlyArticleSlugs } from "../data";
+import { articleLanguages } from "../articleRoutes";
 
 type LanguageContextValue = {
   lang: Lang;
@@ -26,7 +26,7 @@ const localizePath = (path: string, lang: Lang) => {
   return `/${lang === "zh" ? "zh-cn" : lang}${normalized}`.replace(/\/{2,}/g, "/");
 };
 
-const isSpanishOnlyArticle = (path: string) => spanishOnlyArticleSlugs.some(slug => path === `/articles/${slug}/`);
+const isUnavailableArticle = (path: string, lang: Lang) => { const slug = path.match(/^\/articles\/([^/]+)\/?$/)?.[1]; return slug ? !articleLanguages(slug).includes(lang) : false; };
 
 export function LanguageProvider({ children, initialLang = "es" }: { children: React.ReactNode; initialLang?: Lang }) {
   const [lang, setLangState] = useState<Lang>(initialLang);
@@ -38,7 +38,7 @@ export function LanguageProvider({ children, initialLang = "es" }: { children: R
     document.documentElement.lang = next === "zh" ? "zh-CN" : next;
     if (query && supported.has(query)) {
       const basePath = window.location.pathname.replace(/^\/(en|fr|de|it|pl|pt|zh-cn)(?=\/|$)/, "") || "/";
-      window.location.replace(localizePath(basePath, query));
+      window.location.replace(localizePath(isUnavailableArticle(basePath,query) ? "/articles/" : basePath, query));
       return;
     }
     const timer = window.setTimeout(() => setLangState(next), 0);
@@ -49,7 +49,7 @@ export function LanguageProvider({ children, initialLang = "es" }: { children: R
     setLangState(next);
     window.localStorage.setItem("usfans-language", next);
     const basePath = window.location.pathname.replace(/^\/(en|fr|de|it|pl|pt|zh-cn)(?=\/|$)/, "") || "/";
-    const nextPath = next !== "es" && isSpanishOnlyArticle(basePath) ? "/articles/" : basePath;
+    const nextPath = isUnavailableArticle(basePath,next) ? "/articles/" : basePath;
     window.location.assign(`${localizePath(nextPath, next)}${window.location.hash}`);
   };
 

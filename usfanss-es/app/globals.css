@@ -50,3 +50,5 @@
  .article-heading p,.article-takeaway p{font-size:15px;line-height:1.7}.article-toc{padding:18px;font-size:14px}.article-body>section{gap:12px}
  .article-related a{font-size:14px;line-height:1.6}.hero-main>div b{font-size:14px;line-height:1.25}
 }
+
+@media(min-width:601px){.article-grid>a{min-height:270px;padding:25px}.article-grid h2{font-size:27px;line-height:1.2;margin:26px 0 14px}.article-grid p{font-size:14px;line-height:1.65}.article-grid strong{padding-top:20px}}

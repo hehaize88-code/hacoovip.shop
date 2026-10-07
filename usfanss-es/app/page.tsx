@@ -2,11 +2,13 @@
 
 import { SiteShell } from "./components/SiteShell";
 import { useLanguage } from "./components/LanguageProvider";
+import { getArticles } from "./articleRegistry";
 import { articleSlugs, catalogBase, categorySlugs, productUrl, products, productCategory } from "./data";
 
 export default function Home() {
   const { d, lang, withLang } = useLanguage();
-  const featuredArticleIndexes = [11, 12, 13, 14, 2, 1, 0, 3].filter(index => d.articles[index]).slice(0, 6);
+  const articles = getArticles(lang);
+  const featuredArticles = [11,12,13,14,2,1,0,3].map(index=>articles.find(article=>article.slug===articleSlugs[index])).filter(article=>!!article).slice(0,6);
   return <SiteShell>
     <section className="hero">
       <div className="hero-copy">
@@ -46,7 +48,7 @@ export default function Home() {
 
     <section className="home-articles">
       <div className="section-title"><div><span>{d.pages.articles[0]}</span><h2>{d.pages.articles[1]}</h2></div><p>{d.pages.articles[2]}</p></div>
-      <div className="article-grid">{featuredArticleIndexes.map(index => { const article = d.articles[index]; return <a key={article[1]} href={withLang(`/articles/${articleSlugs[index]}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>; })}</div>
+      <div className="article-grid">{featuredArticles.map(entry => { const article = entry.card; return <a key={article[1]} href={withLang(`/articles/${entry.slug}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>; })}</div>
       <a className="all-articles-link" href={withLang("/articles/")}>{d.nav[3]} →</a>
     </section>
 

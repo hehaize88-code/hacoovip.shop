@@ -30,3 +30,7 @@ Static production build and TypeScript check for the static rendering entrypoint
 ## Release record
 
 Source and generated files committed in e5e10fee5ebf193f38b101f341eeeb483ae97f41. The complete tree matches the locally validated tree a8296afdd6d457cc576f4333c92ce7883eacea20. A second read of all 25 automation records confirmed unchanged prompts, schedules and enabled states, including the explicit usfanss.es exclusion. Production deployment must be verified against the live site; source submission alone does not establish publication.
+
+## English article correction
+
+The user's screenshot showed /en/articles/ with four guides. Four complete English versions of the new October guides were added after that report. Article lookup now uses explicit slugs and locale availability, rather than assuming every language has identical array positions. The English hub has eight articles, the Spanish hub has fifteen, and both homepages feature six. New guide language switching preserves the article between English and Spanish; hreflang only lists existing translations. The static sitemap contains 95 pages. CI verifies all four new articles in both languages and requires at least eight English hub links. Desktop article cards have reduced empty space.

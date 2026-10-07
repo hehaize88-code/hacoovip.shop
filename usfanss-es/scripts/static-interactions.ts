@@ -1,6 +1,5 @@
-import { spanishOnlyArticleSlugs } from "../app/articleRoutes";
+import { articleLanguages } from "../app/articleRoutes";
 const prefixes: Record<string, string> = { es: "", en: "en", fr: "fr", de: "de", it: "it", pl: "pl", pt: "pt", zh: "zh-cn" };
-const spanishOnlyArticles = new Set(spanishOnlyArticleSlugs);
 
 const basePath = window.location.pathname.replace(/^\/(en|fr|de|it|pl|pt|zh-cn)(?=\/|$)/, "") || "/";
 
@@ -9,7 +8,7 @@ document.querySelectorAll<HTMLSelectElement>("select").forEach(select => {
   select.addEventListener("change", () => {
     const prefix = prefixes[select.value];
     const slug = basePath.match(/^\/articles\/([^/]+)\/$/)?.[1];
-    const safeBasePath = prefix && slug && spanishOnlyArticles.has(slug) ? "/articles/" : basePath;
+    const safeBasePath = slug && !articleLanguages(slug).includes(select.value) ? "/articles/" : basePath;
     const target = prefix ? `/${prefix}${safeBasePath}`.replace(/\/{2,}/g, "/") : safeBasePath;
     window.location.assign(`${target}${window.location.hash}`);
   });

@@ -6,7 +6,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../app/page";
 import { ArticlePage, ArticlesPage, CategoriesPage, DiscoverPage, FaqPage, HowPage } from "../app/components/IndependentPages";
 import { LanguageProvider } from "../app/components/LanguageProvider";
-import { articleSlugs, spanishOnlyArticleSlugs } from "../app/data";
+import { articleSlugs, articleLanguages } from "../app/articleRoutes";
+import { getArticle } from "../app/articleRegistry";
 import { dictionaries, Lang } from "../app/i18n";
 
 const root = process.cwd();
@@ -37,7 +38,7 @@ const baseRoutes: BaseRoute[] = [
   ...articleSlugs.map(slug => ({ path: `/articles/${slug}/`, key: "article" as const, slug, content: <ArticlePage slug={slug} /> })),
 ];
 
-const isSpanishOnlyRoute = (route: BaseRoute) => route.key === "article" && spanishOnlyArticleSlugs.includes(route.slug as (typeof spanishOnlyArticleSlugs)[number]);
+const languagesFor = (route: BaseRoute) => (route.slug ? articleLanguages(route.slug) : Object.keys(languageConfig)) as Lang[];
 const publishedFor = (route: BaseRoute) => route.slug ? articlePublished(route.slug) : originalChecked;
 const modifiedFor = (route: BaseRoute, lang: Lang) => route.slug ? articleModified(route.slug,lang) : "2026-10-07";
 
@@ -53,8 +54,9 @@ const metadataFor = (route: BaseRoute, lang: Lang) => {
   const d = dictionaries[lang];
   if (route.key === "home") return { title: languageConfig[lang].homeTitle, description: languageConfig[lang].homeDescription };
   if (route.key === "article") {
-    const index = Math.max(0, articleSlugs.indexOf(route.slug ?? ""));
-    return { title: d.articles[index][1], description: d.articles[index][2] };
+    const article = getArticle(lang,route.slug ?? "");
+    if (!article) throw new Error(`Missing localized article: ${lang}/${route.slug}`);
+    return { title: article.card[1], description: article.card[2] };
   }
   const page = d.pages[route.key];
   return { title: `${page[1]} | USFans`, description: page[2] };
@@ -85,11 +87,11 @@ const analytics = `<script async src="https://www.googletagmanager.com/gtag/js?i
 const sitemap: string[] = [];
 for (const lang of Object.keys(languageConfig) as Lang[]) {
   for (const route of baseRoutes) {
-    if (lang !== "es" && isSpanishOnlyRoute(route)) continue;
+    if (!languagesFor(route).includes(lang)) continue;
     const path = localizedPath(route.path, lang);
     const canonical = `${site}${path}`;
     const meta = metadataFor(route, lang);
-    const alternateLanguages = isSpanishOnlyRoute(route) ? (["es"] as Lang[]) : (Object.keys(languageConfig) as Lang[]);
+    const alternateLanguages = languagesFor(route);
     const alternates = alternateLanguages.map(other => `<link rel="alternate" hreflang="${languageConfig[other].hreflang}" href="${site}${localizedPath(route.path, other)}"/>`).join("");
     const body = renderToStaticMarkup(<LanguageProvider initialLang={lang}>{route.content}</LanguageProvider>);
     const schema = structuredDataFor(route, lang, canonical, meta.title, meta.description);
