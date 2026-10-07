@@ -1,6 +1,9 @@
+import newArticles from "../../content/new-articles.json";
 import type { ArticleSource, RelatedGuide, Section } from "./article-content";
 
 export type PriorityArticle = {
+  published?:string;
+  updated?:string;
   slug:string;
   tag:string;
   title:string;
@@ -89,7 +92,7 @@ export const priorityArticles:PriorityArticle[]=[
   {
     slug:"hipobuy-shipping-france",
     tag:"FRANCE SHIPPING",
-    title:"Hipobuy Shipping to France (2026): Price per KG, Calculator & Customs",
+    title:"Hipobuy Shipping to France: Costs, Customs & Parcel Planning",
     description:"Calculate Hipobuy shipping to France using live parcel dimensions, chargeable weight, French VAT and current EU customs rules.",
     dek:"What French buyers should enter, compare and verify before treating a shipping estimate as a real budget.",
     sources:[hipobuySource,euVatSource,euLowValueSource,{label:"French Customs · online purchases",href:"https://www.douane.gouv.fr/fiche/nos-conseils-avant-dacheter-sur-internet"}],
@@ -139,7 +142,7 @@ export const priorityArticles:PriorityArticle[]=[
         "Build an expected scenario with realistic packing and a route you would accept, plus a high case for larger volume or fewer eligible lines. If the item value is low but the parcel is large, calculate delivered cost per item before ordering. Bulky low-value goods can become uneconomic even when their marketplace price looks attractive."
       ]},
       {heading:"Check the 2026 customs position",paragraphs:[
-        "German Customs and the European Commission publish the current rules for internet orders from non-EU countries. Import VAT and a customs declaration can apply, and from July 2026 a temporary three-euro customs duty per item applies to qualifying low-value distance-sale consignments under the EU measure. Scope and declaration method matter, so use the official guidance rather than a pre-2026 blog post.",
+        "German Customs and the European Commission publish current rules for non-EU online orders. Import VAT and a customs declaration can apply. Since 1 July 2026, a temporary €3 duty applies to qualifying low-value consignments by tariff classification, not by the number of physical units. Check the applicable declaration and destination rules before estimating the charge.",
         "Keep descriptions, quantities, values and supporting invoices accurate. Confirm whether VAT was collected during purchase or remains payable on import. A postal or courier handling charge may appear separately from government taxes. These figures belong in the landed-cost plan even though they are not part of the Hipobuy shipping quote."
       ]},
       {heading:"Pack for chargeable weight",paragraphs:[
@@ -297,5 +300,7 @@ export const priorityArticles:PriorityArticle[]=[
     ]
   }
 ];
+
+priorityArticles.push(...newArticles);
 
 export function getPriorityArticle(slug:string){return priorityArticles.find(article=>article.slug===slug);}

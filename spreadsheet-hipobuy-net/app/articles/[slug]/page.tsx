@@ -22,5 +22,5 @@ export default async function PriorityArticlePage({params}:{params:Promise<{slug
   const {slug}=await params;
   const article=getPriorityArticle(slug);
   if(!article) notFound();
-  return <ArticleContent {...article} published="2026-09-09" updated="2026-09-09"/>;
+  return <ArticleContent {...article} published={article.published ?? "2026-09-09"} updated="2026-10-07"/>;
 }

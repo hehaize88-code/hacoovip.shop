@@ -21,11 +21,11 @@ export function useCurrentLanguage() {
 
   useEffect(() => {
     const fromUrl = new URLSearchParams(window.location.search).get("lang") as Locale | null;
-    const saved = window.localStorage.getItem("hipobuy-language") as Locale | null;
+    const pathLanguage = window.location.pathname.split("/")[1] as Locale;
     const next = localeOptions.some((item) => item.code === fromUrl)
       ? fromUrl!
-      : localeOptions.some((item) => item.code === saved)
-        ? saved!
+      : localeOptions.some((item) => item.code === pathLanguage)
+        ? pathLanguage
         : "en";
     const update = window.setTimeout(() => setLanguage(next), 0);
     document.documentElement.lang = next === "zh" ? "zh-CN" : next;
@@ -39,10 +39,11 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
   const language = useCurrentLanguage();
 
   function changeLanguage(next: Locale) {
-    window.localStorage.setItem("hipobuy-language", next);
+    try { window.localStorage.setItem("hipobuy-language", next); } catch {}
     const url = new URL(window.location.href);
-    if (next === "en") url.searchParams.delete("lang");
-    else url.searchParams.set("lang", next);
+    const path=url.pathname.replace(/^\/(de|es|fr|it|pl|pt|zh)(?=\/|$)/, "") || "/";
+    url.pathname=(next === "en" ? "" : `/${next}`)+path;
+    url.searchParams.delete("lang");
     window.location.assign(url.toString());
   }
 
