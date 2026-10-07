@@ -1,0 +1,78 @@
+name: Publish usfanss.es static site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "usfanss-es/**"
+      - ".github/workflows/publish-usfanss-es-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-usfanss-es-pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out only usfanss.es
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout: usfanss-es
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+          cache: npm
+          cache-dependency-path: usfanss-es/package-lock.json
+
+      - name: Install static build dependencies
+        working-directory: usfanss-es
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Build existing articles and pages
+        working-directory: usfanss-es
+        run: npm run build:static
+
+      - name: Verify published article files
+        working-directory: usfanss-es
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          import assert from 'node:assert/strict';
+          const slugs = ['usfans-comisiones-coste-total', 'usfans-guia-tallas', 'usfans-rehearsal-peso-volumetrico', 'usfans-link-no-funciona'];
+          const sitemap = readFileSync('sitemap.xml', 'utf8');
+          for (const slug of slugs) {
+            const path = '/articles/' + slug + '/';
+            const html = readFileSync('articles/' + slug + '/index.html', 'utf8');
+            assert.ok(html.includes('class="article-toc"'), 'Missing complete article: ' + slug);
+            assert.ok(html.includes('href="https://usfanss.es' + path + '"'), 'Missing canonical: ' + slug);
+            assert.ok(sitemap.includes('https://usfanss.es' + path), 'Missing sitemap entry: ' + slug);
+          }
+          NODE
+
+      - name: Push this site's generated files
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          printf 'Generated from %s\n' "$GITHUB_SHA" > usfanss-es/.pages-deploy
+          git add -A -- usfanss-es
+          if git diff --cached --quiet; then
+            echo "Static output is already current."
+            exit 0
+          fi
+          git diff --cached --name-only | while IFS= read -r file; do
+            case "$file" in usfanss-es/*) ;; *) echo "Unexpected path: $file"; exit 1;; esac
+          done
+          git commit -m "Publish usfanss.es verified static export"
+          git pull --rebase origin main
+          git push origin HEAD:main
