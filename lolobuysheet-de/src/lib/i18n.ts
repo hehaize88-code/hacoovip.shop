@@ -1,3 +1,4 @@
+import {editorialSlugs} from './editorial';
 export const locales = ['de', 'en', 'es', 'fr', 'it', 'pl'] as const;
 export type Locale = typeof locales[number];
 export const names: Record<Locale, string> = { de: 'Deutsch', en: 'English', es: 'Español', fr: 'Français', it: 'Italiano', pl: 'Polski' };
@@ -10,7 +11,7 @@ guide|Kaufguide|Buying guide|Guía de compra|Guide d’achat|Guida all’acquist
 qc|QC-Fotos|QC photos|Fotos QC|Photos QC|Foto QC|Zdjęcia QC
 shipping|Versand|Shipping|Envíos|Livraison|Spedizione|Wysyłka
 faq|FAQ|FAQ|Preguntas frecuentes|FAQ|FAQ|FAQ
-articles|Ratgeber|Articles|Artículos|Articles|Articoli|Artykuły
+articles|Artikel|Articles|Artículos|Articles|Articoli|Artykuły
 register|Zu LoloBuy ↗|Visit LoloBuy ↗|Ir a LoloBuy ↗|Voir LoloBuy ↗|Vai a LoloBuy ↗|Przejdź do LoloBuy ↗
 language|Sprache|Language|Idioma|Langue|Lingua|Język
 menu|Menü|Menu|Menú|Menu|Menu|Menu
@@ -86,4 +87,4 @@ jersey|Trikots|Jerseys|Camisetas deportivas|Maillots|Maglie sportive|Koszulki sp
 export function categoryName(lang: Locale, slug: string, original: string) { const row = categoryRows.split('\n').find(x => x.split('|')[0] === slug); return row ? row.split('|')[locales.indexOf(lang) + 1] : original; }
 export function money(n: number | null, lang: Locale) { return n === null ? ui[lang].noPrice : new Intl.NumberFormat(lang, { style: 'currency', currency: 'USD' }).format(n); }
 export const infoPages = ['guide', 'qc', 'shipping', 'faq', 'articles', 'about', 'privacy', 'image-search'];
-export const articleSlugs = ['source-links', 'size-check', 'price-check', 'photo-check'];
+export const articleSlugs = editorialSlugs;

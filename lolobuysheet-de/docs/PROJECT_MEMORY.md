@@ -23,9 +23,9 @@
 - 首页读取最新 8 个真实商品预览；目录 20 件/页，手机双列，无本地假搜索。
 - 6 种完整界面和编辑内容语言：DE 默认 `/`、EN `/en/`、ES `/es/`、FR `/fr/`、IT `/it/`、PL `/pl/`。
 - 切换语言保留同页、关键词、分类、排序、页码；原商品名保持上游原值。
-- canonical、HTML lang、互指 hreflang/x-default、robots、78 条稳定页面 sitemap 已实现。
+- canonical、HTML lang、互指 hreflang/x-default、robots、114 条稳定页面 sitemap 已实现。
 - 搜索、筛选、排序、分页参数页 noindex；不生成重复的关键词入口页，不伪造库存/评分/Offer。
-- 8 个本地化 FAQ，购买/QC/运输指南，以及原始商品 ID、尺码、价格、图片检查四篇文章。政策段落依据官方公开帮助核对。
+- 24 个本地化 FAQ、购买/QC/运输指南，以及 10 篇原创文章（六语言共 60 页）。内容和政策差异依据官方公开帮助核对，详见 docs/CONTENT_RESEARCH_2026-10-19.md。
 - 现阶段分类从 `/categories/` 进入 `/spreadsheet/?category=…`，组合页不收录；独立分类 SEO 页为后续优化项。
 
 ## 唯一数据层：src/lib/source.ts
@@ -141,3 +141,21 @@
 - 原 chatgpt.site 预览已由用户截图确认也被拦截，不再作为可用预览链接。该站身份保留，不重复创建。
 - **尚未绑定 lolobuysheet.de / www 或修改 DNS。** 用户看过设计并确认后才进行正式域名部署。
 - 搜图与 QC 图库仍未接通，需 cnfanshm 的可验证接口或源码；现有图片是普通商品图。
+
+
+## 2026-10-19 内容扩展进行中
+
+用户要求 20+ FAQ、明确的文章导航入口和 10 篇精品文章。当前平台仍为 LoloBuy；按要求调研 Kakobuy 官方 FAQ 的选题结构，但 LoloBuy 政策仅依据 LoloBuy 官方资料。已直接读取官方购买、QC、尺寸、仓储、包装、重量、订单状态、取消退款和售后申请帮助页。发现仓储 90/180 天及售后期限冲突，禁止将某个数字写成无条件承诺。具体证据、关键词和文章映射记录在 docs/CONTENT_RESEARCH_2026-10-19.md。
+
+
+## 2026-10-19 FAQ 与文章扩展
+
+- 顶部文章入口从德语 Ratgeber 改为清晰的 Artikel，排在 Spreadsheet 之后并突出显示；其他语言保留相应的 Articles / Artículos / Articles / Articoli / Artykuły。
+- FAQ 从 8 扩展为每语言 24 条；每条附来源/详情及相关文章，覆盖注册、手动订单、两阶段付款、Received/In Stock、跟踪、QC 限制、封装、补充照片、仓储、合包、包装、体积重、运费修正、退货及退款去向。
+- 10 篇主题：spreadsheet-guide、first-order、source-links、photo-check、shipping-cost、order-tracking、warehouse-guide、size-check、price-check、returns-guide。保留原有 4 个 URL，全面扩写并新增 6 篇；六语言正文分别维护于 src/lib/editorial/{locale}.ts，禁止英文回退或重复短文替代。
+- 独立 /articles/ 中心展示 10 篇与摘要、阅读时长。每篇有 5 节正文、目录、具体检查清单、官方来源、核查日期、3 篇相关推荐以及 Article JSON-LD。首页只展示 4 篇。
+- 按用户指定调研 Kakobuy 官方问题结构，LoloBuy 条款仅以 LoloBuy 官方为依据。关键词优先级按搜索结果与意图，未编造搜索量/难度或第一手测评。证据和选题映射：docs/CONTENT_RESEARCH_2026-10-19.md。
+- 官方仓储资料存在 90 / 180 天差异，售后申请页存在 7 / 45 天与 3 天提醒冲突。FAQ 和文章明确说明并建议立即处理、核对具体订单，不承诺统一期限。计费示例标为假设演算，未复制官方重量文档中的错误示例。
+- 已完成 Astro check：0 errors / warnings / hints。临时构建成功，109 个静态 HTML、114 个 sitemap URL。构建产物校验：60 篇文章及 144 条 FAQ、每篇 5 节和 3 个相关推荐、6 语言及 x-default、canonical、预览 noindex 和内链目标全部通过。
+- 商品读取层、支付入口和品牌资源未变，仍只使用 cnfanshm.com。搜图/QC 图库仍待接口。正式域名和 DNS 未变。
+- 本次提交将通过现有 Workers Builds 更新同一临时预览，部署后浏览器验证结果写入独立项目记忆文件。不要把代码构建通过等同于部署完成。

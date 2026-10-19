@@ -8,7 +8,7 @@ const t=ui[lang];
 const site=Astro.site || new URL('https://lolobuysheet.de');
 const isPreview=import.meta.env.PUBLIC_SITE_PREVIEW === 'true';
 const canonical=new URL(href(lang,page),site).href;
-const nav=[['catalog','spreadsheet'],['categories','categories'],['guide','guide'],['qc','qc'],['shipping','shipping'],['faq','faq'],['articles','articles']];
+const nav=[['catalog','spreadsheet'],['articles','articles'],['categories','categories'],['guide','guide'],['qc','qc'],['shipping','shipping'],['faq','faq']];
 ---
 <!doctype html>
 <html lang={lang}>
@@ -27,7 +27,7 @@ const nav=[['catalog','spreadsheet'],['categories','categories'],['guide','guide
 <a class="skip" href="#main">{t.skip}</a>
 <header class="site-header"><div class="header-inner">
 <a class="brand" href={href(lang)} aria-label="LoloBuy Sheet"><span class="logo-wrap"><img src="/logo.svg" width="128" height="30" alt="LoloBuy" /></span><span class="brand-caption">SHEET</span></a>
-<nav aria-label={t.menu}>{nav.map(([key,p])=><a href={href(lang,p)} aria-current={page===p?'page':undefined}>{t[key]}</a>)}</nav>
+<nav aria-label={t.menu}>{nav.map(([key,p])=><a class:list={{'article-nav-link':key==='articles'}} href={href(lang,p)} aria-current={page===p||page.startsWith(`${p}/`)?'page':undefined}>{t[key]}</a>)}</nav>
 <div class="header-actions"><details class="language"><summary aria-label={t.language}><span aria-hidden="true">◎</span> {lang.toUpperCase()} <span aria-hidden="true">⌄</span></summary><div class="language-menu">{locales.map(l=><a data-locale-link href={href(l,page)} lang={l} hreflang={l} aria-current={lang===l?'true':undefined}>{names[l]}<span>{l.toUpperCase()}</span></a>)}</div></details><a class="register" href={REGISTER_URL} rel="nofollow noopener noreferrer" target="_blank">{t.register}</a></div>
 </div></header>
 <main id="main"><slot /></main>

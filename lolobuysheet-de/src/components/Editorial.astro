@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {href,ui,type Locale} from '../lib/i18n';
+import {getEditorial,editorialUi,reviewedAt} from '../lib/editorial';
+interface Props{lang:Locale;slug:string;}
+const {lang,slug}=Astro.props;const entry=getEditorial(lang,slug)!;const e=editorialUi[lang];const t=ui[lang];
+const page=`articles/${slug}`;const url=new URL(href(lang,page),Astro.site).href;
+const schema={'@context':'https://schema.org','@type':'Article',headline:entry.title,description:entry.summary,inLanguage:lang,datePublished:reviewedAt,dateModified:reviewedAt,mainEntityOfPage:url,author:{'@type':'Organization',name:e.by},publisher:{'@type':'Organization',name:'LoloBuy Sheet'},citation:entry.sources.map(s=>s.url)};
+---
+<Layout lang={lang} title={`${entry.title} | LoloBuy Sheet`} description={entry.summary} page={page}>
+<script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g,'\\u003c')}/>
+<div class="shell editorial-shell">
+<nav class="breadcrumb" aria-label={t.menu}><a href={href(lang)}>{t.home}</a><span>/</span><a href={href(lang,'articles')}>{t.articles}</a></nav>
+<header class="editorial-header"><p class="eyebrow">LOLOBUY / {t.editorial}</p><h1>{entry.title}</h1><p class="lead">{entry.summary}</p><div class="editorial-meta"><span>{e.by}</span><time datetime={reviewedAt}>{t.checked}</time><span>{entry.minutes} {e.minutes}</span></div></header>
+<div class="editorial-layout"><aside class="article-toc"><p>{e.toc}</p><ol>{entry.sections.map(s=><li><a href={`#${s.id}`}>{s.heading}</a></li>)}</ol><a class="toc-browse" href={href(lang,'spreadsheet')}>{e.browse} ↗</a></aside>
+<article class="editorial-body">{entry.sections.map(s=><section id={s.id}><h2>{s.heading}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.bullets.length>0&&<ul class="editorial-checklist">{s.bullets.map(b=><li>{b}</li>)}</ul>}</section>)}
+<section class="editorial-sources"><h2>{e.sources}</h2><p>{e.note}</p><ul>{entry.sources.map(s=><li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title} ↗</a></li>)}</ul></section>
+</article></div>
+<section class="related-articles"><div class="section-heading"><h2>{e.related}</h2><a href={href(lang,'articles')}>{e.allArticles} ↗</a></div><div class="article-grid">{entry.related.map(s=>{const a=getEditorial(lang,s)!;return <a class="article-card" href={href(lang,`articles/${s}`)}><span class="article-number">{a.minutes} {e.minutes}</span><h3>{a.title}</h3><span>{t.read} ↗</span></a>})}</div></section>
+</div>
+</Layout>
