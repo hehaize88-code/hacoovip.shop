@@ -108,3 +108,12 @@
 - 外部访问验收受限：检查浏览器显示 Cloudflare “Sorry, you have been blocked”，刷新一次仍被拦截；HTTP 检查返回 403。Sites 状态为 active/public，发布状态 succeeded，错误日志为空。不能宣称公开页面功能已验收，也不能断言用户浏览器同样被拦截。
 - 搜图和 QC 图库仍待 cnfanshm 接口；没有新增数据库、商品快照或第三方商品源。
 - 下一步先收集用户预览反馈；确认后同步必要改动到 GitHub 原目录，再正式部署/绑定 Cloudflare。若用户也遇到访问拦截，按托管平台边缘访问问题处理，不把它当作商品源 429 或重复部署应用。
+
+
+## 2026-10-19 用户确认预览被拦截
+
+- 已读取用户截图 image(20261019-082757).png，确认显示 chatgpt.site 的 Cloudflare “Sorry, you have been blocked”。这次确认为用户也无法访问，旧预览链接不可作为可用交付。
+- 再次核对 Sites：active、public、版本 1。应用日志只有内部页面截图请求 GET / 返回 200；这不代表外部访问已通过。现有工具没有该平台边缘防火墙的管理权限，没有重复发布同一构建或尝试绕过拦截。
+- 已准备同一代码版本的临时替代预览，正式域名 lolobuysheet.de 仍待用户确认效果后部署/绑定。
+- Cloudflare 连接的首个只读接口发现调用返回 UNAUTHORIZED / “This app connection requires reauthentication. Reconnect the app and try again.”。尚未读取账户清单，也未创建任何用户 Cloudflare 资源或更改 DNS。
+- 当前下一步：用户重新连接 Cloudflare 后，核实账户和现有资源，发布独立临时预览地址，验证首页、搜索、排序、商品详情和移动布局实际可访问后才交付链接。暂未取得新的可用公开 URL。
