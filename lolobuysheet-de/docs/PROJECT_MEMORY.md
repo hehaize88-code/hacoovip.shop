@@ -14,7 +14,7 @@
 - 注册入口保留 **https://www.lolobuy.com/index**，不附加邀请码。
 - 购买链接必须复现用户的微店样本：
   `https://www.lolobuy.com/productDetail/7711153142?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7711153142`
-- 本次交付源码到 GitHub；没有创建 Cloudflare 资源、绑定域名或改 DNS。提交状态与公开上线状态分开记录。
+- 源码已交付 GitHub，临时 Cloudflare Worker 已发布；正式域名尚未绑定，DNS 未修改。详情见末尾最新部署记录。
 
 ## 已实施的架构
 
@@ -81,9 +81,9 @@
 - 浏览器：德语指南与完整英文正文切换，保留 `?q=Shorts&page=2`；临时使用真实上游取数渲染的主页/目录/详情检查手机布局、无横向溢出、图集切换、原图加载。
 - 临时 QA HTML、复制的构建资源和样本页面已删除，不纳入仓库。
 
-**未完成生产 SSR 端到端验收：** 内部预览 Worker 对 cnfanshm 的直接 fetch 返回环境内部错误；同环境 Node 读取与 Node 预渲染取数成功。不能因此宣称正式 Worker 已能稳定访问上游。GitHub 交付可审阅源代码，首次真实部署后必须重新验收所有动态路径。
+**早期内部预览限制（后续 Cloudflare 临时站已通过浏览器 SSR 验收）：** 内部预览 Worker 对 cnfanshm 的直接 fetch 返回环境内部错误；同环境 Node 读取与 Node 预渲染取数成功。不能因此宣称正式 Worker 已能稳定访问上游。GitHub 交付可审阅源代码，首次真实部署后必须重新验收所有动态路径。
 
-尚未上线正式域名；没有购买域名、修改 DNS、创建 Worker 或设置账户凭证。GitHub Pages 是静态宿主，不能直接运行当前 SSR；README 提供 Workers 根目录和构建/发布命令。
+尚未上线正式域名；已创建独立临时 Worker，未购买域名、修改 DNS 或创建新账户凭证。GitHub Pages 是静态宿主，不能直接运行当前 SSR；README 提供 Workers 根目录和构建/发布命令。
 
 ## 继续工作顺序
 
@@ -123,3 +123,21 @@
 ## 2026-10-19 浏览器临时预览授权与实现
 
 用户已明确允许通过浏览器创建 LoloBuy 临时预览。Cloudflare API 失效，但已通过用户浏览器访问同一账户和现有 GitHub 连接。已准备在 main 的 lolobuysheet-de 目录使用 npm run build:preview 构建独立 Worker lolobuysheet-preview，部署 npx wrangler deploy；正式域名绑定仍待用户确认效果。临时构建只切换 origin、Worker 名称和禁止收录标记，保留单一 cnfanshm 数据源和 SSR。实际发布及访问验证结果随后补充。
+
+
+## 2026-10-19 Cloudflare 临时预览已发布并验证
+
+- 用户明确授权通过浏览器创建 LoloBuy 临时预览；复用已登录 Cloudflare 账户与已有 GitHub/Workers Builds 连接，没有新建账号凭证。
+- **当前可用预览：https://lolobuysheet-preview.hehaize88.workers.dev/**；英文：https://lolobuysheet-preview.hehaize88.workers.dev/en/。
+- Worker：lolobuysheet-preview；账户子域 hehaize88.workers.dev；GitHub main / lolobuysheet-de。
+- 代码提交：073f2fa0a5a6f54bba5c0e76c3db1e4baeabed35。
+- 构建命令 npm run build:preview，部署 npx wrangler deploy，NODE_VERSION=24。
+- Cloudflare 构建 fffc1e95-2b02-4a01-8fbf-2c24044b46ce 成功；部署版本 195662f0-f7f5-4c86-9b72-57092435abca，2026-10-19 16:47 Asia/Shanghai。
+- 浏览器真实公开验收：德语首页显示 cnfanshm 最新 8 件商品和 11 分类；搜索 Shorts 显示 20 个匹配商品；详情 6079 显示原商品 ID 7777809164、约 USD 21.90、4 张真实图集，切换第二图成功，购买 URL 正确。
+- 德语详情切换英文仍在 /en/product/6079/。手机 390 像素检查首页及目录，页面无横向溢出；Logo 与首屏商品图加载正常，目录 20 件。
+- 鞋类价格升序经过真实浏览器提交验证，缺价项显示待确认，有价项从 USD 0.48 递增至本页 5.10。未重新做全部功能或所有语言穷举测试。
+- 预览全站 noindex/nofollow、robots Disallow；正式 npm run build 仍保留 lolobuysheet.de canonical 和正常收录标记，已构建检查。仅 ASSETS 绑定，没有 KV/D1/R2、数据库或商品快照。
+- 执行环境的脚本 HTTP 请求仍返回 403；本次以用户连接浏览器的成功页面与实际操作作为访问验证，未绕过平台安全限制。
+- 原 chatgpt.site 预览已由用户截图确认也被拦截，不再作为可用预览链接。该站身份保留，不重复创建。
+- **尚未绑定 lolobuysheet.de / www 或修改 DNS。** 用户看过设计并确认后才进行正式域名部署。
+- 搜图与 QC 图库仍未接通，需 cnfanshm 的可验证接口或源码；现有图片是普通商品图。
