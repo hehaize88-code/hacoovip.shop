@@ -1,6 +1,7 @@
 import {locales,ui,href,type Locale} from './i18n';
 import {article} from './content';
 import {extraFaqs} from './faq-extra';
+import {officialFaqs} from './faq-official';
 import {helpUrl} from './editorial';
 const questions=`Was ist ein LoloBuy Spreadsheet?|What is a LoloBuy spreadsheet?|¿Qué es un spreadsheet LoloBuy?|Qu’est-ce qu’un spreadsheet LoloBuy ?|Cos’è uno spreadsheet LoloBuy?|Czym jest spreadsheet LoloBuy?
 Wie bestelle ich einen Artikel?|How do I order an item?|¿Cómo pido un artículo?|Comment commander un article ?|Come ordino un articolo?|Jak zamówić produkt?
@@ -10,9 +11,10 @@ Warum ist die Artikel-ID wichtig?|Why does the item ID matter?|¿Por qué import
 Wie überprüfe ich die Größe?|How do I check the size?|¿Cómo compruebo la talla?|Comment vérifier la taille ?|Come verifico la taglia?|Jak sprawdzić rozmiar?
 Kann ich nach einem Bild suchen?|Can I search with an image?|¿Puedo buscar con una imagen?|Puis-je rechercher avec une image ?|Posso cercare con un’immagine?|Czy mogę wyszukiwać obrazem?
 Ist diese Website der offizielle LoloBuy-Shop?|Is this the official LoloBuy store?|¿Es esta la tienda oficial de LoloBuy?|Est-ce la boutique officielle LoloBuy ?|È il negozio ufficiale LoloBuy?|Czy to oficjalny sklep LoloBuy?`;
-export function faqs(lang:Locale){
+interface Faq {id:string;question:string;answer:string;source:string;related:string;extraSources?:string[];}
+export function faqs(lang:Locale):Faq[]{
  const t=ui[lang];const answers=[article(lang,'about').paragraphs[0],article(lang,'guide').paragraphs[0],t.priceNote,`${t.noQC} ${t.qcNote}`,article(lang,'source-links').paragraphs[0],article(lang,'size-check').paragraphs[0],t.imageUnavailable,t.independent];
  const sources=[href(lang,'about'),helpUrl('buying'),helpUrl('buying'),helpUrl('qc'),href(lang,'articles/source-links'),helpUrl('sizing'),href(lang,'image-search'),href(lang,'about')];
  const related=['spreadsheet-guide','first-order','price-check','photo-check','source-links','size-check','spreadsheet-guide','first-order'];
- return [...questions.split('\n').map((row,i)=>{const values=row.split('|');if(values.length!==locales.length)throw new Error('FAQ translation missing');return {id:`basics-${i+1}`,question:values[locales.indexOf(lang)],answer:answers[i],source:sources[i],related:related[i]};}),...extraFaqs(lang)];
+ return [...questions.split('\n').map((row,i)=>{const values=row.split('|');if(values.length!==locales.length)throw new Error('FAQ translation missing');return {id:`basics-${i+1}`,question:values[locales.indexOf(lang)],answer:answers[i],source:sources[i],related:related[i]};}),...extraFaqs(lang),...officialFaqs(lang)];
 }
