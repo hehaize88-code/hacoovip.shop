@@ -12,7 +12,7 @@ const schema={'@context':'https://schema.org','@type':'Article',headline:entry.t
 <div class="shell editorial-shell">
 <nav class="breadcrumb" aria-label={t.menu}><a href={href(lang)}>{t.home}</a><span>/</span><a href={href(lang,'articles')}>{t.articles}</a></nav>
 <header class="editorial-header"><p class="eyebrow">LOLOBUY / {t.editorial}</p><h1>{entry.title}</h1><p class="lead">{entry.summary}</p><div class="editorial-meta"><span>{e.by}</span><time datetime={reviewedAt}>{t.checked}</time><span>{entry.minutes} {e.minutes}</span></div></header>
-<div class="editorial-layout"><aside class="article-toc"><p>{e.toc}</p><ol>{entry.sections.map(s=><li><a href={`#${s.id}`}>{s.heading}</a></li>)}</ol><a class="toc-browse" href={href(lang,'spreadsheet')}>{e.browse} ↗</a></aside>
+<div class="editorial-layout"><details open class="article-toc" data-mobile-collapse><summary>{e.toc}</summary><div><ol>{entry.sections.map(s=><li><a href={`#${s.id}`}>{s.heading}</a></li>)}</ol><a class="toc-browse" href={href(lang,'spreadsheet')}>{e.browse} ↗</a></div></details>
 <article class="editorial-body">{entry.sections.map(s=><section id={s.id}><h2>{s.heading}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.bullets.length>0&&<ul class="editorial-checklist">{s.bullets.map(b=><li>{b}</li>)}</ul>}</section>)}
 <section class="editorial-sources"><h2>{e.sources}</h2><p>{e.note}</p><ul>{entry.sources.map(s=><li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title} ↗</a></li>)}</ul></section>
 </article></div>

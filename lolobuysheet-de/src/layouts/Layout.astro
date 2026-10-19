@@ -2,6 +2,7 @@
 import { locales, names, href, ui, type Locale } from '../lib/i18n';
 import { REGISTER_URL } from '../lib/source';
 import '../styles/global.css';
+import '../styles/mobile.css';
 interface Props { lang: Locale; title: string; description: string; page?: string; noindex?: boolean; }
 const {lang,title,description,page='',noindex=false}=Astro.props;
 const t=ui[lang];
@@ -33,6 +34,13 @@ const nav=[['catalog','spreadsheet'],['articles','articles'],['categories','cate
 <main id="main"><slot /></main>
 <footer><div class="footer-inner"><div><a class="footer-name" href={href(lang)}>LoloBuy <b>Sheet.</b></a><p>{t.independent}</p></div><div class="footer-links"><a href={href(lang,'about')}>{t.about}</a><a href={href(lang,'privacy')}>{t.privacy}</a><a href="/sitemap.xml">Sitemap</a><span>© {new Date().getFullYear()} lolobuysheet.de</span></div></div></footer>
 <script>
+// Only reset when crossing the breakpoint, so a reader's manual toggle persists.
+const compactViewport=window.matchMedia('(max-width: 700px)');
+const syncDisclosures=()=>{
+ for(const panel of document.querySelectorAll<HTMLDetailsElement>('[data-mobile-collapse]')) panel.open=!compactViewport.matches;
+};
+syncDisclosures();
+compactViewport.addEventListener('change',syncDisclosures);
 for(const link of document.querySelectorAll<HTMLAnchorElement>('[data-locale-link]')) link.search=window.location.search;
 for(const img of document.querySelectorAll<HTMLImageElement>('[data-product-image]')) {
   const fail=()=>{ img.hidden=true; img.parentElement?.querySelector<HTMLElement>('.image-fallback')?.removeAttribute('hidden'); };
