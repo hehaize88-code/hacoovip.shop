@@ -5,7 +5,9 @@ import '../styles/global.css';
 interface Props { lang: Locale; title: string; description: string; page?: string; noindex?: boolean; }
 const {lang,title,description,page='',noindex=false}=Astro.props;
 const t=ui[lang];
-const canonical=new URL(href(lang,page),'https://lolobuysheet.de').href;
+const site=Astro.site || new URL('https://lolobuysheet.de');
+const isPreview=import.meta.env.PUBLIC_SITE_PREVIEW === 'true';
+const canonical=new URL(href(lang,page),site).href;
 const nav=[['catalog','spreadsheet'],['categories','categories'],['guide','guide'],['qc','qc'],['shipping','shipping'],['faq','faq'],['articles','articles']];
 ---
 <!doctype html>
@@ -15,11 +17,11 @@ const nav=[['catalog','spreadsheet'],['categories','categories'],['guide','guide
 <title>{title}</title><meta name="description" content={description} />
 <link rel="icon" type="image/png" href="/favicon.png" /><link rel="apple-touch-icon" href="/favicon.png" />
 <link rel="canonical" href={canonical} />
-{locales.map(l=><link rel="alternate" hreflang={l} href={new URL(href(l,page),'https://lolobuysheet.de').href} />)}
-<link rel="alternate" hreflang="x-default" href={new URL(href('de',page),'https://lolobuysheet.de').href} />
-<meta name="robots" content={noindex?'noindex,follow':'index,follow'} /><meta name="theme-color" content="#fffaf4" />
+{locales.map(l=><link rel="alternate" hreflang={l} href={new URL(href(l,page),site).href} />)}
+<link rel="alternate" hreflang="x-default" href={new URL(href('de',page),site).href} />
+<meta name="robots" content={isPreview?'noindex,nofollow':noindex?'noindex,follow':'index,follow'} /><meta name="theme-color" content="#fffaf4" />
 <meta property="og:type" content="website" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:site_name" content="LoloBuy Sheet" />
-<script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'LoloBuy Sheet',url:'https://lolobuysheet.de/',inLanguage:locales}).replace(/</g,'\\u003c')} />
+<script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'LoloBuy Sheet',url:site.href,inLanguage:locales}).replace(/</g,'\\u003c')} />
 </head>
 <body>
 <a class="skip" href="#main">{t.skip}</a>

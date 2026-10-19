@@ -14,7 +14,8 @@
     "check": "astro check",
     "deploy": "wrangler deploy",
     "test:source": "node --experimental-strip-types tests/source.live.ts",
-    "prebuild": "node scripts/clean-output.mjs"
+    "prebuild": "node scripts/clean-output.mjs",
+    "build:preview": "node scripts/build-preview.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.0",

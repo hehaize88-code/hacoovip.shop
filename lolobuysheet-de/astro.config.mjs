@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  site: 'https://lolobuysheet.de',
+  site: process.env.PUBLIC_SITE_URL || 'https://lolobuysheet.de',
   output: 'static',
   adapter: cloudflare({ imageService: 'passthrough', prerenderEnvironment: 'node' }),
   session: false,

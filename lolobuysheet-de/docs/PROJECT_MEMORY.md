@@ -117,3 +117,9 @@
 - 已准备同一代码版本的临时替代预览，正式域名 lolobuysheet.de 仍待用户确认效果后部署/绑定。
 - Cloudflare 连接的首个只读接口发现调用返回 UNAUTHORIZED / “This app connection requires reauthentication. Reconnect the app and try again.”。尚未读取账户清单，也未创建任何用户 Cloudflare 资源或更改 DNS。
 - 当前下一步：用户重新连接 Cloudflare 后，核实账户和现有资源，发布独立临时预览地址，验证首页、搜索、排序、商品详情和移动布局实际可访问后才交付链接。暂未取得新的可用公开 URL。
+
+
+
+## 2026-10-19 浏览器临时预览授权与实现
+
+用户已明确允许通过浏览器创建 LoloBuy 临时预览。Cloudflare API 失效，但已通过用户浏览器访问同一账户和现有 GitHub 连接。已准备在 main 的 lolobuysheet-de 目录使用 npm run build:preview 构建独立 Worker lolobuysheet-preview，部署 npx wrangler deploy；正式域名绑定仍待用户确认效果。临时构建只切换 origin、Worker 名称和禁止收录标记，保留单一 cnfanshm 数据源和 SSR。实际发布及访问验证结果随后补充。
