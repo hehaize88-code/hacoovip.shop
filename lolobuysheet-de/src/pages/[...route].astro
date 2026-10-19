@@ -1,0 +1,22 @@
+---
+export const prerender=false;
+import Home from '../components/Home.astro';import Catalog from '../components/Catalog.astro';import Product from '../components/Product.astro';import Layout from '../layouts/Layout.astro';
+import {getCatalog,getCategories,getProduct,SourceError} from '../lib/source';import {href,ui,isLocale,categoryName,type Locale} from '../lib/i18n';
+const parts=(Astro.params.route||'').split('/').filter(Boolean);let lang:Locale='de';
+if(parts[0]==='de')return Astro.redirect('/'+parts.slice(1).join('/')+(parts.length>1?'/':'')+Astro.url.search,308);
+if(parts[0]&&isLocale(parts[0]))lang=parts.shift() as Locale;
+const page=parts.join('/');const t=ui[lang];let catalog,product,categories;let status=200;
+try{
+ if(!page||page==='spreadsheet'){
+  const p=Astro.url.searchParams;
+  const requested=Number(p.get('page')||1);
+  if(page&&(!Number.isInteger(requested)||requested<1||requested>9000))throw new SourceError('Page not found',404);
+  catalog=await getCatalog(page?{q:p.get('q')||'',category:p.get('category')||'',sort:p.get('sort')||'new',page:requested}:{});
+ }else if(page==='categories')categories=await getCategories();
+ else if(/^product\/\d{1,12}$/.test(page))product=await getProduct(parts[1]);
+ else throw new SourceError('Page not found',404);
+}catch(e){status=e instanceof SourceError?e.status:503;Astro.response.status=status;if(status===503)console.warn('[cnfanshm]',e instanceof Error?e.message:'Source unavailable');}
+Astro.response.headers.set('Cache-Control',status===200?'public, max-age=0, s-maxage=300, stale-while-revalidate=300':'no-store');
+if(status===503)Astro.response.headers.set('Retry-After','60');
+---
+{!page?<Home lang={lang} catalog={catalog} failed={status!==200}/>:catalog?<Catalog lang={lang} data={catalog}/>:product?<Product lang={lang} product={product}/>:categories?<Layout lang={lang} title={`${t.categories} | LoloBuy Spreadsheet`} description={t.categoryIntro} page="categories"><div class="shell page-head"><p class="eyebrow">LOLOBUY SPREADSHEET</p><h1>{t.categoryTitle}</h1><p class="lead">{t.categoryIntro}</p></div><div class="shell"><div class="category-grid">{categories.map((c,i)=><a href={`${href(lang,'spreadsheet')}?category=${c.slug}`}><span class="category-number">{String(i+1).padStart(2,'0')}</span><strong>{categoryName(lang,c.slug,c.title)}</strong><span>↗</span></a>)}</div></div></Layout>:<Layout lang={lang} title={`${status} | LoloBuy Sheet`} description={status===404?t.notFound:t.unavailable} page={page} noindex><div class="shell"><div class="notice"><p class="eyebrow">{status}</p><h1>{status===404?t.notFound:t.unavailable}</h1><a class="button" href={status===404?href(lang,'spreadsheet'):Astro.url.pathname+Astro.url.search}>{status===404?t.back:t.retry}</a></div></div></Layout>}

@@ -1,0 +1,6 @@
+---
+import {href,ui,type Locale} from '../lib/i18n';
+interface Props {lang:Locale;q?:string;}
+const {lang,q=''}=Astro.props;const t=ui[lang];
+---
+<form class="search" action={href(lang,'spreadsheet')} method="get" role="search"><label><span class="sr-only">{t.search}</span><span aria-hidden="true">⌕</span><input type="search" name="q" placeholder={t.placeholder} value={q} maxlength="100" autocomplete="off" /></label><button type="submit">{t.search}<span aria-hidden="true"> →</span></button></form>

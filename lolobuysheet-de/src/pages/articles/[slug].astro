@@ -1,0 +1,6 @@
+---
+import Info from '../../components/Info.astro';import {articleSlugs} from '../../lib/i18n';
+export const prerender=true;
+export function getStaticPaths(){return articleSlugs.map(slug=>({params:{slug}}));}
+---
+<Info lang="de" section="articles" slug={Astro.params.slug}/>

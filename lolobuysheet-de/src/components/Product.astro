@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';import {getProduct} from '../lib/source';import {href,ui,money,type Locale} from '../lib/i18n';
+interface Props {lang:Locale;product:Awaited<ReturnType<typeof getProduct>>;}
+const {lang,product:p}=Astro.props;const t=ui[lang];
+---
+<Layout lang={lang} title={`${p.title} | LoloBuy Spreadsheet`} description={`${p.title}. ${t.intro}`} page={`product/${p.id}`}>
+<div class="shell page-head"><p class="breadcrumb"><a href={href(lang)}>{t.home}</a><span>/</span><a href={href(lang,'spreadsheet')}>{t.catalog}</a><span>/</span>{p.title}</p></div>
+<div class="shell gallery-layout"><section aria-label={t.photos}><div class="gallery-main">{p.images[0]&&<img id="gallery-main" data-product-image src={p.images[0]} width="640" height="640" alt={p.title} fetchpriority="high" referrerpolicy="no-referrer"/>}<span class="image-fallback" hidden={Boolean(p.images[0])}>{t.noImage}</span></div><div class="thumbnails">{p.images.map((src,i)=><button type="button" data-gallery={src} aria-label={`${t.photos} ${i+1}`} aria-pressed={i===0}><img src={src} width="96" height="96" loading="lazy" alt="" referrerpolicy="no-referrer"/></button>)}</div></section>
+<section class="product-info"><p class="eyebrow">LOLOBUY SPREADSHEET</p><h1>{p.title}</h1>{p.sourceId&&<p class="product-id">{t.sourceId}: {p.sourceId}</p>}<div class="big-price">{money(p.usd,lang)}</div><p>{t.estimate}</p><p>{t.priceNote}</p>{p.buyUrl?<a class="button" href={p.buyUrl} target="_blank" rel="nofollow noopener noreferrer">{t.buy}</a>:<div class="notice"><p>{t.noLink}</p></div>}<h2>{t.qc}</h2><p>{t.noQC}</p><p>{t.qcNote}</p><a href={href(lang,'qc')}>{t.read} ↗</a><hr class="rule"/><a href={href(lang,'spreadsheet')}>← {t.back}</a></section></div>
+</Layout>

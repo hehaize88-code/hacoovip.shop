@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';import Search from './Search.astro';import ProductCard from './ProductCard.astro';
+import {getCatalog} from '../lib/source';import {href,ui,categoryName,money,articleSlugs,type Locale} from '../lib/i18n';import {article} from '../lib/content';
+interface Props {lang:Locale;catalog?:Awaited<ReturnType<typeof getCatalog>>;failed?:boolean;}
+const {lang,catalog,failed=false}=Astro.props;const t=ui[lang];
+const featured=catalog?.items[0];
+---
+<Layout lang={lang} title={`LoloBuy Spreadsheet | ${t.hero}`} description={`LoloBuy Spreadsheet. ${t.intro}`} noindex={failed}>
+<section class="hero shell"><div class="hero-copy"><p class="eyebrow"><span></span>{t.eyebrow}</p><h1>LoloBuy Spreadsheet.</h1><p class="hero-keyword">{t.hero}</p><p class="lead">{t.intro}</p><Search lang={lang}/><div class="hero-links"><a href={href(lang,'spreadsheet')}>{t.browse} ↗</a><a href={href(lang,'image-search')}>{t.imageSearch}</a></div><div class="hero-foot"><span>01 / {t.step1}</span><span>02 / {t.step2}</span><span>03 / LoloBuy</span></div></div>
+{featured?<a class="hero-feature" href={href(lang,`product/${featured.id}`)}><div class="feature-top"><span>{t.latestTitle}</span><span aria-hidden="true">↗</span></div><div class="feature-image">{featured.image&&<img data-product-image src={featured.image} alt={featured.title} width="500" height="500" fetchpriority="high" referrerpolicy="no-referrer"/>}<span class="image-fallback" hidden={Boolean(featured.image)}>{t.noImage}</span></div><div class="feature-bottom"><div><small>{t.estimate}</small><h2>{featured.title}</h2></div><strong>{money(featured.usd,lang)}</strong></div></a>:<div class="notice"><h2>{t.unavailable}</h2><a class="button" href={href(lang)}>{t.retry}</a></div>}
+</section>
+{catalog&&<><section class="category-band"><div class="shell"><div class="section-heading"><div><p class="eyebrow">01 / {t.categories}</p><h2>{t.categoryTitle}</h2></div><a href={href(lang,'categories')}>{t.all} ↗</a></div><div class="category-grid">{catalog?.categories.map((c,i)=><a href={`${href(lang,'spreadsheet')}?category=${c.slug}`}><span class="category-number">{String(i+1).padStart(2,'0')}</span><strong>{categoryName(lang,c.slug,c.title)}</strong><span aria-hidden="true">↗</span></a>)}</div></div></section>
+<section class="shell products-section"><div class="section-heading"><div><p class="eyebrow">02 / LOLOBUY FINDS</p><h2>{t.latestTitle}</h2></div><a href={href(lang,'spreadsheet')}>{t.browse} ↗</a></div><p class="section-description">{t.latestIntro}</p><div class="product-grid">{catalog?.items.slice(0,8).map(p=><ProductCard product={p} lang={lang}/>)}</div><p class="fine-print">{t.priceNote}</p></section>
+</>}
+<section class="shell steps-section"><div class="section-heading"><div><p class="eyebrow">03 / {t.guide}</p><h2>{t.stepsTitle}</h2></div><a href={href(lang,'guide')}>{t.read} ↗</a></div><div class="steps">{[1,2,3].map(n=><div><span>0{n}</span><h3>{t[`step${n}`]}</h3><p>{t[`step${n}Text`]}</p></div>)}</div></section>
+<section class="shell articles-section"><div class="section-heading"><div><p class="eyebrow">04 / {t.editorial}</p><h2>{t.articles}</h2></div><a href={href(lang,'articles')}>{t.all} ↗</a></div><div class="article-grid">{articleSlugs.map((slug,i)=>{const a=article(lang,slug);return <a class="article-card" href={href(lang,`articles/${slug}`)}><span class="article-number">0{i+1}</span><h3>{a.title}</h3><span>{t.read} ↗</span></a>})}</div></section>
+</Layout>

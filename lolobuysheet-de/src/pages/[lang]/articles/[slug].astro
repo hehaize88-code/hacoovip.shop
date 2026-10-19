@@ -1,0 +1,6 @@
+---
+import Info from '../../../components/Info.astro';import {articleSlugs,locales} from '../../../lib/i18n';
+export const prerender=true;
+export function getStaticPaths(){return locales.filter(l=>l!=='de').flatMap(lang=>articleSlugs.map(slug=>({params:{lang,slug},props:{lang}})));}
+---
+<Info lang={Astro.props.lang} section="articles" slug={Astro.params.slug}/>

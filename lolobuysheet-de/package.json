@@ -1,0 +1,30 @@
+{
+  "name": "lolobuysheet-de",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4173",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4173",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "check": "astro check",
+    "deploy": "wrangler deploy",
+    "test:source": "node --experimental-strip-types tests/source.live.ts",
+    "prebuild": "node scripts/clean-output.mjs"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "14.4.0",
+    "astro": "7.4.0",
+    "cheerio": "1.1.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "wrangler": "4.125.0"
+  }
+}

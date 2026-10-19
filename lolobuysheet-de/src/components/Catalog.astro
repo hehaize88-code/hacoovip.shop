@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from './ProductCard.astro';import Search from './Search.astro';
+import {getCatalog} from '../lib/source';import {href,ui,categoryName,type Locale} from '../lib/i18n';
+interface Props {lang:Locale;data:Awaited<ReturnType<typeof getCatalog>>;}
+const {lang,data}=Astro.props;const t=ui[lang];
+const selected=data.categories.find(c=>c.slug===data.category);
+const heading=data.q?`${t.results}: “${data.q}”`:selected?categoryName(lang,selected.slug,selected.title):'LoloBuy Spreadsheet';
+const link=(page:number,category=data.category)=>{const p=new URLSearchParams();if(data.q)p.set('q',data.q);if(category)p.set('category',category);if(data.sort!=='new')p.set('sort',data.sort);if(page>1)p.set('page',String(page));return href(lang,'spreadsheet')+(p.size?`?${p}`:'');};
+const pages=Array.from({length:5},(_,i)=>Math.max(1,data.page-2)+i).filter(n=>n<=data.knownMax);
+---
+<Layout lang={lang} title={`${heading} | LoloBuy Sheet`} description={t.intro} page="spreadsheet" noindex={Boolean(data.q||data.category||data.page>1||data.sort!=='new')}>
+<div class="shell page-head"><p class="breadcrumb"><a href={href(lang)}>{t.home}</a><span>/</span>{t.catalog}</p><h1>{heading}</h1><p class="lead">{t.latestIntro}</p></div>
+<div class="shell catalog-layout">
+<details open class="sidebar"><summary>{t.categories}</summary><div><a href={href(lang,'spreadsheet')} aria-current={!data.category&&!data.q?'page':undefined}>{t.all}</a>{data.categories.map(c=><a href={`${href(lang,'spreadsheet')}?category=${c.slug}`} aria-current={data.category===c.slug&&!data.q?'page':undefined}>{categoryName(lang,c.slug,c.title)}</a>)}</div></details>
+<section class="catalog-main" aria-label={t.catalog}>
+<div class="catalog-tools"><Search lang={lang} q={data.q}/>{!data.q&&<form class="sort-form" method="get" action={href(lang,'spreadsheet')}>{data.category&&<input type="hidden" name="category" value={data.category}/>}<label class="sr-only" for="sort">{t.sort}</label><select id="sort" name="sort">{[['new','latest'],['popular','popular'],['price-asc','priceAsc'],['price-desc','priceDesc']].map(([v,k])=><option value={v} selected={data.sort===v}>{t[k]}</option>)}</select><button class="button" type="submit">{t.apply}</button></form>}</div>
+{data.q&&<p class="fine-print">{t.searchOrder} <a href={href(lang,'spreadsheet')}>{t.clear} ↗</a></p>}
+<div class="result-bar"><span>{t.page} {data.page} · {data.items.length} {t.results}</span><a href={href(lang,'image-search')}>{t.imageSearch} ↗</a></div>
+{data.items.length?<div class="product-grid">{data.items.map((product,i)=><ProductCard product={product} lang={lang} eager={i<3}/>)}</div>:<div class="notice"><p>{t.empty}</p><a href={href(lang,'spreadsheet')}>{t.clear} ↗</a></div>}
+<nav class="pagination" aria-label={t.page}>{data.page>1?<a href={link(data.page-1)} rel="prev">← {t.previous}</a>:<span class="disabled">← {t.previous}</span>}{pages.map(p=>p===data.page?<span aria-current="page">{p}</span>:<a href={link(p)} aria-label={`${t.page} ${p}`}>{p}</a>)}{data.hasNext?<a href={link(data.page+1)} rel="next">{t.next} →</a>:<span class="disabled">{t.next} →</span>}</nav><p class="fine-print">{t.priceNote}</p>
+</section></div>
+</Layout>

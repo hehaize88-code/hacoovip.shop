@@ -1,0 +1,8 @@
+---
+import Info from '../../components/Info.astro';
+import {locales} from '../../lib/i18n';
+export const prerender=true;
+export function getStaticPaths(){return locales.filter(l=>l!=='de').map(lang=>({params:{lang},props:{lang}}));}
+const {lang}=Astro.props;
+---
+<Info lang={lang} section="shipping"/>

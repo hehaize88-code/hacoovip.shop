@@ -1,0 +1,10 @@
+---
+import {href,ui,money,type Locale} from '../lib/i18n';
+import type {Product} from '../lib/source';
+interface Props {product:Product;lang:Locale;eager?:boolean;}
+const {product:p,lang,eager=false}=Astro.props;const t=ui[lang];
+---
+<article class="product-card"><a class="product-photo" href={href(lang,`product/${p.id}`)} aria-label={`${t.view}: ${p.title}`}>
+{p.image&&<img data-product-image src={p.image} alt={p.title} width="480" height="480" loading={eager?'eager':'lazy'} decoding="async" referrerpolicy="no-referrer" />}
+<span class="image-fallback" hidden={Boolean(p.image)}>{t.noImage}</span><span class="photo-arrow" aria-hidden="true">↗</span>
+</a><div class="product-card-body"><p class="small-label">LOLOBUY FINDS</p><h3><a href={href(lang,`product/${p.id}`)}>{p.title}</a></h3><div class="product-card-bottom"><strong>{money(p.usd,lang)}</strong><a href={href(lang,`product/${p.id}`)}>{t.view} <span aria-hidden="true">→</span></a></div></div></article>
