@@ -93,3 +93,18 @@
 4. 后续再做独立分类 SEO、更多语言、内容深度和真实搜索表现优化。
 
 关键词和竞争页面记录见 [SEO_RESEARCH.md](SEO_RESEARCH.md)。部署参数与本地命令见 [README](../README.md)。
+
+
+## 2026-10-19 临时公开预览
+
+用户要求先查看公开预览，通过后再准备正式 Cloudflare 部署和域名绑定。
+
+- 公开预览：https://lolobuysheet-preview.hehaize88.chatgpt.site
+- Sites project_id：appgprj_6ad5d28b70fc8191a91ce0d497291210（后续复用，不重复创建）。
+- 源码基线：GitHub ee6cf692dbb586016214de0bfcb027ffb84c55d0 的 lolobuysheet-de。
+- 预览源提交：d580c03c9fcf7be82a5ef73d1b2edfa31031f3c4。
+- 已保存版本 1 并发布成功，访问权限 public；未绑定 lolobuysheet.de，未修改用户 Cloudflare/DNS。
+- 保留 Astro SSR + SSG 和 cnfanshm 单一数据源。预览仅增加宿主入口映射、临时 origin 和全站 noindex，robots 禁止抓取。
+- 外部访问验收受限：检查浏览器显示 Cloudflare “Sorry, you have been blocked”，刷新一次仍被拦截；HTTP 检查返回 403。Sites 状态为 active/public，发布状态 succeeded，错误日志为空。不能宣称公开页面功能已验收，也不能断言用户浏览器同样被拦截。
+- 搜图和 QC 图库仍待 cnfanshm 接口；没有新增数据库、商品快照或第三方商品源。
+- 下一步先收集用户预览反馈；确认后同步必要改动到 GitHub 原目录，再正式部署/绑定 Cloudflare。若用户也遇到访问拦截，按托管平台边缘访问问题处理，不把它当作商品源 429 或重复部署应用。
