@@ -88,3 +88,13 @@ Astro 7 的 Cloudflare 适配器生成 Workers 部署产物。不要把 `dist/cl
 - Zone `lolobuysheet.de`：Always Use HTTPS 已启用；Single Redirect `LoloBuy www to canonical HTTPS` 使用 `*://www.lolobuysheet.de/*` → `https://lolobuysheet.de/${2}`，301，保留查询参数。
 - 正式构建：`7e2e3617-0b3a-4c59-ac66-00b55d7a8a51`，版本前缀 `7086c5bd`；源码基线 `10d7f242c787ef5627301646204d3f2520961e9d`。
 - 用户已明确授权本次生产部署和绑定；后续代码变更仍只编辑本域名目录。
+
+## Google Analytics 4
+
+2026-10-20 接入独立 GA4 网站数据流 `lolobuysheet.de Web`：
+
+- Measurement ID：`G-LXR4CPTJ8E`；Stream ID：`16163077437`。
+- 统计时区：中国时间（Asia/Shanghai）；报表币种：USD。
+- 公共 `src/layouts/Layout.astro` 覆盖全部六语言 SSR / SSG 页面；只在正式根域和 www 主机运行，预览构建及其他主机不发送生产数据。
+- 使用 GA4 自动网页浏览和增强型衡量；Google Signals 和广告个性化在站点代码中关闭。
+- 六种语言隐私说明同步更新。不要重复添加 Google tag，以免重复计数。

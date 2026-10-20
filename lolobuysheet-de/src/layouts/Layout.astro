@@ -15,6 +15,24 @@ const nav=[['catalog','spreadsheet'],['articles','articles'],['categories','cate
 <html lang={lang}>
 <head>
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+{!isPreview && <script is:inline>
+(() => {
+  // Keep local builds and preview hosts out of the production property.
+  if (!['lolobuysheet.de', 'www.lolobuysheet.de'].includes(window.location.hostname)) return;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-LXR4CPTJ8E', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  const tag = document.createElement('script');
+  tag.async = true;
+  tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-LXR4CPTJ8E';
+  document.head.appendChild(tag);
+})();
+</script>}
 <title>{title}</title><meta name="description" content={description} />
 <link rel="icon" type="image/png" href="/favicon.png" /><link rel="apple-touch-icon" href="/favicon.png" />
 <link rel="canonical" href={canonical} />
