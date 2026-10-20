@@ -24,7 +24,7 @@ npm run dev
 
 ## GitHub 与运行环境
 
-GitHub 保存源码；**GitHub Pages 无法执行此项目的 SSR**。已准备 Cloudflare Workers 构建配置，但没有创建 Worker、绑定域名、修改 DNS 或执行生产发布。
+GitHub 保存源码；**GitHub Pages 无法执行此项目的 SSR**。2026-10-20 已部署到 Cloudflare Workers 并绑定正式域名。生产入口：https://lolobuysheet.de/；www 永久跳转到主域名，HTTP 自动升级为 HTTPS。
 
 连接 GitHub 部署时填写：
 
@@ -34,10 +34,11 @@ GitHub 保存源码；**GitHub Pages 无法执行此项目的 SSR**。已准备 
 | 分支 | `main` |
 | 根目录 | `lolobuysheet-de` |
 | Node | `24` |
-| 构建 | `npm ci && npm run check && npm test && npm run build` |
-| 发布 | `npm run deploy` |
+| 构建 | `npm run build`（平台先执行 npm ci） |
+| 发布 | `npx wrangler deploy` |
 | Worker 名称 | `lolobuysheet-de` |
-| 正式域名 | `lolobuysheet.de`，需后续绑定 |
+| 正式域名 | `lolobuysheet.de`、`www.lolobuysheet.de` |
+| 自动构建监听 | `lolobuysheet-de/**` |
 
 Astro 7 的 Cloudflare 适配器生成 Workers 部署产物。不要把 `dist/client` 单独作为整个站点发布，也不要套用旧版 Pages `_worker.js` 路径。Wrangler 使用 `@astrojs/cloudflare/entrypoints/server`，构建时生成最终配置。
 
@@ -69,7 +70,7 @@ Astro 7 的 Cloudflare 适配器生成 Workers 部署产物。不要把 `dist/cl
 
 首页主词 `lolobuy spreadsheet`；目录承接 finds/products/links；购买、QC、运费、尺码和原始 ID 由独立指南承接。六语言有真实译文、`lang`、canonical、互指 hreflang、同页切换；原商品标题保持主站值，不伪造翻译后的商品信息。
 
-搜索、排序、筛选、分页参数页 noindex，canonical 指目录；隐私与不可用搜图页不进入 sitemap。每种语言 13 个稳定路径，共 78 个 sitemap URL。没有虚构评分、库存或 Offer 结构化数据。
+搜索、排序、筛选、分页参数页 noindex，canonical 指目录；隐私与不可用搜图页不进入 sitemap。每种语言 19 个稳定路径，共 114 个 sitemap URL。每语言 30 条 FAQ 和 10 篇独立文章（共 60 篇）。没有虚构评分、库存或 Offer 结构化数据。
 
 官方 Logo / favicon 原始来源和核查记录见 [项目记忆](docs/PROJECT_MEMORY.md)。
 
@@ -77,4 +78,13 @@ Astro 7 的 Cloudflare 适配器生成 Workers 部署产物。不要把 `dist/cl
 
 类型检查、单元测试、生产构建和真实上游协议已检查。浏览器核对了静态指南、同页语言切换、真实数据临时渲染的移动端布局与图集。临时 QA 页面和商品快照不提交。
 
-当前内部预览的 Worker 对外 `fetch()` 返回环境内部错误，因此**未完成部署宿主上的 SSR 端到端验收**。Node 真实上游读取和预渲染取数成功；这不等于生产 Worker 已验收。首次正式部署后需验证首页/搜索/排序/分页/商品详情及域名，不应把 GitHub 提交当作域名已上线。
+2026-10-20 正式域名真实浏览器验收：首页 8 件商品及图片加载正常、Shorts 搜索 20 件、商品 6079 对应微店 7777809164、FAQ 30 条、文章中心 10 篇、英文独立文章均成功。www 跳转保留路径和查询参数，HTTP 跳到 HTTPS；首页和文章 index,follow，搜索 noindex,follow。生产构建及 114 条 sitemap URL 已检查。执行环境直接 HTTP 请求返回 403，浏览器工具对 robots.txt / sitemap.xml 报 ERR_BLOCKED_BY_CLIENT；这两类线上响应尚未直接验证，不能将本地构建检查表述成线上 HTTP 验证。
+
+## 生产与预览分离
+
+- 生产 Worker：`lolobuysheet-de`；`npm run build`；`NODE_VERSION=24`；正式域名使用生产部署。Production/Preview workers.dev URL 均关闭，防止可收录的重复站点。
+- 临时 Worker：`lolobuysheet-preview`；`npm run build:preview`；https://lolobuysheet-preview.hehaize88.workers.dev/ 继续 noindex。不要将预览构建发布到正式域名。
+- 自定义域名由 Cloudflare Domains 面板管理，DNS 由平台自动创建；未写入预览也会继承的 Wrangler routes。
+- Zone `lolobuysheet.de`：Always Use HTTPS 已启用；Single Redirect `LoloBuy www to canonical HTTPS` 使用 `*://www.lolobuysheet.de/*` → `https://lolobuysheet.de/${2}`，301，保留查询参数。
+- 正式构建：`7e2e3617-0b3a-4c59-ac66-00b55d7a8a51`，版本前缀 `7086c5bd`；源码基线 `10d7f242c787ef5627301646204d3f2520961e9d`。
+- 用户已明确授权本次生产部署和绑定；后续代码变更仍只编辑本域名目录。

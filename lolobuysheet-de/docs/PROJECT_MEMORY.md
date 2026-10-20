@@ -1,6 +1,6 @@
 # LoloBuy Sheet 项目记忆（当前有效）
 
-更新：2026-10-19 UTC。继续工作先读本文件及 README；用户的新指示覆盖历史方案。
+更新：2026-10-20 UTC。继续工作先读本文件及 README；用户的新指示覆盖历史方案。
 
 ## 固定需求
 
@@ -14,7 +14,7 @@
 - 注册入口保留 **https://www.lolobuy.com/index**，不附加邀请码。
 - 购买链接必须复现用户的微店样本：
   `https://www.lolobuy.com/productDetail/7711153142?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7711153142`
-- 源码已交付 GitHub，临时 Cloudflare Worker 已发布；正式域名尚未绑定，DNS 未修改。详情见末尾最新部署记录。
+- 正式站 https://lolobuysheet.de/ 已部署到 Cloudflare 并绑定 apex / www；源码在 GitHub 同名独立目录。详情见末尾 2026-10-20 最新部署记录。
 
 ## 已实施的架构
 
@@ -25,7 +25,7 @@
 - 切换语言保留同页、关键词、分类、排序、页码；原商品名保持上游原值。
 - canonical、HTML lang、互指 hreflang/x-default、robots、114 条稳定页面 sitemap 已实现。
 - 搜索、筛选、排序、分页参数页 noindex；不生成重复的关键词入口页，不伪造库存/评分/Offer。
-- 24 个本地化 FAQ、购买/QC/运输指南，以及 10 篇原创文章（六语言共 60 页）。内容和政策差异依据官方公开帮助核对，详见 docs/CONTENT_RESEARCH_2026-10-19.md。
+- 每语言 30 个本地化 FAQ、购买/QC/运输指南，以及 10 篇原创文章（六语言共 60 页）。内容和政策差异依据官方公开帮助核对，详见 docs/CONTENT_RESEARCH_2026-10-19.md。
 - 现阶段分类从 `/categories/` 进入 `/spreadsheet/?category=…`，组合页不收录；独立分类 SEO 页为后续优化项。
 
 ## 唯一数据层：src/lib/source.ts
@@ -184,3 +184,22 @@
 - 手机压缩已于提交 93235d49eba0a70244401fdae007cff5ab8b8816 部署，构建 0cd45fc5-365f-49f1-a7a6-56a5521adae4。追加正文前 390px 实测：首页 3122→2600px，文章中心 3118→2272px，首篇文章 3617→2749px，正文开始 742→472px。目录能展开。
 - 当前内容改进继续复用公开 Worker 预览；正式域名、DNS、数据源和后台不变。最终部署及多页手机验收写入独立项目记忆文件。
 - 本次复核内容已通过 Astro check（0 errors / warnings / hints）与 preview build。构建产物检查：60 篇文章各 6 节、180 条 FAQ、每语言 10 篇文章入口、6 语言 + x-default、预览 canonical/noindex、全部官方文章来源 URL 与三个相关推荐通过；sitemap 仍为 114 URL。
+
+
+## 2026-10-20 正式域名已部署并绑定（当前状态）
+
+- 用户明确要求“帮我把 lolobuysheet.de 部署并连接 cf”，授权正式发布和域名绑定。使用既有 Cloudflare 账户/GitHub 连接，未新建凭证。
+- **正式站：https://lolobuysheet.de/**。`www.lolobuysheet.de` 同时绑定，301 跳到主域名；HTTPS 可用，Universal SSL 状态 Active（当时到期 2027-01-17），托管附加证书仍自动验证中。未购买证书或升级套餐。
+- Worker **lolobuysheet-de**；GitHub `hehaize88-code/hacoovip.shop` / `main` / `lolobuysheet-de`。Build `npm run build`，Deploy `npx wrangler deploy`，`NODE_VERSION=24`。生产构建监听仅 `lolobuysheet-de/**`。
+- 首次正式构建 **7e2e3617-0b3a-4c59-ac66-00b55d7a8a51**，46 秒，部署版本前缀 **7086c5bd**，Ready / 100%。应用源码基线 **10d7f242c787ef5627301646204d3f2520961e9d**。本轮仅更新部署文档与记忆，不修改商品读取层或页面。
+- 生产 Worker 的 workers.dev Production URL 和版本 Preview URL 均为关闭；旧 `lolobuysheet-preview` 继续独立 noindex 预览。正式构建不设置 PUBLIC_SITE_PREVIEW。
+- 域名最初处于 Active、DNS 0 记录。已通过 Worker Domains 添加 apex 和 www，平台自动配置路由/DNS。其他域名和项目未改。
+- Zone 已开启 Always Use HTTPS。Single Redirect **LoloBuy www to canonical HTTPS**：`*://www.lolobuysheet.de/*` → `https://lolobuysheet.de/${2}`，301，勾选保留 query string。自定义域名在控制台维护，不写入会影响旧预览的公共 routes。
+- 浏览器公开验收成功：首页 8 件真实商品、11 分类、9 张首页主站图片全部加载；提交 Shorts 搜索得到 20 件；详情 6079 显示原始商品 ID 7777809164、21.90 USD、4 张图集入口，购买 URL 正确。
+- 正式 FAQ 30 条；文章中心 10 张文章卡；英文 first-order 正文和 canonical 正确。首页及文章 `index,follow`；搜索 `noindex,follow`。
+- 实测 `https://www.lolobuysheet.de/en/articles/first-order/?check=domain` 跳到 `https://lolobuysheet.de/en/articles/first-order/?check=domain`；`http://lolobuysheet.de/faq/` 跳到 HTTPS FAQ。
+- 生产构建成功：109 静态 HTML，114 sitemap URL，正式 origin，无预览域名；robots.txt Allow / + 正式 sitemap，_headers 无全站 noindex。
+- 验证边界：本执行环境直接 HTTP 返回 403；用户连接浏览器的上述页面访问成功。浏览器工具访问 robots.txt 和 sitemap.xml 返回 ERR_BLOCKED_BY_CLIENT，故二者仅核验构建产物，未宣称线上响应通过。未绕过访问限制。
+- 最后阶段浏览器连接上下文丢失，未能再取得正式站截图或重复手机视口验收；本次无手机 CSS 改动，继承 2026-10-19 已验证的全站手机压缩版本。正式域名部署与主要公开页面验收在连接丢失前已完成。
+- **搜图与 QC 图库依旧未接通**，待 cnfanshm 的有效接口/源码。无数据库、后台、商品快照、第三方商品来源。
+- 本条覆盖历史“正式域名未绑定”“待确认发布”的状态；继续工作直接维护现有生产 Worker 和同一仓库目录。
