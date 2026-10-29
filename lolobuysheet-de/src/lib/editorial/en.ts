@@ -2,7 +2,7 @@ export default {
 'spreadsheet-guide': `# How to use a LoloBuy spreadsheet: from a find to a shortlist
 > A useful spreadsheet helps you compare the right products before ordering. Learn what to search, what to record and what still needs checking in LoloBuy.
 ## Start with a specific buying question
-Decide what you need before browsing: a product category, a size requirement and a maximum item budget. Search for a useful noun such as “shorts”, then open the relevant category if you want to compare prices. A very broad search gives you more results without necessarily giving you better candidates. This directory uses the products and images supplied by cnfanshm.com; a listing is a starting point for research, not a reservation with the seller.
+Decide what you need before browsing: a product category, a size requirement and a maximum item budget. Search for a useful noun such as “shorts”, then open the relevant category if you want to compare prices. A very broad search gives you more results without necessarily giving you better candidates. This directory uses the products and images supplied by the source catalog; a listing is a starting point for research, not a reservation with the seller.
 ## Read the product card in the right order
 Check the product image and title first, then open the detail page to compare the original item ID and available pictures. Treat the displayed USD amount as an estimated item price. It excludes international shipping and other possible charges. The cheapest card can describe a different variant, so price alone is a poor way to identify the same product. If a price is missing, check the imported listing in LoloBuy instead of assuming that the item is free.
 ## Use filters without over-reading them
@@ -143,7 +143,7 @@ This method improves the basis of your choice, but it cannot guarantee comfort, 
 'price-check': `# LoloBuy prices and fees: compare the total cost of a find
 > A low product-card price is only one part of the decision. Compare the same variant and keep unknown costs visible until the order supplies them.
 ## Know what the displayed price means
-This directory displays an estimated USD item price derived from the CNY price supplied by cnfanshm.com. It is not a live currency quote or a checkout total. It excludes shipping and other possible charges. The source price can also precede a seller’s latest update. Use it to narrow a shortlist, then check the actual imported listing and selected variant in LoloBuy before deciding whether it fits your budget.
+This directory displays an estimated USD item price derived from the CNY price supplied by the source catalog. It is not a live currency quote or a checkout total. It excludes shipping and other possible charges. The source price can also precede a seller’s latest update. Use it to narrow a shortlist, then check the actual imported listing and selected variant in LoloBuy before deciding whether it fits your budget.
 ## Make the products comparable
 Record size, color, quantity and included accessories for each candidate. Two visually similar entries may represent different bundles or quality specifications. A cheaper entry that excludes an accessory is not automatically better value. Keep the original item ID with your notes so that a changed title or reused image does not erase the distinction. Confirm that the price you compare applies to the option you would actually order.
 ## Separate each cost component

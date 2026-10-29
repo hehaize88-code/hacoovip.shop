@@ -1,20 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {href,ui,type Locale} from '../lib/i18n';
-import {getEditorial,editorialUi,reviewedAt} from '../lib/editorial';
+import {getEditorial,editorialUi} from '../lib/editorial';
+import {seo,quickRows} from '../lib/seo';
 interface Props{lang:Locale;slug:string;}
 const {lang,slug}=Astro.props;const entry=getEditorial(lang,slug)!;const e=editorialUi[lang];const t=ui[lang];
+const copy=seo[lang];const rows=quickRows(lang,slug);
+const estimator=entry.sources.find(s=>s.url==='https://www.lolobuy.com/estimate');
 const page=`articles/${slug}`;const url=new URL(href(lang,page),Astro.site).href;
-const schema={'@context':'https://schema.org','@type':'Article',headline:entry.title,description:entry.summary,inLanguage:lang,datePublished:reviewedAt,dateModified:reviewedAt,mainEntityOfPage:url,author:{'@type':'Organization',name:e.by},publisher:{'@type':'Organization',name:'LoloBuy Sheet'},citation:entry.sources.map(s=>s.url)};
+const breadcrumbs={'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{name:t.home,url:new URL(href(lang),Astro.site).href},{name:t.articles,url:new URL(href(lang,'articles'),Astro.site).href},{name:entry.title,url}].map((item,i)=>({'@type':'ListItem',position:i+1,name:item.name,item:item.url}))};
+const schema={'@context':'https://schema.org','@type':'Article',headline:entry.title,description:entry.summary,inLanguage:lang,datePublished:entry.publishedAt,dateModified:entry.date,mainEntityOfPage:url,author:{'@type':'Organization',name:e.by},publisher:{'@type':'Organization',name:'LoloBuy Sheet'},citation:entry.sources.map(s=>s.url)};
 ---
 <Layout lang={lang} title={`${entry.title} | LoloBuy Sheet`} description={entry.summary} page={page}>
-<script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g,'\\u003c')}/>
+<script type="application/ld+json" set:html={JSON.stringify([schema,breadcrumbs]).replace(/</g,'\\u003c')}/>
 <div class="shell editorial-shell">
 <nav class="breadcrumb" aria-label={t.menu}><a href={href(lang)}>{t.home}</a><span>/</span><a href={href(lang,'articles')}>{t.articles}</a></nav>
-<header class="editorial-header"><p class="eyebrow">LOLOBUY / {t.editorial}</p><h1>{entry.title}</h1><p class="lead">{entry.summary}</p><div class="editorial-meta"><span>{e.by}</span><time datetime={reviewedAt}>{t.checked}</time><span>{entry.minutes} {e.minutes}</span></div></header>
+<header class="editorial-header"><p class="eyebrow">LOLOBUY / {t.editorial}</p><h1>{entry.title}</h1><p class="lead">{entry.summary}</p><div class="editorial-meta"><span>{e.by}</span><time datetime={entry.date}>{copy.updated}: {new Intl.DateTimeFormat(lang,{dateStyle:'long',timeZone:'UTC'}).format(new Date(entry.date+'T00:00:00Z'))}</time><span>{entry.minutes} {e.minutes}</span></div>{estimator&&slug!=='first-order-checks'&&<p class="article-entry-link"><a href={estimator.url} target="_blank" rel="noopener noreferrer">{estimator.title} ↗</a></p>}</header>
 <div class="editorial-layout"><details open class="article-toc" data-mobile-collapse><summary>{e.toc}</summary><div><ol>{entry.sections.map(s=><li><a href={`#${s.id}`}>{s.heading}</a></li>)}</ol><a class="toc-browse" href={href(lang,'spreadsheet')}>{e.browse} ↗</a></div></details>
-<article class="editorial-body">{entry.sections.map(s=><section id={s.id}><h2>{s.heading}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.bullets.length>0&&<ul class="editorial-checklist">{s.bullets.map(b=><li>{b}</li>)}</ul>}</section>)}
-<section class="editorial-sources"><h2>{e.sources}</h2><p>{e.note}</p><ul>{entry.sources.map(s=><li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title} ↗</a></li>)}</ul></section>
+<article class="editorial-body">{rows&&<section class="article-quick" aria-labelledby="quick-heading"><h2 id="quick-heading">{copy.quick}</h2><table><thead><tr>{copy.columns.map(c=><th scope="col">{c}</th>)}</tr></thead><tbody>{rows.map(row=><tr><th scope="row">{row[0]}</th><td>{row[1]}</td></tr>)}</tbody></table></section>}{entry.sections.map(s=><section id={s.id}><h2>{s.heading}</h2>{s.paragraphs.map(p=><p>{p}</p>)}{s.bullets.length>0&&<ul class="editorial-checklist">{s.bullets.map(b=><li>{b}</li>)}</ul>}</section>)}
+<section class="article-next"><h2>{copy.next}</h2><p>{copy.guides}</p><div class="guide-links"><a class="button" href={href(lang,'spreadsheet')}>{e.browse} ↗</a><a href={href(lang,'categories')}>{t.categories} ↗</a><a href={href(lang,'shipping')}>{t.shipping} ↗</a></div></section>
+<section class="editorial-sources"><h2>{e.sources}</h2><p>{copy.sourceNote}</p><ul>{entry.sources.map(s=><li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title} ↗</a></li>)}</ul></section>
 </article></div>
 <section class="related-articles"><div class="section-heading"><h2>{e.related}</h2><a href={href(lang,'articles')}>{e.allArticles} ↗</a></div><div class="article-grid">{entry.related.map(s=>{const a=getEditorial(lang,s)!;return <a class="article-card" href={href(lang,`articles/${s}`)}><span class="article-number">{a.minutes} {e.minutes}</span><h3>{a.title}</h3><span>{t.read} ↗</span></a>})}</div></section>
 </div>

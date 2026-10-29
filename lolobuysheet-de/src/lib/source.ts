@@ -92,7 +92,7 @@ export async function getCatalog(params: { q?: string; category?: string; sort?:
   const category = params.category || '';
   const page = Math.max(1, Math.min(9000, Math.floor(params.page || 1)));
   const sort = ['new', 'popular', 'price-asc', 'price-desc'].includes(params.sort || '') ? params.sort! : 'new';
-  const categories = await getCategories();
+  const [categories, conversion] = await Promise.all([getCategories(), rate()]);
   const selected = categories.find(c => c.slug === category);
   if (category && !selected) throw new SourceError('Category not found', 404);
   let tid = '1';
@@ -101,7 +101,6 @@ export async function getCatalog(params: { q?: string; category?: string; sort?:
     tid = categoryHTML.match(/[?&]tid=(\d+)/)?.[1] || '';
     if (!tid) throw new SourceError('Category source ID unavailable');
   }
-  const conversion = await rate();
   const buildSourceUrl = (sourcePage: number) => {
     const url = new URL(q ? '/search.html' : '/index.php', ORIGIN);
     if (q) { url.searchParams.set('keywords', q); url.searchParams.set('channelid', '2'); url.searchParams.set('method', '1'); }

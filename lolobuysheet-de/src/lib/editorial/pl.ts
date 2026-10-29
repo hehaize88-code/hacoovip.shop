@@ -2,7 +2,7 @@ export default {
 'spreadsheet-guide': `# Jak korzystać z LoloBuy spreadsheet i porównywać produkty
 > Zamień wyszukiwanie w użyteczną listę: ustal tożsamość produktu, porównaj warianty i sprawdź ofertę przed zakupem.
 ## Zacznij od konkretnej potrzeby
-Określ kategorię, potrzebny rozmiar i budżet na produkt. Wyszukaj konkretną nazwę, np. „shorts”, a następnie otwórz kategorię, jeśli chcesz porównywać ceny. Bardzo szerokie hasło daje więcej wyników, ale nie zawsze lepszych kandydatów. Produkty i zdjęcia tego katalogu pochodzą z cnfanshm.com. Wpis służy rozeznaniu i nie rezerwuje zapasu u sprzedawcy.
+Określ kategorię, potrzebny rozmiar i budżet na produkt. Wyszukaj konkretną nazwę, np. „shorts”, a następnie otwórz kategorię, jeśli chcesz porównywać ceny. Bardzo szerokie hasło daje więcej wyników, ale nie zawsze lepszych kandydatów. Produkty i zdjęcia tego katalogu pochodzą z katalogu źródłowego. Wpis służy rozeznaniu i nie rezerwuje zapasu u sprzedawcy.
 ## Prawidłowo odczytaj kartę
 Sprawdź zdjęcie i tytuł, następnie otwórz szczegóły, aby porównać oryginalny ID oraz dostępne zdjęcia. Kwota USD jest szacunkiem ceny produktu, bez transportu międzynarodowego i możliwych dodatkowych kosztów. Niższa cena może dotyczyć innego wariantu. Jeśli jej brak, sprawdź ofertę w LoloBuy: nieznana wartość nie oznacza bezpłatnego produktu.
 ## Używaj filtrów świadomie
@@ -143,7 +143,7 @@ Metoda poprawia podstawę wyboru, ale nie gwarantuje wygody, zachowania materia�
 'price-check': `# Ceny i opłaty LoloBuy: porównaj pełny koszt
 > Porównuj ten sam wariant i pokazuj koszty do ustalenia: kwota na karcie nie oznacza ceny z dostawą.
 ## Zrozum wyświetloną kwotę
-Katalog szacuje USD na podstawie ceny CNY z cnfanshm.com. Nie jest to kurs na żywo ani suma płatności. Wysyłka i możliwe opłaty są wyłączone; sprzedawca mógł już zmienić ofertę. Użyj wartości do wstępnego wyboru, a następnie sprawdź cenę wybranego wariantu w LoloBuy.
+Katalog szacuje USD na podstawie ceny CNY z katalogu źródłowego. Nie jest to kurs na żywo ani suma płatności. Wysyłka i możliwe opłaty są wyłączone; sprzedawca mógł już zmienić ofertę. Użyj wartości do wstępnego wyboru, a następnie sprawdź cenę wybranego wariantu w LoloBuy.
 ## Ujednolić porównanie
 Zapisz rozmiar, kolor, ilość i dodatki. Podobne zdjęcia mogą przedstawiać różne zestawy lub specyfikacje. Tańszy produkt bez potrzebnego dodatku nie jest automatycznie lepszy. Zachowaj oryginalny ID, aby uniknąć pomyłki po zmianie tytułu. Cena powinna dotyczyć opcji, którą rzeczywiście kupisz.
 ## Rozdziel składniki

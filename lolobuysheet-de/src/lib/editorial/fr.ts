@@ -2,7 +2,7 @@ export default {
 'spreadsheet-guide': `# Utiliser un spreadsheet LoloBuy pour comparer ses trouvailles
 > Passez d’une recherche à une sélection utile : identifiez les articles, comparez les variantes et vérifiez l’offre avant la commande.
 ## Partez d’un besoin précis
-Définissez catégorie, taille nécessaire et budget de l’article. Recherchez un terme concret, comme « shorts », puis ouvrez une catégorie pour comparer les prix. Une recherche très large apporte davantage de résultats, sans forcément mieux répondre au besoin. Les produits et images de ce répertoire viennent de cnfanshm.com. Une fiche sert à préparer votre choix ; elle ne réserve aucun stock chez le vendeur.
+Définissez catégorie, taille nécessaire et budget de l’article. Recherchez un terme concret, comme « shorts », puis ouvrez une catégorie pour comparer les prix. Une recherche très large apporte davantage de résultats, sans forcément mieux répondre au besoin. Les produits et images de ce répertoire viennent du catalogue source. Une fiche sert à préparer votre choix ; elle ne réserve aucun stock chez le vendeur.
 ## Lisez correctement la fiche
 Examinez image et titre, puis ouvrez le détail pour comparer l’identifiant d’origine et les photos disponibles. Le montant en USD estime le prix de l’article, hors transport international et autres frais éventuels. Un prix inférieur peut correspondre à une autre variante. Si le prix manque, vérifiez-le sur LoloBuy : une valeur inconnue ne signifie pas que l’article est gratuit.
 ## Utilisez les filtres sans leur prêter trop de sens
@@ -143,7 +143,7 @@ Cette méthode améliore le choix sans garantir confort, comportement du tissu o
 'price-check': `# Prix et frais LoloBuy : comparer le coût total
 > Comparez la même variante et gardez les frais inconnus visibles : le prix d’une carte ne représente pas une commande livrée.
 ## Comprenez le montant affiché
-Le répertoire estime un prix USD à partir du prix CNY fourni par cnfanshm.com. Ce n’est ni un taux de change en direct ni un total de paiement. Livraison et frais éventuels sont exclus ; le vendeur peut avoir actualisé son offre. Utilisez ce montant pour présélectionner, puis vérifiez le prix de la variante importée sur LoloBuy.
+Le répertoire estime un prix USD à partir du prix CNY fourni par le catalogue source. Ce n’est ni un taux de change en direct ni un total de paiement. Livraison et frais éventuels sont exclus ; le vendeur peut avoir actualisé son offre. Utilisez ce montant pour présélectionner, puis vérifiez le prix de la variante importée sur LoloBuy.
 ## Rendez les candidats comparables
 Notez taille, couleur, quantité et accessoires. Des images proches peuvent représenter des ensembles ou caractéristiques différents. Un article moins cher sans l’accessoire nécessaire n’est pas automatiquement préférable. Gardez l’identifiant d’origine pour éviter les confusions lors d’un changement de titre. Le prix comparé doit concerner l’option réellement envisagée.
 ## Séparez les composantes

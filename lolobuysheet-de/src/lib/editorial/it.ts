@@ -2,7 +2,7 @@ export default {
 'spreadsheet-guide': `# Come usare uno spreadsheet LoloBuy per confrontare prodotti
 > Trasforma una ricerca in una selezione utile: identifica gli articoli, confronta le varianti e verifica l’offerta prima dell’ordine.
 ## Parti da una necessità precisa
-Definisci categoria, taglia e budget dell’articolo. Cerca un termine concreto, come “shorts”, poi apri una categoria per confrontare i prezzi. Una ricerca molto ampia aggiunge risultati senza necessariamente risolvere il bisogno. Prodotti e immagini di questo catalogo provengono da cnfanshm.com. Una scheda serve a fare ricerca, non riserva disponibilità presso il venditore.
+Definisci categoria, taglia e budget dell’articolo. Cerca un termine concreto, come “shorts”, poi apri una categoria per confrontare i prezzi. Una ricerca molto ampia aggiunge risultati senza necessariamente risolvere il bisogno. Prodotti e immagini di questo catalogo provengono dal catalogo di origine. Una scheda serve a fare ricerca, non riserva disponibilità presso il venditore.
 ## Leggi correttamente la scheda
 Controlla immagine e titolo, poi apri i dettagli per verificare ID originale e foto disponibili. L’importo in USD stima il prezzo dell’articolo, esclusi trasporto internazionale e altri possibili costi. Un prezzo inferiore può riferirsi a una variante diversa. Se manca, controllalo su LoloBuy: un dato sconosciuto non significa prodotto gratuito.
 ## Usa i filtri con aspettative corrette
@@ -143,7 +143,7 @@ Il metodo migliora la scelta senza garantire comodità, comportamento del tessut
 'price-check': `# Prezzi e costi LoloBuy: confrontare il totale
 > Confronta la stessa variante e mantieni visibili i costi da confermare: il prezzo sulla scheda non è il totale consegnato.
 ## Comprendi l’importo mostrato
-Il catalogo stima USD dal prezzo CNY fornito da cnfanshm.com. Non è un cambio in tempo reale né un totale di pagamento. Spedizione e possibili costi sono esclusi; il venditore può aver aggiornato l’offerta. Usa il dato per una prima selezione, poi verifica il prezzo della variante importata in LoloBuy.
+Il catalogo stima USD dal prezzo CNY fornito dal catalogo di origine. Non è un cambio in tempo reale né un totale di pagamento. Spedizione e possibili costi sono esclusi; il venditore può aver aggiornato l’offerta. Usa il dato per una prima selezione, poi verifica il prezzo della variante importata in LoloBuy.
 ## Rendi comparabili i candidati
 Annota taglia, colore, quantità e accessori. Foto simili possono rappresentare confezioni o specifiche differenti. Un prodotto meno caro senza l’accessorio necessario non è automaticamente migliore. Conserva l’ID originale per evitare confusione quando cambia il titolo. Il prezzo deve riferirsi all’opzione che compreresti davvero.
 ## Separa le componenti

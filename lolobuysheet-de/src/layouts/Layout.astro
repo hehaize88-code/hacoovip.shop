@@ -31,6 +31,23 @@ const nav=[['catalog','spreadsheet'],['articles','articles'],['categories','cate
   tag.async = true;
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=G-LXR4CPTJ8E';
   document.head.appendChild(tag);
+  // Measure distinct journey steps without a second page_view or search/order data.
+  document.addEventListener('click', event => {
+    const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+    if (!link || link.hasAttribute('data-locale-link')) return;
+    const target = new URL(link.href, location.href);
+    const internal = target.origin === location.origin;
+    let name = link.dataset.track;
+    if (!name && internal && /\/spreadsheet\/$/.test(target.pathname)) name = 'catalog_open';
+    if (!name && internal && /\/product\/\d+\/$/.test(target.pathname)) name = 'product_open';
+    if (!['buy_click','register_click','catalog_open','product_open'].includes(name)) return;
+    gtag('event', name, {
+      content_language: document.documentElement.lang,
+      page_type: location.pathname.includes('/articles/') ? 'article' : /\/product\//.test(location.pathname) ? 'product' : 'browse',
+      link_area: link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'content',
+      transport_type: 'beacon'
+    });
+  });
 })();
 </script>}
 <title>{title}</title><meta name="description" content={description} />
@@ -47,7 +64,7 @@ const nav=[['catalog','spreadsheet'],['articles','articles'],['categories','cate
 <header class="site-header"><div class="header-inner">
 <a class="brand" href={href(lang)} aria-label="LoloBuy Sheet"><span class="logo-wrap"><img src="/logo.svg" width="128" height="30" alt="LoloBuy" /></span><span class="brand-caption">SHEET</span></a>
 <nav aria-label={t.menu}>{nav.map(([key,p])=><a class:list={{'article-nav-link':key==='articles'}} href={href(lang,p)} aria-current={page===p||page.startsWith(`${p}/`)?'page':undefined}>{t[key]}</a>)}</nav>
-<div class="header-actions"><details class="language"><summary aria-label={t.language}><span aria-hidden="true">◎</span> {lang.toUpperCase()} <span aria-hidden="true">⌄</span></summary><div class="language-menu">{locales.map(l=><a data-locale-link href={href(l,page)} lang={l} hreflang={l} aria-current={lang===l?'true':undefined}>{names[l]}<span>{l.toUpperCase()}</span></a>)}</div></details><a class="register" href={REGISTER_URL} rel="nofollow noopener noreferrer" target="_blank">{t.register}</a></div>
+<div class="header-actions"><details class="language"><summary aria-label={t.language}><span aria-hidden="true">◎</span> {lang.toUpperCase()} <span aria-hidden="true">⌄</span></summary><div class="language-menu">{locales.map(l=><a data-locale-link href={href(l,page)} lang={l} hreflang={l} aria-current={lang===l?'true':undefined}>{names[l]}<span>{l.toUpperCase()}</span></a>)}</div></details><a class="register" data-track="register_click" href={REGISTER_URL} rel="nofollow noopener noreferrer" target="_blank">{t.register}</a></div>
 </div></header>
 <main id="main"><slot /></main>
 <footer><div class="footer-inner"><div><a class="footer-name" href={href(lang)}>LoloBuy <b>Sheet.</b></a><p>{t.independent}</p></div><div class="footer-links"><a href={href(lang,'about')}>{t.about}</a><a href={href(lang,'privacy')}>{t.privacy}</a><a href="/sitemap.xml">Sitemap</a><span>© {new Date().getFullYear()} lolobuysheet.de</span></div></div></footer>

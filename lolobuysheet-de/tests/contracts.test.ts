@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {makeBuyUrl,imageUrl,parseList,parseRate} from '../src/lib/source.ts';
 import {href,locales,ui,infoPages,articleSlugs} from '../src/lib/i18n.ts';
+import {getEditorial} from '../src/lib/editorial/index.ts';
+import {featuredArticles,seo,quickRows} from '../src/lib/seo.ts';
 // Contracts guard the money/link boundaries; no catalog fixture or mock image collection.
 test('LoloBuy URL uses the original marketplace ID, including the supplied example',()=>{
  const id='7711153142';
@@ -20,4 +22,22 @@ test('all six interfaces and locale paths are complete',()=>{
  const keys=Object.keys(ui.de);
  for(const lang of locales){assert.deepEqual(Object.keys(ui[lang]),keys);for(const key of keys)assert.ok(ui[lang][key]?.trim(),`${lang}.${key}`);for(const path of [...infoPages,...articleSlugs.map(s=>`articles/${s}`)])assert.match(href(lang,path),/^\/(?:en\/|es\/|fr\/|it\/|pl\/)?[a-z/-]+\/$/);}
  assert.equal(href('de'),'/');assert.equal(href('en','product/6079'),'/en/product/6079/');
+});
+test('priority guides are complete in every language and link to valid related articles',()=>{
+ for(const lang of locales){
+  assert.ok(seo[lang].homeTitle && seo[lang].homeDescription);
+  for(const slug of articleSlugs){
+   const entry=getEditorial(lang,slug);assert.ok(entry,`${lang}/${slug}`);
+   assert.ok(entry.title && entry.summary && entry.sections.length>=5);
+   assert.ok(entry.sources.every(s=>new URL(s.url).hostname==='www.lolobuy.com'));
+   for(const related of entry.related)assert.ok(getEditorial(lang,related),`${slug} -> ${related}`);
+   assert.ok(!JSON.stringify(entry).includes('cnfanshm.com'));
+   if(featuredArticles.includes(slug)){
+    assert.ok(entry.words>=1000,`${lang}/${slug} must contain a full guide, not a translated summary`);
+    if(lang==='en')assert.ok(entry.words>=1200 && entry.words<=1800,`${slug}: ${entry.words} words`);
+   }
+  }
+  for(const slug of ['shipping-cost','order-tracking','spreadsheet-guide'])assert.ok(quickRows(lang,slug)?.length>=3);
+ }
+ assert.equal(articleSlugs.length,13);
 });

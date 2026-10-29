@@ -1,10 +1,19 @@
-import type { Locale } from '../i18n';
-import {officialUpdates} from './official-updates';
-import de from './de'; import en from './en'; import es from './es'; import fr from './fr'; import it from './it'; import pl from './pl';
+import type { Locale } from '../i18n.ts';
+import {contentUpdatedAt} from '../seo.ts';
+import shippingFrance from './new/shipping-france.ts';
+import shippingGermany from './new/shipping-germany.ts';
+import firstOrderChecks from './new/first-order-checks.ts';
+import shippingCost from './enhanced/shipping-cost.ts';
+import orderTracking from './enhanced/order-tracking.ts';
+import spreadsheetGuide from './enhanced/spreadsheet-guide.ts';
+import {officialUpdates} from './official-updates.ts';
+import de from './de.ts'; import en from './en.ts'; import es from './es.ts'; import fr from './fr.ts'; import it from './it.ts'; import pl from './pl.ts';
 
-export const editorialSlugs = ['spreadsheet-guide','first-order','source-links','photo-check','shipping-cost','order-tracking','warehouse-guide','size-check','price-check','returns-guide'];
+export const editorialSlugs = ['spreadsheet-guide','first-order','source-links','photo-check','shipping-cost','order-tracking','warehouse-guide','size-check','price-check','returns-guide','shipping-france','shipping-germany','first-order-checks'];
 export const reviewedAt = '2026-10-19';
 const documents: Record<Locale, Record<string,string>> = {de,en,es,fr,it,pl};
+const newDocuments:Record<string,Record<Locale,string>>={'shipping-france':shippingFrance,'shipping-germany':shippingGermany,'first-order-checks':firstOrderChecks};
+const enhancedDocuments:Record<string,Record<Locale,string>>={'shipping-cost':shippingCost,'order-tracking':orderTracking,'spreadsheet-guide':spreadsheetGuide};
 export const helpIds = {
  buying:'1242296499766165', qc:'1242300728672386', sizing:'1242296504877978',
  storage:'1242300757049499', packing:'1242306518844916', weight:'1242300798075086',
@@ -24,22 +33,25 @@ const sourceTitles: Record<Locale, Record<Source,string>> = {
  pl:{buying:'Oficjalny poradnik zakupu',qc:'Standardowa kontrola i ograniczenia',sizing:'Oficjalna tabela rozmiarów',storage:'Okresy przechowywania',packing:'Usuwanie opakowania',weight:'Waga szacowana i rzeczywista',status:'Statusy zamówienia i paczki',returns:'Anulowanie i refundacja',claims:'Reklamacja paczki',modify:"Zmiana zamówienia",confirmation:"Odpowiedzi na potwierdzenia",domestic:"Wspólny transport krajowy",guarantee:"Warunki zwrotu pięciodniowego",wholesale:"Zakupy 1688 i minima ilościowe",photos:"Standardowe zdjęcia",service:"Opis usługi zakupowej",supplement:"Dopłaty do transportu",discounts:"Rabaty sprzedawcy",returnSteps:"Zwrot i miejsce refundacji"},
 };
 const sources: Record<string,Source[]> = {
+ 'shipping-france':['buying','weight','packing','status','claims'], 'shipping-germany':['buying','weight','packing','status','claims'], 'first-order-checks':['buying','qc','returns','claims','confirmation'],
  'spreadsheet-guide':['buying'], 'first-order':['buying','status','qc','modify','confirmation'], 'source-links':['buying','wholesale','qc','photos'],
  'photo-check':['qc','photos','service'], 'shipping-cost':['weight','buying','supplement'], 'order-tracking':['status','buying','confirmation'],
  'warehouse-guide':['storage','buying','packing'], 'size-check':['sizing','qc'],
  'price-check':['buying','weight','domestic','discounts','service'], 'returns-guide':['returns','claims','guarantee','returnSteps'],
 };
 const related: Record<string,string[]> = {
- 'spreadsheet-guide':['first-order','source-links','price-check'], 'first-order':['photo-check','shipping-cost','order-tracking'],
+ 'shipping-france':['shipping-cost','shipping-germany','order-tracking'], 'shipping-germany':['shipping-cost','shipping-france','order-tracking'], 'first-order-checks':['first-order','photo-check','returns-guide'],
+ 'spreadsheet-guide':['first-order-checks','source-links','price-check'], 'first-order':['photo-check','shipping-cost','order-tracking'],
  'source-links':['spreadsheet-guide','first-order','price-check'], 'photo-check':['size-check','warehouse-guide','returns-guide'],
- 'shipping-cost':['price-check','warehouse-guide','order-tracking'], 'order-tracking':['first-order','warehouse-guide','returns-guide'],
+ 'shipping-cost':['shipping-france','shipping-germany','order-tracking'], 'order-tracking':['first-order','warehouse-guide','returns-guide'],
  'warehouse-guide':['photo-check','shipping-cost','returns-guide'], 'size-check':['photo-check','source-links','first-order'],
  'price-check':['shipping-cost','source-links','spreadsheet-guide'], 'returns-guide':['photo-check','warehouse-guide','order-tracking'],
 };
 export interface EditorialSection { heading:string; paragraphs:string[]; bullets:string[]; id:string; }
 export function getEditorial(lang:Locale,slug:string) {
- const original=documents[lang][slug]; if(!original) return undefined;
- const update=officialUpdates[lang][slug]; if(!update) throw new Error(`Missing official article update: ${lang}/${slug}`);
+ const original=newDocuments[slug]?.[lang] || enhancedDocuments[slug]?.[lang] || documents[lang][slug]; if(!original) return undefined;
+ const update=newDocuments[slug] || enhancedDocuments[slug] ? '' : officialUpdates[lang][slug];
+ if(update===undefined) throw new Error(`Missing official article update: ${lang}/${slug}`);
  const raw=original+'\n'+update;
  const lines=raw.split('\n'); const title=lines[0].replace(/^# /,''); const summary=lines[1].replace(/^> /,'');
  const sections:EditorialSection[]=[];
@@ -49,15 +61,15 @@ export function getEditorial(lang:Locale,slug:string) {
   else if(line.trim()) sections.at(-1)!.paragraphs.push(line);
  }
  const words=raw.trim().split(/\s+/u).length;
- return {slug,title,summary,sections,words,minutes:Math.max(2,Math.ceil(words/190)),date:reviewedAt,
-  sources:sources[slug].map(key=>({title:sourceTitles[lang][key],url:helpUrl(key)})),related:related[slug]};
+ return {slug,title,summary,sections,words,minutes:Math.max(2,Math.ceil(words/190)),date:contentUpdatedAt,publishedAt:newDocuments[slug]?contentUpdatedAt:reviewedAt,
+  sources:[...sources[slug].map(key=>({title:sourceTitles[lang][key],url:helpUrl(key)})),...(['shipping-cost','shipping-france','shipping-germany','first-order-checks'].includes(slug)?[{title:'LoloBuy',url:'https://www.lolobuy.com/'},{title:({de:'Offizieller Versandkostenrechner',en:'Official shipping estimator',es:'Estimador oficial de envío',fr:'Estimateur officiel de livraison',it:'Calcolatore ufficiale di spedizione',pl:'Oficjalny kalkulator wysyłki'})[lang],url:'https://www.lolobuy.com/estimate'}]:[])],related:related[slug]};
 }
 
 export const editorialUi:Record<Locale,Record<string,string>>={
- de:{title:'LoloBuy Artikel & Kaufwissen',intro:'Zehn praktische Artikel: vom ersten Fund über QC und Größen bis zu Versand, Tracking und Rückgabe.',toc:'In diesem Artikel',related:'Passend dazu',minutes:'Min. Lesezeit',by:'Redaktion LoloBuy Sheet',sources:'Quellen und Prüfung',note:'Offizielle Seiten zuletzt am 19. Oktober 2026 geprüft. Maßgeblich bleiben die aktuellen Angaben deiner konkreten Bestellung.',faqIntro:'30 Antworten zu Produktsuche, Bestellung, QC, Versand und Rückgaben. Plattformregeln sind mit offiziellen LoloBuy-Hilfeseiten verknüpft.',answerSource:'Quelle / Details',allArticles:'Alle Artikel',browse:'Zum Spreadsheet'},
- en:{title:'LoloBuy articles & buying guides',intro:'Ten practical articles, from your first find to QC, sizing, shipping, tracking and returns.',toc:'In this article',related:'Read next',minutes:'min read',by:'LoloBuy Sheet editorial',sources:'Sources and review',note:'Official pages last checked on 19 October 2026. The current details of your specific order still apply.',faqIntro:'30 answers about product research, ordering, QC, shipping and returns. Platform rules link to official LoloBuy help pages.',answerSource:'Source / details',allArticles:'All articles',browse:'Browse the spreadsheet'},
- es:{title:'Artículos y guías de compra LoloBuy',intro:'Diez artículos prácticos: búsqueda, primer pedido, QC, tallas, envío, seguimiento y devoluciones.',toc:'En este artículo',related:'Sigue leyendo',minutes:'min de lectura',by:'Redacción LoloBuy Sheet',sources:'Fuentes y revisión',note:'Páginas oficiales revisadas el 19 de octubre de 2026. Se aplican los datos actuales de tu pedido concreto.',faqIntro:'30 respuestas sobre búsqueda, pedidos, QC, envíos y devoluciones. Las reglas enlazan a la ayuda oficial de LoloBuy.',answerSource:'Fuente / detalles',allArticles:'Todos los artículos',browse:'Explorar el spreadsheet'},
- fr:{title:'Articles et guides d’achat LoloBuy',intro:'Dix articles pratiques : recherche, premier achat, QC, tailles, livraison, suivi et retours.',toc:'Dans cet article',related:'À lire ensuite',minutes:'min de lecture',by:'Rédaction LoloBuy Sheet',sources:'Sources et vérification',note:'Pages officielles vérifiées le 19 octobre 2026. Les informations actuelles de votre commande précise restent applicables.',faqIntro:'30 réponses sur la recherche, les commandes, le QC, la livraison et les retours. Les règles renvoient à l’aide officielle LoloBuy.',answerSource:'Source / détails',allArticles:'Tous les articles',browse:'Parcourir le spreadsheet'},
- it:{title:'Articoli e guide all’acquisto LoloBuy',intro:'Dieci articoli pratici: ricerca, primo ordine, QC, taglie, spedizione, tracking e resi.',toc:'In questo articolo',related:'Leggi anche',minutes:'min di lettura',by:'Redazione LoloBuy Sheet',sources:'Fonti e verifica',note:'Pagine ufficiali verificate il 19 ottobre 2026. Restano applicabili i dati aggiornati del tuo ordine specifico.',faqIntro:'30 risposte su ricerca, ordini, QC, spedizione e resi. Le regole rimandano all’assistenza ufficiale LoloBuy.',answerSource:'Fonte / dettagli',allArticles:'Tutti gli articoli',browse:'Esplora lo spreadsheet'},
- pl:{title:'Artykuły i poradniki zakupowe LoloBuy',intro:'Dziesięć praktycznych artykułów: wyszukiwanie, pierwszy zakup, QC, rozmiary, wysyłka, śledzenie i zwroty.',toc:'W tym artykule',related:'Czytaj dalej',minutes:'min czytania',by:'Redakcja LoloBuy Sheet',sources:'Źródła i weryfikacja',note:'Oficjalne strony sprawdzono 19 października 2026. Obowiązują aktualne informacje konkretnego zamówienia.',faqIntro:'30 odpowiedzi o wyszukiwaniu, zakupach, QC, wysyłce i zwrotach. Zasady odsyłają do oficjalnej pomocy LoloBuy.',answerSource:'Źródło / szczegóły',allArticles:'Wszystkie artykuły',browse:'Przeglądaj spreadsheet'},
+ de:{title:'LoloBuy Artikel & Kaufwissen',intro:'Praktische Artikel: vom ersten Fund über QC und Größen bis zu Versand, Tracking und Rückgabe.',toc:'In diesem Artikel',related:'Passend dazu',minutes:'Min. Lesezeit',by:'Redaktion LoloBuy Sheet',sources:'Quellen und Prüfung',note:'Offizielle Seiten zuletzt am 19. Oktober 2026 geprüft. Maßgeblich bleiben die aktuellen Angaben deiner konkreten Bestellung.',faqIntro:'30 Antworten zu Produktsuche, Bestellung, QC, Versand und Rückgaben. Plattformregeln sind mit offiziellen LoloBuy-Hilfeseiten verknüpft.',answerSource:'Quelle / Details',allArticles:'Alle Artikel',browse:'Zum Spreadsheet'},
+ en:{title:'LoloBuy articles & buying guides',intro:'Practical articles, from your first find to QC, sizing, shipping, tracking and returns.',toc:'In this article',related:'Read next',minutes:'min read',by:'LoloBuy Sheet editorial',sources:'Sources and review',note:'Official pages last checked on 19 October 2026. The current details of your specific order still apply.',faqIntro:'30 answers about product research, ordering, QC, shipping and returns. Platform rules link to official LoloBuy help pages.',answerSource:'Source / details',allArticles:'All articles',browse:'Browse the spreadsheet'},
+ es:{title:'Artículos y guías de compra LoloBuy',intro:'Artículos prácticos: búsqueda, primer pedido, QC, tallas, envío, seguimiento y devoluciones.',toc:'En este artículo',related:'Sigue leyendo',minutes:'min de lectura',by:'Redacción LoloBuy Sheet',sources:'Fuentes y revisión',note:'Páginas oficiales revisadas el 19 de octubre de 2026. Se aplican los datos actuales de tu pedido concreto.',faqIntro:'30 respuestas sobre búsqueda, pedidos, QC, envíos y devoluciones. Las reglas enlazan a la ayuda oficial de LoloBuy.',answerSource:'Fuente / detalles',allArticles:'Todos los artículos',browse:'Explorar el spreadsheet'},
+ fr:{title:'Articles et guides d’achat LoloBuy',intro:'Articles pratiques : recherche, premier achat, QC, tailles, livraison, suivi et retours.',toc:'Dans cet article',related:'À lire ensuite',minutes:'min de lecture',by:'Rédaction LoloBuy Sheet',sources:'Sources et vérification',note:'Pages officielles vérifiées le 19 octobre 2026. Les informations actuelles de votre commande précise restent applicables.',faqIntro:'30 réponses sur la recherche, les commandes, le QC, la livraison et les retours. Les règles renvoient à l’aide officielle LoloBuy.',answerSource:'Source / détails',allArticles:'Tous les articles',browse:'Parcourir le spreadsheet'},
+ it:{title:'Articoli e guide all’acquisto LoloBuy',intro:'Articoli pratici: ricerca, primo ordine, QC, taglie, spedizione, tracking e resi.',toc:'In questo articolo',related:'Leggi anche',minutes:'min di lettura',by:'Redazione LoloBuy Sheet',sources:'Fonti e verifica',note:'Pagine ufficiali verificate il 19 ottobre 2026. Restano applicabili i dati aggiornati del tuo ordine specifico.',faqIntro:'30 risposte su ricerca, ordini, QC, spedizione e resi. Le regole rimandano all’assistenza ufficiale LoloBuy.',answerSource:'Fonte / dettagli',allArticles:'Tutti gli articoli',browse:'Esplora lo spreadsheet'},
+ pl:{title:'Artykuły i poradniki zakupowe LoloBuy',intro:'Praktyczne artykuły: wyszukiwanie, pierwszy zakup, QC, rozmiary, wysyłka, śledzenie i zwroty.',toc:'W tym artykule',related:'Czytaj dalej',minutes:'min czytania',by:'Redakcja LoloBuy Sheet',sources:'Źródła i weryfikacja',note:'Oficjalne strony sprawdzono 19 października 2026. Obowiązują aktualne informacje konkretnego zamówienia.',faqIntro:'30 odpowiedzi o wyszukiwaniu, zakupach, QC, wysyłce i zwrotach. Zasady odsyłają do oficjalnej pomocy LoloBuy.',answerSource:'Źródło / szczegóły',allArticles:'Wszystkie artykuły',browse:'Przeglądaj spreadsheet'},
 };

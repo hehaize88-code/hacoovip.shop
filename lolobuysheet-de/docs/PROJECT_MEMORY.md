@@ -1,6 +1,6 @@
 # LoloBuy Sheet 项目记忆（当前有效）
 
-更新：2026-10-20 UTC。继续工作先读本文件及 README；用户的新指示覆盖历史方案。
+更新：2026-10-29 UTC。继续工作先读本文件及 README；用户的新指示覆盖历史方案。
 
 ## 固定需求
 
@@ -23,9 +23,9 @@
 - 首页读取最新 8 个真实商品预览；目录 20 件/页，手机双列，无本地假搜索。
 - 6 种完整界面和编辑内容语言：DE 默认 `/`、EN `/en/`、ES `/es/`、FR `/fr/`、IT `/it/`、PL `/pl/`。
 - 切换语言保留同页、关键词、分类、排序、页码；原商品名保持上游原值。
-- canonical、HTML lang、互指 hreflang/x-default、robots、114 条稳定页面 sitemap 已实现。
+- canonical、HTML lang、互指 hreflang/x-default、robots、132 条稳定页面 sitemap 已实现。
 - 搜索、筛选、排序、分页参数页 noindex；不生成重复的关键词入口页，不伪造库存/评分/Offer。
-- 每语言 30 个本地化 FAQ、购买/QC/运输指南，以及 10 篇原创文章（六语言共 60 页）。内容和政策差异依据官方公开帮助核对，详见 docs/CONTENT_RESEARCH_2026-10-19.md。
+- 每语言 30 个本地化 FAQ、购买/QC/运输指南，以及 13 篇原创文章（六语言共 78 页）。内容和政策差异依据官方公开帮助核对，详见 docs/CONTENT_RESEARCH_2026-10-19.md。
 - 现阶段分类从 `/categories/` 进入 `/spreadsheet/?category=…`，组合页不收录；独立分类 SEO 页为后续优化项。
 
 ## 唯一数据层：src/lib/source.ts
@@ -203,3 +203,14 @@
 - 最后阶段浏览器连接上下文丢失，未能再取得正式站截图或重复手机视口验收；本次无手机 CSS 改动，继承 2026-10-19 已验证的全站手机压缩版本。正式域名部署与主要公开页面验收在连接丢失前已完成。
 - **搜图与 QC 图库依旧未接通**，待 cnfanshm 的有效接口/源码。无数据库、后台、商品快照、第三方商品来源。
 - 本条覆盖历史“正式域名未绑定”“待确认发布”的状态；继续工作直接维护现有生产 Worker 和同一仓库目录。
+
+
+## 2026-10-29 六语言 SEO 与文章迭代
+
+- 用户明确要求结合研究改进并部署，新增和改善文章必须覆盖全部六种语言。
+- 主词保持 LoloBuy spreadsheet；新增 France shipping、Germany shipping、first-order checks。优先改善既有运费、订单跟踪、Spreadsheet 指南。
+- 不公布未经验证的固定运价、到货天数、评价分数或下单经验；报价以当前官方 estimator / 具体订单为准。
+- 新文章模块在 src/lib/editorial/new/，重点重写文章在 enhanced/，完整本地化 UI 在 src/lib/seo.ts。
+- Article datePublished 保留原文日期，新文使用新增日期；dateModified 和 sitemap lastmod 对应此次实际改动。来源说明不把编辑日期冒充所有帮助政策重新核验日期。
+- 统计新增四个独立点击事件，生产域名限制及禁用广告个性化保持；不要宣称已在 GA4 后台标记关键事件。
+- 不在公开代码仓库记录私人 GSC / GA4 明细或账号数据。部署沿用现有 GitHub → Cloudflare Workers Builds。

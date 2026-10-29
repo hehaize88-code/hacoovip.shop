@@ -1,4 +1,4 @@
-import {editorialSlugs} from './editorial';
+import {editorialSlugs} from './editorial/index.ts';
 export const locales = ['de', 'en', 'es', 'fr', 'it', 'pl'] as const;
 export type Locale = typeof locales[number];
 export const names: Record<Locale, string> = { de: 'Deutsch', en: 'English', es: 'Español', fr: 'Français', it: 'Italiano', pl: 'Polski' };

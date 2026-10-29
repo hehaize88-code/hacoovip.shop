@@ -2,7 +2,7 @@ export default {
 'spreadsheet-guide': `# LoloBuy Spreadsheet nutzen: vom Fund zur sinnvollen Auswahl
 > Ein Spreadsheet hilft beim Vergleichen. So suchst du gezielt, hältst wichtige Unterschiede fest und prüfst das konkrete Angebot vor der Bestellung.
 ## Beginne mit einer konkreten Frage
-Lege Kategorie, benötigte Größe und Artikelbudget fest, bevor du stöberst. Suche etwa nach „shorts“ und öffne anschließend eine passende Kategorie, wenn du Preise vergleichen möchtest. Eine sehr breite Suche liefert mehr Treffer, aber nicht automatisch bessere Kandidaten. Die Produkte und Bilder dieses Verzeichnisses kommen von cnfanshm.com. Ein Katalogeintrag ist ein Ausgangspunkt für deine Recherche und keine Reservierung beim Verkäufer.
+Lege Kategorie, benötigte Größe und Artikelbudget fest, bevor du stöberst. Suche etwa nach „shorts“ und öffne anschließend eine passende Kategorie, wenn du Preise vergleichen möchtest. Eine sehr breite Suche liefert mehr Treffer, aber nicht automatisch bessere Kandidaten. Die Produkte und Bilder dieses Verzeichnisses kommen von dem Quellkatalog. Ein Katalogeintrag ist ein Ausgangspunkt für deine Recherche und keine Reservierung beim Verkäufer.
 ## Lies die Produktkarte in der richtigen Reihenfolge
 Prüfe zunächst Bild und Titel. Öffne dann die Details und vergleiche die ursprüngliche Artikel-ID sowie die verfügbaren Bilder. Der USD-Betrag ist eine Schätzung des Artikelpreises; internationaler Versand und mögliche Zusatzkosten fehlen. Ein niedrigerer Preis kann zu einer anderen Variante gehören. Fehlt eine Preisangabe, prüfe das Angebot bei LoloBuy und behandle den fehlenden Wert nicht als kostenlosen Artikel.
 ## Nutze Filter mit der richtigen Erwartung
@@ -143,7 +143,7 @@ Die Methode verbessert die Entscheidungsgrundlage, garantiert aber weder Trageko
 'price-check': `# LoloBuy-Preise und Gebühren: die Gesamtkosten vergleichen
 > Der Preis auf der Produktkarte ist nur ein Teil der Entscheidung. Vergleiche dieselbe Variante und halte offene Kosten sichtbar fest.
 ## Verstehe die angezeigte Schätzung
-Dieses Verzeichnis berechnet einen geschätzten USD-Artikelpreis aus dem von cnfanshm.com bereitgestellten CNY-Preis. Das ist weder ein Live-Wechselkurs noch eine vollständige Zahlungsübersicht. Versand und mögliche Zusatzkosten fehlen; außerdem kann sich das Verkäuferangebot inzwischen geändert haben. Nutze den Betrag zur Vorauswahl und prüfe vor der Bestellung den aktuellen Preis deiner Variante bei LoloBuy.
+Dieses Verzeichnis berechnet einen geschätzten USD-Artikelpreis aus dem von dem Quellkatalog bereitgestellten CNY-Preis. Das ist weder ein Live-Wechselkurs noch eine vollständige Zahlungsübersicht. Versand und mögliche Zusatzkosten fehlen; außerdem kann sich das Verkäuferangebot inzwischen geändert haben. Nutze den Betrag zur Vorauswahl und prüfe vor der Bestellung den aktuellen Preis deiner Variante bei LoloBuy.
 ## Mache Produkte vergleichbar
 Notiere Größe, Farbe, Menge und enthaltenes Zubehör. Ähnliche Bilder können unterschiedliche Zusammenstellungen oder Spezifikationen zeigen. Ein günstigeres Angebot ohne benötigtes Zubehör ist nicht automatisch die bessere Wahl. Speichere die ursprüngliche Artikel-ID, damit geänderte Titel oder wiederverwendete Bilder die Zuordnung nicht verwischen. Vergleiche nur Preise, die für deine tatsächliche Auswahl gelten.
 ## Trenne die Kostenpositionen

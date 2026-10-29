@@ -1,18 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';import Search from './Search.astro';
+import {seo,featuredArticles} from '../lib/seo';
 import Editorial from './Editorial.astro';import {getEditorial,editorialUi} from '../lib/editorial';
 import {href,ui,articleSlugs,type Locale} from '../lib/i18n';import {article,officialSources} from '../lib/content';import {faqs} from '../lib/faq';
 interface Props {lang:Locale;section:string;slug?:string;}
 const {lang,section,slug}=Astro.props;const t=ui[lang];const e=editorialUi[lang];const a=article(lang,slug||section);const title=section==='articles'&&!slug?e.title:a.title||t[section==='image-search'?'imageSearch':section];const page=slug?`articles/${slug}`:section;
-const description=section==='articles'?e.intro:section==='faq'?e.faqIntro:a.paragraphs[0]?.slice(0,165)||t.intro;
+const description=section==='articles'?seo[lang].guides:section==='faq'?e.faqIntro:a.paragraphs[0]?.slice(0,165)||t.intro;
 ---
 {slug&&getEditorial(lang,slug)?<Editorial lang={lang} slug={slug}/>:<Layout lang={lang} title={`${title} | LoloBuy Sheet`} description={description} page={page} noindex={['privacy','image-search'].includes(section)}>
 <div class="shell prose-layout"><nav class="prose-nav" aria-label={t.menu}>{['guide','qc','shipping','faq','articles'].map(key=><a href={href(lang,key)} aria-current={section===key?'page':undefined}>{t[key]}</a>)}<a href={href(lang,'spreadsheet')}>{t.catalog} ↗</a></nav>
 <article class="prose"><p class="eyebrow">LOLOBUY SHEET / {t.editorial}</p><h1>{title}</h1>
 {a.paragraphs.map(p=><p>{p}</p>)}
 {section==='faq'&&<><p>{e.faqIntro}</p><p class="checked">{t.checked}</p><div class="faq-list">{faqs(lang).map((f,i)=><details id={f.id}><summary><span class="faq-number">{String(i+1).padStart(2,'0')}</span>{f.question}</summary><p>{f.answer}</p><div class="faq-links">{[f.source,...(f.extraSources||[])].map((source,n)=><a href={source} target={source.startsWith('https:')?'_blank':undefined} rel={source.startsWith('https:')?'noopener noreferrer':undefined}>{e.answerSource}{n>0?` ${n+1}`:''} ↗</a>)}<a href={href(lang,`articles/${f.related}`)}>{t.read} →</a></div></details>)}</div></>}
-{section==='articles'&&!slug&&<><p>{e.intro}</p><p class="checked">{t.checked} · 10 {t.articles}</p><div class="article-grid article-hub">{articleSlugs.map((s,i)=>{const entry=getEditorial(lang,s)!;return <a class="article-card" href={href(lang,`articles/${s}`)}><span class="article-number">{String(i+1).padStart(2,'0')} / {entry.minutes} {e.minutes}</span><h2>{entry.title}</h2><p>{entry.summary}</p><span>{t.read} ↗</span></a>})}</div></>}
+{section==='articles'&&!slug&&<><p>{seo[lang].guides}</p><p class="checked">{articleSlugs.length} {t.articles}</p><div class="article-grid article-hub">{[...featuredArticles,...articleSlugs.filter(s=>!featuredArticles.includes(s))].map((s,i)=>{const entry=getEditorial(lang,s)!;return <a class="article-card" href={href(lang,`articles/${s}`)}><span class="article-number">{String(i+1).padStart(2,'0')} / {entry.minutes} {e.minutes}</span><h2>{entry.title}</h2><p>{entry.summary}</p><span>{t.read} ↗</span></a>})}</div></>}
 {section==='image-search'&&<><div class="notice"><p>{t.imageUnavailable}</p></div><Search lang={lang}/><p class="fine-print"><a href={href(lang,'categories')}>{t.categories} ↗</a></p></>}
+{['guide','qc','shipping'].includes(section)&&<section class="info-guides"><h2>{e.related}</h2><div class="guide-links">{(section==='shipping'?['shipping-cost','shipping-france','shipping-germany','order-tracking']:section==='qc'?['photo-check','size-check','returns-guide']:['spreadsheet-guide','first-order','first-order-checks']).map(s=><a href={href(lang,`articles/${s}`)}>{getEditorial(lang,s)!.title} →</a>)}</div></section>}
 {officialSources[section]&&<div class="source-link"><p>{t.sourceTitle}: <a href={officialSources[section]} target="_blank" rel="noopener noreferrer">LoloBuy Help Center ↗</a></p><p class="checked"><time datetime="2026-10-19">{t.checked}</time></p></div>}
 {slug&&<p class="fine-print"><a href={href(lang,'articles')}>← {t.articles}</a></p>}
 </article></div>

@@ -70,7 +70,7 @@ Astro 7 的 Cloudflare 适配器生成 Workers 部署产物。不要把 `dist/cl
 
 首页主词 `lolobuy spreadsheet`；目录承接 finds/products/links；购买、QC、运费、尺码和原始 ID 由独立指南承接。六语言有真实译文、`lang`、canonical、互指 hreflang、同页切换；原商品标题保持主站值，不伪造翻译后的商品信息。
 
-搜索、排序、筛选、分页参数页 noindex，canonical 指目录；隐私与不可用搜图页不进入 sitemap。每种语言 19 个稳定路径，共 114 个 sitemap URL。每语言 30 条 FAQ 和 10 篇独立文章（共 60 篇）。没有虚构评分、库存或 Offer 结构化数据。
+搜索、排序、筛选、分页参数页 noindex，canonical 指目录；隐私与不可用搜图页不进入 sitemap。每种语言 22 个稳定路径，共 132 个 sitemap URL。每语言 30 条 FAQ 和 13 篇独立文章（共 78 篇）。没有虚构评分、库存或 Offer 结构化数据。
 
 官方 Logo / favicon 原始来源和核查记录见 [项目记忆](docs/PROJECT_MEMORY.md)。
 
@@ -98,3 +98,16 @@ Astro 7 的 Cloudflare 适配器生成 Workers 部署产物。不要把 `dist/cl
 - 公共 `src/layouts/Layout.astro` 覆盖全部六语言 SSR / SSG 页面；只在正式根域和 www 主机运行，预览构建及其他主机不发送生产数据。
 - 使用 GA4 自动网页浏览和增强型衡量；Google Signals 和广告个性化在站点代码中关闭。
 - 六种语言隐私说明同步更新。不要重复添加 Google tag，以免重复计数。
+
+
+## 2026-10-29 内容与发现路径更新
+
+- 六语言首页 title / description 对齐 Spreadsheet、服装、鞋类和产品链接的实际内容。
+- 新增 France shipping、Germany shipping、first-order checks 三个主题，每个主题完整覆盖 DE/EN/ES/FR/IT/PL。
+- 重写 spreadsheet-guide、shipping-cost、order-tracking 的六语言正文；优先指南在首页、文章中心及相关主题页互链。
+- 重点旧文有本地化速查表；全部文章有目录入口、分类入口、相关文章、Article + BreadcrumbList 结构化数据和实际更新日期。
+- 新增 GA4 自定义点击事件 `buy_click`、`register_click`、`catalog_open`、`product_open`，参数仅含语言、页面类型和链接区域；没有增加第二次 page_view。语言切换不计为目录点击。GA4 后台 key event/custom dimension 配置不由代码自动更改。
+- sitemap 保留参数页和隐私页的排除规则，增加新文章的六语言互指 hreflang，更新真正变更页面的 lastmod。
+- 商品来源不变；分类和汇率数据并行读取以减少串行等待，不增加商品缓存数据库。
+
+验证：`npm test` 5 项通过；`npm run check` 0 错误/警告；`npm run build` 成功；`npm run test:build` 检查 78 个文章页、6 个文章中心及 132 个唯一 sitemap URL。`npm run test:source` 使用真实源站通过搜索、跨页分页、价格排序和详情 ID 对应检查。浏览器检查了桌面文章及六种语言的手机宽度，无横向溢出。托管本地预览的 Worker 数据请求曾返回不可用，Node 真实来源测试及发布前正式站商品读取正常；部署后仍需复核生产商品链路。
