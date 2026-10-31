@@ -11,10 +11,11 @@
     "build": "bash scripts/build-verified.sh",
     "build:pages": "npm run build && node scripts/export-pages.mjs",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
-    "test": "npm run build && node --test --test-isolation=none tests/rendered-html.test.mjs tests/language-parity.test.mjs",
+    "test": "npm run build:pages && node --test --test-isolation=none tests/rendered-html.test.mjs tests/language-parity.test.mjs tests/seo-release.test.mjs",
     "validate:artifact": "bash scripts/validate-artifact.sh",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
+    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
+    "check:app": "tsc --noEmit -p tsconfig.app-check.json"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

@@ -1,0 +1,157 @@
+{
+  "en": {
+    "search": "Filter these product cards",
+    "category": "Category",
+    "all": "All categories",
+    "sort": "Sort reference prices",
+    "featured": "Featured order",
+    "low": "Price: low to high",
+    "high": "Price: high to low",
+    "reset": "Reset filters",
+    "count": "matching cards",
+    "empty": "No featured cards match. Clear the filters or search the full catalog above.",
+    "note": "Featured selection, not the complete catalog. New CNY references were checked against the source pages on October 31, 2026; availability and final option prices must be confirmed on the listing.",
+    "new": [
+      "Shoes — listing 60",
+      "Shoes — listing 59",
+      "Stone Island Longsleeve",
+      "Lacoste Sweatshirt",
+      "OFF-WHITE new arrival",
+      "Givenchy Tee"
+    ],
+    "reference": "Listing reference · Check option and size",
+    "browse": "Browse product finds",
+    "qc": "Review the QC checklist",
+    "next": "Plan your next step",
+    "nav": [
+      "Fees and total cost",
+      "QC photos and returns",
+      "Shipping calculator",
+      "Order status and tracking"
+    ]
+  },
+  "fr": {
+    "search": "Filtrer ces fiches produits",
+    "category": "Catégorie",
+    "all": "Toutes les catégories",
+    "sort": "Trier les prix indicatifs",
+    "featured": "Ordre de sélection",
+    "low": "Prix croissant",
+    "high": "Prix décroissant",
+    "reset": "Réinitialiser",
+    "count": "fiches correspondantes",
+    "empty": "Aucune fiche ne correspond. Effacez les filtres ou recherchez dans le catalogue complet ci-dessus.",
+    "note": "Sélection partielle du catalogue. Les nouvelles références CNY ont été vérifiées dans les pages sources le 31 octobre 2026 ; confirmez disponibilité et prix de l’option sur l’annonce.",
+    "new": [
+      "Chaussures — annonce 60",
+      "Chaussures — annonce 59",
+      "Haut à manches longues Stone Island",
+      "Sweat Lacoste",
+      "Nouveauté OFF-WHITE",
+      "T-shirt Givenchy"
+    ],
+    "reference": "Référence d’annonce · Vérifier option et taille",
+    "browse": "Parcourir les produits",
+    "qc": "Consulter la liste QC",
+    "next": "Préparer la prochaine étape",
+    "nav": [
+      "Frais et coût total",
+      "Photos QC et retours",
+      "Calculateur de livraison",
+      "Statut et suivi"
+    ]
+  },
+  "de": {
+    "search": "Diese Produktkarten filtern",
+    "category": "Kategorie",
+    "all": "Alle Kategorien",
+    "sort": "Referenzpreise sortieren",
+    "featured": "Ausgewählte Reihenfolge",
+    "low": "Preis aufsteigend",
+    "high": "Preis absteigend",
+    "reset": "Filter zurücksetzen",
+    "count": "passende Karten",
+    "empty": "Keine passende Karte. Filter löschen oder oben im gesamten Katalog suchen.",
+    "note": "Auswahl, kein vollständiger Katalog. Neue CNY-Referenzen wurden am 31. Oktober 2026 mit den Quellseiten abgeglichen; Verfügbarkeit und Variantenpreis im Angebot bestätigen.",
+    "new": [
+      "Schuhe — Angebot 60",
+      "Schuhe — Angebot 59",
+      "Stone Island Langarmshirt",
+      "Lacoste Sweatshirt",
+      "OFF-WHITE Neuheit",
+      "Givenchy T-Shirt"
+    ],
+    "reference": "Angebotsreferenz · Variante und Größe prüfen",
+    "browse": "Produktfunde ansehen",
+    "qc": "QC-Checkliste ansehen",
+    "next": "Den nächsten Schritt planen",
+    "nav": [
+      "Gebühren und Gesamtkosten",
+      "QC-Fotos und Rückgabe",
+      "Versandrechner",
+      "Bestellstatus und Tracking"
+    ]
+  },
+  "id": {
+    "search": "Filter kartu produk ini",
+    "category": "Kategori",
+    "all": "Semua kategori",
+    "sort": "Urutkan harga referensi",
+    "featured": "Urutan pilihan",
+    "low": "Harga terendah",
+    "high": "Harga tertinggi",
+    "reset": "Atur ulang filter",
+    "count": "kartu cocok",
+    "empty": "Tidak ada kartu cocok. Hapus filter atau cari katalog lengkap di atas.",
+    "note": "Pilihan terbatas, bukan seluruh katalog. Referensi CNY baru diperiksa pada halaman sumber tanggal 31 Oktober 2026; konfirmasi stok dan harga varian pada halaman produk.",
+    "new": [
+      "Sepatu — listing 60",
+      "Sepatu — listing 59",
+      "Atasan lengan panjang Stone Island",
+      "Sweatshirt Lacoste",
+      "Produk baru OFF-WHITE",
+      "Kaos Givenchy"
+    ],
+    "reference": "Referensi produk · Periksa opsi dan ukuran",
+    "browse": "Jelajahi pilihan produk",
+    "qc": "Lihat checklist QC",
+    "next": "Rencanakan langkah berikutnya",
+    "nav": [
+      "Biaya dan total belanja",
+      "Foto QC dan retur",
+      "Kalkulator ongkir",
+      "Status dan pelacakan"
+    ]
+  },
+  "zh-cn": {
+    "search": "筛选本页商品卡片",
+    "category": "分类",
+    "all": "全部分类",
+    "sort": "按参考价格排序",
+    "featured": "精选顺序",
+    "low": "价格从低到高",
+    "high": "价格从高到低",
+    "reset": "重置筛选",
+    "count": "项匹配商品",
+    "empty": "没有匹配的精选卡片。可以清除筛选，或使用上方搜索查看完整目录。",
+    "note": "这里展示部分精选，并非完整目录。新增人民币参考价格于 2026 年 10 月 31 日对照来源页面核对；当前库存和准确规格价格仍需打开商品页确认。",
+    "new": [
+      "鞋类——商品 60",
+      "鞋类——商品 59",
+      "Stone Island 长袖上衣",
+      "Lacoste 圆领卫衣",
+      "OFF-WHITE 新款上衣",
+      "Givenchy T 恤"
+    ],
+    "reference": "商品页参考 · 核对规格与尺码",
+    "browse": "浏览商品精选",
+    "qc": "查看 QC 检查清单",
+    "next": "规划下一步",
+    "nav": [
+      "费用与整单成本",
+      "QC 照片与退货",
+      "运费计算器",
+      "订单状态与追踪"
+    ]
+  }
+}

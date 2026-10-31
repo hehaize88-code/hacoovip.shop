@@ -73,7 +73,7 @@ test("shipping pages use query-aligned metadata and measurable conversion links"
   assert.equal(articleResponse.status, 200);
   const articleHtml = await articleResponse.text();
   assert.match(articleHtml, /Superbuy International Shipping 2026: Cost, Weight &amp; Routes/i);
-  assert.match(articleHtml, /"dateModified":"2026-10-03"/i);
+  assert.match(articleHtml, /"dateModified":"2026-10-31"/i);
   assert.match(articleHtml, /data-ga-event="article_to_finds_click"/i);
 });
 
@@ -91,7 +91,7 @@ test("new guides have canonical, language alternates, dates and usable navigatio
     const schema = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(value => value["@type"] === "Article");
     assert.equal(schema?.headline, expected.title, `${language}: rendered final copy`);
     assert.match(html, /"datePublished":"2026-10-03"/);
-    assert.match(html, /"dateModified":"2026-10-03"/);
+    assert.match(html, /"dateModified":"2026-10-31"/);
     assert.match(html, /href="#section-8"/);
     assert.match(html, /data-ga-event="related_guide_click"/);
     assert.doesNotMatch(html, /▁/);

@@ -11,3 +11,10 @@ import improvements_zh_cn from "./improvements-zh-cn.json";
 import type { ArticleCopy, ArticleSlug, Lang } from "../site-data";
 export const newArticles: Record<Lang, Partial<Record<ArticleSlug, ArticleCopy>>> = {"en": new_en,"fr": new_fr,"de": new_de,"id": new_id,"zh-cn": new_zh_cn};
 export const articleImprovements: Record<Lang, Partial<Record<ArticleSlug, ArticleCopy["sections"][number]>>> = {"en": improvements_en,"fr": improvements_fr,"de": improvements_de,"id": improvements_id,"zh-cn": improvements_zh_cn};
+
+import release_en from "./release-2026-10-31/en.json";
+import release_fr from "./release-2026-10-31/fr.json";
+import release_de from "./release-2026-10-31/de.json";
+import release_id from "./release-2026-10-31/id.json";
+import release_zh_cn from "./release-2026-10-31/zh-cn.json";
+export const releaseArticles: Record<Lang, Partial<Record<ArticleSlug, ArticleCopy>>> = {"en":release_en,"fr":release_fr,"de":release_de,"id":release_id,"zh-cn":release_zh_cn};

@@ -1,3 +1,6 @@
+import catalogUi from "./content/release-2026-10-31/catalog-ui.json";
+import { PracticalGuide, OfficialSources } from "./guide-tools";
+import WeightPlanner from "./weight-planner";
 import { ArticleSlug, articleSlugs, categories, copy, Lang, languages, localizedPath, products, RouteKey } from "./site-data";
 import { guideUi, pageSeo, trustPages, TrustRoute, trustRouteKeys } from "./seo-data";
 
@@ -76,11 +79,11 @@ const localizedCatalog: Record<Lang, { categories: string[]; products: { title: 
 };
 
 const articleEvidence: Record<Lang, { facts: [string, string, string]; note: string; updated: string }> = {
-  en: { facts: ["Exact listing checks", "Visible QC evidence", "Parcel planning"], note: "Fact-checked against Superbuy’s public user guidance. Policies, routes and eligibility can change; verify the current order interface before paying.", updated: "Reviewed October 3, 2026" },
-  fr: { facts: ["Vérification des annonces", "Preuves QC visibles", "Préparation du colis"], note: "Vérifié à partir des guides publics de Superbuy. Les politiques, lignes et conditions peuvent changer ; contrôlez l’interface actuelle avant paiement.", updated: "Révisé le 3 octobre 2026" },
-  de: { facts: ["Angebote genau prüfen", "Sichtbare QC-Belege", "Paketplanung"], note: "Anhand der öffentlichen Superbuy-Anleitungen geprüft. Regeln, Routen und Verfügbarkeit können sich ändern; vor Zahlung die aktuelle Bestellansicht prüfen.", updated: "Überarbeitet am 3. Oktober 2026" },
-  id: { facts: ["Pemeriksaan tautan produk", "Bukti QC yang terlihat", "Perencanaan paket"], note: "Diperiksa berdasarkan panduan publik Superbuy. Kebijakan, jalur, dan kelayakan dapat berubah; periksa antarmuka pesanan terbaru sebelum membayar.", updated: "Ditinjau 3 Oktober 2026" },
-  "zh-cn": { facts: ["核对准确商品", "检查可见 QC 证据", "规划实际包裹"], note: "内容已对照 Superbuy 公开用户指南核验。政策、线路和适用条件可能变化，付款前请以当前订单界面为准。", updated: "审校于 2026 年 10 月 3 日" },
+  en: { facts: ["Exact listing checks", "Visible QC evidence", "Parcel planning"], note: "Fact-checked against Superbuy’s public user guidance. Policies, routes and eligibility can change; verify the current order interface before paying.", updated: "Reviewed October 31, 2026" },
+  fr: { facts: ["Vérification des annonces", "Preuves QC visibles", "Préparation du colis"], note: "Vérifié à partir des guides publics de Superbuy. Les politiques, lignes et conditions peuvent changer ; contrôlez l’interface actuelle avant paiement.", updated: "Révisé le 31 octobre 2026" },
+  de: { facts: ["Angebote genau prüfen", "Sichtbare QC-Belege", "Paketplanung"], note: "Anhand der öffentlichen Superbuy-Anleitungen geprüft. Regeln, Routen und Verfügbarkeit können sich ändern; vor Zahlung die aktuelle Bestellansicht prüfen.", updated: "Überarbeitet am 31. Oktober 2026" },
+  id: { facts: ["Pemeriksaan tautan produk", "Bukti QC yang terlihat", "Perencanaan paket"], note: "Diperiksa berdasarkan panduan publik Superbuy. Kebijakan, jalur, dan kelayakan dapat berubah; periksa antarmuka pesanan terbaru sebelum membayar.", updated: "Ditinjau 31 Oktober 2026" },
+  "zh-cn": { facts: ["核对准确商品", "检查可见 QC 证据", "规划实际包裹"], note: "内容已对照 Superbuy 公开用户指南核验。政策、线路和适用条件可能变化，付款前请以当前订单界面为准。", updated: "审校于 2026 年 10 月 31 日" },
 };
 
 function SearchForm({ lang, compact = false }: { lang: Lang; compact?: boolean }) {
@@ -134,18 +137,40 @@ function PageHero({ eyebrow, title, text, seoTitle = title }: { eyebrow: string;
   return <section className="page-hero"><span>{eyebrow}</span><h1>{seoTitle}</h1><p>{seoTitle !== title && <><strong>{title}</strong><br /></>}{text}</p></section>;
 }
 
-function ProductGrid({ lang }: { lang: Lang }) {
-  const t = copy[lang];
-  const labels = localizedCatalog[lang].products;
-  return <><div className="product-grid">{products.map((product, index) => (
-    <a className="product-card" href={trackedUrl(product.href, `product-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} key={product.href} data-ga-event="product_click" data-ga-content={`product-${index + 1}`} data-ga-item={labels[index].title}>
-      {/* Local, verified catalog assets are served directly to avoid transforming product evidence. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <div className="product-image"><img src={product.image} alt={labels[index].title} width="750" height="750" loading="lazy" decoding="async" /><span>{product.price}</span></div>
-      <p>{labels[index].category}</p><h3>{labels[index].title}</h3><div><span>{t.notes[product.noteKey]}</span><b>↗</b></div>
-      <strong>{t.checkListing}</strong>
-    </a>
-  ))}</div><p className="price-note">{priceNotes[lang]}</p></>;
+const productCategoryIndexes = [4, 1, 7, 6, 0, 0, 1, 1, 2, 2];
+const productReferenceCny = [260, 150, 89, 179, 168, 500, 123, 99, 212, 186];
+function productLabels(lang: Lang, index: number) {
+  return index < 4 ? localizedCatalog[lang].products[index] : { title: catalogUi[lang].new[index - 4], category: localizedCatalog[lang].categories[productCategoryIndexes[index]] };
+}
+function ProductGrid({ lang, limit, filterable = false }: { lang: Lang; limit?: number; filterable?: boolean }) {
+  const t = copy[lang]; const ui = catalogUi[lang];
+  return <div {...(filterable ? { "data-catalog": "true" } : {})}>
+    {filterable && <div className="catalog-controls">
+      <label>{ui.search}<input type="search" data-catalog-search="" autoComplete="off" /></label>
+      <label>{ui.category}<select data-catalog-category=""><option value="">{ui.all}</option>{[...new Set(productCategoryIndexes)].sort((a,b) => a-b).map(i => <option key={i} value={i}>{localizedCatalog[lang].categories[i]}</option>)}</select></label>
+      <label>{ui.sort}<select data-catalog-sort=""><option value="featured">{ui.featured}</option><option value="low">{ui.low}</option><option value="high">{ui.high}</option></select></label>
+      <button type="button" data-catalog-reset="">{ui.reset}</button>
+      <p role="status" aria-live="polite"><b data-catalog-count="">{products.length}</b> {ui.count}</p>
+    </div>}
+    <div className="product-grid">{products.slice(0, limit).map((product, index) => {
+      const label = productLabels(lang, index);
+      return <a className="product-card" href={trackedUrl(product.href, `product-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} key={product.href} data-ga-event="product_click" data-ga-content={`product-${index + 1}`} data-ga-item={label.title} data-product-category={productCategoryIndexes[index]} data-price-cny={productReferenceCny[index]} data-original-order={index}>
+        {/* Product source images are used unchanged, with no generated product evidence. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <div className="product-image"><img src={product.image} alt={label.title} width="750" height="750" loading="lazy" decoding="async" /><span>{product.price}</span></div>
+        <p>{label.category}</p><h3>{label.title}</h3><div><span>{index < 4 ? t.notes[product.noteKey] : ui.reference}</span><b>↗</b></div><strong>{t.checkListing}</strong>
+      </a>;
+    })}</div>
+    {filterable && <p data-catalog-empty="" hidden>{ui.empty}</p>}
+    <p className="price-note">{ui.note}</p><p className="price-note">{priceNotes[lang]}</p>
+    {filterable && <script src="/catalog-filter.js" defer />}
+  </div>;
+}
+
+function NextSteps({ lang }: { lang: Lang }) {
+  const ui = catalogUi[lang];
+  const slugs = ["superbuy-fees-explained", "superbuy-qc-photo-checklist", "superbuy-shipping-calculator-estimate-final-cost", "superbuy-order-status-tracking"];
+  return <nav className="next-steps" aria-label={ui.next}>{slugs.map((slug, i) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="guide_entry_click" data-ga-content={slug}><span>0{i + 1}</span>{ui.nav[i]} →</a>)}</nav>;
 }
 
 function CategoryGrid({ lang, limit }: { lang: Lang; limit?: number }) {
@@ -175,20 +200,20 @@ function Home({ lang }: { lang: Lang }) {
   const t = copy[lang];
   return <>
     <section className="home-hero">
-      <div className="hero-copy"><span className="eyebrow">{t.eyebrow}</span><h1>{t.heroTitle}<br /><em>{t.heroEm}</em></h1><p>{t.heroText}</p><SearchForm lang={lang} /><div className="proof">{t.proof.map((item, i) => <span key={item}><b>0{i + 1}</b>{item}</span>)}</div></div>
+      <div className="hero-copy"><span className="eyebrow">{t.eyebrow}</span><h1>{t.heroTitle}<br /><em>{t.heroEm}</em></h1><p>{t.heroText}</p><div className="hero-links"><a href={localizedPath(lang, "finds")} data-ga-event="browse_finds_click" data-ga-content="hero">{catalogUi[lang].browse} →</a><a href={localizedPath(lang, "qc-guide")}>{catalogUi[lang].qc} →</a></div><SearchForm lang={lang} /><div className="proof">{t.proof.map((item, i) => <span key={item}><b>0{i + 1}</b>{item}</span>)}</div></div>
       <div className="trending-panel"><div><span>{t.trending}</span><a href={localizedPath(lang, "categories")}>{t.viewAll} →</a></div>{categories.slice(0, 4).map((category, index) => <a key={category.href} href={trackedUrl(category.href, `trending-${index + 1}`)} target="_blank" rel={EXTERNAL_REL} data-ga-event="category_click" data-ga-content={`trending-${index + 1}`} data-ga-item={localizedCatalog[lang].categories[index]}><span>{category.icon}</span><b>{localizedCatalog[lang].categories[index]}</b><i>↗</i></a>)}</div>
     </section>
-    <section className="section light"><div className="section-heading"><span>{t.browseLabel}</span><h2>{t.browseTitle}</h2><p>{t.browseText}</p></div><CategoryGrid lang={lang} limit={6} /><a className="text-link" href={localizedPath(lang, "categories")}>{t.viewAll} →</a></section>
-    <section className="section soft"><div className="section-heading"><span>{t.findsLabel}</span><h2>{t.findsTitle}</h2><p>{t.findsText}</p></div><ProductGrid lang={lang} /><a className="text-link" href={localizedPath(lang, "finds")}>{t.viewAll} →</a></section>
+    <NextSteps lang={lang} /><section className="section light"><div className="section-heading"><span>{t.browseLabel}</span><h2>{t.browseTitle}</h2><p>{t.browseText}</p></div><CategoryGrid lang={lang} limit={6} /><a className="text-link" href={localizedPath(lang, "categories")}>{t.viewAll} →</a></section>
+    <section className="section soft"><div className="section-heading"><span>{t.findsLabel}</span><h2>{t.findsTitle}</h2><p>{t.findsText}</p></div><ProductGrid lang={lang} limit={6} /><a className="text-link" href={localizedPath(lang, "finds")}>{t.viewAll} →</a></section>
     <section className="how-section"><div><span>{t.learnLabel}</span><h2>{t.learnTitle}</h2><p>{t.learnText}</p></div><div className="steps">{t.learnSteps.map((step, index) => <article key={step.title}><b>0{index + 1}</b><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>
-    <section className="section articles-home"><div className="section-heading"><span>{t.articlesLabel}</span><h2>{guideUi[lang].title}</h2><p>{guideUi[lang].text}</p></div><ArticleCards lang={lang} limit={6} /><nav className="priority-guide-links" aria-label={guideUi[lang].related}>{(["superbuy-shipping-cost-and-consolidation", "superbuy-qc-photo-checklist", "how-to-use-a-superbuy-spreadsheet"] as ArticleSlug[]).map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="priority_guide_click" data-ga-content={slug}>{t.articles[slug].title} →</a>)}</nav><a className="text-link" href={localizedPath(lang, "articles")}>{t.articleIndexText} →</a></section>
+    <section className="section articles-home"><div className="section-heading"><span>{t.articlesLabel}</span><h2>{guideUi[lang].title}</h2><p>{guideUi[lang].text}</p></div><ArticleCards lang={lang} limit={6} /><nav className="priority-guide-links" aria-label={guideUi[lang].related}>{(["superbuy-shipping-calculator-estimate-final-cost", "superbuy-qc-photo-checklist", "how-to-use-a-superbuy-spreadsheet"] as ArticleSlug[]).map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="priority_guide_click" data-ga-content={slug}>{t.articles[slug].title} →</a>)}</nav><a className="text-link" href={localizedPath(lang, "articles")}>{t.articleIndexText} →</a></section>
     <section className="faq-section"><div><span>05 / FAQ</span><h2>{t.faqTitle}</h2></div><FaqList lang={lang} /></section>
   </>;
 }
 
 function FindsPage({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  return <><PageHero {...t.pageTitles.finds} seoTitle={pageSeo[lang].finds.h1} /><section className="search-band"><div><span>{localizedCatalog[lang].liveSearch}</span><h2>{t.resultsText}</h2></div><SearchForm lang={lang} compact /></section><section className="section soft no-top"><ProductGrid lang={lang} /></section></>;
+  return <><PageHero {...t.pageTitles.finds} seoTitle={pageSeo[lang].finds.h1} /><section className="search-band"><div><span>{localizedCatalog[lang].liveSearch}</span><h2>{t.resultsText}</h2></div><SearchForm lang={lang} compact /></section><section className="section soft no-top"><ProductGrid lang={lang} filterable /><NextSteps lang={lang} /></section></>;
 }
 
 function CategoriesPage({ lang }: { lang: Lang }) {
@@ -198,12 +223,12 @@ function CategoriesPage({ lang }: { lang: Lang }) {
 
 function QcPage({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  return <><PageHero {...t.pageTitles["qc-guide"]} seoTitle={pageSeo[lang]["qc-guide"].h1} /><section className="editorial-layout"><aside><span>QC / 01—05</span><h2>{t.nav.qc}</h2><p>{t.learnText}</p></aside><div className="numbered-list">{t.qcChecklist.map((item, index) => <article key={item.title}><b>0{index + 1}</b><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></section><section className="article-promo"><span>{t.articles["superbuy-qc-photo-checklist"].category}</span><h2>{t.articles["superbuy-qc-photo-checklist"].title}</h2><a href={localizedPath(lang, "articles/superbuy-qc-photo-checklist")}>{t.readArticle}</a></section></>;
+  return <><PageHero {...t.pageTitles["qc-guide"]} seoTitle={pageSeo[lang]["qc-guide"].h1} /><section className="editorial-layout"><aside><span>QC / 01—05</span><h2>{t.nav.qc}</h2><p>{t.learnText}</p></aside><div className="numbered-list">{t.qcChecklist.map((item, index) => <article key={item.title}><b>0{index + 1}</b><div><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></section><NextSteps lang={lang} /><section className="article-promo"><span>{t.articles["superbuy-qc-photo-checklist"].category}</span><h2>{t.articles["superbuy-qc-photo-checklist"].title}</h2><a href={localizedPath(lang, "articles/superbuy-qc-photo-checklist")}>{t.readArticle}</a></section></>;
 }
 
 function ShippingPage({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  return <><PageHero {...t.pageTitles.shipping} seoTitle={pageSeo[lang].shipping.h1} /><section className="shipping-grid">{t.shippingCards.map((card, index) => <article key={card.title}><span>0{index + 1}</span><h2>{card.title}</h2><p>{card.text}</p></article>)}</section><section className="article-promo lime"><span>{t.articles["superbuy-shipping-cost-and-consolidation"].category}</span><h2>{t.articles["superbuy-shipping-cost-and-consolidation"].title}</h2><a href={localizedPath(lang, "articles/superbuy-shipping-cost-and-consolidation")}>{t.readArticle}</a></section></>;
+  return <><PageHero {...t.pageTitles.shipping} seoTitle={pageSeo[lang].shipping.h1} /><section className="shipping-grid">{t.shippingCards.map((card, index) => <article key={card.title}><span>0{index + 1}</span><h2>{card.title}</h2><p>{card.text}</p></article>)}</section><div className="shipping-tool-wrap"><WeightPlanner lang={lang} /></div><section className="article-promo lime"><span>{t.articles["superbuy-shipping-cost-and-consolidation"].category}</span><h2>{t.articles["superbuy-shipping-cost-and-consolidation"].title}</h2><a href={localizedPath(lang, "articles/superbuy-shipping-cost-and-consolidation")}>{t.readArticle}</a></section></>;
 }
 
 function ArticlesPage({ lang }: { lang: Lang }) {
@@ -216,7 +241,7 @@ function ArticlesPage({ lang }: { lang: Lang }) {
     id: `${count} panduan belanja · Terbaru lebih dahulu`,
     "zh-cn": `共 ${count} 篇购买指南 · 最新文章在前`,
   }[lang];
-  return <><PageHero {...t.pageTitles.articles} seoTitle={pageSeo[lang].articles.h1} /><section className="section articles-index no-top"><p className="article-index-summary">{summary}</p><ArticleCards lang={lang} /></section></>;
+  return <><PageHero {...t.pageTitles.articles} seoTitle={pageSeo[lang].articles.h1} /><section className="section articles-index no-top"><NextSteps lang={lang} /><p className="article-index-summary">{summary}</p><ArticleCards lang={lang} /></section></>;
 }
 
 function FaqPage({ lang }: { lang: Lang }) {
@@ -230,6 +255,9 @@ function TrustPageView({ lang, route }: { lang: Lang; route: TrustRoute }) {
 }
 
 const relatedArticles: Record<ArticleSlug, ArticleSlug[]> = {
+  "superbuy-fees-explained": ["superbuy-shipping-calculator-estimate-final-cost", "superbuy-warehouse-storage-deadlines-fees", "superbuy-order-status-tracking"],
+  "superbuy-order-status-tracking": ["superbuy-qc-photo-checklist", "superbuy-returns-after-qc", "superbuy-shipping-to-usa-parcel-options"],
+  "superbuy-returns-after-qc": ["superbuy-qc-photo-checklist", "superbuy-warehouse-storage-deadlines-fees", "superbuy-fees-explained"],
   "superbuy-shoes-spreadsheet-sizing-qc": [
     "superbuy-qc-photo-checklist",
     "superbuy-spreadsheet-fields-product-record",
@@ -246,7 +274,7 @@ const relatedArticles: Record<ArticleSlug, ArticleSlug[]> = {
     "superbuy-shoes-spreadsheet-sizing-qc"
   ],
   "superbuy-shipping-calculator-estimate-final-cost": [
-    "superbuy-shipping-cost-and-consolidation",
+    "superbuy-fees-explained",
     "superbuy-warehouse-storage-deadlines-fees",
     "superbuy-shipping-to-usa-parcel-options"
   ],
@@ -268,7 +296,7 @@ const relatedArticles: Record<ArticleSlug, ArticleSlug[]> = {
   "superbuy-qc-photo-checklist": [
     "superbuy-shoes-spreadsheet-sizing-qc",
     "superbuy-hoodie-finds-measurements-qc",
-    "superbuy-warehouse-storage-deadlines-fees"
+    "superbuy-returns-after-qc"
   ],
   "superbuy-spreadsheet-fields-product-record": [
     "how-to-use-a-superbuy-spreadsheet",
@@ -286,15 +314,15 @@ function ArticlePage({ lang, articleSlug }: { lang: Lang; articleSlug: ArticleSl
   const t = copy[lang]; const article = t.articles[articleSlug];
   const evidence = articleEvidence[lang];
   const pageUrl = `${FORMAL_SITE}${localizedPath(lang, `articles/${articleSlug}`)}`;
-  const published = articleSlugs.indexOf(articleSlug) >= 4 ? "2026-10-03" : articleSlug === "superbuy-spreadsheet-fields-product-record" ? "2026-08-14" : "2026-08-13";
-  const modified = "2026-10-03";
+  const published = articleSlugs.indexOf(articleSlug) >= 10 ? "2026-10-31" : articleSlugs.indexOf(articleSlug) >= 4 ? "2026-10-03" : articleSlug === "superbuy-spreadsheet-fields-product-record" ? "2026-08-14" : "2026-08-13";
+  const modified = "2026-10-31";
   const updatedLabel = evidence.updated;
   const schema = { "@context": "https://schema.org", "@type": articleSlug === "superbuy-spreadsheet-fields-product-record" ? "BlogPosting" : "Article", headline: article.title, description: article.excerpt, datePublished: published, dateModified: modified, inLanguage: lang === "zh-cn" ? "zh-CN" : lang, author: { "@type": "Organization", name: "Superbuy Spreadsheets Editorial Team" }, publisher: { "@type": "Organization", name: "Superbuy Spreadsheets" }, mainEntityOfPage: pageUrl };
   return <article className="article-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <header><a href={localizedPath(lang, "articles")}>← {guideUi[lang].nav}</a><span>{article.category} · {article.read}</span><h1>{article.title}</h1><p>{article.excerpt}</p><small>{updatedLabel}</small></header>
     <div className="article-fact-strip">{evidence.facts.map((fact, index) => <div key={fact}><span>0{index + 1}</span><b>{fact}</b></div>)}</div>
-    <div className="article-body"><p className="method-note">{evidence.note}</p><p className="lead">{article.intro}</p><nav className="article-toc" aria-label={guideUi[lang].title}>{article.sections.map((section, index) => <a key={section.heading} href={`#section-${index + 1}`} data-ga-event="article_section_click" data-ga-content={articleSlug}>{String(index + 1).padStart(2, "0")} · {section.heading}</a>)}</nav>{article.sections.map((section, index) => <section key={section.heading} id={`section-${index + 1}`}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</div></section>)}<aside className="related-guides"><span>{guideUi[lang].related}</span>{relatedArticles[articleSlug].map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="related_guide_click" data-ga-content={slug}>{t.articles[slug].title} →</a>)}</aside></div>
+    <div className="article-body"><p className="method-note">{evidence.note}</p><p className="lead">{article.intro}</p><PracticalGuide lang={lang} slug={articleSlug} />{articleSlug === "superbuy-shipping-calculator-estimate-final-cost" && <WeightPlanner lang={lang} />}<nav className="article-toc" aria-label={guideUi[lang].title}>{article.sections.map((section, index) => <a key={section.heading} href={`#section-${index + 1}`} data-ga-event="article_section_click" data-ga-content={articleSlug}>{String(index + 1).padStart(2, "0")} · {section.heading}</a>)}</nav>{article.sections.map((section, index) => <section key={section.heading} id={`section-${index + 1}`}><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</div></section>)}<OfficialSources lang={lang} slug={articleSlug} /><aside className="related-guides"><span>{guideUi[lang].related}</span>{relatedArticles[articleSlug].map((slug) => <a key={slug} href={localizedPath(lang, `articles/${slug}`)} data-ga-event="related_guide_click" data-ga-content={slug}>{t.articles[slug].title} →</a>)}</aside></div>
     <aside className="article-end"><span>{localizedCatalog[lang].nextStep}</span><h2>{t.findsTitle}</h2><a href={localizedPath(lang, "finds")} data-ga-event="article_to_finds_click" data-ga-content={articleSlug}>{t.nav.finds} →</a></aside>
   </article>;
 }
@@ -323,9 +351,10 @@ function PageSchemas({ lang, route, articleSlug, trustRoute }: { lang: Lang; rou
     graph.push(
       { "@type": "WebSite", "@id": `${FORMAL_SITE}/#website`, url: `${FORMAL_SITE}/`, name: "Spreadsheets Superbuy", inLanguage: language },
       { "@type": "Organization", "@id": `${FORMAL_SITE}/#organization`, name: "Spreadsheets Superbuy Editorial", url: `${FORMAL_SITE}/`, logo: `${FORMAL_SITE}/superbuy-logo.png` },
-      { "@type": "ItemList", name: "Verified Superbuy spreadsheet product links", numberOfItems: products.length, itemListElement: products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: localizedCatalog[lang].products[index].title, url: product.href })) },
+      { "@type": "ItemList", name: "Verified Superbuy spreadsheet product links", numberOfItems: 6, itemListElement: products.slice(0,6).map((product, index) => ({ "@type": "ListItem", position: index + 1, name: productLabels(lang, index).title, url: product.href })) },
     );
   }
+  if (route === "finds") graph.push({ "@type": "ItemList", name: pageSeo[lang].finds.h1, numberOfItems: products.length, itemListElement: products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: productLabels(lang, index).title, url: product.href })) });
   if (route === "faq") graph.push({ "@type": "FAQPage", mainEntity: copy[lang].faqItems.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })) });
   if (route !== "") graph.push({ "@type": "BreadcrumbList", itemListElement: [
     { "@type": "ListItem", position: 1, name: copy[lang].nav.home, item: `${FORMAL_SITE}${localizedPath(lang)}` },

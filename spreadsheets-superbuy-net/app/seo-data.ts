@@ -198,3 +198,13 @@ export const trustPages: Record<Lang, Record<TrustRoute, TrustPage>> = {
     ] },
   },
 };
+
+// Explain the measurements actually used by the existing analytics integration.
+const analyticsPrivacy: Record<Lang, { title: string; text: string }> = {
+  en: { title: "Usage measurement", text: "Google Analytics measures page views and interactions such as product links, category filters and the weight worksheet. Our custom events record the page or control and result counts, not the text typed into the local product filter or the worksheet input values. Searches submitted to the external catalog are processed by that destination." },
+  fr: { title: "Mesure d’utilisation", text: "Google Analytics mesure les pages vues et les interactions avec les liens produits, filtres et simulation de poids. Nos événements enregistrent la page, le contrôle ou le nombre de résultats, sans le texte du filtre local ni les valeurs saisies dans la simulation. Les recherches envoyées au catalogue externe sont traitées par ce site." },
+  de: { title: "Nutzungsmessung", text: "Google Analytics erfasst Seitenaufrufe und Interaktionen mit Produktlinks, Filtern und Gewichtsrechner. Unsere Ereignisse enthalten Seite, Bedienelement oder Ergebniszahl, nicht den Text des lokalen Produktfilters oder die eingegebenen Gewichtswerte. An den externen Katalog gesendete Suchen verarbeitet dessen Betreiber." },
+  id: { title: "Pengukuran penggunaan", text: "Google Analytics mengukur tampilan halaman serta interaksi tautan produk, filter, dan lembar berat. Peristiwa khusus kami mencatat halaman, kontrol, atau jumlah hasil, bukan teks filter lokal maupun nilai masukan lembar berat. Pencarian yang dikirim ke katalog eksternal diproses oleh situs tujuan." },
+  "zh-cn": { title: "使用情况统计", text: "Google Analytics 用于统计页面浏览以及商品链接、分类筛选和重量试算等交互。本站自定义事件记录页面、控件或结果数量，不记录本页商品筛选框的输入文字及重量试算的输入值。主动提交到外部目录的搜索由对应网站处理。" },
+};
+for (const lang of Object.keys(analyticsPrivacy) as Lang[]) trustPages[lang].privacy.sections.push(analyticsPrivacy[lang]);

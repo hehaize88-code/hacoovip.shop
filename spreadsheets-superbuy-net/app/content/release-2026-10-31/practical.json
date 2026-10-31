@@ -1,0 +1,1242 @@
+{
+  "en": {
+    "labels": [
+      "Quick reference",
+      "Official Superbuy tools and guidance",
+      "Shopping and warehouse guide",
+      "Fee structure",
+      "Shipping calculator",
+      "Returns and after-sales help",
+      "Contents"
+    ],
+    "calculator": [
+      "Compare two packing assumptions",
+      [
+        "Scenario",
+        "Packed size / actual weight",
+        "Volume weight at ÷6,000",
+        "Larger weight"
+      ],
+      [
+        [
+          "Box retained",
+          "40 × 30 × 20 cm / 3 kg",
+          "4.00 kg",
+          "4.00 kg"
+        ],
+        [
+          "More compact packing",
+          "35 × 25 × 18 cm / 3 kg",
+          "2.625 kg",
+          "3.00 kg"
+        ]
+      ],
+      [
+        "These are hypothetical dimensions, not measurements of a listed product. The first box occupies 24,000 cm³; the second occupies 15,750 cm³. Under the assumed divisor, compact packing changes which weight is larger. A route using a different rule or weight increment can produce a different bill.",
+        "Enter the packed dimensions, not the dimensions of the bare item. Compare the price of the whole parcel under each eligible route, including chosen services. Use the worksheet below to test assumptions, then open the official calculator for current availability and a route-specific estimate."
+      ]
+    ],
+    "qc": [
+      "Turn a QC concern into a precise request",
+      [
+        "Concern",
+        "Evidence to request",
+        "Decision"
+      ],
+      [
+        [
+          "Wrong option",
+          "Readable label and order selection",
+          "Compare exact variant"
+        ],
+        [
+          "Uncertain garment fit",
+          "Flat width and length with ruler endpoints",
+          "Compare the same measurement method"
+        ],
+        [
+          "Possible damage",
+          "Overall view plus close-up of the area",
+          "Clarify before shipping"
+        ],
+        [
+          "Missing accessory",
+          "All received components together",
+          "Compare documented contents"
+        ]
+      ],
+      [
+        "Open the received item in My Warehouse and compare it with the selected order option before judging appearance. A shared QC checker or another buyer’s gallery is not evidence that your own item matches. Keep the order number and photo date beside your notes.",
+        "Request one missing view with a clear purpose. For example, ask for the chest width measured flat from one armpit seam to the other, with both ruler endpoints visible. Confirm any additional photo charge in the account. If a mismatch is confirmed, review the return guide before discarding packaging or submitting the item for international delivery."
+      ]
+    ],
+    "shoes": [
+      "A three-field shoe comparison",
+      [
+        "Field",
+        "Candidate A — fictional",
+        "Candidate B — fictional"
+      ],
+      [
+        [
+          "Selected option",
+          "White / EU 42",
+          "White / EU 42"
+        ],
+        [
+          "Measurement evidence",
+          "27 cm insole",
+          "27 cm recommended foot length"
+        ],
+        [
+          "Open question",
+          "Width and fit remain unproven",
+          "Insole measurement still needed"
+        ]
+      ],
+      [
+        "The identical size label and length do not make these two candidates equivalent. The measurement describes a different object in each row. Keep the exact listing and selected option with the measurement method rather than inventing a universal conversion.",
+        "Before accepting a pair, compare both size labels, both sides and the soles. If one shoe seems larger in an angled photograph, request a matched view before concluding that it is a mismatch. Treat product photos as listing references and your received-item QC as separate evidence."
+      ]
+    ],
+    "hoodies": [
+      "A measurement request that can be repeated",
+      [
+        "Measurement",
+        "Method",
+        "Record"
+      ],
+      [
+        [
+          "Chest width",
+          "Flat, armpit seam to armpit seam",
+          "Centimetres; do not label as circumference"
+        ],
+        [
+          "Body length",
+          "Named shoulder point to hem",
+          "Use the same start point on both garments"
+        ],
+        [
+          "Sleeve",
+          "Named shoulder seam to cuff",
+          "Note dropped or raglan construction"
+        ],
+        [
+          "Visible detail",
+          "Close-up of stitching, print or fastening",
+          "Describe the observation, not an untested material claim"
+        ]
+      ],
+      [
+        "Measure a hoodie that fits you using the same method as the listing or requested warehouse photograph. A hypothetical 58 cm flat chest width should be compared with another flat width, not a body circumference or a generic M label. Record the intended amount of looseness in your own notes.",
+        "For the received garment, ask for a ruler view with visible endpoints and the fabric laid naturally. Do not use a stretched measurement to confirm a relaxed fit. Listing descriptions and photos do not establish fabric composition, warmth or wash durability; leave those claims unresolved unless you have suitable evidence."
+      ]
+    ],
+    "fees": [
+      "Worked budget — fictional amounts",
+      [
+        "Component",
+        "Example amount",
+        "Status"
+      ],
+      [
+        [
+          "Goods + domestic delivery",
+          "CN¥320",
+          "180 + 120 + 12 + 8"
+        ],
+        [
+          "Warehouse extras",
+          "CN¥10",
+          "Assumed selected services"
+        ],
+        [
+          "International transport",
+          "CN¥240",
+          "Planning allowance, not a quote"
+        ],
+        [
+          "Parcel extras",
+          "CN¥15",
+          "Assumed selected services"
+        ],
+        [
+          "Planning total",
+          "CN¥585",
+          "Excludes any other applicable charges"
+        ]
+      ],
+      []
+    ],
+    "tracking": [
+      "Find the right record and next action",
+      [
+        "Stage",
+        "Record to check",
+        "Next action"
+      ],
+      [
+        [
+          "Seller purchase",
+          "Product order and messages",
+          "Resolve stock, option or payment questions"
+        ],
+        [
+          "Domestic delivery",
+          "Order plus domestic tracking",
+          "Match delivery reference to warehouse intake"
+        ],
+        [
+          "Warehouse QC",
+          "Received-item record",
+          "Review photos and resolve problems"
+        ],
+        [
+          "Parcel preparation",
+          "International parcel order",
+          "Confirm contents, address and packing"
+        ],
+        [
+          "Carrier journey",
+          "Parcel tracking events",
+          "Read latest event and any action request"
+        ],
+        [
+          "Delivered",
+          "Contents and delivery evidence",
+          "Check quantities and condition"
+        ]
+      ],
+      []
+    ],
+    "returns": [
+      "Keep a return case traceable",
+      [
+        "Point to confirm",
+        "Save this evidence",
+        "Avoid assuming"
+      ],
+      [
+        [
+          "Eligibility and deadline",
+          "Current order terms and support response",
+          "Storage time extends return time"
+        ],
+        [
+          "Problem and remedy",
+          "Variant selection, QC views, requested outcome",
+          "Every unclear photo proves a defect"
+        ],
+        [
+          "Costs",
+          "Approved itemised charges and expected net refund",
+          "A fee waiver covers every cost"
+        ],
+        [
+          "Return movement",
+          "Accepted request and return reference",
+          "Dispatch means refund completed"
+        ],
+        [
+          "Financial outcome",
+          "Credit amount, date and destination",
+          "Account credit is already a bank refund"
+        ]
+      ],
+      []
+    ]
+  },
+  "fr": {
+    "labels": [
+      "Repères pratiques",
+      "Outils et guides officiels Superbuy",
+      "Guide d’achat et d’entrepôt",
+      "Structure des frais",
+      "Calculateur de livraison",
+      "Retours et service après-vente",
+      "Sommaire"
+    ],
+    "calculator": [
+      "Comparer deux hypothèses d’emballage",
+      [
+        "Scénario",
+        "Dimensions / poids réel",
+        "Poids volumétrique à ÷6 000",
+        "Poids le plus élevé"
+      ],
+      [
+        [
+          "Boîte conservée",
+          "40 × 30 × 20 cm / 3 kg",
+          "4,00 kg",
+          "4,00 kg"
+        ],
+        [
+          "Emballage plus compact",
+          "35 × 25 × 18 cm / 3 kg",
+          "2,625 kg",
+          "3,00 kg"
+        ]
+      ],
+      [
+        "Ces dimensions sont fictives et ne mesurent aucun produit présenté. La première boîte occupe 24 000 cm³, la seconde 15 750 cm³. Avec le diviseur supposé, l’emballage compact change le poids dominant. Une autre règle de ligne ou un arrondi différent peut modifier la facture.",
+        "Saisissez les dimensions du colis emballé, pas celles du produit nu. Comparez le prix de tout le colis sur chaque ligne admissible, avec les options choisies. Testez les hypothèses ci-dessous, puis ouvrez le calculateur officiel pour la disponibilité actuelle et une estimation propre à la ligne."
+      ]
+    ],
+    "qc": [
+      "Transformer un doute QC en demande précise",
+      [
+        "Doute",
+        "Preuve à demander",
+        "Décision"
+      ],
+      [
+        [
+          "Mauvaise option",
+          "Étiquette lisible et sélection commandée",
+          "Comparer la variante exacte"
+        ],
+        [
+          "Taille du vêtement incertaine",
+          "Largeur et longueur à plat, extrémités de règle visibles",
+          "Comparer la même méthode"
+        ],
+        [
+          "Dommage possible",
+          "Vue générale et gros plan de la zone",
+          "Clarifier avant l’expédition"
+        ],
+        [
+          "Accessoire absent",
+          "Tous les composants reçus ensemble",
+          "Comparer le contenu documenté"
+        ]
+      ],
+      [
+        "Ouvrez l’article reçu dans My Warehouse et comparez-le à l’option commandée avant de juger son apparence. Un vérificateur QC partagé ou la galerie d’un autre acheteur ne prouve pas la conformité de votre propre article. Gardez la référence et la date des photos avec vos notes.",
+        "Demandez une vue manquante avec un objectif clair, par exemple la largeur à plat entre les coutures des aisselles, avec les deux extrémités de la règle visibles. Vérifiez les frais éventuels dans le compte. Si une différence est confirmée, consultez le guide des retours avant de jeter l’emballage ou de soumettre l’article à l’expédition."
+      ]
+    ],
+    "shoes": [
+      "Comparer trois informations de pointure",
+      [
+        "Champ",
+        "Candidat A — fictif",
+        "Candidat B — fictif"
+      ],
+      [
+        [
+          "Option choisie",
+          "Blanc / EU 42",
+          "Blanc / EU 42"
+        ],
+        [
+          "Mesure disponible",
+          "Semelle intérieure de 27 cm",
+          "Longueur de pied conseillée de 27 cm"
+        ],
+        [
+          "Question ouverte",
+          "Largeur et confort non établis",
+          "Mesure de semelle intérieure manquante"
+        ]
+      ],
+      [
+        "La même pointure et le même chiffre ne rendent pas ces candidats équivalents : les mesures portent sur des objets différents. Conservez l’annonce exacte, l’option et la méthode de mesure au lieu d’inventer une conversion universelle.",
+        "Avant d’accepter la paire, comparez les deux étiquettes, les côtés et les semelles. Si une chaussure paraît plus grande sur une vue oblique, demandez une vue comparable avant de conclure. Séparez les images de l’annonce des preuves QC concernant votre propre paire."
+      ]
+    ],
+    "hoodies": [
+      "Une demande de mesure reproductible",
+      [
+        "Mesure",
+        "Méthode",
+        "À noter"
+      ],
+      [
+        [
+          "Largeur de poitrine",
+          "À plat, couture d’aisselle à couture d’aisselle",
+          "Centimètres ; pas une circonférence"
+        ],
+        [
+          "Longueur du corps",
+          "Point d’épaule nommé jusqu’à l’ourlet",
+          "Même point de départ"
+        ],
+        [
+          "Manche",
+          "Couture d’épaule nommée jusqu’au poignet",
+          "Signaler coupe raglan ou épaule tombante"
+        ],
+        [
+          "Détail visible",
+          "Gros plan couture, impression ou fermeture",
+          "Décrire sans inventer la matière"
+        ]
+      ],
+      [
+        "Mesurez un sweat qui vous convient avec la même méthode que l’annonce ou la photo d’entrepôt demandée. Une largeur fictive de 58 cm à plat se compare à une autre largeur à plat, pas à un tour de poitrine ni à une simple étiquette M. Notez l’aisance souhaitée.",
+        "Pour l’article reçu, demandez une règle visible aux deux extrémités et un tissu posé naturellement. Une mesure étirée ne confirme pas une coupe au repos. Les photos ne prouvent ni composition, ni chaleur, ni tenue au lavage ; laissez ces propriétés ouvertes sans preuve adaptée."
+      ]
+    ],
+    "fees": [
+      "Budget illustratif — montants fictifs",
+      [
+        "Composante",
+        "Montant exemple",
+        "Statut"
+      ],
+      [
+        [
+          "Produits + livraison domestique",
+          "320 CN¥",
+          "180 + 120 + 12 + 8"
+        ],
+        [
+          "Options d’entrepôt",
+          "10 CN¥",
+          "Services supposés choisis"
+        ],
+        [
+          "Transport international",
+          "240 CN¥",
+          "Provision, pas un devis"
+        ],
+        [
+          "Options du colis",
+          "15 CN¥",
+          "Services supposés choisis"
+        ],
+        [
+          "Total prévisionnel",
+          "585 CN¥",
+          "Autres frais applicables exclus"
+        ]
+      ],
+      []
+    ],
+    "tracking": [
+      "Trouver le dossier et la prochaine action",
+      [
+        "Étape",
+        "Dossier à consulter",
+        "Action"
+      ],
+      [
+        [
+          "Achat vendeur",
+          "Commande et messages",
+          "Résoudre stock, option ou paiement"
+        ],
+        [
+          "Livraison domestique",
+          "Commande et suivi domestique",
+          "Rapprocher livraison et entrée en entrepôt"
+        ],
+        [
+          "QC en entrepôt",
+          "Article reçu",
+          "Examiner les photos et résoudre les problèmes"
+        ],
+        [
+          "Préparation du colis",
+          "Commande de colis international",
+          "Confirmer contenu, adresse et emballage"
+        ],
+        [
+          "Transport",
+          "Événements du suivi",
+          "Lire le dernier événement et les demandes"
+        ],
+        [
+          "Livré",
+          "Contenu et preuve de livraison",
+          "Vérifier quantités et état"
+        ]
+      ],
+      []
+    ],
+    "returns": [
+      "Garder un dossier de retour vérifiable",
+      [
+        "Point à confirmer",
+        "Preuve à conserver",
+        "Ne pas supposer"
+      ],
+      [
+        [
+          "Conditions et échéance",
+          "Conditions actuelles et réponse du support",
+          "Le stockage prolonge le délai de retour"
+        ],
+        [
+          "Problème et solution",
+          "Option, photos QC et résultat demandé",
+          "Toute photo ambiguë prouve un défaut"
+        ],
+        [
+          "Frais",
+          "Décompte accepté et remboursement net attendu",
+          "Une exonération couvre tous les coûts"
+        ],
+        [
+          "Transport retour",
+          "Accord et référence de retour",
+          "L’envoi signifie remboursement terminé"
+        ],
+        [
+          "Résultat financier",
+          "Montant, date et destination du crédit",
+          "Le solde est déjà remboursé en banque"
+        ]
+      ],
+      []
+    ]
+  },
+  "de": {
+    "labels": [
+      "Praktische Übersicht",
+      "Offizielle Superbuy-Werkzeuge und Anleitungen",
+      "Einkaufs- und Lageranleitung",
+      "Gebührenübersicht",
+      "Versandrechner",
+      "Rückgabe und Kundenservice",
+      "Inhalt"
+    ],
+    "calculator": [
+      "Zwei Verpackungsannahmen vergleichen",
+      [
+        "Szenario",
+        "Paketmaße / tatsächliches Gewicht",
+        "Volumengewicht bei ÷6.000",
+        "Größeres Gewicht"
+      ],
+      [
+        [
+          "Karton behalten",
+          "40 × 30 × 20 cm / 3 kg",
+          "4,00 kg",
+          "4,00 kg"
+        ],
+        [
+          "Kompakter verpackt",
+          "35 × 25 × 18 cm / 3 kg",
+          "2,625 kg",
+          "3,00 kg"
+        ]
+      ],
+      [
+        "Dies sind fiktive Maße, keine Messungen eines gezeigten Produkts. Der erste Karton umfasst 24.000 cm³, der zweite 15.750 cm³. Mit dem angenommenen Divisor ändert die kompakte Verpackung das maßgebliche größere Gewicht. Andere Routenregeln oder Gewichtsschritte können die Rechnung verändern.",
+        "Gib die Maße des verpackten Pakets ein, nicht die des unverpackten Artikels. Vergleiche den Gesamtpreis einschließlich gewählter Leistungen für jede zulässige Route. Prüfe Annahmen unten und öffne danach den offiziellen Rechner für aktuelle Verfügbarkeit und eine routenbezogene Schätzung."
+      ]
+    ],
+    "qc": [
+      "Aus einer QC-Frage einen genauen Auftrag machen",
+      [
+        "Frage",
+        "Benötigter Beleg",
+        "Entscheidung"
+      ],
+      [
+        [
+          "Falsche Variante",
+          "Lesbares Etikett und Bestellauswahl",
+          "Exakte Option vergleichen"
+        ],
+        [
+          "Unklare Passform",
+          "Flache Breite und Länge mit sichtbaren Linealenden",
+          "Gleiche Messmethode verwenden"
+        ],
+        [
+          "Möglicher Schaden",
+          "Gesamtansicht und Nahaufnahme der Stelle",
+          "Vor Versand klären"
+        ],
+        [
+          "Fehlendes Zubehör",
+          "Alle erhaltenen Bestandteile zusammen",
+          "Mit dokumentiertem Umfang vergleichen"
+        ]
+      ],
+      [
+        "Öffne den erhaltenen Artikel unter My Warehouse und vergleiche ihn zuerst mit der bestellten Option. Ein geteilter QC-Checker oder fremde Käuferfotos belegen nicht, dass dein eigener Artikel passt. Speichere Bestellnummer und Fotodatum bei deinen Notizen.",
+        "Fordere eine fehlende Ansicht mit klarem Zweck an, etwa die flach gemessene Brustbreite zwischen den Achselnähten mit sichtbaren Linealenden. Prüfe mögliche Fotogebühren im Konto. Bei bestätigter Abweichung lies den Rückgabeleitfaden, bevor Verpackung entsorgt oder internationaler Versand beauftragt wird."
+      ]
+    ],
+    "shoes": [
+      "Schuhe anhand von drei Feldern vergleichen",
+      [
+        "Feld",
+        "Kandidat A — fiktiv",
+        "Kandidat B — fiktiv"
+      ],
+      [
+        [
+          "Gewählte Option",
+          "Weiß / EU 42",
+          "Weiß / EU 42"
+        ],
+        [
+          "Maßbeleg",
+          "27 cm Einlegesohle",
+          "27 cm empfohlene Fußlänge"
+        ],
+        [
+          "Offene Frage",
+          "Breite und Passform unbelegt",
+          "Einlegesohlenmaß fehlt noch"
+        ]
+      ],
+      [
+        "Gleiche Größenbezeichnung und Zahl machen diese Kandidaten nicht gleichwertig. Die Messung beschreibt jeweils etwas anderes. Bewahre Angebot, ausgewählte Variante und Messmethode zusammen auf, statt eine allgemeine Umrechnung zu erfinden.",
+        "Vergleiche vor der Freigabe beide Größenetiketten, Seiten und Sohlen. Wirkt ein Schuh auf einem schrägen Foto größer, bitte zuerst um eine vergleichbare Ansicht. Angebotsfotos und QC-Belege deines tatsächlich erhaltenen Paars müssen getrennt bleiben."
+      ]
+    ],
+    "hoodies": [
+      "Eine wiederholbare Messanfrage",
+      [
+        "Maß",
+        "Methode",
+        "Aufzeichnung"
+      ],
+      [
+        [
+          "Brustbreite",
+          "Flach zwischen den Achselnähten",
+          "Zentimeter; nicht als Umfang bezeichnen"
+        ],
+        [
+          "Körperlänge",
+          "Benannter Schulterpunkt bis Saum",
+          "Gleicher Startpunkt bei beiden Teilen"
+        ],
+        [
+          "Ärmel",
+          "Benannte Schulternaht bis Bündchen",
+          "Raglan oder überschnittene Schulter vermerken"
+        ],
+        [
+          "Sichtbares Detail",
+          "Nahaufnahme von Naht, Druck oder Verschluss",
+          "Beobachtung statt ungeprüfter Materialaussage"
+        ]
+      ],
+      [
+        "Miss einen passenden Hoodie mit derselben Methode wie das Angebot oder das gewünschte Lagerfoto. Eine fiktive flache Brustbreite von 58 cm wird mit einer anderen flachen Breite verglichen, nicht mit Körperumfang oder einem M-Etikett. Notiere die gewünschte Weite.",
+        "Bitte beim erhaltenen Kleidungsstück um sichtbare Linealenden und natürlich ausgelegten Stoff. Ein gedehntes Maß bestätigt keine Passform im entspannten Zustand. Fotos belegen weder Materialzusammensetzung noch Wärme oder Waschbeständigkeit; ohne geeignete Belege bleiben diese Eigenschaften offen."
+      ]
+    ],
+    "fees": [
+      "Beispielbudget — fiktive Beträge",
+      [
+        "Bestandteil",
+        "Beispielbetrag",
+        "Status"
+      ],
+      [
+        [
+          "Waren + Inlandszustellung",
+          "CN¥320",
+          "180 + 120 + 12 + 8"
+        ],
+        [
+          "Lagerextras",
+          "CN¥10",
+          "Angenommene Auswahl"
+        ],
+        [
+          "Internationaler Transport",
+          "CN¥240",
+          "Planungsreserve, kein Angebot"
+        ],
+        [
+          "Paketextras",
+          "CN¥15",
+          "Angenommene Auswahl"
+        ],
+        [
+          "Planungssumme",
+          "CN¥585",
+          "Weitere mögliche Kosten nicht enthalten"
+        ]
+      ],
+      []
+    ],
+    "tracking": [
+      "Datensatz und nächsten Schritt finden",
+      [
+        "Phase",
+        "Passender Datensatz",
+        "Nächste Handlung"
+      ],
+      [
+        [
+          "Verkäufereinkauf",
+          "Bestellung und Nachrichten",
+          "Bestand, Variante oder Zahlung klären"
+        ],
+        [
+          "Inlandstransport",
+          "Bestellung und chinesisches Tracking",
+          "Zustellung dem Lagereingang zuordnen"
+        ],
+        [
+          "Lager-QC",
+          "Erhaltener Artikel",
+          "Fotos prüfen und Probleme klären"
+        ],
+        [
+          "Paketvorbereitung",
+          "Internationaler Paketauftrag",
+          "Inhalt, Adresse und Verpackung bestätigen"
+        ],
+        [
+          "Transport",
+          "Paketereignisse",
+          "Letzten Eintrag und Handlungsbedarf lesen"
+        ],
+        [
+          "Zugestellt",
+          "Inhalt und Zustellbeleg",
+          "Menge und Zustand prüfen"
+        ]
+      ],
+      []
+    ],
+    "returns": [
+      "Eine Rückgabe nachvollziehbar halten",
+      [
+        "Prüfpunkt",
+        "Beleg aufbewahren",
+        "Nicht voraussetzen"
+      ],
+      [
+        [
+          "Zulässigkeit und Frist",
+          "Aktuelle Bedingungen und Supportantwort",
+          "Lagerzeit verlängert Rückgabefrist"
+        ],
+        [
+          "Problem und Lösung",
+          "Variante, QC-Bilder und gewünschtes Ergebnis",
+          "Jedes unklare Foto beweist einen Defekt"
+        ],
+        [
+          "Kosten",
+          "Bestätigte Positionen und Nettoerstattung",
+          "Gebührenerlass deckt alle Kosten"
+        ],
+        [
+          "Rücktransport",
+          "Annahme und Rücksendereferenz",
+          "Versand bedeutet fertige Erstattung"
+        ],
+        [
+          "Finanzielles Ergebnis",
+          "Betrag, Datum und Gutschriftziel",
+          "Guthaben ist bereits auf der Bank"
+        ]
+      ],
+      []
+    ]
+  },
+  "id": {
+    "labels": [
+      "Ringkasan praktis",
+      "Alat dan panduan resmi Superbuy",
+      "Panduan belanja dan gudang",
+      "Struktur biaya",
+      "Kalkulator ongkir",
+      "Bantuan retur dan purnajual",
+      "Daftar isi"
+    ],
+    "calculator": [
+      "Bandingkan dua asumsi kemasan",
+      [
+        "Skenario",
+        "Ukuran / berat aktual",
+        "Berat volume dengan ÷6.000",
+        "Berat lebih besar"
+      ],
+      [
+        [
+          "Kotak dipertahankan",
+          "40 × 30 × 20 cm / 3 kg",
+          "4,00 kg",
+          "4,00 kg"
+        ],
+        [
+          "Kemasan lebih ringkas",
+          "35 × 25 × 18 cm / 3 kg",
+          "2,625 kg",
+          "3,00 kg"
+        ]
+      ],
+      [
+        "Dimensi ini fiktif, bukan hasil pengukuran produk yang ditampilkan. Kotak pertama bervolume 24.000 cm³ dan kedua 15.750 cm³. Dengan pembagi asumsi ini, kemasan ringkas mengubah berat yang lebih besar. Aturan jalur atau pembulatan berbeda dapat menghasilkan tagihan lain.",
+        "Masukkan ukuran paket setelah dikemas, bukan barang tanpa kemasan. Bandingkan harga seluruh paket termasuk layanan pilihan pada setiap jalur yang memenuhi syarat. Uji asumsi di bawah, lalu buka kalkulator resmi untuk ketersediaan dan perkiraan sesuai jalur terkini."
+      ]
+    ],
+    "qc": [
+      "Ubah keraguan QC menjadi permintaan jelas",
+      [
+        "Masalah",
+        "Bukti yang diminta",
+        "Keputusan"
+      ],
+      [
+        [
+          "Opsi salah",
+          "Label terbaca dan pilihan pesanan",
+          "Bandingkan varian tepat"
+        ],
+        [
+          "Ukuran pakaian belum pasti",
+          "Lebar dan panjang datar, ujung penggaris terlihat",
+          "Gunakan metode pengukuran sama"
+        ],
+        [
+          "Kemungkinan kerusakan",
+          "Tampilan keseluruhan dan foto dekat",
+          "Klarifikasi sebelum pengiriman"
+        ],
+        [
+          "Aksesori hilang",
+          "Semua komponen yang diterima bersama",
+          "Bandingkan isi terdokumentasi"
+        ]
+      ],
+      [
+        "Buka barang diterima di My Warehouse dan bandingkan dengan opsi pesanan sebelum menilai tampilannya. QC checker bersama atau galeri pembeli lain bukan bukti bahwa barang Anda sesuai. Simpan nomor pesanan dan tanggal foto bersama catatan.",
+        "Minta satu tampilan yang kurang dengan tujuan jelas, misalnya lebar dada datar dari jahitan ketiak ke ketiak dengan kedua ujung penggaris terlihat. Periksa biaya foto tambahan dalam akun. Jika ketidaksesuaian terbukti, baca panduan retur sebelum membuang kemasan atau mengajukan pengiriman internasional."
+      ]
+    ],
+    "shoes": [
+      "Perbandingan sepatu dalam tiga kolom",
+      [
+        "Data",
+        "Kandidat A — fiktif",
+        "Kandidat B — fiktif"
+      ],
+      [
+        [
+          "Opsi pilihan",
+          "Putih / EU 42",
+          "Putih / EU 42"
+        ],
+        [
+          "Bukti ukuran",
+          "Insole 27 cm",
+          "Panjang kaki disarankan 27 cm"
+        ],
+        [
+          "Pertanyaan terbuka",
+          "Lebar dan kenyamanan belum terbukti",
+          "Ukuran insole masih diperlukan"
+        ]
+      ],
+      [
+        "Label dan angka ukuran yang sama tidak membuat dua kandidat setara. Objek yang diukur berbeda. Simpan tautan, varian, dan metode pengukuran bersama, bukan membuat konversi ukuran universal.",
+        "Sebelum menyetujui pasangan, bandingkan kedua label, sisi, dan sol. Jika satu sepatu terlihat lebih besar dalam foto miring, minta sudut yang sebanding sebelum menyimpulkan ketidaksesuaian. Foto produk adalah referensi penawaran, sedangkan QC barang Anda merupakan bukti terpisah."
+      ]
+    ],
+    "hoodies": [
+      "Permintaan pengukuran yang dapat diulang",
+      [
+        "Ukuran",
+        "Metode",
+        "Catatan"
+      ],
+      [
+        [
+          "Lebar dada",
+          "Datar, jahitan ketiak ke ketiak",
+          "Sentimeter; bukan lingkar"
+        ],
+        [
+          "Panjang badan",
+          "Titik bahu yang disebutkan hingga ujung bawah",
+          "Titik awal sama pada kedua pakaian"
+        ],
+        [
+          "Lengan",
+          "Jahitan bahu tertentu hingga manset",
+          "Catat raglan atau bahu turun"
+        ],
+        [
+          "Detail terlihat",
+          "Foto dekat jahitan, cetakan, atau pengikat",
+          "Jelaskan pengamatan, bukan klaim bahan"
+        ]
+      ],
+      [
+        "Ukur hoodie yang pas dengan metode sama seperti halaman produk atau foto gudang. Contoh lebar dada datar 58 cm dibandingkan dengan lebar datar lain, bukan lingkar tubuh atau label M. Catat kelonggaran yang Anda inginkan.",
+        "Untuk barang diterima, minta penggaris dengan kedua ujung terlihat dan kain diletakkan alami. Ukuran saat kain diregangkan tidak memastikan kecocokan saat rileks. Foto tidak membuktikan komposisi bahan, kehangatan, atau ketahanan pencucian; tandai sebagai belum diketahui tanpa bukti yang sesuai."
+      ]
+    ],
+    "fees": [
+      "Contoh anggaran — angka fiktif",
+      [
+        "Komponen",
+        "Jumlah contoh",
+        "Status"
+      ],
+      [
+        [
+          "Barang + ongkir domestik",
+          "CN¥320",
+          "180 + 120 + 12 + 8"
+        ],
+        [
+          "Tambahan gudang",
+          "CN¥10",
+          "Asumsi layanan dipilih"
+        ],
+        [
+          "Transportasi internasional",
+          "CN¥240",
+          "Cadangan, bukan penawaran"
+        ],
+        [
+          "Tambahan paket",
+          "CN¥15",
+          "Asumsi layanan dipilih"
+        ],
+        [
+          "Total rencana",
+          "CN¥585",
+          "Belum termasuk biaya lain yang berlaku"
+        ]
+      ],
+      []
+    ],
+    "tracking": [
+      "Temukan catatan dan tindakan berikutnya",
+      [
+        "Tahap",
+        "Catatan yang diperiksa",
+        "Tindakan"
+      ],
+      [
+        [
+          "Pembelian penjual",
+          "Pesanan dan pesan",
+          "Selesaikan stok, opsi, atau pembayaran"
+        ],
+        [
+          "Pengiriman domestik",
+          "Pesanan dan pelacakan domestik",
+          "Cocokkan referensi dengan penerimaan gudang"
+        ],
+        [
+          "QC gudang",
+          "Barang yang diterima",
+          "Periksa foto dan selesaikan masalah"
+        ],
+        [
+          "Persiapan paket",
+          "Pesanan paket internasional",
+          "Pastikan isi, alamat, dan kemasan"
+        ],
+        [
+          "Perjalanan pengangkut",
+          "Kejadian pelacakan paket",
+          "Baca kejadian serta permintaan tindakan"
+        ],
+        [
+          "Terkirim",
+          "Isi dan bukti pengantaran",
+          "Periksa jumlah dan kondisi"
+        ]
+      ],
+      []
+    ],
+    "returns": [
+      "Jaga agar catatan retur dapat ditelusuri",
+      [
+        "Hal yang dikonfirmasi",
+        "Bukti disimpan",
+        "Jangan berasumsi"
+      ],
+      [
+        [
+          "Syarat dan tenggat",
+          "Ketentuan pesanan serta jawaban dukungan",
+          "Masa gudang memperpanjang masa retur"
+        ],
+        [
+          "Masalah dan solusi",
+          "Varian, foto QC, hasil yang diminta",
+          "Semua foto tidak jelas membuktikan cacat"
+        ],
+        [
+          "Biaya",
+          "Rincian disetujui dan refund bersih",
+          "Bebas satu biaya berarti semua gratis"
+        ],
+        [
+          "Pergerakan retur",
+          "Permintaan diterima dan referensi retur",
+          "Dikirim berarti refund selesai"
+        ],
+        [
+          "Hasil keuangan",
+          "Jumlah, tanggal, dan tujuan kredit",
+          "Saldo sudah kembali ke bank"
+        ]
+      ],
+      []
+    ]
+  },
+  "zh-cn": {
+    "labels": [
+      "实用速查",
+      "Superbuy 官方工具与说明",
+      "购物与仓库操作指南",
+      "费用结构",
+      "运费计算器",
+      "退货与售后帮助",
+      "文章目录"
+    ],
+    "calculator": [
+      "比较两种打包假设",
+      [
+        "方案",
+        "打包尺寸／实际重量",
+        "按 ÷6,000 计算的体积重",
+        "两种重量中的较大值"
+      ],
+      [
+        [
+          "保留原盒",
+          "40 × 30 × 20 cm／3 kg",
+          "4.00 kg",
+          "4.00 kg"
+        ],
+        [
+          "更紧凑的包装",
+          "35 × 25 × 18 cm／3 kg",
+          "2.625 kg",
+          "3.00 kg"
+        ]
+      ],
+      [
+        "以上均是假设尺寸，不是任何展示商品的实际测量。第一种箱体为 24,000 cm³，第二种为 15,750 cm³。在所假定的除数下，紧凑包装改变了实际重和体积重谁更大。其他线路规则或重量进位方式仍可能改变账单。",
+        "应输入包裹打包后的长宽高，不是裸商品尺寸。比较各条适用线路下整包的总价，并包括已选服务。可以先使用下方试算验证假设，再打开官方计算器确认当前线路与对应估价。"
+      ]
+    ],
+    "qc": [
+      "把 QC 疑问改成明确补拍要求",
+      [
+        "疑问",
+        "需要的证据",
+        "下一步判断"
+      ],
+      [
+        [
+          "规格不符",
+          "清晰标签与原订单选项",
+          "比较准确规格"
+        ],
+        [
+          "服装尺码不确定",
+          "平铺宽长及可见的尺子起止点",
+          "使用同一种测量方法"
+        ],
+        [
+          "可能损坏",
+          "整体图与问题位置近照",
+          "寄出前澄清"
+        ],
+        [
+          "配件缺失",
+          "全部收到的组件同框",
+          "对照明确列出的随附内容"
+        ]
+      ],
+      [
+        "先在 My Warehouse 打开实际入库商品，对照订单所选规格，再判断外观。共享 QC 查询器或其他买家的相册，并不能证明你这件商品符合要求。记录旁应保留订单编号与照片日期。",
+        "每次补拍应说明一个具体目的，例如平铺测量两侧腋下缝线之间的胸宽，并要求尺子起点和终点都可见。额外拍摄收费应在账户核对。确认错发后，在丢弃包装或提交国际发货前先查看退货指南。"
+      ]
+    ],
+    "shoes": [
+      "用三个字段比较鞋类候选",
+      [
+        "字段",
+        "候选 A——假设",
+        "候选 B——假设"
+      ],
+      [
+        [
+          "选定规格",
+          "白色／EU 42",
+          "白色／EU 42"
+        ],
+        [
+          "尺寸证据",
+          "鞋垫长 27 cm",
+          "建议脚长 27 cm"
+        ],
+        [
+          "待确认事项",
+          "宽度与穿着感受仍未证实",
+          "仍需鞋垫测量"
+        ]
+      ],
+      [
+        "相同尺码标签和相同数字不代表两件候选可以等同，因为测量对象不同。准确商品链接、选项和测量方法应同时保存，不要自行建立适用于所有鞋款的尺码换算。",
+        "接受一双鞋之前，应比较左右尺码标签、侧面和鞋底。如果斜拍让一只鞋看起来更大，先申请一致角度再判断是否不匹配。商品宣传照片与自己收到商品的 QC 应作为两类证据分别保存。"
+      ]
+    ],
+    "hoodies": [
+      "可以重复执行的服装测量要求",
+      [
+        "项目",
+        "测量方法",
+        "记录方式"
+      ],
+      [
+        [
+          "胸宽",
+          "平铺，从一侧腋下缝线到另一侧",
+          "以厘米记录，不标成完整胸围"
+        ],
+        [
+          "衣长",
+          "指定肩部起点到下摆",
+          "两件衣服使用相同起点"
+        ],
+        [
+          "袖长",
+          "指定肩缝到袖口",
+          "注明落肩或插肩结构"
+        ],
+        [
+          "可见细节",
+          "缝线、印花或扣件近照",
+          "描述观察，不虚构面料结论"
+        ]
+      ],
+      [
+        "拿一件合身卫衣，使用商品说明或仓库补拍相同的方法测量。假设平铺胸宽为 58 cm，应与另一项平铺胸宽比较，而不是与身体围度或通用 M 标签比较。希望保留多少宽松度，可以另外写入自己的记录。",
+        "对实际入库商品，要求尺子两端可见，布料自然平放，不要用拉伸后的尺寸证明自然状态下的合身程度。照片不能验证面料成分、保暖性和洗后耐用性，没有适当证据时应保留这些未确定项。"
+      ]
+    ],
+    "fees": [
+      "预算算例——全部为假设金额",
+      [
+        "费用组成",
+        "示例金额",
+        "说明"
+      ],
+      [
+        [
+          "商品与国内配送",
+          "CN¥320",
+          "180＋120＋12＋8"
+        ],
+        [
+          "仓库服务",
+          "CN¥10",
+          "假设已选择的服务"
+        ],
+        [
+          "国际运输",
+          "CN¥240",
+          "预算预留，不是报价"
+        ],
+        [
+          "包裹服务",
+          "CN¥15",
+          "假设已选择的服务"
+        ],
+        [
+          "规划合计",
+          "CN¥585",
+          "尚未包含其他适用费用"
+        ]
+      ],
+      []
+    ],
+    "tracking": [
+      "找到对应记录与下一步操作",
+      [
+        "阶段",
+        "应查看的记录",
+        "下一步"
+      ],
+      [
+        [
+          "卖家采购",
+          "商品订单与留言",
+          "解决库存、规格或付款问题"
+        ],
+        [
+          "国内配送",
+          "商品订单与国内追踪",
+          "对照仓库收货匹配情况"
+        ],
+        [
+          "仓库 QC",
+          "实际入库商品",
+          "检查照片并解决异常"
+        ],
+        [
+          "包裹准备",
+          "国际包裹订单",
+          "确认内容、地址和包装"
+        ],
+        [
+          "承运运输",
+          "包裹追踪事件",
+          "查看最新事件及待办通知"
+        ],
+        [
+          "已送达",
+          "实收内容和交付证据",
+          "检查数量与状态"
+        ]
+      ],
+      []
+    ],
+    "returns": [
+      "让退货记录可以逐步核对",
+      [
+        "确认事项",
+        "需要保存的证据",
+        "不要默认"
+      ],
+      [
+        [
+          "资格与期限",
+          "当前订单条款和客服答复",
+          "仓储时间会延长退货时间"
+        ],
+        [
+          "问题与处理目标",
+          "规格选择、QC 照片、期望结果",
+          "任何模糊照片都证明瑕疵"
+        ],
+        [
+          "费用",
+          "确认明细与预计净退款",
+          "免一项服务费等于全部免费"
+        ],
+        [
+          "退回物流",
+          "获准申请及退回编号",
+          "已经发出就代表退款完成"
+        ],
+        [
+          "资金结果",
+          "入账金额、日期和去向",
+          "账户余额已经退回银行卡"
+        ]
+      ],
+      []
+    ]
+  }
+}

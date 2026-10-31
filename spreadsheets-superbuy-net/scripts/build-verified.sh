@@ -18,6 +18,10 @@ if [[ ! -x "${vinext}" ]]; then
   exit 69
 fi
 
+# Cached Vite transforms and an existing Worker bundle can retain an older
+# localizedPath implementation. Always export HTML from a fresh compilation.
+rm -rf -- "${SITES_PROJECT_ROOT}/dist" "${SITES_PROJECT_ROOT}/node_modules/.vite"
+
 echo "Running bounded vinext build..."
 timeout \
   --signal=TERM \

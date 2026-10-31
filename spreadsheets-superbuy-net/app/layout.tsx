@@ -26,7 +26,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                   content_id:link.dataset.gaContent||'',
                   item_name:link.dataset.gaItem||'',
                   link_url:link.href,
-                  link_text:(link.textContent||'').trim().slice(0,120)
+                  link_text:(link.textContent||'').trim().slice(0,120),
+                  page_language:document.documentElement.lang
                 });
               });
               document.addEventListener('submit',function(event){

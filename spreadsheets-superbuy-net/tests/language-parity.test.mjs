@@ -8,9 +8,9 @@ async function loadSiteData() {
 }
 const text = article => [article.intro, ...article.sections.flatMap(s => [s.heading, ...s.paragraphs, ...(s.bullets ?? [])])].join(" ");
 
-test("all ten guides preserve substantial localized content and original modules", async () => {
+test("all thirteen guides preserve substantial localized content and original modules", async () => {
   const { copy, languages, articleSlugs } = await loadSiteData();
-  assert.equal(articleSlugs.length, 10);
+  assert.equal(articleSlugs.length, 13);
   for (const { code } of languages) {
     const locale = copy[code];
     for (const field of ["proof", "learnSteps", "faqItems", "qcChecklist", "shippingCards"]) {

@@ -20,6 +20,9 @@ const articleSlugs = [
   "superbuy-shipping-calculator-estimate-final-cost",
   "superbuy-warehouse-storage-deadlines-fees",
   "superbuy-shipping-to-usa-parcel-options",
+  "superbuy-fees-explained",
+  "superbuy-order-status-tracking",
+  "superbuy-returns-after-qc",
 ];
 
 const localizedPaths = languages.flatMap((language) => {
@@ -90,7 +93,7 @@ const sitemap = [
   ...localizedPaths.flatMap((pathname) => [
     "  <url>",
     `    <loc>${siteOrigin}${pathname === "/" ? "/" : `${pathname}/`}</loc>`,
-    `    <lastmod>${/^(\/(fr|de|id|zh-cn))?(\/articles(?:\/.*)?|\/?)$/.test(pathname) ? "2026-10-03" : pathname === "/shipping" ? "2026-09-02" : "2026-08-13"}</lastmod>`,
+    `    <lastmod>${/^(\/(fr|de|id|zh-cn))?(\/articles(?:\/.*)?|\/?)$/.test(pathname) ? "2026-10-31" : /\/(finds|categories|qc-guide|shipping|privacy)$/.test(pathname) ? "2026-10-31" : "2026-08-13"}</lastmod>`,
     "  </url>",
   ]),
   "</urlset>",

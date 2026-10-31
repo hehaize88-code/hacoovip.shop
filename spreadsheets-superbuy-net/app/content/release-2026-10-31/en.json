@@ -1,0 +1,197 @@
+{
+  "superbuy-fees-explained": {
+    "title": "Superbuy Fees Explained: Product Price to Shipping Total",
+    "category": "Costs & budgeting",
+    "excerpt": "Understand Superbuy service fees, the two payments, shipping estimates and optional extras. Use a worked budget to compare the complete cost before ordering.",
+    "read": "9 min read",
+    "intro": "A Superbuy fee calculation starts with two different purchases: buying the item in China and sending the packed parcel to you. The price beside a spreadsheet link usually describes neither the entire order nor the final delivered cost. This guide gives you a reusable budget for both stages, a clearly fictional example and a way to reconcile the final transactions. Keep the original currency beside every amount. A lower product price is useful only when the complete purchase still fits your budget.",
+    "sections": [
+      {
+        "heading": "Separate the first payment from the parcel payment",
+        "paragraphs": [
+          "The first payment funds the selected products and applicable domestic costs. The later payment concerns the international parcel. Between those steps, the warehouse receives the goods, you review their condition and the parcel is prepared. Keep two subtotals in your notes rather than one undifferentiated number. Otherwise, a domestic delivery charge can be mistaken for international shipping, or an early shipping estimate can be counted twice when the final parcel payment appears. Save the order identifiers next to the first subtotal and the parcel identifier next to the second.",
+          "Build the budget before ordering, while you can still change the basket. Create columns for amount, currency, stage, evidence and payment status. Use “unknown” where the final information is missing; a blank cell should not quietly become zero. A basket of three inexpensive items can still need substantial packaging or a restricted service. If you only have enough money for the item purchase, pause until you have a defensible allowance for shipping and other applicable costs. Paying for goods does not reserve a particular international rate."
+        ]
+      },
+      {
+        "heading": "Read the service fee for the actual source",
+        "paragraphs": [
+          "Superbuy's official fee page distinguishes ordinary purchasing from secondhand and other purchasing services. It currently lists standard purchasing from Taobao, Tmall, JD.com and 1688 without a purchasing service fee. That statement is narrower than “my order is free of fees.” Record the source platform and the service actually shown for your order. Special handling, selected extras and logistics are separate decisions. When a charge is unclear, ask what it covers before paying rather than assigning it to a generic service-fee percentage.",
+          "A spreadsheet card is a discovery link, so follow through to the exact product and selected variant before using its price. Quantity breaks, colour options, sizes and seller delivery terms may change the first subtotal. Save the confirmed quantity and unit price together. If a seller changes the price after your initial check, update the relevant row and retain the older observation as a dated estimate. Comparing two listings fairly requires the same quantity and equivalent options, not the cheapest number visible anywhere on each page."
+        ]
+      },
+      {
+        "heading": "Create an item budget that can be audited",
+        "paragraphs": [
+          "Consider a fictional basket containing a garment at CN¥180 and a bag at CN¥120. Assume domestic delivery of CN¥12 for the garment and CN¥8 for the bag. The product-and-domestic-delivery subtotal is CN¥320: 180 + 120 + 12 + 8. These amounts are invented to demonstrate bookkeeping, not live product prices or a Superbuy quotation. Add any purchasing charge actually displayed for those orders as its own row. Do not infer that every order using this basket would have a zero service fee.",
+          "For an optional warehouse service, first decide what information it will provide. A measurement photograph may resolve an uncertain fit; several decorative views may not change the purchase decision. Enter the current quoted charge only when you select that service. In the example, suppose the chosen optional services total CN¥10. The running budget becomes CN¥330 before international shipping. Keeping that extra visible makes it easy to remove an unnecessary service or compare the cost of obtaining evidence with the cost of accepting an unresolved sizing risk."
+        ]
+      },
+      {
+        "heading": "Add a parcel allowance without presenting it as a quote",
+        "paragraphs": [
+          "Use the official shipping calculator with the destination, warehouse, estimated weight, dimensions and item category. Save the inputs alongside the result so that you can explain later changes. The useful comparison is between eligible routes for the same parcel assumptions. A low result generated with a smaller box or a different item category is not an equivalent alternative. When an input is uncertain, keep at least two plausible packing scenarios and label them as estimates. Do not publish the lower number as a guaranteed cost.",
+          "Continuing the fictional example, suppose you reserve CN¥240 for international transport and CN¥15 for selected parcel services. The planning total becomes CN¥585: CN¥320 for goods and domestic delivery, CN¥10 for warehouse extras, CN¥240 for transport and CN¥15 for parcel extras. Destination charges or payment-provider costs, where applicable, still need separate entries. The example teaches the arithmetic; it does not suggest that this amount buys any particular route, parcel weight or delivery time. Replace every assumption with your own checkout and parcel data."
+        ]
+      },
+      {
+        "heading": "Compare packing decisions using the whole basket",
+        "paragraphs": [
+          "A light parcel can occupy a large volume. Conversely, a compact parcel can be heavy. The billing rule of the chosen service determines which measurements matter and how weight increments are rounded. Request a clear packing plan if boxes, protective materials or separate parcels would materially change the result. Compare the total for the entire basket in each scenario. Two separate parcels may each incur starting charges, while combining everything may exceed a route's size limit or restrict the available services.",
+          "Write down what you would lose when removing packaging. A shoe box, accessory pouch or protective insert may matter to you independently of its shipping cost. Keep the goods and their evidence intact until you have completed QC and any return decision. Packaging changes should follow that decision, not precede it. A cheaper packing option is useful when its protection and eligibility still suit the goods. There is no universal rule that every box should be discarded or every group of orders should be consolidated."
+        ]
+      },
+      {
+        "heading": "Treat payment conversion as a separate calculation",
+        "paragraphs": [
+          "Keep your working ledger in the currency charged for the purchase, then record the actual amount debited by your payment provider. An approximate USD price on a discovery card is a comparison aid, not the conversion rate you will receive. Where your payment provider adds a fee or uses its own exchange rate, record that transaction separately. Avoid recalculating a completed payment using today's rate: that would replace evidence with a new estimate and make later refunds difficult to reconcile accurately.",
+          "The same discipline applies to coupons and balance credits. Enter a discount only after it is accepted on the relevant transaction, and record which stage it reduces. A credit remaining in your account is different from money returned to your bank. If you reuse a balance for a later order, link the debit to that order so the same funds are not counted twice. This small ledger is particularly helpful when several orders are combined into one parcel or a seller refund arrives after other purchases have already been made."
+        ]
+      },
+      {
+        "heading": "Reconcile the final parcel against the saved estimate",
+        "paragraphs": [
+          "After the parcel is packed, compare the reported weight, dimensions, selected services and charged amount with your saved calculator inputs. Investigate a difference by component. Perhaps the final box is larger, an extra service was selected or the initial weight assumption was too low. An explanation tied to one changed input is more useful than a vague conclusion that shipping became expensive. Retain the parcel bill and any subsequent adjustment as separate dated transactions until the account record is settled.",
+          "A refund or additional payment should also be matched to its cause. Distinguish an item refund, a shipping adjustment and withdrawal of account funds. They can occur at different times and may use different processes. If the numbers do not reconcile, send support the order or parcel identifier, the two amounts being compared and the missing explanation. Remove unrelated payment details from shared screenshots. A short, specific question about one line item is easier to resolve than an unstructured collection of every transaction in the account."
+        ]
+      },
+      {
+        "heading": "Use the total cost to choose the next action",
+        "paragraphs": [
+          "Before buying, decide on a maximum complete budget and identify which values remain uncertain. If the margin is small, narrow the basket or request the missing information before committing. After warehouse arrival, review QC promptly and revise the parcel assumptions using the available measurements. Before dispatch, confirm that the selected route accepts the goods and that the full amount still fits the plan. This sequence keeps each decision tied to information available at that stage rather than treating an early estimate as final.",
+          "Keep the final ledger for your next purchase, but separate reusable lessons from prices that will change. The measurement that caused an oversized parcel, a service you did not need and a clearer way to group items may remain useful. A past freight rate, coupon or seller offer does not automatically carry forward. Use the calculator guide for packing scenarios, the storage guide for item deadlines and the tracking guide after dispatch. The aim is a transparent purchase record that tells you what you paid, what remains uncertain and what to check next."
+        ]
+      }
+    ]
+  },
+  "superbuy-order-status-tracking": {
+    "title": "Superbuy Order Status and Tracking: What Each Stage Means",
+    "category": "Orders & delivery",
+    "excerpt": "Follow a Superbuy order from seller purchase to warehouse QC and parcel tracking. Diagnose missing updates and prepare a useful support enquiry.",
+    "read": "9 min read",
+    "intro": "Superbuy order status and international parcel tracking describe different parts of the same purchase. A seller can dispatch an item inside China while your international parcel does not yet exist. A parcel can also have a tracking number before its first carrier scan. This guide follows those handoffs, explains what evidence to check and provides a practical escalation record. The stage names below are plain-language descriptions, not a promise that every version of the app uses exactly the same labels.",
+    "sections": [
+      {
+        "heading": "Identify the record before interpreting its status",
+        "paragraphs": [
+          "Start by checking whether the screen belongs to a product order, a warehouse item or an international parcel. Save the relevant identifier and keep these records separate in your notes. Several product orders can later become one parcel, and one purchase plan may require more than one parcel. A status attached to one item should not be copied across the whole basket. Record the item option and quantity as well, so a support message can identify the exact object you are asking about.",
+          "Read the latest message before acting on the label alone. A purchase may be waiting for clarification about an option, a price difference or a seller response. Repeatedly paying or submitting a new order can create another problem without resolving the first one. Compare your transaction history, the order details and any request for action. If those records disagree, save their timestamps and ask support to explain the discrepancy. Your goal is to establish which step is incomplete, not to force the display to change."
+        ]
+      },
+      {
+        "heading": "Distinguish purchase confirmation from seller dispatch",
+        "paragraphs": [
+          "Payment funds the purchase process; it is not evidence that a seller has already handed the goods to a courier. Check the selected variant, quantity and purchasing messages. Where the seller has not dispatched, the useful question concerns stock or the expected next action. Do not estimate the international delivery date from this stage. The goods still need domestic transport, warehouse processing, your review and a separate parcel submission before the overseas journey can begin.",
+          "If the seller provides a domestic tracking number, associate it with that product order. It describes movement toward the warehouse and should not be confused with the later international number. A seller can also divide an order into multiple domestic shipments. When only part of the quantity appears to have arrived, compare the order details and delivery references before reporting an item as lost. A clear enquiry states what was ordered, what has arrived and which remaining shipment has not been matched to the order."
+        ]
+      },
+      {
+        "heading": "Read domestic delivery and warehouse processing separately",
+        "paragraphs": [
+          "A domestic courier's delivery scan does not by itself prove that the item has completed warehouse intake and QC. Intake requires matching the received goods to an order and making the relevant warehouse information available. Compare the courier timestamp with the warehouse record and any processing notice. Avoid treating an immediate difference between those systems as proof of a missing parcel. If the discrepancy persists beyond the processing guidance shown for your order, contact support with both references.",
+          "Once the item appears in the warehouse, inspect the received quantity, option, photographs and any abnormal-condition notice. The next action may be yours: review a measurement, request a specific view or resolve a mismatch before shipping. Save the warehouse arrival date separately from the seller dispatch date. Storage and return decisions depend on the relevant item record, so waiting for every other purchase to arrive can waste time. The QC guide explains how to distinguish visible evidence from conclusions the photos cannot establish."
+        ]
+      },
+      {
+        "heading": "Understand what happens before international handoff",
+        "paragraphs": [
+          "Warehouse availability does not automatically create an international shipment. You need to select the intended items, check the address, choose an eligible route and complete the parcel submission steps shown in the account. Compare the parcel contents with your approved shortlist. An unresolved QC item should not accidentally join a shipment just because it is available to select. Keep any packing instructions specific, especially when some packaging should be removed and other packaging must be retained.",
+          "After submission, packing and logistics preparation may occur before the first carrier event. Record the parcel identifier, selected service and tracking number when available. A number alone does not establish that the parcel is already in the air or in your destination country. Read the event description and its date. If an address correction or cancellation is needed, contact support promptly while the actual processing stage is clear; do not assume a visible edit control remains usable after the parcel has been handed over."
+        ]
+      },
+      {
+        "heading": "Interpret tracking events without inventing a timetable",
+        "paragraphs": [
+          "Use the parcel's tracking view to follow the international shipment. Common logistics milestones include acceptance, export processing, transport, import processing, local handoff and delivery. They may be reported by different systems and do not necessarily update at identical times. The location in a scan can also be a processing hub rather than the parcel's next delivery point. Keep the original event wording in your record, especially when an automatic translation makes its meaning uncertain.",
+          "Compare events in order and pay attention to time zones. A recent status copied into another carrier system can look like a new movement even when it describes an earlier handoff. If the parcel receives a separate local delivery number, save the relationship between the two references. Do not infer a guaranteed arrival date from the number of completed milestones. The route's current service information is the appropriate planning reference, and any deadline for your own use should include room for uncertainty rather than rely on a best-case scan sequence."
+        ]
+      },
+      {
+        "heading": "Diagnose tracking that is not updating",
+        "paragraphs": [
+          "First confirm that you copied the correct international number and selected the correct parcel. Then note the last actual event, its timestamp and the route information shown in the account. A gap before initial acceptance is a different problem from an address exception after local handoff. It is also different from a request for documents that needs your response. Classifying the gap helps you ask the right question and avoids repeatedly refreshing a page that cannot resolve the underlying issue.",
+          "Use the current service guidance to decide when to enquire. There is no single safe waiting period for every route and destination, so do not borrow a fixed number of days from an unrelated shipment. If the page requests action, follow the verified account instructions promptly. Otherwise, ask support whether the next handoff has occurred and whether anything is required from you. Keep the answer with the same parcel record. A delay is not automatically a loss, and a tracking message alone does not establish eligibility for compensation."
+        ]
+      },
+      {
+        "heading": "Prepare a support enquiry that can be investigated",
+        "paragraphs": [
+          "A useful message includes one identifier, the selected route if relevant, the last confirmed event and a precise question. For example: “Parcel [reference] last shows [event] at [time]. Has it reached the next carrier, and is any action required from me?” This is a reusable message pattern, not an actual customer report. Attach the relevant status screenshot and describe any conflicting record. Avoid unrelated order histories, public copies of addresses or full payment details that do not help identify the problem.",
+          "For a warehouse discrepancy, use the product order identifier and domestic delivery reference instead. For a delivered-but-not-received event, check the address, building reception and the carrier's delivery evidence before reporting the mismatch through the available support process. Keep the original packaging if a delivered parcel is damaged and document the condition promptly. These cases need different evidence, so label the issue accurately. The return guide covers item problems discovered during QC, which should be handled before they become an international parcel problem."
+        ]
+      },
+      {
+        "heading": "Close the record only after checking the contents",
+        "paragraphs": [
+          "When the parcel arrives, compare the contents with the parcel item list and your saved warehouse record. Check quantities and obvious damage before discarding packaging or labels. Record discrepancies with clear photographs and contact the relevant support channel within the conditions shown for the order. A carrier's delivery scan confirms a delivery event; it does not prove that every item matches your purchase. Keep the record open until you have checked what was actually received and resolved any necessary follow-up.",
+          "Finally, separate the stages when learning from this purchase. Seller preparation, domestic travel, warehouse waiting, your own decision time and international transit are different intervals. Combining them into one shipping-time claim can mislead your next plan. Save the intervals as observations about this purchase, without turning one experience into a guarantee for another. Use the fees guide to reconcile the money and the storage guide to manage items still waiting. A clean timeline should explain the current stage, the evidence supporting it and who needs to act next."
+        ]
+      }
+    ]
+  },
+  "superbuy-returns-after-qc": {
+    "title": "Superbuy Returns After QC: Steps, Evidence and Refunds",
+    "category": "QC & after-sales",
+    "excerpt": "Plan a Superbuy return after warehouse QC: document the problem, confirm eligibility and costs, preserve packaging and follow the refund record.",
+    "read": "9 min read",
+    "intro": "The best time to investigate a problem visible in Superbuy QC photos is while the item is still in the warehouse. A return to the seller, an exchange and an international after-sales claim are different processes. This guide explains how to prepare a clear request, check the conditions attached to your actual order and follow the financial outcome. It does not promise that every seller accepts returns or that every charge is refundable. Act on the item record promptly instead of waiting for the rest of your basket.",
+    "sections": [
+      {
+        "heading": "Stop the parcel decision while the item is unresolved",
+        "paragraphs": [
+          "If a QC image appears to show the wrong option, missing part or visible defect, keep that item out of the international parcel while you investigate. Record its order identifier, selected variant and warehouse arrival information. Check whether the questionable detail is visible in more than one photograph. A shadow or camera angle can resemble damage, while a readable size label may establish a more specific mismatch. Describe the observation precisely before deciding which service you need.",
+          "Separate the item you are investigating from other goods that are ready to ship. There is no need to mark the entire basket as defective because one item needs clarification. At the same time, do not remove labels, discard packaging or request irreversible alterations to the disputed item. Those changes may reduce the evidence available or affect return eligibility. If you already submitted a parcel, ask support about its current processing stage immediately. Do not assume the warehouse can intercept it after international handoff."
+        ]
+      },
+      {
+        "heading": "Confirm the applicable return conditions in the account",
+        "paragraphs": [
+          "Open the order's current after-sales or enquiry options and the official return guidance. Superbuy's public agreement refers to a conditional five-day return or exchange service, but eligibility, charges and the precise deadline must be checked for your item. Treat that reference as a reason to investigate promptly, not a universal entitlement. Ask for the deadline and its starting event when they are unclear. Warehouse storage time does not replace the seller's return period, and a request for extra photographs should not be assumed to pause it.",
+          "Customised items, secondhand goods, particular seller terms and changes to the item can require different handling. Record the conditions actually communicated for your order rather than copying another buyer's outcome. If the return control is unavailable, contact support with the order reference and describe the problem; do not create a duplicate purchase as a workaround. A request submitted on time still needs to be assessed and processed. Save the acknowledgement and any instructions so that you can distinguish a pending request from an accepted return."
+        ]
+      },
+      {
+        "heading": "Build evidence around the selected variant",
+        "paragraphs": [
+          "For an incorrect option, collect the original order selection, the relevant listing information and a clear photograph of the received item. For a visible defect, include an overall view that identifies the item and a close view of the affected area. For a missing component, compare the documented package contents with what the warehouse received. The strongest record connects one claim to specific evidence. Avoid adding unrelated allegations about authenticity or durability that a photograph cannot establish.",
+          "If the measurement is the issue, identify the dimension and method. A chest width measured flat is not the same as a full circumference, and outsole length is not foot length. Ask for a ruler view that makes the start and end points visible. Compare like with like before describing the item as incorrectly sized. A useful hypothetical request might state that the ordered option is M, the photographed label is L, and a return is requested if the mismatch is confirmed. That is clearer than saying only that the item looks wrong."
+        ]
+      },
+      {
+        "heading": "Choose clarification, return or exchange deliberately",
+        "paragraphs": [
+          "Sometimes one focused photograph resolves the uncertainty and no return is needed. If the received item matches the order but you have changed your preference, describe that honestly. If the seller sent a different option, state the discrepancy and the outcome you want. Return and exchange requests can involve different timelines: an exchange may require another seller dispatch and a new warehouse inspection. Check that the replacement would still meet your needs before choosing it merely to avoid starting another search.",
+          "For an exchange, specify the exact replacement variant and ask whether stock has been confirmed. A similar-looking item is not necessarily the same product. Keep the original and replacement records linked so a later QC photo is not mistaken for evidence of the first item. If the replacement changes price or domestic delivery costs, obtain the revised amounts before proceeding. Your decision should consider the whole purchase plan, including time and shipping, rather than treating an exchange as a cost-free reset of the order."
+        ]
+      },
+      {
+        "heading": "Confirm costs before authorising the return shipment",
+        "paragraphs": [
+          "Ask for an itemised explanation of any return delivery, handling or other applicable charges. Who bears a charge can depend on the reason, seller acceptance and current service conditions. A service-fee waiver does not automatically mean that all transport costs disappear. Compare the expected refund with the amounts that will be retained or paid separately. When a charge is still unknown, keep it marked as pending instead of showing the full original payment as money you will definitely recover.",
+          "Use a fictional example only to understand the arithmetic: if an item cost CN¥150 and confirmed non-refundable costs total CN¥20, the expected net recovery would be CN¥130 before any other adjustment. Those figures are not Superbuy fees or an estimate for your order. In your own ledger, retain each confirmed component and its explanation. Do not subtract a charge twice if it has already been taken from the stated refund. Ask support whether an amount is deducted from the refund or paid as a separate transaction."
+        ]
+      },
+      {
+        "heading": "Preserve the package and follow the approved instructions",
+        "paragraphs": [
+          "Once the return is accepted, follow the warehouse and support instructions associated with the order. Keep required accessories, labels and packaging with the item. Do not invent a seller return address from an old parcel or a public listing: use the address and process confirmed for the specific request. Record the return reference or tracking information when provided. Acceptance of the request, dispatch back to the seller and seller receipt are separate events, so update the record as each one is confirmed.",
+          "If an instruction is ambiguous, clarify it before authorising an irreversible action. For example, a replacement request might be awaiting a seller response rather than ready for dispatch. Preserve the conversation and avoid opening multiple contradictory requests for the same item. If you decide to cancel or change the requested remedy, obtain confirmation that the new instruction has been accepted. A concise timeline helps the support team see which decision is current and prevents an older message from being mistaken for your final choice."
+        ]
+      },
+      {
+        "heading": "Track the refund independently from the return parcel",
+        "paragraphs": [
+          "A return shipment does not itself prove that the refund has completed. Follow the order's financial record and save the amount, date and destination of the credit when it appears. Distinguish account balance from a withdrawal to the original payment method. They are different steps, and the current payment options and processing conditions determine what is available. Do not promise yourself a bank credit on the day the seller receives the return. Keep the request open in your own notes until the expected financial entries are reconciled.",
+          "If the amount differs from the agreed outcome, compare the original product payment, approved deductions and posted refund before contacting support. State the difference numerically and attach only the relevant records. A question such as “The confirmed net refund was X, while the account shows Y; which charge explains the difference?” is specific enough to investigate. Currency conversion and payment-provider transactions may need separate reconciliation. The fees guide provides a ledger structure that keeps these stages from being combined into one misleading total."
+        ]
+      },
+      {
+        "heading": "Use the outcome to improve the next QC decision",
+        "paragraphs": [
+          "After the case is resolved, record the issue, the evidence that helped and the final outcome. Keep it as a factual observation about this order. A successful return does not establish that every future seller will accept the same request, and a rejected request does not prove that all purchases are unsafe. The useful lesson may be to save the selected option more clearly, request a measurement earlier or retain a particular piece of packaging until inspection is complete.",
+          "For the next purchase, define the evidence you need before paying and inspect each item as soon as warehouse information becomes available. Separate a confirmed mismatch from an unresolved photograph and keep the return decision ahead of international packing. Use the QC checklist for the initial review, the storage guide for remaining items and the tracking guide after dispatch. A good return record ends with a verified resolution and a reconciled amount, while leaving a clearer process for the next order rather than an unsupported promise of hassle-free refunds."
+        ]
+      }
+    ]
+  }
+}
