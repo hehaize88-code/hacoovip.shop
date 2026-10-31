@@ -1,4 +1,6 @@
 import { newArticleSlugs, newArticleContent } from "./new-articles";
+import catalogSnapshot from "./content/catalog-2026-10-31.json";
+import growthCopy from "./content/growth-copy.json";
 import articleUpdates from "./content/article-updates.json";
 
 export type Lang = "en" | "de" | "es" | "it" | "pl";
@@ -27,7 +29,7 @@ export const languages: Array<{ code: Lang; label: string; market: string; flag:
   { code: "pl", label: "Polski", market: "PL", flag: "🇵🇱" },
 ];
 
-export const products = [
+const originalProducts = [
   {
     id: "HS-5004",
     name: "Nike Zoom Vomero 5 Collection",
@@ -89,6 +91,8 @@ export const products = [
     href: `${mainSite}/AllProducts/1687.html`,
   },
 ];
+
+export const products = [...originalProducts.map((product) => ({...product, checked: "2026-08-14", checkedLabel: "14/08"})), ...catalogSnapshot];
 
 export const categoryLinks = [
   { key: "shoes", href: `${mainSite}/shoes/` },
@@ -290,6 +294,19 @@ const pl = {
 
 export const copies = { en, de, es, it, pl };
 for (const { code } of languages) {
+  const growth = growthCopy[code];
+  copies[code].home.title = growth.home[1];
+  copies[code].home.lead = growth.home[2];
+  copies[code].home.verified = `${products.length} · ${growth.ui[6]}`;
+  copies[code].home.overviewNote = growth.ui[11];
+  copies[code].common.checked = growth.ui[7];
+  copies[code].common.review = growth.ui[10];
+  copies[code].common.live = growth.ui[7];
+  copies[code].common.priceNote = growth.ui[11];
+  for (const key of Object.keys(growth.pages) as Array<Exclude<PageKey, "home">>) {
+    copies[code].pages[key].title = growth.pages[key][0];
+    copies[code].pages[key].intro = growth.pages[key][1];
+  }
   copies[code].articles = copies[code].articles.map((article, index) => [article[0], articleUpdates[code][index][0], articleUpdates[code][index][1]]);
   copies[code].articles.push(...newArticleContent[code].map((article) => article.meta));
 }

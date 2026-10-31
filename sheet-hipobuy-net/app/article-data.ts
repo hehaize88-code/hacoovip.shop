@@ -1,4 +1,5 @@
 import { isNewArticle, newArticleBody } from "./new-articles";
+import growthCopy from "./content/growth-copy.json";
 import articleUpdates from "./content/article-updates.json";
 import type { NewArticleSlug } from "./new-articles";
 import { articleSlugs, type ArticleSlug, type Lang } from "./site-data";
@@ -773,6 +774,10 @@ function enrichBodies(lang: Lang, bodies: Record<LegacySlug, ArticleBody>): Reco
     if (isNewArticle(slug)) continue;
     const update = articleUpdates[lang][index];
     enriched[slug] = { ...enriched[slug], faqs: [], sections: [{ title: update[2], paragraphs: [update[3]] }, ...enriched[slug].sections] };
+  }
+  for (const [slug, index] of [["hipobuy-shipping-cost-guide", 0], ["hipobuy-warehouse-qc-photos", 1], ["hipobuy-review-2026", 2]] as const) {
+    const [title, paragraph] = growthCopy[lang].improvements[index];
+    enriched[slug].sections.unshift({title, paragraphs: [paragraph]});
   }
   return enriched;
 }

@@ -7,14 +7,22 @@ import es from "./content/new-es.json";
 import it from "./content/new-it.json";
 import pl from "./content/new-pl.json";
 
+import oct31en from "./content/oct31-en.json";
+import oct31de from "./content/oct31-de.json";
+import oct31es from "./content/oct31-es.json";
+import oct31it from "./content/oct31-it.json";
+import oct31pl from "./content/oct31-pl.json";
+
+export const latestArticleSlugs = ["hipobuy-shipping-to-spain", "hipobuy-rehearsal-parcel"] as const;
 export const newArticleSlugs = [
   "hipobuy-shipping-to-germany",
   "hipobuy-shipping-to-italy",
   "hipobuy-shipping-to-france",
   "hipobuy-delivery-time-tracking",
+  ...latestArticleSlugs,
 ] as const;
 export type NewArticleSlug = (typeof newArticleSlugs)[number];
-export const newArticleContent = { en, de, es, it, pl };
+export const newArticleContent = { en: [...en, ...oct31en], de: [...de, ...oct31de], es: [...es, ...oct31es], it: [...it, ...oct31it], pl: [...pl, ...oct31pl] };
 export function isNewArticle(slug: string): slug is NewArticleSlug {
   return (newArticleSlugs as readonly string[]).includes(slug);
 }
@@ -41,5 +49,5 @@ function visual(lang: Lang, index: number): ArticleVisual {
 export function newArticleBody(lang: Lang, slug: NewArticleSlug): ArticleBody {
   const index = newArticleSlugs.indexOf(slug);
   const article = newArticleContent[lang][index];
-  return { lead: article.lead, keyPoints: article.keyPoints, sections: article.sections, checklist: article.checklist, faqs: [], visual: visual(lang,index) };
+  return { lead: article.lead, keyPoints: article.keyPoints, sections: article.sections, checklist: article.checklist, faqs: [], visual: visual(lang, index < 4 ? index : 0) };
 }

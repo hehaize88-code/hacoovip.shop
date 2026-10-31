@@ -47,7 +47,13 @@ jobs:
 
       - name: Refine generated HTML
         working-directory: sheet-hipobuy-net
-        run: node scripts/postprocess-pages.mjs .
+        run: |
+          node scripts/postprocess-pages.mjs out
+          node scripts/postprocess-pages.mjs .
+
+      - name: Verify all localized routes and article links
+        working-directory: sheet-hipobuy-net
+        run: node --test tests/static-export.check.mjs tests/pages-middleware.test.mjs
 
       - name: Publish generated files
         run: |

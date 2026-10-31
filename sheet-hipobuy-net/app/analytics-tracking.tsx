@@ -53,6 +53,11 @@ export default function AnalyticsTracking() {
       send(form.dataset.gaEvent, params);
     };
 
+    const onDirectorySearch = (event: Event) => {
+      const detail = (event as CustomEvent<Record<string, string>>).detail;
+      send("directory_search", {...detail, page_path: window.location.pathname});
+    };
+    window.addEventListener("directory-search", onDirectorySearch);
     let readSent = false;
     const onScroll = () => {
       const article = document.querySelector<HTMLElement>(".longform-article");
@@ -67,6 +72,7 @@ export default function AnalyticsTracking() {
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("submit", onSubmit);
     return () => {
+      window.removeEventListener("directory-search", onDirectorySearch);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick);
       document.removeEventListener("submit", onSubmit);

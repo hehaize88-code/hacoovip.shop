@@ -1,0 +1,327 @@
+{
+  "en": {
+    "home": [
+      "Hipobuy Spreadsheet: Product Links, QC & Shipping",
+      "Hipobuy spreadsheet: find your next product.",
+      "Browse 30 Hipobuy product links by category, name and price. Compare dated listings, check warehouse QC and plan shipping before you buy."
+    ],
+    "pages": {
+      "spreadsheet": [
+        "Hipobuy spreadsheet: searchable product links",
+        "Search 30 Hipobuy listings for shoes, T-shirts, hoodies and accessories. Filter by category, compare reference prices and open the source listing."
+      ],
+      "categories": [
+        "Hipobuy product categories",
+        "Browse Hipobuy shoes, hoodies, T-shirts, jackets, pants and accessories. Open the relevant collection, then check variants, QC and shipping costs."
+      ],
+      "qc": [
+        "Hipobuy QC photos: what to check",
+        "Check Hipobuy QC photos for the ordered variant, measurements, visible damage and missing parts. Request a useful close-up before approving the parcel."
+      ],
+      "shipping": [
+        "Hipobuy shipping cost and parcel planning",
+        "Compare Hipobuy shipping costs using packed weight, dimensions, fees and destination. Read country guides, rehearsal advice and tracking checks."
+      ],
+      "faq": [
+        "Hipobuy questions: products, QC and shipping",
+        "Find answers about Hipobuy product links, reference prices, warehouse QC, advertised storage and shipping checks before committing to an order."
+      ],
+      "articles": [
+        "Hipobuy guides: shipping, QC and buying",
+        "Read Hipobuy guides to shipping costs, Spain delivery, Rehearsal Parcel, QC photos, warehouse returns and tracking, with worked parcel examples."
+      ]
+    },
+    "ui": [
+      "Previous",
+      "Next",
+      "Sort by",
+      "Featured",
+      "Price: low to high",
+      "Price: high to low",
+      "Catalog listings",
+      "Source snapshot",
+      "Languages",
+      "Buying guides",
+      "Editorial update: 31 October 2026",
+      "Prices are dated source snapshots, not checkout quotes. Listing names do not verify authenticity or stock.",
+      "Sources and scope",
+      "Reviewed 31 October 2026. The public Hipobuy announcement confirms Rehearsal Parcel exists; account fees and processing times were not tested. Spain guidance uses European Commission and Spanish customs information. Calculations are illustrative.",
+      "Local search",
+      "Browse all product links"
+    ],
+    "improvements": [
+      [
+        "A quote comparison you can actually use",
+        "Create two columns with the same destination, approved contents and packed dimensions. Record the service, divisor, rounding, freight, packing, optional services and excluded destination costs. Mark an unknown fee as unknown rather than zero. Choose only after checking the complete payable total and the restrictions. If a bulky carton makes the result uncertain, the rehearsal guide explains which measurements to request."
+      ],
+      [
+        "A three-way QC decision record",
+        "For each item, record approve, request evidence or request a return. Attach the selected variant and the exact photo supporting the decision. A shirt measurement request should name both endpoints and keep the tape readable; a damage request should include a close-up plus a wider view locating the defect. Do not approve the whole parcel while one item still needs a decision."
+      ],
+      [
+        "Is Hipobuy legit? Separate the platform from the listing",
+        "A review score alone cannot verify a seller, guarantee a refund or authenticate a product. Check the official account flow, current service terms, payment record and evidence for the exact listing. Keep your first decision proportionate to the amount and uncertainty you can accept. This independent directory does not certify Hipobuy or the merchandise; the dated review observations below remain historical rather than a fresh safety verdict."
+      ]
+    ]
+  },
+  "de": {
+    "home": [
+      "Hipobuy Spreadsheet: Produktlinks, QC & Versand",
+      "Hipobuy Spreadsheet: Produkte gezielt finden.",
+      "Durchsuche 30 Hipobuy-Produktlinks nach Kategorie, Name und Preis. Vergleiche datierte Angebote, prüfe QC-Fotos und plane den Versand vor dem Kauf."
+    ],
+    "pages": {
+      "spreadsheet": [
+        "Hipobuy Spreadsheet: Produktlinks durchsuchen",
+        "Finde 30 Hipobuy-Angebote für Schuhe, Shirts, Hoodies und Zubehör. Filtere Kategorien, vergleiche Richtpreise und öffne den jeweiligen Quelleintrag."
+      ],
+      "categories": [
+        "Hipobuy Produktkategorien",
+        "Entdecke Hipobuy Schuhe, Hoodies, Shirts, Jacken, Hosen und Zubehör. Öffne die passende Sammlung und prüfe Varianten, QC und Versandkosten."
+      ],
+      "qc": [
+        "Hipobuy QC-Fotos richtig prüfen",
+        "Prüfe Hipobuy QC-Fotos auf Variante, Maße, sichtbare Schäden und fehlendes Zubehör. Fordere vor der Freigabe einen aussagekräftigen Nachweis an."
+      ],
+      "shipping": [
+        "Hipobuy Versandkosten und Paketplanung",
+        "Vergleiche Hipobuy Versandkosten mit Paketgewicht, Maßen, Gebühren und Ziel. Nutze Länder-Ratgeber, Probeverpackung und Tracking-Prüfungen."
+      ],
+      "faq": [
+        "Hipobuy Fragen zu Produkten, QC und Versand",
+        "Antworten zu Hipobuy Produktlinks, Richtpreisen, Lager-QC, beworbener Lagerdauer und Versandprüfung helfen dir vor der Bestellung."
+      ],
+      "articles": [
+        "Hipobuy Ratgeber: Versand, QC und Einkauf",
+        "Lies Hipobuy Ratgeber zu Versandkosten, Spanien, Rehearsal Parcel, QC-Fotos, Rückgaben und Tracking mit nachvollziehbaren Paketbeispielen."
+      ]
+    },
+    "ui": [
+      "Zurück",
+      "Weiter",
+      "Sortieren",
+      "Auswahl",
+      "Preis aufsteigend",
+      "Preis absteigend",
+      "Katalogeinträge",
+      "Quellaufnahme",
+      "Sprachen",
+      "Kaufratgeber",
+      "Redaktion: 31. Oktober 2026",
+      "Preise sind datierte Quellaufnahmen, keine Endangebote. Namen bestätigen weder Echtheit noch Bestand.",
+      "Quellen und Grenzen",
+      "Geprüft am 31. Oktober 2026. Hipobuys öffentlicher Hinweis bestätigt Rehearsal Parcel; Kontogebühren und Bearbeitungszeit wurden nicht getestet. Spanienhinweise beruhen auf EU-Kommission und spanischen Zollinformationen. Berechnungen sind Beispiele.",
+      "Lokale Suche",
+      "Alle Produktlinks ansehen"
+    ],
+    "improvements": [
+      [
+        "Ein vergleichbares Versandangebot erstellen",
+        "Erstelle zwei Spalten mit gleichem Ziel, freigegebenem Inhalt und Paketmaßen. Erfasse Dienst, Divisor, Rundung, Fracht, Verpackung, Zusatzleistungen und ausgeschlossene Zielkosten. Unbekannte Gebühren bleiben unbekannt statt null. Entscheide nach Gesamtpreis und Einschränkungen. Bei unklaren Kartonmaßen zeigt der Rehearsal-Ratgeber, welche Messwerte helfen."
+      ],
+      [
+        "QC mit drei eindeutigen Ergebnissen",
+        "Notiere je Artikel Freigabe, Nachweis anfordern oder Rückgabe beantragen. Verknüpfe Variante und entscheidendes Foto. Benenne beim Shirt beide Messpunkte und verlange eine lesbare Skala; bei Schäden helfen Nahaufnahme und Übersicht zur Lokalisierung. Gib das Gesamtpaket nicht frei, solange ein Artikel ungeklärt ist."
+      ],
+      [
+        "Ist Hipobuy seriös? Plattform und Angebot getrennt prüfen",
+        "Ein Bewertungswert verifiziert keinen Verkäufer, garantiert keine Erstattung und bestätigt keine Echtheit. Prüfe offiziellen Kontoablauf, aktuelle Bedingungen, Zahlungsbeleg und den konkreten Eintrag. Begrenze die erste Entscheidung entsprechend deinem akzeptablen Betrag und der Unsicherheit. Dieses unabhängige Verzeichnis zertifiziert weder Hipobuy noch Waren; die folgenden datierten Bewertungen sind historische Beobachtungen."
+      ]
+    ]
+  },
+  "es": {
+    "home": [
+      "Catálogo Hipobuy: hoja de cálculo, enlaces y QC",
+      "Catálogo Hipobuy: hoja de cálculo y enlaces.",
+      "Explora 30 enlaces Hipobuy por categoría, nombre y precio. Compara anuncios fechados, revisa fotos QC y calcula el envío antes de comprar."
+    ],
+    "pages": {
+      "spreadsheet": [
+        "Hoja de cálculo Hipobuy: catálogo y enlaces",
+        "Busca 30 productos Hipobuy: zapatillas, camisetas, sudaderas y accesorios. Filtra categorías, compara precios orientativos y abre cada anuncio."
+      ],
+      "categories": [
+        "Catálogo Hipobuy por categorías",
+        "Encuentra calzado, sudaderas, camisetas, chaquetas, pantalones y accesorios Hipobuy. Revisa opciones, fotos QC y gastos de envío antes de pedir."
+      ],
+      "qc": [
+        "Fotos QC Hipobuy: revisión del almacén",
+        "Comprueba variante, medidas, defectos visibles y piezas en las fotos QC Hipobuy. Solicita una prueba concreta antes de autorizar el paquete."
+      ],
+      "shipping": [
+        "Gastos de envío Hipobuy y planificación",
+        "Compara gastos de envío Hipobuy con peso, medidas, servicios y destino. Consulta España, preembalaje y seguimiento antes de pagar el transporte."
+      ],
+      "faq": [
+        "Preguntas Hipobuy: catálogo, QC y envíos",
+        "Resuelve dudas sobre enlaces Hipobuy, precios de referencia, QC, almacenamiento anunciado y comprobaciones de envío antes de realizar un pedido."
+      ],
+      "articles": [
+        "Guías Hipobuy: envíos, QC y compras",
+        "Consulta guías Hipobuy sobre gastos de envío, España, Rehearsal Parcel, fotos QC, devoluciones y seguimiento con ejemplos prácticos de paquetes."
+      ]
+    },
+    "ui": [
+      "Anterior",
+      "Siguiente",
+      "Ordenar",
+      "Selección",
+      "Precio ascendente",
+      "Precio descendente",
+      "Productos del catálogo",
+      "Captura de origen",
+      "Idiomas",
+      "Guías de compra",
+      "Revisión: 31 de octubre de 2026",
+      "Precios capturados en la fecha indicada, no cotizaciones finales. El nombre no certifica autenticidad ni existencias.",
+      "Fuentes y alcance",
+      "Revisado el 31 de octubre de 2026. El anuncio público confirma Rehearsal Parcel; no se probaron tarifas de cuenta ni plazos. La guía de España utiliza información de la Comisión Europea y de aduanas españolas. Los cálculos son ejemplos.",
+      "Búsqueda local",
+      "Ver todos los enlaces"
+    ],
+    "improvements": [
+      [
+        "Una comparación de cotizaciones útil",
+        "Crea dos columnas con el mismo destino, artículos aprobados y medidas. Anota servicio, divisor, redondeo, transporte, embalaje, extras y cargos en destino excluidos. Un importe desconocido no equivale a cero. Decide con el total y las restricciones. Si el cartón genera incertidumbre, la guía de preembalaje explica qué medidas solicitar."
+      ],
+      [
+        "Registra tres posibles decisiones QC",
+        "Marca cada artículo como aprobar, solicitar pruebas o pedir devolución. Adjunta variante elegida y foto que respalda la decisión. Para una camiseta, indica ambos extremos de la medida y pide una cinta legible. Para un daño, combina detalle y vista amplia que lo sitúe. No apruebes el paquete completo con un artículo pendiente."
+      ],
+      [
+        "¿Hipobuy es fiable? Separa plataforma y anuncio",
+        "Una puntuación no verifica al vendedor, garantiza reembolso ni autentica el producto. Comprueba el acceso oficial, las condiciones actuales, el pago y las pruebas del anuncio concreto. Ajusta la primera decisión al importe y la incertidumbre aceptables. Este directorio no certifica a Hipobuy ni la mercancía; las observaciones fechadas que siguen son históricas, no un veredicto nuevo de seguridad."
+      ]
+    ]
+  },
+  "it": {
+    "home": [
+      "Lista Hipobuy: prodotti, link, QC e spedizione",
+      "Lista Hipobuy: trova prodotti e link.",
+      "Esplora 30 link Hipobuy per categoria, nome e prezzo. Confronta inserzioni datate, controlla foto QC e prepara la spedizione prima dell’acquisto."
+    ],
+    "pages": {
+      "spreadsheet": [
+        "Hipobuy spreadsheet: lista prodotti e link",
+        "Cerca 30 inserzioni Hipobuy tra scarpe, magliette, felpe e accessori. Filtra categorie, confronta prezzi indicativi e apri la fonte del prodotto."
+      ],
+      "categories": [
+        "Catalogo Hipobuy per categoria",
+        "Trova scarpe, felpe, magliette, giacche, pantaloni e accessori Hipobuy. Controlla varianti, fotografie QC e costo della spedizione prima di ordinare."
+      ],
+      "qc": [
+        "Foto QC Hipobuy: controlli in magazzino",
+        "Verifica variante, misure, difetti visibili e accessori nelle foto QC Hipobuy. Richiedi una prova mirata prima di approvare il pacco."
+      ],
+      "shipping": [
+        "Costi spedizione Hipobuy e pianificazione",
+        "Confronta la spedizione Hipobuy con peso, dimensioni, servizi e destinazione. Consulta guide per paese, preimballaggio e tracking prima di pagare."
+      ],
+      "faq": [
+        "Domande Hipobuy: prodotti, QC e spedizione",
+        "Risposte su link Hipobuy, prezzi indicativi, QC, deposito pubblicizzato e controlli di spedizione aiutano a preparare un ordine consapevole."
+      ],
+      "articles": [
+        "Guide Hipobuy: spedizione, QC e acquisto",
+        "Leggi guide Hipobuy su costi, Spagna, Rehearsal Parcel, fotografie QC, resi dal magazzino e tracking con esempi pratici di pacchi."
+      ]
+    },
+    "ui": [
+      "Precedente",
+      "Successiva",
+      "Ordina",
+      "Selezione",
+      "Prezzo crescente",
+      "Prezzo decrescente",
+      "Inserzioni del catalogo",
+      "Rilevazione fonte",
+      "Lingue",
+      "Guide all’acquisto",
+      "Revisione: 31 ottobre 2026",
+      "Prezzi rilevati nella data indicata, non preventivi finali. I nomi non certificano autenticità o disponibilità.",
+      "Fonti e ambito",
+      "Verificato il 31 ottobre 2026. L’annuncio pubblico conferma Rehearsal Parcel; tariffe dell’account e tempi non sono stati testati. La guida Spagna utilizza Commissione europea e informazioni doganali spagnole. I calcoli sono esempi.",
+      "Ricerca locale",
+      "Vedi tutti i link"
+    ],
+    "improvements": [
+      [
+        "Confronta preventivi realmente comparabili",
+        "Crea due colonne con uguale destinazione, contenuto approvato e misure. Registra servizio, divisore, arrotondamento, trasporto, imballaggio, extra e costi esclusi. Un importo sconosciuto non vale zero. Scegli dopo aver controllato totale e restrizioni. Se il cartone resta incerto, la guida al preimballaggio spiega quali dati richiedere."
+      ],
+      [
+        "Tre esiti per ogni controllo QC",
+        "Segna approvare, richiedere prove oppure chiedere il reso. Conserva variante scelta e fotografia decisiva. Per una maglietta indica estremi della misura e scala leggibile; per un danno richiedi dettaglio e vista ampia che lo localizzi. Non approvare il pacco mentre un articolo richiede ancora una decisione."
+      ],
+      [
+        "Hipobuy è affidabile? Distingui piattaforma e inserzione",
+        "Un punteggio non verifica il venditore, garantisce rimborso o autentica la merce. Controlla accesso ufficiale, condizioni correnti, pagamento e prove dell’inserzione. Mantieni la prima decisione proporzionata all’importo e all’incertezza accettabili. Questa directory non certifica Hipobuy o i prodotti; le osservazioni datate restano storiche, non un nuovo giudizio di sicurezza."
+      ]
+    ]
+  },
+  "pl": {
+    "home": [
+      "Hipobuy spreadsheet: produkty, linki, QC i wysyłka",
+      "Hipobuy spreadsheet: znajdź produkt i link.",
+      "Przeglądaj 30 linków Hipobuy według kategorii, nazwy i ceny. Porównuj datowane oferty, zdjęcia QC i koszty wysyłki przed zakupem."
+    ],
+    "pages": {
+      "spreadsheet": [
+        "Hipobuy spreadsheet: katalog i linki",
+        "Wyszukuj 30 ofert Hipobuy: buty, koszulki, bluzy i dodatki. Filtruj kategorie, porównuj ceny orientacyjne i otwieraj dokładne oferty źródłowe."
+      ],
+      "categories": [
+        "Kategorie produktów Hipobuy",
+        "Znajdź buty, bluzy, koszulki, kurtki, spodnie i dodatki Hipobuy. Sprawdź warianty, zdjęcia QC i koszty transportu przed zamówieniem."
+      ],
+      "qc": [
+        "Zdjęcia QC Hipobuy: kontrola magazynu",
+        "Sprawdź wariant, wymiary, widoczne wady i brakujące części na zdjęciach QC Hipobuy. Poproś o konkretny dowód przed zatwierdzeniem paczki."
+      ],
+      "shipping": [
+        "Koszt wysyłki Hipobuy i plan paczki",
+        "Porównaj wysyłkę Hipobuy według wagi, wymiarów, opłat i celu. Czytaj poradniki krajowe, próbne pakowanie i tracking przed opłaceniem transportu."
+      ],
+      "faq": [
+        "Pytania Hipobuy: produkty, QC i wysyłka",
+        "Odpowiedzi o linkach Hipobuy, cenach orientacyjnych, QC, reklamowanym magazynowaniu i kontroli wysyłki pomagają przed złożeniem zamówienia."
+      ],
+      "articles": [
+        "Poradniki Hipobuy: transport, QC i zakupy",
+        "Czytaj poradniki Hipobuy o kosztach, Hiszpanii, Rehearsal Parcel, zdjęciach QC, zwrotach i trackingu z praktycznymi przykładami paczek."
+      ]
+    },
+    "ui": [
+      "Wstecz",
+      "Dalej",
+      "Sortowanie",
+      "Wybór",
+      "Cena rosnąco",
+      "Cena malejąco",
+      "Oferty katalogowe",
+      "Zapis źródła",
+      "Języki",
+      "Poradniki zakupowe",
+      "Aktualizacja: 31 października 2026",
+      "Ceny są zapisem z podanej daty, nie końcową ofertą. Nazwy nie potwierdzają autentyczności ani zapasu.",
+      "Źródła i zakres",
+      "Sprawdzono 31 października 2026. Publiczny komunikat potwierdza Rehearsal Parcel; opłat konta i czasu nie testowano. Poradnik Hiszpanii korzysta z informacji Komisji Europejskiej i hiszpańskich organów celnych. Obliczenia są przykładami.",
+      "Wyszukiwanie lokalne",
+      "Zobacz wszystkie linki"
+    ],
+    "improvements": [
+      [
+        "Przygotuj porównywalne oferty wysyłki",
+        "Utwórz dwie kolumny z tym samym celem, zatwierdzoną zawartością i wymiarami. Zapisz linię, dzielnik, zaokrąglenie, fracht, pakowanie, dodatki i wyłączone koszty. Nieznana opłata nie oznacza zera. Wybierz po sprawdzeniu całej należności i ograniczeń. Przy niepewnym kartonie poradnik próbnego pakowania wskazuje potrzebne pomiary."
+      ],
+      [
+        "Zapisz trzy możliwe decyzje QC",
+        "Dla produktu wybierz zatwierdzenie, dodatkowy dowód albo zwrot. Dołącz wariant oraz zdjęcie uzasadniające decyzję. Przy koszulce podaj oba punkty pomiaru i czytelną taśmę; przy wadzie połącz zbliżenie z szerszym ujęciem lokalizującym problem. Nie zatwierdzaj całej paczki, gdy jeden produkt pozostaje nierozstrzygnięty."
+      ],
+      [
+        "Czy Hipobuy jest wiarygodny? Oddziel platformę od oferty",
+        "Ocena nie weryfikuje sprzedawcy, nie gwarantuje zwrotu ani autentyczności. Sprawdź oficjalny przebieg konta, aktualne warunki, płatność i dowody konkretnej oferty. Dostosuj pierwszą decyzję do akceptowalnej kwoty oraz niepewności. Katalog nie certyfikuje Hipobuy ani towarów; datowane obserwacje niżej pozostają historyczne, nie są nowym werdyktem bezpieczeństwa."
+      ]
+    ]
+  }
+}

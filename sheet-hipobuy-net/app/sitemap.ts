@@ -8,7 +8,8 @@ import {
 } from "./site-data";
 
 const origin = "https://sheet-hipobuy.net";
-const lastModified = new Date("2026-10-04T00:00:00.000Z");
+import { articleModified } from "./growth-routing";
+const lastModified = new Date("2026-10-31T00:00:00.000Z");
 export const dynamic = "force-static";
 const pages: PageKey[] = [
   "home",
@@ -25,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     pages.map((page) => ({
       url: `${origin}${pageHref(code, page)}`,
       lastModified,
+      alternates: { languages: Object.fromEntries([...languages.map((l) => [l.code, `${origin}${pageHref(l.code, page)}`]), ["x-default", `${origin}${pageHref("en", page)}`]]) },
       changeFrequency: page === "home" || page === "spreadsheet" ? "weekly" as const : "monthly" as const,
       priority: page === "home" ? 1 : page === "spreadsheet" || page === "articles" ? 0.9 : 0.8,
     })),
@@ -33,7 +35,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articleEntries = languages.flatMap(({ code }) =>
     articleSlugs.map((slug) => ({
       url: `${origin}${articleHref(code, slug)}`,
-      lastModified,
+      lastModified: new Date(`${articleModified(slug)}T00:00:00.000Z`),
+      alternates: { languages: Object.fromEntries([...languages.map((l) => [l.code, `${origin}${articleHref(l.code, slug)}`]), ["x-default", `${origin}${articleHref("en", slug)}`]]) },
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

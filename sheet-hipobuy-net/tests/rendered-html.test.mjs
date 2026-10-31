@@ -43,7 +43,7 @@ test("publishes a complete sitemap and robots declaration", async () => {
   const sitemapResponse = await render("/sitemap.xml");
   assert.equal(sitemapResponse.response.status, 200);
   assert.match(sitemapResponse.html, /<urlset\b/);
-  assert.equal((sitemapResponse.html.match(/<url>/g) ?? []).length, 90);
+  assert.equal((sitemapResponse.html.match(/<url>/g) ?? []).length, 100);
   assert.match(sitemapResponse.html, /https:\/\/sheet-hipobuy\.net\/articles\/hipobuy-review-2026\//);
   assert.match(sitemapResponse.html, /https:\/\/sheet-hipobuy\.net\/pl\/articles\/hipobuy-review-2026\//);
 
@@ -56,8 +56,8 @@ test("publishes a complete sitemap and robots declaration", async () => {
 test("publishes focused Italian snippets, shipping depth and click tracking", async () => {
   const home = await render("/it");
   assert.equal(home.response.status, 200);
-  assert.match(home.html, /<title>Lista Hipobuy 2026 \| Prodotti e link verificati<\/title>/);
-  assert.match(home.html, /Consulta la lista Hipobuy 2026 con prodotti, prezzi indicativi e link verificati/);
+  assert.match(home.html, /<title>Lista Hipobuy: prodotti, link, QC e spedizione<\/title>/);
+  assert.match(home.html, /Esplora 30 link Hipobuy per categoria, nome e prezzo/);
   assert.match(home.html, /data-ga-event="search_submit"/);
   assert.match(home.html, /data-ga-event="product_open"/);
   assert.match(home.html, /data-ga-event="category_open"/);
@@ -92,6 +92,8 @@ test("keeps every localized article complete and structurally aligned", async ()
     "hipobuy-shipping-to-italy",
     "hipobuy-shipping-to-france",
     "hipobuy-delivery-time-tracking",
+    "hipobuy-shipping-to-spain",
+    "hipobuy-rehearsal-parcel",
   ];
   const structuralClasses = [
     "article-section",

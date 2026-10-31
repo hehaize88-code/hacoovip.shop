@@ -74,3 +74,24 @@
   .article-section p, .article-section li { font-size: 16px; line-height: 1.8; }
   .article-source-note p { font-size: 13px; line-height: 1.7; }
 }
+/* Product discovery controls share the same behavior in every locale. */
+.directory-controls, .directory-pagination { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid var(--line); font-size:12px; flex-wrap:wrap; }
+.directory-controls label { display:flex; align-items:center; gap:8px; }
+.directory-controls select, .directory-pagination button { font:inherit; background:#fff; color:var(--ink); border:1px solid var(--line); border-radius:6px; padding:8px 10px; }
+.directory-pagination button { cursor:pointer; min-height:40px; }
+.directory-pagination button:disabled { opacity:.4; cursor:default; }
+.directory-controls a, .topic-links a { color:var(--indigo-dark); }
+.directory-controls select:focus-visible, .directory-pagination button:focus-visible, .filter-set button:focus-visible { outline:2px solid var(--indigo); outline-offset:3px; }
+.topic-links { padding-block:28px 50px; }
+.topic-links h2 { font-size:22px; margin-bottom:18px; }
+.topic-links a { padding:18px; border:1px solid var(--line); border-radius:8px; line-height:1.6; }
+.sheet-toolbar .filter-set { flex-wrap:wrap; }
+.status-cell span { white-space:normal; }
+@media(max-width:650px) {
+  .directory-controls, .directory-pagination { padding:10px; gap:10px; }
+  .directory-pagination span { font-size:10px; }
+  .page-home .filter-set button { font-size:10px; min-height:32px; }
+  .page-home .directory-controls { font-size:11px; }
+  .page-home .sheet-footer { font-size:10px; line-height:1.6; }
+  .topic-links .guide-grid { grid-template-columns:1fr; }
+}
