@@ -180,6 +180,11 @@ export function publishGuides(root,manifest) {
         html=read(file).replace(/\s*<link\b(?=[^>]*\brel="alternate")(?=[^>]*\bhreflang=)[^>]*>/g,"")
           .replace(/(<link\b(?=[^>]*\brel="canonical")[^>]*>)/,"$1\n"+langLinks(slug));
       }
+      if(!html.includes("data-site-nav")){
+        const header=shellPart(hub,/<header\b[\s\S]*?<\/header>/,code);
+        html=html.replace(/<header\b[\s\S]*?<\/header>/,header);
+        if(!html.includes("assets/site.js"))html=html.replace("</body>",'<script src="/assets/site.js?v=20261102" defer></script></body>');
+      }
       if(!html.includes("G-KVZZSJN8W2")) {
         const tag=hub.match(/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js[^"]*"><\/script>\s*<script>[\s\S]*?<\/script>/)[0];
         html=html.replace("</head>",tag+"\n</head>");
