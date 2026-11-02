@@ -120,9 +120,9 @@ export const priorityArticles = [
   {
     ...common,
     slug: "hacoo-product-links-not-working",
-    modified: "2026-10-04",
-    checkedLabel: "October 4, 2026",
-    editorialNote: "Editorial workflow updated October 4, 2026. This update improves route and option comparisons; it does not reverify stock or every linked policy page.",
+    modified: "2026-11-02",
+    checkedLabel: "November 2, 2026",
+    editorialNote: "Updated with examples for homepage redirects, sign-in prompts and unavailable items.",
     title: "Hacoo Product Links Not Working: Region, Listing Change and Recovery Guide",
     seoTitle: "Hacoo Product Links Not Working: Recovery Guide",
     description: "Diagnose a Hacoo product link that redirects, opens the wrong region, shows unavailable or fails, then recover the listing without guessing.",
@@ -131,21 +131,21 @@ export const priorityArticles = [
     keywords: ["Hacoo links", "Hacoo product links", "Hacoo link not working", "Hacoo spreadsheet links", "Hacoo unavailable"],
     image: { path: "/products/electronics-edit.webp", width: 750, height: 750, alt: "Hacoo product link recovery and verification guide", caption: "A Hacoo Pro editorial image for diagnosing changed or unavailable product routes." },
     sections: [
-      { id: "classify", nav: "Classify", heading: "Classify what the broken link actually does", paragraphs: [
-        "Do not label every unexpected screen a dead link. Record whether the URL fails to load, redirects to a homepage, opens a login screen, switches country, launches the app, shows an unavailable message or lands on a different item. Each state suggests a different recovery path. Save the original link and final destination before refreshing or editing anything.",
-        "A homepage redirect often means the route lost its item context or cannot serve the visitor's region. An unavailable page may indicate that the listing was removed, paused or hidden for that location. A login screen may simply require account context, but credentials should only be entered after the host is independently verified. The visible behavior is evidence; the cause remains a hypothesis until confirmed.",
+      { id: "classify", nav: "Classify", heading: "When a shared jacket opens the home screen", paragraphs: [
+        "Suppose a friend sends a link to a green jacket with two chest pockets. On your phone the Hacoo app opens, but the screen shows a feed. Return to the original message and copy the address attached to the link. The address in the browser after the redirect may only take you back to the feed. Save the item name, any visible item number and the two details you would use to recognise the jacket.",
+        "If the app was just installed or you signed in after tapping the link, open the original address once more. Look for the jacket title, pockets and colour selector. If all you get is the feed again, ask the sender to open the exact item and share a fresh link from there. Opening the app successfully tells you nothing about the availability of this particular jacket.",
       ] },
       { id: "preserve", nav: "Preserve clues", heading: "Preserve identifiers before searching", paragraphs: [
         "Extract every stable clue from the source: numeric item ID, listing title, first image, category, selected color, size and any seller label. Do this before following suggested alternatives, because recommendation pages can quickly separate you from the original reference. A screenshot should include the full option and address context, not only a product image.",
         "If the URL contains tracking or language parameters, keep an untouched copy and create a second working copy for tests. Removing parameters indiscriminately can erase the item identifier. Conversely, a clean base route may help when a copied social link contains expired campaign information. Change one element at a time and record which version produced a different result.",
       ] },
-      { id: "region", nav: "Region", heading: "Check region and language without forcing a match", paragraphs: [
-        "Identify the host first. For a Hacoo service link, use its own country or language controls. For a Hacoo Pro catalog link, use the external catalog that the reference actually names; do not substitute a Hacoo app route. These are separate services. Retry the saved item route in the appropriate context, then confirm availability and delivery information for the intended destination.",
-        "App deep links may behave differently from browser links. Compare the browser destination, the app screen and the app-store identity before concluding that they refer to the same listing. If the app substitutes another product, return to the preserved title, image and item ID. Similar appearance is not enough when measurements, options or materials differ.",
+      { id: "region", nav: "Region", heading: "When signing in returns you to the wrong item", paragraphs: [
+        "A login page can interrupt a product handoff. If you already use Hacoo, open the official app yourself, complete sign-in there and return to the address you saved. After the item screen appears, check the variant. A matching title with the original navy size M option greyed out is a useful finding. Write down that the listing opens and that your selection is currently unavailable.",
+        "If the app shows a similar item with a different number, treat it as a fresh comparison. For a pair of shoes, compare the sole shape, option names and chart for the exact pair. A matching first photo does not carry the old seller's price, measurements or reviews over to a new listing.",
       ] },
-      { id: "search", nav: "Search recovery", heading: "Search by the narrowest reliable evidence", paragraphs: [
-        "Start with the exact item ID when one exists. If it produces no result, use a distinctive portion of the title together with the product type, then compare the first image and option structure. Avoid broad searches based only on a brand-like phrase or color because they can return visually similar but materially different listings.",
-        "When a possible replacement appears, build a side-by-side record: title, image, measurements, selected option, seller label, price and return wording. Treat any mismatch as a new listing that needs a fresh decision. A replacement result can be useful, but it should not inherit the evidence, reviews or assumptions attached to the expired page.",
+      { id: "search", nav: "Search recovery", heading: "When the listing is unavailable in your delivery region", paragraphs: [
+        "Ask the sender what their destination country and chosen option were when the link last worked. Suppose the item opens for a reader in Spain while a reader in France sees an unavailable message. Record the country, colour, size and exact wording on each screen. The evidence shows that the two readers see different results. It leaves open whether delivery coverage, a changed listing or the selected option explains the difference.",
+        "Keep your actual delivery country selected while looking for alternatives. Search using a distinctive detail such as a double-ended zip and a high collar, then compare photographs, pocket placement and dimensions. If a new result looks plausible, save its own address and current chart. Once the original option cannot be matched, describing the new result as a similar jacket gives the next reader an accurate starting point.",
       ] },
       { id: "spreadsheet", nav: "Spreadsheet", heading: "Use spreadsheet links as dated references", paragraphs: [
         "A spreadsheet or discovery page is a route index, not permanent inventory. Useful indexes show a review date, category context and a fallback search rather than promising that every detail URL will remain active. Check when the row was reviewed and whether the destination still matches the stored item ID, image and option.",

@@ -292,3 +292,26 @@
     line-height: 1.4;
   }
 }
+
+.editorial-entries, .edition-languages {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .55rem .9rem;
+}
+.editorial-entries { margin: 1.1rem 0; }
+.wrap.editorial-entries { margin: 1.4rem auto; }
+.editorial-entries a {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem .8rem;
+  border: 1px solid currentColor;
+  border-radius: 2rem;
+  color: inherit;
+  font-size: .88rem;
+  line-height: 1.3;
+}
+.edition-languages { padding: .9rem 0; font-size: .88rem; }
+.edition-languages a { color: inherit; text-underline-offset: .2em; }
+.edition-languages [aria-current="page"] { font-weight: 700; text-decoration: underline; }

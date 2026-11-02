@@ -31,8 +31,8 @@ export const articles = [
     excerpt:
       "Official country ranges, a processing-to-delivery timeline and a practical method for estimating when a Hacoo order may arrive without turning an estimate into a promise.",
     published: "2026-09-05",
-    modified: "2026-09-05",
-    checkedLabel: "September 5, 2026",
+    modified: "2026-11-02",
+    checkedLabel: "November 2, 2026",
     read: "10 min",
     image: {
       path: "/articles/hacoo-delivery-time-europe.svg",

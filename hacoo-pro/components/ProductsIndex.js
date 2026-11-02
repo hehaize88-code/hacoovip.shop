@@ -1,6 +1,7 @@
+import { editionCopy } from "@/app/articles/edition-copy";
 import StructuredData from "./StructuredData";
 import ProductDirectory from "./ProductDirectory";
-import { CATALOG_REVIEW, categories, DESTINATION, products, SITE_URL } from "@/app/data";
+import { categories, DESTINATION, products, SITE_URL } from "@/app/data";
 import { getProductPageCopy } from "@/app/products-copy";
 import { getLocalizedProduct } from "@/app/product-locales";
 import { localizeCategories, localizePath } from "@/app/i18n";
@@ -10,6 +11,8 @@ export default function ProductsIndex({ locale = "en" }) {
   const copy = getProductPageCopy(locale);
   const localizedCategories = localizeCategories(categories, locale);
   const categoryNames = Object.fromEntries(localizedCategories.map((category) => [category.slug, category.name]));
+  const linkCheck = "2026-11-02";
+  const checkedLabel = new Intl.DateTimeFormat(locale, {dateStyle:"long",timeZone:"UTC"}).format(new Date(linkCheck));
   const items = products.map((sourceProduct) => {
     const product = getLocalizedProduct(sourceProduct, locale);
     return {
@@ -18,8 +21,8 @@ export default function ProductsIndex({ locale = "en" }) {
       referenceUrl: localizePath(`/products/${product.slug}`, locale),
       listingUrl: `${DESTINATION}${product.listingPath}`,
       searchUrl: `${DESTINATION}/search.html?keywords=${encodeURIComponent(product.query)}&channelid=2&method=1`,
-      checkedIso: CATALOG_REVIEW.iso,
-      checkedLabel: copy.reviewedDate,
+      checkedIso: linkCheck,
+      checkedLabel,
     };
   });
   const pageUrl = `${SITE_URL}${localizePath("/products", locale)}/`;
@@ -27,7 +30,7 @@ export default function ProductsIndex({ locale = "en" }) {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "CollectionPage", "@id": `${pageUrl}#webpage`, name: copy.title.join(" "), url: pageUrl, description: copy.lead, inLanguage: locale, dateModified: CATALOG_REVIEW.iso, breadcrumb: { "@id": breadcrumb["@id"] }, isPartOf: { "@id": WEBSITE_ID } },
+      { "@type": "CollectionPage", "@id": `${pageUrl}#webpage`, name: copy.title.join(" "), url: pageUrl, description: copy.lead, inLanguage: locale, dateModified: linkCheck, breadcrumb: { "@id": breadcrumb["@id"] }, isPartOf: { "@id": WEBSITE_ID } },
       { "@type": "ItemList", name: copy.directoryTitle, numberOfItems: items.length, itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, url: `${SITE_URL}${localizePath(`/products/${item.slug}`, locale)}/`, name: item.name })) },
       breadcrumb,
     ],
@@ -41,12 +44,12 @@ export default function ProductsIndex({ locale = "en" }) {
         <dl className="products-index-stats">
           <div><dt>{products.length}</dt><dd>{copy.detailStat}</dd></div>
           <div><dt>{categories.length}</dt><dd>{copy.categoryStat}</dd></div>
-          <div><dt>{copy.reviewedDate}</dt><dd>{copy.reviewed}</dd></div>
+          <div><dt>{checkedLabel}</dt><dd>{copy.reviewed}</dd></div>
         </dl>
       </div>
     </section>
     <section className="section wrap products-directory-section">
-      <div className="section-heading"><div><span className="section-label">{copy.directoryLabel}</span><h2>{copy.directoryTitle}</h2></div><p>{copy.directoryText}</p></div>
+      <div className="section-heading"><div><span className="section-label">{copy.directoryLabel}</span><h2>{copy.directoryTitle}</h2></div><p>{copy.directoryText} {editionCopy[locale].checked}</p></div>
       <ProductDirectory items={items} filters={localizedCategories} copy={copy}/>
     </section>
     <section className="products-index-notice"><div className="wrap"><span>!</span><div><h2>{copy.noticeTitle}</h2><p>{copy.notice}</p></div></div></section>

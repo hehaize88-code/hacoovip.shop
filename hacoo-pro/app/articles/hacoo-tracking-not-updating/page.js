@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/app/i18n";
 import Link from "next/link";
 import StructuredData from "@/components/StructuredData";
 import { Arrow } from "@/components/Icons";
@@ -16,7 +17,7 @@ export const metadata = createPageMetadata({
   title: "Hacoo Tracking Not Updating: What to Check First",
   description: article.description,
   path,
-  alternates: { canonical: path, languages: { en: path, "x-default": path } },
+  alternates: languageAlternates(path, "en"),
   type: "article",
   image: { url: imageUrl, width: article.image.width, height: article.image.height, alt: article.image.alt },
 });

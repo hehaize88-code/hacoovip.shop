@@ -2,9 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { products, SITE_URL } from "../app/data.js";
-import { articles } from "../app/articles/data.js";
-import { priorityArticles } from "../app/articles/priority-articles.js";
-import { comparisonArticles } from "../app/articles/comparison-articles.js";
+import { articleSlugs } from "../app/articles/registry.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = path.join(projectRoot, "out");
@@ -20,7 +18,7 @@ function localizedUrl(locale, route) {
 }
 
 async function validateHtml(locale, route) {
-  const file = path.join(out, locale, route, "index.html");
+  const file = path.join(out, locale === "en" ? "" : locale, route, "index.html");
   let html;
   try {
     html = await readFile(file, "utf8");
@@ -65,9 +63,14 @@ for (const locale of locales) {
 
 const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
 const urls = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g), (match) => match[1]);
-const expectedUrlCount = 186 + 1 + articles.length + priorityArticles.length + comparisonArticles.length;
+const expectedUrlCount = 186 + allLocales.length * (1 + articleSlugs.length);
 if (urls.length !== expectedUrlCount) problems.push(`sitemap: expected ${expectedUrlCount} URLs, found ${urls.length}`);
 for (const locale of allLocales) {
+  for (const route of ["articles", ...articleSlugs.map(slug => `articles/${slug}`)]) {
+    await validateHtml(locale, route);
+    const expected = localizedUrl(locale, route);
+    if (!urls.includes(expected)) problems.push(`sitemap: missing ${expected}`);
+  }
   for (const product of products) {
     const expected = localizedUrl(locale, `products/${product.slug}`);
     if (!urls.includes(expected)) problems.push(`sitemap: missing ${expected}`);

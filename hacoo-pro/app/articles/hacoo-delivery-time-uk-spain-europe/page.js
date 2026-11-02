@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/app/i18n";
 import Link from "next/link";
 import StructuredData from "@/components/StructuredData";
 import { Arrow } from "@/components/Icons";
@@ -16,7 +17,7 @@ export const metadata = createPageMetadata({
   title: "How Long Does Hacoo Take to Deliver? UK, Spain & Europe",
   description: article.description,
   path,
-  alternates: { canonical: path, languages: { en: path, "x-default": path } },
+  alternates: languageAlternates(path, "en"),
   type: "article",
   image: { url: imageUrl, width: article.image.width, height: article.image.height, alt: article.image.alt },
 });
@@ -49,7 +50,7 @@ export default function HacooDeliveryTimeArticle() {
         <span className="section-label">Hacoo shipping and delivery research</span>
         <h1>{article.title}</h1>
         <div className="article-meta"><span>Hacoo Pro Editorial</span><span>{article.read} read</span><span>Published September 5, 2026</span><span>Last checked {article.checkedLabel}</span></div>
-        <p>Hacoo publishes different delivery ranges for Spain, several large European markets and other destinations. Use the country range as a planning estimate, then add order processing and read the live tracking record before deciding that a parcel is late.</p>
+        <p>Hacoo publishes different delivery ranges for Spain, several large European markets and other destinations. The published receiving window already includes order processing. Start with the range for your destination and update it when your parcel has a carrier estimate.</p>
       </div></header>
 
       <figure className="wrap article-cover research-cover">
@@ -65,8 +66,8 @@ export default function HacooDeliveryTimeArticle() {
             <span className="section-label">The short answer</span>
             <h2>How long does Hacoo take to deliver?</h2>
             <p>Hacoo's public Shipping &amp; Delivery guidance says receiving a parcel usually takes about 15 to 28 days. Its country table gives more specific estimates: 15 to 25 days for the United Kingdom, France, Germany and Italy; 15 to 30 days for Spain; and 25 to 65 days for countries grouped as “other.” The same page says order processing normally takes 3 to 5 business days before shipment.</p>
-            <p>Those numbers answer “how long does Hacoo take to deliver?” only as estimates. They are not a guaranteed arrival date, and a business-day processing period does not map neatly onto calendar days. The useful planning method is to record the payment date, allow for processing, identify the destination range, and then replace the general estimate with the live carrier evidence once tracking begins.</p>
-            <div className="fact-card" aria-label="Hacoo delivery facts checked September 5, 2026"><h3>Published delivery guidance at a glance</h3><dl>
+            <p>Those numbers answer “how long does Hacoo take to deliver?” only as estimates. They are not a guaranteed arrival date, and a business-day processing period does not map neatly onto calendar days. The useful planning method is to record the payment date, mark processing within the destination range, and then replace the general estimate with the live carrier evidence once tracking begins.</p>
+            <div className="fact-card" aria-label="Hacoo delivery facts checked November 2, 2026"><h3>Published delivery guidance at a glance</h3><dl>
               <div><dt>Usual receiving estimate</dt><dd>About 15–28 days.</dd></div>
               <div><dt>UK, France, Germany, Italy</dt><dd>About 15–25 days.</dd></div>
               <div><dt>Spain</dt><dd>About 15–30 days.</dd></div>
@@ -79,7 +80,7 @@ export default function HacooDeliveryTimeArticle() {
           <section id="country-ranges">
             <h2>Hacoo shipping times for the UK, Spain and Europe</h2>
             <div className="comparison-table-wrap"><table className="comparison-table"><thead><tr><th>Destination in the public guide</th><th>Published estimate</th><th>Planning note</th></tr></thead><tbody>
-              <tr><td>United Kingdom</td><td>15–25 days</td><td>Keep processing separate when building your calendar.</td></tr>
+              <tr><td>United Kingdom</td><td>15–25 days</td><td>Count processing within the total receiving window.</td></tr>
               <tr><td>France</td><td>15–25 days</td><td>Use the carrier event sequence after dispatch.</td></tr>
               <tr><td>Germany</td><td>15–25 days</td><td>Allow for weekends, handoffs and local delivery.</td></tr>
               <tr><td>Italy</td><td>15–25 days</td><td>Treat the upper date as an estimate, not a promise.</td></tr>
@@ -105,7 +106,7 @@ export default function HacooDeliveryTimeArticle() {
 
           <section id="estimate">
             <h2>Build a realistic estimated arrival window</h2>
-            <p>Start with a calendar, not a single promised date. Mark the order date and a 3-to-5-business-day processing band. Then note the published destination range as a separate shipping estimate. Because the public page presents both pieces of guidance but does not state that every country range must be added in exactly the same way for every order, label your result a planning window rather than an official delivery deadline.</p>
+            <p>Mark the date the order was accepted and use the country window once. For example, 15 to 25 days after October 1 is approximately October 16 to 26. The three to five business days Hacoo normally spends preparing the order fall inside this window. Adding them again would move both dates too far into the future. Use any more specific estimate shown on your order when it becomes available.</p>
             <p>Keep two dates: an early planning date and a review date. The early date prevents unrealistic next-week expectations for standard delivery. The review date tells you when to open the exact order, compare Hacoo and carrier records, and check whether the current shipment is still following the expected route. Update the window when a first carrier event, customs notice or local-carrier handoff provides stronger evidence.</p>
             <p>If timing matters for a birthday, trip or resale commitment, the safest assumption is that the parcel may arrive near or beyond the slower end. Do not plan around the fastest number. Customs, weather, peak demand, incomplete address details, carrier capacity and remote-area delivery can all change an individual route.</p>
           </section>
@@ -121,12 +122,12 @@ export default function HacooDeliveryTimeArticle() {
             <h2>What to check when the estimated delivery window feels long</h2>
             <p>Open Account, My Orders and Logistics Details. Record the order status, carrier, tracking number, last event, location and check time. Confirm which items are assigned to that parcel. Then compare the same tracking number on the carrier destination reached from the order. Save both records if they disagree.</p>
             <p>If there is no tracking number after the normal processing guidance, ask Hacoo support whether the items have been prepared and submitted for shipment. If the carrier has accepted the parcel, ask the carrier about the exact last event. If the published estimate has passed, give Hacoo one compact timeline containing the order date, destination, shipment assignment and carrier evidence. Avoid opening multiple cases with different descriptions.</p>
-            <p>This guide was checked against Hacoo's public Shipping &amp; Delivery page on September 5, 2026. Shipping text can change. The order, checkout and live carrier record should always outrank an older screenshot or a date repeated on social media.</p>
+            <p>This guide was checked against Hacoo's public Shipping &amp; Delivery page on November 2, 2026. Shipping text can change. The order, checkout and live carrier record should always outrank an older screenshot or a date repeated on social media.</p>
           </section>
 
           <section id="examples">
             <h2>Three practical delivery examples</h2>
-            <h3>A standard Hacoo order to the UK</h3><p>The public UK estimate is 15 to 25 days, with normal processing described as 3 to 5 business days. Record both stages, then use tracking to refine the window. Do not advertise the earliest date as guaranteed.</p>
+            <h3>A standard Hacoo order to the UK</h3><p>The public UK estimate is 15 to 25 days, with normal processing described as 3 to 5 business days. Use the country range once, then use tracking to refine the window. Do not advertise the earliest date as guaranteed.</p>
             <h3>A Hacoo order to Spain</h3><p>Use the Spain-specific 15-to-30-day range. If someone quotes 15 to 25 days, check whether they have mistakenly used the UK, France, Germany and Italy group. The destination table is more useful than the general 15-to-28-day wording.</p>
             <h3>One order arriving in two parcels</h3><p>Match every item to its shipment record. The first delivered parcel proves only that its assigned items completed the route. Apply timing and tracking checks separately to the remaining parcel.</p>
           </section>
@@ -134,8 +135,8 @@ export default function HacooDeliveryTimeArticle() {
           <section id="questions">
             <h2>Hacoo delivery time questions</h2>
             <div className="article-faq">
-              <details open><summary>How long does Hacoo take to deliver to the UK?<span>+</span></summary><p>The current public country table gives 15 to 25 days for the UK. Normal order processing is described separately as 3 to 5 business days.</p></details>
-              <details><summary>How long does Hacoo take to deliver to Spain?<span>+</span></summary><p>The Spain estimate is 15 to 30 days in the public guide checked on September 5, 2026.</p></details>
+              <details open><summary>How long does Hacoo take to deliver to the UK?<span>+</span></summary><p>The current public country table gives 15 to 25 days for the UK. The usual 3 to 5 business days for processing are already included.</p></details>
+              <details><summary>How long does Hacoo take to deliver to Spain?<span>+</span></summary><p>The Spain estimate is 15 to 30 days in the public guide checked on November 2, 2026.</p></details>
               <details><summary>Does Hacoo deliver in 5 to 7 days?<span>+</span></summary><p>The public page describes express shipping as being as fast as 5 to 7 working days. Check whether that service and its current terms are available for the actual order.</p></details>
               <details><summary>When should I contact support?<span>+</span></summary><p>Use the visible stage: ask Hacoo about preparation before carrier acceptance, and use the carrier record for event-specific transport questions. Provide one dated evidence timeline.</p></details>
             </div>

@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/app/i18n";
 import Link from "next/link";
 import StructuredData from "@/components/StructuredData";
 import { Arrow } from "@/components/Icons";
@@ -21,7 +22,7 @@ export const metadata = createPageMetadata({
   title: "Hacoo After-Sales Request Window: Evidence Checklist",
   description: article.description,
   path,
-  alternates: { canonical: path, languages: { en: path, "x-default": path } },
+  alternates: languageAlternates(path, "en"),
   type: "article",
   image: {
     url: imageUrl,

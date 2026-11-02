@@ -14,6 +14,14 @@ const allArticles = [...comparisonArticles, ...priorityArticles, ...articles];
 function decode(text) { return text.replaceAll("&amp;", "&").replaceAll("&quot;", '"').replaceAll("&#x27;", "'").replaceAll("&#39;", "'").replaceAll("&nbsp;", " ").replaceAll("&lt;", "<").replaceAll("&gt;", ">"); }
 function visibleWords(html) { const text = decode(html.replace(/<script\b[\s\S]*?<\/script>/gi, " ").replace(/<style\b[\s\S]*?<\/style>/gi, " ").replace(/<svg\b[\s\S]*?<\/svg>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ")); return text.match(/\b[A-Za-z0-9]+(?:[’'-][A-Za-z0-9]+)*\b/g) || []; }
 
+const fresh = JSON.parse(await readFile(path.join(root, "app/articles/editions/en.json"), "utf8"));
+for (const slug of Object.keys(fresh)) {
+  const body = await readFile(path.join(out, "articles", slug, "index.html"), "utf8");
+  const copy = body.match(/<article\b[^>]*data-longform-article[^>]*>([\s\S]*?)<\/article>/i)?.[1] || "";
+  const count = visibleWords(copy).length;
+  if (count < 1200 || count > 1800) problems.push(`${slug}: ${count} visible words; expected 1200–1800`);
+  if (!body.includes('"@type":"Article"')) problems.push(`${slug}: missing Article schema`);
+}
 const hub = await readFile(path.join(out, "articles", "index.html"), "utf8");
 for (const article of allArticles) {
   const file = path.join(out, "articles", article.slug, "index.html");

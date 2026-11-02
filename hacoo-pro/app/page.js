@@ -5,7 +5,7 @@ import HeroSearch from "@/components/HeroSearch";
 import StructuredData from "@/components/StructuredData";
 import { categories, products, guides, faqs, DESTINATION } from "./data";
 import { languageAlternates } from "./i18n";
-import ResearchReading from "@/components/ResearchReading";
+import EditorialReading, { EntryLinks } from "@/components/ResearchReading";
 
 export const metadata = { alternates: languageAlternates("/", "en") };
 
@@ -20,7 +20,7 @@ export default function Home() {
           <h1>Hacoo website & app guide.<br/><em>Links you can verify.</em></h1>
           <p className="hero-lead">Find current Hacoo website and app routes, spreadsheet categories, buyer checks, delivery guidance and source-linked research before you open a live listing.</p>
           <div className="hero-actions"><a className="button primary" href={DESTINATION} target="_blank" rel="noopener noreferrer">Browse live finds <Arrow/></a><Link className="button quiet" href="/categories">Browse categories</Link></div>
-          <div className="trust-row"><span><CheckIcon/> Independent</span><span><CheckIcon/> Category-led</span><span><CheckIcon/> Live-link checks</span></div>
+          <EntryLinks/><div className="trust-row"><span><CheckIcon/> Independent</span><span><CheckIcon/> Category-led</span><span><CheckIcon/> Live-link checks</span></div>
         </div>
         <div className="hero-visual">
           <div className="hero-photo"><img src="/products/shoe-performance.webp" alt="Footwear product discovery preview"/><span className="photo-note">DISCOVER / 01</span></div>
@@ -58,7 +58,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-heading"><div><span className="section-label">04 / Field notes</span><h2>Useful reading,<br/>without the hype.</h2></div><p>Short, practical guides built around the questions that block real decisions: what a spreadsheet is, how to compare links, what to measure and what can change.</p></div>
           <div className="guide-grid">{guides.slice(0, 4).map((g, i) => <Link href={`/guides/${g.slug}`} className="guide-card" key={g.slug}><span className="guide-number">0{i + 1}</span><div><small>{g.read} read</small><h3>{g.title}</h3><p>{g.short}</p><span className="text-link">Read guide <Arrow size={16}/></span></div></Link>)}</div>
-          <ResearchReading compact/>
+          <EditorialReading compact/>
         </div>
       </section>
 

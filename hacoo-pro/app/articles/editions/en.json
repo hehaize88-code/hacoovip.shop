@@ -1,0 +1,140 @@
+{
+  "hacoo-on-pc-without-app": {
+    "title": "Hacoo on PC: What You Can Do in a Browser or Without the App",
+    "description": "Use Hacoo on a computer to check public pages and shortlist finds. See how to move a product link to your phone and what Hacoo documents for checkout.",
+    "sources": [
+      {
+        "label": "Hacoo official website and app entry",
+        "url": "https://www.hacoo.app/"
+      },
+      {
+        "label": "Hacoo Help Center ordering instructions",
+        "url": "https://act.hacoo.app/act/sara/helpcenter/order1"
+      },
+      {
+        "label": "Apple UK listing and Mac compatibility details",
+        "url": "https://apps.apple.com/gb/app/hacoo-discovering-inspiring/id1399907836?platform=mac"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What opens on a computer",
+        "paragraphs": [
+          "You can open Hacoo’s public website on a PC without installing the app. Its homepage leads to community information, the Trust Center, contact details and an app download. You can also read Hacoo’s published ordering instructions in a browser. Those instructions start inside the Hacoo app, where the customer signs in, chooses items and proceeds through the cart. If your aim is to place a Hacoo order, the app is the route Hacoo documents.",
+          "If a friend has sent you a product, begin with their original link. A Hacoo homepage, a post showing an outfit and an item with selectable colours and sizes are three different destinations. The homepage can establish where the service is. A post might help you recognise the jacket in a photograph. Only a matching listing with options gives you the details needed to decide whether that specific jacket is worth opening on your phone."
+        ]
+      },
+      {
+        "heading": "Read a product link before moving it to your phone",
+        "paragraphs": [
+          "Keep the original message open while you investigate. On a computer, use the browser’s copy-link command on the actual product link. A highlighted caption may copy only words, and copying the address bar after a redirect may save the homepage instead of the address your friend shared. Paste the address into a private note alongside the product name. Keep the original wording too, especially when it includes a colour or a short item number.",
+          "Open the link in a new tab and look for something specific. Can you identify the item, open a size selector or tell which seller the page refers to? Record the last useful detail you can actually see. If you reach a general feed or an app download before seeing the item, you have a place to continue on mobile, but no basis for quoting a price or promising that a size is available. If a seller's page shows an item number, keep it beside the original link so a later redirect does not erase your only reference."
+        ]
+      },
+      {
+        "heading": "Move the original address to a phone",
+        "paragraphs": [
+          "Send the address to yourself through a private channel you already use across both devices. A synced note works well because you can keep the full link, the item name and a short description together. If the site is offering a QR code, read the destination shown by your phone before opening it. A code beside an app download can point to the store listing, even when the page behind it contains a photograph of the item.",
+          "On the phone, open the original address. If it takes you to the official app store and you choose to install Hacoo, return to the same note afterward and open the product address again. Launching a newly installed app can leave you at its starting screen. Use the same sequence if you need to sign in first. Once the item appears, look for the option you copied. Seeing a coat from the same range in another colour is still a reason to check the listing details before continuing."
+        ]
+      },
+      {
+        "heading": "How far you can get without installing an app",
+        "paragraphs": [
+          "A desktop is useful for the work that benefits from several tabs. Compare photographs at a comfortable size, put two size charts side by side, or read delivery guidance with the destination country in view. An independent spreadsheet or directory can help you narrow the list before you go further. For each candidate, keep its source, intended option and the one detail you still need. For shoes that might be the insole length of the selected size. For a jacket it might be whether the measurement is taken across the closed garment.",
+          "If you have no compatible phone, read the final screen carefully. A public page you can scroll and a row of products you can browse do not establish that there is a desktop checkout. The official order guide describes checkout in the app. When a shared link ends at an app prompt, you can retain the reference, ask for a current product page or finish your comparison another time. Screenshots supplied by another person can help identify an option but cannot establish the price, availability or terms that apply to your account.",
+          "For a shortlist you plan to share, give the person receiving it one precise task. If a jacket has a regular and a padded version, ask them to open the padded option, choose your colour and show the chart that appears after that selection. A photo of the product grid will not answer the same question. Agree on the option name before comparing the result with your notes."
+        ]
+      },
+      {
+        "heading": "Windows browsers and the Mac app listing",
+        "paragraphs": [
+          "On Windows, a browser visit to the official website is a straightforward starting point. If an app prompt interrupts you, read what it offers. An Android or iPhone store page describes an app for its listed devices. Reading that listing on a Windows computer does not make the mobile app a Windows program. A reader looking only for support information or an official download can usually finish the search from the public site.",
+          "Mac owners have a separate detail to check. Apple’s UK listing describes Hacoo as an iPad app and says it has not been verified for macOS. Its compatibility section lists a Mac with an Apple M1 chip or later and macOS 15 or later. Check the store listing for your region and your own Mac before relying on it. Even on listed hardware, the iPad app running on a Mac is a different route from opening Hacoo in Safari. The compatibility entry alone does not demonstrate that a particular shopping or payment flow will complete."
+        ]
+      },
+      {
+        "heading": "An example using a jacket from a shared post",
+        "paragraphs": [
+          "Imagine a friend sends you a link captioned “navy zip jacket, size M”. On your computer the first screen shows a full outfit with the jacket partly covered by a bag. Before you pass the link on, ask for the individual jacket listing or the item number. Two navy jackets can use a similar cover picture and differ in the position of the pockets, the closure or the lining. A clearer photo of those details makes the later comparison much quicker.",
+          "Suppose the phone then shows the right cut and colour, but the default option is a hooded version in size S. Select the intended version and see whether a matching size chart remains visible. If the wanted combination disappears, save that result. If it stays available, check the displayed amount and delivery destination on the order screen. Keeping the photograph, item number and option together prevents a plausible-looking replacement from inheriting an old price or size recommendation."
+        ]
+      },
+      {
+        "heading": "When the site is open but the product is missing",
+        "paragraphs": [
+          "Describe the screen in one sentence before trying another link. A person asking for help can make much better use of “the link takes me to the Hacoo feed after sign-in” than “Hacoo is broken”. If you still have the original address, try it once from the appropriate app or normal phone browser after signing in. If you see an unavailable message for your combination of colour and size, keep the wording and ask the sender whether their own link still opens that exact option.",
+          "An independent catalog may also send you to a separate shopping service. If that is where you arrive, check the name and address at the top of the page before signing in or placing an order. A catalog reference can help you find a similar item, but a cart on another service has its own prices, shipping and support. For an order you have already paid for, open the account or receipt belonging to the service that took the payment. For a Hacoo order that you have yet to place, start from the official app route and check the final details there."
+        ]
+      }
+    ]
+  },
+  "hacoo-jacket-size-guide": {
+    "title": "Hacoo Jacket Size Guide for Chest, Sleeves and Layering",
+    "description": "Compare a Hacoo jacket’s chart with a jacket you own. Measure chest width, sleeves, back length and lining, then work through two example sizes.",
+    "sources": [
+      {
+        "label": "Hacoo Help Center ordering instructions",
+        "url": "https://act.hacoo.app/act/sara/helpcenter/order1"
+      },
+      {
+        "label": "Hacoo Help Center guidance for size problems",
+        "url": "https://act.hacoo.app/act/sara/helpcenter/home/qa3"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Start with a jacket that fits the way you plan to wear this one",
+        "paragraphs": [
+          "Take a jacket out of your wardrobe and try it on over the layer you expect to wear. A light denim jacket over a T-shirt is a useful reference for another unlined spring jacket. For a winter jacket, use a coat you can already fasten over your usual jumper. Close it, sit down and reach forward as if holding a steering wheel. Notice where it pulls or rides up. Those observations tell you which measurements deserve most attention when you open a Hacoo listing.",
+          "Choose one thing you want to keep and one you would change. You might like the chest room but want a shorter hem for cycling. Or the jacket may fit well standing up while the cuffs slide well above your wrists whenever you reach. Write those points next to the figures you measure. Later, if two sizes both look plausible in the chart, that short note will help you decide which compromise you can actually live with."
+        ]
+      },
+      {
+        "heading": "Separate chest width, chest circumference and body measurements",
+        "paragraphs": [
+          "Zip or button the reference jacket and lay it on a firm surface. Smooth the fabric without stretching it or pressing heavy padding flat. For a common flat chest measurement, measure straight across from one underarm to the other. Write down the height of the tape and whether the garment was closed. If the listing’s diagram takes its measurement a few centimetres below the armholes, repeat yours at that point. A tapered body can give a different number when the tape moves down.",
+          "On a simple jacket, a flat chest width of 56 cm corresponds to roughly 112 cm around the outside at that level. This conversion helps you compare a flat measurement with a finished-garment circumference measured at the same point. A chart headed “body chest 96–101 cm” describes the person the maker has in mind. Dividing that range in half and matching it against the flat jacket would compare your body with fabric that already includes room for movement and layers.",
+          "Look for the drawing or an explicit definition when a column says only “chest” or “bust”. If a shop shows both inches and centimetres, use one unit throughout. When the diagram or the units are missing, ask for the closed garment’s width between the underarms in the size you are considering. Specifying the two endpoints makes a useful answer much more likely than asking whether the jacket runs small."
+        ]
+      },
+      {
+        "heading": "Check sleeves with the right starting point",
+        "paragraphs": [
+          "For an ordinary set-in sleeve, measure from the shoulder seam to the end of the cuff, following the upper side of the sleeve. Record whether your cuff was folded or extended. Then measure across the back from one shoulder seam to the other. A dropped shoulder starts its sleeve further down the arm. A shorter sleeve number on that cut can reach just as far on your wrist as a longer number on a narrower shoulder.",
+          "A raglan jacket has a diagonal seam running toward the neck. If its chart measures from the centre back neck to the cuff, use that same point on a reference jacket with a similar construction. Keep the tape along the indicated path and let the arm lie naturally. Adding a full shoulder width to a sleeve length would count both sides of the jacket for a one-arm measurement. When the seller and your reference use different methods, ask for a comparable measurement or choose another reference.",
+          "For back length, follow the seller’s starting point. The seam where the collar joins the body gives a different result from the top of a standing collar. If a parka has a longer back hem, note the centre-back length separately from the front. For an elastic bomber hem, record where it settles when worn as well as the flat length. A hem that catches high on the hip can make a generous chest feel surprisingly short."
+        ]
+      },
+      {
+        "heading": "Use two sizes to work through a real decision",
+        "paragraphs": [
+          "Consider this illustrative comparison. Your unlined everyday jacket has a closed flat chest of 55 cm, back length of 66 cm and sleeves of 62 cm. It fits over a shirt, and the hem ends where you like it. A hypothetical listing gives size M as 54, 65 and 62 cm, and size L as 57, 67 and 63 cm, in the same order. These are made-up figures for reading a chart. They do not belong to a specific Hacoo product.",
+          "Compared with your jacket, M is 1 cm narrower across the front and 1 cm shorter at the back. L is 2 cm wider across the chest, 1 cm longer at the back and 1 cm longer in the sleeves. If your aim is a second light jacket for shirts, M stays close to the existing sleeve and hem lengths. But if the reference already pulls across your back when you reach, narrowing the chest makes M a less attractive candidate.",
+          "Now imagine that the seller describes the flat measurements as approximate with a possible variation of 1 cm. An advertised 54 cm could then be 53–55 cm, while 57 cm could be 56–58 cm. A difference of just 1 cm from your favourite jacket is no longer precise enough to settle the choice by itself. Check a second deciding feature, such as the space at the hem or the room in the upper sleeves. Apply a tolerance only when the actual listing gives one."
+        ]
+      },
+      {
+        "heading": "Allow for the lining, the layer and the way you move",
+        "paragraphs": [
+          "Two jackets can measure 57 cm across the outside and give different amounts of room inside. Quilting and insulation occupy space. A woven lining can restrict the stretch you feel in the outer cloth. A thick hoodie also occupies more space around the upper arms and shoulders than a shirt. When a listing offers both padded and unlined versions, check whether there is a different chart for each. Do not transfer an unlined sample’s measurements to the padded option without confirmation.",
+          "Try the intended base layer under the closest jacket you own. Close the front, reach forward to a shelf, bend your elbows and sit down. If the front rises while the sleeves and back remain comfortable, compare the hem width before deciding to size up. If your upper arms feel tight while the chest hangs loosely, ask for a flat upper-sleeve width in the relevant size. Extra chest room alone may never solve that fit problem."
+        ]
+      },
+      {
+        "heading": "Read the pictures for construction, then check the selected option",
+        "paragraphs": [
+          "A photo of an open jacket can reveal a quilted lining, a drawcord at the hem or a knitted storm cuff. A side view may show whether the shoulder drops below the natural shoulder. Use those features to choose what to measure. A dramatic oversized silhouette in a model photograph is much less useful when the model’s height, worn size and fastening are unknown. Check where you would want the hem and cuff to land on your own reference garment.",
+          "Weight answers a different question. A heavy zip, a dense outer fabric or insulation can add weight without adding usable room. Packed shipping weight may also include a bag or carton. Leave weight out of the comparison between two jacket sizes unless the listing supplies garment measurements too. For the final check, select the exact colour, lining and size, then reread the chart. Some listing photos illustrate several versions while the option selector governs the item you would actually receive."
+        ]
+      },
+      {
+        "heading": "Keep a record you can use when the jacket arrives",
+        "paragraphs": [
+          "Keep the selected item, size, options and measurement chart together. If you asked for an extra measurement, save the answer with its units and endpoints. On delivery, try the jacket over the intended layer before washing it or altering the cuffs. If fit differs from what you expected, lay it down and repeat the same measurements. A photo showing both ends of the tape with the jacket closed communicates more than a close-up of one number.",
+          "Identify the exact difference before contacting the service where you placed the order. A jacket labelled L when the confirmation shows M is a different issue from a correctly labelled M that fits differently from your preference. Hacoo’s help page asks for the size label, the barcode on the product bag and a description of the affected area for a size concern. Follow the instructions attached to your own order, and keep the label and bag while the issue is being assessed."
+        ]
+      }
+    ]
+  }
+}

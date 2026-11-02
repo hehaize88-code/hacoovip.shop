@@ -35,7 +35,7 @@ export default function AnalyticsEvents() {
             ? "category"
             : "catalog";
         sendEvent("outbound_catalog_click", { ...common, link_type: linkType });
-      } else if (url.origin === window.location.origin && url.pathname.startsWith("/articles/")) {
+      } else if (url.origin === window.location.origin && /^\/(?:es\/|fr\/|de\/|it\/|pt\/)?articles\//.test(url.pathname)) {
         sendEvent("article_click", common);
       }
     };
