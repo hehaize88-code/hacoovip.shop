@@ -1,0 +1,397 @@
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "guides": "Buyer guides",
+      "toc": "In this guide",
+      "related": "Read next",
+      "sources": "Sources",
+      "read": "Read guide",
+      "allGuides": "Browse all guides",
+      "featured": "Featured guides",
+      "choose": "Start with your shopping question",
+      "sample": "Product example",
+      "collection": "Browse the category",
+      "catalog": "External catalog",
+      "updated": "Updated",
+      "checks": "Product checks"
+    },
+    "categories": [
+      "Shoes",
+      "Clothing",
+      "Bags",
+      "Accessories"
+    ],
+    "routes": [
+      "Browse shoes",
+      "Hoodies & sweaters",
+      "T-shirts",
+      "Jackets",
+      "Search bags",
+      "Browse accessories"
+    ],
+    "checks": [
+      "Compare foot length with the chart for this pair. Check whether the seller measured the foot or the insole.",
+      "Lay a similar garment flat. Compare chest width, length and the same type of sleeve measurement.",
+      "Measure the opening as well as the body. Check whether your largest item will pass through the opening.",
+      "Check dimensions, included pieces and compatibility with the item you already own."
+    ],
+    "finds": [
+      "Hacoo Finds: Shoes, Clothing, Bags & Product Links",
+      "Hacoo finds by category",
+      "Browse shoe and clothing collections, search bags or open a named product. Use the fit guides before choosing a size."
+    ],
+    "sheet": [
+      "Hacoo Spreadsheet 2026: Product Links, Categories & Sizes",
+      "Hacoo spreadsheet: product links by category",
+      "Open a collection, compare a specific product and record the exact size or colour. These links lead to an independent catalog.",
+      "Make a shortlist you can check again",
+      "Save the final product URL, seller, colour, size, currency and date. On a second visit, select the same variant before comparing the price. Leave a measurement blank if the listing does not specify it.",
+      "Example: a shoe listing says 26 cm. Record whether this is foot length or insole length before comparing it with another pair. For a hoodie, distinguish the flat chest width from the full circumference.",
+      "Browse all Hacoo finds"
+    ],
+    "actions": [
+      "How to buy",
+      "Browse finds",
+      "Delivery times"
+    ],
+    "sources": [
+      "Official Hacoo site",
+      "Ordering in the Hacoo app",
+      "Contact Hacoo",
+      "Return and refund policy",
+      "Shipping and delivery",
+      "Terms of service",
+      "Review cashback",
+      "Hacoo Trust Center",
+      "Hacoo creator program",
+      "Hacoo Help Center",
+      "Report an issue",
+      "Intellectual property"
+    ],
+    "guideLabel": "Independent buying guide",
+    "hub": [
+      "Hacoo Buying Guides: Product Links, Sizes, Orders & Refunds",
+      "Hacoo buying guides",
+      "Find the guide for your next step: compare clothing and shoe sizes, reopen a product link, check a discount or follow a refund.",
+      "Choose a guide",
+      "Browse by the problem you want to solve."
+    ]
+  },
+  "fr": {
+    "nav": {
+      "home": "Accueil",
+      "guides": "Guides d’achat",
+      "toc": "Sommaire",
+      "related": "À lire ensuite",
+      "sources": "Sources",
+      "read": "Lire le guide",
+      "allGuides": "Tous les guides",
+      "featured": "Guides à découvrir",
+      "choose": "Par où commencer vos achats ?",
+      "sample": "Exemple de produit",
+      "collection": "Voir la catégorie",
+      "catalog": "Catalogue externe",
+      "updated": "Mis à jour",
+      "checks": "Vérifications utiles"
+    },
+    "categories": [
+      "Chaussures",
+      "Vêtements",
+      "Sacs",
+      "Accessoires"
+    ],
+    "routes": [
+      "Voir les chaussures",
+      "Sweats et pulls",
+      "T-shirts",
+      "Vestes",
+      "Rechercher des sacs",
+      "Voir les accessoires"
+    ],
+    "checks": [
+      "Comparez la longueur du pied au tableau de cette paire. Vérifiez si la mesure concerne le pied ou la semelle intérieure.",
+      "Posez à plat un vêtement comparable. Mesurez sa largeur de poitrine, sa longueur et ses manches à partir des mêmes points.",
+      "Mesurez le sac et son ouverture. Vérifiez que votre objet le plus large peut y passer.",
+      "Vérifiez les dimensions, les éléments inclus et la compatibilité avec ce que vous possédez déjà."
+    ],
+    "finds": [
+      "Sélections Hacoo : chaussures, vêtements, sacs et liens",
+      "Sélections Hacoo par catégorie",
+      "Parcourez les chaussures et les vêtements, recherchez un sac ou ouvrez une fiche précise. Consultez les conseils de pointure et de taille avant de choisir."
+    ],
+    "sheet": [
+      "Hacoo Spreadsheet 2026 : liens produits, catégories et tailles",
+      "Tableau Hacoo : liens produits par catégorie",
+      "Ouvrez une catégorie, comparez un article précis et notez sa taille ou son coloris. Les liens mènent à un catalogue indépendant.",
+      "Gardez une sélection facile à retrouver",
+      "Notez l’adresse finale, le vendeur, le coloris, la taille, la devise et la date. À la prochaine visite, sélectionnez la même variante avant de comparer le prix. Laissez une case vide si la mesure n’est pas précisée.",
+      "Exemple : une chaussure affiche 26 cm. Vérifiez s’il s’agit de la longueur du pied ou de la semelle intérieure. Pour un sweat, distinguez la largeur à plat du tour de poitrine.",
+      "Voir toutes les sélections Hacoo"
+    ],
+    "actions": [
+      "Comment acheter",
+      "Voir les sélections",
+      "Délais de livraison"
+    ],
+    "sources": [
+      "Site officiel Hacoo",
+      "Commander dans l’application",
+      "Contacter Hacoo",
+      "Retours et remboursements",
+      "Expédition et livraison",
+      "Conditions d’utilisation",
+      "Remboursement lié à un avis",
+      "Centre de confiance Hacoo",
+      "Programme pour les créateurs",
+      "Centre d’aide Hacoo",
+      "Signaler un problème",
+      "Propriété intellectuelle"
+    ],
+    "guideLabel": "Guide d’achat indépendant",
+    "hub": [
+      "Guides Hacoo : chaussures, liens produits, suivi et remboursements",
+      "Les guides d’achat Hacoo",
+      "Choisissez un guide pour comparer les pointures et les vêtements, retrouver un produit, appliquer une remise ou suivre un remboursement.",
+      "Choisissez un guide",
+      "Accédez directement au sujet qui vous concerne."
+    ]
+  },
+  "de": {
+    "nav": {
+      "home": "Startseite",
+      "guides": "Einkaufsratgeber",
+      "toc": "Inhalt",
+      "related": "Weiterlesen",
+      "sources": "Quellen",
+      "read": "Ratgeber lesen",
+      "allGuides": "Alle Ratgeber",
+      "featured": "Ausgewählte Ratgeber",
+      "choose": "Was möchtest du beim Einkauf klären?",
+      "sample": "Produktbeispiel",
+      "collection": "Kategorie öffnen",
+      "catalog": "Externer Katalog",
+      "updated": "Aktualisiert",
+      "checks": "Vor der Auswahl"
+    },
+    "categories": [
+      "Schuhe",
+      "Kleidung",
+      "Taschen",
+      "Accessoires"
+    ],
+    "routes": [
+      "Schuhe ansehen",
+      "Hoodies und Pullover",
+      "T-Shirts",
+      "Jacken",
+      "Taschen suchen",
+      "Accessoires ansehen"
+    ],
+    "checks": [
+      "Vergleiche die Fußlänge mit der Tabelle dieses Paars. Prüfe, ob der Anbieter den Fuß oder die Einlegesohle gemessen hat.",
+      "Lege ein passendes Kleidungsstück flach hin. Miss Brustweite, Länge und Ärmel an denselben Punkten wie in der Tabelle.",
+      "Miss die Öffnung und das Tascheninnere. Dein größter Gegenstand muss auch durch die Öffnung passen.",
+      "Prüfe Maße, Lieferumfang und die Kompatibilität mit dem Gegenstand, den du bereits besitzt."
+    ],
+    "finds": [
+      "Hacoo Finds: Schuhe, Kleidung, Taschen und Produktlinks",
+      "Hacoo Finds nach Kategorie",
+      "Entdecke Schuh- und Bekleidungskategorien, suche nach Taschen oder öffne ein konkretes Produkt. Die Größenratgeber helfen dir bei der Auswahl."
+    ],
+    "sheet": [
+      "Hacoo Spreadsheet 2026: Produktlinks, Kategorien und Größen",
+      "Hacoo Spreadsheet mit Produktlinks nach Kategorie",
+      "Öffne eine Kategorie, vergleiche einen Artikel und notiere Größe oder Farbe. Die Links führen zu einem unabhängigen Katalog.",
+      "Eine überprüfbare Auswahlliste anlegen",
+      "Notiere die endgültige Produktadresse, Anbieter, Farbe, Größe, Währung und Datum. Wähle beim nächsten Besuch dieselbe Variante aus, bevor du den Preis vergleichst. Lass unbekannte Maße offen.",
+      "Beispiel: Bei einem Schuh stehen 26 cm. Kläre, ob damit der Fuß oder die Einlegesohle gemeint ist. Unterscheide beim Hoodie die einfache Brustweite vom Brustumfang.",
+      "Alle Hacoo Finds ansehen"
+    ],
+    "actions": [
+      "So funktioniert der Einkauf",
+      "Produkte entdecken",
+      "Lieferzeiten"
+    ],
+    "sources": [
+      "Offizielle Hacoo-Website",
+      "Bestellen in der App",
+      "Kontakt zu Hacoo",
+      "Rückgabe und Erstattung",
+      "Versand und Lieferung",
+      "Nutzungsbedingungen",
+      "Gutschrift für Bewertungen",
+      "Hacoo Trust Center",
+      "Creator-Programm",
+      "Hacoo-Hilfe",
+      "Problem melden",
+      "Geistiges Eigentum"
+    ],
+    "guideLabel": "Unabhängiger Einkaufsratgeber",
+    "hub": [
+      "Hacoo-Ratgeber: Schuhe, Produktlinks, Versand und Erstattung",
+      "Hacoo-Ratgeber für den Einkauf",
+      "Vergleiche Schuhe und Kleidung, öffne einen Produktlink erneut und finde Hilfe zu Rabattcodes, Sendungsverfolgung und Erstattungen.",
+      "Ratgeber auswählen",
+      "Öffne die Anleitung für deinen nächsten Schritt."
+    ]
+  },
+  "es": {
+    "nav": {
+      "home": "Inicio",
+      "guides": "Guías de compra",
+      "toc": "Índice",
+      "related": "Guías relacionadas",
+      "sources": "Fuentes",
+      "read": "Leer la guía",
+      "allGuides": "Todas las guías",
+      "featured": "Guías destacadas",
+      "choose": "Elige qué necesitas comprobar",
+      "sample": "Ejemplo de producto",
+      "collection": "Ver la categoría",
+      "catalog": "Catálogo externo",
+      "updated": "Actualizado",
+      "checks": "Antes de elegir"
+    },
+    "categories": [
+      "Calzado",
+      "Ropa",
+      "Bolsos",
+      "Accesorios"
+    ],
+    "routes": [
+      "Ver calzado",
+      "Sudaderas y jerséis",
+      "Camisetas",
+      "Chaquetas",
+      "Buscar bolsos",
+      "Ver accesorios"
+    ],
+    "checks": [
+      "Compara la longitud de tu pie con la tabla del par elegido. Revisa si el vendedor ha medido el pie o la plantilla.",
+      "Extiende una prenda similar. Compara el ancho de pecho, el largo y la manga usando los mismos puntos de referencia.",
+      "Mide tanto la abertura como el interior. Comprueba que tu objeto más ancho pase por la entrada.",
+      "Comprueba las medidas, las piezas incluidas y la compatibilidad con el artículo que ya tienes."
+    ],
+    "finds": [
+      "Hallazgos Hacoo: enlaces de calzado, ropa, bolsos y accesorios",
+      "Hallazgos Hacoo por categoría",
+      "Explora colecciones de zapatos y ropa, busca bolsos o abre un producto concreto. Consulta las guías de medidas antes de elegir talla."
+    ],
+    "sheet": [
+      "Hacoo Spreadsheet 2026: enlaces, categorías y tallas",
+      "Hacoo spreadsheet: enlaces de productos por categoría",
+      "Abre una categoría, compara una ficha concreta y anota el color o la talla. Los enlaces llevan a un catálogo independiente.",
+      "Guarda una selección que puedas volver a comprobar",
+      "Anota la URL final, el vendedor, el color, la talla, la moneda y la fecha. En tu próxima visita, elige la misma variante antes de comparar el precio. Deja en blanco las medidas que no figuren en la ficha.",
+      "Por ejemplo, si una zapatilla indica 26 cm, comprueba si se refiere al pie o a la plantilla. En una sudadera, distingue el ancho de pecho en plano del contorno completo.",
+      "Ver todos los hallazgos Hacoo"
+    ],
+    "actions": [
+      "Cómo comprar",
+      "Encontrar productos",
+      "Consultar envíos"
+    ],
+    "sources": [
+      "Sitio oficial de Hacoo",
+      "Pedidos desde la aplicación",
+      "Contactar con Hacoo",
+      "Devoluciones y reembolsos",
+      "Envíos y entregas",
+      "Condiciones de uso",
+      "Recompensa por reseñas",
+      "Centro de confianza de Hacoo",
+      "Programa de creadores",
+      "Centro de ayuda de Hacoo",
+      "Comunicar un problema",
+      "Propiedad intelectual"
+    ],
+    "guideLabel": "Guía de compra independiente",
+    "hub": [
+      "Guías Hacoo: calzado, enlaces, seguimiento y reembolsos",
+      "Guías de compra Hacoo",
+      "Consulta cómo comparar tallas, recuperar un enlace de producto, comprobar un descuento y seguir una devolución o un pedido.",
+      "Elige una guía",
+      "Ve directamente al tema que necesitas resolver."
+    ]
+  },
+  "it": {
+    "nav": {
+      "home": "Home",
+      "guides": "Guide agli acquisti",
+      "toc": "Indice",
+      "related": "Guide correlate",
+      "sources": "Fonti",
+      "read": "Leggi la guida",
+      "allGuides": "Tutte le guide",
+      "featured": "Guide in evidenza",
+      "choose": "Da dove iniziare per scegliere",
+      "sample": "Esempio di prodotto",
+      "collection": "Apri la categoria",
+      "catalog": "Catalogo esterno",
+      "updated": "Aggiornato",
+      "checks": "Prima di scegliere"
+    },
+    "categories": [
+      "Scarpe",
+      "Abbigliamento",
+      "Borse",
+      "Accessori"
+    ],
+    "routes": [
+      "Sfoglia le scarpe",
+      "Felpe e maglioni",
+      "T-shirt",
+      "Giacche",
+      "Cerca borse",
+      "Sfoglia gli accessori"
+    ],
+    "checks": [
+      "Confronta la lunghezza del piede con la tabella di quel paio. Controlla se la misura indicata riguarda il piede o la soletta.",
+      "Stendi un capo simile. Confronta larghezza del torace, lunghezza e maniche prendendo le misure dagli stessi punti.",
+      "Misura sia l’apertura sia l’interno della borsa. Verifica che l’oggetto più grande passi dall’apertura.",
+      "Controlla dimensioni, componenti inclusi e compatibilità con quello che possiedi già."
+    ],
+    "finds": [
+      "Hacoo Finds: link a scarpe, abbigliamento, borse e accessori",
+      "Hacoo Finds per categoria",
+      "Sfoglia le categorie di scarpe e abbigliamento, cerca le borse o apri la scheda di un articolo. Confronta le misure prima di scegliere la taglia."
+    ],
+    "sheet": [
+      "Hacoo Spreadsheet 2026: link ai prodotti, categorie e taglie",
+      "Hacoo spreadsheet con link ai prodotti per categoria",
+      "Apri una categoria, confronta una scheda e annota la taglia o il colore esatto. I link portano a un catalogo indipendente.",
+      "Crea una selezione da ricontrollare",
+      "Salva l’indirizzo finale, il venditore, il colore, la taglia, la valuta e la data. Alla visita successiva seleziona la stessa variante prima di confrontare il prezzo. Lascia vuote le misure mancanti.",
+      "Per esempio, una scarpa riporta 26 cm: prima del confronto verifica se si tratta del piede o della soletta. Per una felpa distingui la larghezza del torace in piano dalla circonferenza.",
+      "Sfoglia tutti gli Hacoo Finds"
+    ],
+    "actions": [
+      "Come acquistare",
+      "Trova prodotti",
+      "Tempi di consegna"
+    ],
+    "sources": [
+      "Sito ufficiale Hacoo",
+      "Ordinare nell’app",
+      "Contattare Hacoo",
+      "Resi e rimborsi",
+      "Spedizione e consegna",
+      "Condizioni d’uso",
+      "Rimborso per recensioni",
+      "Centro fiducia Hacoo",
+      "Programma creator",
+      "Centro assistenza Hacoo",
+      "Segnala un problema",
+      "Proprietà intellettuale"
+    ],
+    "guideLabel": "Guida indipendente agli acquisti",
+    "hub": [
+      "Guide Hacoo: scarpe, link ai prodotti, spedizioni e rimborsi",
+      "Guide agli acquisti Hacoo",
+      "Confronta taglie e misure, recupera un link a un prodotto e verifica lo stato di un ordine, di uno sconto o di un rimborso.",
+      "Scegli una guida",
+      "Apri le istruzioni per il passaggio che ti interessa."
+    ]
+  }
+}

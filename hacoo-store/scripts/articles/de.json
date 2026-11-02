@@ -1,0 +1,558 @@
+{
+  "hacoo-links-not-working": {
+    "title": "Hacoo-Link öffnet die App, aber das Produkt fehlt",
+    "description": "Ein Hacoo-Link führt zur Startseite, zu einem fehlenden Artikel oder zur falschen Variante? So findest du heraus, welcher Schritt scheitert und wo du weitersuchen kannst.",
+    "sections": [
+      [
+        "Am letzten sichtbaren Schritt ansetzen",
+        "Du tippst in einem Beitrag auf ein Paar weiße Sneaker. Hacoo öffnet sich, aber du siehst den Startbildschirm. Ein zweiter Link zeigt ein Paar in Schwarz. Obwohl in beiden Fällen die gewünschte Ware fehlt, helfen unterschiedliche Schritte. Im ersten Fall ist gar kein Angebot geöffnet. Im zweiten funktioniert die Weiterleitung zu einem Angebot, aber dessen Identität oder Auswahl muss geprüft werden. Öffne noch keinen Warenkorb, solange unklar ist, was der Link tatsächlich zeigt.",
+        "Notiere vor dem nächsten Versuch den Wortlaut der Meldung oder den Titel der geöffneten Seite. Sichere die vollständige Produktadresse aus dem ursprünglichen Beitrag, möglichst mit Datum, Modellbezeichnung und Fotos. Entferne aus einem Link nicht vorschnell alles hinter dem Fragezeichen. Dort kann die Information stehen, die einen bestimmten Artikel oder eine Variante von der Startseite unterscheidet. Teile öffentlich nur Adressen ohne persönliche Bestell- oder Anmeldedaten."
+      ],
+      [
+        "Wenn nur die Startseite erscheint",
+        "Kehre zum Ausgangsbeitrag zurück und prüfe den beschrifteten Produktlink. Ein Profil, eine Kategorie, eine Installationsseite und ein Produkt sind vier verschiedene Ziele. Tippe auf den Produktlink, nachdem du die offizielle App auf dem üblichen Weg geöffnet hast. Falls dein Browser eine Option zum Öffnen in der installierten App anbietet, versuche diesen Übergang einmal. Ob die Option erscheint, hängt von Gerät und Browser ab.",
+        "Kommt wieder dieselbe Startseite, öffne die Adresse aus dem normalen Browser statt aus der eingebetteten Ansicht des sozialen Netzwerks. Vergleiche das Ergebnis. Funktioniert der Link dort, lag der Unterschied im Öffnungsweg. Führt er wieder zur Startseite, nutze die Artikelbezeichnung für die Suche. Ein wiederholtes Öffnen derselben Seite liefert keine neue Information. Zum Prüfen eines Links sind weder eine Zahlung noch ein zusätzliches Konto bei einem fremden Dienst nötig."
+      ],
+      [
+        "Wenn ein konkreter Artikel nicht mehr angezeigt wird",
+        "Steht ein Hinweis wie „nicht verfügbar“ auf einer Produktseite, notiere ihn mit Datum. Er sagt, was du momentan siehst. Er verrät für sich allein weder, ob der Verkäufer die Seite gelöscht hat, noch ob der Artikel in einem anderen Land erhältlich ist. Achte auf eine etwaige Orts- oder Variantenangabe direkt in der App. Nutze das Land, in das eine reale Bestellung geliefert werden soll.",
+        "Ein genauer Modellname, die Farbbezeichnung oder eine vom Anbieter ausgewiesene Produktnummer hilft mehr als der Name des Creators. Suche erst die vollständige Bezeichnung, anschließend ein eindeutiges Merkmal mit der Produktart. Eine Nummer aus einem unabhängigen Katalog kann nur dort sinnvoll sein. Findest du keine überprüfbare Übereinstimmung, frage nach einem aktuellen direkten Link und gib die ursprüngliche Bezeichnung an."
+      ],
+      [
+        "Wenn Bild, Farbe oder Ausführung abweichen",
+        "Vergleiche den Produktnamen, die gewählte Option und das Hauptfoto gemeinsam. Bei einem Schuh können Seitenansicht und Sohlenprofil deutlich mehr über eine mögliche Verwechslung aussagen als das gleiche Markenwort. Bei einer Tasche sind Maße und Verschluss oft hilfreicher als ein ähnlicher Farbton. Achte darauf, ob der Preis und die Bilder erst nach der Variantenwahl wechseln.",
+        "Beispiel: Das gespeicherte Bild zeigt einen grauen Sneaker mit heller Sohle. Die aktuelle Seite zeigt unter der Standardoption ein weißes Paar. Wähle Grau, falls vorhanden, und prüfe das dazugehörige Foto und die Größentabelle erneut. Weicht die Sohle weiterhin ab oder gibt es keinen Hinweis zur grauen Variante, behandle den Treffer als Alternative. Er ist noch kein wiedergefundener Artikel."
+      ],
+      [
+        "Einen alten Bildausschnitt als Suchhilfe nutzen",
+        "Wenn nur noch ein Screenshot vorhanden ist, beschreibe die Merkmale, die du wirklich siehst. Bei Schuhen können das ein niedriger Schaft, zwei Klettverschlüsse und ein dunkler Einsatz an der Ferse sein. Bei Kleidung unterscheiden Kapuzenform, Art des Bündchens oder ungewöhnlich platzierte Taschen ähnliche Stücke. Ein vermuteter Markenname blockiert die Suche eher, wenn er im Bild gar nicht erkennbar ist. Beginne mit zwei charakteristischen Merkmalen und verfeinere die Treffer anhand eines dritten.",
+        "Beispiel: Auf deinem Foto hat eine cremefarbene Schultertasche einen kurzen Henkel und einen Reißverschluss. Ein aktuelles Angebot öffnet eine beige Tasche mit Magnetknopf. In der Bildergalerie kommt ebenfalls ein Reißverschluss vor. Wähle die cremefarbene Option und sieh nach, ob sie eine eigene Beschreibung oder eindeutig zugeordnete Bilder erhält. Bleibt unklar, welcher Verschluss geliefert wird, frage den Verkäufer nach genau dieser Variante. Einen passenden Namen oder eine ähnliche Farbe kannst du schon abhaken; der für deinen Gebrauch entscheidende Verschluss ist noch offen.",
+        "Bewahre ursprüngliches Bild und neu gefundenen Link getrennt. Ein neuer Treffer ist dann eine brauchbare Alternative, wenn die benötigten Eigenschaften bestätigt sind. Er muss nicht als identische Wiederauflage ausgegeben werden. Für den nächsten Besuch genügt häufig ein kurzer Vermerk: welche Farbe war ausgewählt, welcher Verschluss war dokumentiert und welches Detail konnte der Anbieter noch nicht zuordnen."
+      ],
+      [
+        "Das passende Ziel für eine Bestellung finden",
+        "Eine unabhängige Auswahlliste kann zu einem externen Produktkatalog führen. Dort gelten die Verfügbarkeit, der Warenkorb und der Support des jeweiligen Anbieters. Wer gezielt einen früheren Kauf sucht, sollte zuerst die ursprüngliche Bestätigung oder die Bestellübersicht beim tatsächlichen Verkäufer öffnen. Ein ähnliches Bild in einer Suchliste belegt keine Verbindung zu einer bestehenden Bestellung.",
+        "Für eine Rückfrage reichen meist der Ausgangsbeitrag, die allgemeine Artikelbezeichnung, der genaue Zustand nach dem Öffnen und die Information, ob sich Browser und App unterschiedlich verhalten. Schwärze Adresse, Zahlungsangaben und persönliche Kontodaten. Ein sinnvoller Endpunkt ist erreicht, wenn Anbieter, Ausführung und Ziel zusammenpassen oder wenn du klar festgehalten hast, welcher Nachweis für eine Zuordnung noch fehlt."
+      ],
+      [
+        "Ein nachvollziehbares Ergebnis an den Absender schicken",
+        "Bei einem weitergeleiteten Beitrag kann eine kurze Rückmeldung mehr klären als zehn Versuche auf demselben Gerät. Beschreibe zum Beispiel, dass der am Dienstag geteilte Link im Browser und in der App immer im Feed endet, ein anderer geteilter Beitrag sich dagegen normal öffnen lässt. Nenne die cremefarbene Ausführung mit Reißverschluss. Der Absender kann jetzt genau den richtigen Beitrag und das dazugehörige Produkt prüfen, statt dir einen Link zur kompletten Sammlung zu senden.",
+        "Wenn auch andere Beiträge nicht geladen werden, ist ein Screenshot der sichtbaren App-Meldung hilfreicher als ein Foto vom Artikel. In einer privaten Nachricht an den offiziellen Support sind App oder Browser, erwartetes Ziel und beobachtetes Verhalten sinnvoll. Schreibe nur das reproduzierbare Ergebnis auf. Die Vermutung, dass ein bestimmtes Konto gesperrt oder eine Region ausgeschlossen wurde, gehört erst dazu, wenn es dafür eine ausdrückliche Meldung gibt."
+      ]
+    ]
+  },
+  "hacoo-refund-status": {
+    "title": "Hacoo-Rückerstattung beantragen und den Status prüfen",
+    "description": "Ordne Antrag, Freigabe und Zahlung getrennt ein. So dokumentierst du den Fall, prüfst mögliche Rücksendeanweisungen und fragst gezielt nach einer offenen Erstattung.",
+    "sections": [
+      [
+        "Die richtige Bestellung öffnen",
+        "Beginne mit dem Beleg für die Zahlung. Dort erkennst du, bei welchem Anbieter die Bestellung aufgegeben wurde, welche Position betroffen ist und wie du bezahlt hast. Eine unabhängige Auswahlliste verwaltet keine Bestellungen. Hast du in der Hacoo-App bezahlt, öffne die zugehörige Bestellung. Hat dich ein Link zu einem anderen Shop geführt, ist dessen Bestellübersicht der richtige Ausgangspunkt.",
+        "Bei mehreren Artikeln sind Gesamtbetrag und offene Forderung zwei verschiedene Werte. Halte Artikel, Anzahl, tatsächlich berechneten Preis, Währung und gegebenenfalls bereits erstattete Teilbeträge fest. Ein Paket mit zwei Artikeln kann beispielsweise nur einen beschädigten Artikel enthalten. Formuliere die Anfrage für diese Position, damit aus einem Teilfall keine missverständliche Forderung über den gesamten Auftrag wird.",
+        "Schau gleich zu Beginn nach einer im Auftrag genannten Frist. Die veröffentlichte Rückerstattungsrichtlinie spricht bei bestimmten Anträgen von 15 Tagen nach Erhalt und nennt Bedingungen für Artikel und Zustand. Warte mit der Kontaktaufnahme nicht auf ein perfektes Fotopaket, wenn die angezeigte Frist näher rückt. Eine offene Nachricht verlängert sie nicht automatisch. Verwahre Artikel, Zubehör, Etiketten und Originalverpackung zusammen, damit bei ähnlich aussehenden Positionen kein Barcode verwechselt wird."
+      ],
+      [
+        "Den Grund mit passendem Nachweis beschreiben",
+        "Bei einer falschen Größe zeigen das Bestelldetail mit der gewählten Variante und das Etikett am gelieferten Stück den Unterschied. Bei sichtbarer Beschädigung helfen ein Gesamtbild und ein klares Foto der betroffenen Stelle. Wenn der Umschlag beschädigt ankam, behalte ihn samt Versandetikett, bis du die Anweisungen zu deinem Fall erhalten hast. Fehlt ein Artikel, prüfe zuerst, ob er einem zweiten Paket zugeordnet ist.",
+        "Beschreibe kurz, was du bestellt und was du erhalten hast. Ein Satz wie „Betroffen ist das blaue Oberteil in M; das eingenähte Etikett zeigt S“ ist leichter zu prüfen als eine allgemeine Bewertung der Bestellung. Veröffentliche die Belege nicht in sozialen Netzwerken. Übermittle nur die notwendigen Bilder im offiziellen Hilfekanal und verdecke Daten anderer Personen."
+      ],
+      [
+        "Prüfen, ob eine Rücksendung verlangt wird",
+        "Auf seiner allgemeinen Versandseite beschreibt Hacoo Fälle mit Unterstützung nach der Lieferung, für die kein Rückversand notwendig ist. Die eigene Rückerstattungsrichtlinie nennt dagegen auch Fälle mit Rücksendung, Anforderungen an Verpackung und Zustand sowie Ausnahmen für bestimmte Produktgruppen. Behalte genau die schriftliche Anweisung zu deiner Bestellung. Schicke Ware erst los, wenn Zieladresse, Frist und Umgang mit den Kosten klar sind.",
+        "Ungetragene Ware, eine Falschlieferung und ein später aufgetretener Mangel können unterschiedlich behandelt werden. Behaupte bei deiner Rückfrage nur den tatsächlichen Grund. Wenn zwei Hilfetexte widersprüchlich wirken, frage anhand der Auftragsnummer, welche Regel für deinen Artikel und dein Land angewendet wird. Die Lageradresse auf dem Versandetikett ist keine bestätigte Rücksendeadresse."
+      ],
+      [
+        "Antrag, Bewilligung und Auszahlung auseinanderhalten",
+        "Ein eingereichter Antrag bestätigt zunächst, dass ein Fall vorliegt. Eine Bewilligung nennt gegebenenfalls den akzeptierten Betrag. Erst eine Mitteilung über die veranlasste Erstattung oder eine sichtbare Gutschrift beantwortet die Frage nach dem Geldfluss. Bewahre Datum und Wortlaut jeder Nachricht auf. Ein Status wie „abgeschlossen“ ist ohne den zugehörigen Text zu ungenau, um daraus ein Buchungsdatum abzulesen.",
+        "Die offiziellen Hinweise beschreiben je nach Vorgang verschiedene Wege, darunter Gutschriften auf ein Kontoguthaben und Rückzahlungen über Zahlungsdienste. Prüfe, welcher Weg in deiner Bestätigung genannt wurde. Vergleiche den Betrag in derselben Währung. Kontrolliere nur beim tatsächlichen Empfänger der Erstattung und nutze für Rückfragen zu Kartenzahlungen deine üblichen Bankzugänge."
+      ],
+      [
+        "Den zugesagten Betrag der richtigen Zahlung zuordnen",
+        "Nutze die Zeile im ursprünglichen Beleg statt des Preises, den der Artikel heute im Katalog hat. Ein Nachlass oder eine anteilige Gutschrift kann dazu führen, dass Preis auf der Artikelseite und damals gezahlter Betrag auseinanderliegen. Wenn nur ein Teil eines Sets betroffen ist, lies den Betrag in der Entscheidung. Weicht er von deiner Erwartung ab, frage nach der Berechnung für genau diese Position und nenne den im Beleg ausgewiesenen Betrag.",
+        "Beispiel: Zwei Shirts wurden geliefert. Das erste entspricht der Bestellung, das zweite trägt ein anderes Größenetikett. Für das zweite erhältst du eine Rücksendeanweisung. Ordne diese Anweisung und gegebenenfalls das Versandetikett dem zweiten Shirt zu. Prüfe, ob Zubehör mitgeschickt werden soll. Sichere vor dem Verschließen des Pakets ein Bild seines Inhalts und nach der Aufgabe den Beleg des Transportdienstes. Ein Zustellscan beim Empfänger zeigt, dass ein Paket dort angekommen ist. Die anschließende Prüfung des Artikels oder die veranlasste Erstattung sind eigene Schritte, die du im Fallverlauf nachlesen solltest."
+      ],
+      [
+        "Die Frist am richtigen Ereignis beginnen lassen",
+        "Solange nur der Antrag vorliegt, notierst du das Eingangsdatum und die letzte Antwort. Bei einer verlangten Rücksendung kommen Aufgabe und laut Transportdienst erfolgte Zustellung hinzu. Hat der Anbieter eine Erstattung veranlasst, ist das dafür genannte Datum ein weiterer Zeitpunkt. Eine Zeitangabe zur Bankbuchung beginnt nicht bereits mit deiner ersten Anfrage, wenn sich die Anfrage noch in Prüfung befindet.",
+        "Achte darauf, ob eine Mitteilung von Kalendertagen oder Werktagen spricht und für welchen Zahlungsweg sie gilt. Eine Rückmeldung zur Bearbeitung lässt sich nicht als Ankunftsdatum auf deinem Konto lesen. Wenn du eine bestätigte Buchungsreferenz hast, kann der zuständige Zahlungsdienst prüfen, ob er die Rückzahlung zuordnen kann. Wenn bloß ein Eingang der Anfrage bestätigt wurde, hat der Zahlungsdienst unter Umständen noch keinen Vorgang, nach dem er suchen könnte."
+      ],
+      [
+        "Mit einer konkreten offenen Frage nachhaken",
+        "Angenommen, du hast eine Bewilligung für ein Kleidungsstück, siehst aber noch keine Buchung. Frage zuerst, ob die Zahlung bereits ausgelöst wurde, an welchem Datum, in welcher Höhe und auf welchem Weg. Mit einer Vorgangsreferenz kann der betreffende Zahlungsdienst den Vorgang eher zuordnen. Erhältst du lediglich die Nachricht, dass der Antrag geprüft wird, liegt der nächste Schritt noch beim Bestellservice.",
+        "Fasse den bisherigen Ablauf in einer Nachricht zusammen: Bestellnummer, Fallnummer, Artikel, Betrag, letzte Rückmeldung und die noch offene Frage. Bei bestätigtem Rückversand gehören Aufgabebeleg und Sendungsnummer dazu. Sende weder die vollständige Kartennummer noch Prüfziffer, Passwort oder Einmalcode. Ein veröffentlichtes Zeitfenster ist ein Anhaltspunkt; für deinen Fall zählen Bearbeitungsstand, Zahlungsweg und die konkrete Auskunft."
+      ]
+    ]
+  },
+  "hacoo-discount-code-not-working": {
+    "title": "Hacoo-Rabattcode funktioniert nicht: den Warenkorb prüfen",
+    "description": "Finde die Ursache für fehlende Eingabefelder, abgelehnte Codes oder unveränderte Endbeträge. Ein Rechenbeispiel zeigt, welche Beträge du vergleichen solltest.",
+    "sections": [
+      [
+        "Zuerst den Warenkorb zuordnen",
+        "Ein Rabatt wird dort geprüft, wo du bestellst. Ein Code aus einem Hacoo-Beitrag lässt sich nicht automatisch in einem unabhängigen Katalog oder bei einem anderen Händler einlösen. Prüfe den Anbieter der geöffneten Kasse und notiere genau, welche Aktion du nutzen willst. Eine Artikelnummer, ein Einladungslink und ein Gutscheincode können ähnlich aussehen, erfüllen aber unterschiedliche Aufgaben.",
+        "Sichere die Bedingungen so, wie sie dir angezeigt wurden. Wichtig sind der Zeitraum, das Land, der berechtigte Warenkorb und Hinweise zu bereits reduzierten Artikeln. Ein gespeicherter Beitrag kann auch nach Ende einer Aktion weiter online sein. Selbst ein Beitrag vom selben Tag beantwortet nicht, ob derselbe Rabatt für deine Person, dein Land und deine Auswahl gilt."
+      ],
+      [
+        "Wenn kein Eingabefeld zu sehen ist",
+        "Prüfe, an welcher Stelle des Bestellvorgangs du dich befindest. Die Produktseite zeigt häufig nur den Artikelpreis. Öffne die Bestellübersicht und suche dort nach einer Zeile für Rabatt, Gutschein, Aktion oder einen bereits abgezogenen Betrag. Ein ausklappbarer Bereich kann zusätzliche Einzelheiten enthalten. Die verfügbaren Bezeichnungen unterscheiden sich je nach Sprache und Ansicht.",
+        "Ein Angebot kann außerdem über eine automatische Preisreduzierung oder einen bestimmten Aktionsweg beschrieben sein. Lies die konkrete Anleitung, bevor du nach einem Feld suchst, das für dieses Angebot gar nicht vorgesehen ist. Du musst eine Bestellung nicht bezahlen, um den angezeigten Endbetrag zu prüfen. Wenn das Feld trotz ausdrücklich genannter Codeeingabe fehlt, dokumentiere die Kassenansicht ohne personenbezogene Daten."
+      ],
+      [
+        "Wenn der Code ausdrücklich abgelehnt wird",
+        "Übernimm den Code ohne Leerzeichen, Zeilenumbruch oder Satzzeichen aus dem Begleittext. Beachte ähnlich aussehende Zeichen und verwende die veröffentlichte Schreibweise. Prüfe anschließend genau die Fehlermeldung. „Schon eingelöst“, „nicht auf diese Artikel anwendbar“ und „abgelaufen“ verlangen unterschiedliche nächste Schritte. Wiederholtes Absenden derselben Eingabe klärt keine dieser Bedingungen.",
+        "Wird ein Mindestwert genannt, prüfe die in der Aktion definierte Berechnungsbasis. Je nach Wortlaut können ausgeschlossene Produkte oder Versandkosten für diese Schwelle unberücksichtigt bleiben. Achte auf Einschränkungen für ein erstes Geschäft, bestimmte Kategorien, Währungen und die Kombination mit anderen Angeboten. Diese Punkte sind Prüfstellen, keine pauschalen Regeln für jeden Hacoo-Code. Für einen vermeintlich höheren Rabatt weitere Konten anzulegen, hilft bei unklaren Bedingungen nicht."
+      ],
+      [
+        "Eine Ablehnung mit nur einer Änderung eingrenzen",
+        "Halte Menge, Farbe, Größe, Lieferland und Währung gleich, während du den nächsten Schritt prüfst. Nennt die Aktion eine bestimmte Produktgruppe, vergleiche einen dort aufgeführten Artikel mit dem ursprünglich gewählten. Du kannst die Berechnung ansehen, ohne eine Bestellung aufzugeben. Funktioniert derselbe Code bei einem Artikel und beim anderen nicht, lies nochmals nach, welche Ausführungen eingeschlossen sind.",
+        "Hat der Warenkorb eine Meldung zur Gültigkeit der Aktion angezeigt, prüfe deren Zeitangabe und die zum Angebot gehörende Region. Bei einem Hinweis auf den Bestellwert sind dagegen die berechtigten Positionen relevant. Bleibt es bei einer allgemeinen Ablehnung und gibt es keine nachvollziehbare Liste berechtigter Artikel, probiere nicht immer neue Produkte. Halte die konkrete Kombination fest und frage nach, statt aus der Fehlermeldung eine Kontosperre oder eine allgemeine Preisregel abzuleiten."
+      ],
+      [
+        "Wenn der Gesamtpreis scheinbar gleich bleibt",
+        "Vergleiche dieselben Varianten in derselben Menge und Währung vor und nach der Eingabe. Notiere Warenwert, bereits vorhandene Rabatte, anwendbare Artikel, Versand und zu zahlenden Betrag. Eine grüne Bestätigung neben dem Code zeigt noch nicht, wie hoch die tatsächliche Ersparnis ausfällt. Bei einem Variantenwechsel kann sich bereits der Ausgangspreis geändert haben.",
+        "Ein reines Rechenbeispiel: Ein Hoodie kostet 48 Euro, eine Kappe zwölf Euro, der Versand fünf Euro. Angenommen, der Code gewährt zehn Prozent allein auf den Hoodie. Dann sind 48 Euro berechtigt und der Nachlass beträgt 4,80 Euro. Bei gleichem Versand fällt die Gesamtsumme von 65 Euro auf 60,20 Euro. Zehn Prozent von 65 Euro wären 6,50 Euro, würden aber fälschlich die Kappe und den Versand einbeziehen. Die Preise und Prozentsätze sind erfunden, um die Berechnung zu zeigen.",
+        "Gilt für denselben gedachten Rabatt ein Mindestwert von 50 Euro berechtigter Ware, reichen die 48 Euro für den Hoodie noch nicht. Die ausgeschlossene Kappe macht aus 48 Euro zwar einen Warenwert von 60 Euro, erhöht aber den berechtigten Betrag nicht. Ein zusätzliches berechtigtes Teil für acht Euro würde den berechtigten Wert auf 56 Euro heben. Nach 5,60 Euro Rabatt ergäben sich mit Kappe und Versand nun 67,40 Euro. Du würdest insgesamt mehr ausgeben als für den ursprünglichen Warenkorb von 65 Euro ohne Rabatt."
+      ],
+      [
+        "Vorhandenen Rabatt und neuen Nachlass auseinanderhalten",
+        "Vergleiche nach jeder beabsichtigten Änderung die alte und neue Preisübersicht. Ein bereits enthaltener Rabatt kann in einer Rechnung durch einen anderen ersetzt werden. Ersetzt ein Nachlass von fünf Euro beispielsweise einen vorher angezeigten von vier Euro, sinkt die vorherige Summe nur um einen Euro. Diese Erklärung ist nur dann belegt, wenn die Aufstellungen tatsächlich zeigen, dass die frühere Rabattzeile entfallen ist.",
+        "Prüfe vor dem Bezahlen noch einmal die gewählte Versandoption und die Menge jeder Position. Wenn dir ein Artikel nur unter der Annahme einer bestimmten Ersparnis zusagt, entscheide anhand der nun angezeigten Endsumme. Bewahre die Bestätigung und die verwendete Variante zusammen auf, falls später ein anderer Endbetrag auf dem Beleg erscheint."
+      ],
+      [
+        "Belege für den nächsten Schritt behalten",
+        "Wenn die ausgewiesenen Bedingungen und die Berechnung nicht zusammenpassen, sichere den Text der Aktion, den Zeitpunkt, die Varianten, die Währung und die genaue Meldung. Frage über den in der App oder beim zuständigen Shop genannten Kontakt, welcher Artikel oder welche Bedingung die Anwendung verhindert. Ein Supportmitarbeiter benötigt dafür kein Passwort, keinen SMS-Code und keine vollständigen Zahlungsangaben.",
+        "Ist eine Bestellung bereits bezahlt, prüfe den tatsächlich abgebuchten Betrag und die Bestellbestätigung, bevor du erneut bestellst. Ob ein Nachlass nachträglich berücksichtigt werden kann, entscheidet der zuständige Anbieter. Verlasse dich bei deiner Kaufentscheidung auf den Betrag, der vor der verbindlichen Zahlung sichtbar ist, und bewahre die zugehörige Übersicht auf."
+      ]
+    ]
+  },
+  "hacoo-shoes-finds": {
+    "title": "Hacoo-Schuhe finden: Sneakerlinks, Fotos und richtige Größe",
+    "description": "Vergleiche Sneaker und andere Schuhe anhand der konkreten Variante. Mit Fußmessung, Foto-Check und einem Beispiel erkennst du, welche Angaben vor der Bestellung fehlen.",
+    "sections": [
+      [
+        "Mit drei passenden Paaren anfangen",
+        "Ein guter Schuhvergleich beginnt mit einem Verwendungszweck. Für einen schlichten Alltagssneaker suchst du vielleicht nach einem niedrigen Schaft, einer hellen Sohle und ausreichend Platz vorne. Bei einem Stiefel kommen Schafthöhe und Einstiegsweite hinzu. Öffne die Schuhkategorie oder suche mit zwei bis drei dieser Merkmale. Ein Treffer über einen Produktnamen zeigt, dass der Begriff in einer Liste vorkommt. Über Hersteller, Passform oder Echtheit entscheidet er nichts.",
+        "Beschränke die erste Auswahl auf wenige Paare. Notiere für jedes Paar die endgültige Adresse, die gewünschte Farbe, die verfügbare Größe und den Tag deiner Prüfung. Falls mehrere Produkte dasselbe Vorschaubild verwenden, halte zusätzlich Modellbezeichnung und sichtbare Besonderheiten fest. Damit findest du nach einem späteren Preis- oder Bildwechsel eher dieselbe Ausführung wieder."
+      ],
+      [
+        "Fußlänge und Innenlänge richtig vergleichen",
+        "Stell dich auf einem festen Boden mit den vorgesehenen Socken auf ein Blatt Papier. Markiere die hinterste Stelle der Ferse und die Spitze des längsten Zehs, während der Fuß belastet ist. Miss die Strecke in Zentimetern und wiederhole die Messung für den anderen Fuß. Notiere beide Werte. Für die Auswahl anhand einer Fußlängentabelle ist meist der längere Fuß der relevante Vergleichswert. Wenn das konkrete Angebot eine andere Messmethode verlangt, verwende diese.",
+        "Beispiel: Links misst du 25,4 Zentimeter, rechts 25,8. Tabelle A nennt ausdrücklich eine empfohlene Fußlänge von 25,6 bis 26,0 Zentimetern für eine bestimmte Größe. Damit liegt der rechte Fuß in diesem angegebenen Bereich. Tabelle B nennt dagegen nur eine Innensohlenlänge von 26,0 Zentimetern. Anhand dieser Zahl allein kannst du die Passform nicht gleichsetzen. Sie beschreibt einen anderen Gegenstand. Auch die CM-Angabe auf einem Etikett muss nicht deiner gemessenen Fußlänge entsprechen.",
+        "Breite, Spann, Zehenform und die Form der Fersenkappe bleiben gesonderte Fragen. Ein schmal zulaufender Schuh kann trotz passender Längenangabe anders sitzen als ein breiter Freizeitschuh. Wähle keine pauschale Zugabe in Millimetern, wenn der Anbieter die Tabelle bereits für gemessene Füße ausgelegt hat. Fehlt die Beschriftung, ist die sinnvollere Rückfrage, welche Länge und welche Variante die Tabelle tatsächlich beschreibt."
+      ],
+      [
+        "Nach der Länge die Form prüfen",
+        "Lege einen vorhandenen, gut sitzenden Sneaker neben die Vergleichsfotos. Schau von oben auf den Verlauf vom Ballen zur Spitze. Hat dein Vergleichsschuh einen breiten, rund auslaufenden Vorfuß, während das Angebot deutlich spitzer zuläuft, ist das eine konkrete Abweichung. Sie kann wichtig werden, selbst wenn beide Tabellen dieselbe empfohlene Fußlänge nennen. Du brauchst zur Beurteilung keine Vermutung über das Material; eine verlässliche Draufsicht und gegebenenfalls ein definiertes Breitenmaß bringen dich weiter.",
+        "Bei einem hohen Spann kann auch der Einstieg eine Rolle spielen. Ein Schnürschuh lässt sich anders anpassen als ein geschlossenes Schlupfmodell. Prüfe, ob die Schnürung funktionsfähig ist, soweit die Beschreibung das erkennen lässt, und wo Zunge oder Gummizug sitzen. Achte bei Stiefeln zusätzlich auf den Schaft. Eine Angabe zum Umfang ist nur dann mit deinem Bein vergleichbar, wenn klar ist, auf welcher Höhe der Umfang gemessen wurde. Vergleiche an dieser Stelle mit der Kleidung, die du im Stiefel tragen möchtest."
+      ],
+      [
+        "Produktfotos in einer festen Reihenfolge lesen",
+        "Beginne mit beiden Seitenansichten, dann vergleiche Spitze und Ferse. Prüfe anschließend Sohlenprofil, Verschluss und Innenetikett, sofern sichtbar. Stimmen Nähte, Einsätze und Farbe zwischen Übersicht und Variantenbild überein? An der Außensohle lässt sich das gezeigte Profil erkennen; die Rutschfestigkeit bei Regen ist daraus nicht zuverlässig ableitbar. Eine fehlende Rückansicht bedeutet zunächst nur, dass diese Ansicht fehlt.",
+        "Unterscheide Katalogfoto, Käuferfoto und eine tatsächlich einem bestimmten Paar zugeordnete Prüfung. Ein Bild eines Käufers kann eine konkrete Variante unter Alltagslicht zeigen, während eine Studioaufnahme häufig gleichmäßiger ausgeleuchtet ist. Zwei unterschiedliche Farbtöne auf Bildern können an der Beleuchtung oder an verschiedenen Varianten liegen. Frage nach einer eindeutigen Zuordnung, statt eine Qualitätsbewertung aus der Differenz zu machen."
+      ],
+      [
+        "Zwei helle Sneaker gegeneinander abwägen",
+        "Stell dir vor, Paar A zeigt eine seitliche Aufnahme, eine Rückansicht und eine beschriftete Größentabelle für die gewählte Farbe. Paar B kostet weniger, hat aber nur das seitliche Foto und eine unbeschriftete Tabelle. Du kannst A bereits auf die Form der Ferse und auf deinen längeren Fuß prüfen. Bei B fehlen noch zwei Antworten. Der Preisunterschied allein macht die fehlenden Angaben nicht wett, und die ausführlichere Beschreibung beweist keine bessere Verarbeitung.",
+        "Lege pro Variante eine kurze Notiz an: bestätigter Zweck, Messgrundlage, erkennbare Details und offene Frage. Ergänze den Preis der gewählten Größe sowie die Rückgabebedingungen am Ziel. Wenn eine Angabe deine Entscheidung verändert, verlange genau sie: etwa die Breite an einer definierten Stelle oder eine Rückansicht der grauen Größe 40. Eine allgemein formulierte Bitte um mehr Bilder führt oft zu einer weiteren Seitenansicht desselben Katalogfotos."
+      ],
+      [
+        "Rezensionen für eine konkrete Passformfrage verwenden",
+        "Ein Hinweis auf eine enge Zehenbox hilft vor allem dann, wenn Größe, Modell und die Fußform der schreibenden Person bekannt sind. Bei „passt genau“ fehlen oft schon der Vergleichsschuh und die Tragedauer. Suche nach mehreren Beschreibungen, die dieselbe Eigenschaft bei derselben Ausführung erwähnen. Achte auf abweichende Beobachtungen und darauf, ob der Artikel seit der Rezension verändert wurde.",
+        "Kontrolliere unmittelbar vor der Bestellung die ausgewählte Variante, Endpreis, Versand und zuständigen Verkäufer. Eine im unabhängigen Katalog gefundene Ware gehört nicht automatisch zum Sortiment der Hacoo-App. Die nachfolgenden Bestell- und Rückgabeinformationen stammen von der Kasse, bei der du tatsächlich bezahlst. Dieser Vergleich erläutert eine Mess- und Prüfmethode; die verlinkten Paare wurden für den Ratgeber nicht getragen oder auf Echtheit getestet."
+      ],
+      [
+        "Die ausgewählte Größe bis zur Kasse verfolgen",
+        "Öffne den gewählten Link aus deiner Liste und stelle die Farbe erneut ein. Kontrolliere danach die Größe. Manche Produktseiten behalten frühere Auswahlen, andere zeigen zuerst eine Standardoption. Wenn du von Weiß auf Grau wechselst und plötzlich eine andere Größenliste siehst, halte inne und vergleiche die Tabelle für Grau. Ein Bild aus der Gesamtgalerie kann bereits gefallen haben, obwohl genau dieses Paar durch den Wechsel gar nicht ausgewählt wurde.",
+        "Öffne den Warenkorb und lies den Titel der Position, die Farbkennung und die Größe. Für einen bestimmten Termin ist zusätzlich die geschätzte Lieferung mit deiner tatsächlichen Zieladresse entscheidend. Wenn sich Passform und Herkunft nachvollziehen lassen, die Sendung aber zu spät käme, bleibt die zeitliche Frage ungelöst. Speichere die Tabelle und die Bestellzeile zusammen. Damit kannst du bei einer späteren Abweichung genau benennen, welche Variante du ausgewählt hattest."
+      ]
+    ]
+  },
+  "hacoo-clothing-finds": {
+    "title": "Hacoo-Kleidung finden: Hoodies, T-Shirts und Jacken vergleichen",
+    "description": "Prüfe Kleidungsmaße, Schnitt und Varianten von Hoodie, T-Shirt und Jacke. Zwei Messbeispiele helfen dir, Angaben aus Produktlinks sinnvoll zu vergleichen.",
+    "sections": [
+      [
+        "Ein Kleidungsstück als Maßstab wählen",
+        "Wer nach Hacoo-Kleidung sucht, findet oft zuerst einen bestimmten Look. Für die Auswahl brauchst du ein konkretes Vergleichsstück. Nimm einen Hoodie, ein T-Shirt oder eine Jacke, die dir so sitzt, wie das neue Stück sitzen soll. Ein enges Shirt beantwortet die Passformfrage für eine gefütterte Jacke nur bedingt. Notiere, wie du das Stück trägst, etwa mit einem dünnen Shirt darunter oder mit einem dicken Pullover.",
+        "Öffne die Bekleidungskategorie und speichere nur Angebote für den gewünschten Kleidungsstil. Halte die genaue Farbe und Größe fest. Fotos und Maßtabellen mehrerer Angebote stehen manchmal direkt nebeneinander, gehören aber zu unterschiedlichen Schnitten. Die Bezeichnung M in einer Auswahl genügt nicht als gemeinsame Messgrundlage. Hilfreich ist eine Zeile pro Variante, in der auch die Quelle und die noch fehlende Information stehen."
+      ],
+      [
+        "Flachmaß und Umfang unterscheiden",
+        "Schließe einen vorhandenen Reißverschluss und lege das trockene Kleidungsstück flach hin, ohne den Stoff zu ziehen. Miss die Brustweite quer zwischen den vom Anbieter bezeichneten Punkten. Häufig sind das die Achselnähte. Vergleiche außerdem die Rücken- oder Körperlänge und die Ärmel mit derselben Methode wie in der Tabelle. Fotografiere anfangs die Lage des Bands, wenn du den Messpunkt später wiederfinden willst.",
+        "Hat dein gut sitzender Hoodie 56 Zentimeter einfache Brustweite und die ausgewählte Variante 59, ist das neue Stück an dieser Stelle flach gemessen drei Zentimeter breiter. Bei gleicher Schnittkonstruktion entspricht das ungefähr sechs Zentimetern zusätzlichem Umfang. Dieser Vergleich gilt nicht, wenn die 59 Zentimeter einen Körperumfang, ein anderes Maß oder den Wert unter Zug bezeichnen. Kontrolliere auch die Länge: mehr Breite bedeutet nicht automatisch mehr Länge. Beträgt die Länge deines Hoodies von der höchsten Schulter bis zum Saum 66 Zentimeter und die der Alternative 62, ist die Alternative zugleich vier Zentimeter kürzer. Für eine hoch sitzende Hose kann das erwünscht sein; für mehr Abdeckung beim Sitzen wäre derselbe Schnitt weniger passend."
+      ],
+      [
+        "Bei Hoodies die Proportionen lesen",
+        "Ein weiter Hoodie kann durch überschnittene Schultern, einen breiten Rumpf, lange Ärmel oder einen lockeren Bund entstehen. Eine größere Konfektionsgröße verlängert möglicherweise nur Bereiche, die bereits passen. Achte bei der Frontansicht darauf, wo der Bund sitzt und wie viel Stoff darüber liegt. Für die Ärmel macht es einen Unterschied, ob vom Schulteransatz, von der hinteren Halsmitte oder ab der Achsel gemessen wird.",
+        "Prüfe Kapuze, Bündchen, Taschen und bei einem Zip-Hoodie zusätzlich den Reißverschluss. Ein Foto kann sichtbare Details zeigen, aber weder das Stoffgewicht bestimmen noch vorhersagen, ob ein Bündchen nach vielen Wäschen ausleiert. Wenn eine Faserzusammensetzung oder ein Flächengewicht genannt wird, schreibe den Wortlaut für die gewählte Variante auf. Eine Beschreibung für eine andere Farbausführung ist kein sicherer Ersatz."
+      ],
+      [
+        "Beim T-Shirt über den Aufdruck hinausschauen",
+        "Miss an deinem Referenzshirt vor allem Brustweite, Schulter und Körperlänge. Ein kurzes, breites Shirt und ein längeres, schmales können dasselbe Größenetikett tragen und völlig verschieden fallen. Prüfe, ob von der höchsten Schulterstelle oder von der hinteren Kragennaht bis zum Saum gemessen wird. Schon unterschiedliche Startpunkte können einen scheinbaren Längenunterschied erklären.",
+        "Schau auf Kragenform, Ärmelöffnung, Seitenansicht und hinteren Saum. Bei einem Motiv sind Größe und Platzierung der Grafik im Verhältnis zum Shirt wichtig. Ein hochauflösendes Foto macht die Position sichtbar. Waschbeständigkeit und Griff des Drucks bleiben offen, solange dazu keine nachvollziehbare Angabe oder passende Langzeiterfahrung vorliegt."
+      ],
+      [
+        "Bei Jacken mit der vorgesehenen Schicht vergleichen",
+        "Probiere deine Referenzjacke über der Kleidung an, die du normalerweise darunter trägst. Schließe sie und bewege Arme und Schultern. Messe anschließend Brust, Rückenlänge und Ärmel in derselben Lage wie in der Angebotstabelle. Zwei Jacken mit 58 Zentimetern äußerer Brustweite können innen unterschiedlich viel Platz bieten, wenn eine dick gefüttert ist. Länge und Weite liefern separate Hinweise.",
+        "Ein Beispiel: Die breite Winterjacke passt über einen Hoodie, ihre Ärmel sind dir aber bereits zu lang. Eine Alternative bietet die gleiche Brustweite und einen rechnerisch zwei Zentimeter kürzeren Ärmel. Das spricht erst dann für die Alternative, wenn beide Tabellen denselben Schulterpunkt verwenden. Bei Raglanärmeln kann die Naht anders verlaufen. Ein Foto der Messmethode ist in diesem Fall hilfreicher als die nächste Größenstufe."
+      ],
+      [
+        "Eine Auswahlliste für den nächsten Besuch anlegen",
+        "Kopiere für beide oder alle drei Kandidaten die endgültige Adresse, die gewählte Größe und Farbe sowie die dazugehörigen Produktmaße. Ergänze den Preis in der angezeigten Währung und eine einzelne Frage, die deine Entscheidung ändern könnte. Auf diese Weise bleibt die Alternative mit einem niedrigeren Preis von der Alternative mit einer aussagekräftigeren Maßtabelle getrennt. Verwende für eine andere Größe desselben Angebots eine neue Zeile, wenn dort andere Maße stehen.",
+        "Vergleicht eine Tabelle Körpermaße, eine andere aber das fertige Kleidungsstück, schreibe diese Begriffe neben die Zahlen. Der Umfang des Hoodies enthält bereits die vom Schnitt vorgesehene Bequemlichkeitszugabe. Aus dem Unterschied zum Körperumfang ergibt sich ohne Kenntnis von Schnitt, Elastizität und Messstelle keine allgemeine Größenregel. Arbeitet der Anbieter mit Zoll, notiere die Originaleinheit und rechne nur einmal um. Ein unnötiger zweiter Umrechnungsschritt kann die Zuordnung zu einer benachbarten Tabellenzeile verschieben."
+      ],
+      [
+        "Die passende Ausführung am Ziel bestätigen",
+        "Verknüpfe jedes Käuferbild mit Datum, Größe, Farbe und relevantem Detail. Eine Rezension kann zeigen, dass eine Person ein Kleidungsstück als kurz empfand. Ohne Angaben zu Körpergröße, Variante oder gewünschter Passform ist das kein allgemeiner Größenrat. Fehlen Angaben zum Schnitt, schreibe eine konkrete Rückfrage und lass die offenen Felder in deiner Vergleichszeile leer.",
+        "Öffne vor der Bestellung das endgültige Angebot erneut. Vergleiche Größe, Farbe, Preis, Versandkosten und zuständigen Anbieter mit deiner gespeicherten Zeile. Beachte die Pflegehinweise in der Produktbeschreibung, wenn die Behandlung für deine Entscheidung wichtig ist. Die Hacoo-App und ein externer Katalog können verschiedene Warenkörbe und Rückgabewege haben. Die Beispiele hier beschreiben eine Vergleichsmethode. Es handelt sich weder um Herstellermaße noch um einen Trage- oder Waschversuch."
+      ],
+      [
+        "Kontrolle im Warenkorb und nach dem Auspacken",
+        "Ändert der Farbwechsel das Material, den Preis oder die Liste verfügbarer Größen, vergleiche das neue Angebot als eigenständige Variante. Eine weich aussehende blaue Version aus der Bildergalerie ist beispielsweise kein verlässlicher Beleg für die Zusammensetzung des gewählten grauen Shirts. Wenn du Kopf- und Fußzeile der Tabelle zusammen mit der ausgewählten Option sicherst, bleibt auch nach einer späteren Überarbeitung klar, was die Zahlen bedeuteten.",
+        "Vergleiche im Warenkorb Kleidungsart, Ausführung, Anzahl und Größe mit der Notiz. Behalte diese Informationen bei der Bestellbestätigung. Kommt später eine Jacke mit einem abweichenden Etikett an, kannst du die gelieferte und die bestellte Variante unterscheiden. Für reine Passformfragen ist das Referenzstück ebenso wichtig. Leg es zum Messen wieder auf dieselbe Fläche und verwende dieselben Ausgangspunkte."
+      ]
+    ]
+  },
+  "hacoo-bags-accessories": {
+    "title": "Hacoo-Taschen und Accessoires: Maße, Träger und Innenraum prüfen",
+    "description": "Vergleiche Taschen für deinen Alltag anhand von Öffnung, nutzbarem Innenraum und Trägerlänge. Prüfe bei Zubehör die genauen Maße des Gegenstücks.",
+    "sections": [
+      [
+        "Vom Inhalt ausgehen",
+        "Lege die Dinge bereit, die in der Tasche Platz finden müssen. Ein langes Portemonnaie, eine gefüllte Flasche und ein Tablet benötigen unterschiedliche Öffnungen. Miss die größten Gegenstände einschließlich Hülle. Notiere außerdem, ob sie nebeneinander liegen oder aufrecht stehen sollen. Eine Handtasche für Schlüssel und Telefon muss andere Anforderungen erfüllen als ein Modell für den Arbeitsweg.",
+        "Speichere für jedes Angebot die genaue Ausführung, Farbe und Größe. Ein ähnlich aussehendes Modell in Mini und Medium kann im selben Angebot auftauchen. Kontrolliere, welche Variante der angegebene Preis und das Foto mit der Maßangabe tatsächlich zeigen."
+      ],
+      [
+        "Außenmaß, Öffnung und Boden vergleichen",
+        "Die Außenbreite ist selten identisch mit der nutzbaren Breite. Nähte, Futter, ein gebogener Reißverschluss oder eine schmale Oberkante können den Durchlass begrenzen. Ist dein Tablet mit Hülle 24 Zentimeter breit und die Tasche an der breitesten Stelle außen 27 Zentimeter, ist damit noch nicht geklärt, ob das Tablet durch die Öffnung passt. Miss die kurze Seite ebenfalls und frage nach der lichten Öffnung, wenn die Passform entscheidend ist.",
+        "Bei weichen Taschen verändert die Füllung die Form. Ein starrer Boden kann für eine Flasche praktisch sein, ein schmal zulaufendes Modell macht die Ecken weniger nutzbar. In einer Produktaufnahme erkennst du die Form; ein exaktes Fassungsvermögen lässt sich daraus nicht bestimmen. Für eine vergleichbare Notiz reichen oft Breite und Höhe der Öffnung, Bodenmaß und gewünschte Position des größten Gegenstands."
+      ],
+      [
+        "Henkel und Schulterriemen getrennt beurteilen",
+        "Die Gesamtlänge eines Henkels und seine Fallhöhe sind unterschiedliche Maße. Für die Fallhöhe interessiert der Abstand von der Oberkante der Tasche bis zum höchsten nutzbaren Punkt des angehobenen Henkels. Nimm eine gut sitzende Tasche zum Vergleich. Prüfe beim längenverstellbaren Riemen den kleinsten und größten nutzbaren Wert und ob Beschläge mitgemessen wurden.",
+        "Ein langer Träger auf dem Foto kann in einer anderen Variante fest angenäht sein. Achte auf Befestigungspunkte, Verschluss und sichtbare Verstärkungen. Wenn du die Tasche über einem dicken Mantel tragen möchtest, probiere das Referenzmodell mit diesem Mantel an. Ein Produktfoto an einem unbekannten Model bildet diese Situation nicht verlässlich ab."
+      ],
+      [
+        "Innenfächer und Materialien belegen",
+        "Eine Tasche mit vielen Fächern kann einen flachen Hauptbereich haben. Suche nach einer geöffneten Ansicht und prüfe, ob der Reißverschluss frei zugänglich bleibt, wenn die Flasche aufrecht steht. Achte bei Laptopfächern auf Materialstärke und Halterung. Die reine Bezeichnung „Laptopfach“ bestätigt keine Polsterung, die einer bestimmten Belastung standhält.",
+        "Unterscheide zwischen „genarbte Oberfläche sichtbar“ und einer Materialangabe des Verkäufers. Ein Foto zeigt die Struktur unter seinem Licht. Es belegt weder Lederart noch Haltbarkeit oder Wasserbeständigkeit. Für einen Gurt, Anhänger oder ein Etui musst du zusätzlich die Öffnung des Hakens, die Breite der Schlaufe oder die tatsächlichen Maße des Geräts vergleichen."
+      ],
+      [
+        "Mit einer konkreten Frage abschließen",
+        "Bei zwei gleich breiten Taschen kann die kleinere mit einer durchgehenden Öffnung für dein Tablet geeigneter sein. Notiere bei jeder Option eine bestätigte Eigenschaft und die wichtigste offene Frage. Vergleiche Endpreis, Lieferweg und Rückgabebedingungen direkt bei der gewählten Variante. Der Ratgeber stützt sich auf sichtbare Angebotsmerkmale und Messmethoden. Wir haben die verlinkten Stücke weder befüllt noch einem Belastungs- oder Materialtest unterzogen."
+      ]
+    ]
+  },
+  "hacoo-order-tracking": {
+    "title": "Hacoo-Sendungsverfolgung: Paketstatus, Verzögerungen und Teillieferungen",
+    "description": "Finde die richtige Paketnummer, unterscheide Versandankündigung und Übergabe und kläre fehlende Artikel oder ausbleibende Zustellung mit passenden Belegen.",
+    "sections": [
+      [
+        "Von der Bestellung zur Paketnummer",
+        "Öffne das Konto oder die Bestätigung des Anbieters, bei dem du bezahlt hast. Die Bestellnummer identifiziert den Kauf. Eine Sendungsnummer identifiziert ein Paket in einem Transportnetz. Beides kann unterschiedlich aussehen, und zu einer Bestellung können mehrere Paketnummern gehören. Nutze den im Auftrag angegebenen Paketdienst und dessen aktuelle Sendungsauskunft. Dieser Ratgeber hat keinen Einblick in Kundenkonten.",
+        "Wenn nur die Bestellnummer sichtbar ist, frage den Anbieter, ob die Ware bereits dem Transportdienst übergeben wurde und welche Sendungsnummer verwendet wird. Ein Einkauf bei einem externen Händler wird nicht allein durch einen früheren Hacoo-Link zu einem von Hacoo betreuten Auftrag."
+      ],
+      [
+        "Drei Zeitpunkte getrennt aufschreiben",
+        "Notiere Kaufdatum, erste Versandmeldung und Zeitpunkt des letzten tatsächlichen Transportereignisses. Eine am Montag erstellte Sendungsnummer und ein am Mittwoch erfasster Paket-Eingang erzählen verschiedene Teile desselben Ablaufs. Auch ein am Freitag neu geladener Bildschirm macht aus dem letzten Scan vom Mittwoch keinen neuen Scan.",
+        "Vergleiche die Angaben mit dem Zeitraum in deinem konkreten Auftrag. Hacoo unterscheidet Bearbeitung und Transport. Wenn die angegebene Empfangszeit beide Schritte umfasst, rechne die Bearbeitungszeit nicht nochmals hinzu. Dokumentiere Datum, Zeitzone, Sendungsnummer und Originalwortlaut, wenn die App und der Paketdienst unterschiedliche Angaben zeigen."
+      ],
+      [
+        "Häufige Zustände einordnen",
+        "Eine elektronische Ankündigung kann vor der physischen Übergabe vorliegen. Ein erster Annahmescan zeigt mehr über die tatsächliche Übernahme. Unterwegs-Ereignisse können Umschläge und Zwischenstationen nennen, ohne einen verbindlichen Zustelltermin festzulegen. Eine Zustelltour ist ein weiterer Schritt, keine Empfangsbestätigung. Bei „Ausnahme“ ist der genannte Grund wichtiger als eine allgemeine Übersetzung.",
+        "Bleibt der Status unverändert, kontrolliere Schreibfehler in der Nummer und öffne die Ereignisliste statt nur die Überschrift. Wenn die zugesagte Spanne abgelaufen ist und der Dienst keine weitere Bewegung zeigt, frage beim zuständigen Anbieter nach. Leite aus einer einzelnen Lücke weder Verlust noch einen Zollvorgang ab."
+      ],
+      [
+        "Teilsendung oder fehlender Inhalt",
+        "Ordne vor einer Meldung jede Position der zugehörigen Sendungsnummer zu. Ein bereits geliefertes Paket kann zwei T-Shirts enthalten, während die Jacke separat unterwegs ist. Prüfe, welche Artikel die Bestellübersicht dem gelieferten Paket zuweist und ob ein zweites Versanddatum genannt ist.",
+        "Fehlt ein Artikel, der ausdrücklich im gelieferten Paket stehen sollte, bewahre Verpackung und Etikett auf und dokumentiere den tatsächlich erhaltenen Inhalt. Dies ist eine andere Meldung als eine zweite Sendung ohne aktuellen Scan. Stelle die Frage so, dass der Empfänger den zutreffenden Vorgang prüfen kann."
+      ],
+      [
+        "Zugestellt gemeldet, aber kein Paket vor Ort",
+        "Kontrolliere Zustellzeit, in der Sendungsauskunft genannten Ort und etwaige Abhol- oder Ablagehinweise. Kläre mit Personen im Haushalt, ob jemand das Paket angenommen hat. Nutze den offiziellen Kontakt des genannten Zustellers, wenn der Nachweis nicht zu deiner Adresse passt. Informiere den Verkäufer mit der Bestellreferenz und dem Ergebnis dieser Prüfung.",
+        "Halte in einer Rückfrage Auftragsnummer, Paketnummer, letzten Ereignistext, Zeitpunkt und eine konkrete Bitte fest. Eine unerwartete Zahlungsaufforderung per Nachricht ist kein Zustellbeleg. Rufe den Paketdienst über seine bekannte Adresse oder die geprüfte Bestellansicht auf, bevor du personenbezogene Daten eingibst."
+      ]
+    ]
+  },
+  "change-hacoo-shipping-address": {
+    "title": "Hacoo-Lieferadresse ändern: vom Adressbuch bis zum Versandetikett",
+    "description": "Prüfe Bestellstatus und Empfängerzeilen, bevor du eine fehlerhafte Anschrift meldest. Eine Änderung im Profil korrigiert den laufenden Auftrag nicht automatisch.",
+    "sections": [
+      [
+        "Die im Auftrag gespeicherte Adresse lesen",
+        "Öffne zuerst die konkrete Bestellung und kontrolliere die Lieferadresse auf dem Bestellbeleg. Die Standardadresse im Konto kann bereits richtig aussehen, während im früher aufgegebenen Auftrag noch die alte Fassung steht. Sichere Bestellnummer, aktuell angezeigten Status, Zeitpunkt und die betroffene Zeile. Bei einem Kauf außerhalb der Hacoo-App ist der Anbieter auf der Bestätigung zuständig.",
+        "Vergleiche Empfängername und erreichbare Telefonnummer, Straße und Hausnummer, Gebäude, Eingang, Etage und Wohnung. Prüfe außerdem die Kombination aus Postleitzahl und Ort sowie das Land. Ein fehlendes Adressdetail in der zweiten Zeile kann wichtiger sein als eine abweichende Schreibweise in der ersten."
+      ],
+      [
+        "Je nach Versandstand handeln",
+        "Ist der Auftrag noch nicht versendet, prüfe, ob die Bestellansicht eine Änderung oder einen Abbruch erlaubt. Hacoos Hilfe beschreibt für noch nicht versendete Aufträge eine Stornierung unter den eigenen Bestellungen. Gibt es keine Korrekturmöglichkeit, frage den offiziellen Support, ob für genau diesen Auftrag eine Adressänderung oder eine Stornierung mit Neubestellung vorgesehen ist. Warte auf die Bestätigung, bevor du erneut zahlst.",
+        "Steht der Auftrag bereits auf versendet, ist eine Änderung im Profil allein keine Korrektur des Versandetiketts. Ermittle den Paketdienst aus der Bestellung und frage nach den für genau diese Sendung angebotenen Zustelloptionen. Eine Umleitung ist keine zugesicherte Leistung. Ist der Status unklar, schicke den sichtbaren Wortlaut und frage, ob das Etikett bereits erstellt wurde."
+      ],
+      [
+        "Eine präzise Nachricht schreiben",
+        "Beispiel: Straße und Postleitzahl stimmen, aber „Wohnung 4B“ fehlt. Ergänze 4B im Adressbuch für künftige Käufe. Sende im privaten Bestellkanal die Bestellnummer, die angezeigte und die vollständige korrigierte Empfängerzeile sowie den letzten Status. Bitte ausdrücklich um Auskunft, ob die Änderung auch für die laufende Sendung übernommen wurde. Eine gespeicherte Profiländerung beantwortet diese Frage nicht.",
+        "Verteile vollständige Anschriften und Telefonnummern nicht auf öffentliche Kommentare oder mehrere Anfragen. Ein einzelner Verlauf mit Zeitangaben und schriftlicher Bestätigung macht die übrigen Schritte nachvollziehbar. Kontrolliere bei der nächsten Bestellung in der letzten Übersicht, welche Lieferadresse tatsächlich ausgewählt ist."
+      ]
+    ]
+  },
+  "hacoo-affiliate-program": {
+    "title": "Hacoos Affiliate-Programm: Trackinglinks und Creator-Bewertungen einordnen",
+    "description": "So liest du Teilnahmeinformationen, Vergütungshinweise und Creator-Beiträge. Prüfe den konkreten Produktnachweis und die Bedingungen deines eigenen Programmkontos.",
+    "sections": [
+      [
+        "Das öffentliche Angebot verstehen",
+        "Hacoo stellt ein Affiliate- und Creator-Programm vor, bei dem Teilnehmende Inhalte veröffentlichen und mit nachverfolgbaren Links arbeiten können. Die Beschreibung auf der offiziellen Programmseite ist die geeignete Quelle für dieses allgemeine Modell. Ob ein bestimmter Beitrag vergütet wird oder welche Regeln für einen einzelnen Creator gelten, ergibt sich daraus noch nicht.",
+        "Der öffentlich beschriebene Ablauf umfasst die Teilnahme mit passendem thematischem Schwerpunkt, die Veröffentlichung einer nachvollziehbaren Bewertung mit Trackinglink und die Auswertung der Leistung beziehungsweise möglicher Vergütungen. Eine Bewerbung und eine aktive Zulassung sind unterschiedliche Schritte. Wer teilnehmen möchte, sollte den offiziellen Einstieg und die tatsächlich angezeigten Bedingungen verwenden."
+      ],
+      [
+        "Konditionen am eigenen Angebot prüfen",
+        "Halte vor dem ersten Beitrag fest, welche Regionen und Kanäle zugelassen sind, welche Handlungen vergütet werden und wie eine Zuordnung erfolgt. Prüfe im Programmkonto Fristen, Auszahlungsweg, Schwellenwerte und die Behandlung stornierter Bestellungen, sofern dazu Angaben vorliegen. Ein in einem sozialen Beitrag genannter Provisionssatz gilt nicht automatisch für andere Teilnehmende oder Zeiträume.",
+        "Ein Trackinglink kann die Herkunft eines Besuchs zuordnen. Aus seiner bloßen Existenz folgen weder eine bestimmte Provisionshöhe noch ein günstigerer Preis für den Leser. Maßgeblich sind die beim Klick und im Warenkorb sichtbaren Angaben."
+      ],
+      [
+        "Eine Bewertung aus Lesersicht prüfen",
+        "Sieh nach, ob der kommerzielle Zusammenhang nachvollziehbar offengelegt wird. Trenne die Beobachtung vom Verkaufsversprechen. „Der Ärmel endet bei mir am Handgelenk“ ist konkreter als „passt jedem“. Damit die Beobachtung verwendbar wird, brauchst du die gezeigte Größe, Ausführung und einen geeigneten Vergleich.",
+        "Prüfe nach dem Klick das tatsächliche Ziel, die Variante und die Angaben des Verkäufers. Die Empfehlung kann redlich gemeint sein und dennoch zur falschen Farbe oder zu einem inzwischen geänderten Produkt führen. Dokumentiere den Endpreis aus deiner Kasse, wenn der Beitrag mit einem besonderen Angebot wirbt."
+      ],
+      [
+        "Als Creator eine nachvollziehbare Bewertung schreiben",
+        "Nenne den Ursprung des Artikels und die Beziehung zum Anbieter. Beschreibe, was du persönlich geprüft hast, in welcher Variante und unter welchen Bedingungen. Ein sichtbarer Nachteil, eine offene Maßangabe oder ein abweichender Lieferweg kann für die Entscheidung hilfreicher sein als ein allgemeines Lob. Verwende nur Zahlen, die aus deinen geltenden Bedingungen oder aus deiner eigenen dokumentierten Erfahrung stammen."
+      ]
+    ]
+  },
+  "hacoo-authenticity-claims-evidence-limits": {
+    "title": "Hacoo-Echtheitsversprechen prüfen: Bilder, Anbieter und Nachweise",
+    "description": "Ordne Modell, sichtbare Details, Materialangaben und Markenautorisierung auseinander ein. So erkennst du, wie weit ein Nachweis für eine konkrete Produktvariante reicht.",
+    "sections": [
+      [
+        "Die Behauptung präzise aufschreiben",
+        "Der Satz „ist echt“ kann Verschiedenes bedeuten. Mal meint jemand, dass ein geliefertes Paar wie auf dem Bild aussieht. Mal soll das Material wie angegeben zusammengesetzt sein, mal der Händler von einem Markeninhaber autorisiert. Schreibe die Behauptung als vollständigen Satz auf. Erst dann lässt sich bestimmen, welcher Nachweis überhaupt passen würde.",
+        "Beziehe sie auf eine konkrete Variante, eine Anspruchsquelle und einen Zeitpunkt. Eine Beschreibung aus einem älteren Beitrag kann sich auf eine frühere Ausführung beziehen. Ohne aktuelle Zuordnung sollte ein Ergebnis ausdrücklich offenbleiben."
+      ],
+      [
+        "Sichtbare Merkmale und Herkunft trennen",
+        "Ein Foto kann die Anordnung von Nähten, Beschlägen oder Aufdrucken zeigen. Eine lesbare Kennzeichnung kann bei der Zuordnung zu einer Modellnummer helfen. Ob das gezeigte Stück an dich geliefert wird, wer es gefertigt hat oder ob eine Vertriebsbeziehung besteht, ergibt sich aus einem Bild allein nicht. Auch Karton, Seriennummer und Etikett sind zunächst einzelne Indizien.",
+        "Für eine Materialaussage brauchst du eine zuordenbare Materialangabe oder geeignete weitere Prüfung. Für eine Autorisierungsbehauptung ist eine nachvollziehbare Verbindung zwischen dem konkreten Verkäufer und dem Rechteinhaber relevant. Ein Creator-Unboxing zeigt im besten Fall, was eine Person erhalten hat. Es belegt keine gesamte Lieferkette."
+      ],
+      [
+        "Eine kleine Belegliste anlegen",
+        "Lege vier Spalten an: konkrete Aussage, Urheber, zugehöriger Gegenstand und verbleibende Lücke. Bei einem Foto kann die Quelle der Verkäufer sein, der Gegenstand die blaue Ausführung, der belegte Inhalt die sichtbare Form. Die offene Frage könnte lauten, ob Modellnummer und Ausführung tatsächlich zusammengehören. Diese Lücke wird durch weitere Kopien desselben Bildes nicht kleiner.",
+        "Vergleiche unabhängige Hinweise auf Version, Datum und exakte Quelle. Ein Vorgang, bei dem mehrere Beiträge die gleiche Herstellerbeschreibung abschreiben, liefert nur eine Ursprungsbehauptung. Wenn die Belege auseinanderlaufen, bewahre beide Fassungen auf und formuliere die Abweichung konkret."
+      ],
+      [
+        "Schlussfolgerung und Meldeweg passend wählen",
+        "Wenn der Verkäufer nur ein Produktfoto und einen Modellnamen liefert, kannst du Eigenschaften vergleichen oder weitere Unterlagen anfragen. Beschreibe fehlende Bestätigung weder als bewiesene Echtheit noch als bewiesene Fälschung. Ist die Herkunft für deinen Kauf unverzichtbar, ist ein Verzicht auf die Bestellung eine mögliche Entscheidung, auch wenn sich der Verdacht nicht auflösen lässt.",
+        "Hacoos Richtlinie zu geistigem Eigentum unterscheidet Hinweise von Nutzern und formelle Beschwerden durch Inhaber oder Bevollmächtigte. Für eine Meldung beschreibe die sichtbare Übereinstimmung und verknüpfe sie mit dem betroffenen Beitrag. Die Prüfung einer Plattform ist kein persönlicher Echtheitsnachweis und garantiert kein bestimmtes Ergebnis."
+      ]
+    ]
+  },
+  "hacoo-community-safety-checklist": {
+    "title": "Hacoo-Community: Beiträge, Produktlinks und Empfehlungen prüfen",
+    "description": "Beurteile Aussagen im Zusammenhang mit Person, Produktvariante und Linkziel. Erfahre, welche Hinweise sich für eine private Rückfrage oder Meldung eignen.",
+    "sections": [
+      [
+        "Den Beitrag einer Person und einem Zweck zuordnen",
+        "Eine Community verbindet Erfahrungen verschiedener Personen. Ein Verkäufer, ein Käufer und ein Affiliate-Creator können dasselbe Foto mit unterschiedlichen Zielen zeigen. Sieh nach, wer spricht, welches Verhältnis zum Angebot offenliegt und welche Erfahrung tatsächlich beschrieben wird. Verwechsle einen häufig geteilten Beitrag nicht mit einer Aussage des Plattformbetreibers.",
+        "Hacoo beschreibt im Trust Center Regeln und Moderation unter anderem bei irreführenden Beiträgen, Spam und problematischen Weiterleitungen. Die Behandlung einer solchen Kategorie belegt nicht, dass der einzelne Beitrag bereits auf Richtigkeit geprüft wurde."
+      ],
+      [
+        "Eine prüfbare Eigenschaft herausarbeiten",
+        "„Die Jacke passt perfekt“ sagt wenig über deine Größe. Interessanter wird die Aussage, wenn sie Größe, Variante, getragenen Pullover und gemessene Brustweite nennt. Sichere die belegbaren Details und trenne sie von Bewertung und versprochenem Ergebnis. Achte bei Bildern auf die aktuell gewählte Ausführung.",
+        "Öffne einen verlinkten Artikel nur bis zu der Stelle, an der Anbieter, Produkt und verlangte Handlung erkennbar sind. Ein Wechsel des Anbieters verändert den zuständigen Warenkorb. Ein Link in einem Modebeitrag sollte dich nicht zur Weitergabe eines Sicherheitscodes oder zur Anmeldung auf einer ähnlich benannten Supportseite drängen."
+      ],
+      [
+        "Zwei Situationen mit verschiedener Reaktion",
+        "Ein Creator empfiehlt eine Jacke für jede Körpergröße. Der Beitrag zeigt nur eine Variante und enthält einen Trackinglink ohne nähere Einordnung. Die Live-Seite bietet mehrere Schnitte. Du kannst die Empfehlung geringer gewichten, die Maßtabelle deiner Variante prüfen und eine konkrete Rückfrage stellen. Fehlende Angaben allein beweisen keine Täuschung.",
+        "Verspricht dagegen ein vermeintlicher Supportbeitrag Hilfe nur nach Übermittlung eines Einmalcodes auf einer fremden Domain, schließe das Ziel. Öffne deinen offiziellen Zugang selbst und melde den Ausgangsbeitrag über den vorgesehenen Kanal. Zum Festhalten des Problems reichen der öffentliche Beitrag, die Zieladresse und die angeforderte Handlung. Einen Test mit echten Zugangsdaten brauchst du dafür nicht."
+      ],
+      [
+        "Nur die notwendigen Informationen weitergeben",
+        "Bewahre eine datierte Kopie sichtbarer Aussagen, des Links und der relevanten Produktvariante. Schwärze Adressen, Zahlungsdaten sowie Profilinformationen unbeteiligter Personen. Eine gewöhnliche Inhaltsmeldung meldet den Beitrag; eine Bestellreklamation gehört zum Verkäufer. Wird geistiges Eigentum geltend gemacht, prüfe den offiziellen Weg für die eigene Rolle.",
+        "Eine gute Entscheidung kann auch darin bestehen, einen Beitrag nur als Idee zu speichern und später anhand einer belastbareren Quelle weiterzusuchen. Die Zahl der Likes verändert weder die Größe eines Kleidungsstücks noch die Identität seiner Kasse."
+      ]
+    ]
+  },
+  "hacoo-fake-engagement-spam-signals": {
+    "title": "Auffällige Hacoo-Beiträge prüfen: Interaktionen, Spam und Belege",
+    "description": "Untersuche wiederkehrende Texte und Linkziele mit ihrem zeitlichen Kontext. Dokumentiere konkrete Beobachtungen, ohne aus einer Kennzahl falsche Vorwürfe abzuleiten.",
+    "sections": [
+      [
+        "Drei Fragen getrennt behandeln",
+        "Eine Bewertung kann inhaltlich schwach sein, ein Konto ungewöhnliche Aktivität zeigen oder ein Link zu einer problematischen Handlung auffordern. Das sind unterschiedliche Fragen. Du kannst einem Größenrat wenig vertrauen, auch wenn die Person real ist. Ein äußerlich unauffälliges Konto kann trotzdem zu einem fragwürdigen Ziel verlinken.",
+        "Hacoos Trust Center beschreibt Maßnahmen gegen Spam und nicht authentische Inhalte. Ein allgemeiner öffentlicher Grenzwert für das Verhältnis von Likes, Kommentaren und Followern lässt sich daraus nicht ableiten. Alter, Reichweite, Sprache und Thema eines Beitrags verändern solche Zahlen."
+      ],
+      [
+        "Wiederholungen zusammen mit dem Ziel ansehen",
+        "Achte auf ungewöhnlich identische Formulierungen, dieselbe Abfolge von Versprechen und wiederkehrende Ziele bei eigentlich verschiedenen Produkten. Eine kurze Standardformel beweist wenig. Mehrere Beiträge mit derselben konkreten Falschzuordnung oder mit demselben unpassenden Zahlungslink sind aussagekräftiger als die reine Zahl identischer Emojis.",
+        "Notiere außerdem, wann die Beiträge veröffentlicht wurden und ob eine gemeinsame Aktion offengelegt ist. Vier Konten können innerhalb kurzer Zeit eine gemeinsame Kampagne bewerben. Das erklärt eine koordinierte Veröffentlichung, ohne etwas über die Echtheit jeder einzelnen Person zu beweisen."
+      ],
+      [
+        "Eine überprüfbare Stichprobe speichern",
+        "Wähle wenige Beispiele und sichere pro Beispiel die öffentliche Adresse, Datum, genaue Passage und Ziel. Halte abweichende Beispiele ebenfalls fest. Wenn drei Texte gleich und einer anders formuliert ist, ist diese Unterscheidung wichtig. Prüfe, ob das gleiche Bild wirklich denselben Artikel zeigt oder ob Größen, Farbe und Produktseite auseinanderfallen.",
+        "Ändert sich das Ziel, dokumentiere die neue Adresse als zweite Beobachtung mit eigenem Zeitpunkt. Besuche keinen riskanten Zahlungs- oder Anmeldeprozess, um einen Verdacht zu verstärken. Der auf dem Bildschirm sichtbare Wechsel und die geforderte Aktion reichen für einen sachlichen Hinweis."
+      ],
+      [
+        "Sachlich melden oder die Empfehlung geringer gewichten",
+        "Beschreibe zum Beispiel, dass mehrere Links in Rezensionen verschiedener Jacken zu derselben externen Anmeldeseite führen. Das gibt der Plattform etwas Konkretes zu prüfen. Die Aussage, alle beteiligten Konten seien automatisiert, geht über diesen Nachweis hinaus.",
+        "Wenn lediglich besonders viele Reaktionen oder auffällig wenig Produktdetail sichtbar sind, kannst du die Aussage beim Kauf geringer gewichten und nach messbaren Informationen suchen. Beschränke eine Meldung auf den passenden Kanal, schwärze private Daten und stelle eine ausbleibende Antwort nicht als Schuldeingeständnis dar."
+      ]
+    ]
+  },
+  "hacoo-intellectual-property-reporting-workflow": {
+    "title": "Geistiges Eigentum bei Hacoo melden: Beitrag und Belege zuordnen",
+    "description": "Bereite einen präzisen Hinweis oder eine formelle Beschwerde vor. Prüfe deine Rolle, sichere das konkrete Werk und nutze den jeweils vorgesehenen Meldeweg.",
+    "sections": [
+      [
+        "Die eigene Rolle und den Kanal festlegen",
+        "Hacoos Richtlinie zu geistigem Eigentum beschreibt sowohl die Aufsicht durch die Community als auch formelle Meldungen zu betroffenen Rechten. Wer als Nutzer einen verdächtigen Beitrag sieht, kann die konkrete Beobachtung melden. Für eine formelle Beschwerde als Rechteinhaber beschreibt Hacoo die Inhaberschaft oder eine Vollmacht als Grundlage. Behaupte keine Vertretung, die du nicht belegen kannst.",
+        "Eine Beschwerde zur Lieferung oder ein unpassender Artikel ist ein anderer Vorgang. Suche bei einem Bestellproblem zuerst den zuständigen Verkäufer. Für verdächtige Links kann der Sicherheitsmeldeweg des Beitrags passen. Wähle den Weg anhand dessen, was du tatsächlich weißt und tun möchtest."
+      ],
+      [
+        "Den konkreten Inhalt sichern",
+        "Notiere vollständige Beitragsadresse, öffentliche Kennung, Datum und die genaue Stelle. „Bild 3 im Beitrag“ ist präziser als „das ganze Profil“. Speichere eine unveränderte Kopie für die eigene Dokumentation und verwende für Rückfragen eine auf das Nötige beschränkte Fassung. Eine gelöschte oder bearbeitete Seite erschwert später die Zuordnung.",
+        "Bei einer Aufnahme stelle dem beanstandeten Bild das konkrete Original gegenüber. Dokumentiere ursprüngliche Veröffentlichung und vorhandene Originaldatei. Bei einer Marke gehören die betroffene Verwendung und gegebenenfalls die zu ihr passenden Registrierungsangaben in die Gegenüberstellung. Ein sichtbares Zeichen auf einem Produkt beweist allein weder eine konkrete Rechtsverletzung noch die Berechtigung des Verkäufers."
+      ],
+      [
+        "Beleg und Aussage zusammenführen",
+        "Ein möglicher Bericht eines Fotografen benennt Bildnummer, Beitrags-ID und die eigene frühere Veröffentlichung. Er kann die Originaldatei und eine datierte Veröffentlichungsaufzeichnung zuordnen. Die Belege betreffen dieses Foto. Sie tragen keine zusätzlichen Aussagen über die Absicht des Kontos oder sämtliche anderen Produkte.",
+        "Eine Vollmacht belegt die Vertretung nur für den darin bezeichneten Umfang. Ein Screenshot zeigt, was zu einem Zeitpunkt sichtbar war. Ordne beides der passenden Aussage zu und kennzeichne offene Fragen. Lies das aktuelle Formular, bevor du Dateien zusammensuchst, damit du die jeweils verlangten Angaben vollständig und widerspruchsfrei machst."
+      ],
+      [
+        "Einreichen und den Verlauf festhalten",
+        "Hacoo verlinkt in der offiziellen Richtlinie unter anderem Wege für Marken- und Urheberrechtsmeldungen. Verwende die aktuell angebotene Form für deinen Fall. Die Plattform weist darauf hin, dass Beschwerdeangaben einschließlich Kontaktinformationen unter Umständen an den betroffenen Kontoinhaber weitergegeben werden können. Berücksichtige das bei der Auswahl der erforderlichen Unterlagen.",
+        "Speichere Bestätigung, Fallnummer und spätere Nachfragen. Eine eingereichte Meldung dokumentiert deinen Hinweis. Sie entscheidet weder über einen Rechtsstreit noch garantiert sie Löschung oder Erstattung. Veröffentliche keine private Beweissammlung, um Druck auf andere Beteiligte auszuüben."
+      ]
+    ]
+  },
+  "hacoo-malicious-external-links-warning": {
+    "title": "Unklare Hacoo-Links erkennen: Zieladresse und Weiterleitung prüfen",
+    "description": "Lies das endgültige Linkziel und die angeforderte Handlung, bevor du dich anmeldest. So dokumentierst du verdächtige Weiterleitungen datensparsam und nachvollziehbar.",
+    "sections": [
+      [
+        "Vor der ersten Eingabe kurz innehalten",
+        "Ein Beitrag kann zu einem externen Produktkatalog führen. Ein legitimer Wechsel des Anbieters ist dabei möglich. Entscheidend sind das angekündigte Ziel, die tatsächlich geöffnete Adresse und die verlangte Handlung. Ein Hinweis auf einen Sneaker erklärt nicht, warum ein fremdes Formular deinen Anmeldecode für ein Hacoo-Konto benötigt.",
+        "Hacoo nennt im Trust Center schädliche Weiterleitungen als Moderationsthema. Das ist ein sinnvoller Ausgangspunkt für eine Meldung. Es belegt nicht, dass jeder fremde Link bereits geprüft wurde oder dass ein einzelner Hinweis zwingend eine Kontosperre auslöst."
+      ],
+      [
+        "Die endgültige Adresse lesen",
+        "Vergleiche vor und nach der Weiterleitung die registrierte Domain. Das Wort Hacoo in einer Unteradresse, im Seitentitel oder in einem langen Pfad beweist keine Inhaberschaft. Lies die Adressleiste selbst. Achte darauf, ob eine zuvor angekündigte Produktseite am Ende bei einer Anmeldung, einem Download oder einer Zahlungsseite landet.",
+        "Ein Schloss oder eine verschlüsselte Verbindung betrifft die Übertragung zur angezeigten Domain. Beides identifiziert nicht den wirtschaftlichen Anbieter. Ein kurzer Weiterleitungslink kann ein nachvollziehbares Produktziel haben, verbirgt aber vor dem Öffnen dessen Namen. Wenn du das Ziel nicht zuordnen kannst, öffne die bekannte App oder die offizielle Seite direkt."
+      ],
+      [
+        "Die gewünschte Handlung abgleichen",
+        "Für das Lesen eines öffentlichen Produktbeitrags sind keine Banküberweisung und keine Weitergabe eines Einmalcodes an einen anderen Nutzer erforderlich. Achte auch auf einen Wechsel von einer angeblichen Sendungsauskunft zu einer Gebührenzahlung. Vergleiche solche Nachrichten mit der Bestellung in deinem eigenen Konto.",
+        "Eine gut gestaltete Seite und ein vertrautes Logo liefern keinen Nachweis für einen Supportauftrag. Wenn Druck entsteht oder die Seite zusätzliche Konto- und Zahlungsdaten fordert, beende den Vorgang. Du musst einen verdächtigen Link nicht mit echten Daten testen, um eine Beobachtung zu melden."
+      ],
+      [
+        "Einen verwertbaren Hinweis geben",
+        "Speichere Beitrag, Datum, beschrifteten Link und endgültiges Ziel sowie eine kurze Beschreibung der geforderten Aktion. Entferne persönliche Parameter, Benachrichtigungen, Adressen und Zahlungsangaben aus teilbaren Bildern. Veröffentliche keinen aktiven, verdächtigen Link in einem öffentlichen Diskussionsthread, wenn ein privater Meldekanal verfügbar ist.",
+        "Melde den ursprünglichen Beitrag mit dessen Funktion oder über den passenden offiziellen Kontakt. Für einen unklaren externen Kauf ist außerdem wichtig, wer den Auftrag angenommen hat. Der Beleg entscheidet, welcher Anbieter die Bestellung prüfen kann. Eine Inhaltsmeldung ersetzt keine Reklamation beim Verkäufer."
+      ]
+    ]
+  },
+  "hacoo-official-vs-creator-claims": {
+    "title": "Offizielle Hacoo-Aussagen von Creator-Erfahrungen unterscheiden",
+    "description": "Prüfe Urheber, Reichweite und Aktualität einer Aussage. An einem Jackenbeispiel siehst du, wie du eine persönliche Erfahrung mit der aktuellen Produktseite vergleichst.",
+    "sections": [
+      [
+        "Jede Aussage zu einer Quelle zurückverfolgen",
+        "Ein Hilfetext von Hacoo, eine Beschreibung eines Verkäufers, ein Creator-Beitrag und deine eigene Bestellung haben verschiedene Urheber. Schreibe zunächst in einem Satz auf, wer was gesagt hat. Ein offizielles Logo in einem geteilten Screenshot oder eine ähnliche Farbgestaltung macht eine Behauptung noch nicht zu einer Erklärung der Plattform.",
+        "Kontrolliere Adresse, Titel, Sprachfassung, Datum und Wortlaut eines Hilfetexts. Offizielle Informationen können einen Prozess beschreiben. Sie belegen nicht automatisch, dass eine konkrete Person eine bestimmte Ware oder Antwort erhalten hat. Ein Creator-Beitrag kann umgekehrt einen realen Einzelfall zeigen, ohne allgemeine Bedingungen festzulegen."
+      ],
+      [
+        "Die Aussage in überprüfbare Teile zerlegen",
+        "Die Empfehlung „Nimm bei Hacoo-Jacken immer eine Nummer größer“ lässt sich in kleinere Fragen auflösen: Welche Jacke war es? Welche Größe wurde gewählt? Mit welchem Referenzstück wurde sie verglichen, und was war zu eng? Eine Person könnte sich auf Ärmelweite beziehen, obwohl der Leser vor allem die Rumpflänge wissen möchte.",
+        "Schreibe den Originalwortlaut auf, identifiziere die Quelle und ordne die Aussage als persönliche Beobachtung, Anbieterangabe oder dokumentiertes Verfahren ein. Suche anschließend eine aktuelle unabhängige Gegenprobe für den jeweiligen Teil. Halte am Schluss fest, für welche Ausführung und welchen Zeitpunkt die Antwort gilt."
+      ],
+      [
+        "Beispiel: Ein Beitrag über eine enge Jacke",
+        "Ein Creator zeigt eine Jacke in M und empfiehlt eine größere Größe. Das Bild zeigt, dass die Jacke geschlossen getragen wurde. Angaben zu Körpermaßen, Vergleichsjacke und darunter getragenem Pullover fehlen. Eine sachliche Zusammenfassung lautet, dass die Person die gezeigte Variante als eng beschreibt. Die Jacken anderer Verkäufer sind damit nicht beurteilt.",
+        "Öffne die jetzige Variante und vergleiche ihre Maßtabelle mit einem passenden Stück zu Hause. Wenn die Ärmelmaße von verschiedenen Ausgangspunkten genommen wurden, notiere das. Prüfe auch, ob der Beitrag einen vergüteten Link verwendet und ob die Bilder dieselbe Farbe und Ausführung zeigen. Eine veröffentlichte Zahl gewinnt durch diese Zuordnung an Nutzwert."
+      ],
+      [
+        "Unterschiede ausdrücklich stehen lassen",
+        "Wenn eine offizielle Hilfeseite und eine früher gespeicherte Anleitung voneinander abweichen, überprüfe Sprache, Region, Datum und Prozessschritt. Bewahre beide Aussagen getrennt auf. Verknüpfe sie nicht zu einer neuen Zusage, die keine der Quellen macht.",
+        "Bei einer offenen Bestellung sind die individuellen Hinweise im offiziellen Auftragskanal besonders wichtig. Frage bei einem Widerspruch nach, welche Anweisung für deinen Vorgang gilt. Eine zusätzlich angehängte Creator-Erfahrung kann illustrieren, was jemand erlebt hat, ersetzt aber weder die Auftragsdaten noch eine Antwort zu deinem Fall."
+      ]
+    ]
+  },
+  "hacoo-official-website-and-app-check": {
+    "title": "Offizielle Hacoo-Website und App erkennen: Adresse und App-ID prüfen",
+    "description": "Unterscheide die offizielle Plattform, App-Store-Einträge und unabhängige Produktverzeichnisse. Kontrolliere vor Anmeldung oder Kauf das endgültige Ziel.",
+    "sections": [
+      [
+        "Vom gewünschten Vorgang ausgehen",
+        "Wer „Hacoo-Website“ sucht, kann eine App herunterladen, eine Bestellung öffnen oder nur nach Produkten schauen wollen. Nutze für Konto, Bestellung und Plattformrichtlinien den von Hacoo ausgewiesenen Weg. Für eine unverbindliche Produktsuche kann auch ein unabhängiges Verzeichnis nützlich sein. Die Zuständigkeit richtet sich nach der Zielseite und spätestens beim Kauf nach der Bestätigung des tatsächlichen Anbieters.",
+        "hacoo.store ist ein unabhängiger Ratgeber. Die Namensähnlichkeit ist kein Hinweis auf ein gemeinsames Konto oder einen gemeinsamen Kundendienst. Ein hier gefundener Produktlink kann zu einem externen Katalog führen."
+      ],
+      [
+        "Die registrierte Domain lesen",
+        "Bei der offiziellen Adresse www.hacoo.app ist die registrierte Domain hacoo.app. Ein Sprachpfad hinter dem ersten Schrägstrich verändert diese Domain nicht. Bei einer Adresse wie hacoo.example.com wäre hingegen example.com der registrierte Teil. Ein Markenwort in einer Subdomain, im Pfad oder im Seitentitel genügt deshalb nicht zur Zuordnung.",
+        "Achte besonders darauf, was nach einem verkürzten Link in der Adressleiste steht. Eine Seite kann das Logo, die Farbe und die Artikelbilder einer anderen Seite übernehmen. Entscheidend ist das tatsächliche Ziel in Kombination mit dem passenden offiziellen Einstieg."
+      ],
+      [
+        "App-Einträge anhand stabiler Merkmale prüfen",
+        "Rufe die App über den offiziellen Downloadweg auf. Vergleiche im Android-Eintrag die Paketkennung com.saramart.android. Im Apple-Eintrag lautet die App-ID 1399907836. Beide Merkmale beziehen sich auf den Store-Eintrag. Lies außerdem die dort aktuell angegebenen Entwickler- und Datenschutzinformationen.",
+        "Öffnet ein Link zunächst den App-Store, kann das zu einer vorgesehenen Installation passen. Ein unaufgeforderter Download einer anderen Datei oder eine neue Anmeldung auf einer unbekannten Domain ist ein anderer Vorgang. Verlass den Link und beginne erneut beim bekannten offiziellen Einstieg, bevor du Daten eingibst."
+      ],
+      [
+        "Das letzte Ziel mit dem Auftrag abgleichen",
+        "Bestätigungen, Supportfälle und bestehende Käufe lassen sich am besten aus dem bereits verwendeten Konto öffnen. Bei einem Problem mit einer unabhängigen Produktseite prüfe dagegen den Beleg des betreffenden Händlers. Bei weitergeleiteten Links sollte jede neue Seite noch nachvollziehbar zu deiner ursprünglichen Aufgabe passen.",
+        "Wenn eine Seite Zugangsdaten oder eine Zahlung fordert, obwohl du nur einen Artikel ansehen wolltest, beende diesen Weg. Notiere die Adresse und den sichtbaren Text, ohne private Daten mitzuschicken. Nutze für eine Rückfrage die verifizierte Kontaktseite oder die entsprechende Funktion in der offiziellen App."
+      ]
+    ]
+  },
+  "how-to-verify-hacoo-reviews": {
+    "title": "Hacoo-Bewertungen prüfen: Variante, Fotos, Erfahrungen und Werbelinks",
+    "description": "Prüfe sieben Merkmale einer Produktbewertung und nutze Erfahrungen dort, wo sie konkrete Fragen zu Passform, Material oder Anbieter beantworten.",
+    "sections": [
+      [
+        "Vom Urteil zur prüfbaren Beobachtung",
+        "Worüber soll die Bewertung dir Auskunft geben? Für die Länge eines Ärmels ist ein Käuferfoto mit bekannter Größe hilfreicher als die höchste Sternebewertung für den gesamten Shop. Ordne Produkt, Farbe, Größe und Zeitpunkt der Rezension der Variante zu, die du kaufen würdest. Fasse anschließend in einem Satz zusammen, was die Person tatsächlich beobachtet hat.",
+        "Ein Beitrag, der einen Vorteil und eine konkrete Einschränkung nennt, kann mehr Kontext bieten. Im Trust Center führt Hacoo beispielsweise Hinweise zu engem Sitz und leichter Transparenz an. Die Offenheit einer Rezension ist nützlich, aber kein Gütesiegel für das ganze Konto."
+      ],
+      [
+        "Sieben Prüfungen für eine Kaufentscheidung",
+        "Vergleiche zuerst die genaue Variante. Zweitens suche eine beobachtbare Eigenschaft. Drittens achte auf nachvollziehbare Abwägungen statt pauschaler Begeisterung. Viertens vergleiche mehrere voneinander unterscheidbare Erfahrungen. Fünftens schaue nach einer offengelegten Vergütung oder einem Trackinglink. Sechstens überprüfe die tatsächliche Zielseite. Siebtens sichere Datum und die für deine Entscheidung wichtigen Angaben, bevor die Seite geändert wird.",
+        "Eine erkennbare Kooperation macht eine konkrete Beobachtung nicht wertlos. Sie ist ein Grund, Quelle und genauen Nachweis sichtbar zu halten. Zehn Kopien derselben Produktbeschreibung sind dagegen keine zehn unabhängigen Erfahrungen. Wenn Fotos in mehreren Varianten auftauchen, prüfe insbesondere, welche Variante tatsächlich gezeigt wird."
+      ],
+      [
+        "Drei Beispiele aus dem Produktvergleich",
+        "Bei der Empfehlung „eine Nummer größer bestellen“ sind die Maßtabelle, die getestete Größe und ein eigenes Referenzstück wichtig. Miss Achselweite und Länge deiner Jacke nach derselben Methode. Ist die besprochene Variante anders geschnitten, ist die Empfehlung nur eingeschränkt übertragbar.",
+        "Bei einer Tasche kann ein Bild eine genarbte Oberfläche erkennen lassen. Daraus folgt keine bestimmte Lederart oder Reißfestigkeit. Suche für die Materialangabe nach der konkreten Deklaration. Ein Foto des geöffneten Fachs hilft dagegen direkt bei einer Frage nach der Aufteilung.",
+        "Ein Social-Media-Beitrag kann einen zunächst plausiblen Produktlink enthalten, der am Ende zu einem anderen Verkäufer führt. Kontrolliere Titel, ausgewählte Option und geforderte Aktion dort erneut. Eine gute Rezension über den ursprünglichen Verkäufer beantwortet keine Frage zu den Rückgabebedingungen des neuen."
+      ],
+      [
+        "Dokumentation und Meldung auseinanderhalten",
+        "Für deine eigene Auswahl genügen oft drei Punkte: die belegte Eigenschaft, die wesentliche offene Frage und der Ursprung der Aussage. Bei verdächtigen Inhalten behalte den öffentlichen Beitrag und die genaue Abweichung. Melde über den vorgesehenen Kanal die beobachtbaren Tatsachen. Private Bestellbelege, Adressen und fremde Kontodaten gehören nicht in öffentliche Kommentare.",
+        "Nutze Plattformhinweise über Moderation nur in ihrem angegebenen Umfang. Das Trust Center beschreibt Hacoos Verfahren und eigene Kennzahlen. Es folgt daraus weder eine Prüfung jedes sichtbaren Beitrags noch eine automatische Garantie für die Ware, die später ankommt."
+      ]
+    ]
+  },
+  "read-hacoo-trust-center": {
+    "title": "Hacoo Trust Center verstehen: Kennzahlen und einzelne Beiträge einordnen",
+    "description": "Lies Hacoos Transparenzangaben mit Berichtszeitraum und Zuständigkeit. Prüfe, was sie über die Plattform und was sie über eine einzelne Empfehlung aussagen.",
+    "sections": [
+      [
+        "Vier Felder für jede Aussage",
+        "Lies das Trust Center als Veröffentlichung der Plattform über ihre Regeln und Maßnahmen. Notiere zu jeder wichtigen Aussage den Urheber, den Zeitraum, die Art des Nachweises und die verbleibende offene Frage. So bleibt eine jährlich veröffentlichte Kennzahl von einer aktuellen Einzelentscheidung getrennt.",
+        "Ein Beispieltext über Kleidung zeigt, welche Art von Feedback Hacoo hervorhebt. Ein Beispiel belegt für sich allein weder die Passform der nächsten Bestellung noch die Prüfung einer bestimmten Verkäuferangabe. Für die konkrete Wahl brauchst du Produkt, genaue Größe, aktuelle Tabelle und den Kontext der Erfahrung."
+      ],
+      [
+        "Die Jahreskennzahlen vollständig lesen",
+        "Für das Jahr 2025 nennt Hacoo intern mehr als 1.000 entfernte irreführende Beiträge und Links sowie mehr als 500 dauerhaft gesperrte schädliche Konten. Laut eigener Angabe wurden 98 Prozent der Community-Meldungen innerhalb von 48 Stunden bearbeitet. Die Quelle bezeichnet die Zahlen ausdrücklich als interne Kennzahlen für das erste bis vierte Quartal 2025.",
+        "Daraus lässt sich nicht ablesen, wie lange ein neuer Einzelfall dauert, wie viele Meldungen zu einer Löschung führten oder wie sich einzelne Kategorien verteilen. Bearbeitung und Löschung bezeichnen unterschiedliche Ergebnisse. Wer den Wert weitergibt, sollte den Zeitraum und den Bezug zur Selbstauskunft mitnennen."
+      ],
+      [
+        "Erfahrungsberichte mit ihren Grenzen lesen",
+        "Hacoo zeigt Beispiele für eine eng sitzende Jacke und ein leicht durchsichtiges Kleidungsstück. Solche Einschränkungen können Entscheidungen erleichtern, sofern die konkrete Ausführung, Nutzung und fotografische Situation passen. Ein Bild unter starkem Gegenlicht beantwortet eine andere Frage als eine Aufnahme bei gleichmäßiger Innenbeleuchtung.",
+        "Bei einem Creator, dessen Beitrag weiterhin sichtbar ist, lässt sich aus der Sichtbarkeit keine umfassende Produktprüfung herleiten. Prüfe Datum, Variantenwahl und gegebenenfalls kommerzielle Beziehungen. Wurde ein Trackinglink eingesetzt, kontrolliere das endgültige Ziel gesondert."
+      ],
+      [
+        "Von der allgemeinen Regel zum konkreten Hinweis",
+        "Eine Rückfrage zu einem Produkt, eine Meldung über einen irreführenden Beitrag und eine Reklamation zur Bestellung brauchen unterschiedliche Informationen. Für eine Inhaltsmeldung nenne den öffentlichen Beitrag, Zeitpunkt, genaue Passage und nachvollziehbaren Widerspruch. Für die Bestellung nutze den privaten Kanal des Anbieters, der sie angenommen hat.",
+        "Eine allgemeine Aussage über das Vertrauen in die Plattform sollte nicht weiter reichen als ihre Quelle. Du kannst berichten, welche Regeln Hacoo veröffentlicht und wie die Plattform ihre Maßnahmen beschreibt. Ob eine bestimmte Ware zu dir passt oder ein externer Link zum erwarteten Verkäufer führt, musst du am konkreten Angebot entscheiden."
+      ]
+    ]
+  }
+}

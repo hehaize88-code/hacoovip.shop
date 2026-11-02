@@ -59,14 +59,14 @@
     "slug": "hacoo-shoes-finds",
     "url": "https://hacoo.store/articles/hacoo-shoes-finds/",
     "published": "2026-10-04",
-    "modified": "2026-10-04",
+    "modified": "2026-11-02",
     "image": "shoes.webp"
   },
   {
     "slug": "hacoo-clothing-finds",
     "url": "https://hacoo.store/articles/hacoo-clothing-finds/",
     "published": "2026-10-04",
-    "modified": "2026-10-04",
+    "modified": "2026-11-02",
     "image": "clothing.webp"
   },
   {
@@ -82,5 +82,20 @@
     "published": "2026-10-04",
     "modified": "2026-10-04",
     "image": "tracking.svg"
+  },
+  {
+    "slug": "hacoo-links-not-working",
+    "url": "https://hacoo.store/articles/hacoo-links-not-working/",
+    "published": "2026-11-02"
+  },
+  {
+    "slug": "hacoo-refund-status",
+    "url": "https://hacoo.store/articles/hacoo-refund-status/",
+    "published": "2026-11-02"
+  },
+  {
+    "slug": "hacoo-discount-code-not-working",
+    "url": "https://hacoo.store/articles/hacoo-discount-code-not-working/",
+    "published": "2026-11-02"
   }
 ]

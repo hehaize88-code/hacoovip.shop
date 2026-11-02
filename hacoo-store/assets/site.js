@@ -41,11 +41,7 @@
     if (alternate) {
       return rootPrefix + new URL(alternate.href, window.location.href).pathname.replace(/^\/+/, "");
     }
-    const route = currentRoutePath();
-    // English-only editorial articles have no translated detail URL. Send a
-    // language change to the corresponding guide hub, which labels them clearly.
-    const destination = code !== "en" && /^articles\/.+/.test(route) ? "articles/" : route;
-    return rootPrefix + (code === "en" ? "" : code + "/") + destination;
+    return rootPrefix + (code === "en" ? "" : code + "/") + currentRoutePath();
   }
 
   function addLanguageSwitcher() {
@@ -87,6 +83,19 @@
   }
 
   addLanguageSwitcher();
+
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest("a[href]");
+    if (!link || typeof window.gtag !== "function") return;
+    const destination = new URL(link.href);
+    if (destination.hostname !== "www.cnfanshp.com") return;
+    const isProduct = /^\/AllProducts\/\d+\.html$/i.test(destination.pathname);
+    window.gtag("event", isProduct ? "catalog_product_click" : "catalog_collection_click", {
+      site_language: currentLocale,
+      source_path: window.location.pathname,
+      transport_type: "beacon"
+    });
+  });
 
   const toggle = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-site-nav]");
