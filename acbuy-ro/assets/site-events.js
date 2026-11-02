@@ -9,6 +9,11 @@
     const a = event.target.closest && event.target.closest('a[href]');
     if (!a) return;
     const url = new URL(a.href, location.href);
+    if (url.origin === location.origin && a.matches('.card, .productcard, .sample a')) {
+      const name = a.matches('.card') ? 'article_click' : 'product_preview';
+      send(name, {page_path: location.pathname, destination_path: url.pathname,
+        site_language: document.documentElement.lang});
+    }
     if (url.hostname !== host) return;
     send('catalog_click', {destination_host: host, destination_path: url.pathname,
       link_type: /\/AllProducts\/\d+\.html$/.test(url.pathname) ? 'product' : 'catalogue',
