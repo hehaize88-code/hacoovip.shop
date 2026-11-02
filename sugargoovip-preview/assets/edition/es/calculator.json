@@ -1,0 +1,88 @@
+{
+ "title": "Calculadora de envíos de Sugargoo al Reino Unido: cómo estimar el coste de tu paquete",
+ "description": "Introduce medidas, peso y características precisas en la calculadora de Sugargoo para el Reino Unido y contrasta la estimación con el paquete antes de pagar.",
+ "intro": "El cálculo solo resulta útil cuando los datos introducidos se parecen al paquete que realmente vas a enviar. Parte de supuestos identificables, compara casos equivalentes y guarda el cargo final por separado. Para el Reino Unido, la calculadora permite averiguar qué servicios merece la pena considerar para un destino, tipo de productos, peso y tamaño determinados. Según la documentación pública de Sugargoo, la herramienta «Shipping Fee Estimation» admite esos datos y compara servicios incluso antes de terminar de embalar la compra. El resultado no reserva un transporte ni garantiza qué importe se cobrará. El artículo puede pesar más de lo anunciado, la protección puede aumentar las medidas, un servicio puede rechazar una característica y el peso facturable puede diferir del que marca la báscula. Conserva cada estimación como un escenario con fecha.",
+ "sections": [
+  {
+   "heading": "Define primero qué decisión quieres tomar",
+   "paragraphs": [
+    "Antes de escribir una cifra redonda para ver el precio más bajo, concreta la pregunta. ¿Quieres averiguar si la caja de los zapatos hace el paquete demasiado voluminoso, si conviene dividirlo en dos o cuánto presupuesto debes reservar para el transporte internacional? Cada cuestión requiere datos distintos.",
+    "Para un primer presupuesto puedes usar los datos del anuncio y del vendedor, marcados como provisionales. Cuando lleguen los artículos, utiliza los registros del almacén de tu cuenta. Antes del pago, trabaja con el paquete ya preparado y el destino británico exacto. Guarda las etapas por separado. Si sobrescribes el primer cálculo, perderás la información que permite entender los cambios."
+   ]
+  },
+  {
+   "heading": "Usa el destino británico exacto del paquete",
+   "paragraphs": [
+    "Selecciona el Reino Unido y la región que te pida la herramienta. Comprueba que el código postal y el destino de la ficha del paquete coinciden con la estimación. Un cálculo para un destino británico genérico puede omitir condiciones de zonas remotas, entregas en islas o servicios que excluyen un código postal concreto. La calculadora, la pantalla del transporte y la dirección física deben describir el mismo destino.",
+    "Si la dirección aún no es definitiva, revísala con la lista de comprobación de direcciones británicas antes de basar una decisión en el resultado. Comparar una estimación para Inglaterra con un paquete que luego se dirige a Irlanda del Norte u otro territorio no permite concluir que haya subido el precio."
+   ]
+  },
+  {
+   "heading": "Clasifica los artículos antes de introducir el peso",
+   "paragraphs": [
+    "La categoría del producto influye en los servicios. Las pilas, líquidos, polvos, imanes, artículos de marca, productos frágiles y objetos de gran tamaño pueden cambiar las opciones o incluso impedir el envío. Utiliza la clasificación real registrada en el almacén y las condiciones vigentes. Seleccionar mercancía ordinaria solo porque muestra más servicios daría una estimación engañosa.",
+    "Para un paquete mixto, anota todos los atributos que puedan afectar al conjunto. Si un accesorio electrónico contiene una batería, simular un envío compuesto solo de ropa no es una comparación válida. Consulta la guía de artículos restringidos para aclarar dudas antes de contar con un servicio."
+   ]
+  },
+  {
+   "heading": "Separa el peso de los artículos, el peso embalado y el peso facturable",
+   "paragraphs": [
+    "El peso de los artículos describe lo que hay en el almacén. El peso embalado incluye la caja y las protecciones del paquete terminado. El facturable es la medida que el servicio emplea para cobrar. Los tres pueden diferir. Sumar solo los productos omite el embalaje. Incluso una estimación del peso embalado puede pasar por alto un cargo por volumen.",
+    "Anota los pesos con su procedencia y fecha. Supón que tres artículos ficticios pesan en el almacén 760 g, 610 g y 420 g. La suma es 1,79 kg; no predice el peso del envío final. Para el escenario inicial, puedes añadir un margen de embalaje identificado como supuesto. Sustitúyelo por datos medidos cuando estén disponibles. No presentes ese margen como una cantidad prometida por Sugargoo."
+   ]
+  },
+  {
+   "heading": "Introduce las tres dimensiones exteriores de una misma caja",
+   "paragraphs": [
+    "Largo, ancho y alto deben corresponder al exterior del mismo paquete y estar expresados en la misma unidad. No mezcles el largo de una caja de zapatos con el ancho del cartón exterior ni utilices medidas de una prenda como dimensiones de envío. Si aún no tienes la caja final, mide una configuración realista o prepara varios escenarios: comprimido, normal y con protección reforzada.",
+    "Imagina un lote de ropa de 2,2 kg. En el escenario A, con embalaje ordinario, mide 38 × 29 × 17 cm. En el B, se conserva una caja rígida de venta y pasa a 46 × 34 × 24 cm. El peso en la báscula puede cambiar poco a pesar de una gran diferencia de volumen. Lo que interesa es comprobar si el embalaje modifica los servicios o los costes que muestra el simulador sin inventar un precio."
+   ]
+  },
+  {
+   "heading": "Comprueba el divisor volumétrico de cada servicio",
+   "paragraphs": [
+    "Los transportistas pueden cobrar por el peso volumétrico de paquetes poco densos. Tanto el divisor como el redondeo varían con el servicio. Una fórmula tomada de una publicación antigua podría no corresponder a la opción actual. Si los detalles del servicio indican el cálculo, anótalo junto al presupuesto. Si no lo especifican, deja el peso facturable pendiente de confirmar y compara las estimaciones mostradas sin inventar una fórmula.",
+    "La guía de envíos al Reino Unido explica las comprobaciones propias de los servicios. Aquí el objetivo es compararlos con destino, atributos, peso y dimensiones idénticos. Cambiar dos datos a la vez impide saber cuál causó una diferencia de precio."
+   ]
+  },
+  {
+   "heading": "Guarda el resultado completo",
+   "paragraphs": [
+    "Para cada opción que consideres, registra la fecha, el destino, el tipo de mercancía, el peso y las dimensiones introducidos, el nombre exacto del servicio, el importe y la divisa, el intervalo de entrega si aparece, el tipo de seguimiento, los límites de peso o tamaño, las exclusiones y cualquier información fiscal o de seguro. Una captura recortada que solo muestra un precio bajo deja demasiadas preguntas abiertas.",
+    "Si la interfaz muestra una moneda distinta de la libra esterlina, conserva la cifra original. Para el presupuesto puedes convertirla con un tipo de cambio fechado. Deja margen para la conversión real del pago y las comisiones del medio utilizado. Una conversión histórica no constituye un tipo de cambio fijo de Sugargoo."
+   ]
+  },
+  {
+   "heading": "Compara cambiando una sola variable",
+   "paragraphs": [
+    "Mantén iguales el peso, las medidas y el tipo de producto para comparar los servicios. Después conserva las demás condiciones y prueba un cambio de embalaje. Por último, compara agrupación y división asignando cada artículo a un único paquete. Así puedes distinguir el efecto de las restricciones del producto, el peso en báscula, el volumen o los cargos repetidos por paquete.",
+    "Para comparar un envío dividido, crea dos registros completos, paquete A y paquete B. No dividas el peso por dos y copies en ambos las dimensiones originales. La guía sobre agrupar o separar trata cuestiones que la calculadora no decide, como el riesgo de daños, la urgencia y la gestión de los registros."
+   ]
+  },
+  {
+   "heading": "Contrasta la estimación con el paquete definitivo",
+   "paragraphs": [
+    "Antes del pago, sitúa el escenario guardado junto a la ficha actual del paquete. Compara destino, número de artículos, características, peso real embalado, dimensiones, método de transporte, servicios añadidos, divisa y total. Anota cada diferencia. Un importe superior no indica necesariamente un error si el paquete es mayor, más pesado o de otra categoría. Un importe inferior tampoco garantiza que ya se hayan aplicado todos los ajustes.",
+    "Si el importe figura como estimación, depósito o cantidad sujeta a ajustes, conserva el texto exacto y compruébalo después con el movimiento en tu cuenta. El dato definitivo es el pago del paquete y cualquier ajuste documentado."
+   ]
+  },
+  {
+   "heading": "Lista para comprobar la estimación",
+   "paragraphs": [
+    "Define la decisión e identifica si el cálculo es inicial, del almacén o previo al pago.",
+    "Utiliza el destino británico exacto y confirma el código postal.",
+    "Registra todas las características que puedan limitar las opciones.",
+    "Separa el peso de los artículos, el peso embalado previsto y el peso facturable del servicio.",
+    "Introduce unas medidas exteriores coherentes para el mismo paquete.",
+    "Compara servicios con idénticos datos antes de cambiar el embalaje.",
+    "Guarda los límites, la moneda, el intervalo de entrega y las exclusiones con la estimación.",
+    "Prueba cada paquete separado como un envío completo.",
+    "Antes de pagar, contrasta cada dato con el paquete definitivo.",
+    "Guarda el cargo final y los ajustes aparte de la estimación inicial.",
+    "Una estimación útil al Reino Unido se puede reproducir. Indica qué sabías, qué datos eran supuestos y qué cambió al preparar el paquete en el almacén. Así aprovechas la calculadora para planificar sin convertir el resultado en una promesa.",
+    "Información verificada el 29 de agosto de 2026. Se contrastaron los campos y el alcance del proceso con la documentación pública de Sugargoo sobre «Shipping Fee Estimation» y la compra. Comprueba los servicios, precios, divisores, plazos y disponibilidad en tu cuenta y en los detalles del transporte vigente."
+   ]
+  }
+ ],
+ "sources": []
+}

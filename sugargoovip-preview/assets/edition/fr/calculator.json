@@ -1,0 +1,88 @@
+{
+ "title": "Calculateur de port Sugargoo pour le Royaume-Uni : estimer le coût d’un colis",
+ "description": "Renseignez la destination, les caractéristiques, le poids et les dimensions dans le calculateur Sugargoo pour le Royaume-Uni, puis vérifiez l’estimation avant de payer.",
+ "intro": "Le résultat n’est utile que si les données saisies correspondent au colis que vous allez réellement soumettre. Partez d’hypothèses identifiables, comparez des configurations identiques et conservez le prix final séparément. Pour une livraison au Royaume-Uni, le simulateur aide à repérer les services proposés pour une destination, un type de marchandises, un poids et des dimensions donnés. Le guide public de Sugargoo présente l’outil « Shipping Fee Estimation », qui accepte ces données avant même que l’entrepôt ait terminé l’emballage. Le résultat ne réserve pas un service et ne garantit pas la somme débitée. L’article peut arriver plus lourd que prévu, les protections peuvent augmenter le volume, une caractéristique peut exclure une ligne et le transporteur peut facturer un autre poids que celui de la balance. Conservez chaque simulation comme un scénario daté.",
+ "sections": [
+  {
+   "heading": "Définir la décision à prendre",
+   "paragraphs": [
+    "Avant de saisir un poids rond pour trouver le premier prix, formulez ce que vous voulez vérifier. Cherchez-vous à savoir si une boîte à chaussures rend le colis trop volumineux, à comparer un envoi groupé avec deux petits colis, ou à prévoir le budget du port ? Chaque question nécessite des données différentes.",
+    "Pour un budget préliminaire, vous pouvez utiliser l’annonce et les renseignements du vendeur en les signalant comme provisoires. À l’entrepôt, prenez les valeurs des fiches visibles dans votre compte. Avant le paiement, utilisez les données du colis préparé et la destination britannique exacte. Conservez chaque étape séparément ; écraser la première estimation ferait disparaître les éléments qui expliquent l’écart."
+   ]
+  },
+  {
+   "heading": "Utiliser la destination britannique exacte du colis",
+   "paragraphs": [
+    "Choisissez le Royaume-Uni et toute région demandée par l’outil. Vérifiez ensuite que le code postal et la destination de la fiche du colis correspondent à l’estimation. Un devis générique pour le Royaume-Uni peut ignorer les conditions d’une île, d’une zone isolée ou d’un code postal exclu. L’estimateur, l’écran des services et l’adresse de livraison doivent désigner le même lieu.",
+    "Si l’adresse n’est pas définitive, vérifiez-la à l’aide de la liste de contrôle des adresses britanniques avant de vous appuyer sur le résultat. Comparer une estimation pour l’Angleterre avec un envoi ensuite adressé en Irlande du Nord ou dans un autre territoire ne permet pas de conclure à une hausse de tarif."
+   ]
+  },
+  {
+   "heading": "Classer le produit avant d’entrer son poids",
+   "paragraphs": [
+    "La catégorie intervient dans la desserte. Piles, liquides, poudres, aimants, produits de marque, articles fragiles ou hors gabarit peuvent modifier la liste des services, voire empêcher l’expédition. Reprenez la catégorie enregistrée à l’entrepôt et les restrictions actuelles du service. Choisir « marchandises ordinaires » pour afficher davantage d’options fausserait l’estimation.",
+    "Pour un colis mixte, listez chaque caractéristique susceptible de limiter l’ensemble. Si un accessoire électronique contient une batterie, une estimation portant uniquement sur des vêtements ne convient pas. Consultez le guide des articles soumis à restrictions pour clarifier tout produit incertain avant de compter sur une ligne."
+   ]
+  },
+  {
+   "heading": "Distinguer le poids des articles, le poids emballé et le poids facturable",
+   "paragraphs": [
+    "Le poids des articles décrit ce qui se trouve en stock. Le poids emballé est celui du colis terminé, avec le carton et les protections. Le poids facturable est la valeur que le service utilise pour établir le prix. Ces trois chiffres peuvent différer. Additionner les seuls articles omet l’emballage. Une approximation du poids emballé peut aussi passer à côté du poids volumétrique.",
+    "Notez les poids, la source et la date. Imaginons trois articles pesés à l’entrepôt à 760 g, 610 g et 420 g. Leur somme est de 1,79 kg ; le colis final n’a pas encore été pesé. Pour un scénario préliminaire, ajoutez au besoin une marge explicitement désignée comme une hypothèse d’emballage. Remplacez-la par la mesure réelle dès qu’elle est disponible. Cette marge n’est pas un engagement de Sugargoo."
+   ]
+  },
+  {
+   "heading": "Saisir les trois dimensions d’un même carton",
+   "paragraphs": [
+    "La longueur, la largeur et la hauteur doivent décrire l’extérieur du même paquet, exprimé dans une seule unité. Ne combinez pas la longueur d’une boîte à chaussures avec la largeur du carton extérieur. Les mensurations d’un vêtement ne décrivent pas son colis. À défaut de carton terminé, mesurez une configuration réaliste ou créez plusieurs scénarios : serré, normal et renforcé.",
+    "Prenons un lot fictif de vêtements de 2,2 kg. Avec un emballage ordinaire, le scénario A mesure 38 × 29 × 17 cm. Le scénario B conserve une boîte de vente rigide et passe à 46 × 34 × 24 cm. Le poids réel peut rester proche alors que le volume occupé augmente fortement. L’objectif est de voir si ce choix modifie les services proposés ou le coût indiqué par le simulateur, sans inventer de prix."
+   ]
+  },
+  {
+   "heading": "Vérifier le diviseur volumétrique de chaque service",
+   "paragraphs": [
+    "Les transporteurs peuvent facturer les colis peu denses selon leur poids volumétrique. Le diviseur et les règles d’arrondi peuvent varier. Une formule ancienne peut ne pas correspondre au service affiché. Si la fiche actuelle précise le calcul, consignez-le avec le devis. Si elle n’en dit rien, laissez le poids facturable à confirmer et comparez les estimations affichées au lieu de supposer une formule.",
+    "Le guide d’expédition au Royaume-Uni détaille les vérifications propres aux modes de transport. Ici, la comparaison entre services doit conserver la même destination, les mêmes attributs, le même poids et les mêmes dimensions. Si vous modifiez deux paramètres à la fois, vous ne pourrez plus attribuer l’écart de prix à l’un d’eux."
+   ]
+  },
+  {
+   "heading": "Conserver toutes les conditions du devis",
+   "paragraphs": [
+    "Pour chaque résultat intéressant, relevez la date, la destination, la catégorie, le poids et les mesures saisis, le nom exact du service, le montant et sa devise, la fourchette de livraison éventuellement affichée, le suivi, les limites de taille ou de poids, les exclusions et les conditions fiscales ou d’assurance mentionnées. Une capture recadrée sur le seul prix le plus bas ne suffit pas pour revenir sur la décision.",
+    "Si le simulateur affiche une devise autre que la livre sterling, conservez le montant d’origine. Convertissez-le pour votre budget avec un taux daté et prévoyez la conversion effectivement pratiquée au paiement et les éventuels frais du prestataire. Une conversion ancienne ne constitue pas un taux Sugargoo fixe."
+   ]
+  },
+  {
+   "heading": "Faire varier un seul paramètre à la fois",
+   "paragraphs": [
+    "Commencez par garder le poids, les dimensions et la catégorie identiques pour comparer les services. Puis gardez les autres conditions stables pour tester l’emballage. Comparez enfin un regroupement et une division en affectant chaque article à un seul colis. Vous verrez si l’écart tient à l’admissibilité des biens, au poids, au volume ou aux frais répétés pour chaque colis.",
+    "Pour un envoi séparé, créez deux fiches complètes, colis A et colis B. Diviser le poids par deux tout en conservant pour chacun les dimensions du carton initial donnerait une fausse comparaison. Le guide sur le regroupement détaille d’autres critères que le simulateur ne tranche pas : risque de casse, urgence et gestion des références."
+   ]
+  },
+  {
+   "heading": "Rapprocher l’estimation du colis définitif",
+   "paragraphs": [
+    "Avant de payer, placez votre scénario enregistré à côté de la fiche actuelle du colis. Comparez destination, nombre d’articles, caractéristiques, poids emballé réel, dimensions, service, prestations, devise et total. Notez chaque différence. Un total supérieur ne signifie pas automatiquement qu’il y a une erreur si le carton a grandi, si son poids a augmenté ou si une catégorie a changé. Un total inférieur ne garantit pas non plus qu’il n’y aura plus de régularisation.",
+    "Si le montant est présenté comme une estimation, un dépôt ou une somme ajustable, gardez le libellé exact puis rapprochez-le de l’écriture sur le compte. Le paiement du colis et les éventuelles régularisations documentées constituent la trace finale."
+   ]
+  },
+  {
+   "heading": "Liste de vérification du calcul",
+   "paragraphs": [
+    "Définissez la décision et précisez si le scénario est préliminaire, établi à l’entrepôt ou réalisé avant paiement.",
+    "Indiquez la destination britannique exacte et confirmez son code postal.",
+    "Consignez les caractéristiques qui peuvent limiter les services.",
+    "Séparez poids des articles, poids emballé prévu et poids facturable du service.",
+    "Saisissez des dimensions extérieures cohérentes pour un même colis.",
+    "Comparez les services avec les mêmes valeurs avant de modifier l’emballage.",
+    "Gardez avec l’estimation limites, devise, délais indicatifs et exclusions.",
+    "Simulez chaque colis séparé dans son intégralité.",
+    "Avant de payer, vérifiez chaque donnée sur le colis définitif.",
+    "Conservez la somme réglée et les ajustements séparément de la première estimation.",
+    "Une estimation exploitable permet de reproduire le calcul. Elle précise ce que vous saviez, ce que vous supposiez et ce qui a changé après la préparation du colis. Cela rend le simulateur utile pour le budget sans transformer une estimation en promesse.",
+    "Informations vérifiées le 29 août 2026. Les données acceptées et les étapes du simulateur ont été confrontées à la documentation publique de Sugargoo sur « Shipping Fee Estimation » et la commande. Services, prix, diviseurs, délais et disponibilité sont à vérifier dans le compte et les conditions du service au moment de l’expédition."
+   ]
+  }
+ ],
+ "sources": []
+}

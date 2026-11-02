@@ -1,0 +1,70 @@
+{
+ "title": "¿Sugargoo no abre un enlace? Cómo comprobar un anuncio de Weidian o Taobao",
+ "description": "Resuelve los problemas habituales con enlaces, verifica la variante exacta del vendedor y utiliza DIY Order si Sugargoo no puede importar un anuncio activo que admita pedidos.",
+ "intro": "Si un enlace de Weidian, Taobao o 1688 no carga en Sugargoo, abre primero la página original del producto. Comprueba que el vendedor sigue ofreciendo el artículo y que puedes seleccionar color, talla y cantidad. Copia el enlace de compartir del producto, ábrelo para comprobar adónde lleva y pégalo después en la búsqueda de productos de Sugargoo. Si el anuncio sigue activo pero no se importa, el formulario oficial DIY Order puede permitirte introducir los datos manualmente. Un anuncio retirado, un enlace que el importador no admite y una restricción expresa de compra requieren respuestas distintas.",
+ "sections": [
+  {
+   "heading": "Identifica dónde falla el enlace",
+   "paragraphs": [
+    "Empieza por la dirección que tienes. Una fila de una lista de compras puede enlazar a una descripción local, la página de un agente, una tienda o el artículo original. Abre la fila y busca el destino específico del producto. El título de la página, el mercado, el vendedor y el identificador del artículo te ayudan a confirmar si llegaste al anuncio correcto. Si aparecen muchos productos independientes y no puedes seleccionar la variante del que necesitas, busca su ficha individual.",
+    "Comprueba el resultado antes de pegar nada en Sugargoo. Si el mercado pide que inicies sesión, utiliza su procedimiento normal cuando esté disponible. Una pantalla de acceso por sí sola no demuestra que el anuncio se haya retirado. Si el vendedor muestra el artículo como no disponible o retirado, guarda la referencia y busca una confirmación actual del propio vendedor. Introducir la misma dirección inactiva en varios agentes no demuestra que el producto siga a la venta."
+   ]
+  },
+  {
+   "heading": "Copia una dirección que abra el producto por sí sola",
+   "paragraphs": [
+    "En la ficha del vendedor, utiliza la opción de compartir o de copiar el enlace de ese artículo. Algunas aplicaciones generan un bloque que incluye el nombre del producto, texto promocional y una dirección. Separa la URL y verifica que abre el producto concreto. Evita pegar el mensaje entero, una captura de pantalla o el enlace general de la tienda en un campo que pide una URL de producto. Conserva el original intacto hasta confirmar el destino. Eliminar a mano fragmentos desconocidos puede cambiar la página a la que lleva.",
+    "Para un artículo de Weidian, comprueba si el destino compartido identifica al vendedor y al producto esperados. En Taobao, compara el producto que abre el enlace compartido desde la aplicación con el que tenías en pantalla. Una dirección corta puede abrir bien en el navegador y fallar al intentar leerla un importador. En ese caso, prueba a copiar la dirección completa desde la página abierta del mercado si está disponible. Confirma que abre el mismo artículo y vuelve a probar la búsqueda normal en Sugargoo."
+   ]
+  },
+  {
+   "heading": "Verifica la variante aunque Sugargoo cargue el artículo",
+   "paragraphs": [
+    "Una importación correcta solo confirma que el sistema encontró un producto. Compara el título del vendedor, las imágenes, el nombre de la opción y el precio para la combinación que vas a comprar. Selecciona activamente color y talla y lee la opción completa que queda marcada. Un mismo título puede abarcar distintos diseños y la imagen principal puede mostrar un modelo más caro que la opción predeterminada. Corrige cualquier variante errónea antes de pagar, aunque la ficha haya cargado sin problemas.",
+    "Imagina una sudadera lisa y otra estampada bajo el mismo título. La miniatura muestra el estampado, pero la opción predeterminada es negra lisa. Una nota como «la de la foto» deja margen a interpretaciones. Guarda la descripción exacta de la variante del vendedor, el color, la talla y la imagen que coincida. Si la opción estampada ha desaparecido, pregunta si el vendedor todavía la suministra. No la sustituyas sin aclararlo por otra con el único fin de completar el pedido."
+   ]
+  },
+  {
+   "heading": "Interpreta juntos el precio y la cantidad",
+   "paragraphs": [
+    "Averigua qué significa una unidad en el anuncio. Sobre todo en 1688, el vendedor puede indicar un pedido mínimo o precios por tramos. La imagen puede mostrar un conjunto completo aunque la opción seleccionada corresponda a un solo componente. Comprueba si una unidad equivale a una pieza, un par o un paquete y si el precio disponible corresponde a tu cantidad. Cuando el mercado y el agente muestren cifras diferentes, compara primero la variante y la unidad antes de suponer que ha cambiado el precio.",
+    "Separa la entrega nacional del futuro envío internacional. El vendedor puede cobrar por entregar el artículo al almacén de Sugargoo. El paquete al Reino Unido es una transacción posterior que depende de las mercancías y del embalaje. Si el vendedor no ha confirmado el porte nacional, anota la duda y solicita una confirmación. No inventes un coste cero ni pongas una estimación del transporte al Reino Unido en el campo del porte nacional. Ambos errores dificultan saber qué se ha comprometido a comprar el agente y a qué precio."
+   ]
+  },
+  {
+   "heading": "Usa DIY Order para un anuncio activo cuya compra esté permitida",
+   "paragraphs": [
+    "Sugargoo presenta DIY Order como una vía manual cuando el importador no reconoce un anuncio. Abre el formulario desde la cuenta oficial e introduce el enlace original si está disponible, el nombre del producto y de la tienda, la variante exacta y la cantidad deseada. Añade una imagen pertinente si el campo lo permite. Deja instrucciones breves que el comprador pueda seguir. Si dos opciones son parecidas, señala la diferencia con las palabras del vendedor.",
+    "Introduce el precio unitario y el coste del transporte nacional según la información actual del vendedor. Las instrucciones de Sugargoo indican que, si el porte nacional no está claro, puedes anotarlo en observaciones para que el equipo de compra lo confirme. Revisa el artículo, la unidad y la cantidad antes de enviar la solicitud. Si aparece una prohibición o restricción explícita, respétala o pide aclaración a atención al cliente. Cambiar la descripción en el formulario manual no subsana una restricción de compra ni convierte un artículo en apto para el envío internacional."
+   ]
+  },
+  {
+   "heading": "Separa la investigación previa de las fotos QC del almacén",
+   "paragraphs": [
+    "Un anuncio activo puede incluir fotos del vendedor y, en algunos casos, acceso a imágenes de compras anteriores. Cuando se indique, mira la variante y la fecha. Una foto antigua puede sugerirte que solicites una etiqueta legible o compruebes la posición de un estampado. No muestra el estado, las medidas ni el color de la unidad que recibirás tú. Guarda la imagen de referencia aparte del registro de tu propia inspección.",
+    "Cuando los productos lleguen al almacén de Sugargoo, localiza el artículo exacto en el Packing Center y abre sus fotos. Contrasta su identidad y cantidad con el pedido original antes de revisar los detalles importantes. Si la etiqueta muestra otra talla, guarda ambas imágenes y pide al agente que lo compruebe. Si la etiqueta simplemente no se lee, pregunta si pueden facilitar un primer plano. No incluyas el artículo en el envío internacional hasta tomar una decisión."
+   ]
+  },
+  {
+   "heading": "Comunica la discrepancia con los datos necesarios para reproducirla",
+   "paragraphs": [
+    "Reúne en un mensaje la URL original, el vendedor, la referencia del artículo, el color y la talla seleccionados, el precio unitario mostrado, la cantidad y el porte nacional. Di en qué paso se produce el fallo. «El anuncio abre y me deja elegir azul marino en M, pero Sugargoo solo importa el negro» resulta mucho más útil que «el enlace no funciona». Añade el texto del error y capturas recortadas. Oculta la información privada de cuenta o pago y plantea las consultas sobre pedidos por los canales oficiales.",
+    "Antes de pagar, compara una última vez el registro de compra del agente con la opción del vendedor. Comprueba si se ha confirmado cualquier duda sobre precio, porte nacional o existencias, y si autorizaste los cambios. Guarda la referencia final del producto junto al número de pedido para poder identificarlo aunque el vendedor modifique el anuncio. Cuando llegue, tendrás un punto de partida fiable para examinar las fotos y decidir si lo envías."
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "label": "Instrucciones y datos necesarios para DIY Order en Sugargoo",
+   "url": "https://blog.sugargoo.com/how-to-use-diy-order-on-sugargoo/"
+  },
+  {
+   "label": "Cómo compartir un enlace de producto de Weidian según Sugargoo",
+   "url": "https://blog.sugargoo.com/how-to-use-weidian-link-sugargoo-superbuy-acbuy-mulebuy-oopbuy/"
+  },
+  {
+   "label": "Proceso de compra e inspección en el almacén de Sugargoo",
+   "url": "https://blog.sugargoo.com/how-does-ordering-from-sugargoo-work-learn-how-to-buy-from-china-step-by-step/"
+  }
+ ]
+}

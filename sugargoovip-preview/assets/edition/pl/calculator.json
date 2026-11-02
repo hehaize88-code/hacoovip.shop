@@ -1,0 +1,88 @@
+{
+ "title": "Kalkulator wysyłki Sugargoo do Wielkiej Brytanii: jak wycenić paczkę",
+ "description": "Oszacuj przewóz na podstawie dokładnego adresu, rodzaju towaru, masy i wymiarów, a przed płatnością porównaj wycenę Sugargoo z gotową paczką.",
+ "intro": "Wynik kalkulatora ma sens, jeśli wprowadzone dane odpowiadają paczce, którą planujesz nadać. Zapisz założenia, porównuj te same konfiguracje i oddziel szacunek od końcowej opłaty. Przy dostawie do Wielkiej Brytanii kalkulator pomaga wybrać usługi warte sprawdzenia dla danego miejsca, rodzaju towaru, masy i wielkości przesyłki. Oficjalna instrukcja narzędzia Shipping Fee Estimation przewiduje podanie właśnie tych danych. Możesz porównać trasy, zanim magazyn zakończy pakowanie. Wynik nie oznacza rezerwacji ani gwarancji dostępności czy ostatecznej kwoty obciążenia. Towar może ważyć więcej niż w opisie, zabezpieczenia mogą zmienić wymiary, a dana usługa może wykluczać określoną cechę produktu lub naliczać cenę według masy rozliczeniowej. Zapisuj każdą kalkulację jako osobny wariant z datą.",
+ "sections": [
+  {
+   "heading": "Najpierw określ decyzję, którą chcesz podjąć",
+   "paragraphs": [
+    "Zamiast wpisywać okrągłą liczbę tylko po to, aby znaleźć najniższą cenę, zapisz cel obliczenia. Czy chcesz sprawdzić, jak zachowanie pudełka na buty wpłynie na paczkę, porównać konsolidację z dwoma mniejszymi nadaniami, czy odłożyć odpowiednią kwotę na międzynarodową dostawę? Każde z tych pytań wymaga nieco innych danych.",
+    "We wstępnej kalkulacji budżetu możesz użyć danych z oferty lub od sprzedawcy i oznaczyć je jako tymczasowe. Po odbiorze użyj zapisów towarów na swoim koncie. Przed płatnością weź dane przygotowanej paczki i dokładne miejsce odbioru w Wielkiej Brytanii. Zapisuj te etapy oddzielnie, bo nadpisanie pierwszej wyceny usuwa informację pozwalającą wyjaśnić późniejsze różnice."
+   ]
+  },
+  {
+   "heading": "Wybierz dokładne miejsce docelowe z danych przesyłki",
+   "paragraphs": [
+    "Wybierz Wielką Brytanię i region, jeśli kalkulator o niego pyta. Następnie porównaj miejsce doręczenia i kod pocztowy z danymi paczki. Wycena dla ogólnej lokalizacji brytyjskiej może nie uwzględnić obsługi odległych obszarów, wysp lub wyłączenia określonych kodów pocztowych. Kalkulator, wybór trasy i adres doręczenia powinny dotyczyć tego samego miejsca.",
+    "Jeśli adres nie jest ostateczny, najpierw potwierdź go za pomocą listy kontrolnej brytyjskiego adresu. Różnica między wyceną dla Anglii a ceną paczki później skierowanej do Irlandii Północnej lub innego terytorium nie musi oznaczać podwyżki."
+   ]
+  },
+  {
+   "heading": "Ustal kategorię produktu przed wpisaniem masy",
+   "paragraphs": [
+    "Kategorie towarów wpływają na rzeczywisty wybór usług. Baterie, płyny, proszki, magnesy, towary markowe, kruche lub ponadwymiarowe mogą ograniczać listę albo wykluczać przewóz. Korzystaj z faktycznej klasyfikacji magazynowej oraz bieżących warunków usługi. Wybranie kategorii zwykłego towaru tylko dlatego, że daje więcej opcji, prowadzi do błędnej kalkulacji.",
+    "Przy mieszanej paczce wypisz wszystkie cechy mogące ograniczyć całą przesyłkę. Jeśli choć jedno akcesorium elektroniczne ma baterię, wycena dla samych ubrań nie jest poprawnym porównaniem. Przed wyborem usługi sprawdź niepewne pozycje z pomocą poradnika o towarach objętych ograniczeniami."
+   ]
+  },
+  {
+   "heading": "Rozdziel masę towarów, masę po pakowaniu i masę rozliczeniową",
+   "paragraphs": [
+    "Masa towarów określa, ile ważą rzeczy w magazynie. Masa spakowanej paczki obejmuje również opakowanie. Masa rozliczeniowa określa podstawę naliczenia ceny w danej usłudze. Te wartości mogą być różne. Zsumowanie samych produktów pomija karton i ochronę, a nawet szacunkowa masa po pakowaniu może nie uwzględnić objętościowej podstawy naliczania opłaty.",
+    "Zapisz źródło i datę każdego pomiaru. Przykładowe trzy towary mogą ważyć według magazynu 760 g, 610 g i 420 g. Suma 1,79 kg jest masą samych przedmiotów i nie przewiduje masy końcowej. W pierwszej symulacji możesz osobno dopisać wyraźnie oznaczony zapas na opakowanie. Zastąp go pomiarem, gdy będzie dostępny. Nie przedstawiaj własnego założenia jako zadeklarowanej przez Sugargoo masy opakowania."
+   ]
+  },
+  {
+   "heading": "Podaj trzy wymiary jednego rzeczywistego opakowania",
+   "paragraphs": [
+    "Długość, szerokość i wysokość mają opisywać to samo opakowanie zewnętrzne i mieć jednakową jednostkę. Nie łącz długości pudełka na buty z szerokością zewnętrznego kartonu ani wymiarów ubrania z wymiarami paczki. Jeśli paczki jeszcze nie ma, zmierz realistyczny układ albo przygotuj kilka wariantów, na przykład po kompresji, standardowy i z większą ochroną.",
+    "Rozważ przykładową grupę ubrań ważącą 2,2 kg. Wariant A po zwykłym zapakowaniu ma 38 × 29 × 17 cm. Wariant B zawiera sztywne pudełko sklepowe, więc ma 46 × 34 × 24 cm. Masa może pozostać zbliżona, choć objętość istotnie wzrośnie. Nie musisz zgadywać opłaty. Sprawdź, czy zmiana opakowania wpływa na listę usług lub wycenę w aktualnym kalkulatorze."
+   ]
+  },
+  {
+   "heading": "Nie stosuj jednego dzielnika objętości dla wszystkich usług",
+   "paragraphs": [
+    "Przewoźnicy mogą wyceniać duże, lekkie paczki według masy gabarytowej, ale dzielnik i sposób zaokrąglania zależą od trasy. Wzór ze starego wpisu nie musi odpowiadać obecnej usłudze. Jeśli szczegóły trasy podają sposób obliczania, zapisz go przy wycenie. Jeśli nie, oznacz masę rozliczeniową jako nieustaloną i porównaj kwoty wyświetlane przez kalkulator bez wymyślania reguły.",
+    "Poradnik wysyłki do Wielkiej Brytanii omawia warunki poszczególnych usług. W kalkulatorze skup się początkowo na jednakowych danych dla wszystkich tras: adresie, cechach towaru, masie i wymiarach. Jednoczesna zmiana dwóch parametrów nie pozwoli przypisać różnicy ceny do konkretnej przyczyny."
+   ]
+  },
+  {
+   "heading": "Zachowaj pełny wynik, nie tylko niską cenę",
+   "paragraphs": [
+    "Dla każdej poważnie rozważanej opcji zapisz datę, miejsce doręczenia, rodzaj towaru, wpisaną masę i wymiary, pełną nazwę usługi, kwotę i walutę. Dodaj przewidywany czas, jeśli jest podany, szczegóły śledzenia, limity wymiarów lub masy, wyłączenia oraz sformułowania odnoszące się do podatków i ubezpieczenia. Zrzut samej najniższej ceny nie pozwala odtworzyć warunków.",
+    "Zapisuj również walutę. Jeśli kwotę pokazano w walucie innej niż GBP, zachowaj wartość źródłową. Dla budżetu możesz przeliczyć ją po kursie z określonej daty, uwzględniając możliwą różnicę kursu przy płatności i opłaty dostawcy płatności. Historyczne przeliczenie nie jest stałym kursem Sugargoo."
+   ]
+  },
+  {
+   "heading": "W każdym porównaniu zmieniaj jeden parametr",
+   "paragraphs": [
+    "Najpierw porównaj metody dostawy przy stałych wymiarach, masie i typie towaru. Następnie przy tym samym zestawie warunków usługi zmień opakowanie. Na końcu porównaj konsolidację z podziałem, przypisując każdą rzecz dokładnie do jednej paczki. Zobaczysz wtedy, czy decyduje dopuszczalność produktu, masa na wadze, objętość czy powtórzone koszty osobnych przesyłek.",
+    "Podział przetestuj jako dwa pełne zapisy: paczkę A i paczkę B. Nie dziel po prostu masy przez dwa, pozostawiając przy obu pierwotne wymiary dużego kartonu. Przy pytaniach o uszkodzenia, pilność dostawy i prowadzenie dokumentacji zajrzyj do poradnika o podziale i konsolidacji. Kalkulator nie podejmie tych decyzji."
+   ]
+  },
+  {
+   "heading": "Porównaj wycenę z ostatecznymi danymi paczki",
+   "paragraphs": [
+    "Przed płatnością zestaw zapisany wariant i bieżący formularz przesyłki. Porównaj miejsce docelowe, liczbę i cechy produktów, masę po zapakowaniu, wymiary, usługę, opcje dodatkowe, walutę i sumę. Oznacz różnice. Wyższa kwota nie oznacza błędu, jeśli paczka jest większa, cięższa lub inaczej sklasyfikowana. Niższa kwota nie rozstrzyga, czy zakończono już wszystkie późniejsze korekty.",
+    "Jeżeli opłatę opisano jako szacunkową, depozyt lub kwotę podlegającą korekcie, zachowaj dokładne sformułowanie i później porównaj je z zapisem na koncie. Rozliczenie dokumentują faktyczna płatność za paczkę i zapisane zmiany, a nie zapamiętany wynik pierwszej kalkulacji."
+   ]
+  },
+  {
+   "heading": "Lista kontrolna wyceny",
+   "paragraphs": [
+    "Zapisz decyzję i określ etap: wstępny budżet, magazyn lub przed płatnością.",
+    "Użyj dokładnego miejsca dostawy w Wielkiej Brytanii i sprawdź kod pocztowy paczki.",
+    "Zapisz wszystkie cechy towarów, które mogą ograniczyć wybór usługi.",
+    "Oddziel masę produktów, przewidywaną masę paczki i masę rozliczeniową usługi.",
+    "Wprowadź jeden spójny zestaw wymiarów zewnętrznych paczki.",
+    "Przed zmianą opakowania porównaj trasy przy identycznych danych.",
+    "Z wyceną zachowaj limity usługi, walutę, przewidywany czas i wyłączenia.",
+    "Mniejsze paczki po podziale wyceniaj jako oddzielne, kompletne przesyłki.",
+    "Przed zapłatą porównaj wszystkie dane z gotową paczką.",
+    "Zachowaj końcową opłatę i późniejsze korekty oddzielnie od początkowej wyceny.",
+    "Miarodajna wycena wysyłki Sugargoo do Wielkiej Brytanii pozwala odtworzyć warunki sprawdzenia: co było wiadome, co założono i co zmieniło się po przygotowaniu prawdziwej paczki. Dzięki takiej dokumentacji możesz posłużyć się kalkulatorem do planowania i rozsądnie potraktować niepewność ceny.",
+    "Informacje sprawdzono 29 sierpnia 2026 r. Wymagane dane i zakres obliczeń zweryfikowano w publicznych materiałach Sugargoo o szacowaniu kosztów oraz składaniu zamówień. Aktualną trasę, cenę, dzielnik, czas i dostępność sprawdź na bieżąco na koncie i w warunkach usługi."
+   ]
+  }
+ ],
+ "sources": []
+}

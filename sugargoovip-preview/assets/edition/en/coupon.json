@@ -1,0 +1,66 @@
+{
+ "title": "Sugargoo Shipping Coupon Not Working? What to Check Before You Pay",
+ "description": "Find a missing Sugargoo shipping coupon, check which freight charge qualifies and compare the amount due before paying for a UK parcel.",
+ "intro": "Open the coupon in the Sugargoo account that holds your parcel and read its conditions. Then open the international shipping payment for that parcel. A freight coupon can be visible in your account while remaining unavailable at product checkout, on an ineligible shipment or after it expires. First identify what you see: the coupon is missing, it appears but cannot be selected, or it is selected and the amount looks wrong. Each symptom calls for a different check. Keep the current payment screen available so you can work with the actual charge.",
+ "sections": [
+  {
+   "heading": "A shipping coupon is missing at checkout",
+   "paragraphs": [
+    "Start with the purchase you are about to pay for. Paying a seller for an item and its delivery to the warehouse is an earlier stage than paying for a parcel to the UK. Sugargoo's coupon guidance places freight coupons at the international shipping payment step. A buyer selecting a sweatshirt size and paying the seller has no UK parcel charge yet. The same buyer can check for an eligible freight coupon after the warehouse receives the item and they prepare a parcel.",
+    "If you are already arranging international shipping, sign into the account used to claim the coupon and open its coupon list. Look for a specific coupon with a value, a validity period and conditions. A screenshot of a promotion or the advertised total value of a welcome pack does not identify an individual coupon available for this payment. Open the entry and read the status. If you cannot find it in any status, check the original offer for a claim step and eligibility before looking for a checkout error."
+   ]
+  },
+  {
+   "heading": "An available coupon cannot be selected",
+   "paragraphs": [
+    "Read the start as well as the end of the validity period. A newly claimed coupon can have a future start date. A coupon may also remain visible in the account after its use period ends. If the parcel is close to a deadline, check any time zone shown on the offer. Where the exact cut-off is unclear, ask support to confirm the remaining window before relying on the saving. A saved image of a coupon taken days earlier cannot show its present status.",
+    "Check any wording that limits use to an account type, a shipment, a destination or named shipping lines. Some Sugargoo offers distinguish new users from buyers who have already completed an international shipment. Use the definition printed on the offer in your account. When a line or destination condition is listed, compare the full service name and UK address selection with those on the parcel. Similar-looking route names can identify separate services. If no such restriction appears, record that fact and move to the minimum charge."
+   ]
+  },
+  {
+   "heading": "Compare the threshold with the eligible freight charge",
+   "paragraphs": [
+    "Find the minimum spend in the coupon conditions and the currency next to it. Then locate the freight charge at checkout for this particular parcel. The combined value of the goods, domestic seller postage and international shipping can exceed a minimum even when the qualifying freight falls below it. Add-on services may be displayed alongside freight. Check whether the coupon conditions actually count them before including them in your comparison. If the interface shows two currencies, compare amounts in the currency used for the threshold.",
+    "Suppose a hypothetical coupon offers 20 units off a qualifying freight charge of at least 200 units. A parcel with 190 units of eligible freight and 25 units of additional services has a total of 215. If only freight qualifies, it still misses the threshold by 10. These figures illustrate the arithmetic and are not an offer. The same principle applies when the eligible freight has fallen since the first estimate. Start again from the amount displayed for the current parcel rather than trying to match the original estimate."
+   ]
+  },
+  {
+   "heading": "Recheck after repacking or switching a UK line",
+   "paragraphs": [
+    "Saving space or changing a service can bring the freight below a coupon threshold. That can still be the best outcome for your budget. Compare the complete amounts due, with the same destination, parcel contents and required protections. Include any packing service you would actually purchase. If a cheaper line without a coupon costs less overall and meets your needs, paying extra to activate the coupon does not create a saving.",
+    "Here is a second illustrative comparison. Line A asks for 195 units and the coupon cannot be used. Line B asks for 210 and accepts a 10-unit reduction, leaving 200. Line A is still five units cheaper before any differences in optional services. If the two routes differ in eligibility, tracking or handling, examine those differences separately. Avoid adding an item just to reach a threshold without calculating its purchase cost, packing needs and effect on the final freight. Adding a bulky item could also change which services remain available."
+   ]
+  },
+  {
+   "heading": "A selected coupon seems to leave the price unchanged",
+   "paragraphs": [
+    "Trace the amounts on one screen in the same currency. Write down the freight before the coupon, any separate charges, the coupon deduction and the final payable amount. Some buyers compare the original item order with the shipping payment and look for a change in the wrong place. Others compare a route estimate with a later packed parcel and attribute the difference to the coupon. Use the same parcel configuration for the before-and-after comparison wherever the payment screen allows it.",
+    "Check whether another coupon is selected already. Sugargoo generally describes one coupon per shipping order and limits on combining coupons. A reduced route price may already be shown before an individual coupon is selected. Whether the two can be combined depends on the specific offer. Compare the final amount displayed for each permitted choice. Do not assume that every figure in a multi-coupon pack can be deducted from a single parcel, or that clicking a second coupon adds its value to the first."
+   ]
+  },
+  {
+   "heading": "Check coupon status before repeating a payment",
+   "paragraphs": [
+    "If you changed devices, signed in again or returned to an old checkout tab, open the current parcel from your account. First confirm whether the parcel is still unpaid or whether a payment is already pending or complete. Also look at the coupon's current status. A used coupon may be associated with an earlier parcel. A cancelled parcel does not automatically establish that the coupon was reissued. Look for the entry in your account or ask support to check its history.",
+    "When the coupon appears eligible and the parcel is definitely unpaid, record the current total and reopen checkout once. Sugargoo's troubleshooting guidance suggests refreshing the page or signing in again when the displayed state is out of date. After reopening, confirm the correct account, parcel and shipping line before selecting the coupon. If payment status is uncertain, resolve it through the order and payment records first. A second payment is a much more difficult problem to trace than an unapplied discount."
+   ]
+  },
+  {
+   "heading": "Ask support to check one coupon against one parcel",
+   "paragraphs": [
+    "Prepare the coupon name or reference, its status and validity, the parcel number, destination and full line name. Include the eligible freight amount and currency, the expected deduction and the exact message at checkout. A cropped image of the coupon conditions and a second image showing the relevant price breakdown usually explain more than a screenshot of the headline total. Remove payment details and unrelated order information before sharing. Use the official support channel for any private account information.",
+    "Your question can be concise: ask which condition prevents this coupon from applying to that parcel at the displayed freight amount. If the coupon was marked used during an interrupted transaction, ask support to identify the associated parcel and payment status. Once the answer or updated checkout is available, check the final payable amount again. Save the confirmed charge and coupon deduction alongside the parcel reference so you can recognise the transaction later."
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "label": "Sugargoo coupon troubleshooting and eligibility rules",
+   "url": "https://blog.sugargoo.com/sugargoo-coupon-not-working/"
+  },
+  {
+   "label": "Sugargoo international shipping estimates and parcel charges",
+   "url": "https://blog.sugargoo.com/estimate-international-shipping-costs-sugargoo/"
+  }
+ ]
+}

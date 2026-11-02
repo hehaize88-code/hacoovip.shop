@@ -1,0 +1,70 @@
+{
+ "title": "Sugargoo lädt deinen Link nicht? So prüfst du Weidian- und Taobao-Angebote",
+ "description": "Prüfe den Produktlink und die genaue Verkäuferoption. Mit DIY Order kannst du ein verfügbares, zulässiges Angebot manuell angeben, falls Sugargoo es nicht importiert.",
+ "intro": "Lädt ein Weidian-, Taobao- oder 1688-Link bei Sugargoo nicht, öffne zuerst die ursprüngliche Produktseite. Prüfe, ob der Artikel noch angeboten wird und du Farbe, Größe und Menge auswählen kannst. Kopiere den Freigabelink des Produkts, kontrolliere durch Öffnen das Ziel und füge ihn in die Produktsuche von Sugargoo ein. Ist das Angebot aktiv, aber der Import scheitert weiterhin, kannst du seine Angaben gegebenenfalls über das offizielle Formular DIY Order manuell einreichen. Ein gelöschtes Angebot, ein nicht unterstützter Import und eine ausdrückliche Kaufbeschränkung erfordern unterschiedliche Schritte.",
+ "sections": [
+  {
+   "heading": "Finde die Stelle, an der der Link scheitert",
+   "paragraphs": [
+    "Schau dir die vorliegende Adresse an. Der Eintrag einer Produktliste kann auf eine Beschreibung, die Produktseite eines Agenten, einen Shop oder das eigentliche Verkäuferangebot führen. Öffne den Eintrag und suche den Link zum konkreten Produkt. Titel, Marktplatz, Verkäufer und Artikelnummer helfen dir zu erkennen, ob du beim richtigen Angebot gelandet bist. Zeigt die Seite zahlreiche eigenständige Produkte und keine auswählbare Variante für deinen Artikel, suche seine einzelne Produktseite.",
+    "Prüfe das Ergebnis vor dem Einfügen in Sugargoo. Fordert der Marktplatz eine Anmeldung, öffne das Angebot gegebenenfalls über seinen regulären Anmeldeweg. Eine Anmeldeaufforderung allein bedeutet nicht, dass das Angebot gelöscht wurde. Meldet der Verkäufer den Artikel als nicht verfügbar oder entfernt, bewahre die Referenz auf und bitte ihn um aktuelle Bestätigung. Mit derselben inaktiven Adresse bei mehreren Agenten lässt sich die Verfügbarkeit nicht nachweisen."
+   ]
+  },
+  {
+   "heading": "Kopiere eine Produktadresse, die sich separat öffnen lässt",
+   "paragraphs": [
+    "Verwende auf der Produktseite die Teilen- oder Link-kopieren-Funktion für genau diesen Artikel. Manche Apps liefern einen Textblock mit Produktnamen, Werbung und Webadresse. Trenne die Adresse vom Begleittext und vergewissere dich, dass sie genau dieses Produkt öffnet. In ein Feld für eine Produkt-URL gehören weder die vollständige Nachricht noch ein Screenshot oder der allgemeine Shoplink. Lass die ursprüngliche URL unverändert, bis du das Ziel geprüft hast. Wenn du unbekannte Bestandteile per Hand entfernst, kann sich das Ziel ändern.",
+    "Prüfe bei Weidian, ob das verlinkte Ziel Verkäufer und Artikel wie erwartet nennt. Vergleiche bei Taobao die über die Teilen-Funktion aufgerufene Seite mit dem Artikel in der App. Ein Kurzlink kann im Browser funktionieren, während der Importer ihn nicht auswerten kann. Kopiere in diesem Fall, sofern verfügbar, die vollständige Produktadresse aus der geöffneten Marktplatzseite. Prüfe durch erneutes Öffnen, ob sie denselben Artikel zeigt, und versuche es noch einmal mit der normalen Sugargoo-Suche."
+   ]
+  },
+  {
+   "heading": "Prüfe die Variante auch nach einem erfolgreichen Import",
+   "paragraphs": [
+    "Der erfolgreiche Import zeigt zunächst nur, dass Sugargoo ein Produkt gefunden hat. Vergleiche Titel, Fotos, Optionstext und Preis für die Kombination, die du kaufen möchtest. Wähle Farbe und Größe bewusst und lies die entstandene Option vollständig. Unter einem Titel können mehrere Designs angeboten werden. Das auffälligste Bild kann ein teureres Modell als die Standardauswahl zeigen. Eine falsch vorausgewählte Variante solltest du vor der Zahlung korrigieren.",
+    "Angenommen, unter einem Titel stehen ein einfarbiges und ein bedrucktes Sweatshirt. Das Vorschaubild zeigt den Aufdruck, vorausgewählt ist ein schlicht schwarzes Modell. Mit „das vom Foto“ bleibt offen, was gekauft werden soll. Speichere den genauen Verkäuferwortlaut, Farbe, Größe und das zugehörige Bild. Ist die bedruckte Variante verschwunden, frage nach ihrer Lieferbarkeit. Wechsle nicht stillschweigend auf eine andere Ausführung, nur damit sich die Bestellung abschließen lässt."
+   ]
+  },
+  {
+   "heading": "Lies Preis und Menge zusammen",
+   "paragraphs": [
+    "Kläre, wofür eine Verkaufseinheit steht. Gerade bei 1688 können Mindestmengen oder Preisstaffeln gelten. Ein Bild kann ein komplettes Set zeigen, obwohl die gewählte Option nur ein Einzelteil enthält. Prüfe, ob eine Einheit ein Stück, ein Paar oder eine Packung umfasst und ob der tatsächlich wählbare Preis für deine Menge gilt. Weichen Angaben von Marktplatz und Agent voneinander ab, vergleiche zunächst die Variante und Verkaufseinheit, bevor du auf eine Preisänderung schließt.",
+    "Trenne die Inlandslieferung vom späteren internationalen Versand. Der Verkäufer kann Porto für die Zustellung an Sugargoos Lager verlangen. Der Versand ins Vereinigte Königreich ist ein eigener, späterer Vorgang und richtet sich nach Ware und Verpackung. Hat der Verkäufer das Inlandsporto nicht bestätigt, halte das offen und frage nach. Trage weder eine erfundene Null noch eine britische Versandschätzung als chinesisches Inlandsporto ein. Beides erschwert den Abgleich dessen, was der Einkaufsagent kaufen soll."
+   ]
+  },
+  {
+   "heading": "Nutze DIY Order bei einem aktiven und zulässigen Angebot",
+   "paragraphs": [
+    "Sugargoo beschreibt DIY Order als manuelle Bestellmöglichkeit, wenn der automatische Import ein Angebot nicht erkennt. Öffne das Formular im offiziellen Konto und gib soweit verfügbar den ursprünglichen Produktlink, Produkt- und Shopnamen, die genaue Variante und die gewünschte Menge an. Ergänze ein passendes Produktfoto, wenn das Formular dies zulässt. Formuliere Hinweise kurz und eindeutig. Gibt es zwei ähnliche Optionen, nenne den entscheidenden Unterschied im Wortlaut des Verkäufers.",
+    "Übernimm Stückpreis und Inlandsporto aus den aktuellen Verkäuferangaben. Laut Sugargoo kannst du einen noch unklaren Inlandsbetrag in den Bemerkungen zur Bestätigung durch den Einkauf kennzeichnen. Prüfe Ware, Verkaufseinheit und Menge vor dem Absenden. Zeigt die Oberfläche ausdrücklich ein Kaufverbot oder eine Produktbeschränkung, beachte diesen Hinweis oder bitte den offiziellen Support um Klärung. Eine abweichende Beschreibung im manuellen Formular beseitigt weder das Kaufverbot noch macht sie einen Artikel für den internationalen Versand zulässig."
+   ]
+  },
+  {
+   "heading": "Unterscheide Vorabrecherche von den QC-Fotos deines Lagerartikels",
+   "paragraphs": [
+    "Ein erreichbares Angebot zeigt Verkäuferbilder und gegebenenfalls Fotos älterer Käufe. Prüfe Variante und Datum, falls angegeben. Ein altes Bild kann dir helfen zu entscheiden, ob du ein lesbares Größenetikett oder eine Kontrolle der Druckposition brauchst. Zustand, Maße oder Farbe genau des Exemplars, das der Verkäufer für dich verschickt, kann es nicht zeigen. Kennzeichne ein gespeichertes Vergleichsbild als solches und bewahre es getrennt von deinen eigenen Inspektionsfotos auf.",
+    "Sobald die Ware im Sugargoo-Lager ist, öffne den genauen Lagereintrag im Packing Center und rufe dessen Inspektionsfotos auf. Gleiche Identität und Menge mit dem ursprünglichen Kauf ab, bevor du einzelne Details vergleichst. Zeigt das Etikett eine andere Größe als bestellt, sichere beide Belege und bitte den Agenten um Prüfung. Ist das Etikett bloß unleserlich, frage nach einer Nahaufnahme. Nimm den Artikel erst ins internationale Paket auf, wenn deine Entscheidung feststeht."
+   ]
+  },
+  {
+   "heading": "Beschreibe Abweichungen so, dass der Support sie nachvollziehen kann",
+   "paragraphs": [
+    "Fasse Marktplatz-URL, Verkäufer, Artikelnummer, gewählte Farbe und Größe, angezeigten Stückpreis, Menge und Inlandsporto in einer Nachricht zusammen. Nenne den genauen Schritt, der scheitert. „Im Originalangebot kann ich Marineblau in M wählen, der Import bei Sugargoo bietet nur Schwarz“ hilft mehr als „der Link ist kaputt“. Füge Meldungstext und geeignete Bildausschnitte bei. Entferne private Konto- und Zahlungsangaben und wende dich bei bestellbezogenen Fragen an den offiziellen Support.",
+    "Vergleiche vor der Zahlung den Kaufauftrag des Agenten ein letztes Mal mit der Verkäuferoption. Hat der Einkauf einen unklaren Preis, Portobetrag oder Bestand bestätigt? Hast du einer eventuellen Änderung zugestimmt? Speichere die endgültige Artikelreferenz zusammen mit der Bestellnummer, damit sie auch nach einer späteren Angebotsänderung brauchbar bleibt. Beim Wareneingang hast du so eine verlässliche Grundlage für die Fotokontrolle und die Entscheidung über den Versand."
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "label": "Sugargoo-Anleitung und Angaben für DIY Order",
+   "url": "https://blog.sugargoo.com/how-to-use-diy-order-on-sugargoo/"
+  },
+  {
+   "label": "Sugargoo-Anleitung zum Teilen eines Weidian-Produktlinks",
+   "url": "https://blog.sugargoo.com/how-to-use-weidian-link-sugargoo-superbuy-acbuy-mulebuy-oopbuy/"
+  },
+  {
+   "label": "Sugargoo zum Einkauf und zur Prüfung im Lager",
+   "url": "https://blog.sugargoo.com/how-does-ordering-from-sugargoo-work-learn-how-to-buy-from-china-step-by-step/"
+  }
+ ]
+}

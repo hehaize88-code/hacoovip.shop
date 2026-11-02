@@ -1,0 +1,66 @@
+{
+ "title": "Why Is My Sugargoo UK Shipping Line Unavailable?",
+ "description": "Find out why a UK shipping option has disappeared. Check the destination, item restrictions, packed dimensions and route limits before changing your parcel.",
+ "intro": "If Sugargoo stops offering a UK shipping line, open the current parcel and note the exact message before changing anything. Start by checking the destination and the items selected. Then compare the packed weight and dimensions against the limits for the service you wanted. The result you saw in the shipping estimator was based on the details entered at the time. The parcel at checkout may contain different goods, occupy more space or have a different destination. The following checks help you decide what to change and when the warehouse needs to look at the parcel.",
+ "sections": [
+  {
+   "heading": "Identify where the option disappeared",
+   "paragraphs": [
+    "There are three useful starting points. You might see no services at all, see other services but lose a preferred one, or still see the service and get an error when submitting. Save the wording beside the option and note whether you were using the public estimator or your own parcel. A screenshot of the earlier result is helpful if it includes the inputs. A screenshot that shows only the line name and price gives the warehouse very little to compare.",
+    "If you can still see several services, record one that remains available as well as the one that disappeared. Compare their published limits for the same parcel. If every result disappears as soon as you add one particular item, open that item's details next. If the agent has already accepted the parcel for dispatch, keep the parcel reference and follow that record. Starting another shipment before understanding the first one's status can make it harder to determine which items are committed."
+   ]
+  },
+  {
+   "heading": "Match the UK destination and delivery address",
+   "paragraphs": [
+    "Open the delivery address attached to this parcel. Verify the destination selected from the list, the post town and the postcode against the address you actually intend to use. If the interface asks for a region, use the entry that describes the delivery address. Check that a saved address from another order has not become the default. In the estimator, enter the same destination details wherever those fields are available.",
+    "Two people comparing a broadly similar UK order can see different options. A screenshot from a previous shipment is useful for recovering its route name, but it cannot establish eligibility at a different address or on a later date. If the route has a postcode or service-area condition, compare it with your actual destination. Ask support about the specific postcode when the coverage wording is unclear. Keep the rest of the address out of public posts and share personal delivery information only through official support when necessary."
+   ]
+  },
+  {
+   "heading": "Check product restrictions one item at a time",
+   "paragraphs": [
+    "List what the parcel physically contains, including accessories and parts packed with the main item. A garment and a light-up accessory may look like a small, easy-to-post combination, yet the accessory may introduce a battery. A small bottle in a gift set can matter even when nearly all the weight is clothing. Read the product attributes recorded at the warehouse and the restrictions shown for the exact line. Confirm uncertain contents with the seller or agent rather than guessing from an image.",
+    "If you can review selections before committing a parcel, compare the same UK destination with the ordinary goods selected, then include the item you are investigating. Keep the measurements and any displayed restrictions alongside the two results. A change in the list gives you a focused question for the warehouse. Ask whether the item carries an attribute that excludes that line and which permitted services accept it. Changing its description or leaving out its contents would give the carrier incorrect information and could invalidate the comparison."
+   ]
+  },
+  {
+   "heading": "Measure the parcel the carrier would receive",
+   "paragraphs": [
+    "A seller's product weight, a warehouse item weight and the weight of a sealed shipping box answer different questions. For a route limit, use the measurement the route asks for. Record the actual packed weight and the three outside dimensions, including the height of the closed box. Check the units on both screens. A box entered in centimetres and a weight entered in grams can produce a very different result if the next screen expects another unit.",
+    "Consider two jumpers and a pair of shoes. Adding a rigid shoe box may barely change the scale reading while increasing the parcel height. As a worked example, a box measuring 40 × 30 × 25 cm occupies 30,000 cubic centimetres. If a particular service explicitly specifies a divisor of 6,000, that volume corresponds to 5 kg of volumetric weight before the service's rounding rules. A different divisor produces a different figure. The calculation only helps when you also know whether that service uses volumetric weight and which limitation the warning refers to."
+   ]
+  },
+  {
+   "heading": "Read the line details before choosing different packaging",
+   "paragraphs": [
+    "Check the restrictions listed for the candidate service, including any upper weight limit, longest-side limit, permitted product types and charging method. A parcel can satisfy the weight requirement and still exceed a side-length limit. Equally, a high estimated charge does not itself tell you that a parcel is too large to send. If the wording merely says the shipment is outside the service conditions, preserve that wording and ask which specific measurement or item failed.",
+    "Where excess space appears to be the issue, discuss a practical packing change. A foldable item might take less room inside a smaller carton. A fragile item might still need the original box or protective space on all sides. Tell the warehouse which packaging may be removed and which must stay. Sugargoo describes a pre-shipment packing simulation that can establish more realistic measurements. Check the current service terms and price before requesting it. Use the new measurements to rerun the comparison rather than relying on the first quote."
+   ]
+  },
+  {
+   "heading": "Compare a split parcel with the complete shipment",
+   "paragraphs": [
+    "Splitting is worth pricing when different items need different services or a combined box is outside a limit. Begin with the actual groups you would send, including the protective packaging each requires. Quote both parcels to the same UK address and record each available line, its price, handling conditions and delivery estimate. Add both shipping totals before choosing. Two small parcels can each incur an initial charge, and the packing material and service choices may also change.",
+    "Suppose a gift set prevents a clothing parcel from using a preferred line. One option is a permitted service for everything. Another is the earlier clothing service plus a separately quoted, eligible service for the gift set. A third is to hold back the gift set while you clarify its contents. Compare those options against the warehouse deadlines for the items concerned. Splitting cannot make an item acceptable to a carrier that excludes it. If the second group has no suitable service, resolve it before paying for an arrangement that depends on sending both."
+   ]
+  },
+  {
+   "heading": "Give support a question they can reproduce",
+   "paragraphs": [
+    "Prepare one message with the parcel or warehouse references, selected UK destination, line name, error text, packed weight, outside dimensions and any relevant item attributes. If you have one, attach an earlier estimate using the same inputs and say when you ran it. Ask which condition failed and whether the accepted measurements differ from your record. That gives the agent something specific to verify even if the ultimate answer is a temporary change in route availability.",
+    "For example, you could write that the preferred route appeared for the two clothing items, disappeared when the boxed accessory was added, and remained unavailable after you checked the postcode. Ask whether the issue is an item restriction, a packaging dimension or current service coverage. After an answer or a packing change, reopen the parcel and review the final line, contents, total price and protections before paying. Keep that confirmation together with the final packed measurements in case you need to refer to the decision later."
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "label": "Sugargoo shipping fee estimator walkthrough",
+   "url": "https://blog.sugargoo.com/estimate-international-shipping-costs-sugargoo/"
+  },
+  {
+   "label": "Sugargoo pre-shipment packing simulation",
+   "url": "https://blog.sugargoo.com/sugargoo-pre-shipment-package-simulation-guide/"
+  }
+ ]
+}

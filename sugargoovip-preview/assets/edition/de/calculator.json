@@ -1,0 +1,88 @@
+{
+ "title": "Sugargoo-Versandrechner für Großbritannien: Paketkosten nachvollziehbar schätzen",
+ "description": "Trage für dein britisches Versandziel realistische Gewichte, Maße und Produkteigenschaften ein. Gleiche die Schätzung vor der Zahlung mit dem tatsächlichen Paket ab.",
+ "intro": "Eine Schätzung hilft, wenn die Eingaben dem später eingereichten Paket entsprechen. Halte deine Annahmen fest, vergleiche gleiche Bedingungen und trenne die Schätzung von der tatsächlichen Belastung. Der Sugargoo-Versandrechner zeigt, welche Dienste für ein bestimmtes britisches Ziel, eine Produktart, ein Gewicht und eine Paketgröße derzeit infrage kommen. Laut der öffentlichen Anleitung verarbeitet „Shipping Fee Estimation“ Zielangaben, Warenkategorie, Paketgewicht und Maße, bevor das Lager den endgültigen Karton gepackt hat. Damit kannst du Linien vergleichen. Die Anzeige ist noch keine Buchung, garantierte Linie oder verbindliche Abbuchung. Der Artikel kann schwerer ankommen als angegeben, Schutzverpackung kann die Maße verändern, eine Wareneigenschaft kann eine Linie ausschließen, und für den Preis kann ein anderes Gewicht zählen als der erste Waagenwert. Speichere die Berechnung deshalb als datiertes Szenario.",
+ "sections": [
+  {
+   "heading": "Lege zuerst fest, welche Entscheidung du treffen willst",
+   "paragraphs": [
+    "Eine beliebige runde Gewichtszahl führt zu irgendeinem Preis. Kläre zuerst die Frage: Wird der Karton mit Schuhverpackung zu groß? Ist ein gemeinsames Paket günstiger als zwei kleinere? Wie viel Geld solltest du für internationalen Versand einplanen? Je nach Entscheidung brauchst du andere Eingaben.",
+    "Für ein frühes Budget kannst du Angebots- und Verkäuferdaten nutzen und sie als vorläufig kennzeichnen. Nutze für eine zweite Berechnung die Lagereinträge in deinem Konto. Kurz vor der Zahlung sind die Maße des zusammengestellten Pakets und das genaue britische Ziel maßgeblich. Speichere diese Stände getrennt. Überschreibst du die erste Schätzung, fehlt später der Vergleich, der eine Änderung erklärt."
+   ]
+  },
+  {
+   "heading": "Verwende das genaue britische Versandziel aus dem Paket",
+   "paragraphs": [
+    "Wähle das Vereinigte Königreich und jede im aktuellen Formular verlangte Region. Gleiche anschließend Postleitzahl und Ziel im Paket mit der Schätzung ab. Eine allgemeine UK-Berechnung berücksichtigt möglicherweise keine abgelegenen Gebiete, Inselzustellung oder einzelne ausgeschlossene Postleitzahlen. Rechner, Linienauswahl im Paket und Lieferadresse sollten dasselbe Ziel beschreiben.",
+    "Steht die Adresse noch nicht fest, prüfe sie mit der Checkliste für britische Paketadressen, bevor du eine Entscheidung auf den Wert stützt. Eine Schätzung für England und eine spätere Zustellung nach Nordirland oder in ein anderes Gebiet sind keine identischen Fälle. Ein Preisunterschied belegt dann keine Tariferhöhung."
+   ]
+  },
+  {
+   "heading": "Bestimme die Warenart vor der Gewichtseingabe",
+   "paragraphs": [
+    "Die Produktkategorie entscheidet mit über verfügbare Dienste. Batterien, Flüssigkeiten, Pulver, Magnete, Markenware, zerbrechliche oder übergroße Artikel können Linien ausschließen oder den Versand verhindern. Verwende die tatsächliche Lagereinstufung und die aktuellen Hinweise der Linie. Eine gewöhnliche Warenkategorie nur wegen einer längeren Ergebnisliste auszuwählen verfälscht die Schätzung.",
+    "Erfasse bei einem gemischten Paket alle Eigenschaften, die die gesamte Sendung einschränken können. Enthält ein elektronisches Zubehör eine Batterie, ist eine reine Kleidersendung kein passender Vergleich. Nutze bei unklaren Waren den Leitfaden zu eingeschränkten Artikeln, bevor du dich auf eine angezeigte Linie verlässt."
+   ]
+  },
+  {
+   "heading": "Trenne Artikelgewicht, Packgewicht und Abrechnungsgewicht",
+   "paragraphs": [
+    "Das Artikelgewicht beschreibt den Lagerbestand. Das Packgewicht ist das Gewicht des fertigen Pakets mit Verpackung. Das Abrechnungsgewicht ist der Wert, den die Linie für ihren Preis heranzieht. Addierst du nur die Artikelgewichte, fehlen womöglich Karton und Polsterung. Selbst das geschätzte Packgewicht erfasst noch keine höhere Berechnung nach Volumen.",
+    "Notiere zu jedem Gewicht Quelle und Datum. Beispiel: Drei Lagereinträge nennen 760 g, 610 g und 420 g. Zusammen sind das 1,79 kg Ware. Das ist noch kein fertiges Paketgewicht. Für ein frühes Szenario kannst du eine ausdrücklich gekennzeichnete Verpackungsannahme hinzufügen. Ersetze sie durch die Messung, sobald sie vorliegt. Die Annahme ist kein von Sugargoo zugesagtes Verpackungsgewicht."
+   ]
+  },
+  {
+   "heading": "Gib Länge, Breite und Höhe desselben Kartons ein",
+   "paragraphs": [
+    "Alle drei Maße müssen dieselbe Außenverpackung in derselben Einheit beschreiben. Kombiniere weder Schuhkartonlänge und Außenkartonbreite noch Kleidungsmaße und Paketmaße. Ist die endgültige Box unbekannt, miss eine realistische Verpackungsvariante aus oder rechne mehrere Szenarien durch: Platz sparend gepackt, normal verpackt oder mit zusätzlichem Schutz.",
+    "Ein fiktives Kleiderpaket wiegt 2,2 kg. Im ersten Szenario misst es normal gepackt 38 × 29 × 17 cm. In einem zweiten bleibt eine feste Verkaufsverpackung erhalten, sodass es 46 × 34 × 24 cm misst. Das Waagengewicht kann ähnlich bleiben, der Platzbedarf ändert sich deutlich. Prüfe am aktuellen Rechner, ob sich Linienauswahl und Preisstruktur ändern. Aus den Beispielmaßen allein lässt sich kein konkreter Versandpreis ableiten."
+   ]
+  },
+  {
+   "heading": "Verwende den Volumendivisor der jeweiligen Linie",
+   "paragraphs": [
+    "Dienste können bei leichten, voluminösen Paketen nach Volumengewicht abrechnen. Divisor und Rundung können je nach Linie abweichen. Eine Formel aus einem alten Beitrag passt möglicherweise nicht zum heutigen Angebot. Nennt die aktuelle Linienbeschreibung die Regel, halte sie neben dem Ergebnis fest. Fehlt sie, lasse das Abrechnungsgewicht offen und vergleiche die angezeigten Schätzungen.",
+    "Der Leitfaden zum britischen Versand behandelt die Prüfung der Linienbedingungen. Für den Rechner zählt hier die Vergleichbarkeit: gleiches Ziel, gleiche Produkteigenschaften, gleiches Gewicht und gleiche Maße. Änderst du zwei Angaben gleichzeitig, lässt sich ein Preisunterschied nicht eindeutig zuordnen."
+   ]
+  },
+  {
+   "heading": "Sichere die vollständigen Ergebnisse der infrage kommenden Dienste",
+   "paragraphs": [
+    "Notiere je Dienst Datum, Ziel, Warenart, Eingabegewicht, Maße, vollständigen Namen der Linie, Preis und Währung, angezeigte Laufzeit, Trackingumfang, Größen- und Gewichtslimits, Ausschlüsse sowie Hinweise zu Steuern und Versicherung. Ein Bildausschnitt mit nur dem niedrigsten Preis lässt die Berechnungsgrundlage offen.",
+    "Zeigt der Rechner eine andere Währung als GBP an, bewahre den ursprünglichen Betrag auf. Rechne fürs Budget mit einem datierten Vergleichskurs und plane mögliche Unterschiede bei Zahlungsumrechnung und Zahlungsdienstgebühren ein. Ein historischer Umrechnungskurs ist kein fester Wechselkurs von Sugargoo."
+   ]
+  },
+  {
+   "heading": "Ändere pro Vergleich nur eine Größe",
+   "paragraphs": [
+    "Vergleiche zuerst bei gleichen Maßen, gleichem Gewicht und gleicher Warenart die Linien. Halte dann die übrigen Bedingungen gleich und verändere die Verpackung. Stelle zuletzt Sammelpaket und Aufteilung gegenüber, wobei du jeden Artikel genau einmal zuordnest. So siehst du, ob Warenzulässigkeit, Gewicht, Volumen oder doppelte Grundkosten ausschlaggebend sind.",
+    "Führe für ein aufgeteiltes Paket zwei vollständige Datensätze A und B. Halbiere nicht einfach das Gewicht und übernimm für beide Pakete die ursprünglichen Maße. Der Leitfaden zu Aufteilen und Zusammenlegen hilft bei Fragen zu Beschädigungsrisiko, Dringlichkeit und Dokumentation, die der Rechner nicht beantworten kann."
+   ]
+  },
+  {
+   "heading": "Gleiche die Schätzung mit dem fertigen Paket ab",
+   "paragraphs": [
+    "Lege vor der Zahlung das gespeicherte Szenario neben die aktuelle Paketansicht. Vergleiche Ziel, Artikelzahl, Wareneigenschaften, Packgewicht, Maße, Linie, Zusatzleistungen, Währung und Endbetrag. Kennzeichne Abweichungen einzeln. Ist das Paket größer, schwerer oder anders eingestuft, muss ein höherer Betrag kein Fehler sein. Ein niedrigerer Preis beweist umgekehrt nicht, dass alle möglichen Anpassungen abgeschlossen sind.",
+    "Wird ein Betrag als Schätzung, Anzahlung oder nachträglich anpassbar bezeichnet, bewahre den genauen Wortlaut auf und gleiche ihn später mit der Kontobuchung ab. Als Endergebnis zählen die tatsächliche Paketbelastung und dokumentierte Korrekturen. Eine frühe Zahl aus dem Rechner sollte getrennt davon bleiben."
+   ]
+  },
+  {
+   "heading": "Checkliste für eine nachvollziehbare Versandschätzung",
+   "paragraphs": [
+    "Halte die Entscheidung fest und kennzeichne das Szenario als erste Schätzung, Lagerstand oder Stand vor Zahlung.",
+    "Verwende das genaue britische Versandziel und prüfe die Paketpostleitzahl.",
+    "Erfasse alle Wareneigenschaften mit Einfluss auf die verfügbaren Linien.",
+    "Trenne Artikelgewicht, erwartetes Packgewicht und Abrechnungsgewicht.",
+    "Nutze einen einheitlichen Satz Außenmaße.",
+    "Vergleiche die Linien mit gleichen Eingaben, bevor du die Verpackung änderst.",
+    "Speichere Liniengrenzen, Währung, Laufzeitspanne und Ausschlüsse mit der Schätzung.",
+    "Berechne Teilpakete als vollständige Sendungen.",
+    "Gleiche vor der Zahlung jede Eingabe mit dem endgültigen Paket ab.",
+    "Halte die tatsächliche Belastung und eventuelle Korrekturen getrennt von der ursprünglichen Schätzung fest.",
+    "Eine nachvollziehbare UK-Schätzung zeigt, was gemessen wurde, was du angenommen hast und was sich beim endgültigen Packen änderte. Damit kannst du ein früheres Ergebnis wiederherstellen und Unterschiede erklären, ohne den niedrigsten Schätzwert als Zusage zu verstehen.",
+    "Stand der Faktenprüfung: 29. August 2026. Eingaben und Ablauf wurden anhand der öffentlichen Sugargoo-Hinweise zu Shipping Fee Estimation und zur Bestellung geprüft. Linien, Preise, Divisoren, Laufzeiten und Verfügbarkeit richten sich nach den aktuellen Angaben im Konto und in der jeweiligen Linie."
+   ]
+  }
+ ],
+ "sources": []
+}

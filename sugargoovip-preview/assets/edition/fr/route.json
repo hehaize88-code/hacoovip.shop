@@ -1,0 +1,66 @@
+{
+ "title": "Pourquoi mon mode de livraison Sugargoo vers le Royaume-Uni est-il indisponible ?",
+ "description": "Une option de livraison britannique a disparu ? Vérifiez l’adresse, les restrictions sur les articles, les dimensions du colis emballé et les limites du transporteur avant de modifier votre envoi.",
+ "intro": "Si Sugargoo ne propose plus le service de livraison britannique que vous comptiez utiliser, ouvrez le colis en cours et notez le message exact avant de modifier quoi que ce soit. Vérifiez d’abord la destination et les articles sélectionnés. Comparez ensuite le poids et les dimensions du colis emballé aux limites du service souhaité. Le simulateur avait calculé son estimation à partir des données saisies à ce moment-là. Au paiement, le colis peut contenir d’autres articles, occuper plus de place ou partir à une autre adresse. Les vérifications suivantes permettent de décider ce que vous pouvez corriger vous-même et quand il faut demander à l’entrepôt d’examiner le colis.",
+ "sections": [
+  {
+   "heading": "Repérer l’étape à laquelle l’option disparaît",
+   "paragraphs": [
+    "Trois situations sont à distinguer. Il se peut qu’aucun service ne soit proposé, que seule votre option préférée ait disparu ou que le service soit encore affiché mais provoque une erreur à la validation. Relevez le libellé qui accompagne l’option et précisez si vous consultiez le simulateur public ou la fiche de votre colis. Une capture de l’estimation précédente sera utile si les données saisies y figurent. Le nom du service et son prix seuls donnent peu d’éléments de comparaison à l’entrepôt.",
+    "Si plusieurs services restent visibles, notez le nom de l’un d’eux ainsi que celui du service disparu. Comparez leurs limites publiées pour le même colis. Si tous les résultats disparaissent dès l’ajout d’un article précis, ouvrez sa fiche. Si l’agent a déjà accepté le colis pour expédition, conservez sa référence et suivez son dossier. Commencer un autre envoi sans connaître le statut du premier risque de compliquer l’identification des articles déjà affectés à celui-ci."
+   ]
+  },
+  {
+   "heading": "Vérifier la destination et l’adresse britannique",
+   "paragraphs": [
+    "Ouvrez l’adresse de livraison associée au colis. Vérifiez que la destination choisie dans la liste, la ville postale et le code postal correspondent bien à l’adresse prévue. Si une région est demandée, sélectionnez celle qui correspond au lieu de livraison. Une adresse enregistrée à l’occasion d’une ancienne commande peut être redevenue l’adresse par défaut. Renseignez les mêmes informations dans le simulateur lorsqu’il propose les champs correspondants.",
+    "Deux acheteurs préparant des envois similaires vers le Royaume-Uni peuvent voir des options différentes. La capture d’un ancien envoi permet de retrouver le nom du service, mais ne garantit pas sa disponibilité à une autre adresse ou à une autre date. Si la desserte dépend du code postal ou d’une zone géographique, comparez cette condition à la destination réelle. En cas de doute, demandez au service client de vérifier le code postal précis. Évitez de publier votre adresse complète ; transmettez les coordonnées personnelles au service officiel uniquement si elles lui sont nécessaires."
+   ]
+  },
+  {
+   "heading": "Vérifier les restrictions article par article",
+   "paragraphs": [
+    "Dressez l’inventaire physique du colis, accessoires et pièces fournis compris. Un vêtement et un petit accessoire lumineux semblent faciles à expédier ensemble, mais l’accessoire peut contenir une pile. Un petit flacon glissé dans un coffret peut aussi changer les possibilités, même si les vêtements représentent l’essentiel du poids. Lisez les caractéristiques enregistrées à l’entrepôt et les restrictions du service exact. Si le contenu reste incertain, faites-le confirmer par le vendeur ou l’agent plutôt que de vous fier à une photo.",
+    "Si vous pouvez modifier la sélection avant de valider le colis, faites un essai à destination de la même adresse britannique avec les articles ordinaires. Recommencez en ajoutant l’article que vous examinez. Gardez les mesures et les éventuels avertissements à côté des deux résultats. Une différence vous permettra de poser une question précise à l’entrepôt. Demandez quel attribut exclut cet article du service et quels services autorisés l’acceptent. En modifier la description ou omettre une partie du contenu transmettrait au transporteur des informations inexactes et fausserait la comparaison."
+   ]
+  },
+  {
+   "heading": "Mesurer le colis tel que le recevra le transporteur",
+   "paragraphs": [
+    "Le poids annoncé par le vendeur, le poids de l’article relevé à l’entrepôt et celui du carton fermé correspondent à trois mesures distinctes. Pour vérifier une limite, retenez celle demandée par le service. Notez le poids réel du colis emballé et ses trois dimensions extérieures, y compris la hauteur du carton fermé. Vérifiez les unités sur les deux écrans. Des dimensions saisies en centimètres et une masse saisie en grammes peuvent donner un résultat très différent si le formulaire suivant attend d’autres unités.",
+    "Prenons deux pulls et une paire de chaussures. Une boîte à chaussures rigide peut à peine changer le poids sur la balance tout en augmentant la hauteur du colis. Un carton de 40 × 30 × 25 cm occupe 30 000 cm³. Si le service consulté indique expressément un diviseur de 6 000, cela représente un poids volumétrique de 5 kg avant application de ses règles d’arrondi. Un autre diviseur donne un autre chiffre. Pour interpréter ce calcul, il faut encore savoir si ce service tient compte du poids volumétrique et à quelle limite se rapporte l’avertissement."
+   ]
+  },
+  {
+   "heading": "Lire les conditions du service avant de changer d’emballage",
+   "paragraphs": [
+    "Dans la fiche du service envisagé, relevez le poids maximal, les éventuelles limites portant sur le côté le plus long, les types d’articles acceptés et le mode de tarification. Un carton peut respecter le poids maximal et avoir un côté trop long. Inversement, un tarif estimé élevé ne suffit pas à établir que le colis est trop grand pour être expédié. Si le message indique simplement que l’envoi sort des conditions du service, conservez sa formulation et demandez quelle mesure ou quel article pose problème.",
+    "Si le carton contient beaucoup de vide, discutez d’un emballage plus adapté. Un article souple pourrait tenir plié dans un carton plus petit. Un objet fragile peut avoir besoin de sa boîte d’origine et d’un rembourrage sur toutes ses faces. Indiquez à l’entrepôt ce qu’il peut retirer et ce qu’il doit garder. Sugargoo décrit un service de simulation d’emballage avant expédition qui permet d’obtenir des mesures plus réalistes. Consultez les conditions et le tarif en vigueur avant de le demander. Utilisez les nouvelles mesures pour refaire la comparaison."
+   ]
+  },
+  {
+   "heading": "Comparer deux colis séparés et un envoi groupé",
+   "paragraphs": [
+    "Chiffrer un envoi en deux colis peut être intéressant lorsque les articles nécessitent des services différents ou que le carton groupé dépasse une limite. Définissez les lots que vous expédieriez réellement et tenez compte des protections nécessaires à chacun. Demandez une estimation pour chaque colis à la même adresse britannique. Relevez les services proposés, leurs tarifs, les conditions de prise en charge et les délais indicatifs. Additionnez les deux prix avant de choisir. Chaque colis peut être soumis à un tarif de départ, et l’emballage comme le choix des services peuvent changer.",
+    "Imaginons qu’un coffret empêche des vêtements de voyager par votre service préféré. Vous pourriez envoyer le tout avec un service qui accepte le coffret. Vous pourriez aussi reprendre le service initial pour les vêtements et obtenir un devis séparé pour le coffret avec un transporteur qui l’accepte. Une troisième possibilité est de laisser le coffret à l’entrepôt le temps d’en clarifier le contenu. Comparez ces solutions en tenant compte des échéances de stockage. Expédier l’article séparément ne lève aucune interdiction du transporteur. Si le deuxième lot reste sans solution, réglez ce point avant de payer pour un projet qui suppose l’expédition des deux."
+   ]
+  },
+  {
+   "heading": "Poser au service client une question qu’il pourra vérifier",
+   "paragraphs": [
+    "Préparez un message précisant les références du colis ou des articles en entrepôt, la destination britannique, le service souhaité, le message d’erreur, le poids emballé, les dimensions extérieures et les caractéristiques pertinentes des articles. Joignez, si vous l’avez, une ancienne estimation réalisée avec les mêmes données et indiquez sa date. Demandez quel critère a bloqué l’envoi et si les mesures retenues par l’entrepôt diffèrent des vôtres. L’agent disposera d’un point précis à vérifier, même si l’indisponibilité se révèle temporaire.",
+    "Vous pouvez par exemple expliquer que le service apparaissait avec vos deux vêtements, qu’il a disparu après l’ajout de l’accessoire en boîte et qu’il reste indisponible malgré la vérification du code postal. Demandez si la différence provient de l’article, des dimensions ou de la zone actuellement desservie. Après la réponse ou le changement d’emballage, rouvrez le colis et vérifiez le service finalement sélectionné, le contenu, le prix total et les protections prévues avant de payer. Gardez cette confirmation avec les mesures finales pour pouvoir vous y référer."
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "label": "Mode d’emploi du simulateur de frais de port Sugargoo",
+   "url": "https://blog.sugargoo.com/estimate-international-shipping-costs-sugargoo/"
+  },
+  {
+   "label": "Simulation de l’emballage avant expédition chez Sugargoo",
+   "url": "https://blog.sugargoo.com/sugargoo-pre-shipment-package-simulation-guide/"
+  }
+ ]
+}

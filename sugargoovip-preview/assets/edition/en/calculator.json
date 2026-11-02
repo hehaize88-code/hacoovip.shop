@@ -1,0 +1,88 @@
+{
+ "title": "Sugargoo Shipping Calculator UK: Estimate a Parcel Without Guessing",
+ "description": "Use the Sugargoo shipping calculator for the UK with better weight, dimensions and product inputs, then audit the estimate before parcel payment.",
+ "intro": "A calculator result is useful only when its inputs resemble the parcel you will actually submit. Build the estimate from traceable assumptions, compare like with like and keep the final charge separate. The Sugargoo shipping calculator for UK deliveries can answer an early planning question: which currently displayed options are worth investigating for a parcel with a stated destination, product type, weight and size? Sugargoo's current public guidance describes a Shipping Fee Estimation tool that accepts destination information, a product category, parcel weight and dimensions. Those inputs can produce a route comparison before the warehouse has created the finished parcel. That does not make the result a booking, a guaranteed line or the amount that will ultimately leave your account. A product may arrive heavier than the listing suggests, protective packing can change dimensions, a route may reject an attribute, and the final parcel may use chargeable weight rather than the simple scale weight you first entered. The calculator is best treated as a dated scenario worksheet.",
+ "sections": [
+  {
+   "heading": "Start by naming the decision",
+   "paragraphs": [
+    "Do not open the estimator and type a round number simply to see the cheapest result. Write the decision first. Are you testing whether a shoe box makes the parcel impractical, comparing one consolidated parcel with two smaller groups, or reserving enough cash for international delivery? Each question needs a different set of inputs.",
+    "An early budget scenario can use listing and seller data, clearly marked as provisional. A warehouse scenario should use the item records visible in your account. A pre-payment scenario should use the assembled parcel data and the exact UK destination. Save those stages separately; overwriting the first estimate destroys the evidence that explains why the result changed."
+   ]
+  },
+  {
+   "heading": "Use the exact UK destination shown in the parcel",
+   "paragraphs": [
+    "Select the United Kingdom and any region requested by the live tool. Then make sure the postcode and destination in the parcel record match the estimate. A quote generated for a generic UK destination may not reflect remote-area handling, island delivery or a route that excludes a specific postcode. The estimator screen, parcel route screen and delivery address should describe the same destination.",
+    "If the address is not final, resolve it with the UK parcel address checklist before treating any result as decision-grade. Do not compare an estimate for England with a parcel later addressed to Northern Ireland or another territory and call the difference a price increase."
+   ]
+  },
+  {
+   "heading": "Classify the product before entering its weight",
+   "paragraphs": [
+    "Product type is not a decorative filter. Batteries, liquids, powders, magnets, branded goods, fragile items and oversize products can affect which routes appear or whether an item can travel at all. Use the actual warehouse classification and current route notes rather than selecting an ordinary-goods category because it reveals more options.",
+    "For a mixed parcel, list every attribute that could restrict the whole consignment. If one electronic accessory contains a battery, an all-clothing estimate is not a valid comparison. Review uncertain goods against the restricted-items screening guide before relying on a displayed line."
+   ]
+  },
+  {
+   "heading": "Separate item weight, packed weight and chargeable weight",
+   "paragraphs": [
+    "Item weight answers “what is currently stored?” Packed weight answers “what does the finished parcel weigh after packaging?” Chargeable weight answers “what quantity does this route use for pricing?” These values can differ. Entering only the sum of item weights may omit the carton and protection. Entering a guessed packed weight may still miss a volume-based charge.",
+    "Create a weight ledger with source and date. For example, a fictional group might contain warehouse items recorded at 760 g, 610 g and 420 g. Their item total is 1.79 kg, not a prediction of the final parcel. Add a clearly labelled packaging allowance only for an early scenario. Replace it with measured parcel data when available. Never present the allowance as Sugargoo's promised packaging weight."
+   ]
+  },
+  {
+   "heading": "Enter dimensions as a real three-dimensional box",
+   "paragraphs": [
+    "Length, width and height should describe the same outside package in one unit. Do not mix a shoe-box length with an outer-carton width or use garment measurements as parcel dimensions. If you have no finished box, measure a realistic packaging configuration or create more than one scenario: compressed, normal and protection-heavy.",
+    "Consider a fictional 2.2 kg clothing group. Scenario A is entered as 38 × 29 × 17 cm after ordinary packing. Scenario B keeps a rigid retail box and becomes 46 × 34 × 24 cm. The scale weight might remain close, yet the space occupied changes substantially. The purpose of the comparison is not to invent a price; it is to discover whether packaging changes the routes or cost pattern displayed by the live calculator."
+   ]
+  },
+  {
+   "heading": "Do not apply one volumetric divisor to every result",
+   "paragraphs": [
+    "Carriers can price low-density parcels using dimensional or volumetric weight, but the divisor and rounding method can vary by line. A formula copied from an old post may not match the route currently shown. If the live route details state a calculation rule, record that rule beside the quote. If they do not, keep chargeable weight unresolved and compare the displayed estimate rather than manufacturing a formula.",
+    "The UK shipping guide explains route-level checks. The calculator workflow here has a narrower job: make sure each route is compared using identical destination, attributes, weight and dimensions. Changing two inputs at once makes the cause of a price difference impossible to identify."
+   ]
+  },
+  {
+   "heading": "Capture the complete result, not only the lowest number",
+   "paragraphs": [
+    "For each serious result, record the check date, destination, product type, entered weight, dimensions, route name exactly as displayed, estimated amount and currency, quoted delivery range if shown, tracking description, size or weight limits, exclusions and any tax or insurance wording. A cropped screenshot of one low price is not an audit trail.",
+    "Currency also matters. If the interface displays a non-GBP amount, keep that original figure. Convert it for budgeting using a dated reference, then leave room for the actual checkout conversion and payment-provider charges. Do not publish a historical conversion as a fixed Sugargoo exchange rate."
+   ]
+  },
+  {
+   "heading": "Run controlled comparisons",
+   "paragraphs": [
+    "Change one variable per test. First hold weight, dimensions and product type constant while comparing routes. Next keep the route context stable and test a packaging change. Finally compare consolidation and splitting with every item assigned exactly once. This method reveals whether the decision is driven by product eligibility, scale weight, volume or duplicated parcel overhead.",
+    "When testing a split, create Parcel A and Parcel B as complete records. Do not divide weight by two while leaving the original dimensions on both. Use the split-versus-consolidate guide for damage risk, delivery priority and record-keeping questions that the estimator cannot decide."
+   ]
+  },
+  {
+   "heading": "Reconcile the estimate with the final parcel",
+   "paragraphs": [
+    "Before payment, place the saved scenario beside the live parcel screen. Compare destination, item count, product attributes, actual packed weight, dimensions, route, services, currency and total. Mark each difference. A higher total is not automatically an error if the final parcel is larger, heavier or classified differently; a lower total is not proof that every later adjustment is finished.",
+    "If an amount is described as estimated, deposited or subject to adjustment, preserve the exact current wording and later reconcile the account entry. The final evidence is the parcel payment and any documented adjustment, not the number remembered from an early calculator session."
+   ]
+  },
+  {
+   "heading": "Use a calculator evidence checklist",
+   "paragraphs": [
+    "State the decision and label the scenario as early, warehouse or pre-payment.",
+    "Use the exact UK destination and confirm the parcel postcode.",
+    "Record all product attributes that may affect eligibility.",
+    "Separate item weight, expected packed weight and route chargeable weight.",
+    "Enter one consistent set of outside parcel dimensions.",
+    "Compare routes with identical inputs before changing packaging.",
+    "Save route limits, currency, delivery range and exclusions with the estimate.",
+    "Test split parcels as complete parcels, not divided arithmetic.",
+    "Recheck every input against the final parcel before payment.",
+    "Keep the final charge and any adjustment separate from the original estimate.",
+    "A defensible Sugargoo UK shipping estimate is not the smallest number on the screen. It is a reproducible snapshot that states what was known, what was assumed and what changed when the warehouse created the real parcel. That record makes the calculator useful without turning a planning tool into a promise.",
+    "Facts checked: 29 August 2026. Tool inputs and workflow boundaries were checked against Sugargoo's current public Shipping Fee Estimation and ordering material. No fixed route, price, divisor, delivery time or service availability is claimed; the live account and route details take priority."
+   ]
+  }
+ ],
+ "sources": []
+}

@@ -1,0 +1,70 @@
+{
+ "title": "Sugargoo Link Not Working? How to Check Weidian and Taobao Listings",
+ "description": "Fix common product-link problems, check the exact seller variant and use Sugargoo DIY Order when an eligible live listing cannot be imported.",
+ "intro": "If a Weidian, Taobao or 1688 link will not load in Sugargoo, open the original product page first. Check that the seller still offers the item and that your colour, size and quantity can be selected. Copy the product's share link, open it to confirm where it lands, then paste that link into Sugargoo's product search. If the listing is live but the import still fails, the official DIY Order form may let you submit the details manually. A missing listing, an unsupported import and an explicit purchase restriction each require a different response.",
+ "sections": [
+  {
+   "heading": "Identify where the link breaks",
+   "paragraphs": [
+    "Start with the address you actually have. A spreadsheet row might lead to a local description, an agent's product page, a seller's storefront or the original item. Open the row and look for the product-specific destination. The name at the top, the selected marketplace, the seller and the item identifier help you tell whether you have arrived at the intended listing. If the page contains many independent items and no selectable variant for the one you need, keep looking for its individual product page.",
+    "Check the result before pasting anything into Sugargoo. If the marketplace asks you to sign in, check the listing through its normal sign-in process where available. A login prompt alone does not show that the listing has been removed. If the seller displays an unavailable or removed item, preserve the reference and look for current confirmation from the seller. Entering the same inactive address through several agents cannot establish that the item is still for sale."
+   ]
+  },
+  {
+   "heading": "Copy a product address that opens independently",
+   "paragraphs": [
+    "On the seller's product page, use the share or copy-link control for that item. Some marketplace apps produce a block of share text with a product name, promotional wording and an address. Isolate the web address and confirm it opens the specific product. Avoid pasting the complete message, a screenshot or a shop's general share link into a field expecting a product URL. Keep the original intact until you have verified the destination. Removing unfamiliar parts of a link by hand can change where it leads.",
+    "For a Weidian item, check that the shared destination names the expected seller and product. For Taobao, compare the product reached from the app's share action with the item you had open. A short address may work when followed but fail when an importer attempts to read it. In that situation, try copying the full product address from the open marketplace page if it is available. Confirm that it still opens the same item, then try Sugargoo's ordinary search again."
+   ]
+  },
+  {
+   "heading": "Verify the variant even when Sugargoo loads the item",
+   "paragraphs": [
+    "A successful import proves only that a product was found. Compare the seller's title, images, option text and price for the combination you intend to buy. Change colour and size deliberately, then read the resulting option in full. Product titles can cover several designs, and a prominent image can show a more expensive model than the default choice. A listing that imports correctly but selects the wrong variant needs correction before payment.",
+    "Imagine a listing with a plain sweatshirt and a printed version under the same title. The thumbnail shows the print, while the default option is plain black. A note such as “the one in the photo” leaves the purchase open to interpretation. Save the exact option the seller uses, the colour, the size and the matching product image. If the printed option has disappeared, ask whether the seller can supply it. Do not silently substitute another option just to complete the order."
+   ]
+  },
+  {
+   "heading": "Read price and quantity together",
+   "paragraphs": [
+    "Work out what one unit on the listing represents. On 1688 especially, a seller may show a minimum quantity or different price tiers. A photograph can show a full set while the selected option buys only one component. Check whether a single unit means a piece, a pair or a pack, and whether the price you can actually select applies to your quantity. Where the marketplace and agent display different numbers, compare the variant and unit before assuming the price has changed.",
+    "Keep domestic delivery separate from the future international shipment. The seller may charge to deliver to Sugargoo's warehouse. The parcel to the UK is a later transaction that depends on the goods and packaging. If a seller has not confirmed domestic postage, write down the uncertainty and ask for confirmation. Avoid entering an invented zero or using a UK freight estimate as the seller's domestic charge. Both mistakes make it difficult to check what the buying agent has agreed to purchase."
+   ]
+  },
+  {
+   "heading": "Use DIY Order for a live, eligible listing",
+   "paragraphs": [
+    "Sugargoo describes DIY Order as a manual route when the automatic importer cannot recognise a listing. Open that form from the official account and enter the original goods link where available, the product and store names, the exact variant and your requested quantity. Include a relevant product image if the form permits it. Keep the remarks short enough for the buyer to follow. If there are two similar options, name the identifying difference in the seller's own wording.",
+    "Enter the unit price and domestic delivery charge according to the current seller information. Sugargoo's instructions say you can mention an uncertain domestic fee in the remarks for the buying team to confirm. Review the requested goods, unit and quantity before submitting. If the interface explicitly reports a restricted product or a purchasing prohibition, follow that notice or contact official support for clarification. Changing the description in a manual form would not resolve a purchasing restriction or make an item eligible for international shipping."
+   ]
+  },
+  {
+   "heading": "Keep pre-purchase research separate from warehouse QC",
+   "paragraphs": [
+    "A listing that loads can provide seller photographs and, in some contexts, access to pictures from older purchases. Look at the variant and date when that information is available. An older photo can help you decide to request a size label or examine where a print sits. It cannot show the condition, dimensions or colour of the individual unit a seller will ship for your order. Save a reference image for comparison and keep it separate from your own inspection record.",
+    "When your goods reach Sugargoo's warehouse, find the exact stored item in Packing Center and open its inspection photos. Match its identity and quantity against the original purchase before comparing the details that mattered to you. If your tag reads a different size from the order, preserve both images and ask the agent to check. If the issue is simply that the relevant label cannot be read, ask whether a close photograph is available. Keep the item out of the international parcel until you have a decision."
+   ]
+  },
+  {
+   "heading": "Escalate a mismatch with enough information to reproduce it",
+   "paragraphs": [
+    "Put the marketplace URL, seller, item reference, selected colour and size, displayed unit price, quantity and domestic postage into one message. Describe exactly which step failed. “The original listing opens and I can select navy in medium, but the Sugargoo import lists only black” is more actionable than “the link is broken.” Include the error wording and relevant cropped screenshots. Remove private account or payment details before sharing, and use official support for order-specific questions.",
+    "Before paying, compare the agent's purchase record with the seller option one last time. Check whether the buyer confirmed an uncertain price, domestic charge or stock level and whether you authorised any change. Preserve the final product reference alongside your order number so it remains useful even if the seller edits the listing later. When the product arrives, that small record gives you a reliable starting point for checking the photos and deciding whether to ship the item."
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "label": "Sugargoo DIY Order instructions and required information",
+   "url": "https://blog.sugargoo.com/how-to-use-diy-order-on-sugargoo/"
+  },
+  {
+   "label": "Sugargoo guide to sharing a Weidian product link",
+   "url": "https://blog.sugargoo.com/how-to-use-weidian-link-sugargoo-superbuy-acbuy-mulebuy-oopbuy/"
+  },
+  {
+   "label": "Sugargoo purchase and warehouse inspection workflow",
+   "url": "https://blog.sugargoo.com/how-does-ordering-from-sugargoo-work-learn-how-to-buy-from-china-step-by-step/"
+  }
+ ]
+}

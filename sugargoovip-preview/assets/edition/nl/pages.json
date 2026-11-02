@@ -1,0 +1,485 @@
+{
+ "ui": {
+  "nav.home": "Home",
+  "nav.daily": "Dagelijkse selectie",
+  "nav.categories": "Categorieën",
+  "nav.spreadsheet": "Spreadsheet",
+  "nav.guides": "Gidsen",
+  "nav.faq": "FAQ",
+  "back.home": "Terug naar home",
+  "read.guide": "Lees gids",
+  "hero.a": "Sugargoo",
+  "hero.b": "Winkelgids",
+  "hero.intro": "Onafhankelijke bron voor producten, QC-controle en verzending.",
+  "hero.cta": "Bekijk producten",
+  "sheet.title": "Sugargoo Spreadsheet UK 2026",
+  "sheet.cta": "Open spreadsheet",
+  "section.daily": "Dagelijkse selectie",
+  "section.categories": "Populaire categorieën",
+  "section.guides": "Winkelgidsen",
+  "section.faq": "FAQ",
+  "product.shoes": "Nieuw schoenenproduct",
+  "product.sweatshirt": "Nieuwe sweater",
+  "product.tshirt": "Nieuw T-shirt",
+  "product.jacket": "Nieuwe jas",
+  "cat.shoes": "Schoenen",
+  "cat.hoodies": "Hoodies / Truien",
+  "cat.tshirts": "T-Shirts",
+  "cat.jackets": "Jassen",
+  "cat.pants": "Broeken / Shorts",
+  "cat.headwear": "Hoofddeksels",
+  "cat.accessories": "Accessoires",
+  "cat.electronics": "Elektronica",
+  "guide.what": "Wat is Sugargoo?",
+  "guide.what.desc": "Hoe het proces van een aankoopagent werkt.",
+  "guide.qc": "QC-foto’s uitgelegd",
+  "guide.qc.desc": "Praktische controle van magazijnfoto’s.",
+  "guide.shipping": "Verzendgids",
+  "guide.shipping.desc": "Routes, kosten, verpakking en tijd vergelijken.",
+  "guide.alt": "Sugargoo alternatief 2026",
+  "guide.alt.desc": "Agenten vergelijken met praktische criteria.",
+  "footer.trust": "Onafhankelijke winkelgids",
+  "footer.help": "Bestellingen worden verwerkt door de gekoppelde hoofdsite",
+  "footer.choose": "Kies een andere taal",
+  "guides.title": "Winkelgidsen",
+  "guides.intro": "Elk artikel opent op een eigen pagina en behoudt de gekozen taal.",
+  "what.title": "Wat is Sugargoo?",
+  "what.lead": "Duidelijke uitleg van het proces van een aankoopagent.",
+  "qc.title": "QC-foto’s uitgelegd",
+  "qc.lead": "Controleer het artikel in het magazijn vóór internationale verzending.",
+  "shipping.title": "Verzendgids",
+  "shipping.lead": "Vergelijk totale kosten, beperkingen, tracking en levertijd.",
+  "alt.title": "Sugargoo alternatief 2026",
+  "alt.lead": "Vergelijkingsmethode voor jouw bestelling en bestemming.",
+  "faq.title": "Veelgestelde vragen",
+  "faq.intro": "Open een vraag om het volledige antwoord te lezen.",
+  "faq.q1": "Is dit de officiële Sugargoo-site?",
+  "faq.a1": "Nee. Dit is een onafhankelijke gids.",
+  "faq.q2": "Verkoopt deze site producten?",
+  "faq.a2": "Nee. Productkaarten linken naar de hoofdsite.",
+  "faq.q3": "Hoe plaats ik een bestelling?",
+  "faq.a3": "Open het product en volg de instructies op de doelsite.",
+  "faq.q4": "Waarom QC-foto’s controleren?",
+  "faq.a4": "Om zichtbare problemen vóór verzending te vinden.",
+  "faq.q5": "Hoe lang duurt verzending?",
+  "faq.a5": "Dat hangt af van route, bestemming, douane en seizoen.",
+  "faq.q6": "Kan ik een artikel retourneren?",
+  "faq.a6": "Dat hangt af van verkoper, beleid en termijn.",
+  "faq.q7": "Wat is factureerbaar gewicht?",
+  "faq.a7": "Het gewicht dat voor de kosten wordt gebruikt: werkelijk of volumetrisch.",
+  "faq.q8": "Wat controleren vóór betaling van verzending?",
+  "faq.a8": "Artikelen, QC, adres, aangifte, verpakking, route, verzekering en gewicht.",
+  "guides.viewAll": "Bekijk alle artikelen",
+  "search.label": "Producten zoeken",
+  "search.placeholder": "Producten zoeken...",
+  "search.button": "Zoeken"
+ },
+ "shop": {
+  "catalogTitle": "Sugargoo Spreadsheet UK – Bekijk de productselectie",
+  "catalogIntro": "Bekijk de selectie per categorie. Open een artikel voor de actuele advertentie, de beschikbare varianten en de punten die je bij aankomst in het magazijn kunt controleren.",
+  "categoryTitle": "Sugargoo UK – Selectie {category}",
+  "categoryIntro": "Bekijk de categorie ‘{category}’, vergelijk de advertenties en lees wat je kunt controleren voordat je een variant kiest.",
+  "categoriesTitle": "Productcategorieën van Sugargoo UK",
+  "categoriesIntro": "Kies een categorie voor de bijbehorende artikelen en praktische informatie over afmetingen, foto's en verpakking.",
+  "productIntro": "Open de actuele advertentie van de verkoper en controleer de gewenste variant. De naam op deze pagina hoort bij de vermelding in de catalogus.",
+  "listing": "Advertentie van de verkoper",
+  "buy": "Actuele advertentie openen",
+  "checkBefore": "Vóór het bestellen",
+  "checkBeforeBody": "Controleer de verkoper, de gekozen uitvoering, het aantal en de prijs. Bewaar de exacte omschrijving van de optie en de afmetingen die voor jou belangrijk zijn.",
+  "checkAfter": "Bij aankomst in het magazijn",
+  "checkAfterBody": "Zoek het ontvangen artikel op in het Packing Center. Vergelijk het artikelnummer en de inspectiefoto's met je bestelling. Vraag bij twijfel om een duidelijke detailfoto.",
+  "shipping": "Verzending naar het Verenigd Koninkrijk",
+  "shippingBody": "Vergelijk beschikbare diensten voor je adres met het gewicht, de buitenmaten en de inhoud van het verpakte pakket. Controleer het te betalen bedrag.",
+  "numberLabel": "Catalogusnummer",
+  "sizing": "Vergelijk bij een T-shirt of polo de plat gemeten breedte van okselnaad tot okselnaad en de lengte van schouder tot zoom met een kledingstuk dat goed past.",
+  "ttitle": "Sugargoo T-shirt Spreadsheet UK – T-shirts en polo's",
+  "categories": {
+   "shoes": "Schoenen",
+   "hoodies-sweaters": "Hoodies en truien",
+   "t-shirts": "T-shirts",
+   "jackets": "Jassen",
+   "pants-shorts": "Broeken en shorts",
+   "headwear": "Petten en hoeden",
+   "accessories": "Accessoires",
+   "electronics": "Elektronica"
+  },
+  "categoryChecks": {
+   "shoes": "Vergelijk het maatsysteem met de tabel van de verkoper. Controleer in het magazijn beide schoenen en beide labels. Bepaal of je de originele doos wilt houden en hoeveel extra ruimte die inneemt.",
+   "hoodies-sweaters": "Vergelijk borstbreedte en mouwlengte met een eigen kledingstuk. Let op het verschil tussen een hoodie, een sweater en een gebreide trui. Controleer boorden, naden en kleur.",
+   "t-shirts": "Vergelijk de plat gemeten borstbreedte en de lengte. Controleer bij een polo de kraag, knooplijst en het maatlabel. Bekijk bij een bedrukt T-shirt waar de print op de gekozen uitvoering zit.",
+   "jackets": "Houd rekening met kleding die je onder de jas draagt. Vergelijk borstbreedte, mouwlengte en sluiting. Vraag bij een dikke jas of een compactere verpakking mogelijk is zonder vervorming.",
+   "pants-shorts": "Controleer taillebreedte, kruishoogte en binnenbeenlengte volgens de meetmethode van de verkoper. Vergelijk bij shorts de totale lengte. Bekijk koorden, sluitingen en de gekozen wassing of kleur.",
+   "headwear": "Controleer voor welke hoofdomtrek het model bedoeld is en hoe je de maat verstelt. Bekijk klep of rand en bovenkant op de magazijnfoto's. Overweeg bescherming voor een model dat zijn vorm moet behouden.",
+   "accessories": "Vergelijk de afmetingen met het beoogde gebruik en kijk welke onderdelen zijn inbegrepen. Inspecteer sluitingen, beslag en zichtbare hoeken. Bewaar een beschermend etui wanneer de inhoud dat nodig heeft.",
+   "electronics": "Vraag de verkoper naar het model, de accessoires en de vereisten voor voeding of batterij. Een foto van de buitenkant toont de zichtbare staat. Controleer welke vervoerders de werkelijke inhoud accepteren."
+  },
+  "info": {
+   "about": [
+    "Over deze gids",
+    "We publiceren een onafhankelijke catalogus en praktische gidsen voor aankopen met levering in het Verenigd Koninkrijk. De productpagina's verwijzen naar actuele advertenties. Voorbeelden van inspecties en verzending helpen je bepalen wat je bij de verkoper of aankoopagent kunt navragen."
+   ],
+   "contact": [
+    "Contact en hulp bij bestellingen",
+    "Neem bij vragen over een aankoop, ontbrekende magazijnfoto's, een betaling of verzending contact op met de officiële klantenservice van Sugargoo. Houd het artikel- of pakketnummer bij de hand en deel privégegevens uitsluitend via de officiële dienst. Deze gids heeft geen toegang tot bestellingen."
+   ],
+   "privacy": [
+    "Privacy en statistieken",
+    "Deze site gebruikt Google Analytics 4 om bezoeken, gebruik van de zoekfunctie op de startpagina en uitgaande klikken naar de winkelcatalogus te meten. De zoekgebeurtenis registreert de lengte van de zoekopdracht. Als je een externe advertentie opent, gelden daar de privacypraktijken van die dienst."
+   ],
+   "disclaimer": [
+    "Toelichting op de informatie",
+    "Beschikbaarheid, varianten, vervoersvoorwaarden en prijzen kunnen na publicatie veranderen. De voorbeelden laten zien hoe je de gegevens controleert. Bekijk vóór betaling de actuele aanbieding en de voorwaarden voor je pakket."
+   ]
+  }
+ },
+ "extra": {
+  "home": "Sugargoo VK: productlinks, QC-foto’s en verzending",
+  "homeDesc": "Bekijk producten, vind de magazijnfoto’s van je bestelling en vergelijk verzendroutes naar het VK met de maten van je ingepakte pakket.",
+  "guides": "Sugargoo-gidsen voor het Verenigd Koninkrijk",
+  "guidesDesc": "Controleer een productlink, zoek na aankomst in het magazijn je foto’s op of vergelijk de verzendopties voor je pakket.",
+  "qc": "Mijn QC-foto’s bekijken",
+  "shipping": "Verzending naar het VK",
+  "sources": "Officiële bronnen van Sugargoo",
+  "tool": "Pakketgewicht berekenen",
+  "toolNote": "Vul de deler van de verzendlijn in cm³/kg in. Gebruikt de lijn het hoogste gewicht, vergelijk beide waarden dan vóór afronding. Controleer de tariefstappen en uitzonderingen in de offerte.",
+  "length": "Lengte (cm)",
+  "width": "Breedte (cm)",
+  "height": "Hoogte (cm)",
+  "weight": "Werkelijk gewicht (kg)",
+  "divisor": "Deler (cm³/kg)",
+  "calculate": "Berekenen",
+  "volume": "Volumegewicht",
+  "bill": "Hoogste gewicht",
+  "finds": "Producten",
+  "checked": "Productlinks gecontroleerd",
+  "tee": "T-shirt",
+  "polo": "Polo",
+  "older": "Eerdere catalogusvermeldingen"
+ },
+ "cards": {
+  "/guides/sugargoo-qc-finder-guide.html": [
+   "Zo vind je je Sugargoo-QC-foto’s na aankomst in het magazijn",
+   "Open het juiste artikel in het Sugargoo Packing Center, bekijk je magazijnfoto’s en vraag zo nodig een detailfoto of meting aan voordat je het naar het Verenigd Koninkrijk verstuurt."
+  ],
+  "/guides/sugargoo-shoes-spreadsheet-uk.html": [
+   "Sugargoo-spreadsheet met schoenen voor het VK",
+   "Vergelijk vijf aanbiedingen, bekijk de maten van beide schoenen en beslis of de doos mee moet."
+  ],
+  "/guides/sugargoo-hoodies-spreadsheet-uk.html": [
+   "Sugargoo-spreadsheet met hoodies voor het VK",
+   "Vergelijk borstbreedte, ruglengte en mouwlengte voordat je een kledingstuk goedkeurt."
+  ],
+  "/guides/sugargoo-vs-superbuy-uk.html": [
+   "Sugargoo of Superbuy voor kopers in het VK?",
+   "Vergelijk hetzelfde winkelmandje met alle kosten, gewenste foto’s en offertes voor het vervoer."
+  ],
+  "/guides/sugargoo-uk-review.html": [
+   "Sugargoo beoordeeld voor kopers in het VK",
+   "Bekijk hoe inkoop, inspectie, opslag en verzending werken en waar de risico’s zitten."
+  ],
+  "/guides/sugargoo-fees-uk.html": [
+   "Welke kosten rekent Sugargoo bij levering in het VK?",
+   "Bereken het totaal bij aankomst, inclusief aankoop, betaling, vervoer, btw en invoerrechten."
+  ],
+  "/guides/sugargoo-warehouse-storage-time.html": [
+   "Bewaartermijnen in het Sugargoo-magazijn",
+   "Controleer per artikel de einddatum en houd tijd vrij voor retour, samenvoeging en verzending."
+  ],
+  "/guides/sugargoo-warehouse-guide.html": [
+   "Het Sugargoo-magazijn: aankomst, QC-foto’s en verzending naar het VK",
+   "Bekijk wat je na aankomst doet: QC-foto’s vinden, problemen met artikelen oplossen, opslagtermijnen noteren en een pakket voor het Verenigd Koninkrijk voorbereiden."
+  ],
+  "/guides/sugargoo-spreadsheet-guide.html": [
+   "De Sugargoo-productspreadsheet voor het VK gebruiken",
+   "Controleer de verkoperslink, de gekozen uitvoering, inspectienotities en verzendvoorwaarden."
+  ],
+  "/guides/sugargoo-uk-shipping-guide.html": [
+   "Sugargoo-verzending naar het VK in 2026: routes, kosten, douane en tracking",
+   "Vergelijk actuele verzendroutes, het te berekenen gewicht en de verpakking van je pakket. Controleer de Britse douane-informatie en volg de zending tot aan de deur."
+  ],
+  "/guides/qc-guide.html": [
+   "QC-foto’s van Sugargoo beoordelen",
+   "Herken zichtbare afwijkingen en bepaal wanneer een meting, extra foto of retour nodig is."
+  ],
+  "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html": [
+   "Een Sugargoo-bestelling met meerdere artikelen organiseren",
+   "Bij veel producten is het grootste risico niet het vinden van een artikel, maar het correct koppelen van links, varianten en wijzigingen aan het juiste product."
+  ],
+  "/guides/sugargoo-reverse-shopping-image-to-product-link.html": [
+   "Een Sugargoo-product vinden vanaf een afbeelding",
+   "Zelfs een duidelijke afbeelding is nog meerdere stappen verwijderd van een bestelbare advertentie."
+  ],
+  "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html": [
+   "Wijzigingen op het laatste moment in Sugargoo-bestellingen voorkomen",
+   "De lastigste geschillen ontstaan wanneer een bestelling stilletjes een andere bestelling wordt: prijswijziging, uitverkochte variant, andere kleur of nieuwe eisen na aankomst in het magazijn."
+  ],
+  "/guides/sugargoo-reverse-shopping-order-boundaries.html": [
+   "Welke bestellingen passen bij een Sugargoo reverse-shoppingproces?",
+   "Niet elke aanwijzing voor een Chinees product moet direct een internationale bestelling worden."
+  ],
+  "/guides/sugargoo-reverse-shopping-product-link-workflow.html": [
+   "Hoe werkt reverse shopping met Sugargoo?",
+   "Reverse shopping is niet alleen een Chinese productlink doorsturen naar een buitenlandse koper."
+  ],
+  "/guides/what-is-sugargoo.html": [
+   "Wat is Sugargoo?",
+   "Volg een bestelling vanaf de link van de verkoper tot het internationale pakket."
+  ],
+  "/guides/shipping-guide.html": [
+   "Verzenden met Sugargoo",
+   "Vergelijk routes, verpakking, tracking, beperkingen en totale kosten."
+  ],
+  "/guides/alternative.html": [
+   "Alternatieven voor Sugargoo",
+   "Vergelijk inkoopagenten op de diensten, controles en vervoersopties die je nodig hebt."
+  ],
+  "/guides/sugargoo-qc-checklist.html": [
+   "Checklist voor de kwaliteitscontrole bij Sugargoo",
+   "Bekijk aanzichten, labels, maten en afwerking voordat je om detailfoto’s vraagt."
+  ],
+  "/guides/sugargoo-rehearsal-packing-guide.html": [
+   "Je pakket vooraf laten inpakken door Sugargoo",
+   "Gebruik pakketmaten, berekend gewicht en verpakkingswensen bij het kiezen van een verzendroute."
+  ],
+  "/guides/sugargoo-shipping-cost-guide.html": [
+   "Verzendkosten van Sugargoo naar het VK",
+   "Vergelijk werkelijk gewicht en volumegewicht met de voorwaarden van de beschikbare routes."
+  ],
+  "/guides/sugargoo-return-guide.html": [
+   "Een artikel retourneren via Sugargoo",
+   "Leg het probleem vast en controleer de termijn voordat de internationale verzending begint."
+  ],
+  "/guides/sugargoo-restricted-items-guide.html": [
+   "Artikelen met verzendbeperkingen bij Sugargoo",
+   "Controleer productkenmerken, toegestane routes en de regels van het bestemmingsland."
+  ],
+  "/guides/sugargoo-payment-guide.html": [
+   "Betalen bij Sugargoo",
+   "Houd aankoop en vervoer uit elkaar, controleer de valutaomrekening en bewaar terugbetalingsbewijzen."
+  ],
+  "/guides/sugargoo-germany-shipping-guide.html": [
+   "Met Sugargoo naar Duitsland verzenden",
+   "Controleer pakketgegevens, beschikbare routes, adresopmaak en actuele Duitse of Europese voorschriften."
+  ],
+  "/guides/sugargoo-order-tracking-guide.html": [
+   "Een bestelling bij Sugargoo volgen",
+   "Onderscheid vervoer naar het magazijn, het samenstellen van het pakket en internationale scans."
+  ],
+  "/guides/sugargoo-product-link-guide.html": [
+   "Werkt je Sugargoo-link niet? Zo controleer je Weidian- en Taobao-aanbiedingen",
+   "Controleer de productlink en de exacte uitvoering bij de verkoper. Met DIY Order kun je een actieve, toegestane aanbieding handmatig doorgeven als importeren niet lukt."
+  ],
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html": [
+   "Sugargoo-pakketten splitsen of samenvoegen?",
+   "Vergelijk ruimtebeslag, beschikbare routes, douanegegevens en kans op schade voordat je beslist."
+  ],
+  "/guides/sugargoo-1688-buying-guide-uk.html": [
+   "Via Sugargoo bij 1688 bestellen",
+   "Controleer de minimumafname, verkoopeenheid en varianten vóór inspectie en verzending naar het VK."
+  ],
+  "/guides/sugargoo-uk-address-format.html": [
+   "Een Brits adres invoeren bij Sugargoo",
+   "Controleer de ontvanger, woning, postplaats, postcode en contactgegevens voordat je betaalt."
+  ],
+  "/guides/sugargoo-uk-customs-tax-planning.html": [
+   "Douane en belasting bij levering van Sugargoo in het VK",
+   "Houd goederenwaarde, vervoer, btw, invoerrechten en afhandelingskosten apart."
+  ],
+  "/guides/sugargoo-uk-shipping-calculator-guide.html": [
+   "Sugargoo-verzendcalculator voor het VK: zo maak je een betrouwbare schatting",
+   "Bereken de kosten met passende gewichten, pakketmaten en productgegevens. Vergelijk de schatting vóór betaling met het echte pakket naar het Verenigd Koninkrijk."
+  ],
+  "/guides/sugargoo-insurance-claims-uk-guide.html": [
+   "Transportverzekering en schadeclaims bij Sugargoo",
+   "Bewaar de gekozen dekking, pakketwaarde, volggegevens en bewijsstukken voor je claim."
+  ],
+  "/guides/sugargoo-tracking-last-mile-uk.html": [
+   "Een Sugargoo-pakket volgen tijdens de bezorging in het VK",
+   "Herken het verschil tussen een aangemaakt label, een fysieke scan, de douane en lokale overdracht."
+  ],
+  "/guides/sugargoo-uk-shipping-line-unavailable.html": [
+   "Waarom is mijn Sugargoo-verzendroute naar het Verenigd Koninkrijk niet beschikbaar?",
+   "Zo achterhaal je waarom een verzendoptie ontbreekt. Controleer het afleveradres, de producten, de pakketmaten en de limieten van de route voordat je het pakket aanpast."
+  ],
+  "/guides/sugargoo-shipping-coupon-not-working.html": [
+   "Werkt je Sugargoo-verzendcoupon niet? Controleer dit voordat je betaalt",
+   "Zo vind je een ontbrekende verzendcoupon, controleer je welke kosten meetellen en vergelijk je het te betalen bedrag voor een pakket naar het Verenigd Koninkrijk."
+  ]
+ },
+ "related": {
+  "/guides/sugargoo-reverse-shopping-product-link-workflow.html": [
+   "/guides/sugargoo-product-link-guide.html",
+   "/guides/sugargoo-qc-checklist.html",
+   "/guides/sugargoo-shipping-cost-guide.html"
+  ],
+  "/guides/alternative.html": [
+   "/guides/sugargoo-vs-superbuy-uk.html",
+   "/guides/what-is-sugargoo.html",
+   "/guides/qc-guide.html",
+   "/guides/shipping-guide.html"
+  ],
+  "/guides/sugargoo-qc-finder-guide.html": [
+   "/products/",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-return-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-uk-shipping-guide.html": [
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/qc-guide.html"
+  ],
+  "/guides/what-is-sugargoo.html": [
+   "/guides/qc-guide.html",
+   "/guides/shipping-guide.html",
+   "/guides/alternative.html"
+  ],
+  "/guides/sugargoo-insurance-claims-uk-guide.html": [
+   "/guides/sugargoo-uk-shipping-calculator-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-uk-address-format.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html": [
+   "/guides/sugargoo-reverse-shopping-order-boundaries.html",
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html",
+   "/guides/sugargoo-qc-checklist.html"
+  ],
+  "/guides/shipping-guide.html": [
+   "/guides/what-is-sugargoo.html",
+   "/guides/qc-guide.html",
+   "/guides/alternative.html"
+  ],
+  "/guides/sugargoo-spreadsheet-guide.html": [
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-hoodies-spreadsheet-uk.html": [
+   "/categories/hoodies-sweaters.html",
+   "/products/hoodies-sweaters-5974.html",
+   "/products/hoodies-sweaters-5970.html",
+   "/products/hoodies-sweaters-5968.html",
+   "/products/hoodies-sweaters-5960.html",
+   "/products/hoodies-sweaters-5959.html",
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-uk-shipping-calculator-guide.html"
+  ],
+  "/guides/sugargoo-uk-review.html": [
+   "/guides/sugargoo-1688-buying-guide-uk.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-fees-uk.html",
+   "/guides/sugargoo-warehouse-storage-time.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-image-to-product-link.html": [
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html",
+   "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html",
+   "/guides/sugargoo-product-link-guide.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html": [
+   "/guides/sugargoo-reverse-shopping-image-to-product-link.html",
+   "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html",
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html"
+  ],
+  "/guides/sugargoo-uk-shipping-calculator-guide.html": [
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html"
+  ],
+  "/guides/sugargoo-vs-superbuy-uk.html": [
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-warehouse-storage-time.html",
+   "/guides/sugargoo-uk-shipping-calculator-guide.html",
+   "/guides/sugargoo-fees-uk.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html"
+  ],
+  "/guides/sugargoo-uk-address-format.html": [
+   "/guides/sugargoo-order-tracking-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html"
+  ],
+  "/guides/sugargoo-warehouse-storage-time.html": [
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-return-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-warehouse-guide.html"
+  ],
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html": [
+   "/guides/shipping-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html",
+   "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html"
+  ],
+  "/guides/sugargoo-tracking-last-mile-uk.html": [
+   "/guides/sugargoo-insurance-claims-uk-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-uk-shipping-calculator-guide.html"
+  ],
+  "/guides/sugargoo-fees-uk.html": [
+   "/guides/sugargoo-uk-shipping-calculator-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-insurance-claims-uk-guide.html",
+   "/guides/sugargoo-uk-review.html",
+   "/guides/sugargoo-uk-customs-tax-planning.html",
+   "/guides/sugargoo-payment-guide.html"
+  ],
+  "/guides/sugargoo-1688-buying-guide-uk.html": [
+   "/guides/sugargoo-product-link-guide.html",
+   "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html",
+   "/guides/sugargoo-spreadsheet-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-order-boundaries.html": [
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-shipping-cost-guide.html"
+  ],
+  "/guides/sugargoo-warehouse-guide.html": [
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/products/",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/qc-guide.html": [
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/sugargoo-shoes-spreadsheet-uk.html",
+   "/guides/sugargoo-hoodies-spreadsheet-uk.html",
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-shoes-spreadsheet-uk.html": [
+   "/categories/shoes.html",
+   "/products/shoes-6045.html",
+   "/products/shoes-6044.html",
+   "/products/shoes-6043.html",
+   "/products/shoes-6042.html",
+   "/products/shoes-6041.html",
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-rehearsal-packing-guide.html"
+  ],
+  "/guides/sugargoo-uk-customs-tax-planning.html": [
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html"
+  ]
+ }
+}

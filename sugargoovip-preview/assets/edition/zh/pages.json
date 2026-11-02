@@ -1,0 +1,485 @@
+{
+ "ui": {
+  "nav.home": "首页",
+  "nav.daily": "每日精选",
+  "nav.categories": "产品分类",
+  "nav.spreadsheet": "产品表格",
+  "nav.guides": "购物指南",
+  "nav.faq": "常见问题",
+  "back.home": "返回首页",
+  "read.guide": "阅读指南",
+  "hero.a": "Sugargoo",
+  "hero.b": "购物指南",
+  "hero.intro": "独立的商品发现、质检照片与国际运输信息资源。",
+  "hero.cta": "查看精选",
+  "sheet.title": "Sugargoo 产品表格 2026",
+  "sheet.cta": "打开表格",
+  "section.daily": "每日精选",
+  "section.categories": "热门分类",
+  "section.guides": "购物指南",
+  "section.faq": "常见问题",
+  "product.shoes": "最新鞋类产品",
+  "product.sweatshirt": "最新卫衣产品",
+  "product.tshirt": "最新 T 恤产品",
+  "product.jacket": "最新夹克产品",
+  "cat.shoes": "鞋类",
+  "cat.hoodies": "卫衣 / 毛衣",
+  "cat.tshirts": "T 恤",
+  "cat.jackets": "夹克",
+  "cat.pants": "长裤 / 短裤",
+  "cat.headwear": "帽子",
+  "cat.accessories": "配饰",
+  "cat.electronics": "电子产品",
+  "guide.what": "什么是 Sugargoo？",
+  "guide.what.desc": "了解代购平台的基本操作流程。",
+  "guide.qc": "QC 质检照片说明",
+  "guide.qc.desc": "检查仓库质检照片的实用方法。",
+  "guide.shipping": "国际运输指南",
+  "guide.shipping.desc": "比较线路、费用、包装与时效。",
+  "guide.alt": "Sugargoo 替代平台 2026",
+  "guide.alt.desc": "根据实际需求比较不同代购平台。",
+  "footer.trust": "独立购物发现指南",
+  "footer.help": "商品与订单由跳转后的主站处理",
+  "footer.choose": "选择其他语言",
+  "guides.title": "购物指南",
+  "guides.intro": "每篇文章均有独立页面，切换页面后会保留当前语言。",
+  "what.title": "什么是 Sugargoo？",
+  "what.lead": "清晰说明代购平台的工作流程，以及下单前需要确认的事项。",
+  "qc.title": "QC 质检照片说明",
+  "qc.lead": "在批准国际运输前，通过仓库照片检查实际收到的商品。",
+  "shipping.title": "国际运输指南",
+  "shipping.lead": "根据总费用、限制、追踪质量与合理时效比较运输线路。",
+  "alt.title": "Sugargoo 替代平台 2026",
+  "alt.lead": "根据商品类型、包裹和目的地比较代购平台。",
+  "faq.title": "常见问题",
+  "faq.intro": "点击问题即可查看完整答案。以下内容为一般代购流程说明，具体规则应以平台最新页面为准。",
+  "faq.q1": "这是 Sugargoo 官方网站吗？",
+  "faq.a1": "不是。本网站是独立的指南和商品发现网站，不宣称与 Sugargoo 官方存在隶属关系。",
+  "faq.q2": "这个网站直接销售商品吗？",
+  "faq.a2": "不销售。商品卡片会跳转到关联的主站，本指南站不处理订单或付款。",
+  "faq.q3": "如何下单？",
+  "faq.a3": "打开商品详情，查看主站中的商品信息，选择规格，并按照目标网站的结算或代购流程操作。",
+  "faq.q4": "为什么要检查 QC 照片？",
+  "faq.a4": "QC 照片可以展示仓库实际收到的商品，帮助在国际发货前发现款式、颜色、尺码或外观问题。",
+  "faq.q5": "国际运输需要多久？",
+  "faq.a5": "运输时间取决于线路、目的地、海关、包裹类型和旺季情况，应把时效视为范围而不是保证日期。",
+  "faq.q6": "商品可以退货吗？",
+  "faq.a6": "退货取决于卖家、平台政策和售后期限。尽量在商品仍处于仓库时申请退货。",
+  "faq.q7": "什么是计费重量？",
+  "faq.a7": "计费重量是运输公司用于收费的重量，可能是实际重量，也可能是体积重量。",
+  "faq.q8": "支付国际运费前应检查什么？",
+  "faq.a8": "确认商品清单、QC 结果、地址、申报信息、包装要求、运输线路、保险与预计计费重量。",
+  "guides.viewAll": "查看全部文章",
+  "search.label": "搜索商品",
+  "search.placeholder": "输入商品关键词…",
+  "search.button": "搜索"
+ },
+ "shop": {
+  "catalogTitle": "Sugargoo 英国选品表｜按分类浏览商品",
+  "catalogIntro": "按分类浏览商品，打开详情可查看卖家当前的商品页面、可选款式，以及货物到仓后值得核对的细节。",
+  "categoryTitle": "Sugargoo 英国选品｜{category}",
+  "categoryIntro": "浏览「{category}」分类，比较各个商品链接，并在选择规格前查看下面的核对要点。",
+  "categoriesTitle": "Sugargoo 英国商品分类",
+  "categoriesIntro": "选择分类，查看收录的商品，以及这类商品下单和寄送前需要核对的尺寸、实拍细节和包装方式。",
+  "productIntro": "打开卖家当前的商品页面，确认你想购买的具体规格。本页名称用于识别这条目录记录。",
+  "listing": "卖家商品页面",
+  "buy": "打开当前商品页面",
+  "checkBefore": "下单前核对",
+  "checkBeforeBody": "确认卖家、所选规格、数量和价格。保存选项原文以及影响选购决定的尺寸数据，方便收货后比对。",
+  "checkAfter": "商品到仓后",
+  "checkAfterBody": "在 Packing Center 找到对应商品，核对编号及质检照片。如果看不清关键细节，可针对该位置要求补拍。",
+  "shipping": "寄往英国",
+  "shippingBody": "根据包裹装箱后的外尺寸、重量和物品属性，比较适用于收货地址的线路，付款前核对最终金额。",
+  "numberLabel": "目录编号",
+  "sizing": "选购 T 恤或 Polo 衫时，将衣服平铺，比较两侧腋下接缝间的宽度，以及肩部至下摆的长度，参照一件合身的上衣。",
+  "ttitle": "Sugargoo 英国 T 恤选品表｜T 恤与 Polo 衫",
+  "categories": {
+   "shoes": "鞋履",
+   "hoodies-sweaters": "卫衣与针织衫",
+   "t-shirts": "T 恤",
+   "jackets": "夹克与外套",
+   "pants-shorts": "长裤与短裤",
+   "headwear": "帽子",
+   "accessories": "配饰",
+   "electronics": "电子产品"
+  },
+  "categoryChecks": {
+   "shoes": "先按卖家的尺码表核对标注体系。到仓后检查左右鞋及各自的尺码标签，再结合鞋盒占用的包裹空间，决定是否保留原盒。",
+   "hoodies-sweaters": "用一件合身的上衣比对平铺胸宽和袖长。先分清连帽卫衣、圆领卫衣和针织衫，再看袖口、接缝以及所选颜色。",
+   "t-shirts": "核对平铺胸宽和衣长。Polo 衫还应查看领口、门襟和尺码标。印花 T 恤可对照所选款式，确认图案位置。",
+   "jackets": "预留内搭需要的空间，比较胸宽、袖长和开合方式。对于蓬松的外套，先问仓库能否在不影响外形的情况下缩小包装体积。",
+   "pants-shorts": "按照卖家的测量方法核对腰宽、裆长和内侧裤长。短裤还可比较总长。检查抽绳、拉链或纽扣，以及所选颜色或水洗效果。",
+   "headwear": "查看适用头围和调节方式。在到仓照片中检查帽檐与帽冠，若帽型需要定形，可考虑防挤压包装。",
+   "accessories": "结合用途核对尺寸及随附配件。到仓后查看卡扣、五金件和边角是否完好。若物件易受损，考虑保留保护盒。",
+   "electronics": "向卖家确认型号、随附配件、供电方式以及是否含电池。外观照片只能看出可见状态，选择运输线路时应按实际内件核查可寄范围。"
+  },
+  "info": {
+   "about": [
+    "关于本站",
+    "本站是独立的选品目录，为计划寄往英国的买家整理购物指南。商品详情提供当前商品页面的入口，验货和寄送示例则帮助你判断哪些信息需要向卖家或代购平台确认。"
+   ],
+   "contact": [
+    "联系与订单帮助",
+    "如遇购买、到仓照片缺失、付款或寄送问题，请通过 Sugargoo 官方客服渠道咨询。准备好商品编号或包裹编号，订单隐私信息仅通过官方渠道提供。本站无法查看你的订单。"
+   ],
+   "privacy": [
+    "隐私与访问统计",
+    "本站使用 Google Analytics 4 统计访问情况、首页搜索功能的使用情况，以及从本站跳转到购物目录的点击。首页的搜索统计事件记录查询内容的长度。打开外部商品页面后，相应服务适用自己的隐私规则。"
+   ],
+   "disclaimer": [
+    "使用说明",
+    "商品库存、规格、可用线路及价格可能在指南发布后发生变化。文中示例供核对信息时参考。付款前请再次查看卖家的当前报价和包裹页面显示的条件。"
+   ]
+  }
+ },
+ "extra": {
+  "home": "Sugargoo 英国购物指南：商品链接、质检照片与运输",
+  "homeDesc": "浏览商品链接，找到自己订单的到仓质检照片，再按打包后的重量和尺寸比较英国运输线路。",
+  "guides": "Sugargoo 英国购物与运输指南",
+  "guidesDesc": "从核对链接开始，查看入库后的实物照片，或比较寄往英国的包裹线路。",
+  "qc": "查看我的质检照片",
+  "shipping": "英国运输",
+  "sources": "Sugargoo 官方资料",
+  "tool": "包裹计费重量试算",
+  "toolNote": "输入当前线路标明的体积重除数（立方厘米/千克）。如果线路按较大重量计费，可在进位前比较两者。实际计费档位及例外以当次报价为准。",
+  "length": "长（厘米）",
+  "width": "宽（厘米）",
+  "height": "高（厘米）",
+  "weight": "实重（千克）",
+  "divisor": "线路除数（立方厘米/千克）",
+  "calculate": "计算",
+  "volume": "体积重",
+  "bill": "较大重量",
+  "finds": "款商品",
+  "checked": "商品链接复核日期",
+  "tee": "T 恤",
+  "polo": "Polo 衫",
+  "older": "较早收录的商品"
+ },
+ "cards": {
+  "/guides/sugargoo-qc-finder-guide.html": [
+   "Sugargoo 商品到仓后，在哪里看自己的 QC 质检照片？",
+   "在 Sugargoo 打包中心找到自己的入库商品和质检照片。寄往英国前，先看清尺码与外观，需要时再申请补拍细节或测量尺寸。"
+  ],
+  "/guides/sugargoo-shoes-spreadsheet-uk.html": [
+   "Sugargoo 英国买家鞋款选购表",
+   "对照五条鞋款记录，核实左右脚尺码，再决定发往英国时是否保留鞋盒。"
+  ],
+  "/guides/sugargoo-hoodies-spreadsheet-uk.html": [
+   "Sugargoo 英国买家卫衣选购表",
+   "核对平铺胸宽、衣长和袖长，再决定是否接受收到的款式。"
+  ],
+  "/guides/sugargoo-vs-superbuy-uk.html": [
+   "英国买家如何比较 Sugargoo 和 Superbuy",
+   "用同一购物篮比较两家的完整费用、所需质检照片及英国运费报价。"
+  ],
+  "/guides/sugargoo-uk-review.html": [
+   "英国买家使用 Sugargoo 的实际流程与风险",
+   "从下单、质检到仓储及运输，逐步看清该核实的环节。"
+  ],
+  "/guides/sugargoo-fees-uk.html": [
+   "Sugargoo 寄英国的费用明细",
+   "将货款、支付费用、运费、增值税和关税分开计算，估算到手总成本。"
+  ],
+  "/guides/sugargoo-warehouse-storage-time.html": [
+   "Sugargoo 仓库能存多久？",
+   "逐件查看当前仓储截止日期，为退货、合箱和发货留出时间。"
+  ],
+  "/guides/sugargoo-warehouse-guide.html": [
+   "Sugargoo 仓库指南：到仓签收、QC 照片及英国包裹发货步骤",
+   "商品到 Sugargoo 仓库后，了解在哪里看质检照片、如何处理异常、怎样记录仓储期限，以及寄英国前要准备什么。"
+  ],
+  "/guides/sugargoo-spreadsheet-guide.html": [
+   "英国买家如何使用 Sugargoo 商品表",
+   "核实卖家链接、商品规格、质检记录和运输属性，建立可核查的购买清单。"
+  ],
+  "/guides/sugargoo-uk-shipping-guide.html": [
+   "2026 年 Sugargoo 英国寄送指南：线路、运费、海关与追踪",
+   "寄英国前，用实际包裹比较可选线路、计费重和打包方式，核对海关要求，并保存从仓库到末端派送的完整追踪记录。"
+  ],
+  "/guides/qc-guide.html": [
+   "如何检查 Sugargoo 质检照片",
+   "从可见细节判断是否需要测量、补拍或退货，再决定是否寄出。"
+  ],
+  "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html": [
+   "如何整理 Sugargoo 多件商品代购订单",
+   "按批次和商品编号记录链接、规格及状态，避免漏件、串单或改错商品。"
+  ],
+  "/guides/sugargoo-reverse-shopping-image-to-product-link.html": [
+   "如何凭图片找到可在 Sugargoo 下单的商品",
+   "从截图提取搜索线索，对比候选商品链接，再请卖家确认关键规格。"
+  ],
+  "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html": [
+   "如何在 Sugargoo 下单和发货前确认变更",
+   "在付款、卖家修改商品信息和国际发货前，逐项确认规格、价格与买家要求。"
+  ],
+  "/guides/sugargoo-reverse-shopping-order-boundaries.html": [
+   "哪些代购需求适合通过 Sugargoo 下单？",
+   "先结合商品信息的完整性、规格稳定性、跨境限制和沟通成本判断是否可行。"
+  ],
+  "/guides/sugargoo-reverse-shopping-product-link-workflow.html": [
+   "如何通过 Sugargoo 把代购需求整理成订单",
+   "核对商品链接、所选规格和费用明细，确认发货要求后再提交。"
+  ],
+  "/guides/what-is-sugargoo.html": [
+   "Sugargoo 是什么？",
+   "从商家链接到国际包裹，了解代购服务的各个环节。"
+  ],
+  "/guides/shipping-guide.html": [
+   "Sugargoo 运输指南",
+   "比较线路、包装、物流追踪、限制条件和总成本。"
+  ],
+  "/guides/alternative.html": [
+   "如何比较 Sugargoo 的替代平台",
+   "按采购、质检和发货需求比较不同代购平台提供的服务。"
+  ],
+  "/guides/sugargoo-qc-checklist.html": [
+   "Sugargoo 商品质检清单",
+   "逐项核对图片角度、标签、尺寸和做工，需要时明确指出补拍位置。"
+  ],
+  "/guides/sugargoo-rehearsal-packing-guide.html": [
+   "Sugargoo 预打包指南",
+   "根据实测包裹尺寸、计费重量及包装要求选择线路。"
+  ],
+  "/guides/sugargoo-shipping-cost-guide.html": [
+   "Sugargoo 寄英国的运费如何计算",
+   "结合可用线路和包装方式，比对实重与体积重。"
+  ],
+  "/guides/sugargoo-return-guide.html": [
+   "如何在 Sugargoo 申请退货",
+   "保留问题证据、核对期限，尽量在国际发货前处理。"
+  ],
+  "/guides/sugargoo-restricted-items-guide.html": [
+   "Sugargoo 限寄物品指南",
+   "核实商品属性、可承运线路及目的地规则，如实填写申报信息。"
+  ],
+  "/guides/sugargoo-payment-guide.html": [
+   "Sugargoo 付款指南",
+   "分清商品付款与运费付款，核对汇率换算并保留退款记录。"
+  ],
+  "/guides/sugargoo-germany-shipping-guide.html": [
+   "用 Sugargoo 寄往德国",
+   "核实包裹信息、线路和地址格式，并查看德国及欧盟的最新规定。"
+  ],
+  "/guides/sugargoo-order-tracking-guide.html": [
+   "如何跟踪 Sugargoo 订单",
+   "分清国内运输、仓库处理、包裹生成和国际运输扫描记录。"
+  ],
+  "/guides/sugargoo-product-link-guide.html": [
+   "Sugargoo 读不出商品链接？微店、淘宝链接这样检查",
+   "逐步排查商品链接问题，核对卖家实际可选的款式。商品仍在售且允许购买、但 Sugargoo 无法自动读取时，可尝试手动下单。"
+  ],
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html": [
+   "Sugargoo 包裹该分箱还是合箱？",
+   "提交前比较包装体积、可用线路、申报要求及破损风险。"
+  ],
+  "/guides/sugargoo-1688-buying-guide-uk.html": [
+   "如何通过 Sugargoo 在 1688 采购",
+   "先看懂起订量、销售单位和规格组合，再安排仓库质检和英国收货。"
+  ],
+  "/guides/sugargoo-uk-address-format.html": [
+   "在 Sugargoo 如何填写英国收货地址",
+   "付款前核对收件人、楼栋与门牌、邮政城镇、邮编和联系方式。"
+  ],
+  "/guides/sugargoo-uk-customs-tax-planning.html": [
+   "Sugargoo 包裹寄英国的关税与税费",
+   "分清货值、运费、增值税、关税和承运商手续费。"
+  ],
+  "/guides/sugargoo-uk-shipping-calculator-guide.html": [
+   "Sugargoo 英国运费计算器：如何按真实包裹预估运费",
+   "用实际英国目的地、商品属性、重量和外箱尺寸估算 Sugargoo 运费，并在付款前逐项核对预估与最终报价。"
+  ],
+  "/guides/sugargoo-insurance-claims-uk-guide.html": [
+   "Sugargoo 英国包裹保险与理赔",
+   "留存所选保障条款、包裹价值、物流轨迹和索赔材料。"
+  ],
+  "/guides/sugargoo-tracking-last-mile-uk.html": [
+   "Sugargoo 英国末端物流如何查询",
+   "区分电子面单、实物扫描、清关和当地承运商接收记录。"
+  ],
+  "/guides/sugargoo-uk-shipping-line-unavailable.html": [
+   "为什么 Sugargoo 寄往英国的线路突然选不了了？",
+   "寄英国的线路从列表里消失了？先核对目的地、商品限制、打包后的尺寸和线路上限，再决定要不要换包装或拆包。"
+  ],
+  "/guides/sugargoo-shipping-coupon-not-working.html": [
+   "Sugargoo 运费券用不了？付款前这样排查",
+   "找不到 Sugargoo 运费券、点不了或没看到折扣？核对可抵扣的运费和最终应付金额，再为寄往英国的包裹付款。"
+  ]
+ },
+ "related": {
+  "/guides/sugargoo-reverse-shopping-product-link-workflow.html": [
+   "/guides/sugargoo-product-link-guide.html",
+   "/guides/sugargoo-qc-checklist.html",
+   "/guides/sugargoo-shipping-cost-guide.html"
+  ],
+  "/guides/alternative.html": [
+   "/guides/sugargoo-vs-superbuy-uk.html",
+   "/guides/what-is-sugargoo.html",
+   "/guides/qc-guide.html",
+   "/guides/shipping-guide.html"
+  ],
+  "/guides/sugargoo-qc-finder-guide.html": [
+   "/products/",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-return-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-uk-shipping-guide.html": [
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/qc-guide.html"
+  ],
+  "/guides/what-is-sugargoo.html": [
+   "/guides/qc-guide.html",
+   "/guides/shipping-guide.html",
+   "/guides/alternative.html"
+  ],
+  "/guides/sugargoo-insurance-claims-uk-guide.html": [
+   "/guides/sugargoo-uk-shipping-calculator-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-uk-address-format.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html": [
+   "/guides/sugargoo-reverse-shopping-order-boundaries.html",
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html",
+   "/guides/sugargoo-qc-checklist.html"
+  ],
+  "/guides/shipping-guide.html": [
+   "/guides/what-is-sugargoo.html",
+   "/guides/qc-guide.html",
+   "/guides/alternative.html"
+  ],
+  "/guides/sugargoo-spreadsheet-guide.html": [
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-hoodies-spreadsheet-uk.html": [
+   "/categories/hoodies-sweaters.html",
+   "/products/hoodies-sweaters-5974.html",
+   "/products/hoodies-sweaters-5970.html",
+   "/products/hoodies-sweaters-5968.html",
+   "/products/hoodies-sweaters-5960.html",
+   "/products/hoodies-sweaters-5959.html",
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-uk-shipping-calculator-guide.html"
+  ],
+  "/guides/sugargoo-uk-review.html": [
+   "/guides/sugargoo-1688-buying-guide-uk.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-fees-uk.html",
+   "/guides/sugargoo-warehouse-storage-time.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-image-to-product-link.html": [
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html",
+   "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html",
+   "/guides/sugargoo-product-link-guide.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html": [
+   "/guides/sugargoo-reverse-shopping-image-to-product-link.html",
+   "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html",
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html"
+  ],
+  "/guides/sugargoo-uk-shipping-calculator-guide.html": [
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html"
+  ],
+  "/guides/sugargoo-vs-superbuy-uk.html": [
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-warehouse-storage-time.html",
+   "/guides/sugargoo-uk-shipping-calculator-guide.html",
+   "/guides/sugargoo-fees-uk.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html"
+  ],
+  "/guides/sugargoo-uk-address-format.html": [
+   "/guides/sugargoo-order-tracking-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html"
+  ],
+  "/guides/sugargoo-warehouse-storage-time.html": [
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-return-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-warehouse-guide.html"
+  ],
+  "/guides/sugargoo-split-or-consolidate-parcel-guide.html": [
+   "/guides/shipping-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html",
+   "/guides/sugargoo-reverse-shopping-confirmation-checkpoints.html"
+  ],
+  "/guides/sugargoo-tracking-last-mile-uk.html": [
+   "/guides/sugargoo-insurance-claims-uk-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-uk-shipping-calculator-guide.html"
+  ],
+  "/guides/sugargoo-fees-uk.html": [
+   "/guides/sugargoo-uk-shipping-calculator-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-insurance-claims-uk-guide.html",
+   "/guides/sugargoo-uk-review.html",
+   "/guides/sugargoo-uk-customs-tax-planning.html",
+   "/guides/sugargoo-payment-guide.html"
+  ],
+  "/guides/sugargoo-1688-buying-guide-uk.html": [
+   "/guides/sugargoo-product-link-guide.html",
+   "/guides/sugargoo-reverse-shopping-multi-item-order-ledger.html",
+   "/guides/sugargoo-spreadsheet-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-reverse-shopping-order-boundaries.html": [
+   "/guides/sugargoo-reverse-shopping-product-link-workflow.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-shipping-cost-guide.html"
+  ],
+  "/guides/sugargoo-warehouse-guide.html": [
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/products/",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/qc-guide.html": [
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/sugargoo-shoes-spreadsheet-uk.html",
+   "/guides/sugargoo-hoodies-spreadsheet-uk.html",
+   "/products/",
+   "/guides/sugargoo-warehouse-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html"
+  ],
+  "/guides/sugargoo-shoes-spreadsheet-uk.html": [
+   "/categories/shoes.html",
+   "/products/shoes-6045.html",
+   "/products/shoes-6044.html",
+   "/products/shoes-6043.html",
+   "/products/shoes-6042.html",
+   "/products/shoes-6041.html",
+   "/guides/sugargoo-qc-finder-guide.html",
+   "/guides/qc-guide.html",
+   "/guides/sugargoo-rehearsal-packing-guide.html"
+  ],
+  "/guides/sugargoo-uk-customs-tax-planning.html": [
+   "/guides/sugargoo-uk-address-format.html",
+   "/guides/sugargoo-restricted-items-guide.html",
+   "/guides/sugargoo-uk-shipping-guide.html",
+   "/guides/sugargoo-split-or-consolidate-parcel-guide.html"
+  ]
+ }
+}
