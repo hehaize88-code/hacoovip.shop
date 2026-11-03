@@ -1,5 +1,182 @@
 [
   {
+    "slug": "superbuy-combine-orders-one-parcel",
+    "title": "Mehrere Superbuy-Bestellungen in einem Paket zusammen versenden",
+    "dek": "Wähle eingelagerte Artikel gemeinsam aus, vergleiche ein Paket mit zwei Sendungen und lege für jeden Schuhkarton fest, was erhalten bleiben soll.",
+    "sections": [
+      {
+        "heading": "Die Artikel im Lager gemeinsam auswählen",
+        "paragraphs": [
+          "Öffne My Warehouse in deinem Superbuy-Konto. Suche jede Position anhand der Bestellnummer, Größe und Stückzahl. Markiere die verfügbaren Artikel gemeinsam und beginne einen internationalen Versandauftrag. Eine Versandmeldung des Verkäufers betrifft zunächst den Transport innerhalb Chinas. Ein zweites Paar lässt sich erst einplanen, wenn sein Lagereintrag für den Versand verfügbar ist.",
+          "Die Artikel können von verschiedenen Verkäufern stammen. Prüfe in der Paketübersicht, ob tatsächlich beide Paare in den richtigen Größen enthalten sind. Eine Position kann mehrere Einheiten umfassen. Vergleiche deshalb die Stückzahlen mit den Einkäufen, bevor du eine Versandlinie auswählst."
+        ]
+      },
+      {
+        "heading": "Zwei Paar Schuhe kommen an verschiedenen Tagen an",
+        "paragraphs": [
+          "Deine Laufschuhe treffen beispielsweise am Montag ein. Der Verkäufer der Schuhe für eine Freundin erstellt am Dienstag erst das Versandetikett. Kontrolliere Farbe und Größe des ersten Paars auf den Lagerfotos. Notiere seine Lagerfrist und entscheide, wie lange du auf das zweite Paar warten kannst. Ein Etikett belegt noch keinen Lagereingang.",
+          "Sobald das zweite Paar erfasst ist, vergleiche sein Größenetikett mit dem richtigen Auftrag. Fehlt ein entscheidendes Maß, bitte vor dem Versand darum. Sind beide Paare akzeptiert, markiere sie zusammen im Lager. Du brauchst dafür beim ursprünglichen Einkauf keine gemeinsame Verkäuferbestellung anzulegen."
+        ]
+      },
+      {
+        "heading": "Für jeden Schuhkarton eine eigene Entscheidung treffen",
+        "paragraphs": [
+          "Vielleicht brauchst du deinen Verkaufskarton nicht, deine Freundin möchte ihren als Geschenkverpackung behalten. Eine klare Nachricht lautet „Position A, Größe 42: Verkaufskarton darf entfernt werden. Position B, Größe 38: Karton und Deckel zusammen behalten. Zubehör beim jeweiligen Paar lassen.“ Ersetze A und B durch die tatsächlichen Referenzen.",
+          "Lies anschließend die ausgewählten Verpackungsleistungen. Eine pauschale Anweisung, alle Kartons wegzuwerfen, passt nicht zur zweiten Position. Wenn die Oberfläche nur eine Einstellung für das gesamte Paket anbietet, frage vor der Freigabe nach. Plane genügend Platz zum Schutz der Schuhform ein."
+        ]
+      },
+      {
+        "heading": "Ein Paket mit zwei separaten Sendungen vergleichen",
+        "paragraphs": [
+          "Nutze den offiziellen Versandkostenrechner für drei Varianten: beide Paare gemeinsam, Paar A allein und Paar B allein. Behalte Lager, Ziel und Währung bei. Verwende jeweils das geschätzte Gewicht mit Verpackung und die Außenmaße. Kennzeichne geschätzte Werte und ersetze sie später durch bestätigte Packmaße.",
+          "Vergleiche den gemeinsamen Preis mit der Summe beider Einzelsendungen. Berücksichtige die erste Gewichtsstufe, weitere Stufen und gewählte Zusatzleistungen. Fällt eine Linie beim großen Karton weg, lässt sich ihr Einzelpreis nicht übertragen. Laut Superbuy ist das grundlegende Zusammenpacken kostenlos. Versand und gewählte Verpackungsleistungen gehören weiterhin in die Rechnung."
+        ]
+      },
+      {
+        "heading": "Die Wirkung der Kartonhöhe nachrechnen",
+        "paragraphs": [
+          "Bei 40 × 30 × 25 cm und einem beispielhaften Divisor von 6.000 beträgt das Volumengewicht 5 kg. Bei 40 × 30 × 20 cm ergeben sich 4 kg. Prüfe die Formel der verfügbaren Linie und das tatsächliche Gewicht. Die Rechnung zeigt einen Größenunterschied, keinen verbindlichen Preis.",
+          "Eine gemeinsame Sendung kann eine zweite Grundgebühr sparen. Zwei Pakete kommen infrage, wenn ein Teil viel Schutz braucht, ein Karton ein Größenlimit überschreitet oder die Inhalte unterschiedliche Linien erfordern. Beruht die Entscheidung auf einem unsicheren Maß, lass zuerst das gepackte Format bestätigen."
+        ]
+      },
+      {
+        "heading": "Lagerfristen und offene Rückfragen beachten",
+        "paragraphs": [
+          "Jeder Artikel hat sein eigenes Eingangsdatum. Das zweite Paar setzt die Frist des ersten nicht zurück. Prüfe das im Konto angezeigte Datum und die geltenden Verlängerungsbedingungen. Wäge eventuelle Lagerkosten gegen den Vorteil einer gemeinsamen Sendung ab.",
+          "Lass ein Paar mit ungeklärter Größe oder fehlendem Zubehör aus dem Entwurf. Bitte mit seiner Bestellnummer um das konkrete Foto oder Maß. Für das versandbereite Paar kannst du parallel die Einzelkosten kalkulieren. Wenn du ein Set zusammenhalten möchtest, berücksichtige diesen Wunsch beim Abwägen."
+        ]
+      },
+      {
+        "heading": "Paketinhalt vor der Zahlung nochmals lesen",
+        "paragraphs": [
+          "Vergleiche Positionen, Lieferadresse, Linie und Verpackungsvermerke. Behalte die Schätzung mitsamt ihren Gewichtsannahmen. Ändert sich der Betrag nach dem Packen, prüfe die endgültigen Maße und die Abrechnungsregel. Speichere die Paketnummer neben den beiden Einkaufsreferenzen.",
+          "Fehlt im Entwurf ein Paar, kontrolliere ältere Entwürfe und bereits angelegte Pakete. Nenne dem Support beide Lagerreferenzen und den aktuell sichtbaren Inhalt. Frage ausdrücklich, ob die fehlende Position noch zum unbezahlten Entwurf hinzugefügt werden kann, bevor du einen weiteren Versandauftrag erstellst.",
+          "Ordne die Entscheidung für jeden Verkaufskarton der richtigen Paarreferenz und dem Empfänger zu. Bewahre die spätere Packbestätigung zusammen mit dem endgültigen Paketinhalt auf. Unterscheide bestätigte Außenmaße von den Schätzungen vor dem Zusammenpacken."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
+    "slug": "superbuy-parcel-submission-problems",
+    "title": "Superbuy-Paket lässt sich nicht abschicken: So findest du die Ursache",
+    "dek": "Grenze den Fehler bei Lagerauswahl, Versandlinie, Verpackung oder Zahlung ein und gib dem Support einen nachvollziehbaren Ablauf.",
+    "sections": [
+      {
+        "heading": "Den letzten erfolgreichen Schritt festhalten",
+        "paragraphs": [
+          "Kannst du den Artikel in My Warehouse auswählen, die Lieferadresse eintragen und die Liste der Versandlinien öffnen? Oder erscheint der Fehler erst nach einer Verpackungswahl oder Zahlung? Notiere Wortlaut, Uhrzeit und den zuletzt abgeschlossenen Schritt. Sichere bei Bedarf den relevanten Bildschirmausschnitt. Adresse und Zahlungsdetails gehören nicht in öffentliche Screenshots.",
+          "Öffne nach einem abgebrochenen Zahlungsvorgang My Parcel. Suche nach einer bereits angelegten Paketnummer und kontrolliere Inhalt, Betrag und Status. Ist die Zahlung unklar, lass sie diesem Eintrag zuordnen, bevor du erneut bezahlst. Auch bei einer Fehlermeldung kann bereits ein Vorgang bestehen."
+        ]
+      },
+      {
+        "heading": "Der Lagerartikel lässt sich nicht auswählen",
+        "paragraphs": [
+          "Suche die genaue Position über Referenz, Farbe und Größe. Zwischen der Zustellmeldung des chinesischen Paketdiensts und dem verfügbaren Lagereintrag kann ein weiterer Bearbeitungsschritt liegen. Prüfe zuerst den Inlandsversand und danach den Lagerstatus. Eine Änderung an der Lieferadresse löst einen fehlenden Eingang nicht.",
+          "Kontrolliere, ob die Position bereits in einem Paket steckt oder eine Service- oder Rückgabeanfrage offen ist. Bei zwei ähnlichen Paaren nenne beide Referenzen und markiere das betroffene Paar. Frage, welcher Schritt im aktuellen Status noch aussteht, statt aus einer Schaltflächenfarbe auf die Ursache zu schließen."
+        ]
+      },
+      {
+        "heading": "Es erscheint keine Versandlinie",
+        "paragraphs": [
+          "Übertrage Lager, Ziel und tatsächliche Artikelkategorie in den offiziellen Versandkostenrechner. Das Gewicht wird dort in Gramm, die Außenmaße werden in Zentimetern eingegeben. Für 2 kg stehen also 2.000 g im Gewichtsfeld. Prüfe, ob versehentlich 350 statt 35 cm eingetragen wurden und ob du die Maße des fertigen Kartons verwendest.",
+          "Ein Kleidungsstück, ein loser Akku und ein Gerät mit eingebautem Akku haben unterschiedliche Eigenschaften. Bleibe bei der zutreffenden Beschreibung. Wenn die Zuordnung unklar ist, sende dem Support die Produktbeschreibung. Eine unter falscher Kategorie sichtbare Route gilt für einen anderen Inhalt."
+        ]
+      },
+      {
+        "heading": "Einen gemischten Warenkorb schrittweise prüfen",
+        "paragraphs": [
+          "Ein Hoodie allein erhält ein Angebot, zusammen mit einem Schreibtischzubehör bleibt die Liste leer. Prüfe ohne Zahlung drei Varianten: Hoodie allein, Zubehör allein, beide gemeinsam. Behalte das Ziel bei und notiere die angenommenen Packmaße. Gibt es für das Zubehör allein keine Linie, beginne mit seinen Eigenschaften.",
+          "Sind beide einzeln möglich, prüfe die gemeinsame Größe, das Gewicht und die Bedingungen der gewünschten Linie. Ändere pro Vergleich nur eine Sache. Falls eine andere zulässige Route erscheint, vergleiche deren Schutz, Kosten und Bedingungen für deine tatsächlichen Waren."
+        ]
+      },
+      {
+        "heading": "Eine Verpackungsoption löst den Fehler aus",
+        "paragraphs": [
+          "Lies die zuletzt gewählten Leistungen und ihre Bedingungen. Eine Geschenkbox zu behalten und gleichzeitig sämtliche Verkaufsverpackungen entfernen zu lassen ergibt keinen eindeutigen Auftrag. Ändere im unbezahlten Entwurf nur entbehrliche Optionen. Schutz für zerbrechliche Teile sollte erhalten bleiben.",
+          "Für ein Geschenk im Karton und ein Hemd benenne die Positionen getrennt. Bitte darum, die Geschenkbox zu behalten. Beschränke eine geeignete Vakuumverpackung auf das Hemd. Gibt es nur eine globale Einstellung, kläre vor der Freigabe, wie das Lager die unterschiedlichen Wünsche erfassen kann."
+        ]
+      },
+      {
+        "heading": "Adressprobleme und Zahlungsstatus getrennt klären",
+        "paragraphs": [
+          "Markiert das Formular ein Adressfeld, vergleiche Land, Region und Postleitzahl mit der tatsächlichen Lieferanschrift. Eine Schätzung für das Land allein kann andere Bedingungen haben als die vollständige Adresse. Halte fest, ob der Fehler bereits vor der Linienauswahl erscheint. Übermittle private Angaben nur im zuständigen offiziellen Kanal.",
+          "Nach einer Zahlungsstörung vergleiche Paketliste und Transaktionsverlauf. Notiere Referenz, Uhrzeit und Betrag für die Rückfrage. Ein Versandkostenvorschuss und eine spätere Anpassung nach dem Packen betreffen unterschiedliche Schritte. Lass dir bestätigen, ob für das vorhandene Paket überhaupt eine weitere Zahlung erforderlich ist."
+        ]
+      },
+      {
+        "heading": "Eine gezielte Supportanfrage stellen",
+        "paragraphs": [
+          "„Lagerposition [Referenz], Ziel [Land], Karton [Maße und geschätztes Gewicht]. Der Artikel ist auswählbar. Nach Hinzufügen von [zweiter Artikel] verschwinden die Linien. Einzeln ergibt sich [Ergebnis]. In My Parcel sehe ich [Referenz oder keinen Eintrag]. Welche Begrenzung greift?“ Ersetze die Platzhalter durch deine Beobachtungen.",
+          "Nennt der Support ein Größenlimit, rechne mit bestätigten Außenmaßen neu. Bei einer Warenbeschränkung frage nach zulässigen Möglichkeiten für genau diesen Inhalt. Besteht bereits eine Paketnummer, arbeite mit dieser Referenz weiter und bewahre die Bestätigung des endgültigen Inhalts auf.",
+          "Ändert sich die Meldung nach einer Korrektur, notiere beide Wortlaute und die Uhrzeit des letzten erfolgreichen Schritts. Ein fehlendes Feld und ein Größenlimit betreffen unterschiedliche Ursachen. So kann der Support den verbleibenden Fehler gezielt prüfen."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
+    "slug": "superbuy-diy-manual-order",
+    "title": "Superbuy-DIY-Bestellung: Einen Artikel bei fehlerhaftem Produktlink manuell bestellen",
+    "dek": "Übertrage Variante, Verkaufseinheit und Inlandspreis vom Verkäuferangebot in den manuellen Auftrag und gleiche den Einkauf mit den Lagerfotos ab.",
+    "sections": [
+      {
+        "heading": "Zwischen fehlerhaftem Import und fehlendem Angebot unterscheiden",
+        "paragraphs": [
+          "Öffne die ursprüngliche Produktseite. Ein Shoplink, eine Sammlung oder ein Screenshot kann bei der Suche helfen, bezeichnet aber nicht immer eine bestimmte kaufbare Variante. Funktioniert die Seite, kopiere den direkten Artikellink und notiere Verkäufer sowie ausgewählte Option. Füge den Link bei Superbuy ein. Erscheint die richtige Variante im normalen Bestellformular, verwende dieses.",
+          "Superbuys Einsteigeranleitung beschreibt die manuelle Eingabe, wenn das entsprechende Formular anstelle der automatisch erfassten Produktdaten erscheint. Ist das Angebot gelöscht oder die passende Variante ausverkauft, bitte zuerst um eine Verfügbarkeitsprüfung. Sage dem Agenten, welche Angaben du selbst nicht bestätigen konntest."
+        ]
+      },
+      {
+        "heading": "Variante und Verkaufseinheit eindeutig benennen",
+        "paragraphs": [
+          "Übernimm die genaue Optionsbezeichnung, bei Bedarf mit chinesischen Schriftzeichen und einer kurzen Erklärung. „Blau“ kann mehrere Farbtöne meinen. Unter derselben Modellbezeichnung können verschiedene Sets, Verschlüsse und Preise stehen. Sichere möglichst ein Bild der ausgewählten Variante.",
+          "Prüfe, ob eine Einheit ein Stück, ein Paar oder ein Mehrfachpack enthält. Die Zahl drei im Mengenfeld kann drei Packungen bedeuten, obwohl du nur die auf dem Bild gezeigten drei Paare wolltest. Ermittle zuerst den Inhalt einer Verkaufseinheit und trage dann die benötigte Anzahl dieser Einheiten ein."
+        ]
+      },
+      {
+        "heading": "Beispiel für eine Tasche mit langen Henkeln",
+        "paragraphs": [
+          "Du möchtest eine naturfarbene Stofftasche mit langen Henkeln und Reißverschluss. Die voreingestellte Ausführung hat kurze Henkel und eine offene Oberkante. Wähle beim Verkäufer die richtige Ausführung, kopiere ihren Wortlaut und notiere den danach angezeigten Preis. Füge ein Bild der Auswahl hinzu, wenn das Formular es erlaubt.",
+          "Ein Auftrag könnte lauten „Eine naturfarbene Tasche, lange Henkel, Reißverschluss oben. Bitte die markierte Ausführung kaufen. Bei fehlender Verfügbarkeit oder Preisänderung vorher Rücksprache halten. Kein Ersatz.“ Anweisungen zum Falten oder Entfernen des Versandkartons kannst du später beim internationalen Paket geben."
+        ]
+      },
+      {
+        "heading": "Einkaufspreis und spätere Versandkosten auseinanderhalten",
+        "paragraphs": [
+          "Prüfe den Preis der gewählten Variante, die chinesischen Inlandsversandkosten und ausgewiesene Zusatzleistungen. Frage nach, ob das Porto pro Stück oder für die gesamte Bestellung gilt. Fehlt ein Betrag, lass ihn bestätigen. Der internationale Versand wird erst beim späteren Paketauftrag ausgewählt.",
+          "Angenommen, die Tasche kostet 68 CNY und der Verkäufer bestätigt 8 CNY Inlandslieferung. Das ergibt vor weiteren Leistungen 76 CNY. Zwei Taschen würden bei gleichem Stückpreis 136 CNY kosten, das Porto für diese Menge ist gesondert zu klären. Die Beispielbeträge enthalten keine internationale Fracht."
+        ]
+      },
+      {
+        "heading": "Mindestmenge und zulässige Änderungen klären",
+        "paragraphs": [
+          "Manche Angebote haben Preisstaffeln oder werden ausschließlich im Set verkauft. Vergleiche den Preis mit deiner Bestellmenge. Liegt die Mindestmenge darüber, frage, ob der Verkäufer weniger Stücke zu einem bestätigten Preis anbietet. Eine manuelle Eingabe ändert dessen Verkaufsbedingungen nicht.",
+          "Beschreibe, was bei fehlender Variante passieren soll. Ist der Reißverschluss unverzichtbar, schreibe das ausdrücklich. Kommt eine andere Farbe nur nach Freigabe infrage, bitte um Rückmeldung. Bei einer pauschalen Erlaubnis für „etwas Ähnliches“ bleiben wichtige Fragen zu Farbe, Ausführung und Preis offen."
+        ]
+      },
+      {
+        "heading": "Den Warenkorb prüfen und Doppelkäufe vermeiden",
+        "paragraphs": [
+          "Vergleiche Verkäuferlink, Variante, Menge, Stückpreis, Inlandslieferung und Bemerkung mit deiner gespeicherten Auswahl. Hast du zunächst den automatischen Import versucht, könnten zwei Warenkorbpositionen dasselbe Produkt enthalten. Wähle nur die gewünschte. Nach einer unterbrochenen Zahlung prüfe zuerst Auftragsliste und Transaktionsverlauf.",
+          "Bewahre die Einkaufsreferenz auf. Antworte auf Preisänderungen oder Rückfragen zur Farbe im zugehörigen Auftrag. Bei fast identischen Taschen verhindert die Referenz, dass deine Zustimmung zum falschen Artikel gelangt. Kläre den bestehenden Einkauf, bevor du einen weiteren manuellen Auftrag anlegst."
+        ]
+      },
+      {
+        "heading": "Den Lagereingang mit dem Kaufauftrag abgleichen",
+        "paragraphs": [
+          "Kontrolliere Anzahl, Farbe, Henkel und Verschluss auf den Lagerfotos. Eine Gesamtaufnahme kann die Taschenform zeigen, ohne die obere Öffnung erkennen zu lassen. Bitte dann um eine Nahaufnahme mit sichtbarem Reißverschluss. Für eine Henkellänge gib die beiden Messpunkte an.",
+          "Speichere Verkäuferbild, Auftragsbemerkung und Lagerfoto zusammen. Damit lässt sich erklären, was angeboten, bestellt und geliefert wurde. Kläre eine falsche Ausführung vor dem internationalen Versand mit Bezug auf den Einkauf. Sobald die Tasche angenommen ist, vergleiche für das spätere Paket separat Packmaße, Gewicht und Ziel.",
+          "Gib bei den Henkeln an, ob du ihre volle Länge oder den senkrechten Abstand vom höchsten Punkt zur Taschenöffnung brauchst. Verwende dieselben Messpunkte wie in der Größentabelle des Verkäufers."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
     "slug": "superbuy-domestic-tracking-guide",
     "title": "Superbuy-Sendungsverfolgung in China: vom Verkäufer zum Lager",
     "dek": "Verfolge eine Superbuy-Bestellung bis zum Lager, unterscheide Inlands- und Auslandsversand und dokumentiere Verzögerungen mit den richtigen Belegen.",
@@ -311,6 +488,12 @@
     "dek": "Plane die Superbuy-Lagerung anhand des Wareneingangs, der kostenlosen Lagerfrist, möglicher Verlängerungen und deiner Versandentscheidung.",
     "sections": [
       {
+        "heading": "Zwei Eingänge mit unterschiedlichen Lagerfristen",
+        "paragraphs": [
+          "Ein Paar Schuhe trifft am 1. Oktober ein, eine Jacke am 11. Oktober. Die kostenlosen Lagerzeiten beginnen zehn Tage auseinander. Übernimm für beide Artikel die jeweilige Frist aus My Warehouse. Regulär gelten 90 kostenlose Tage ab Eingang, anschließend 0,10 CNY pro Artikel und Tag und eine Höchstdauer von 180 Tagen. Eine Verlängerung der Höchstfrist startet die kostenlose Zeit nicht neu."
+        ]
+      },
+      {
         "heading": "Für jeden Artikel einen eigenen Zeitplan führen",
         "paragraphs": [
           "Superbuy-Bestellungen verschiedener Verkäufer können an unterschiedlichen Tagen eintreffen. Ein später gemeinsames Paket hat daher nicht unbedingt eine gemeinsame Lagerfrist. Notiere für jeden Artikel Eingang, angezeigte Frist oder verbleibende Tage sowie offene Prüf- und Kundendienstfragen.",
@@ -402,7 +585,8 @@
           "Führe Eingang, kostenlose Lagerfrist, Höchsttermin, mögliche Verlängerung und Paket- oder Fallreferenz zusammen. Diese wenigen Angaben müssen aktuell bleiben. Dann beruht deine Entscheidung auf dem tatsächlichen Bestellstand und nicht auf einer alten Schätzung oder einer vergessenen Versandabsicht."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "product-listing-checklist",
@@ -473,6 +657,12 @@
     "dek": "Prüfe Superbuy-QC-Fotos, frage wichtige Maße an und dokumentiere Abweichungen, bevor du den internationalen Versand freigibst.",
     "sections": [
       {
+        "heading": "QC-Fotos finden und eine Messung anfordern",
+        "paragraphs": [
+          "Öffne nach dem Lagereingang die Bestellung oder den Lagereintrag und sieh dir die Prüffotos an. Gleiche Referenz, Farbe und Größenetikett ab. Beispiel: „Falls herausnehmbar, bitte die linke Einlegesohle flach neben ein Lineal legen. Ferse und längste Spitze mit beiden Messpunkten in einem Foto zeigen.“ Vergleiche mit einer Einlegesohle, die dir bereits passt."
+        ]
+      },
+      {
         "heading": "Den Zweck von QC-Fotos verstehen",
         "paragraphs": [
           "Lagerfotos sind ein Kontrollpunkt zwischen Verkäuferlieferung und internationalem Versand. Der aktuelle Superbuy-Leitfaden nennt eine Prüfung beim Einlagern und Fotos des tatsächlichen Produkts. Am besten bestätigen sie die grobe Übereinstimmung und zeigen offensichtliche Probleme.",
@@ -528,13 +718,43 @@
           "Eine mögliche Anfrage: Kleidungsstück flach hinlegen, Lineal von einer Achselkante zur anderen zeigen und beide Endpunkte fotografieren. Vergleiche das Ergebnis mit einem passenden eigenen Kleidungsstück, das genauso gemessen wurde. Das ist eine persönliche Referenz, keine allgemeine Größentabelle. Bewahre Anfrage und Bild zusammen auf und fordere fehlende Ansichten nach, statt Maße aus der Perspektive zu schätzen."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "superbuy-shipping-cost-guide",
     "title": "Superbuy-Versandrechner: Gewicht, Volumen und Gesamtkosten",
-    "dek": "Vergleiche Superbuy-Versandkosten anhand von Gewicht, Paketmaßen, Verpackung und verfügbaren Routen für deine tatsächlichen Waren.",
+    "dek": "Superbuy-Versandkosten für 2 kg schätzen: Zwei Kartongrößen im offiziellen Rechner vergleichen, Volumengewicht prüfen und den Vorschuss einordnen.",
     "sections": [
+      {
+        "heading": "Superbuy-Versandkosten für zwei unterschiedlich große 2-kg-Pakete",
+        "paragraphs": [
+          "Gib 2.000 g ein und behalte Lager, Ziel und Warenkategorie bei. Vergleiche die beiden Kartons auf derselben verfügbaren Linie. In diesem Beispiel gilt ein Divisor von 6.000. Prüfe vor dem Vergleich den tatsächlichen Divisor, das Mindestgewicht und die Rundungsregel deiner Linie."
+        ],
+        "table": {
+          "caption": "Beispiel ohne festen Versandpreis",
+          "headers": [
+            "Außenmaße",
+            "Waagengewicht",
+            "Volumen ÷ 6.000",
+            "Höherer Wert vor Rundung"
+          ],
+          "rows": [
+            [
+              "30 × 20 × 15 cm",
+              "2 kg",
+              "1,5 kg",
+              "2 kg"
+            ],
+            [
+              "40 × 30 × 25 cm",
+              "2 kg",
+              "5 kg",
+              "5 kg"
+            ]
+          ]
+        }
+      },
       {
         "heading": "Zwei Zahlungen, zwei Fragen",
         "paragraphs": [
@@ -591,7 +811,8 @@
           "Hypothetisches USD-Beispiel: 36 $ Versand plus 4 $ Leistungen ergeben 40 $; 39 $ Versand plus 1 $ für denselben benötigten Leistungsumfang ebenfalls 40 $. Keine Variante ist automatisch insgesamt günstiger. Prüfe unbestätigte Ziel- oder Zahlungskosten getrennt. Gleiche nach dem Versand das endgültige Ergebnis ab, damit die nächste Schätzung gemessene Informationen nutzen kann."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "superbuy-warehouse-arrival-checklist",
@@ -832,6 +1053,12 @@
     "dek": "Vergleiche Schuhkartons, Vakuumverpackung und Verstärkungen bei Superbuy nach Volumen, Schutzbedarf und Versandkosten.",
     "sections": [
       {
+        "heading": "Vakuumverpackung, Schuhkarton oder zerbrechlicher Inhalt",
+        "paragraphs": [
+          "Eine Vakuumverpackung kommt für druckunempfindliche Textilien infrage. Formstabile Schuhe gehören nicht in den Beutel. Bei einer Geschenkbox oder einem zerbrechlichen Artikel achte auf Formschutz und Polsterung. Gib je Lagerreferenz eine Verpackungsanweisung und rechne mit den Außenmaßen des fertigen Pakets."
+        ]
+      },
+      {
         "heading": "Vom fertigen Paket statt vom Produktbild ausgehen",
         "paragraphs": [
           "Die Superbuy-Verpackungsentscheidung entsteht, wenn Lagerartikel für den internationalen Versand zusammengestellt werden. Der Transporteur bewertet das fertige Paket aus Ware, Verkäuferverpackung, Lagermaterial und Außenkarton. Diese Form kann abrechenbares Gewicht, Routenauswahl und Schutz beeinflussen. Ausgangspunkt sollte daher der tatsächliche Inhalt sein, nicht die pauschale Bitte um das kleinstmögliche Paket.",
@@ -894,6 +1121,7 @@
           "Prüfe vor der Einreichung die Route für Inhalt und erwartete Maße. Bewahre Anweisungen und Lagerantworten auf und vergleiche später das fertige Paket mit den Schätzannahmen. Bleibt ein wichtiges Detail unbestätigt, kennzeichne die Unsicherheit. Diese Planung ist keine Garantie, dass Ware und Originalverpackung unbeschädigt ankommen."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   }
 ]

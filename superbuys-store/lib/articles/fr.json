@@ -1,5 +1,182 @@
 [
   {
+    "slug": "superbuy-combine-orders-one-parcel",
+    "title": "Comment regrouper plusieurs commandes Superbuy dans un seul colis",
+    "dek": "Sélectionnez les articles stockés ensemble, comparez un envoi avec deux et précisez quelle boîte à chaussures conserver.",
+    "sections": [
+      {
+        "heading": "Sélectionner les articles dans My Warehouse",
+        "paragraphs": [
+          "Dans votre compte Superbuy, ouvrez My Warehouse et retrouvez chaque article par sa référence, sa pointure et sa quantité. Cochez ensemble les lignes disponibles, puis commencez une seule demande d’expédition internationale. Une notification d’envoi du vendeur concerne le trajet en Chine. Attendez que la seconde paire figure réellement parmi les articles disponibles avant de l’inclure dans le colis.",
+          "Les achats peuvent provenir de vendeurs différents. Relisez le contenu du brouillon avant de choisir la ligne. Deux paires peuvent apparaître sur deux lignes, mais une ligne peut aussi représenter plusieurs unités. Comparez la quantité réelle avec vos commandes d’achat."
+        ]
+      },
+      {
+        "heading": "Deux paires reçues à des dates différentes",
+        "paragraphs": [
+          "Imaginez que votre paire de running arrive lundi et que le vendeur de la paire destinée à une amie crée une étiquette mardi. Vérifiez les photos et la date limite de stockage de la première paire. Une étiquette pour la seconde ne permet pas encore de demander son expédition internationale. Fixez-vous une date à laquelle vous déciderez d’attendre ou d’expédier la première paire seule.",
+          "À la réception de la seconde, vérifiez l’étiquette de pointure et la couleur sur la bonne fiche. Si une mesure manque, demandez-la avant l’envoi. Lorsque les deux paires sont acceptées, sélectionnez-les ensemble. Le regroupement s’effectue lors de la préparation du colis dans l’entrepôt, après les deux achats."
+        ]
+      },
+      {
+        "heading": "Écrire une consigne distincte pour chaque boîte",
+        "paragraphs": [
+          "Vous pouvez souhaiter jeter la boîte de votre paire et garder celle de votre amie pour offrir la sienne. Une consigne exploitable serait « Référence A, pointure 42, vous pouvez retirer la boîte de vente. Référence B, pointure 38, conserver la boîte et son couvercle. Laisser les accessoires avec leur paire. » Remplacez les lettres par les références du compte.",
+          "Vérifiez si l’option de retrait concerne tout le colis. Une demande générale de jeter les emballages serait incompatible avec la seconde consigne. Si le formulaire ne permet pas de les distinguer, demandez une confirmation avant de payer. Prévoyez aussi assez de protection pour que les chaussures gardent leur forme."
+        ]
+      },
+      {
+        "heading": "Comparer les devis sur une base identique",
+        "paragraphs": [
+          "Dans le calculateur officiel, conservez le même entrepôt, la même destination et la même devise. Préparez trois scénarios : les deux paires ensemble, A seule et B seule. Pour chacun, renseignez le poids emballé et les dimensions extérieures. Marquez les dimensions provisoires et remplacez-les si l’entrepôt fournit ensuite des mesures.",
+          "Comparez le devis commun à la somme des devis séparés, avec les options retenues dans chaque cas. Notez le premier palier de facturation et le suivant. Si une ligne disparaît pour le grand carton, écartez son ancien tarif de la comparaison. Superbuy présente le regroupement de base comme gratuit. Le fret international et les services d’emballage choisis s’ajoutent."
+        ]
+      },
+      {
+        "heading": "Mesurer l’effet de la hauteur du carton",
+        "paragraphs": [
+          "Prenons 40 × 30 × 25 cm. Pour une ligne appliquant un diviseur de 6 000, le poids volumétrique atteint 5 kg. À 40 × 30 × 20 cm, il descend à 4 kg. Vérifiez la formule de la ligne proposée et le poids réel du colis. Ces deux calculs illustrent l’effet du volume et ne constituent pas des tarifs.",
+          "Un seul envoi peut éviter de payer deux fois le premier palier. Deux colis peuvent convenir si une paire nécessite beaucoup d’espace, si les protections diffèrent ou si le grand carton dépasse une limite. Si la décision repose uniquement sur une dimension incertaine, demandez une mesure avant de valider deux expéditions payantes."
+        ]
+      },
+      {
+        "heading": "Tenir compte du stockage et des demandes en cours",
+        "paragraphs": [
+          "Chaque article garde sa date d’entrée et son échéance. L’arrivée de la deuxième paire ne prolonge pas la période gratuite de la première. Consultez la date affichée et les conditions de prolongation. Comparez les éventuels frais d’attente avec l’intérêt de partager le même envoi.",
+          "S’il manque un accessoire ou si la pointure est douteuse, gardez la paire concernée hors du colis. Faites une demande associée à sa référence et indiquez exactement la photo ou la vérification nécessaire. Vous pouvez estimer en parallèle un envoi pour la paire prête, sans le valider."
+        ]
+      },
+      {
+        "heading": "Vérifier le brouillon et conserver la référence",
+        "paragraphs": [
+          "Relisez les deux paires, l’adresse, la ligne et les instructions d’emballage. Conservez le montant estimé et les hypothèses de poids. Si le montant varie après la préparation, comparez les mesures finales et les conditions de la ligne. Reliez la référence du colis aux deux commandes pour retrouver les preuves plus tard.",
+          "Si une paire manque dans le récapitulatif, recherchez un ancien brouillon ou un colis déjà créé. Indiquez au service client les deux références et le contenu réellement affiché. Demandez si la paire manquante peut rejoindre le brouillon impayé avant de créer une autre demande.",
+          "Associez la consigne concernant chaque boîte à la référence de la paire et au destinataire. Si votre amie souhaite vérifier plus tard si sa boîte a été conservée, gardez la confirmation du résultat de l’emballage avec le contenu final. Distinguez les dimensions confirmées de celles estimées avant le regroupement."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
+    "slug": "superbuy-parcel-submission-problems",
+    "title": "Pourquoi mon colis Superbuy ne peut-il pas être expédié ?",
+    "dek": "Repérez l’étape bloquée, vérifiez les lignes disponibles et l’état du paiement, puis transmettez au support un exemple qu’il peut reproduire.",
+    "sections": [
+      {
+        "heading": "Identifier le dernier écran qui fonctionnait",
+        "paragraphs": [
+          "L’article est-il sélectionnable dans My Warehouse ? Pouvez-vous saisir l’adresse ? La liste des lignes reste-t-elle vide, ou le blocage survient-il après le choix de l’emballage ? Notez le message exact et l’heure. Avant de modifier le brouillon, gardez une copie de la partie utile de l’écran. Masquez l’adresse complète et les données de paiement si vous partagez une image en public.",
+          "Après une interruption au paiement, ouvrez My Parcel. Cherchez une référence déjà créée, son contenu et son statut. Si le compte affiche une opération en attente, demandez le rapprochement avec ce colis avant de payer une seconde fois."
+        ]
+      },
+      {
+        "heading": "Quand l’article ne peut pas être coché",
+        "paragraphs": [
+          "Retrouvez sa ligne par la référence et la variante. Un scan « livré » du transporteur chinois peut précéder l’enregistrement dans votre entrepôt. Vérifiez d’abord le trajet intérieur, puis la présence d’une fiche disponible pour l’envoi. Changer le code postal ne résoudra pas une réception encore incomplète.",
+          "Consultez les demandes de service ou de retour en cours et les colis existants auxquels la ligne pourrait être rattachée. Pour deux paires presque identiques, indiquez les deux références au support et désignez celle qui reste indisponible. Demandez quelle étape manque d’après l’état affiché."
+        ]
+      },
+      {
+        "heading": "Quand aucune ligne de livraison n’apparaît",
+        "paragraphs": [
+          "Reproduisez le brouillon dans le calculateur officiel avec le même entrepôt, la même destination et la catégorie réelle. Le poids s’y saisit en grammes et les dimensions en centimètres. Pour 2 kg, entrez 2 000 g. Vérifiez qu’une longueur de 35 cm n’est pas devenue 350 cm et utilisez le carton emballé plutôt que les seules dimensions du produit.",
+          "Un vêtement, une batterie seule et un appareil avec batterie intégrée ne correspondent pas au même contenu. Si vous ignorez comment décrire l’article, transmettez sa fiche au support. Changer artificiellement la catégorie ferait apparaître un devis inapplicable. Demandez quelles lignes acceptent effectivement votre marchandise et sa destination."
+        ]
+      },
+      {
+        "heading": "Tester un colis mixte sans envoyer de paiement",
+        "paragraphs": [
+          "Supposons qu’un sweat seul obtienne un devis et que l’ajout d’un accessoire de bureau fasse disparaître la ligne. Simulez le sweat seul, l’accessoire seul, puis les deux ensemble. Gardez la même destination et notez les dimensions de chaque carton envisagé. Si l’accessoire seul bloque déjà, examinez ses caractéristiques.",
+          "Si chaque article passe séparément, cherchez une limite de dimensions, de poids ou de composition du grand colis. Changez une variable à la fois. Une autre ligne disponible peut convenir, à condition que sa protection, ses conditions et son prix correspondent à votre envoi."
+        ]
+      },
+      {
+        "heading": "Quand le choix de l’emballage provoque le blocage",
+        "paragraphs": [
+          "Relisez les options sélectionnées juste avant l’erreur. Garder une boîte cadeau intacte contredit une demande générale de retrait des boîtes. Revenez au brouillon impayé et modifiez uniquement les options facultatives que vous pouvez réellement abandonner. Conservez les protections nécessaires.",
+          "Pour un cadeau en boîte et une chemise, nommez les deux références. Demandez de conserver la boîte du cadeau et réservez la mise sous vide à la chemise si cette option convient. Une remarque ne neutralise pas forcément un réglage global. Faites préciser la procédure si l’écran ne permet qu’un choix pour tout le colis."
+        ]
+      },
+      {
+        "heading": "Distinguer adresse incomplète et paiement incertain",
+        "paragraphs": [
+          "Si un champ d’adresse est signalé, vérifiez pays, région et code postal dans le compte officiel. Le calculateur peut afficher un devis au niveau du pays alors que l’adresse finale impose d’autres conditions. Notez à quel moment le message apparaît. Communiquez les informations personnelles uniquement dans le canal officiel approprié.",
+          "Après un problème de paiement, comparez My Parcel et l’historique des transactions. Relevez la référence, l’heure et le montant. Demandez si l’opération apparaît sur le bon colis. Un ajustement du prix après emballage et une deuxième demande de dépôt correspondent à des situations différentes."
+        ]
+      },
+      {
+        "heading": "Envoyer un message précis au support",
+        "paragraphs": [
+          "« Article [référence], destination [pays], carton [dimensions et poids estimés]. Je peux sélectionner l’article. La liste des lignes devient vide après l’ajout de [deuxième article]. Testés séparément, les articles donnent [résultat]. Dans My Parcel, je vois [référence ou aucune entrée]. Quelle limite s’applique ? » Remplacez les crochets par vos observations.",
+          "Si le support identifie une limite de taille, recommencez le calcul avec des mesures confirmées. Si le produit est concerné par une restriction, demandez les solutions admises pour ce produit. Si un colis existe déjà, poursuivez sur sa référence et conservez la confirmation finale.",
+          "Si le message change après correction, conservez les deux formulations et l’heure du dernier écran qui fonctionnait. Un champ manquant et un dépassement des limites d’une ligne appellent deux vérifications différentes. Le support peut ainsi traiter le problème qui persiste."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
+    "slug": "superbuy-diy-manual-order",
+    "title": "Comment passer une commande manuelle Superbuy quand un lien ne fonctionne pas",
+    "dek": "Préparez la fiche du vendeur, la variante et le prix correspondant, puis vérifiez la commande et les photos à l’arrivée.",
+    "sections": [
+      {
+        "heading": "Distinguer un lien illisible d’une annonce indisponible",
+        "paragraphs": [
+          "Ouvrez l’annonce originale. Un lien vers une boutique, une sélection ou une simple image ne désigne pas forcément un article à acheter. Si la fiche fonctionne, copiez son lien direct. Notez le vendeur et l’option choisie, puis collez ce lien dans la recherche de Superbuy. Si le formulaire normal affiche la bonne variante, utilisez-le.",
+          "Le guide officiel décrit un formulaire de commande manuelle lorsque les informations ne sont pas reprises automatiquement. Utilisez-le si l’écran le propose. Une fiche retirée ou une variante épuisée exige d’abord une vérification de disponibilité. Dites à l’agent quelles données vous n’avez pas pu confirmer."
+        ]
+      },
+      {
+        "heading": "Noter la variante et l’unité de vente",
+        "paragraphs": [
+          "Recopiez les libellés de la fiche, en conservant les caractères chinois utiles et une courte explication. « Bleu » pourrait désigner plusieurs teintes. Un même modèle peut exister avec plusieurs fermetures ou accessoires et à des prix différents. Si possible, conservez une image montrant l’option réellement sélectionnée.",
+          "Comptez en unités de vente. Une ligne peut représenter une pièce, une paire ou un lot de trois paires. Saisir « trois » parce que la photo montre trois paires peut multiplier la commande. Vérifiez le contenu d’une unité et transformez la quantité souhaitée en unités de cette annonce."
+        ]
+      },
+      {
+        "heading": "Exemple d’un cabas en toile",
+        "paragraphs": [
+          "Vous voulez un cabas naturel à longues anses, avec fermeture éclair. L’annonce s’ouvre sur la version à anses courtes sans fermeture. Copiez le lien, choisissez la version voulue chez le vendeur, puis relevez le prix qui s’affiche après cette sélection. Ajoutez le libellé exact et une capture de cette variante si le formulaire le permet.",
+          "Une consigne possible est « Un cabas naturel, longues anses, fermeture éclair, option sélectionnée sur l’image. Si cette version est indisponible ou si le prix change, contactez-moi avant l’achat. Aucun remplacement. » Gardez les instructions d’emballage international pour la future demande de colis."
+        ]
+      },
+      {
+        "heading": "Distinguer achat et transport international",
+        "paragraphs": [
+          "Contrôlez le prix de l’option, la livraison en Chine et les éventuels services affichés. Vérifiez auprès du vendeur si le port chinois est calculé par pièce ou pour la commande. Si le montant manque, demandez confirmation avant de le saisir. L’arrivée à l’entrepôt précède l’estimation de l’envoi international.",
+          "Exemple fictif : un sac à 68 CNY et un port intérieur confirmé à 8 CNY donnent 76 CNY avant services supplémentaires. Deux sacs au même prix représentent 136 CNY de produits, mais le port intérieur doit être confirmé pour cette quantité. Ces montants ne comprennent aucun fret international."
+        ]
+      },
+      {
+        "heading": "Vérifier les minima et prévoir une solution de repli",
+        "paragraphs": [
+          "Certaines annonces affichent plusieurs tarifs selon la quantité. Vérifiez que le tarif sélectionné s’applique au nombre d’unités voulu. Si le vendeur impose un minimum supérieur, demandez s’il accepte une quantité plus petite et à quel prix. Conservez la réponse avec le lien.",
+          "Indiquez quelle variation vous accepteriez et à quelles conditions. Si la fermeture est indispensable, dites-le. Si une autre teinte est envisageable après accord, demandez à voir la proposition. Une autorisation vague de prendre un produit similaire laisse trop de décisions sans réponse."
+        ]
+      },
+      {
+        "heading": "Relire le panier avant le paiement",
+        "paragraphs": [
+          "Comparez le panier avec l’annonce sauvegardée : vendeur, variante, unités, prix, port et consigne. Si vous avez essayé la capture automatique avant la saisie manuelle, vérifiez que le même sac n’apparaît pas deux fois. Après un écran de paiement interrompu, consultez les commandes et l’historique avant de recommencer.",
+          "Conservez la référence finale. Répondez aux éventuelles demandes du vendeur dans le dossier correspondant. Une augmentation de prix, un changement de couleur ou un autre délai mérite votre accord avant l’achat. Évitez de créer une nouvelle commande tant que la précédente est en cours de clarification."
+        ]
+      },
+      {
+        "heading": "Contrôler le produit reçu à l’entrepôt",
+        "paragraphs": [
+          "Dans les photos, vérifiez le nombre de sacs, la couleur, les anses et la fermeture. Une vue d’ensemble peut montrer la forme sans révéler le haut du cabas. Demandez un gros plan de l’ouverture avec la fermeture visible. Pour la longueur des anses, indiquez les deux extrémités à mesurer.",
+          "Conservez ensemble la capture du vendeur, votre consigne et la photo de l’entrepôt. Ces trois éléments permettent d’expliquer une différence sur la bonne commande avant l’expédition. Une fois le produit accepté, ouvrez une demande de colis distincte et comparez poids emballé, dimensions et destination.",
+          "Pour les anses, précisez si vous demandez la longueur totale ou la hauteur verticale entre le sommet de l’anse et le bord du sac. Reprenez les mêmes points que sur le tableau du vendeur."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
     "slug": "superbuy-domestic-tracking-guide",
     "title": "Suivi Superbuy en Chine : du vendeur à l’entrepôt",
     "dek": "Suivez une commande Superbuy jusqu’à l’entrepôt, distinguez le transport en Chine de la livraison internationale et préparez une demande en cas de retard.",
@@ -311,6 +488,12 @@
     "dek": "Organisez le stockage Superbuy selon l’arrivée de chaque article, sa période gratuite, les conditions de prolongation et votre projet d’expédition.",
     "sections": [
       {
+        "heading": "Deux articles arrivés à dix jours d’intervalle",
+        "paragraphs": [
+          "Une paire arrive le 1er octobre, une veste le 11 octobre : leurs périodes gratuites commencent à dix jours d’intervalle. Relevez les deux échéances dans My Warehouse. Le barème standard prévoit 90 jours gratuits dès l’arrivée, puis 0,10 CNY par article et par jour, avec un maximum standard de 180 jours. Une prolongation repousse la limite sans relancer la gratuité."
+        ]
+      },
+      {
         "heading": "Tenir un calendrier pour chaque article",
         "paragraphs": [
           "Les commandes Superbuy peuvent arriver à des dates différentes. Un futur colis commun n’a donc pas nécessairement une seule échéance de stockage. Pour chaque article, relevez la date de réception, la limite ou les jours restants affichés, ainsi que les questions d’inspection ou d’après-vente encore ouvertes.",
@@ -402,7 +585,8 @@
           "Réunissez arrivée, fin de gratuité, limite maximale, prolongation éventuelle et références de colis ou d’après-vente. Ces quelques informations doivent rester à jour pour décider à partir de la situation réelle, plutôt que d’une estimation ancienne ou d’une intention oubliée."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "product-listing-checklist",
@@ -473,6 +657,12 @@
     "dek": "Examinez les photos QC Superbuy, demandez les mesures utiles et documentez les différences avant de décider de l’expédition.",
     "sections": [
       {
+        "heading": "Retrouver ses photos QC et demander une mesure",
+        "paragraphs": [
+          "Après la réception, ouvrez la commande ou la fiche de l’article stocké et consultez les photos de contrôle. Vérifiez référence, couleur et étiquette de taille. Exemple de demande : « Si la semelle gauche est amovible, posez-la à plat avec une règle du talon à la pointe, les deux extrémités visibles sur une photo. » Comparez avec une semelle que vous portez déjà."
+        ]
+      },
+      {
         "heading": "Comprendre le rôle des photos QC",
         "paragraphs": [
           "Les photos d’entrepôt constituent un point de contrôle entre la livraison du vendeur et l’envoi international. Le guide actuel de Superbuy indique qu’une inspection est réalisée à l’entrée en stock et que des photos du produit réel sont fournies. Elles servent surtout à confirmer la correspondance générale et à repérer les problèmes évidents.",
@@ -528,13 +718,43 @@
           "Exemple : demandez une photo du vêtement posé à plat, règle d’une aisselle à l’autre, avec les deux extrémités visibles. Comparez-la à un vêtement qui vous convient, mesuré de la même façon. C’est une référence personnelle, pas une conversion universelle de taille. Conservez demande et photo ensemble ; si un point manque, demandez-le au lieu de déduire une valeur de la perspective."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "superbuy-shipping-cost-guide",
-    "title": "Calculateur de livraison Superbuy : poids, volume et coût",
-    "dek": "Comparez les estimations de livraison Superbuy à partir du poids, des dimensions, de l’emballage et des lignes disponibles pour votre colis.",
+    "title": "Comment estimer les frais de livraison Superbuy pour un colis de 2 kg ?",
+    "dek": "Comparez deux cartons de 2 kg dans le calculateur Superbuy. Retrouvez les dimensions à saisir, le poids volumétrique et la différence entre acompte et prix final.",
     "sections": [
+      {
+        "heading": "Deux cartons de 2 kg, deux poids facturables",
+        "paragraphs": [
+          "Saisissez 2 000 g et gardez le même entrepôt, la même destination et la même catégorie. Essayez les deux jeux de dimensions ci-dessous sur la même ligne disponible. Le diviseur de 6 000 sert ici d’exemple. Vérifiez la formule et les paliers de la ligne proposée."
+        ],
+        "table": {
+          "caption": "Exemple de calcul sans tarif fixe",
+          "headers": [
+            "Carton extérieur",
+            "Poids réel",
+            "Volume ÷ 6 000",
+            "Poids supérieur avant arrondi"
+          ],
+          "rows": [
+            [
+              "30 × 20 × 15 cm",
+              "2 kg",
+              "1,5 kg",
+              "2 kg"
+            ],
+            [
+              "40 × 30 × 25 cm",
+              "2 kg",
+              "5 kg",
+              "5 kg"
+            ]
+          ]
+        }
+      },
       {
         "heading": "Deux paiements, deux questions",
         "paragraphs": [
@@ -591,7 +811,8 @@
           "Exemple fictif en USD : 36 $ de transport et 4 $ de services donnent 40 $ ; 39 $ de transport et 1 $ de services de même portée donnent aussi 40 $. Aucun n’est automatiquement moins cher au total. Vérifiez séparément les montants à destination ou liés au paiement encore inconnus. Après expédition, rapprochez l’estimation du résultat final pour améliorer le prochain budget."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "superbuy-warehouse-arrival-checklist",
@@ -832,6 +1053,12 @@
     "dek": "Comparez les boîtes à chaussures, la mise sous vide et les renforts Superbuy selon le volume, la protection nécessaire et le coût d’expédition.",
     "sections": [
       {
+        "heading": "Mise sous vide, boîte à chaussures ou objet fragile",
+        "paragraphs": [
+          "Réservez la mise sous vide aux textiles qui supportent la compression. Gardez les chaussures structurées hors du sac. Pour un cadeau en boîte ou un article fragile, préservez sa forme et demandez quel calage est prévu. Précisez une consigne par référence et comparez les dimensions finales du carton."
+        ]
+      },
+      {
         "heading": "Commencer par le colis fini",
         "paragraphs": [
           "La décision d’emballage Superbuy intervient quand les articles stockés sont réunis pour l’envoi international. Le transporteur voit le colis terminé : produits, emballages vendeur, protections d’entrepôt et carton extérieur. Cette forme finale peut modifier le poids facturable, les lignes disponibles et le niveau de protection. Il faut donc partir de l’inventaire réel, pas d’une consigne générale visant le volume minimal.",
@@ -894,6 +1121,7 @@
           "Avant validation, vérifiez la disponibilité de la ligne pour le contenu et les dimensions prévus. Conservez les consignes et les clarifications de l’entrepôt, puis comparez le colis final aux hypothèses du devis. Si un détail important reste non confirmé, signalez-le explicitement. Ces notes facilitent la décision sans garantir l’absence de dommage pendant le transport."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   }
 ]

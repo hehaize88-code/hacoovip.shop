@@ -109,7 +109,7 @@ test("uses descriptive search-focused titles for guide hubs", async () => {
   assert.match(faq, /<title>Superbuy FAQ 2026: shipping cost, storage, QC &amp; packaging\.<\/title>/i);
 });
 
-test("localized homepages expose reciprocal search metadata and four new guides", async () => {
+test("localized homepages expose reciprocal search metadata and the newest guides", async () => {
   const homeTitles = {
     en: "Superbuy Spreadsheet &amp; Finds | QC, Fees and Shipping Guides",
     fr: "Superbuy Spreadsheet : trouvailles, frais et livraison",
@@ -126,20 +126,20 @@ test("localized homepages expose reciprocal search metadata and four new guides"
     }
     const notes = html.split('class="note-columns"')[1].split('</section>')[0];
     assert.equal((notes.match(/<article\b/g) ?? []).length, 4);
-    for (const slug of ["domestic-tracking", "returns-refunds", "fees-total-cost", "warehouse-storage"]) {
-      assert.ok(notes.includes(`/articles/superbuy-${slug}-guide/`));
+    for (const slug of ["combine-orders-one-parcel", "parcel-submission-problems", "diy-manual-order", "domestic-tracking-guide"]) {
+      assert.ok(notes.includes(`/articles/superbuy-${slug}/`));
     }
     assert.doesNotMatch(html, /cnbuycha\.com|SEO READING ORDER|One search intent per page/);
     assert.match(html, /G-1QS8EWYKPX/);
   }
 });
 
-test("all 33 article-language URLs render their own content and search signals", async () => {
+test("all 42 article-language URLs render their own content and search signals", async () => {
   const { readFile } = await import("node:fs/promises");
   const english = JSON.parse(await readFile(new URL("../lib/articles/en.json", import.meta.url), "utf8"));
   for (const locale of ["en", "fr", "de"]) {
     const articles = JSON.parse(await readFile(new URL(`../lib/articles/${locale}.json`, import.meta.url), "utf8"));
-    assert.equal(articles.length, 11);
+    assert.equal(articles.length, 14);
     assert.deepEqual(articles.map((a) => a.slug), english.map((a) => a.slug));
     for (const [index, article] of articles.entries()) {
       const path = `${locale === "en" ? "" : `/${locale}`}/articles/${article.slug}/`;
@@ -152,11 +152,12 @@ test("all 33 article-language URLs render their own content and search signals",
       const schema = jsonBlocks.find((item) => item["@type"] === "Article");
       assert.equal(schema.headline, article.title, path);
       assert.equal(schema.inLanguage, locale, path);
-      assert.equal(schema.dateModified, "2026-10-06", path);
-      assert.equal(schema.datePublished === "2026-10-06", index < 4, path);
+      assert.equal(schema.dateModified, article.modified ?? "2026-10-06", path);
+      if (index < 3) assert.equal(schema.datePublished, "2026-11-03", path);
+      else assert.equal(schema.datePublished === "2026-10-06", index < 7, path);
       assert.ok(schema.wordCount > 400, path);
       assert.ok(jsonBlocks.some((item) => item["@type"] === "BreadcrumbList"), path);
-      if (index < 4) assert.match(html, /<table>/, path);
+      if (index >= 3 && index < 7) assert.match(html, /<table>/, path);
       assert.doesNotMatch(html, /cnbuycha\.com|▁|SEO READING ORDER/);
       assert.equal((html.match(/<h1>/g) ?? []).length, 1, path);
       assert.equal((html.match(/hrefLang=/g) ?? []).length, 4, path);
@@ -165,8 +166,8 @@ test("all 33 article-language URLs render their own content and search signals",
   }
   const sitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8");
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
-  assert.equal(new Set(urls).size, 48);
-  assert.equal(urls.length, 48);
+  assert.equal(new Set(urls).size, 57);
+  assert.equal(urls.length, 57);
   assert.equal(await readFile(new URL("../sitemap.xml", import.meta.url), "utf8"), sitemap);
   const missing = await renderPages("/articles/nonexistent-guide/");
   assert.equal(missing.status, 404);
@@ -186,13 +187,26 @@ test("engagement tracking separates destination clicks without transmitting sear
     document: { documentElement: { lang: "fr" }, addEventListener: (name, handler) => { handlers[name] = handler; } },
   };
   runInNewContext(script, context);
-  for (const href of ["https://www.cnfanshp.com/AllProducts/6049.html?secret=ignored", "https://www.cnfanshp.com/shoes/", "https://www.cnfanshp.com/AllProducts/", "https://unrelated.example/"]) {
+  for (const href of ["https://www.cnfanshp.com/AllProducts/6049.html?secret=ignored", "https://www.cnfanshp.com/shoes/", "https://www.cnfanshp.com/AllProducts/", "https://www.superbuy.com/en/page/query/freight/?private=ignored", "https://unrelated.example/"]) {
     handlers.click({ target: { closest: () => ({ href }) } });
   }
   handlers.submit({ target: { matches: (selector) => selector === "form.search-line" } });
-  assert.equal(events.length, 4);
+  assert.equal(events.length, 5);
   assert.deepEqual(events.slice(0, 3).map((event) => event[2].link_type), ["product", "category", "catalog"]);
-  assert.equal(events[3][1], "catalog_search");
+  assert.equal(events[3][1], "shipping_calculator_click");
+  assert.equal(events[4][1], "catalog_search");
   assert.ok(events.every((event) => event[2].source_path === "/fr/" && event[2].site_language === "fr"));
   assert.doesNotMatch(JSON.stringify(events), /secret|private|keywords|search_term/);
+});
+
+test("localized FAQs show the same twenty answers in the page and schema", async () => {
+  for (const prefix of ["", "/fr", "/de"]) {
+    const html = await (await renderPages(prefix + "/faq/")).text();
+    const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1])).find((block) => block["@type"] === "FAQPage");
+    assert.equal(schema.mainEntity.length, 20);
+    assert.equal((html.match(/<summary><span>/g) ?? []).length, 20);
+    assert.ok(html.includes(prefix + "/articles/superbuy-warehouse-storage-guide/"));
+    assert.ok(html.includes(prefix + "/articles/superbuy-combine-orders-one-parcel/"));
+  }
 });

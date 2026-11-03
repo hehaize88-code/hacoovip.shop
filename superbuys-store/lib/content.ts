@@ -115,12 +115,12 @@ export const copy = {
     home: {
       eyebrow: "Independent product discovery journal", titleA: "SUPERBUY", titleB: "SPREADSHEET", titleC: "FINDS",
       deck: "Explore Superbuy spreadsheet finds in ten categories, then check variants, QC photos and total shipping costs before ordering.",
-      coverAlt: "Featured low-profile shoe from the current edit", coverCaption: "Cover find / No. 01",
+      coverAlt: "Featured low-profile shoe from the current edit", coverCaption: "Shoes-64 / No. 01",
       directoryKicker: "Directory / 01", directoryIntro: "Choose a section, then browse the complete collection.",
       directoryTitle: "Find your section.", routes: "10 routes",
       editKicker: "The visual edit / 04 finds", editSource: "Images from live listings", editTitle: "Four ways to start.",
       editIntro: "Selected as browsing directions, not endorsements. Open the destination listing and review every detail before making a decision.",
-      names: [["Low-profile runner", "Muted palette / daily rotation"], ["Technical sneaker", "Layered upper / bold sole"], ["Statement pair", "High contrast / weekend pick"], ["Quiet essential", "Simple lines / easy styling"]],
+      names: [["Shoes-64 · Low-profile runner", "Muted palette / daily rotation"], ["Shoes-63 · Technical sneaker", "Layered upper / bold sole"], ["Shoes-62 · Statement pair", "High contrast / weekend pick"], ["Shoes-61 · Quiet essential", "Simple lines / easy styling"]],
       idea: "The idea", statement: ["Fewer tabs.", "Better routes.", "A clearer find."], enter: "Enter the full index",
       notesKicker: "Reading room / 04", notesTitle: "Field notes", notesIntro: "Practical, fact-checked context for discovery, warehouse review and parcel planning.",
       notes: [
@@ -131,21 +131,21 @@ export const copy = {
       ],
     },
     categoriesPage: { kicker: "Superbuy product categories / 10 routes", title: "Superbuy product categories & finds.", intro: "Browse ten product routes, then use the category-specific checks below to verify variants, measurements, QC evidence and likely parcel impact before ordering." },
-    guidesPage: { kicker: "Superbuy guides / 11", title: "How to use Superbuy in 2026.", intro: "Practical Superbuy guides for ordering, QC photos, warehouse checks, packaging, shipping-cost estimates, storage and international parcel planning." },
-    articlesPage: { kicker: "Superbuy articles / Issue 01", title: "Superbuy guides: shipping, QC, warehouse & packaging.", intro: "Eleven practical Superbuy guides covering product checks, QC, domestic tracking, returns, fees, storage and international shipping." },
-    faqPage: { kicker: "Superbuy FAQ / 12 answers", title: "Superbuy FAQ 2026: shipping cost, storage, QC & packaging.", intro: "Direct answers about Superbuy orders, warehouse photos, shipping estimates, storage, consolidation and packaging, checked against published guidance." },
+    guidesPage: { kicker: "Superbuy guides / 14", title: "How to use Superbuy in 2026.", intro: "Practical Superbuy guides for ordering, QC photos, warehouse checks, packaging, shipping-cost estimates, storage and international parcel planning." },
+    articlesPage: { kicker: "Superbuy articles / Issue 01", title: "Superbuy guides: shipping, QC, warehouse & packaging.", intro: "Fourteen practical Superbuy guides covering product checks, QC, domestic tracking, returns, fees, storage and international shipping." },
+    faqPage: { kicker: "Superbuy FAQ / 20 answers", title: "Superbuy FAQ 2026: shipping cost, storage, QC & packaging.", intro: "Direct answers about Superbuy orders, warehouse photos, shipping estimates, storage, consolidation and packaging, checked against published guidance." },
   },
   fr: {
     ...shared.fr,
     home: {
       eyebrow: "Journal indépendant de découverte produit", titleA: "SUPERBUY", titleB: "SPREADSHEET", titleC: "SÉLECTION",
       deck: "Explorez dix catégories de trouvailles Superbuy, puis vérifiez variantes, photos QC et frais de livraison avant de commander.",
-      coverAlt: "Chaussure basse présentée dans la sélection", coverCaption: "Trouvaille couverture / N° 01",
+      coverAlt: "Chaussure basse présentée dans la sélection", coverCaption: "Shoes-64 / N° 01",
       directoryKicker: "Répertoire / 01", directoryIntro: "Choisissez une section, puis explorez toute la collection.",
       directoryTitle: "Trouvez votre section.", routes: "10 parcours",
       editKicker: "Sélection visuelle / 04 trouvailles", editSource: "Images de fiches actives", editTitle: "Quatre points de départ.",
       editIntro: "Des directions de recherche, pas des recommandations. Ouvrez la fiche de destination et vérifiez chaque détail avant de décider.",
-      names: [["Runner profil bas", "Palette douce / rotation quotidienne"], ["Sneaker technique", "Tige superposée / semelle forte"], ["Paire affirmée", "Contraste élevé / choix du week-end"], ["Essentiel discret", "Lignes simples / facile à assortir"]],
+      names: [["Shoes-64 · Runner profil bas", "Palette douce / rotation quotidienne"], ["Shoes-63 · Sneaker technique", "Tige superposée / semelle forte"], ["Shoes-62 · Paire affirmée", "Contraste élevé / choix du week-end"], ["Shoes-61 · Essentiel discret", "Lignes simples / facile à assortir"]],
       idea: "L’idée", statement: ["Moins d’onglets.", "De meilleurs parcours.", "Une trouvaille plus claire."], enter: "Entrer dans l’index complet",
       notesKicker: "Salle de lecture / 04", notesTitle: "Notes de terrain", notesIntro: "Un contexte pratique pour chercher, vérifier et planifier avant de vous engager.",
       notes: [
@@ -156,21 +156,21 @@ export const copy = {
       ],
     },
     categoriesPage: { kicker: "Catégories de produits Superbuy / 10 parcours", title: "Catégories et trouvailles Superbuy.", intro: "Parcourez dix itinéraires produits, puis utilisez les contrôles propres à chaque catégorie pour vérifier variantes, mesures, preuves QC et effet probable sur le colis." },
-    guidesPage: { kicker: "Guides Superbuy / 11", title: "Comment utiliser Superbuy en 2026.", intro: "Des guides pratiques sur la commande, les photos QC, l’entrepôt, l’emballage, l’estimation des frais et l’envoi international." },
+    guidesPage: { kicker: "Guides Superbuy / 14", title: "Comment utiliser Superbuy en 2026.", intro: "Des guides pratiques sur la commande, les photos QC, l’entrepôt, l’emballage, l’estimation des frais et l’envoi international." },
     articlesPage: { kicker: "Articles Superbuy / Numéro 01", title: "Guides Superbuy : livraison, QC, entrepôt et emballage.", intro: "Des guides indépendants pour transformer la recherche produit, les preuves d’entrepôt, le calcul des frais et l’emballage en décisions concrètes." },
-    faqPage: { kicker: "FAQ Superbuy / 10 réponses", title: "FAQ Superbuy 2026 : livraison, stockage, QC et emballage.", intro: "Des réponses directes sur les commandes, photos d’entrepôt, estimations, stockage, regroupement et emballage, vérifiées à partir des guides publiés." },
+    faqPage: { kicker: "FAQ Superbuy / 20 réponses", title: "FAQ Superbuy 2026 : livraison, stockage, QC et emballage.", intro: "Des réponses directes sur les commandes, photos d’entrepôt, estimations, stockage, regroupement et emballage, vérifiées à partir des guides publiés." },
   },
   de: {
     ...shared.de,
     home: {
       eyebrow: "Unabhängiges Magazin zur Produktentdeckung", titleA: "SUPERBUY", titleB: "SPREADSHEET", titleC: "FUNDE",
       deck: "Entdecke Superbuy-Funde in zehn Kategorien und prüfe Varianten, QC-Fotos und Versandkosten vor der Bestellung.",
-      coverAlt: "Ausgewählter flacher Sneaker aus der aktuellen Edition", coverCaption: "Cover-Fund / Nr. 01",
+      coverAlt: "Ausgewählter flacher Sneaker aus der aktuellen Edition", coverCaption: "Shoes-64 / Nr. 01",
       directoryKicker: "Verzeichnis / 01", directoryIntro: "Wähle einen Bereich und öffne anschließend die vollständige Sammlung.",
       directoryTitle: "Finde deinen Bereich.", routes: "10 Wege",
       editKicker: "Visuelle Auswahl / 04 Funde", editSource: "Bilder aus aktiven Listings", editTitle: "Vier Wege zum Start.",
       editIntro: "Als Suchrichtungen ausgewählt, nicht als Empfehlungen. Öffne das Ziel-Listing und prüfe jedes Detail vor deiner Entscheidung.",
-      names: [["Flacher Runner", "Ruhige Farben / tägliche Rotation"], ["Technischer Sneaker", "Mehrlagiges Oberteil / starke Sohle"], ["Statement-Paar", "Hoher Kontrast / Wochenendwahl"], ["Ruhiges Essential", "Klare Linien / leicht zu kombinieren"]],
+      names: [["Shoes-64 · Flacher Runner", "Ruhige Farben / tägliche Rotation"], ["Shoes-63 · Technischer Sneaker", "Mehrlagiges Oberteil / starke Sohle"], ["Shoes-62 · Statement-Paar", "Hoher Kontrast / Wochenendwahl"], ["Shoes-61 · Ruhiges Essential", "Klare Linien / leicht zu kombinieren"]],
       idea: "Die Idee", statement: ["Weniger Tabs.", "Bessere Wege.", "Ein klarerer Fund."], enter: "Zum vollständigen Index",
       notesKicker: "Leseraum / 04", notesTitle: "Notizen aus der Praxis", notesIntro: "Praktischer Kontext zum Suchen, Prüfen und Planen vor deiner Entscheidung.",
       notes: [
@@ -181,57 +181,267 @@ export const copy = {
       ],
     },
     categoriesPage: { kicker: "Superbuy-Produktkategorien / 10 Wege", title: "Superbuy-Kategorien & Produktfunde.", intro: "Durchsuche zehn Produktwege und nutze danach die Kategorie-Checks für Varianten, Maße, QC-Belege und den wahrscheinlichen Paketeffekt." },
-    guidesPage: { kicker: "Superbuy-Ratgeber / 11", title: "Superbuy 2026 nutzen: Bestellung bis Versand.", intro: "Praktische Anleitungen zu Bestellung, QC-Fotos, Lagerprüfung, Verpackung, Versandkostenschätzung und internationalem Paket." },
+    guidesPage: { kicker: "Superbuy-Ratgeber / 14", title: "Superbuy 2026 nutzen: Bestellung bis Versand.", intro: "Praktische Anleitungen zu Bestellung, QC-Fotos, Lagerprüfung, Verpackung, Versandkostenschätzung und internationalem Paket." },
     articlesPage: { kicker: "Superbuy-Artikel / Ausgabe 01", title: "Superbuy-Ratgeber: Versand, QC, Lager und Verpackung.", intro: "Unabhängige Anleitungen für Produktsuche, Lagerbelege, Versandkostenrechner und passende Verpackungsentscheidungen." },
-    faqPage: { kicker: "Superbuy FAQ / 10 Antworten", title: "Superbuy FAQ 2026: Versandkosten, Lagerung, QC und Verpackung.", intro: "Direkte Antworten zu Bestellungen, Lagerfotos, Schätzungen, Aufbewahrung, Konsolidierung und Verpackung auf Basis veröffentlichter Hinweise." },
+    faqPage: { kicker: "Superbuy FAQ / 20 Antworten", title: "Superbuy FAQ 2026: Versandkosten, Lagerung, QC und Verpackung.", intro: "Direkte Antworten zu Bestellungen, Lagerfotos, Schätzungen, Aufbewahrung, Konsolidierung und Verpackung auf Basis veröffentlichter Hinweise." },
   },
 } as const;
 
 export const faq = {
-  en: [
-    ["What does a Superbuy shopping-agent order involve?", "Superbuy’s published process has five broad stages: select a product, submit the shopping-agent order, let the agent purchase it, review it after warehouse arrival, and then submit stored items as an international parcel. The product order and the later parcel are separate transactions, so the product price is not the complete delivered cost."],
-    ["Do I pay once or twice?", "Normally twice. Superbuy’s first-stage payment covers the item, any Chinese domestic delivery and chosen product-level add-ons. The second payment is made when warehouse items are submitted for international delivery. That payment depends on the selected route, destination and estimated parcel data, then is reconciled after packing."],
-    ["Does ordinary Superbuy purchasing have a service fee?", "The published fee structure distinguishes standard purchasing from optional and special services. Check the fee shown for your source marketplace and selected service, then record product price, domestic delivery and any additional charges separately. Do not assume that one standard-service statement applies to every type of purchase."],
-    ["What can warehouse QC photos help me check?", "Superbuy’s Shopping Agent guide describes warehouse inspection and photos after receipt. They are useful for confirming the visible variant, quantity, general shape and obvious damage. They cannot prove authenticity, fit, hidden construction, battery health or long-term durability, so ask for targeted evidence when one of those details matters."],
-    ["How long can items stay in the warehouse?", "The current fee page gives items 90 days of free storage after arrival. It then states a storage charge of CN¥0.1 per item per day and a maximum storage period of 180 days, after which unsubmitted and unanswered items may be treated as abandoned. Check the live account deadline for each item rather than relying on memory."],
-    ["Can several orders be consolidated into one parcel?", "Yes. Superbuy’s published fee and agent guides say multiple stored items can be consolidated, and the current fee page describes basic consolidation as free. Consolidation may remove duplicated outer packaging, but it is not guaranteed to reduce cost: a bigger parcel may attract dimensional-weight pricing or lose access to a preferred route."],
-    ["How is the international shipping deposit calculated?", "Superbuy says the deposit uses estimated weight, the selected shipping method and the destination. After the warehouse packs and weighs the parcel, the final charge is based on verified parcel data and the logistics provider’s bill. The platform then adjusts the difference rather than treating the first estimate as the final price."],
-    ["Which packaging options are available?", "The official guidance lists optional services such as packaging removal or replacement, reinforcement and insurance. Its current fee page also lists choices including vacuum packaging and folding shoe boxes. The useful option depends on the item: reducing volume can help soft goods, while fragile or crush-sensitive products may justify more protection."],
-    ["How many destinations can Superbuy ship to?", "Check the current shipping calculator for your destination, parcel dimensions and item characteristics. General coverage statements do not confirm that a particular route accepts your exact contents or address."],
-    ["Are customs taxes and delays included in Superbuy’s promise?", "No. Superbuy’s guide says international delivery is carried out by designated third-party providers and that processing time, item restrictions and customs tax are not fully under its control. Buyers should check the destination’s rules, restricted-item status and the route’s current terms before submitting a parcel."],
-    ["What should I do if the warehouse photos show a problem?", "Document the exact mismatch—wrong variant, missing part, visible damage or measurement—and act through the current order page promptly. Superbuy’s help center provides after-sales paths, but the available remedy depends on timing, seller acceptance and the specific order. A marked screenshot and a precise request are more useful than a vague complaint."],
-    ["Is this website operated by Superbuy?", "No. This is an independent product-discovery and educational site. It does not operate Superbuy accounts, place agent orders, handle payments or make promises for Superbuy. Platform facts on this page were checked against Superbuy’s published English guidance on 6 October 2026 and should be rechecked before a time-sensitive decision."],
+  "en": [
+    [
+      "How long does Superbuy store items for free?",
+      "The standard free period is 90 days from each item’s warehouse arrival. Check its deadline in My Warehouse. The published fee after the free period is CNY 0.10 per item per day, with a standard maximum of 180 days."
+    ],
+    [
+      "Does a storage extension restart free storage?",
+      "An extension changes the maximum permitted period. Daily fees still apply after the free period. Check the offer for the specific item before its deadline."
+    ],
+    [
+      "What should I enter for a 2 kg parcel?",
+      "Enter 2,000 g, packed outside dimensions in centimetres, the actual item category and destination in the official shipping calculator. Compare the same route with both sets of measurements."
+    ],
+    [
+      "Why can’t I submit my parcel?",
+      "Check the warehouse status, existing parcel records, destination, category and carton size. If payment was interrupted, check My Parcel before retrying."
+    ],
+    [
+      "How do I order when the product link will not load?",
+      "Open the original listing. If the platform offers a manual shopping-agent form, copy the direct link, exact variant, confirmed unit price and quantity. Ask for confirmation if the item is no longer listed."
+    ],
+    [
+      "How do I request an insole measurement?",
+      "For a removable insole, request one photo with a ruler from heel to longest toe and both ends visible. Name the warehouse reference and the shoe to measure."
+    ],
+    [
+      "Can I remove just one shoe box?",
+      "Identify each pair and say which retail box to keep, fold or remove. Check that parcel-wide options agree with your request before payment."
+    ],
+    [
+      "Which items suit vacuum packing?",
+      "Use it for soft textiles that tolerate pressure. Keep structured shoes, presentation boxes and fragile items separate. Check the final carton size before comparing freight."
+    ],
+    [
+      "Can several orders be consolidated into one parcel?",
+      "Yes. Superbuy’s published fee and agent guides say multiple stored items can be consolidated, and the current fee page describes basic consolidation as free. Consolidation may remove duplicated outer packaging, but it is not guaranteed to reduce cost: a bigger parcel may attract dimensional-weight pricing or lose access to a preferred route."
+    ],
+    [
+      "How is the international shipping deposit calculated?",
+      "Superbuy says the deposit uses estimated weight, the selected shipping method and the destination. After the warehouse packs and weighs the parcel, the final charge is based on verified parcel data and the logistics provider’s bill. The platform then adjusts the difference rather than treating the first estimate as the final price."
+    ],
+    [
+      "What can warehouse QC photos help me check?",
+      "Superbuy’s Shopping Agent guide describes warehouse inspection and photos after receipt. They are useful for confirming the visible variant, quantity, general shape and obvious damage. They cannot prove authenticity, fit, hidden construction, battery health or long-term durability, so ask for targeted evidence when one of those details matters."
+    ],
+    [
+      "Which packaging options are available?",
+      "The official guidance lists optional services such as packaging removal or replacement, reinforcement and insurance. Its current fee page also lists choices including vacuum packaging and folding shoe boxes. The useful option depends on the item: reducing volume can help soft goods, while fragile or crush-sensitive products may justify more protection."
+    ],
+    [
+      "What should I do if the warehouse photos show a problem?",
+      "Document the exact mismatch—wrong variant, missing part, visible damage or measurement—and act through the current order page promptly. Superbuy’s help center provides after-sales paths, but the available remedy depends on timing, seller acceptance and the specific order. A marked screenshot and a precise request are more useful than a vague complaint."
+    ],
+    [
+      "What does a Superbuy shopping-agent order involve?",
+      "Superbuy’s published process has five broad stages: select a product, submit the shopping-agent order, let the agent purchase it, review it after warehouse arrival, and then submit stored items as an international parcel. The product order and the later parcel are separate transactions, so the product price is not the complete delivered cost."
+    ],
+    [
+      "Do I pay once or twice?",
+      "Normally twice. Superbuy’s first-stage payment covers the item, any Chinese domestic delivery and chosen product-level add-ons. The second payment is made when warehouse items are submitted for international delivery. That payment depends on the selected route, destination and estimated parcel data, then is reconciled after packing."
+    ],
+    [
+      "Does ordinary Superbuy purchasing have a service fee?",
+      "The published fee structure distinguishes standard purchasing from optional and special services. Check the fee shown for your source marketplace and selected service, then record product price, domestic delivery and any additional charges separately. Do not assume that one standard-service statement applies to every type of purchase."
+    ],
+    [
+      "How many destinations can Superbuy ship to?",
+      "Check the current shipping calculator for your destination, parcel dimensions and item characteristics. General coverage statements do not confirm that a particular route accepts your exact contents or address."
+    ],
+    [
+      "Are customs taxes and delays included in Superbuy’s promise?",
+      "No. Superbuy’s guide says international delivery is carried out by designated third-party providers and that processing time, item restrictions and customs tax are not fully under its control. Buyers should check the destination’s rules, restricted-item status and the route’s current terms before submitting a parcel."
+    ],
+    [
+      "How do I track a parcel after dispatch?",
+      "Use the international carrier reference shown in My Parcel. The seller’s domestic tracking code covers the earlier journey to the warehouse."
+    ],
+    [
+      "Is this website operated by Superbuy?",
+      "This independent guide does not operate your Superbuy account. Use the official platform for purchases, payments and parcel support."
+    ]
   ],
-  fr: [
-    ["Que fait un agent d’achat ?", "Un agent reçoit un lien ou une demande, achète l’article en Chine, le réceptionne dans un entrepôt puis permet au client de soumettre les articles stockés à la livraison internationale. Le parcours publié par Superbuy sépare le paiement du produit de celui du colis international."],
-    ["Superbuy fournit-il des photos QC ?", "Le guide Shopping Agent décrit une inspection et des photos du produit reçu en entrepôt. Elles aident à examiner l’état visible et les détails, sans garantir l’authenticité, la taille ou la qualité générale."],
-    ["Combien de temps dure le stockage gratuit ?", "Le guide officiel actuel indique 90 jours de stockage gratuit. Vérifiez toujours les notifications du compte et la politique à jour avant de compter sur toute cette période."],
-    ["Peut-on regrouper plusieurs commandes ?", "Oui. Le processus publié permet de soumettre plusieurs commandes stockées dans un seul colis. Le regroupement évite certains emballages en double, mais peut modifier le poids facturable, le volume et les lignes disponibles."],
-    ["Comment les frais internationaux sont-ils calculés ?", "L’acompte dépend du poids estimé, du mode d’envoi et de la destination. Le coût final repose sur le volume et le poids vérifiés après emballage ; l’écart avec l’acompte est ajusté sur le compte."],
-    ["Combien de pays Superbuy dessert-il ?", "Vérifiez le calculateur actuel avec votre destination, les dimensions et les caractéristiques des articles. Une couverture générale ne garantit pas la disponibilité d’une ligne pour votre colis exact."],
-    ["Peut-on modifier l’emballage ?", "Le guide officiel cite le retrait d’emballage, le renforcement et l’assurance parmi les services supplémentaires. Leur disponibilité dépend du colis et de la ligne."],
-    ["Les taxes douanières sont-elles comprises ?", "Ne le supposez pas. Superbuy précise ne pas contrôler entièrement la douane, les restrictions et les transporteurs tiers. La fiscalité dépend de la destination, du contenu déclaré et des règles locales."],
-    ["Puis-je suivre mon colis ?", "Le parcours publié indique que le suivi apparaît dans la zone My Parcel après l’expédition. Les événements du transporteur peuvent mettre du temps à s’afficher."],
-    ["Ce site est-il Superbuy ?", "Non. Il s’agit d’un site indépendant de découverte et d’information. Il ne fournit pas les services Superbuy, ne traite pas les paiements et ne fait aucune promesse au nom de Superbuy."],
+  "fr": [
+    [
+      "Combien de temps le stockage Superbuy est-il gratuit ?",
+      "La durée standard est de 90 jours dès l’arrivée de chaque article. Consultez son échéance dans My Warehouse. Le barème prévoit ensuite 0,10 CNY par article et par jour, avec un maximum standard de 180 jours."
+    ],
+    [
+      "Une prolongation relance-t-elle la gratuité ?",
+      "Elle repousse la durée maximale autorisée. Les frais journaliers continuent après la période gratuite. Vérifiez l’offre et la date limite propres à l’article."
+    ],
+    [
+      "Que saisir pour un colis de 2 kg ?",
+      "Indiquez 2 000 g, les dimensions extérieures en centimètres, la catégorie réelle et la destination dans le calculateur officiel. Comparez les cartons sur la même ligne."
+    ],
+    [
+      "Pourquoi mon colis ne peut-il pas être soumis ?",
+      "Vérifiez le statut en entrepôt, les colis existants, la destination, la catégorie et les dimensions. Après un paiement interrompu, consultez My Parcel avant de réessayer."
+    ],
+    [
+      "Comment commander si le lien ne fonctionne pas ?",
+      "Ouvrez l’annonce originale. Si le formulaire manuel est proposé, recopiez le lien direct, la variante, le prix confirmé et la quantité. Demandez confirmation si l’annonce a disparu."
+    ],
+    [
+      "Comment demander une mesure de semelle ?",
+      "Pour une semelle amovible, demandez une photo à plat avec une règle du talon à la pointe, les deux extrémités visibles. Précisez la référence et la chaussure."
+    ],
+    [
+      "Puis-je retirer une seule boîte à chaussures ?",
+      "Identifiez chaque paire et indiquez quelle boîte garder, plier ou retirer. Vérifiez que les options générales du colis respectent ce choix."
+    ],
+    [
+      "Quels articles conviennent à la mise sous vide ?",
+      "Réservez-la aux textiles qui supportent la compression. Séparez chaussures rigides, boîtes cadeaux et objets fragiles. Vérifiez les dimensions du carton final."
+    ],
+    [
+      "Peut-on regrouper plusieurs commandes ?",
+      "Oui. Le processus publié permet de soumettre plusieurs commandes stockées dans un seul colis. Le regroupement évite certains emballages en double, mais peut modifier le poids facturable, le volume et les lignes disponibles."
+    ],
+    [
+      "Comment les frais internationaux sont-ils calculés ?",
+      "L’acompte dépend du poids estimé, du mode d’envoi et de la destination. Le coût final repose sur le volume et le poids vérifiés après emballage ; l’écart avec l’acompte est ajusté sur le compte."
+    ],
+    [
+      "Superbuy fournit-il des photos QC ?",
+      "Le guide Shopping Agent décrit une inspection et des photos du produit reçu en entrepôt. Elles aident à examiner l’état visible et les détails, sans garantir l’authenticité, la taille ou la qualité générale."
+    ],
+    [
+      "Peut-on modifier l’emballage ?",
+      "Le guide officiel cite le retrait d’emballage, le renforcement et l’assurance parmi les services supplémentaires. Leur disponibilité dépend du colis et de la ligne."
+    ],
+    [
+      "Que faire si les photos montrent un défaut ?",
+      "Marquez le détail, gardez l’image du vendeur et contactez l’agent depuis la commande concernée avant le départ international. Demandez les possibilités de correction ou de retour."
+    ],
+    [
+      "Que fait un agent d’achat ?",
+      "Un agent reçoit un lien ou une demande, achète l’article en Chine, le réceptionne dans un entrepôt puis permet au client de soumettre les articles stockés à la livraison internationale. Le parcours publié par Superbuy sépare le paiement du produit de celui du colis international."
+    ],
+    [
+      "Quand dois-je payer ?",
+      "Le premier règlement couvre le produit et la livraison intérieure applicable. L’expédition internationale se règle plus tard, lors de la demande de colis."
+    ],
+    [
+      "Y a-t-il des frais de service pour l’achat ?",
+      "Consultez le barème officiel pour la plateforme et la prestation choisies. Distinguez produit, port intérieur, frais d’achat éventuels et services facultatifs."
+    ],
+    [
+      "Combien de pays Superbuy dessert-il ?",
+      "Vérifiez le calculateur actuel avec votre destination, les dimensions et les caractéristiques des articles. Une couverture générale ne garantit pas la disponibilité d’une ligne pour votre colis exact."
+    ],
+    [
+      "Les taxes douanières sont-elles comprises ?",
+      "Ne le supposez pas. Superbuy précise ne pas contrôler entièrement la douane, les restrictions et les transporteurs tiers. La fiscalité dépend de la destination, du contenu déclaré et des règles locales."
+    ],
+    [
+      "Puis-je suivre mon colis ?",
+      "Le parcours publié indique que le suivi apparaît dans la zone My Parcel après l’expédition. Les événements du transporteur peuvent mettre du temps à s’afficher."
+    ],
+    [
+      "Ce site est-il Superbuy ?",
+      "Non. Il s’agit d’un site indépendant de découverte et d’information. Il ne fournit pas les services Superbuy, ne traite pas les paiements et ne fait aucune promesse au nom de Superbuy."
+    ]
   ],
-  de: [
-    ["Was macht ein Shopping Agent?", "Ein Shopping Agent erhält einen Produktlink oder eine Anfrage, kauft den Artikel in China, nimmt ihn im Lager an und ermöglicht anschließend den internationalen Versand eingelagerter Waren. Im veröffentlichten Superbuy-Ablauf sind Produktzahlung und spätere Paketzahlung getrennt."],
-    ["Stellt Superbuy QC-Fotos bereit?", "Der Shopping-Agent-Leitfaden beschreibt eine Lagerprüfung und Fotos der erhaltenen Ware. Sie helfen bei der Sichtprüfung, garantieren aber weder Echtheit noch Größe oder Gesamtqualität."],
-    ["Wie lange ist die Lagerung kostenlos?", "Der aktuelle offizielle Leitfaden nennt 90 Tage kostenlose Lagerung. Prüfe vor der Nutzung immer die Hinweise im Konto und die gültige Richtlinie."],
-    ["Kann ich mehrere Bestellungen zusammen versenden?", "Ja. Laut veröffentlichtem Ablauf können verschiedene Lagerbestellungen in einem Paket eingereicht werden. Konsolidierung reduziert doppelte Verpackung, kann aber Gewicht, Maße und verfügbare Routen verändern."],
-    ["Wie werden internationale Versandkosten berechnet?", "Die Vorauszahlung basiert auf geschätztem Gewicht, Versandart und Ziel. Der Endbetrag richtet sich nach Größe und Gewicht des fertig gepackten Pakets; Unterschiede werden im Konto ausgeglichen."],
-    ["Wie viele Länder bedient Superbuy?", "Prüfe den aktuellen Versandkostenrechner mit Ziel, Paketmaßen und Artikelmerkmalen. Allgemeine Angaben zur Abdeckung bestätigen keine verfügbare Route für deinen konkreten Inhalt oder deine Adresse."],
-    ["Kann die Verpackung angepasst werden?", "Der offizielle Leitfaden nennt Entfernung von Verpackung, Verstärkung und Versicherung als Zusatzleistungen. Verfügbarkeit und Eignung hängen von Paket und Route ab."],
-    ["Sind Zollabgaben enthalten?", "Gehe nicht davon aus. Superbuy erklärt, dass Zoll, Beschränkungen und Drittanbieter-Logistik nicht vollständig kontrolliert werden. Steuern richten sich nach Ziel, Inhalt und örtlichen Regeln."],
-    ["Kann ich ein Paket verfolgen?", "Laut veröffentlichtem Ablauf ist die Sendungsverfolgung nach Versand im Bereich My Parcel verfügbar. Carrier-Ereignisse können verzögert erscheinen."],
-    ["Ist diese Website Superbuy?", "Nein. Dies ist eine unabhängige Entdeckungs- und Informationsseite. Sie betreibt keine Superbuy-Dienste, verarbeitet keine Zahlungen und gibt keine Zusagen im Namen von Superbuy."],
-  ],
+  "de": [
+    [
+      "Wie lange lagert Superbuy meine Artikel kostenlos?",
+      "Regulär gelten 90 Tage ab Eingang des jeweiligen Artikels. Prüfe seine Frist in My Warehouse. Anschließend nennt Superbuy 0,10 CNY pro Artikel und Tag sowie eine reguläre Höchstdauer von 180 Tagen."
+    ],
+    [
+      "Startet eine Verlängerung die kostenlose Zeit neu?",
+      "Sie verschiebt die zulässige Höchstfrist. Nach Ende der kostenlosen Zeit laufen die Tagesgebühren weiter. Prüfe Angebot und Frist für die konkrete Position."
+    ],
+    [
+      "Was gebe ich für ein 2-kg-Paket ein?",
+      "Trage im offiziellen Rechner 2.000 g, Außenmaße in Zentimetern, tatsächliche Warenkategorie und Ziel ein. Vergleiche beide Kartons auf derselben Linie."
+    ],
+    [
+      "Warum kann ich mein Paket nicht abschicken?",
+      "Prüfe Lagerstatus, vorhandene Pakete, Ziel, Kategorie und Außenmaße. Öffne nach einer Zahlungsunterbrechung zuerst My Parcel, bevor du erneut bezahlst."
+    ],
+    [
+      "Wie bestelle ich bei einem fehlerhaften Produktlink?",
+      "Öffne das Originalangebot. Bietet Superbuy das manuelle Formular an, übernimm Direktlink, Variante, bestätigten Stückpreis und Menge. Bei entferntem Angebot zuerst die Verfügbarkeit klären."
+    ],
+    [
+      "Wie bitte ich um eine Messung der Einlegesohle?",
+      "Bei einer herausnehmbaren Sohle bitte um ein flaches Foto mit Lineal von der Ferse bis zur längsten Spitze. Beide Endpunkte, Lagerreferenz und betroffener Schuh sollten eindeutig sein."
+    ],
+    [
+      "Kann ich nur einen Schuhkarton entfernen lassen?",
+      "Nenne beide Lagerreferenzen und gib je Karton an, ob er bleiben, gefaltet oder entfernt werden soll. Prüfe die paketweiten Optionen vor der Zahlung."
+    ],
+    [
+      "Welche Artikel eignen sich für Vakuumverpackung?",
+      "Geeignet sind druckunempfindliche Textilien. Formstabile Schuhe, Geschenkboxen und zerbrechliche Teile separat schützen. Rechne mit den Außenmaßen des fertigen Pakets."
+    ],
+    [
+      "Kann ich mehrere Bestellungen zusammen versenden?",
+      "Ja. Laut veröffentlichtem Ablauf können verschiedene Lagerbestellungen in einem Paket eingereicht werden. Konsolidierung reduziert doppelte Verpackung, kann aber Gewicht, Maße und verfügbare Routen verändern."
+    ],
+    [
+      "Wie werden internationale Versandkosten berechnet?",
+      "Die Vorauszahlung basiert auf geschätztem Gewicht, Versandart und Ziel. Der Endbetrag richtet sich nach Größe und Gewicht des fertig gepackten Pakets; Unterschiede werden im Konto ausgeglichen."
+    ],
+    [
+      "Stellt Superbuy QC-Fotos bereit?",
+      "Der Shopping-Agent-Leitfaden beschreibt eine Lagerprüfung und Fotos der erhaltenen Ware. Sie helfen bei der Sichtprüfung, garantieren aber weder Echtheit noch Größe oder Gesamtqualität."
+    ],
+    [
+      "Kann die Verpackung angepasst werden?",
+      "Der offizielle Leitfaden nennt Entfernung von Verpackung, Verstärkung und Versicherung als Zusatzleistungen. Verfügbarkeit und Eignung hängen von Paket und Route ab."
+    ],
+    [
+      "Was tun bei einem sichtbaren Fehler auf dem Lagerfoto?",
+      "Markiere die Abweichung, sichere die Verkäuferansicht und frage beim betroffenen Auftrag vor dem internationalen Versand nach Korrektur oder Rückgabe."
+    ],
+    [
+      "Was macht ein Shopping Agent?",
+      "Ein Shopping Agent erhält einen Produktlink oder eine Anfrage, kauft den Artikel in China, nimmt ihn im Lager an und ermöglicht anschließend den internationalen Versand eingelagerter Waren. Im veröffentlichten Superbuy-Ablauf sind Produktzahlung und spätere Paketzahlung getrennt."
+    ],
+    [
+      "Wann muss ich bezahlen?",
+      "Zunächst bezahlst du Ware und anfallende Inlandslieferung. Den internationalen Versand bezahlst du später beim Auftrag für die eingelagerten Artikel."
+    ],
+    [
+      "Fällt beim Einkauf eine Servicegebühr an?",
+      "Prüfe die offizielle Gebührenübersicht für deinen Marktplatz und die gewählte Leistung. Trenne Produktpreis, Inlandslieferung, mögliche Einkaufsgebühr und Zusatzleistungen."
+    ],
+    [
+      "Wie viele Länder bedient Superbuy?",
+      "Prüfe den aktuellen Versandkostenrechner mit Ziel, Paketmaßen und Artikelmerkmalen. Allgemeine Angaben zur Abdeckung bestätigen keine verfügbare Route für deinen konkreten Inhalt oder deine Adresse."
+    ],
+    [
+      "Sind Zollabgaben enthalten?",
+      "Gehe nicht davon aus. Superbuy erklärt, dass Zoll, Beschränkungen und Drittanbieter-Logistik nicht vollständig kontrolliert werden. Steuern richten sich nach Ziel, Inhalt und örtlichen Regeln."
+    ],
+    [
+      "Kann ich ein Paket verfolgen?",
+      "Laut veröffentlichtem Ablauf ist die Sendungsverfolgung nach Versand im Bereich My Parcel verfügbar. Carrier-Ereignisse können verzögert erscheinen."
+    ],
+    [
+      "Ist diese Website Superbuy?",
+      "Nein. Dies ist eine unabhängige Entdeckungs- und Informationsseite. Sie betreibt keine Superbuy-Dienste, verarbeitet keine Zahlungen und gibt keine Zusagen im Namen von Superbuy."
+    ]
+  ]
 } as const;
 
 export type Article = {
   slug: string;
   title: string;
   dek: string;
+  published?: string;
+  modified?: string;
   sections: {
     heading: string;
     paragraphs: string[];

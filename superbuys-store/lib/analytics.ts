@@ -10,6 +10,10 @@ export const engagementTracking = `
     var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
     if (!link) return;
     var url = new URL(link.href, location.href);
+    if (url.hostname === 'www.superbuy.com' && url.pathname === '/en/page/query/freight/') {
+      emit('shipping_calculator_click', { source_path: location.pathname, site_language: document.documentElement.lang });
+      return;
+    }
     if (url.hostname !== 'www.cnfanshp.com' && url.hostname !== 'cnfanshp.com') return;
     var kind = /^\\/[^/]+\\/\\d+\\.html$/.test(url.pathname) ? 'product' : (url.pathname === '/AllProducts/' ? 'catalog' : 'category');
     emit('main_site_click', { link_type: kind, link_path: url.pathname, source_path: location.pathname, site_language: document.documentElement.lang });

@@ -49,15 +49,18 @@ export function homeMetadata(locale: Locale): Metadata {
 }
 
 export const relatedSlugs: Record<string, string[]> = {
+  "superbuy-combine-orders-one-parcel": ["superbuy-shipping-cost-guide", "superbuy-packaging-guide", "superbuy-warehouse-storage-guide"],
+  "superbuy-parcel-submission-problems": ["superbuy-shipping-cost-guide", "superbuy-combine-orders-one-parcel", "superbuy-packaging-guide"],
+  "superbuy-diy-manual-order": ["superbuy-order-remarks-writing-guide", "product-listing-checklist", "superbuy-qc-photos-guide"],
   "superbuy-domestic-tracking-guide": ["superbuy-seller-not-shipped-delay-record", "superbuy-warehouse-arrival-checklist", "superbuy-warehouse-storage-guide"],
   "superbuy-returns-refunds-guide": ["superbuy-qc-photos-guide", "superbuy-seller-not-shipped-delay-record", "superbuy-fees-total-cost-guide"],
   "superbuy-fees-total-cost-guide": ["superbuy-shipping-cost-guide", "superbuy-packaging-guide", "superbuy-warehouse-storage-guide"],
-  "superbuy-warehouse-storage-guide": ["superbuy-domestic-tracking-guide", "superbuy-returns-refunds-guide", "superbuy-shipping-cost-guide"],
+  "superbuy-warehouse-storage-guide": ["superbuy-combine-orders-one-parcel", "superbuy-domestic-tracking-guide", "superbuy-returns-refunds-guide", "superbuy-shipping-cost-guide"],
   "product-listing-checklist": ["superbuy-order-remarks-writing-guide", "superbuy-fees-total-cost-guide", "superbuy-qc-photos-guide"],
-  "superbuy-qc-photos-guide": ["superbuy-returns-refunds-guide", "superbuy-warehouse-arrival-checklist", "superbuy-packaging-guide"],
-  "superbuy-shipping-cost-guide": ["superbuy-fees-total-cost-guide", "superbuy-packaging-guide", "superbuy-warehouse-storage-guide"],
+  "superbuy-qc-photos-guide": ["superbuy-diy-manual-order", "superbuy-returns-refunds-guide", "superbuy-warehouse-arrival-checklist", "superbuy-packaging-guide"],
+  "superbuy-shipping-cost-guide": ["superbuy-combine-orders-one-parcel", "superbuy-fees-total-cost-guide", "superbuy-packaging-guide", "superbuy-warehouse-storage-guide"],
   "superbuy-warehouse-arrival-checklist": ["superbuy-domestic-tracking-guide", "superbuy-qc-photos-guide", "superbuy-returns-refunds-guide"],
-  "superbuy-order-remarks-writing-guide": ["product-listing-checklist", "superbuy-domestic-tracking-guide", "superbuy-seller-not-shipped-delay-record"],
+  "superbuy-order-remarks-writing-guide": ["superbuy-diy-manual-order", "product-listing-checklist", "superbuy-domestic-tracking-guide", "superbuy-seller-not-shipped-delay-record"],
   "superbuy-seller-not-shipped-delay-record": ["superbuy-domestic-tracking-guide", "superbuy-returns-refunds-guide", "superbuy-warehouse-storage-guide"],
-  "superbuy-packaging-guide": ["superbuy-shipping-cost-guide", "superbuy-fees-total-cost-guide", "superbuy-qc-photos-guide"],
+  "superbuy-packaging-guide": ["superbuy-parcel-submission-problems", "superbuy-shipping-cost-guide", "superbuy-fees-total-cost-guide", "superbuy-qc-photos-guide"],
 };

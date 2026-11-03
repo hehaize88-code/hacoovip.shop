@@ -1,5 +1,182 @@
 [
   {
+    "slug": "superbuy-combine-orders-one-parcel",
+    "title": "How to Combine Superbuy Orders Into One Parcel",
+    "dek": "Select the stored items together in My Warehouse, compare one parcel with two and give the packer clear instructions for each shoe box.",
+    "sections": [
+      {
+        "heading": "Select the orders together in My Warehouse",
+        "paragraphs": [
+          "Open My Warehouse in your Superbuy account. Find the entries for the items you want to send, check their sizes and quantities, then select the eligible entries together and start one international parcel. Superbuy’s shopping guide describes this as submitting stored items for delivery. A seller’s dispatch notice alone does not put a pair of shoes in that selection. If you see the shoes in your shopping orders but cannot select them in the warehouse, first check whether the warehouse has received and recorded them.",
+          "Two purchases do not need to come from the same seller for this workflow. What matters at this stage is which stored entries you can submit together and which shipping lines accept the resulting parcel. Before choosing a line or paying, read back the contents of the draft. For two pairs of shoes that should mean two pairs in the intended sizes. A single row can also represent more than one unit, so count the units as well as the rows."
+        ]
+      },
+      {
+        "heading": "Two pairs arriving on different days",
+        "paragraphs": [
+          "Imagine you ordered running shoes for yourself and a smaller pair for a friend. The first pair appears in the warehouse on Monday. Its photographs show the right colour and size. The second seller creates a domestic shipping label on Tuesday. At this point the first pair is available to review, but the label cannot stand in for the second warehouse entry. Record the first pair’s storage deadline and decide how long you can reasonably wait before shipping it alone.",
+          "When the second pair arrives, compare the size labels in its photos with the second shopping order. Open both warehouse entries and mark the first pair as ready and the second as either ready or awaiting a specific check. If you still need a measurement, request it before combining the items for dispatch. Once both are ready, select them together. There is no need to look for a consolidation option on the original seller checkout page or to create a separate parcel for each seller first."
+        ]
+      },
+      {
+        "heading": "Decide what the warehouse should do with each box",
+        "paragraphs": [
+          "Treat the two shoe boxes as separate decisions. Perhaps the first pair is for everyday wear and you can part with its retail box, while your friend wants the second box intact. Write the request against each item reference. For example, “Pair A, size 42: you may remove its retail box. Pair B, size 38: please keep its retail box and lid together. Keep the accessories from each pair with that pair.” Replace the letters with your actual order references in the account.",
+          "Read through the selected packaging services after writing the note. A parcel-wide request to remove all packaging would conflict with the second instruction. If the available option cannot express the distinction, ask the warehouse what can be done before approving it. Choose protection appropriate to the contents. The smaller carton you had in mind may not leave enough room to protect two shaped uppers. Keeping a retail box can matter more than saving a little space when the box is part of a gift."
+        ]
+      },
+      {
+        "heading": "Compare one parcel with two using the same inputs",
+        "paragraphs": [
+          "Open the official freight estimator. Fix the destination, warehouse and currency for the entire comparison. Prepare three entries on paper: the two pairs together, pair A alone and pair B alone. Enter the packed weight and outside dimensions for each scenario as accurately as you can. If a value is an estimate, mark it as such. Using bare shoe weight for the combined calculation and packed weight for the separate calculations makes the apparent saving meaningless.",
+          "For each option, write down the available line, chargeable weight rule, initial charge, later weight increments and selected extras. Compare the combined quote with the sum of the two separate quotes. If a line disappears for the larger carton, record that result instead of copying its smaller-parcel price across. Superbuy says basic consolidation is free. Optional packing services and international freight still enter the comparison. Use the live calculator again if the warehouse changes the package size or an item characteristic."
+        ]
+      },
+      {
+        "heading": "When a larger carton changes the decision",
+        "paragraphs": [
+          "Consider a hypothetical carton measuring 40 × 30 × 25 cm. On a line using a divisor of 6,000, its volume corresponds to 5 kg. A second layout measuring 40 × 30 × 20 cm corresponds to 4 kg under the same rule. These figures describe space, not a shipping price. If either carton actually weighs more, or the line uses a different divisor or charging rule, the billable comparison changes. Inspect the terms of the line you can actually select.",
+          "Keeping compatible goods together can avoid paying the first weight charge on two shipments. Splitting can still make sense when one object needs a much larger carton, when the goods require different protection, or when one item makes your intended line unavailable. Compare both options before interpreting a higher combined estimate as an error. If the only reason to split is uncertainty about size, a confirmed packing measurement may answer the question more directly than creating two paid parcels and trying to change them later."
+        ]
+      },
+      {
+        "heading": "Check the clock and unresolved order issues",
+        "paragraphs": [
+          "Each arrival has its own storage record. The official fee page lists a free period beginning at arrival and describes separate charges and a maximum period. Look up the deadline for the older pair in the account before waiting for a slow seller. A new arrival does not make the first pair newly arrived. If waiting would take you close to a deadline, compare dispatching the ready pair now with the cost and terms of keeping it longer.",
+          "A missing accessory, damaged upper or unresolved size question deserves a decision at the item level. Photograph or mark the detail at issue, contact the agent against the correct order and keep that item outside the parcel draft while you wait. You can still prepare the other item’s shipping estimate. If you intend to keep a matching set together, document that preference too. Sending the ready part today may leave you with a second shipment even if the seller eventually resolves the problem."
+        ]
+      },
+      {
+        "heading": "Read the draft once more before paying",
+        "paragraphs": [
+          "On the parcel review screen, compare the selected items with the two shopping orders. Check the delivery address, parcel contents, packaging instructions and shipping line. Record the estimate and which assumptions it uses. When a packed measurement or payment adjustment appears, compare like with like. A change to the outer dimensions or route can explain a different figure even if neither seller changed the product price. Keep the parcel reference with the item references so you can find both later.",
+          "If a pair is missing after you select the items, pause before making another payment. Check whether you opened an earlier draft, whether a warehouse entry contains several units or whether one item already belongs to an existing parcel. A useful support message identifies the two warehouse references, the contents shown on the draft and the single change you need. For example, ask whether the smaller pair can be added to the unpaid draft. Leave the parcel as it is until the account or support confirms what can still be changed.",
+          "Keep the carton decision with the reference for the person receiving that pair. If your friend later asks whether the retail box was retained, the note and the final parcel contents answer different questions. Save the confirmed packing result when available and label estimates separately. This is especially useful if you compare the same combination with a future purchase in a different size."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
+    "slug": "superbuy-parcel-submission-problems",
+    "title": "Why Can’t I Submit My Superbuy Parcel?",
+    "dek": "Work out whether the problem is an unavailable item, an empty shipping-line list, a packing conflict or an existing parcel before trying again.",
+    "sections": [
+      {
+        "heading": "Start with the last screen that worked",
+        "paragraphs": [
+          "If Superbuy will not let you submit a parcel, first identify the point where the process stops. Can you select the item in My Warehouse? Can you enter the delivery address? Does the shipping-line list appear but show no usable option? Or did the error appear only after you chose packing services or confirmed payment? Each observation narrows the problem. Copy the exact message and take a screenshot before changing the draft. Keep private address and payment details out of any screenshot shared in public.",
+          "Open My Parcel and look for a new parcel reference, especially after a slow connection or a payment screen that did not finish loading. A displayed error does not establish whether the previous submission created a record. If there is an existing parcel, check its contents, amount and current status. If payment status is unclear, ask support to reconcile that entry. Starting a second paid shipment can make a simple display problem harder to resolve. Note the time and which screen you used."
+        ]
+      },
+      {
+        "heading": "When the item cannot be selected",
+        "paragraphs": [
+          "Look for the exact warehouse entry, using the size or colour as well as the order reference. A domestic carrier’s delivered scan can come before the item appears as available in your account. The seller’s order screen, a warehouse intake record and a parcel ready to ship cover different steps. If the item is still on the domestic leg, check that reference. If only one of two items is available, start with the missing item’s intake record before changing the address or shipping line.",
+          "Also check whether the entry already belongs to a parcel or has an open service or after-sales request. Record the displayed state rather than deciding from the colour of a button. A practical enquiry names the warehouse item, says which action is unavailable and asks what step remains. If two similar pairs have different statuses, send both references and mark which one is affected. This lets the agent inspect the right purchase without reopening a settled issue on the other pair."
+        ]
+      },
+      {
+        "heading": "When no shipping line appears",
+        "paragraphs": [
+          "Open Superbuy’s official freight estimator and enter the same warehouse, destination, item category, weight and dimensions used for your draft. Check the units carefully. The estimator asks for grams and centimetres, so a 2 kg parcel should start with 2,000 grams. Use outside dimensions for the packed carton. A 35 cm box entered as 350 cm can rule out routes that might otherwise be available. Correct a verified input error, then repeat the same comparison with every other input held constant.",
+          "Use the actual destination and the item’s correct characteristics. Electronics with an installed battery, a loose battery and an ordinary piece of clothing are different inputs in the official calculator. An empty list is a reason to check eligibility with the carrier or Superbuy. Choosing a different category merely to reveal a cheaper line creates a quote for different contents. If a support agent needs to identify the item, supply its exact description and a link or photograph rather than guessing which shipping category to use."
+        ]
+      },
+      {
+        "heading": "Isolate one change in a mixed parcel",
+        "paragraphs": [
+          "Suppose a hoodie has an available line on its own, but the list becomes empty when you add a desk accessory. Compare three drafts or calculator scenarios without paying: the hoodie alone, the accessory alone and both together. Keep the same address and use reasonable packing assumptions for each. If the accessory alone returns no lines, start the enquiry with its characteristics and destination. If both work separately, check the combined carton’s size, weight and route limitations before paying for separate shipments.",
+          "One change at a time matters. Removing the accessory, changing the destination and discarding the shoe box in the same test cannot tell you which input affected the result. Keep a short note of the combinations you tested and which line was offered. You may discover that your preferred service excludes the carton while another eligible service accepts it. Compare protection, cost and stated conditions for the actual contents. An available service still needs to suit the item you are sending."
+        ]
+      },
+      {
+        "heading": "When the failure follows a packaging choice",
+        "paragraphs": [
+          "Write down which services were selected immediately before the error. Read any conditions attached to those choices. A request to keep a retail box intact conflicts with a separate instruction to discard it; vacuum packing a shaped item can also conflict with the protection you need. Return to the unpaid draft and simplify only the optional instructions you can safely change. Keep required protection in place. If the item needs special handling and the interface cannot express it, ask the warehouse to confirm the available choices.",
+          "Imagine the order contains a boxed gift and a folded shirt. Identify the gift by its warehouse reference and ask for the retail box to stay intact. Attach any vacuum-packing request only to the shirt if that option is available and suitable. Read the parcel summary again before submitting. If the screen uses only one parcel-wide option, do not assume that a line of free text overrides it. Give support the item references and the two intended outcomes so they can tell you how to proceed."
+        ]
+      },
+      {
+        "heading": "Resolve address or payment questions separately",
+        "paragraphs": [
+          "If the form highlights an address field, check the selected country or region, postal code and required fields against the real destination. Re-enter the corrected field in the official account. A successful estimate for a country is useful information, but the final parcel can still depend on its full address and packed contents. Note whether the error happens before or after the line list loads. Avoid sending your complete address or a screenshot of payment details to a public discussion board.",
+          "If the failure came after a payment step, compare the parcel record and account transaction history before retrying. Save the parcel number, the time and the amount shown in the account. Ask support whether the transaction has been attached to that parcel and whether a further action is required. A pending entry, a shipping deposit and the final packed charge concern different stages. Do not treat an estimated difference as evidence that a second deposit must be paid. Wait for the account record to confirm the next action."
+        ]
+      },
+      {
+        "heading": "A support message that can be answered",
+        "paragraphs": [
+          "Use a short report: “Warehouse item [reference], destination [country], intended carton [dimensions and estimated weight]. I can select the item. The line list becomes empty after I add [second item]. Each item separately shows [result]. My Parcel currently shows [existing reference or no entry]. Which limit or required step applies?” Replace the brackets with observations. If a screenshot helps, include only the affected portion of the official form. A clear sequence is more informative than several screenshots taken after different edits.",
+          "When support replies, check which part of the draft their answer addresses. If a line rejects the size, compare a newly measured carton; if the item is restricted, ask which eligible handling options exist. If support identifies an existing parcel, continue against that reference. Save the final accepted contents and reference so you can recognize later updates. The purpose of the checks is to reach one correct shipment with a known status, not simply to make the submit button respond.",
+          "For a repeat error, add the time of your last successful step and the exact wording that changed. A message about a missing field calls for a different check from one about a route limit. Recording both allows support to identify the earlier issue even after you correct the first field and the screen shows a new message."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
+    "slug": "superbuy-diy-manual-order",
+    "title": "How to Place a Superbuy DIY Order When a Product Link Won’t Load",
+    "dek": "Use the manual shopping-agent form to identify the exact listing, variant, quantity and domestic delivery charge, then verify the order when it reaches the warehouse.",
+    "sections": [
+      {
+        "heading": "Decide whether the link or the listing is missing",
+        "paragraphs": [
+          "Start with the seller’s product page. Open the link you intended to paste into Superbuy and check what it actually displays. A shop homepage, collection page or shared screenshot can be useful for discovery, but it does not identify a single purchasable variant. If the listing still opens, copy the direct product link and note the seller, item name and selected option. Try that link in Superbuy’s product search. Stop if it produces a correct order with the fields you need.",
+          "If Superbuy shows the manual shopping-agent order form instead, use the live seller page to fill in the missing information. Superbuy’s beginner guide describes this fallback when its normal product capture does not populate an order. If the seller has removed the listing or every suitable option is sold out, a manual form cannot establish that the item is still available. Ask about availability before committing funds. If the listing itself is inaccessible to you, say what you cannot verify and ask the agent to check it."
+        ]
+      },
+      {
+        "heading": "Collect the details that distinguish one option",
+        "paragraphs": [
+          "Write down the exact option labels as the seller displays them, including Chinese text if present. Add a plain-language explanation alongside the original where it helps. A translated colour such as “blue” can refer to navy, faded blue or a limited seasonal colour. A model name can refer to several differently priced bundles on the same page. Record the size, colour, finish, quantity and included accessories only where they apply. A screenshot of the selected option is useful when the order screen permits an attachment.",
+          "Check whether the quantity means individual pieces, pairs, packs or sets. For example, one listing unit might contain two socks, while another seller offers a pack of three pairs. Typing “3” into the order because the photo shows three pairs could multiply the purchase unintentionally. Confirm the sale unit and translate the intended outcome into a quantity of those units. If the seller does not make the unit clear, leave the uncertainty explicit in the enquiry before approving the price."
+        ]
+      },
+      {
+        "heading": "A worked manual order for a canvas tote",
+        "paragraphs": [
+          "Imagine a seller offers a natural canvas tote with either short or long handles. You want one long-handle bag with a zip, not the cheaper open-top version shown first. A usable order identifies the seller’s listing URL, copies the exact long-handle zipped option from the selector and specifies one bag. Attach a screenshot showing that option selected if supported. Use the price displayed after making that selection. The attractive starting price on the listing may belong to the short-handle version.",
+          "A short purchase remark might read, “One natural canvas tote, long handles, zipped top. Use the selected option in the attached image. If that option is unavailable or the item price changes, please contact me before purchasing. No substitution.” This gives the agent a clear decision if the seller proposes a similar bag. Avoid adding parcel instructions about folding the bag or removing the shipping carton to the same note. You can make those decisions once the correct bag reaches the warehouse."
+        ]
+      },
+      {
+        "heading": "Separate the two payments in your estimate",
+        "paragraphs": [
+          "The shopping-agent order concerns the item and domestic delivery to the warehouse, together with any fees shown for your purchase. International shipping is a later parcel decision. Compare the item price in the manual form with the selected variant on the seller page. Check whether the listed domestic shipping applies to a single unit, to the order as a whole or only under certain seller conditions. If you cannot establish the amount, ask for confirmation rather than entering a made-up price to complete the form.",
+          "For an illustrative calculation, suppose the selected bag costs CNY 68 and the seller confirms CNY 8 for domestic delivery of that order. Those two components total CNY 76 before any separately shown services. If you buy two bags, the item subtotal would be CNY 136 at the same unit price, but the domestic postage needs to be confirmed for that quantity. Neither example quotes international freight. Keep a note of the date and currency so an exchange-rate change cannot be mistaken for a different seller price."
+        ]
+      },
+      {
+        "heading": "Handle minimum quantities and missing choices",
+        "paragraphs": [
+          "A seller may offer several price tiers or sell an item only as part of a bundle. Do not take a unit price printed beside a large quantity and apply it to a single piece without checking the conditions. Read the selected listing and the order breakdown. If the minimum is above your intended purchase, ask whether a smaller order is available at a confirmed price. Agree on the quantity before paying. A purchasing agent cannot make an unsupported seller price valid by typing it into a form.",
+          "If two options have nearly identical names, give the agent one positive instruction and one fallback decision. For example, request the long-handle zipped bag and ask to be contacted if only the short-handle version remains. An open-ended remark such as “something similar is fine” transfers a decision about size, finish or price to someone who cannot know what matters to you. If you truly accept an alternative, specify exactly which feature can change and what price you authorize before the purchase is placed."
+        ]
+      },
+      {
+        "heading": "Verify the cart and prevent a duplicate order",
+        "paragraphs": [
+          "Before payment, read the cart as though someone else prepared it. Check the seller URL, option labels, quantity, unit price, shipping line item and remarks against the saved seller page. If you used both normal link capture and the manual form while troubleshooting, look for two cart entries representing the same item. Select only the intended one. If a previous checkout appeared to stall, inspect the order list and transaction record before submitting again. Save the final shopping-order reference with your evidence.",
+          "After the agent purchases the item, use that same reference for questions about a seller message or price adjustment. If the seller seeks approval for a change, compare the proposed colour, cost and delivery terms with the original note. Reply within the order’s official enquiry channel and keep the agreed outcome. When two very similar bags are involved, repeating the item reference can prevent a reply about one from being used for the other. A fresh manual order is rarely the first useful response to an unresolved existing one."
+        ]
+      },
+      {
+        "heading": "Match the warehouse item to the manual request",
+        "paragraphs": [
+          "At warehouse arrival, compare the visible item with the version you actually approved. In the bag example, look for the zipper, handle type, colour and quantity. An overall photograph may identify the shape without showing whether the top closes. If that detail determines acceptance, request a close-up of the top opening with the zip visible. If handle length matters, specify the endpoints for a measurement. A precise request gives you a result you can compare with the original seller information.",
+          "Resolve a wrong option or missing accessory against the shopping order before adding the item to an international parcel. Preserve the seller screenshot, manual order remark and relevant warehouse image together. Those three pieces show what the seller advertised, what you asked the agent to buy and what arrived. Once the item is accepted, switch to parcel planning and compare destinations, packed dimensions and shipping services separately. Keeping the purchase and delivery records distinct makes it easier to explain any later question about cost or contents.",
+          "If you request a measurement, specify whether it is the full length of the handle or the vertical drop from the handle to the top of the bag. A seller may use either measurement in a size chart. Keeping the same endpoints makes the warehouse photo useful when comparing the delivered bag with the advertised dimensions."
+        ]
+      }
+    ],
+    "published": "2026-11-03",
+    "modified": "2026-11-03"
+  },
+  {
     "slug": "superbuy-domestic-tracking-guide",
     "title": "Superbuy Domestic Tracking: Seller Dispatch to Warehouse Arrival",
     "dek": "Follow a Superbuy order from seller dispatch to warehouse intake, separate domestic tracking from international shipping, and document delays clearly.",
@@ -311,6 +488,12 @@
     "dek": "Plan Superbuy warehouse storage around each item's arrival record, free-storage window, extension conditions and realistic parcel decisions.",
     "sections": [
       {
+        "heading": "Two arrivals, two free-storage deadlines",
+        "paragraphs": [
+          "Suppose a pair arrives on 1 October and a jacket on 11 October. Their free-storage clocks start ten days apart. Open each warehouse entry and copy its own deadline into your parcel plan. The official standard is 90 free days from arrival, then CNY 0.10 per item per day, with a standard maximum of 180 days. An extension changes the allowed deadline while daily fees continue after the free period."
+        ]
+      },
+      {
         "heading": "Give every stored item its own timeline",
         "paragraphs": [
           "Superbuy warehouse storage is most useful when you treat it as a dated planning window for each item. Orders from different sellers can arrive at different times, so a shared haul does not necessarily have a single storage clock. Start with the warehouse record for each order and save its arrival information, the deadline or remaining days displayed in the account and any unresolved inspection or after-sales issue.",
@@ -402,7 +585,8 @@
           "This method makes storage useful without turning it into an indefinite holding area. The essential information is small enough for a simple spreadsheet, but it must stay current. Keep the arrival record, free-storage checkpoint, maximum deadline, any confirmed extension and parcel or after-sales reference together. When those records agree, you can make a shipping decision from the actual order state rather than from an old estimate or a forgotten plan."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "product-listing-checklist",
@@ -480,6 +664,12 @@
     "dek": "Review Superbuy QC photos for the ordered variant, visible defects and useful measurements before choosing a shipping or after-sales action.",
     "sections": [
       {
+        "heading": "Find your QC photos and ask for a measurement",
+        "paragraphs": [
+          "After warehouse intake, open the shopping order or stored item in your Superbuy account and view its inspection photos. Match the reference, colour and size label before requesting another angle. For shoes, a useful request is “If removable, lay the left insole flat. Place a ruler from heel to longest toe and show both endpoints in one photo.” Compare with an insole you already wear rather than using the printed size alone."
+        ]
+      },
+      {
         "heading": "Know what Superbuy says the warehouse stage includes",
         "paragraphs": [
           "Superbuy’s current English shopping-agent guidance says an item is weighed and inspected after warehouse receipt and that photos of the actual product are provided. Think of this as a visual handover checkpoint between the Chinese seller and the later international parcel. The photos can show whether an obvious wrong item arrived, whether the broad color and model match, and whether visible damage or missing parts deserve attention before international shipping makes correction harder.",
@@ -543,13 +733,43 @@
           "An illustrative request is to lay the garment flat, show the ruler from one underarm edge to the other and include both ruler endpoints in the image. Compare the result with a similarly measured garment that fits you. This is a personal fit reference, not a universal size conversion. Preserve the request and returned image together, then state whether the measurement resolves the specific uncertainty. If the view is incomplete, ask for the missing evidence rather than inventing a value from perspective."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "superbuy-shipping-cost-guide",
-    "title": "Superbuy Shipping Calculator: Weight, Volume and Total Cost",
-    "dek": "Compare Superbuy shipping estimates with consistent weight, dimensions, destination and packing assumptions; distinguish the deposit from final cost.",
+    "title": "How to Use the Superbuy Shipping Calculator for a 2 kg Parcel",
+    "dek": "Estimate shipping for a 2 kg parcel with two box sizes. Compare actual and volumetric weight, available lines and the deposit in the official Superbuy calculator.",
     "sections": [
+      {
+        "heading": "Two 2 kg parcels with different shipping estimates",
+        "paragraphs": [
+          "Enter 2,000 g in the weight field. Set the warehouse, destination and item category once. Try the two cartons below and compare the same available line. The example uses a divisor of 6,000. Check the divisor, minimum and rounding rules shown for your line before interpreting the difference."
+        ],
+        "table": {
+          "caption": "A worked example with no fixed shipping rates",
+          "headers": [
+            "Outer carton",
+            "Scale weight",
+            "Volume ÷ 6,000",
+            "Higher weight before rounding"
+          ],
+          "rows": [
+            [
+              "30 × 20 × 15 cm",
+              "2 kg",
+              "1.5 kg",
+              "2 kg"
+            ],
+            [
+              "40 × 30 × 25 cm",
+              "2 kg",
+              "5 kg",
+              "5 kg"
+            ]
+          ]
+        }
+      },
       {
         "heading": "Separate product cost from delivered parcel cost",
         "paragraphs": [
@@ -620,7 +840,8 @@
           "For a hypothetical USD comparison, a $36 estimate plus $4 of chosen services totals $40 for those components; a $39 estimate with $1 of the same required service scope also totals $40. Neither is automatically the cheaper delivered option. Review any unconfirmed destination or payment-related amounts separately. These figures are examples, not route quotations. After dispatch, reconcile the final record so the next estimate can use measured information instead of the same untested assumptions."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   },
   {
     "slug": "superbuy-warehouse-arrival-checklist",
@@ -862,6 +1083,12 @@
     "dek": "Compare Superbuy box removal, vacuum packing and reinforcement using the actual items, parcel dimensions and shipping requirements.",
     "sections": [
       {
+        "heading": "Vacuum packaging, shoe boxes and fragile items",
+        "paragraphs": [
+          "Compare the packed carton before selecting a service. Use vacuum packing only for soft goods that tolerate compression. Keep shoes with shaped uppers out of the bag. For a gift box or breakable item, preserve its shape and ask what cushioning the final carton will contain. Write a separate instruction for each warehouse reference."
+        ]
+      },
+      {
         "heading": "Start with the packed parcel, not the product thumbnail",
         "paragraphs": [
           "Superbuy packaging becomes a real cost decision after stored items are selected for an international parcel. The product listing may show a light shirt, a pair of shoes or a compact accessory, but the carrier sees the finished parcel: contents, seller packaging, warehouse packing materials and the outer box. That finished shape can affect billable weight, route eligibility and protection. A useful packaging request therefore begins with the items being shipped and the risks they create together, not with a generic instruction to make everything as small as possible.",
@@ -924,6 +1151,7 @@
           "Before submission, review whether the chosen route remains available for the resulting contents and expected dimensions. Save the original instructions and any warehouse clarification, then compare the final parcel record with the assumptions used in the estimate. If a packing detail matters to you but cannot be confirmed, keep that uncertainty explicit. This is a practical decision record, not a guarantee that retail packaging or contents will arrive undamaged."
         ]
       }
-    ]
+    ],
+    "modified": "2026-11-03"
   }
 ]
