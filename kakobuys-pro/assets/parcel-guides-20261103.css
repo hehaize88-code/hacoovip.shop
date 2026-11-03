@@ -1,0 +1,5 @@
+.parcel-jumps{display:flex;flex-wrap:wrap;gap:.45rem .85rem;margin:1rem 0;align-items:center}
+.parcel-jumps a{display:inline-block;font-size:.94rem;line-height:1.35;padding:.35rem 0;color:inherit;text-decoration:underline;text-underline-offset:.22em}
+.parcel-jumps a:hover,.parcel-jumps a:focus-visible{color:#40553b}
+.prose .content-table-wrap{width:100%;max-width:100%;overflow-x:auto}
+@media(max-width:600px){.parcel-jumps{gap:.25rem .8rem}.parcel-jumps a{font-size:.88rem}.content-table-wrap .parcel-table{min-width:0}}
