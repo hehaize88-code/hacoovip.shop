@@ -1,0 +1,322 @@
+{
+  "en": {
+    "title": "How to Find Kakobuy QC Photos Before You Buy",
+    "description": "Look up warehouse photos by the original product link, match the seller’s option and size, and work out what to do if a Kakobuy QC finder returns nothing.",
+    "sections": [
+      {
+        "h": "Start with the item you would actually order",
+        "p": [
+          "Open the product page, choose the colour and size you want, and copy its link. Paste that link into the independent KakoFind QC Finder. If it returns an album, compare the marketplace, item ID and selected option before using any of the photos to make a decision. If you already placed an order and want to see what arrived for you, go to that order in your Kakobuy account. A public finder searches pictures from earlier purchases.",
+          "The difference matters most when a seller offers many versions on one page. A warehouse photograph of a blue hoodie in medium can tell you how that graphic looked on that particular piece. It leaves the measurements of a black hoodie in large unanswered. Decide what you are trying to learn before you search. “Can I read the option label?” and “Has anyone measured this size?” lead to more useful answers than browsing the most attractive album."
+        ]
+      },
+      {
+        "h": "Get a product URL that a finder can read",
+        "p": [
+          "Start from the screen where you can choose a variant. On Weidian, the product number usually follows itemID= in the URL. A Taobao product link commonly carries id=, while a 1688 offer normally has its number in the path after /offer/. Keep the marketplace and the number together. A shop number, basket reference or purchase order number can also be a long string of digits, but it identifies something else.",
+          "If a spreadsheet opens an intermediate page, follow it until you see the item and its options. If the address is a shortened share link, open it in a browser and copy the destination product URL. A link to a shop, a screenshot hosted on a photo site or a collection of thirty items gives a finder no clear product to match. Where an agent link cannot be read, try the original seller link for that same item. Only the public product address belongs in the finder."
+        ]
+      },
+      {
+        "h": "A real lookup example with two GEL-KAYANO 14 listings",
+        "p": [
+          "Our ASICS comparison records two marketplace listings described by their sellers as GEL-KAYANO 14. The record with ID 7730289026 described 18 styles at the October review. Record 7706333190 described nine. These two numbers are useful practice because a search for the model name could lead to either listing. Open the comparison, select one record and carry its ID into your search notes. If you move to the other listing, start a second note.",
+          "Suppose you are considering a silver pair in EU 42 from the first listing. An album attached to the second listing cannot establish what the first seller sent. Even an album under the first ID needs a second check. Can you identify the silver variant and read the size label? An image with no visible label can help you ask for a better angle, but it cannot settle a sizing decision. Silver and EU 42 are examples for this exercise. Availability and the existence of a matching album have to be checked at the time of your search."
+        ]
+      },
+      {
+        "h": "Read the album against one question at a time",
+        "p": [
+          "Record the photo source, its date if shown, the option and the view that answers your question. For a pair of shoes, a readable tongue label can show the tagged size. To estimate usable length, look for a measurement with both ends of the tape visible and check what was measured. A ruler beside the outside of a shoe measures something different from a ruler along a removable insole. Keep the original centimetres beside any size conversion.",
+          "Apply the same reasoning to clothing and accessories. A hoodie photographed flat can show the width between the underarms if both endpoints are visible. A seller’s chest circumference and a flat width are different quantities. For a fitted cap, a clear rear view or internal size label can answer a question that a front logo cannot. Write down the fact visible in the picture and leave the remaining field blank. It is better to request one useful view than to collect six more photographs of the front.",
+          "If you find several albums, check whether they show distinct received items. A copied photograph appearing twice adds no new evidence. A recent photo of another colour may be less useful for your decision than an older, well-labelled photo of the exact option. Consider the age of the listing, any changes to its options and the reason you wanted photographs in the first place."
+        ]
+      },
+      {
+        "h": "What to do with a rejected link, an empty result or a mismatch",
+        "p": [
+          "When the finder rejects an address, return to the original product page, check that it still opens and compare the item number before trying again. When it recognises the link but has no photos, record that outcome separately. A public archive may have no accessible album for that item. The empty search alone tells you nothing about how many units were sold, whether a seller is reliable or how your chosen item fits.",
+          "A result showing another colour, size or marketplace ID needs a narrower decision. Use it only for details you can genuinely compare. If the missing point is essential, ask for a size chart or a specific view, choose another listing that you can evaluate, or wait for your own warehouse inspection. If you switch sellers, start the identity check again. Even a listing using the same cover image may have a different set of options."
+        ]
+      },
+      {
+        "h": "Turn the search into a useful order note",
+        "p": [
+          "Before paying, save the original product link, marketplace ID, selected option wording, size, date checked and unresolved question. For the first shoe listing, a note could read “7730289026, seller describes GEL-KAYANO 14. Match the chosen silver option. EU 42 requested. Insole length still unknown.” Record an album link only if you found it. That short note remains useful if the seller changes the first photo or renames an option after you have ordered.",
+          "When your order reaches the warehouse, return to its own record. Compare the item, quantity, labels and any measurement you requested with the note you made. Choose the next photograph according to the remaining uncertainty. If the labels on a pair do not match, ask for one picture showing both labels together. If a measurement is unreadable, state the endpoints and unit you need. Check the options shown for your order before arranging international delivery."
+        ]
+      },
+      {
+        "h": "Keep a short comparison record",
+        "p": [
+          "Use one row per album. In the first column put the original marketplace and item number. In the next two, copy the option you plan to order and the option actually visible in the album. Leave a blank wherever the photograph or caption gives no answer. In a final column write the one detail you still need from the seller or warehouse. When you revisit the item on your phone, this small record shows exactly which observation supported your choice."
+        ]
+      },
+      {
+        "h": "Know when you have enough evidence",
+        "p": [
+          "A historical photo search has done its job when you can decide whether to order, ask a specific question or pass on a listing. A clear photo of an earlier order can support a choice about visible colour placement or a recorded dimension. Material composition, long-term wear, authenticity and the condition of the item that will be sent to you require other evidence. Where the listing identity itself is uncertain, more close-ups of the same unidentified item will not resolve it.",
+          "Use the ASICS comparison to practise matching records, the public finder to look for an earlier album, and Kakobuy’s account area to inspect your own order after arrival. Once you have your own photographs, continue to our guide to reading warehouse QC before shipping. That is the point to assess the pair or garment actually assigned to you."
+        ]
+      }
+    ]
+  },
+  "de": {
+    "title": "Kakobuy-QC-Fotos vor dem Kauf finden und richtig zuordnen",
+    "description": "Mit dem Originallink frühere Lagerfotos suchen, Artikelnummer, Variante und Größe vergleichen und fehlende Aufnahmen gezielt nachfordern.",
+    "sections": [
+      {
+        "h": "Mit dem Artikel beginnen, den du bestellen möchtest",
+        "p": [
+          "Öffne die Produktseite, wähle die gewünschte Farbe und Größe und kopiere den Link. Füge ihn in den unabhängigen KakoFind QC Finder ein. Gibt es ein Album, gleiche vor deiner Entscheidung Marktplatz, Artikelnummer und Variante ab. Hast du schon bestellt und willst wissen, was für dich eingetroffen ist, öffne den betreffenden Auftrag in deinem Kakobuy-Konto. Öffentliche Suchdienste zeigen Aufnahmen früherer Bestellungen.",
+          "Bei Angeboten mit vielen Varianten macht das einen Unterschied. Ein Lagerfoto eines blauen Hoodies in M kann zeigen, wo der Aufdruck auf diesem Exemplar sitzt. Wie breit der schwarze Hoodie in L ausfällt, bleibt offen. Überlege vor der Suche, welche Frage das Foto beantworten soll. Lässt sich das Etikett lesen? Hat jemand genau diese Größe mit einem Maßband fotografiert?"
+        ]
+      },
+      {
+        "h": "Einen lesbaren Produktlink finden",
+        "p": [
+          "Kopiere die Adresse der Seite, auf der du eine Ausführung wählen kannst. Bei Weidian steht die Artikelnummer meist hinter itemID=, bei Taobao häufig hinter id=. Bei einem 1688-Angebot findest du sie üblicherweise im Pfad hinter /offer/. Notiere neben der Nummer immer den Marktplatz. Shopnummer, Warenkorbnummer und Bestellnummer können ähnlich aussehen, bezeichnen aber jeweils etwas anderes.",
+          "Führt ein Spreadsheet zuerst zu einer Übersichtsseite, öffne von dort das konkrete Angebot. Kurze Teilen-Links öffnest du im Browser und kopierst anschließend die Adresse der Produktseite. Bei einem Shop, einem Screenshot oder einer Sammlung mit dreißig Artikeln fehlt dem Suchdienst die eindeutige Zuordnung. Erkennt er einen Agentenlink nicht, versuche den Verkäuferlink desselben Artikels. Der öffentliche Produktlink genügt dafür."
+        ]
+      },
+      {
+        "h": "Zwei GEL-KAYANO-14-Angebote zum Üben",
+        "p": [
+          "Unser ASICS-Vergleich enthält zwei Angebote, die der jeweilige Verkäufer als GEL-KAYANO 14 beschrieb. Beim Abgleich im Oktober nannte Angebot 7730289026 insgesamt 18 Ausführungen, Angebot 7706333190 dagegen neun. Eine Suche nach dem Modell führt leicht zu beiden. Öffne einen der Einträge und übernimm seine Artikelnummer. Wenn du zum anderen wechselst, lege eine zweite Notiz an.",
+          "Angenommen, dich interessiert beim ersten Angebot ein silbernes Paar in EU 42. An einem Album zum zweiten Angebot siehst du nicht, was der erste Verkäufer verschickt hat. Auch beim richtigen Angebot musst du die Ausführung prüfen. Erkennst du die silberne Variante und das Größenetikett? Ein angeschnittenes Etikett ist ein guter Anlass für eine Rückfrage. Silber und EU 42 dienen hier als Beispiel. Ob die Option noch angeboten wird und ob jemand passende Fotos veröffentlicht hat, musst du bei der Suche feststellen."
+        ]
+      },
+      {
+        "h": "Ein Album mit einer konkreten Frage lesen",
+        "p": [
+          "Halte Quelle, gegebenenfalls Aufnahmedatum, Variante und Bildansicht fest. Bei Schuhen kann das Zungenetikett die aufgedruckte Größe belegen. Für die nutzbare Länge brauchst du eine Messung mit sichtbarem Anfang und Ende. Ein Lineal an der Außensohle misst eine andere Strecke als eines auf der herausgenommenen Einlegesohle. Notiere die Zentimeter zusätzlich zur umgerechneten Schuhgröße.",
+          "Bei einem flach liegenden Hoodie kannst du die Breite zwischen den Achselnähten ablesen, sofern beide Endpunkte sichtbar sind. Vergleiche den Wert mit einer flach gemessenen Breite in der Tabelle des Verkäufers. Ein Brustumfang ist anders definiert. Bei einer Kappe kann die Rückseite oder ein innen eingenähtes Größenetikett mehr über den Sitz verraten als das Logo. Vermerke die sichtbare Eigenschaft und lass den ungeklärten Wert offen.",
+          "Vergleiche bei mehreren Alben die tatsächlich abgebildeten Exemplare. Dasselbe Bild zweimal zu finden liefert keine zweite Beobachtung. Für eine Frage zur Passform hilft ein älteres, klar beschriftetes Foto deiner Variante mitunter mehr als ein neues Foto in einer anderen Größe. Berücksichtige beim Abwägen auch zwischenzeitliche Änderungen am Angebot."
+        ]
+      },
+      {
+        "h": "Wenn die Suche nichts Passendes ergibt",
+        "p": [
+          "Bei einer unlesbaren Adresse kontrollierst du, ob die ursprüngliche Produktseite noch erreichbar ist und ob die Artikelnummer stimmt. Erkennt der Finder den Link, zeigt aber kein Album, notiere genau dieses Ergebnis. Die öffentliche Sammlung kann zu diesem Produkt schlicht keine zugänglichen Bilder haben. Aus einer leeren Suche lassen sich weder Verkaufszahlen noch Verlässlichkeit des Shops oder Passform ableiten.",
+          "Zeigen die Ergebnisse eine andere Farbe, Größe oder Artikelnummer, nutze sie nur für die Merkmale, die sich wirklich vergleichen lassen. Ist die fehlende Angabe entscheidend, frage nach der genauen Maßtabelle oder einer gezielten Ansicht. Du kannst auch ein anderes überprüfbares Angebot wählen oder die Fotos deiner eigenen Lieferung abwarten. Bei einem anderen Verkäufer prüfst du die Zuordnung erneut, selbst wenn das Titelbild identisch ist."
+        ]
+      },
+      {
+        "h": "Eine Bestellnotiz für den späteren Abgleich",
+        "p": [
+          "Speichere vor dem Kauf den Originallink, die Artikelnummer, die genaue Bezeichnung der gewählten Variante, Größe, Prüfdatum und offene Frage. Zum ersten Schuhangebot könnte die Notiz lauten „7730289026, laut Verkäufer GEL-KAYANO 14. Gewählte silberne Variante abgleichen. EU 42 gewünscht. Länge der Einlegesohle noch offen.“ Einen Albumlink ergänzt du nur, wenn du tatsächlich einen gefunden hast. Die Notiz bleibt brauchbar, wenn der Verkäufer das erste Foto oder den Namen einer Option ändert.",
+          "Öffne nach Ankunft im Lager deinen Auftrag und gleiche Modell, Stückzahl, Etiketten und die vereinbarten Maße ab. Bitte um die Aufnahme, die die offene Frage beantwortet. Sind bei einem Paar die Größenangaben unklar, bitte um beide Etiketten auf einem Bild. Bei unleserlichem Maßband nennst du Anfangspunkt, Endpunkt und Einheit. Prüfe die im Auftrag verfügbaren Möglichkeiten vor dem internationalen Versand."
+        ]
+      },
+      {
+        "h": "Eine kurze Vergleichsliste führen",
+        "p": [
+          "Lege für jedes Album eine Zeile an. In die erste Spalte gehören der ursprüngliche Marktplatz und die Artikelnummer. Trage daneben die gewünschte Variante und die im Album tatsächlich erkennbare Variante ein. Lass ein Feld frei, wenn Foto oder Beschriftung keine Antwort geben. Halte zuletzt fest, welche einzelne Angabe du noch vom Händler oder vom Lager brauchst. Wenn du den Artikel später auf dem Handy öffnest, kannst du nachvollziehen, welche Beobachtung für deine Wahl ausschlaggebend war."
+        ]
+      },
+      {
+        "h": "Wann die Recherche ausreicht",
+        "p": [
+          "Am Ende solltest du entscheiden können, ob du bestellen, gezielt nachfragen oder ein Angebot verwerfen möchtest. Frühere Bilder können sichtbare Farbdetails oder ein dokumentiertes Maß zeigen. Materialzusammensetzung, Haltbarkeit, Echtheit und der Zustand deiner künftigen Lieferung brauchen andere Belege. Ist schon unklar, welches Angebot zu sehen ist, helfen weitere Nahaufnahmen desselben unbekannten Exemplars kaum.",
+          "Übe die Zuordnung mit dem ASICS-Vergleich und suche anschließend im öffentlichen Finder nach einem früheren Album. Für die Prüfung deiner tatsächlichen Lieferung wechselst du nach Ankunft ins Kakobuy-Konto. Unser Leitfaden zu QC-Fotos vor dem Versand zeigt dir, wie du die eigenen Lageraufnahmen auswertest."
+        ]
+      }
+    ]
+  },
+  "fr": {
+    "title": "Comment trouver les photos QC d’un article Kakobuy avant l’achat",
+    "description": "Retrouvez d’anciennes photos d’entrepôt avec le lien du vendeur, vérifiez la référence et la variante, puis choisissez quoi faire si aucun album ne correspond.",
+    "sections": [
+      {
+        "h": "Partir de l’article que vous voulez commander",
+        "p": [
+          "Ouvrez la fiche produit, sélectionnez la couleur et la taille souhaitées et copiez son lien. Collez-le dans le moteur indépendant KakoFind QC Finder. Si un album apparaît, vérifiez la plateforme, le numéro de l’article et la variante avant d’en tirer une conclusion. Si vous avez déjà commandé et souhaitez voir ce qui est arrivé pour vous, ouvrez cette commande dans votre compte Kakobuy. Un moteur public recherche des images de commandes antérieures.",
+          "La distinction compte lorsqu’un vendeur regroupe de nombreuses variantes. Une photo d’entrepôt d’un sweat bleu en M montre l’emplacement du motif sur cet exemplaire. Elle laisse ouverte la question de la largeur du modèle noir en L. Décidez d’abord ce que vous cherchez à vérifier. Peut-on lire l’étiquette de la variante ? Une personne a-t-elle mesuré précisément la taille qui vous intéresse ?"
+        ]
+      },
+      {
+        "h": "Copier un lien que le moteur peut identifier",
+        "p": [
+          "Utilisez la page où vous pouvez choisir une variante. Sur Weidian, le numéro d’article suit généralement itemID=. Sur Taobao, il apparaît souvent après id=. Pour une offre 1688, il figure habituellement dans le chemin qui suit /offer/. Gardez ensemble le nom de la plateforme et la référence. Un numéro de boutique, de panier ou de commande peut aussi comporter une longue suite de chiffres.",
+          "Si un tableur renvoie vers une page intermédiaire, poursuivez jusqu’à la fiche où figurent les options. Ouvrez un lien de partage raccourci dans le navigateur et copiez l’adresse de destination. Un lien de boutique, une capture d’écran ou une sélection de trente produits ne permettent pas d’identifier une seule fiche. Si le moteur ne reconnaît pas un lien d’agent, essayez le lien public du vendeur pour ce même article."
+        ]
+      },
+      {
+        "h": "S’exercer avec deux offres de GEL-KAYANO 14",
+        "p": [
+          "Notre comparatif ASICS présente deux offres que les vendeurs décrivaient comme des GEL-KAYANO 14. Lors de la vérification d’octobre, la fiche 7730289026 annonçait 18 déclinaisons et la fiche 7706333190 en annonçait neuf. Chercher le modèle par son nom peut mener à l’une comme à l’autre. Ouvrez une fiche et inscrivez son numéro dans votre note. Si vous passez à la seconde, créez une nouvelle entrée.",
+          "Imaginons que vous envisagiez une paire argentée en pointure EU 42 sur la première fiche. Un album associé à la seconde ne permet pas de savoir ce que le premier vendeur a expédié. Même avec le bon numéro, peut-on reconnaître le coloris et lire la pointure ? Si l’étiquette est coupée sur la photo, demandez un angle précis. Le coloris et la pointure servent ici d’exercice. La disponibilité de la variante et d’un éventuel album correspondant se vérifie au moment de la recherche."
+        ]
+      },
+      {
+        "h": "Interroger l’album sur un détail précis",
+        "p": [
+          "Relevez la source, la date si elle est indiquée, la variante et la vue qui répond à votre question. Pour une chaussure, l’étiquette de la languette peut indiquer la pointure inscrite. La longueur disponible nécessite une mesure avec ses deux extrémités visibles. Une règle le long de la semelle extérieure donne une autre longueur qu’une règle posée sur la semelle intérieure amovible. Conservez les centimètres à côté de la conversion de pointure.",
+          "Sur un sweat posé à plat, la distance d’une couture d’aisselle à l’autre est exploitable si vous voyez les deux repères. Comparez-la à une largeur à plat. Le tour de poitrine annoncé par un vendeur correspond à une autre mesure. Pour une casquette ajustée, une vue arrière ou l’étiquette intérieure peut répondre à une question de taille que le logo de face laisse ouverte. Notez ce que montre l’image et laissez la case manquante vide.",
+          "Si plusieurs albums sont disponibles, vérifiez qu’ils montrent réellement des exemplaires différents. Deux copies d’une photo ne constituent qu’une observation. Une ancienne image bien légendée de votre variante peut être plus pertinente qu’une image récente d’un autre coloris. Tenez compte des éventuelles modifications apportées aux options depuis la publication."
+        ]
+      },
+      {
+        "h": "Réagir à un lien refusé, un résultat vide ou une variante différente",
+        "p": [
+          "Si le moteur refuse l’adresse, rouvrez la page du vendeur, vérifiez qu’elle existe encore et contrôlez son numéro avant de réessayer. Si le lien est reconnu mais qu’aucun album n’apparaît, consignez ce résultat séparément. L’archive publique peut ne disposer d’aucune image accessible pour cet article. Ce résultat ne permet de déduire ni les ventes du vendeur, ni sa fiabilité, ni la façon dont taille le produit.",
+          "Pour un résultat d’une autre couleur, taille ou référence, ne retenez que les détails réellement comparables. Si l’information manquante conditionne l’achat, demandez le tableau des mesures ou la vue précise. Vous pouvez aussi choisir une offre que vous savez évaluer ou attendre le contrôle de votre exemplaire à l’entrepôt. Un nouveau vendeur impose de recommencer l’identification, même si la photo principale est identique."
+        ]
+      },
+      {
+        "h": "Rédiger une note qui servira à la réception",
+        "p": [
+          "Avant de payer, gardez le lien d’origine, la référence, le libellé exact de l’option, la taille, la date de vérification et la question en suspens. Pour notre première paire, une note possible serait « 7730289026, modèle décrit comme GEL-KAYANO 14. Vérifier la variante argentée choisie. EU 42 demandé. Longueur de la semelle intérieure inconnue. » Ajoutez le lien de l’album uniquement si vous l’avez trouvé. La note restera compréhensible si la fiche change de photo ou de libellé.",
+          "À l’arrivée en entrepôt, ouvrez votre propre commande. Comparez l’article, la quantité, les étiquettes et les mesures demandées avec la note. Si les pointures de la paire restent difficiles à lire, demandez une photo montrant les deux étiquettes ensemble. Si une mesure est illisible, précisez les deux repères et l’unité voulue. Vérifiez ensuite les possibilités affichées dans votre commande avant l’expédition internationale."
+        ]
+      },
+      {
+        "h": "Garder une trace de la comparaison",
+        "p": [
+          "Consacrez une ligne à chaque album. Dans la première colonne, notez la plateforme d’origine et le numéro de l’article. Inscrivez ensuite la variante que vous comptez commander, puis celle que vous distinguez réellement sur les photos. Laissez la case vide si ni l’image ni sa légende ne permettent de trancher. Dans la dernière colonne, notez le renseignement précis à demander au vendeur ou à l’entrepôt. Sur votre téléphone, vous retrouverez ainsi le détail qui a motivé votre choix."
+        ]
+      },
+      {
+        "h": "Savoir quand s’arrêter",
+        "p": [
+          "La recherche a rempli son rôle si vous pouvez décider de commander, de poser une question précise ou d’écarter une offre. Une photo antérieure peut documenter un coloris ou une dimension relevée. La composition du tissu, la tenue à l’usage, l’authenticité et l’état de votre futur article nécessitent d’autres éléments. Multiplier les gros plans d’un article dont on ignore la référence ne résout pas un problème d’identification.",
+          "Le comparatif ASICS permet de s’entraîner à distinguer les références. Le moteur public sert ensuite à chercher une ancienne réception. Une fois votre article arrivé, passez aux photos de votre compte Kakobuy et consultez notre guide de lecture des photos QC avant expédition pour examiner la pièce qui vous a effectivement été attribuée."
+        ]
+      }
+    ]
+  },
+  "es": {
+    "title": "Cómo encontrar fotos QC de Kakobuy antes de comprar",
+    "description": "Busca fotos de almacén con el enlace original, comprueba el artículo, la variante y la talla, y decide qué hacer cuando no encuentres un álbum que coincida.",
+    "sections": [
+      {
+        "h": "Empieza por el artículo que pedirías",
+        "p": [
+          "Abre la ficha del producto, selecciona el color y la talla que te interesan y copia su enlace. Pégalo en KakoFind QC Finder, un buscador independiente. Si aparece un álbum, comprueba la plataforma de origen, el identificador del artículo y la variante antes de usar las fotos para decidir. Si ya has comprado y quieres ver qué ha llegado para ti, abre tu pedido en tu cuenta de Kakobuy. El buscador público recoge fotos de compras anteriores.",
+          "La diferencia se aprecia cuando una ficha agrupa muchas variantes. Una foto de almacén de una sudadera azul en talla M puede mostrar la posición del estampado en ese ejemplar. Sigue sin aclarar el ancho de la sudadera negra en talla L. Antes de buscar, decide qué dato te falta. ¿Se distingue la etiqueta de la variante? ¿Alguien ha medido la talla concreta que piensas elegir?"
+        ]
+      },
+      {
+        "h": "Copia un enlace que identifique una ficha",
+        "p": [
+          "Usa la página en la que puedes elegir una variante. En Weidian, el número de artículo suele aparecer después de itemID=. En Taobao es habitual verlo después de id=, y en 1688 suele formar parte de la ruta que sigue a /offer/. Anota la plataforma junto con el número. Una tienda, una cesta y un pedido también pueden identificarse con una secuencia larga de cifras.",
+          "Si una hoja de cálculo abre una página intermedia, continúa hasta la ficha con las opciones. Si tienes un enlace corto de una aplicación, ábrelo en el navegador y copia la dirección de destino. Un álbum de imágenes, una tienda entera o una lista de treinta artículos no identifican un producto concreto. Si el buscador no reconoce el enlace de un agente, prueba el enlace público del vendedor para el mismo artículo."
+        ]
+      },
+      {
+        "h": "Un ejemplo con dos ofertas de GEL-KAYANO 14",
+        "p": [
+          "En nuestra comparativa de ASICS aparecen dos anuncios descritos por sus vendedores como GEL-KAYANO 14. En la comprobación de octubre, el anuncio 7730289026 indicaba 18 variantes, mientras que el 7706333190 indicaba nueve. Buscar solo el modelo puede llevarte a cualquiera de los dos. Abre uno de los registros y anota el identificador. Si cambias de anuncio, haz una segunda anotación.",
+          "Imagina que te interesa un par plateado en talla EU 42 del primer anuncio. Un álbum del segundo no permite saber qué envió el vendedor del primero. Incluso cuando coincida el identificador, comprueba si las fotos permiten reconocer el color plateado y leer la etiqueta de talla. Una etiqueta cortada te indica qué vista falta, pero deja sin resolver la talla. El color y la talla son ejemplos para practicar. La disponibilidad de la opción y de un álbum coincidente se comprueba durante la búsqueda."
+        ]
+      },
+      {
+        "h": "Interpreta las fotos con una pregunta concreta",
+        "p": [
+          "Anota la fuente, la fecha si está disponible, la variante y la vista que resuelve tu duda. En unas zapatillas, la etiqueta de la lengüeta puede mostrar la talla indicada. Para estimar el largo interior, busca una medición con ambos extremos visibles y comprueba qué se está midiendo. Una regla junto a la suela exterior mide otra longitud que una regla sobre la plantilla extraíble. Conserva los centímetros junto a la conversión de talla.",
+          "En una sudadera extendida puedes ver el ancho de axila a axila si aparecen ambas costuras. Compáralo con un ancho medido en plano. El contorno de pecho de una tabla de tallas es otra magnitud. En una gorra cerrada puede ser más útil una foto de la parte posterior o de la etiqueta interior que otro primer plano del logotipo. Apunta la observación y deja en blanco el dato que todavía te falta.",
+          "Si encuentras varios álbumes, comprueba que las imágenes correspondan a ejemplares diferentes. Una misma foto repetida no añade otra observación. Una foto antigua con una etiqueta legible de tu variante puede ayudarte más que una reciente de otro color. Ten en cuenta si las opciones de la ficha han cambiado desde que se tomó la imagen."
+        ]
+      },
+      {
+        "h": "Distingue los tres resultados posibles",
+        "p": [
+          "Si el buscador rechaza el enlace, vuelve a la ficha original, comprueba que siga abriendo y revisa su identificador antes de intentarlo de nuevo. Si reconoce el artículo pero no encuentra fotos, anota ese resultado por separado. Es posible que el archivo público no tenga un álbum accesible para esa ficha. Una búsqueda vacía no indica cuántas unidades se han vendido, si la tienda es fiable ni cómo te quedará la prenda.",
+          "Si aparece otra talla, otro color u otro identificador, usa las fotos únicamente para los detalles comparables. Cuando el dato ausente sea decisivo, solicita la tabla de medidas o una vista concreta. También puedes elegir una ficha que sí puedas evaluar o esperar a la inspección de tu pedido. Si cambias de vendedor, comprueba de nuevo la referencia, aunque ambos anuncios utilicen la misma foto principal."
+        ]
+      },
+      {
+        "h": "Guarda una nota que puedas usar al recibir el pedido",
+        "p": [
+          "Antes de pagar, guarda el enlace original, el identificador, el texto exacto de la opción, la talla, la fecha de consulta y la pregunta pendiente. Para el primer anuncio de zapatillas podrías escribir «7730289026, el vendedor indica GEL-KAYANO 14. Comprobar la variante plateada elegida. Se pide EU 42. Falta el largo de la plantilla». Añade el enlace al álbum solo si lo has encontrado. La nota seguirá sirviendo si el vendedor cambia la foto principal o renombra una opción.",
+          "Al llegar el pedido al almacén, abre su propio registro y compara el artículo, la cantidad, las etiquetas y las medidas solicitadas con tu nota. Pide la vista que despeje la duda. Si no está claro que ambas zapatillas tengan la misma talla, pide una foto de las dos etiquetas juntas. Para una medida ilegible, indica los dos puntos entre los que quieres medir y la unidad. Revisa las opciones disponibles en tu pedido antes de organizar el envío internacional."
+        ]
+      },
+      {
+        "h": "Guarda una ficha breve de la comparación",
+        "p": [
+          "Dedica una fila a cada álbum. En la primera columna anota el mercado de origen y el número de artículo. En las dos siguientes escribe la variante que quieres pedir y la que se distingue en el álbum. Deja la casilla en blanco si la foto y su descripción no lo aclaran. En la última columna apunta el dato concreto que aún necesitas del vendedor o del almacén. Cuando vuelvas a abrir la ficha en el móvil sabrás qué observación te ayudó a elegir."
+        ]
+      },
+      {
+        "h": "Decide cuándo tienes información suficiente",
+        "p": [
+          "Una búsqueda previa ha cumplido su función si te permite comprar, hacer una pregunta precisa o descartar la ficha. Una foto histórica puede documentar la posición visible de un color o una medida tomada en ese ejemplar. La composición, la durabilidad, la autenticidad y el estado de la unidad que recibirás requieren otras pruebas. Acumular primeros planos de un producto sin identificar no aclara a qué anuncio pertenece.",
+          "Practica con la comparativa de ASICS, busca un álbum anterior en el buscador público y pasa a tu cuenta de Kakobuy cuando llegue tu pedido. A partir de ese momento, nuestra guía para interpretar las fotos QC antes del envío te ayudará a revisar el par o la prenda que te han asignado."
+        ]
+      }
+    ]
+  },
+  "it": {
+    "title": "Come trovare le foto QC di Kakobuy prima dell’acquisto",
+    "description": "Cerca le foto di magazzino con il link originale, confronta articolo, variante e taglia e scopri cosa controllare quando manca un album corrispondente.",
+    "sections": [
+      {
+        "h": "Parti dall’articolo che vorresti ordinare",
+        "p": [
+          "Apri la scheda del prodotto, scegli il colore e la taglia che ti interessano e copia il link. Incollalo nel motore di ricerca indipendente KakoFind QC Finder. Se compare un album, confronta la piattaforma di origine, l’ID dell’articolo e la variante prima di usare le immagini per decidere. Se hai già ordinato e vuoi vedere cosa è arrivato per te, apri la scheda dell’ordine nel tuo account Kakobuy. Un motore pubblico cerca foto di acquisti precedenti.",
+          "La distinzione conta quando il venditore riunisce molte varianti nella stessa inserzione. La foto di magazzino di una felpa blu in taglia M può mostrare la posizione della stampa su quel capo. Resta da verificare la larghezza della felpa nera in L. Prima di cercare, chiediti quale informazione ti manca. Si legge l’etichetta della variante? Qualcuno ha misurato proprio la taglia che vuoi acquistare?"
+        ]
+      },
+      {
+        "h": "Copia un link che identifichi il prodotto",
+        "p": [
+          "Parti dalla pagina in cui puoi scegliere la variante. Su Weidian il numero dell’articolo si trova di solito dopo itemID=. Su Taobao compare spesso dopo id=, mentre su 1688 normalmente fa parte del percorso che segue /offer/. Conserva insieme il numero e il nome della piattaforma. Anche un negozio, un carrello o un ordine possono avere un lungo codice numerico.",
+          "Se un foglio di calcolo apre una pagina intermedia, prosegui fino alla scheda con le opzioni. Se hai un link abbreviato condiviso da un’app, aprilo nel browser e copia l’indirizzo di destinazione. Il link a un negozio, a una schermata o a una raccolta di trenta prodotti non identifica un’unica inserzione. Se il motore non legge il link di un agente, prova l’indirizzo pubblico del venditore per lo stesso articolo."
+        ]
+      },
+      {
+        "h": "Una prova con due inserzioni GEL-KAYANO 14",
+        "p": [
+          "Nel nostro confronto ASICS compaiono due inserzioni che i rispettivi venditori descrivono come GEL-KAYANO 14. Al controllo di ottobre, la scheda 7730289026 indicava 18 varianti e la 7706333190 ne indicava nove. Cercando solo il nome del modello potresti finire sull’una o sull’altra. Apri una scheda e annota l’ID. Se passi alla seconda, crea una nota separata.",
+          "Supponi di valutare un paio argentato in numero EU 42 dalla prima inserzione. Un album della seconda non permette di stabilire che cosa abbia spedito il primo venditore. Anche con l’ID corretto devi controllare la variante. Si riconosce il colore e si legge il numero sull’etichetta? Un’etichetta tagliata nell’inquadratura indica quale foto chiedere, ma lascia aperto il dubbio sulla misura. Colore e numero sono esempi per l’esercizio. La disponibilità attuale e l’esistenza di un album corrispondente vanno verificate al momento della ricerca."
+        ]
+      },
+      {
+        "h": "Leggi l’album con una domanda precisa",
+        "p": [
+          "Annota la fonte, la data se indicata, la variante e l’inquadratura che risponde alla tua domanda. In una scarpa, l’etichetta sulla linguetta può mostrare il numero dichiarato. Per stimare la lunghezza interna, cerca una misura con entrambe le estremità del metro visibili e controlla che cosa è stato misurato. Un righello lungo la suola esterna misura un tratto diverso rispetto a un righello sulla soletta estraibile. Conserva i centimetri accanto al numero convertito.",
+          "Per una felpa stesa in piano puoi leggere la larghezza da ascella ad ascella quando si vedono entrambe le cuciture. Confrontala con una larghezza misurata in piano. La circonferenza del torace riportata in tabella è un’altra misura. Per un cappellino a misura fissa, una foto del retro o dell’etichetta interna può risolvere un dubbio che il logo frontale lascia aperto. Scrivi ciò che vedi e lascia vuota la casella del dato mancante.",
+          "Se trovi più album, controlla che raffigurino esemplari diversi. La stessa foto ripubblicata due volte resta una sola osservazione. Un’immagine meno recente della variante esatta, con etichetta leggibile, può essere più utile di una foto nuova di un altro colore. Considera anche eventuali modifiche alle opzioni dell’inserzione."
+        ]
+      },
+      {
+        "h": "Distingui un link illeggibile, un album assente e una variante diversa",
+        "p": [
+          "Se il motore rifiuta l’indirizzo, riapri la scheda del venditore, controlla che sia ancora raggiungibile e verifica il numero dell’articolo prima di riprovare. Se riconosce il link ma non trova immagini, registra questo esito separatamente. L’archivio pubblico potrebbe non avere un album accessibile per quella scheda. Una ricerca vuota non rivela quante unità siano state vendute, l’affidabilità del negozio o la vestibilità.",
+          "Se trovi un colore, una taglia o un ID diversi, usa le immagini solo per i dettagli davvero confrontabili. Se il dato mancante influenza l’acquisto, chiedi la tabella delle misure o una vista precisa. Puoi anche scegliere un’inserzione verificabile o attendere il controllo del tuo ordine in magazzino. Cambiando venditore, riparti dall’identificazione anche quando la foto di copertina è uguale."
+        ]
+      },
+      {
+        "h": "Prepara una nota utile anche dopo l’acquisto",
+        "p": [
+          "Prima di pagare, salva il link originale, l’ID, la dicitura esatta dell’opzione, la taglia, la data del controllo e la questione aperta. Per il primo paio potresti scrivere «7730289026, indicato dal venditore come GEL-KAYANO 14. Confrontare la variante argentata selezionata. Richiesto EU 42. Lunghezza della soletta da verificare». Aggiungi il link all’album soltanto se l’hai trovato. La nota rimane utile anche se il venditore cambia la foto iniziale o rinomina un’opzione.",
+          "Quando il tuo articolo arriva in magazzino, apri il relativo ordine. Confronta prodotto, quantità, etichette ed eventuali misure richieste con la nota. Domanda l’inquadratura che risolve il dubbio rimasto. Se le etichette delle scarpe sembrano diverse, chiedi una sola foto con entrambe ben visibili. Se la misura è illeggibile, precisa punto iniziale, punto finale e unità. Verifica le opzioni disponibili nel tuo ordine prima di organizzare la spedizione internazionale."
+        ]
+      },
+      {
+        "h": "Conserva una breve scheda di confronto",
+        "p": [
+          "Dedica una riga a ogni album. Nella prima colonna annota il mercato di origine e il numero dell’articolo. Nelle due successive indica la variante che vuoi ordinare e quella che riesci effettivamente a distinguere nelle foto. Lascia vuota la casella se né l’immagine né la didascalia danno una risposta. Nell’ultima colonna scrivi il dettaglio da chiedere al venditore o al magazzino. Quando riaprirai la scheda sul telefono, ritroverai l’osservazione su cui hai basato la scelta."
+        ]
+      },
+      {
+        "h": "Riconosci quando la ricerca è sufficiente",
+        "p": [
+          "Una ricerca di foto storiche ha raggiunto lo scopo se riesci a decidere di ordinare, fare una domanda concreta o scartare l’inserzione. Una foto precedente può documentare un dettaglio di colore visibile o una misura registrata su quell’esemplare. Composizione, durata, autenticità e condizioni dell’unità che riceverai richiedono altre prove. Altri primi piani dello stesso articolo non identificato non chiariscono da quale inserzione provenga.",
+          "Esercitati con le schede del confronto ASICS, cerca un album precedente tramite il motore pubblico e passa all’account Kakobuy quando arriva il tuo ordine. Con le tue foto a disposizione, la nostra guida alla lettura delle immagini QC prima della spedizione ti aiuterà a esaminare la scarpa o il capo effettivamente assegnato a te."
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "label": "KakoFind QC Finder",
+      "url": "https://kakofind.net/qc-finder?lang=en"
+    },
+    {
+      "label": "Kakobuy",
+      "url": "https://www.kakobuy.com/help/about-us"
+    }
+  ]
+}

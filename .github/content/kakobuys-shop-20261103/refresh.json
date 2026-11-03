@@ -1,0 +1,275 @@
+{
+  "estimatorUrl": "https://www.kakobuy.com/tools/estimate",
+  "sizeChartUrl": "https://www.neweracap.com/pages/sizing-chart",
+  "silhouetteUrl": "https://www.neweracap.com/pages/silhouette-guide",
+  "en": {
+    "capTitle": "New Era Caps on Kakobuy — Fitted or Adjustable?",
+    "capDescription": "Compare three New Era cap listings by item ID. Use your head measurement to choose a fitted size and check the closure before ordering an adjustable cap.",
+    "capHeading": "Which listing matches your head size?",
+    "capIntro": "Measure where the sweatband sits, just above your ears. A head circumference of 58.7 cm corresponds to 7⅜ on New Era’s fitted chart. For an adjustable model, compare your measurement with the range for its specific silhouette. Use the listing ID below to keep the cap, colour and size together.",
+    "capHeaders": [
+      "Listing ID",
+      "What the seller names",
+      "What to check in your option"
+    ],
+    "capRows": [
+      [
+        "7701956861",
+        "MLB 59FIFTY, fitted",
+        "Pick the team and colour first. Check that the size you measured is available for that design."
+      ],
+      [
+        "7683537037",
+        "New Era cap, model unspecified",
+        "Ask for a rear view. If there is a strap or snap closure, ask for its size range in centimetres."
+      ],
+      [
+        "7655507364",
+        "SF 59FIFTY",
+        "For your chosen colour, compare the inside size label with your fitted size and check the rear view."
+      ]
+    ],
+    "capAfter": "New Era lists the 59FIFTY as fitted and the 9FORTY and 9FIFTY as adjustable. Those names help you choose the right chart. Only the chosen seller option can tell you what size is available.",
+    "shippingTitle": "How to Estimate Kakobuy Shipping Costs for Your Parcel",
+    "shippingDescription": "Estimate Kakobuy shipping by destination, packed weight and box size. Compare eligible routes and see how a taller box can change the estimate.",
+    "shippingHeading": "How do I get a shipping estimate before I order?",
+    "shippingIntro": "Choose your destination in Kakobuy’s shipping calculator and enter the estimated packed weight. Add the outer box dimensions when you have them. Compare the routes available for your goods, then check the estimate again once the warehouse has packed the parcel.",
+    "shippingSteps": [
+      "Choose the destination and the applicable goods category. Use the units shown next to each field.",
+      "Weigh the contents with their packaging. Measure the longest outside edges of the closed box for length, width and height.",
+      "Save the route name, amount, currency and date together. To compare two packing options, keep the destination, contents and route the same."
+    ],
+    "shippingExample": "Packing exercise, 3 November 2026. A 2 kg parcel in a 32 × 24 × 12 cm box occupies 9,216 cm³. A 16 cm-high box with the same base occupies 12,288 cm³, one third more space. Run both sizes through the same route to see whether the quoted amount changes.",
+    "estimatorLabel": "Open Kakobuy’s shipping calculator",
+    "sizeChartLabel": "Open New Era’s official size chart",
+    "homeTitle": "Kakobuy Spreadsheet — Product Finds, Sizes and QC Guides",
+    "homeDescription": "Browse Kakobuy spreadsheet finds by category. Compare ASICS listings, choose a New Era cap size and check QC photos and parcel costs before buying.",
+    "homeHeading": "Kakobuy spreadsheet finds by price, size and category",
+    "homeIntro": "Looking for a specific pair or cap? Compare two ASICS GEL-KAYANO 14 listings by item ID, match a New Era cap to your head measurement or estimate shipping for the whole box.",
+    "asicsLabel": "Compare ASICS GEL-KAYANO 14 listings",
+    "newEraLabel": "Find your New Era cap size",
+    "shippingLabel": "Estimate shipping for your parcel",
+    "qcLabel": "Find QC photos using a product link",
+    "articlesLabel": "Browse all Kakobuy guides",
+    "relatedHeading": "What would you like to check next?",
+    "sourcesLabel": "Sources",
+    "articleHubIntro": "Start with the question you have now. Compare specific listings, check the measurements for your size, find warehouse photos or work out shipping for your parcel.",
+    "headwearIntro": "The front logo can appear on several cap shapes. Check the closure, then compare your head measurement with the size range for the exact option."
+  },
+  "de": {
+    "capTitle": "New-Era-Caps auf Kakobuy – feste Größe oder verstellbar?",
+    "capDescription": "Vergleiche drei New-Era-Angebote anhand ihrer Artikelnummer. Finde mit deinem Kopfumfang die passende Größe und prüfe bei verstellbaren Caps den Verschluss.",
+    "capHeading": "Welches Angebot passt zu deinem Kopfumfang?",
+    "capIntro": "Miss deinen Kopfumfang knapp über den Ohren auf Höhe des Schweißbands. In der Fitted-Größentabelle von New Era entsprechen 58,7 cm der Größe 7⅜. Bei einer verstellbaren Cap zählt der Größenbereich des jeweiligen Modells. Mit der Artikelnummer findest du das richtige Angebot wieder, wenn du Farbe und Größe auswählst.",
+    "capHeaders": [
+      "Artikelnummer",
+      "Bezeichnung im Angebot",
+      "Prüfung für deine Variante"
+    ],
+    "capRows": [
+      [
+        "7701956861",
+        "MLB 59FIFTY, feste Größe",
+        "Wähle zuerst Team und Farbe. Prüfe, ob es genau dieses Design in deiner Größe gibt."
+      ],
+      [
+        "7683537037",
+        "New-Era-Cap ohne Modellangabe",
+        "Bitte um ein Foto der Rückseite. Bei Riemen oder Druckverschluss frage nach dem verstellbaren Umfang in Zentimetern."
+      ],
+      [
+        "7655507364",
+        "SF 59FIFTY",
+        "Prüfe bei deiner Farbvariante das eingenähte Größenetikett und lass dir die Rückseite zeigen."
+      ]
+    ],
+    "capAfter": "New Era führt die 59FIFTY als Modell mit fester Größe und die 9FORTY und 9FIFTY als verstellbare Modelle. Wähle anhand der Modellbezeichnung die Größentabelle und prüfe anschließend beim Verkäufer, welche Größen für deine Variante verfügbar sind.",
+    "shippingTitle": "Kakobuy-Versandkosten für dein Paket berechnen",
+    "shippingDescription": "Schätze die Versandkosten bei Kakobuy mit Zielland, Paketgewicht und Kartonmaßen. Vergleiche passende Versandwege und zwei verschiedene Kartongrößen.",
+    "shippingHeading": "Wie schätze ich die Versandkosten vor der Bestellung?",
+    "shippingIntro": "Wähle im Versandkostenrechner von Kakobuy das Zielland und gib das geschätzte Paketgewicht inklusive Verpackung ein. Ergänze die Außenmaße des Kartons, sobald du sie kennst. Vergleiche die für deine Waren verfügbaren Versandwege und rechne mit den endgültigen Lagermaßen erneut.",
+    "shippingSteps": [
+      "Wähle Zielland und passende Warenkategorie. Beachte bei jedem Eingabefeld die angegebene Maßeinheit.",
+      "Wiege den Inhalt mitsamt Verpackung. Miss Länge, Breite und Höhe an den äußersten Punkten des geschlossenen Kartons.",
+      "Notiere Versandweg, Betrag, Währung und Datum. Wenn du zwei Verpackungen vergleichst, behalte Ziel, Inhalt und Versandweg bei."
+    ],
+    "shippingExample": "Rechenbeispiel vom 3. November 2026. Ein 2 kg schweres Paket misst 32 × 24 × 12 cm und beansprucht 9.216 cm³. Bei gleicher Grundfläche und 16 cm Höhe sind es 12.288 cm³, also ein Drittel mehr. Gib beide Kartongrößen für denselben Versandweg ein und vergleiche die angezeigten Beträge.",
+    "estimatorLabel": "Versandkostenrechner von Kakobuy öffnen",
+    "sizeChartLabel": "Offizielle Größentabelle von New Era öffnen",
+    "homeTitle": "Kakobuy Spreadsheet – Produkte, Größen und QC-Fotos",
+    "homeDescription": "Entdecke Produkte im Kakobuy Spreadsheet. Vergleiche ASICS-Angebote, finde deine New-Era-Cap-Größe und prüfe QC-Fotos und Versandkosten vor dem Kauf.",
+    "homeHeading": "Kakobuy Spreadsheet mit Preisen, Größen und Kategorien",
+    "homeIntro": "Suchst du ein bestimmtes Paar Schuhe oder eine Cap? Vergleiche zwei Angebote für den ASICS GEL-KAYANO 14 anhand der Artikelnummer, finde deine New-Era-Größe oder schätze die Versandkosten für das gesamte Paket.",
+    "asicsLabel": "Angebote für den ASICS GEL-KAYANO 14 vergleichen",
+    "newEraLabel": "Die passende New-Era-Cap-Größe finden",
+    "shippingLabel": "Versandkosten für dein Paket schätzen",
+    "qcLabel": "QC-Fotos mit einem Produktlink finden",
+    "articlesLabel": "Alle Kakobuy-Ratgeber ansehen",
+    "relatedHeading": "Was möchtest du als Nächstes prüfen?",
+    "sourcesLabel": "Quellen",
+    "articleHubIntro": "Wähle den Ratgeber zu deiner Frage. Vergleiche konkrete Angebote und Größen, finde Lagerfotos oder berechne die Versandkosten für dein Paket.",
+    "headwearIntro": "Dasselbe Logo gibt es auf unterschiedlichen Cap-Modellen. Prüfe zuerst den Verschluss und vergleiche dann deinen Kopfumfang mit dem Größenbereich der gewählten Variante."
+  },
+  "fr": {
+    "capTitle": "Casquettes New Era sur Kakobuy – taille fixe ou réglable ?",
+    "capDescription": "Comparez trois annonces New Era grâce à leur identifiant. Choisissez une taille ajustée selon votre tour de tête et vérifiez la fermeture des modèles réglables.",
+    "capHeading": "Quelle annonce correspond à votre tour de tête ?",
+    "capIntro": "Mesurez votre tour de tête juste au-dessus des oreilles, à l’endroit où repose le bandeau. Pour une casquette à taille fixe, 58,7 cm correspondent à la taille 7⅜ dans le guide New Era. Pour un modèle réglable, vérifiez la plage de réglage de la coupe choisie. L’identifiant permet de retrouver la bonne annonce au moment de sélectionner le coloris et la taille.",
+    "capHeaders": [
+      "Identifiant",
+      "Modèle annoncé",
+      "À vérifier pour votre variante"
+    ],
+    "capRows": [
+      [
+        "7701956861",
+        "MLB 59FIFTY à taille fixe",
+        "Choisissez d’abord l’équipe et le coloris. Vérifiez ensuite que ce motif existe dans votre taille."
+      ],
+      [
+        "7683537037",
+        "Casquette New Era, modèle non précisé",
+        "Demandez une photo de l’arrière. Si la fermeture est réglable, demandez les tours de tête minimum et maximum en centimètres."
+      ],
+      [
+        "7655507364",
+        "SF 59FIFTY",
+        "Pour le coloris choisi, comparez la taille de l’étiquette intérieure à la vôtre et vérifiez la photo de l’arrière."
+      ]
+    ],
+    "capAfter": "New Era classe la 59FIFTY parmi les modèles à taille fixe et les 9FORTY et 9FIFTY parmi les modèles réglables. Le nom de la coupe permet de choisir le bon tableau. Vérifiez ensuite les tailles proposées pour votre variante.",
+    "shippingTitle": "Comment estimer les frais de livraison sur Kakobuy",
+    "shippingDescription": "Estimez le coût d’un envoi Kakobuy selon la destination, le poids emballé et les dimensions du carton. Comparez les modes d’expédition pour le même colis.",
+    "shippingHeading": "Comment estimer les frais de port avant de commander ?",
+    "shippingIntro": "Choisissez le pays de destination dans le simulateur Kakobuy et indiquez le poids estimé du colis emballé. Ajoutez les dimensions extérieures du carton si vous les connaissez. Comparez les modes d’expédition disponibles pour vos articles, puis refaites l’estimation avec les mesures de l’entrepôt.",
+    "shippingSteps": [
+      "Sélectionnez la destination et la catégorie de vos articles. Respectez l’unité indiquée pour chaque champ.",
+      "Pesez le contenu avec son emballage. Mesurez la longueur, la largeur et la hauteur aux extrémités du carton fermé.",
+      "Notez le mode d’expédition, le montant, la devise et la date. Pour comparer deux emballages, gardez la même destination, les mêmes articles et le même mode d’expédition."
+    ],
+    "shippingExample": "Exemple de calcul du 3 novembre 2026. Un colis de 2 kg mesurant 32 × 24 × 12 cm occupe 9 216 cm³. Avec la même base et une hauteur de 16 cm, il occupe 12 288 cm³, soit un tiers de plus. Saisissez les deux formats pour le même mode d’expédition et comparez les montants affichés.",
+    "estimatorLabel": "Ouvrir le simulateur de frais de port Kakobuy",
+    "sizeChartLabel": "Consulter le guide des tailles officiel de New Era",
+    "homeTitle": "Kakobuy Spreadsheet – Trouvailles, tailles et photos QC",
+    "homeDescription": "Parcourez le catalogue Kakobuy. Comparez des annonces ASICS, trouvez votre taille de casquette New Era et vérifiez les photos QC et les frais de port.",
+    "homeHeading": "Kakobuy Spreadsheet par prix, taille et catégorie",
+    "homeIntro": "Vous cherchez une paire ou une casquette précise ? Comparez deux annonces ASICS GEL-KAYANO 14 grâce à leur identifiant, trouvez la taille New Era qui convient à votre tour de tête ou estimez le coût d’envoi de votre colis.",
+    "asicsLabel": "Comparer les annonces ASICS GEL-KAYANO 14",
+    "newEraLabel": "Trouver sa taille de casquette New Era",
+    "shippingLabel": "Estimer les frais de port du colis",
+    "qcLabel": "Trouver des photos QC à partir d’un lien produit",
+    "articlesLabel": "Voir tous les guides Kakobuy",
+    "relatedHeading": "Que souhaitez-vous vérifier ensuite ?",
+    "sourcesLabel": "Sources",
+    "articleHubIntro": "Choisissez le guide qui répond à votre question. Comparez deux annonces ou leurs mesures, retrouvez les photos prises en entrepôt ou estimez les frais de port de votre colis.",
+    "headwearIntro": "Un même logo peut figurer sur plusieurs coupes de casquette. Vérifiez la fermeture, puis comparez votre tour de tête aux tailles proposées pour la variante choisie."
+  },
+  "es": {
+    "capTitle": "Gorras New Era en Kakobuy – talla fija o ajustable",
+    "capDescription": "Compara tres anuncios de gorras New Era por su ID. Usa el contorno de tu cabeza para elegir talla y comprueba el cierre de los modelos ajustables.",
+    "capHeading": "¿Qué anuncio corresponde a tu talla?",
+    "capIntro": "Mide el contorno de tu cabeza justo por encima de las orejas, donde se apoya la banda interior. En la tabla de New Era para gorras de talla fija, 58,7 cm equivalen a la talla 7⅜. Para una gorra ajustable, consulta el intervalo del modelo concreto. Guarda el ID del anuncio junto al color y la talla que elijas.",
+    "capHeaders": [
+      "ID del anuncio",
+      "Modelo indicado",
+      "Qué comprobar en tu variante"
+    ],
+    "capRows": [
+      [
+        "7701956861",
+        "MLB 59FIFTY de talla fija",
+        "Elige primero el equipo y el color. Comprueba que ese diseño esté disponible en tu talla."
+      ],
+      [
+        "7683537037",
+        "Gorra New Era sin modelo especificado",
+        "Pide una foto de la parte trasera. Si lleva correa o cierre a presión, pregunta qué contornos admite en centímetros."
+      ],
+      [
+        "7655507364",
+        "SF 59FIFTY",
+        "Para el color elegido, compara la talla de la etiqueta interior con la tuya y revisa la foto de la parte trasera."
+      ]
+    ],
+    "capAfter": "New Era clasifica la 59FIFTY como gorra de talla fija y las 9FORTY y 9FIFTY como ajustables. El nombre del modelo te indica qué tabla consultar. Revisa las tallas disponibles para tu variante en el anuncio.",
+    "shippingTitle": "Cómo calcular los gastos de envío en Kakobuy",
+    "shippingDescription": "Estima los gastos de envío en Kakobuy según el destino, el peso y las medidas de la caja. Compara las opciones disponibles para tu paquete.",
+    "shippingHeading": "¿Cómo calculo el envío antes de comprar?",
+    "shippingIntro": "Selecciona el país de destino en la calculadora de Kakobuy e introduce el peso estimado del paquete con su embalaje. Añade las medidas exteriores de la caja si las conoces. Compara los servicios disponibles para tus artículos y repite el cálculo cuando el almacén tenga las medidas definitivas.",
+    "shippingSteps": [
+      "Elige el destino y la categoría de los artículos. Comprueba la unidad que indica cada campo.",
+      "Pesa el contenido con el embalaje. Mide el largo, el ancho y el alto tomando los puntos más alejados de la caja cerrada.",
+      "Anota el servicio, el importe, la moneda y la fecha. Para comparar dos embalajes, mantén el destino, el contenido y el servicio de envío."
+    ],
+    "shippingExample": "Ejemplo de cálculo del 3 de noviembre de 2026. Un paquete de 2 kg que mide 32 × 24 × 12 cm ocupa 9.216 cm³. Con la misma base y una altura de 16 cm ocupa 12.288 cm³, un tercio más. Introduce ambos tamaños para el mismo servicio y comprueba si cambia el importe estimado.",
+    "estimatorLabel": "Abrir la calculadora de envíos de Kakobuy",
+    "sizeChartLabel": "Consultar la tabla oficial de tallas de New Era",
+    "homeTitle": "Kakobuy Spreadsheet – Productos, tallas y fotos QC",
+    "homeDescription": "Explora el catálogo de Kakobuy. Compara anuncios de ASICS, elige una talla de gorra New Era y revisa fotos QC y gastos de envío antes de comprar.",
+    "homeHeading": "Kakobuy Spreadsheet por precio, talla y categoría",
+    "homeIntro": "¿Buscas unas zapatillas o una gorra concreta? Compara dos anuncios de ASICS GEL-KAYANO 14 por su ID, encuentra la talla New Era que corresponde al contorno de tu cabeza o estima el envío de todo el paquete.",
+    "asicsLabel": "Comparar anuncios de ASICS GEL-KAYANO 14",
+    "newEraLabel": "Encontrar mi talla de gorra New Era",
+    "shippingLabel": "Estimar los gastos de envío del paquete",
+    "qcLabel": "Buscar fotos QC con un enlace de producto",
+    "articlesLabel": "Ver todas las guías de Kakobuy",
+    "relatedHeading": "¿Qué quieres comprobar ahora?",
+    "sourcesLabel": "Fuentes",
+    "articleHubIntro": "Elige la guía que responde a tu duda. Compara anuncios y tallas, encuentra fotos tomadas en el almacén o calcula los gastos de envío de tu paquete.",
+    "headwearIntro": "Un mismo logotipo puede aparecer en gorras de formas distintas. Revisa el cierre y después compara el contorno de tu cabeza con las tallas de la variante elegida."
+  },
+  "it": {
+    "capTitle": "Cappelli New Era su Kakobuy – taglia fissa o regolabile?",
+    "capDescription": "Confronta tre inserzioni New Era tramite l’ID. Usa la circonferenza della testa per scegliere la taglia e controlla la chiusura dei modelli regolabili.",
+    "capHeading": "Quale inserzione corrisponde alla tua taglia?",
+    "capIntro": "Misura la circonferenza della testa appena sopra le orecchie, dove poggia la fascia interna. Nella tabella New Era per i cappelli a taglia fissa, 58,7 cm corrispondono alla taglia 7⅜. Per un cappello regolabile, verifica l’intervallo del modello specifico. Salva l’ID dell’inserzione insieme al colore e alla taglia scelti.",
+    "capHeaders": [
+      "ID inserzione",
+      "Modello indicato",
+      "Cosa verificare per la tua variante"
+    ],
+    "capRows": [
+      [
+        "7701956861",
+        "MLB 59FIFTY a taglia fissa",
+        "Scegli prima squadra e colore. Controlla che il venditore offra proprio quel modello nella tua taglia."
+      ],
+      [
+        "7683537037",
+        "Cappello New Era, modello non specificato",
+        "Chiedi una foto del retro. Se ha un cinturino o una chiusura a scatto, chiedi l’intervallo di regolazione in centimetri."
+      ],
+      [
+        "7655507364",
+        "SF 59FIFTY",
+        "Per il colore scelto, confronta la taglia dell’etichetta interna con la tua e verifica la foto del retro."
+      ]
+    ],
+    "capAfter": "New Era classifica il 59FIFTY come modello a taglia fissa e il 9FORTY e il 9FIFTY come regolabili. Il nome del modello ti permette di scegliere la tabella corretta. Verifica poi le taglie effettivamente disponibili per la tua variante.",
+    "shippingTitle": "Come calcolare le spese di spedizione su Kakobuy",
+    "shippingDescription": "Stima le spese di spedizione Kakobuy con il Paese di destinazione, il peso del pacco e le dimensioni della scatola. Confronta i servizi disponibili.",
+    "shippingHeading": "Si può stimare il costo di spedizione prima di ordinare?",
+    "shippingIntro": "Sì. Nel calcolatore Kakobuy scegli il Paese di destinazione e inserisci il peso stimato del pacco completo di imballaggio. Aggiungi le dimensioni esterne della scatola se le conosci. Confronta i servizi disponibili per i tuoi articoli e rifai il calcolo quando il magazzino ha le misure definitive.",
+    "shippingSteps": [
+      "Seleziona la destinazione e la categoria degli articoli. Controlla l’unità di misura indicata accanto a ogni campo.",
+      "Pesa il contenuto insieme all’imballaggio. Misura lunghezza, larghezza e altezza nei punti più esterni della scatola chiusa.",
+      "Annota il servizio, l’importo, la valuta e la data. Per confrontare due imballaggi mantieni invariati destinazione, contenuto e servizio di spedizione."
+    ],
+    "shippingExample": "Esempio di calcolo del 3 novembre 2026. Un pacco da 2 kg che misura 32 × 24 × 12 cm occupa 9.216 cm³. Con la stessa base e un’altezza di 16 cm occupa 12.288 cm³, un terzo in più. Inserisci entrambi i formati per lo stesso servizio e confronta gli importi stimati.",
+    "estimatorLabel": "Apri il calcolatore delle spese di spedizione Kakobuy",
+    "sizeChartLabel": "Consulta la guida ufficiale alle taglie New Era",
+    "homeTitle": "Kakobuy Spreadsheet – Prodotti, taglie e foto QC",
+    "homeDescription": "Esplora il catalogo Kakobuy. Confronta le inserzioni ASICS, trova la taglia dei cappelli New Era e controlla foto QC e spese di spedizione prima di comprare.",
+    "homeHeading": "Kakobuy Spreadsheet per prezzo, taglia e categoria",
+    "homeIntro": "Cerchi un paio di scarpe o un cappello preciso? Confronta due inserzioni ASICS GEL-KAYANO 14 tramite l’ID, trova la taglia New Era adatta alla circonferenza della tua testa o calcola le spese di spedizione dell’intero pacco.",
+    "asicsLabel": "Confronta le inserzioni ASICS GEL-KAYANO 14",
+    "newEraLabel": "Trova la tua taglia di cappello New Era",
+    "shippingLabel": "Stima le spese di spedizione del tuo pacco",
+    "qcLabel": "Trova le foto QC con un link al prodotto",
+    "articlesLabel": "Sfoglia tutte le guide Kakobuy",
+    "relatedHeading": "Cosa vuoi controllare adesso?",
+    "sourcesLabel": "Fonti",
+    "articleHubIntro": "Scegli la guida che risponde alla tua domanda. Confronta inserzioni e misure, trova le foto scattate in magazzino o calcola le spese di spedizione del pacco.",
+    "headwearIntro": "Lo stesso logo può comparire su cappelli di forme diverse. Controlla prima la chiusura e poi confronta la circonferenza della testa con le taglie proposte per la variante scelta."
+  }
+}

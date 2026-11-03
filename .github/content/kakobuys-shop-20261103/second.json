@@ -1,0 +1,330 @@
+{
+  "en": {
+    "title": "Kakobuy Product Link Not Working? Recover the Listing and Size",
+    "description": "Trace a broken spreadsheet or agent link to the seller's item, check what happened to your selected size or colour, and decide whether the order can go ahead.",
+    "sections": [
+      {
+        "h": "Find where the link stopped working",
+        "p": [
+          "Start with two tabs. Open the seller’s product page in one and the Kakobuy page reached from your spreadsheet in the other. The first question is whether you can identify the item on either side. A blank agent preview with a working seller page gives you something to recover. Two pages showing different items give you a reason to stop, even if both load quickly. A shop homepage gives you the seller’s name but leaves the product unidentified.",
+          "Save the original spreadsheet row before trying another link. Keep the seller URL if the row has one, the marketplace item number, the option you wanted, and the date. A screenshot that includes the selected option and the product title is more useful than a cropped picture of the garment. It lets you see whether the fault lies in opening the page, selecting an option or retrieving a price. Each calls for a different fix."
+        ]
+      },
+      {
+        "h": "Work out which number identifies the product",
+        "p": [
+          "Open the shoe record at /products/6045/ in this directory. The short number 6045 belongs to the directory address. The marketplace item number printed on the page is 7721490300. Someone copying the last number from the address bar would give a seller the wrong identifier. The name “shoes-60” offers little help on its own. For this record, use the source link on the page and compare its marketplace item number with the ten digits shown beside the product.",
+          "A spreadsheet row number, marketplace item number and purchase-order number serve different jobs. The row points to a line in someone’s list. The marketplace number identifies a listing on that marketplace. A purchase-order number identifies a transaction after an order has been created. Include the marketplace name beside its number when you ask for help. If there is already an order, also include its order number in your private message to support. Keep account details out of public spreadsheets."
+        ]
+      },
+      {
+        "h": "Recover the original seller link from a shared page",
+        "p": [
+          "Open the shared link as the person sent it. If it lands on a catalogue, look for the product-specific link on the relevant card. If it lands on an agent page, look for its link to the original seller. Copy the product page itself after it opens. A shop, a search result or a screenshot is useful for discovery, but none of them identifies which option you chose. If the share text contains several URLs, open them separately and label what each one shows.",
+          "For a worked example, the 18-style shoe record in our ASICS guide points to a product entry numbered 5932 in the source directory. Its Weidian link contains itemID=7730289026. Keep the full product link and that marketplace number together. A link from a messaging app may include tracking information or encode another URL inside it. You do not need to take it apart by hand when you can open the seller page directly. Removing every character after a question mark can remove the item number as well."
+        ]
+      },
+      {
+        "h": "Check that the recovered page opens the same listing",
+        "p": [
+          "The ASICS guide also links to a nine-style record with marketplace number 7706333190. Both titles describe a GEL-KAYANO 14. Both pages can open normally while pointing to different products in a spreadsheet comparison. A search for the model name could easily return the other one. Compare the marketplace, seller if visible, item number and selected option. The 18 and nine options are descriptions from the reviewed records. Check what each listing actually offers today before making a choice.",
+          "A different listing may still be worth considering. Give it a separate row and start the checks again. Do the same if the item number matches but the seller now describes a different product or shows different option pictures. Keeping the old and new rows apart prevents an old price, a size note or another buyer’s warehouse photo from silently becoming evidence for an item it never described."
+        ]
+      },
+      {
+        "h": "When the colour or size disappears",
+        "p": [
+          "Reopen the exact seller listing and choose the colour first, then the size if that is how its controls work. Write down the visible option wording, units and selected price. A shared link can open the right product without restoring your selection. If the size disappears only after you choose a colour, record that exact combination. Seeing “M” somewhere else on the page tells you little about availability in the colour you want.",
+          "On the Kakobuy side, repeat the selection and compare the two option summaries. Suppose the seller page offers a black top and black trousers on one card. A single black thumbnail on the imported page cannot tell you whether you are buying the top, the trousers or a set. Ask for the exact option wording and quantity before paying. If a size is missing on the seller page too, save that result and choose whether to wait or evaluate another listing. A repaired link cannot restore stock."
+        ]
+      },
+      {
+        "h": "If the seller page works and the Kakobuy preview is empty",
+        "p": [
+          "Use the original marketplace product URL in Kakobuy’s product search and open the returned item. Recheck the item number and selection after it loads. If the new preview opens on a different item, record that mismatch. Repeatedly submitting the same ambiguous link creates little new information. Kakobuy also lists a Fill & Buy option. If the service offers that route for your item, identify the seller link and describe the exact option and quantity for review.",
+          "A manual form is useful when you know precisely what the buyer is being asked to purchase. If the seller page is gone and you have only a picture, there is no reliable selection to pass on. When you see a purchasing restriction instead of a missing preview, ask the platform whether that item is eligible. When an order or payment already exists, return to its record. Start with the original transaction before making a second request for the same item."
+        ]
+      },
+      {
+        "h": "Send one message that someone can act on",
+        "p": [
+          "A helpful message gives the two links, the marketplace item number and the exact difference you saw. For example, write that the original listing opens, the seller shows the selected colour and size, and the imported page shows a different option. Ask whether that exact option can be selected, then say whether substitutions are acceptable. Attach a screenshot of the option on each page if it helps distinguish neighbouring choices. Crop out addresses or payment details.",
+          "Keep the reply with the listing it refers to. A seller’s confirmation of one colour and size does not settle the rest of the range. If support sends a replacement link, compare the item number, shop, quantity, selected price and option text again. A useful stopping point is a record you could hand to another person and have them select the same product unaided. If you cannot do that yet, mark the row “awaiting confirmation” and leave it out of the order.",
+          "Keep the two prices on separate lines if your recovery started with a price discrepancy. Record the amount on the seller page after choosing the variant, then the amount beside that same selection on the agent page, including the currency in each case. That gives support a reproducible comparison even if a search card still displays an older starting price."
+        ]
+      },
+      {
+        "h": "Save the result for the next time the sheet changes",
+        "p": [
+          "Update the row you actually used with the date, working seller URL, marketplace ID and complete selection. Add one short outcome such as “agent preview recovered”, “seller removed this size” or “different listing offered”. For an unresolved link, keep the old identifier visible. That gives the next reader a way to tell a repaired route from a replacement product and lets you resume without searching through every message again."
+        ]
+      }
+    ]
+  },
+  "de": {
+    "title": "Kakobuy-Link funktioniert nicht? Angebot und Größe wiederfinden",
+    "description": "So verfolgst du einen defekten Produktlink bis zum Händler, prüfst Farbe und Größe und erkennst, wann dir vor der Bestellung noch eine Angabe fehlt.",
+    "sections": [
+      {
+        "h": "An welcher Stelle endet der Link?",
+        "p": [
+          "Öffne zwei Tabs. Im ersten sollte die Produktseite des Händlers stehen, im zweiten die Kakobuy-Seite, zu der das Spreadsheet führt. Prüfe zunächst, ob du den Artikel auf beiden Seiten eindeutig zuordnen kannst. Ist nur die Vorschau bei Kakobuy leer, hast du mit dem Händlerangebot einen Ausgangspunkt. Zeigen zwei funktionierende Seiten unterschiedliche Artikel, solltest du den Kauf unterbrechen. Landest du auf der Startseite eines Shops, kennst du allenfalls den Händler.",
+          "Sichere die ursprüngliche Tabellenzeile, bevor du weitere Links ausprobierst. Bewahre Händler-URL, Artikelnummer des Marktplatzes, gewünschte Ausführung und Datum zusammen auf. Auf einem Screenshot sollten die gewählte Option und der Produkttitel gleichzeitig sichtbar sein. So lässt sich unterscheiden, ob die Seite nicht lädt, die Größenauswahl fehlt oder lediglich der Preis nicht angezeigt wird. Ein ausgeschnittenes Foto des Kleidungsstücks hilft dabei wenig."
+        ]
+      },
+      {
+        "h": "Welche Nummer gehört zum Angebot?",
+        "p": [
+          "In diesem Verzeichnis findest du einen Schuheintrag unter /products/6045/. Die 6045 am Ende der Adresse bezeichnet den Eintrag im Verzeichnis. Auf der Seite selbst steht die Artikelnummer des Marktplatzes, 7721490300. Wer einfach die letzte Zahl aus der Adresszeile weitergibt, nennt dem Verkäufer die falsche Kennung. Auch der kurze Name „shoes-60“ reicht zur Zuordnung kaum aus. Öffne den hinterlegten Quelllink und vergleiche die Artikelnummer mit den zehn Ziffern auf der Produktseite.",
+          "Zeilennummer, Artikelnummer und Bestellnummer erfüllen unterschiedliche Aufgaben. Die Zeile hilft dir, einen Fund in einer bestimmten Tabelle wiederzufinden. Die Artikelnummer führt zu einem Angebot auf dem jeweiligen Marktplatz. Eine Bestellnummer bezieht sich auf einen bereits angelegten Kauf. Nenne bei Rückfragen den Marktplatz zusammen mit der Artikelnummer. Gibt es bereits eine Bestellung, gehört deren Nummer zusätzlich in die private Nachricht an den Support. Persönliche Kontodaten gehören nicht in öffentliche Tabellen."
+        ]
+      },
+      {
+        "h": "Den ursprünglichen Händlerlink wiederfinden",
+        "p": [
+          "Öffne den geteilten Link zunächst unverändert. Landest du in einem Katalog, suche auf der passenden Produktkarte nach dem Detaillink. Auf einer Agentenseite kann ein Verweis zum ursprünglichen Händler stehen. Kopiere die Adresse der geöffneten Produktseite. Ein Suchergebnis, eine Shopseite oder ein Foto hilft beim Wiederfinden, enthält aber noch keine verlässliche Aussage zur gewünschten Ausführung. Enthält die geteilte Nachricht mehrere Adressen, öffne sie einzeln und notiere ihr jeweiliges Ziel.",
+          "Ein Beispiel liefert unser ASICS-Vergleich. Der dort beschriebene Eintrag mit 18 Varianten trägt im Quellverzeichnis die Nummer 5932. Im zugehörigen Weidian-Link steht dagegen itemID=7730289026. Bewahre den vollständigen Produktlink zusammen mit dieser Artikelnummer auf. Manche Freigabelinks enthalten zusätzliche Parameter oder eine eingebettete Adresse. Wenn du die Händlerseite direkt öffnen kannst, musst du diese Zeichenfolge nicht von Hand zerlegen. Wer alles hinter dem Fragezeichen entfernt, kann dabei auch die eigentliche Artikelnummer löschen."
+        ]
+      },
+      {
+        "h": "Hat der neue Link wirklich dasselbe Ziel?",
+        "p": [
+          "Im selben ASICS-Vergleich steht ein Angebot mit neun Varianten und der Artikelnummer 7706333190. Beide Titel nennen GEL-KAYANO 14. Beide Seiten lassen sich öffnen, führen aber zu getrennten Angeboten. Bei einer Suche nach dem Modellnamen kann leicht das jeweils andere auftauchen. Vergleiche den Marktplatz, den sichtbaren Händlernamen, die Artikelnummer und deine konkrete Auswahl. Die Angaben zu 18 und neun Varianten stammen aus den geprüften Einträgen. Die aktuelle Auswahl liest du auf der jeweiligen Händlerseite ab.",
+          "Ein anderes Angebot kann trotzdem interessant sein. Lege dafür eine neue Tabellenzeile an und prüfe es gesondert. Das gilt auch, wenn die Artikelnummer unverändert ist, aber Beschreibung oder Variantenbilder nun einen anderen Artikel zeigen. Durch die getrennten Zeilen bleiben der alte Preis, frühere Größenhinweise und Lagerfotos eines anderen Käufers mit ihrem ursprünglichen Angebot verbunden."
+        ]
+      },
+      {
+        "h": "Wenn Farbe oder Größe verschwinden",
+        "p": [
+          "Rufe dasselbe Händlerangebot erneut auf. Sieht die Auswahl zuerst die Farbe und dann die Größe vor, halte diese Reihenfolge ein. Notiere die sichtbare Bezeichnung, die Einheit und den Preis der gewählten Option. Ein geteilter Link kann das richtige Produkt öffnen, ohne deine letzte Auswahl zu übernehmen. Verschwindet eine Größe erst nach dem Farbwechsel, notiere die genaue Kombination. Ein anderswo sichtbares „M“ bestätigt noch keine Verfügbarkeit in deiner Wunschfarbe.",
+          "Wähle auf Kakobuy dieselbe Kombination aus und vergleiche beide Zusammenfassungen. Angenommen, ein Angebot führt ein schwarzes Oberteil und eine schwarze Hose. Ein einzelnes schwarzes Vorschaubild auf der importierten Seite verrät nicht, ob Oberteil, Hose oder Set gewählt wurde. Lass dir vor der Zahlung Optionsbezeichnung und Stückzahl bestätigen. Fehlt die Größe auch im Händlerangebot, kannst du abwarten oder einen anderen Artikel prüfen. Eine korrigierte Adresse ändert den Lagerbestand nicht."
+        ]
+      },
+      {
+        "h": "Die Händlerseite lädt, die Vorschau bei Kakobuy bleibt leer",
+        "p": [
+          "Gib die ursprüngliche Produktadresse des Marktplatzes in die Produktsuche von Kakobuy ein. Öffne den Treffer und prüfe Artikelnummer und Variante erneut. Führt er auf ein anderes Angebot, halte genau diese Abweichung fest. Wiederholtes Einfügen desselben unklaren Links liefert wenig zusätzliche Information. Kakobuy führt außerdem die Funktion „Fill & Buy“. Wird sie für den betreffenden Artikel angeboten, gib den vollständigen Händlerlink, die Ausführung und die gewünschte Stückzahl zur Prüfung an.",
+          "Ein manueller Auftrag ist dann sinnvoll, wenn sich der gewünschte Kauf eindeutig beschreiben lässt. Ist das Angebot verschwunden und hast du nur noch ein Foto, fehlt diese Grundlage. Erscheint eine Einkaufsbeschränkung, frag bei Kakobuy nach, ob der Artikel für den Service zugelassen ist. Existiert bereits eine Bestellung oder Zahlung, öffne zuerst deren Datensatz, bevor du einen weiteren Auftrag für denselben Artikel anlegst."
+        ]
+      },
+      {
+        "h": "Eine Rückfrage, auf die der Support antworten kann",
+        "p": [
+          "Schicke die beiden Links, die Artikelnummer des Marktplatzes und eine genaue Beschreibung der Abweichung. Du kannst zum Beispiel schreiben, dass die Händlerseite Farbe und Größe anzeigt, auf der importierten Seite aber eine andere Option steht. Frag nach genau dieser Kombination und vermerke, ob Ersatzvarianten erlaubt sind. Falls zwei Optionen ähnlich aussehen, hilft ein Screenshot der jeweiligen Auswahl. Schneide Adressen und Zahlungsdaten aus dem Bild heraus.",
+          "Bewahre die Antwort beim passenden Eintrag auf. Eine Bestätigung für eine einzige Farbe und Größe sagt nichts über die übrigen Varianten aus. Schickt der Support einen Ersatzlink, vergleiche Artikelnummer, Shop, Stückzahl, Preis der Auswahl und Optionstext nochmals. Könnte eine andere Person mit deinen Angaben dieselbe Variante selbst auswählen? Falls noch etwas fehlt, kennzeichne die Zeile mit „Bestätigung ausstehend“ und lasse sie vorerst aus der Bestellung.",
+          "Hat dich ein Preisunterschied auf den Fehler aufmerksam gemacht, notiere die Beträge getrennt. Trage zunächst den Preis nach der Auswahl beim Händler ein, dann den Betrag für dieselbe Variante auf der Agentenseite. Schreibe die jeweilige Währung dazu. So kann der Support den Vergleich selbst nachvollziehen, auch wenn eine Suchkarte noch einen alten Einstiegspreis anzeigt."
+        ]
+      },
+      {
+        "h": "Das Ergebnis für die nächste Tabellenänderung sichern",
+        "p": [
+          "Ergänze in der benutzten Zeile Datum, funktionierende Händleradresse, Artikelnummer und vollständige Auswahl. Eine kurze Notiz wie „Vorschau wieder erreichbar“, „Größe beim Händler entfernt“ oder „anderes Angebot vorgeschlagen“ reicht. Bei einem ungelösten Fall sollte die alte Kennung sichtbar bleiben. So kann der nächste Leser erkennen, ob nur der Weg zum Produkt repariert oder ein Ersatz gefunden wurde. Auch du kannst bei einer späteren Rückfrage dort weitermachen, wo du aufgehört hast."
+        ]
+      }
+    ]
+  },
+  "fr": {
+    "title": "Lien Kakobuy en panne ? Retrouver la fiche et la bonne taille",
+    "description": "Retrouvez l’annonce du vendeur à partir d’un lien défectueux, vérifiez la taille et la couleur sélectionnées et déterminez ce qu’il reste à confirmer avant la commande.",
+    "sections": [
+      {
+        "h": "À quel moment perdez-vous la trace de l’article ?",
+        "p": [
+          "Ouvrez deux onglets. Dans le premier, affichez la fiche du vendeur. Dans le second, ouvrez la page Kakobuy indiquée dans votre tableau. Voyez d’abord si vous pouvez identifier le produit de chaque côté. Un aperçu vide sur Kakobuy laisse une piste si l’annonce du vendeur s’ouvre. À l’inverse, deux pages peuvent se charger parfaitement et présenter des articles différents. Si vous arrivez sur l’accueil d’une boutique, vous avez retrouvé le vendeur, mais il vous manque encore la fiche du produit.",
+          "Avant d’essayer d’autres adresses, conservez la ligne du tableau telle que vous l’avez trouvée. Enregistrez le lien du vendeur, la référence sur la place de marché, l’option voulue et la date. Une capture montrant à la fois le titre et l’option sélectionnée sera plus utile qu’une photo recadrée du vêtement. Vous pourrez déterminer si le problème survient à l’ouverture de la page, au choix de la taille ou à l’affichage du prix. La marche à suivre dépend de cette distinction."
+        ]
+      },
+      {
+        "h": "Reconnaître le numéro qui identifie l’annonce",
+        "p": [
+          "Dans notre catalogue, la fiche de chaussures située à l’adresse /products/6045/ se termine par 6045. Il s’agit du numéro d’entrée dans le catalogue. La référence de la place de marché, affichée dans la fiche, est 7721490300. En copiant le dernier nombre de l’adresse, vous transmettriez donc au vendeur une référence qui ne lui permet pas de retrouver l’annonce. Le nom « shoes-60 » est lui aussi peu précis. Suivez le lien source et comparez la référence avec les dix chiffres affichés à côté du produit.",
+          "Le numéro de ligne du tableau, la référence de l’annonce et le numéro de commande servent à trois choses différentes. Le premier vous ramène à une ligne d’une liste précise. La référence identifie une annonce sur la place de marché concernée. Le numéro de commande désigne une transaction déjà créée. Indiquez le nom de la place de marché avec sa référence. S’il existe déjà une commande, communiquez aussi son numéro au service d’assistance, en privé. Les données du compte n’ont pas leur place dans un tableau public."
+        ]
+      },
+      {
+        "h": "Retrouver le lien d’origine à partir d’un partage",
+        "p": [
+          "Ouvrez d’abord le lien sans le modifier. S’il mène à un catalogue, recherchez la carte du produit et ouvrez sa fiche. Sur la page d’un intermédiaire, cherchez le lien vers l’annonce du vendeur. Copiez l’adresse de cette annonce une fois ouverte. Une boutique, une page de résultats ou une photo peut orienter la recherche, sans pour autant identifier l’option choisie. Si le message contient plusieurs liens, ouvrez-les séparément et notez à quoi chacun correspond.",
+          "Prenons l’exemple de la paire proposée en 18 variantes dans notre guide ASICS. Sa fiche de référence porte le numéro 5932 dans le catalogue source. Son lien Weidian contient en revanche itemID=7730289026. Conservez la référence de la place de marché avec le lien complet. Certains liens partagés dans une messagerie transportent un paramètre de suivi ou une adresse encodée dans une autre. Si vous pouvez ouvrir directement l’annonce, inutile de démonter le lien à la main. Supprimer tout ce qui suit le point d’interrogation peut faire disparaître la référence de l’article."
+        ]
+      },
+      {
+        "h": "Vérifier que l’annonce retrouvée correspond bien au produit",
+        "p": [
+          "Le même guide ASICS présente une autre fiche en neuf variantes, avec la référence 7706333190. Les deux titres mentionnent des GEL-KAYANO 14. Une recherche par nom peut vous ramener à l’une ou à l’autre, même lorsque les deux liens fonctionnent. Comparez la place de marché, le vendeur lorsqu’il est visible, la référence et la variante choisie. Les indications « 18 » et « neuf » décrivent les fiches consultées. Vérifiez ce qui est effectivement proposé aujourd’hui avant de choisir.",
+          "Une autre annonce peut mériter votre attention. Dans ce cas, créez une nouvelle ligne et examinez-la séparément. Faites de même si la référence est inchangée mais que la description ou les photos des options renvoient désormais à un autre produit. En séparant les deux lignes, vous évitez d’attribuer à l’article de remplacement un ancien prix, une indication de taille ou la photo de contrôle prise pour une commande différente."
+        ]
+      },
+      {
+        "h": "Quand la couleur ou la taille n’apparaît plus",
+        "p": [
+          "Rouvrez l’annonce exacte. Si la fiche demande de choisir la couleur avant la taille, suivez cet ordre. Notez le libellé de la variante, l’unité et le prix affiché après sélection. Un lien peut rouvrir le bon produit sans restaurer votre dernier choix. Si une taille disparaît seulement après avoir choisi un coloris, relevez cette combinaison précise. La présence d’un « M » ailleurs dans la liste ne garantit pas sa disponibilité dans cette couleur.",
+          "Reproduisez la sélection sur Kakobuy et comparez les récapitulatifs. Imaginez qu’une fiche propose un haut noir et un pantalon noir. Une vignette noire sur la page importée ne suffit pas à déterminer si votre choix porte sur le haut, le pantalon ou l’ensemble. Demandez le libellé exact et la quantité avant de payer. Si la taille manque aussi sur la fiche du vendeur, conservez cette information pour décider d’attendre ou d’examiner une autre annonce. Réparer l’adresse ne remettra pas la taille en stock."
+        ]
+      },
+      {
+        "h": "Si l’aperçu reste vide alors que la fiche du vendeur s’ouvre",
+        "p": [
+          "Collez l’adresse d’origine du produit dans la recherche Kakobuy. Ouvrez la fiche obtenue et contrôlez à nouveau la référence et la variante. Si Kakobuy affiche un autre article, notez la différence. Réessayer le même lien ambigu ne vous donnera guère plus d’informations. Kakobuy présente également une fonction « Fill & Buy ». Si elle est proposée pour votre article, fournissez le lien du vendeur, la variante exacte et la quantité souhaitée afin que la demande puisse être examinée.",
+          "Un formulaire manuel est surtout utile quand vous pouvez décrire précisément ce qu’il faut acheter. Si l’annonce a disparu et qu’il ne reste qu’une image, la sélection demeure inconnue. Si le message concerne une restriction d’achat, demandez à la plateforme si l’article est admissible. Lorsqu’une commande ou un paiement existe déjà, commencez par consulter son historique avant d’envisager une deuxième demande portant sur le même produit."
+        ]
+      },
+      {
+        "h": "Écrire un message auquel l’assistance pourra répondre",
+        "p": [
+          "Joignez les deux adresses, la référence de l’annonce et une description concrète de l’écart. Par exemple, expliquez que la fiche du vendeur affiche bien la couleur et la taille demandées tandis que la page importée indique une variante différente. Demandez si cette combinaison précise peut être sélectionnée, et indiquez si vous acceptez un remplacement. Une capture de chaque sélection peut aider à distinguer deux options voisines. Masquez votre adresse et vos informations de paiement.",
+          "Classez la réponse avec l’annonce concernée. La confirmation d’une taille dans un coloris ne vaut pas pour toute la gamme. Si l’on vous transmet un nouveau lien, vérifiez encore la référence, la boutique, la quantité, le prix de la sélection et son libellé. Une autre personne pourrait-elle choisir la même variante sans vous demander de précision ? Si un détail manque encore, indiquez « en attente de confirmation » et laissez cette ligne hors de la commande.",
+          "Si vous êtes parti d’un écart de prix, inscrivez les deux montants sur des lignes séparées. Relevez le prix du vendeur après avoir choisi la variante, puis celui de la même sélection sur la page de l’intermédiaire. Précisez la devise dans les deux cas. L’assistance pourra ainsi refaire la comparaison, même si la page de résultats affiche encore un ancien prix de départ."
+        ]
+      },
+      {
+        "h": "Garder une trace lors de la prochaine mise à jour du tableau",
+        "p": [
+          "Sur la ligne effectivement utilisée, ajoutez la date, le lien du vendeur qui fonctionne, la référence sur la place de marché et la sélection complète. Une remarque courte suffit, par exemple « aperçu rétabli », « taille retirée par le vendeur » ou « autre annonce proposée ». Si le problème reste ouvert, conservez l’ancienne référence. Le lecteur suivant pourra distinguer un lien réparé d’un produit de remplacement, et vous pourrez reprendre la discussion sans relire tous les messages."
+        ]
+      }
+    ]
+  },
+  "es": {
+    "title": "¿No funciona tu enlace de Kakobuy? Recupera el artículo y la talla",
+    "description": "Sigue un enlace averiado hasta la ficha del vendedor, comprueba la talla y el color que habías elegido y averigua qué falta por confirmar antes de hacer el pedido.",
+    "sections": [
+      {
+        "h": "Localiza el punto en el que se pierde el artículo",
+        "p": [
+          "Abre dos pestañas. En una, busca la ficha del vendedor. En la otra, abre la página de Kakobuy a la que te lleva la hoja de cálculo. Comprueba primero si puedes identificar el producto en ambas. Una vista previa vacía en Kakobuy tiene solución si conservas la ficha original. En cambio, dos páginas que cargan bien pueden mostrar artículos distintos. Si acabas en la portada de la tienda, habrás localizado al vendedor, pero aún te falta su anuncio.",
+          "Guarda la fila original de la hoja antes de probar más enlaces. Conserva la dirección del vendedor, el identificador del artículo en la plataforma de origen, la variante que buscabas y la fecha. Resulta más útil una captura con el título y la opción seleccionada que una foto recortada de la prenda. Así podrás distinguir si falla la apertura de la página, la selección de una talla o la consulta del precio. Cada problema se resuelve de una forma distinta."
+        ]
+      },
+      {
+        "h": "Averigua qué número identifica la ficha",
+        "p": [
+          "En este directorio hay una ficha de zapatillas con la dirección /products/6045/. El número 6045 corresponde al registro del directorio. El identificador del artículo en la plataforma de venta, que figura en la página, es 7721490300. Si copias el último número de la barra de direcciones, darás al vendedor la referencia equivocada. El nombre «shoes-60» tampoco identifica con precisión un modelo. Abre el enlace de origen de la ficha y compara su identificador con los diez dígitos que aparecen junto al producto.",
+          "El número de fila, el identificador del artículo y el número de pedido cumplen funciones distintas. La fila te lleva a un punto concreto de una lista. El identificador distingue un anuncio dentro de su plataforma. El número de pedido corresponde a una operación que ya se ha creado. Al pedir ayuda, indica tanto la plataforma como el identificador de su anuncio. Si ya existe un pedido, añade ese número en tu mensaje privado a atención al cliente y deja los datos de la cuenta fuera de las hojas públicas."
+        ]
+      },
+      {
+        "h": "Recupera el enlace del vendedor a partir de la página compartida",
+        "p": [
+          "Abre la dirección tal como te la enviaron. Si te lleva a un catálogo, entra en la ficha desde la tarjeta correspondiente. Si te lleva a la página de un intermediario, busca su enlace al anuncio original. Copia la dirección de la página concreta del producto una vez abierta. Una tienda, unos resultados de búsqueda o una imagen pueden orientarte, pero no registran qué variante elegiste. Si el mensaje contiene varias direcciones, ábrelas por separado y anota adónde lleva cada una.",
+          "La guía de ASICS ofrece un ejemplo real. La ficha que describe 18 variantes lleva el número 5932 en el catálogo de origen, mientras que su enlace de Weidian contiene itemID=7730289026. Guarda juntos ese número y el enlace completo. Una dirección compartida por mensajería puede incluir datos de seguimiento o contener otra dirección codificada. Si puedes abrir la ficha del vendedor, no necesitas descomponer el enlace a mano. Borrar todo lo que sigue al signo de interrogación también puede borrar el identificador del artículo."
+        ]
+      },
+      {
+        "h": "Comprueba que has recuperado el mismo anuncio",
+        "p": [
+          "La guía incluye también una ficha con nueve variantes y el identificador 7706333190. Los dos títulos describen unas GEL-KAYANO 14. Las dos páginas pueden abrirse sin problema, pero una búsqueda por nombre podría llevarte a la otra ficha. Compara la plataforma de venta, el vendedor si aparece, el identificador y la variante seleccionada. Las cifras de 18 y nueve opciones corresponden a las fichas revisadas. Antes de elegir, consulta qué ofrece hoy cada vendedor.",
+          "Si el anuncio alternativo te interesa, añádelo en una fila aparte y vuelve a comprobarlo desde el principio. Haz lo mismo si el identificador coincide pero la descripción o las fotos de las opciones ahora muestran un producto distinto. Separar los registros evita trasladar un precio antiguo, una nota de tallaje o la foto de almacén de otra persona a un artículo que nunca se comprobó con esos datos."
+        ]
+      },
+      {
+        "h": "Cuando desaparece el color o la talla",
+        "p": [
+          "Abre de nuevo la ficha exacta del vendedor. Si sus controles te piden seleccionar primero el color y después la talla, respeta ese orden. Anota el texto visible de la opción, las unidades y el precio seleccionado. Un enlace puede abrir el producto correcto sin recuperar tu selección anterior. Si la talla desaparece al cambiar de color, apunta esa combinación concreta. Ver una «M» en otra parte de la página no confirma que esté disponible en el color que quieres.",
+          "Repite la selección en Kakobuy y compara ambos resúmenes. Imagina que el vendedor ofrece en una misma ficha una parte de arriba negra y un pantalón negro. Una sola miniatura negra en la página importada no aclara si se ha elegido la parte de arriba, el pantalón o el conjunto. Confirma el texto de la opción y la cantidad antes de pagar. Si la talla también falta en el anuncio original, puedes esperar o evaluar otra oferta. Reparar el enlace no repone una talla agotada."
+        ]
+      },
+      {
+        "h": "Si el vendedor responde pero la vista previa de Kakobuy queda vacía",
+        "p": [
+          "Pega la dirección original del producto en la búsqueda de Kakobuy. Abre el resultado y vuelve a comprobar el identificador y la selección. Si se carga un artículo diferente, anota esa discrepancia. Volver a enviar el mismo enlace ambiguo aporta poca información. Kakobuy también muestra la opción «Fill & Buy». Si está disponible para tu artículo, facilita el enlace concreto del vendedor y describe la variante y la cantidad que quieres para que puedan revisarlas.",
+          "El formulario manual tiene sentido cuando puedes especificar con precisión qué se debe comprar. Si la ficha ha desaparecido y solo conservas una foto, te falta esa información. Si lo que aparece es una restricción de compra, pregunta a la plataforma si admite el artículo. Cuando ya hay un pedido o un pago, consulta primero el registro de esa operación antes de abrir otra solicitud para el mismo producto."
+        ]
+      },
+      {
+        "h": "Envía una consulta que permita resolver el problema",
+        "p": [
+          "Incluye ambos enlaces, el identificador de la ficha y la diferencia exacta que has observado. Por ejemplo, explica que el vendedor sí muestra el color y la talla seleccionados, mientras que la página importada muestra otra opción. Pregunta si se puede pedir esa combinación y especifica si aceptarías una sustitución. Una captura de cada pantalla puede ayudar cuando dos opciones se parecen. Recorta las direcciones personales y los datos de pago.",
+          "Guarda la respuesta junto a la ficha a la que se refiere. La confirmación de un color y una talla no se extiende a todas las variantes. Si recibes un enlace de sustitución, compara otra vez el identificador, la tienda, la cantidad, el precio tras seleccionar y el texto de la opción. Piensa si otra persona podría abrir tu registro y elegir exactamente el mismo producto sin preguntarte nada. Si aún falta un dato, marca la fila como «pendiente de confirmación» y déjala fuera del pedido.",
+          "Si detectaste el problema por una diferencia de precio, anota los dos importes por separado. Registra el precio del vendedor después de elegir la variante y, a continuación, el de esa misma selección en la página del agente. Incluye la moneda en ambos casos. Así el equipo de asistencia podrá reproducir la comparación aunque la tarjeta de búsqueda aún muestre un precio inicial antiguo."
+        ]
+      },
+      {
+        "h": "Deja constancia para la próxima actualización de la hoja",
+        "p": [
+          "Añade a la fila utilizada la fecha, la dirección del vendedor que funciona, el identificador y la selección completa. Basta con indicar un resultado concreto, por ejemplo «vista previa recuperada», «el vendedor ha retirado la talla» u «otro anuncio propuesto». Si el caso sigue abierto, conserva el identificador original a la vista. Quien consulte la hoja después podrá distinguir entre un enlace reparado y un producto de sustitución, y tú podrás retomar la consulta sin repasar todos los mensajes."
+        ]
+      }
+    ]
+  },
+  "it": {
+    "title": "Il link Kakobuy non funziona? Ritrova l’inserzione e la taglia",
+    "description": "Risali dalla scheda che non si apre all’inserzione del venditore, controlla taglia e colore e capisci quali dettagli verificare prima di ordinare.",
+    "sections": [
+      {
+        "h": "Individua il punto in cui si perde il prodotto",
+        "p": [
+          "Apri due schede del browser. Nella prima cerca l’inserzione del venditore, nella seconda apri la pagina Kakobuy indicata nel foglio di calcolo. Verifica innanzitutto se riesci a identificare l’articolo su entrambe. Se l’anteprima su Kakobuy è vuota ma la pagina del venditore si apre, hai ancora un punto di partenza. Se due pagine funzionano ma mostrano articoli diversi, fermati. Se arrivi sulla pagina iniziale del negozio, hai trovato il venditore ma devi ancora individuare l’inserzione.",
+          "Prima di provare altri indirizzi conserva la riga originale del foglio. Salva il link del venditore, l’identificativo dell’articolo sul marketplace, la variante che cercavi e la data. Uno screenshot che comprenda titolo e opzione selezionata è più utile di una foto ritagliata della felpa. Ti permette di distinguere tra una pagina che non si apre, una taglia che non compare e un prezzo che non viene caricato. Sono problemi diversi e vanno affrontati separatamente."
+        ]
+      },
+      {
+        "h": "Capisci quale numero identifica l’inserzione",
+        "p": [
+          "Nel nostro catalogo trovi una scheda di scarpe all’indirizzo /products/6045/. Il numero 6045 identifica la scheda del catalogo. Il codice dell’articolo sul marketplace, visibile nella pagina, è invece 7721490300. Copiando l’ultimo numero dalla barra degli indirizzi consegneresti al venditore la chiave sbagliata. Anche la scritta «shoes-60» da sola dice poco sul modello. Apri il link alla fonte indicato nella scheda e confronta l’identificativo con le dieci cifre riportate accanto al prodotto.",
+          "Il numero di riga, l’identificativo dell’articolo e il numero d’ordine hanno funzioni diverse. Il primo rimanda a una riga di un particolare elenco. Il secondo distingue un’inserzione sulla piattaforma che l’ha pubblicata. Il terzo si riferisce a una transazione già avviata. In una richiesta di assistenza indica il nome del marketplace insieme all’identificativo dell’articolo. Se esiste già un ordine, aggiungi anche il suo numero nel messaggio privato all’assistenza. Evita di mettere i tuoi dati personali in un foglio pubblico."
+        ]
+      },
+      {
+        "h": "Recupera il link del venditore da una pagina condivisa",
+        "p": [
+          "Apri l’indirizzo così come ti è arrivato. Se porta a un catalogo, cerca la scheda del prodotto e apri il relativo dettaglio. Se porta alla pagina di un intermediario, cerca il collegamento al venditore originale. Una volta aperta l’inserzione specifica, copiane l’indirizzo. Una pagina di ricerca, la vetrina di un negozio o una foto possono aiutarti a orientarti, ma da sole non indicano quale opzione avevi scelto. Se nel messaggio ci sono più link, aprili separatamente e annota che cosa mostra ciascuno.",
+          "Nella guida ASICS c’è un esempio concreto. La scheda che descrive 18 varianti corrisponde alla voce 5932 del catalogo di origine. Il link Weidian associato contiene invece itemID=7730289026. Conserva questo codice insieme all’indirizzo completo dell’inserzione. I link condivisi in chat possono includere parametri di tracciamento o un secondo indirizzo codificato. Se puoi aprire direttamente la pagina del venditore, non occorre decifrare il link a mano. Eliminando tutto ciò che segue il punto interrogativo potresti cancellare anche l’identificativo dell’articolo."
+        ]
+      },
+      {
+        "h": "Controlla che la pagina ritrovata sia proprio quella giusta",
+        "p": [
+          "La stessa guida ASICS rimanda a una scheda con nove varianti e identificativo 7706333190. Entrambi i titoli parlano di GEL-KAYANO 14. Tutte e due le pagine possono aprirsi correttamente, ma un motore di ricerca potrebbe restituire l’altra se cerchi soltanto il nome del modello. Confronta il marketplace, il venditore quando è indicato, il codice articolo e l’opzione selezionata. I numeri 18 e nove descrivono le schede consultate. Prima di scegliere controlla quali varianti sono effettivamente disponibili oggi.",
+          "Un’inserzione diversa può comunque interessarti. In quel caso aggiungi una nuova riga e ripeti i controlli. Fai lo stesso se il codice corrisponde, ma la descrizione o le foto delle opzioni ora rimandano a un altro prodotto. Tenendo separati i due casi eviti che un vecchio prezzo, un appunto sulla vestibilità o la foto scattata in magazzino per un altro cliente sembrino riferiti al nuovo articolo."
+        ]
+      },
+      {
+        "h": "Quando il colore o la taglia spariscono",
+        "p": [
+          "Riapri la stessa inserzione del venditore. Se il menu prevede di scegliere prima il colore e poi la taglia, segui quell’ordine. Annota il nome esatto dell’opzione, l’unità di misura e il prezzo che appare dopo la scelta. Un indirizzo condiviso può aprire il prodotto giusto senza ripristinare la selezione precedente. Se una taglia sparisce solo dopo la scelta del colore, registra proprio quell’abbinamento. La presenza della «M» altrove nella pagina non conferma che esista nel colore desiderato.",
+          "Ripeti la selezione su Kakobuy e confronta i due riepiloghi. Immagina che il venditore offra nella stessa scheda sia una maglia nera sia un pantalone nero. Una sola miniatura scura nella pagina importata non ti dice se stai scegliendo la maglia, il pantalone o il completo. Prima di pagare chiedi il nome esatto dell’opzione e la quantità. Se la taglia manca anche sulla pagina del venditore, decidi se aspettare o valutare un’altra inserzione. Correggere un indirizzo non rende disponibile una taglia esaurita."
+        ]
+      },
+      {
+        "h": "Se l’anteprima Kakobuy è vuota ma il venditore è raggiungibile",
+        "p": [
+          "Incolla l’indirizzo originale del prodotto nella ricerca di Kakobuy e apri il risultato. Ricontrolla codice articolo e selezione. Se compare un prodotto diverso, annota la discrepanza. Inviare più volte lo stesso link ambiguo aggiunge poco alle informazioni già raccolte. Kakobuy presenta anche la funzione «Fill & Buy». Se è prevista per l’articolo in questione, fornisci l’indirizzo del venditore e specifica esattamente variante e quantità da verificare.",
+          "La richiesta manuale ha senso quando sai descrivere con precisione ciò che l’incaricato dovrebbe acquistare. Se il venditore ha rimosso l’inserzione e ti è rimasta solo una foto, manca il riferimento necessario. Quando vedi una limitazione all’acquisto, chiedi alla piattaforma se l’articolo è ammesso. Se esistono già una transazione o un pagamento, riparti dal relativo ordine prima di creare una seconda richiesta per lo stesso articolo."
+        ]
+      },
+      {
+        "h": "Scrivi un messaggio a cui l’assistenza possa rispondere",
+        "p": [
+          "Includi i due link, il codice dell’articolo sul marketplace e la differenza concreta che hai osservato. Per esempio, spiega che la pagina del venditore mostra il colore e la taglia scelti, mentre l’anteprima importata propone un’altra opzione. Chiedi se quella combinazione precisa può essere ordinata e specifica se accetti sostituzioni. Se due varianti si somigliano, allega una schermata di ciascuna selezione, tagliando indirizzi di spedizione e dati di pagamento.",
+          "Conserva la risposta insieme alla scheda a cui si riferisce. La conferma di un colore in una determinata taglia non si estende a tutta la gamma. Se ricevi un link sostitutivo, confronta di nuovo il codice articolo, il negozio, la quantità, il prezzo selezionato e il testo della variante. Una persona con in mano i tuoi appunti riuscirebbe a selezionare lo stesso prodotto senza chiederti altro? Se manca ancora un dettaglio, segna «in attesa di conferma» e lascia la riga fuori dall’ordine.",
+          "Se hai individuato il problema grazie a una differenza di prezzo, segna i due importi su righe separate. Registra prima il prezzo del venditore dopo aver scelto la variante, poi quello riferito alla stessa selezione sulla pagina dell’intermediario. Indica sempre la valuta di ciascuno. L’assistenza potrà così ripetere il confronto anche se la scheda nei risultati mostra ancora un vecchio prezzo di partenza."
+        ]
+      },
+      {
+        "h": "Annota il risultato prima che il foglio cambi di nuovo",
+        "p": [
+          "Aggiorna la riga usata con la data, l’indirizzo funzionante del venditore, il codice dell’articolo e la selezione completa. Basta un esito breve, come «anteprima ripristinata», «taglia rimossa dal venditore» oppure «proposta un’altra inserzione». Se il caso rimane aperto, lascia visibile il vecchio identificativo. In questo modo chi legge dopo di te saprà distinguere un indirizzo riparato da un prodotto sostitutivo e potrai riprendere la verifica senza rileggere tutti i messaggi."
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "label": "Kakobuy · Fill & Buy",
+      "url": "https://kakobuy.com/item/notfound"
+    },
+    {
+      "label": "Kakobuys.shop · 6045 / 7721490300",
+      "url": "https://kakobuys.shop/products/6045/"
+    },
+    {
+      "label": "GEL-KAYANO 14 · 7730289026",
+      "url": "https://www.cnfanshp.com/AllProducts/5932.html"
+    },
+    {
+      "label": "GEL-KAYANO 14 · 7706333190",
+      "url": "https://www.cnfanshp.com/AllProducts/5101.html"
+    }
+  ]
+}
