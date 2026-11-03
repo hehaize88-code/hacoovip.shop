@@ -1,5 +1,6 @@
 // Production deployment trigger: final copy and compact mobile release.
 const CANONICAL_ORIGIN = "https://kakobuys.store";
+const readabilityHref = "/readability-v2.css?v=20261103-2";
 const LANGUAGE_CODES = ["en", "de", "fr", "es", "it", "pl", "pt", "ro"];
 const LOCALIZED_PAGE_SLUGS = [
   "categories",
@@ -420,7 +421,7 @@ function seoMarkup({ language, slug, canonicalUrl, title, description }) {
     : `<link rel="alternate" hreflang="en" href="${canonicalUrl}">`;
   const locale = language === "en" ? "en_US" : `${language}_${language.toUpperCase()}`;
   return (
-    `<link rel="stylesheet" href="/readability-v2.css">` +
+    `<link rel="stylesheet" href="${readabilityHref}">` +
     `<title>${safeTitle}</title>` +
     `<meta name="description" content="${safeDescription}">` +
     `<link rel="canonical" href="${canonicalUrl}">` +
@@ -541,7 +542,10 @@ export default {
     const { language, slug } = pageContext(pagePath);
     if (slug.startsWith("find-")) headers.set("X-Robots-Tag", "noindex, follow");
     if (["home", "qc-hub", "guides", "faq", "articles"].includes(slug) || editorialPages.has(slug)) {
-      return new Response(response.body, {status: response.status, headers});
+      const rendered = new Response(response.body, {status: response.status, headers});
+      return new HTMLRewriter().on('link[href="/readability-v2.css"]', {
+        element(link) { link.setAttribute("href", readabilityHref); }
+      }).transform(rendered);
     }
     const canonicalUrl = CANONICAL_ORIGIN + pagePath;
     const metadata = pageMetadata(language, slug);

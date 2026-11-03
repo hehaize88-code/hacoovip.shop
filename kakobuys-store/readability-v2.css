@@ -10,3 +10,7 @@
 .qc-decision dt{font-weight:700}.qc-decision dd{margin:.3rem 0 0;line-height:1.6}
 .article-list h2 a{font:inherit;line-height:inherit;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
 .home-page .hero-copy h1{font-size:clamp(2.65rem,6.2vw,6rem);line-height:1.02;overflow-wrap:anywhere}
+
+.home-page .qc-shortcuts{display:flex;max-width:100%;justify-content:flex-start}
+.home-page .qc-shortcuts a{white-space:normal;max-width:100%}
+@media(min-width:1101px){.home-page .hero-copy .source-note{position:relative;bottom:auto;margin-top:2.5rem;max-width:100%}}
