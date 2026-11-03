@@ -540,7 +540,7 @@ export default {
     headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
     const { language, slug } = pageContext(pagePath);
     if (slug.startsWith("find-")) headers.set("X-Robots-Tag", "noindex, follow");
-    if (slug === "home" || slug === "qc-hub" || editorialPages.has(slug)) {
+    if (["home", "qc-hub", "guides", "faq", "articles"].includes(slug) || editorialPages.has(slug)) {
       return new Response(response.body, {status: response.status, headers});
     }
     const canonicalUrl = CANONICAL_ORIGIN + pagePath;
