@@ -56,7 +56,7 @@ const worker = {
     const handlerRequest = handlerUrl.toString() === request.url ? request : new Request(handlerUrl.toString(),request);
     const response = await handler.fetch(handlerRequest, env, ctx);
     const headers = new Headers(response.headers);
-    headers.set("X-Site-Release", "2026-10-06-editorial");
+    headers.set("X-Site-Release", "2026-11-03-guides");
     headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
     headers.set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://www.cnfanshp.com; upgrade-insecure-requests");
     headers.set("X-Content-Type-Options", "nosniff");

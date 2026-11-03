@@ -74,7 +74,7 @@ test("publishes complete six-language articles with consistent metadata and navi
   const {default:worker}=await import(new URL("../dist/server/index.js",import.meta.url));
   const env={ASSETS:{fetch:async()=>new Response("Not found",{status:404})}};
   const ctx={waitUntil(){},passThroughOnException(){}};
-  assert.equal(editorial.length,11);
+  assert.equal(editorial.length,13);
   const locales=["en","de","fr","it","nl","ms"];
   for(const article of editorial){
     const english=article.bodies.en;
@@ -96,7 +96,7 @@ test("publishes complete six-language articles with consistent metadata and navi
       assert.ok(html.includes(`rel="canonical" href="https://superbuys.pro${path}"`),path);
       assert.ok(html.includes('property="og:type" content="article"'));
       assert.ok(html.includes(`"datePublished":"${article.date}"`));
-      assert.ok(html.includes('"dateModified":"2026-10-06"'));
+      assert.ok(html.includes(`"dateModified":"${article.modified}"`));
       assert.ok(html.includes(`href="#section-${body.sections.length}"`));
       for(const other of locales){
         const destination=`/${other==="en"?"":other+"/"}articles/${article.slug}/`;

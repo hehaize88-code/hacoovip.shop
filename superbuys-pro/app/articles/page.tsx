@@ -1,1 +1,6 @@
-import { SectionPage } from "../site"; import { makeMetadata } from "../seo"; export const metadata=makeMetadata("articles","en","Superbuy Guides: Shoes, Clothing, QC & Shipping","Read 11 practical Superbuy guides on shoes, clothing, jerseys, QC photos, warehouse decisions, fees and Shipping Expert parcel planning."); export default function Page(){return <SectionPage locale="en" section="articles"/>}
+import {SectionPage} from "../site";
+import {discoveryText, sectionTitles} from "../content";
+import {makeMetadata} from "../seo";
+
+export const metadata = makeMetadata("articles", "en", sectionTitles.en.articles, discoveryText.en.hubDescription);
+export default function Page(){return <SectionPage locale="en" section="articles"/>}

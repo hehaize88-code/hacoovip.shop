@@ -1,1 +1,6 @@
-import { SectionPage } from "../site"; import { makeMetadata } from "../seo"; export const metadata=makeMetadata("finds","en","Superbuy Finds 2026: 33 Product Records & QC Notes","Browse 33 distinct Superbuy spreadsheet finds with locally hosted images, dated CNY source prices, QC reminders and matching partner catalog links."); export default function Page(){return <SectionPage locale="en" section="finds"/>}
+import {SectionPage} from "../site";
+import {discoveryText} from "../content";
+import {makeMetadata} from "../seo";
+
+export const metadata = makeMetadata("finds", "en", discoveryText.en.findsTitle, discoveryText.en.findsDescription);
+export default function Page(){return <SectionPage locale="en" section="finds"/>}

@@ -13,7 +13,7 @@ export default {
     const isImage = /\.(?:webp|png|jpe?g|svg|ico)$/.test(url.pathname);
     headers.set("Cache-Control", isFingerprintAsset ? "public, max-age=31536000, immutable" : isImage ? "public, max-age=3600" : "public, max-age=0, must-revalidate");
     headers.set("CDN-Cache-Control", isFingerprintAsset ? "public, max-age=31536000, immutable" : isImage ? "public, max-age=3600" : "no-store");
-    headers.set("X-Site-Release", "2026-10-06-editorial");
+    headers.set("X-Site-Release", "2026-11-03-guides");
     return new Response(response.body, {status:response.status,statusText:response.statusText,headers});
   }
 };

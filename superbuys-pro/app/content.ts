@@ -68,10 +68,67 @@ export function articleBody(locale:Locale,slug:string):Body {
 }
 
 export const sectionTitles:Record<Locale,Record<string,string>>={
- en:{browse:"Browse Product Categories",finds:"Independent Product Finds","qc-check":"QC Photo Check",answers:"Superbuy Spreadsheet Answers",articles:"Superbuy Guides: Finds, QC & Shipping"},
- de:{browse:"Produktkategorien durchsuchen",finds:"Unabhängige Produktfunde","qc-check":"QC-Fotoprüfung",answers:"Antworten zur Superbuy-Tabelle",articles:"Superbuy-Ratgeber: Produktauswahl, QC und Versand"},
- fr:{browse:"Parcourir les catégories",finds:"Sélection de produits indépendante","qc-check":"Contrôle des photos QC",answers:"Réponses sur le tableur Superbuy",articles:"Guides Superbuy : produits, QC et expédition"},
- it:{browse:"Esplora le categorie",finds:"Prodotti selezionati in modo indipendente","qc-check":"Controllo foto QC",answers:"Risposte sullo spreadsheet Superbuy",articles:"Guide Superbuy: prodotti, QC e spedizione"},
- nl:{browse:"Productcategorieën bekijken",finds:"Onafhankelijke productvondsten","qc-check":"QC-fotocontrole",answers:"Antwoorden over de Superbuy-spreadsheet",articles:"Superbuy-gidsen: producten, QC en verzending"},
- ms:{browse:"Lihat kategori produk",finds:"Pilihan produk bebas","qc-check":"Semakan foto QC",answers:"Jawapan spreadsheet Superbuy",articles:"Panduan Superbuy: produk, QC dan penghantaran"},
+ en:{browse:"Browse Product Categories",finds:"Superbuy Finds by Category","qc-check":"QC Photo Check",answers:"Superbuy Spreadsheet Answers",articles:"Superbuy Guides: Finds, QC & Shipping"},
+ de:{browse:"Produktkategorien durchsuchen",finds:"Superbuy-Funde nach Kategorie","qc-check":"QC-Fotoprüfung",answers:"Antworten zur Superbuy-Tabelle",articles:"Superbuy-Ratgeber: Produktauswahl, QC und Versand"},
+ fr:{browse:"Parcourir les catégories",finds:"Trouvailles Superbuy par catégorie","qc-check":"Contrôle des photos QC",answers:"Réponses sur le tableur Superbuy",articles:"Guides Superbuy : produits, QC et expédition"},
+ it:{browse:"Esplora le categorie",finds:"Prodotti Superbuy per categoria","qc-check":"Controllo foto QC",answers:"Risposte sullo spreadsheet Superbuy",articles:"Guide Superbuy: prodotti, QC e spedizione"},
+ nl:{browse:"Productcategorieën bekijken",finds:"Superbuy-vondsten per categorie","qc-check":"QC-fotocontrole",answers:"Antwoorden over de Superbuy-spreadsheet",articles:"Superbuy-gidsen: producten, QC en verzending"},
+ ms:{browse:"Lihat kategori produk",finds:"Pilihan produk Superbuy mengikut kategori","qc-check":"Semakan foto QC",answers:"Jawapan spreadsheet Superbuy",articles:"Panduan Superbuy: produk, QC dan penghantaran"},
 };
+
+export const discoveryText = {
+  "en": {
+    "localFinds": "Browse finds on this site",
+    "fullCatalog": "Open the full catalog",
+    "findsTitle": "Superbuy Finds by Category",
+    "findsDescription": "Browse 33 Superbuy finds by category, from sneakers and jerseys to jackets. Open a product record for its photos, dated CNY price and listing link.",
+    "homeDescription": "Compare sneakers, clothing and jerseys, check warehouse photos, or estimate shipping before choosing a product.",
+    "hubDescription": "Explore Superbuy finds, QC and warehouse guides, compare shipping estimates for Canada and follow a parcel forwarding order from the seller to storage.",
+    "homeTitle": "Superbuy Spreadsheet 2026: Browse Finds and Compare Shipping"
+  },
+  "de": {
+    "localFinds": "Produkte hier entdecken",
+    "fullCatalog": "Gesamten Katalog öffnen",
+    "findsTitle": "Superbuy-Funde nach Kategorie",
+    "findsDescription": "Entdecke 33 Superbuy-Funde nach Kategorie, von Sneakern und Trikots bis zu Jacken. Jede Produktseite zeigt Fotos, einen datierten CNY-Preis und den Angebotslink.",
+    "homeDescription": "Vergleiche Sneaker, Kleidung und Trikots, prüfe Lagerfotos und schätze die Versandkosten vor deiner Bestellung.",
+    "hubDescription": "Entdecke Superbuy-Funde und Ratgeber zu QC und Lagerung. Vergleiche Versandkosten nach Kanada und verfolge eine Weiterleitung vom Verkäufer bis zur Einlagerung.",
+    "homeTitle": "Superbuy-Tabelle 2026: Produktfunde und Versandkosten"
+  },
+  "fr": {
+    "localFinds": "Parcourir les trouvailles du site",
+    "fullCatalog": "Ouvrir le catalogue complet",
+    "findsTitle": "Trouvailles Superbuy par catégorie",
+    "findsDescription": "Parcourez 33 trouvailles Superbuy par catégorie, des baskets aux maillots et aux vestes. Chaque fiche présente des photos, un prix daté en CNY et un lien vers l’offre.",
+    "homeDescription": "Comparez baskets, vêtements et maillots, consultez les photos de contrôle et estimez vos frais de port avant de choisir.",
+    "hubDescription": "Explorez les trouvailles et les guides Superbuy, comparez les frais de port vers le Canada et suivez un colis du vendeur jusqu’à son enregistrement à l’entrepôt.",
+    "homeTitle": "Tableur Superbuy 2026 : trouvailles et frais de port"
+  },
+  "it": {
+    "localFinds": "Sfoglia i prodotti del sito",
+    "fullCatalog": "Apri il catalogo completo",
+    "findsTitle": "Prodotti Superbuy per categoria",
+    "findsDescription": "Esplora 33 prodotti Superbuy per categoria, dalle sneakers alle maglie e alle giacche. Ogni scheda riporta foto, prezzo in CNY con data e link all’offerta.",
+    "homeDescription": "Confronta sneakers, abbigliamento e maglie, controlla le foto di magazzino e stima la spedizione prima di scegliere.",
+    "hubDescription": "Scopri i prodotti e le guide Superbuy su foto QC e deposito. Confronta i costi verso il Canada e segui un pacco dal venditore alla registrazione in magazzino.",
+    "homeTitle": "Spreadsheet Superbuy 2026: prodotti e costi di spedizione"
+  },
+  "nl": {
+    "localFinds": "Bekijk vondsten op deze site",
+    "fullCatalog": "Open de volledige catalogus",
+    "findsTitle": "Superbuy-vondsten per categorie",
+    "findsDescription": "Bekijk 33 Superbuy-vondsten per categorie, van sneakers en shirts tot jassen. Elke productpagina toont foto’s, een gedateerde prijs in CNY en de link naar de aanbieding.",
+    "homeDescription": "Vergelijk sneakers, kleding en shirts, bekijk magazijnfoto’s en schat de verzendkosten voordat je kiest.",
+    "hubDescription": "Ontdek Superbuy-vondsten en gidsen over QC en opslag, vergelijk verzendkosten naar Canada en volg een doorgestuurd pakket van verkoper tot magazijn.",
+    "homeTitle": "Superbuy Spreadsheet 2026: vondsten en verzendkosten"
+  },
+  "ms": {
+    "localFinds": "Lihat pilihan produk di sini",
+    "fullCatalog": "Buka katalog penuh",
+    "findsTitle": "Pilihan produk Superbuy mengikut kategori",
+    "findsDescription": "Terokai 33 pilihan produk Superbuy mengikut kategori, daripada kasut dan jersi hingga jaket. Setiap halaman memaparkan foto, harga CNY bertarikh dan pautan produk.",
+    "homeDescription": "Bandingkan kasut, pakaian dan jersi, semak foto gudang dan anggarkan kos penghantaran sebelum membuat pilihan.",
+    "hubDescription": "Terokai pilihan produk serta panduan QC dan simpanan Superbuy. Bandingkan kos penghantaran ke Kanada dan ikuti proses bungkusan dari penjual ke gudang.",
+    "homeTitle": "Spreadsheet Superbuy 2026: pilihan produk dan kos penghantaran"
+  }
+} as const;
