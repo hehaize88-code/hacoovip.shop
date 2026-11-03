@@ -65,7 +65,7 @@ const TRANSLATED_ATTRIBUTES = new Set([
   "placeholder",
   "title",
 ]);
-const HTML_CACHE_VERSION = "warehouse-usa-tracking-2026-10-05-v2";
+const HTML_CACHE_VERSION = "qc-links-shipping-2026-11-03";
 
 // Reuse the existing Google tag and measure useful navigation without search text.
 const NAVIGATION_EVENTS = `<script id="oopbuy-navigation-events">
@@ -75,6 +75,8 @@ document.addEventListener('click',function(event){
   var target=new URL(link.href,location.href),name;
   if(target.hostname==='www.cnfanshp.com'){
     name=/^\\/AllProducts\\/[^/]+\\.html$/.test(target.pathname)?'product_click':'catalog_click';
+  }else if(target.origin==='https://oopbuy.com'&&target.pathname==='/estimation'){
+    name='shipping_estimator_click';
   }else if(target.origin===location.origin&&/^(?:\\/(?:de|es|nl))?\\/(?:articles|guides)\\/[^/]+\\/$/.test(target.pathname)){
     name='guide_click';
   }
