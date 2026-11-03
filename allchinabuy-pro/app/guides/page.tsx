@@ -7,7 +7,7 @@ import { PlatformStatus } from "@/components/PlatformStatus";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "AllChinaBuy Guides: Tracking, QC, Refunds and Shipping",
-  description: "Read 21 AllChinaBuy guides covering maintenance, tracking, returns, shoe sizing, QC photos, shipping costs and product discovery.",
+  description: "Find original listing links, look up QC photos and compare shipping estimates. Browse AllChinaBuy guides on sizing, order records and returns.",
   path: "/guides",
   image: socialCard("guides", "AllChinaBuy Pro fact-checked guides share card"),
 });
@@ -36,7 +36,7 @@ export default function GuidesPage() {
         <p>Find help with product discovery, QC photos, shoe measurements, tracking and after-sales records. Each guide separates dated platform evidence from practical editorial advice.</p>
         <ul className="page-hero__facts">
           <li>Sources and review dates identified</li>
-          <li>Latest editorial update October 5, 2026</li>
+          <li>Latest editorial update November 3, 2026</li>
           <li>No invented fees or delivery promises</li>
         </ul>
       </section>

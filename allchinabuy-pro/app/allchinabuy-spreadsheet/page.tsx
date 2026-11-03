@@ -34,13 +34,13 @@ export default function SpreadsheetPage() {
         <SearchBox />
         <div className="page-hero__actions">
           <Link className="button button--lime" href="/finds">Search the finds <span aria-hidden="true">→</span></Link>
-          <Link className="button button--outline-dark" href="/guides/how-a-china-shopping-directory-works">How the directory works</Link>
+          <Link className="button button--outline-dark" href="/guides/allchinabuy-original-product-link/">Recover an original product link</Link>
         </div>
       </section>
       <PlatformStatus />
       <section className="content-section">
-        <div className="section-heading"><div><p className="eyebrow">Start with a category</p><h2>Find a useful product starting point.</h2></div></div>
-        <div className="localized-grid">{categories.map(category => <a key={category.slug} href={category.targetUrl} rel="nofollow noopener noreferrer" target="_blank">{category.title}</a>)}</div>
+        <div className="section-heading"><div><p className="eyebrow">Start with a category</p><h2>Browse shoes, clothing and accessories</h2></div></div>
+        <div className="localized-grid">{categories.map(category => <a key={category.slug} href={`/collections/${category.slug}/`}>{category.title}</a>)}</div>
         <div className="product-grid spreadsheet-products">{products.slice(0, 6).map(product => <ProductCard key={product.slug} product={product} />)}</div>
       </section>
       <section className="content-section">

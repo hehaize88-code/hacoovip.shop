@@ -156,7 +156,7 @@ def publish():
         for locale in ["en", *LOCALES]:
             node = ET.SubElement(sitemap, f"{{{ns}}}url")
             ET.SubElement(node, f"{{{ns}}}loc").text = SITE + ("/" + locale if locale != "en" else "") + route
-            modified = "2026-10-05T00:00:00.000Z" if locale != "en" else dates.get((SITE + route).rstrip("/"))
+            modified = dates.get((SITE + route).rstrip("/"))
             if modified: ET.SubElement(node, f"{{{ns}}}lastmod").text = modified
             for code in ["en", *LOCALES, "x-default"]:
                 ET.SubElement(node, f"{{{alt}}}link", {"rel": "alternate", "hreflang": code, "href": SITE + ("/" + code if code in LOCALES else "") + route})

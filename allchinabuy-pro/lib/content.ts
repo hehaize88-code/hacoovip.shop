@@ -137,7 +137,7 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     slug: "neutral-mesh-runner",
-    title: "Shoes-60",
+    title: "Grey low-top lace-up sneakers",
     sourceTitle: "shoes-60",
     itemId: "7721490300",
     mainProductId: "6045",
@@ -217,7 +217,7 @@ export const products: Product[] = [
   },
   {
     slug: "everyday-training-shoe",
-    title: "Shoes-59",
+    title: "Yellow and silver mesh sneakers",
     sourceTitle: "shoes-59",
     itemId: "7718490449",
     mainProductId: "6044",

@@ -5,7 +5,7 @@ import { categories, products, SITE_URL } from "@/lib/content";
 import { buildPageMetadata, socialCard } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Independent China Shopping Finds",
+  title: "AllChinaBuy Product Finds by Category",
   description:
     "Browse source-matched product images and item IDs, then open each exact corresponding product in the main catalogue.",
   path: "/finds",
@@ -35,7 +35,7 @@ export default function FindsPage() {
       />
       <section className="page-hero page-hero--plain">
         <p className="eyebrow">Independent discovery index</p>
-        <h1>Finds that explain what to check next.</h1>
+        <h1>Browse AllChinaBuy finds by category</h1>
         <p>
           These are research routes, not product endorsements. Filter the index,
           read the checks, then confirm current information on the destination page.

@@ -1,3 +1,4 @@
+import novemberGuides from "./november-guides.json";
 import { octoberGuides } from "./october-guides";
 
 export type GuideSource = {
@@ -71,6 +72,7 @@ const cbpInternetPurchases: GuideSource = {
 };
 
 export const guides: Guide[] = [
+  ...novemberGuides,
   ...octoberGuides,
   {
     slug: "allchinabuy-shipping-to-usa",
@@ -191,14 +193,14 @@ export const guides: Guide[] = [
   },
   {
     slug: "allchinabuy-service-payment-fees-before-checkout",
-    title: "AllChinaBuy Fees 2026: Service & Payment Cost Checklist",
+    title: "AllChinaBuy Fees Explained – Item Price, Shipping and Payment Costs",
     eyebrow: "Fee verification guide",
     description:
-      "Verify AllChinaBuy product, domestic-delivery, service, payment and international-shipping amounts at the stage where each becomes visible—without relying on stale fee tables.",
+      "See which charges appear at item checkout, at the warehouse and on the parcel quote. Use the table to reconcile your order with the final payment.",
     readingTime: "11 min read",
     updated: "August 14, 2026",
     publishedDate: "2026-08-14",
-    modifiedDate: "2026-08-14",
+    modifiedDate: "2026-11-03",
     hideSourceLinks: true,
     keyFacts: [
       "A product-stage total and a later international-parcel total answer different questions and should never be merged into one undocumented number.",
@@ -607,7 +609,7 @@ export const guides: Guide[] = [
       "Review AllChinaBuy QC photos in six steps: confirm size and colour, request useful measurements, spot visible defects and decide before shipping.",
     readingTime: "6 min read",
     updated: REVIEWED,
-    modifiedDate: "2026-10-05",
+    modifiedDate: "2026-11-03",
     evidenceNote: "The public inspection and photo-service descriptions below were recorded on July 17, 2026. On October 5 we added worked QC examples and links to sizing and after-sales guidance. The official homepage now shows maintenance; current photo services, fees and deadlines are not confirmed.",
     keyFacts: [
       "Public order text describes standard checks for quantity, colour and size with inspection photos.",
@@ -678,7 +680,7 @@ export const guides: Guide[] = [
       },
     ],
     sources: [orderConfirmation, goodsDetail],
-    relatedSlugs: ["allchinabuy-detailed-photos", "allchinabuy-original-packaging", "allchinabuy-used-items"],
+    relatedSlugs: ["allchinabuy-qc-photos-by-product-link", "allchinabuy-detailed-photos", "allchinabuy-original-packaging", "allchinabuy-used-items"],
   },
   {
     slug: "shipping-cost-planning",
@@ -688,7 +690,7 @@ export const guides: Guide[] = [
       "A fact-based budgeting method using the fields and warnings in AllChinaBuy’s public shipping calculator.",
     readingTime: "5 min read",
     updated: REVIEWED,
-    modifiedDate: "2026-10-05",
+    modifiedDate: "2026-11-03",
     keyFacts: [
       "The calculator asks for destination, category, warehouse, packed dimensions and weight.",
       "Its public formula converts centimetre dimensions to volume weight with L × W × H ÷ 5,000.",
@@ -752,7 +754,7 @@ export const guides: Guide[] = [
       },
     ],
     sources: [freightCalculator, orderConfirmation],
-    relatedSlugs: ["allchinabuy-shipping-to-usa", "allchinabuy-volumetric-weight", "allchinabuy-shipping-lines"],
+    relatedSlugs: ["allchinabuy-shipping-expert-vs-calculator", "allchinabuy-shipping-to-usa", "allchinabuy-volumetric-weight", "allchinabuy-shipping-lines"],
   },
   {
     slug: "product-link-safety",
@@ -762,6 +764,7 @@ export const guides: Guide[] = [
       "How to preserve the source, recognize live eligibility and avoid treating a converted product link as proof of stock, shipping or seller claims.",
     readingTime: "5 min read",
     updated: REVIEWED,
+    modifiedDate: "2026-11-03",
     keyFacts: [
       "A live product can be unavailable, restricted or ineligible even if an old converted link still exists.",
       "The warehouse’s final product classification can override a planning category.",
@@ -819,7 +822,7 @@ export const guides: Guide[] = [
       },
     ],
     sources: [goodsDetail, freightCalculator, orderConfirmation],
-    relatedSlugs: ["allchinabuy-shipping-restrictions", "allchinabuy-used-items", "allchinabuy-checkout-costs"],
+    relatedSlugs: ["allchinabuy-original-product-link", "allchinabuy-shipping-restrictions", "allchinabuy-used-items", "allchinabuy-checkout-costs"],
   },
   {
     slug: "allchinabuy-warehouse-storage",
@@ -974,6 +977,7 @@ export const guides: Guide[] = [
       "A practical decision guide based on AllChinaBuy’s public inbound-packing description and the shipping cost created by extra weight and volume.",
     readingTime: "5 min read",
     updated: REVIEWED,
+    modifiedDate: "2026-11-03",
     keyFacts: [
       "Without the inbound-original-packing service, the domestic courier box is removed by default in the public description.",
       "Keeping it means the warehouse weighs and measures the item with that courier box.",
@@ -1037,7 +1041,7 @@ export const guides: Guide[] = [
       },
     ],
     sources: [orderConfirmation, freightCalculator],
-    relatedSlugs: ["allchinabuy-volumetric-weight", "shipping-cost-planning", "qc-photo-checklist"],
+    relatedSlugs: ["allchinabuy-shipping-expert-vs-calculator", "allchinabuy-volumetric-weight", "shipping-cost-planning", "qc-photo-checklist"],
   },
   {
     slug: "allchinabuy-shipping-restrictions",

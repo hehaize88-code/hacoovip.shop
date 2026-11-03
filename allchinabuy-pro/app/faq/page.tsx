@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -34,18 +35,23 @@ export default function FaqPage() {
           url: faqUrl,
           name: faqTitle,
           description: faqDescription,
-          dateModified: "2026-07-18",
+          dateModified: "2026-11-03",
           isPartOf: { "@id": `${SITE_URL}/#website` },
         }}
       />
 
       <section className="page-hero page-hero--plain faq-page__hero">
         <p className="eyebrow">Fact-checked FAQ</p>
-        <h1>30 answers, tied to live sources.</h1>
+        <h1>AllChinaBuy FAQ on orders, QC photos and shipping</h1>
         <p>
           Practical answers about checkout, QC photos, packing, storage, shipping and
           restricted goods—checked against AllChinaBuy&apos;s public English mobile pages.
         </p>
+        <nav className="research-links" aria-label="Product research">
+          <Link href="/guides/allchinabuy-website-status-maintenance/">Website status and order support</Link>
+          <Link href="/guides/allchinabuy-qc-photos-by-product-link/">Find QC photos</Link>
+          <Link href="/guides/allchinabuy-shipping-expert-vs-calculator/">Compare parcel weights</Link>
+        </nav>
         <ul className="page-hero__facts" aria-label="FAQ research summary">
           <li>30 researched questions</li>
           <li>3 official public sources</li>

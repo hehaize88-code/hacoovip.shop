@@ -7,11 +7,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "AllChinaBuy Finds, QC Photos & Buying Guides",
+    default: "AllChinaBuy Finds, Clothing, Shoes and QC Photos",
     template: "%s | AllChinaBuy Pro",
   },
   description:
-      "Explore AllChinaBuy product finds, QC photo checks, tracking help and shipping guides, with a dated maintenance update and clear evidence limits.",
+      "Browse clothing and shoes, find original product links, and check QC photos before you compare shipping costs.",
   keywords: [
     "AllChinaBuy fees",
     "AllChinaBuy QC photos",
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "AllChinaBuy Pro",
-    title: "AllChinaBuy Finds, QC Photos & Buying Guides",
-    description: "Product finds, QC photo checks, tracking and shipping guides, plus the dated official maintenance notice.",
+    title: "AllChinaBuy Finds, Clothing, Shoes and QC Photos",
+    description: "Browse clothing and shoes, find original product links, and check QC photos before you compare shipping costs.",
     images: [
       {
         url: "/images/social/home.webp",
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AllChinaBuy Finds, QC Photos & Buying Guides",
-    description: "Product finds, QC photo checks, tracking and shipping guides, plus the dated official maintenance notice.",
+    title: "AllChinaBuy Finds, Clothing, Shoes and QC Photos",
+    description: "Browse clothing and shoes, find original product links, and check QC photos before you compare shipping costs.",
     images: ["/images/social/home.webp"],
   },
   robots: { index: true, follow: true },

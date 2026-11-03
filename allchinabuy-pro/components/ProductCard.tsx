@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import type { Product } from "@/lib/content";
 
 export function ProductCard({ product, compact = false }: { product: Product; compact?: boolean }) {
@@ -37,6 +38,9 @@ export function ProductCard({ product, compact = false }: { product: Product; co
           </a>
         </h3>
         {!compact && <p>{product.short}</p>}
+        <Link className="product-research-link" href={product.categorySlug === "shoes" ? "/guides/allchinabuy-shoe-sizing-insole-qc/" : "/guides/allchinabuy-qc-photos-by-product-link/"}>
+          {product.categorySlug === "shoes" ? "Check shoe sizing" : "Find QC photos"}
+        </Link>
       </div>
     </article>
   );

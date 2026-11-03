@@ -76,6 +76,26 @@ export default async function GuidePage({ params }: PageProps) {
           <p>{guide.description}</p>
           <div className="article-meta"><span>{guide.readingTime}</span><span>Updated {guide.modifiedDate ?? guide.updated}</span><span>AllChinaBuy Pro Editorial</span></div>
         </header>
+        {guide.slug === "qc-photo-checklist" && (
+          <nav className="research-links guide-shortcuts" aria-label="QC photo options">
+            <Link href="/guides/allchinabuy-qc-photos-by-product-link/">I need to find the photos</Link>
+            <a href="#section-1">I already have photos to check</a>
+          </nav>
+        )}
+        {guide.slug === "allchinabuy-service-payment-fees-before-checkout" && (
+          <section className="prose-shell fee-summary" aria-label="Fees by order stage">
+            <h2>What do you pay, and when?</h2>
+            <div className="table-wrap"><table>
+              <thead><tr><th>Stage</th><th>Charge to check</th><th>Record to keep</th></tr></thead>
+              <tbody>
+                <tr><td>Item checkout</td><td>Item price, quantity and seller delivery within China.</td><td>Order confirmation and payment receipt.</td></tr>
+                <tr><td>Warehouse</td><td>Any optional photos, packing or handling you requested.</td><td>Service description and the amount you authorised.</td></tr>
+                <tr><td>International parcel</td><td>Route quote, billable weight and any later adjustment.</td><td>Parcel quote, final charge and any credit.</td></tr>
+              </tbody>
+            </table></div>
+            <Link className="text-link" href="/guides/shipping-cost-planning/">Compare the shipping estimate</Link>
+          </section>
+        )}
         {guide.slug !== "allchinabuy-website-status-maintenance" && <PlatformStatus />}
         <div className="article-figure-wrap">
           <figure className="article-figure">
@@ -133,7 +153,7 @@ export default async function GuidePage({ params }: PageProps) {
             <ol>
               {guide.sources.map((source) => (
                 <li key={`${source.title}-${source.url}`}>
-                  <strong>{source.title}</strong>
+                  <strong>{guide.hideSourceLinks ? source.title : <a href={source.url} rel="noreferrer">{source.title}</a>}</strong>
                   <span>{source.scope}</span>
                 </li>
               ))}

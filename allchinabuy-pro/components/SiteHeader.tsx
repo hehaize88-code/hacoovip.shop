@@ -4,18 +4,11 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { categories } from "@/lib/content";
 import {
   defaultChromeContent,
   localeContent,
   localeFromPathname,
 } from "@/lib/locales";
-
-const categoryTarget = (slug: string) => {
-  const category = categories.find((item) => item.slug === slug);
-  if (!category) throw new Error(`Missing navigation category: ${slug}`);
-  return category.targetUrl;
-};
 
 const languages = [
   ["EN", "/"],
@@ -35,10 +28,11 @@ export function SiteHeader() {
   const languageHref = (code: string) => `${code === "EN" ? "" : `/${code.toLowerCase()}`}${contentPath === "/" ? "/" : `${contentPath.replace(/\/$/, "")}/`}`;
   const nav = [
     { label: chrome.nav.finds, href: "/finds" },
-    { label: chrome.nav.shoes, href: categoryTarget("shoes"), external: true },
-    { label: chrome.nav.clothing, href: categoryTarget("clothing"), external: true },
-    { label: chrome.nav.accessories, href: categoryTarget("accessories"), external: true },
-    { label: chrome.nav.guides, href: "/guides" },
+    { label: "Spreadsheet", href: "/allchinabuy-spreadsheet/" },
+    { label: "QC", href: "/guides/qc-photo-checklist/" },
+    { label: "Shipping", href: "/guides/shipping-cost-planning/" },
+    { label: "How to buy", href: "/guides/how-a-china-shopping-directory-works/" },
+    { label: "Articles", href: "/guides/" },
     { label: chrome.nav.faq, href: "/faq" },
   ];
 
@@ -58,9 +52,7 @@ export function SiteHeader() {
             <span className="brand__tagline">{chrome.tagline}</span>
           </Link>
           <nav className="desktop-nav" aria-label={chrome.primaryNavigation}>
-            {nav.map((item) => item.external ? (
-              <a key={item.href} href={item.href} target="_blank" rel="nofollow noopener noreferrer">{item.label}</a>
-            ) : (
+            {nav.map((item) => (
               <Link key={item.href} href={item.href}>{item.label}</Link>
             ))}
           </nav>
@@ -77,9 +69,7 @@ export function SiteHeader() {
           <details className="mobile-menu">
             <summary aria-label={chrome.openMenu}><span></span><span></span><span></span></summary>
             <nav aria-label={chrome.primaryNavigation}>
-              {nav.map((item) => item.external ? (
-                <a key={item.href} href={item.href} target="_blank" rel="nofollow noopener noreferrer">{item.label}</a>
-              ) : (
+              {nav.map((item) => (
                 <Link key={item.href} href={item.href}>{item.label}</Link>
               ))}
               <div className="mobile-menu__languages">

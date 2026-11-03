@@ -38,8 +38,8 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-copy">
           <p className="eyebrow">Independent directory · Clearer routes</p>
-          <h1>AllChinaBuy Finds, QC Photos and Buying Guides</h1>
-          <p className="hero-copy__intro">Browse product categories, compare QC evidence and understand order, tracking and shipping records.</p>
+          <h1>AllChinaBuy Finds, Clothing, Shoes and QC Photos</h1>
+          <p className="hero-copy__intro">Browse clothing and shoes, find original product links, and check QC photos before you compare shipping costs.</p>
           <SearchBox />
           <div className="hero-actions">
             <a
@@ -52,6 +52,11 @@ export default function Home() {
             </a>
             <Link href="/allchinabuy-spreadsheet/" className="button button--outline">Spreadsheet and finds</Link>
           </div>
+          <nav className="research-links" aria-label="Product research">
+            <Link href="/collections/clothing/">Clothing finds</Link>
+            <Link href="/collections/shoes/">Shoe finds</Link>
+            <Link href="/guides/allchinabuy-qc-photos-by-product-link/">Find QC photos</Link>
+          </nav>
           <ul className="trust-chips" aria-label="Directory principles">
             <li><span aria-hidden="true">✓</span> Routes checked</li>
             <li><span aria-hidden="true">▦</span> Clear categories</li>

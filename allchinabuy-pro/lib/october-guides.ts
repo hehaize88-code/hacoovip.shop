@@ -3,9 +3,9 @@ import type { Guide } from "./guides";
 const maintenanceSource = {
   title: "AllChinaBuy public homepage — maintenance notice",
   url: "https://www.allchinabuy.com/",
-  scope: "Observed October 5, 2026. The notice describes maintenance following a hacker attack and directs order enquiries to support. It gives no confirmed reopening date or order-specific outcome.",
+  scope: "Checked again on November 3, 2026. The notice describes maintenance following a hacker attack and directs order enquiries to support. It gives no confirmed reopening date or order-specific outcome.",
 };
-const evidenceNote = "The official homepage maintenance notice was checked on October 5, 2026. The workflows and examples below are editorial guidance, not confirmation that account functions are currently available. Historical service descriptions are identified as historical; current fees, deadlines and individual order outcomes have not been verified.";
+const evidenceNote = "The official homepage maintenance notice was checked again on November 3, 2026. The workflows and examples below are editorial guidance, not confirmation that account functions are currently available. Historical service descriptions are identified as historical; current fees, deadlines and individual order outcomes have not been verified.";
 const base = {
   updated: "October 5, 2026", publishedDate: "2026-10-05", modifiedDate: "2026-10-05",
   readingTime: "9 min read", hideSourceLinks: true, evidenceNote,
@@ -14,19 +14,21 @@ const base = {
 export const octoberGuides: Guide[] = [
   {
     ...base,
+    modifiedDate: "2026-11-03",
     slug: "allchinabuy-website-status-maintenance",
+    hideSourceLinks: false,
     title: "AllChinaBuy Website Status: Maintenance and Order Support",
     eyebrow: "Platform status",
     description: "Read the confirmed AllChinaBuy maintenance notice, distinguish website access from order status, and prepare a clear support request with dated evidence.",
     keyFacts: [
-      "The official homepage displayed a maintenance notice when checked on October 5, 2026.",
+      "The official homepage still displayed its maintenance notice on November 3, 2026. The notice gave no reopening date.",
       "The notice does not establish a reopening date, permanent closure or the status of an individual order.",
       "A useful support request identifies the order, payment, last confirmed event and the specific action requested.",
     ],
     figure: { src: "/images/guides/allchinabuy-workflow.svg", alt: "Editorial diagram of the product, warehouse and parcel stages", caption: "Use the order stage to organise evidence. This diagram is an explanatory model, not a live service-status monitor.", sourceUrl: "" },
     sections: [
       { title: "What the official notice actually confirms", paragraphs: [
-        "If AllChinaBuy is not working when you try to open it, start by identifying exactly what the official website says. On October 5, 2026, the public homepage displayed a maintenance notice. It attributed the maintenance and upgrade process to an ongoing hacker attack and directed users with order questions to customer support. That is the verified platform statement available for this update. It is a statement about the website; it is not a record of your purchase, stored item or international parcel.",
+        "If AllChinaBuy is not working when you try to open it, start by identifying exactly what the official website says. We saw the notice on October 5 and checked it again on November 3, 2026. It attributed the maintenance and upgrade process to an ongoing hacker attack and directed users with order questions to customer support. That is the verified platform statement available for this update. It is a statement about the website; it is not a record of your purchase, stored item or international parcel.",
         "The notice did not give a confirmed reopening date or explain the outcome of every pending order. It also did not, by itself, establish permanent closure. A third-party headline may make a stronger claim, but a stronger headline is not stronger evidence. Keep separate notes for what the official notice confirms, what your own account or carrier record confirms, and what remains unknown. This separation prevents a general access problem from becoming an unsupported conclusion about money or goods.",
       ] },
       { title: "Separate website access, account access and parcel movement", paragraphs: [
@@ -63,6 +65,7 @@ export const octoberGuides: Guide[] = [
   },
   {
     ...base,
+    modifiedDate: "2026-11-03",
     slug: "allchinabuy-tracking-not-updating",
     title: "AllChinaBuy Tracking Not Updating: Status and Next Steps",
     eyebrow: "Parcel tracking",
@@ -103,7 +106,7 @@ export const octoberGuides: Guide[] = [
         "Suppose a new event later appears for parcel B with an earlier timestamp. Preserve both the event time and the date on which you first saw it. That lets you distinguish delayed reporting from the date of physical movement. If parcel A receives a different last-mile number, save the official connection between the two numbers before using the new one. Add these updates to the existing record rather than erasing the previous uncertainty. This fictional comparison is a diagnostic exercise, not a description of current AllChinaBuy parcel performance. Its purpose is to improve the question you send to the responsible party.",
       ] },
       { title: "Account for the current maintenance notice", paragraphs: [
-        "The AllChinaBuy public homepage showed a maintenance notice when checked on October 5, 2026. That notice is relevant if you cannot retrieve your account's parcel details, but it does not independently explain a carrier's tracking pause. Use numbers and receipts you already possess, and request the missing record through the support route identified by the official service. Do not infer that every parcel is lost or that every parcel is still moving because of a general website announcement.",
+        "The AllChinaBuy public homepage still showed its maintenance notice on November 3, 2026. That notice is relevant if you cannot retrieve your account's parcel details, but it does not independently explain a carrier's tracking pause. Use numbers and receipts you already possess, and request the missing record through the support route identified by the official service. Do not infer that every parcel is lost or that every parcel is still moving because of a general website announcement.",
         "When the account becomes accessible, reconcile the displayed parcel contents, route, payment and tracking numbers with your saved file. Add a resolution only when evidence supports it: a carrier acceptance, a delivery record, a confirmed return, or a refund transaction. If the case remains open, retain a dated next action rather than repeatedly refreshing unrelated trackers. This approach makes AllChinaBuy tracking more useful because it turns a vague lack of updates into a specific question about custody, information or delivery.",
       ] },
     ],
@@ -112,6 +115,7 @@ export const octoberGuides: Guide[] = [
   },
   {
     ...base,
+    modifiedDate: "2026-11-03",
     slug: "allchinabuy-return-refund-stages",
     title: "AllChinaBuy Returns and Refunds: Order and Parcel Stages",
     eyebrow: "After-sales records",
@@ -119,13 +123,13 @@ export const octoberGuides: Guide[] = [
     keyFacts: [
       "Cancellation, seller return, parcel investigation and completed refund are different events.",
       "Eligibility, deductions, deadlines and payment destinations must be confirmed for the actual transaction.",
-      "The October 5 maintenance notice provides no order-specific refund promise or completion date.",
+      "The notice checked on November 3 gives no refund decision or completion date for an individual order.",
     ],
     figure: { src: "/images/guides/checkout-ledger.svg", alt: "Editorial ledger separating product, service and shipping amounts", caption: "Keep each charge and each credit on its own row; an example ledger is not a statement of current refund policy.", sourceUrl: "" },
     sections: [
       { title: "Identify which process you need", paragraphs: [
         "Searching for an AllChinaBuy refund can describe several different problems. You may want to cancel an unpurchased item, return goods held in a warehouse, correct an amount, investigate a parcel, or understand a credit already shown in your account. These processes need different evidence and may involve different parties. Begin with the last confirmed stage, the specific issue and the remedy you want. A single word such as ‘refund’ is not enough to show what happened.",
-        "This guide does not publish a universal AllChinaBuy refund policy or promise that a request will be accepted. The public homepage showed a maintenance notice on October 5, 2026, and the current account-only rules could not be independently verified. The practical method below is designed to organise your records and questions. Keep the seller's terms, the platform transaction and your payment provider's process separate instead of assuming that one automatically determines the others.",
+        "This guide does not publish a universal AllChinaBuy refund policy or promise that a request will be accepted. The public homepage still showed its maintenance notice on November 3, 2026. Ask support which rules apply to the transaction you have documented. The practical method below is designed to organise your records and questions. Keep the seller's terms, the platform transaction and your payment provider's process separate instead of assuming that one automatically determines the others.",
       ] },
       { title: "Before seller purchase: confirm whether cancellation is possible", paragraphs: [
         "A payment receipt confirms a payment event, not necessarily that an agent has completed the seller purchase. If you want to cancel, ask whether the purchase has been placed and whether the order can still be stopped. Save the order reference, selected option, quantity, amount and date. If an order screen is available, preserve its exact status and the cancellation options displayed. Do not treat a disabled button as proof that no support process exists, or a visible button as proof that the cancellation has succeeded.",

@@ -1,0 +1,266 @@
+[
+  {
+    "slug": "allchinabuy-original-product-link",
+    "title": "How to Find the Original Taobao, Weidian or 1688 Link from AllChinaBuy",
+    "eyebrow": "Product links",
+    "description": "Recover the marketplace and item ID inside an old AllChinaBuy link, work through three real examples and check the seller and options before using the listing.",
+    "keyFacts": [
+      "Keep the complete AllChinaBuy URL before removing tracking parameters or shortening the address.",
+      "A marketplace name and item ID identify a listing. The seller, size, colour and pack still need checking.",
+      "The three worked examples identify destinations embedded in links shared in November 2024. Current stock and purchasing access require separate checks."
+    ],
+    "sections": [
+      {
+        "title": "Read the two addresses inside a product link",
+        "paragraphs": [
+          "Suppose a spreadsheet row says “grey sweats” and its button opens AllChinaBuy. You want the source listing because the button no longer shows the product or because you want to check the seller's options. Start by copying the button's link address into plain text. The words printed on the button can differ from the address underneath. Preserve that full address alongside the row's description before changing anything. Use only a public product link for this exercise. A receipt, cart or account page may carry private information.",
+          "In older links the outer address can look like www.allchinabuy.com/en/page/buy/ followed by a question mark. Look for a parameter named url. Its value may start with https%3A%2F%2F. Those percent signs represent characters inside a second address. Decoding one layer turns %3A into a colon, %2F into a slash, %3F into a question mark and %3D into an equals sign. In the examples below, decoding the value reveals a marketplace domain and its item identifier.",
+          "Keep the outer query and the inner query separate. An ampersand before partnercode in the outer address belongs to the AllChinaBuy link. An encoded %26 inside the url value can separate fields belonging to the seller's link. Removing everything after the first equals sign, or decoding the whole string and then splitting at every ampersand, can discard part of the listing address. If your browser or a link viewer already shows a readable marketplace address, copy that version and retain the original alongside it."
+        ]
+      },
+      {
+        "title": "Weidian example — find the item number inside the wrapper",
+        "paragraphs": [
+          "A buyer's public post dated 24 November 2024 includes an AllChinaBuy link for grey sweatpants. Inside its url field is the text weidian.com%2Fitem.html%3FitemId%3D5577434850. Decoding it gives https://weidian.com/item.html?itemId=5577434850. The original also carries tracking fields following the item number. The shorter address here preserves the marketplace, the item page and the exact identifier found in the post. The post's description explains why someone saved the link. It does not establish what the seller offers today.",
+          "Read the result in three parts. The host is weidian.com, the path is /item.html and the field containing the product number is itemId. Copy all ten digits as text. Other long numbers in the original occur in tracking fields. Picking the longest number, the last number, or the number beside a familiar seller name can send your research to a different record. If you want to compare two spreadsheet rows, make a column for the marketplace and another for the item ID.",
+          "Opening the recovered listing is a separate check. Compare the seller name, product images and choices with the old row. A match on the number is meaningful even if the page now requests a login, but it tells you only which destination the old link named. If the live description or available options have changed, record what changed and when you saw it. Do not replace the old evidence with a guess based on a similar photograph."
+        ]
+      },
+      {
+        "title": "Taobao example — separate the listing from its options",
+        "paragraphs": [
+          "The same dated post includes a shirt with a Taobao address inside the AllChinaBuy wrapper. The identifying part decodes to https://item.taobao.com/item.htm?id=673039534547. Notice the path ends in item.htm and the field is id. Preserve that combination. The longer address in the original post includes a tracking field after the ID. The marketplace and item number are enough to reconstruct this example's listing address, but the shorter version contains no evidence of the size or colour the buyer selected.",
+          "Imagine your saved spreadsheet describes a black shirt in medium. Record those words separately from 673039534547. If the live page opens with a different colour selected, compare the option labels, seller and product images before deciding whether medium is still offered. An option code can carry information worth keeping even when you do not know its meaning. Save the full source URL first and use a cleaned copy for comparison. If you only have a screenshot of the shirt, you have a visual lead rather than a verified item number."
+        ]
+      },
+      {
+        "title": "1688 example — recover the offer and check the unit",
+        "paragraphs": [
+          "A third entry in the post uses an AllChinaBuy link containing detail.1688.com%2Foffer%2F639180864021.html. Here the number is part of the path. The readable address is https://detail.1688.com/offer/639180864021.html. There is no need to add a Taobao id query or change the domain. Doing either would change the destination. This example is useful when a link checker asks for an item number: the number to compare is 639180864021 and the marketplace to record with it is 1688.",
+          "Returning to the offer still leaves a practical question. What does one unit in your old row represent? It might describe one garment, a named set or one selected design. Check the unit, pack description, option and quantity on the live offer before comparing prices. If you cannot see them, keep the purchase details unresolved. A saved screenshot showing one photographed jersey does not establish the quantity included in a current offer. The original link is evidence of the listing relationship, even when those commercial details remain unknown."
+        ]
+      },
+      {
+        "title": "When the link only shows a short code, a shop or a login",
+        "paragraphs": [
+          "Some shared links contain an opaque code rather than a readable marketplace address. You cannot calculate a Taobao or Weidian item ID from an arbitrary short code. If a trusted public share link still opens, follow its ordinary redirect and inspect the destination shown by the browser. If it stops at a maintenance notice, look for the original seller URL in the same spreadsheet row, the author's original post or a previously saved public product screenshot that includes the address. A matching product name alone is a reason to investigate.",
+          "Someone searching in German for “AllChinaBuy Link zum Hersteller” may actually want the seller's original listing. Recovering a shop page can help locate the seller, but a shop can list many similar products. A marketplace seller may also be a reseller. If the question is who manufactured the item, a recovered URL by itself does not answer it. Record whether you have found a product page, a storefront or only an agent page. Stop at the last level you can verify."
+        ]
+      },
+      {
+        "title": "Carry the right evidence into the next step",
+        "paragraphs": [
+          "For each recovered row, save the original wrapper, the extracted marketplace address, its item ID, the selected option if known and the date of the check. In a separate note, describe what the current page actually showed. If two rows share a number but their marketplace domains differ, keep them separate. If they share a marketplace and number but list different sizes, keep the shared listing and both option notes. This avoids losing useful distinctions when several entries look identical in a shortlist.",
+          "For a photo lookup, use the marketplace product link and compare any result with the recorded option. A previous warehouse image may help you decide which detail deserves a closer look. For an order issue, preserve the order reference privately and use the platform's official support route. A public item number identifies a listing, while an order reference identifies a transaction. Recovering an old link can solve the first problem even if the second still needs an answer from the platform.",
+          "Here is a quick test you can do before sharing the recovered link. Put the long version and your shortened version side by side. Underline the marketplace name in each one and circle the item number. Check that the shorter version still has a product path, then read any fields you removed. If one names a size, colour or SKU, keep a copy with that field and label the shorter address as listing-level only. Send the public product address when asking about the listing. Leave the order number and other private records out of that message."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Buyer's original post, 24 November 2024",
+        "url": "https://www.reddit.com/r/FashionReps/comments/1gyin9z",
+        "scope": "Historical AllChinaBuy addresses with embedded marketplace links for the three examples. The post does not verify current availability."
+      }
+    ],
+    "readingTime": "6 min read",
+    "updated": "November 3, 2026",
+    "publishedDate": "2026-11-03",
+    "modifiedDate": "2026-11-03",
+    "evidenceNote": "Examples and source records reviewed on November 3, 2026. Check the date and product or parcel identifier when comparing your own records.",
+    "figure": {
+      "src": "/images/guides/product-link-safety.svg",
+      "alt": "Product-link verification chain from source URL to live option and shipping eligibility",
+      "caption": "A verification chain based on notices in AllChinaBuy’s public goods and freight interfaces.",
+      "sourceUrl": ""
+    },
+    "relatedSlugs": [
+      "allchinabuy-qc-photos-by-product-link",
+      "product-link-safety",
+      "buy-from-1688-with-allchinabuy"
+    ]
+  },
+  {
+    "slug": "allchinabuy-qc-photos-by-product-link",
+    "title": "How to Find AllChinaBuy QC Photos by Product Link",
+    "eyebrow": "Finding warehouse photos",
+    "description": "Use a Weidian, Taobao or 1688 link to look up QC photos. Follow two real product records to tell a matching inspection set from a seller gallery or an empty result.",
+    "keyFacts": [
+      "A marketplace name and item ID give you a more reliable starting point than a product nickname.",
+      "Compare the colour and size attached to each photo set with the option you saved.",
+      "A public set can help you choose what to check. To inspect your own item, use the photos attached to your warehouse record."
+    ],
+    "sections": [
+      {
+        "title": "Start with the product link you actually saved",
+        "paragraphs": [
+          "A friend sends you a spreadsheet row for a printed top. You want to see it on a warehouse table before you put it on your shortlist. The thumbnail will help you recognise the design, but two sellers can use the same image and one listing can offer several versions. Open the row and look for its original marketplace URL. Copy the link to the item and record the platform beside the number. For Weidian, look for the itemID in the product address. Keep the whole link so that the search service can identify the marketplace as well as the item.",
+          "If the row opens an old AllChinaBuy page, check whether the marketplace link is still visible in the address or in the saved row. Copy the original link when available. A number printed beside your order, a parcel tracking reference and a seller's shop identifier serve other purposes. Entering one of those can produce an empty result even when photographs exist. Save the selected size and the seller's exact colour label before leaving the listing. Where a shop uses numbered colours, record the number and keep a screenshot of the option you picked. A later translation of the colour name can obscure which one you meant."
+        ]
+      },
+      {
+        "title": "Search by URL and confirm which record opened",
+        "paragraphs": [
+          "Use a QC search field that accepts product URLs. FinderQC's public search lists Weidian, Taobao and 1688 as supported link types. Paste the original product link there, run the search and open the matching record. Look for the marketplace name, item number and the product heading. If you searched by name because the original link was missing, treat each result as a candidate. Follow the source link or inspect the identifier before assigning any images to the row in your spreadsheet. For designs sold under a short generic name, the first thumbnail can be a particularly poor guide.",
+          "Wait until the page has loaded its product name and record details. A blank page frame can already contain a QC heading and a zero counter while the product information is still missing. If the name, marketplace or item is missing, leave the result unresolved and try the saved address again later. Once the actual record is visible, find the section for inspection photos and look for distinct sets, dates or option labels. Photo arrows in the large product gallery often just move through catalogue images. Write down which section supplied the image if you plan to compare several listings side by side."
+        ]
+      },
+      {
+        "title": "Follow a record that has four inspection sets",
+        "paragraphs": [
+          "Take the Weidian link https://weidian.com/item.html?itemID=7769552233 as an example. The populated FinderQC record reviewed for this guide identifies the garment as Printed Top. Its inspection section listed sixteen photos grouped into four sets. The catalogue also had its own image carousel. To reproduce the check, compare the item number with the number in your saved link, move to the QC section and open an individual set. You are looking at four groups of pictures in that record. Sixteen images do not establish that sixteen different garments were inspected or that four units are available to buy.",
+          "Two sets give enough information to narrow the choice. One was labelled colour option 2, size M, and another colour option 1, size S. If your saved row specifies option 2 in M, open that set before drawing conclusions from the product gallery. Keep the numbered label intact unless the seller's own option selector identifies its shade. If you selected size L, neither of these labels gives you an exact size match. You can still use an overview to frame a question about the print, but a measurement visible on the M cannot settle your question about the dimensions of the L."
+        ]
+      },
+      {
+        "title": "Read a complete record with no inspection photos",
+        "paragraphs": [
+          "Try Weidian item 7748094198 next. The populated record for Gallery Shorts Collection displayed six catalogue images and no QC sets in the version reviewed. These two counts describe different parts of the page. In particular, the gallery counter can move from one image to the next without revealing a single warehouse inspection. Check the heading and source of the image before saving it. An accurate note for this result would say that the named public index showed no inspection set for this item when checked. Include the date and leave the field for the inspected option empty.",
+          "At that point, first check the digits and marketplace against the row you opened. If they agree and the record has finished loading, there is little value in cycling through similarly named shorts to find a reassuring image. A photo from a second retailer belongs to that retailer's listing, even if the front print looks identical. If a seller has replaced the listing and provided a new URL, keep the old and new records on separate rows. You can revisit either one when new information appears. An empty public record leaves the question open about photographs held privately or indexed somewhere else."
+        ]
+      },
+      {
+        "title": "Keep the variant and the date with the evidence",
+        "paragraphs": [
+          "For each useful set, copy the record URL and note the marketplace, item number, date shown on the set, selected option and date of your check. Add one sentence about the question you wanted it to answer. For example, a dated set for option 2 in M might help you see where the motif sits on the front. If your question concerns the back and there is no rear view in the set, write down the missing angle. Someone opening your notes later should be able to return to the group you saw and see exactly why you saved it.",
+          "Matcher results can change when photos are added or a seller edits a listing. On a return visit, an identical title with a different item number calls for a separate check. An unchanged item number with a newly named colour also calls for a look at the current option selector. Keep an older observation dated instead of silently updating the label on an old photograph. This matters when a friend sends you a picture detached from its original page. Ask for the source link and the set label. Until you have them, file it as a visual reference without attaching it to a specific option."
+        ]
+      },
+      {
+        "title": "Move from public research to your own warehouse item",
+        "paragraphs": [
+          "Before ordering, you can finish the lookup with one of three entries in your notes. You found a set for the same listing and option, you found a set for the listing but a different or unknown variant, or the loaded record contained no set. Write down what you would still need to see to make a decision. If only the size differs, that might be a measurement for your chosen size. If the listing itself is uncertain, obtaining the original marketplace link is the next useful step. A longer search through unrelated photo albums will not resolve a missing identifier.",
+          "When a warehouse item is assigned to your own order, open its inspection record and compare its reference, selected variant and quantity with the order confirmation. Use that record for questions about the particular unit you received. The separate QC photo checklist on this site walks through measurements, visible defects and what to do when a required view is missing. Keeping these two stages separate makes the old public photos useful even after your order arrives. They give you a specific comparison to make, while your order record supplies the evidence you need about your actual garment."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "FinderQC public search",
+        "url": "https://finderqc.com/",
+        "scope": "Supported product-link formats shown in the public search field."
+      },
+      {
+        "title": "Printed Top on Weidian, item 7769552233",
+        "url": "https://finderqc.com/product/Weidian/7769552233",
+        "scope": "The populated public record showed four inspection sets and included labelled colour and size options."
+      },
+      {
+        "title": "Gallery Shorts Collection on Weidian, item 7748094198",
+        "url": "https://finderqc.com/product/Weidian/7748094198",
+        "scope": "The populated public record displayed six catalogue images and no QC sets when reviewed."
+      }
+    ],
+    "readingTime": "6 min read",
+    "updated": "November 3, 2026",
+    "publishedDate": "2026-11-03",
+    "modifiedDate": "2026-11-03",
+    "evidenceNote": "Examples and source records reviewed on November 3, 2026. Check the date and product or parcel identifier when comparing your own records.",
+    "figure": {
+      "src": "/images/guides/qc-photo-checklist.svg",
+      "alt": "QC photo review sequence for identity, option, measurements and visible condition",
+      "caption": "An editorial QC sequence based on AllChinaBuy’s public inspection and detailed-photo descriptions.",
+      "sourceUrl": ""
+    },
+    "relatedSlugs": [
+      "qc-photo-checklist",
+      "allchinabuy-original-product-link",
+      "allchinabuy-shoe-sizing-insole-qc"
+    ]
+  },
+  {
+    "slug": "allchinabuy-shipping-expert-vs-calculator",
+    "title": "AllChinaBuy Shipping Expert vs Shipping Calculator – Why the Weights Differ",
+    "eyebrow": "Parcel weights and freight records",
+    "description": "Compare a calculator estimate, a warehouse packing plan and a freight deposit. A worked shoebox example shows which weight to check when two records disagree.",
+    "keyFacts": [
+      "A calculator result is only as specific as the destination, contents, box and route you entered.",
+      "The historical Shipping Expert form let buyers specify packaging and choose whether to approve the plan before payment.",
+      "On November 3, 2026 the official homepage displayed a maintenance notice without a reopening date. The workflows below explain saved records."
+    ],
+    "sections": [
+      {
+        "title": "Start with the document that produced the number",
+        "paragraphs": [
+          "If an AllChinaBuy email gives one weight and a parcel screen gives another, put the two records side by side before deciding what to pay. Write down the date, reference, unit and exact label beside each number. A weight displayed next to one pair of shoes can describe the warehouse item. A number beside an international route may describe the entire carton or the weight used to price its journey. Both figures can be accurate for their own purpose and still differ substantially.",
+          "The shipping calculator helps you compare what might happen under different packing assumptions. A Shipping Expert plan describes a particular selection of goods and the packing requested for them. A freight deposit records an amount requested or paid. Each answers a different question. As checked on November 3, 2026, the official homepage displayed a maintenance notice and referred order enquiries to support. Use the historical form to interpret saved instructions. For an existing parcel, use its own dated records to establish what actually happened."
+        ]
+      },
+      {
+        "title": "Use the calculator to change one assumption at a time",
+        "paragraphs": [
+          "For a comparison you can reproduce, record the sending warehouse, destination, item category, route, estimated packed weight and outside dimensions in their stated units. If you only have the seller’s item weight, mark it as a guess for the packed parcel. Even when you know what the shoes weigh, you do not yet know the space that a protected pair will occupy. Record the date alongside the inputs so that another person can repeat the comparison without guessing what you entered.",
+          "Make two copies of the same scenario. In one, keep the retail box. In the other, enter a plausible smaller outer carton and the corresponding estimated scale weight. Keep the route and the other goods unchanged. Changing the destination, dividing the contents between parcels or switching lines at the same time makes it impossible to tell which change explains the result. Save both scenarios, including any route that disappears for the larger box. A missing result belongs in a different column from a quoted price of zero."
+        ]
+      },
+      {
+        "title": "Read the historical Shipping Expert plan against your request",
+        "paragraphs": [
+          "The historical Chinese application form asked buyers to specify the goods, whether splitting was acceptable, whether packaging should be kept, and which shipping priority mattered. It offered a choice between authorising a deduction under the proposed plan and reviewing the plan before paying. The form also distinguished the service fee from packing and handling charges. If you have a copy of the request, read the selections you actually made. A general description of the service cannot reconstruct your original choices.",
+          "Consider an order containing two pairs of shoes. An instruction to remove “the box” leaves the packer to guess whether it means one retail box, both retail boxes, or the outer shipping carton. Identify the warehouse item by its reference, specify the retail box to remove, and describe the protection to retain. Read the reply for the same item and the resulting outer measurements. If the reply only acknowledges receiving your instructions, keep the change marked as requested until a packing record confirms its completion.",
+          "A split-parcel proposal needs another check. If the plan assigns the shoes to parcel A and a jacket to parcel B, record two sets of outside dimensions and two weights. Compare the total of the two proposed freight amounts with the single-carton scenario. Combining the dimensions into one imaginary box or adding one minimum charge to the weight of both packages would answer a different question. Also check where any protective packaging has gone. A pair that needs a rigid shell may still set the size of parcel A even after its retail box is removed. Before comparing prices, check off every item against its warehouse reference once. An apparently cheaper proposal sometimes covers fewer goods in the document you are reading. A second parcel with a separate reference may account for the rest."
+        ]
+      },
+      {
+        "title": "Follow the shoebox through a worked weight comparison",
+        "paragraphs": [
+          "Suppose a hypothetical route uses the greater of packed scale weight and volumetric weight, before any rounding, and uses a divisor of 5,000 with centimetres and kilograms. A sealed box measures 40 × 30 × 25 cm and weighs 3.2 kg. Its volume is 30,000 cubic centimetres. Dividing by 5,000 gives 6.0 kg volumetric weight. The comparison therefore uses 6.0 kg even though the scale reads 3.2 kg. This number describes the space occupied under the assumed rule.",
+          "Now suppose removing one retail shoebox lets the same items fit into a carton measuring 40 × 30 × 18 cm and weighing 3.0 kg after repacking. Volume falls to 21,600 cubic centimetres and volumetric weight to 4.32 kg. Under the same rule the relevant comparison changes from 6.0 to 4.32 kg, whereas the scale weight only changes by 0.2 kg. If the outer carton stayed the original size, removing the same material would leave the calculated volume weight at 6.0 kg.",
+          "Before attaching money to the difference, check the actual route’s divisor, rounding steps, minimum charge and eligibility. Keep millimetres out of centimetre fields and convert grams to kilograms only when the input requires it. The example gives a difference of 1.68 kg in unrounded chargeable weight. It gives no carrier price and no prediction that another parcel will qualify for a cheaper line. If the shoes need reinforcement, measure the protective outer carton with that reinforcement in place."
+        ]
+      },
+      {
+        "title": "Reconcile the freight deposit separately from the parcel weight",
+        "paragraphs": [
+          "For a saved order, give each money entry its own line. Start with the proposed freight, then the amount requested as a deposit, then the debit actually recorded. Keep any packing fee or expert service charge separate when the record identifies it. Copy the currency and transaction date exactly. A screen asking for a deposit does not establish that a payment went through. Use a receipt or a posted balance transaction for that step and keep its parcel reference beside the amount.",
+          "Later, compare the settled freight and any separately posted adjustment against the same parcel. As a bookkeeping example, if a receipt shows 100 units of freight deposit and a statement later identifies 88 in final freight, the numerical difference is 12. The records explain where those 12 went only if they show a credit, a separate charge or another identified entry. Check whether the entry is pending or posted and whether it belongs to the same currency and shipment. A lower packing weight by itself proves none of those payment outcomes."
+        ]
+      },
+      {
+        "title": "Resolve the disagreement with one specific question",
+        "paragraphs": [
+          "In August 2025 a buyer described asking for one shoebox to be removed. The weight in an email appeared to reflect the change, while the number on the website looked higher. The public discussion records the buyer’s question, but it contains no final carrier invoice for that parcel. A useful first check in a similar case is whether each document identifies the same parcel, the same items and the same stage of packing. An earlier estimate can remain in a screenshot long after a newer plan was issued.",
+          "If the references match, ask which record contains the final packed scale weight, outside dimensions and route billing rule. A concise enquiry can say, “For parcel [reference], the plan dated [date] shows [weight] after removing the retail box for [item]. The parcel screen dated [date] shows [weight]. Which measurements and billing rule apply to this deposit?” Include cropped evidence with the unit and date legible. Keep your plan, receipt and carrier record together so the next reply can answer the one remaining question."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "AllChinaBuy official maintenance notice",
+        "url": "https://www.allchinabuy.com/",
+        "scope": "The homepage checked on November 3, 2026 directed order enquiries to support and gave no reopening date."
+      },
+      {
+        "title": "AllChinaBuy Shipping Expert application",
+        "url": "https://www.allchinabuy.com/cn/page/customization/expert-service/",
+        "scope": "Historical public form in Chinese describing the packing request, payment choice and freight deposit."
+      },
+      {
+        "title": "AllChinaBuy mobile shipping calculator",
+        "url": "https://m.allchinabuy.com/en/freightcompute/",
+        "scope": "Historical calculator reference for planning inputs. The sample parcel and route rule in this guide are hypothetical."
+      },
+      {
+        "title": "Buyer question about removing a shoebox",
+        "url": "https://www.reddit.com/r/AllChinabuy/comments/1mkrh3p",
+        "scope": "August 8, 2025 public discussion illustrating disagreement between an email and an on-screen weight. The final bill was not published there."
+      }
+    ],
+    "readingTime": "6 min read",
+    "updated": "November 3, 2026",
+    "publishedDate": "2026-11-03",
+    "modifiedDate": "2026-11-03",
+    "evidenceNote": "Examples and source records reviewed on November 3, 2026. Check the date and product or parcel identifier when comparing your own records.",
+    "figure": {
+      "src": "/images/guides/shipping-cost-plan.svg",
+      "alt": "Shipping cost plan showing product cost, packed data, route comparison and buffer",
+      "caption": "A planning model tied to the inputs and warnings displayed in AllChinaBuy’s public shipping calculator.",
+      "sourceUrl": ""
+    },
+    "relatedSlugs": [
+      "shipping-cost-planning",
+      "allchinabuy-original-packaging",
+      "allchinabuy-service-payment-fees-before-checkout"
+    ]
+  }
+]
