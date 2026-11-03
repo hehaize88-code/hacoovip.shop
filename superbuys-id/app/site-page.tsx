@@ -1,4 +1,5 @@
-import { articleCatalog, articleSlugs, articleTools, relatedArticles, sourceNames, articleSources, type ArticleSlug } from "./article-catalog";
+import guideUi from "./guide-ui.json";
+import { articleCatalog, articleSlugs, articleTools, relatedArticles, sourceNames, sourceUrls, articleSources, type ArticleSlug } from "./article-catalog";
 
 type Lang = "id" | "en" | "de" | "fr" | "es" | "it";
 type PageName =
@@ -504,7 +505,7 @@ const faq: Record<Lang, [string, string][]> = {
     ],
     [
       "Ke mana tautan produk diarahkan?",
-      "Kartu produk dan kategori membuka halaman terkait yang sudah diverifikasi di situs utama cnfanshp.com pada tab baru.",
+      "Kartu produk dan kategori membuka halaman terkait yang sudah diverifikasi di katalog produk pada tab baru.",
     ],
     [
       "Apakah kolom pencarian memakai hasil produk nyata?",
@@ -554,6 +555,12 @@ const faq: Record<Lang, [string, string][]> = {
       "Apakah ini situs resmi Superbuy?",
       "Tidak. Ini adalah panduan dan indeks penemuan produk independen, bukan properti resmi Superbuy.",
     ],
+    ["Bisa beli lima barang berbeda warna dari 1688?", "Tanyakan apakah penjual menjumlahkan semua warna untuk minimum pembelian. Kirim tautan, lima pilihan dan jumlah per pilihan sebelum menyetujui harga."],
+    ["Harga satuan mana yang berlaku untuk lima barang?", "Cocokkan jumlah pesanan dengan tingkat harga penjual. Minta rincian harga barang dan ongkir domestik ke gudang secara terpisah."],
+    ["Mengapa tidak ada jalur kirim ke Indonesia?", "Periksa negara tujuan, kode pos, atribut barang, serta ukuran dan berat paket. Tanyakan batas mana yang tidak terpenuhi kepada Superbuy."],
+    ["Bisakah kalkulator menunjukkan jalur yang tidak muncul di gudang?", "Estimasi awal memakai data yang Anda masukkan. Bandingkan dengan atribut barang dan ukuran kemasan aktual yang tercatat saat paket diajukan."],
+    ["Apa yang harus dilakukan jika label ukuran salah di foto QC?", "Tahan pengiriman. Simpan pilihan yang dipesan dan minta foto label beserta pengukuran yang memperlihatkan kedua ujung penggaris."],
+    ["Siapa yang membayar ongkir retur ke penjual?", "Minta konfirmasi biaya dan batas waktu untuk pesanan tersebut. Simpan persetujuan penjual sebelum meminta barang dikirim kembali."],
   ],
   en: [
     [
@@ -612,6 +619,12 @@ const faq: Record<Lang, [string, string][]> = {
       "Is this an official Superbuy website?",
       "No. This is an independent guide and discovery resource, not an official Superbuy property.",
     ],
+    ["Can five items in different colours meet a 1688 minimum?", "Ask whether the seller counts colours together. Send the listing, selected variants and quantity per variant before approving a price."],
+    ["Which unit price applies to five pieces?", "Match the accepted quantity to the seller’s price tier. Ask for the goods subtotal and domestic delivery to the warehouse separately."],
+    ["Why is there no shipping line to Indonesia?", "Check destination, postal code, item attributes, packed dimensions and weight. Ask Superbuy which limit excludes the parcel."],
+    ["Why does a line in the estimator disappear at the warehouse?", "An estimate uses the details you entered. Compare them with the recorded item attributes and final packed measurements at parcel submission."],
+    ["What if the QC photo shows a different size label?", "Pause international shipment. Save the ordered variant and ask for a label photo plus a measurement showing both ends of the ruler."],
+    ["Who pays domestic return shipping?", "Ask for the fee and deadline for this order. Keep the seller’s approval before asking the warehouse to send the item back."],
   ],
   de: [
     [
@@ -670,6 +683,12 @@ const faq: Record<Lang, [string, string][]> = {
       "Ist dies eine offizielle Superbuy-Seite?",
       "Nein. Dies ist ein unabhängiger Ratgeber und Produktindex.",
     ],
+    ["Zählen fünf Stück in verschiedenen Farben für die Mindestmenge bei 1688?", "Fragen Sie, ob der Händler die Farben zusammenzählt. Schicken Sie den Angebotslink und die Stückzahl je Variante, bevor Sie dem Preis zustimmen."],
+    ["Welcher Stückpreis gilt bei fünf Artikeln?", "Vergleichen Sie die bestätigte Menge mit der Preisstaffel. Lassen Sie Warenwert und Versand zum chinesischen Lager getrennt ausweisen."],
+    ["Warum wird keine Versandlinie nach Indonesien angezeigt?", "Prüfen Sie Zielland, Postleitzahl, Wareneigenschaften, Packmaße und Gewicht. Fragen Sie Superbuy, welche Grenze das Paket überschreitet."],
+    ["Wieso fehlt im Lager eine im Rechner angezeigte Linie?", "Der Rechner arbeitet mit Ihren Eingaben. Vergleichen Sie diese mit den erfassten Wareneigenschaften und den Maßen nach dem Verpacken."],
+    ["Was tun bei falscher Größe auf dem QC-Foto?", "Geben Sie den Versand noch nicht frei. Sichern Sie die bestellte Variante und bitten Sie um ein Foto des Etiketts sowie um ein Maßfoto mit sichtbarem Anfang und Ende."],
+    ["Wer zahlt den Rückversand zum Händler?", "Lassen Sie Kosten und Frist für die konkrete Bestellung bestätigen. Bewahren Sie die Zustimmung des Händlers auf, bevor das Lager die Rücksendung veranlasst."],
   ],
   fr: [
     [
@@ -728,6 +747,12 @@ const faq: Record<Lang, [string, string][]> = {
       "Est-ce un site officiel Superbuy ?",
       "Non. C’est un guide et index indépendant.",
     ],
+    ["Cinq articles de couleurs différentes comptent-ils pour le minimum sur 1688 ?", "Demandez si le vendeur additionne les couleurs. Envoyez le lien et la quantité par variante avant d’accepter le prix."],
+    ["Quel prix unitaire s’applique à cinq pièces ?", "Comparez la quantité acceptée au barème du vendeur. Faites préciser séparément le montant des articles et le port intérieur jusqu’à l’entrepôt."],
+    ["Pourquoi aucun transporteur ne s’affiche pour l’Indonésie ?", "Vérifiez le pays, le code postal, la nature des articles, les dimensions emballées et le poids. Demandez à Superbuy quelle limite bloque le colis."],
+    ["Pourquoi une ligne du simulateur disparaît-elle à l’entrepôt ?", "Le simulateur utilise vos hypothèses. Comparez-les aux caractéristiques enregistrées et aux dimensions du colis emballé lors de la demande d’expédition."],
+    ["La taille sur la photo QC est incorrecte. Que faire ?", "Suspendez l’expédition. Conservez la variante commandée et demandez une photo de l’étiquette et de la mesure où les deux repères sont visibles."],
+    ["Qui prend en charge le retour chez le vendeur ?", "Faites confirmer le coût et le délai pour cette commande. Gardez l’accord du vendeur avant de demander à l’entrepôt de renvoyer l’article."],
   ],
   es: [
     [
@@ -786,6 +811,12 @@ const faq: Record<Lang, [string, string][]> = {
       "¿Es una web oficial de Superbuy?",
       "No. Es una guía e índice independiente.",
     ],
+    ["¿Cuentan cinco unidades de colores distintos para el mínimo de 1688?", "Pregunta si el vendedor suma los colores. Envía el enlace y la cantidad de cada variante antes de aceptar el precio."],
+    ["¿Qué precio unitario se aplica a cinco piezas?", "Compara la cantidad aceptada con los tramos de precio del vendedor. Pide por separado el subtotal de los artículos y el envío nacional al almacén."],
+    ["¿Por qué no hay una línea de envío a Indonesia?", "Revisa el destino, el código postal, los atributos del artículo, las medidas del paquete cerrado y el peso. Pregunta a Superbuy qué límite impide el envío."],
+    ["¿Por qué desaparece en el almacén una línea que sí muestra la calculadora?", "La estimación utiliza los datos que has introducido. Compáralos con las características registradas y las medidas finales al solicitar el envío."],
+    ["¿Qué hago si la etiqueta de la foto QC indica otra talla?", "Deja en espera el envío. Guarda la variante pedida y solicita una foto de la etiqueta y otra de la medida con los dos extremos de la regla visibles."],
+    ["¿Quién paga el envío de vuelta al vendedor?", "Solicita el coste y el plazo aplicables a ese pedido. Guarda la confirmación del vendedor antes de pedir al almacén que devuelva el artículo."],
   ],
   it: [
     [
@@ -844,6 +875,12 @@ const faq: Record<Lang, [string, string][]> = {
       "È un sito ufficiale Superbuy?",
       "No. È una guida e un indice indipendente.",
     ],
+    ["Cinque pezzi di colori diversi contano per il minimo su 1688?", "Chiedi se il venditore somma i colori. Invia il link e la quantità per variante prima di confermare il prezzo."],
+    ["Quale prezzo unitario vale per cinque pezzi?", "Confronta la quantità accettata con gli scaglioni di prezzo. Fai indicare separatamente il totale degli articoli e la spedizione interna al magazzino."],
+    ["Perché non compare una linea di spedizione per l’Indonesia?", "Controlla destinazione, CAP, caratteristiche degli articoli, dimensioni esterne e peso. Chiedi a Superbuy quale limite esclude il pacco."],
+    ["Perché una linea presente nel calcolatore scompare in magazzino?", "Il preventivo usa i dati inseriti da te. Confrontali con le caratteristiche registrate e con le misure finali del collo al momento della richiesta."],
+    ["Cosa fare se l’etichetta nella foto QC indica una taglia diversa?", "Sospendi la spedizione. Salva la variante ordinata e richiedi una foto dell’etichetta e una della misura con entrambi gli estremi del righello visibili."],
+    ["Chi paga il reso al venditore?", "Chiedi conferma di spese e scadenza per quell’ordine. Conserva l’approvazione del venditore prima di incaricare il magazzino della restituzione."],
   ],
 };
 
@@ -1177,14 +1214,16 @@ function Header({
     "/how-it-works",
     "/faq",
     "/articles",
+    "/articles/shipping-cost-guide",
+    "/articles/qc-photo-checklist",
   ];
   return (
     <header className="site-header">
       <Brand lang={lang} />
       <nav>
-        {t.nav.map((label, i) => (
+        {[...t.nav, ...guideUi[lang].nav].map((label, i) => (
           <a
-            className={page === routes[i].slice(1) ? "active" : ""}
+            className={(article ? routes[i] === `/articles/${article}` : page === routes[i].slice(1)) ? "active" : ""}
             href={local(lang, routes[i])}
             key={label}
           >
@@ -1330,6 +1369,11 @@ function Home({ lang }: { lang: Lang }) {
             <em>{t.heroB}</em>
           </h1>
           <p>{t.heroText}</p>
+          <div className="start-links" data-link-location="home_tasks">
+            {["cara-belanja-di-superbuy", "shipping-cost-guide", "qc-photo-checklist"].map((slug, i) => (
+              <a key={slug} href={local(lang, `/articles/${slug}`)}>{guideUi[lang].start[i]} <span aria-hidden="true">↗</span></a>
+            ))}
+          </div>
           <Search lang={lang} />
         </div>
         <div className="collage">
@@ -1589,6 +1633,7 @@ const articleUi: Record<
 
 function SourcePanel({ lang, slug }: { lang: Lang; slug?: ArticleSlug }) {
   const ui = articleUi[lang];
+  const checked = slug ? articleCatalog[lang][slug].modifiedAt ?? "2026-10-06" : "2026-11-03";
   return (
     <section className="source-panel">
       <div>
@@ -1598,11 +1643,11 @@ function SourcePanel({ lang, slug }: { lang: Lang; slug?: ArticleSlug }) {
       <ul>
         {(slug ? articleSources[slug] : [0, 1, 2, 4]).map((i) => (
           <li key={i}>
-            <span>{sourceNames[lang][i]}</span>
+            <a href={sourceUrls[i]} {...ext}>{sourceNames[lang][i]} ↗</a>
           </li>
         ))}
       </ul>
-      <p>{articleTools[lang].sources}: <time dateTime="2026-10-06">{new Intl.DateTimeFormat(lang, { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date("2026-10-06"))}</time>. {ui.recheck}</p>
+      <p>{articleTools[lang].sources}: <time dateTime={checked}>{new Intl.DateTimeFormat(lang, { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(checked))}</time>. {ui.recheck}</p>
     </section>
   );
 }
@@ -1756,6 +1801,34 @@ function InnerPage({
   );
 }
 
+function ShippingExample({ lang }: { lang: Lang }) {
+  const t = guideUi[lang];
+  const kg = new Intl.NumberFormat(lang, { maximumFractionDigits: 2, style: "unit", unit: "kilogram" });
+  const cases = [
+    { dimensions: [36, 25, 16], weight: 1.4 },
+    { dimensions: [32, 20, 12], weight: 1.3 },
+  ];
+  return (
+    <section className="shipping-example">
+      <h2>{t.title}</h2>
+      <p>{t.lead}</p>
+      <div className="table-scroll" role="region" aria-label={t.title} tabIndex={0}>
+        <table><thead><tr>{t.cols.map(label => <th key={label} scope="col">{label}</th>)}</tr></thead>
+          <tbody>{cases.map(({ dimensions: [l, w, h], weight }, i) => {
+            const volumeWeight = l * w * h / 6000;
+            return <tr key={i}>
+              <th scope="row">{t.packs[i]}</th><td>{l} × {w} × {h} cm</td>
+              <td>{kg.format(weight)}</td><td>{kg.format(volumeWeight)}</td><td>{kg.format(Math.max(weight, volumeWeight))}</td>
+            </tr>;
+          })}</tbody>
+        </table>
+      </div>
+      <p>{t.note}</p>
+      <a href={sourceUrls[2]} {...ext}>{t.calc} ↗</a>
+    </section>
+  );
+}
+
 function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
   const t = copy[lang];
   const ui = articleUi[lang];
@@ -1834,6 +1907,7 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
       </span>
       <h1>{headline}</h1>
       <p className="article-deck">{description}</p>
+      {slug === "shipping-cost-guide" && <ShippingExample lang={lang} />}
       <nav className="article-toc" aria-label={tools.toc}>
         <strong>{tools.toc}</strong>
         <ol>{long.sections.map((section, i) => <li key={i}><a href={`#section-${i + 1}`}>{section.heading}</a></li>)}</ol>
@@ -1851,6 +1925,11 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
               {section.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}
+              {section.seeAlso && isArticle(section.seeAlso) && (
+                <a className="section-guide" data-link-location="article_section" href={local(lang, `/articles/${section.seeAlso}`)}>
+                  {articleCatalog[lang][section.seeAlso].title} →
+                </a>
+              )}
               {section.bullets && (
                 <ul>
                   {section.bullets.map((item) => (
@@ -1862,10 +1941,9 @@ function ArticlePage({ lang, slug }: { lang: Lang; slug: ArticleSlug }) {
           </section>
         ))}
       </div>
-      <aside>
-        <strong>{ui.remember}</strong>
-        <p>{faq[lang][4][1]}</p>
-      </aside>
+      {["qc-photo-checklist", "superbuy-shoe-size-qc-guide", "superbuy-wrong-size-return-exchange"].includes(slug) && (
+        <aside><strong>{ui.remember}</strong><p>{faq[lang][4][1]}</p></aside>
+      )}
       <section className="related-guides">
         <h2>{tools.related}</h2>
         <ul>{relatedArticles[slug].map((related) => <li key={related}><a href={local(lang, `/articles/${related}`)}>{articleCatalog[lang][related].title} →</a></li>)}</ul>

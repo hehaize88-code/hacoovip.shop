@@ -1,0 +1,158 @@
+{
+  "id": {
+    "start": [
+      "Cara belanja",
+      "Cek ongkir ke Indonesia",
+      "Cek foto QC"
+    ],
+    "nav": [
+      "Ongkir",
+      "Foto QC"
+    ],
+    "title": "Berapa pengaruh kotak sepatu terhadap ongkir?",
+    "lead": "Contoh latihan untuk tujuan Indonesia, 3 November 2026. Misalkan jalur memakai pembagi 6.000 cm³/kg dan mengambil angka yang lebih besar antara berat aktual dan volumetrik.",
+    "cols": [
+      "Kemasan",
+      "Ukuran luar",
+      "Berat aktual",
+      "Berat volumetrik",
+      "Dasar tagihan¹"
+    ],
+    "packs": [
+      "Dengan kotak sepatu",
+      "Tanpa kotak, dengan pelindung"
+    ],
+    "note": "¹ Sebelum pembulatan. Ukuran dan berat adalah contoh, bukan hasil penimbangan atau tarif. Untuk rute Anda, cek pembagi, batas dimensi, pembulatan dan pilihan kemasan. Masukkan Indonesia serta ukuran terkemas ke kalkulator resmi. Catat tanggal dan mata uang penawaran.",
+    "calc": "Cek estimasi resmi Superbuy"
+  },
+  "en": {
+    "start": [
+      "How to buy",
+      "Estimate Indonesia shipping",
+      "Check QC photos"
+    ],
+    "nav": [
+      "Shipping",
+      "QC photos"
+    ],
+    "title": "How much difference does a shoebox make?",
+    "lead": "Worked example for Indonesia, 3 November 2026. Suppose the line uses a divisor of 6,000 cm³/kg and bills the higher of actual and volumetric weight.",
+    "cols": [
+      "Packaging",
+      "Outer dimensions",
+      "Actual weight",
+      "Volumetric weight",
+      "Billing basis¹"
+    ],
+    "packs": [
+      "With shoebox",
+      "Without shoebox, with protection"
+    ],
+    "note": "¹ Before rounding. These are illustrative measurements, not a warehouse weigh-in or a price quote. Check the divisor, rounding, size limits and packaging rules for your line. Enter Indonesia and the packed measurements in the official estimator. Record the quote date and currency.",
+    "calc": "Get an estimate from Superbuy"
+  },
+  "de": {
+    "start": [
+      "Einkaufsanleitung",
+      "Versand nach Indonesien berechnen",
+      "QC-Fotos prüfen"
+    ],
+    "nav": [
+      "Versand",
+      "QC-Fotos"
+    ],
+    "title": "Was ändert sich ohne Schuhkarton?",
+    "lead": "Rechenbeispiel für Indonesien vom 3. November 2026. Angenommen, der Versanddienst teilt das Volumen durch 6.000 cm³/kg und berechnet das höhere von tatsächlichem Gewicht und Volumengewicht.",
+    "cols": [
+      "Verpackung",
+      "Außenmaße",
+      "Tatsächliches Gewicht",
+      "Volumengewicht",
+      "Abrechnungsbasis¹"
+    ],
+    "packs": [
+      "Mit Schuhkarton",
+      "Ohne Karton, mit Polsterung"
+    ],
+    "note": "¹ Vor Rundung. Die Maße sind Beispielwerte. Prüfen Sie für die gewählte Linie den Divisor, die Rundung, die zulässigen Maße und den Schutz der Ware. Geben Sie Indonesien und die Maße des verpackten Pakets im offiziellen Rechner ein. Notieren Sie Datum und Währung des Angebots.",
+    "calc": "Versandpreis bei Superbuy prüfen"
+  },
+  "fr": {
+    "start": [
+      "Comment acheter",
+      "Estimer le port vers l’Indonésie",
+      "Vérifier les photos QC"
+    ],
+    "nav": [
+      "Livraison",
+      "Photos QC"
+    ],
+    "title": "Quel poids gagne-t-on en retirant la boîte à chaussures ?",
+    "lead": "Exemple pour l’Indonésie au 3 novembre 2026. Supposons une ligne qui divise le volume par 6 000 cm³/kg et retient le plus élevé du poids réel et du poids volumétrique.",
+    "cols": [
+      "Emballage",
+      "Dimensions extérieures",
+      "Poids réel",
+      "Poids volumétrique",
+      "Base facturable¹"
+    ],
+    "packs": [
+      "Avec la boîte",
+      "Sans la boîte, avec protection"
+    ],
+    "note": "¹ Avant arrondi. Les mesures sont fictives. Vérifiez le diviseur, les arrondis, les limites de dimensions et la protection du colis pour la ligne choisie. Sélectionnez l’Indonésie et saisissez les mesures du colis emballé dans le calculateur officiel. Notez la date et la devise du devis.",
+    "calc": "Vérifier le prix chez Superbuy"
+  },
+  "es": {
+    "start": [
+      "Cómo comprar",
+      "Calcular el envío a Indonesia",
+      "Revisar las fotos QC"
+    ],
+    "nav": [
+      "Envío",
+      "Fotos QC"
+    ],
+    "title": "¿Cuánto cambia el peso al quitar la caja de zapatos?",
+    "lead": "Ejemplo para Indonesia del 3 de noviembre de 2026. Supongamos que la línea divide el volumen por 6.000 cm³/kg y cobra el mayor entre el peso real y el volumétrico.",
+    "cols": [
+      "Embalaje",
+      "Medidas exteriores",
+      "Peso real",
+      "Peso volumétrico",
+      "Base de cobro¹"
+    ],
+    "packs": [
+      "Con caja de zapatos",
+      "Sin caja, con protección"
+    ],
+    "note": "¹ Antes del redondeo. Son medidas de ejemplo. Comprueba el divisor, el redondeo, los límites y la protección del artículo para la línea elegida. Introduce Indonesia y las medidas del paquete cerrado en la calculadora oficial. Anota la fecha y la moneda de la cotización.",
+    "calc": "Consultar el envío en Superbuy"
+  },
+  "it": {
+    "start": [
+      "Come acquistare",
+      "Calcola la spedizione in Indonesia",
+      "Controlla le foto QC"
+    ],
+    "nav": [
+      "Spedizione",
+      "Foto QC"
+    ],
+    "title": "Quanto incide la scatola da scarpe sul peso fatturabile?",
+    "lead": "Esempio per l’Indonesia del 3 novembre 2026. Supponiamo che la linea divida il volume per 6.000 cm³/kg e applichi il maggiore tra peso reale e volumetrico.",
+    "cols": [
+      "Imballaggio",
+      "Misure esterne",
+      "Peso reale",
+      "Peso volumetrico",
+      "Peso fatturabile¹"
+    ],
+    "packs": [
+      "Con scatola da scarpe",
+      "Senza scatola, con protezione"
+    ],
+    "note": "¹ Prima degli arrotondamenti. Le misure sono illustrative. Controlla divisore, arrotondamenti, limiti e protezioni della linea scelta. Nel calcolatore ufficiale seleziona Indonesia e inserisci le misure del pacco imballato. Annota data e valuta del preventivo.",
+    "calc": "Verifica il costo su Superbuy"
+  }
+}

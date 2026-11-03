@@ -82,12 +82,12 @@
       {
         "heading": "Mantenere una lista di Indonesia con una prossima azione",
         "paragraphs": [
-          "Per ogni candidato, registrare l'URL dell'inserzione corrente, l'opzione, la misurazione, la valuta del prezzo e la data controllata. Aggiungi una prossima azione: chiarire una variante, confrontare una misura, controllare la spedizione disponibile o scartare il candidato. Un breve elenco con le domande risolte è più utile di una grande raccolta di link non verificati. Mantieni il catalogo separato dal tuo account di servizio: i link ai prodotti qui aprono cnfanshp.com, mentre i pagamenti Superbuy e le azioni di magazzino appartengono all'account appropriato.",
+          "Per ogni candidato, registrare l'URL dell'inserzione corrente, l'opzione, la misurazione, la valuta del prezzo e la data controllata. Aggiungi una prossima azione: chiarire una variante, confrontare una misura, controllare la spedizione disponibile o scartare il candidato. Un breve elenco con le domande risolte è più utile di una grande raccolta di link non verificati. Mantieni il catalogo separato dal tuo account di servizio: i link ai prodotti qui aprono il catalogo dei prodotti, mentre i pagamenti Superbuy e le azioni di magazzino appartengono all'account appropriato.",
           "Prima di spostare un candidato in un ordine, riserva un importo separato per la spedizione internazionale e i costi di importazione in Indonesia. Utilizza la guida ai pagamenti quando confronti gli importi addebitati e accreditati, la guida alle scarpe quando una tabella delle taglie non è chiara e la guida al magazzino quando diversi articoli sono pronti. Queste decisioni hanno diversi requisiti di prova; una scheda di prodotto attraente non può risolverli tutti."
         ]
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "qc-photo-checklist": {
@@ -168,8 +168,10 @@
         "heading": "Approvare, chiedere o intensificare: una semplice regola decisionale",
         "paragraphs": [
           "Approva quando l'identità, la variante, la quantità e la condizione visibili corrispondono al tuo record e le qualità non verificate sono rischi che accetti consapevolmente. Richiedi una foto mirata quando manca o non è chiaro uno specifico fatto visibile. Contattare l'assistenza post-vendita quando le immagini esistenti mostrano una chiara discrepanza, danni o componenti mancanti. Fornisci il numero dell'ordine e indica il problema osservabile senza esagerare.",
-          "Infine, salva le foto principali e la tua decisione fino alla consegna del pacco. Se si verifica un problema successivo, una registrazione chiara di ciò che è entrato nel pacco è più utile della memoria. Il controllo qualità non consiste nel trovare la perfezione in ogni punto. Si tratta di prendere la decisione migliore basata sull'evidenza mentre l'articolo è ancora in magazzino."
-        ]
+          "Infine, salva le foto principali e la tua decisione fino alla consegna del pacco. Se si verifica un problema successivo, una registrazione chiara di ciò che è entrato nel pacco è più utile della memoria. Il controllo qualità non consiste nel trovare la perfezione in ogni punto. Si tratta di prendere la decisione migliore basata sull'evidenza mentre l'articolo è ancora in magazzino.",
+          "Prima di autorizzare la spedizione, distingui due casi. Se l’etichetta è diversa dalla taglia ordinata, conserva la sua foto e la variante scelta. Se coincide ma la vestibilità è dubbia, chiedi una foto con il metro posizionato come nella tabella del venditore. Raccogli le prove mentre l’articolo è ancora in magazzino."
+        ],
+        "seeAlso": "superbuy-wrong-size-return-exchange"
       },
       {
         "heading": "Scrivere una decisione di controllo qualità praticabile",
@@ -179,12 +181,12 @@
         ]
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "shipping-cost-guide": {
-    "title": "Spiegazione dei costi di spedizione di Superbuy: deposito, peso e addebito finale",
-    "description": "Una guida verificata sui costi dei prodotti Superbuy, sulla consegna nazionale, sul consolidamento del magazzino, sul peso addebitabile, sui depositi di spedizione e sulla riconciliazione finale nel 2026.",
+    "title": "Spedizione Superbuy: calcolare il peso con e senza scatola da scarpe",
+    "description": "Confronta peso reale e volumetrico di due pacchi per l’Indonesia, poi verifica il costo inserendo le dimensioni del tuo collo nel calcolatore ufficiale.",
     "primaryKeyword": "Costo di spedizione Superbuy",
     "secondaryKeywords": [
       "Calcolatore di spedizione Superbuy",
@@ -268,10 +270,11 @@
         "paragraphs": [
           "Crea uno scenario per gli oggetti impacchettati insieme e un altro per una divisione realistica. Utilizzate la stessa destinazione e lo stesso contenuto, quindi registrate il percorso, il peso stimato dell'imballaggio, le dimensioni e la protezione selezionata. Sommare tutti i costi del pacco nello scenario di divisione prima di confrontare i totali. Contrassegna le dimensioni che rimangono incerte e mantieni separato il budget doganale dal preventivo di trasporto. Una piccola differenza tra stime approssimative non è un risparmio verificato.",
           "Dopo l'imballaggio, confrontare le misure aggiornate e la regolazione finale con i dati originali. Salva il riferimento del pacco e il percorso con il record di pagamento, quindi utilizza la guida di tracciamento per domande sulla consegna e la consegna del corriere. Ricontrolla anche l'inventario del magazzino: gli articoli esclusi da questo pacco hanno ancora le loro scadenze di stoccaggio. Ciò impedisce che una decisione di spedizione lasci merci più vecchie senza un'azione successiva."
-        ]
+        ],
+        "seeAlso": "superbuy-no-shipping-options-indonesia"
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "superbuy-payment-fees-indonesia": {
@@ -284,7 +287,7 @@
       "Commissioni di pagamento Superbuy"
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Definire il saldo da ricevere",
@@ -346,7 +349,7 @@
         "heading": "Completare la checklist di pagamento",
         "paragraphs": [
           "Prima di pagare, conferma l'opzione esatta del prodotto, l'importo dovuto ora e gli importi ancora necessari in seguito. Controlla il metodo di pagamento all'interno del tuo account, confronta l'addebito totale con il credito ricevuto e salva il riferimento della transazione. Dopo aver effettuato il pagamento, associa il credito o il pagamento dell'ordine a tale riferimento. Prima della spedizione internazionale, ripetere la revisione dei costi utilizzando i dettagli del pacco. Dopo la consegna, riconciliare gli aggiustamenti e i rimborsi in modo che il costo finale rifletta gli importi liquidati piuttosto che le stime iniziali.",
-          "Utilizza le guide separate sui costi di spedizione e sulle dogane indonesiane per i prossimi passaggi di budgeting. Questa guida ai pagamenti supporta la decisione più ristretta su come comprendere e documentare gli addebiti. La scoperta di prodotti su superbuys.id porta a cnfanshp.com; quel catalogo è separato dal tuo account Superbuy. L'apertura di un elenco di catalogo non effettua un pagamento o crea un ordine di magazzino. Mantenere queste destinazioni distinte impedisce che una pagina di navigazione del prodotto venga scambiata per una schermata di pagamento ufficiale."
+          "Utilizza le guide separate sui costi di spedizione e sulle dogane indonesiane per i prossimi passaggi di budgeting. Questa guida ai pagamenti supporta la decisione più ristretta su come comprendere e documentare gli addebiti. La scoperta di prodotti su superbuys.id porta al catalogo; quel catalogo è separato dal tuo account Superbuy. L'apertura di un elenco di catalogo non effettua un pagamento o crea un ordine di magazzino. Mantenere queste destinazioni distinte impedisce che una pagina di navigazione del prodotto venga scambiata per una schermata di pagamento ufficiale."
         ]
       }
     ]
@@ -361,7 +364,7 @@
       "Superbuy scarpa QC"
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Definire la calzata prima di cercare le scarpe",
@@ -410,7 +413,8 @@
         "paragraphs": [
           "Una foto aggiuntiva è più utile quando puoi nominare il fatto che dovrebbe rivelare. Richiedi etichette leggibili su entrambe le scarpe, una cucitura particolare, il motivo della suola o una vista del righello legata alla tabella del venditore. Indicare il numero d'ordine e identificare il lato o il componente. Una richiesta ampia per controllare se le scarpe sono buone lascia il magazzino indovinare sul tuo standard. Decidere in anticipo quale risultato vi porterà a tenere, mettere in discussione o restituire la coppia.",
           "La pagina delle tariffe di Superbuy elenca le fotografie dettagliate opzionali, con la selezione del servizio live che controlla la tariffa applicabile. Controlla il prezzo prima di ordinare l'immagine. Più foto non risolvono ogni incertezza. Se la vostra preoccupazione è l'autenticità o le prestazioni sotto carichi di funzionamento, le immagini esterne ripetute non possono stabilire la risposta. La decisione appropriata potrebbe essere quella di evitare tale acquisto o scegliere un venditore le cui informazioni sul prodotto e le condizioni supportano più chiaramente le tue esigenze."
-        ]
+        ],
+        "seeAlso": "superbuy-wrong-size-return-exchange"
       },
       {
         "heading": "Decidere sulla scatola prima della spedizione",
@@ -423,7 +427,7 @@
         "heading": "Documentare la decisione di approvazione",
         "paragraphs": [
           "Prendi la decisione finale sul magazzino da un breve record: opzione selezionata, tabella salvata, etichette di taglia visibili, misura rilevante, problemi di condizione e scelta dell'imballaggio. Approvare solo dopo che i controlli visibili decisivi sono stati risolti. Se c'è una difformità, segnalare il problema osservabile con il numero d'ordine e l'immagine di supporto prima della spedizione internazionale. Chiedi informazioni sul rimedio disponibile e sui tempi. Un venditore potrebbe dover rispondere, quindi non rimandare la decisione fino al giorno di spedizione previsto.",
-          "Sfoglia la categoria scarpe quando sei pronto a confrontare gli elenchi e utilizzare la lista di controllo generale QC per altri tipi di prodotti. Il link del catalogo apre cnfanshp.com per la scoperta; ordinazione, pagamento e decisioni di magazzino appartengono al conto di servizio appropriato. Mantenere questa distinzione chiara ti aiuta a passare da un foglio di calcolo di scarpe a un acquisto documentato. Il risultato migliore è una coppia scelta dalle misure comprese, controllata rispetto al suo ordine effettivo e confezionata in base alle sue esigenze."
+          "Sfoglia la categoria scarpe quando sei pronto a confrontare gli elenchi e utilizzare la lista di controllo generale QC per altri tipi di prodotti. Il link del catalogo apre il catalogo dei prodotti per la scoperta; ordinazione, pagamento e decisioni di magazzino appartengono al conto di servizio appropriato. Mantenere questa distinzione chiara ti aiuta a passare da un foglio di calcolo di scarpe a un acquisto documentato. Il risultato migliore è una coppia scelta dalle misure comprese, controllata rispetto al suo ordine effettivo e confezionata in base alle sue esigenze."
         ]
       }
     ]
@@ -438,7 +442,7 @@
       "Il magazzino Superbuy"
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Creare un inventario prima di consolidare",
@@ -500,7 +504,7 @@
         "heading": "Usare una checklist prima della spedizione",
         "paragraphs": [
           "Rilasciare un pacco solo dopo aver controllato il contenuto, le decisioni di controllo qualità, le scadenze di stoccaggio, le istruzioni di imballaggio, l'idoneità del percorso, l'indirizzo e il budget rimanente. Mantieni l'elenco abbastanza breve da poterlo usare ogni volta. Un'utile domanda finale è se qualsiasi decisione irrisolta sia stata semplicemente nascosta all'interno del pacchetto combinato. Se la risposta è sì, mettere in pausa l'elemento e risolverlo. Lo scopo del consolidamento è una configurazione deliberata dei pacchi, non solo la cancellazione dello schermo del magazzino il più rapidamente possibile.",
-          "Per il passaggio successivo, utilizza la guida alle spese di spedizione per confrontare le spese e la guida al tracciamento per seguire la consegna dopo la spedizione. La navigazione dei prodotti su cnfanshp.com rimane separata dalle operazioni di magazzino nel tuo account di servizio. Questa distinzione è importante quando si passa dalla guida a un catalogo. Una decisione di consolidamento riuscita vi lascia con un elenco chiaro di ciò che è stato spedito, di ciò che è rimasto, del motivo per cui è stato scelto l'imballaggio e delle prove a supporto dell'approvazione finale."
+          "Per il passaggio successivo, utilizza la guida alle spese di spedizione per confrontare le spese e la guida al tracciamento per seguire la consegna dopo la spedizione. La navigazione dei prodotti nel catalogo rimane separata dalle operazioni di magazzino nel tuo account di servizio. Questa distinzione è importante quando si passa dalla guida a un catalogo. Una decisione di consolidamento riuscita vi lascia con un elenco chiaro di ciò che è stato spedito, di ciò che è rimasto, del motivo per cui è stato scelto l'imballaggio e delle prove a supporto dell'approvazione finale."
         ]
       }
     ]
@@ -593,7 +597,7 @@
       "Compra 1688 tramite Superbuy"
     ],
     "publishedAt": "2026-09-07",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Comprendere il servizio di agente di acquisto",
@@ -606,14 +610,16 @@
         "heading": "Trova gli elenchi attuali di Taobao o 1688",
         "paragraphs": [
           "Per acquistare Taobao tramite Superbuy, inizia dal link del prodotto attivo, non da uno screenshot o da un vecchio titolo. Incolla l'URL dell'inserzione nel campo di ricerca o ordine del prodotto Superbuy e attendi che il sistema legga le informazioni sul prodotto. Se la pagina non viene letta automaticamente, potrebbe essere necessario inserire i dati manualmente. Assicurati che il nome dell'articolo, il prezzo, il colore, la dimensione, la quantità, la spedizione nazionale e la nota del venditore corrispondano all'elenco di origine prima di pagare l'ordine.",
-          "L'acquisto da 1688 tramite Superbuy segue un processo di base simile, ma le inserzioni all'ingrosso spesso hanno quantità minime, livelli di prezzo o opzioni miste. Controlla se il prezzo si applica a un'unità o a un pacchetto, se la quantità minima è calcolata per colore e se il venditore chiede specifiche aggiuntive. Fogli di calcolo o indici di prodotti possono velocizzare le ricerche, ma gli elenchi attuali rimangono il riferimento per i dettagli del prodotto. Se la selezione nell'indice è diversa da quella del marketplace, utilizza le informazioni più recenti sulla pagina del venditore."
+          "L'acquisto da 1688 tramite Superbuy segue un processo di base simile, ma le inserzioni all'ingrosso spesso hanno quantità minime, livelli di prezzo o opzioni miste. Controlla se il prezzo si applica a un'unità o a un pacchetto, se la quantità minima è calcolata per colore e se il venditore chiede specifiche aggiuntive. Fogli di calcolo o indici di prodotti possono velocizzare le ricerche, ma gli elenchi attuali rimangono il riferimento per i dettagli del prodotto. Se la selezione nell'indice è diversa da quella del marketplace, utilizza le informazioni più recenti sulla pagina del venditore.",
+          "Per cinque pezzi di colori diversi, invia all’agente il link, la quantità per colore, il totale e la destinazione del magazzino in un solo messaggio. Chiedi separatamente il prezzo unitario per quella quantità e il costo del trasporto interno. Conserva la risposta prima di pagare."
         ],
         "bullets": [
           "Copia URL dell'inserzione attiva",
           "Prezzo e variante",
           "Controlla l'ordine minimo 1688",
           "Record di spedizioni nazionali"
-        ]
+        ],
+        "seeAlso": "superbuy-1688-five-items-moq"
       },
       {
         "heading": "Scegli la variante e le misure esatte",
@@ -641,7 +647,8 @@
         "paragraphs": [
           "Inizi il controllo di qualità con l'identità: modello, colore, dimensione, quantità ed accessori. Poi guarda la forma generale, la simmetria, le macchie, i danni, le cuciture visibili e le condizioni della confezione se è importante. Se un dettaglio non è visibile, chiedi altre foto specifiche, come un'etichetta della taglia da vicino o un righello lungo la soletta. Una richiesta di “controllo della qualità” è troppo generica per produrre prove comparabili.",
           "L'ispezione dovrebbe portare a una delle tre decisioni: accettare la merce, richiedere ulteriori prove o chiedere al supporto post-vendita di esaminare il problema. Le politiche di restituzione seguono il mercato di origine e il venditore, quindi non ritardare quando le discrepanze sono evidenti. I beni di seconda mano o le categorie speciali possono avere regolamenti più severi. Documenta i numeri di ordine, le foto e le differenze apparenti piuttosto che fare affermazioni che non possono essere dimostrate dalla fotocamera."
-        ]
+        ],
+        "seeAlso": "qc-photo-checklist"
       },
       {
         "heading": "Gestire le scadenze di archiviazione e consolidamento",
@@ -655,7 +662,8 @@
         "paragraphs": [
           "Prima della spedizione, determinare gli articoli da includere, i requisiti della scatola, la protezione degli angoli, l'ammortizzazione, il vuoto, la rimozione dell'imballaggio al dettaglio e la protezione dall'umidità. Scegliere in base alle esigenze fisiche del contenuto. Gli indumenti morbidi possono essere compattati in modo sicuro, mentre scarpe, elettronica, oggetti fragili o scatole di raccolta possono richiedere una struttura aggiuntiva. Il pacchetto più piccolo non è necessariamente il pacchetto più sicuro.",
           "Confronta i percorsi attraverso le categorie di merci accettate, i limiti di peso e dimensione, come calcolare il peso volumetrico, il tracciamento, le stime dei tempi, la compensazione e la disponibilità dei codici postali di destinazione. La spedizione iniziale è una stima basata sui dati del pacchetto; dopo l'imballaggio, il peso e le dimensioni effettivi possono causare riconciliazioni. Tenere un fondo di riserva e non dare per scontato che un modello tariffario si applica a tutta l'Indonesia o durante tutto l'anno."
-        ]
+        ],
+        "seeAlso": "shipping-cost-guide"
       },
       {
         "heading": "Mantenere i registri doganali e di consegna",
@@ -667,7 +675,7 @@
       {
         "heading": "Separare il product discovery dalle azioni dell'account",
         "paragraphs": [
-          "I link di prodotto e ricerca su superbuys.id aprono il catalogo cnfanshp.com. Il catalogo è diverso dall'account Superbuy per il pagamento degli ordini, il controllo dell'inventario e l'invio dei pacchi. L'apertura di un annuncio non crea automaticamente un ordine. Salvare il link di origine e la variante, la dimensione e la quantità corrette prima di continuare nell'account di servizio appropriato.",
+          "I link di prodotto e ricerca su superbuys.id aprono il catalogo dei prodotti. Il catalogo è diverso dall'account Superbuy per il pagamento degli ordini, il controllo dell'inventario e l'invio dei pacchi. L'apertura di un annuncio non crea automaticamente un ordine. Salvare il link di origine e la variante, la dimensione e la quantità corrette prima di continuare nell'account di servizio appropriato.",
           "Prendi appunti semplici con colonne per i collegamenti ai prodotti, le opzioni, i costi di acquisto, lo stato dell'inventario e l'azione successiva. Se uno qualsiasi dei dati non è chiaro, risolvi la questione prima di pagare o approvare la spedizione. Utilizza la guida al pagamento per controllare i costi e la guida al tracciamento dopo che il pacco è stato consegnato al corriere."
         ]
       }
@@ -862,5 +870,196 @@
         ]
       }
     ]
+  },
+  "superbuy-1688-five-items-moq": {
+    "title": "Comprare cinque capi su 1688 con Superbuy: ordine minimo, prezzo e spedizione",
+    "description": "Tre magliette in M e due in L possono ottenere lo stesso prezzo all’ingrosso? Chiedi un preventivo per il magazzino cinese e calcola a parte l’invio in Indonesia.",
+    "sections": [
+      {
+        "heading": "Parti dai cinque pezzi che ti servono",
+        "paragraphs": [
+          "Supponiamo che tu voglia tre magliette blu scuro in taglia M e due in L. Salva il collegamento alla scheda 1688 e una schermata delle opzioni scelte. Accanto al link scrivi modello, colore e numero di capi per taglia. Ricevere cinque M significherebbe rispettare il totale, ma ti mancherebbero comunque due capi utili. Conserva la lista per usarla sia al momento del preventivo sia per controllare le foto del magazzino.",
+          "MOQ indica la quantità minima d’ordine richiesta dal venditore. Nella guida dedicata a 1688, Superbuy spiega che un ordine inferiore alla soglia stabilita dal fornitore può essere respinto e dover essere inserito di nuovo. Prima di acquistare, chiedi se le tre M e le due L si possono sommare. Cinque prodotti nel carrello possono appartenere a venditori diversi o a gruppi per i quali valgono soglie separate."
+        ]
+      },
+      {
+        "heading": "Controlla cosa rappresenta una unità",
+        "paragraphs": [
+          "Leggi l’unità riportata accanto al prezzo e la descrizione della variante. La quantità può riferirsi a un pezzo, un paio, un set o una confezione intera. Se l’unità è un pacco da cinque magliette, selezionare cinque significa richiedere venticinque capi. All’opposto, una foto con cinque colori può semplicemente mostrare tutte le scelte disponibili per l’acquisto di un solo pezzo.",
+          "Chiedi se il minimo si applica al modello o a ogni taglia. Se servono cinque pezzi per modello e il venditore consente taglie miste, tre M e due L possono bastare. Se servono cinque pezzi per singola taglia, nessuna delle due righe raggiunge la soglia. Il fornitore potrebbe proporre una scheda per piccoli quantitativi o un campione. Fatti indicare il link e il prezzo effettivo di quella soluzione."
+        ]
+      },
+      {
+        "heading": "Un esempio di preventivo fino al magazzino",
+        "paragraphs": [
+          "I numeri seguenti sono ipotetici e sono espressi in yuan. Da due a quattro magliette il prezzo è di 24 CNY al pezzo e da cinque a nove scende a 20 CNY. Entrambe le taglie hanno lo stesso prezzo, il venditore le accorpa per raggiungere la fascia da cinque e chiede 12 CNY per spedire tutto al magazzino cinese. La merce costa 5 × 20 = 100 CNY. Aggiungendo il trasporto una sola volta, il totale fino al magazzino è di 112 CNY, cioè 22,40 CNY a maglietta.",
+          "Cambia ora soltanto la regola sulle fasce. Se le quantità vengono conteggiate separatamente per taglia, sia le tre M sia le due L restano nella fascia da 24 CNY. La merce costa 120 CNY. Se la spedizione totale resta pari a 12 CNY, il preventivo sale a 132 CNY, cioè 26,40 CNY a capo. Sono 20 CNY in più per gli stessi articoli. Se la L ha un prezzo base diverso, calcola la sua riga moltiplicando due per il prezzo specifico.",
+          "Conserva il totale esatto, prima degli arrotondamenti. La media per maglietta serve a confrontare le offerte. Per confermare l’acquisto, il venditore deve verificare la somma complessiva, le quantità per taglia e il trasporto totale."
+        ]
+      },
+      {
+        "heading": "Fatti confermare il trasporto interno per tutti i capi",
+        "paragraphs": [
+          "Indica il magazzino cinese riportato nel tuo ordine Superbuy e chiedi il costo di spedizione dell’intera selezione. Verifica se tutte le taglie partiranno insieme. Se il corriere viene addebitato per spedizione, chiedi quanti invii sono previsti. Una taglia in riassortimento o scorte in depositi diversi possono cambiare il numero di colli. Una casella senza importo nell’anteprima del prodotto non dimostra che il trasporto sia gratuito.",
+          "Tieni separate le righe per merce, trasporto cinese ed eventuali servizi facoltativi. Potrai confrontarle con la richiesta di pagamento e capire se è aumentato il prezzo di una variante oppure il costo del corriere. Se il venditore propone di sostituire una taglia, chiedi un conteggio aggiornato per la nuova selezione prima di dare il tuo assenso."
+        ]
+      },
+      {
+        "heading": "Stima il secondo tratto fino all’Indonesia",
+        "paragraphs": [
+          "I 12 CNY dell’esempio coprono solo il trasporto fino al magazzino in Cina. Per il tratto internazionale apri il calcolatore ufficiale Superbuy e seleziona l’Indonesia come destinazione. Inserisci categoria merceologica, peso in grammi e lunghezza, larghezza e altezza dell’imballo esterno in centimetri. Conserva la data e specifica se le misure provengono dal venditore, dal magazzino o da una tua ipotesi.",
+          "Cinque magliette piegate in un unico involucro e cinque scatole regalo individuali possono occupare spazi diversi. Se vuoi conservare le scatole, confronta le due soluzioni usando dimensioni plausibili e leggi le condizioni delle linee disponibili. Moltiplicare per cinque la tariffa internazionale di una sola maglietta non riproduce il peso addebitabile del pacco finale. Aggiorna la stima con i dati del collo imballato appena sono disponibili."
+        ]
+      },
+      {
+        "heading": "Un messaggio da adattare per il preventivo",
+        "paragraphs": [
+          "«Vorrei cinque magliette singole da questa inserzione, tre blu scuro in M e due in L, da consegnare al mio magazzino Superbuy. Le due taglie si possono sommare per il prezzo da cinque pezzi? Potete confermare disponibilità e prezzo unitario per ciascuna taglia, il trasporto interno complessivo e il numero di spedizioni? Contattatemi prima di sostituire una taglia, aggiungere pezzi o accettare un importo più alto.»",
+          "Una risposta come «cinque disponibili» lascia aperte due domande: ci sono proprio le taglie richieste e si applica il prezzo per cinque? Chiedi il dato mancante e conserva la conferma con data, link completo, valuta, varianti, totale merce e trasporto. Durante l’acquisto potrai confrontare il preventivo con la cifra effettivamente richiesta."
+        ]
+      },
+      {
+        "heading": "Verifica l’arrivo prima di inoltrare il pacco",
+        "paragraphs": [
+          "Confronta il registro di magazzino e le foto disponibili con la lista dei cinque pezzi. Se le magliette sono sfuse, conta le etichette di taglia visibili. Su una confezione sigillata potrebbe essere indicato soltanto il modello. Nella guida a 1688 Superbuy descrive i limiti del conteggio dei pezzi all’interno degli imballi originali. Se la scelta di spedire dipende dalle taglie, chiedi quali controlli siano disponibili per l’articolo acquistato.",
+          "Una foto con tre etichette M e una L può nascondere la quinta maglietta, oppure potrebbe mancare l’arrivo del secondo collo. Chiedi un’altra inquadratura o il numero di tracciamento prima di dichiarare una mancanza. Con tutti i pezzi identificati, aggiorna la stima internazionale. Per calcolare il costo per maglietta, somma merce, trasporto interno, spedizione internazionale e gli altri oneri effettivamente applicabili nella stessa valuta, poi dividi per cinque."
+        ]
+      }
+    ],
+    "primaryKeyword": "acquistare cinque pezzi su 1688 con Superbuy",
+    "secondaryKeywords": [
+      "ordine minimo 1688",
+      "spedizione interna"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "superbuy-no-shipping-options-indonesia": {
+    "title": "Superbuy non mostra spedizioni per l’Indonesia? Come controllare il pacco",
+    "description": "Verifica destinazione, caratteristiche degli articoli e misure dell’imballo. Un esempio e un messaggio da adattare ti aiutano a chiedere chiarimenti a Superbuy.",
+    "sections": [
+      {
+        "heading": "1. Individua la schermata in cui mancano le opzioni",
+        "paragraphs": [
+          "Puoi pagare un articolo su Taobao e vederne le foto di controllo nel magazzino Superbuy prima di sapere come potrà arrivare in Indonesia. Il trasporto dal venditore al magazzino copre la tratta interna. L’idoneità a una spedizione internazionale dipende dal pacco che vuoi inviare. Annota se l’elenco è vuoto nel calcolatore pubblico oppure solo quando selezioni certi articoli nel tuo account.",
+          "Prima di cambiare i dati, conserva data, testo del messaggio, riferimenti degli articoli in magazzino, destinazione e categorie scelte. Indica l’unità accanto a ogni misura. Una schermata che comprende i campi compilati consente all’assistenza di ripetere la prova. Comunica i riferimenti dell’ordine nella conversazione privata."
+        ]
+      },
+      {
+        "heading": "2. Ricontrolla paese, magazzino e codice postale",
+        "paragraphs": [
+          "Seleziona Indonesia nel calcolatore ufficiale e verifica che il magazzino visualizzato sia quello degli articoli. Il peso va espresso in grammi e le dimensioni in centimetri. Per 1,8 kg inserisci 1800 nel campo del peso. Una lunghezza di 420 mm va inserita come 42 cm. Controlla le conversioni prima di interpretare il risultato.",
+          "Per un invio dal tuo account verifica la destinazione selezionata, compresi paese, città o reggenza e codice postale. Fai attenzione se hai salvato anche un vecchio indirizzo all’estero. Nel calcolatore la destinazione è un paese, nell’ordine è un indirizzo preciso. Se il servizio compare solo nel calcolatore, conserva entrambe le schermate e chiedi se la consegna copre quel codice postale."
+        ]
+      },
+      {
+        "heading": "3. Identifica la variante e tutto ciò che è nella confezione",
+        "paragraphs": [
+          "La stessa inserzione può comprendere una tastiera con cavo e una senza fili con batteria. Leggi la variante ordinata e chiedi al venditore di confermare modello, presenza di batteria e accessori inclusi. Nel calcolatore Superbuy una batteria integrata, un power bank e una batteria separata hanno voci distinte. Seleziona quella corrispondente al contenuto effettivo.",
+          "Per un campione o un omaggio chiedi che cosa contenga e in quale quantità. Se la descrizione in magazzino è diversa da quella fornita dal venditore, chiedi all’agente di controllare la scheda tecnica o una foto leggibile dell’etichetta. Se Superbuy segnala un prodotto escluso dalla spedizione, informati sul reso al venditore mentre si trova ancora in Cina. Selezionare la categoria dei beni generici non cambia le regole di accettazione."
+        ]
+      },
+      {
+        "heading": "4. Misura il cartone chiuso, compresa l’imbottitura",
+        "paragraphs": [
+          "Servono lunghezza, larghezza e altezza esterne dell’imballaggio, oltre al peso comprensivo delle protezioni. La lunghezza di una scarpa, la scatola originale e l’imballo di spedizione si riferiscono a tre oggetti diversi. Se hai soltanto le dimensioni del prodotto, indicale come provvisorie. Quando sei vicino a un limite della linea, chiedi al magazzino le misure dopo l’imballaggio.",
+          "Ipotizziamo che scarpe, scatola e imbottitura pesino 1800 g. Un cartone da 40 × 30 × 20 cm occupa 24.000 cm³. Se il servizio considerato usa un divisore di 6000, il peso volumetrico nell’esempio è 4 kg. Con un imballo adatto da 40 × 30 × 15 cm si scende a 18.000 cm³, cioè 3 kg con lo stesso divisore. Verifica limiti, arrotondamenti e divisore della linea. Non si può ricavare da questo esempio una tariffa o la certezza che un cartone più piccolo venga accettato.",
+          "Se la scatola originale protegge un tacco delicato o vuoi conservarla, avvisa il magazzino prima di autorizzarne la rimozione. Chiedi le misure di un’alternativa abbastanza protetta e ripeti la stima."
+        ]
+      },
+      {
+        "heading": "5. Prova gli articoli singoli, poi il pacco completo",
+        "paragraphs": [
+          "Supponiamo che in magazzino ci siano scarpe e una lampada da scrivania ricaricabile. Simula le scarpe da sole con categoria e misure effettive o stimate dell’imballo. Fai lo stesso per la lampada usando il tipo di batteria confermato. Prova infine entrambi gli articoli con peso e dimensioni della scatola comune. Mantieni uguali magazzino e destinazione e annota i servizi disponibili in ogni prova.",
+          "Se compare una linea solo per le scarpe, chiedi quali condizioni riguardino la batteria della lampada. Se ogni articolo viene accettato singolarmente ma insieme non compare alcuna linea, fai controllare la combinazione, le misure e il peso complessivo. Se mancano opzioni in entrambe le prove individuali, ricontrolla destinazione e unità prima di pagare un reimballaggio. Confronta i costi di due colli solo dopo la conferma che entrambi siano ammissibili. Ciascuno può avere un minimo di trasporto e costi di imballaggio propri.",
+          "Annota il contenuto accanto al prezzo di ogni prova. Il giorno dopo è facile scambiare il preventivo delle sole scarpe per quello dell’intero ordine. Se il venditore aggiunge una batteria di ricambio o sostituisce la scatola originale, registra la modifica, chiedi le nuove misure e ripeti il confronto partendo dall’articolo interessato."
+        ]
+      },
+      {
+        "heading": "6. Invia all’assistenza una richiesta verificabile",
+        "paragraphs": [
+          "Prima dell’acquisto chiedi al venditore le specifiche mancanti e invia a Superbuy il link e la variante tramite il servizio di informazioni sull’acquisto. Per un ordine già inserito usa la richiesta relativa all’ordine o l’assistenza clienti. Allega i dati del calcolatore, il messaggio del sistema e la data. Chiedi quale condizione limita la scelta e quali misure o documenti permetterebbero di verificarla.",
+          "Messaggio da adattare: «Vorrei spedire gli articoli in magazzino [riferimenti] a [località, codice postale], Indonesia. Il contenuto è [articoli, varianti e caratteristiche]. Il pacco pesa [g] e le misure esterne sono [lunghezza × larghezza × altezza in cm]. Il [data] il calcolatore mostrava [risultato], mentre nel mio account compariva [messaggio]. Potete indicare il requisito interessato e confermare quali imballi o spedizioni separate sono ammessi, con i relativi costi, prima di apportare modifiche?»",
+          "Mentre aspetti, verifica la scadenza per il reso dell’ordine. Chiedi chi contatterà il venditore e se serve conservare la confezione originale per la restituzione."
+        ]
+      },
+      {
+        "heading": "7. Scegli il prossimo passo prima di pagare il trasporto",
+        "paragraphs": [
+          "Quando l’agente conferma un servizio per il contenuto e l’indirizzo indicati, riapri la schermata del pacco. Confronta servizio, misure e addebiti con la risposta e conserva data e condizioni considerate. Se occorre un cartone diverso, valuta prezzo e protezione prima di approvare. In caso di errore di misura usa i nuovi valori per le stime successive.",
+          "Se non c’è un servizio adatto, chiedi quali articoli possano restare in magazzino e se quello non accettato possa essere reso secondo le condizioni del venditore. Chiarisci costi e tempi. Con una linea confermata, consulta la guida alle spese di spedizione per confrontare deposito e addebito finale. Se il pacco è già partito e ha un numero di tracciamento, passa alla guida al monitoraggio."
+        ]
+      }
+    ],
+    "primaryKeyword": "Superbuy nessuna opzione di spedizione",
+    "secondaryKeywords": [
+      "spedizione in Indonesia",
+      "misure del pacco"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "superbuy-wrong-size-return-exchange": {
+    "title": "Taglia sbagliata nelle foto QC di Superbuy? Come chiedere un reso o un cambio",
+    "description": "Confronta variante, etichetta e misure. Prepara la richiesta all’agente mentre il capo si trova ancora nel magazzino in Cina.",
+    "sections": [
+      {
+        "heading": "Tieni il capo fuori dal pacco internazionale",
+        "paragraphs": [
+          "Se nelle foto del magazzino vedi una taglia diversa da quella che ti aspettavi, lascia il capo fuori dal pacco che stai preparando. Apri il relativo ordine, salva la taglia scelta e ingrandisci la foto dell’etichetta cucita. Se hai ordinato una L e sull’etichetta si legge chiaramente M, hai già un riscontro da segnalare. Non occorre acquistare una foto aggiuntiva per mostrare una scritta già leggibile.",
+          "La guida all’acquisto Superbuy distingue il controllo in magazzino dalla successiva richiesta di spedizione internazionale. Finché il capo si trova in Cina, l’agente può chiedere al venditore le condizioni per restituirlo all’interno del paese. Se hai già inoltrato la richiesta di spedizione, comunica all’assistenza sia il riferimento dell’ordine sia quello del pacco. Chiedi se è ancora possibile sospendere la preparazione o la partenza e attendi conferma."
+        ]
+      },
+      {
+        "heading": "Associa la foto alla riga d’ordine giusta",
+        "paragraphs": [
+          "Salva la descrizione della variante, la taglia, il colore e la quantità selezionata. Abbinali al riferimento dell’articolo in My Warehouse. Se hai acquistato due giacche identiche in taglie diverse, controlla una riga alla volta. L’adesivo sulla busta identifica la confezione, mentre una foto dell’etichetta cucita mostra la taglia riportata sul capo. Per le scarpe, controlla le etichette sia della destra sia della sinistra, oltre a quella sulla scatola. Se il pacco riunisce acquisti di negozi diversi, indica il venditore o la riga d’ordine per evitare che il reso arrivi al negozio sbagliato.",
+          "Ci sono tre casi distinti. Una M sul capo a fronte di una L ordinata indica una variante diversa. Se entrambe le taglie sono L ma le dimensioni sembrano diverse dalla tabella, chiedi una verifica della misura. Se il capo corrisponde all’ordine e alla tabella ma preferisci una vestibilità più ampia, presenta la richiesta come cambio volontario. Indicare il motivo preciso permette all’agente di chiedere al venditore quali condizioni si applicano."
+        ]
+      },
+      {
+        "heading": "Usa gli stessi punti di misura del venditore",
+        "paragraphs": [
+          "Recupera la tabella del modello acquistato. Controlla la riga della taglia, l’unità e se la cifra si riferisce al corpo, al capo o a una vestibilità consigliata. La larghezza misurata da ascella ad ascella sul capo steso è diversa dalla circonferenza del torace. Chiedi una foto nella quale si vedano entrambe le cuciture, l’inizio e la fine del metro e l’unità. Il tessuto va steso senza tirarlo.",
+          "Per i pantaloni, specifica se vuoi la larghezza della vita a riposo, quella con l’elastico teso o la lunghezza interna della gamba. Per le scarpe, la lunghezza della suola esterna non basta per valutare lo spazio disponibile per il piede. Se il riferimento è il sottopiede estraibile, chiedi se si può togliere senza danneggiare la scarpa e fotografare dal tallone alla punta. Confrontalo con la stessa misura di un paio che già indossi."
+        ]
+      },
+      {
+        "heading": "Esempio di una giacca L larga 53 cm",
+        "paragraphs": [
+          "Immagina che per la L il venditore indichi 56 cm di larghezza del torace da ascella ad ascella sul capo steso, con una tolleranza dichiarata di 1 cm in entrambe le direzioni. L’intervallo è quindi da 55 a 57 cm. Ordine ed etichetta indicano entrambi L. Nella prima foto sembra di leggere 53 cm, ma l’estremità sinistra del metro è fuori campo. Conserva la foto e chiedine una seconda con la giacca chiusa, stesa senza tensione e con entrambe le cuciture visibili.",
+          "Se la seconda misurazione conferma 53 cm, la giacca è 3 cm sotto il valore indicato e 2 cm sotto il limite inferiore della tolleranza. Invia tabella e immagine insieme. Se il venditore prende la misura più in basso, chiedi prima una verifica negli stessi punti. Questi valori illustrano il procedimento. Usa i dati della tua inserzione e solo la tolleranza eventualmente dichiarata per quel modello."
+        ]
+      },
+      {
+        "heading": "Due testi pronti da adattare",
+        "paragraphs": [
+          "Apri la richiesta informazioni o l’assistenza post-vendita dell’articolo se l’opzione è disponibile. In alternativa contatta il supporto Superbuy dal tuo account, indicando il riferimento dell’ordine. Allega la variante selezionata, la tabella del modello e la foto più chiara. Per un acquisto di più unità specifica quale è interessata e quante devono rimanere in magazzino. Indica subito se chiedi una misura aggiuntiva, un cambio o un reso con rimborso.",
+          "Per l’etichetta sbagliata: «Ordine [riferimento], una giacca nera. Ho scelto la L, ma la foto dell’etichetta cucita mostra M. Chiedo di escludere questo capo dalla spedizione internazionale e di verificare con il venditore il cambio con una giacca nera L. Se non è disponibile, vorrei conoscere condizioni e costi di reso prima di procedere».",
+          "Per la misura diversa: «Ordine [riferimento]. Ordine ed etichetta indicano L. La tabella riporta una larghezza del torace di 56 cm con una tolleranza di 1 cm. La nuova foto mostra 53 cm. Potete verificare il metodo di misurazione con il venditore e chiedere se accetta il reso? Vi prego di confermare prima eventuali spese». Sostituisci i numeri con i tuoi e invia gli allegati nella conversazione ufficiale."
+        ]
+      },
+      {
+        "heading": "Valuta sostituzione e rimborso",
+        "paragraphs": [
+          "Se desideri ancora lo stesso modello, chiedi conferma della disponibilità del colore e della taglia di ricambio. Verifica l’eventuale differenza di prezzo, le spese di trasporto in Cina per ogni tratta e gli eventuali costi di servizio. Una lettera di taglia in più non assicura la larghezza desiderata. Se una particolare misura è decisiva, chiedi se il venditore può verificarla sul ricambio. Decidi anche se gli altri acquisti possono aspettare.",
+          "Per il reso, chiedi importo rimborsabile, chi sostiene la spedizione di ritorno e dove comparirà l’accredito. Chiarisci il trattamento della prima spedizione nazionale e dei servizi aggiuntivi già utilizzati. Conserva etichette, imballaggio e accessori fino alle istruzioni dell’agente. Requisiti, accettazione e scadenza dipendono dall’ordine e dal venditore. I giorni di deposito residui non indicano il tempo disponibile per aprire la pratica."
+        ]
+      },
+      {
+        "heading": "Controlla il risultato prima di chiudere la pratica",
+        "paragraphs": [
+          "Per il cambio, annota il riferimento del ricambio e verifica le nuove foto. Confronta colore, etichetta e misura richiesta prima di aggiungere il capo al pacco. Per il reso, conserva l’accettazione, l’eventuale tracciamento in Cina e la registrazione finale del rimborso. L’accordo con cui il venditore accetta di riprendere la merce e l’effettivo accredito sul conto sono passaggi distinti. Se la somma differisce, riparti dalla conferma scritta.",
+          "Se il venditore rifiuta, chiedi all’agente la motivazione, la condizione applicata e le alternative rimaste. Una foto più precisa può risolvere una divergenza su dove appoggiare il metro. Se il capo corrisponde all’inserzione e il venditore rifiuta un cambio per preferenza personale, decidi se spedirlo in base ai costi confermati. Se il pacco ha già lasciato la Cina, comunica il suo stato all’assistenza prima di organizzare una restituzione internazionale a tue spese."
+        ]
+      }
+    ],
+    "primaryKeyword": "reso Superbuy taglia sbagliata",
+    "secondaryKeywords": [
+      "foto QC",
+      "cambio taglia prima della spedizione"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
   }
 }

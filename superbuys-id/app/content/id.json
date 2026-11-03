@@ -82,12 +82,12 @@
       {
         "heading": "Buat daftar pilihan dan tindakan berikutnya",
         "paragraphs": [
-          "Untuk setiap produk, catat URL listing aktif, varian, ukuran, mata uang harga, dan tanggal pengecekan. Tambahkan satu tindakan berikutnya: memperjelas varian, membandingkan ukuran, memeriksa jalur pengiriman, atau menghapus pilihan. Daftar pendek dengan pertanyaan yang terselesaikan lebih berguna daripada banyak tautan yang belum diperiksa. Tautan produk di sini membuka cnfanshp.com; pembayaran Superbuy dan tindakan gudang dilakukan melalui akun layanan yang sesuai.",
+          "Untuk setiap produk, catat URL listing aktif, varian, ukuran, mata uang harga, dan tanggal pengecekan. Tambahkan satu tindakan berikutnya: memperjelas varian, membandingkan ukuran, memeriksa jalur pengiriman, atau menghapus pilihan. Daftar pendek dengan pertanyaan yang terselesaikan lebih berguna daripada banyak tautan yang belum diperiksa. Tautan produk di sini membuka katalog produk; pembayaran Superbuy dan tindakan gudang dilakukan melalui akun layanan yang sesuai.",
           "Sebelum memesan, sisihkan anggaran pengiriman internasional dan pungutan impor Indonesia. Gunakan panduan pembayaran untuk membandingkan debit dengan saldo diterima, panduan sepatu untuk tabel ukuran yang belum jelas, serta panduan gudang ketika beberapa barang siap dikirim. Setiap keputusan memerlukan bukti berbeda; satu kartu produk yang menarik tidak dapat menjawab semuanya."
         ]
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "qc-photo-checklist": {
@@ -160,8 +160,10 @@
         "heading": "Simpan bukti dan buat keputusan tepat waktu",
         "paragraphs": [
           "Simpan gambar listing, catatan opsi, foto QC, percakapan penting, serta keputusan purnajual sampai paket diterima. Nama file sederhana seperti nomor pesanan dan tanggal membuat bukti mudah ditemukan. Jika foto menunjukkan perbedaan, tandai area yang dimaksud tanpa mengubah isi gambar asli. Tuliskan fakta yang terlihat dan hindari klaim yang tidak dapat dibuktikan.",
-          "Keputusan QC memiliki tiga hasil praktis: setujui, minta bukti tambahan, atau ajukan purnajual. Setujui ketika detail utama cocok dan sisa risikonya dapat diterima. Minta foto ketika satu pemeriksaan spesifik belum mungkin. Ajukan bantuan ketika ada ketidaksesuaian yang jelas. Proses ini lebih efektif daripada terus memperbesar gambar sambil menunda keputusan tanpa kriteria."
-        ]
+          "Keputusan QC memiliki tiga hasil praktis: setujui, minta bukti tambahan, atau ajukan purnajual. Setujui ketika detail utama cocok dan sisa risikonya dapat diterima. Minta foto ketika satu pemeriksaan spesifik belum mungkin. Ajukan bantuan ketika ada ketidaksesuaian yang jelas. Proses ini lebih efektif daripada terus memperbesar gambar sambil menunda keputusan tanpa kriteria.",
+          "Sebelum menyetujui pengiriman, bedakan dua kasus: label tidak sesuai pesanan, atau label benar tetapi ukuran fisiknya meragukan. Untuk kasus pertama, cocokkan foto label dengan varian di pesanan. Untuk kasus kedua, minta foto dengan meteran dan metode ukur yang sama seperti tabel penjual. Simpan bukti saat barang masih di gudang."
+        ],
+        "seeAlso": "superbuy-wrong-size-return-exchange"
       },
       {
         "heading": "Checklist singkat sebelum menyetujui pengiriman",
@@ -179,12 +181,12 @@
         ]
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "shipping-cost-guide": {
-    "title": "Ongkir Superbuy ke Indonesia 2026: Berat, Deposit dan Biaya Akhir",
-    "description": "Panduan menghitung ongkir Superbuy ke Indonesia, memahami deposit, berat aktual dan volumetrik, konsolidasi, kemasan, serta penyesuaian biaya akhir.",
+    "title": "Ongkir Superbuy ke Indonesia: Hitung Berat Aktual dan Volumetrik",
+    "description": "Bandingkan berat tagihan dengan dan tanpa kotak sepatu, lalu cek estimasi ongkir Superbuy ke Indonesia dengan ukuran paket Anda sendiri.",
     "primaryKeyword": "ongkir Superbuy ke Indonesia",
     "secondaryKeywords": [
       "biaya kirim Superbuy",
@@ -192,7 +194,7 @@
       "rehearsal packaging Superbuy",
       "konsolidasi paket Superbuy"
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Mengapa angka ongkir pertama bukan tagihan final",
@@ -269,7 +271,8 @@
         "paragraphs": [
           "Buat skenario barang digabung dan skenario pemisahan yang masuk akal. Gunakan tujuan serta isi yang sama, lalu catat jalur, estimasi berat setelah dikemas, dimensi, dan perlindungan yang dipilih. Jumlahkan seluruh ongkir pada skenario terpisah sebelum membandingkan total. Tandai dimensi yang belum pasti dan pisahkan anggaran bea cukai dari ongkir. Selisih kecil antara estimasi kasar bukan penghematan yang terverifikasi.",
           "Setelah pengemasan, bandingkan ukuran dan penyesuaian biaya dengan data awal. Simpan nomor paket serta jalur bersama bukti pembayaran, kemudian gunakan panduan pelacakan untuk serah terima pengangkut dan pengantaran. Periksa kembali daftar gudang: barang yang tidak ikut paket masih memiliki tenggat penyimpanan sendiri. Dengan begitu, keputusan pengiriman tidak meninggalkan barang lama tanpa langkah berikutnya."
-        ]
+        ],
+        "seeAlso": "superbuy-no-shipping-options-indonesia"
       }
     ],
     "publishedAt": "2026-08-12"
@@ -285,7 +288,7 @@
       "beli 1688 lewat Superbuy"
     ],
     "publishedAt": "2026-09-07",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Pahami fungsi Superbuy sebelum mulai belanja",
@@ -298,14 +301,16 @@
         "heading": "Temukan produk Taobao atau 1688 dengan tautan aktif",
         "paragraphs": [
           "Untuk membeli Taobao lewat Superbuy, mulai dari tautan produk aktif, bukan tangkapan layar atau judul lama. Salin URL listing ke kolom pembelian Superbuy dan tunggu sistem membaca informasi produk. Jika halaman tidak terbaca otomatis, data dapat perlu dimasukkan secara manual. Pastikan nama barang, harga, warna, ukuran, jumlah, ongkir domestik, serta catatan penjual sama dengan listing sumber sebelum pesanan dibayar.",
-          "Cara beli 1688 lewat Superbuy pada dasarnya mengikuti alur serupa, tetapi listing grosir sering mempunyai jumlah minimum, tingkatan harga, atau pilihan campuran. Periksa apakah harga berlaku untuk satu unit atau paket, apakah jumlah minimal dihitung per warna, dan apakah penjual meminta spesifikasi tambahan. Spreadsheet atau indeks produk dapat mempercepat pencarian, tetapi listing yang sedang aktif tetap menjadi sumber keputusan. Bila pilihan pada indeks berbeda dari marketplace, gunakan informasi terbaru pada halaman penjual."
+          "Cara beli 1688 lewat Superbuy pada dasarnya mengikuti alur serupa, tetapi listing grosir sering mempunyai jumlah minimum, tingkatan harga, atau pilihan campuran. Periksa apakah harga berlaku untuk satu unit atau paket, apakah jumlah minimal dihitung per warna, dan apakah penjual meminta spesifikasi tambahan. Spreadsheet atau indeks produk dapat mempercepat pencarian, tetapi listing yang sedang aktif tetap menjadi sumber keputusan. Bila pilihan pada indeks berbeda dari marketplace, gunakan informasi terbaru pada halaman penjual.",
+          "Jika lima barang tersedia dalam beberapa warna, kirim satu daftar ke agen: tautan, jumlah per warna, jumlah total, dan kota gudang. Minta harga satuan pada jumlah tersebut serta ongkir domestik secara terpisah. Simpan jawaban sebelum membayar."
         ],
         "bullets": [
           "Salin URL listing aktif",
           "Cocokkan harga dan varian",
           "Periksa minimum order 1688",
           "Catat ongkir domestik"
-        ]
+        ],
+        "seeAlso": "superbuy-1688-five-items-moq"
       },
       {
         "heading": "Pilih varian tanpa mengandalkan terjemahan otomatis saja",
@@ -333,7 +338,8 @@
         "paragraphs": [
           "Mulai pemeriksaan QC dari identitas: model, warna, ukuran, jumlah, dan aksesori. Setelah itu lihat bentuk umum, simetri, noda, kerusakan, jahitan yang terlihat, serta kondisi kemasan bila kemasan penting. Jika satu detail penentu tidak terlihat, minta foto tambahan yang spesifik, misalnya label ukuran dari dekat atau penggaris di sepanjang insole. Permintaan ‘cek kualitas’ terlalu umum untuk menghasilkan bukti yang dapat dibandingkan.",
           "Hasil pemeriksaan sebaiknya berujung pada salah satu dari tiga keputusan: setujui barang, minta bukti tambahan, atau ajukan purnajual. Kebijakan retur mengikuti marketplace asal dan penjual, sehingga jangan menunda ketika ketidaksesuaian terlihat. Barang bekas atau kategori khusus dapat memiliki ketentuan lebih ketat. Dokumentasikan nomor pesanan, foto, serta perbedaan yang tampak daripada membuat klaim yang tidak dapat dibuktikan kamera."
-        ]
+        ],
+        "seeAlso": "qc-photo-checklist"
       },
       {
         "heading": "Manfaatkan gudang dan konsolidasi dengan batas waktu",
@@ -347,7 +353,8 @@
         "paragraphs": [
           "Sebelum mengirim, tentukan barang yang dimasukkan, kebutuhan kotak, perlindungan sudut, bantalan, vakum, pelepasan kemasan ritel, dan perlindungan lembap. Pilih berdasarkan karakter isi. Pakaian lunak mungkin aman dipadatkan, sedangkan sepatu, elektronik, barang rapuh, atau kotak koleksi dapat memerlukan struktur tambahan. Paket yang paling kecil belum tentu paket yang paling aman.",
           "Bandingkan jalur melalui kategori barang yang diterima, batas berat dan ukuran, cara menghitung berat volumetrik, pelacakan, estimasi waktu, kompensasi, serta ketersediaan ke kode pos tujuan. Ongkir awal adalah perkiraan berdasarkan data paket; setelah pengemasan, berat dan dimensi aktual dapat menyebabkan rekonsiliasi. Sisakan dana cadangan dan jangan menganggap satu tarif contoh berlaku untuk seluruh Indonesia atau sepanjang tahun."
-        ]
+        ],
+        "seeAlso": "shipping-cost-guide"
       },
       {
         "heading": "Siapkan dokumen, pajak, pelacakan, dan bukti",
@@ -359,7 +366,7 @@
       {
         "heading": "Pisahkan katalog produk dari akun layanan",
         "paragraphs": [
-          "Tautan produk dan pencarian di superbuys.id membuka katalog cnfanshp.com. Katalog ini berbeda dari akun Superbuy untuk membayar pesanan, memeriksa gudang, dan mengirim paket. Membuka listing tidak otomatis membuat pesanan. Simpan tautan sumber, varian, ukuran, dan jumlah yang tepat sebelum melanjutkan di akun layanan yang sesuai.",
+          "Tautan produk dan pencarian di superbuys.id membuka katalog produk. Katalog ini berbeda dari akun Superbuy untuk membayar pesanan, memeriksa gudang, dan mengirim paket. Membuka listing tidak otomatis membuat pesanan. Simpan tautan sumber, varian, ukuran, dan jumlah yang tepat sebelum melanjutkan di akun layanan yang sesuai.",
           "Buat catatan sederhana dengan kolom tautan produk, pilihan, biaya pembelian, status gudang, dan tindakan berikutnya. Jika salah satu data belum jelas, selesaikan pertanyaan itu sebelum membayar atau menyetujui pengiriman. Gunakan panduan pembayaran untuk memeriksa biaya dan panduan pelacakan setelah paket diserahkan ke jalur pengiriman."
         ]
       }
@@ -625,12 +632,12 @@
         "heading": "Gunakan checklist pembayaran",
         "paragraphs": [
           "Sebelum membayar, pastikan varian produk, jumlah yang harus dibayar sekarang, dan anggaran yang masih diperlukan nanti. Periksa metode di akun sendiri, bandingkan total debit dengan saldo yang diterima, lalu simpan referensinya. Sesudah pembayaran, cocokkan saldo atau pembayaran pesanan dengan referensi tersebut. Sebelum pengiriman internasional, ulangi pemeriksaan biaya memakai data paket. Setelah barang diterima, cocokkan penyesuaian dan pengembalian agar total akhir mencerminkan transaksi yang selesai, bukan estimasi awal.",
-          "Gunakan panduan ongkir dan bea cukai Indonesia untuk tahap anggaran berikutnya. Artikel ini berfokus pada pemahaman serta pencatatan pembayaran. Tautan produk di superbuys.id membuka cnfanshp.com, yaitu katalog yang terpisah dari akun Superbuy. Membuka listing katalog tidak membuat pembayaran atau pesanan gudang. Memahami perbedaan ini membantu Anda mengenali halaman penemuan produk dan tidak keliru memperlakukannya sebagai halaman pembayaran resmi."
+          "Gunakan panduan ongkir dan bea cukai Indonesia untuk tahap anggaran berikutnya. Artikel ini berfokus pada pemahaman serta pencatatan pembayaran. Tautan produk di superbuys.id membuka katalog produk, yaitu katalog yang terpisah dari akun Superbuy. Membuka listing katalog tidak membuat pembayaran atau pesanan gudang. Memahami perbedaan ini membantu Anda mengenali halaman penemuan produk dan tidak keliru memperlakukannya sebagai halaman pembayaran resmi."
         ]
       }
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06"
+    "modifiedAt": "2026-11-03"
   },
   "superbuy-shoe-size-qc-guide": {
     "title": "Spreadsheet Sepatu Superbuy: Panduan Ukuran dan QC",
@@ -689,7 +696,8 @@
         "paragraphs": [
           "Foto tambahan berguna ketika Anda dapat menyebutkan fakta yang perlu diperiksa. Contohnya label kedua sepatu yang terbaca, jahitan tertentu, pola outsole, atau pengukuran dengan penggaris yang sesuai tabel penjual. Cantumkan nomor pesanan dan sisi atau komponen yang dimaksud. Permintaan umum untuk mengecek apakah sepatu bagus membuat staf harus menebak standar Anda. Tentukan hasil seperti apa yang akan membuat Anda menerima barang, meminta penjelasan, atau mengajukan retur.",
           "Halaman biaya Superbuy mencantumkan layanan foto detail opsional; biaya yang berlaku perlu diperiksa saat memilih layanan. Tinjau harga sebelum memesan foto. Menambah foto tidak menyelesaikan semua ketidakpastian. Keaslian atau performa sepatu saat berlari tidak dapat dipastikan lewat foto permukaan berulang. Keputusan yang tepat mungkin menghindari pembelian tersebut atau mencari penjual dengan informasi produk dan ketentuan yang lebih sesuai kebutuhan Anda."
-        ]
+        ],
+        "seeAlso": "superbuy-wrong-size-return-exchange"
       },
       {
         "heading": "Tentukan nasib kotak sebelum mengirim",
@@ -702,12 +710,12 @@
         "heading": "Setujui barang dengan catatan yang jelas",
         "paragraphs": [
           "Gunakan catatan singkat berisi varian pesanan, tabel ukuran, label yang terlihat, pengukuran relevan, kondisi, dan pilihan kemasan. Setujui setelah pemeriksaan yang menentukan selesai. Jika terdapat perbedaan, laporkan hal yang dapat diamati dengan nomor pesanan dan foto pendukung sebelum pengiriman internasional. Tanyakan pilihan penyelesaian serta waktunya. Penjual mungkin perlu merespons, jadi jangan menunda keputusan sampai hari keberangkatan paket yang direncanakan.",
-          "Buka kategori sepatu saat siap membandingkan listing, lalu gunakan checklist QC umum untuk produk lain. Tautan katalog menuju cnfanshp.com untuk penemuan produk; pemesanan, pembayaran, dan keputusan gudang dilakukan melalui akun layanan yang sesuai. Perbedaan ini membantu Anda beralih dari spreadsheet ke pembelian yang terdokumentasi. Hasil yang diharapkan adalah sepasang sepatu yang dipilih berdasarkan ukuran yang dipahami, diperiksa terhadap pesanan sebenarnya, dan dikemas sesuai kebutuhannya."
+          "Buka kategori sepatu saat siap membandingkan listing, lalu gunakan checklist QC umum untuk produk lain. Tautan katalog menuju katalog untuk penemuan produk; pemesanan, pembayaran, dan keputusan gudang dilakukan melalui akun layanan yang sesuai. Perbedaan ini membantu Anda beralih dari spreadsheet ke pembelian yang terdokumentasi. Hasil yang diharapkan adalah sepasang sepatu yang dipilih berdasarkan ukuran yang dipahami, diperiksa terhadap pesanan sebenarnya, dan dikemas sesuai kebutuhannya."
         ]
       }
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06"
+    "modifiedAt": "2026-11-03"
   },
   "superbuy-warehouse-consolidation-guide": {
     "title": "Gudang Superbuy: Penyimpanan dan Cara Gabung Paket",
@@ -779,12 +787,12 @@
         "heading": "Gunakan checklist sebelum melepas paket",
         "paragraphs": [
           "Setujui pengiriman setelah memeriksa isi, keputusan QC, tenggat penyimpanan, instruksi kemasan, kelayakan jalur, alamat, dan sisa anggaran. Buat daftar yang cukup ringkas untuk digunakan setiap kali. Tanyakan apakah masih ada keputusan yang belum selesai tetapi tersembunyi dalam paket gabungan. Jika ada, tahan barang terkait dan selesaikan masalahnya. Tujuan konsolidasi adalah susunan paket yang dipilih dengan pertimbangan jelas, bukan sekadar mengosongkan halaman gudang secepat mungkin.",
-          "Selanjutnya, gunakan panduan ongkir untuk membandingkan biaya dan panduan pelacakan untuk mengikuti serah terima kepada pengangkut. Pencarian produk di cnfanshp.com terpisah dari pengelolaan gudang dalam akun layanan Anda. Perbedaan ini penting saat berpindah antara katalog dan panduan. Keputusan konsolidasi yang baik menyisakan catatan jelas tentang barang yang dikirim, barang yang tertinggal, alasan memilih kemasan, serta bukti yang mendukung persetujuan akhir."
+          "Selanjutnya, gunakan panduan ongkir untuk membandingkan biaya dan panduan pelacakan untuk mengikuti serah terima kepada pengangkut. Pencarian produk di katalog terpisah dari pengelolaan gudang dalam akun layanan Anda. Perbedaan ini penting saat berpindah antara katalog dan panduan. Keputusan konsolidasi yang baik menyisakan catatan jelas tentang barang yang dikirim, barang yang tertinggal, alasan memilih kemasan, serta bukti yang mendukung persetujuan akhir."
         ]
       }
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06"
+    "modifiedAt": "2026-11-03"
   },
   "superbuy-tracking-indonesia": {
     "title": "Cara Melacak Paket Superbuy ke Indonesia",
@@ -862,5 +870,196 @@
     ],
     "publishedAt": "2026-10-06",
     "modifiedAt": "2026-10-06"
+  },
+  "superbuy-1688-five-items-moq": {
+    "title": "Beli 5 Barang dari 1688 lewat Superbuy: Cek MOQ, Harga dan Ongkir",
+    "description": "Contoh membeli lima kaus dengan dua ukuran: pastikan jumlah minimum, minta harga grosir dan ongkir ke gudang, lalu hitung pengiriman ke Indonesia.",
+    "sections": [
+      {
+        "heading": "Tentukan lima barang yang benar-benar dibutuhkan",
+        "paragraphs": [
+          "Misalnya Anda ingin membeli lima kaus biru tua, tiga ukuran M dan dua ukuran L. Tulis kebutuhan itu persis di sebelah tautan 1688. Simpan tangkapan layar pilihan ukuran, warna dan jumlah. Pesanan berisi lima kaus ukuran M memang berjumlah lima, tetapi Anda masih kekurangan dua kaus L. Catatan ini berguna sejak meminta harga sampai memeriksa barang di gudang.",
+          "MOQ atau minimum order quantity adalah jumlah pembelian minimum yang ditetapkan penjual. Dalam panduan layanan 1688, Superbuy menjelaskan bahwa pesanan di bawah batas penjual dapat ditolak sehingga pembeli harus memesan ulang. Sebelum memasukkan angka lima, tanyakan apakah penjual menerima kombinasi tiga M dan dua L. Lima barang yang kebetulan ada dalam satu keranjang belum tentu memenuhi ketentuan satu penjual."
+        ]
+      },
+      {
+        "heading": "Periksa satuan yang dihitung saat memilih jumlah",
+        "paragraphs": [
+          "Baca satuan di sebelah harga dan keterangan pada varian yang dipilih. Angka satu dapat berarti satu potong, sepasang, satu set, atau satu pak. Jika satu pak berisi lima kaus, memasukkan jumlah lima berarti meminta 25 kaus. Foto yang menampilkan seluruh pilihan warna juga belum tentu menggambarkan isi satu unit penjualan. Lihat keterangan kemasan dan minta penjual memperjelas bila jumlah lembar pada foto membingungkan.",
+          "Untuk contoh kaus tadi, tanyakan apakah ukuran M dan L boleh digabung agar mencapai lima potong. Jika minimum berlaku per model dan ukurannya boleh campur, kombinasi itu dapat diterima. Jika minimum lima berlaku untuk setiap ukuran, tiga M dan dua L belum cukup. Kalau tersedia harga sampel atau tautan eceran untuk jumlah kecil, minta penjual menunjukkan tautan dan harga yang berlaku untuk masing-masing varian."
+        ]
+      },
+      {
+        "heading": "Hitung contoh biaya sampai gudang di Tiongkok",
+        "paragraphs": [
+          "Berikut simulasi dalam yuan, bukan penawaran dari toko tertentu. Anggap harga per kaus CNY 24 untuk dua sampai empat potong dan CNY 20 untuk lima sampai sembilan potong. Kedua ukuran berharga sama. Penjual mengizinkan tiga M dan dua L masuk tingkat harga lima potong, dengan ongkir CNY 12 untuk seluruh pesanan ke gudang. Harga barang adalah 5 × 20 = CNY 100. Tambahkan ongkir sekali sehingga subtotalnya CNY 112, atau CNY 22,40 per kaus sebelum pengiriman internasional.",
+          "Sekarang ubah satu syarat saja. Penjual menghitung harga bertingkat per ukuran sehingga tiga M dan dua L masing-masing dikenai harga CNY 24. Harga kelima kaus menjadi CNY 120. Jika ongkir tetap CNY 12 untuk seluruh pesanan, subtotal menjadi CNY 132 atau CNY 26,40 per kaus. Selisih CNY 20 untuk barang yang sama berasal dari cara menghitung jumlah. Jika L mempunyai harga berbeda, buat baris terpisah dan kalikan harga L dengan dua.",
+          "Simpan total pesanan tanpa pembulatan. Angka per kaus berguna untuk perbandingan, sedangkan penjual perlu menyepakati jumlah pesanan, rincian per ukuran dan ongkir untuk seluruh paket."
+        ]
+      },
+      {
+        "heading": "Minta ongkir domestik untuk seluruh pesanan",
+        "paragraphs": [
+          "Tanyakan berapa total ongkir dari penjual ke gudang Tiongkok yang tercantum di pesanan Superbuy Anda. Sebutkan semua varian dan tanyakan apakah stok akan dikirim sekaligus. Kalau tarifnya per pengiriman, Anda juga perlu mengetahui jumlah kiriman. Ukuran yang baru tersedia nanti atau stok dari lokasi berbeda bisa membutuhkan paket tambahan. Kolom ongkir kosong pada pratinjau produk belum cukup untuk memasukkan angka nol.",
+          "Pisahkan harga barang, ongkir domestik dan layanan tambahan pilihan Anda dalam catatan. Bandingkan setiap baris dengan permintaan pembayaran. Selisih bisa timbul karena harga salah satu ukuran berubah, meskipun ongkirnya tetap. Jika penjual menawarkan warna pengganti saat stok habis, minta rincian baru untuk pilihan pengganti tersebut sebelum menyetujuinya."
+        ]
+      },
+      {
+        "heading": "Perkirakan ongkir dari gudang ke Indonesia",
+        "paragraphs": [
+          "CNY 12 pada simulasi hanya untuk perjalanan ke gudang di Tiongkok. Buka kalkulator pengiriman resmi Superbuy dan pilih Indonesia sebagai tujuan. Masukkan kategori barang, berat paket dalam gram, dan panjang, lebar serta tinggi kemasan luar dalam sentimeter. Catat tanggal pengecekan dan tandai apakah ukuran tersebut berasal dari penjual, hasil pengukuran di gudang, atau perkiraan sementara.",
+          "Lima kaus yang dilipat dalam satu kantong dapat memakai ruang berbeda dari lima kaus dalam lima kotak hadiah. Jika kotak ingin dipertahankan, bandingkan skenario dengan dan tanpa kotak menggunakan dimensi luar yang masuk akal. Periksa ketentuan jalur yang tersedia dan apakah kemasan aman untuk barang. Mengalikan tarif internasional satu kaus dengan lima bisa meleset karena paket akhir memiliki ukuran dan berat tagihan sendiri. Perbarui estimasi saat data gudang tersedia."
+        ]
+      },
+      {
+        "heading": "Contoh pesan untuk menanyakan harga",
+        "paragraphs": [
+          "“Saya ingin memesan lima potong kaus dari tautan ini untuk dikirim ke gudang Superbuy saya. Rinciannya tiga kaus biru tua ukuran M dan dua ukuran L. Apakah kedua ukuran boleh digabung untuk harga lima potong? Mohon konfirmasi stok, harga per potong untuk tiap ukuran dan total ongkir domestik. Apakah semua barang akan dikirim dalam satu paket? Mohon konfirmasi kepada saya sebelum mengganti ukuran, menambah jumlah atau menyetujui total yang lebih tinggi.”",
+          "Jawaban “lima tersedia” masih belum menjelaskan stok per ukuran, harga campur atau ongkir. Tanyakan lagi bagian yang belum terjawab. Simpan tautan lengkap, mata uang, rincian tiga M dan dua L serta subtotal bertanggal. Saat agen melakukan pembelian, Anda bisa membandingkan rincian baru dengan penawaran tersebut tanpa menebak angka yang berubah."
+        ]
+      },
+      {
+        "heading": "Cocokkan barang ketika tiba di gudang",
+        "paragraphs": [
+          "Periksa catatan penerimaan dan foto QC yang tersedia. Untuk kaus terpisah, hitung barang yang terlihat dan cocokkan label ukurannya. Untuk kemasan tersegel, label luar mungkin hanya mencantumkan model. Panduan 1688 Superbuy menjelaskan keterbatasan pemeriksaan isi kemasan asli. Bila kepastian jumlah atau ukuran menentukan keputusan pengiriman, tanyakan dulu pemeriksaan apa yang tersedia untuk produk itu.",
+          "Jika hanya terlihat tiga label M dan satu label L, kaus terakhir mungkin tertutup atau belum sampai dalam kiriman kedua. Minta foto atau nomor pelacakan yang sesuai sebelum menyimpulkan barang kurang. Setelah kelima kaus cocok, perbarui ongkir dengan ukuran paket akhir. Hitung biaya per kaus dengan membagi total barang, ongkir domestik, ongkir internasional dan biaya lain yang memang berlaku dengan lima. Jika mengonversi ke rupiah, simpan kurs yang digunakan."
+        ]
+      }
+    ],
+    "primaryKeyword": "beli 1688 lewat Superbuy",
+    "secondaryKeywords": [
+      "minimum order 1688",
+      "ongkir domestik 1688"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "superbuy-no-shipping-options-indonesia": {
+    "title": "Kenapa Opsi Pengiriman Superbuy ke Indonesia Tidak Muncul?",
+    "description": "Cek alamat tujuan, jenis barang, ukuran kardus dan isi paket. Ikuti contoh perhitungan serta gunakan contoh pesan untuk menanyakan kendalanya ke Superbuy.",
+    "sections": [
+      {
+        "heading": "1. Catat di tahap mana pilihan pengiriman hilang",
+        "paragraphs": [
+          "Barang yang sudah dibayar di Taobao bisa sampai di gudang Superbuy meskipun belum ada jalur untuk mengirimnya ke Indonesia. Pembayaran barang dan ongkir dari penjual ke gudang mencakup tahap pertama. Pilihan pengiriman internasional baru berkaitan dengan paket yang akan berangkat dari gudang. Perhatikan apakah daftar kosong muncul di kalkulator publik atau saat memilih barang tertentu di akun.",
+          "Sebelum mengganti isian, simpan tanggal, bunyi pesan, nomor barang di gudang, tujuan, kategori serta ukuran yang dimasukkan. Cantumkan satuan pada setiap angka. Tangkapan layar yang memperlihatkan seluruh isian jauh lebih mudah ditelusuri daripada gambar daftar kosong saja. Bagikan nomor pesanan lewat percakapan pribadi dengan petugas."
+        ]
+      },
+      {
+        "heading": "2. Cocokkan negara, gudang dan kode pos penerima",
+        "paragraphs": [
+          "Di kalkulator ongkir resmi Superbuy, pilih Indonesia dan cocokkan gudang asal dengan lokasi barang. Kolom berat memakai gram, sedangkan panjang, lebar dan tinggi memakai sentimeter. Ketik 1800 untuk paket 1,8 kg dan ketik 42 jika panjang yang diberikan penjual 420 mm. Periksa kembali angka sesudah konversi.",
+          "Saat menyusun paket di akun, baca lagi negara, kota atau kabupaten dan kode pos penerima. Periksa alamat mana yang sedang aktif jika pernah mengirim ke beberapa alamat. Kalkulator publik menanyakan negara tujuan, sedangkan pesanan memakai alamat tertentu. Jika kalkulator menampilkan jalur tetapi layar pengiriman tetap kosong, simpan kedua hasil dan tanyakan apakah kode pos tersebut termasuk wilayah layanan."
+        ]
+      },
+      {
+        "heading": "3. Periksa spesifikasi barang dan aksesori dalam kotak",
+        "paragraphs": [
+          "Periksa varian yang dibeli, bukan sekadar nama produk. Keyboard yang sama bisa dijual dalam versi kabel dan nirkabel. Minta penjual memastikan varian serta ada tidaknya baterai, termasuk baterai atau aksesori yang disertakan terpisah. Kalkulator Superbuy membedakan baterai tanam, power bank dan baterai lepas. Masukkan keterangan sesuai isi paket.",
+          "Untuk barang berlabel sampel atau hadiah, tanyakan isi dan jumlahnya. Jika keterangan gudang berbeda dari penjual, minta agen memeriksa spesifikasi atau foto label yang terbaca. Kalau Superbuy menyatakan barang dilarang dikirim, tanyakan kemungkinan mengembalikannya ke penjual selama masih di Tiongkok. Mengganti kategori menjadi barang umum tidak membuat barang memenuhi syarat."
+        ]
+      },
+      {
+        "heading": "4. Gunakan ukuran luar kardus yang siap dikirim",
+        "paragraphs": [
+          "Panjang sepatu, ukuran kotak sepatu dan ukuran paket luar mengacu pada benda yang berbeda. Ukur panjang, lebar serta tinggi kardus tertutup dan timbang bersama pelindungnya. Jika baru punya ukuran produk, tulis bahwa angkanya sementara. Ketika ukurannya mendekati batas jalur, minta gudang mengonfirmasi hasil pengemasan.",
+          "Misalnya sepatu beserta kotak dan bantalan berbobot 1.800 g dalam kardus 40 × 30 × 20 cm. Volumenya 24.000 cm³. Bila ketentuan jalur menggunakan pembagi 6.000, contoh berat volumetriknya 4 kg. Kardus 40 × 30 × 15 cm yang benar-benar muat menghasilkan 18.000 cm³ atau 3 kg dengan pembagi yang sama. Periksa batas, pembulatan dan pembagi yang tertulis pada jalur. Contoh ini tidak menetapkan tarif atau menjamin jalur terbuka.",
+          "Jika kotak asli dibutuhkan atau tumit sepatu mudah rusak, sampaikan sebelum menyetujui penggantian kardus. Minta ukuran paket alternatif dengan pelindung yang memadai, lalu ulangi perkiraan."
+        ]
+      },
+      {
+        "heading": "5. Coba barang satu per satu sebelum menggabungkan",
+        "paragraphs": [
+          "Misalnya tersedia sepasang sepatu dan lampu meja isi ulang di gudang. Uji sepatu sendiri menggunakan kategori dan ukuran yang sesuai. Uji lampu dengan jenis baterai yang telah dikonfirmasi. Kemudian uji gabungannya dengan ukuran dan berat kardus gabungan. Gunakan gudang dan tujuan yang sama, lalu catat nama layanan yang muncul untuk setiap percobaan.",
+          "Jika hanya sepatu mendapat jalur, tanyakan persyaratan untuk baterai lampu. Jika masing-masing bisa dikirim sendiri tetapi gabungannya tidak, minta pemeriksaan ukuran, berat dan kombinasi isi. Jika keduanya tidak mendapat jalur, cek kembali tujuan dan satuan sebelum membayar pengemasan ulang. Bandingkan dua paket terpisah hanya setelah keduanya dinyatakan dapat dikirim. Ongkir minimum dan biaya kemasan dapat berlaku untuk tiap paket.",
+          "Di samping setiap hasil, tulis isi paket dan jumlah yang tampil. Perkiraan untuk sepatu saja mudah tertukar dengan perkiraan seluruh pesanan. Jika penjual kemudian menambahkan baterai cadangan atau mengganti kotak asli, catat perubahan itu, minta ukuran baru setelah dikemas, dan ulangi perbandingan mulai dari barang yang berubah."
+        ]
+      },
+      {
+        "heading": "6. Kirim pertanyaan yang dapat diperiksa petugas",
+        "paragraphs": [
+          "Sebelum memesan, tanyakan data teknis kepada penjual. Sertakan tautan produk dan varian di layanan pertanyaan pembelian Superbuy. Untuk barang yang sudah dipesan, gunakan pertanyaan di pesanan atau layanan pelanggan. Lampirkan isian kalkulator, pesan di layar pengiriman dan tanggalnya. Minta penjelasan syarat yang memengaruhi paket serta data tambahan yang diperlukan.",
+          "Contoh pesan: “Saya ingin mengirim barang gudang [nomor] ke [kota/kabupaten, kode pos], Indonesia. Isinya [barang, varian, atribut]. Berat setelah dikemas [g], ukuran luar [P × L × T cm]. Pada [tanggal], kalkulator menunjukkan [hasil], sedangkan layar paket menampilkan [pesan]. Syarat mana yang belum terpenuhi? Mohon konfirmasi pilihan pengemasan atau pengiriman terpisah yang diperbolehkan beserta biayanya sebelum melakukan perubahan.”",
+          "Sambil menunggu, cek tenggat retur yang tertera pada pesanan. Tanyakan siapa yang perlu meminta persetujuan penjual dan apakah kemasan asli harus disimpan."
+        ]
+      },
+      {
+        "heading": "7. Tentukan tindakan sebelum membayar ongkir internasional",
+        "paragraphs": [
+          "Sesudah petugas memastikan jalur untuk tujuan dan barang tersebut, cocokkan nama layanan, ukuran dan biaya di layar paket dengan jawabannya. Catat tanggal serta ukuran yang dipakai. Bila perlu kardus lain, putuskan apakah harga dan perlindungannya sesuai sebelum menyetujui. Simpan ukuran koreksi jika kendalanya hanya salah ukur.",
+          "Jika tetap tidak ada layanan yang sesuai, bicarakan barang mana yang dapat disimpan dan apakah barang yang terkendala dapat diretur sesuai ketentuan penjual. Pastikan biaya dan tenggatnya. Gunakan panduan ongkir setelah ada jalur untuk membandingkan deposit dengan biaya akhir. Jika paket sudah diberangkatkan dan nomor resi tersedia, lanjutkan ke panduan pelacakan."
+        ]
+      }
+    ],
+    "primaryKeyword": "Superbuy tidak ada pilihan pengiriman",
+    "secondaryKeywords": [
+      "jalur kirim ke Indonesia",
+      "batas ukuran paket"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "superbuy-wrong-size-return-exchange": {
+    "title": "Salah Ukuran di Foto QC Superbuy? Cara Retur atau Tukar Sebelum Dikirim",
+    "description": "Ukuran di pesanan berbeda dengan foto gudang? Cocokkan label dan hasil ukur, lalu ajukan retur atau tukar selagi barang masih di Tiongkok.",
+    "sections": [
+      {
+        "heading": "Pisahkan barang dari paket ke Indonesia",
+        "paragraphs": [
+          "Saat foto QC di My Warehouse menunjukkan ukuran yang meragukan, sisihkan barang tersebut dari paket internasional. Buka rincian pembeliannya, simpan pilihan ukuran, lalu perbesar foto label pada barang. Kalau Anda memesan L dan label jahitan jelas bertuliskan M, perbedaan itu sudah bisa dilaporkan. Foto berbayar tambahan tidak selalu diperlukan untuk membuktikan tulisan yang sudah terbaca.",
+          "Menurut panduan belanja Superbuy, pemeriksaan di gudang Tiongkok dilakukan sebelum pengguna mengajukan pengiriman internasional. Selama barang masih di sana, agen bisa menanyakan kemungkinan retur domestik kepada penjual. Jika paket telanjur diajukan, beri tahu dukungan nomor pesanan barang dan nomor paket. Tanyakan apakah pengepakan atau keberangkatan masih bisa dihentikan, lalu tunggu konfirmasi sebelum mengambil langkah berikutnya."
+        ]
+      },
+      {
+        "heading": "Pastikan barang dan baris pesanan cocok",
+        "paragraphs": [
+          "Simpan tangkapan layar varian asli, warna, ukuran dan jumlah pada baris pesanan. Cocokkan nomor barang di gudang, terutama jika Anda membeli dua jaket identik dengan ukuran berbeda. Label di plastik menunjukkan keterangan kemasan. Foto label yang dijahit ke jaket lebih meyakinkan untuk mengetahui ukuran jaket di dalamnya. Untuk sepatu, periksa label kedua sepatu dan bandingkan dengan label kotak. Jika barang berasal dari beberapa toko, sebutkan nama penjual atau baris pesanan supaya barang dikembalikan ke toko yang benar.",
+          "Bedakan tiga situasi. Pesanan L tetapi label barang M berarti varian yang datang berbeda. Kalau keduanya L tetapi ukurannya menyimpang dari tabel penjual, mintalah pengukuran yang bisa dibandingkan. Jika barang dan pengukuran sesuai pesanan tetapi Anda menginginkan potongan lebih longgar, sampaikan bahwa Anda ingin ganti ukuran atas pilihan sendiri. Alasan yang tepat membantu agen menanyakan ketentuan yang sesuai."
+        ]
+      },
+      {
+        "heading": "Ikuti cara ukur pada tabel penjual",
+        "paragraphs": [
+          "Cari tabel ukuran untuk model yang dipesan, kemudian periksa satuan dan baris ukurannya. Angka pada tabel bisa berupa ukuran baju, ukuran badan atau rekomendasi bagi pemakai. Lebar dada saat baju dibentangkan berbeda dari lingkar dada. Minta foto baju yang diratakan tanpa ditarik, dengan ujung awal dan akhir meteran serta satuannya terlihat. Foto yang memotong angka nol tidak cukup untuk membaca selisih beberapa sentimeter.",
+          "Untuk celana, jelaskan apakah yang ingin diukur lebar pinggang saat rileks, lebar setelah melar, atau panjang sisi dalam kaki. Untuk sepatu, panjang sol luar tidak menunjukkan ruang yang tersedia bagi kaki. Bila Anda menggunakan panjang insole sebagai acuan, tanyakan apakah sol dalam bisa dilepas tanpa merusak sepatu dan difoto dari tumit sampai ujung. Bandingkan dengan pengukuran yang sama pada sepatu yang nyaman dipakai."
+        ]
+      },
+      {
+        "heading": "Contoh membaca selisih lebar dada jaket L",
+        "paragraphs": [
+          "Misalkan tabel untuk ukuran L mencantumkan lebar dada 56 cm, dari ketiak kiri ke ketiak kanan saat baju dibentangkan. Penjual menyebut toleransi 1 cm ke dua arah, sehingga rentangnya 55 sampai 57 cm. Pilihan pesanan dan label sama-sama L. Foto pertama tampak menunjukkan 53 cm, tetapi ujung kiri meteran di luar bingkai. Simpan foto itu dan minta foto ulang dengan jaket dikancingkan, dibentangkan tanpa tarikan dan kedua jahitan ketiak terlihat.",
+          "Jika foto ulang menunjukkan 53 cm, hasilnya 3 cm di bawah angka tabel dan 2 cm di bawah batas terendah pada contoh ini. Lampirkan foto dan tabel sekaligus. Kalau penjual ternyata mengukur dari titik lain, mintalah ukuran dari titik yang sama terlebih dahulu. Gunakan toleransi yang benar-benar dicantumkan penjual Anda. Contoh 1 cm ini bukan patokan untuk setiap pesanan."
+        ]
+      },
+      {
+        "heading": "Apa yang ditulis saat menghubungi agen",
+        "paragraphs": [
+          "Gunakan menu pertanyaan pesanan atau layanan purnajual pada pesanan tersebut jika tersedia. Alternatifnya, hubungi bantuan Superbuy dari akun Anda dengan menyertakan nomor pesanan. Kirim pilihan varian, tabel untuk model terkait dan bukti gudang yang paling jelas. Sebut jumlah dan warna barang yang bermasalah, terutama jika barang lain dalam pesanan sudah benar. Tuliskan hasil yang diinginkan, misalnya tukar dengan varian yang tepat, retur atau satu pengukuran tambahan.",
+          "Contoh untuk label berbeda: “Pesanan [nomor], satu jaket hitam. Saya memilih L, tetapi foto label jahitan menunjukkan M. Mohon jangan ikutkan jaket ini ke paket internasional. Apakah penjual bisa menukarnya dengan hitam L? Jika stok habis, mohon informasikan syarat dan biaya retur sebelum diproses.”",
+          "Contoh untuk selisih ukuran: “Pesanan [nomor], label dan pesanan sama-sama L. Tabel menyebut lebar dada 56 cm dengan toleransi 1 cm. Foto ukur ulang menunjukkan 53 cm. Mohon pastikan metode ukur penjual dan tanyakan apakah barang bisa diretur. Mohon konfirmasi biaya lebih dahulu.” Ganti setiap angka sesuai pesanan sendiri dan kirim lampiran di percakapan resmi."
+        ]
+      },
+      {
+        "heading": "Pilih tukar ukuran atau pengembalian dana",
+        "paragraphs": [
+          "Bila masih ingin model yang sama, tanyakan stok pengganti, pilihan warna dan ukuran, selisih harga, ongkir domestik masing-masing arah dan biaya layanan yang berlaku. Jika Anda mengejar lebar dada tertentu, minta agen menanyakan apakah penjual bisa mengukur unit pengganti sebelum mengirim. Sekadar naik satu ukuran belum memastikan lebar yang dibutuhkan. Pertimbangkan apakah barang lain akan menunggu atau dikirim terpisah.",
+          "Untuk retur, tanyakan jumlah pengembalian, penanggung ongkir balik di Tiongkok, penanganan ongkir awal dan layanan tambahan, serta tempat dana tercatat. Simpan label, kemasan dan kelengkapan sampai ada petunjuk. Batas pengajuan dan penerimaan bergantung pada pesanan serta penjual. Sisa masa penyimpanan gudang tidak menunjukkan berapa lama pengajuan retur masih diterima."
+        ]
+      },
+      {
+        "heading": "Tutup kasus setelah barang atau dana diperiksa",
+        "paragraphs": [
+          "Untuk pertukaran, simpan referensi pengganti. Saat barang baru tiba, cocokkan foto label, warna dan ukuran yang Anda minta sebelum memasukkannya ke paket Indonesia. Untuk retur, simpan persetujuan, nomor resi domestik bila diberikan, dan catatan dana saat sudah masuk. Persetujuan penjual menerima barang kembali dan dana masuk ke akun dapat terjadi pada tahap berbeda. Gunakan konfirmasi tertulis saat menanyakan selisih.",
+          "Jika penjual menolak, minta alasan, ketentuan yang dijadikan dasar dan pilihan lain yang masih terbuka. Bukti pengukuran baru mungkin membantu bila letak meteran diperdebatkan. Jika barang sesuai pesanan dan penjual menolak perubahan pilihan, putuskan berdasarkan biaya serta pilihan yang sudah dikonfirmasi. Bila paket sudah meninggalkan Tiongkok, sampaikan statusnya ke dukungan sebelum membayar pengiriman balik sendiri."
+        ]
+      }
+    ],
+    "primaryKeyword": "cara retur Superbuy",
+    "secondaryKeywords": [
+      "tukar ukuran Superbuy",
+      "salah ukuran di foto QC"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
   }
 }

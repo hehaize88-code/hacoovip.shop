@@ -82,12 +82,12 @@
       {
         "heading": "Keep an Indonesia shortlist with a next action",
         "paragraphs": [
-          "For each candidate, record the current listing URL, option, measurement, price currency and date checked. Add one next action: clarify a variant, compare a measurement, check available shipping or discard the candidate. A short list with resolved questions is more useful than a large collection of unverified links. Keep catalog discovery separate from your service account: product links here open cnfanshp.com, while Superbuy payments and warehouse actions belong in the appropriate account.",
+          "For each candidate, record the current listing URL, option, measurement, price currency and date checked. Add one next action: clarify a variant, compare a measurement, check available shipping or discard the candidate. A short list with resolved questions is more useful than a large collection of unverified links. Keep catalog discovery separate from your service account: product links here open the product catalog, while Superbuy payments and warehouse actions belong in the appropriate account.",
           "Before moving a candidate into an order, reserve a separate amount for international delivery and Indonesia import costs. Use the payment guide when comparing debit and credited amounts, the shoe guide when a size chart is unclear, and the warehouse guide when several items are ready. Those decisions have different evidence requirements; one attractive product card cannot settle them all."
         ]
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "qc-photo-checklist": {
@@ -168,8 +168,10 @@
         "heading": "Approve, ask, or escalate: a simple decision rule",
         "paragraphs": [
           "Approve when the visible identity, variant, quantity and condition match your record and the unverified qualities are risks you knowingly accept. Ask for a targeted photo when a specific visible fact is missing or unclear. Contact after-sales support when the existing images show a clear mismatch, damage or missing component. Provide the order number and state the observable issue without exaggeration.",
-          "Finally, save the key photos and your decision until the parcel is delivered. If a later problem occurs, a clear record of what entered the parcel is more useful than memory. QC is not about finding perfection in every stitch. It is about making the best evidence-based decision while the item is still at the warehouse."
-        ]
+          "Finally, save the key photos and your decision until the parcel is delivered. If a later problem occurs, a clear record of what entered the parcel is more useful than memory. QC is not about finding perfection in every stitch. It is about making the best evidence-based decision while the item is still at the warehouse.",
+          "Separate two cases before releasing the parcel. If the label is different from the order, photograph it beside the order reference and keep the selected variant. If the label matches but the fit looks wrong, ask for a tape measurement taken the same way as the seller’s chart. Keep the evidence while the item is still in the warehouse."
+        ],
+        "seeAlso": "superbuy-wrong-size-return-exchange"
       },
       {
         "heading": "Write an actionable QC decision",
@@ -179,12 +181,12 @@
         ]
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "shipping-cost-guide": {
-    "title": "Superbuy Shipping Cost: Deposit, Weight and Final Charge",
-    "description": "Compare actual and volumetric weight, shipping deposits and final charges, with an Indonesia parcel planning checklist.",
+    "title": "Superbuy Shipping Cost to Indonesia: Weight and Shoebox Examples",
+    "description": "Compare packed weight with and without a shoebox, see when volume changes the chargeable weight, and enter your own parcel in Superbuy’s shipping estimator.",
     "primaryKeyword": "Superbuy shipping cost",
     "secondaryKeywords": [
       "Superbuy shipping calculator",
@@ -268,10 +270,11 @@
         "paragraphs": [
           "Make one scenario for the items packed together and another for a realistic split. Use the same destination and contents, then record the route, estimated packed weight, dimensions and selected protection. Add all parcel charges in the split scenario before comparing totals. Mark dimensions that remain uncertain and keep customs budgeting separate from the freight quote. A small difference between rough estimates is not a verified saving.",
           "After packing, compare the updated measurements and final adjustment with your original inputs. Save the parcel reference and route with the payment record, then use the tracking guide for carrier handoff and delivery questions. Revisit the warehouse inventory as well: items excluded from this parcel still have their own storage deadlines. This prevents a shipping decision from leaving older goods without a next action."
-        ]
+        ],
+        "seeAlso": "superbuy-no-shipping-options-indonesia"
       }
     ],
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "publishedAt": "2026-08-12"
   },
   "superbuy-payment-fees-indonesia": {
@@ -284,7 +287,7 @@
       "Superbuy payment fees"
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Start with the amount you need credited",
@@ -346,7 +349,7 @@
         "heading": "Finish with a payment checklist",
         "paragraphs": [
           "Before paying, confirm the exact product option, the amount due now and the amounts still needed later. Review the payment method inside your own account, compare the total debit with the credit received, and save the transaction reference. After paying, match the credit or order payment to that reference. Before international shipping, repeat the cost review using the parcel details. After delivery, reconcile adjustments and refunds so your final cost reflects settled amounts rather than early estimates.",
-          "Use the separate shipping-cost and Indonesia customs guides for the next budgeting steps. This payment guide supports the narrower decision of how to understand and document charges. Product discovery on superbuys.id leads to cnfanshp.com; that catalog is separate from your Superbuy account. Opening a catalog listing does not make a payment or create a warehouse order. Keeping those destinations distinct prevents a product browsing page from being mistaken for an official payment screen."
+          "Use the separate shipping-cost and Indonesia customs guides for the next budgeting steps. This payment guide supports the narrower decision of how to understand and document charges. Product discovery on superbuys.id leads to the product catalog; that catalog is separate from your Superbuy account. Opening a catalog listing does not make a payment or create a warehouse order. Keeping those destinations distinct prevents a product browsing page from being mistaken for an official payment screen."
         ]
       }
     ]
@@ -361,7 +364,7 @@
       "Superbuy shoe QC"
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Begin with fit requirements, then browse shoes",
@@ -410,7 +413,8 @@
         "paragraphs": [
           "An additional photo is most helpful when you can name the fact it should reveal. Request readable labels on both shoes, a particular seam, the outsole pattern or a ruler view tied to the seller's chart. Give the order number and identify the side or component. A broad request to check whether the shoes are good leaves the warehouse guessing about your standard. Decide in advance what result would lead you to keep, question or return the pair.",
           "Superbuy's fee page lists optional detailed photographs, with the live service selection controlling the applicable charge. Review that price before ordering the image. More photos do not solve every uncertainty. If your concern is authenticity or performance under running loads, repeated exterior images cannot establish the answer. The appropriate decision may be to avoid that purchase or choose a seller whose product information and terms support your requirements more clearly."
-        ]
+        ],
+        "seeAlso": "superbuy-wrong-size-return-exchange"
       },
       {
         "heading": "Make the box decision before parcel submission",
@@ -423,7 +427,7 @@
         "heading": "Approve with a clear decision record",
         "paragraphs": [
           "Make your final warehouse decision from a short record: selected option, saved chart, visible size labels, relevant measurement, condition concerns and packaging choice. Approve only after the decisive visible checks are resolved. If there is a mismatch, report the observable issue with the order number and supporting image before international shipping. Ask about the available remedy and timing. A seller may need to respond, so do not postpone that decision until your planned dispatch day.",
-          "Browse the shoe category when you are ready to compare listings, and use the general QC checklist for other product types. The catalog link opens cnfanshp.com for discovery; ordering, payment and warehouse decisions belong in the appropriate service account. Keeping this distinction clear helps you move from a shoe spreadsheet to a documented purchase. The strongest outcome is a pair chosen from understood measurements, checked against its actual order and packed according to its needs."
+          "Browse the shoe category when you are ready to compare listings, and use the general QC checklist for other product types. The catalog link opens the product catalog for discovery; ordering, payment and warehouse decisions belong in the appropriate service account. Keeping this distinction clear helps you move from a shoe spreadsheet to a documented purchase. The strongest outcome is a pair chosen from understood measurements, checked against its actual order and packed according to its needs."
         ]
       }
     ]
@@ -438,7 +442,7 @@
       "gudang Superbuy"
     ],
     "publishedAt": "2026-10-06",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Build a warehouse inventory before combining items",
@@ -500,7 +504,7 @@
         "heading": "Use a repeatable release checklist",
         "paragraphs": [
           "Release a parcel only after checking contents, QC decisions, storage deadlines, packing instructions, route eligibility, address and remaining budget. Keep the list short enough to use every time. A useful final question is whether any unresolved decision has simply been hidden inside the combined parcel. If the answer is yes, pause that item and resolve it. The purpose of consolidation is a deliberate parcel configuration, not merely clearing the warehouse screen as quickly as possible.",
-          "For the next step, use the shipping-cost guide to compare charges and the tracking guide to follow the handoff after dispatch. Product browsing on cnfanshp.com remains separate from warehouse operations in your service account. This distinction matters when moving between the guide and a catalog. A successful consolidation decision leaves you with a clear list of what shipped, what stayed behind, why the packaging was chosen and which evidence supports the final approval."
+          "For the next step, use the shipping-cost guide to compare charges and the tracking guide to follow the handoff after dispatch. Product browsing in the catalog remains separate from warehouse operations in your service account. This distinction matters when moving between the guide and a catalog. A successful consolidation decision leaves you with a clear list of what shipped, what stayed behind, why the packaging was chosen and which evidence supports the final approval."
         ]
       }
     ]
@@ -593,7 +597,7 @@
       "Buy 1688 via Superbuy"
     ],
     "publishedAt": "2026-09-07",
-    "modifiedAt": "2026-10-06",
+    "modifiedAt": "2026-11-03",
     "sections": [
       {
         "heading": "Understand the shopping agent service",
@@ -606,14 +610,16 @@
         "heading": "Find current Taobao or 1688 listings",
         "paragraphs": [
           "To buy Taobao via Superbuy, start from the active product link, not a screenshot or old title. Paste the listing URL into the Superbuy product search or order field and wait for the system to read the product information. If the page is not read automatically, data may need to be entered manually. Make sure the item name, price, color, size, quantity, domestic shipping, as well as seller's note match the source listing before paying for the order.",
-          "Buying from 1688 through Superbuy follows a similar basic process, but wholesale listings often have minimum quantities, price tiers, or mixed options. Check whether the price applies to one unit or package, whether the minimum quantity is calculated per color, and whether the seller asks for additional specifications. Spreadsheets or product indexes can speed up searches, but current listings remain the reference for product details. If the selection on the index is different from the marketplace, use the latest information on the seller's page."
+          "Buying from 1688 through Superbuy follows a similar basic process, but wholesale listings often have minimum quantities, price tiers, or mixed options. Check whether the price applies to one unit or package, whether the minimum quantity is calculated per color, and whether the seller asks for additional specifications. Spreadsheets or product indexes can speed up searches, but current listings remain the reference for product details. If the selection on the index is different from the marketplace, use the latest information on the seller's page.",
+          "For a five-piece order in mixed colours, send the agent the listing, quantity per colour, total quantity and warehouse destination in one message. Ask for the unit price at that quantity and the domestic delivery charge as separate figures. Save the answer before paying."
         ],
         "bullets": [
           "Copy active listing URL",
           "Match price and variant",
           "Check minimum order 1688",
           "Domestic shipping record"
-        ]
+        ],
+        "seeAlso": "superbuy-1688-five-items-moq"
       },
       {
         "heading": "Choose the exact variant and measurements",
@@ -641,7 +647,8 @@
         "paragraphs": [
           "Start the QC check with identity: model, color, size, quantity, and accessories. Then look at the general shape, symmetry, stains, damage, visible stitching, and condition of the packaging if it is important. If one defining detail is not visible, ask for additional specific photos, such as a size label from up close or a ruler along the insole. A request for a “quality check” is too general to produce comparable evidence.",
           "The inspection should result in one of three decisions: accept the goods, request additional evidence, or ask after-sales support to review the issue. Return policies follow the marketplace of origin and the seller, so do not delay when discrepancies are apparent. Second-hand goods or special categories may have stricter regulations. Document order numbers, photos, and apparent differences rather than making claims that cannot be proven by camera."
-        ]
+        ],
+        "seeAlso": "qc-photo-checklist"
       },
       {
         "heading": "Manage storage and consolidation deadlines",
@@ -655,7 +662,8 @@
         "paragraphs": [
           "Before shipping, determine the items to be included, box requirements, corner protection, cushioning, vacuum, retail packaging removal, and moisture protection. Choose according to the physical needs of the contents. Soft clothing may be safely compacted, while shoes, electronics, fragile items, or collection boxes may require additional structure. The smallest package isn't necessarily the safest package.",
           "Compare routes through accepted goods categories, weight and size limits, how to calculate volumetric weight, tracking, time estimates, compensation, as well as availability to destination zip codes. Initial shipping is an estimate based on package data; after packing, actual weight and dimensions may cause reconciliation. Keep a reserve fund and do not assume that one model tariff applies to all of Indonesia or throughout the year."
-        ]
+        ],
+        "seeAlso": "shipping-cost-guide"
       },
       {
         "heading": "Keep customs and delivery records",
@@ -667,7 +675,7 @@
       {
         "heading": "Separate product discovery from account actions",
         "paragraphs": [
-          "The product and search links on superbuys.id open the cnfanshp.com catalog. The catalog is different from the Superbuy account for paying orders, checking inventory, and sending packages. Opening a listing does not automatically create an order. Save the source link and the correct variant, size and quantity before continuing in the appropriate service account.",
+          "The product and search links on superbuys.id open the product catalog. The catalog is different from the Superbuy account for paying orders, checking inventory, and sending packages. Opening a listing does not automatically create an order. Save the source link and the correct variant, size and quantity before continuing in the appropriate service account.",
           "Make simple notes with columns for product links, options, purchase costs, inventory status, and next action. If any of the data is unclear, resolve that question before paying or approving the shipment. Use the payment guide to check the costs and tracking guide after the parcel is handed to the shipping provider."
         ]
       }
@@ -862,5 +870,196 @@
         ]
       }
     ]
+  },
+  "superbuy-1688-five-items-moq": {
+    "title": "Buying Five Items From 1688 With Superbuy: MOQ, Price and Shipping",
+    "description": "Check whether five pieces qualify for a 1688 price tier, ask for a domestic delivery quote, and budget for a separate shipment to Indonesia.",
+    "sections": [
+      {
+        "heading": "Start with the five pieces you actually need",
+        "paragraphs": [
+          "If you want five shirts from a 1688 listing, write down five physical shirts before looking at the wholesale price. Specify the detail that makes each one usable for you. For example, you might need three navy shirts in M and two navy shirts in L. A parcel of five shirts all in M would meet your total count but leave you two shirts short in the size that matters. Put those quantities next to the selected options and save the link and screenshots of the original listing.",
+          "The first question for the seller is whether they will accept that combination. MOQ means minimum order quantity. Superbuy's guide to its 1688 service says an order below the seller's minimum can be rejected and need to be placed again. The seller sets that threshold. Five pieces can be a valid purchase on one listing and ineligible on another. Five products in a shopping basket do not establish that any single seller has accepted the order."
+        ]
+      },
+      {
+        "heading": "Check what the quantity selector counts",
+        "paragraphs": [
+          "A listing can offer individual pieces, pairs, sets or whole packs. Look at the unit printed beside the price and the option selected when you enter the quantity. If one unit is a pair of socks, entering five orders five pairs. If one unit is a sealed pack of five shirts, entering five would request twenty-five shirts. Check the packaging description, not just the main photograph. A photograph can show the range of available colours even when the price covers only one piece.",
+          "For the shirt example, ask whether M and L belong to the same minimum and whether the seller counts all colours together. A minimum of five pieces per design can work for three M plus two L if mixing sizes is allowed. A minimum of five for each size does not work for that basket. The seller might offer a sample or another listing for smaller quantities. Ask for the actual link and terms before accepting that option, because a sample can have a different unit price."
+        ]
+      },
+      {
+        "heading": "Work through one quote from the seller to the warehouse",
+        "paragraphs": [
+          "Imagine a seller confirms these illustrative figures in yuan. The price is CNY 24 per shirt for two to four and CNY 20 per shirt for five to nine. Both sizes cost the same, the seller accepts three M plus two L as five pieces, and delivery of the whole order to the chosen Chinese warehouse is CNY 12. The goods come to 5 × 20 = CNY 100. Add CNY 12 once and the subtotal on arrival at the warehouse is CNY 112, or CNY 22.40 per shirt. These are practice figures, not a current seller offer.",
+          "Now suppose the seller prices each size separately. If both the three-piece line and the two-piece line qualify only for the CNY 24 tier, the goods cost CNY 120. If the same single CNY 12 delivery charge still applies, the subtotal is CNY 132, or CNY 26.40 each. That CNY 20 difference buys exactly the same shirts. A single written answer about how the seller counts sizes resolves it. If one size has a higher price, multiply its own unit price by its quantity on a separate line.",
+          "Keep the unrounded order total on your worksheet. Dividing by five is useful for comparing shirts, but the seller needs the order total, the chosen mixed-size quantities and the delivery charge to confirm what will actually be purchased."
+        ]
+      },
+      {
+        "heading": "Get the Chinese delivery charge in writing",
+        "paragraphs": [
+          "Ask for the total freight from this seller to the warehouse shown on your Superbuy order. State which variants the quote covers and ask whether the seller plans to send everything together. If the answer is a delivery charge per dispatch, ask how many dispatches they expect. Stock held at different locations or a size that ships later can change that answer. A blank freight field on a marketplace preview gives you no amount to enter in your budget.",
+          "Keep the product subtotal, seller's domestic delivery and any optional service you choose on separate lines. When you review a payment request, compare those lines with the seller's message. A change might be a revised variant price rather than a new delivery fee. If the seller offers to substitute another size, wait for a new breakdown for that exact basket. A saving on freight is little help if two of the shirts can't be worn."
+        ]
+      },
+      {
+        "heading": "Price the second journey to Indonesia",
+        "paragraphs": [
+          "International shipping begins with the parcel you intend to send from the warehouse. The seller’s CNY 12 in this example takes the shirts only to the Chinese warehouse. For a useful early estimate, enter Indonesia as the destination in Superbuy’s official freight calculator. Enter the applicable item category, weight in grams and packed length, width and height in centimetres. Write down whether you measured those figures, obtained them from the seller or estimated them yourself. Keep the date with the estimate.",
+          "Five thin tops in one outer bag and five gift boxes with one top in each can occupy quite different amounts of space. If your decision depends on keeping the boxes, compare both packing plans using realistic outer dimensions. Check the rules shown for each available line. Do not multiply one shirt’s international quote by five, since the finished parcel may have a different chargeable weight or be eligible for different services. If you only have item weights, leave international freight provisional and return to the calculator when warehouse measurements are available."
+        ]
+      },
+      {
+        "heading": "Send one message that gets an actionable answer",
+        "paragraphs": [
+          "Try this enquiry with your link and required variants filled in. “I want five individual shirts from this listing: three navy M and two navy L, for delivery to my Superbuy warehouse. Can these sizes be combined for the five-piece tier? Please confirm stock for both sizes, the unit price for each, and the total domestic freight for all five. Will you send one parcel or several? Please check with me before substituting a size, adding pieces or accepting a higher total.”",
+          "Read the response as if someone else had to place the order using only what is written. A reply saying “yes, five available” settles stock only if it identifies your sizes. It leaves the mixed-size tier and freight open. Ask one follow-up naming the missing value. Once the figures agree, keep a dated note with the full listing URL, variants, currency, item subtotal and domestic freight. That note gives you a useful comparison if the amount displayed changes when the agent purchases the goods."
+        ]
+      },
+      {
+        "heading": "Check the delivery before you release it",
+        "paragraphs": [
+          "When the order reaches the warehouse, compare the parcel record and available photos with the five-item list. For loose shirts, check the visible size labels and count what you can see. For an unopened pack, the outer label may state the size mix, or it may only identify the style. Superbuy's 1688 guidance explains that original packaging is not routinely opened to establish the contents. Ask what inspection is available for this product if the difference would affect your decision to ship it.",
+          "Suppose the photo shows three M labels and just one L. It could show four shirts, or the fifth could be underneath. Ask for the missing evidence before concluding that one was never shipped. If a second domestic parcel is due, match its tracking to the same seller order. After you have reconciled the five pieces, use the packed measurements to update the international estimate. Your final per-shirt calculation can then use the actual goods and domestic charges, the applicable international freight and any separately applicable charges. Keep amounts in one currency and record the exchange rate you use."
+        ]
+      }
+    ],
+    "primaryKeyword": "buy five items from 1688 with Superbuy",
+    "secondaryKeywords": [
+      "1688 minimum order",
+      "domestic shipping"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "superbuy-no-shipping-options-indonesia": {
+    "title": "No Superbuy Shipping Options to Indonesia? Check Your Parcel in 7 Steps",
+    "description": "Check the destination, item attributes, packed size and warehouse selection. Use a worked example and a message template to ask Superbuy why a route is missing.",
+    "sections": [
+      {
+        "heading": "1. Record where the shipping options disappeared",
+        "paragraphs": [
+          "You can paste a Taobao link into Superbuy, pay the seller and receive warehouse photos without yet knowing how the item will travel to Indonesia. Delivery from the seller to the warehouse and international delivery are separate decisions. If the international shipping screen shows no options, first note where you saw the message. A blank result in the public calculator and an empty list for a specific warehouse parcel give support different information.",
+          "Before changing anything, save the date, the wording of the message and the selected warehouse item numbers. Write down the destination, the selected product categories and the measurements you entered. Include the package unit beside every number. A screenshot that only shows the empty space below the search button leaves out the information needed to repeat the test. Keep order references inside your support conversation when sharing the example."
+        ]
+      },
+      {
+        "heading": "2. Reproduce the destination and warehouse details",
+        "paragraphs": [
+          "Open Superbuy’s official freight calculator and choose Indonesia as the destination. Check the warehouse shown against the warehouse that holds your items. The calculator asks for weight in grams and dimensions in centimetres. A parcel weighing 1.8 kg goes into the weight field as 1800. A measurement of 420 mm goes into the length field as 42. Correct unit errors before interpreting any result.",
+          "For a parcel already in your account, open the delivery address you intend to use. Read back the country, city or regency and postal code against the recipient’s address. If an Indonesian address is saved alongside an older address overseas, verify which one you selected for this parcel. The public calculator takes a destination country, while your order has a specific address. If one screen offers a service and the other does not, record both results and ask whether the service covers that postal code."
+        ]
+      },
+      {
+        "heading": "3. Describe the actual contents of every item",
+        "paragraphs": [
+          "Read the selected product variant as well as the listing title. A keyboard advertised in wired and wireless versions could mean two different parcels. Ask the seller which version will be supplied and whether it contains a battery. Look through any accessories included inside the box. Superbuy’s calculator distinguishes a built-in battery, a power bank and a separate battery. Choosing the right entry matters even when the main product looks like an ordinary accessory.",
+          "Apply the same care to a container described only as a sample or a gift. Ask what is inside it and in what quantity before requesting a shipping estimate. If the warehouse description differs from the seller’s answer, ask the agent to review the specification or a legible label photo. Use the confirmed description for the real shipment. If Superbuy identifies an item as prohibited, ask about returning it to the seller while it is still in China. Choosing ordinary goods or omitting an accessory cannot establish that a carrier accepts it."
+        ]
+      },
+      {
+        "heading": "4. Measure the parcel the carrier would receive",
+        "paragraphs": [
+          "Start with the outside length, width and height of the closed shipping carton and the weight including protection. A shoe’s length, the seller’s size chart and the dimensions of the retail box measure three different things. If you know only the product dimensions, label them as a provisional estimate. Ask the warehouse for the packed figures when an available service depends on a narrow size or weight margin.",
+          "Suppose a pair of shoes with its box and padding weighs 1800 g in a carton measuring 40 × 30 × 20 cm. The box occupies 24,000 cubic centimetres. If the service you are checking uses a divisor of 6000, the illustrative volumetric weight is 4 kg. A physically suitable carton of 40 × 30 × 15 cm would occupy 18,000 cubic centimetres and yield 3 kg under the same rule. Compare the route’s own limits, divisor and rounding. The example explains which figures to check. It supplies neither a quote nor proof that smaller packaging will unlock a route.",
+          "If the box protects a delicate heel or forms part of the product you want, say so before approving its removal. Ask whether the warehouse can measure an alternative that keeps enough protection. Run a new estimate once the material and dimensions of that alternative are known."
+        ]
+      },
+      {
+        "heading": "5. Isolate the item that changes the result",
+        "paragraphs": [
+          "Imagine that a pair of shoes and a rechargeable desk lamp are waiting in the warehouse. Check the shoes as a parcel on their own using their real category and estimated packed size. Do the same for the lamp with its confirmed battery type. Finally test the combination with the dimensions and weight of the combined carton. Use the same destination and warehouse for all three tests, and write down the service names that appear in each case.",
+          "If the shoes have a service but the lamp has none, ask specifically about the lamp’s battery specification and the available options for that item. If both can travel alone but no service accepts the combination, ask the warehouse to check the combined carton’s dimensions, weight and mix of contents. If neither item has an option, revisit the destination and units before paying for new packaging. Separate parcels are worth pricing only when each is independently accepted. Each may have its own minimum freight charge and packing cost.",
+          "Keep the parcel contents beside each result as well as the displayed price. A quote for shoes alone can easily be mistaken for a quote for the whole order a day later. If the seller then adds a spare battery or changes the retail box, record that change, ask for the new packed figures and start the comparison from the affected item."
+        ]
+      },
+      {
+        "heading": "6. Send support a question they can reproduce",
+        "paragraphs": [
+          "Before purchasing, ask the seller for any missing specifications and send the listing and selected variant to Superbuy in a shopping enquiry. For an existing order, use the order enquiry or online customer service so the agent can identify the actual warehouse item. Attach the calculator entries, the shipping-screen message and the date of your test. Ask for the rule affecting this parcel and which measurement, document or product detail they need to make a decision.",
+          "You can adapt this message. “I want to ship warehouse items [references] to [city and postal code], Indonesia. The parcel contains [items, variants and relevant attributes]. Its packed weight is [g] and its outer dimensions are [L × W × H cm]. On [date], the calculator showed [result] and my parcel screen showed [message]. Could you check which requirement affects this selection? Please confirm any acceptable packing or separate shipment and its charges before making changes.”",
+          "While a reply is pending, check any seller return deadline shown for the order. If the seller needs to approve a return, find out who will request it and whether you need to keep the retail packaging. A screenshot of an estimate found elsewhere will rarely answer either question."
+        ]
+      },
+      {
+        "heading": "7. Decide what to do before paying international freight",
+        "paragraphs": [
+          "If an agent confirms a service for the recorded destination and contents, open the parcel screen again and compare the offered service, packed size and charges with that reply. Save the date and the assumptions. If the route works only with a different carton, decide whether the protection and price are acceptable before authorising the change. If the issue is an incorrect measurement, keep the corrected values for the next estimate.",
+          "If no suitable service is confirmed, ask which items can remain in storage and whether an ineligible item can go back to the seller under the order’s terms. Confirm charges and timing with the agent before acting. Once there is a valid service, use the shipping-cost guide to compare the deposit with the final charge. If a parcel has already been dispatched and you have a tracking number, the tracking guide is the appropriate next step."
+        ]
+      }
+    ],
+    "primaryKeyword": "Superbuy no shipping options",
+    "secondaryKeywords": [
+      "shipping routes to Indonesia",
+      "packed dimensions"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
+  },
+  "superbuy-wrong-size-return-exchange": {
+    "title": "Wrong size in your Superbuy QC photos? How to return or exchange before shipping",
+    "description": "Ordered one size and found another in My Warehouse? Match the label and measurements to your order, then send a clear request while the item is still in China.",
+    "sections": [
+      {
+        "heading": "Leave the item out of your international parcel",
+        "paragraphs": [
+          "If your Superbuy warehouse photo shows the wrong size, leave that item out of the parcel you are preparing. Open the corresponding product order, save the size you selected and look for the garment or shoe label in the warehouse pictures. If the label already shows a different size, you can raise that discrepancy now. You do not need to pay for another photograph just to report an M label against an L order that is already legible.",
+          "Superbuy’s shopping guide separates inspection at the Chinese warehouse from submitting an international parcel. That distinction matters for a buyer in Indonesia: while the item is still in China, the agent can ask the seller about a domestic return or exchange. If you already submitted a parcel, contact support with both the order and parcel references and ask whether packing or dispatch can still be interrupted. Wait for an answer before assuming that a change is possible."
+        ]
+      },
+      {
+        "heading": "Check what you bought against what the warehouse received",
+        "paragraphs": [
+          "Open the original order line and save the seller’s variant wording, size, colour and quantity. Match those details with the item reference in My Warehouse. If you ordered the same jacket in two sizes, match one order line at a time. A box label is useful for identifying the shipment, but a photo of the sewn-in label is better evidence of which jacket is inside. With shoes, check both shoes as well as the box if the two sizes appear different. If the parcel contains goods from several sellers, include the seller name or order line for the affected unit. This helps avoid returning another shop’s item by mistake.",
+          "There are three different requests here. An L on the order and an M on the actual item is a variant mismatch. An L on both, with different dimensions from the seller’s chart, calls for a measurement check. If the item matches the order and chart but you now want a looser fit, ask about a voluntary size exchange. Stating which situation applies gives the seller a concrete question and helps the agent check the right terms."
+        ]
+      },
+      {
+        "heading": "Measure the same thing the seller measured",
+        "paragraphs": [
+          "Start with the size chart attached to that exact model. Check the units, the size row and whether a number represents the garment, the wearer’s body or a suggested fit range. A flat underarm-to-underarm width and a chest circumference describe different measurements. A photo of a jacket laid beside a ruler also tells you little if the ruler starts outside the seam. Ask for one view that includes the entire measurement and shows both endpoints and the unit.",
+          "For trousers, specify whether you need the relaxed waistband width, the stretched width or the inseam. For footwear, an EU size printed on the box is a different observation from a length measured in centimetres. An outsole is longer than the space available to the foot. If a removable insole is the relevant reference, ask whether its heel-to-toe length can be photographed without damaging the shoe. Compare it with the same measurement from a pair you wear."
+        ]
+      },
+      {
+        "heading": "Worked example: an L jacket with a 53 cm chest width",
+        "paragraphs": [
+          "Suppose the seller specifies 56 cm across the chest for size L, measured flat from underarm to underarm, with a stated tolerance of 1 cm either way. The corresponding range is 55 to 57 cm. In this example, the order and the label both say L. The first image appears to show 53 cm, but the left end of the tape runs out of the frame. Save that image and ask for another measurement with the jacket fastened, flat and unstretched and both underarm seams visible.",
+          "If a clear repeat photo still reads 53 cm, it is 3 cm below the listed figure and 2 cm below the lower end of that seller’s range. Send the chart and the repeat image together. If the seller’s 56 cm refers to a different measuring point, ask for that point to be checked before drawing a conclusion. These numbers illustrate a method. Use the chart and tolerance, if any, that appeared on your own listing. Do not give another seller the example’s tolerance by default."
+        ]
+      },
+      {
+        "heading": "Send a request the agent can act on",
+        "paragraphs": [
+          "Use the enquiry or after-sales option attached to the product order if available. If you cannot find it, contact Superbuy support from your account and include the order reference. Attach the original selection, the seller’s size chart for that model, and the clearest warehouse evidence. If there are several pieces, state precisely which one is affected and how many should stay in the warehouse. Put your preferred outcome in the first message. An agent can ask about a size exchange, a return for a refund, or one further measurement.",
+          "For a wrong label: “Order [reference], one black jacket. I selected L. The attached photo of the sewn-in label shows M. Please keep this item out of international shipping and ask whether the seller can exchange it for black L. If L is unavailable, please tell me the return terms and charges before proceeding.”",
+          "For a measurement discrepancy: “Order [reference]. The item and order both show L. The chart specifies 56 cm across the chest and allows 1 cm either way. The attached repeat measurement shows 53 cm. Please confirm the measuring method with the seller and ask whether a return is available. Please tell me any costs before arranging it.” Replace every measurement with the figures for your own item. Use the official order conversation for attachments and account information."
+        ]
+      },
+      {
+        "heading": "Choose between an exchange and a return",
+        "paragraphs": [
+          "An exchange makes sense if you still want this model and the seller can supply the correct option. Ask the agent to confirm replacement stock, colour and size, any price difference, local freight in each direction, and any service charge attached to your order. A larger letter does not guarantee the specific width you need. If dimensions are the deciding factor, ask whether the seller can check the replacement before sending it. Decide whether the remaining items should wait or can travel separately.",
+          "For a return, ask which amount the seller expects to refund, who bears return freight inside China and where the credit will be recorded. Ask what happens to the original domestic delivery charge and optional services you already used. The item price on the listing cannot settle those questions. Keep tags, packaging and included pieces available until the agent gives instructions. Seller eligibility, item condition, charges and application deadlines can vary. The remaining warehouse storage period tells you nothing about how long the seller will accept a request."
+        ]
+      },
+      {
+        "heading": "Close the case using the order record",
+        "paragraphs": [
+          "If an exchange is approved, note the replacement reference and check the next set of warehouse photos. Match the tag, colour and requested measurement before adding the replacement to your parcel. If you requested a return, keep the confirmation, domestic tracking where provided and the final credit entry. A seller agreeing to take the item back and a credit appearing on your account are two separate points in the process. Use those records to follow up if the amount differs from the written confirmation.",
+          "If the seller declines, ask the agent to record the reason, the term applied and any alternative still available. A clearer tape photo may resolve a dispute about the measuring method. If the item matches the listing and the seller declines a change of preference, use that answer and the confirmed costs to decide whether to ship it. If the parcel has already left China, give support its current status and ask about options for that stage before booking an international return yourself."
+        ]
+      }
+    ],
+    "primaryKeyword": "Superbuy wrong size return",
+    "secondaryKeywords": [
+      "warehouse QC photos",
+      "exchange before shipping"
+    ],
+    "publishedAt": "2026-11-03",
+    "modifiedAt": "2026-11-03"
   }
 }

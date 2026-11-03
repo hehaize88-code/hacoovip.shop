@@ -72,7 +72,7 @@ export function Analytics() {
       if (url.hostname === window.location.hostname && article) {
         send("article_cta_click", {
           article_slug: article[1],
-          link_location: link.closest(".related-guides") ? "related_guides" : link.closest(".articles-preview") ? "home" : "article_index",
+          link_location: link.closest<HTMLElement>("[data-link-location]")?.dataset.linkLocation ?? (link.closest(".related-guides") ? "related_guides" : link.closest(".articles-preview") ? "home" : link.closest("header") ? "header" : "article_index"),
           page_language,
         });
       }

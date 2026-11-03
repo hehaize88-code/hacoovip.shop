@@ -8,7 +8,7 @@ export type LongArticle = {
   publishedAt?: string;
   modifiedAt?: string;
   updatedLabel?: string;
-  sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
+  sections: { heading: string; paragraphs: string[]; bullets?: string[]; seeAlso?: string }[];
 };
 
 export const englishArticles: Record<string, LongArticle> = articles;
