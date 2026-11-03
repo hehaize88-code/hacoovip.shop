@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { cp, mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { localeCodes, localizedRoutes } from "../app/editorial.ts";
@@ -15,6 +15,10 @@ const allRoutes = [
 ];
 const requestedRoutes = process.argv.slice(2);
 const routes = requestedRoutes.length ? requestedRoutes : allRoutes;
+
+// Cloudflare Pages serves this directory directly, outside the build output.
+// Keep previous hashed assets available for pages rendered by older releases.
+await cp(resolve(root, "dist/client/assets"), resolve(root, "assets"), {recursive: true});
 
 for (const route of routes) {
   const pathname = route ? `/${route}` : "/";

@@ -64,3 +64,31 @@ test('each language publishes both new guides with a local entry link and recipr
     }
   }
 });
+
+test('all public page stylesheets and their local resources are included in the deployment', async () => {
+  const { localizedRoutes } = await import('../app/editorial.ts');
+  const { findRoutes } = await import('../app/finds-data.ts');
+  const root = new URL('../', import.meta.url);
+  const pages = localeCodes.flatMap(lang => localizedRoutes.map(slug =>
+    [lang === 'en' ? '' : lang, slug, 'index.html'].filter(Boolean).join('/')
+  ));
+  pages.push('finds/index.html', ...findRoutes.map(slug => slug + '/index.html'));
+  const sheets = new Set();
+  for (const page of pages) {
+    const html = await readFile(new URL(page, root), 'utf8');
+    const links = (html.match(/<link\b[^>]*>/gi) ?? []).filter(link => /\brel="stylesheet"/i.test(link));
+    const paths = links.map(link => link.match(/\bhref="([^"]+)"/i)?.[1]);
+    assert.ok(paths.some(path => path?.startsWith('/assets/')), page + ' is missing its layout stylesheet');
+    for (const path of paths) if (path?.startsWith('/')) sheets.add(path);
+  }
+  for (const path of sheets) {
+    const asset = new URL(path.slice(1), root);
+    const css = await readFile(asset, 'utf8');
+    assert.ok(css.trim() && !css.trimStart().startsWith('<'), path + ' must contain CSS');
+    for (const [, url] of css.matchAll(/url\(\s*["']?([^\s"')]+)["']?\s*\)/g)) {
+      if (/^(?:[a-z]+:|\/\/|#)/i.test(url)) continue;
+      const dependency = url.startsWith('/') ? new URL(url.slice(1), root) : new URL(url, asset);
+      assert.ok((await readFile(dependency)).length, url + ' is empty');
+    }
+  }
+});
