@@ -5,6 +5,7 @@
   ],
   "exclude": [
     "/assets/*",
+    "/guides/*",
     "/allchinabuy.png",
     "/favicon.svg",
     "/file.svg",

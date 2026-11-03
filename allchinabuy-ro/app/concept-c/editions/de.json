@@ -1,0 +1,901 @@
+[
+  {
+    "slug": "qc-photos-weidian-taobao-link",
+    "title": "QC-Fotos zu einem Weidian- oder Taobao-Link finden",
+    "description": "So ordnest du Lagerfotos einem Angebot zu, prüfst Farbe und Größe und gehst vor, wenn die Suche keinen passenden Treffer liefert.",
+    "summary": "Beginne mit dem öffentlichen Artikel-Link. Gleiche Marktplatz, Artikelnummer, Ausführung und Aufnahmedatum ab. Erst eigene Lagerfotos zeigen, welches Stück für dich eingetroffen ist.",
+    "intro": [
+      "Du hast ein T-Shirt im Spreadsheet gefunden. Auf dem Produktbild ist der Aufdruck scharf zu sehen, aber wie sieht das Shirt aus, das jemand tatsächlich erhalten hat? Lagerfotos, oft als „QC Photos“ bezeichnet, können dir eine zweite Ansicht geben. Die entscheidende Frage lautet zunächst, ob das Foto überhaupt zu deinem Angebot und zur gewählten Variante gehört. Eine Bildersuche nach dem Namen allein beantwortet das selten.",
+      "Dabei macht der Zeitpunkt einen Unterschied. Vor dem Kauf suchst du nach öffentlich zugänglichen Bildern früherer Bestellungen. Nach dem Eingang im Lager möchtest du Fotos deines eigenen Artikels prüfen. Eine fremde Aufnahme kann dich auf eine schiefe Naht aufmerksam machen, die du später kontrollieren solltest. Sie sagt nichts darüber aus, ob die Naht an deinem Exemplar ebenfalls schief ist."
+    ],
+    "sections": [
+      {
+        "heading": "Den öffentlichen Artikel-Link aus der Tabelle holen",
+        "paragraphs": [
+          "Öffne die Produktseite aus dem Spreadsheet. Zeigt sie eine Händlerauswahl oder mehrere Artikel, wähle den gewünschten Artikel und prüfe den Namen des Verkäufers. Kopiere die Adresse der öffentlichen Angebotsseite. Seiten mit einem Warenkorb, einer Bestellung, einem Bezahlvorgang oder einer Lagerquittung enthalten Informationen zu deinem Konto und eignen sich für die Suche nach öffentlichem Bildmaterial nicht. Deine Auftragsnummer gehört nur in den privaten Kontaktkanal zur eigenen Bestellung.",
+          "Weidian verwendet bei üblichen Artikellinks einen Parameter namens itemID. Bei Taobao steht die Artikelnummer häufig hinter id=. Ein Link kann zusätzlich einen ausgewählten Stil oder einen Weiterleitungsdienst angeben. Sichere die ursprüngliche Adresse, bevor du einen bereinigten Link ausprobierst. Schreibe den Namen des Marktplatzes zur Nummer. Eine Ziffernfolge allein verrät weder ihre Herkunft noch, ob sie einen Artikel, eine Variante oder einen Bestellvorgang bezeichnet."
+        ]
+      },
+      {
+        "heading": "Von der Produktkarte zum richtigen Suchfeld",
+        "paragraphs": [
+          "Manche Produktkarten führen zunächst zu einer Katalogseite. Deren eigene Nummer bezeichnet zunächst nur diesen Katalogeintrag. Suche dort nach dem Link zum ursprünglichen Angebot. Öffne ihn und vergleiche Titel, Vorschaubild und Händler mit der Karte. Lässt sich kein Ursprung finden, kannst du das Angebot als unbestätigt vormerken. Eine andere Weidian-Nummer aus einem ähnlich aussehenden Treffer einzusetzen würde die spätere Prüfung von Anfang an verfälschen.",
+          "Verwendest du ein öffentliches QC-Verzeichnis, lies am Eingabefeld nach, welche Marktplätze und Linkformen es verarbeitet. Übergib nur die öffentliche Artikeladresse. Ein Dienst kann Bestellungen bestimmter Einkaufsagenten kennen und andere nicht erfassen. Auch ein technisch gültiger Link kann deshalb ohne Ergebnisse bleiben. Braucht ein Feld ausdrücklich die Artikelnummer, kopiere nur den Wert des richtigen Marktplatzparameters und halte die ursprüngliche URL für den Gegencheck bereit."
+        ]
+      },
+      {
+        "heading": "Die Variante innerhalb des Treffers bestimmen",
+        "paragraphs": [
+          "Ein Angebot kann ein schwarzes und ein weißes Shirt, mehrere Druckvarianten und verschiedene Größen unter derselben Artikelnummer führen. Ein Treffer auf die Artikelnummer reicht für die Zuordnung zum Angebot. Für die Frage, wie groß der Druck auf deinem weißen Shirt ist, brauchst du zusätzlich die Ausführung. Nutze Farbcode, Größenetikett, Muster und sichtbare Details. Bei einem Aufdruck sind Position und Abstand zum Kragen oft aussagekräftiger als der Eindruck vom Farbton unter einer Lagerlampe.",
+          "Prüfe getrennt, welche Informationen das Foto liefert und welche nur in einer Bildunterschrift stehen. Ein sichtbares Etikett kann die Angabe „L“ stützen, ein abgeschnittenes Foto ohne Etikett nicht. Maße eines Shirts in M lassen sich nicht als Maße von L übernehmen. Auch innerhalb einer Größe kann ein Verkäufer das Modell geändert haben. Datum der Fotoserie und Änderungshinweise im Angebot helfen bei dieser Einordnung. Behauptet die Galerie keine dokumentierte Produktionscharge, lasse die Charge offen."
+        ]
+      },
+      {
+        "heading": "Echte Lageraufnahme oder Verkäuferbild?",
+        "paragraphs": [
+          "Ein neutraler Untergrund, ein Lineal oder eine grüne Matte allein belegen keine Herkunft. Schau nach, ob die Galerie erklärt, zu welchem Angebot und zu welcher Bestellung oder Ausführung eine Bildserie gehört. Mehrere Ansichten sollten zueinander passen. Einmal ein rotes und einmal ein blaues Etikett, verschiedene Knopffarben oder wechselnde Drucke sind Hinweise darauf, dass möglicherweise mehrere Ausführungen zusammengeführt wurden.",
+          "Verkäuferbilder sind dennoch nützlich, wenn die Frage klar ist. Der Katalog kann zeigen, wo ein Logo laut Angebot sitzen soll. Eine zuordenbare Lageraufnahme kann zeigen, wo es bei einem bereits gelieferten Exemplar saß. Hebe den Unterschied in deinen Notizen hervor. Ohne nachvollziehbare Herkunft bleibt das Foto eine Produktillustration. Es lohnt sich, diesen Status ausdrücklich zu notieren, bevor die Bilder in einer persönlichen Sammlung nebeneinanderliegen."
+        ]
+      },
+      {
+        "heading": "Ein Beispiel mit zwei fast identischen Treffern",
+        "paragraphs": [
+          "Stell dir ein Weidian-Angebot für ein naturweißes Shirt in L vor. Die erste Galerie zeigt ein weißes Shirt mit derselben Artikelnummer. Der Druck sitzt auf gleicher Höhe wie auf dem Verkäuferbild, doch vom Etikett ist nur die Waschanleitung sichtbar. Du kannst das Motiv und den ungefähren Sitz des Drucks vergleichen. Du kannst daraus keine Aussage zur bestellten Größe ableiten. In deiner Liste stünde deshalb bei der ersten Galerie „Motiv erkennbar, Größe offen“.",
+          "Die zweite Galerie nennt Größe L und zeigt ein vollständiges Maßband. Beim Nachsehen stellst du fest, dass sie von einem anderen Verkäufer und einer anderen Artikelnummer stammt. Die längere und schönere Bildserie ist für deine Größenentscheidung der schlechtere Beleg. Speichere sie höchstens als Beispiel dafür, welche Messstrecke du vom Lager brauchst. Verknüpfe sie nicht als bestätigte Aufnahme mit deinem Artikel. Würden die ersten Fotos zusätzlich das Etikett und dieselben Achselmesspunkte zeigen, ließe sich die Unsicherheit wesentlich stärker eingrenzen.",
+          "Auch das Datum zählt im Zusammenhang: Ein neuerer Upload kann ältere Aufnahmen enthalten. Lies nach, ob das angezeigte Datum den Wareneingang, die Aufnahme oder nur die Veröffentlichung bezeichnet. Wenn diese Information fehlt, notiere schlicht das Datum, an dem du den Treffer gesehen hast. Du brauchst keine vermutete Produktionswoche, um eine gute Anfrage zu formulieren. Entscheidend ist, welches sichtbare Merkmal noch unklar ist und welches Foto deiner eigenen Ware die Frage lösen würde."
+        ]
+      },
+      {
+        "heading": "Was tun, wenn die Suche leer bleibt?",
+        "paragraphs": [
+          "Öffne zuerst den Quelllink erneut. Führt er weiterhin zum gleichen Verkäufer und Produkt? Korrigiere einen versehentlich kopierten Kategorielink oder eine abgeschnittene Adresse. Wenn das Angebot ersetzt wurde, speichere die alte Nummer als historischen Hinweis und führe die neue Nummer getrennt. Übertrage Fotos des alten Angebots nur als Vergleichsmaterial. Ein gleiches Titelbild kann auch bei einem anderen Schnitt, Verkäufer oder Material verwendet werden.",
+          "Bleibt die Suche ohne passende Fotos, formuliere die offene Frage so, dass sie später tatsächlich beantwortet werden kann. „Beim weißen Modell in L fehlt mir die flach gemessene Brustweite“ ist hilfreicher als „Brauche bessere Fotos“. Prüfe vor dem Kauf, ob der Verkäufer diese Messung liefern kann. Ist eine Entscheidung erst nach Wareneingang möglich, kontrolliere zuvor die für deine Bestellung geltenden Bedingungen für Nachfragen und Rückgaben. Leere Suchergebnisse sagen für sich genommen nichts über die Qualität eines Artikels aus."
+        ]
+      },
+      {
+        "heading": "Nach dem Wareneingang dieselbe Frage am eigenen Artikel prüfen",
+        "paragraphs": [
+          "Lege die ausgewählte Variante und die Referenzaufnahme neben die Aufnahmen deines Lagerartikels. Bei einem Shirt kannst du zuerst Etikett, Vorderseite und Rückseite zuordnen. Danach betrachtest du die Abweichung, die für deine Entscheidung zählt. Bei einem verdrehten Druck hilft eine gerade Aufnahme des flach ausgebreiteten Shirts. Für die Breite brauchst du ein sichtbares Maßband zwischen beiden Achselnähten. Ein schräges Detailfoto kann weder die gesamte Breite noch die Lage des Drucks belegen.",
+          "Halte das Ergebnis mit Datum fest. In einer Zeile reichen Angebot, Variante, Herkunft der Aufnahme, sichtbares Detail und offene Frage. Gib den Artikel erst zur weiteren Verpackung frei, wenn die für dich entscheidende Frage geklärt ist. Passt das Bild nicht zur Bestellung, sende dem zuständigen Support im privaten Vorgang die betreffende Aufnahme, die bestellte Option und eine konkrete Bitte um Prüfung. So bleibt der Unterschied zwischen einem Suchtreffer und einem Problem an deiner Lieferung nachvollziehbar."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Wie belastbar ist der Fototreffer?",
+      "headers": [
+        "Fund",
+        "Was sich prüfen lässt",
+        "Nächster Schritt"
+      ],
+      "rows": [
+        [
+          "Nummer stimmt, Farbe weicht ab",
+          "Form und grober Aufbau der Serie",
+          "Foto der bestellten Farbe suchen"
+        ],
+        [
+          "Verkäuferbild ohne Zuordnung",
+          "Beworbener Schnitt und Motiv",
+          "Aufnahmetyp als offen festhalten"
+        ],
+        [
+          "Alte Fotos, inzwischen neue Artikelnummer",
+          "Aussehen eines früheren Angebots",
+          "Neue Nummer separat prüfen"
+        ],
+        [
+          "Eigene Lageraufnahme mit passendem Etikett",
+          "Sichtbare Merkmale des gelieferten Stücks",
+          "Fehlende entscheidende Ansicht anfordern"
+        ]
+      ]
+    },
+    "sourceNote": "Dieser Leitfaden trennt öffentliche Angebotskennungen, frühere Lagerfotos und die private Bestellkontrolle. Ob ein Verzeichnis einen bestimmten Artikel erfasst, muss jeweils am Treffer geprüft werden."
+  },
+  {
+    "slug": "t-shirt-size-chart-qc",
+    "title": "AllChinaBuy T-Shirts: Größentabelle lesen und die Passform auf QC-Fotos prüfen",
+    "description": "Vergleiche ein gut sitzendes Shirt mit Händlermaßen, prüfe Brustweite und Länge und fordere ein Lagerfoto mit passenden Messpunkten an.",
+    "summary": "Miss zuerst ein gewaschenes Shirt, dessen Sitz du kennst. Vergleiche flache Maße mit flachen Maßen und fordere für die bestellte Variante ein Foto derselben Messstrecke an.",
+    "intro": [
+      "Auf einem Produktfoto kann ein T-Shirt weit wirken, weil es an einem schmalen Model hängt, weil die Schulternaht tief sitzt oder weil das Bild nur den Oberkörper zeigt. Für die Bestellung nach Rumänien brauchst du eine andere Entscheidungsgrundlage. Ein Shirt, das bereits in deinem Schrank liegt, liefert sie kostenlos. Sein Etikett ist dabei weniger interessant als die gemessene Breite und Länge und die Frage, wie es sich nach dem Waschen trägt.",
+      "Im Katalog findest du beispielsweise das Polo mit fünf Stilvarianten und ein als „Off White T-shirt“ bezeichnetes Angebot. Beides sind Ausgangspunkte für die Recherche. Prüfe die aktuell angebotene Farbe und Ausführung und suche die dazugehörige Größentabelle beim Verkäufer. Aus einem Katalogtitel, einem Produktbild oder einer anderen Variante lässt sich keine konkrete Maßangabe für deinen Warenkorb ableiten."
+    ],
+    "sections": [
+      {
+        "heading": "Ein passendes Referenzshirt ausmessen",
+        "paragraphs": [
+          "Wähle ein Shirt, dessen Sitz dem gewünschten Ergebnis möglichst nahekommt. Für einen geraden Schnitt dient ein ebenfalls gerade geschnittenes Shirt besser als ein enges Sportoberteil. Ziehe es einmal an und notiere, wo es passt und wo du mehr oder weniger Platz möchtest. Miss danach auf einer ebenen Fläche. Glätte Falten mit der Hand und lass den Stoff entspannt liegen. Ein gedehntes Jersey kann mehrere verschiedene Breiten ergeben, je nachdem wie stark du ziehst.",
+          "Für die halbe Brustweite misst du quer zwischen den unteren Ansätzen der beiden Ärmel. Für die Länge wähle einen festen Ausgangspunkt, etwa die hohe Schulter neben dem Halsausschnitt, und miss senkrecht bis zum Saum. Manche Verkäufer messen mittig am Rücken ab Kragenansatz. Notiere deine Methode oder fotografiere die Messstrecke. Stimmen die Messpunkte nicht überein, kannst du dein Referenzshirt mit der Methode aus der Tabelle erneut messen."
+        ]
+      },
+      {
+        "heading": "Verstehen, was mit Brustmaß gemeint ist",
+        "paragraphs": [
+          "Eine Tabelle kann den Brustumfang des fertigen Kleidungsstücks, seine flache Breite oder ein empfohlenes Körpermaß aufführen. Diese drei Angaben haben unterschiedliche Bedeutungen. Eine flache Breite von 52 cm entspricht bei einem ebenen, symmetrischen Shirt ungefähr 104 cm Kleidungsumfang. Das ist keine Angabe für den Brustumfang der Person, die es trägt. Nahtführung, Elastizität und die gewünschte Bewegungsfreiheit bleiben für den Sitz wichtig.",
+          "Schau zuerst nach einer Zeichnung mit Messlinien und Einheiten. Steht in der Spalte nur „chest“, prüfe, ob aus der Beschreibung hervorgeht, wie gemessen wurde. Fehlt das, frage nach der Breite des flach liegenden Kleidungsstücks zwischen den Achselnähten. Die Bezeichnung M oder XL ist kein Ersatz für die Antwort. Körpergrößen- und Gewichtsempfehlungen können eine Auswahl eingrenzen, lösen eine unklare Messmethode aber nicht auf."
+        ]
+      },
+      {
+        "heading": "Ein Rechenbeispiel mit zwei möglichen Größen",
+        "paragraphs": [
+          "Dein flach liegendes Lieblingsshirt misst 52 cm in der Breite und 68 cm in der Länge. Angenommen, eine Tabelle nennt für Option A 50 cm und 67 cm, für Option B 54 cm und 70 cm. Das sind frei gewählte Werte zur Demonstration und keine Verkäuferdaten. Gegenüber deinem Lieblingsshirt fällt A quer 2 cm schmaler und 1 cm kürzer aus. B ist 2 cm breiter und 2 cm länger. Beim angenäherten Umfang entsprechen 2 cm mehr flache Breite rund 4 cm mehr Umfang.",
+          "Welche Option besser passt, hängt davon ab, was dich am Referenzshirt stört. Möchtest du am Bauch etwas mehr Platz und trägst den Saum meist in der Hose, kann B näher an deinem Ziel liegen. Sitzt die Brustweite bereits locker genug und möchtest du ausdrücklich einen kürzeren Saum, kann bei denselben Zahlen A interessanter sein. Ist die zusätzliche Länge das eigentliche Problem, kann auch keine der beiden Optionen richtig sein. Dann lohnt ein anderer Schnitt mehr als ein weiterer Buchstabe auf dem Etikett."
+        ]
+      },
+      {
+        "heading": "Schultern, Ärmel und Saum bei unterschiedlichen Schnitten",
+        "paragraphs": [
+          "Eine tief sitzende Schulter kann ein Shirt breiter wirken lassen, obwohl die Brustweite gut passt. Bei eingesetzten Ärmeln lassen sich die Schulternähte oft direkt vergleichen. Bei Raglanärmeln verläuft die Naht anders, sodass das Schultermaß aus zwei unterschiedlichen Tabellen wenig aussagt. Vergleiche stattdessen etwa Halsansatz bis Ärmelende und die Weite der Ärmelöffnung. Verwende für beide Stücke dieselben Punkte und denselben Zustand des Stoffes.",
+          "Bei Polos kommt die Knopfleiste hinzu. Für eine Aufnahme sollte sie locker geschlossen oder gerade ausgerichtet sein. Liegt das Shirt schief, erscheint auch der Kragen asymmetrisch. Achte bei geschlitzten Seiten oder einem längeren Rückenteil auf Vorder- und Rückenlänge. Ein einzelner Messwert kann sonst zum richtigen Stück gehören und trotzdem die falsche Frage beantworten. Für ein bedrucktes T-Shirt kann zusätzlich die Lage des Motivs relevant sein, besonders wenn dasselbe Motiv auf mehreren Größen verwendet wird."
+        ]
+      },
+      {
+        "heading": "Eine Größenangabe der richtigen Ausführung zuordnen",
+        "paragraphs": [
+          "Wenn eine Produktseite fünf Stile unter einem Link zusammenfasst, kann sich der Schnitt je nach Stil ändern. Wähle zuerst genau die Farbe und Variante, die du bestellen möchtest. Prüfe dann, ob die Tabelle in der Galerie oder Beschreibung eine Zuordnung hat. Speichere Auswahl und Tabelle zusammen mit dem Datum. Ein Bild einer Tabelle ohne Stilbezeichnung lässt sich später kaum eindeutig zur bestellten Ausführung zurückverfolgen.",
+          "Ein Beispiel: Das Katalogfoto zeigt eine kurze Variante, das für dich interessante Auswahlfeld heißt jedoch „regular“. Beide tragen denselben Produktnamen. Bevor du nach einer Größe suchst, kläre, ob die abgebildete Länge für „regular“ gilt. Kann der Verkäufer den Wert nicht zuordnen, lass ihn in deinen Notizen offen. Ein Maß eines anderen T-Shirts aus derselben Marke oder Kategorie macht diese Lücke nicht kleiner."
+        ]
+      },
+      {
+        "heading": "Maßangaben bei einem Grenzfall nachfragen",
+        "paragraphs": [
+          "Stell dir vor, die Tabelle liegt sehr nah an deiner Mindestbreite. Du willst kein engeres Shirt als dein jetziges kaufen. In der Tabelle steht 52 cm, genau die Breite deines Lieblingsshirts. Das Angebot nennt aber keine Messmethode. Du hast dann wenig Spielraum für Unterschiede durch einen anderen Messpunkt oder eine andere Ausführung. Eine kurze Rückfrage nach einem Foto der markierten Auswahl ist sinnvoller als das Versprechen, dass deine übliche Größe schon passen werde.",
+          "Beschreibe dabei das Kleidungsstück, nicht deinen Körper: „Ich interessiere mich für das weiße Modell, Größe L. Welche Breite hat das flach und entspannt liegende Shirt unter den Ärmeln, von Naht zu Naht?“ Gibt der Verkäufer nur einen Umfang von 104 cm an, kläre, ob es sich um das Kleidungsstück oder eine empfohlene Körpergröße handelt. Bei einem Kleidungsumfang kann die halbe Zahl deiner eigenen Messstrecke entsprechen, sofern beide auf derselben Höhe ermittelt wurden. Die beiden Zahlen werden dadurch vergleichbar, eine perfekte Passform ist damit weiterhin nicht zugesichert.",
+          "Notiere die Antwort bei dieser Variante. Bei der nächsten Farbe desselben Links ist die Antwort nur dann übertragbar, wenn der Verkäufer dieselbe Tabelle und denselben Schnitt dafür angibt. Dieser kleine Zusatz erspart dir später die Frage, welches der gespeicherten Maße eigentlich zum gepackten T-Shirt gehört."
+        ]
+      },
+      {
+        "heading": "Die eigene Lageraufnahme lesen",
+        "paragraphs": [
+          "Bitte bei Bedarf um eine Aufnahme des flach liegenden Shirts mit einem geraden Maßband von Achselnaht zu Achselnaht. Anfang, Ende und Einheit müssen erkennbar sein. Das Band sollte weder in einem Bogen über den Stoff laufen noch über den Stoffrand hinausragen, ohne dass der Startpunkt sichtbar ist. Für die Länge ist eine zweite Aufnahme mit dem vereinbarten Ausgangspunkt besser als zwei sich überkreuzende Maßbänder in einem unscharfen Gesamtbild.",
+          "Ist der Wert überraschend, schau zuerst auf die Methode. Ein Maßband auf Höhe der Taille kann bei einem taillierten Shirt eine kleinere Zahl ergeben als eine Messung direkt unter den Ärmeln. Vergleiche auch das Etikett und die Ausführungsmerkmale mit deinem Bestellbeleg. Ist der Unterschied nach einem zweiten nachvollziehbaren Foto noch relevant, frage im privaten Bestellvorgang nach den verfügbaren Optionen, bevor das Stück ins internationale Paket kommt."
+        ]
+      },
+      {
+        "heading": "Vor der Paketfreigabe entscheiden",
+        "paragraphs": [
+          "Halte dein eigenes Maß, den Verkäuferwert und die nachvollziehbare Lagermessung getrennt fest. So kannst du später sagen, ob du dich für einen bewusst lockereren Schnitt entschieden hast oder ob ein Wert ungeklärt blieb. Eine Aufnahme zeigt weder, wie sich der Stoff nach dem Waschen verhält, noch wie bequem sich der Ausschnitt anfühlt. Wenn gerade diese Eigenschaft für dich ausschlaggebend ist, frage nach belastbaren Produktangaben oder verzichte auf das Angebot."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Passformvergleich mit frei gewählten Beispielmaßen in Zentimetern",
+      "headers": [
+        "Stück",
+        "Flache Brustweite",
+        "Länge",
+        "Unterschied zur Referenz"
+      ],
+      "rows": [
+        [
+          "Eigenes Shirt",
+          "52",
+          "68",
+          "Ausgangswert"
+        ],
+        [
+          "Beispiel A",
+          "50",
+          "67",
+          "2 cm schmaler, 1 cm kürzer"
+        ],
+        [
+          "Beispiel B",
+          "54",
+          "70",
+          "2 cm breiter, 2 cm länger"
+        ]
+      ]
+    },
+    "sourceNote": "Die Maßtabelle erklärt das Verfahren mit Rechenbeispielen. Für konkrete Produkte zählen die dem gewählten Stil zugeordnete Händlertabelle und nachvollziehbare Aufnahmen des gelieferten Stücks."
+  },
+  {
+    "slug": "parcel-cost-guide",
+    "title": "AllChinaBuy Versandkosten nach Rumänien berechnen",
+    "description": "Vergleiche tatsächliches Gewicht und Volumengewicht an zwei 2-kg-Paketen. So liest du Rechenbeispiele und ein konkretes Versandangebot.",
+    "summary": "Der Produktpreis und die Fracht gehören in getrennte Spalten. Für einen sinnvollen Vergleich brauchst du Ziel, Warenart, verpacktes Gewicht, Außenmaße und die Rechenregel der jeweiligen Route.",
+    "intro": [
+      "Ein Paar Schuhe und zwei Shirts können auf der Waage denselben Wert zeigen und dennoch unterschiedliche Versandangebote ergeben. Der Schuhkarton braucht Platz, ein flach gefaltetes Shirt oft erheblich weniger. Deshalb lässt sich aus dem Kaufpreis oder dem auf der Produktkarte genannten Gewicht kein zuverlässiger Endpreis für die Lieferung nach Rumänien ableiten."
+    ],
+    "sections": [
+      {
+        "heading": "Erst die Bestellung, dann das Paket kalkulieren",
+        "paragraphs": [
+          "Trage zum Produkt zunächst die ausgewählte Variante, ihren Preis und gegebenenfalls die Inlandsfracht zum Lager ein. Daneben steht die spätere Paketkalkulation. Zu ihr gehören Verpackungsmaterial, internationale Fracht und sonstige ausdrücklich ausgewiesene Leistungen. Werden Teile in unterschiedlichen Währungen angezeigt, notiere die Währung und den Zeitpunkt des Vergleichs. Eine nachträgliche Umrechnung darf eine echte Erhöhung des Transportpreises nicht vortäuschen."
+        ]
+      },
+      {
+        "heading": "Wie aus zwei Kilogramm vier werden können",
+        "paragraphs": [
+          "Ein Paket wiegt fertig verpackt 2 kg und misst außen 30 × 20 × 10 cm. Nehmen wir zur Erklärung eine Tarifregel an, die das Produkt der Zentimetermaße durch 6.000 teilt. Das ergibt 6.000 ÷ 6.000 = 1 kg Volumengewicht. Verwendet die Beispielroute den größeren Wert aus Waage und Volumen, wären 2 kg die Grundlage vor einer möglichen Rundung. Beim zweiten Paket bleibt die Waage bei 2 kg. Seine Außenmaße von 40 × 30 × 20 cm ergeben aber 24.000 ÷ 6.000 = 4 kg.",
+          "Der Divisor 6.000 ist hier eine Annahme. Prüfe für jede tatsächlich angebotene Route den Divisor, die Gewichtsstufen, etwaige Mindestwerte und Grenzen für einzelne Kanten. Nutzt eine Route eine andere Regel, muss die Rechnung neu angesetzt werden. Der größere Wert allein ergibt noch keinen Geldbetrag. Dafür muss bekannt sein, wie der Anbieter Grundbetrag, weitere Gewichtsstufen und Zusatzleistungen berechnet."
+        ]
+      },
+      {
+        "heading": "Was der Rechner vor der Bestellung leisten kann",
+        "paragraphs": [
+          "Gib Rumänien als Empfängerland, die zutreffende Warenkategorie sowie deine beste Schätzung für Gewicht und Maße ein. Rechne einen zweiten Fall mit etwas größerer Verpackung. Verändert sich die Auswahl stark, ist die Entscheidung empfindlich gegenüber dem Volumen. Bewahre beide Eingabesätze auf. Ein Screenshot nur mit der Endsumme ist später schwer zu erklären. Ob ein Rechner oder ein Versandweg gerade zur Verfügung steht, prüfst du am offiziellen Angebot."
+        ]
+      },
+      {
+        "heading": "Das Lagerangebot mit der ersten Schätzung abgleichen",
+        "paragraphs": [
+          "Sobald Gewicht und Maße des gepackten Pakets vorliegen, ersetze deine Annahmen und vergleiche dieselbe Versandart. Hat sich nur die Höhe erhöht oder auch die Warenkategorie geändert? Enthält die neue Summe eine Leistung, die im ersten Angebot fehlte? Frag bei einem großen Unterschied nach den Außenmaßen und der maßgeblichen Tarifregel. Eine Verkleinerung lohnt sich nur, wenn Schutz und zulässige Verpackung erhalten bleiben."
+        ]
+      },
+      {
+        "heading": "Wann sich eine Aufteilung lohnt",
+        "paragraphs": [
+          "Vergleiche die Summe zweier vollständig kalkulierter Pakete mit dem Gesamtpreis eines gemeinsamen Pakets. Zwei Kisten können zweimal einen Grundbetrag und zusätzliche Verpackung auslösen. Umgekehrt kann ein einzelner sperriger Karton die günstige Linie für das gesamte Paket ausschließen. Rechne beide Varianten mit denselben Waren, Schutzanforderungen und Zielangaben. Noch unbekannte Einfuhr- oder Zustellkosten gehören als offene Position in die Kalkulation. Du kannst sie erst als enthalten verbuchen, wenn die Angebotsbedingungen das für deinen Fall ausdrücklich belegen."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Zwei gleich schwere Beispielpakete ohne Preiszusage",
+      "headers": [
+        "Verpackung",
+        "Außenmaße",
+        "Volumengewicht bei Divisor 6.000",
+        "Höherer Wert vor Rundung"
+      ],
+      "rows": [
+        [
+          "Kompaktes Paket, 2 kg",
+          "30 × 20 × 10 cm",
+          "1 kg",
+          "2 kg"
+        ],
+        [
+          "Größeres Paket, 2 kg",
+          "40 × 30 × 20 cm",
+          "4 kg",
+          "4 kg"
+        ]
+      ]
+    },
+    "sourceNote": "Die Beispiele erläutern die Eingaben, die AllChinaBuy für Frachtschätzungen beschreibt. Es handelt sich um Modellrechnungen. Maßgeblich bleiben die aktuelle Frachtlinie und die tatsächliche Verpackung."
+  },
+  {
+    "slug": "spreadsheet-guide",
+    "title": "AllChinaBuy Spreadsheet: Produktlinks und Varianten prüfen",
+    "description": "Vom Tabellenfund zum passenden Produkt: So kontrollierst du Zielseite, Händler, Stil, Preis und Fotos vor einer Bestellung für Rumänien.",
+    "summary": "Übernimm aus einer Fundliste den Link und die Produktidee. Prüfe anschließend auf der aktuellen Angebotsseite, welche Ausführung zu welchem Preis erhältlich ist.",
+    "intro": [
+      "Ein Treffer im AllChinaBuy Spreadsheet beantwortet die Frage „Wo kann ich anfangen?“. Für die Kaufentscheidung fehlen oft wichtige Angaben. Schon bei einem Polo kann dasselbe Angebot fünf Stile bündeln. Ein Tabellenbild zeigt nur einen davon. Wenn du eine bestimmte Ausführung möchtest, musst du feststellen, ob Link, Auswahl und dokumentierter Preis zusammenpassen."
+    ],
+    "sections": [
+      {
+        "heading": "Einen Fund anhand der Zielseite identifizieren",
+        "paragraphs": [
+          "Öffne den Link aus dem Produktverzeichnis. Notiere Händler, Titel und öffentliche Artikelnummer, soweit erkennbar. Eine Weiterleitung ist unproblematisch, wenn am Ende derselbe Artikel beim richtigen Anbieter erscheint. Landest du auf einer allgemeinen Suche, einem anders benannten Produkt oder einer abgelaufenen Seite, markiere den Fund als ungeklärt. Ein ähnliches Bild kann bei mehreren Anbietern verwendet werden und reicht nicht zur Zuordnung."
+        ]
+      },
+      {
+        "heading": "Einen Stil unabhängig vom Startpreis prüfen",
+        "paragraphs": [
+          "Nimm das im Katalog aufgeführte Polo mit fünf Stilen als Beispiel. Wähle auf der Angebotsseite zuerst genau den Stil, danach Farbe und Größe. Ändert sich der Preis bei der Auswahl, gehört der neue Betrag in deine Notizen. Kontrolliere, ob eine abgebildete Größentabelle für alle Varianten gilt oder nur für eine davon. Findest du keine eindeutige Zuordnung, notiere die Frage, statt einen Wert aus einem optisch ähnlichen Angebot zu übernehmen."
+        ]
+      },
+      {
+        "heading": "Zwei ernsthafte Kandidaten vergleichen",
+        "paragraphs": [
+          "Trage für jeden Kandidaten die ausgewählte Option, Maße des fertigen Produkts, Preis in Originalwährung und die verfügbare Bildquelle in dieselbe Tabelle ein. Bei einem T-Shirt ist ein direktes Maß, etwa Achsel zu Achsel, meist hilfreicher als ein Größenbuchstabe. Bei Schuhen kann eine zur Größe gehörende Einlegesohlenmessung weiterhelfen. Bleibt ein Feld leer, handelt es sich um eine offene Entscheidung. Ein günstigerer Preis schließt diese Wissenslücke nicht."
+        ]
+      },
+      {
+        "heading": "Vom Foto zur konkreten Rückfrage",
+        "paragraphs": [
+          "Katalogbilder zeigen die angebotene Ausführung. Frühere Lagerfotos können zeigen, wie ein früheres Exemplar aussah. Erst deine eigene Lageraufnahme dokumentiert sichtbare Merkmale deiner Lieferung. Wenn du bei einem bedruckten Shirt vor allem die Lage des Motivs vergleichen willst, notiere das vor der Bestellung. So kannst du nach einer geraden Frontansicht fragen, anstatt eine weitere beliebige Detailaufnahme zu sammeln."
+        ]
+      },
+      {
+        "heading": "Eine Fundliste brauchbar halten",
+        "paragraphs": [
+          "Bewahre den Original-Link auf, notiere das letzte Prüfdatum und trenne verfügbare Artikel von historischen Treffern. Wenn ein Händler einen Artikel neu einstellt, behandle die neue Nummer als neuen Datensatz. Übertrage keine Maße, QC-Bilder oder positiven Erfahrungen ungeprüft. Vor der Freigabe des Pakets kommt die Versandkalkulation hinzu. Der Betrag auf der Produktkarte bezieht sich nicht auf das fertige Paket mit internationalem Transport."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Kurze Vergleichsliste für zwei Tabellenfunde",
+      "headers": [
+        "Prüffeld",
+        "Woran du es erkennst",
+        "Wenn die Angabe fehlt"
+      ],
+      "rows": [
+        [
+          "Identität",
+          "Titel, Händler, Artikelnummer",
+          "Originalangebot erneut öffnen"
+        ],
+        [
+          "Ausführung",
+          "Markierte Stil-, Farb- und Größenoption",
+          "Auswahl dokumentieren"
+        ],
+        [
+          "Preis",
+          "Angezeigter Wert nach der Auswahl",
+          "Währung und Lieferumfang klären"
+        ],
+        [
+          "Maße und Fotos",
+          "Zur Ausführung passende Tabelle oder Aufnahme",
+          "Gezielte Rückfrage festhalten"
+        ]
+      ]
+    },
+    "sourceNote": "Das Polo-Beispiel verwendet eine tatsächlich im Verzeichnis geführte Produktbezeichnung. Verfügbarkeit, Verkäuferpreise und Maße müssen auf der aktuellen Zielseite erneut geprüft werden."
+  },
+  {
+    "slug": "qc-photo-routine",
+    "title": "AllChinaBuy QC-Fotos prüfen: Maße, Variante und sichtbare Fehler",
+    "description": "Lagerbilder systematisch lesen: So erkennst du Modellabweichungen, prüfst Maßbandfotos und formulierst eine Rückfrage vor dem internationalen Versand.",
+    "summary": "Prüfe erst die Identität, anschließend Form, Maße und das entscheidende Detail. Halte fest, ob du die Lieferung freigibst oder welche Aufnahme dafür noch fehlt.",
+    "intro": [
+      "Ein unscharfes Detail am Saum ist erst dann interessant, wenn klar ist, dass die Lagerbilder dein bestelltes Modell zeigen. Die folgende Reihenfolge funktioniert für ein einzelnes Shirt genauso wie für eine gemischte Bestellung. Sie hilft dir außerdem, belegte Unterschiede von Verzerrungen durch Winkel und Beleuchtung zu trennen."
+    ],
+    "sections": [
+      {
+        "heading": "Modell, Farbe und Lieferumfang zuordnen",
+        "paragraphs": [
+          "Öffne Bestellbeleg und Bildserie nebeneinander. Vergleiche die gewählte Option mit Artikelkennzeichnung, Farben, Etikett und Anzahl der Teile. Bei einem Set sollte jedes erwartete Teil sichtbar oder im Lagerbeleg aufgeführt sein. Ein schwarzer und ein dunkelblauer Stoff können unter derselben Lampe ähnlich wirken. Wenn die Farbe entscheidend ist, bitte um das Farbkennzeichen oder eine zweite Aufnahme bei neutralerer Beleuchtung."
+        ]
+      },
+      {
+        "heading": "Erst die Gesamtansicht beurteilen",
+        "paragraphs": [
+          "Betrachte Vorder- und Rückseite, bei Schuhen beide Seiten des Paars. Liegt das Stück gerade? Eine gefaltete Schulter kann wie eine schiefe Naht aussehen. Wenn eine Linie verdreht wirkt, hilft ein gerade ausgebreitetes Stück mehr als ein stärkerer Digitalzoom. Bei Schuhen sind eine gemeinsame Fersenansicht und die seitlichen Profile für einen Links-rechts-Vergleich oft aussagekräftiger als isolierte Logos."
+        ]
+      },
+      {
+        "heading": "Maßband und Vergleichsstück richtig lesen",
+        "paragraphs": [
+          "Beide Enden des Maßbands, die Einheit und die Messpunkte sollten sichtbar sein. Für ein T-Shirt ist die flache Breite zwischen den Achselnähten eine andere Angabe als der Umfang. Prüfe, ob das Band gerade auf dem Stoff liegt und ob der Stoff entspannt ist. Wiederhole dieselbe Messung an deinem Referenzstück. Ein angeblicher Unterschied von zwei Zentimetern ist wenig aussagekräftig, wenn ein Shirt auf Brusthöhe und das andere an der Taille gemessen wurde."
+        ]
+      },
+      {
+        "heading": "Das Detail bestimmen, das deine Entscheidung ändern würde",
+        "paragraphs": [
+          "Bei einem Reißverschluss könnte eine seitliche Aufnahme zeigen, ob beide Stoffkanten gleichmäßig eingenäht sind. Bei einem Druck hilft eine gerade Ansicht mit sichtbarem Kragen und Saum. Eine Nahaufnahme ohne Orientierung kann einen Punkt vergrößern, lässt aber seine Position offen. Formuliere eine einzige prüfbare Bitte, zum Beispiel „Bitte das weiße Modell in L flach hinlegen und die Breite direkt unter beiden Ärmeln mit sichtbarem Bandanfang zeigen.“"
+        ]
+      },
+      {
+        "heading": "Freigabe, Nachfrage oder Reklamation",
+        "paragraphs": [
+          "Stimmen Modell, Maße und die für dich wichtigen Details, speichere Bildserie und Ergebnis bei der Bestellung. Bleibt etwas unklar, fordere die fehlende Ansicht an, solange sich der Artikel im Lager befindet. Bei einer dokumentierten Falschlieferung benenne bestellte und erhaltene Option, kennzeichne die Abweichung und frage im privaten Vorgang nach verfügbaren Schritten und Fristen. Ein Foto kann keine Faserzusammensetzung, Tragekomfort, Lebensdauer oder Echtheit bestätigen."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Welche Aufnahme beantwortet welche Frage?",
+      "headers": [
+        "Frage",
+        "Sinnvollste Aufnahme",
+        "Grenze"
+      ],
+      "rows": [
+        [
+          "Stimmt der Schnitt?",
+          "Gerade Gesamtansicht, Vorder- und Rückseite",
+          "Tragegefühl bleibt offen"
+        ],
+        [
+          "Passt die Breite?",
+          "Maßband zwischen beiden Achselnähten",
+          "Keine Aussage zur Dehnbarkeit"
+        ],
+        [
+          "Ist es meine Variante?",
+          "Etikett und erkennbare Variantenmerkmale",
+          "Verkäuferbild genügt nicht"
+        ],
+        [
+          "Sitzt das Motiv mittig?",
+          "Ganze Vorderseite mit Bezugspunkten",
+          "Schräge Perspektive verzerrt"
+        ]
+      ]
+    },
+    "sourceNote": "Die Prüfschritte betreffen sichtbare Eigenschaften und nachvollziehbare Messungen. Sie ersetzen keine Materialprüfung und setzen für eine Freigabe Fotos des eigenen Lagerartikels voraus."
+  },
+  {
+    "slug": "maintenance-orders-romania",
+    "title": "AllChinaBuy in Wartung: So prüfst du eine laufende Bestellung",
+    "description": "Ordne Belege, Lagereingang und Sendungsnummer deiner Bestellung zu und frage bei AllChinaBuy gezielt nach dem letzten bestätigten Schritt.",
+    "summary": "Ein Wartungshinweis beschreibt die Erreichbarkeit der Website. Für deinen persönlichen Auftrag zählen die letzte dokumentierte Bestellung, der Lagerbeleg oder ein bestätigter Scan des Paketdienstes.",
+    "intro": [
+      "Die offizielle AllChinaBuy-Startseite zeigte beim redaktionellen Abruf einen Wartungshinweis und verwies bei Fragen zu Bestellungen auf den Kundendienst. Daraus lässt sich weder ein Wiedereröffnungstermin noch der Zustand eines einzelnen Auftrags ableiten. Bevor du dieselbe Bestellung erneut auslöst, sortiere die Nachweise aus deinem bereits bestehenden Vorgang."
+    ],
+    "sections": [
+      {
+        "heading": "Den letzten belegten Schritt finden",
+        "paragraphs": [
+          "Eine Kaufbestätigung belegt die Bestellung, eine Lagerquittung den registrierten Eingang und eine internationale Paketnummer die Anlage eines Paketvorgangs. Eine Paketnummer kann schon vor der Übergabe an den Transporteur existieren. Lege diese Nummern getrennt mit Datum und Beschreibung ab. So kannst du unterscheiden, ob die nächste Auskunft vom Verkäufer, vom Lager oder vom bereits übernehmenden Zustelldienst kommen muss."
+        ]
+      },
+      {
+        "heading": "Fehlermeldung und Zahlungsbeleg richtig einordnen",
+        "paragraphs": [
+          "Schreibe auf, wann und wo die Störung auftrat. Eine nicht ladende Kontoseite, eine ausstehende Zahlung und eine Bankvormerkung können gleichzeitig sichtbar sein, ohne dass sie denselben Status belegen. Prüfe den tatsächlich gebuchten Betrag über deinen bekannten Zahlungsweg und vergleiche die Referenz mit der Bestellung. Vermeide eine zweite Zahlung allein aufgrund einer fehlenden Bestätigung. Bei abweichenden Belegen bitte die zuständige Stelle um Zuordnung."
+        ]
+      },
+      {
+        "heading": "Eine kurze, beantwortbare Anfrage senden",
+        "paragraphs": [
+          "Nenne im offiziellen privaten Kontaktkanal genau eine Vorgangsart, die entsprechende Kennung und das letzte belegte Ereignis. Zum Beispiel: „Das Lagerbild vom 16. zeigt mein Paar. Ich habe keine Paketbestätigung. Bitte prüfen Sie, ob der Artikel noch eingelagert ist und welche Frist für diesen Vorgang angezeigt wird.“ Sende nur erforderliche Ausschnitte. Namen, Anschrift, Zahlungsdaten und Barcodes gehören nicht in öffentliche Foren."
+        ]
+      },
+      {
+        "heading": "Ein Paket auf dem Weg nach Rumänien prüfen",
+        "paragraphs": [
+          "Liegt ein Übernahmescan vor, suche die Nummer beim genannten Transporteur. Falls ein rumänischer Zustellpartner eine neue Nummer vergibt, bewahre die Verbindung zwischen beiden Kennungen auf. Fehlt ein Scan, frage nach dem konkreten Übergabenachweis. Eine Strecke ohne aktuelle öffentliche Scans ist für sich genommen keine Verlustbestätigung. Halte dich bei Nachfragen und möglichen Fristen an die Bedingungen der tatsächlich ausgewählten Beförderung."
+        ]
+      },
+      {
+        "heading": "Nach Wiederherstellung des Kontozugangs",
+        "paragraphs": [
+          "Vergleiche die gespeicherten Belege mit dem Konto. Kontrolliere zuerst doppelte Zahlungs- oder Verpackungsaufträge, dann Lagerstatus und offene Rückfragen. Eine bestehende Wartungsmeldung sagt nichts über die Verlängerung von Lager- oder Rückgabefristen aus. Lass dir eine zu deiner Bestellung gehörende Frist ausdrücklich bestätigen, bevor du darauf vertraust."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Welche Unterlage gehört zu welchem Vorgang?",
+      "headers": [
+        "Unterlage",
+        "Belegt",
+        "Sinnvolle Nachfrage"
+      ],
+      "rows": [
+        [
+          "Kaufbeleg",
+          "Bestellung oder Zahlung",
+          "Wurde der Vorgang dem Artikel zugeordnet?"
+        ],
+        [
+          "Lageraufnahme",
+          "Dokumentierter Wareneingang",
+          "Ist eine Freigabe noch offen?"
+        ],
+        [
+          "Paketetikett",
+          "Paketdatensatz",
+          "Gibt es bereits einen Übernahmescan?"
+        ],
+        [
+          "Übernahmescan",
+          "Dokumentierte Annahme durch den Transporteur",
+          "Welcher Dienst bearbeitet die nächste Etappe?"
+        ]
+      ]
+    },
+    "sourceNote": "Grundlage ist der öffentliche Wartungshinweis von AllChinaBuy. Nur die jeweils zuständige Stelle kann den Status einer konkreten Bestellung bestätigen."
+  },
+  {
+    "slug": "shoes-spreadsheet-eu-size-qc",
+    "title": "Schuhe im AllChinaBuy Spreadsheet: EU-Größe und Lagerfotos prüfen",
+    "description": "Wie du Schuhangebote anhand eines passenden Paars vergleichst, Innenmaße nachvollziehst und die Verpackung für Rumänien auswählst.",
+    "summary": "Halte Größe, Modell und messbare Eigenschaften getrennt fest. Die Zahl auf dem Größenetikett liefert noch keinen verlässlichen Innenraumvergleich.",
+    "intro": [
+      "Zwei Schuhe mit der Aufschrift EU 42 können am Spann, am Vorfuß und an der Ferse ganz unterschiedlich sitzen. Stelle deshalb ein bereits getragenes Paar neben die Angebote aus der Fundliste. Wähle ein Modell mit ähnlicher Bauweise. Ein schmaler Lederschuh ist als Maßstab für einen breiten Laufschuh nur eingeschränkt brauchbar."
+    ],
+    "sections": [
+      {
+        "heading": "Das eigene Paar als Referenz",
+        "paragraphs": [
+          "Miss die Länge einer herausnehmbaren Einlegesohle, wenn sich die Sohle ohne Beschädigung herausnehmen lässt. Notiere die Breite an einer wiederauffindbaren Stelle und wie viel Platz du beim Tragen tatsächlich hast. Die Außensohle ist länger als der nutzbare Innenraum und folgt der Form des Schuhs. Eine außen am Schuh angelegte Skala darf deshalb nicht wie ein Innenmaß behandelt werden. Berücksichtige auch die Socken, mit denen du den neuen Schuh tragen willst."
+        ]
+      },
+      {
+        "heading": "Ausführung und Größensystem kontrollieren",
+        "paragraphs": [
+          "Notiere Händler, Modell, Farbe, ausgewählte Größe und das auf der konkreten Seite angegebene Größensystem. Wenn EU-, US- und Zentimeterangaben nebeneinanderstehen, prüfe die Modellzuordnung. Ein Zentimeterwert kann eine empfohlene Fußlänge bezeichnen und ist nicht automatisch die Länge der herausgenommenen Einlegesohle. Falls die Tabelle das offenlässt, stelle vor dem Kauf genau diese Frage. Übernimm keine Umrechnung von einem anderen Modell."
+        ]
+      },
+      {
+        "heading": "Das gelieferte Paar auf den Fotos abgleichen",
+        "paragraphs": [
+          "Lass beide Schuhe gemeinsam von vorn, hinten und seitlich zeigen. Vergleiche Größe an beiden Etiketten, Farbe, Verschlüsse und erwartetes Zubehör. Für eine Messung der Einlegesohle sollte die Skala von der hintersten bis zur vordersten Stelle reichen. Bei einer fest verklebten Sohle ist ein optisch ähnliches Außenmaß kein Ersatz. Eine Fersenansicht hilft bei der Formkontrolle nur, wenn beide Schuhe auf derselben ebenen Fläche stehen."
+        ]
+      },
+      {
+        "heading": "Eine nachvollziehbare Freigabe festhalten",
+        "paragraphs": [
+          "Bei einer Abweichung benenne zunächst das sichtbare Merkmal: „Auf dem linken Etikett steht eine andere Größe als auf dem rechten.“ Das lässt sich besser prüfen als „Sie sehen seltsam aus“. Speicherst du das Lagerfoto zusammen mit Auswahl und Datum, kannst du später beurteilen, ob dieselbe Ausführung für dich wieder infrage kommt. Druckstellen, Komfort und Haltbarkeit lassen sich erst durch weiteres Prüfen oder Tragen beurteilen."
+        ]
+      },
+      {
+        "heading": "Vor der Versandwahl über den Karton entscheiden",
+        "paragraphs": [
+          "Soll die Originalschachtel erhalten bleiben, schreibe das vor dem Verpacken auf. Ein größerer Außenkarton kann die Fracht erhöhen, Weglassen oder Falten der Schachtel kann Schutz und Zustand verändern. Bitte bei einem bedeutenden Preisunterschied um zwei Angebote mit gleicher Route und ausgewiesenen Außenmaßen. Entscheide anhand des verpackten Paars und deines Schutzbedarfs."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Maße, die bei Schuhen leicht verwechselt werden",
+      "headers": [
+        "Angabe",
+        "Bedeutung",
+        "Für den Vergleich verwenden"
+      ],
+      "rows": [
+        [
+          "EU 42",
+          "Größenbezeichnung",
+          "Zusammen mit der Modelltabelle"
+        ],
+        [
+          "Empfohlene Fußlänge",
+          "Vorgesehene Länge des Fußes",
+          "Mit eigener Fußmessung nach gleicher Anleitung"
+        ],
+        [
+          "Länge der Einlegesohle",
+          "Maß eines konkreten Bauteils",
+          "Mit gleichartig gemessener Referenzsohle"
+        ],
+        [
+          "Außensohlenlänge",
+          "Außenmaß des Schuhs",
+          "Für Form oder Verpackung, nicht als Innenlänge"
+        ]
+      ]
+    },
+    "sourceNote": "Der Leitfaden verbindet die angebotsspezifische Größentabelle mit sichtbar nachvollziehbaren Messungen. Er enthält keine pauschale Umrechnung zwischen EU- und US-Größen."
+  },
+  {
+    "slug": "hoodies-spreadsheet-size-fabric-weight",
+    "title": "AllChinaBuy Hoodies: Schnitt, Stoff und Versandgewicht vergleichen",
+    "description": "Vergleiche Hoodies aus dem Spreadsheet anhand von Brustweite, Ärmeln, Ausführung und Lagerfotos. Unterscheide Stoffgewicht und Paketgewicht.",
+    "summary": "Ein gut passender Hoodie, bauteilbezogene Maße und eine Aufnahme der bestellten Ausführung sind die beste Grundlage für den Vergleich.",
+    "intro": [
+      "Bei Hoodies wird „schwer“ für sehr unterschiedliche Eigenschaften verwendet. Der Stoff kann dicht sein, das Kleidungsstück kann viel wiegen oder der Versand kann durch das voluminöse Paket teuer sein. Keiner dieser Werte ergibt automatisch einen anderen. Wenn du Angebote vergleichst, führe dafür getrennte Spalten."
+    ],
+    "sections": [
+      {
+        "heading": "Den gewünschten Schnitt beschreiben",
+        "paragraphs": [
+          "Lege einen eigenen Hoodie glatt aus und miss Brustweite unter den Ärmeln, Rücken- oder Vorderlänge nach festgelegtem Startpunkt und Ärmellänge. Schreibe dazu, ob du darunter nur ein Shirt oder mehrere Schichten tragen möchtest. Ein breiter Boxy-Schnitt kann gleichzeitig kurz ausfallen. Bei Kapuze und dicken Bündchen ist außerdem interessant, ob das Kleidungsstück am Saum eng sitzt, obwohl die Brustweite groß genug ist."
+        ]
+      },
+      {
+        "heading": "Zwei Maßtabellen wirklich vergleichbar machen",
+        "paragraphs": [
+          "Lies zuerst, ob die Tabelle Kleidungsmaße oder empfohlene Körpermaße enthält. Bei angesetzten Ärmeln ist eine Schulternaht als Messpunkt erkennbar. Bei Raglanärmeln kann die Messstrecke am Hals beginnen. Trage unterschiedliche Methoden nicht als scheinbar identische Ärmellängen nebeneinander ein. Fehlt die Anleitung, bitte um eine Skizze oder frage nach der Messung vom Halsansatz bis zum Bündchen. Halte die gewählte Farbe und Variante fest, weil einzelne Stile eigene Tabellen haben können."
+        ]
+      },
+      {
+        "heading": "Stoffangaben und Bilder einordnen",
+        "paragraphs": [
+          "Eine Angabe in g/m² beschreibt die Masse einer Stofffläche, sofern der Verkäufer sie für den betreffenden Stoff nennt. Ein ganzes Sweatshirt umfasst mehrere Teile, Bündchen und gegebenenfalls Kapuze, Reißverschluss oder Applikationen. Aus g/m² lassen sich weder das tatsächliche Produktgewicht noch Frachtkosten unmittelbar bestimmen. Eine Nahaufnahme kann eine sichtbare Innenstruktur zeigen, aber keinen Baumwollanteil belegen. Behandle die Faserangabe als Verkäuferangabe, solange keine andere verlässliche Kennzeichnung vorliegt."
+        ]
+      },
+      {
+        "heading": "Lagerbilder gezielt anfordern",
+        "paragraphs": [
+          "Kontrolliere zuerst, ob ein Hoodie oder ein Rundhalssweatshirt eingetroffen ist. Prüfe danach Farbe, Größenetikett, Kapuze, Tasche und Aufdruck. Besonders hilfreich sind Nahaufnahmen von Taschenansätzen, Reißverschluss und Stickereirückseite, wenn diese Details deine Kaufentscheidung beeinflussen. Für Passformfragen ist eine gerade Maßaufnahme wertvoller als ein weiteres Motivfoto. Bitte um das konkrete Maß an entspannt ausgebreitetem Stoff."
+        ]
+      },
+      {
+        "heading": "Die Versandreserve am gepackten Stück prüfen",
+        "paragraphs": [
+          "Ein dicker Hoodie kann leicht zusammendrückbar sein, bestickte oder strukturierte Details vielleicht weniger. Frage, wie er zusammen mit anderen akzeptierten Artikeln verpackt werden soll. Ein Gewicht ohne Außenmaße reicht bei volumenabhängigen Tarifen nicht. Speichere das endgültige Paketangebot und die Variante des Hoodies getrennt. Bei einer späteren Bestellung kannst du dann die Passform wiederverwenden, ohne die alten Frachtkosten als aktuelle Quote zu behandeln."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Drei verschiedene Arten von „Gewicht“",
+      "headers": [
+        "Wert",
+        "Einheit",
+        "Aussage"
+      ],
+      "rows": [
+        [
+          "Flächengewicht des Stoffes",
+          "g/m²",
+          "Masse einer definierten Stofffläche"
+        ],
+        [
+          "Artikelgewicht",
+          "g oder kg",
+          "Gewicht des einzelnen Kleidungsstücks im angegebenen Zustand"
+        ],
+        [
+          "Verpacktes Gewicht",
+          "kg",
+          "Gesamtgewicht einschließlich Verpackung"
+        ],
+        [
+          "Volumengewicht",
+          "kg nach Tarifregel",
+          "Aus Außenmaßen berechnete Frachtgrundlage"
+        ]
+      ]
+    },
+    "sourceNote": "Stoffeigenschaften, Maße und Versandwerte werden getrennt betrachtet. Aktuelle Varianten- und Materialangaben müssen beim konkreten Angebot geprüft werden."
+  },
+  {
+    "slug": "shipping-expert-romania",
+    "title": "AllChinaBuy Shipping Expert: Paketangebot für Rumänien prüfen",
+    "description": "Formuliere Verpackungswünsche, vergleiche Einzelpaket und Aufteilung und prüfe die endgültige Versandfreigabe für Rumänien.",
+    "summary": "Ein brauchbarer Verpackungsauftrag benennt Artikel, Schutzbedarf, zulässige Änderungen und den Punkt, an dem du das neue Angebot freigibst.",
+    "intro": [
+      "Wenn du bei einer vorhandenen Bestellung eine Verpackungsplanung unter der Bezeichnung Shipping Expert nutzen kannst, beginnt die Vorbereitung am Lagerbestand. Ein Artikel mit ungeklärter Größe oder laufender Reklamation sollte nicht versehentlich mit verpackt werden. Die heutige Verfügbarkeit eines Dienstes lässt sich aus einer älteren Anleitung nicht ableiten."
+    ],
+    "sections": [
+      {
+        "heading": "Eine eindeutige Packliste schreiben",
+        "paragraphs": [
+          "Führe für jeden freigegebenen Artikel die Lagerkennung, Kurzbeschreibung und gewünschten Schutz auf. Beispiel: „Ein Paar Schuhe mit Schachtel, Schachtel möglichst unbeschädigt erhalten. Zwei Shirts können gefaltet werden.“ Markiere, was entfallen darf und was erhalten bleiben muss. Der Wunsch nach günstigerem Versand allein beantwortet nicht, ob der Originalkarton entfernt oder empfindliche Teile zusammengedrückt werden dürfen."
+        ]
+      },
+      {
+        "heading": "Den nötigen Entscheidungsspielraum festlegen",
+        "paragraphs": [
+          "Sind dir der Zustand eines Schuhkartons oder ein bestimmtes Lieferfenster wichtiger als der niedrigste Preis, schreibe das ausdrücklich. Bitte um Rückfrage vor einer Aufteilung auf mehrere Pakete, dem Entfernen der Schachtel oder einer zusätzlichen kostenpflichtigen Leistung. Ein Entwurf des Packplans ist getrennt von der endgültigen Zahlungsfreigabe zu lesen. Kontrolliere, welche Aktion die Oberfläche oder die Nachricht tatsächlich zur Entscheidung stellt."
+        ]
+      },
+      {
+        "heading": "Ein Paket gegen zwei rechnen",
+        "paragraphs": [
+          "Notiere bei jedem Vorschlag Verpackungsgewicht, Außenmaße, Frachtlinie, Schutz- und Zusatzleistungen. Bei zwei Paketen addierst du beide vollständigen Angebote, einschließlich wiederkehrender Grundbeträge. Ein kleinerer Volumenanteil pro Paket ist noch keine Einsparung, wenn beide Sendungen unterschiedliche Gebühren auslösen. Umgekehrt kann die Trennung eines sperrigen Artikels eine geeignete Route für die übrigen Artikel ermöglichen. Prüfe deren Zulässigkeit anhand der tatsächlichen Warenarten."
+        ]
+      },
+      {
+        "heading": "Vor der Freigabe in Ruhe gegenlesen",
+        "paragraphs": [
+          "Stimmen Zielland und Artikelbestand? Ist das genannte Gewicht verpackt? Sind Schutzwünsche und Außenmaße berücksichtigt und ist die verwendete Gewichtsstufe nachvollziehbar? Unklare Steuer- oder Zustellpositionen bleiben offen, bis die Bedingungen der Route sie ausdrücklich klären. Speichere das Angebot mit Datum. Bewahre nach der Freigabe Paketkennung und spätere Sendungsnummer separat auf. Die Zahlung für den Versand ist allein noch kein Übernahmebeleg des Paketdienstes."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Vier Angaben für einen prüfbaren Packplan",
+      "headers": [
+        "Feld",
+        "Beispiel einer klaren Angabe",
+        "Was du damit prüfst"
+      ],
+      "rows": [
+        [
+          "Inhalt",
+          "Lagerkennung je freigegebenem Artikel",
+          "Vollständigkeit"
+        ],
+        [
+          "Schutz",
+          "Schuhschachtel erhalten, Shirts falten",
+          "Zulässige Änderungen"
+        ],
+        [
+          "Versand",
+          "Außenmaße, Gewicht, Ziel Rumänien",
+          "Passende Tarifgrundlage"
+        ],
+        [
+          "Entscheidung",
+          "Neue Quote vor kostenpflichtiger Änderung",
+          "Freigabe eindeutig dokumentieren"
+        ]
+      ]
+    },
+    "sourceNote": "Die Schritte helfen bei der Prüfung eines konkreten Packvorschlags. Verfügbarkeit, Gebühren und Beförderungsbedingungen ergeben sich aus dem aktuellen Auftrag."
+  },
+  {
+    "slug": "shipping-to-romania",
+    "title": "AllChinaBuy Versand nach Rumänien: Route, Paketmaße und Zustellung",
+    "description": "Wie du passende Versandwege für Rumänien vergleichst und später Paketübergabe, Einfuhrunterlagen und Zustellung nachvollziehst.",
+    "summary": "Wähle aus den für deine Waren zugelassenen Routen. Vergleiche anschließend das verpackte Paket, den Leistungsumfang, die geschätzte Laufzeit und mögliche weitere Kosten.",
+    "intro": [
+      "Eine Versandempfehlung für ein kleines Textilpaket lässt sich nicht ohne Weiteres auf Schuhe im Karton oder Elektronik übertragen. Ob eine Route infrage kommt, hängt neben dem Ziel von Kategorie, Gewicht und Abmessungen ab. Dieselbe Route kann sich zwischen zwei Bestellungen ändern. Bewahre das Angebot mit dem Datum der tatsächlichen Paketfreigabe auf."
+    ],
+    "sections": [
+      {
+        "heading": "Ungeeignete Routen zuerst ausschließen",
+        "paragraphs": [
+          "Gib Rumänien als Zielland und alle enthaltenen Warenarten korrekt an. Prüfe Größen- und Gewichtsgrenzen sowie beschriebene Ausschlüsse. Bei einem gemischten Paket kann ein einzelner Artikel die Auswahl begrenzen. Wird eine erwartete Linie nicht gezeigt, prüfe deine Eingaben und die Bedingungen. Eine unzutreffende Kategorie würde nur einen Preis für ein anderes Paket liefern."
+        ]
+      },
+      {
+        "heading": "Schätzung und endgültiges Angebot auseinanderhalten",
+        "paragraphs": [
+          "Vor dem Kauf kannst du verschiedene Verpackungsgrößen durchspielen. Sobald das Lager die akzeptierten Waren gepackt hat, sind seine tatsächlichen Außenmaße und das Gewicht die bessere Grundlage. Wenn ein Schuhkarton die Höhe stark vergrößert, frage nach einer zweiten geeigneten Verpackung. Behalte den benötigten Schutz bei und vergleiche Vorschläge auf derselben Route. Bei unterschiedlichen Routen können Gebühren, Laufzeit und Leistungen gleichzeitig wechseln."
+        ]
+      },
+      {
+        "heading": "Transportkosten und Einfuhrunterlagen zuordnen",
+        "paragraphs": [
+          "Halte Kaufbeleg, tatsächlichen Warenwert, Beschreibung der enthaltenen Artikel und Frachtbeleg bereit. Internationale Fracht, Steuern, mögliche Zölle und Entgelte eines Dienstleisters sind verschiedene Positionen. Kläre anhand der aktuell ausgewählten Linie, was bereits erhoben wird und was gegebenenfalls bei der Einfuhr oder Zustellung hinzukommt. Bei einem konkreten Warenkorb sind die aktuellen Informationen der rumänischen Zollverwaltung und der Europäischen Kommission geeignete Ausgangspunkte. Leite einen Pauschalbetrag nicht aus dem Bericht eines anderen Käufers ab."
+        ]
+      },
+      {
+        "heading": "Eine Laufzeit richtig lesen",
+        "paragraphs": [
+          "Achte darauf, ab welchem Schritt eine Schätzung anfängt. Eine Frist ab Abholung gehört nicht zum Zeitpunkt der Paketzahlung. Zwischen Etikettenerstellung und Annahme kann noch eine physische Übergabe liegen. Bei Laufzeiten aus Erfahrungsberichten solltest du außerdem prüfen, ob Route, Warenkategorie, Jahreszeit und Zustellgebiet vergleichbar waren. Plane für einen festen Anlass einen eigenen zeitlichen Spielraum ein."
+        ]
+      },
+      {
+        "heading": "Übergabe an den Zusteller in Rumänien verfolgen",
+        "paragraphs": [
+          "Speichere die internationale Nummer und eine im Versanddatensatz bestätigte lokale Nummer. Ein Eintrag in rumänischer Sprache beweist für sich nicht, dass das Paket physisch in Rumänien liegt. Bei einer Zustellankündigung prüfe Zusteller, Zeitfenster und Adressangaben über dessen offiziellen Kanal. Wenn Unterlagen angefordert werden, liefere nur die verlangten Angaben und halte fest, welche Referenz zur Rückfrage gehört."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Eine Route für Rumänien in vier Schritten vergleichen",
+      "headers": [
+        "Schritt",
+        "Eingabe oder Beleg",
+        "Entscheidung"
+      ],
+      "rows": [
+        [
+          "Zulässigkeit",
+          "Ziel, Inhalt, Außenmaße, Grenzen",
+          "Ungeeignete Linien aussortieren"
+        ],
+        [
+          "Fracht",
+          "Tatsächliches Paket und Tarifregel",
+          "Angebot nachvollziehen"
+        ],
+        [
+          "Einfuhr",
+          "Belege und Bedingungen der ausgewählten Linie",
+          "Unklare Positionen kennzeichnen"
+        ],
+        [
+          "Zustellung",
+          "Übernahmescan und bestätigte lokale Kennung",
+          "Zuständigen Kontakt finden"
+        ]
+      ]
+    },
+    "sourceNote": "Für die Einordnung dienen die öffentlich beschriebenen Eingaben des AllChinaBuy-Frachtrechners und amtliche Hinweise zur Einfuhr. Der Text nennt keine pauschale Abgabenhöhe und keine verbindliche Lieferzeit."
+  },
+  {
+    "slug": "tracking-guide",
+    "title": "AllChinaBuy Tracking: Sendungsstatus und Verzögerungen für Rumänien verstehen",
+    "description": "Ordne Bestell-, Paket- und Trackingnummer richtig zu. Lies Übergabescans und finde bei ausbleibenden Meldungen den passenden Ansprechpartner.",
+    "summary": "Orientiere dich am letzten belegten Ereignis samt Datum und zuständigem Dienst. Die Sprache der Statusmeldung oder das geplante Ziel geben den tatsächlichen Standort nicht zuverlässig an.",
+    "intro": [
+      "„Versendet“ kann auf der Verkäuferseite den Weg zum chinesischen Lager meinen. Auf der Paketseite kann dafür bereits ein internationaler Datensatz angelegt worden sein. Öffne deshalb immer den Vorgang, zu dem der Status gehört. Bei einer Bestellung nach Rumänien laufen häufig verschiedene Kennungen nacheinander oder nebeneinander."
+    ],
+    "sections": [
+      {
+        "heading": "Den richtigen Abschnitt der Reise finden",
+        "paragraphs": [
+          "Die Verkäuferbestellung betrifft den beschafften Artikel. Ein inländischer Lieferschein kann den Weg vom Verkäufer zum Lager dokumentieren. Das Agentenpaket fasst die später eingepackten Waren zusammen. Erst eine einer Route zugeordnete internationale Sendungsnummer dient dem Tracking auf diesem Abschnitt. Halte für jede Kennung fest, wer sie vergeben hat und für welche Strecke sie gilt. So vermeidest du stundenlanges Suchen nach einer Lagerkennung beim rumänischen Zusteller."
+        ]
+      },
+      {
+        "heading": "Elektronische Daten von einer physischen Übernahme unterscheiden",
+        "paragraphs": [
+          "„Sendungsdaten übermittelt“ oder „Label erstellt“ belegt zunächst die Anlage des Vorgangs. Suche nach einer späteren Meldung, die Annahme, Abholung oder eine Verarbeitung an einem benannten Standort beschreibt. Zwischen solchen Ereignissen können öffentliche Updates fehlen. Bei Sammeltransporten zeigt die Reise nicht an jeder Station einen neuen Eintrag. Ein längerer Abstand ist allein kein Nachweis für einen Verlust oder einen Einfuhrstopp."
+        ]
+      },
+      {
+        "heading": "Einen neuen Carrier oder eine neue Nummer zuordnen",
+        "paragraphs": [
+          "Bei der Übergabe kann für die Zustellung in Rumänien eine weitere Kennung erscheinen. Öffne den im bestehenden Sendungsdatensatz benannten Anbieter über dessen bekannten offiziellen Zugang und verknüpfe die beiden Nummern in deiner Notiz. Ein ähnliches Datum oder eine passende Zielstadt in einem unbestätigten Drittanbietertreffer genügen nicht zur Identifikation. Achte bei Anfragen auf die Zeitzone und die exakte Formulierung des letzten Scans."
+        ]
+      },
+      {
+        "heading": "Eine ausbleibende Meldung sinnvoll klären",
+        "paragraphs": [
+          "Prüfe zunächst die für deine Route genannten Warte- oder Nachforschungsbedingungen. Wenn das entsprechende Fenster erreicht ist oder eine ausdrückliche Ausnahme angezeigt wird, wende dich mit einer kurzen Zeitleiste an die zuständige Stelle. Beispielsweise: Paket bezahlt, Etikett erstellt, keine dokumentierte Abholung. Eine Anfrage zu diesem Fall sollte nach der Übergabe fragen. Bei einem bestätigten rumänischen Zustellversuch sind dagegen der örtliche Carrier und die bestätigten Adressangaben relevanter."
+        ]
+      },
+      {
+        "heading": "Wenn Unterlagen verlangt werden oder das Paket zugestellt ist",
+        "paragraphs": [
+          "Verifiziere die Anfrage beim benannten Transporteur. Übermittle erforderliche Belege im privaten Vorgang und speichere die Fallnummer. Bei der Zustellung kontrollierst du Verpackung und Inhalt, bevor du Material entsorgst. Bei sichtbaren Schäden helfen Fotos von Außenkarton, Verpackungsmaterial und betroffener Ware. Prüfe die Fristen des zuständigen Dienstes anhand des tatsächlichen Versandvorgangs."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Was der letzte Status wirklich aussagt",
+      "headers": [
+        "Meldung",
+        "Belegter Schritt",
+        "Sinnvoller nächster Blick"
+      ],
+      "rows": [
+        [
+          "Daten übermittelt",
+          "Elektronischer Datensatz vorhanden",
+          "Physische Annahme"
+        ],
+        [
+          "Vom Transporteur übernommen",
+          "Übergabe verzeichnet",
+          "Nächster Bearbeitungs- oder Exportscan"
+        ],
+        [
+          "Unterlagen angefordert",
+          "Ein konkreter Prüfschritt steht aus",
+          "Offizieller Vorgang und verlangte Belege"
+        ],
+        [
+          "Lokale Zustellung angekündigt",
+          "Letzte Zustellstrecke vorbereitet",
+          "Nummer und Mitteilung des Zustellers"
+        ]
+      ]
+    },
+    "sourceNote": "Die Beispiele übersetzen typische Statusarten in konkrete Prüfschritte. Der Originalwortlaut und die Nachforschungsbedingungen der gebuchten Linie haben Vorrang."
+  },
+  {
+    "slug": "how-to-order-romania",
+    "title": "AllChinaBuy für Rumänien: Vom Produktlink bis zur Paketannahme",
+    "description": "Ein Bestellablauf für Käufer in Rumänien mit Variantenprüfung, Lagerfotos, Versandangebot und Belegen für die Zustellung.",
+    "summary": "Entscheide über Kauf, Lagerfreigabe und internationalen Versand getrennt. Prüfe vor einem neuen Auftrag, welche offiziellen Funktionen gerade erreichbar sind.",
+    "intro": [
+      "Vom ersten Produktbild bis zur Haustür entstehen unterschiedliche Belege. Der Kaufauftrag dokumentiert die Auswahl beim Verkäufer. Die Lageraufnahme zeigt sichtbare Eigenschaften der eingetroffenen Ware. Das Paketangebot regelt eine spätere Transportentscheidung. Wenn du die drei Schritte getrennt aufbewahrst, lassen sich falsch gelieferte Größen, unerwartete Versandkosten und fehlende Trackingdaten gezielter klären."
+    ],
+    "sections": [
+      {
+        "heading": "Vor dem Kauf zwei Fragen beantworten",
+        "paragraphs": [
+          "Lege fest, was du suchst und was den Kauf für dich ausschließen würde. Bei einem T-Shirt kann die Mindestbreite wichtiger sein als die Bezeichnung L. Öffne den ursprünglichen Produktlink und vergleiche Händler, Stil, Farbe, Größe und Preis nach Auswahl der Variante. Prüfe bei einem Set den Lieferumfang. Bei der im Katalog sichtbaren Vorschau können Bilder, Preise und Verfügbarkeit zum Zeitpunkt der Bestellung bereits abweichen."
+        ]
+      },
+      {
+        "heading": "Einen nachvollziehbaren Kaufauftrag anlegen",
+        "paragraphs": [
+          "Prüfe im offiziellen Dienst, welche Bestellfunktionen gerade zur Verfügung stehen. Bei einer Wartungsmeldung solltest du aus einer vorhandenen Katalogkarte nicht auf einen ausführbaren Auftrag schließen. Wenn ein Auftrag möglich ist, sichere die öffentliche Produktadresse, die gewählte Option, den Kaufbetrag, gegebenenfalls die Inlandsfracht sowie die private Bestellbestätigung. Die Fundliste kann dir ein Produkt zeigen, führt aber nicht dein AllChinaBuy-Konto."
+        ]
+      },
+      {
+        "heading": "Den Eingang im Lager prüfen",
+        "paragraphs": [
+          "Ordne die Lagerkennung dem Kaufauftrag zu. Vergleiche die Aufnahme mit dem konkreten Modell, der Farbe und der Anzahl. Ein für dich entscheidendes Maß sollte in derselben Weise aufgenommen sein wie das Referenzmaß. Bei sichtbaren Abweichungen frage im Bestellvorgang nach den möglichen nächsten Schritten, bevor du das Paket freigibst. Das verhindert, dass noch strittige Artikel gemeinsam mit akzeptierten Waren für die internationale Strecke gepackt werden."
+        ]
+      },
+      {
+        "heading": "Paket und Fracht für Rumänien festlegen",
+        "paragraphs": [
+          "Liste nur freigegebene Lagerartikel auf und nenne notwendige Schutzmaßnahmen. Prüfe Zielland, zutreffende Warenarten, endgültiges Gewicht und Außenmaße. Lies bei der ausgewählten Linie, wie die Fracht berechnet wird, welche Zusatzleistungen enthalten sind und wie sich Nachforschungen oder eine Reklamation abwickeln lassen. Bewahre Wert- und Inhaltsnachweise für eventuelle Rückfragen bereit. Eine Kostenschätzung vor dem Kauf und die Quote für das verpackte Paket können sich unterscheiden."
+        ]
+      },
+      {
+        "heading": "Bei der Zustellung die Belege abschließen",
+        "paragraphs": [
+          "Nachdem du eine Paketnummer hast, prüfe den ersten tatsächlichen Übernahmescan und gegebenenfalls die bestätigte Nummer des rumänischen Zustellers. Kontrolliere bei Ankunft Verpackung, Anzahl und sichtbaren Zustand. Wenn etwas fehlt oder beschädigt ist, bewahre Verpackung und Belege auf und melde den konkreten Befund über den vorgesehenen Kanal. Für deine nächste Bestellung sind dokumentierte Maße und die tatsächliche Artikelvariante wertvoller als eine alte Frachtangabe ohne Paketdaten."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Welcher Beleg hilft bei welchem Problem?",
+      "headers": [
+        "Problem",
+        "Erster Beleg",
+        "Benötigte Ergänzung"
+      ],
+      "rows": [
+        [
+          "Falsche Variante",
+          "Kaufbestätigung mit gewählter Option",
+          "Bild der eingetroffenen Ware"
+        ],
+        [
+          "Abweichende Fracht",
+          "Angebot für das konkrete Paket",
+          "Verpackte Maße und Tarifgrundlage"
+        ],
+        [
+          "Unklarer Standort",
+          "Sendungsnummer des zuständigen Dienstes",
+          "Letzter bestätigter Scan"
+        ],
+        [
+          "Beschädigung",
+          "Empfang und Fotos der Verpackung",
+          "Aufnahme der betroffenen Ware"
+        ]
+      ]
+    },
+    "sourceNote": "Der Ablauf orientiert sich an den von AllChinaBuy beschriebenen Beschaffungs-, Lager- und Versandphasen. Erreichbare Funktionen und Bedingungen sind beim jeweiligen Auftrag zu prüfen."
+  }
+]

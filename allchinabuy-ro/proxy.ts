@@ -15,9 +15,7 @@ export function proxy(request: NextRequest) {
   const locale =
     firstSegment && supportedLocales.has(firstSegment)
       ? firstSegment
-      : url.pathname.startsWith("/articles/")
-        ? "en"
-        : "ro";
+      : "ro";
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-site-locale", locale);
 

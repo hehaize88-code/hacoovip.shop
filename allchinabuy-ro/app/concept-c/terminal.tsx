@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   categories,
   ConceptSwitcher,
@@ -6,7 +5,10 @@ import {
   products,
   SearchBar,
 } from "../concepts";
-import { englishArticles, getEnglishArticle } from "./articles";
+import { getArticles, getArticle } from "./articles";
+
+import { articleUI } from "./article-ui";
+import { ArticleEvidence } from "./article-evidence";
 
 export const locales = ["en", "de", "fr", "es", "it", "pl", "ro"] as const;
 export type Locale = (typeof locales)[number];
@@ -1779,6 +1781,11 @@ function Home({ locale }: { locale: Locale }) {
                 ))}
             </h1>
             <p>{t.hero[2]}</p>
+            <nav className="home-intent-links" aria-label={articleUI[locale].next}>
+              <a href={href(locale, "products")} data-home-action="products">{articleUI[locale].products} →</a>
+              <a href={href(locale, "articles/parcel-cost-guide")} data-home-action="shipping">{articleUI[locale].shipping} →</a>
+              <a href={href(locale, "articles/qc-photos-weidian-taobao-link")} data-home-action="qc">{articleUI[locale].lookup} →</a>
+            </nav>
           </div>
           <div className="system-panel">
             <span>{t.ui[4]}</span>
@@ -1881,11 +1888,6 @@ function Home({ locale }: { locale: Locale }) {
   );
 }
 
-const articleLanguage: Record<Locale, string> = {
-  en: "ENGLISH GUIDE", ro: "GHID ÎN ENGLEZĂ", de: "RATGEBER AUF ENGLISCH",
-  fr: "GUIDE EN ANGLAIS", es: "GUÍA EN INGLÉS", it: "GUIDA IN INGLESE", pl: "PORADNIK PO ANGIELSKU",
-};
-
 function HomeArticles({ locale }: { locale: Locale }) {
   const t = localeCopy[locale];
   return (
@@ -1899,9 +1901,9 @@ function HomeArticles({ locale }: { locale: Locale }) {
         <a href={href(locale, "articles")}>{t.labels[4]} →</a>
       </div>
       <div className="article-grid home-article-grid">
-        {englishArticles.slice(0, 4).map((article, i) => (
-          <a href={`/articles/${article.slug}`} key={article.slug}>
-            <span>{String(i + 1).padStart(2, "0")} · {articleLanguage[locale]}</span>
+        {getArticles(locale).slice(0, 4).map((article, i) => (
+          <a href={href(locale, `articles/${article.slug}`)} key={article.slug}>
+            <span>{String(i + 1).padStart(2, "0")} · {articleUI[locale].guide}</span>
             <h2>{article.title}</h2>
             <p>{article.description}</p>
             <b>{t.ui[16]} →</b>
@@ -1951,7 +1953,9 @@ function PageHero({ t, section }: { t: LocaleCopy; section: string }) {
 
 function Article({ locale, slug }: { locale: Locale; slug: string }) {
   const t = localeCopy[locale],
-    article = getEnglishArticle(slug);
+    article = getArticle(locale, slug);
+  const ui = articleUI[locale];
+  const pageUrl = "https://allchinabuy.ro" + href(locale, `articles/${slug}`);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -1959,8 +1963,8 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
     description: article.description,
     dateModified: article.modified,
     datePublished: article.published,
-    inLanguage: "en",
-    mainEntityOfPage: `https://allchinabuy.ro/articles/${slug}`,
+    inLanguage: locale,
+    mainEntityOfPage: pageUrl,
     image: "https://allchinabuy.ro/allchinabuy.png",
     publisher: { "@type": "Organization", name: "allchinabuy.ro" },
     author: {
@@ -1977,29 +1981,27 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://allchinabuy.ro/" },
-          { "@type": "ListItem", position: 2, name: "Articles", item: "https://allchinabuy.ro/articles" },
-          { "@type": "ListItem", position: 3, name: article.title, item: `https://allchinabuy.ro/articles/${slug}` },
+          { "@type": "ListItem", position: 1, name: ui.home, item: "https://allchinabuy.ro" + href(locale) },
+          { "@type": "ListItem", position: 2, name: t.labels[4], item: "https://allchinabuy.ro" + href(locale, "articles") },
+          { "@type": "ListItem", position: 3, name: article.title, item: pageUrl },
         ],
       }) }} />
-      <section className="article-hero" lang="en">
+      <section className="article-hero" lang={locale}>
         <a href={href(locale, "articles")}>← {t.labels[4]}</a>
         <span>
-          ENGLISH GUIDE · UPDATED {article.updated.toUpperCase()} ·{" "}
-          {article.readTime.toUpperCase()}
+          {ui.guide} · <time dateTime={article.modified}>{new Intl.DateTimeFormat(locale, {dateStyle:"long", timeZone:"UTC"}).format(new Date(article.modified))}</time>
         </span>
         <h1>{article.title}</h1>
         <p>{article.description}</p>
       </section>
-      <article className="terminal-article" lang="en" data-article-slug={slug}>
-        <p className="article-byline">By allchinabuy.ro Editorial Research · Independent guide</p>
-        {article.summary && <div className="article-callout"><b>AT A GLANCE</b><p>{article.summary}</p></div>}
-        {article.published !== "2026-10-06" && <aside className="article-status">
-          <b>Service check · 6 October 2026</b>
-          <p>The official homepage displayed maintenance when checked. Earlier service descriptions below explain the workflow; they do not confirm current availability. <Link href="/articles/maintenance-orders-romania">Check an existing order during maintenance →</Link></p>
+      <article className="terminal-article" lang={locale} data-article-slug={slug}>
+        <p className="article-byline">{ui.byline}</p>
+        {article.summary && <div className="article-callout"><b>{ui.summary}</b><p>{article.summary}</p></div>}
+        {slug !== "maintenance-orders-romania" && <aside className="article-status">
+          <p>{ui.status} <a href={href(locale,"articles/maintenance-orders-romania")}>{ui.service} →</a></p>
         </aside>}
-        <nav className="article-toc" aria-label="On this page">
-          <b>ON THIS PAGE</b>
+        <nav className="article-toc" aria-label={ui.contents}>
+          <b>{ui.contents}</b>
           <ol>{article.sections.map((section, i) => <li key={section.heading}><a href={`#section-${i + 1}`}>{section.heading}</a></li>)}</ol>
         </nav>
         {article.intro.map((paragraph, i) => (
@@ -2010,6 +2012,7 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
             {paragraph}
           </p>
         ))}
+        <ArticleEvidence locale={locale} slug={slug} />
         {article.table && <div className="article-table-wrap" role="region" aria-label={article.table.caption} tabIndex={0}>
           <table className="article-table">
             <caption>{article.table.caption}</caption>
@@ -2036,21 +2039,19 @@ function Article({ locale, slug }: { locale: Locale; slug: string }) {
           </section>
         ))}
         <div className="article-callout">
-          <b>RESEARCH NOTE</b>
+          <b>{ui.sources}</b>
           <p>{article.sourceNote}</p>
-          <p className="source-links">Editorial review: 6 October 2026. Historical checks retain their original dates. Worked examples are illustrative, not live quotes.</p>
-          <Link href="/methodology">How this independent guide checks information →</Link>
+          <a href="/methodology">{ui.method} →</a>
         </div>
         <aside className="article-next">
-          <h2>Continue with the right next step</h2>
-          {article.category ? <>
-            <p>Use the checks above to compare the current {article.category === "shoes" ? "shoe" : "hoodie"} collection. The separate catalogue is for product discovery and cannot access an AllChinaBuy order.</p>
-            <a className="article-action" href={`https://cnfanshp.com/${article.category}/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_article&utm_content=${slug}`} target="_blank" rel="noopener noreferrer">Browse {article.category === "shoes" ? "shoes" : "hoodies"} →</a>
-          </> : <p><Link href="/categories">Explore product categories</Link> or <Link href="/products">compare the current product index</Link> when you are ready to research a new purchase.</p>}
-          <h3>Related guides</h3>
+          <h2>{ui.next}</h2>
+          <a className="article-action" href={href(locale, "products")}>{ui.products} →</a>
+          <a className="article-action" href={href(locale, "categories")}>{t.labels[1]} →</a>
+          {article.category && <a className="article-action" href={`https://cnfanshp.com/${article.category}/?utm_source=allchinabuy.ro&utm_medium=referral&utm_campaign=ro_article&utm_content=${slug}`} target="_blank" rel="noopener noreferrer sponsored">{t.cats[article.category === "shoes" ? 0 : 1]} ↗</a>}
+          <h3>{ui.related}</h3>
           <ul>{article.related?.map((relatedSlug) => {
-            const related = getEnglishArticle(relatedSlug);
-            return <li key={relatedSlug}><a href={`/articles/${relatedSlug}`}>{related.title}</a></li>;
+            const related = getArticle(locale, relatedSlug);
+            return <li key={relatedSlug}><a href={href(locale, `articles/${relatedSlug}`)}>{related.title}</a></li>;
           })}</ul>
         </aside>
       </article>
@@ -2128,11 +2129,16 @@ function Section({ locale, path }: { locale: Locale; path: string[] }) {
             <RegionalGuidance locale={locale} />
           </>
         )}{" "}
+        {["products", "qc-guide", "shipping-guide"].includes(section) &&
+          <nav className="home-intent-links" aria-label={articleUI[locale].related}>
+            {(section === "products" ? ["spreadsheet-guide","t-shirt-size-chart-qc"] : section === "qc-guide" ? ["qc-photos-weidian-taobao-link","qc-photo-routine"] : ["parcel-cost-guide","shipping-to-romania"]).map(slug =>
+              <a key={slug} href={href(locale, `articles/${slug}`)}>{getArticle(locale, slug).title} →</a>)}
+          </nav>}
         {section === "articles" && (
           <div className="article-grid">
-            {englishArticles.map((article, i) => (
-              <a href={`/articles/${article.slug}`} key={article.slug}>
-                <span>{String(i + 1).padStart(2, "0")} · {articleLanguage[locale]}</span>
+            {getArticles(locale).map((article, i) => (
+              <a href={href(locale, `articles/${article.slug}`)} key={article.slug}>
+                <span>{String(i + 1).padStart(2, "0")} · {articleUI[locale].guide}</span>
                 <h2>{article.title}</h2>
                 <p>{article.description}</p>
                 <b>{t.ui[16]} →</b>

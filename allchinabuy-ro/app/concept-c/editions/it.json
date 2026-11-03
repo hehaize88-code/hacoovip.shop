@@ -1,0 +1,924 @@
+[
+  {
+    "slug": "qc-photos-weidian-taobao-link",
+    "title": "Come trovare le foto QC da un link Weidian o Taobao",
+    "description": "Parti dal link pubblico, riconosci l’ID dell’inserzione e controlla colore, taglia e data per capire se le foto di magazzino riguardano davvero il tuo articolo.",
+    "summary": "Prima cerca le foto dell’inserzione, poi verifica a quale variante appartengono. Un risultato senza taglia, colore o data può essere utile per orientarsi, ma lascia aperte alcune domande sul pezzo che riceverai.",
+    "intro": [
+      "Hai trovato una maglietta in uno spreadsheet AllChinaBuy. La miniatura è nitida, ma sembra la stessa immagine usata da altri venditori. Prima di scegliere vorresti vedere una foto scattata su un banco di magazzino, con il cartellino della taglia e magari un metro sul tessuto. Il punto di partenza è l’indirizzo pubblico dell’articolo su Weidian o Taobao.",
+      "La ricerca e l’ispezione sono due operazioni diverse. Con la prima cerchi immagini di esemplari già transitati in magazzino; con la seconda controlli il pezzo assegnato al tuo ordine. Questa guida ti accompagna fino a quella distinzione, anche quando un motore di ricerca restituisce decine di immagini apparentemente identiche."
+    ],
+    "sections": [
+      {
+        "heading": "Recupera il collegamento all’articolo",
+        "paragraphs": [
+          "Apri la riga del foglio e segui il collegamento fino alla scheda prodotto. Un pulsante può portare alla pagina di una collezione, al negozio del venditore, a una vetrina intermediaria oppure direttamente all’inserzione. Per un confronto attendibile devi poter identificare il singolo articolo. Annota il nome del negozio e una caratteristica riconoscibile mentre hai la pagina davanti: per esempio «polo con due bottoni, variante verde».",
+          "Se hai ricevuto un link abbreviato, aprilo normalmente e controlla la destinazione prima di copiarla. Se porta alla home, a una ricerca generica o a una schermata che non distingue il prodotto, torna alla scheda e usa la funzione di condivisione dell’inserzione. Non ricostruire un indirizzo combinando un numero visto nel titolo con il nome della piattaforma."
+        ]
+      },
+      {
+        "heading": "Distingui il numero dell’inserzione dai numeri privati",
+        "paragraphs": [
+          "Nei comuni indirizzi Weidian il parametro dell’articolo si chiama itemID; negli indirizzi delle schede Taobao compare spesso id. Il testo dopo il segno di uguale identifica l’inserzione. Due indirizzi con lo stesso titolo ma numeri diversi richiedono due verifiche separate. Un parametro aggiuntivo può identificare una variante o la provenienza del clic: conserva anche una nota sul colore e sulla taglia selezionati.",
+          "Il numero dell’ordine, il codice del collo e il riferimento di magazzino svolgono altre funzioni. Non inserirli in un motore pubblico per le foto QC. Copia soltanto il collegamento pubblico del venditore. Una pagina che mostra il tuo nome, il tuo indirizzo di consegna o l’elenco dei tuoi acquisti è la pagina sbagliata da condividere. Per il tuo esemplare consulta invece la sezione riservata dell’ordine."
+        ]
+      },
+      {
+        "heading": "Esegui la ricerca e controlla da dove viene il risultato",
+        "paragraphs": [
+          "In un indice che supporta la piattaforma scelta, incolla il collegamento pubblico. Se ammette ricerche per numero, seleziona anche la piattaforma di provenienza quando richiesto. Cerca nei risultati un riferimento alla scheda originale: aprilo e confronta negozio e identificativo. Un motore può proporre somiglianze visive o altri annunci pertinenti senza avere alcuna fotografia dell’inserzione che hai indicato.",
+          "Supponi di cercare una maglietta nera con stampa posteriore. Una griglia mostra tre fotografie: una vista frontale su fondo bianco, il retro di una maglietta grigia e il sacchetto di una maglietta nera. La prima potrebbe essere una foto promozionale. La seconda aiuta a capire la posizione della stampa su un altro colore. La terza conferma al massimo ciò che riporta una confezione. Nessuna delle tre mostra ancora il retro della variante nera."
+        ]
+      },
+      {
+        "heading": "Leggi ogni serie di foto come un singolo esemplare",
+        "paragraphs": [
+          "Mantieni insieme gli scatti della stessa ispezione quando il servizio li raggruppa. Una foto di fronte, una del cartellino e una del metro sono molto più informative se riguardano lo stesso pezzo. Mescolare il cartellino di una M con la misurazione di una L produce un dato che nessun esemplare ha mai avuto. Se il raggruppamento è incerto, registra le osservazioni separatamente.",
+          "Verifica il colore, la taglia, la versione e gli accessori. Cerca la data dell’ispezione e annotala così come appare. La data in cui hai aperto l’immagine non coincide necessariamente con quella in cui è stata scattata. Quando l’inserzione è vecchia o il venditore ha cambiato le opzioni, una foto storica può descrivere una produzione precedente. Scrivi «lotto non indicato» se non hai prove che colleghino vecchio e nuovo assortimento."
+        ]
+      },
+      {
+        "heading": "Separa foto del venditore, foto di magazzino e foto del tuo ordine",
+        "paragraphs": [
+          "Una foto del venditore aiuta a riconoscere un modello e il risultato estetico dichiarato, specialmente quando sono disponibili viste dei dettagli. Un’immagine di un precedente ordine mostra come appariva un esemplare in un determinato momento. Uno scatto associato al tuo ordine consente di discutere la variante ricevuta e una misura effettivamente rilevata sul tuo capo. Sono tre fonti che rispondono a domande diverse.",
+          "Il colore del banco, un righello nell’inquadratura o una scritta sovrapposta non dimostrano da soli la provenienza della foto. Dai più peso al collegamento con la scheda, alla serie coerente di angolazioni e ai dettagli leggibili. Per una decisione sulla vestibilità, il metro deve mostrare sia il punto zero sia l’altra estremità. Una foto tagliata può essere sufficiente a identificare la stampa ma non a misurare la lunghezza."
+        ]
+      },
+      {
+        "heading": "Gestisci una ricerca senza corrispondenze",
+        "paragraphs": [
+          "Controlla che l’indirizzo sia quello pubblico del singolo prodotto e che l’indice supporti proprio Weidian o Taobao. Se la ricerca accetta il solo codice, riprova con l’identificativo che hai letto dalla pagina. Se continui a non trovare nulla, registra «nessuna foto trovata in questo indice» e la data del controllo. Una scheda appena pubblicata può essere priva di precedenti visibili, così come una scheda vecchia può non essere coperta da quel servizio.",
+          "Se l’articolo è stato ripubblicato con un altro numero, tieni distinti i due collegamenti. Le immagini della vecchia inserzione possono suggerire quali dettagli controllare nella nuova, ma non confermano un lotto identico. Chiedi al venditore o tramite il canale del tuo ordine la misura o lo scatto preciso che manca. Se senza quella misura non puoi scegliere la taglia, rimanda la scelta invece di assegnare un numero plausibile a una variante diversa."
+        ]
+      },
+      {
+        "heading": "Confronta due inserzioni che riutilizzano la stessa immagine",
+        "paragraphs": [
+          "Immagina che il medesimo scatto di catalogo mostri una felpa grigia su due pagine aperte in schede diverse. Nella prima hai trovato una serie di tre foto con etichetta, cucitura della tasca e interno del cappuccio; nella seconda non compare alcun precedente. Rimetti accanto alle immagini i due ID pubblici. La somiglianza della foto commerciale spiega perché hai confrontato i prodotti, mentre la serie documentata va allegata solo alla scheda che l’indice collega a quell’ispezione.",
+          "Se il venditore conferma a parole che si tratta dello stesso modello, annotalo come dichiarazione del venditore. Per verificare un dettaglio del secondo esemplare serve ancora un riferimento proprio: può essere una foto della variante, una tabella specifica o uno scatto successivo del tuo ordine. Evita di riportare sulla seconda inserzione la lunghezza letta sul metro della prima. Cambiare un’etichetta del confronto è molto più semplice che correggere una scelta di taglia dopo la spedizione internazionale.",
+          "Prima di salvare una serie chiediti se sapresti spiegare, fra una settimana, a quale articolo e a quale colore appartenga. Un nome file con ID pubblico, variante e data osservata permette di ritrovare la foto giusta anche se il titolo del prodotto viene modificato."
+        ]
+      },
+      {
+        "heading": "Salva un confronto che ti permetta di decidere",
+        "paragraphs": [
+          "Prendi una nota breve per ogni candidato: piattaforma e ID pubblico, colore, taglia, data quando disponibile, dettaglio confermato e domanda rimasta aperta. Un esempio di nota utilizzabile è «stessa scheda e stessa variante blu; cucitura del collo visibile; foto del retro assente». Un generico «QC buono» non spiega se il giudizio riguardasse il colore, il taglio o le misure.",
+          "Quando arrivano le fotografie del tuo ordine, confrontale con la nota prima di autorizzare la preparazione del collo. Se hai dubbi su un dettaglio, chiedi una singola inquadratura con istruzioni verificabili, per esempio «mostrare l’intera larghezza da ascella ad ascella con il capo disteso e il metro in vista». A quel punto puoi passare alla guida alla lettura delle foto QC e prendere una decisione sul pezzo effettivamente ricevuto."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Che cosa fare con il risultato della ricerca",
+      "headers": [
+        "Risultato",
+        "Cosa puoi verificare",
+        "Passaggio successivo"
+      ],
+      "rows": [
+        [
+          "ID e variante coincidono",
+          "Aspetto dell’esemplare fotografato",
+          "Controlla data e dettagli visibili"
+        ],
+        [
+          "Stesso ID, altra taglia",
+          "Costruzione e dettagli in comune",
+          "Richiedi una misura della tua taglia"
+        ],
+        [
+          "Solo un modello simile",
+          "Possibili punti da controllare",
+          "Cerca il tuo ID o chiedi una foto"
+        ],
+        [
+          "Nessuna corrispondenza",
+          "La ricerca non ha restituito immagini",
+          "Verifica l’indirizzo e annota la lacuna"
+        ]
+      ]
+    },
+    "sourceNote": "Metodo editoriale basato sui collegamenti pubblici di Weidian e Taobao e sul confronto tra immagini commerciali e foto di magazzino. La copertura dipende dall’indice consultato."
+  },
+  {
+    "slug": "t-shirt-size-chart-qc",
+    "title": "T-shirt AllChinaBuy: come scegliere la taglia con tabella e foto QC",
+    "description": "Misura una maglietta che ti sta bene, interpreta larghezza e lunghezza nella tabella del venditore e verifica la variante nelle foto QC.",
+    "summary": "Misura in piano una maglietta che usi già. Confronta sia la larghezza sia la lunghezza con la tabella della variante scelta, poi chiedi la stessa misurazione sul capo arrivato in magazzino.",
+    "intro": [
+      "La lettera sull’etichetta non descrive la forma di una maglietta. Due M possono avere la stessa lunghezza e diversi centimetri di differenza sul petto. Una vestibilità ampia può derivare da una spalla scesa, da un corpo più largo o da una manica molto aperta: in foto sembrano simili finché non indossi il capo.",
+      "Nel catalogo puoi incontrare voci come «Polo shirt (5 styles)» e «Off White T-shirt». Usa i nomi per ritrovare le schede. Per scegliere una taglia servono invece le misure della specifica variante. L’esempio qui sotto ha valori didattici e non riproduce una tabella fornita da uno di questi venditori."
+    ],
+    "sections": [
+      {
+        "heading": "Scegli la maglietta che farà da riferimento",
+        "paragraphs": [
+          "Prendi un capo che indossi volentieri nel modo in cui userai il nuovo acquisto. Se cerchi una maglietta larga da portare fuori dai pantaloni, una canottiera aderente non è un buon riferimento. Se stai guardando una polo con abbottonatura e fondo a spacchetti, cerca una polo dal taglio simile. Lavala e asciugala come fai normalmente e misurala da asciutta: ti interessa la vestibilità che conosci già.",
+          "Stendila su una superficie piana, allinea fronte e retro e apri le maniche senza tirare. Passa la mano sopra le pieghe. Se l’orlo si arriccia o una cucitura laterale gira leggermente, sistemala senza tendere il tessuto. Scrivi nel tuo appunto quale maglietta hai scelto e che cosa vorresti conservare: «la larghezza va bene, vorrei due centimetri in più sul fondo» è più utile di una taglia ideale."
+        ]
+      },
+      {
+        "heading": "Rileva due misure fondamentali e una terza se serve",
+        "paragraphs": [
+          "Per la larghezza misura in linea retta da ascella ad ascella, sul capo disteso. Tieni il metro al livello delle cuciture sotto la manica e annota il valore come larghezza in piano. Per la lunghezza scegli un punto ripetibile, per esempio il punto alto della spalla accanto al collo fino al bordo inferiore. Indica se hai misurato il davanti o il dietro: una polo con coda posteriore può avere due orli a diverse altezze.",
+          "La terza misura dipende da ciò che ti dà fastidio quando indossi una maglia. Se stringe al braccio, misura l’apertura della manica; se la cucitura cade male, misura la distanza tra le spalle e la lunghezza della manica. Nei modelli con spalla scesa la cucitura si sposta verso il braccio, perciò la manica misurata dalla cucitura può sembrare corta anche se arriva più in basso. Annotare entrambi i punti evita confronti ingannevoli."
+        ]
+      },
+      {
+        "heading": "Decifra le colonne della tabella",
+        "paragraphs": [
+          "Controlla per prima cosa se i numeri descrivono il capo finito oppure il corpo della persona a cui è destinato. Una larghezza in piano di 52 cm corrisponde, in un confronto geometrico semplificato, a circa 104 cm attorno al capo. Non significa che chi ha un torace di 104 cm troverà comoda quella maglietta: vestibilità, elasticità e margine di movimento entrano in gioco. Confronta capi con capi e dati corporei con istruzioni per il corpo.",
+          "Apri il diagramma del venditore prima di dimezzare o raddoppiare una cifra. Una colonna chiamata «petto» può indicare il giro completo, una semilarghezza o un intervallo consigliato. Controlla anche l’unità. Se la tabella è in pollici, converti le righe interessate in centimetri con lo stesso criterio e conserva il valore originale per eventuali verifiche. Se il disegno parte dalla nuca e tu hai misurato dalla spalla, ripeti la misura sul tuo capo dal punto indicato."
+        ]
+      },
+      {
+        "heading": "Confronta due opzioni con un esempio numerico",
+        "paragraphs": [
+          "Immagina di avere una maglietta che misura 52 cm da ascella ad ascella e 68 cm dal punto alto della spalla all’orlo. Il primo candidato misura 50 × 67 cm e il secondo 54 × 70 cm, sempre con il medesimo metodo. Il primo è più stretto di 2 cm in piano e più corto di 1 cm. Il secondo è più largo di 2 cm in piano e più lungo di 2 cm. Scrivere gli scarti con il segno aiuta più che leggere tre lettere diverse.",
+          "Nessuna delle due righe replica il riferimento. Se vuoi più agio sul petto e non ti disturba un fondo più lungo, la seconda variante merita una verifica. Se il riferimento è già al limite della lunghezza che accetti, quei 70 cm possono essere un motivo per cercare un altro modello. Non scegliere automaticamente la riga con lo scarto totale più piccolo: la misura più importante è quella che già sai essere decisiva per te."
+        ]
+      },
+      {
+        "heading": "Verifica stile, colore e versione prima dell’ordine",
+        "paragraphs": [
+          "Un titolo con «cinque stili» non garantisce che tutte le opzioni condividano taglio e tabella. Scegli il colore e lo stile sulla scheda, annota la taglia visualizzata e controlla se il disegno dimensionale cambia. Alcuni annunci raggruppano articoli dall’aspetto simile ma con dettagli costruttivi diversi. Un modello con costina larga o spacchetti laterali può vestire diversamente anche quando il petto misura uguale.",
+          "Se non c’è una tabella leggibile, chiedi quale dimensione abbia la variante esatta. Formula la domanda dando unità e punti di misura: «Per lo stile blu, taglia M, quanti centimetri ci sono da ascella ad ascella con la polo distesa?». La fotografia di una taglia L o un intervallo generico di altezze non risponde. Se nessuna misura confrontabile è disponibile e cambiare taglia sarebbe difficile, tieni il capo fuori dalla selezione."
+        ]
+      },
+      {
+        "heading": "Chiedi una foto QC che mostri la misura",
+        "paragraphs": [
+          "Quando l’articolo arriva in magazzino, verifica il cartellino e almeno un dettaglio specifico della versione ordinata prima di misurarlo. Chiedi una vista perpendicolare dall’alto con il capo disteso, il metro in centimetri e le due estremità nello stesso scatto. Per la lunghezza precisa se vuoi la misura sulla parte anteriore. Un metro appoggiato in diagonale o che inizia oltre la cucitura fa sembrare il capo più grande.",
+          "Una seconda ripresa ravvicinata può chiarire una tacca poco leggibile, ma deve essere collegabile allo scatto d’insieme. Se il banco appare inclinato, il fondo piegato o il tessuto viene tirato, chiedi prima di ripetere la misura. Segna separatamente «valore dichiarato in tabella» e «valore osservato in foto». Una piccola differenza non permette da sola di stabilire se il capo sia difettoso: riconsiderala insieme al margine che hai deciso di accettare."
+        ]
+      },
+      {
+        "heading": "Interpreta una differenza tra tabella e fotografia",
+        "paragraphs": [
+          "Supponi che la tabella descriva un capo largo 54 cm, mentre sulla prima fotografia riesci a leggere solo la tacca 53. Guarda il punto iniziale: se il metro parte un centimetro all’interno dell’ascella, quel confronto non misura la distanza dichiarata. Chiedi di ripetere l’operazione prima di decidere che il capo sia più stretto. Se entrambe le estremità sono chiaramente visibili, confronta la misura osservata con il tuo intervallo accettabile e, separatamente, con l’eventuale tolleranza indicata dal venditore.",
+          "Fai lo stesso per l’orlo. Una polo con il dietro più lungo può dare due valori corretti sullo stesso capo senza che nessuno abbia misurato male. Scrivi sul confronto «lunghezza davanti» o «lunghezza dietro» e richiedi soltanto il dato mancante. Per un acquisto che vuoi portare fuori dai pantaloni può essere più importante la parte più lunga; se devi infilarlo nei pantaloni può interessarti soprattutto quanto resta coperto nella parte anteriore."
+        ]
+      },
+      {
+        "heading": "Prendi la decisione prima dell’imballaggio",
+        "paragraphs": [
+          "Torna alle tue priorità: agio sul petto, lunghezza, spalla e apertura manica. Se il capo soddisfa le misure davvero importanti e la variante corrisponde, salva la foto con il riferimento del tuo ordine. Se una fotografia sembra contraddire la tabella, chiedi chiarimenti riportando i due valori e i punti misurati. Può bastare spostare il metro dalla cucitura della spalla al punto alto indicato dal venditore per spiegare la differenza.",
+          "Per un’eventuale sostituzione verifica nel tuo ordine la procedura e i termini applicabili. Una maglietta con misure chiaramente fuori dal tuo intervallo non diventa più adatta perché la spedizione è già stata preparata. Conserva infine un appunto dopo averla indossata: modello, variante, larghezza reale e sensazione di vestibilità. La prossima volta potrai confrontare i candidati con due capi conosciuti e capire meglio quale forma stai cercando."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Esempio di confronto in centimetri, senza relazione con una scheda di vendita",
+      "headers": [
+        "Capo",
+        "Larghezza in piano",
+        "Lunghezza",
+        "Differenza dal riferimento"
+      ],
+      "rows": [
+        [
+          "Maglietta di riferimento",
+          "52 cm",
+          "68 cm",
+          "—"
+        ],
+        [
+          "Opzione A",
+          "50 cm",
+          "67 cm",
+          "−2 cm in larghezza, −1 cm in lunghezza"
+        ],
+        [
+          "Opzione B",
+          "54 cm",
+          "70 cm",
+          "+2 cm in larghezza, +2 cm in lunghezza"
+        ]
+      ]
+    },
+    "sourceNote": "Le due opzioni sono esempi didattici di misurazione. Per un acquisto contano la tabella della variante scelta e l’eventuale foto di magazzino del capo ricevuto."
+  },
+  {
+    "slug": "parcel-cost-guide",
+    "title": "Quanto costa spedire con AllChinaBuy in Romania? Peso reale e volumetrico",
+    "description": "Confronta due colli da 2 kg per capire come misure, imballaggio e regole della linea possono cambiare il preventivo per la Romania.",
+    "summary": "Per confrontare due preventivi servono lo stesso contenuto, la stessa destinazione e le misure esterne del collo. Il peso dell’articolo sulla bilancia è soltanto una delle grandezze da controllare.",
+    "intro": [
+      "Hai pesato un paio di scarpe e sai quanto costa la maglietta che vorresti aggiungere. Perché il preventivo può cambiare così tanto quando chiedi di tenere la scatola? Il corriere occupa spazio sul mezzo anche quando trasporta un oggetto leggero. Una linea può quindi considerare tanto il peso reale del collo quanto il suo volume."
+    ],
+    "sections": [
+      {
+        "heading": "Separa le spese del prodotto da quelle del collo",
+        "paragraphs": [
+          "Prendi una pagina bianca e dividi il conto in due parti. Nella prima inserisci prezzo della variante, eventuale trasporto interno e servizi richiesti al momento dell’acquisto. Nella seconda scrivi imballaggio scelto, trasporto internazionale ed eventuali voci a destinazione. Annota solo le somme indicate, con valuta e data; lascia vuota una voce sconosciuta invece di attribuirle valore zero.",
+          "I prezzi indicativi dei prodotti nel catalogo non includono necessariamente il costo di consegnarli a un indirizzo romeno. Se due articoli hanno lo stesso prezzo e pesi simili, uno può comunque richiedere una confezione più grande o essere accettato da linee diverse. Richiedi un confronto su colli realizzabili, con la Romania impostata come destinazione."
+        ]
+      },
+      {
+        "heading": "Raccogli i dati da inserire nella stima",
+        "paragraphs": [
+          "Prima che i prodotti arrivino puoi lavorare con un intervallo. Registra la categoria, il peso stimato e le dimensioni ipotizzate dopo l’imballaggio. Prova prima una combinazione realistica, poi una più ingombrante. Modifica una sola variabile alla volta: mantenendo fissi peso e categoria mentre allunghi la scatola vedrai se è il volume a cambiare il risultato.",
+          "Quando il magazzino ha il collo pronto, sostituisci le stime con peso lordo e tre misure esterne. Comprendi il materiale protettivo e la sporgenza più ampia. La somma dei pesi delle singole magliette non include il cartone; misurare l’interno della scatola delle scarpe non fornisce le dimensioni del collo chiuso. Se la linea non è selezionabile, controlla prima categoria e limiti ammessi."
+        ]
+      },
+      {
+        "heading": "Confronta due colli che pesano entrambi 2 kg",
+        "paragraphs": [
+          "Considera un esempio puramente didattico. Il collo A misura 30 × 20 × 10 cm e pesa 2 kg. Con un divisore ipotetico di 6.000, il volume di 6.000 cm³ corrisponde a 1 kg volumetrico. Il collo B misura 40 × 30 × 20 cm e pesa anch’esso 2 kg: 24.000 cm³ divisi per 6.000 danno 4 kg volumetrici. Una linea che prende il maggiore tra i due pesi partirebbe da 2 kg per A e 4 kg per B, prima degli arrotondamenti.",
+          "Questa operazione non fornisce un prezzo. Controlla il divisore e le unità riportate nella linea che stai valutando, il peso minimo e l’incremento di tariffazione. Alcune linee trattano il volume in modo diverso. Copia nel confronto la regola indicata per quella specifica opzione: sostituirla con quella usata da un’altra persona può produrre un risultato credibile ma sbagliato."
+        ]
+      },
+      {
+        "heading": "Valuta la scatola scarpe e il consolidamento",
+        "paragraphs": [
+          "Se la confezione originale ti serve, chiedi un preventivo mantenendola integra. Se vuoi ridurre il volume, chiedi una seconda ipotesi esplicita e attendi nuove dimensioni. Togliere il cartone più esterno, ripiegare una confezione vuota e spedire le scarpe senza la loro scatola sono tre istruzioni diverse; conserva una protezione adeguata per punte e tomaie.",
+          "Unendo più articoli puoi risparmiare alcune voci fisse, ma il collo risultante deve restare ammesso dalla linea. Per confrontare una spedizione unica con due colli, chiedi entrambe le quotazioni complete. Somma i prezzi dei due colli, comprese le voci ripetute, e verifica se il confronto usa le stesse coperture e condizioni. Non basta confrontare quanto costerebbe trasportare un singolo chilogrammo."
+        ]
+      },
+      {
+        "heading": "Leggi il totale prima di autorizzare l’invio",
+        "paragraphs": [
+          "Nell’ultimo controllo scrivi insieme data, destinazione, categoria, peso reale, dimensioni esterne, linea e valuta. Cerca quali servizi e oneri il preventivo dichiara inclusi e quali richiedono una verifica separata. Per eventuali obblighi d’importazione consulta i riferimenti ufficiali europei e romeni aggiornati; una dicitura commerciale della linea non documenta da sola il trattamento del tuo collo.",
+          "Conserva la versione approvata del preventivo insieme alle istruzioni di imballaggio. Se il totale cambia, confronta prima il peso fatturabile, poi la linea e infine le singole voci aggiuntive. Potresti scoprire che la grandezza decisiva è l’altezza della scatola e chiedere una misurazione mirata prima di cambiare corriere."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Esempio didattico, divisore ipotetico 6.000 e nessun prezzo di trasporto",
+      "headers": [
+        "Collo",
+        "Dimensioni esterne",
+        "Peso reale",
+        "Peso volumetrico",
+        "Maggiore prima dell’arrotondamento"
+      ],
+      "rows": [
+        [
+          "A",
+          "30 × 20 × 10 cm",
+          "2 kg",
+          "1 kg",
+          "2 kg"
+        ],
+        [
+          "B",
+          "40 × 30 × 20 cm",
+          "2 kg",
+          "4 kg",
+          "4 kg"
+        ]
+      ]
+    },
+    "sourceNote": "Il metodo riprende i campi del calcolatore di trasporto AllChinaBuy. Il divisore, gli scatti di peso e la disponibilità effettiva dipendono dalla linea e dal preventivo in vigore."
+  },
+  {
+    "slug": "spreadsheet-guide",
+    "title": "Spreadsheet AllChinaBuy: come verificare un link prima di ordinare",
+    "description": "Parti da una riga dello spreadsheet e verifica articolo, venditore, variante, misure e prezzo per confrontare i prodotti su basi concrete.",
+    "summary": "Salva l’inserzione precisa e la variante che vuoi comprare. Apri poi la pagina del venditore: se cambia l’articolo, il prezzo o la tabella delle misure, aggiorna la tua selezione prima dell’ordine.",
+    "intro": [
+      "Uno spreadsheet è comodo per scoprire capi che altrimenti avresti difficoltà a nominare. Le righe, però, sono istantanee. Un venditore può aggiornare una fotografia, esaurire una taglia o sostituire un articolo mantenendo una pagina dall’aspetto simile. Il lavoro utile inizia quando trovi un candidato e apri la sua scheda."
+    ],
+    "sections": [
+      {
+        "heading": "Decidi cosa cerchi prima di aprire le schede",
+        "paragraphs": [
+          "Scrivi il tipo di prodotto e tre condizioni importanti. Per una polo potresti annotare «manica corta, petto simile alla mia polo blu, una sola tinta». Per un paio di scarpe una condizione essenziale potrebbe essere ottenere una misura confrontabile della soletta. Aggiungi il tuo limite per il solo prodotto e tieni a parte un margine per il trasporto.",
+          "Usa poi le categorie e termini che descrivono l’oggetto, il taglio o la costruzione. Una ricerca basata soltanto su un nome famoso può mostrare insieme articoli decorativi, accessori e capi diversi. Tieni aperti due o tre candidati davvero confrontabili. Una lunga lista di miniature simili rende più difficile ricordare quale venditore abbia fornito la tabella giusta."
+        ]
+      },
+      {
+        "heading": "Verifica dove porta la riga",
+        "paragraphs": [
+          "Prendi come esempio la voce di catalogo «Polo shirt (5 styles)». Il titolo segnala la presenza di più opzioni, ma non dice quale sia disponibile né se il prezzo riguardi quella che vuoi. Apri la scheda pubblica, annota il negozio, il titolo e l’identificativo dell’inserzione quando visibile. Se il link porta a una ricerca generale, torna indietro e non sostituire il candidato con il primo prodotto simile.",
+          "Seleziona la variante e il colore precisi. Guarda se cambiano foto, prezzo e tabella. Per una taglia scelta riporta le misure indicate dal venditore, con unità e metodo; scrivi «non indicato» se mancano. Questa nota è più utile di un segno di spunta accanto alla parola verificato, perché permette di distinguere un articolo esistente da uno adatto alle tue esigenze."
+        ]
+      },
+      {
+        "heading": "Confronta il prezzo sulla stessa base",
+        "paragraphs": [
+          "I prezzi di anteprima possono rispecchiare un cambio precedente o la variante meno costosa. Copia il prezzo della combinazione desiderata con valuta e data. Se una pagina mostra un intervallo, non usare l’estremo inferiore per la tua variante finché la selezione non lo conferma. Controlla separatamente eventuali spese dal venditore al magazzino.",
+          "Metti a fianco una seconda scheda compilata nello stesso modo. Un candidato apparentemente più economico ma senza misure può richiedere ulteriori verifiche; un terzo articolo con imballaggio rigido può pesare di più sulla spedizione internazionale. Non trasformare queste incertezze in un prezzo inventato. Puoi rinviare il confronto economico finale finché non hai dati omogenei."
+        ]
+      },
+      {
+        "heading": "Distingui le immagini disponibili",
+        "paragraphs": [
+          "Conserva separatamente foto promozionali, immagini di magazzino di precedenti ordini e foto del tuo futuro acquisto. Le prime aiutano a riconoscere il modello. Le seconde permettono di osservare come appariva un esemplare, a condizione che corrispondano inserzione e variante. Soltanto i documenti del tuo ordine possono chiarire quale pezzo sia realmente entrato in magazzino per te.",
+          "Se la tabella mostra una miniatura QC, segui il collegamento e verifica che non si tratti di una foto ritagliata da un altro annuncio. Qual è la caratteristica che ti interessa? Se il dubbio è la lunghezza della manica, una buona fotografia del logo lascia il dubbio irrisolto. Annota quale vista o misura manca e chiedila quando hai un canale valido per l’articolo."
+        ]
+      },
+      {
+        "heading": "Fai un controllo finale sul candidato scelto",
+        "paragraphs": [
+          "Prima di autorizzare l’acquisto riapri il collegamento salvato e confronta la pagina con la tua nota. Verifica versione, quantità, prezzo attuale e opzioni di reso indicate nell’ordine. Rinomina o elimina i vecchi preferiti che portano allo stesso prodotto in un colore diverso: è facile cliccare quello sbagliato quando le miniature usano la tinta principale.",
+          "Se la pagina ora presenta un articolo diverso, crea una nuova scheda di confronto; il vecchio storico fotografico resta associato all’inserzione che avevi esaminato. Quando il prodotto arriva, riprendi le condizioni scritte all’inizio e controllale sulle foto di magazzino. In questo modo lo spreadsheet serve sia a trovare il prodotto sia a ricordare perché l’hai scelto."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Scheda minima per confrontare due inserzioni",
+      "headers": [
+        "Dato",
+        "Dove controllarlo",
+        "Quando fermarsi"
+      ],
+      "rows": [
+        [
+          "Articolo e ID",
+          "Scheda pubblica del venditore",
+          "Il link apre solo una categoria"
+        ],
+        [
+          "Taglia e colore",
+          "Opzione selezionata",
+          "La variante selezionata cambia modello"
+        ],
+        [
+          "Prezzo e valuta",
+          "Totale della variante",
+          "Resta visibile soltanto un prezzo iniziale"
+        ],
+        [
+          "Misura indispensabile",
+          "Tabella o foto con metro",
+          "L’unità o il punto di misura sono incerti"
+        ]
+      ]
+    },
+    "sourceNote": "Il catalogo pubblico del sito fornisce i nomi di esempio. Disponibilità, versione, misure e prezzo richiedono conferma sulla singola inserzione."
+  },
+  {
+    "slug": "qc-photo-routine",
+    "title": "Foto QC AllChinaBuy: come controllare un articolo in magazzino",
+    "description": "Leggi le foto QC nell’ordine giusto: identifica la variante, confronta le misure, controlla i particolari e decidi prima della spedizione.",
+    "summary": "Controlla prima la corrispondenza con l’ordine. Poi cerca una prova leggibile per ogni dettaglio importante e chiedi uno scatto mirato quando una decisione dipende da ciò che non si vede.",
+    "intro": [
+      "Arrivano le foto di magazzino e il primo impulso è ingrandire il punto che sembra storto. Prima di giudicarlo, verifica di stare guardando la taglia e la versione che hai ordinato. Un orlo apparentemente asimmetrico può dipendere dalla piega del capo; un cartellino con la taglia sbagliata è invece un problema osservabile già nella prima vista."
+    ],
+    "sections": [
+      {
+        "heading": "Ricostruisci l’ordine accanto alle foto",
+        "paragraphs": [
+          "Apri la conferma con titolo, variante, taglia, colore e quantità. Individua un particolare che distingue quella versione dalle altre, come il tipo di chiusura o la stampa sul retro. Confronta la fotografia generale con questi riferimenti e controlla l’etichetta se visibile. Per un set di più pezzi verifica che siano tutti presenti, senza contare due volte lo stesso pezzo fotografato da angoli diversi.",
+          "Se stai consultando una raccolta pubblica, assicurati che la serie sia collegata alla stessa inserzione. Anche così può documentare il pezzo di un altro acquirente. Per chiedere una sostituzione o contestare un difetto, usa la foto del tuo ordine e indica la posizione del problema; un’immagine pubblica di un articolo simile serve soltanto a spiegare il confronto."
+        ]
+      },
+      {
+        "heading": "Guarda forma e simmetria da un’inquadratura utile",
+        "paragraphs": [
+          "Osserva prima il capo intero. Sono visibili entrambi i lati? Le spalle sono allo stesso livello? Nelle scarpe le due punte poggiano sullo stesso piano? Una foto obliqua accorcia il lato più lontano, mentre una manica ripiegata sembra più corta anche quando è identica all’altra. Chiedi di riposizionare il capo prima di concludere che la costruzione sia difettosa.",
+          "Per i colori difficili, confronta più di una vista senza prometterti un abbinamento esatto allo schermo. La luce del banco e il bilanciamento della fotocamera possono alterare la tinta. Se devi distinguere due varianti molto vicine, usa il codice colore o un dettaglio della scheda oltre all’immagine. Non usare la luminosità di una singola fotografia come prova della composizione del tessuto."
+        ]
+      },
+      {
+        "heading": "Trasforma un dubbio sulla taglia in una richiesta misurabile",
+        "paragraphs": [
+          "Prepara un riferimento personale, per esempio una T-shirt con un petto di 52 cm misurato in piano. Chiedi al magazzino lo stesso tragitto da cucitura a cucitura, col metro aderente al tessuto e non teso in diagonale. Lo zero e la tacca finale devono comparire nella stessa inquadratura. La misura del torace della persona e il giro del capo non possono essere confrontati direttamente con una larghezza in piano.",
+          "Se il venditore usa un altro metodo, ripeti prima la misura sul tuo capo di riferimento. Per le scarpe precisa se chiedi la lunghezza della soletta estraibile: quella della suola esterna è un’altra grandezza. Per un pantalone indica il punto del girovita e se l’elastico debba restare a riposo. Conserva unità, foto e criterio insieme al valore."
+        ]
+      },
+      {
+        "heading": "Scegli il dettaglio che può cambiare la decisione",
+        "paragraphs": [
+          "Chiedi un dettaglio della zip se deve chiudere fino al collo, del ricamo se il motivo sembra disallineato, della punta o del tallone per un segno visibile sulle scarpe. Una foto ravvicinata con contesto è meglio di un ritaglio isolato: devi riconoscere sia il difetto sia il punto in cui si trova. Se vedi un filo sporgente, distinguilo da una cucitura aperta prima di chiedere un intervento.",
+          "Una foto ferma non dimostra che una lampo funzioni lungo tutta la corsa, che una scarpa sia comoda o che un indumento mantenga la forma dopo un lavaggio. Per il dubbio che resta domanda se sia disponibile una verifica specifica. Quando il canale non consente quel controllo, decidi esplicitamente se accetti l’incertezza."
+        ]
+      },
+      {
+        "heading": "Documenta la decisione prima di inviare il collo",
+        "paragraphs": [
+          "Scrivi una frase con osservazione e richiesta: «sulla foto del davanti l’orlo destro è ripiegato; potete stendere il capo e mostrare l’intero bordo?». Se i dettagli coincidono con l’ordine, archivia la serie e autorizza il passaggio successivo. Se emerge una discrepanza, contatta il supporto attraverso il tuo ordine e verifica le condizioni applicabili prima della preparazione della spedizione.",
+          "Conserva l’immagine originale insieme alla nota. Se per mostrare il problema devi pubblicare una copia, elimina indirizzo, codici dell’ordine o etichette di spedizione riconoscibili. La tua decisione sarà più facile da ricostruire se hai salvato la domanda, la risposta e la foto decisiva, oltre al giudizio finale."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Abbina il dubbio allo scatto richiesto",
+      "headers": [
+        "Dubbio",
+        "Scatto utile",
+        "Elemento da leggere"
+      ],
+      "rows": [
+        [
+          "Variante errata",
+          "Vista intera con etichetta",
+          "Versione, taglia e colore"
+        ],
+        [
+          "Misura del petto",
+          "Capo in piano, metro orizzontale",
+          "Zero e tacca all’altra ascella"
+        ],
+        [
+          "Cucitura sospetta",
+          "Insieme e dettaglio dello stesso punto",
+          "Filo superficiale o apertura"
+        ],
+        [
+          "Paio di scarpe diverso",
+          "Le due scarpe affiancate sullo stesso piano",
+          "Forma e codici su entrambe"
+        ]
+      ]
+    },
+    "sourceNote": "Procedura editoriale per interpretare fotografie di magazzino e tabelle delle misure. La disponibilità di scatti aggiuntivi e i termini per intervenire dipendono dal singolo ordine."
+  },
+  {
+    "slug": "maintenance-orders-romania",
+    "title": "AllChinaBuy in manutenzione: come verificare un ordine per la Romania",
+    "description": "Ricostruisci l’ultima fase confermata, distingui acquisto e spedizione e prepara una richiesta di assistenza con i documenti giusti.",
+    "summary": "Se il sito non si apre, identifica prima l’ultimo passaggio documentato. Un acquisto registrato, un articolo entrato in magazzino e un collo preso in carico dal corriere richiedono verifiche diverse.",
+    "intro": [
+      "Trovare un avviso di manutenzione al posto del proprio ordine è disorientante, soprattutto se aspetti una consegna in Romania. L’avviso pubblico di AllChinaBuy riguardava il funzionamento del sito e indirizzava le domande sugli ordini all’assistenza. Non indicava una data di riapertura né lo stato di un particolare acquisto."
+    ],
+    "sections": [
+      {
+        "heading": "Annota il messaggio che hai effettivamente visto",
+        "paragraphs": [
+          "Scrivi data, ora locale, pagina che volevi aprire e testo del messaggio. Distingui la schermata ufficiale di manutenzione da un errore di connessione, un accesso scaduto o un reindirizzamento. Se il browser non riesce a connettersi, il problema osservato è diverso da un ordine che riporta esplicitamente «annullato».",
+          "Conserva una schermata ridotta al messaggio e alla pagina interessata. Per controllare un ordine usa un indirizzo ufficiale già noto; evita di inviare credenziali a pagine trovate cercando una presunta nuova area clienti. Il catalogo e questo sito indipendente non possono leggere il tuo account."
+        ]
+      },
+      {
+        "heading": "Individua il documento che viene dopo il pagamento",
+        "paragraphs": [
+          "Prepara una breve cronologia. Hai una conferma con variante e prezzo? Un numero di spedizione interna? Una ricevuta di ingresso in magazzino con foto QC? Un identificativo di collo internazionale? Copia le date rispettando il fuso indicato e lascia aperte le fasi per cui non hai alcuna prova. La ricevuta del pagamento del trasporto non è una scansione del corriere.",
+          "Se disponi solo del numero d’acquisto, chiedi quale sia l’ultimo evento relativo all’articolo. Se hai ricevuto una foto di magazzino, aggiungi data e riferimento del pezzo e domanda se vi siano azioni o scadenze da verificare. Non presumere che una scadenza sia automaticamente sospesa durante la manutenzione."
+        ]
+      },
+      {
+        "heading": "Controlla separatamente la spedizione già affidata",
+        "paragraphs": [
+          "Per un collo con un codice di vettore, raggiungi il sito ufficiale del corriere indicato nei documenti. Un’etichetta generata e una presa in carico fisica sono eventi distinti. Se hai un secondo codice per la consegna in Romania, conserva entrambi. L’interfaccia in lingua romena o il paese di destinazione indicato non dimostrano che il collo sia già arrivato nel paese.",
+          "Un esempio di richiesta precisa è «ho il numero del collo e la conferma di pagamento del 10, mentre il vettore mostra soltanto dati trasmessi; potete verificare se è stata registrata la consegna al vettore?». Inserisci date e riferimenti reali esclusivamente nel canale riservato."
+        ]
+      },
+      {
+        "heading": "Fai riconciliare i pagamenti incerti",
+        "paragraphs": [
+          "Se un pagamento è stato interrotto, confronta lo stato nell’ordine con quello visibile presso il tuo fornitore di pagamento. Una transazione in attesa e un addebito contabilizzato non sono la stessa situazione. Prima di ripetere l’operazione chiedi cosa risulti registrato fornendo il riferimento pertinente; non condividere codici di accesso, numeri completi di carta o schermate di altre operazioni.",
+          "Al ripristino dell’accesso confronta il nuovo storico con la cronologia salvata. Aggiorna una sola richiesta di assistenza con le informazioni nuove. Una sequenza ordinata permette a chi risponde di concentrarsi sul passaggio mancante anziché riconciliare più segnalazioni dello stesso ordine."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Quale verifica richiedere",
+      "headers": [
+        "Ultima traccia",
+        "Chi può chiarire",
+        "Domanda concreta"
+      ],
+      "rows": [
+        [
+          "Ordine pagato",
+          "Assistenza ordini",
+          "Il venditore ha già spedito?"
+        ],
+        [
+          "Ingresso in magazzino",
+          "Assistenza magazzino",
+          "Il pezzo è identificato e ci sono scadenze?"
+        ],
+        [
+          "Etichetta emessa",
+          "Assistenza spedizioni",
+          "Il vettore ha ritirato fisicamente il collo?"
+        ],
+        [
+          "Scansione locale",
+          "Vettore indicato",
+          "Occorre un’azione per la consegna?"
+        ]
+      ]
+    },
+    "sourceNote": "Il sito ufficiale ha pubblicato un avviso di manutenzione. Le verifiche qui proposte riguardano documenti e passaggi del singolo ordine, senza dedurre la disponibilità del servizio."
+  },
+  {
+    "slug": "shoes-spreadsheet-eu-size-qc",
+    "title": "Scarpe AllChinaBuy: taglie EU, soletta e foto QC da confrontare",
+    "description": "Usa uno spreadsheet per selezionare le scarpe, confronta misure omogenee e verifica paio, etichette e scatola prima della spedizione.",
+    "summary": "Un numero EU aiuta a scegliere quali righe esaminare. La decisione richiede una misura presa con lo stesso metodo su un paio che conosci e sul modello in esame.",
+    "intro": [
+      "Due paia contrassegnate EU 42 possono lasciare spazio diverso alle dita o trattenere il tallone in modo diverso. Una scarpa affusolata e una scarpa a pianta larga non diventano equivalenti perché la soletta ha la stessa lunghezza. Inizia dalla forma del piede e da un modello che indossi comodamente."
+    ],
+    "sections": [
+      {
+        "heading": "Prepara un confronto utile per il tuo piede",
+        "paragraphs": [
+          "Indossa il paio di riferimento con le calze che useresti con il nuovo acquisto. Identifica dove hai bisogno di spazio: davanti all’alluce, ai lati dell’avampiede o sul collo. Se la soletta si estrae senza danneggiarla, misurala dal tallone alla punta lungo l’asse lungo. Conserva anche una foto che mostri i punti utilizzati.",
+          "Distingui con precisione lunghezza del piede, lunghezza interna dichiarata, lunghezza della soletta e lunghezza esterna della suola. La tabella di un venditore può riportare una raccomandazione basata sul piede, mentre la fotografia di un acquirente misura la soletta. Se sono grandezze diverse, chiedi al venditore come interpretare il suo dato."
+        ]
+      },
+      {
+        "heading": "Seleziona l’inserzione e la versione specifica",
+        "paragraphs": [
+          "Conserva l’ID della scheda, la colorazione, la taglia e l’eventuale variante di produzione indicata. Controlla se tutte le versioni presenti nella stessa inserzione usano la medesima tabella. Un suggerimento generico come «prendi un numero in più» è difficile da applicare senza sapere quale scarpa usi il recensore come confronto.",
+          "Se la tabella cambia fra le versioni, salva quella pertinente. Se non compare, chiedi una misura della taglia che stai considerando; una fotografia di un altro numero può aiutare a riconoscere la costruzione ma non risolve la domanda sulla tua calzata."
+        ]
+      },
+      {
+        "heading": "Ispeziona entrambe le scarpe",
+        "paragraphs": [
+          "Nelle foto di magazzino controlla prima che il paio sia completo e che le etichette corrispondano alla variante ordinata. Osserva le scarpe affiancate su un piano, poi i profili, le punte e i talloni. Una differenza di prospettiva può falsare la simmetria. Chiedi un nuovo scatto se una scarpa è inclinata o parzialmente coperta.",
+          "Se serve una foto con metro sulla soletta estraibile, indica esattamente inizio, fine e unità. Se non è estraibile, non chiedere di staccarla. Domanda quale misura interna sia ottenibile e annota i limiti di confronto. Una vista dall’alto non permette di verificare il comfort, l’ammortizzazione o la durata del materiale."
+        ]
+      },
+      {
+        "heading": "Decidi che cosa fare della scatola",
+        "paragraphs": [
+          "Controlla se la confezione originale ti serve per conservare le scarpe o proteggere una forma delicata. Per confrontare le opzioni chiedi le dimensioni esterne dopo l’imballaggio, con e senza scatola quando la seconda soluzione è praticabile. Il risparmio eventuale dipende dalle regole della linea e dalla protezione sostitutiva richiesta.",
+          "Conserva una scheda finale con etichetta EU, misura confrontabile, dubbi risolti e imballaggio approvato. Se la lunghezza resta incerta o la variante è sbagliata, fermati prima della spedizione internazionale e controlla nell’ordine quali interventi siano ancora possibili."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Le quattro misure che si confondono più spesso",
+      "headers": [
+        "Dato",
+        "Che cosa descrive",
+        "Confronto corretto"
+      ],
+      "rows": [
+        [
+          "Numero EU",
+          "Taglia indicata dal produttore",
+          "Tabella della stessa versione"
+        ],
+        [
+          "Lunghezza piede",
+          "Dal tallone al dito più lungo",
+          "Indicazione del venditore per il piede"
+        ],
+        [
+          "Soletta",
+          "Elemento interno misurabile",
+          "Altra soletta misurata allo stesso modo"
+        ],
+        [
+          "Suola esterna",
+          "Ingombro esterno",
+          "Altra suola, non spazio interno"
+        ]
+      ]
+    },
+    "sourceNote": "Guida editoriale alla lettura di misure e fotografie, senza una conversione universale delle taglie. Le condizioni di confezionamento vanno controllate sulla linea scelta."
+  },
+  {
+    "slug": "hoodies-spreadsheet-size-fabric-weight",
+    "title": "Felpe AllChinaBuy: misure reali, tessuto e peso di spedizione",
+    "description": "Confronta felpe e hoodie per vestibilità, costruzione e peso. Scopri quali misure chiedere e come leggere le foto di magazzino.",
+    "summary": "Per una felpa conta la combinazione di larghezza, lunghezza e spalla. Registra separatamente peso del capo, grammatura dichiarata e peso del collo chiuso.",
+    "intro": [
+      "Una felpa pesante non è necessariamente spessa allo stesso modo su busto, polsi e cappuccio. Una felpa molto larga può sembrare più corta di una dal taglio regolare anche quando le due misurano uguale dalla spalla al fondo. Per scegliere bene, annota prima come intendi indossarla: sopra una T-shirt o come strato esterno su un altro capo."
+    ],
+    "sections": [
+      {
+        "heading": "Misura una felpa che già conosci",
+        "paragraphs": [
+          "Stendi la tua felpa senza tirare il tessuto. Misura il petto da ascella ad ascella e la lunghezza dal punto alto della spalla all’orlo. Aggiungi spalle e manica se i polsini dei tuoi capi abituali finiscono troppo in alto. Per un modello a raglan non esiste la stessa cucitura della spalla di una manica a giro: usa un tragitto confrontabile dal collo al polso.",
+          "Segna che cosa cambieresti rispetto al riferimento. Se vuoi una vestibilità più ampia ma uguale lunghezza, una taglia superiore nella stessa linea potrebbe crescere anche in altezza. Prima di scegliere confronta due righe complete della tabella o cerca un modello con un taglio diverso."
+        ]
+      },
+      {
+        "heading": "Distingui peso, grammatura e materiale dichiarato",
+        "paragraphs": [
+          "Il peso di una singola felpa comprende cappuccio, zip, cordini e tasche e varia con la taglia. La grammatura indica massa per unità di superficie del tessuto. Il peso del collo comprende anche tutti gli altri articoli e l’imballaggio. Uno di questi numeri non consente di ricavare gli altri senza ulteriori informazioni.",
+          "Per i materiali separa ciò che il venditore dichiara dall’impressione visiva. Una foto ravvicinata può mostrare interno felpato o lavorazione ad anelli, ma non certifica percentuali di fibre, restringimento o comportamento dopo il lavaggio. Se un requisito è importante chiedi la foto dell’etichetta della specifica variante e conserva la risposta."
+        ]
+      },
+      {
+        "heading": "Guarda le parti che distinguono lo stile ordinato",
+        "paragraphs": [
+          "Controlla colore, tipo di chiusura, tasca, cuciture del cappuccio e posizione del motivo. Su un modello con zip confronta le due metà della grafica a chiusura allineata; una felpa piegata a metà sul banco può far sembrare la stampa spostata. Per i ricami guarda il dettaglio su una superficie distesa e chiedi un’altra angolazione se la trama crea ombre.",
+          "Per la misura del petto indica «senza tendere le costine» e chiedi che siano visibili entrambe le estremità del metro. Se il cartellino è giusto ma la misura differisce, verifica prima il metodo e poi la tolleranza specificata da quella scheda. Non estendere la tolleranza di un venditore ai prodotti di un altro."
+        ]
+      },
+      {
+        "heading": "Prepara il collo con un dato aggiornato",
+        "paragraphs": [
+          "Felpe e cappucci possono occupare molto spazio da piegati. Chiedi dimensioni del collo finito per valutare un’opzione d’imballaggio; non dedurre il costo internazionale dal solo peso dell’indumento. Prima di comprimere il capo valuta decorazioni rigide o elementi stampati che potrebbero risentirne.",
+          "Nel tuo confronto finale assegna una colonna a misura verificata, una a caratteristica ancora incerta e una alla decisione su ciascuna felpa. Potrai così inserire nel collo soltanto i capi che hai accettato, mantenendo separata l’eventuale richiesta di ulteriore verifica su un’altra variante."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Tre dati diversi nella descrizione di una felpa",
+      "headers": [
+        "Dato",
+        "Unità tipica",
+        "Che cosa ti permette di confrontare"
+      ],
+      "rows": [
+        [
+          "Larghezza in piano",
+          "cm",
+          "Vestibilità rispetto a un capo"
+        ],
+        [
+          "Grammatura dichiarata",
+          "g/m²",
+          "Peso del tessuto per area"
+        ],
+        [
+          "Peso del capo e peso lordo",
+          "g o kg",
+          "Indumento da solo e collo pronto, separatamente"
+        ]
+      ]
+    },
+    "sourceNote": "Le misure proposte sono verifiche editoriali ripetibili. Le informazioni su composizione e grammatura restano dichiarazioni del venditore finché non sono documentate."
+  },
+  {
+    "slug": "shipping-expert-romania",
+    "title": "Shipping Expert AllChinaBuy: come leggere il preventivo per la Romania",
+    "description": "Prepara istruzioni per l’imballaggio e confronta peso, dimensioni, linea e spese prima di approvare un preventivo Shipping Expert.",
+    "summary": "Elenca i pezzi da includere e le parti da proteggere. Chiedi una stima completa per la Romania con misure finite, linea proposta e passaggio di approvazione.",
+    "intro": [
+      "Hai due felpe, un paio di scarpe e la possibilità di togliere una scatola. Chiedere semplicemente «la linea più economica» lascia troppe decisioni aperte: chi prepara la spedizione non sa quali confezioni vuoi conservare, se accetti due colli o se preferisci un servizio con tracciamento fino alla consegna."
+    ],
+    "sections": [
+      {
+        "heading": "Definisci quali articoli sono pronti",
+        "paragraphs": [
+          "Verifica l’ingresso in magazzino di ogni pezzo e confronta le foto QC con l’ordine. Escludi esplicitamente i prodotti per cui è in corso una richiesta di chiarimento o sostituzione. Indica la destinazione reale e le eventuali caratteristiche del contenuto che possono influire sulla linea, per esempio la presenza di un accessorio con batteria.",
+          "Se il servizio Shipping Expert non risulta disponibile nel tuo account, conserva le istruzioni come schema per quando potrai richiedere un preventivo. La descrizione storica di una funzione e l’avviso di manutenzione non confermano che oggi il servizio possa elaborare il tuo ordine."
+        ]
+      },
+      {
+        "heading": "Scrivi istruzioni per singolo pezzo",
+        "paragraphs": [
+          "Per le scarpe puoi chiedere di conservare la scatola, ripiegarla se consentito o rimuoverla. Sono scelte differenti. Per una felpa chiedi una piegatura compatta, specificando se stampa o decorazione richiedono protezione. Termina la richiesta indicando quali cambiamenti necessitano della tua conferma prima di procedere.",
+          "Una richiesta riproducibile potrebbe essere «includere solo i tre articoli già accettati, mantenere la scatola del primo paio, confrontare un collo unico e due colli. Comunicare misure finali e totale prima del pagamento». Inserisci i riferimenti personali soltanto nel canale ufficiale del tuo ordine."
+        ]
+      },
+      {
+        "heading": "Chiedi due opzioni realmente confrontabili",
+        "paragraphs": [
+          "Tieni fissi destinazione, contenuto e livello di protezione. Per ogni opzione annota peso reale, dimensioni esterne, peso tassabile o fatturabile indicato, linea e componenti del totale. Se in un’opzione cambiano sia imballaggio sia corriere, non potrai attribuire la differenza a una sola scelta. Richiedi la voce mancante prima di concludere che l’imballaggio più piccolo convenga.",
+          "Controlla l’ammissibilità della linea per ogni prodotto. Un collo unico può eccedere un limite dimensionale anche quando rientra in quello di peso. Valuta due colli sommando entrambe le tariffe e le eventuali voci fisse ripetute. Confronta anche copertura del tracciamento e condizioni dichiarate, soprattutto se le proposte usano servizi diversi."
+        ]
+      },
+      {
+        "heading": "Approva una versione datata e riconcilia il risultato",
+        "paragraphs": [
+          "Nella conferma indica imballaggio, linea, valuta e importo che stai approvando. Se il totale finale differisce, confronta prima le nuove misure con quelle registrate. Una scatola più alta o una modifica della categoria può spiegare il ricalcolo; domanda una spiegazione precisa se la differenza resta poco chiara.",
+          "Conserva il numero del collo e poi il riferimento del vettore quando disponibile. La preparazione del piano e l’acquisto della spedizione non dimostrano che il corriere l’abbia già ritirata. Il primo evento fisico di presa in carico consente di passare dal controllo del preventivo al monitoraggio del trasporto."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Scheda di approvazione per un piano di spedizione",
+      "headers": [
+        "Voce",
+        "Opzione con un collo",
+        "Opzione con due colli"
+      ],
+      "rows": [
+        [
+          "Contenuto",
+          "Elenco completo dei pezzi",
+          "Pezzi assegnati a ciascun collo"
+        ],
+        [
+          "Ingombro",
+          "Peso e tre lati esterni",
+          "Misure e peso per ogni collo"
+        ],
+        [
+          "Prezzo",
+          "Trasporto e servizi richiesti",
+          "Somma dei due totali"
+        ],
+        [
+          "Condizioni",
+          "Linea e tracciamento",
+          "Condizioni di entrambe le linee"
+        ]
+      ]
+    },
+    "sourceNote": "Schema editoriale ispirato ai campi delle pagine pubbliche di AllChinaBuy dedicate ai preventivi. Per un ordine reale fanno fede servizio disponibile, istruzioni accettate e dati confermati."
+  },
+  {
+    "slug": "shipping-to-romania",
+    "title": "Spedire con AllChinaBuy in Romania: linee, tempi e documenti",
+    "description": "Controlla quali linee ammettono il tuo collo, confronta il preventivo completo e prepara le informazioni per il passaggio al vettore romeno.",
+    "summary": "La scelta parte dal contenuto e dall’ingombro. Una volta individuate le linee ammissibili, confronta costo complessivo, tracciamento e condizioni di consegna.",
+    "intro": [
+      "Un’esperienza di consegna letta online può suggerire quali domande fare, ma difficilmente replica il tuo collo. Merce, dimensioni, data di partenza e destinazione influenzano le alternative visibili. Parti dall’indirizzo in Romania a cui il pacco deve essere consegnato e dalla lista concreta dei prodotti da spedire."
+    ],
+    "sections": [
+      {
+        "heading": "Elimina subito le linee non adatte",
+        "paragraphs": [
+          "Verifica categoria e restrizioni del vettore per tutti gli articoli. Un accessorio con batteria e una felpa ordinaria non necessariamente possono essere spediti insieme sulla linea prevista per l’abbigliamento. Controlla peso, lato più lungo e altri limiti dimensionali dichiarati. Quando un prodotto rende la combinazione inammissibile, chiedi quali modalità corrette siano disponibili.",
+          "Leggi fino a dove arriva il tracciamento e chi effettua l’ultimo tratto. Se due linee differiscono per firme richieste, opzioni di ritiro o gestione dei problemi, annotalo accanto al prezzo. Dichiarare una categoria diversa per far comparire una linea compromette la validità del preventivo."
+        ]
+      },
+      {
+        "heading": "Aggiorna il preventivo dopo il confezionamento",
+        "paragraphs": [
+          "Prima dell’acquisto puoi stimare un collo compatto e uno più voluminoso per valutare il tuo budget. Quando hai accettato gli articoli in magazzino, richiedi i dati definitivi. Il numero utile per il confronto è il peso lordo del collo chiuso insieme alle misure esterne e alle regole della linea.",
+          "Una giacca strutturata e una scatola di scarpe possono determinare la dimensione del collo anche quando la maggior parte dei capi si piega facilmente. Chiedi di ridurre lo spazio vuoto mantenendo la protezione necessaria. Se cambi imballaggio, fatti ricalcolare le dimensioni; una fotografia di una scatola più piccola non quantifica da sola il risparmio."
+        ]
+      },
+      {
+        "heading": "Separa trasporto, importazione e servizi del vettore",
+        "paragraphs": [
+          "Leggi le voci incluse nel preventivo e quelle che possono essere richieste a destinazione. Trasporto, IVA, eventuali dazi e gestione amministrativa sono voci distinte. Un termine commerciale nel nome della linea non documenta l’importo dovuto per la tua specifica spedizione.",
+          "Consulta le informazioni attuali della Commissione europea e dell’autorità doganale romena quando devi stimare gli obblighi d’importazione o rispondere a una richiesta. Prepara descrizione corretta, quantità, prova d’acquisto e dati del collo. Se ti chiedono una documentazione precisa, rispondi attraverso il canale ufficiale indicato dal vettore o dall’autorità; non inviare dati di pagamento a un contatto non verificato."
+        ]
+      },
+      {
+        "heading": "Interpreta correttamente i giorni di transito",
+        "paragraphs": [
+          "Controlla da quale evento decorra la finestra dichiarata: creazione dell’ordine, affidamento al vettore e partenza internazionale non cadono necessariamente nello stesso giorno. Conserva la data di raccolta effettiva e l’ultimo evento confermato. Una previsione riferita a giorni lavorativi va letta secondo le condizioni del servizio.",
+          "Durante il passaggio al vettore locale può comparire un nuovo codice. Salvalo insieme al numero internazionale e controlla l’indirizzo e le comunicazioni ufficiali di consegna. Una pausa fra due scansioni richiede valutazione rispetto alle condizioni della linea; è più utile fornire l’ultimo evento preciso che dichiarare il pacco disperso senza riscontri."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Confronto fra linee dirette in Romania",
+      "headers": [
+        "Aspetto",
+        "Dato necessario",
+        "Dove verificarlo"
+      ],
+      "rows": [
+        [
+          "Ammissibilità",
+          "Categoria, peso e dimensioni",
+          "Condizioni aggiornate della linea"
+        ],
+        [
+          "Preventivo",
+          "Valuta, servizi, inclusioni",
+          "Riepilogo del collo pronto"
+        ],
+        [
+          "Consegna",
+          "Inizio della finestra e ultimo vettore",
+          "Descrizione del servizio"
+        ],
+        [
+          "Importazione",
+          "Descrizione e documenti corretti",
+          "Informazioni ufficiali applicabili"
+        ]
+      ]
+    },
+    "sourceNote": "Il confronto usa il funzionamento del preventivo pubblico e le fasi documentali della spedizione. Per l’importazione occorre verificare le regole vigenti sulle risorse ufficiali UE e romene."
+  },
+  {
+    "slug": "tracking-guide",
+    "title": "Tracking AllChinaBuy: come leggere gli stati di un pacco diretto in Romania",
+    "description": "Distingui etichetta, ritiro, transito e consegna locale. Ecco come interpretare una pausa e quale numero comunicare all’assistenza.",
+    "summary": "Cerca l’ultimo evento fisico verificabile e il vettore che l’ha registrato. Il numero del tuo ordine, quello del collo e il codice del vettore possono essere diversi.",
+    "intro": [
+      "Il sito dell’ordine mostra una spedizione preparata, mentre il corriere dice di non avere ancora il pacco. Può sembrare una contraddizione, ma i due sistemi descrivono fasi diverse. Prima di cercare una causa al ritardo, ricostruisci chi aveva il collo all’ultimo passaggio confermato."
+    ],
+    "sections": [
+      {
+        "heading": "Metti in ordine i riferimenti",
+        "paragraphs": [
+          "Distingui il numero di acquisto dal trasporto del venditore verso il magazzino in Cina. Dopo il consolidamento, più articoli possono diventare un solo collo internazionale con un altro riferimento. Il vettore può assegnare un proprio numero e, al passaggio in Romania, un ulteriore codice per l’ultimo tratto.",
+          "Trascrivi ogni riferimento con la sua funzione. Se un numero non viene riconosciuto da un vettore, controlla se sia un identificativo interno del magazzino. Numero del collo, nome della linea, primo corriere e corriere locale appartengono a caselle diverse."
+        ]
+      },
+      {
+        "heading": "Leggi l’evento esattamente come compare",
+        "paragraphs": [
+          "«Dati trasmessi» o «etichetta creata» può indicare che il mittente ha inviato le informazioni di spedizione. Cerca un evento distinto di ritiro o accettazione fisica prima di dedurre che il collo sia partito. Allo stesso modo, lo stato «in transito» non identifica sempre una città precisa.",
+          "Salva luogo, data, fuso orario quando visibile e testo originale dell’evento. Se un aggregatore traduce liberamente lo stato, confrontalo con il sito ufficiale del vettore identificato. L’ora di aggiornamento della pagina non coincide sempre con l’ora del movimento registrato."
+        ]
+      },
+      {
+        "heading": "Gestisci i passaggi senza scansioni frequenti",
+        "paragraphs": [
+          "Il trasferimento internazionale può avere aggiornamenti per tappe. Misura una pausa dall’ultimo passaggio significativo e confrontala con le indicazioni del servizio specifico. Una testimonianza su una linea diversa non fornisce una soglia universale oltre la quale il tuo collo sia in ritardo.",
+          "Durante un passaggio doganale leggi se viene richiesta un’azione concreta. Una lavorazione in corso non ha lo stesso significato di una richiesta documentale indirizzata al destinatario. Per una richiesta effettiva prepara i documenti pertinenti e verifica il canale sul sito del vettore o dell’autorità prima di inviare informazioni personali."
+        ]
+      },
+      {
+        "heading": "Segui il vettore locale e chiudi il caso",
+        "paragraphs": [
+          "Quando compare un partner romeno, cerca il secondo codice nei documenti di spedizione. Verifica luogo di consegna, eventuale punto di ritiro e comunicazioni ufficiali. Se un tentativo fallisce, leggi le istruzioni specifiche invece di prenotare un nuovo invio attraverso un messaggio non richiesto.",
+          "Se serve assistenza, comunica linea, riferimento pertinente, ultimo evento, data e domanda precisa. Per esempio: «Il corriere internazionale segnala l’affidamento al partner locale, ma nel mio ordine non compare un secondo codice; potete indicarmi quale verificare?». Se l’imballo arriva danneggiato, documentalo prima di smaltirlo e verifica i termini del servizio indicati nel tuo ordine."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Come interpretare quattro eventi comuni",
+      "headers": [
+        "Evento",
+        "Che cosa documenta",
+        "Passaggio utile"
+      ],
+      "rows": [
+        [
+          "Etichetta emessa",
+          "Dati registrati",
+          "Cerca presa in carico"
+        ],
+        [
+          "Ritiro registrato",
+          "Un vettore ha ricevuto il collo",
+          "Segui la sua cronologia"
+        ],
+        [
+          "Richiesta documenti",
+          "È indicata un’azione",
+          "Verifica chi la richiede e il canale"
+        ],
+        [
+          "Affidamento locale",
+          "Inizia un altro tratto",
+          "Cerca partner e nuovo codice"
+        ]
+      ]
+    },
+    "sourceNote": "Procedura editoriale basata sulla distinzione tra registrazione elettronica, scansioni del vettore e passaggio locale. Le diciture effettive variano secondo il servizio."
+  },
+  {
+    "slug": "how-to-order-romania",
+    "title": "Come ordinare con AllChinaBuy dalla Romania, dalla scheda alla consegna",
+    "description": "Segui il percorso di acquisto: verifica il link del venditore, controlla la variante in magazzino e approva il collo solo dopo aver letto il preventivo.",
+    "summary": "Considera l’acquisto del prodotto e la spedizione internazionale come due decisioni distinte. In mezzo c’è il controllo del pezzo arrivato in magazzino.",
+    "intro": [
+      "Un ordine tramite un intermediario include almeno un venditore, il magazzino e il vettore internazionale. Capire quale fase stai approvando evita di scambiare il prezzo del prodotto per il totale a domicilio o una foto del venditore per una verifica del pezzo già acquistato. Controlla prima la disponibilità effettiva della piattaforma e conserva i riferimenti ufficiali dell’ordine."
+    ],
+    "sections": [
+      {
+        "heading": "Trova il prodotto e verifica l’inserzione",
+        "paragraphs": [
+          "Parti dallo spreadsheet o da una scheda pubblica, poi apri il prodotto specifico. Annota venditore, variante, quantità e unità di misura; verifica se la scheda raggruppa più modelli. Per un capo usa una misura di riferimento. Per un accessorio controlla che siano compresi i componenti che vedi nelle fotografie.",
+          "Salva il prezzo della selezione, valuta ed eventuali costi di trasporto interno. Prima del pagamento verifica condizioni visibili per assistenza e restituzioni. Se la piattaforma ufficiale mostra manutenzione o un passaggio non è disponibile, non dedurre da una vecchia guida che un nuovo ordine possa essere eseguito."
+        ]
+      },
+      {
+        "heading": "Controlla che l’acquisto registrato coincida con la richiesta",
+        "paragraphs": [
+          "Rileggi variante e quantità nel riepilogo finale, poi conserva conferma e identificativo. Se il venditore deve inviare l’articolo al magazzino in Cina, il tracking di quel percorso riguarda soltanto la tratta interna. L’acquisto pagato non ha ancora definito la linea internazionale o il totale del collo per la Romania.",
+          "Se il venditore propone un’alternativa per esaurimento, confrontala come un prodotto nuovo. Stessa descrizione commerciale o stessa fotografia principale non garantiscono misure e costruzione equivalenti. Chiedi un chiarimento mirato su ciò che ti ha fatto scegliere il primo candidato."
+        ]
+      },
+      {
+        "heading": "Distingui merce arrivata e merce accettata",
+        "paragraphs": [
+          "All’ingresso in magazzino cerca foto della variante effettiva. Ispeziona colore, etichetta, quantità e dettagli che avevi annotato. Se il risultato dipende dalla misura di una maglietta, chiedi una fotografia in piano con le estremità del metro visibili. Una vista generale può confermare la stampa lasciando incerta la vestibilità.",
+          "In caso di dubbio indica il dettaglio, la verifica richiesta e a quale articolo si riferisce. Per una restituzione o sostituzione consulta termini e opzioni del tuo ordine. Finché la questione resta aperta, tieni quel pezzo fuori dal collo internazionale da approvare."
+        ]
+      },
+      {
+        "heading": "Seleziona imballaggio e linea per la Romania",
+        "paragraphs": [
+          "Scegli quali articoli accettati spedire insieme. Indica se mantenere confezioni, proteggere parti rigide o ridurre volumi quando possibile. Conserva il peso reale e le dimensioni esterne del collo chiuso. Confronta soltanto linee che ammettono il contenuto e valuta totale, copertura, tracciamento e finestra indicata.",
+          "Controlla indirizzo, destinatario e riferimenti utili per il vettore senza renderli pubblici. Usa informazioni corrette su contenuto, quantità e valore e conserva le prove pertinenti. Per gli obblighi d’importazione verifica le fonti ufficiali applicabili al momento; il nome commerciale di una linea non sostituisce la documentazione."
+        ]
+      },
+      {
+        "heading": "Dalla consegna al controllo finale",
+        "paragraphs": [
+          "Conserva il numero del collo internazionale e quello del corriere. Dopo il passaggio al partner romeno verifica l’eventuale secondo codice. Quando ricevi il pacco, fotografa un danno evidente all’imballaggio prima di aprirlo e confronta i pezzi con la tua lista. Se qualcosa manca, tieni la confezione e i documenti finché non hai capito la procedura applicabile.",
+          "Aggiorna infine la tua scheda: quali misure si sono rivelate utili, quale imballaggio è arrivato e quali voci spiegano il totale pagato? Un confronto basato sui tuoi documenti è un riferimento migliore per l’ordine successivo rispetto a un prezzo letto su un altro percorso di spedizione."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Documenti da conservare per le diverse fasi",
+      "headers": [
+        "Fase",
+        "Documento",
+        "Decisione successiva"
+      ],
+      "rows": [
+        [
+          "Scelta",
+          "Link, variante, misure",
+          "Confermare l’articolo"
+        ],
+        [
+          "Acquisto",
+          "Riepilogo e riferimento",
+          "Verificare l’arrivo in magazzino"
+        ],
+        [
+          "Ispezione",
+          "Foto del tuo pezzo",
+          "Accettare o chiedere chiarimenti"
+        ],
+        [
+          "Spedizione",
+          "Preventivo, misure e linea",
+          "Approvare il collo"
+        ],
+        [
+          "Consegna",
+          "Tracking e controllo del contenuto",
+          "Segnalare eventuali discrepanze"
+        ]
+      ]
+    },
+    "sourceNote": "Il percorso segue le funzioni descritte pubblicamente da AllChinaBuy. L’accesso attuale ai servizi, le condizioni dell’ordine e le istruzioni del vettore vanno verificati prima di procedere."
+  }
+]

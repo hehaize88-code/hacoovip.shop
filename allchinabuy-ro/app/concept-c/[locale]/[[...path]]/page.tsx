@@ -5,7 +5,8 @@ import {
   type Locale,
   TerminalPage,
 } from "../../terminal";
-import { getEnglishArticle } from "../../articles";
+import { notFound } from "next/navigation";
+import { englishArticles, getArticle } from "../../articles";
 
 type Params = { locale: string; path?: string[] };
 
@@ -20,15 +21,10 @@ export async function generateMetadata({
   ) as Locale;
   const copy = getLocaleCopy(locale);
   if (path[0] === "articles" && path[1]) {
-    const article = getEnglishArticle(path[1]);
-    const seoTitles: Record<string, string> = {
-      "spreadsheet-guide":
-        "AllChinaBuy Spreadsheet Guide: Find Better Products",
-      "qc-photo-routine": "AllChinaBuy QC Photos: 5-Minute Inspection Guide",
-      "parcel-cost-guide": "AllChinaBuy Shipping Cost: Product vs Parcel Price",
-    };
+    if (!englishArticles.some(article => article.slug === path[1])) return {};
+    const article = getArticle(locale, path[1]);
     return {
-      title: seoTitles[article.slug] ?? article.title,
+      title: article.title,
       description: article.description,
       robots: { index: false, follow: false },
     };
@@ -50,5 +46,6 @@ export default async function LocalizedTerminal({
   const locale = (
     locales.includes(rawLocale as Locale) ? rawLocale : "en"
   ) as Locale;
+  if (path[0] === "articles" && path[1] && !englishArticles.some(article => article.slug === path[1])) notFound();
   return <TerminalPage locale={locale} path={path} />;
 }

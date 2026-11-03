@@ -2,6 +2,10 @@ import type { FullArticle } from "./articles";
 
 export const articleImprovements: Record<string, Partial<FullArticle>> = {
   "spreadsheet-guide": {
+    "title": "How to Verify an AllChinaBuy Spreadsheet Link Before You Order",
+    "description": "Follow a real spreadsheet entry to its original Weidian listing, then match the item ID, selected variant and size evidence before buying.",
+    "modified": "2026-11-03",
+    "intro": ["Try the white printed shirt example below. Its catalogue record ends in 5934, while the link to Weidian identifies item 7727281311. Open the original listing and notice that it groups several designs. Record the chosen print and size before you compare the warehouse photos. This is a concrete way to test a spreadsheet row even when its title and thumbnail are too broad to identify a specific option."],
     "summary": "Treat the spreadsheet as a discovery index. Match the live variant, size evidence and current listing before adding an item to your shortlist.",
     "table": {
       "caption": "A shortlist that keeps evidence visible",
@@ -33,14 +37,14 @@ export const articleImprovements: Record<string, Partial<FullArticle>> = {
         ]
       ]
     },
-    "related": [
-      "shoes-spreadsheet-eu-size-qc",
-      "hoodies-spreadsheet-size-fabric-weight",
-      "qc-photo-routine"
-    ],
+    "related": ["qc-photos-weidian-taobao-link", "t-shirt-size-chart-qc", "qc-photo-routine"],
     "category": "shoes"
   },
   "qc-photo-routine": {
+    "title": "How to Read AllChinaBuy QC Photos: Size, Details and Defects",
+    "description": "Read front and back photos from a real listing, check what the ruler proves, and request the exact warehouse image you need before parcel submission.",
+    "modified": "2026-11-03",
+    "intro": ["Start with the white printed T-shirt below. In the front view, compare the placement of the artwork with the selected option. The reverse view lets you inspect the back and hem that the first view conceals. Neither ruler runs from one underarm seam to the other. If chest width decides whether the tee fits, request a new photograph with both seam endpoints visible. If you still need to find photos, use the Weidian and Taobao link guide."],
     "summary": "Check identity and quantity first, then request measurements or close-ups that resolve one specific uncertainty. Ordinary QC photos do not authenticate a product.",
     "table": {
       "caption": "Match the QC request to the unresolved question",
@@ -72,14 +76,14 @@ export const articleImprovements: Record<string, Partial<FullArticle>> = {
         ]
       ]
     },
-    "related": [
-      "shoes-spreadsheet-eu-size-qc",
-      "hoodies-spreadsheet-size-fabric-weight",
-      "how-to-order-romania"
-    ],
+    "related": ["qc-photos-weidian-taobao-link", "t-shirt-size-chart-qc", "shoes-spreadsheet-eu-size-qc"],
     "category": null
   },
   "parcel-cost-guide": {
+    "title": "AllChinaBuy Shipping to Romania: Estimate Weight and Parcel Cost",
+    "description": "Compare two 2 kg parcels, check the actual and volumetric weight, and see which details to verify before approving a Romania shipping quote.",
+    "modified": "2026-11-03",
+    "intro": ["Two parcels can weigh exactly 2 kg and attract different quotes. Imagine a compact clothing parcel measuring 30 × 20 × 10 cm and a shoe box measuring 40 × 30 × 20 cm. With an illustrative divisor of 6,000, the volumetric weights are 1 and 4 kg. On a route using the greater of actual and volumetric weight, those become 2 and 4 kg before rounding. Check the current line’s own divisor, rounding and declared charges before using the calculation for a real parcel."],
     "summary": "Compare route quotes using the same destination, contents and packed measurements. An estimate or deposit is not automatically the final delivered cost.",
     "table": {
       "caption": "Worked example only: 40 × 30 × 25 cm, actual weight 4 kg",
@@ -111,11 +115,7 @@ export const articleImprovements: Record<string, Partial<FullArticle>> = {
         ]
       ]
     },
-    "related": [
-      "shipping-expert-romania",
-      "shipping-to-romania",
-      "hoodies-spreadsheet-size-fabric-weight"
-    ],
+    "related": ["shipping-expert-romania", "shipping-to-romania", "t-shirt-size-chart-qc"],
     "category": null
   },
   "shipping-to-romania": {

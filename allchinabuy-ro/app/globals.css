@@ -3332,3 +3332,13 @@ img {
   .article-toc, .article-status, .article-next { padding: 18px; }
   .article-table { font-size: 13px; }
 }
+
+.home-intent-links{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.home-intent-links a,.article-evidence a{display:inline-block;border:1px solid currentColor;padding:.55rem .8rem;line-height:1.35;text-decoration:none;font-weight:650}
+.home-intent-links a:hover,.article-evidence a:hover{text-decoration:underline;text-underline-offset:.2em}
+.article-evidence{margin:1.4rem 0;padding:1rem 1.25rem;border-inline-start:3px solid #b67138;background:#f5f2ec;color:#29251f}
+.article-evidence p{margin:.4rem 0 .8rem}
+.article-evidence a{margin:.2rem .4rem .2rem 0;overflow-wrap:anywhere}
+.article-next .article-action{margin-inline-end:.5rem}
+.example-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
+.example-photos figure{margin:0}.example-photos img{width:100%;height:auto;display:block}.example-photos figcaption{padding:.35rem 0;font-size:.85rem}

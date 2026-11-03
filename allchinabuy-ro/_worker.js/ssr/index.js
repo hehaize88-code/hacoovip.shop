@@ -11627,13 +11627,19 @@ function createFromReadableStream(stream, options = {}) {
 //#region \0virtual:vite-rsc/client-references
 var client_references_default = {
 	"15c18cfaeeff": async () => {
-		const m = await import("./assets/layout-segment-context-HCWw3aRX.js");
+		const m = await import("./assets/layout-segment-context-39gZRl7R.js");
 		return { get "LayoutSegmentProvider"() {
 			return m["LayoutSegmentProvider"];
 		} };
 	},
+	"50fd1c791905": async () => {
+		const m = await import("./assets/engagement-tracking-Bs10gYEs.js");
+		return { get "EngagementTracking"() {
+			return m["EngagementTracking"];
+		} };
+	},
 	"593f344dc510": async () => {
-		const m = await import("./assets/error-boundary-RZYYvuB7.js");
+		const m = await import("./assets/error-boundary-DvmCyE5L.js");
 		return {
 			get "ErrorBoundary"() {
 				return m["ErrorBoundary"];
@@ -11667,7 +11673,7 @@ var client_references_default = {
 		};
 	},
 	"c2747888630f": async () => {
-		const m = await import("./assets/link-B4_balKa.js");
+		const m = await import("./assets/link-BHxxD6xw.js");
 		return { get "default"() {
 			return m["default"];
 		} };

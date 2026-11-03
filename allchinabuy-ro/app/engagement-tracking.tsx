@@ -19,12 +19,16 @@ export function EngagementTracking() {
       if (url.hostname === "cnfanshp.com") {
         send("catalogue_click", {
           destination_path: url.pathname,
-          link_type: url.pathname.startsWith("/AllProducts/") ? "product" : url.pathname === "/" ? "catalogue" : "category",
+          link_type: /^\/AllProducts\/\d+\.html$/.test(url.pathname) ? "product" : /^\/(AllProducts\/?)?$/.test(url.pathname) ? "catalogue" : "category",
           source_article: anchor.closest("[data-article-slug]")?.getAttribute("data-article-slug") || "",
         });
-      } else if (url.origin === window.location.origin && /^\/articles\/[^/]+$/.test(url.pathname)) {
-        send("guide_click", { article_slug: url.pathname.split("/").pop() || "" });
+        return;
       }
+      if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return;
+      const homeAction = anchor.dataset.homeAction;
+      if (homeAction) send("home_action", { action: homeAction, destination_path: url.pathname });
+      const article = url.pathname.match(/^\/(?:en\/|de\/|fr\/|es\/|it\/|pl\/)?articles\/([^/]+)\/?$/);
+      if (article) send("guide_click", { article_slug: article[1] });
     };
     const onSubmit = (event: SubmitEvent) => {
       if (!(event.target instanceof HTMLFormElement)) return;

@@ -1,0 +1,893 @@
+[
+  {
+    "slug": "qc-photos-weidian-taobao-link",
+    "title": "Comment trouver les photos QC d’un article Weidian ou Taobao",
+    "description": "Retrouvez les photos de contrôle d’un produit avec son lien Weidian ou Taobao, puis vérifiez le modèle, la variante et la date avant de vous y fier.",
+    "summary": "Partez de la fiche du vendeur. Gardez ensemble la plateforme, son identifiant d’article et la variante recherchée. Une archive aide à préparer un achat. Les photos de votre commande servent à accepter la pièce reçue.",
+    "sourceNote": "Méthode éditoriale fondée sur la structure des liens produits et les champs visibles dans les services publics de recherche de photos QC. La présence de photos dépend de chaque référence.",
+    "intro": [
+      "Vous avez repéré un t-shirt dans un tableau de trouvailles AllChinaBuy. La photo de présentation est soignée, mais vous voudriez voir le col et la coupe d’une pièce réellement reçue. Pour retrouver des photos QC, c’est-à-dire les images prises lors d’un contrôle en entrepôt, partez de la référence du vendeur. Une recherche sur le nom du vêtement peut mélanger des articles de plusieurs boutiques qui emploient la même photo.",
+      "Il y a deux moments bien distincts pour cette vérification. Avant l’achat, on cherche des indices dans les archives accessibles au public. Après la réception en entrepôt, on vérifie les photos associées à sa propre commande. Entre les deux, le vendeur peut avoir changé d’atelier, de tissu ou de choix de tailles. Voici comment exploiter ce que l’on trouve sans attribuer à sa commande une photo prise pour quelqu’un d’autre."
+    ],
+    "table": {
+      "caption": "Quelle référence utiliser pour chercher une photo QC ?",
+      "headers": [
+        "Élément disponible",
+        "Vérification utile",
+        "Suite à donner"
+      ],
+      "rows": [
+        [
+          "Lien Weidian avec itemID",
+          "La page est bien une fiche produit du vendeur",
+          "Conserver le lien et la valeur de itemID"
+        ],
+        [
+          "Lien Taobao avec id",
+          "Le titre et la boutique correspondent",
+          "Chercher avec la fiche complète, puis avec l’identifiant si le service le permet"
+        ],
+        [
+          "Numéro de commande ou de colis",
+          "Il renvoie à une transaction personnelle",
+          "Le garder dans le dossier privé de la commande"
+        ],
+        [
+          "Photos d’une autre couleur",
+          "La fiche semble correspondre, la variante diffère",
+          "Les utiliser pour préparer une question sur la coupe"
+        ],
+        [
+          "Aucun résultat",
+          "L’archive ne fournit pas de correspondance exploitable",
+          "Reprendre le lien source ou attendre les photos de la pièce reçue"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Remonter de la sélection à la fiche du vendeur",
+        "paragraphs": [
+          "Ouvrez la ligne du tableau qui vous intéresse et observez sa destination. Une page de catégorie regroupe plusieurs produits. Un lien de partage peut afficher d’abord une page intermédiaire. Une fiche d’agent peut décrire un produit sans montrer immédiatement la fiche du vendeur. Cherchez le lien public d’origine dans les informations produit. Une fois la fiche ouverte, comparez le titre, la boutique, la couleur sélectionnée et le nombre de modèles proposés. Si vous arrivez sur la boutique entière, reprenez la navigation jusqu’à l’article précis.",
+          "Enregistrez le lien complet fonctionnel avec une courte description dans vos notes. Par exemple, « polo noir à col blanc, version à deux boutons » est plus utile que « polo noir ». Conservez également le libellé original du choix lorsque le vendeur réunit plusieurs modèles sous un même titre. Vous pourrez ainsi comparer la variante même si l’interface du service de recherche la traduit autrement."
+        ]
+      },
+      {
+        "heading": "Lire le bon identifiant dans l’adresse",
+        "paragraphs": [
+          "Sur un lien produit Weidian, cherchez le paramètre itemID. Sur une fiche produit Taobao, l’identifiant d’article figure couramment dans le paramètre id. Dans une adresse contenant plusieurs valeurs, ne retenez pas simplement la chaîne de chiffres la plus longue. Un autre nombre peut désigner une boutique, une option commerciale ou une campagne. Notez la plateforme avec le numéro. Le contexte disparaît si vous ne copiez que les chiffres dans un message.",
+          "Un lien raccourci ne montre pas toujours ces paramètres. Ouvrez-le, puis relevez l’adresse de destination lorsque le produit est clairement identifiable. Si vous ne pouvez pas accéder à la fiche, conservez le lien initial et signalez ce qui manque. Ne reconstituez pas une référence à partir du prix, du nom du vendeur ou du numéro figurant sur votre reçu de paiement. Un identifiant de commande, une adresse de livraison et une capture de votre espace client ne sont pas nécessaires pour une recherche publique."
+        ]
+      },
+      {
+        "heading": "Chercher une série de photos cohérente",
+        "paragraphs": [
+          "Dans un service de recherche de photos QC qui accepte la plateforme concernée, collez le lien public. Quand la recherche par identifiant est proposée, elle permet de contrôler un résultat ambigu. Ouvrez la fiche de résultat et cherchez d’abord une correspondance de plateforme et d’article. Ensuite seulement, regardez les images. Un joli modèle de la bonne marque est un résultat faible si rien ne permet de le rattacher au vendeur et à la référence recherchés.",
+          "Regroupez les vues d’une même réception. Une photo de face et une photo de dos prises sur des fonds différents, à des dates éloignées et avec deux étiquettes de taille distinctes peuvent provenir de deux achats. Examinez les mentions associées à chaque série. Si la taille est illisible ou si la variante n’est pas indiquée, écrivez « taille inconnue ». Vous pourrez encore juger certains détails visibles sans transformer cette lacune en certitude."
+        ]
+      },
+      {
+        "heading": "Vérifier la couleur, la taille et la période",
+        "paragraphs": [
+          "Prenez le cas d’un polo vendu en cinq styles. Deux séries peuvent porter le même identifiant alors que l’une montre un col entièrement uni et l’autre un col bordé d’une rayure. La plus récente n’est pas forcément la plus pertinente. Éliminez d’abord les variantes incompatibles avec votre sélection. Comparez ensuite les séries datées de la variante restante, en cherchant des différences de construction plutôt que de petits écarts de teinte dus à l’éclairage.",
+          "Pour juger une coupe, vérifiez aussi l’étiquette de taille et la façon dont le vêtement est posé. Une photo de taille S ne permet pas de déduire la largeur d’un XL. Si une ancienne série révèle des poignets étroits, utilisez cette observation pour demander une mesure précise sur la pièce reçue. Une archive peut documenter une ancienne fabrication. Elle ne permet pas d’identifier le lot qui sera expédié, sauf si le vendeur ou l’entrepôt fournit un élément reliant explicitement votre pièce à ce lot."
+        ]
+      },
+      {
+        "heading": "Distinguer une image de vente d’une photo d’entrepôt",
+        "paragraphs": [
+          "Recherchez les indices qui relient l’image à une réception précise. Une étiquette lisible, plusieurs angles cohérents, une règle posée de façon visible et un enregistrement daté apportent ensemble plus d’informations qu’un unique visuel détouré. Aucun de ces éléments pris isolément ne certifie l’origine d’une photo. Un fond vert ou une règle ajoutée sur une image ne prouvent ni que l’entrepôt a reçu votre pièce ni que la mesure est exacte.",
+          "Pour exploiter une mesure, les deux extrémités du ruban doivent être visibles, l’unité lisible et le vêtement posé sans tension. Un gros plan du dernier chiffre ne permet pas de savoir où la mesure a commencé. Pour la couleur, observez si le fond blanc prend lui-même une teinte bleue ou jaune. Pour la matière, une photo peut montrer le relief d’un tricot ou un défaut de couture évident. Elle ne mesure ni la composition des fibres, ni la tenue au lavage, ni l’authenticité d’un produit."
+        ]
+      },
+      {
+        "heading": "Traiter une recherche vide ou une fiche remise en ligne",
+        "paragraphs": [
+          "Si aucune photo ne sort, ouvrez de nouveau la fiche du vendeur. Vérifiez que le lien vise toujours un article et que le service prend en charge cette plateforme. Une page retirée puis remise en ligne peut avoir reçu un autre identifiant. Comparez alors les deux adresses, la boutique, les variantes et les caractéristiques. Gardez l’ancienne série dans les notes avec sa référence d’origine. Évitez de l’accoler à la nouvelle annonce comme s’il s’agissait d’une réception récente.",
+          "Il arrive aussi que personne n’ait rendu de photos publiques. Dans ce cas, regardez quelle information conditionne réellement votre achat. Si elle figure dans le tableau du vendeur, vérifiez la taille et les unités. Si elle repose sur une photo du produit livré, demandez si une vue ciblée pourra être prise lors de sa réception. Quand le détail est indispensable et que personne ne peut le documenter, vous pouvez écarter l’article avant de payer."
+        ]
+      },
+      {
+        "heading": "Passer de l’archive à la décision pour votre commande",
+        "paragraphs": [
+          "Écrivez une question courte qui découle de votre recherche. Par exemple, demandez une photo du polo noir de face, posé à plat, avec un ruban entre les deux aisselles. À la réception, partez de votre ligne de commande et de sa variante. Confrontez cette photo à votre propre vêtement et au tableau conservé lors de l’achat. Si un détail diffère de l’archive mais correspond à l’annonce choisie, l’archive seule ne suffit pas à établir une erreur du vendeur.",
+          "Avant d’autoriser l’expédition internationale, consignez la référence, le coloris, la taille et le point que vous avez réellement contrôlé. Notez séparément les questions restées ouvertes. Si vous partagez des photos pour demander un avis, masquez l’adresse, les codes-barres et les références privées. Un dossier court avec une photo exploitable et une question précise sera plus facile à reprendre qu’une galerie de captures dont on ne connaît plus la provenance."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "t-shirt-size-chart-qc",
+    "title": "T-shirts AllChinaBuy : choisir sa taille à partir du tableau et des photos QC",
+    "description": "Mesurez un t-shirt qui vous va, comparez poitrine et longueur au tableau du vendeur, puis vérifiez la pièce reçue sur les photos QC de l’entrepôt.",
+    "summary": "Commencez avec un t-shirt déjà porté. Relevez sa largeur sous les bras et sa longueur, puis comparez la même mesure dans le tableau associé à la variante choisie. En cas de doute, faites mesurer la pièce reçue.",
+    "sourceNote": "Exemple pédagogique de mensurations à plat. Les trois jeux de mesures illustrent une comparaison de coupe et ne sont attribués à aucun vêtement du catalogue.",
+    "intro": [
+      "Votre t-shirt préféré mesure 52 cm sous les bras. Sur une fiche produit, une taille semble proche en largeur, une autre en longueur. La lettre sur l’étiquette ne tranche pas entre les deux. Pour choisir, il faut savoir comment le vendeur a mesuré et quel écart vous conviendrait une fois le vêtement porté. Une même largeur peut donner deux silhouettes différentes si les épaules ou la longueur des manches changent.",
+      "Le catalogue présente notamment un polo décliné en cinq styles et une fiche intitulée « Off White T-shirt ». Le nom aide à retrouver le produit, mais il ne renseigne pas sur les dimensions de chaque variante. Consultez le tableau associé à la fiche ouverte et gardez sa date. Les nombres utilisés ci-dessous sont des exemples de calcul. Vous pourrez remplacer chaque valeur par celles de votre vêtement et du vendeur."
+    ],
+    "table": {
+      "caption": "Comparer deux coupes à une pièce portée, mesures fictives à plat",
+      "headers": [
+        "Vêtement",
+        "Largeur sous les bras",
+        "Longueur",
+        "Écart par rapport au t-shirt repère"
+      ],
+      "rows": [
+        [
+          "Votre t-shirt repère",
+          "52 cm",
+          "68 cm",
+          "Point de départ"
+        ],
+        [
+          "Option A",
+          "50 cm",
+          "67 cm",
+          "2 cm plus étroite et 1 cm plus courte"
+        ],
+        [
+          "Option B",
+          "54 cm",
+          "70 cm",
+          "2 cm plus large et 2 cm plus longue"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Choisir un vêtement de référence",
+        "paragraphs": [
+          "Prenez un t-shirt que vous portez réellement et dont la coupe correspond à votre projet. Pour chercher un polo ajusté, un très grand t-shirt de sport est un mauvais repère, même si les deux indiquent M. Si votre choix se porte sur une coupe ample, partez si possible d’une pièce ample que vous aimez déjà. Examinez comment elle tombe aux épaules, à la taille et aux manches. Ces observations guideront votre décision si deux tailles sont également proches en centimètres.",
+          "Posez la pièce sur une surface plane, dans l’état où vous la portez d’habitude. Refermez les boutons du polo si cela facilite la mise à plat. Lissez doucement les plis avec la main sans tirer sur le jersey. Veillez à ce que les coutures latérales soient dans leur position naturelle. Si un côté paraît plus long, retournez le vêtement et recommencez avant de noter une mesure incertaine. Une photo de votre installation vous aidera à reproduire le geste."
+        ]
+      },
+      {
+        "heading": "Mesurer la poitrine et la longueur au même endroit",
+        "paragraphs": [
+          "Pour la largeur de poitrine à plat, placez le zéro du mètre à l’endroit où la couture de manche rejoint un côté du buste, puis mesurez horizontalement jusqu’à l’autre côté au même niveau. Le ruban repose sur le tissu. Ne l’enroulez pas autour du vêtement. Notez « 52 cm à plat, aisselle à aisselle » plutôt que « poitrine 52 ». Vous saurez ainsi quelle dimension comparer lorsque le vendeur emploie un autre intitulé.",
+          "Pour la longueur, suivez le dessin du vendeur lorsqu’il existe. Une mesure allant du point haut de l’épaule près du col jusqu’au bas ne commence pas au même endroit qu’une mesure prise au milieu du dos sous l’encolure. Un bord arrondi peut également changer le point d’arrivée. Notez la face mesurée et photographiez les deux extrémités du ruban. Si un vendeur inclut le col dans sa mesure, reprenez votre vêtement au même point avant de conclure qu’une taille est trop longue."
+        ]
+      },
+      {
+        "heading": "Déchiffrer le tableau de la bonne variante",
+        "paragraphs": [
+          "Regardez d’abord si le tableau décrit les dimensions du vêtement ou celles du corps auquel il est destiné. Un tour de poitrine conseillé pour une personne ne correspond pas directement à la largeur de son t-shirt préféré. Sur une pièce mesurée à plat, 52 cm entre les aisselles correspondent approximativement à un tour de 104 cm au même niveau, sous l’hypothèse de deux faces semblables. Ce calcul change la présentation de la mesure. Il ne change pas le tissu disponible.",
+          "Vérifiez ensuite l’unité. Une grille avec des données en pouces nécessite une conversion avant la comparaison. Un pouce correspond à 2,54 cm. Relevez aussi la légende du dessin et toute tolérance annoncée par le vendeur. Si plusieurs styles partagent une même fiche, vérifiez que le tableau correspond à celui choisi. Une photo du tableau liée au premier coloris ne suffit pas à prouver que toutes les versions sont taillées sur le même patron."
+        ]
+      },
+      {
+        "heading": "Choisir entre 50 × 67 cm et 54 × 70 cm",
+        "paragraphs": [
+          "Dans notre exemple, le t-shirt de référence fait 52 cm de large et 68 cm de long. L’option A, 50 × 67 cm, procure 2 cm de moins à plat et 1 cm de moins en longueur. L’option B, 54 × 70 cm, apporte 2 cm de plus à plat et 2 cm de plus en longueur. Les deux écarts de largeur ont la même valeur absolue, mais ils produiront des effets opposés sur vous.",
+          "Reprenez le t-shirt repère. Si le tissu tire déjà légèrement quand vous avancez les bras, l’option plus étroite risque d’accentuer le problème. Si votre priorité est de porter une veste courte sans que le t-shirt dépasse, vérifiez où arriveraient deux centimètres de longueur supplémentaires. Vous pouvez matérialiser sur le vêtement la longueur recherchée avec un simple pli pour vous faire une idée. Ce test n’imite pas la nouvelle coupe, mais il révèle le critère qui vous importe vraiment."
+        ]
+      },
+      {
+        "heading": "Examiner les épaules, les manches et le col",
+        "paragraphs": [
+          "Deux t-shirts de même largeur peuvent se porter très différemment. Avec une couture d’épaule placée bas, la manche descend plus loin sur le bras. Avec une manche raglan, il n’existe pas le même point de jonction que sur une manche montée classique. Pour comparer une mesure d’épaule à épaule, assurez-vous de pouvoir identifier les deux coutures sur les deux modèles. Si les constructions divergent, donnez davantage de poids aux photos de coupe et à la largeur de buste.",
+          "Sur un polo, regardez la patte de boutonnage, le montage du col et la largeur des ouvertures de manche. Une petite différence au col peut compter davantage qu’un centimètre à l’ourlet. Une photo de face bien à plat permet de juger la position et la symétrie de ces éléments. Une photo ne permet toutefois pas de prédire la sensation au toucher, l’élasticité après plusieurs lavages ou le retrait exact du tissu. Conservez séparément les informations annoncées par le vendeur."
+        ]
+      },
+      {
+        "heading": "Formuler une demande de mesure QC exploitable",
+        "paragraphs": [
+          "Quand la pièce arrive en entrepôt, associez la demande à la bonne couleur, à la bonne taille et à la bonne commande. Demandez une vue du t-shirt posé à plat, sans étirement, avec un mètre de couture sous une aisselle jusqu’à l’autre. Pour la longueur, indiquez votre point de départ et demandez que l’ourlet ainsi que le zéro restent visibles. Une demande par mesure limite le risque qu’une seule photo en diagonale doive répondre à deux questions différentes.",
+          "À la lecture, grossissez les deux extrémités au lieu de vous fier au chiffre le plus visible. Vérifiez qu’il s’agit de la face centimétrique et que le tissu n’est pas replié derrière le ruban. Si vous ne voyez que l’ourlet et la fin de la règle, expliquez quel point manque. Un léger écart peut venir de la pose, d’une couture ou de la tolérance annoncée. Si la différence change réellement votre décision, une seconde vue prise au même endroit est plus utile qu’une conversion approximative vers une autre lettre de taille."
+        ]
+      },
+      {
+        "heading": "Décider avant la préparation du colis",
+        "paragraphs": [
+          "Rassemblez une dernière fois votre mesure de référence, la ligne du tableau choisie et les mesures lisibles sur la pièce reçue. Si les données sont cohérentes et que la coupe correspond à votre usage, vous pouvez passer à la préparation du colis. Si elles ne le sont pas, indiquez au service concerné la dimension en question, l’écart constaté et le résultat demandé. Vérifiez directement les conditions qui s’appliquent à cette commande avant d’envisager une nouvelle taille ou un retour.",
+          "Gardez une note après avoir porté le vêtement. Relevez ce qui vous convient ou vous gêne, comme la largeur correcte mais les manches trop longues sous une veste. Lors de votre prochain achat, ce détail fera gagner plus de temps qu’une formule générale du type « prendre une taille au-dessus ». Votre propre historique de vêtements mesurés devient alors une référence adaptée à vos préférences et à votre façon de les porter."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "parcel-cost-guide",
+    "title": "AllChinaBuy vers la Roumanie : calculer le poids facturable d’un colis",
+    "description": "Comparez deux colis de 2 kg, le poids volumétrique, les règles d’arrondi et les frais à vérifier avant d’accepter un devis à destination de la Roumanie.",
+    "summary": "Relevez le poids et les dimensions extérieures du carton fermé. Pour une ligne qui retient la plus grande des deux valeurs, comparez son poids réel et son poids volumétrique avec le diviseur de cette ligne.",
+    "sourceNote": "Exemples de calcul réalisés avec des dimensions fictives et un diviseur hypothétique. Le calculateur de fret publié par AllChinaBuy demande notamment la destination, la catégorie de produit, le poids et, pour une estimation au volume, les dimensions.",
+    "intro": [
+      "Combien coûte un colis de 2 kg livré en Roumanie ? Le poids ne suffit pas pour répondre. Imaginez que vous ayez rangé les mêmes articles dans une enveloppe compacte puis dans un grand carton. Les deux pèsent à peu près autant sur la balance, mais le carton occupe beaucoup plus de place. Certaines lignes en tiennent compte lors de la facturation. Avant de chercher un prix en euros ou en lei, vérifiez ce que le transporteur va mesurer."
+    ],
+    "table": {
+      "caption": "Deux colis fictifs de 2 kg, avec un diviseur supposé de 6 000 cm³/kg",
+      "headers": [
+        "Dimensions extérieures",
+        "Volume en cm³",
+        "Poids volumétrique",
+        "Plus grand des deux poids, avant arrondi"
+      ],
+      "rows": [
+        [
+          "30 × 20 × 10 cm",
+          "6 000",
+          "1 kg",
+          "2 kg"
+        ],
+        [
+          "40 × 30 × 20 cm",
+          "24 000",
+          "4 kg",
+          "4 kg"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Relever le poids du colis prêt à partir",
+        "paragraphs": [
+          "Le poids inscrit pour un t-shirt à la réception ne comprend pas nécessairement l’emballage final. Un carton, des protections ou une boîte à chaussures peuvent modifier à la fois le poids et le volume. Mesurez la longueur, la largeur et la hauteur maximales de l’ensemble fermé, en centimètres. Pour un carton qui bombe sur les côtés, demander comment l’opérateur mesure ces parties évite de fonder le calcul sur des dimensions intérieures.",
+          "Avant l’arrivée des articles, on peut bien sûr faire une simulation. Notez alors quelles valeurs sont estimées. À la réception, remplacez-les par les données de l’entrepôt. Conservez l’ancienne simulation pour repérer ce qui a changé. Si le prix monte après l’emballage, vous distinguerez une hausse due au volume d’un changement de ligne ou de frais annexes."
+        ]
+      },
+      {
+        "heading": "Faire le calcul dans la bonne unité",
+        "paragraphs": [
+          "Dans notre exemple, le petit carton occupe 6 000 cm³. Avec un diviseur hypothétique de 6 000 cm³ par kilogramme, cela donne 1 kg volumétrique. S’il pèse réellement 2 kg et si la ligne retient la valeur la plus élevée, sa base de calcul est 2 kg. Le grand carton occupe 24 000 cm³. Avec le même diviseur, il atteint 4 kg volumétriques. Son poids réel de 2 kg conduit donc à une base de 4 kg avant arrondi.",
+          "Ce résultat ne donne pas le tarif en monnaie. Vérifiez le diviseur, l’arrondi, la première tranche et les tranches supplémentaires de la ligne effectivement proposée. N’appliquez pas le diviseur de cet exemple à une ligne qui utilise une autre méthode. Si deux devis donnent des montants différents pour le même carton, commencez par comparer leurs règles de poids facturable et d’options incluses."
+        ]
+      },
+      {
+        "heading": "Comparer deux emballages avec les mêmes articles",
+        "paragraphs": [
+          "Pour voir l’effet d’un changement, gardez la destination roumaine, la liste des articles et la catégorie identiques. Faites varier uniquement l’emballage. Par exemple, une boîte de chaussures apporte une protection utile, mais sa forme rigide peut fixer la hauteur de tout le colis. Demandez la hauteur finale si la boîte est conservée, puis une proposition avec une protection adaptée si elle est retirée. La suppression ne vaut la peine que si le gain estimé et la protection vous conviennent.",
+          "Un envoi groupé partage parfois des frais fixes entre plusieurs articles. Il peut aussi dépasser une limite de dimensions ou inclure un produit incompatible avec une ligne. Pour envisager deux colis, additionnez les deux premières tranches, les protections et les services éventuels. Comparer le montant du petit colis au prix total du grand conduit presque toujours à une conclusion trompeuse."
+        ]
+      },
+      {
+        "heading": "Distinguer le transport du coût à l’arrivée",
+        "paragraphs": [
+          "Sur votre fiche de budget, séparez le prix payé au vendeur, le transport intérieur jusqu’à l’entrepôt, le service d’emballage, le fret international et les éventuels frais demandés à destination. Notez la devise, la date du devis et ce qui est précisé à propos des sommes incluses. Si le traitement d’un poste demeure inconnu, laissez la case ouverte au lieu d’inscrire zéro. Pour les formalités en Roumanie, consultez les indications actuelles du transporteur et des autorités compétentes.",
+          "Au moment de décider, assurez-vous que la ligne accepte réellement le contenu déclaré et l’adresse. Enregistrez le devis final et le relevé des mesures ensemble. Si une différence apparaît au paiement, cette paire de documents permet de demander si le changement vient du carton, de la règle tarifaire, d’une option ou de la disponibilité du service."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spreadsheet-guide",
+    "title": "Spreadsheet AllChinaBuy : vérifier un lien et choisir la bonne variante",
+    "description": "Depuis un tableau AllChinaBuy, vérifiez le vendeur, le modèle, la taille et le prix réellement sélectionnés avant de conserver une trouvaille.",
+    "summary": "Gardez le lien de la fiche ouverte et le libellé exact de la variante. Une ligne de tableau sert à découvrir un article, tandis que sa fiche actuelle permet de vérifier ce que vous pourriez commander.",
+    "sourceNote": "Méthode de lecture appliquée aux fiches visibles du catalogue, notamment au polo décliné en cinq styles. Le stock, les variantes ou le prix affichés par le vendeur peuvent changer.",
+    "intro": [
+      "Vous repérez une ligne « polo » dans un spreadsheet AllChinaBuy et la photo ressemble au vêtement recherché. En ouvrant la fiche, vous trouvez plusieurs modèles sous le même titre. Le prix d’appel, le col affiché en vignette et le tableau de tailles peuvent alors concerner trois options différentes. Quelques vérifications permettent de construire une sélection courte dont chaque ligne mène à un achat identifiable."
+    ],
+    "table": {
+      "caption": "Les quatre informations à relever pour chaque trouvaille",
+      "headers": [
+        "Champ",
+        "Exemple de vérification",
+        "Moment de la seconde vérification"
+      ],
+      "rows": [
+        [
+          "Produit",
+          "La fiche affiche le même modèle et le même vendeur",
+          "Avant de passer commande"
+        ],
+        [
+          "Variante",
+          "Libellé du style, couleur, taille et quantité",
+          "Sur le récapitulatif"
+        ],
+        [
+          "Taille",
+          "Unité et emplacement des mesures",
+          "À réception de la photo QC"
+        ],
+        [
+          "Prix",
+          "Montant de la variante, devise et date",
+          "Avant de confirmer le paiement"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Définir ce que vous recherchez avant d’ouvrir les liens",
+        "paragraphs": [
+          "Choisissez quelques critères qui permettent d’écarter un article. Pour un polo, ce peut être une largeur de poitrine connue, des manches courtes et un col sans bande contrastante. Fixez aussi une enveloppe pour le vêtement et une réserve distincte pour l’expédition vers la Roumanie. Vous pourrez ensuite comparer deux fiches sur la coupe et le budget au lieu de départager leurs photos de mise en scène.",
+          "Le catalogue du site comporte un polo présenté en cinq styles et un t-shirt sous un autre intitulé. Commencez par le type de vêtement. Ouvrez ensuite chaque lien dans le contexte de sa ligne et vérifiez que vous arrivez sur une fiche produit précise. Une page d’accueil, une catégorie ou un résultat de recherche ne permettent pas d’associer le prix de la ligne à un vendeur déterminé."
+        ]
+      },
+      {
+        "heading": "Contrôler le modèle réellement sélectionné",
+        "paragraphs": [
+          "Sur la fiche, repérez le nom de la boutique et la référence produit si elle est visible. Sélectionnez le style, la couleur et la taille souhaités, puis examinez le prix et la disponibilité après ces choix. Une annonce peut proposer côte à côte plusieurs coupes, une pièce seule et un ensemble. Si le portrait du modèle et le libellé du bouton ne concordent pas, gardez la question en suspens plutôt que de choisir d’après la vignette.",
+          "Prenez dans vos notes le nom original de la variante, même si vous utilisez une traduction pour naviguer. Cela facilite la comparaison lorsque la fiche de l’agent utilise une autre formulation. Avant paiement, relisez le récapitulatif. Un prix inchangé ne garantit pas que la taille ou la quantité ont été conservées après un retour en arrière."
+        ]
+      },
+      {
+        "heading": "Vérifier ce que prouvent les photos et les mesures",
+        "paragraphs": [
+          "Recherchez un tableau lié à la variante choisie. Vérifiez s’il s’agit de dimensions du corps ou du vêtement, et si la poitrine est mesurée à plat ou en tour complet. Comparez avec un vêtement qui vous convient, en utilisant les mêmes points de mesure. Une taille M dans deux boutiques peut correspondre à des largeurs différentes. Une simple mention « taille normalement » ne vous permettra pas de décider si un polo passera sous votre veste.",
+          "Des photos QC publiques liées à l’article apportent un autre point de vue sur la coupe et les finitions. Relevez la date, la couleur et la taille lorsque ces éléments sont visibles. Une ancienne photo d’une autre couleur peut vous apprendre où regarder la couture du col, mais elle ne montre pas la pièce qui vous sera envoyée. Ajoutez dans votre liste la question à poser à la réception."
+        ]
+      },
+      {
+        "heading": "Classer les liens utiles et écarter les impasses",
+        "paragraphs": [
+          "Gardez deux ou trois candidats vraiment comparables. À côté de chaque lien, inscrivez la variante, le prix observé, les mesures importantes et l’information manquante. Une fiche bien documentée peut devenir préférable même si son prix unitaire est un peu plus élevé. Rouvrez le lien retenu avant de payer. Si le vendeur a remplacé le produit ou redirigé l’annonce, créez une nouvelle entrée au lieu d’attribuer à la nouvelle fiche les anciens commentaires.",
+          "Si le lien ne fonctionne plus, revenez à la catégorie et cherchez une alternative avec vos critères. Une photo identique sur une autre annonce ne suffit pas à établir qu’il s’agit du même lot. Recommencez la vérification pour cette alternative. Votre sélection reste alors utilisable même quand une ligne du tableau vieillit."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "qc-photo-routine",
+    "title": "Photos QC AllChinaBuy : contrôler la taille, les coutures et les défauts visibles",
+    "description": "Lisez les photos de l’entrepôt dans un ordre simple, vérifiez les mesures pertinentes et demandez la vue manquante avant l’expédition internationale.",
+    "summary": "Vérifiez l’article et sa variante avant de juger son aspect. Demandez ensuite une photo qui répond à la question encore ouverte et prenez votre décision avant la mise en colis.",
+    "sourceNote": "Grille de lecture éditoriale des photos de contrôle en entrepôt. Les indices visuels ne permettent pas d’établir l’authenticité, la composition exacte ou la résistance à l’usage.",
+    "intro": [
+      "L’entrepôt vient de mettre plusieurs images à disposition. La tentation est de zoomer sur la broderie ou le logo dès la première photo. Commencez plutôt par vérifier que la bonne pièce et le bon nombre d’articles sont là. Un détail parfaitement cousu sur un sweat de la mauvaise taille ne vous rapproche pas d’une décision."
+    ],
+    "table": {
+      "caption": "Une question, une vue de contrôle",
+      "headers": [
+        "Article ou doute",
+        "Photo à demander",
+        "Limite de la photo"
+      ],
+      "rows": [
+        [
+          "Paire de chaussures",
+          "Étiquettes des deux pieds et vue des semelles côte à côte",
+          "Le confort en marche reste inconnu"
+        ],
+        [
+          "Polo trop étroit",
+          "Largeur à plat avec zéro et extrémité du ruban visibles",
+          "Le tissu peut se comporter autrement une fois porté"
+        ],
+        [
+          "Couture irrégulière",
+          "Vue d’ensemble pour situer le défaut puis gros plan net",
+          "Une image floue ne permet pas d’en estimer l’étendue"
+        ],
+        [
+          "Accessoire en plusieurs pièces",
+          "Tous les éléments réunis dans le cadre",
+          "La présence des pièces ne garantit pas leur fonctionnement"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Commencer par la commande, puis ouvrir les photos",
+        "paragraphs": [
+          "Relisez le récapitulatif que vous avez conservé. Identifiez le modèle, le coloris, la taille, la quantité et les accessoires inclus. Ouvrez la série de photos attachée à cette ligne. Comparez les caractéristiques les plus faciles à distinguer, comme deux boutons au lieu de trois ou la couleur d’un empiècement. Si deux commandes se ressemblent, notez la correspondance entre la ligne de commande et la série de photos.",
+          "Une photo trouvée sur un moteur de recherche QC peut présenter un modèle identique, mais elle provient d’une autre réception. Elle sert de point de comparaison. Pour accepter une pièce ou signaler un problème au vendeur, appuyez-vous sur les photos de la réception qui vous concerne."
+        ]
+      },
+      {
+        "heading": "Examiner la silhouette sans confondre pli et défaut",
+        "paragraphs": [
+          "Commencez par une vue de face et une vue de dos. Observez la symétrie des épaules, la position des poches, la longueur apparente des manches ou l’alignement des talons. Un vêtement froissé sur un côté donne facilement l’impression que l’ourlet est de travers. Avant de demander un échange, faites prendre une seconde photo avec la pièce étalée et l’objectif placé au-dessus du centre.",
+          "Passez aux détails qui peuvent changer votre décision. Une grosse couture ouverte, un accessoire manquant ou deux étiquettes de pointure incompatibles mérite une demande précise. Sur une simple variation de couleur, vérifiez d’abord l’éclairage. Quand le fond et la règle paraissent également jaunis, demandez une vue sous une lumière plus neutre pour comparer la teinte."
+        ]
+      },
+      {
+        "heading": "Obtenir une mesure qui puisse être relue",
+        "paragraphs": [
+          "Pour un haut, demandez une largeur de poitrine d’aisselle à aisselle. Pour une chaussure dont la semelle de propreté est amovible, demandez si elle peut être mesurée à plat du talon jusqu’à l’extrémité. Donnez une seule consigne de placement par vue. Le zéro, la fin du ruban et le contour de la pièce doivent apparaître ensemble.",
+          "Comparez la mesure à celle de votre vêtement ou de votre paire repère, prise de la même façon. Une semelle extérieure comprend des rebords et ne donne pas directement l’espace intérieur. De même, comparer un tour de poitrine complet à une largeur à plat crée un écart artificiel. En cas de doute sur l’unité ou sur le point de départ, demandez une correction plutôt que d’arrondir jusqu’à obtenir le chiffre espéré."
+        ]
+      },
+      {
+        "heading": "Accepter, demander une précision ou signaler l’écart",
+        "paragraphs": [
+          "Vous pouvez accepter l’article lorsque l’identification, les mesures essentielles et l’état visible répondent à vos critères. Si une pièce correspond mais qu’une mesure manque, expliquez exactement la vue qui débloquerait votre décision. Si vous identifiez une erreur manifeste, joignez la capture de la variante commandée, la photo concernée et une phrase courte décrivant l’écart. Demandez quelles options restent disponibles selon la commande.",
+          "Conservez le dossier et la date de votre demande pendant que la pièce est encore à l’entrepôt. Même une série nette ne teste pas la solidité d’une fermeture au fil des mois, la tenue après lavage ou la composition du textile. Lorsque l’un de ces points est essentiel, cherchez une information adaptée dans la fiche ou auprès du vendeur avant d’autoriser l’expédition."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "shipping-to-romania",
+    "title": "Livraison AllChinaBuy en Roumanie : comparer les lignes et suivre le colis",
+    "description": "Préparez un envoi vers la Roumanie en vérifiant les restrictions, la protection, le devis complet et le passage au transporteur local.",
+    "summary": "Éliminez les lignes qui n’acceptent pas tous les articles ou le format du colis. Départagez les options restantes avec les mesures du carton fermé, leurs conditions et les frais qu’elles précisent.",
+    "sourceNote": "Méthode établie à partir des informations de fret publiées par AllChinaBuy et des principes d’importation présentés par la Commission européenne. Consultez les informations officielles en vigueur au moment de l’envoi.",
+    "intro": [
+      "Une première estimation vers Bucarest ou Cluj-Napoca donne une idée du budget. Elle est beaucoup plus utile si vous en conservez les hypothèses. Avant même de choisir entre deux lignes, vérifiez qu’elles peuvent transporter l’ensemble de votre colis jusqu’au code postal prévu. Le prix pour des vêtements ordinaires ne décrit pas nécessairement l’offre pour un colis contenant aussi une batterie ou un liquide."
+    ],
+    "table": {
+      "caption": "Les questions à poser avant de valider un envoi",
+      "headers": [
+        "Point à comparer",
+        "Donnée à relever",
+        "Quand la confirmer"
+      ],
+      "rows": [
+        [
+          "Admissibilité",
+          "Destination, nature des articles et limites de la ligne",
+          "Avant de demander un devis"
+        ],
+        [
+          "Emballage",
+          "Poids et dimensions du carton fermé",
+          "Après préparation"
+        ],
+        [
+          "Frais",
+          "Fret, options, frais de traitement et traitement fiscal indiqué",
+          "Sur le devis final"
+        ],
+        [
+          "Livraison locale",
+          "Transporteur annoncé, suivi et mode de réception",
+          "Au premier scan de prise en charge locale"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Faire l’inventaire du contenu réel",
+        "paragraphs": [
+          "Listez les biens acceptés en entrepôt et séparez les articles fragiles ou soumis à des restrictions. Signalez la présence de composants que le transporteur doit connaître, même si le produit principal paraît ordinaire. Faites préciser les limites de poids et de dimensions ainsi que la desserte de l’adresse. Une ligne qui refuse un seul article peut ne plus convenir au panier entier.",
+          "Si un article bloque le projet, demandez une proposition pour les autres articles et une proposition distincte pour celui-ci. Reprenez toutes les tranches de frais sur les deux devis. Une solution en deux envois peut préserver une ligne adaptée aux vêtements, tout en coûtant davantage à cause du double emballage et des deux prises en charge."
+        ]
+      },
+      {
+        "heading": "Refaire l’estimation après emballage",
+        "paragraphs": [
+          "Tant que l’article est sur la fiche vendeur, le poids et le volume restent provisoires. Lorsqu’il arrive, confrontez ces hypothèses aux dimensions et au poids mesurés. Pour des chaussures, demandez si la boîte commerciale est incluse dans le relevé et si sa conservation change les dimensions extérieures. Pour des vêtements, renseignez-vous sur la protection prévue contre l’humidité et sur les éléments rigides qui supportent mal la compression.",
+          "Comparez deux options à destination, contenu et date identiques. Prenez en compte la couverture du suivi, les conditions de dédommagement, les limites d’indemnisation et le point de départ du délai annoncé. Un délai donné après collecte effective ne se compare pas directement à un délai donné dès la création d’une étiquette."
+        ]
+      },
+      {
+        "heading": "Préparer les justificatifs et lire le devis",
+        "paragraphs": [
+          "Gardez une description fidèle des biens, leur quantité, les factures ou confirmations de paiement et le coût du transport lorsque celui-ci est indiqué à part. Si un document est demandé pendant le traitement, vérifiez la demande depuis le canal officiel du transporteur. Le dossier sera plus facile à compléter si les références et les montants se rapportent aux mêmes articles.",
+          "Sur le devis, distinguez le fret international, les services facultatifs, les sommes que l’opérateur dit inclure et les éventuels frais de traitement à destination. Les règles d’importation et leur application dépendent de la situation. Avant de décider, consultez les indications actuelles de la Commission européenne et de l’Autorité douanière roumaine. Une ligne commerciale qui porte un nom rassurant ne suffit pas pour déduire la somme finale à régler."
+        ]
+      },
+      {
+        "heading": "Suivre le transfert au transporteur roumain",
+        "paragraphs": [
+          "Après l’envoi, gardez le numéro du colis dans l’espace de commande et le numéro du transporteur. Une nouvelle référence locale peut apparaître à l’arrivée. Vérifiez les deux enregistrements et notez le dernier événement daté, son lieu et l’opérateur qui l’a publié. Une interface traduite en roumain ne prouve pas que le colis a atteint le pays.",
+          "À la livraison, vérifiez l’état extérieur avant de jeter l’emballage. Si une pièce manque ou arrive endommagée, photographiez le colis, son étiquette et le contenu reçu. Vérifiez les délais et le canal de réclamation correspondant au service choisi. La copie du devis et du dossier de commande permet de préciser ce qui était effectivement expédié."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "tracking-guide",
+    "title": "Suivi AllChinaBuy : comprendre les statuts d’un colis vers la Roumanie",
+    "description": "Distinguez commande, colis et numéro de transporteur, puis repérez le dernier scan utile en cas de suivi bloqué ou de transfert en Roumanie.",
+    "summary": "Un numéro créé ne prouve pas la prise en charge. Cherchez l’événement daté qui confirme le passage physique à l’étape suivante et l’opérateur responsable de ce scan.",
+    "sourceNote": "Interprétation éditoriale de statuts courants. Les libellés, les délais et les pièces qui peuvent être demandées varient selon le transporteur et la ligne.",
+    "intro": [
+      "Le tableau de bord peut annoncer qu’une commande est expédiée alors que le suivi international demeure vide. Les deux informations peuvent concerner deux expéditions distinctes. La première mène la commande du vendeur vers l’entrepôt en Chine. La seconde transporte le colis préparé jusqu’en Roumanie. Vérifier la nature du numéro avant de chercher un retard évite une grande partie des fausses alertes."
+    ],
+    "table": {
+      "caption": "Lire la dernière information sans anticiper l’étape suivante",
+      "headers": [
+        "Événement affiché",
+        "Ce qu’il permet d’établir",
+        "Prochaine vérification"
+      ],
+      "rows": [
+        [
+          "Informations électroniques reçues",
+          "Un enregistrement ou une étiquette existe",
+          "Chercher une collecte ou une acceptation physique"
+        ],
+        [
+          "Colis accepté",
+          "Le transporteur signale sa prise en charge",
+          "Lire le lieu, la date et la référence associée"
+        ],
+        [
+          "En traitement douanier",
+          "Le traitement est mentionné",
+          "Regarder si une action précise a été demandée"
+        ],
+        [
+          "Remis au partenaire local",
+          "Le transport peut se poursuivre sous une autre référence",
+          "Identifier le transporteur roumain et le numéro local"
+        ],
+        [
+          "Livraison tentée",
+          "Une tentative est enregistrée",
+          "Vérifier les options officielles de retrait ou de nouvelle présentation"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Reconstituer la chaîne depuis la commande",
+        "paragraphs": [
+          "Retrouvez la référence du vendeur, le numéro de l’article en entrepôt, l’identifiant de regroupement et le numéro de transport international. Tous ne sont pas forcément disponibles. Placez chaque référence à côté de sa fonction. Si vous avez reçu des photos QC mais aucun enregistrement de colis, vous pouvez demander des informations sur l’article en entrepôt. Une recherche sur un site de livraison roumain n’apportera alors aucun scan pertinent.",
+          "Un petit colis intérieur peut être regroupé avec d’autres dans un carton international. Lorsque le suivi intérieur dit « livré », regardez le lieu. Une réception à l’entrepôt marque la fin de ce transport intérieur, pas la livraison au domicile en Roumanie."
+        ]
+      },
+      {
+        "heading": "Distinguer préparation, mouvement et attente",
+        "paragraphs": [
+          "L’étiquette peut être créée avant que le carton soit remis au transporteur. La formulation « données reçues » décrit généralement cette transmission initiale. Pour établir une prise en charge, cherchez un scan d’acceptation ou de collecte. Notez le texte dans sa langue d’origine si sa traduction paraît imprécise.",
+          "Après le départ, une période sans information publique peut séparer deux scans de regroupement ou deux réseaux. Un événement à l’exportation ne fixe ni une date de vol ni une date de livraison. Comparez le temps écoulé avec le délai et le point de départ indiqués pour votre ligne. Si une intervention est explicitement demandée, n’attendez pas un nouveau scan pour la vérifier auprès du transporteur."
+        ]
+      },
+      {
+        "heading": "Reprendre le suivi lors de l’arrivée en Roumanie",
+        "paragraphs": [
+          "Au changement d’opérateur, cherchez une ligne indiquant le partenaire local ou un autre numéro d’envoi. Copiez cette nouvelle référence sur le site officiel de l’opérateur nommé dans le dossier. Si le numéro local n’apparaît pas, conservez la référence internationale et demandez si un numéro de remise a été attribué. Tester des numéros ressemblants peut afficher le colis d’une autre personne.",
+          "Avant la livraison, vérifiez le code postal et les coordonnées déjà transmis dans votre dossier privé. Si un message extérieur sollicite un paiement ou un document, revenez vous-même au suivi officiel. Ne publiez pas une capture comportant votre nom, votre adresse ou votre code de retrait dans un groupe de discussion."
+        ]
+      },
+      {
+        "heading": "Demander une recherche exploitable",
+        "paragraphs": [
+          "Indiquez au support le numéro du colis concerné, le transporteur, le dernier événement exactement recopié, sa date et le temps écoulé depuis. Précisez ce que vous attendez, par exemple le numéro local après un transfert annoncé ou l’identification d’un document manquant. Pour une livraison indiquée comme effectuée, vérifiez d’abord le point de retrait, le récépissé ou l’adresse de remise accessible dans votre dossier.",
+          "Gardez la réponse datée avec les deux numéros. Une chronologie de cinq événements vérifiés permet à la personne qui reprend le dossier de distinguer l’absence d’un scan public d’une anomalie explicitement signalée."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "how-to-order-romania",
+    "title": "Commander avec AllChinaBuy depuis la Roumanie : de la sélection au colis",
+    "description": "Préparez chaque étape d’une commande AllChinaBuy, du choix de la variante à la livraison en Roumanie, en passant par le contrôle en entrepôt.",
+    "summary": "On choisit d’abord l’article, puis on contrôle la pièce reçue, et enfin on organise le transport du colis accepté. Vérifiez à chaque étape la disponibilité réelle du service.",
+    "sourceNote": "Parcours fondé sur les descriptions publiques des services d’achat, d’inspection et d’expédition d’AllChinaBuy. La page officielle affiche un avis de maintenance lors de la vérification éditoriale.",
+    "intro": [
+      "Avant de commencer, consultez le site officiel pour connaître l’état du service. Si une commande est déjà en cours pendant la maintenance, retrouvez d’abord ses références et la dernière étape confirmée. Le catalogue indépendant permet de rechercher des produits. Il ne donne pas accès à un compte ou à une commande AllChinaBuy."
+    ],
+    "table": {
+      "caption": "Les éléments à conserver du premier clic à la réception",
+      "headers": [
+        "Étape",
+        "Preuve à garder",
+        "Décision possible"
+      ],
+      "rows": [
+        [
+          "Repérage",
+          "Lien vendeur et variante exacte",
+          "Comparer ou écarter la fiche"
+        ],
+        [
+          "Commande",
+          "Prix confirmé, quantité et référence",
+          "Vérifier l’achat demandé"
+        ],
+        [
+          "Entrepôt",
+          "Photo du bon article et mesures",
+          "Accepter la pièce ou demander une précision"
+        ],
+        [
+          "Colis",
+          "Composition, mesures et devis approuvé",
+          "Autoriser l’expédition"
+        ],
+        [
+          "Réception",
+          "Suivi final et inventaire",
+          "Clôturer ou documenter un incident"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Partir d’un besoin mesurable",
+        "paragraphs": [
+          "Écrivez le type d’article recherché, les dimensions qui vous conviennent et le montant que vous êtes prêt à consacrer au vêtement. Pour un t-shirt, la largeur sous les bras et la longueur prennent souvent plus de sens qu’une taille générique. Gardez une réserve distincte pour l’expédition. Si toute l’enveloppe disponible est absorbée par le panier, un devis international normal peut déjà dépasser votre budget.",
+          "Ouvrez la fiche du vendeur à partir de la sélection et choisissez la couleur et la variante avant de relever le prix. Vérifiez s’il s’agit d’un article seul ou d’un ensemble. Notez le vendeur et la date d’observation. Une capture du modèle choisi vous permettra de comparer quelques jours plus tard même si la présentation de la fiche change."
+        ]
+      },
+      {
+        "heading": "Suivre l’achat jusqu’à l’entrepôt",
+        "paragraphs": [
+          "L’étape d’achat traite la demande au vendeur et le transport intérieur. Elle ne décide pas encore du tarif du colis à destination de la Roumanie. Sur le récapitulatif, relisez l’option, la quantité, le prix et tout frais intérieur affiché. Conservez la confirmation puis vérifiez le dernier état dans l’interface officielle lorsque celle-ci est accessible.",
+          "À la réception en entrepôt, comparez l’article et ses photos QC à la commande conservée. Demandez une mesure précise si la taille est déterminante. Pour un accessoire livré en plusieurs pièces, comptez-les avant de faire préparer le colis. Un défaut visible ou une variante incorrecte se documente plus facilement tant que la pièce est disponible dans l’entrepôt."
+        ]
+      },
+      {
+        "heading": "Choisir le contenu et la ligne vers la Roumanie",
+        "paragraphs": [
+          "Regroupez uniquement les articles que vous avez acceptés. Identifiez les produits fragiles, les boîtes que vous souhaitez garder et les contenus susceptibles de limiter les lignes disponibles. Comparez deux offres pour la même destination et les mêmes biens. Vérifiez le poids réel, les dimensions finales, les limites de la ligne, le suivi et les éventuelles options sélectionnées.",
+          "Si un nouvel emballage est proposé, vérifiez le changement de volume et la protection restante. Une ligne moins chère ne présente aucun intérêt si elle refuse un article du panier ou si le carton dépasse ses dimensions maximales. Conservez le devis final et les documents commerciaux avec une description fidèle de chaque pièce."
+        ]
+      },
+      {
+        "heading": "Contrôler la livraison et la clôture du dossier",
+        "paragraphs": [
+          "Gardez à la fois la référence d’expédition et le numéro du transporteur. Une étiquette peut précéder la prise en charge physique. Lors de la remise au partenaire roumain, notez l’éventuel numéro local. Pour toute demande de document ou d’information, revenez au canal officiel de l’opérateur et vérifiez à quel colis elle correspond.",
+          "À réception, photographiez un emballage abîmé avant de le vider. Comparez le contenu aux articles réellement soumis dans ce colis, surtout si la commande a été fractionnée. Classez ensemble les photos, les références et la réponse du service concerné. Une fois les vérifications terminées, gardez une note sur la coupe et le coût de ce panier pour préparer le suivant."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "maintenance-orders-romania",
+    "title": "AllChinaBuy en maintenance : où en est ma commande pour la Roumanie ?",
+    "description": "Retrouvez la dernière preuve de votre commande ou de votre envoi et préparez une demande précise pour le service officiel pendant la maintenance.",
+    "summary": "L’avis de maintenance concerne l’accès au site. Pour connaître la situation d’un article, remontez à sa dernière preuve de paiement, de réception en entrepôt ou de prise en charge par un transporteur.",
+    "sourceNote": "La page d’accueil officielle d’AllChinaBuy présentait un avis de maintenance et orientait les questions sur les commandes vers son assistance lors de la vérification du 3 novembre 2026.",
+    "intro": [
+      "Un écran de maintenance ne permet pas de savoir si un article précisement identifié se trouve chez le vendeur, en entrepôt ou déjà en transit. Il faut reconstruire le parcours depuis les documents que vous avez. Cette méthode est particulièrement importante si plusieurs achats ont été réunis dans un seul colis ou si seulement une partie du panier a été expédiée."
+    ],
+    "table": {
+      "caption": "Identifier le bon interlocuteur à partir de la dernière preuve",
+      "headers": [
+        "Dernier élément vérifié",
+        "Question utile",
+        "Pièce à joindre dans le canal privé"
+      ],
+      "rows": [
+        [
+          "Paiement enregistré",
+          "Une commande est-elle associée au paiement ?",
+          "Référence et date, données bancaires masquées"
+        ],
+        [
+          "Article reçu en entrepôt",
+          "L’article est-il disponible, et quelle action est attendue ?",
+          "Référence d’article et dernière photo"
+        ],
+        [
+          "Colis préparé sans collecte",
+          "Le transporteur a-t-il accepté le carton ?",
+          "Référence de colis et dernier état"
+        ],
+        [
+          "Scan de collecte effectué",
+          "Quel est le dernier mouvement ou le numéro local ?",
+          "Numéro de transport et dernier scan"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Relever le problème d’accès et le dernier état connu",
+        "paragraphs": [
+          "Notez l’adresse officielle consultée, l’heure et le message qui apparaît. Une page d’entretien programmée ou prolongée ne ressemble pas au refus d’un mot de passe ni à une panne de connexion locale. L’avis officiel consulté mentionne une maintenance. Il ne donne pas, à lui seul, une nouvelle date d’expédition pour votre colis ou une extension du délai de stockage.",
+          "Recherchez dans vos confirmations la dernière preuve qui désigne clairement l’achat. Une notification de paiement ne prouve pas la réception par l’entrepôt. Une photo QC liée à l’article documente une réception mais ne prouve pas que le carton international a été remis. N’inventez pas les étapes absentes pour compléter la chronologie."
+        ]
+      },
+      {
+        "heading": "Séparer les articles et les colis",
+        "paragraphs": [
+          "Écrivez une ligne par achat, puis une ligne par colis. Associez les articles au colis seulement si la confirmation de regroupement les mentionne. Si vous n’avez que la référence d’un article, dites-le dans votre demande. Si vous avez déjà un numéro transporteur, vérifiez son suivi sur le site de l’opérateur nommé dans votre dossier.",
+          "Une interface de suivi disponible en roumain ne situe pas le paquet en Roumanie. Recherchez un scan daté et localisé. En cas de remise à un partenaire local, conservez le numéro international et demandez le numéro local associé si celui-ci n’apparaît pas."
+        ]
+      },
+      {
+        "heading": "Formuler une demande précise au service officiel",
+        "paragraphs": [
+          "Utilisez le point de contact indiqué sur l’avis officiel. Précisez le numéro de commande ou de colis, la date de la dernière étape vérifiée et ce que vous souhaitez savoir. Par exemple, demandez si le colis préparé a été collecté et, dans ce cas, quelle référence le transporteur lui a attribuée. Une seule question bien située est plus facile à traiter qu’une succession de captures sans dates.",
+          "Masquez les numéros de carte, identifiants de connexion et données privées inutiles. Si le doute porte sur un paiement, comparez le reçu de l’opérateur de paiement, la devise et le montant de la commande avant d’envisager une seconde tentative. Une opération en attente ne suffit pas pour conclure que la commande a échoué ou qu’une somme vous est déjà remboursée."
+        ]
+      },
+      {
+        "heading": "Reprendre le dossier lorsque l’accès revient",
+        "paragraphs": [
+          "Comparez l’historique retrouvé avec vos notes. Vérifiez s’il y a eu un changement de statut pendant l’interruption, si votre demande a reçu une réponse et si une confirmation de votre part est attendue. Pour une échéance de stockage, de retour ou de versement, demandez les conditions applicables à votre commande.",
+          "Conservez la réponse et le nouvel état datés. Si plusieurs demandes ont concerné le même colis, regroupez les références avant de relancer. Vous éviterez ainsi de confondre une ancienne demande résolue avec une nouvelle difficulté de livraison."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "shoes-spreadsheet-eu-size-qc",
+    "title": "Chaussures AllChinaBuy : vérifier la pointure EU et les photos QC",
+    "description": "Comparez la longueur du pied, celle de la semelle intérieure et le tableau du vendeur avant d’accepter une paire en entrepôt.",
+    "summary": "La pointure EU est un premier repère. Pour prendre une décision, comparez deux mesures de même nature, puis contrôlez les chaussures droite et gauche sur les photos de la réception.",
+    "sourceNote": "Méthode éditoriale de comparaison des pointures et de lecture des mesures. Aucune conversion unique entre pointure EU et longueur intérieure n’est supposée.",
+    "intro": [
+      "Dans un spreadsheet de chaussures AllChinaBuy, deux paires marquées EU 42 peuvent retenir votre attention pour des raisons différentes. L’une vous plaît pour sa forme étroite, l’autre ressemble à une paire que vous portez déjà. Pour savoir laquelle comparer à votre référence, regardez d’abord comment sont construites les indications de taille. Le même nombre de centimètres peut désigner le pied, la semelle intérieure ou la semelle extérieure."
+    ],
+    "table": {
+      "caption": "Les trois longueurs à garder séparées",
+      "headers": [
+        "Donnée",
+        "Façon de la relever",
+        "Comparaison utile"
+      ],
+      "rows": [
+        [
+          "Longueur du pied",
+          "Du talon à l’orteil le plus avancé, selon les instructions du vendeur",
+          "Tableau exprimé en longueur de pied"
+        ],
+        [
+          "Longueur de semelle intérieure",
+          "Semelle amovible à plat, du talon à la pointe",
+          "Même mesure sur une paire qui convient"
+        ],
+        [
+          "Longueur extérieure",
+          "Encombrement maximal de la chaussure",
+          "Dimension du colis ou comparaison de silhouette"
+        ],
+        [
+          "Étiquette EU",
+          "Pointure lisible sur chacune des deux chaussures",
+          "Concordance avec la variante commandée"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Constituer une sélection que vous pouvez comparer",
+        "paragraphs": [
+          "Relevez la fiche vendeur, le modèle précis, le coloris, la pointure choisie et toute mention de largeur. Ouvrez le tableau qui correspond à cette fiche au lieu d’appliquer celui d’une chaussure semblable. Les chaussures de sport, les chaussures habillées et les formes à bout étroit n’offrent pas la même place dans l’avant-pied, même avec une longueur comparable.",
+          "Prenez une paire qui vous convient avec le type de chaussettes prévu. Si sa semelle intérieure se retire sans l’endommager, posez-la à plat et relevez sa longueur. Ne comparez pas directement ce nombre avec un tableau intitulé « longueur du pied ». Recherchez le schéma ou demandez au vendeur ce qui a été mesuré. Une conversion approximative vers une pointure voisine ne résout pas une ambiguïté de méthode."
+        ]
+      },
+      {
+        "heading": "Vérifier la paire réellement reçue",
+        "paragraphs": [
+          "Commencez par les photos d’ensemble, chaussures côte à côte. Contrôlez le modèle, la couleur, les accessoires et l’apparence des deux pieds. Demandez ensuite une photo lisible de chaque étiquette de pointure. Il est possible de recevoir deux chaussures du même modèle sans que leurs étiquettes ou leurs tailles concordent.",
+          "Pour vérifier une longueur utile, précisez que vous souhaitez voir le départ et l’arrivée du ruban ainsi que l’unité. Si la semelle intérieure est fixée, demandez ce qu’il est possible de mesurer sans manipulation dommageable. Une vue de la semelle extérieure démontre une dimension externe mais laisse ouverte la question de la place disponible au niveau des orteils."
+        ]
+      },
+      {
+        "heading": "Distinguer un problème de coupe d’une photo difficile à lire",
+        "paragraphs": [
+          "Si deux mesures semblent différer, examinez l’angle de prise de vue et la position du ruban. Un départ à un centimètre du bord ou une semelle incurvée peut modifier la lecture. Demandez une reprise de la même mesure dans la même position sur les deux chaussures. Pour un écart de forme, une vue de dessus et une vue arrière des talons posés à niveau aident à situer l’asymétrie.",
+          "Décidez ce qui justifierait une demande avant l’expédition. Une référence incorrecte ou deux tailles différentes peut se documenter immédiatement. Le confort, la souplesse et la durée de vie ne sont pas lisibles avec certitude sur une photo. Conservez le tableau et les photos pour expliquer un problème concret si vous devez le signaler."
+        ]
+      },
+      {
+        "heading": "Choisir la protection avant le devis vers la Roumanie",
+        "paragraphs": [
+          "La boîte commerciale protège parfois la forme de la paire mais augmente son encombrement. Demandez les dimensions du colis avec et sans boîte, ainsi que la protection de remplacement proposée. Une paire structurée mérite un examen particulier avant de retirer un emballage rigide.",
+          "Gardez sur votre fiche de comparaison l’option retenue, le poids emballé et la photo de la paire acceptée. Après réception, notez séparément la sensation au talon, en largeur et à l’avant. Vous saurez pourquoi un modèle vous convient, au-delà du seul numéro EU acheté."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "hoodies-spreadsheet-size-fabric-weight",
+    "title": "Sweats et hoodies AllChinaBuy : comparer coupe, tissu et poids",
+    "description": "Lisez la grille de tailles d’un sweat AllChinaBuy, contrôlez les mesures et la capuche sur les photos QC, puis estimez le volume à expédier.",
+    "summary": "Un sweat peut être lourd parce qu’il est grand ou généreusement construit. Vérifiez séparément les dimensions, les affirmations du vendeur sur le tissu et le poids du colis emballé.",
+    "sourceNote": "Comparaison éditoriale des coupes et des mesures de vêtements. Un poids total en grammes ne permet pas de déduire un grammage de tissu en grammes par mètre carré.",
+    "intro": [
+      "Un sweat ample adapté à la superposition ne se choisit pas comme un modèle ajusté porté sous une veste. Avant de parcourir le catalogue AllChinaBuy, identifiez le vêtement que vous souhaitez remplacer et les endroits où vous voulez davantage ou moins d’aisance. La capuche, les bords-côtes et l’implantation des manches peuvent changer la sensation sans modifier la taille indiquée sur l’étiquette."
+    ],
+    "table": {
+      "caption": "Ce qu’une fiche et une photo permettent de contrôler",
+      "headers": [
+        "Critère",
+        "Donnée à demander",
+        "Interprétation"
+      ],
+      "rows": [
+        [
+          "Coupe",
+          "Largeur sous les bras et longueur du corps",
+          "Comparer à un sweat repère posé à plat"
+        ],
+        [
+          "Manche",
+          "Points de départ et d’arrivée de la mesure",
+          "Comparer des constructions semblables"
+        ],
+        [
+          "Tissu",
+          "Composition ou grammage annoncés par le vendeur",
+          "Garder la mention comme une information déclarée"
+        ],
+        [
+          "Poids",
+          "Poids de la pièce puis du colis fermé",
+          "Prévoir le fret après ajout de l’emballage"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Partir de la silhouette recherchée",
+        "paragraphs": [
+          "Posez votre sweat repère sur une surface plane. Mesurez le buste sous les aisselles, la longueur et la manche avec les points de départ du schéma vendeur. Pour une épaule tombante, la couture de montage peut être plus loin sur le bras. Si la coupe de l’autre modèle diffère, la longueur de manche seule peut donner une mauvaise impression du résultat porté.",
+          "Notez aussi l’ouverture du bas et les poignets lorsqu’ils déterminent la façon dont la pièce tombe. Deux sweats aussi larges au milieu du buste peuvent se resserrer très différemment à la taille. Faites vos comparaisons sans tirer sur les bords-côtes, en indiquant l’état dans lequel la mesure a été prise."
+        ]
+      },
+      {
+        "heading": "Garder les caractéristiques textiles dans leur contexte",
+        "paragraphs": [
+          "Un vendeur peut annoncer un tissu gratté, une composition ou un grammage. Relevez la variante exacte à laquelle la mention se rapporte, car certains modèles partagent une annonce malgré des doublures et des matières différentes. Une étoffe plus épaisse en apparence n’est pas forcément plus chaude pour votre usage. Une photo montre la texture visible, pas le pourcentage de chaque fibre.",
+          "Le poids d’un sweat entier comprend la capuche, les cordons, la poche, le zip éventuel et toute la surface de tissu propre à la taille. Le grammage désigne une masse par surface. Une pièce de grande taille très accessoirisée peut donc peser davantage sans que son tissu ait un grammage supérieur. N’utilisez pas le poids affiché en entrepôt pour confirmer une promesse de composition."
+        ]
+      },
+      {
+        "heading": "Demander les photos déterminantes",
+        "paragraphs": [
+          "Vérifiez le modèle, la couleur de la broderie ou de l’imprimé et la présence des accessoires annoncés. Demandez une vue de face et une autre de dos pour observer l’alignement de la poche ou de la fermeture. Pour un sweat zippé, une vue fermé à plat permet d’examiner l’alignement de l’ourlet. Le bon fonctionnement répété du curseur nécessiterait un contrôle distinct.",
+          "Si la coupe reste incertaine, demandez une seule mesure lisible par photo, en précisant le point voulu et le besoin de voir le zéro du mètre. Comparez à votre sweat repère et au tableau de la variante commandée. Si le tissu se plisse ou si la capuche masque la couture de l’épaule, demandez une vue dégagée avant de trancher."
+        ]
+      },
+      {
+        "heading": "Prévoir le colis à partir des dimensions emballées",
+        "paragraphs": [
+          "Une capuche doublée et un sweat épais peuvent augmenter la hauteur du paquet, surtout avec plusieurs vêtements. Demandez ce que devient le carton une fois les pièces acceptées réunies. Des articles souples permettent parfois de réduire les espaces vides, tandis qu’une fermeture, des décorations ou des pièces plus fragiles nécessitent une protection.",
+          "Conservez une note sur les mesures acceptées, la variante et l’option d’emballage. En recevant le sweat en Roumanie, vérifiez la coupe et la matière au toucher puis complétez cette note après usage. Vous pourrez ainsi comparer un futur achat aux dimensions et à l’expérience que vous connaissez réellement."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "shipping-expert-romania",
+    "title": "AllChinaBuy Shipping Expert : vérifier un devis pour la Roumanie",
+    "description": "Préparez vos instructions d’emballage, comparez un colis à deux colis et contrôlez les frais avant de donner votre accord à l’expédition.",
+    "summary": "Demandez un plan écrit pour les articles déjà acceptés. Vérifiez le contenu, les mesures finales, la protection, la ligne et le montant complet avant d’autoriser un paiement.",
+    "sourceNote": "Méthode de préparation et de lecture d’un devis de colis. La disponibilité du service Shipping Expert, ses frais et le mode d’approbation doivent être vérifiés pour la commande concernée.",
+    "intro": [
+      "Une demande de préparation est plus facile à traiter si elle décrit un résultat concret. « Emballez moins cher » laisse ouverte la question de la protection d’une paire de chaussures ou de la conservation d’une boîte. Expliquez plutôt ce qui peut changer, ce qui doit rester et à quel moment vous voulez examiner le devis pour la Roumanie. En période de maintenance, vérifiez la disponibilité réelle de la prestation avant de compter sur elle."
+    ],
+    "table": {
+      "caption": "Une fiche à joindre à sa demande de préparation",
+      "headers": [
+        "Rubrique",
+        "Information à préciser",
+        "Ce qu’il faut relire à la réception du plan"
+      ],
+      "rows": [
+        [
+          "Articles inclus",
+          "Identifiants des seules pièces acceptées",
+          "Aucun article en attente de QC ajouté"
+        ],
+        [
+          "Protection",
+          "Boîtes à conserver, éléments fragiles et emballages facultatifs",
+          "Instruction respectée pour chaque article"
+        ],
+        [
+          "Options",
+          "Un carton ou deux propositions chiffrées",
+          "Dimensions et poids pour chaque carton"
+        ],
+        [
+          "Autorisation",
+          "Besoin d’examiner le montant et la ligne avant envoi",
+          "Accord donné à la bonne version du devis"
+        ]
+      ]
+    },
+    "sections": [
+      {
+        "heading": "Décrire le panier et les consignes article par article",
+        "paragraphs": [
+          "Recopiez l’identifiant d’entrepôt de chaque pièce et vérifiez qu’elle a été contrôlée. Un polo dont la taille fait encore l’objet d’une question n’a pas sa place dans une demande d’expédition définitive. Indiquez pour chaque article ce qui peut être retiré et ce qui doit rester. Une boîte ordinaire peut être facultative pour vous, alors qu’un coffret destiné à être offert fait partie de l’achat.",
+          "Précisez votre priorité pour le panier entier. Par exemple, vous pouvez souhaiter limiter le volume tout en gardant la protection rigide autour des chaussures. Indiquez que vous souhaitez examiner une proposition différente avant validation si ces deux exigences sont incompatibles. Cela donne à l’entrepôt une question précise à vous soumettre."
+        ]
+      },
+      {
+        "heading": "Lire la proposition pour un colis ou pour deux",
+        "paragraphs": [
+          "Comparez les deux scénarios avec le même contenu accepté. Demandez le poids et les dimensions extérieures du carton fini pour chaque envoi. Pour une ligne tarifée en partie au volume, vérifiez le diviseur et les arrondis appliqués. Une réduction du volume total peut être intéressante même si le poids réel varie peu, mais seulement lorsque la règle tarifaire de la ligne le prévoit.",
+          "Pour deux colis, relevez les deux premières tranches, les frais d’emballage et le suivi de chaque envoi. Un devis qui affiche seulement le deuxième colis ne permet pas de juger le total. Regardez aussi si la séparation répond à une restriction réelle ou si elle ajoute des manipulations sans avantage pour votre panier."
+        ]
+      },
+      {
+        "heading": "Contrôler la ligne et les sommes proposées",
+        "paragraphs": [
+          "Vérifiez la destination, le code postal, la description des articles et l’admissibilité de toute pièce particulière. Relisez les limites de dimensions, la couverture du suivi et les conditions annoncées. Séparez la préparation du colis, les protections, le fret et les sommes que l’opérateur indique comme incluses ou supplémentaires. Conservez la devise utilisée et la date.",
+          "Si la proposition dépasse votre enveloppe, posez une question ciblée. Demandez par exemple quelle différence de montant résulterait du retrait d’une boîte précise, avec quelle protection alternative et sur quelle ligne. Quand une autre ligne est suggérée, faites reprendre la comparaison sur les mêmes critères de protection et de suivi. Un changement de service peut expliquer une différence que l’on attribuerait à tort à l’emballage."
+        ]
+      },
+      {
+        "heading": "Valider la bonne version puis suivre la remise",
+        "paragraphs": [
+          "Lisez une dernière fois le nombre de colis, leur contenu et leur montant cumulé. Si votre instruction prévoyait une approbation avant envoi, assurez-vous de donner celle-ci pour une version clairement identifiable. Conservez le récapitulatif et le paiement correspondant. Une proposition reçue et un colis physiquement collecté sont deux étapes distinctes.",
+          "À l’étape suivante, associez un numéro de transport à chaque carton et vérifiez la première prise en charge par l’opérateur. Pour deux colis, conservez les inventaires séparés jusqu’à la réception en Roumanie. Si l’un arrive avant l’autre, vous saurez immédiatement quelles pièces figuraient dans le carton livré."
+        ]
+      }
+    ]
+  }
+]

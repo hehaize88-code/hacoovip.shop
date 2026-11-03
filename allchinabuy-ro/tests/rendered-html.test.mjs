@@ -89,17 +89,17 @@ test("publishes a normalized sitemap", async () => {
     xml,
     /https:\/\/allchinabuy\.ro\/articles\/shipping-to-romania<\/loc>/i,
   );
-  assert.doesNotMatch(xml, /\/de\/articles\/shipping-to-romania/i);
+  assert.match(xml, /\/de\/articles\/shipping-to-romania/i);
 });
 
 test("publishes keyword-focused articles without editor labels", async () => {
   const worker = await getWorker();
-  const response = await fetchRoute(worker, "/articles/tracking-guide");
+  const response = await fetchRoute(worker, "/en/articles/tracking-guide");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<html lang="en">/i);
   assert.match(html, /AllChinaBuy Tracking Guide/i);
-  assert.match(html, /rel="canonical" href="https:\/\/allchinabuy\.ro\/articles\/tracking-guide"/i);
+  assert.match(html, /rel="canonical" href="https:\/\/allchinabuy\.ro\/en\/articles\/tracking-guide"/i);
   assert.doesNotMatch(html, /PRIMARY KEYWORD/i);
   assert.doesNotMatch(html, /SUPPORTING/i);
 });
@@ -111,29 +111,55 @@ const newSlugs = [
 const oldSlugs = ["spreadsheet-guide", "qc-photo-routine", "parcel-cost-guide", "shipping-to-romania", "tracking-guide", "how-to-order-romania"];
 const stripTags = (html) => html.replace(/<[^>]*>/g, " ").replace(/&[^;]+;/g, " ").replace(/\s+/g, " ").trim();
 
-test("keeps all ten articles, accurate dates and four latest home cards", async () => {
+const novemberSlugs = ["qc-photos-weidian-taobao-link", "t-shirt-size-chart-qc"];
+const locales = ["ro", "en", "de", "fr", "es", "it", "pl"];
+const articlePath = (locale, slug) => `${locale === "ro" ? "" : "/" + locale}/articles/${slug}`;
+test("publishes the complete localized library with reciprocal alternates", async () => {
   const worker = await getWorker();
   const xml = await (await fetchRoute(worker, "/sitemap.xml")).text();
-  const articleUrls = [...xml.matchAll(/<loc>https:\/\/allchinabuy\.ro\/articles\/([^<]+)<\/loc>/g)].map(m => m[1]);
-  assert.deepEqual(new Set(articleUrls), new Set([...newSlugs, ...oldSlugs]));
-  assert.match(xml, /2026-10-06/);
-  for (const locale of ["", "/en", "/de", "/fr", "/es", "/it", "/pl"]) {
-    const home = await (await fetchRoute(worker, locale || "/")).text();
+  const slugs = [...novemberSlugs, ...newSlugs, ...oldSlugs];
+  const titlesBySlug = new Map(slugs.map(slug => [slug, new Set()]));
+  for (const locale of locales) {
+    const prefix = locale === "ro" ? "" : "/" + locale;
+    const home = await (await fetchRoute(worker, prefix || "/")).text();
+    assert.ok(home.includes('data-home-action="shipping"'));
     const latest = home.match(/class="article-grid home-article-grid"[\s\S]*?<\/section>/)?.[0] || "";
-    assert.equal((latest.match(/href="\/articles\//g) || []).length, 4, locale);
-    for (const slug of newSlugs) assert.ok(latest.includes(`/articles/${slug}`), `${locale}: ${slug}`);
-    const hub = await (await fetchRoute(worker, `${locale}/articles`)).text();
-    for (const slug of articleUrls) assert.ok(hub.includes(`/articles/${slug}`), `${locale}: ${slug}`);
+    for (const slug of novemberSlugs) assert.ok(latest.includes(`href="${articlePath(locale,slug)}"`));
+    const hub = await (await fetchRoute(worker, `${prefix}/articles`)).text();
+    for (const slug of slugs) {
+      const path = articlePath(locale, slug);
+      const url = "https://allchinabuy.ro" + path;
+      assert.ok(hub.includes(`href="${path}"`), path);
+      assert.ok(xml.includes(`<loc>${url}</loc>`), path);
+      const response = await fetchRoute(worker, path);
+      assert.equal(response.status, 200, path);
+      const html = await response.text();
+      assert.ok(html.includes(`<html lang="${locale}">`), path);
+      assert.ok(html.includes(`rel="canonical" href="${url}"`), path);
+      assert.doesNotMatch(html, /<meta[^>]*content="[^"]*noindex/i);
+      for (const other of [...locales, "x-default"]) {
+        const target = "https://allchinabuy.ro" + articlePath(other === "x-default" ? "ro" : other, slug);
+        assert.ok(html.match(/<link[^>]+>/gi).some(tag => tag.toLowerCase().includes(`hreflang="${other}"`) && tag.includes(`href="${target}"`)), path + " → " + other);
+      }
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
+      const article = schemas.find(item => item["@type"] === "Article");
+      assert.equal(article.inLanguage, locale);
+      assert.equal(article.mainEntityOfPage, url);
+      titlesBySlug.get(slug).add(article.headline);
+      assert.ok(html.includes(`lang="${locale}" data-article-slug="${slug}"`));
+      assert.match(html, /<table/);
+    }
   }
+  for (const [slug, titles] of titlesBySlug) assert.equal(titles.size, locales.length, slug);
 });
 
 test("new guides render substantial original content and valid navigation", async () => {
   const worker = await getWorker();
-  for (const slug of newSlugs) {
-    const response = await fetchRoute(worker, `/articles/${slug}`);
+  for (const slug of [...newSlugs, ...novemberSlugs]) {
+    const response = await fetchRoute(worker, `/en/articles/${slug}`);
     assert.equal(response.status, 200);
     const html = await response.text();
-    assert.ok(html.includes(`rel="canonical" href="https://allchinabuy.ro/articles/${slug}"`));
+    assert.ok(html.includes(`rel="canonical" href="https://allchinabuy.ro/en/articles/${slug}"`));
     assert.doesNotMatch(html, /noindex/);
     assert.match(html, /<html lang="en">/);
     const body = html.match(/<article class="terminal-article"[\s\S]*?<\/article>/)?.[0] || "";
@@ -144,29 +170,27 @@ test("new guides render substantial original content and valid navigation", asyn
     for (const anchor of body.matchAll(/href="#([^"\s]+)"/g)) assert.ok(body.includes(`id="${anchor[1]}"`));
     const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
     const article = schemas.find(x => x["@type"] === "Article");
-    assert.equal(article.datePublished, "2026-10-06");
-    assert.equal(article.dateModified, "2026-10-06");
+    assert.equal(article.datePublished, novemberSlugs.includes(slug) ? "2026-11-03" : "2026-10-06");
+    assert.equal(article.dateModified, article.datePublished);
     assert.equal(article.inLanguage, "en");
     assert.ok(schemas.some(x => x["@type"] === "BreadcrumbList"));
-    for (const link of body.matchAll(/href="(https:\/\/[^" ]+)"/g)) assert.equal(new URL(link[1]).hostname, "cnfanshp.com");
+    for (const link of body.matchAll(/href="(https:\/\/[^" ]+)"/g)) assert.ok(["cnfanshp.com", "weidian.com", "ascolour.co.uk"].includes(new URL(link[1]).hostname));
     console.log(`${slug}: ${wordCount} visible article words`);
   }
-  const localized = await (await fetchRoute(worker, `/de/articles/${newSlugs[0]}`)).text();
-  assert.match(localized, /noindex/);
-  assert.ok(localized.includes(`rel="canonical" href="https://allchinabuy.ro/articles/${newSlugs[0]}"`));
+
 });
 
 test("old guides retain content and gain current service context and cross-links", async () => {
   const worker = await getWorker();
   for (const slug of oldSlugs) {
-    const html = await (await fetchRoute(worker, `/articles/${slug}`)).text();
-    assert.match(html, /Service check/);
+    const html = await (await fetchRoute(worker, `/en/articles/${slug}`)).text();
+    assert.match(html, /official homepage displayed a maintenance notice/);
     assert.match(html, /<table/);
     assert.match(html, /Related guides/);
-    assert.match(html, /2026-10-06/);
+    assert.match(html, /2026-(10-06|11-03)/);
   }
-  const shipping = await (await fetchRoute(worker, "/articles/shipping-to-romania")).text();
+  const shipping = await (await fetchRoute(worker, "/en/articles/shipping-to-romania")).text();
   assert.match(shipping, /tariff classification rather than the number of physical units/);
-  const costs = await (await fetchRoute(worker, "/articles/parcel-cost-guide")).text();
+  const costs = await (await fetchRoute(worker, "/en/articles/parcel-cost-guide")).text();
   assert.doesNotMatch(costs, /Public app reviews show mixed experiences/);
 });

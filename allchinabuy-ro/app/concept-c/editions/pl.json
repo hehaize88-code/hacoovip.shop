@@ -1,0 +1,882 @@
+[
+  {
+    "slug": "qc-photos-weidian-taobao-link",
+    "title": "Jak znaleźć zdjęcia QC po linku z Weidian lub Taobao",
+    "description": "Sprawdź, jak odczytać identyfikator oferty, dopasować zdjęcia magazynowe do koloru i rozmiaru oraz co zrobić, gdy wyszukiwarka QC nic nie zwraca.",
+    "intro": [
+      "Masz w arkuszu zdjęcie butów i link, ale chcesz zobaczyć parę, którą ktoś rzeczywiście dostał. Wyszukiwanie samą nazwą modelu łatwo prowadzi do innego sklepu, wersji lub partii. Dwa identyczne zdjęcia katalogowe mogą występować w dwóch różnych ofertach. Publiczny odnośnik do konkretnego produktu daje lepszy punkt wyjścia. Pomaga znaleźć wcześniejsze zdjęcia powiązane z ofertą, nawet jeśli nazwa została przetłumaczona lub skrócona.",
+      "Przed zakupem interesuje Cię dokumentacja wcześniejszych dostaw. Po zakupie masz inne pytanie: co dokładnie przyjęto do magazynu w ramach Twojego zamówienia? W obu sytuacjach można korzystać ze zdjęć QC, czyli zdjęć z kontroli towaru, ale ostateczna decyzja opiera się na innych dowodach. Poniżej przejdziesz od linku do oceny, czy konkretny zestaw fotografii w ogóle odpowiada na Twoje pytanie."
+    ],
+    "sections": [
+      {
+        "heading": "Wróć do oferty źródłowej",
+        "paragraphs": [
+          "Wejdź w link z arkusza. Jeżeli trafisz do katalogu, odszukaj na karcie przycisk prowadzący do oryginalnej oferty. Sprawdź, czy otwierasz jeden produkt z wyborem wersji, a nie profil sklepu, ranking albo wyniki wyszukiwania. Zanotuj nazwę sprzedawcy i wybraną opcję w jej oryginalnym brzmieniu. Przy ponownym otwarciu strony domyślnie zaznaczony kolor może być inny od tego, który wcześniej oglądałeś.",
+          "W typowym adresie oferty Weidian numer znajdziesz w parametrze itemID. W zwykłym adresie produktu Taobao szukaj parametru id. Znak & oddziela następny parametr i nie należy do numeru. Zapisz również nazwę platformy, bo sam ciąg cyfr ma znaczenie w obrębie danego serwisu. Jeżeli masz skrócony link z telefonu, otwórz go i sprawdź końcową stronę. Z adresu katalogu, który nie ujawnia źródła, nie próbuj odgadywać numeru oferty."
+        ]
+      },
+      {
+        "heading": "Użyj publicznego linku, który można sprawdzić bez Twojego konta",
+        "paragraphs": [
+          "Do wyszukiwarki zdjęć QC wklej publiczny adres przedmiotu zgodny z obsługiwaną platformą. Jeżeli narzędzie przyjmuje sam numer produktu, podaj identyfikator odczytany z oferty na tej platformie. Numer koszyka, zamówienia u pośrednika, przyjęcia do magazynu czy przewozowy służy do innej sprawy. Podanie takiego numeru utrudnia dopasowanie i może niepotrzebnie ujawniać szczegóły prywatnej transakcji.",
+          "Wyobraź sobie, że skopiowałeś adres z historii zakupów i znajomy po otwarciu widzi ekran logowania. Wróć do karty towaru i skopiuj jej opcję udostępnienia. Sprawdź nazwę wyświetlaną po otwarciu i to, czy na stronie można wybrać wariant. Nie wysyłaj publicznie zrzutu całego konta tylko po to, by zapytać o zdjęcie. Odpowiedź powiązana z właściwym publicznym numerem będzie zwykle łatwiejsza do zweryfikowania."
+        ]
+      },
+      {
+        "heading": "Sprawdź wariant, zanim powiększysz zdjęcia",
+        "paragraphs": [
+          "Najpierw porównaj platformę i identyfikator, później sprzedawcę, model, kolor i rozmiar. Na jednej karcie mogą się znajdować trzy kolory koszulki, dwa kroje oraz opcja sprzedawana jako komplet. Zdjęcie czarnego rozmiaru L z tej samej oferty mówi coś o położeniu nadruku na czarnej wersji. Nie pozwala stwierdzić, że biała M ma tę samą szerokość albo zawartość zestawu.",
+          "Datę oglądaj obok wybranego wariantu. Przy wielomiesięcznej ofercie mogły zmienić się zdjęcia, dostępne wersje lub sposób wykonania produktu. Jeżeli sprzedawca rozróżnia partie, zapisz oznaczenie z karty i poszukaj go przy materiale zdjęciowym. Nie przypisuj partii na podstawie samej daty. Gdy pole rozmiaru jest puste, taki zestaw może pomóc w ocenie wyglądu, ale nie w wyborze rozmiaru."
+        ]
+      },
+      {
+        "heading": "Odróżnij zdjęcie otrzymanej sztuki od prezentacji sklepu",
+        "paragraphs": [
+          "W ofercie znajdziesz zwykle zdjęcia promocyjne, ujęcia detali i tabelę wymiarów. Mogą dobrze opisywać zamierzony produkt. Wcześniejsze zdjęcia magazynowe mają inną wartość: pokazują konkretną sztukę w konkretnej dostawie. Sprawdź opis źródła i to, czy zdjęcia tworzą spójny zestaw. Kolor tła, obecność linijki lub naklejka same w sobie nie ustalają pochodzenia fotografii.",
+          "Oglądaj cały zestaw przed detalem. Dwóch podobnych butów z dwóch oddzielnych rekordów nie traktuj jak jednej pary. Przy ubraniu sprawdź, czy detal metki odnosi się do tego samego egzemplarza, który widać na zdjęciu całości. Zapisz wyraźnie, co widzisz, np. „na ujęciu z przodu widać lewą kieszeń”. Jeśli zdjęcia nie obejmują prawego boku, pozostaw ten punkt otwarty."
+        ]
+      },
+      {
+        "heading": "Jeśli nic się nie wyświetla, ustal, gdzie urywa się ślad",
+        "paragraphs": [
+          "Najpierw otwórz ponownie stronę produktu. Jeżeli adres już nie działa, sprawdź, czy sprzedawca wystawił przedmiot ponownie. Nowa oferta może wyglądać tak samo, lecz jej identyfikator jest inny. Zapisz nowy adres osobno i szukaj zdjęć jeszcze raz. Materiał ze starej karty może służyć do porównania wyglądu, ale nie dowodzi zgodności zawartości nowej oferty.",
+          "Gdy strona działa, ale baza nie pokazuje zdjęć, zapisz „brak dopasowania w sprawdzonej bazie” wraz z datą. Taki komunikat nie rozstrzyga, czy towar dotarł do jakiegokolwiek magazynu. Jeśli brakuje jednego kąta lub wymiaru, zanotuj dokładnie którego. Przed zakupem zapytaj sprzedawcę o odpowiednie informacje. Gdy produkt jest już w magazynie, skieruj prośbę do obsługi swojego zamówienia zgodnie z dostępnymi opcjami."
+        ]
+      },
+      {
+        "heading": "Przy własnej dostawie zadaj jedno rozstrzygające pytanie",
+        "paragraphs": [
+          "Przykładowo: „Proszę rozłożyć koszulkę płasko i pokazać miarkę od lewej pachy do prawej, z widocznym początkiem i końcem”. Taki opis jest łatwiejszy do wykonania niż prośba o „lepsze QC”. Jeśli chcesz sprawdzić stan obuwia, poproś o ujęcie obu pięt z tej samej wysokości. Gdy podejrzewasz ubytek materiału, wskaż stronę i miejsce oraz poproś o ostre zdjęcie przy innym oświetleniu.",
+          "Przygotuj krótką notatkę do decyzji. Osobno zapisz zgodność modelu i wariantu, widoczne usterki, pomiary oraz pytania bez odpowiedzi. Jeśli wariant się nie zgadza, zachowaj zdjęcie otrzymanej sztuki obok zapisu wybranej opcji. Wyjaśnij sprawę przed zleceniem wysyłki międzynarodowej, uwzględniając rzeczywiste terminy z Twojego zamówienia."
+        ]
+      },
+      {
+        "heading": "Zapisz wynik tak, by pozostał użyteczny po tygodniu",
+        "paragraphs": [
+          "Nawet dobry zestaw zdjęć potrafi stracić sens poza kontekstem. Obok odnośnika zapisz, kiedy sprawdzałeś ofertę, którego wariantu dotyczyły fotografie i czy oglądałeś własny produkt czy wcześniejszą dostawę. Jeśli wrócisz po podobne buty w innym kolorze, łatwo odróżnisz informacje wspólne od tych, które trzeba zdobyć na nowo.",
+          "W arkuszu warto rozdzielić pola „wiem” i „do sprawdzenia”. Zdjęcie rękawa może potwierdzić rodzaj widocznego ściągacza, a nie elastyczność po kilku praniach. Zdjęcie pudełka pozwala sprawdzić nadrukowaną etykietę, a nie autentyczność zawartości. Taki zapis pozwala wykorzystać zdjęcia bez przypisywania im większej dokładności, niż rzeczywiście oferują."
+        ]
+      },
+      {
+        "heading": "Przykład z dwiema ofertami tej samej koszulki",
+        "paragraphs": [
+          "Załóżmy, że w arkuszu obok siebie widzisz dwa białe T-shirty z takim samym nadrukiem. Pierwszy wynik po nazwie pokazuje zdjęcia w rozmiarze M, czyli dokładnie tym, którego szukasz. Dopiero po otwarciu karty okazuje się, że zdjęcia przypisano do Taobao, a wybrana przez Ciebie oferta pochodzi z Weidian. Kolor i rozmiar się zgadzają, ale brakuje powiązania między tymi dwiema kartami. Zdjęcie może zainspirować pytanie o szerokość nadruku, jednak nie przenoś wyniku pomiaru na wybrany produkt.",
+          "Teraz załóżmy, że wyszukiwanie po publicznym linku z Weidian daje jedno zdjęcie z przyjęcia czarnej sztuki w rozmiarze S. Jest bliższe Twojej ofercie, lecz wciąż nie odpowiada na pytanie o prześwitywanie białej dzianiny. Zapisz więc oddzielnie potwierdzony krój wybranego modelu i brak zdjęcia białej wersji. Przy zamówieniu poproś o zwykłe zdjęcie przodu białej sztuki i zdjęcie wymiaru, którego potrzebujesz. Nie proś o potwierdzenie cechy, której zdjęcia nie pozwalają rzetelnie ocenić."
+        ]
+      },
+      {
+        "heading": "Co można porównać, gdy fotografie są z różnych dni",
+        "paragraphs": [
+          "Ustaw zdjęcia w podobnej orientacji i sprawdź elementy, które łatwo nazwać: liczbę guzików, miejsce kieszeni lub kształt naszywki. Jeśli na nowszej sztuce guziki są innego koloru, dokumentacja pokazuje różnicę widoczną w tych dwóch zestawach. Nie wystarcza to do stwierdzenia, że wszystkie późniejsze egzemplarze zostały zmienione. W wiadomości do sprzedawcy zapytaj o obecnie oferowany wariant, wskazując detal, a nie domniemaną przyczynę.",
+          "Dobrze zachowany rekord zawiera także informację o tym, czego zabrakło. Jeżeli nie znalazłeś pomiaru rozmiaru M, wpisz brak pomiaru zamiast kopiować wartość dla S. Dzięki temu przed akceptacją magazynową masz gotową krótką listę dowodów, które rzeczywiście trzeba jeszcze uzyskać. Łatwiej również ocenisz, czy dodatkowe zdjęcie warte jest kosztu, jeśli usługa jest płatna."
+        ]
+      }
+    ],
+    "summary": "Zacznij od publicznego linku do konkretnej oferty. Potem sprawdź wariant, datę i pochodzenie zdjęć. O przyjęciu własnego egzemplarza decyduj na podstawie dokumentacji powiązanej z Twoim zamówieniem.",
+    "table": {
+      "caption": "Co pozwala rozpoznać produkt",
+      "headers": [
+        "Co masz pod ręką",
+        "Jak wykorzystać ten materiał",
+        "Co jeszcze trzeba sprawdzić"
+      ],
+      "rows": [
+        [
+          "Link Weidian z itemID",
+          "Znajdź zdjęcia przypisane do tej oferty",
+          "Kolor, rozmiar i wersję z daty zdjęcia"
+        ],
+        [
+          "Link Taobao z id",
+          "Porównaj identyfikator w ofercie i w wynikach",
+          "Czy sprzedawca nadal oferuje tę samą rzecz"
+        ],
+        [
+          "Zdjęcia sprzedawcy",
+          "Ustal oczekiwany wygląd i komplet",
+          "Czy magazyn sfotografował później otrzymany egzemplarz"
+        ],
+        [
+          "Zdjęcie z Twojego przyjęcia do magazynu",
+          "Porównaj egzemplarz z własnym zamówieniem",
+          "Czy widać wszystkie cechy potrzebne do decyzji"
+        ]
+      ]
+    },
+    "sourceNote": "Metoda opiera się na budowie publicznych linków Weidian i Taobao, sposobie wyszukiwania po ofercie oraz rozróżnieniu zdjęć handlowych i magazynowych. Zakres wyników zależy od bazy i konkretnego wariantu."
+  },
+  {
+    "slug": "t-shirt-size-chart-qc",
+    "title": "Jak dobrać rozmiar T-shirtu z AllChinaBuy na podstawie tabeli i zdjęć QC",
+    "description": "Zmierz własny T-shirt, odróżnij szerokość od obwodu i porównaj wyniki ze zdjęciami QC. Przykład pokazuje różnicę między dwiema rozmiarówkami.",
+    "intro": [
+      "W arkuszu AllChinaBuy dwie koszulki mogą mieć oznaczenie L i zupełnie inny krój. Jeśli pierwsza jest krótka i szeroka, a druga długa i prosta, wybór na podstawie litery nie odtworzy wyglądu ze zdjęcia. Dobrze dobrany T-shirt, który już masz w szafie, daje bardziej użyteczny punkt odniesienia. Wiesz, jak leży po praniu, gdzie kończy się rękaw i ile swobody zostaje po założeniu.",
+      "Przez cały proces korzystaj z trzech niezależnych zapisów: wymiarów własnego ubrania, tabeli konkretnego sprzedawcy i pomiaru z magazynu, jeśli jest dostępny. Pierwszy określa oczekiwania, drugi pomaga zdecydować o zamówieniu, trzeci pozwala ocenić dostarczony egzemplarz. Rozbieżność łatwiej wyjaśnić, gdy wiesz, z którego z tych trzech źródeł pochodzi każda liczba."
+    ],
+    "sections": [
+      {
+        "heading": "Wybierz właściwą koszulkę do porównania",
+        "paragraphs": [
+          "Połóż na stole koszulkę, którą nosisz w podobny sposób. Do przewiewnego T-shirtu o luźnej linii dobierz ubranie o zbliżonym kroju. Dopasowana koszulka noszona pod swetrem może mieć odpowiednią długość, ale podpowie za małą szerokość do luźnego fasonu. Jeśli kupujesz polo, uwzględnij kołnierzyk i konstrukcję ramion. Długość od górnej części kołnierza nie jest równoważna długości od najwyższego punktu ramienia.",
+          "Wygładź ubranie dłonią. Ułóż boczne szwy równolegle i wyrównaj przód z tyłem tam, gdzie mają tę samą długość. Nie napinaj materiału, żeby odczyt wyszedł równy. Przy rozciągliwej dzianinie już niewielkie pociągnięcie zmienia wynik. Jeśli po zdjęciu z wieszaka koszulka jest przekręcona, popraw ułożenie i zmierz ją ponownie. Zachowaj zdjęcie pokazujące, skąd dokąd prowadziła miarka."
+        ]
+      },
+      {
+        "heading": "Zapisz szerokość, długość i sposób mierzenia",
+        "paragraphs": [
+          "Szerokość pod pachami zmierz po linii prostej od jednej pachy do drugiej, gdy koszulka leży płasko. Jeżeli wynik to 52 cm, tyle wynosi szerokość jednej warstwy w tym miejscu. Jej podwojenie daje orientacyjnie 104 cm obwodu ubrania. Nie wpisuj tej liczby jako obwodu swojego ciała. Zapas pomiędzy ciałem a ubraniem, elastyczność i krój wpływają na to, jak koszulka się układa.",
+          "Długość zmierz od punktu przy szyi i ramieniu do dolnej krawędzi, jeśli w ten sposób opisuje ją tabela. Gdy sprzedawca mierzy środek pleców od karku, powtórz pomiar tak samo na własnej koszulce. W modelu z dłuższym tyłem zanotuj osobno przód i tył. Przy klasycznym wszywanym rękawie możesz dodatkowo zapisać odległość pomiędzy szwami na ramionach oraz długość rękawa od szwu do końca."
+        ]
+      },
+      {
+        "heading": "Ustal, czego dotyczy tabela w ofercie",
+        "paragraphs": [
+          "Na stronie sprawdź jednostki oraz opis kolumn. „Chest” może oznaczać obwód lub szerokość na płasko, zależnie od rysunku i sposobu pomiaru. Bywa też poleceniem dla osoby o danym obwodzie ciała. Jeżeli w jednej tabeli widzisz 52 cm, a w drugiej 104 cm, najpierw sprawdź ich definicje. Sam stosunek liczb nie potwierdza, że obie tabele opisują dokładnie ten sam krój.",
+          "Katalog pokazuje między innymi pozycje „Polo shirt（5 styles）” i „Off White T-shirt”. Przejdź do rzeczywistej karty wybranego przedmiotu. Przy pięciu stylach upewnij się, że tabela dotyczy tego, który zamawiasz. Nie traktuj podobnego zdjęcia albo tej samej marki w sąsiedniej ofercie jako zastępstwa za brakującą rozmiarówkę. Jeśli przy wariancie nie ma jasnej tabeli, poproś o wymiary gotowej koszulki i sposób ich pomiaru."
+        ]
+      },
+      {
+        "heading": "Przykład z dwoma rozmiarami",
+        "paragraphs": [
+          "Załóżmy, że Twoja koszulka ma 52 cm szerokości i 68 cm długości. W przykładowej tabeli opcja A ma 50 i 67 cm, a B ma 54 i 70 cm. Oba warianty są oddalone od wzorca o 2 cm szerokości, tylko w przeciwnych kierunkach. A skróci się względem wzorca o 1 cm, B wydłuży o 2 cm. Żadnego z tych wariantów nie można automatycznie nazwać odpowiednikiem Twojej koszulki.",
+          "Dla osoby, która akceptuje większy luz i dłuższy dół, B ma sens jako kandydat. Kto chce wsunąć koszulkę do spodni i nie lubi nadmiaru materiału, może preferować inną proporcję. Różnica 2 cm na płasko to orientacyjnie 4 cm różnicy w obwodzie ubrania mierzonym na tej wysokości. Jeżeli podobny obwód i określona długość są dla Ciebie równie ważne, rozsądnie jest porównać trzeci model."
+        ]
+      },
+      {
+        "heading": "Sprawdź konstrukcję, której nie widać w jednej liczbie",
+        "paragraphs": [
+          "Obniżona linia ramion zmienia położenie rękawa nawet przy zbliżonej szerokości klatki. Przy rękawie raglanowym nie ma klasycznego szwu przy barku, od którego zwykle mierzy się długość. Jeżeli tabela ma kolumnę na rękaw, poszukaj rysunku pokazującego początek pomiaru. W jednym fasonie będzie to bark, w innym okolica szyi. Zapisz, którą metodę opisano, zamiast porównywać same liczby.",
+          "Pomocne jest rozróżnienie wymiarów obowiązkowych od preferencji. Dół, który kończy się za wysoko, może przekreślać zakup niezależnie od reszty. Inna szerokość mankietu może mieć mniejsze znaczenie. Jeśli tolerancję wykonania podaje sprzedawca, zanotuj ją razem z tabelą. Gdy jej brakuje, nie dopisuj własnej jako reguły obowiązującej sklep. Nie da się też z fotografii przewidzieć dokładnej zmiany wymiarów po praniu."
+        ]
+      },
+      {
+        "heading": "Po przyjęciu do magazynu poproś o pomiar, który rozstrzyga wybór",
+        "paragraphs": [
+          "Sprawdź wariant, kolor i etykietę rozmiaru. Następnie poproś o jeden czytelny kadr całej koszulki rozłożonej bez naciągania oraz zdjęcie miarki między uzgodnionymi punktami. Dla szerokości pod pachami oba końce muszą być widoczne na tej samej wysokości. Jeśli taśma zaczyna się poza brzegiem ubrania albo kończy pod fałdą, trudno obronić dokładny odczyt. Zdjęcie samego końca taśmy bez początku także nie rozstrzyga wątpliwości.",
+          "Przy długości wskaż w prośbie konkretny początek, np. „od miejsca łączenia ramienia z dekoltem do dołu przodu”. Zamiast prosić o wszystkie możliwe pomiary, wybierz ten, który decyduje o Twojej akceptacji. Dzięki temu obsługa wie, jak ułożyć ubranie, a Ty otrzymujesz materiał dający się porównać z własną notatką."
+        ]
+      },
+      {
+        "heading": "Podejmij decyzję na podstawie porównywalnych danych",
+        "paragraphs": [
+          "Jeśli pomiar zgadza się z oczekiwaniami, zachowaj zdjęcie i wybrany rozmiar przy swoim zapisie. W razie różnicy ustal, czy ktoś zmierzył inną stronę lub przyjął inne punkty. Gdy sposób pomiaru jest już zgodny, a ubranie wyraźnie przekracza Twój akceptowalny zakres, poproś we własnym zamówieniu o dostępne rozwiązania. Dostępność wymiany, terminy i ewentualny koszt trzeba sprawdzić przed zatwierdzeniem paczki.",
+          "Po dostawie zapisz jeszcze krótką obserwację o kroju. „Szerokość dobra, lecz rękaw kończy się wyżej niż w mojej ulubionej koszulce” będzie pomocniejsze przy następnym zakupie niż notatka „L pasuje”. Przy zmianie oferty wróć do pomiarów, nawet gdy sprzedawca ponownie używa tej samej litery lub podobnego zdjęcia."
+        ]
+      },
+      {
+        "heading": "Co zrobić, gdy tabela i zdjęcie z miarką się różnią",
+        "paragraphs": [
+          "Powiedzmy, że wybrałeś wariant B, ale pierwsze zdjęcie magazynowe pokazuje ledwie 52 cm szerokości zamiast przykładowych 54 cm. Przyjrzyj się przebiegowi taśmy. Jeśli koszulkę położono na innym ubraniu i jeden bok podwinął się pod spód, powtórzenie pomiaru może wyjaśnić różnicę. Z kolei taśma poprowadzona ukosem zwykle zwiększy odczyt względem prostej linii. Poproś o nowe zdjęcie tylko wtedy, gdy wiesz, co w poprzednim uniemożliwia porównanie.",
+          "Gdy oba końce widać wyraźnie i sposób pomiaru jest zgodny, porównaj wynik z zakresem akceptowalnym dla Ciebie i z ewentualną tolerancją podaną w ofercie. W naszym przykładzie 52 cm w klatce może być idealne, ale długość 70 cm może pozostać kłopotem. Dlatego nie opieraj akceptacji tylko na tym, że jeden z wymiarów przypadkowo pokrył się z Twoim wzorcem. Jeśli brakuje długości, właśnie jej dotyczy następna prośba."
+        ]
+      },
+      {
+        "heading": "Jak przełożyć wymiary na wybór między dwoma krojami",
+        "paragraphs": [
+          "Przymierz własną koszulkę z warstwą, którą zwykle do niej zakładasz. Jeżeli dół ma znikać pod kurtką, porównaj długość z dobrze znanym zestawem. Jeśli zależy Ci na szerokim rękawie, zmierz także szerokość jego otworu, ale porównuj ją wyłącznie z tabelą zawierającą ten sam pomiar. Widok koszulki na modelu pomaga wyobrazić sobie styl, natomiast bez danych o sylwetce i rozmiarze modela słabo określa, gdzie rękaw skończy się u Ciebie.",
+          "Przy zapisie wyniku podaj datę oraz jednostki, a zdjęcie własnej koszulki trzymaj obok jej wymiarów. Kiedy ten sam produkt pojawi się ponownie pod innym adresem, zapis służy jako punkt odniesienia do nowej karty. Pomiar odzyskany ze starego zdjęcia nie zastępuje aktualnej tabeli sprzedawcy."
+        ]
+      }
+    ],
+    "summary": "Wybierz koszulkę, której krój znasz, i zmierz ją na płasko. Porównuj ten sam rodzaj wymiaru i te same punkty pomiaru. Ostateczną kontrolę zrób na zdjęciach otrzymanego egzemplarza.",
+    "table": {
+      "caption": "Przykład do ćwiczenia w centymetrach; wartości nie pochodzą od sprzedawcy",
+      "headers": [
+        "Koszulka",
+        "Szerokość pod pachami",
+        "Długość",
+        "Różnica względem Twojej"
+      ],
+      "rows": [
+        [
+          "Własna koszulka",
+          "52 cm",
+          "68 cm",
+          "Punkt odniesienia"
+        ],
+        [
+          "Przykładowy wariant A",
+          "50 cm",
+          "67 cm",
+          "Węższy o 2 cm i krótszy o 1 cm"
+        ],
+        [
+          "Przykładowy wariant B",
+          "54 cm",
+          "70 cm",
+          "Szerszy o 2 cm i dłuższy o 2 cm"
+        ]
+      ]
+    },
+    "sourceNote": "Wymiary w przykładzie dobrano dla pokazania metody. Nazwy produktów pochodzą z katalogu. Wymiary konkretnego koloru, fasonu i rozmiaru trzeba potwierdzić w jego ofercie lub na zdjęciach otrzymanej sztuki."
+  },
+  {
+    "slug": "parcel-cost-guide",
+    "title": "Ile kosztuje wysyłka AllChinaBuy do Rumunii? Waga i wymiary paczki",
+    "description": "Porównaj wagę rzeczywistą i objętościową, zobacz obliczenie dla dwóch paczek po 2 kg i sprawdź, co uwzględnia wycena trasy do Rumunii.",
+    "intro": [
+      "Koszulka i buty mogą razem kosztować mniej niż ich dostawa, zwłaszcza gdy jedna rzecz wymaga dużego kartonu. Cena na karcie produktu opisuje etap zakupu. Do porównania wysyłki potrzebujesz kraju przeznaczenia, kategorii towaru, przewidywanej wagi i zewnętrznych wymiarów paczki. Jeżeli zamawiasz do Rumunii, wybierz ten kraj także w scenariuszu porównawczym. Zrzut wyceny na dostawę do innego kraju niewiele mówi o Twoim koszcie."
+    ],
+    "sections": [
+      {
+        "heading": "Najpierw ustal, jaki ciężar policzy przewoźnik",
+        "paragraphs": [
+          "Waga rzeczywista obejmuje produkt i materiały opakowaniowe. Waga objętościowa pokazuje, ile miejsca paczka zajmie w transporcie. Jeżeli regulamin wybranej linii przewiduje pomnożenie długości, szerokości i wysokości w centymetrach, a następnie podzielenie wyniku przez dany dzielnik, uzyskasz wartość porównywaną z wagą z wagi magazynowej. Sprawdź również minimalny próg i krok naliczania opłaty.",
+          "Załóżmy dla ćwiczenia, że linia stosuje dzielnik 6000 i bierze większą z dwóch wag. Paczka z ubraniami 30 × 20 × 10 cm ma objętość 6000 cm³, czyli 1 kg objętościowy. Przy rzeczywistej wadze 2 kg podstawą zostają 2 kg. Dla pudełka 40 × 30 × 20 cm iloczyn wynosi 24 000 cm³, co daje 4 kg. Mimo tej samej rzeczywistej wagi 2 kg drugi karton może podlegać rozliczeniu od 4 kg. Dopiero potem zastosowałbyś zasady zaokrąglania danej linii."
+        ]
+      },
+      {
+        "heading": "Porównaj dwie wyceny na identycznych danych",
+        "paragraphs": [
+          "Wprowadź ten sam kraj, zawartość i stan opakowania, zapisz godzinę sprawdzenia i walutę. Jedna oferta może zawierać śledzenie lub dodatkową usługę, którą w drugiej wyceniono osobno. Sprawdź też limity wymiarów i dopuszczalne kategorie. Najtańszy wynik z kalkulatora dla odzieży może zniknąć, jeśli do kartonu trafi towar z ograniczeniami.",
+          "W kalkulatorze przed zakupem wykonaj próbę dla dwóch rozsądnych rozmiarów paczki. Gdy zamówienie zostanie przyjęte do magazynu, zastąp założenia danymi po spakowaniu. Waga produktu z listingu nie obejmuje automatycznie pudełka sprzedawcy i zabezpieczeń. Dlatego porównuj ostatnią wycenę z notatkami sprzed zakupu tylko wtedy, gdy widzisz, które dane zmieniły się po drodze."
+        ]
+      },
+      {
+        "heading": "Zanim odchudzisz paczkę, ustal, co chroni opakowanie",
+        "paragraphs": [
+          "Jeśli buty mają zostać dostarczone w oryginalnym pudełku, zaznacz to w dyspozycji pakowania. Przy zwykłej odzieży można zapytać o usunięcie pustej przestrzeni. Przy delikatnym lub usztywnionym przedmiocie zbyt ciasny karton może pozbawić go potrzebnej ochrony. Poproś o propozycję i nowe wymiary przed podjęciem decyzji. Nie wyliczaj oszczędności z samej masy usuniętego kartonika.",
+          "Podział ma sens do rozważenia, gdy łączona paczka przekracza ograniczenie lub zawiera towary o różnych wymaganiach. Każda nowa paczka może jednak uruchomić odrębne opłaty początkowe. Zestaw sumę dwóch pełnych ofert z jedną pełną ofertą wspólną. Nie porównuj samej ceny dodatkowego kilograma."
+        ]
+      },
+      {
+        "heading": "Sprawdź, co jeszcze może zmienić płatność",
+        "paragraphs": [
+          "W swoim zestawieniu oddziel towary, krajowy transport do magazynu, pakowanie, przewóz międzynarodowy i ewentualne należności przy imporcie. Przy pozycji zapisuj nazwę podmiotu, który ją nalicza, i moment płatności. Dodatkową usługę zaznacz osobno. Jeśli wpłacasz zaliczkę, zachowaj jej opis, aby nie dodać tej samej kwoty po raz drugi przy końcowym rozliczeniu.",
+          "Kwota transportu nie wystarcza do ustalenia VAT, cła lub opłaty operatora. Przeczytaj opis wybranej trasy i sprawdź aktualne informacje Komisji Europejskiej oraz przewoźnika. Zachowaj ofertę i rachunek całej przesyłki. Gdy ostateczny koszt zaskoczy, można wtedy wskazać konkretną różnicę: większą objętość, inną trasę, dopłatę za pakowanie lub osobny koszt odprawy."
+        ]
+      }
+    ],
+    "summary": "Zbierz wagę i trzy wymiary gotowego kartonu. Odczytaj dzielnik i zasady zaokrąglania konkretnej trasy, a następnie porównaj pełne oferty dla tej samej zawartości.",
+    "table": {
+      "caption": "Dwa przykładowe kartony po 2 kg przy hipotetycznym dzielniku 6000",
+      "headers": [
+        "Wariant",
+        "Objętość zewnętrzna",
+        "Waga objętościowa",
+        "Większa z dwóch wag przed zaokrągleniem"
+      ],
+      "rows": [
+        [
+          "Odzież, 30 × 20 × 10 cm",
+          "6000 cm³",
+          "1 kg",
+          "2 kg"
+        ],
+        [
+          "Buty w pudełku, 40 × 30 × 20 cm",
+          "24 000 cm³",
+          "4 kg",
+          "4 kg"
+        ]
+      ]
+    },
+    "sourceNote": "Przykład wyjaśnia metodę stosowaną przy rozliczeniu objętościowym. Pola danych oparto na publicznym kalkulatorze frachtu AllChinaBuy. Dzielnik, zaokrąglenia, dostępność i koszt sprawdza się w warunkach aktualnej trasy."
+  },
+  {
+    "slug": "spreadsheet-guide",
+    "title": "AllChinaBuy Spreadsheet: jak sprawdzić linki i wybrać właściwy wariant",
+    "description": "Przejdź od wiersza w arkuszu do konkretnej oferty. Porównaj sprzedawcę, wariant, cenę i wymiary oraz przygotuj krótką listę przed zamówieniem.",
+    "intro": [
+      "Wiersz w arkuszu pomaga znaleźć produkt, ale z czasem link może zmienić cel, sprzedawca może usunąć rozmiar, a cena na miniaturze dotyczyć najtańszej opcji. Dlatego po kliknięciu sprawdź kilka konkretnych danych, zanim dodasz rzecz do listy. W szczególności porównaj nazwę produktu i wariant wybrany na stronie z tym, co widziałeś w arkuszu."
+    ],
+    "sections": [
+      {
+        "heading": "Zacznij od warunku, który przesądzi o zakupie",
+        "paragraphs": [
+          "Zapisz, czego szukasz. Dla koszulki może to być szerokość gotowego ubrania i długość dołu, dla butów długość wkładki oraz kolor obu elementów pary. Dodaj limit wydatków na rzecz i osobno rezerwę na wysyłkę. Dzięki temu nie zmienisz kryteriów tylko dlatego, że inna oferta ma atrakcyjniejsze zdjęcie lub niższą cenę startową."
+        ]
+      },
+      {
+        "heading": "Otwórz konkretną kartę i sprawdź wybrany wariant",
+        "paragraphs": [
+          "W katalogu jest na przykład pozycja „Polo shirt（5 styles）”. Otwórz ją i wskaż styl, który Cię interesuje. Ustal, czy widoczna cena i zdjęcia nadal odpowiadają temu stylowi. Jeśli po wybraniu rozmiaru zdjęcie zmienia się na inny kolor, sprawdź tekstowe oznaczenie wariantu. Zapisz nazwę sklepu i adres końcowej karty. Gdy link prowadzi jedynie do wyszukiwarki, zaznacz, że oryginalnej oferty jeszcze nie potwierdzono.",
+          "Porównuj pozycje na tych samych zasadach. Jeżeli jedna ma udokumentowany wymiar w centymetrach, a druga tylko literę M, nie przyznawaj im takiej samej pewności dopasowania. Dopisz pytanie do sprzedawcy zamiast uzupełniać puste pole na podstawie podobnej oferty. Tak samo traktuj skład materiału lub informację o zawartości zestawu."
+        ]
+      },
+      {
+        "heading": "Rozdziel zdjęcia katalogowe, wcześniejsze QC i dokumentację zakupu",
+        "paragraphs": [
+          "Zdjęcia w arkuszu mogą pochodzić z oferty sprzedawcy. Jeśli znajdziesz wcześniejsze zdjęcia magazynowe dla tego samego identyfikatora, zapisz datę, kolor i rozmiar. Użyj ich do zawężenia wyboru i przygotowania pytań. Przy własnym zamówieniu kontrolę rozpoczynasz od egzemplarza, który rzeczywiście dotarł do magazynu. Porównaj go z zapisaną wersją karty, zwłaszcza gdy sprzedawca od tamtej pory zmienił ofertę."
+        ]
+      },
+      {
+        "heading": "Zachowaj krótki i porównywalny kosztorys",
+        "paragraphs": [
+          "Przy każdym kandydacie zapisz cenę w walucie oferty, ewentualną wysyłkę krajową i to, czy cena dotyczy całej sztuki, zestawu czy dodatku. Międzynarodowy transport rozpatruj osobno, bo zależy od opakowania i trasy do Rumunii. Sztywne pudełko może zadecydować o kosztach bardziej niż mała różnica między cenami dwóch podobnych produktów.",
+          "Wybierz dwie lub trzy pozycje do dokładnego porównania. Jedna powinna wyjść na prowadzenie dzięki temu, że spełnia Twoje warunki, a nie dzięki liczbie zapisów w arkuszu. Jeżeli żadna nie ma wiarygodnego potwierdzenia istotnego wymiaru, odłóż obie. Przy kolejnym otwarciu listy będziesz wiedzieć, czego konkretnie brakuje do decyzji."
+        ]
+      }
+    ],
+    "summary": "Otwórz kartę produktu i sprawdź wybrany wariant. Własna lista z ceną, datą sprawdzenia i pytaniami do magazynu ułatwi porównanie podobnych ofert.",
+    "table": {
+      "caption": "Co zapisać przy każdej pozycji na liście",
+      "headers": [
+        "Pole",
+        "Co wpisać",
+        "Kiedy sprawdzić ponownie"
+      ],
+      "rows": [
+        [
+          "Oferta",
+          "Platforma, sprzedawca, identyfikator produktu",
+          "Przed złożeniem zamówienia"
+        ],
+        [
+          "Wariant",
+          "Kolor, rozmiar, oznaczenie wersji",
+          "Przy potwierdzeniu zakupu i przyjęciu w magazynie"
+        ],
+        [
+          "Cena",
+          "Waluta, koszt wybranego wariantu, data",
+          "Przed zapłatą"
+        ],
+        [
+          "Wymiary",
+          "Jednostki i sposób pomiaru",
+          "Po otrzymaniu zdjęć QC"
+        ]
+      ]
+    },
+    "sourceNote": "Poradnik oparto na publicznych kartach katalogu oraz etapach zakupu i kontroli opisanych przez AllChinaBuy. Ceny z arkusza traktujemy jako zapis z określonego dnia."
+  },
+  {
+    "slug": "qc-photo-routine",
+    "title": "Zdjęcia QC z AllChinaBuy: jak sprawdzić rozmiar, wykonanie i zgodność",
+    "description": "Sprawdź w pięciu krokach zdjęcia produktu z magazynu. Dowiedz się, kiedy poprosić o zdjęcie z miarką, zbliżenie wady lub ujęcie całego kompletu.",
+    "intro": [
+      "Masz zdjęcia z magazynu i chcesz zdecydować, czy zaakceptować produkt. Przygotuj obok kartę zamówienia z dokładnym wariantem. Najwięcej czasu oszczędza sprawdzenie rzeczy najprostszych: modelu, liczby sztuk, koloru i rozmiaru. Nie ma powodu analizować szwów na granatowej bluzie, jeśli zamówiona była szara."
+    ],
+    "sections": [
+      {
+        "heading": "Rozpoznaj sztukę i komplet",
+        "paragraphs": [
+          "Zacznij od kadru całego przedmiotu. Sprawdź, czy zestaw zawiera wybrane elementy, czy oba buty są z tej samej pary i czy opakowanie odpowiada zamówieniu, jeśli było częścią oferty. Porównaj metkę z nazwą wariantu zapisaną przy zakupie. W galerii wcześniejszych zamówień mogą się mieszać zdjęcia kilku rozmiarów. Ostateczną decyzję podejmij na podstawie zdjęć powiązanych z Twoim przyjęciem do magazynu."
+        ]
+      },
+      {
+        "heading": "Oceń kształt, uwzględniając perspektywę",
+        "paragraphs": [
+          "Porównaj przód, tył i boki. Krzywo ułożony przedmiot albo szerokokątny obiektyw może zniekształcić proporcje. Jeśli prawa podeszwa na zdjęciu wydaje się wyższa, poproś o oba buty obok siebie na równej powierzchni, z aparatem na wysokości pięt. Przy różnicy odcienia poproś o wspólne ujęcie w podobnym świetle. Balans bieli i ekran telefonu mogą zmieniać odbiór barwy."
+        ]
+      },
+      {
+        "heading": "Zweryfikuj ten pomiar, który zdecyduje o dopasowaniu",
+        "paragraphs": [
+          "Dla ubrania poproś o pomiar na płasko bez naciągania. Przy szerokości pod pachami miarka ma zaczynać i kończyć się na zewnętrznych krawędziach na tej samej wysokości. Do porównania wybierz własną ubraniową miarę zrobioną w taki sam sposób. Zdjęcie samej metki rozmiarowej niczego nie mówi o długości rękawa. Gdy wymiary wyglądają dziwnie, sprawdź jednostki i położenie zera przed zgłoszeniem rozbieżności."
+        ]
+      },
+      {
+        "heading": "Przyjrzyj się detalowi i oddziel obserwację od przypuszczenia",
+        "paragraphs": [
+          "Jeśli widzisz jaśniejszą plamę na nadruku, zapisz jej położenie i poproś o kadr w innym świetle. Na zdjęciu buta szukaj rozklejenia podeszwy, wyraźnej różnicy stron albo uszkodzenia widocznego także pod innym kątem. Przy torbie sprawdź obecność paska i okuć. Statyczne zdjęcie suwaka nie dowodzi, że mechanizm pracuje płynnie na całej długości."
+        ]
+      },
+      {
+        "heading": "Wybierz następny krok przed wysyłką międzynarodową",
+        "paragraphs": [
+          "Gdy model, komplet i ważne wymiary się zgadzają, zapisz podstawę akceptacji. Przy brakującym jednym ujęciu poproś o konkretną fotografię. Przy potwierdzonym błędnym wariancie zachowaj zdjęcie i zapis zamówienia, a następnie ustal z obsługą dostępne rozwiązania oraz terminy. Do wiadomości dołącz materiał dotyczący jednej sprawy, bez publicznego udostępniania danych zamówienia. Przejrzysty zapis przyda się również, jeśli po dostawie zauważysz uszkodzenie, którego wcześniej nie było."
+        ]
+      }
+    ],
+    "summary": "Najpierw ustal, czy dostałeś właściwy produkt. Potem oceń proporcje, pomiary i detale. Każdą dodatkową prośbę powiąż z jedną decyzją do podjęcia przed wysyłką.",
+    "table": {
+      "caption": "Jak zamienić wątpliwość w konkretne pytanie do magazynu",
+      "headers": [
+        "Przedmiot",
+        "O jakie zdjęcie poprosić",
+        "Czego samo zdjęcie nie potwierdza"
+      ],
+      "rows": [
+        [
+          "Buty",
+          "Obie metki i ujęcie obu pięt obok siebie",
+          "Wygody i trwałości"
+        ],
+        [
+          "Bluza",
+          "Szerokość i długość z obydwoma końcami miarki",
+          "Kurczliwości po praniu"
+        ],
+        [
+          "Akcesorium",
+          "Cały zestaw i zbliżenie miejsca mocowania",
+          "Długotrwałego działania"
+        ],
+        [
+          "Podejrzenie usterki",
+          "Ostry detal oraz szerszy kadr pokazujący położenie",
+          "Przyczyny i wyniku ewentualnej reklamacji"
+        ]
+      ]
+    },
+    "sourceNote": "Wskazówki opierają się na funkcji zdjęć magazynowych w procesie zakupowym i zasadach porównywania widocznych cech. Zwykłe oględziny zdjęć nie stanowią badania materiału ani potwierdzenia autentyczności."
+  },
+  {
+    "slug": "maintenance-orders-romania",
+    "title": "AllChinaBuy nie działa. Jak sprawdzić zamówienie do Rumunii",
+    "description": "Rozpoznaj ostatni potwierdzony etap zakupu, zachowaj dowody płatności i przygotuj pytanie do obsługi lub do przewoźnika obsługującego Twoją przesyłkę.",
+    "intro": [
+      "Kiedy strona nie chce się otworzyć, najpierw sprawdź, co było ostatnią potwierdzoną czynnością w Twoim zamówieniu. Awaria logowania, towar czekający u sprzedawcy i paczka odebrana przez przewoźnika to różne sytuacje. Publiczny komunikat o pracach serwisowych nie pozwala ustalić, gdzie jest konkretna koszulka lub czy obsługa zaakceptowała Twoją dyspozycję."
+    ],
+    "sections": [
+      {
+        "heading": "Opisz objaw i oddziel identyfikatory",
+        "paragraphs": [
+          "Zapisz adres strony, godzinę, strefę czasową i komunikat, który widzisz. Zachowaj potwierdzenie zamówienia u sprzedawcy, identyfikator magazynowy i numer przesyłki międzynarodowej w oddzielnych polach. Jeśli masz tylko pierwszy z nich, nie wpisuj go do strony kuriera jako numeru transportowego. Brak wyniku nie mówi wtedy nic o wysyłce."
+        ]
+      },
+      {
+        "heading": "Sprawdź dokumenty zależnie od ostatniego etapu",
+        "paragraphs": [
+          "Przed dostawą do magazynu szukaj potwierdzenia nadania przez sprzedawcę. Po przyjęciu zachowaj datę i zdjęcia powiązane z konkretnym przedmiotem. Przy paczce przygotowanej do wywozu sprawdź numer paczki i ewentualny skan odbioru. Sama opłata za przesyłkę lub utworzenie etykiety nie potwierdza, że przewoźnik fizycznie odebrał towar.",
+          "Jeśli panel przestał działać po płatności, sprawdź w historii płatności, czy transakcja oczekuje, została rozliczona czy odwrócona. Zachowaj datę i kwotę. Nie ponawiaj automatycznie obciążenia przed wyjaśnieniem pierwszej transakcji. Dane płatności udostępniaj tylko we właściwym kanale, w zakresie potrzebnym do sprawy."
+        ]
+      },
+      {
+        "heading": "Przygotuj jedną wiadomość, na którą można konkretnie odpowiedzieć",
+        "paragraphs": [
+          "Napisz, którego etapu dotyczy pytanie, co wiadomo z dokumentów i co powinno zostać sprawdzone. Na przykład poproś o potwierdzenie przyjęcia paczki przez przewoźnika, podając numer przesyłki i datę utworzenia etykiety. Przy problemie magazynowym zapytaj o aktualny status oraz obowiązujący termin decyzji. Nie zakładaj, że okres przechowywania lub zwrotu został automatycznie przedłużony."
+        ]
+      },
+      {
+        "heading": "Po przywróceniu dostępu uzgodnij zapisy",
+        "paragraphs": [
+          "Porównaj aktualny stan panelu z własną osią czasu. Jeśli w Rumunii paczkę przejął lokalny operator, sprawdź, czy pojawił się drugi numer i czy dane adresowe są poprawne. Brak oddzielnego numeru lokalnego nie zawsze oznacza problem. Przechowuj numery prywatnie i zaznacz datę ostatniej odpowiedzi. Pozwoli to śledzić sprawę bez powielania wiadomości o różnych etapach."
+        ]
+      }
+    ],
+    "summary": "Komunikat o konserwacji opisuje dostęp do serwisu. Status Twojego zakupu ustala się na podstawie zapisów płatności, przyjęcia do magazynu i skanów przewoźnika.",
+    "table": {
+      "caption": "Do kogo skierować pytanie o ostatnie zdarzenie",
+      "headers": [
+        "Co ostatnio potwierdzono",
+        "Co zachować",
+        "O co zapytać"
+      ],
+      "rows": [
+        [
+          "Zakup u sprzedawcy",
+          "Numer zamówienia i wybrany wariant",
+          "Czy odnotowano wysyłkę krajową?"
+        ],
+        [
+          "Przyjęcie do magazynu",
+          "Datę, identyfikator i zdjęcia sztuki",
+          "Czy zamówienie wymaga mojej decyzji?"
+        ],
+        [
+          "Nadanie numeru przesyłki",
+          "Numer paczki i nazwę trasy",
+          "Czy przewoźnik potwierdził fizyczny odbiór?"
+        ],
+        [
+          "Pierwszy skan przewoźnika",
+          "Datę, miejsce i treść zdarzenia",
+          "Jaki jest ostatni potwierdzony etap transportu?"
+        ]
+      ]
+    },
+    "sourceNote": "Oficjalna strona AllChinaBuy wyświetlała komunikat o pracach serwisowych i kierowała pytania o zamówienia do obsługi. Nie podano w nim daty ponownego otwarcia. Tok sprawdzania zamówienia opisuje niezależna redakcja."
+  },
+  {
+    "slug": "shoes-spreadsheet-eu-size-qc",
+    "title": "Buty z arkusza AllChinaBuy: rozmiar EU, długość wkładki i zdjęcia QC",
+    "description": "Porównaj rozmiary na podstawie sprawdzonej pary, poproś o zdjęcia obu butów i oceń, jak oryginalne pudełko wpłynie na paczkę do Rumunii.",
+    "intro": [
+      "Dwie pary oznaczone EU 42 mogą mieć inny kształt noska, szerokość lub ilość miejsca przy pięcie. Z arkusza wybierz kilka modeli, a następnie porównaj je z parą, w której dobrze Ci się chodzi. W kolumnach zapisz oznaczenie rozmiaru, rodzaj danych w tabeli, długość i źródło informacji."
+    ],
+    "sections": [
+      {
+        "heading": "Najpierw przeczytaj opis tabeli rozmiarów",
+        "paragraphs": [
+          "Przy liczbie w centymetrach może być podana zalecana długość stopy, długość wkładki lub długość podeszwy. Każda z nich opisuje inną rzecz. Jeżeli możesz swobodnie wyjąć wkładkę z własnego buta, ułóż ją płasko i zmierz od pięty do najdalszego punktu przy palcach. Nie wyrywaj przyklejonej wkładki tylko po to, by móc wypełnić tabelę. Zaznacz wtedy, który pomiar jest niedostępny.",
+          "Przy szerokiej stopie sama długość nie wystarcza. Porównaj ułożenie szwów i kształt przodu z dobrze znaną parą. Jeżeli tabela sprzedawcy podaje wyłącznie rozmiary EU, zapytaj o jeden wymiar dla konkretnej wersji. Nie przenoś wyniku z sąsiedniej oferty tylko dlatego, że zdjęcia reklamowe są podobne."
+        ]
+      },
+      {
+        "heading": "Oceń obie sztuki po przyjęciu do magazynu",
+        "paragraphs": [
+          "Potwierdź model, kolor oraz rozmiar na obu metkach. Obejrzyj oba profile i pięty obok siebie. Gdy różnica w wysokości może wynikać z ułożenia, poproś o zdjęcie obu butów z tej samej odległości na płaskiej powierzchni. Zbliżenie konkretnego miejsca klejenia lub szwu rozstrzyga więcej niż dalsze ogólne zdjęcie całej pary."
+        ]
+      },
+      {
+        "heading": "Zdecyduj, jak spakować buty",
+        "paragraphs": [
+          "W dyspozycji wyraźnie zaznacz, czy chcesz zachować pudełko oraz dodatki. Jeśli ma to być prezent lub potrzebujesz ochrony dla usztywnionej cholewki, wlicz opakowanie do scenariusza. Poproś o wymiary gotowego kartonu, dopiero potem porównaj koszt tras do Rumunii. Lżejszy karton o większych wymiarach nadal może być droższy przy naliczaniu według objętości."
+        ]
+      },
+      {
+        "heading": "Zapisz konkretne decyzje zamiast samego rozmiaru",
+        "paragraphs": [
+          "Przy zaakceptowanej parze zachowaj numer oferty, wersję, sposób pomiaru i zdjęcia obu metek. Po dostawie dopisz, gdzie było za mało lub za dużo miejsca. Taka notatka przyda się przy kolejnym wyborze podobnego kroju. Etykieta przeczytana z jednego zdjęcia nie daje gwarancji komfortu, trwałości ani autentyczności produktu."
+        ]
+      }
+    ],
+    "summary": "Numer EU służy do znalezienia rozmiaru w konkretnej ofercie. Potwierdź sposób pomiaru i sprawdź obie sztuki przed zatwierdzeniem przesyłki.",
+    "table": {
+      "caption": "Co zmierzyć i sfotografować w parze butów",
+      "headers": [
+        "Pytanie",
+        "Potrzebny materiał",
+        "Czego nie porównywać"
+      ],
+      "rows": [
+        [
+          "Czy długość odpowiada?",
+          "Wkładka mierzona w tej samej osi i jednostce",
+          "Długość podeszwy zewnętrznej kontra długość stopy"
+        ],
+        [
+          "Czy buty są parą?",
+          "Metki obu sztuk i wspólny widok pięt",
+          "Zdjęcia pochodzące z dwóch zamówień"
+        ],
+        [
+          "Czy zestaw jest kompletny?",
+          "Widok dodatków i pudełka",
+          "Zdjęcie całej serii produktów u sprzedawcy"
+        ]
+      ]
+    },
+    "sourceNote": "Metoda zestawia tabele sprzedawców, wymiary posiadanej pary oraz zdjęcia magazynowe. Nie jest ogólną tabelą przeliczeń rozmiarów obuwia."
+  },
+  {
+    "slug": "hoodies-spreadsheet-size-fabric-weight",
+    "title": "Bluzy z AllChinaBuy: krój, wymiary, materiał i waga paczki",
+    "description": "Sprawdź, jak porównać bluzy w arkuszu, odczytać tabelę wymiarów i poprosić o zdjęcia ściągaczy, nadruku oraz pomiarów gotowej sztuki.",
+    "intro": [
+      "Przy zakupie bluzy istotne jest to, co zamierzasz nosić pod spodem. Ta sama szerokość może sprawdzić się na T-shirt, lecz być za mała na dodatkową warstwę. Wybierz bluzę odniesienia o podobnej konstrukcji: rozpinaną do rozpinanej, z opuszczonym ramieniem do podobnego fasonu. Zmierz ją po ułożeniu na płasko bez naciągania ściągacza."
+    ],
+    "sections": [
+      {
+        "heading": "Zbuduj porównanie z centymetrów",
+        "paragraphs": [
+          "Zapisz szerokość pod pachami, długość korpusu i rękawa. Wskaż, czy zaczynasz pomiar rękawa od wszycia przy ramieniu, czy od nasady szyi. Przy raglanie lub mocno opuszczonym ramieniu te metody dadzą różne wyniki. W tabeli sprzedawcy ustal, czy klatka piersiowa oznacza szerokość ubrania na płasko, pełny obwód odzieży czy wymiary sylwetki."
+        ]
+      },
+      {
+        "heading": "Rozdziel deklaracje o materiale od widocznych cech",
+        "paragraphs": [
+          "Waga całej bluzy, podana gramatura dzianiny i deklarowany skład włókien to trzy różne informacje. Duży, podwójny kaptur może zwiększyć wagę ubrania bez zmiany gramatury korpusu. Przy informacjach o składzie zanotuj, czy pochodzą z opisu, metki czy komentarza klienta. Nie dopisuj konkretnej zawartości bawełny na podstawie samego wyglądu dzianiny."
+        ]
+      },
+      {
+        "heading": "W magazynie sprawdź detale wybranego wariantu",
+        "paragraphs": [
+          "Zestaw nazwę koloru i wersję nadruku z zapisem zamówienia. Poproś o jedno zdjęcie całego przodu, jedno tyłu i zbliżenie szczegółu mającego znaczenie dla Ciebie, np. haftu przy bocznym szwie albo wykończenia zamka. Jeśli nadruk wygląda na pęknięty, poproś o ostre zdjęcie rozłożonego, suchego materiału. Cień na zgięciu nie wystarcza do oceny."
+        ]
+      },
+      {
+        "heading": "Oceń pakunek po spakowaniu",
+        "paragraphs": [
+          "Do wyceny wysyłki przyjmij wagę i objętość całej paczki. Nawet jeżeli znasz wagę samej bluzy, nadal nie znasz rozmiaru kartonu. Przy haftach i elementach ozdobnych rozważ, ile ochrony pozostanie po ograniczeniu objętości. Przed zatwierdzeniem zapisz listę przyjętych bluz i wariantów, a w razie rozbieżności wyjaśnij ją przed nadaniem przesyłki międzynarodowej."
+        ]
+      }
+    ],
+    "summary": "Dobierz bluzę do tej, którą lubisz nosić. Osobno zapisz krój, deklarowany skład i dane potrzebne do planowania przesyłki.",
+    "table": {
+      "caption": "Notatki do porównania bluz",
+      "headers": [
+        "Cecha",
+        "Co porównać",
+        "Jak potwierdzić"
+      ],
+      "rows": [
+        [
+          "Krój",
+          "Szerokość i długość gotowego ubrania",
+          "Spójne punkty pomiaru na zdjęciu"
+        ],
+        [
+          "Wykończenie",
+          "Kaptur, kieszeń, zamek, ściągacze",
+          "Ujęcia wybranego wariantu"
+        ],
+        [
+          "Materiał",
+          "Deklarowany skład i gramatura, jeśli je podano",
+          "Etykieta i dane sprzedawcy z datą"
+        ],
+        [
+          "Transport",
+          "Waga rzeczy po przyjęciu i rozmiar po spakowaniu",
+          "Waga oraz trzy zewnętrzne wymiary kartonu"
+        ]
+      ]
+    },
+    "sourceNote": "Porównanie opiera się na pomiarach gotowej odzieży oraz publicznym opisie etapów kontroli i wysyłki. Zdjęcia nie są laboratoryjnym potwierdzeniem składu dzianiny."
+  },
+  {
+    "slug": "shipping-expert-romania",
+    "title": "AllChinaBuy Shipping Expert: jak sprawdzić wycenę paczki do Rumunii",
+    "description": "Przygotuj instrukcję pakowania, porównaj jeden i dwa kartony oraz określ, które zmiany wymagają Twojej zgody przed opłaceniem transportu.",
+    "intro": [
+      "Przygotowując zlecenie pakowania, zacznij od tego, które rzeczy rzeczywiście mają pojechać razem. Usuń z listy pozycje z nierozwiązaną reklamacją lub brakującym zdjęciem kontrolnym. Jeśli program proponuje przepakowanie lub rozdzielenie zamówienia, przedstawione warianty muszą zawierać te same zaakceptowane rzeczy, aby porównanie miało sens."
+    ],
+    "sections": [
+      {
+        "heading": "Opisz cel oraz granice zmian",
+        "paragraphs": [
+          "Dla każdego przedmiotu zapisz, co wolno usunąć, co trzeba zachować i czego wymaga jego konstrukcja. „Usuń puste kartony po ubraniach, zachowaj pudełko pary butów i wyślij zdjęcie przed zamknięciem” daje magazynowi konkretniejszy plan niż „zapakuj tanio”. Określ też priorytet: koszt, ochrona kształtu czy możliwość śledzenia. Jeżeli przekroczenie budżetu wymaga Twojej zgody, napisz to wprost."
+        ]
+      },
+      {
+        "heading": "Porównaj jeden karton z podziałem",
+        "paragraphs": [
+          "Przy wariancie łączonym poproś o wagę z opakowaniem, trzy wymiary zewnętrzne i podstawę naliczenia ceny. Przy wariancie dzielonym te same dane powinny być podane dla każdej paczki osobno. Zsumuj opłaty podstawowe, pakowanie i usługi dodatkowe. Jeżeli podział jest konieczny ze względu na ograniczenia kategorii, zanotuj które konkretnie rzeczy rozdzielono i dlaczego."
+        ]
+      },
+      {
+        "heading": "Sprawdź warunki, zanim porównasz kwoty",
+        "paragraphs": [
+          "Wycena powinna dotyczyć Rumunii, właściwej zawartości i dostępnej dla niej linii. Zobacz, czy trasa nalicza koszt od wagi rzeczywistej, objętościowej czy według innej podanej reguły. Sprawdź limity gabarytów i początek przewidywanego czasu przewozu. Jedna oferta może rozpoczynać ten czas po odbiorze paczki, a druga po przekazaniu danych elektronicznych."
+        ]
+      },
+      {
+        "heading": "Zapisz wersję, na którą wyraziłeś zgodę",
+        "paragraphs": [
+          "Zachowaj datę, walutę, wybraną trasę, skład każdego kartonu i uzgodnione dodatki. Oddziel ewentualną zaliczkę od późniejszego rozliczenia. Jeśli po przygotowaniu transportu koszt się zmieni, porównaj ostatnie rzeczywiste pomiary i usługi z otrzymaną ofertą. Po nadaniu zanotuj identyfikator paczki i numer przewoźnika. W przypadku dwóch paczek każda może mieć własny przebieg doręczenia."
+        ]
+      }
+    ],
+    "summary": "Do zapytania dołącz listę zaakceptowanych artykułów i konkretne zasady pakowania. Poproś o wymiary, wagę, dostępne trasy i sumę kosztów przed podjęciem decyzji.",
+    "table": {
+      "caption": "Przykład instrukcji dla magazynu",
+      "headers": [
+        "Rzecz lub decyzja",
+        "Co przekazać",
+        "Co potwierdzić po spakowaniu"
+      ],
+      "rows": [
+        [
+          "Buty",
+          "Zachować pudełko i zabezpieczyć pięty",
+          "Obecność pudełka i wymiary kartonu"
+        ],
+        [
+          "Zwykła odzież",
+          "Dopuszczalne złożenie bez zgniatania ozdób",
+          "Liczbę i warianty sztuk"
+        ],
+        [
+          "Podział paczki",
+          "Przed zmianą przedstawić oba pełne kosztorysy",
+          "Sumę opłat za wszystkie kartony"
+        ],
+        [
+          "Zgoda na wysyłkę",
+          "Określić limit i sposób akceptacji",
+          "Ostatnią zatwierdzoną ofertę"
+        ]
+      ]
+    },
+    "sourceNote": "Pola i etapy oparto na publicznym opisie Shipping Expert oraz kalkulatora frachtu. Dostępność usługi, bieżącą prowizję i zasady zatwierdzania sprawdza się w panelu aktualnego zamówienia."
+  },
+  {
+    "slug": "shipping-to-romania",
+    "title": "Wysyłka AllChinaBuy do Rumunii: trasa, odprawa i dostawa",
+    "description": "Porównaj dopuszczalne linie transportowe, oddziel koszt przewozu od należności importowych i sprawdź przekazanie paczki rumuńskiemu operatorowi.",
+    "intro": [
+      "Dobra trasa do Rumunii musi obsłużyć rodzaj rzeczy, który faktycznie trafi do kartonu. Sprawdź to przed porównaniem cen. Zwykła odzież, sprzęt z baterią, kosmetyki i towary delikatne mogą podlegać odmiennym warunkom. Jeżeli do jednego kartonu chcesz dołożyć przedmiot o innych ograniczeniach, ponownie sprawdź dostępne linie dla całego zestawu."
+    ],
+    "sections": [
+      {
+        "heading": "Od pierwszej kalkulacji do rzeczywistej paczki",
+        "paragraphs": [
+          "Przed zakupem możesz porównać orientacyjne scenariusze dla kraju docelowego. Ustal, co stanie się z kosztem po dodaniu oryginalnego opakowania lub większego przedmiotu. Po przyjęciu do magazynu zastąp założenia wagą i zewnętrznymi wymiarami gotowego kartonu. Oprócz ceny porównaj śledzenie, ewentualną ochronę przesyłki, dopuszczalny gabaryt i procedurę przy zgłoszeniu szkody."
+        ]
+      },
+      {
+        "heading": "Oddziel przewóz od odprawy",
+        "paragraphs": [
+          "Zapisz osobno fracht, VAT, ewentualne cło i opłatę operatora za obsługę. Ustal, które pozycje wyraźnie uwzględniono przy płatności, a które mogą zostać rozliczone później. Dokument potwierdzający zapłatę za przewóz nie jest sam w sobie dowodem wcześniejszego pobrania podatku. Zachowaj potwierdzenie zakupu pokazujące faktyczną zawartość i wartość.",
+          "W materiałach Komisji Europejskiej opisano zmianę od 1 lipca 2026 r. dotyczącą przesyłek o małej wartości. Przy stosowaniu tymczasowego cła ryczałtowego pozycje rozróżnia się według klasyfikacji taryfowej; nie należy po prostu mnożyć opłaty przez liczbę fizycznych sztuk w kartonie. Przed decyzją sprawdź aktualne wytyczne dla swojego przypadku. Nie zmieniaj opisu ani wartości towaru w celu dopasowania go do trasy."
+        ]
+      },
+      {
+        "heading": "Czytaj termin dostawy razem z jego definicją",
+        "paragraphs": [
+          "Ustal, czy okno przewozu liczy się od spakowania, przekazania danych czy fizycznego przejęcia przez przewoźnika. Krajowy transport sprzedawcy i oczekiwanie na magazyn mogą poprzedzać początek tego okresu. Przy zdarzeniu celnym sprawdź dokładny komunikat i kanał odpowiedzialnego operatora. Prośbę o dokument porównaj z danymi swojej przesyłki, zanim prześlesz cokolwiek."
+        ]
+      },
+      {
+        "heading": "Sprawdź ostatni etap w Rumunii",
+        "paragraphs": [
+          "Zapisz pierwotny numer przesyłki i ewentualny numer rumuńskiego operatora ostatniej mili. Przy zmianie przewoźnika między skanami może być przerwa. Przed interwencją porównaj datę ostatniego fizycznego zdarzenia z warunkami trasy. Jeżeli odbiór się nie powiódł, sprawdź adres, kod i sposób kontaktu u wskazanego operatora. Zachowaj potwierdzenie doręczenia do czasu obejrzenia zawartości."
+        ]
+      }
+    ],
+    "summary": "Porównuj oferty dla rzeczywistej zawartości i wymiarów paczki. Zapisz warunki śledzenia i odprawy oraz przewoźnika odpowiedzialnego za ostatni etap w Rumunii.",
+    "table": {
+      "caption": "Cztery momenty kontroli paczki do Rumunii",
+      "headers": [
+        "Etap",
+        "Sprawdź",
+        "Zachowaj"
+      ],
+      "rows": [
+        [
+          "Przed zakupem",
+          "Typ towaru i przykładowe wymiary",
+          "Datę oraz założenia kalkulacji"
+        ],
+        [
+          "Po spakowaniu",
+          "Wagę, gabaryty i dostępność linii",
+          "Ostateczną ofertę przewozu"
+        ],
+        [
+          "Odprawa",
+          "Żądanie dokumentu i podmiot prowadzący sprawę",
+          "Fakturę, potwierdzenie zakupu i korespondencję"
+        ],
+        [
+          "Doręczenie",
+          "Lokalny numer i operatora",
+          "Historię zdarzeń i opis stanu przesyłki"
+        ]
+      ]
+    },
+    "sourceNote": "Podstawę stanowią publiczne pola kalkulatora AllChinaBuy oraz materiały Komisji Europejskiej o imporcie przesyłek o małej wartości. Aktualne zasady, kwalifikację towaru i koszt operatora ustala się dla danej przesyłki."
+  },
+  {
+    "slug": "tracking-guide",
+    "title": "Śledzenie AllChinaBuy: statusy przesyłki i brak aktualizacji",
+    "description": "Odróżnij utworzenie etykiety od odbioru paczki, rozpoznaj przekazanie lokalnemu kurierowi i przygotuj zgłoszenie, gdy śledzenie w Rumunii stoi w miejscu.",
+    "intro": [
+      "Zapis „wysłano” może dotyczyć drogi od sprzedawcy do magazynu w Chinach lub międzynarodowej wysyłki do Rumunii. Najpierw ustal, który numer oglądasz. Numer zamówienia nie musi być akceptowany przez serwis śledzenia przewoźnika, a zakończenie krajowego transportu przedmiotu nie oznacza, że cała Twoja paczka międzynarodowa została nadana."
+    ],
+    "sections": [
+      {
+        "heading": "Ułóż zdarzenia według źródeł i czasu",
+        "paragraphs": [
+          "W pierwszym wierszu własnej notatki zapisz numer zamówienia i przyjęcie do magazynu. W drugim wpisz identyfikator utworzonej paczki. W trzecim zapisz przewoźnika i numer śledzenia, pod którym można ją sprawdzić w jego oficjalnym serwisie. Zachowaj dokładne brzmienie statusu. Skrócone tłumaczenie może ukryć różnicę pomiędzy przekazaniem danych a przekazaniem paczki."
+        ]
+      },
+      {
+        "heading": "Etykieta i przejazd między punktami",
+        "paragraphs": [
+          "Po wygenerowaniu etykiety operator może mieć jedynie dane elektroniczne. Mocniejszą przesłanką rozpoczęcia transportu jest późniejszy skan potwierdzający odbiór lub przyjęcie w punkcie. W transporcie zbiorczym między węzłami nie każde przemieszczenie otrzymuje osobny wpis. Lokalizacja wskazana w nagłówku strony lub język interfejsu nie potwierdzają miejsca pobytu przesyłki."
+        ]
+      },
+      {
+        "heading": "Odprawa i przekazanie partnerowi",
+        "paragraphs": [
+          "Sam wpis o odprawie nie rozstrzyga, czy trzeba zapłacić, przesłać dokumenty albo oczekiwać na wydanie. Sprawdź, czy operator wskazuje konkretne działanie. Przy przekazaniu w Rumunii może pojawić się numer lokalny. Korzystaj z nazwy partnera podanej przy tej konkretnej przesyłce i porównuj daty obu historii, zamiast przypisywać dowolny nowy numer na podstawie podobnego komunikatu."
+        ]
+      },
+      {
+        "heading": "Kiedy wysłać zgłoszenie",
+        "paragraphs": [
+          "Pilnego sprawdzenia wymaga wyraźny komunikat o wyjątku, błędnym adresie lub wymaganym dokumencie. Przy samej ciszy porównaj czas od ostatniego potwierdzonego skanu z przewidywanym okresem danej usługi. W zgłoszeniu podaj numer, datę i treść zdarzenia, trasę oraz pytanie o kolejną czynność. Dane adresowe udostępniaj wyłącznie właściwemu operatorowi w prywatnym kanale. Po doręczeniu obejrzyj karton i zawartość, a ewentualne uszkodzenia udokumentuj razem z etykietą na własny użytek."
+        ]
+      }
+    ],
+    "summary": "Najbardziej przydatny jest ostatni potwierdzony fizyczny skan. Zanotuj jego dokładną treść, datę i przewoźnika, zanim zgłosisz opóźnienie.",
+    "table": {
+      "caption": "Jak czytać typowe etapy śledzenia",
+      "headers": [
+        "Komunikat",
+        "Co wiadomo",
+        "Następna kontrola"
+      ],
+      "rows": [
+        [
+          "Dane przesłano lub utworzono etykietę",
+          "Zarejestrowano dane paczki",
+          "Szukaj potwierdzenia fizycznego odbioru"
+        ],
+        [
+          "Przyjęto do transportu",
+          "Operator odnotował odbiór",
+          "Sprawdź kolejne miejsce i datę skanu"
+        ],
+        [
+          "Przekazano do odprawy",
+          "Trwa etap formalności",
+          "Sprawdź, czy wyraźnie zażądano dokumentów"
+        ],
+        [
+          "Przekazano partnerowi lokalnemu",
+          "Zmienia się etap lub operator",
+          "Odszukaj ewentualny numer lokalny"
+        ]
+      ]
+    },
+    "sourceNote": "Wskazówki opierają się na rozróżnieniu etapu magazynowego, śledzenia przewoźnika i doręczenia lokalnego. Konkretne nazwy zdarzeń oraz ich znaczenie potwierdza przewoźnik obsługujący paczkę."
+  },
+  {
+    "slug": "how-to-order-romania",
+    "title": "Jak zamawiać przez AllChinaBuy z dostawą do Rumunii",
+    "description": "Przejdź przez wybór wariantu, zakup u sprzedawcy, odbiór w magazynie, zdjęcia QC i wysyłkę międzynarodową. Sprawdź, co zapisać na każdym etapie.",
+    "intro": [
+      "Zakup przez pośrednika obejmuje co najmniej dwa odcinki: od sprzedawcy do magazynu i od magazynu do odbiorcy w Rumunii. Każdy może mieć osobną płatność, numer i czas realizacji. Przed nowym zamówieniem sprawdź oficjalny komunikat serwisu oraz dostępność funkcji w koncie. Niezależny katalog służy do znalezienia towaru i nie pokazuje danych Twojego zamówienia."
+    ],
+    "sections": [
+      {
+        "heading": "Wybierz konkretną wersję przed płatnością",
+        "paragraphs": [
+          "Zapisz adres publicznej karty, nazwę sprzedawcy, dokładny kolor, rozmiar, liczbę sztuk i cenę tej opcji. Jeżeli opis zawiera kilka stylów, upewnij się, że tabela wymiarów odpowiada wybranemu. Przy zamawianiu za pośrednictwem formularza sprawdź, jakie dane przeniosły się z linku i czy końcowy wariant nadal zgadza się z notatką. Zachowaj potwierdzenie zakupu i ewentualną opłatę za transport krajowy."
+        ]
+      },
+      {
+        "heading": "Przyjmij tylko tę rzecz, którą sprawdziłeś",
+        "paragraphs": [
+          "Przy odbiorze magazynowym porównaj numer zamówienia, wariant i zdjęcia własnego produktu. Dla ubrania przyda się widoczna metka oraz pomiar na płasko, a dla butów zdjęcie obu sztuk i pudełka, jeśli miało być dołączone. Gdy przyjechał inny rozmiar, zapytaj o rzeczywiste możliwości i terminy wyjaśnienia sprawy przed łączeniem produktów w międzynarodowy karton."
+        ]
+      },
+      {
+        "heading": "Przeanalizuj kompletne oferty do Rumunii",
+        "paragraphs": [
+          "Z listy przyjętych rzeczy wybierz te, które można razem przesłać daną trasą. Sprawdź przeznaczenie paczki, ograniczenia zawartości, wagę i gabaryty oraz sposób naliczenia opłaty. Uwzględnij pakowanie, ewentualne usługi dodatkowe i warunki odprawy. Zapisz adres odbiorcy w formie wymaganej przez przewoźnika, w tym miejscowość, kod pocztowy i dane potrzebne do doręczenia."
+        ]
+      },
+      {
+        "heading": "Śledź paczkę aż do odbioru",
+        "paragraphs": [
+          "Po opłaceniu zachowaj numer paczki i przewoźnika. Utworzona etykieta może poprzedzać fizyczny odbiór. W razie zmiany operatora odszukaj podany numer lokalny. Przy otwieraniu uszkodzonego kartonu warto udokumentować jego stan, zabezpieczenia i sam produkt tak, aby dało się powiązać materiał z tą przesyłką. Terminy oraz dokumenty wymagane przy zgłoszeniu sprawdź w warunkach rzeczywiście wybranej usługi.",
+          "Na końcu porównaj ostateczne wydatki z pierwotnym kosztorysem. Osobno zanotuj cenę towaru, przewóz krajowy, pakowanie, transport międzynarodowy i opłaty przy odbiorze. W kolejnym zamówieniu dokładnie zobaczysz, czy największą różnicę zrobił wariant produktu, gabaryt przesyłki czy dodatkowa usługa."
+        ]
+      }
+    ],
+    "summary": "Zacznij od poprawnej oferty i konkretnego wariantu. Przed utworzeniem paczki potwierdź zawartość w magazynie, aktualną dostępność trasy i pełny koszt.",
+    "table": {
+      "caption": "Który dokument potwierdza konkretny etap zakupu",
+      "headers": [
+        "Etap",
+        "Dokument lub zdjęcie",
+        "Decyzja"
+      ],
+      "rows": [
+        [
+          "Wybór produktu",
+          "Karta wybranego wariantu i wymiary",
+          "Czy oferta spełnia Twoje wymagania?"
+        ],
+        [
+          "Zakup krajowy",
+          "Potwierdzenie produktu i kwoty",
+          "Czy kupiono właściwą wersję?"
+        ],
+        [
+          "Magazyn",
+          "Zdjęcia otrzymanej sztuki",
+          "Zaakceptować czy wyjaśnić rozbieżność?"
+        ],
+        [
+          "Transport do Rumunii",
+          "Wymiary paczki i wycena trasy",
+          "Czy zatwierdzasz koszt i warunki?"
+        ],
+        [
+          "Doręczenie",
+          "Stan paczki i zawartość",
+          "Czy zamówienie jest kompletne?"
+        ]
+      ]
+    },
+    "sourceNote": "Poradnik przedstawia historycznie opisany przez AllChinaBuy przebieg zakupu przez pośrednika oraz kontroli w magazynie. Dostępność funkcji, tras i form wsparcia należy sprawdzać w bieżącym interfejsie."
+  }
+]

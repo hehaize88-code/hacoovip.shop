@@ -1,3 +1,5 @@
+import { novemberArticles } from "./november-articles";
+import { localizedEditions } from "./editions";
 import { newArticles } from "./new-articles";
 import { articleImprovements } from "./article-improvements";
 
@@ -610,10 +612,24 @@ const legacyArticles: FullArticle[] = [
 ];
 
 export const englishArticles: FullArticle[] = [
+  ...novemberArticles,
   ...newArticles,
   ...legacyArticles.map((article) => ({ ...article, ...articleImprovements[article.slug] })),
 ];
 
-export const getEnglishArticle = (slug: string) =>
-  englishArticles.find((article) => article.slug === slug) ??
-  englishArticles[0];
+type Language = keyof typeof localizedEditions | "en";
+export function getArticles(locale: Language): FullArticle[] {
+  if (locale === "en") return englishArticles;
+  const edition = localizedEditions[locale];
+  return englishArticles.map(article => {
+    const local = edition.find(entry => entry.slug === article.slug);
+    if (!local) throw new Error(`Missing ${locale} article: ${article.slug}`);
+    return { ...article, ...local, modified: "2026-11-03" };
+  });
+}
+
+export function getArticle(locale: Language, slug: string) {
+  const article = getArticles(locale).find(entry => entry.slug === slug);
+  if (!article) throw new Error(`Unknown article: ${slug}`);
+  return article;
+}

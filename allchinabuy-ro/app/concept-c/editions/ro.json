@@ -1,0 +1,889 @@
+[
+  {
+    "slug": "qc-photos-weidian-taobao-link",
+    "title": "Cum găsești poze QC pornind de la un link Weidian sau Taobao",
+    "description": "Urmărește identificatorul produsului de la anunț la fotografiile din depozit. Vezi cum verifici varianta și ce faci când căutarea nu găsește poze QC.",
+    "summary": "Începe cu adresa publică a produsului și caută aceeași platformă și același identificator. Verifică apoi culoarea, mărimea și data pozelor. Păstrează separat ce ai văzut la alți cumpărători și ce a confirmat depozitul pentru comanda ta.",
+    "intro": [
+      "Ai găsit într-un spreadsheet un tricou care îți place. În poza vânzătorului, imprimeul e centrat și culoarea pare exact cea dorită. Înainte să alegi mărimea, vrei să vezi cum arată un exemplar ajuns efectiv într-un depozit. Aici te ajută pozele QC. Fotografiile unor comenzi anterioare se caută pornind de la anunțul concret. O căutare după denumirea generică a tricoului poate aduce imagini excelente ale cu totul altui produs.",
+      "Parcurge verificarea în două etape. Înainte de comandă urmărești fotografii publice și stabilești ce merită verificat. După recepție compari exemplarul tău cu varianta plătită. Pentru a începe prima etapă ai nevoie doar de adresa publică a articolului. Numărul comenzii AllChinaBuy, datele contului și codul AWB sunt pentru alte operațiuni."
+    ],
+    "sections": [
+      {
+        "heading": "Găsește mai întâi pagina publică a articolului",
+        "paragraphs": [
+          "Deschide rândul din spreadsheet și urmărește unde ajungi. Poate fi o fișă de catalog, o căutare într-un magazin, o pagină de agent sau chiar anunțul vânzătorului. Te interesează adresa ultimei pagini. Dacă fișa conține un buton către produsul original, deschide-l și verifică denumirea produsului și variantele oferite. Un număr din adresa catalogului poate identifica doar fișa acestuia.",
+          "Pe Weidian, parametrul itemID de pe pagina articolului identifică anunțul. Pe o pagină de produs Taobao, parametrul uzual este id. Dacă vezi și skuId, păstrează-l ca informație despre opțiunea selectată. Două mărimi pot avea același ID de anunț și coduri de variantă diferite. Dacă linkul scurt din aplicație deschide doar magazinul sau cere autentificare, caută opțiunea de distribuire de pe fișa produsului. Nu completa din memorie un identificator lipsă."
+        ]
+      },
+      {
+        "heading": "Caută după platformă și ID, apoi verifică rezultatul",
+        "paragraphs": [
+          "Introdu adresa publică în instrumentul de căutare QC ales. Dacă instrumentul permite căutarea după număr, selectează și platforma corectă. Compară pagina-sursă afișată în rezultat cu adresa de la care ai pornit. Numele englezesc, o fotografie de copertă identică sau un preț apropiat pot apărea la mai mulți vânzători. O asemănare între fotografii este un indiciu bun pentru a continua cercetarea, dar lasă deschisă întrebarea despre proveniență.",
+          "Păstrează titlul opțiunii în forma din anunț, alături de o traducere, dacă ai nevoie. Două opțiuni traduse ambele prin «negru» pot desemna finisaje sau imprimeuri diferite. Dacă pagina afișează mai multe stiluri pe aceeași fișă, verifică prezentarea variantei. O poză autentică de depozit încă poate reprezenta alt stil din același anunț."
+        ]
+      },
+      {
+        "heading": "Alege setul de poze care răspunde întrebării tale",
+        "paragraphs": [
+          "Stabilește ce vrei să afli înainte să răsfoiești galeria. Pentru poziția unei broderii, ajută o vedere frontală a aceleiași variante. Pentru lățimea la piept, contează mărimea de pe etichetă și o fotografie cu ruleta. Pentru accesoriile incluse, ai nevoie de o imagine cu toate piesele. Un detaliu foarte clar al broderiei nu oferă nicio informație despre lungimea mânecii.",
+          "Dacă sunt vizibile, notează data, culoarea, mărimea, stilul și orice referință la lot. Lasă câmpul gol dacă informația nu este publică. Nu atribui un lot pornind de la data pozei. Imaginea unui exemplar mai vechi poate să arate croiala de atunci, în timp ce anunțul deschis azi prezintă un furnizor, un material sau un tabel de mărimi schimbat. Verifică din nou ce promite pagina actuală."
+        ]
+      },
+      {
+        "heading": "Cum deosebești poza de prezentare de fotografia unei comenzi",
+        "paragraphs": [
+          "Caută explicația pe care o dă sursa imaginii. O fotografie de magazin descrie modelul pus în vânzare. Un set atribuit unei recepții anterioare documentează exemplarul fotografiat. Fundalul verde, o etichetă sau o riglă în cadru nu stabilesc singure proveniența. Dacă sursa nu e clară, notează «imagine de referință, origine neconfirmată».",
+          "Uită-te și la calitatea comparației. Două cadre făcute sub lumini diferite nu sunt o probă bună pentru o diferență fină de nuanță. În schimb, numărul buzunarelor, prezența unei cusături sau felul în care e prins un accesoriu pot fi vizibile în ambele. Cere un alt unghi când fotografia nu răspunde întrebării care îți poate schimba decizia."
+        ]
+      },
+      {
+        "heading": "Cum rezolvi două seturi care par să se contrazică",
+        "paragraphs": [
+          "Imaginează-ți două recepții asociate aceluiași anunț de tricou. În prima fotografie, distanța dintre guler și imprimeu pare de trei degete; în a doua pare mult mai mică. Înainte să concluzionezi că s-a schimbat producția, verifică mărimea fiecărui exemplar și poziția tricoului. Un M și un XXL pot avea același imprimeu aplicat pe suprafețe diferite, iar un cadru de sus și unul din lateral schimbă proporțiile aparente. Dacă nu vezi aceste informații, păstrează ambele imagini cu limitele lor.",
+          "Poți micșora incertitudinea alegând două puncte identificabile, de exemplu marginea gulerului și marginea de sus a imprimeului. Cere măsurarea distanței reale pe exemplarul tău în loc să o deduci din pixeli. La o pereche de pantofi, compară aceeași parte și același unghi; fotografiezi alt detaliu când privești exteriorul pantofului stâng și interiorul celui drept. Dacă o diferență rămâne vizibilă în condiții comparabile, păstrează exact cadrele respective și explică ce detaliu te interesează."
+        ]
+      },
+      {
+        "heading": "Ce faci când rezultatul este gol sau linkul s-a schimbat",
+        "paragraphs": [
+          "Redeschide anunțul original. Dacă încă afișează articolul și variantele lui, copiază adresa finală din browser și încearcă o singură verificare după platformă și ID. O căutare fără rezultate îți spune doar că acel instrument nu ți-a arătat fotografii pentru anunțul respectiv. Nu îți spune dacă produsul se află pe stoc, câți clienți l-au cumpărat sau cum arată exemplarul tău.",
+          "Dacă vânzătorul a republicat produsul sub alt ID, păstrează ambele adrese și data la care le-ai văzut. Poți folosi vechiul set ca să pregătești întrebări, cu mențiunea că aparține anunțului anterior. Dacă aceeași adresă deschide acum alt articol, oprește comparația. O poză veche nu repară schimbarea de destinație."
+        ]
+      },
+      {
+        "heading": "Exemplu de decizie pentru un anunț cu mai multe variante",
+        "paragraphs": [
+          "Să presupunem că ai ales stilul al doilea, mărimea L, dintr-un anunț cu cinci variante de polo. Găsești o fotografie asociată aceluiași ID. În fotografie se vede o etichetă M, iar gulerul are alte dungi. Poți folosi imaginea ca să îți dai seama ce detaliu trebuie fotografiat. Nu o folosi pentru a trece «măsură L confirmată» în fișa ta.",
+          "La primirea produsului, cererea utilă ar fi «Vă rog o fotografie frontală a stilului comandat, cu eticheta de mărime vizibilă, și o măsurătoare în centimetri între subrațuri». Păstrează răspunsul lângă varianta selectată. Dacă depozitul oferă imagini suplimentare, verifică eventualul cost și condițiile înainte de a le cere; disponibilitatea depinde de serviciul folosit."
+        ]
+      },
+      {
+        "heading": "Ce merită salvat dacă revii peste câteva săptămâni",
+        "paragraphs": [
+          "Păstrează adresa produsului și adresa rezultatului QC în câmpuri separate. Prima te duce la oferta curentă a vânzătorului, a doua te ajută să regăsești seria de imagini pe care ai consultat-o. Notează data la care ai deschis sursa. Dacă pagina nu arată data recepției, nu completa acea rubrică cu data căutării tale. Sunt două momente diferite, chiar dacă imaginile arată recent.",
+          "Când revii la o listă mai veche de cumpărături, verifică întâi identitatea articolului și opțiunile active. Un set public poate dispărea dintr-un motor de căutare, iar vânzătorul poate păstra numele comercial și schimba oferta. Decide dacă informația lipsă îți schimbă alegerea. De exemplu, lipsa unei fotografii laterale poate fi acceptabilă pentru un detaliu decorativ; lipsa unei măsurători de care depinde mărimea poate justifica amânarea comenzii până când primești un răspuns."
+        ]
+      },
+      {
+        "heading": "Păstrează o fișă scurtă până la acceptarea produsului",
+        "paragraphs": [
+          "Într-un singur rând notează sursa publică, ID-ul, varianta dorită, data verificării și întrebarea rămasă. Pune fotografia de referință într-o coloană și fotografia exemplarului tău în alta. Astfel ai o evidență clară când decizi să accepți produsul, să soliciți o măsurătoare sau să întrebi despre opțiunile disponibile înainte de expediere.",
+          "Trimite către un instrument public numai linkul public al anunțului. Pentru o problemă cu articolul propriu folosește canalul oficial al comenzii. Adresa de livrare, numărul de telefon, codurile de bare de pe colet și documentele de plată nu ajută la căutarea unor poze QC. Decupează-le dacă distribui o imagine pentru a cere o a doua opinie."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Cum interpretezi rezultatul căutării",
+      "headers": [
+        "Ce ai găsit",
+        "Ce poți verifica",
+        "Ce rămâne de făcut"
+      ],
+      "rows": [
+        [
+          "Același ID, aceeași variantă",
+          "Aspectul exemplarului fotografiat",
+          "Verifică data, măsurile și comanda proprie"
+        ],
+        [
+          "Același ID, altă mărime",
+          "Unele detalii comune de construcție",
+          "Cere măsurile mărimii comandate"
+        ],
+        [
+          "Alt ID sau sursă neclară",
+          "O asemănare vizuală",
+          "Păstrează poza ca simplu reper"
+        ],
+        [
+          "Nicio fotografie",
+          "Acoperirea instrumentului este insuficientă",
+          "Verifică sursa și cere dovezi la recepție"
+        ]
+      ]
+    },
+    "sourceNote": "Metoda pornește de la structura linkurilor publice Weidian și Taobao și de la felul în care instrumentele publice de căutare asociază fotografiile cu un anunț. Exemplul cu varianta de polo este ilustrativ."
+  },
+  {
+    "slug": "t-shirt-size-chart-qc",
+    "title": "Tricouri AllChinaBuy: cum alegi mărimea din tabel și din pozele QC",
+    "description": "Compară în centimetri un tricou pe care îl porți cu tabelul vânzătorului și verifică lățimea, lungimea și croiala în pozele din depozit.",
+    "summary": "Măsoară un tricou care îți vine bine, întins fără să tragi de material. Compară valori definite în același fel, apoi cere fotografia măsurătorii care ar decide dacă accepți exemplarul primit.",
+    "intro": [
+      "Două tricouri cu mărimea L pe etichetă pot să stea complet diferit pe tine. Un model are umărul căzut și corpul scurt, altul este drept și lung. Dacă îți alegi mărimea numai după litera de pe un tricou pe care îl porți deja, pierzi tocmai informația care te-ar ajuta: forma lui în centimetri.",
+      "În catalog poți întâlni produse precum «Polo shirt (5 styles)» sau «Off White T-shirt». Folosește denumirea ca să regăsești fișa, apoi caută tabelul vânzătorului pentru varianta pe care vrei s-o comanzi. Măsurătorile din exemplul de mai jos sunt ipotetice. Nu sunt valorile publicate sau măsurate pentru aceste produse."
+    ],
+    "sections": [
+      {
+        "heading": "Alege o piesă de reper pentru felul în care porți tricoul",
+        "paragraphs": [
+          "Ia un tricou pe care l-ai purtat suficient cât să știi cum stă la piept, la umeri și la tiv. Dacă îți place să porți un tricou larg peste alt strat, măsoară unul pe care îl folosești chiar așa. Un polo mulat poate avea lățimea dorită, dar un guler și o linie a umărului foarte diferite față de un tricou larg cu mânecă joasă.",
+          "Spune în câteva cuvinte de ce îți place reperul. Poate vrei aceeași libertate la piept și un tiv puțin mai scurt. Poate te strânge sub braț deși lungimea este bună. Notează ce ai accepta să se schimbe și ce este obligatoriu. Clasamentul variantelor va avea mai mult sens dacă știi care măsură contează cel mai mult pentru tine."
+        ]
+      },
+      {
+        "heading": "Măsoară pe o suprafață dreaptă, fără tensiune",
+        "paragraphs": [
+          "Așază tricoul uscat cu fața în sus. Netezește cutele cu palma, fără să întinzi tricotul, și aliniază cusăturile laterale. Pentru lățimea la piept măsoară drept de la o margine la cealaltă, în zona unde mâneca întâlnește corpul. Fă o fotografie în care se văd și punctul de pornire, și valoarea de la celălalt capăt. Dacă vânzătorul indică o linie de măsurare ceva mai jos de subraț, repetă măsurarea acolo.",
+          "Pentru lungime, urmărește desenul din tabel. O metodă întâlnită pornește de la punctul înalt al umărului, lângă guler, și coboară până la tiv. O altă măsurătoare poate porni din mijlocul spatelui, de la baza gulerului. La un tricou cu tiv curbat sau cu spatele mai lung, punctul final contează. Notează punctele folosite, nu doar numărul."
+        ]
+      },
+      {
+        "heading": "Citește antetul și desenul tabelului",
+        "paragraphs": [
+          "Caută unitatea și ce reprezintă fiecare coloană. «Bust» poate denumi circumferința completă a produsului, iar o altă fișă poate da lățimea măsurată pe față. Un tricou de 52 cm pe plat are aproximativ 104 cm în jur atunci când fața și spatele au aceeași lățime. Dublarea ajută la compararea acestor două moduri de a descrie aceeași piesă. Ea nu îți transformă automat circumferința corpului într-o mărime potrivită.",
+          "Unele tabele recomandă o mărime în funcție de înălțimea sau greutatea persoanei. Folosește recomandarea ca punct de plecare dacă nu există alte date, apoi caută dimensiunile hainelor. Două persoane cu aceeași greutate pot dori croieli diferite. Dacă lipsește unitatea sau nu este clar dacă măsura este pe corp ori pe produs, cere explicația înainte de a plăti."
+        ]
+      },
+      {
+        "heading": "Exemplu calculat cu două variante apropiate",
+        "paragraphs": [
+          "Tricoul tău de referință măsoară 52 cm între subrațuri și 68 cm în lungime. În tabelul ilustrativ, opțiunea A are 50 cm și 67 cm. Față de reper, pierzi 2 cm în lățime pe plat și 1 cm în lungime. Opțiunea B are 54 cm și 70 cm: câștigi câte 2 cm pe fiecare dintre cele două direcții. Niciuna nu reproduce exact piesa de acasă.",
+          "Dacă vrei spațiu la piept, B merită verificată mai departe, cu atenție la locul în care îți va ajunge tivul. Dacă lungimea te deranjează mai mult decât lățimea, A este mai aproape de reper doar pe această dimensiune. Proiectează cu o ruletă pe tricoul tău unde s-ar termina cei 70 cm. Dacă ambele compromisuri sunt incomode, caută o altă croială. Nu e obligatoriu să alegi între cele două rânduri."
+        ]
+      },
+      {
+        "heading": "Verifică linia umerilor, mâneca și gulerul",
+        "paragraphs": [
+          "La o mânecă montată clasic, lățimea umerilor poate fi măsurată de la o cusătură la cealaltă. La o croială cu umărul căzut, cusătura poate ajunge intenționat pe braț. La mânecile raglan, același punct de pornire nici nu există. În acest caz este mai util să ceri o măsurătoare continuă de la gât până la capătul mânecii, dacă o poți reproduce și pe reper.",
+          "La un polo, uită-te și la deschiderea de sub guler. Numărul de nasturi sau forma fentei te pot ajuta să verifici dacă ai primit stilul ales. Pentru imprimeuri compară poziția față de guler, cusături și tiv. Numele modelului ori poza de copertă a unui anunț cu mai multe stiluri nu stabilesc care variantă a ajuns la depozit."
+        ]
+      },
+      {
+        "heading": "Dacă tabelul prezintă mai multe croieli pe aceeași pagină",
+        "paragraphs": [
+          "Verifică dacă fiecare opțiune are un tabel separat. Într-un anunț cu mai multe stiluri, aceeași literă poate aparține unui tricou drept, unui model scurt ori unui polo cu tiv diferit. Uită-te la imaginea tabelului după ce schimbi opțiunea și notează numele stilului lângă dimensiuni. Dacă există un singur tabel pentru toate modelele, caută o precizare a vânzătorului despre variantele la care se aplică. Dacă nu o găsești, cere confirmarea pentru opțiunea dorită.",
+          "Poți scrie, de exemplu, «Pentru varianta cu guler contrastant, mărimea L, tabelul indică lățimea pe plat sau circumferința întreagă? De la ce punct este măsurată lungimea?». Un răspuns cu două definiții este mai util decât recomandarea generală de a lua o mărime mai mare. Dacă vânzătorul îți dă o fotografie a produsului măsurat, verifică stilul și culoarea înainte s-o adaugi lângă reper. Păstrează și captura tabelului folosit pentru comandă, astfel încât să ai aceeași referință dacă pagina se schimbă înainte de recepție."
+        ]
+      },
+      {
+        "heading": "Cere o fotografie QC din care poți citi măsura",
+        "paragraphs": [
+          "O cerere scurtă și precisă ar fi «Tricoul întins fără tensiune, măsurat în centimetri între cusăturile de subraț; vă rog să se vadă capetele ruletei și eticheta de mărime». Dacă întrebarea ta este despre lungime, descrie separat cele două puncte. Fotografia trebuie să îți permită să refaci comparația cu reperul. O etichetă L sau o ruletă vizibilă doar la un capăt nu rezolvă diferența de câțiva centimetri.",
+          "Dacă imaginea este oblică ori materialul face un pliu, descrie problema concretă. De exemplu, «capătul din stânga al ruletei nu se vede» îi spune celui care pregătește poza ce să schimbe. Verifică și eventualele condiții sau taxe ale serviciului de fotografiere înainte să trimiți cererea. Un set dintr-o arhivă publică poate arăta alt lot ori altă mărime."
+        ]
+      },
+      {
+        "heading": "Ce poți decide la recepție și ce rămâne incert",
+        "paragraphs": [
+          "Compară valoarea primită cu reperul și cu intervalul de toleranță al vânzătorului, dacă este comunicat. Nu presupune un anumit număr de centimetri de abatere pentru toate produsele. Dacă tricoul se află chiar la limita pe care o poți purta confortabil, încă o măsurare bine făcută poate fi mai valoroasă decât alte trei fotografii de ansamblu.",
+          "O imagine poate confirma lungimea sau un imprimeu vizibil deplasat. Nu stabilește cum se simte materialul pe piele, cât se va strânge la spălare sau dacă își va păstra forma după mai multe purtări. Dacă mărimea sau stilul diferă, păstrează captura cu varianta comandată și fotografia de la recepție. Cere opțiunile de rezolvare cât produsul este încă în depozit și verifică termenul comunicat pentru comanda respectivă."
+        ]
+      },
+      {
+        "heading": "Păstrează o fișă utilă la următoarea comandă",
+        "paragraphs": [
+          "După livrare, probează tricoul lângă piesa de reper. Notează dacă diferența de lățime s-a simțit cum te așteptai și unde cade tivul. Păstrează măsurile tricoului primit înainte de prima spălare numai dacă te interesează cum evoluează materialul. Data, varianta și sursa măsurii te vor ajuta mai mult data viitoare decât o notă vagă precum «iau mereu L»."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Exemplu ilustrativ de comparație în centimetri",
+      "headers": [
+        "Piesă",
+        "Lățime între subrațuri",
+        "Lungime",
+        "Față de reper"
+      ],
+      "rows": [
+        [
+          "Tricoul de acasă",
+          "52 cm",
+          "68 cm",
+          "Reper"
+        ],
+        [
+          "Opțiunea A",
+          "50 cm",
+          "67 cm",
+          "Cu 2 cm mai îngust și 1 cm mai scurt"
+        ],
+        [
+          "Opțiunea B",
+          "54 cm",
+          "70 cm",
+          "Cu 2 cm mai lat și 2 cm mai lung"
+        ]
+      ]
+    },
+    "sourceNote": "Metodă de comparare a măsurătorilor de pe haine cu tabelul și fotografiile variantei comandate. Valorile A și B exemplifică un calcul; niciuna nu este prezentată drept măsurătoare a unui articol din catalog."
+  },
+  {
+    "slug": "parcel-cost-guide",
+    "title": "Cât costă transportul AllChinaBuy în România? Greutate reală și volumetrică",
+    "description": "Vezi de ce două colete de 2 kg pot avea costuri diferite. Compară dimensiunile, greutatea facturabilă și pozițiile din oferta pentru România.",
+    "summary": "Pornește de la coletul împachetat. Pentru fiecare rută eligibilă, notează greutatea reală, dimensiunile exterioare, formula de tarifare și costurile incluse. O cifră din calculator este valabilă doar pentru datele pe care le-ai introdus.",
+    "intro": [
+      "Să presupunem că ai de trimis haine și o pereche de pantofi în România. Înainte de ambalare, cântarul arată aproximativ același total în două variante. În prima, hainele stau compact într-o cutie mică. În a doua, cutia originală de pantofi obligă depozitul să folosească un ambalaj mai mare. Când ruta ia în calcul spațiul ocupat, aceeași greutate fizică poate produce două cotații diferite."
+    ],
+    "sections": [
+      {
+        "heading": "Separă achiziția de produs de expedierea internațională",
+        "paragraphs": [
+          "În prima etapă plătești varianta cumpărată și, când apare separat, livrarea de la vânzător la depozit. Pentru drumul către România contează ce articole pleacă efectiv, materialul de protecție, greutatea, dimensiunile și ruta. Un tricou ieftin trimis singur poate suporta o parte relativ mare din taxa inițială de transport. O estimare introdusă înainte de recepție rămâne dependentă de presupunerile tale.",
+          "Notează în două coloane ce ai plătit deja și ce mai trebuie confirmat. Dacă ai un depozit de transport sau o estimare preliminară, caută explicația din cont privind regularizarea. Nu adăuga automat ambele sume la buget și nici nu presupune că o eventuală diferență îți va fi restituită la o anumită dată."
+        ]
+      },
+      {
+        "heading": "Cum se calculează greutatea volumetrică",
+        "paragraphs": [
+          "Greutatea reală este cifra de pe cântar. Pentru o rută care folosește volumetria, înmulțești lungimea, lățimea și înălțimea exterioară ale cutiei și împarți produsul la divizorul prevăzut de rută. Verifică unitatea fiecărei dimensiuni. Un divizor pentru centimetri nu se poate folosi direct cu dimensiuni introduse în milimetri.",
+          "În exemplul din tabel, ambele colete cântăresc 2 kg, iar divizorul ipotetic este 6.000. Dacă regula selectează valoarea mai mare dintre greutatea reală și cea volumetrică, coletul compact are o bază de calcul de 2 kg, iar cel voluminos de 4 kg. Abia după această comparație aplici eventuala rotunjire sau treapta minimă specificată de transportator. Niciunul dintre rezultate nu reprezintă un tarif în lei."
+        ]
+      },
+      {
+        "heading": "Construiește două simulări comparabile",
+        "paragraphs": [
+          "Într-un calculator disponibil selectează România, aceeași categorie de bunuri, aceeași monedă și aceleași opțiuni de livrare pentru ambele teste. Schimbă întâi numai dimensiunile. Notează data și salvează descrierea rutei. Dacă schimbi simultan destinația, ambalajul și linia, nu vei putea spune ce a influențat suma.",
+          "După recepția în depozit înlocuiește valorile estimate cu cele confirmate. Păstrează cutia pantofilor dacă forma, protecția sau ambalajul de prezentare contează pentru tine. Dacă iei în calcul scoaterea ei, cere o variantă de protecție adecvată și dimensiunile rezultate. Economisești doar dacă oferta recalculată arată o diferență care merită compromisul."
+        ]
+      },
+      {
+        "heading": "Compară rutele numai după ce verifici eligibilitatea",
+        "paragraphs": [
+          "Verifică dacă ruta acceptă toate articolele din colet, lungimea laturii celei mai mari și greutatea finală. Un articol care are baterie, lichid sau alte caracteristici menționate în restricții poate schimba întreaga selecție. Pentru un colet împărțit, refă verificarea și calculul pentru fiecare bucată. Două colete mici înseamnă și două ambalaje și pot însemna două costuri de pornire.",
+          "Compară totalurile în aceeași monedă și pentru un nivel similar de servicii. Treci pe rând transportul, ambalarea, alte servicii alese și sumele de la destinație explicit menționate. Unde oferta tace, scrie «de confirmat». Deducerea unei taxe deja incluse este la fel de importantă ca identificarea uneia care se plătește separat."
+        ]
+      },
+      {
+        "heading": "Ce verifici înainte să aprobi plata",
+        "paragraphs": [
+          "Compară ultima cotație cu scenariul pe care îl accepți: aceleași articole, aceeași rută, colet unic ori separat și aceleași opțiuni de protecție. Dacă prețul s-a schimbat, cere dimensiunile și greutatea folosite, condițiile rutei și defalcarea diferenței. Păstrează confirmarea în cont, alături de numărul coletului.",
+          "Pagina oficială AllChinaBuy afișa un anunț de mentenanță la verificarea din 3 noiembrie 2026. Dacă nu poți obține o ofertă actuală, folosește acest calcul pentru a testa volumul. Pentru o decizie de plată ai nevoie de ruta și suma disponibile efectiv pentru comanda ta."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Exemplu de calcul la aceeași greutate reală de 2 kg",
+      "headers": [
+        "Colet ilustrativ",
+        "Volum exterior",
+        "Greutate volumetrică la 6.000",
+        "Bază înainte de rotunjire"
+      ],
+      "rows": [
+        [
+          "30 × 20 × 10 cm",
+          "6.000 cm³",
+          "1 kg",
+          "2 kg"
+        ],
+        [
+          "40 × 30 × 20 cm",
+          "24.000 cm³",
+          "4 kg",
+          "4 kg"
+        ]
+      ]
+    },
+    "sourceNote": "Punct de plecare: rubricile calculatorului public AllChinaBuy pentru destinație, categorie, greutate și dimensiuni. Divizorul și cele două colete sunt exemple didactice; verifică formula rutei oferite."
+  },
+  {
+    "slug": "spreadsheet-guide",
+    "title": "Cum verifici un link din AllChinaBuy Spreadsheet înainte de comandă",
+    "description": "Pornește de la un produs din spreadsheet și verifică pagina vânzătorului, varianta, mărimea și prețul. Păstrează o listă scurtă cu dovezi ușor de refăcut.",
+    "summary": "Un rând bun îți economisește căutarea. Confirmă separat adresa, opțiunea exactă și măsurile. Când se schimbă destinația linkului, tratează noua pagină ca pe un produs nou.",
+    "intro": [
+      "Un spreadsheet te poate duce la un produs pe care altfel l-ai găsi greu. Totuși, fotografia și prețul din tabel au fost preluate la un moment dat. Până îl deschizi tu, vânzătorul poate să fi schimbat opțiunile, stocul sau chiar articolul de pe aceeași pagină. Cea mai utilă listă este una scurtă, în care poți reface traseul de la rândul salvat până la varianta dorită."
+    ],
+    "sections": [
+      {
+        "heading": "Stabilește ce ar scoate produsul din listă",
+        "paragraphs": [
+          "Pentru un tricou pot conta lățimea minimă la piept, lungimea maximă și un anumit tip de guler. Pentru pantofi pot conta lungimea branțului și forma în vârf. Scrie criteriile înainte să deschizi catalogul. Astfel nu vei compara două produse numai pentru că au aceeași fotografie de prezentare sau un nume apropiat.",
+          "Deschide categoria potrivită și selectează câteva produse comparabile. La o căutare după marcă adaugă caracteristica de care ai nevoie: croială largă, închidere cu fermoar, talpă flexibilă. Păstrează în listă și motivul pentru care ai ales fiecare candidat."
+        ]
+      },
+      {
+        "heading": "Urmărește linkul până la varianta care te interesează",
+        "paragraphs": [
+          "Ia ca exemplu fișa «Polo shirt (5 styles)». Cuvintele din titlu nu stabilesc care stil este selectat. Deschide pagina, identifică vânzătorul și anunțul original dacă există, apoi selectează stilul, culoarea și mărimea. Privește din nou poza și prețul după selectare. Faptul că o altă combinație este disponibilă nu confirmă stocul variantei tale.",
+          "Dacă linkul deschide o pagină de căutare, un articol diferit ori o listare retrasă, marchează-l corespunzător. Poți căuta un înlocuitor după descriere sau imagine, dar pune noul link într-un rând separat. Altfel vechile observații despre mărime și pozele QC vor părea că aparțin noului vânzător."
+        ]
+      },
+      {
+        "heading": "Completează fișa înainte să compari prețurile",
+        "paragraphs": [
+          "Notează în aceeași zi prețul și moneda variantei selectate, costul intern afișat și ce scrie în tabel despre mărime. Adaugă data consultării, sursa măsurilor și orice neclaritate. Dacă nu poți verifica o informație, lasă câmpul deschis. Un preț lizibil nu compensează lipsa unei dimensiuni decisive pentru tine.",
+          "Ține două bugete: unul până la recepția în depozit și unul pentru coletul internațional. Pentru al doilea ai nevoie de greutatea și volumul coletului și de o rută eligibilă pentru România. Un preț aproximativ în dolari pe un card nu îți arată suma finală de plată sau cursul pe care îl va aplica furnizorul de plăți."
+        ]
+      },
+      {
+        "heading": "Folosește pozele cu o întrebare precisă",
+        "paragraphs": [
+          "Pentru verificarea înainte de cumpărare caută fotografii asociate aceluiași anunț și notează varianta din ele. Dacă iei mărimea L, o fotografie cu un exemplar S poate arăta culoarea imprimeului, însă nu lungimea produsului tău. La recepție înlocuiește imaginea de referință cu fotografia comenzii tale și compară eticheta, numărul de bucăți și măsura importantă.",
+          "Păstrează o decizie simplă în fișă: «confirmat», «aștept măsurătoarea» sau «nu corespunde». Leagă decizia de observația concretă, de exemplu «cursă de fermoar diferită de varianta selectată». Ulterior poți redeschide rândul și verifica ce a declanșat întrebarea, fără să compari din nou toate filele."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Fișa minimă pentru fiecare produs",
+      "headers": [
+        "De notat",
+        "Următoarea verificare"
+      ],
+      "rows": [
+        [
+          "Link original și varianta selectată",
+          "La comandă"
+        ],
+        [
+          "Preț, monedă și data",
+          "Înainte de plată"
+        ],
+        [
+          "Măsură și unitate",
+          "Când primești pozele QC"
+        ],
+        [
+          "Greutate și dimensiuni ambalate",
+          "Când alegi transportul"
+        ]
+      ]
+    },
+    "sourceNote": "Metoda folosește fișele publice din catalog, informațiile variantei și documentele disponibile după recepție. Denumirea de polo ilustrează un produs cu mai multe stiluri; disponibilitatea actuală se verifică pe fișa sa."
+  },
+  {
+    "slug": "qc-photo-routine",
+    "title": "Cum verifici pozele QC AllChinaBuy înainte de expediere",
+    "description": "Verifică articolul recepționat în cinci pași: identitate, formă, măsurători, detalii vizibile și decizia înainte de transport.",
+    "summary": "Începe cu varianta și numărul de bucăți. Cere apoi doar imaginile care pot schimba decizia: o măsurătoare lizibilă, o vedere din spate sau un detaliu de la locul presupusului defect.",
+    "intro": [
+      "Fotografiile QC îți oferă o ocazie să verifici produsul cât se află în depozit. Deschide varianta din comanda confirmată împreună cu fotografiile recepției. Un set vechi găsit într-o arhivă te poate ajuta să formulezi întrebări, dar pentru acceptare contează ce se vede la exemplarul tău."
+    ],
+    "sections": [
+      {
+        "heading": "1. Verifică identitatea și cantitatea",
+        "paragraphs": [
+          "Compară tipul produsului, culoarea, stilul, eticheta și numărul de bucăți cu ceea ce ai selectat. La pantofi trebuie să vezi ambii pantofi și etichetele relevante; la un set de accesorii, cere toate piesele în același cadru. O fotografie a cutiei închise nu îți spune dacă în ea se află mărimea corectă.",
+          "Dacă vezi o diferență de nuanță, verifică dacă poate veni din iluminare sau reflexie. Pentru diferențe clare de stil, păstrează alături captura variantei și imaginea recepției. Următoarea cerere poate indica exact locul care nu corespunde."
+        ]
+      },
+      {
+        "heading": "2. Privește forma înainte să mărești detaliile",
+        "paragraphs": [
+          "La haine, caută o fotografie frontală și una din spate în care produsul stă drept. Urmărește simetria mânecilor, poziția tivului și amplasarea imprimeului. O fotografie de aproape poate ascunde faptul că articolul a fost așezat oblic. La pantofi compară perechea din spate și apoi din lateral, la un unghi cât mai apropiat.",
+          "Separă o cută de transport de o problemă de croială. Dacă materialul este pliat, cere aceeași suprafață întinsă fără tensiune înainte să tratezi diferența drept defect."
+        ]
+      },
+      {
+        "heading": "3. Verifică unitatea și capetele ruletei",
+        "paragraphs": [
+          "O etichetă de mărime te ajută să identifici varianta. Pentru potrivire ai nevoie de centimetri. La tricou cere lățimea pe plat între subrațuri și lungimea de la punctul convenit până la tiv. La încălțăminte precizează dacă te interesează branțul scos, nu talpa exterioară. Notează ce măsori și la perechea de acasă.",
+          "În cadru trebuie să se vadă ambele capete. Dacă ruleta începe după marginea materialului, rezultatul poate părea mai mic. Cere o imagine perpendiculară și verifică dacă unitățile sunt centimetri. Nu aproba o dimensiune critică doar pentru că se vede o cifră la capătul fotografiei."
+        ]
+      },
+      {
+        "heading": "4. Cere un prim-plan care localizează problema",
+        "paragraphs": [
+          "Pentru o cusătură deschisă cere o imagine cu zona întreagă și una apropiată. Pentru un fermoar cere să se vadă alinierea capetelor. Pentru o broderie verifică poziția față de buzunar sau guler. Spune ce ai observat, de exemplu «se vede o întrerupere în cusătura laterală stângă», apoi cere confirmarea sub alt unghi.",
+          "O fotografie poate documenta aspectul. Nu confirmă singură compoziția fibrei, durabilitatea, confortul ori autenticitatea produsului. Dacă tocmai acea informație este esențială, caută o dovadă diferită sau reconsideră achiziția."
+        ]
+      },
+      {
+        "heading": "5. Decide înainte să grupezi coletul",
+        "paragraphs": [
+          "Dacă varianta, cantitatea și măsura corespund, păstrează fotografia împreună cu identificatorul articolului. Dacă un detaliu rămâne ambiguu, lasă articolul separat până vine răspunsul. Când problema este clară, întreabă ce opțiuni sunt disponibile pentru comanda respectivă, în ce termen și cu ce cost. Depozitul, vânzătorul și transportatorul se ocupă de etape diferite.",
+          "Păstrează în fișă observația, data și pasul următor. Odată ce coletul a intrat în livrare internațională, clarificarea unei neconcordanțe de la vânzător poate necesita mai multe documente și etape."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "O întrebare, o fotografie potrivită",
+      "headers": [
+        "Întrebare",
+        "Imagine utilă"
+      ],
+      "rows": [
+        [
+          "Am primit mărimea comandată?",
+          "Eticheta exemplarului și confirmarea variantei"
+        ],
+        [
+          "Îmi vine la piept?",
+          "Măsurătoare între subrațuri, pe plat"
+        ],
+        [
+          "Imprimeul este centrat?",
+          "Fața întreagă a produsului, îndreptată"
+        ],
+        [
+          "Lipsește o piesă?",
+          "Întregul conținut așezat în același cadru"
+        ]
+      ]
+    },
+    "sourceNote": "Ghid de inspecție vizuală bazat pe verificarea variantei primite și a fotografiilor din depozit. Disponibilitatea imaginilor suplimentare și eventualele costuri se confirmă pentru articolul concret."
+  },
+  {
+    "slug": "maintenance-orders-romania",
+    "title": "AllChinaBuy nu funcționează? Cum verifici o comandă pentru România",
+    "description": "Separă o problemă de acces de o comandă în depozit sau de un colet deja acceptat de curier. Pregătește informațiile potrivite pentru asistență.",
+    "summary": "Notează ultima etapă confirmată și identificatorul ei. Pagina de mentenanță explică indisponibilitatea site-ului, dar nu stabilește unde se află o anumită comandă.",
+    "intro": [
+      "Dacă site-ul nu se deschide, prima întrebare este ce ai nevoie să afli: dacă s-a înregistrat plata produsului, dacă articolul a ajuns în depozit sau dacă a plecat coletul spre România. Fiecare întrebare se verifică din alt document. La verificarea din 3 noiembrie 2026, pagina oficială afișa un mesaj de mentenanță și îndruma cumpărătorii cu întrebări despre comenzi către asistență. Anunțul consultat nu preciza o dată de redeschidere."
+    ],
+    "sections": [
+      {
+        "heading": "Salvează ultimul eveniment pe care îl poți dovedi",
+        "paragraphs": [
+          "Notează adresa paginii accesate, data și mesajul exact. Un ecran de mentenanță, o eroare de conexiune și o parolă respinsă sunt situații diferite. Apoi caută confirmarea de plată, mesajul de recepție și ultima notificare de expediere pe care o ai deja. Pune-le în ordine, fiecare lângă codul ei.",
+          "Spre exemplu, dacă ai confirmarea plății articolelor și un cod de transport intern în China, dar nicio confirmare de recepție, întrebarea utilă privește sosirea la depozit. Introducerea acelui cod într-un serviciu de urmărire din România nu răspunde la întrebare."
+        ]
+      },
+      {
+        "heading": "Alege canalul potrivit pentru etapa comenzii",
+        "paragraphs": [
+          "Pentru o comandă la vânzător, pornește de la numărul comenzii și ultima mișcare a livrării interne. Pentru un articol recepționat folosește codul de inventar, data recepției și eventualele imagini disponibile. Dacă intenționai să ceri un retur, întreabă explicit ce termen se aplică situației tale. Nu considera că mentenanța prelungește automat termenul.",
+          "Pentru coletul internațional, caută confirmarea că a fost preluat fizic și numele operatorului. O etichetă creată și plata transportului nu confirmă preluarea. Dacă ai un AWB al operatorului, poți consulta direct pagina acelui operator, inclusiv când site-ul agentului este indisponibil."
+        ]
+      },
+      {
+        "heading": "Trimite o cerere la care se poate răspunde concret",
+        "paragraphs": [
+          "Deschide canalul de asistență indicat de pagina oficială. Scrie tipul identificatorului, ultima actualizare și ce dorești să confirme. Un exemplu este «Articol recepționat la data X, cod de depozit Y. Înainte de mentenanță așteptam fotografiile. Îmi puteți confirma dacă sunt disponibile și termenul pentru verificare?». O astfel de cerere se poate investiga fără a presupune ce s-a întâmplat.",
+          "Trimite documentele în privat și ascunde datele care nu sunt necesare. Păstrează referința răspunsului în același fir. Dacă plata apare debitată, dar nu există o confirmare a comenzii, cere întâi reconcilierea tranzacției. O nouă plată poate complica identificarea primei."
+        ]
+      },
+      {
+        "heading": "Ce verifici când accesul revine",
+        "paragraphs": [
+          "Compară inventarul, stadiul coletului și plățile înregistrate cu copia pe care ai salvat-o. Verifică dacă instrucțiunile de împachetare sau aprobările anterioare au fost păstrate înainte să le trimiți încă o dată. Dacă există o diferență, citează evenimentul și identificatorul exact.",
+          "Un catalog independent de produse nu poate debloca un cont sau vedea o comandă privată. Folosește-l pentru a documenta o listare. Pentru rezolvarea unei comenzi rămâi în canalul oficial ori la transportatorul care a confirmat preluarea."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Ce identificator folosești",
+      "headers": [
+        "Ultima dovadă",
+        "Ce întrebi"
+      ],
+      "rows": [
+        [
+          "Plată și comandă la vânzător",
+          "A fost confirmată achiziția?"
+        ],
+        [
+          "Recepție în depozit",
+          "Care sunt starea articolului și termenul aplicabil?"
+        ],
+        [
+          "Etichetă internațională creată",
+          "A fost coletul preluat fizic?"
+        ],
+        [
+          "Scanare a transportatorului",
+          "Care este ultimul eveniment al acestui AWB?"
+        ]
+      ]
+    },
+    "sourceNote": "Baza documentară este anunțul de mentenanță de pe pagina oficială AllChinaBuy, consultat la 3 noiembrie 2026. Starea unei comenzi se confirmă separat prin dovezile și serviciile aferente ei."
+  },
+  {
+    "slug": "shoes-spreadsheet-eu-size-qc",
+    "title": "Pantofi din AllChinaBuy Spreadsheet: mărimi EU și verificări QC",
+    "description": "Compară mărimea EU, lungimea branțului și fotografiile perechii primite. Vezi când merită să păstrezi cutia pentru transportul în România.",
+    "summary": "Notează metoda de măsurare din anunț și compar-o cu o pereche potrivită. Verifică etichetele ambilor pantofi și starea perechii înainte să alegi ambalajul.",
+    "intro": [
+      "Două perechi de pantofi etichetate EU 42 nu au neapărat aceeași lungime sau același volum interior. Într-un spreadsheet poți găsi rapid modelul și culoarea, însă decizia de mărime pornește de la tabelul variantei selectate. Un număr imprimat pe cutie spune puțin despre lățimea în zona degetelor."
+    ],
+    "sections": [
+      {
+        "heading": "Ce păstrezi din anunț",
+        "paragraphs": [
+          "Salvează adresa exactă, mărimea EU, culoarea, varianta și captura rândului din tabel. Uită-te dacă vânzătorul publică lungimea piciorului recomandată, lungimea branțului ori lungimea tălpii exterioare. Acestea sunt măsuri diferite. Dacă antetul nu este clar, cere explicația vânzătorului înainte să alegi între două numere.",
+          "În lista scurtă include și detaliile care contează pentru felul în care îi vei purta: vârf îngust sau rotunjit, inserții rigide, poziția gleznei. Fotografia poate orienta comparația, dar nu îți spune dacă materialul va ceda după câteva purtări."
+        ]
+      },
+      {
+        "heading": "Folosește o pereche pe care o cunoști",
+        "paragraphs": [
+          "Alege o pereche potrivită pentru același tip de purtare. Dacă branțul se scoate ușor, așază-l drept și măsoară cu aceeași metodă pe care o permite tabelul. Nu dezlipi un branț fix doar pentru comparație. Când tabelul folosește lungimea piciorului, măsoară piciorul conform instrucțiunilor acelei fișe.",
+          "De exemplu, o măsură de 27 cm a tălpii exterioare nu confirmă un branț de 27 cm. Dacă numai aceste două valori sunt disponibile, comparația rămâne deschisă. Cere fotografia branțului sau caută un tabel care descrie aceeași dimensiune."
+        ]
+      },
+      {
+        "heading": "Verifică perechea la recepție",
+        "paragraphs": [
+          "Cere o vedere cu ambii pantofi, etichetele care identifică mărimea și unghiul care răspunde celei mai importante întrebări. La o diferență aparentă în înălțimea călcâielor verifică dacă pantofii sunt așezați pe aceeași suprafață și fotografia este făcută drept. Dacă te preocupă branțul, cere ruleta vizibilă de la un capăt la celălalt.",
+          "Controlează culoarea tălpii, forma vârfului, accesoriile și eventualele urme vizibile. O fotografie nu stabilește confortul sau autenticitatea. Când lipsește o piesă ori etichetele nu corespund, păstrează imaginile perechii și captura comenzii în aceeași cerere de clarificare."
+        ]
+      },
+      {
+        "heading": "Cutia intră în decizia de transport",
+        "paragraphs": [
+          "Cere două scenarii dacă păstrarea cutiei este opțională: dimensiuni cu ambalajul original și dimensiuni cu o protecție alternativă adecvată. O pereche cu vârf rigid poate avea nevoie de mai multă protecție decât încălțămintea textilă. Confirmă ce se îndepărtează înainte de a autoriza o schimbare ireversibilă.",
+          "Compară ofertele pentru România folosind greutatea și volumul ambalate. După livrare notează cum s-a potrivit perechea și ce măsuri au prezis bine rezultatul. Data și modelul îți vor folosi mai mult decât concluzia generală «EU 42 îmi vine întotdeauna»."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Comparația înainte de alegerea mărimii",
+      "headers": [
+        "Dovadă",
+        "Întrebare"
+      ],
+      "rows": [
+        [
+          "Tabelul modelului",
+          "Picior, branț sau talpă exterioară?"
+        ],
+        [
+          "Perechea de acasă",
+          "Am măsurat aceeași dimensiune?"
+        ],
+        [
+          "Pozele depozitului",
+          "Se văd ambii pantofi și mărimea?"
+        ],
+        [
+          "Oferta de ambalare",
+          "Ce protecție și ce dimensiuni rămân?"
+        ]
+      ]
+    },
+    "sourceNote": "Recomandări editoriale de comparare a mărimilor EU și a dovezilor de recepție. Construcția și tabelele diferă între modele și vânzători."
+  },
+  {
+    "slug": "hoodies-spreadsheet-size-fabric-weight",
+    "title": "Hanorace din AllChinaBuy Spreadsheet: mărime, material și greutate",
+    "description": "Compară un hanorac din catalog cu unul purtat acasă. Verifică lățimea, lungimea, finisajele și efectul ambalajului asupra transportului.",
+    "summary": "Pentru croială măsoară un hanorac comparabil. Verifică varianta primită în pozele QC și folosește greutatea coletului ambalat pentru estimarea transportului.",
+    "intro": [
+      "Un hanorac poate fi lat în piept și scurt la tiv, poate avea mânecă dreaptă sau umăr căzut. Dacă îl vei purta peste un tricou gros, folosește ca reper un hanorac care se așază bine în aceeași situație. Termeni precum «oversized» sau «heavyweight» sunt prea vagi pentru a alege singuri o mărime."
+    ],
+    "sections": [
+      {
+        "heading": "Citește dimensiunile în contextul croielii",
+        "paragraphs": [
+          "Măsoară lățimea între subrațuri pe plat, lungimea până la tiv și mâneca folosind punctele de pe desenul vânzătorului. Verifică dacă rubrica piept indică lățimea sau circumferința. La umărul căzut, o mânecă aparent scurtă poate începe mai jos pe braț. Compară și poziția cusăturii.",
+          "Dacă tivul are bandă elastică lată, întreabă-te unde se va așeza pe corp. O măsurătoare a lungimii totale nu spune cât de lejer stă banda. Dacă acea zonă îți creează de obicei dificultăți, cere lățimea tivului în stare relaxată."
+        ]
+      },
+      {
+        "heading": "Separă descrierea materialului de ce se vede",
+        "paragraphs": [
+          "Un prim-plan poate arăta interior periat, o suprafață cu bucle sau felul în care este aplicată o broderie. Un asemenea cadru nu certifică procentul fibrelor ori comportamentul la spălare. Notează compoziția exact așa cum este declarată și păstrează separat ce ai putut vedea.",
+          "Densitatea materialului, dacă este indicată în g/m², se referă la masă pe unitatea de suprafață. Greutatea întregului hanorac include glugă, șnur, buzunar, fermoar și celelalte piese. Nu compara direct un număr în g/m² cu cifra de pe cântarul depozitului."
+        ]
+      },
+      {
+        "heading": "Cere detaliul care decide acceptarea",
+        "paragraphs": [
+          "Verifică dacă ai primit culoarea, fermoarul, imprimeul și poziția buzunarului selectate. Pentru o broderie care pare deplasată, cere întâi o vedere frontală cu hanoracul drept. Pentru lățime cere ruleta vizibilă pe toată linia între subrațuri. Un prim-plan al etichetei nu poate rezolva întrebarea de croială.",
+          "Dacă ai comandat două exemplare, verifică-le separat. Păstrează poza și măsurătorile fiecărui identificator de depozit. Astfel poți accepta un articol fără a încurca discuția despre al doilea."
+        ]
+      },
+      {
+        "heading": "Estimează volumul după împachetare",
+        "paragraphs": [
+          "Un hanorac poate ocupa mult volum chiar dacă nu este greu. Compresia poate fi potrivită pentru unele articole, dar poate afecta ornamentele sau forma unui imprimeu. Precizează ce poate fi pliat și ce trebuie protejat, apoi cere dimensiunile coletului pregătit pentru expediere.",
+          "În fișa de decizie păstrează măsura de la piept, fotografiile detaliilor, greutatea articolului și dimensiunile coletului în câmpuri separate. Primele două ajută la acceptare, ultimele două la calculul rutei către România."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Patru verificări pentru același hanorac",
+      "headers": [
+        "Aspect",
+        "Dovadă utilă"
+      ],
+      "rows": [
+        [
+          "Croială",
+          "Măsuri pe plat și desenul vânzătorului"
+        ],
+        [
+          "Construcție",
+          "Cadru exterior și interior al aceleiași variante"
+        ],
+        [
+          "Finisaje",
+          "Fotografie cu zona relevantă în context"
+        ],
+        [
+          "Transport",
+          "Greutatea și dimensiunile ambalajului final"
+        ]
+      ]
+    },
+    "sourceNote": "Comparație editorială între tabelele de mărimi, detaliile vizibile și măsurile necesare cotației. Greutatea sau compoziția unui model concret se verifică la sursă."
+  },
+  {
+    "slug": "shipping-expert-romania",
+    "title": "Cum verifici oferta AllChinaBuy Shipping Expert pentru România",
+    "description": "Pregătește instrucțiuni de ambalare pe articol și compară oferta unui colet cu cea pentru două colete înainte de aprobarea transportului.",
+    "summary": "Trimite instrucțiuni care pot fi executate fără presupuneri. Compară costul complet, dimensiunile, eligibilitatea și condițiile de aprobare pentru fiecare variantă.",
+    "intro": [
+      "Un serviciu de pregătire a coletului este util când ai articole cu nevoi diferite: încălțăminte într-o cutie mare, haine care se pot plia și un obiect care trebuie protejat. O cerere precum «fă transportul cât mai ieftin» lasă nedefinit dacă pot fi eliminate cutii sau dacă accepți plata fără să vezi oferta. Verifică disponibilitatea serviciului și condițiile aplicabile în contul tău."
+    ],
+    "sections": [
+      {
+        "heading": "Pregătește lista articolelor acceptate",
+        "paragraphs": [
+          "Notează identificatorul fiecărui articol, cantitatea și ultima verificare QC. Separă produsul pentru care încă aștepți o măsurătoare sau o clarificare. Dacă îl incluzi prea devreme în plan, schimbarea cantității poate modifica greutatea și dimensiunile estimate.",
+          "Scrie instrucțiuni pe articol. De exemplu, «Păstrați cutia pantofilor, protejați colțurile. Puteți îndepărta ambalajul exterior al hanoracului dacă articolul rămâne protejat. Vă rog să îmi comunicați dimensiunile finale». Evită să ceri compresie pentru întregul colet atunci când un singur produs este fragil."
+        ]
+      },
+      {
+        "heading": "Spune ce poți aproba și ce vrei să revezi",
+        "paragraphs": [
+          "Precizează dacă dorești doar simularea, o propunere de împărțire sau pregătirea fizică a coletului. Dacă vrei să aprobi costul înainte de plată, formulează condiția explicit și verifică opțiunile afișate de serviciu. Salvează instrucțiunile și răspunsul primit.",
+          "Ofertele se compară corect când au aceleași articole și același serviciu la destinație. Pentru împărțire în două colete, cere greutatea, dimensiunile și costul fiecăruia. Compară totalul ambelor transporturi cu alternativa într-un singur colet, inclusiv eventualele taxe inițiale și operațiunile de ambalare."
+        ]
+      },
+      {
+        "heading": "Verifică de unde provine diferența de preț",
+        "paragraphs": [
+          "Pornește de la dimensiunile exterioare, greutatea reală și regula liniei respective. Dacă prețul s-a modificat după împachetare, vezi ce s-a schimbat în aceste date. Verifică limitele pentru categorie, dimensiunile admise și eventualele restricții înainte să selectezi o rută mai ieftină.",
+          "Cere ca fiecare sumă să fie identificată: transport, ambalare, serviciu opțional, alte costuri explicit declarate. Marchează ce ai plătit și ce rămâne de aprobat. O mențiune generică despre o rută nu stabilește în sine dacă toate costurile până la ușă sunt incluse."
+        ]
+      },
+      {
+        "heading": "Păstrează versiunea aprobată",
+        "paragraphs": [
+          "După aprobare, salvează lista finală, ruta și cotația datată lângă identificatorul coletului. Verifică numele destinatarului, codul poștal și numărul de contact direct în cont. Când apare un AWB, urmărește prima confirmare de preluare; simpla creare a etichetei poate preceda predarea.",
+          "Dacă planul returnat nu respectă o instrucțiune importantă, descrie exact diferența înainte să aprobi: de exemplu, «am cerut păstrarea cutiei, dar lipsesc dimensiunile scenariului cu cutie». Astfel poți obține o ofertă comparabilă fără să refaci întreaga solicitare."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Ce trebuie să conțină oferta",
+      "headers": [
+        "Rubrică",
+        "Verificare"
+      ],
+      "rows": [
+        [
+          "Inventar",
+          "Toate articolele acceptate și cantitățile"
+        ],
+        [
+          "Ambalare",
+          "Instrucțiunile confirmate pentru fiecare articol"
+        ],
+        [
+          "Rută",
+          "Eligibilitate, greutate, dimensiuni, condiții"
+        ],
+        [
+          "Plată",
+          "Ce este deja plătit și ce necesită aprobare"
+        ]
+      ]
+    },
+    "sourceNote": "Instrucțiuni editoriale pentru evaluarea unui plan de împachetare. Disponibilitatea serviciului, termenele, taxele și opțiunile de aprobare depind de oferta curentă."
+  },
+  {
+    "slug": "shipping-to-romania",
+    "title": "Livrare AllChinaBuy în România: alegerea rutei, costuri și vamă",
+    "description": "Compară rutele eligibile pentru România după dimensiuni, ambalaj, urmărire și costul complet. Pregătește informațiile cerute la import și livrare.",
+    "summary": "Verifică mai întâi dacă ruta acceptă coletul. Compară apoi greutatea facturabilă, serviciile incluse și condițiile la destinație, folosind aceeași adresă și aceleași bunuri.",
+    "intro": [
+      "Cea mai ieftină cifră de pe ecran nu te ajută dacă ruta nu acceptă produsul sau dacă lipsește o taxă din comparație. Pentru o livrare din China în România ai nevoie de trei lucruri: o descriere corectă a conținutului, măsurătorile coletului după ambalare și condițiile în vigoare la momentul expedierii. Liniile și tarifele se pot schimba între ziua cumpărării și ziua în care articolele sunt gata să plece."
+    ],
+    "sections": [
+      {
+        "heading": "Alege dintre rutele care acceptă bunurile tale",
+        "paragraphs": [
+          "Verifică destinația, categoria fiecărui produs și eventualele limite de greutate sau dimensiuni. Un articol cu baterie, un lichid sau un obiect fragil poate modifica selecția pentru toate celelalte bunuri din același colet. Dacă serviciul indică o restricție, cere o soluție eligibilă. Schimbarea denumirii în formular nu schimbă conținutul pachetului.",
+          "Compară ce înseamnă fiecare descriere a rutei: etapa de la care începe estimarea de timp, nivelul de urmărire, compensația disponibilă și ce se întâmplă la predarea către operatorul local. O listă veche a liniilor rapide nu răspunde pentru disponibilitatea lor astăzi."
+        ]
+      },
+      {
+        "heading": "Înlocuiește estimarea cu măsurătorile reale",
+        "paragraphs": [
+          "Poți construi înainte de achiziție o simulare pentru un colet compact și una pentru varianta voluminoasă. După recepție actualizează cântărirea și dimensiunile exterioare. Dacă expediezi încălțăminte, compară păstrarea cutiei cu o altă protecție oferită. Confirmă dimensiunile rezultate pentru ambele opțiuni.",
+          "Când compari o expediere cu două colete separate, adună ambele cotații, ambalajele și costurile de pornire. Un colet separat poate rezolva o restricție de categorie sau poate proteja un obiect. Nu îl presupune automat mai ieftin. Pentru formula de volum, vezi calculul cu cele două colete de 2 kg din ghidul de costuri."
+        ]
+      },
+      {
+        "heading": "Separă transportul, TVA-ul și formalitățile",
+        "paragraphs": [
+          "Pe ofertă identifică transportul, eventualele taxe vamale, TVA-ul și orice comision de procesare cerut de operator. Dacă apare un preț «cu taxe incluse», verifică documentul care explică ce acoperă expres și în ce condiții. Păstrează factura, lista bunurilor și dovada sumei plătite. Pentru o întrebare despre TVA la import, documentele privind taxa colectată la cumpărare pot fi relevante.",
+          "Începând cu 1 iulie 2026, Uniunea Europeană aplică un regim temporar pentru anumite importuri de valoare mică. În situațiile acoperite de taxa vamală fixă de 3 euro contează clasificarea tarifară a articolelor din trimitere. Nu înmulți mecanic numărul tuturor bucăților cu trei și nu trata suma ca înlocuitor pentru TVA ori comisionul operatorului. Consultă regulile Comisiei Europene și cere operatorului calculul pentru conținutul concret."
+        ]
+      },
+      {
+        "heading": "Pregătește actele și urmărește predarea",
+        "paragraphs": [
+          "Folosește o descriere exactă a produselor și valori care corespund documentelor tranzacției. Verifică numele destinatarului, localitatea, județul, codul poștal și datele de contact direct în formularul de expediere. Păstrează documentele în privat și trimite-le numai prin canalul verificat al operatorului atunci când sunt solicitate.",
+          "După plata transportului salvează codul coletului și AWB-ul. Poate urma o perioadă între crearea etichetei și prima scanare fizică. La intrarea în rețeaua locală poate apărea un nou număr. Urmărește pagina transportatorului confirmat și cere explicații pentru excepțiile afișate sau după depășirea intervalului comunicat pentru ruta ta."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Fișă de comparație pentru două rute spre România",
+      "headers": [
+        "Element",
+        "Ce consemnezi pentru fiecare"
+      ],
+      "rows": [
+        [
+          "Eligibilitate",
+          "Categoriile acceptate și limitele exacte"
+        ],
+        [
+          "Ambalaj",
+          "Dimensiunile exterioare și greutatea"
+        ],
+        [
+          "Cotație",
+          "Moneda, data, pozițiile incluse și cele neclare"
+        ],
+        [
+          "Predare",
+          "Termenul estimat și operatorul local, dacă este cunoscut"
+        ]
+      ]
+    },
+    "sourceNote": "Surse de orientare: calculatorul public de transport AllChinaBuy și îndrumările Comisiei Europene privind reforma vamală și regimul temporar aplicabil de la 1 iulie 2026. Suma pentru un colet depinde de formalitățile și condițiile aplicabile."
+  },
+  {
+    "slug": "tracking-guide",
+    "title": "Urmărire colet AllChinaBuy în România: AWB, statusuri și întârzieri",
+    "description": "Deosebește comanda internă de coletul internațional și AWB-ul local. Află ce dovedește fiecare scanare și cum ceri verificarea unei întârzieri.",
+    "summary": "Pornește de la ultimul eveniment confirmat și de la operatorul care l-a înregistrat. O etichetă emisă, o predare fizică și o încercare de livrare descriu momente diferite.",
+    "intro": [
+      "Ai achitat transportul și vezi un număr nou, dar fără mișcări. Înainte să declari coletul blocat, verifică ce fel de număr ai. Un cod de comandă, un identificator de depozit și un AWB de transport au roluri diferite. Poți vedea mai multe dintre ele în aceeași comandă."
+    ],
+    "sections": [
+      {
+        "heading": "Fă legătura între identificatori",
+        "paragraphs": [
+          "Construiește o fișă cu produsul cumpărat, numărul de transport intern din China, articolul recepționat și coletul în care a fost grupat. Dacă trei articole au ajuns separat la depozit, pot avea trei livrări interne și o singură expediere internațională. Un status «livrat» pentru primul transport poate indica sosirea la depozit.",
+          "În coloana pentru transportul internațional notează numele operatorului, numărul și data la care au fost furnizate. Dacă apare un AWB local după predare, adaugă-l lângă cel internațional. Nu șterge vechiul cod, fiindcă poate fi singurul la care se referă un eveniment anterior."
+        ]
+      },
+      {
+        "heading": "Citește ce confirmă efectiv mesajul",
+        "paragraphs": [
+          "«Etichetă creată» sau «date primite» indică înregistrarea informației. Caută o scanare ulterioară de acceptare sau preluare pentru a confirma mișcarea fizică. Un status despre planificarea unui zbor nu stabilește, singur, că pachetul se află deja în avion. Citește evenimentele în succesiune și păstrează ora împreună cu fusul orar, când acesta este afișat.",
+          "În transportul consolidat pot exista intervale fără scanări individuale. Mesajele pot ajunge în sisteme diferite la ore diferite. Când două pagini par să se contrazică, compară ultimul eveniment fizic identificabil și verifică ce operator îl raportează."
+        ]
+      },
+      {
+        "heading": "Ce se întâmplă la vamă și la predarea locală",
+        "paragraphs": [
+          "Un mesaj despre procesare vamală descrie o etapă. Uită-te dacă apare o solicitare concretă de documente ori o excepție care necesită răspunsul destinatarului. Verifică autenticitatea cererii intrând separat pe canalul oficial al operatorului. Nu introduce date de plată printr-un link primit în afara traseului pe care îl poți confirma.",
+          "La intrarea în România verifică dacă apare un partener local și dacă numărul de urmărire a fost înlocuit. În cazul unui status «încercare de livrare», verifică programul, adresa și instrucțiunile de relivrare comunicate de operator. Simplul fapt că pagina este în română nu localizează coletul în țară."
+        ]
+      },
+      {
+        "heading": "Când și cum ceri verificări",
+        "paragraphs": [
+          "Compară pauza dintre scanări cu intervalul publicat pentru ruta respectivă. Contactează mai devreme operatorul dacă există o solicitare explicită, o problemă de adresă sau un termen de ridicare. Pentru o etichetă fără preluare, întreabă expeditorul dacă pachetul a fost predat. După acceptarea în rețea, operatorul care deține ultimul eveniment util poate indica pasul următor.",
+          "Trimite în privat identificatorul, data și textul ultimei scanări și o întrebare concretă, de exemplu «Există un AWB local asociat acestui colet?». Dacă figurează livrat și nu l-ai primit, verifică modalitatea de predare și contactează imediat operatorul pentru dovada livrării și procedura aplicabilă."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Cum identifici următorul pas",
+      "headers": [
+        "Ultimul mesaj",
+        "Ce verifici"
+      ],
+      "rows": [
+        [
+          "Date de expediere primite",
+          "Există o scanare de preluare?"
+        ],
+        [
+          "În tranzit",
+          "Care a fost ultimul eveniment fizic?"
+        ],
+        [
+          "Document solicitat",
+          "Ce document și prin ce canal oficial?"
+        ],
+        [
+          "Predat partenerului local",
+          "Există un al doilea AWB?"
+        ],
+        [
+          "Livrat",
+          "Unde și cum s-a confirmat predarea?"
+        ]
+      ]
+    },
+    "sourceNote": "Interpretarea editorială pornește de la fluxul logistic descris public de AllChinaBuy. Mesajele, intervalele de urmărire și responsabilitățile depind de operatorul indicat pe documentul de expediere."
+  },
+  {
+    "slug": "how-to-order-romania",
+    "title": "Cum pregătești o comandă AllChinaBuy pentru România, de la link la livrare",
+    "description": "Verifică listarea și mărimea, urmărește recepția în depozit și compară transportul. Ghid pentru fiecare decizie și documentul de care ai nevoie.",
+    "summary": "Desparte cumpărarea de la vânzător, recepția în depozit și transportul internațional. La fiecare pas păstrează varianta confirmată, suma relevantă și identificatorul documentului.",
+    "intro": [
+      "Când folosești un agent de cumpărături, pagina produsului, comanda și coletul apar în locuri diferite. Dacă înțelegi această separare înainte să plătești, îți este mai ușor să urmărești de ce ai nevoie și cui să adresezi o întrebare. Descrierea de mai jos explică fluxul public cunoscut. Pagina oficială AllChinaBuy afișa mentenanță la 3 noiembrie 2026; verifică accesul și serviciile disponibile înainte să inițiezi o comandă."
+    ],
+    "sections": [
+      {
+        "heading": "Din catalog la o variantă concretă",
+        "paragraphs": [
+          "Alege produsul după câteva criterii verificabile, cum ar fi măsura în centimetri, culoarea și bugetul pentru articol. Deschide linkul din catalog și verifică unde duce. Butoanele acestui ghid pot deschide un catalog separat. Controlează domeniul înainte să introduci date de cont și confirmă că anunțul reprezintă articolul pe care l-ai ales.",
+          "Salvează URL-ul original, varianta, prețul și tabelul disponibil. Dacă un anunț are mai multe stiluri sub aceeași fotografie, selectează mai întâi opțiunea și urmărește ce se schimbă. Un preț de pornire poate aparține altei mărimi sau altui set decât varianta dorită."
+        ]
+      },
+      {
+        "heading": "Comanda la vânzător și recepția",
+        "paragraphs": [
+          "Notează moneda și costul afișat pentru segmentul intern. După confirmarea comenzii păstrează numărul și articolul asociat. O livrare de la vânzător către depozit are propriul traseu. Confirmarea acesteia nu înseamnă că produsul a pornit către România.",
+          "La recepție compară produsul cu varianta din comandă. Verifică eticheta, cantitatea, aspectul general și măsura care decide potrivirea. Pentru un tricou poate conta lățimea la piept; pentru o pereche de pantofi, branțul și etichetele ambilor pantofi. Dacă nu se vede măsura, cere o fotografie precisă și verifică eventualul cost."
+        ]
+      },
+      {
+        "heading": "Rezolvă neclaritățile înainte să împachetezi",
+        "paragraphs": [
+          "Dacă varianta sau cantitatea diferă, păstrează în același loc dovada comenzii și imaginile. Cere în cont opțiunile disponibile pentru produsul respectiv, termenul și costurile. Nu presupune că orice articol poate fi returnat gratuit ori că o cerere se aprobă automat.",
+          "Marchează fiecare articol «acceptat» sau «în clarificare». Propune un colet doar cu articolele pe care ești pregătit să le expediezi. Dacă ai nevoie să aștepți încă un produs, verifică și condițiile de stocare aplicabile articolelor deja sosite."
+        ]
+      },
+      {
+        "heading": "Alege coletul și ruta către România",
+        "paragraphs": [
+          "Stabilește ce cutii și protecții vrei să păstrezi. Cere dimensiunile exterioare după împachetare și greutatea finală. Într-o ofertă pentru România verifică eligibilitatea bunurilor, greutatea facturabilă, posibilitățile de urmărire și costurile incluse. Compară una sau două variante folosind aceeași bază.",
+          "Completează datele de livrare și descrierile conform bunurilor reale. Păstrează factura și dovada plății pentru eventuale clarificări ale operatorului. O estimare din calculator nu înlocuiește cotația de la expedierea coletului pregătit."
+        ]
+      },
+      {
+        "heading": "De la AWB la primirea produselor",
+        "paragraphs": [
+          "Salvează identificatorul coletului și AWB-ul. Uită-te dacă există o scanare de preluare după crearea etichetei. Dacă transportul se predă unui operator local, verifică dacă primești un nou număr. Păstrează ambele coduri până la livrare.",
+          "La primire verifică starea ambalajului și conținutul. Dacă observi deteriorări, păstrează ambalajul și fotografiază problema, eticheta și zona afectată pentru canalul privat de asistență. Consultă procedura și termenul aplicabil serviciului ales. Pentru următoarea achiziție, salvează în lista de produse doar informațiile care s-au confirmat în practică."
+        ]
+      }
+    ],
+    "table": {
+      "caption": "Documentele de păstrat pe etape",
+      "headers": [
+        "Etapă",
+        "Ce salvezi"
+      ],
+      "rows": [
+        [
+          "Selecție",
+          "Link, variantă, tabel de mărimi"
+        ],
+        [
+          "Achiziție",
+          "Număr de comandă și dovada plății"
+        ],
+        [
+          "Recepție",
+          "Codul articolului, poze, măsurători"
+        ],
+        [
+          "Transport",
+          "Oferta aprobată, lista bunurilor, AWB"
+        ],
+        [
+          "Livrare",
+          "Confirmare și eventuale fotografii ale problemei"
+        ]
+      ]
+    },
+    "sourceNote": "Flux bazat pe descrierile publice ale serviciilor AllChinaBuy, pe calculatorul de transport și pe anunțul oficial de mentenanță verificat la 3 noiembrie 2026. Disponibilitatea și costurile se verifică la momentul fiecărei operațiuni."
+  }
+]

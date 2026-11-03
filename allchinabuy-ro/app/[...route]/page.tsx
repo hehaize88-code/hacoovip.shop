@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { englishArticles, getEnglishArticle } from "../concept-c/articles";
+import { englishArticles, getArticle } from "../concept-c/articles";
 import {
   getLocaleCopy,
   locales,
@@ -95,26 +95,19 @@ export async function generateMetadata({
     ],
   };
   if (path[0] === "articles" && path[1]) {
-    const article = getEnglishArticle(path[1]);
+    const article = getArticle(locale, path[1]);
     const title = article.title;
     const description = article.description;
-    const canonicalArticle = `/articles/${article.slug}`;
     return {
       title,
       description,
-      alternates: { canonical: canonicalArticle },
-      robots:
-        locale === "ro"
-          ? { index: true, follow: true }
-          : { index: false, follow: true },
+      alternates,
+      robots: { index: true, follow: true },
       openGraph: {
         ...ogBase,
-        url: canonicalArticle,
         type: "article",
         title,
         description,
-        locale: "en_US",
-        alternateLocale: [],
         publishedTime: `${article.published}T00:00:00Z`,
         modifiedTime: `${article.modified}T00:00:00Z`,
       },
@@ -146,7 +139,7 @@ export async function generateMetadata({
     ],
     articles: [
       "Ghiduri AllChinaBuy: Mărimi, QC, Transport și Tracking",
-      "Ghiduri independente în engleză pentru România: spreadsheet, sneakers, hanorace, QC, costuri de transport, tracking și comenzi.",
+      "Ghiduri independente pentru cumpărătorii din România: spreadsheet, sneakers, hanorace, QC, costuri de transport, tracking și comenzi.",
     ],
   };
   const optimized = locale === "ro" ? roSeo[path[0] || "products"] : undefined;

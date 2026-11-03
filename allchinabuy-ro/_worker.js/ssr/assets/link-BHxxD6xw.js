@@ -1,5 +1,5 @@
 import { C as __toESM, S as stripBasePath, _ as isDangerousScheme, a as getPrefetchedUrls, b as VINEXT_MOUNTED_SLOTS_HEADER, d as createRscRequestUrl, g as withBasePath, h as toSameOriginAppPath, i as getMountedSlotsHeader, m as toBrowserNavigationHref, n as getCurrentInterceptionContext, o as navigateClientSide, p as resolveRelativeHref, s as prefetchRscResponse, t as require_jsx_runtime, u as createRscRequestHeaders, v as AppElementsWire, x as hasBasePath, y as require_react } from "../index.js";
-import { a as getDomainLocaleUrl, i as addLocalePrefix, n as appendSearchParamsToUrl, r as urlQueryToSearchParams } from "./query-DX6Sk62_.js";
+import { a as getDomainLocaleUrl, i as addLocalePrefix, n as appendSearchParamsToUrl, r as urlQueryToSearchParams } from "./query-lzwtyVUk.js";
 //#region node_modules/vinext/dist/routing/utils.js
 var PATH_DELIMITER_REGEX = /([/#?\\]|%(2f|23|3f|5c))/gi;
 function encodePathDelimiters(segment) {
@@ -529,7 +529,7 @@ var Link = (0, import_react.forwardRef)(function Link({ href, as, replace = fals
 			});
 			return;
 		} else try {
-			const Router = (await import("./router-Dxwhv-v5.js")).default;
+			const Router = (await import("./router-P7Io1ILS.js")).default;
 			if (replace) await Router.replace(absoluteHref, void 0, { scroll });
 			else await Router.push(absoluteHref, void 0, { scroll });
 		} catch {
