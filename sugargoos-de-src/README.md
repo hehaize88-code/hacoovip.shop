@@ -11,6 +11,13 @@ The July generator below contains only eight original article topics and does
 not include the later published articles or all subsequent UI changes. Do not
 replace production with its output.
 
+The current English and German editorial update runs against the checked-in publication:
+
+```bash
+python -m pip install beautifulsoup4
+python sugargoos-de-src/releases/2026-11-03/publish.py sugargoos-de
+```
+
 The October editorial release preserves the complete current publication and
 updates only its specified pages, navigation and sitemaps:
 

@@ -1,0 +1,27 @@
+{
+  "tracking": {
+    "path": "articles/sugargoo-tracking-package-status",
+    "en": ["How to Track a Sugargoo Package and Find Your Tracking Number", "Find the tracking number in your shipped Sugargoo parcel, choose the right carrier and check what to do if DHL has only received electronic shipment details."],
+    "de": ["Sugargoo-Paket verfolgen und die Sendungsnummer finden", "So findest du die Sendungsnummer deines Sugargoo-Pakets, wählst den richtigen Zusteller und prüfst, was eine elektronische Ankündigung bei DHL bedeutet."]
+  },
+  "w2c": {
+    "path": "guides/w2c-and-qc-explained",
+    "en": ["Sugargoo W2C Links: Check the Listing Before Shipping", "Check a Sugargoo W2C link against the seller, selected size or colour and warehouse photos. Follow shoe, clothing and bag examples before you ship."],
+    "de": ["Sugargoo-W2C-Links vor dem Versand prüfen", "Gleiche Händler, gewählte Größe oder Farbe und Lagerfotos ab. Drei Beispiele zeigen, wie du den richtigen W2C-Link für Schuhe, Kleidung und Taschen erkennst."]
+  },
+  "qc": {
+    "path": "guides/sugargoo-qc-photos-guide",
+    "en": ["Sugargoo QC Photos: Find Your Order Images and Check a Listing", "Find the QC photos for your Sugargoo order or compare a listing with public inspection pictures before buying. Check the item ID, variant, angle and scale."],
+    "de": ["Sugargoo-QC-Fotos finden und mit dem Angebot vergleichen", "Finde die Lagerfotos deiner Sugargoo-Bestellung oder prüfe öffentliche Vergleichsbilder vor dem Kauf. So gleichst du Artikelnummer, Variante und Maße ab."]
+  },
+  "bag": {
+    "path": "articles/sugargoo-bag-qc-before-shipping",
+    "en": ["How to Check a Bag Before Shipping With Sugargoo", "Compare a bag’s warehouse photos with your chosen variant. Check strap drop, body measurements, closures and stitching, then decide which detail to photograph again."],
+    "de": ["Sugargoo Taschen-QC: Maße, Riemen und Verschlüsse prüfen", "Vergleiche die Lagerfotos deiner Tasche mit der bestellten Variante. Prüfe Maße, Tragehöhe, Nähte und Verschlüsse und fordere bei Bedarf ein gezieltes Zusatzfoto an."]
+  },
+  "links": {
+    "path": "articles/sugargoo-spreadsheet-link-not-working",
+    "en": ["Sugargoo Spreadsheet Link Not Working? Check Stock and Variants", "Diagnose a broken Taobao or Weidian link, a removed listing or a sold-out option. Use the original item ID to check a replacement before ordering."],
+    "de": ["Sugargoo-Spreadsheet-Link funktioniert nicht? So prüfst du ihn", "Öffne das Originalangebot bei Taobao oder Weidian und prüfe Artikelnummer, Händler und Variante. So erkennst du kaputte Links und bewertest ein Ersatzangebot."]
+  }
+}

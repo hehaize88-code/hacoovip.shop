@@ -1,6 +1,7 @@
 https://sugargoos.de/
 https://sugargoos.de/about/
 https://sugargoos.de/articles/
+https://sugargoos.de/articles/sugargoo-bag-qc-before-shipping/
 https://sugargoos.de/articles/sugargoo-battery-electronics-shipping-germany/
 https://sugargoos.de/articles/sugargoo-clothing-finds-measurement-guide/
 https://sugargoos.de/articles/sugargoo-consolidate-split-parcels-germany-eu/
@@ -15,6 +16,7 @@ https://sugargoos.de/articles/sugargoo-restricted-items-germany-eu/
 https://sugargoos.de/articles/sugargoo-shipping-calculator-germany-eu/
 https://sugargoos.de/articles/sugargoo-shoes-spreadsheet-qc-guide/
 https://sugargoos.de/articles/sugargoo-spreadsheet-2026-complete-guide/
+https://sugargoos.de/articles/sugargoo-spreadsheet-link-not-working/
 https://sugargoos.de/articles/sugargoo-tracking-not-updating/
 https://sugargoos.de/articles/sugargoo-tracking-package-status/
 https://sugargoos.de/articles/sugargoo-volumetric-weight-explained/
@@ -33,6 +35,7 @@ https://sugargoos.de/contact/
 https://sugargoos.de/de/
 https://sugargoos.de/de/about/
 https://sugargoos.de/de/articles/
+https://sugargoos.de/de/articles/sugargoo-bag-qc-before-shipping/
 https://sugargoos.de/de/articles/sugargoo-battery-electronics-shipping-germany/
 https://sugargoos.de/de/articles/sugargoo-clothing-finds-measurement-guide/
 https://sugargoos.de/de/articles/sugargoo-consolidate-split-parcels-germany-eu/
@@ -47,6 +50,7 @@ https://sugargoos.de/de/articles/sugargoo-restricted-items-germany-eu/
 https://sugargoos.de/de/articles/sugargoo-shipping-calculator-germany-eu/
 https://sugargoos.de/de/articles/sugargoo-shoes-spreadsheet-qc-guide/
 https://sugargoos.de/de/articles/sugargoo-spreadsheet-2026-complete-guide/
+https://sugargoos.de/de/articles/sugargoo-spreadsheet-link-not-working/
 https://sugargoos.de/de/articles/sugargoo-tracking-not-updating/
 https://sugargoos.de/de/articles/sugargoo-tracking-package-status/
 https://sugargoos.de/de/articles/sugargoo-volumetric-weight-explained/

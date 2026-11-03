@@ -73,6 +73,14 @@
     const url = new URL(link.href, window.location.href);
     const text = link.textContent.trim().replace(/\s+/g, " ").slice(0, 100);
 
+    if (link.dataset.carrier) {
+      track("carrier_tracking_open", {
+        carrier: link.dataset.carrier,
+        page_path: window.location.pathname,
+      });
+      return;
+    }
+
     if (
       url.hostname === "www.cnfanshp.com" ||
       url.hostname === "cnfanshp.com"
@@ -81,6 +89,7 @@
         link_url: url.toString(),
         link_text: text,
         link_domain: url.hostname,
+        link_kind: /^\/AllProducts\/\d+\.html$/i.test(url.pathname) ? "product_record" : "catalog",
       });
       return;
     }
@@ -103,6 +112,15 @@
       track("product_click", {
         link_url: url.toString(),
         link_text: text,
+      });
+    } else if (
+      link.closest("main") &&
+      url.pathname !== window.location.pathname &&
+      /^\/(?:de\/)?(?:guides|articles)\//.test(url.pathname)
+    ) {
+      track("guide_navigation", {
+        from_path: window.location.pathname,
+        to_path: url.pathname,
       });
     } else if (url.pathname.includes("/categories/")) {
       track("category_click", {
