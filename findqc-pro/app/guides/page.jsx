@@ -12,9 +12,9 @@ export const metadata = localizedMetadata({
 }, "/guides");
 
 const methods = [
-  { number: "01", key: "link" },
-  { number: "02", key: "image" },
-  { number: "03", key: "keyword" },
+  { number: "01", key: "link", article: "find-qc-photos-by-product-link" },
+  { number: "02", key: "image", article: "1688-image-search-from-screenshot" },
+  { number: "03", key: "keyword", article: "findqc-search-methods" },
 ];
 
 const officialFacts = ["platform", "data", "boundary"];
@@ -94,6 +94,7 @@ export default function GuidesPage() {
                 <strong><T id="guides.watchFor" /></strong>
                 <span><T id={`guides.methods.${method.key}.caution`} /></span>
               </div>
+              <Link className="text-link" href={`/articles/${method.article}`}><T id="home.methodGuide" /> <ArrowIcon size={14} /></Link>
             </article>
           ))}
         </div>

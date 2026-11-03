@@ -43,6 +43,20 @@ export default function RootLayout({ children }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-H87FLTGFRR');
+          document.addEventListener('click', function (event) {
+            const link = event.target.closest?.('a[href]');
+            if (!link) return;
+            if (link.dataset.qcLookup) {
+              gtag('event', 'qc_lookup_open', { lookup_provider: link.dataset.qcLookup, page_language: document.documentElement.lang, transport_type: 'beacon' });
+              return;
+            }
+            if (link.origin !== location.origin || !link.pathname.includes('/articles/')) return;
+            gtag('event', 'qc_guide_open', {
+              guide_slug: link.pathname.split('/').filter(Boolean).pop(),
+              page_language: document.documentElement.lang,
+              transport_type: 'beacon'
+            });
+          });
         ` }} />
       </head>
       <body>

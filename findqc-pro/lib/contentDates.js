@@ -4,14 +4,14 @@ import { articles } from "./articleCatalog.js";
 // Build dates, deployments, styling-only changes, and asset optimizations must
 // not change these values.
 const routeLastModified = Object.freeze({
-  "/": "2026-10-05",
+  "/": "2026-11-03",
   "/products": "2026-07-22",
   "/categories": "2026-07-21",
-  "/guides": "2026-07-21",
+  "/guides": "2026-11-03",
   "/guides/qc-photo-checklist": "2026-07-22",
   "/guides/how-to-buy": "2026-07-22",
-  "/articles": "2026-10-05",
-  "/faq": "2026-07-21",
+  "/articles": "2026-11-03",
+  "/faq": "2026-11-03",
   "/about": "2026-07-22",
   "/contact": "2026-07-22",
   "/editorial-policy": "2026-07-22",
@@ -27,6 +27,12 @@ const routeLastModified = Object.freeze({
   "/categories/jersey": "2026-07-22",
   "/categories/electronics": "2026-07-22",
 });
+
+// These five articles had localized editions before the November release.
+const originalTranslations = new Set([
+  "before-you-buy-qc-guide", "findqc-search-methods", "findqc-product-signals",
+  "what-qc-photos-can-prove", "findqc-shopping-agent-workflow",
+]);
 
 const localizedRouteLastModified = Object.freeze({
   pl: "2026-07-22",
@@ -44,7 +50,12 @@ function articleDate(route) {
 
 export function getRouteLastModified(route, language = "en") {
   if (language !== "en") {
-    if (route === "/") return "2026-10-05";
+    if (route === "/" || route === "/guides" || route === "/articles" || route === "/faq"
+      || route === "/categories/hoodies-sweaters" || route === "/categories/t-shirts") return "2026-11-03";
+    if (route.startsWith("/articles/")) {
+      const slug = route.slice("/articles/".length);
+      if (!originalTranslations.has(slug)) return "2026-11-03";
+    }
     const localizedDate = localizedRouteLastModified[language];
     if (!localizedDate) throw new Error(`Unknown sitemap language: ${language}`);
     return localizedDate;

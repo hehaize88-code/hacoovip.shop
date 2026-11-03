@@ -270,5 +270,3 @@ export const faqs = [
     answer: "A careful image review can help you spot visible issues such as an incorrect colour, obvious damage, missing parts or a measurement mismatch while the parcel is still at the warehouse. It cannot verify every material or performance detail.",
   },
 ];
-
-export { articles } from "./articleCatalog.js";

@@ -162,13 +162,20 @@ export default async function ArticlePage({ params }) {
         <div>
           <Link className="article-author-link" href="/editorial-policy#editorial-desk">{articleUi.editorialDesk} <ArrowIcon /></Link>
           <time dateTime={article.dateISO}>{article.date}</time>
-          {BUILD_LANGUAGE === "en" && article.updatedISO && article.updatedISO !== article.dateISO && (
-            <time dateTime={article.updatedISO}>Updated {new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${article.updatedISO}T00:00:00Z`))}</time>
+          {article.updatedISO && article.updatedISO !== article.dateISO && (
+            <time dateTime={article.updatedISO}>{({ en: "Updated", de: "Aktualisiert", es: "Actualizado", pl: "Aktualizacja", ro: "Actualizat" })[BUILD_LANGUAGE]} {new Intl.DateTimeFormat(BUILD_LANGUAGE === "en" ? "en-GB" : BUILD_LANGUAGE, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${article.updatedISO}T00:00:00Z`))}</time>
           )}
           <span>{articleUi.factChecked}</span>
         </div>
       </header>
 
+      {["find-qc-photos-by-product-link", "1688-image-search-from-screenshot", "weidian-youshop-short-link-qc"].includes(slug) && (
+        <div className="article-lookup">
+          <a className="outline-button" data-qc-lookup="findqc" href="https://findqc.com/" target="_blank" rel="noopener noreferrer">
+            {articleUi.openLookup} <ExternalIcon size={15} />
+          </a>
+        </div>
+      )}
       <figure className="article-hero-figure">
         <ResponsiveImage src={article.heroImage} alt={article.heroAlt} sizes="(max-width: 1040px) calc(100vw - 40px), 980px" priority />
         <figcaption>{article.heroCaption || articleUi.heroCaption}</figcaption>

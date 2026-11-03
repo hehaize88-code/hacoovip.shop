@@ -14,6 +14,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getRouteLastModified } from "../lib/contentDates.js";
 import { articles } from "../lib/articleCatalog.js";
+import { getLocalizedArticles } from "../lib/localizedArticles.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
@@ -87,6 +88,22 @@ function copyHtmlBuild(language) {
     const target = path.join(destination, relative);
     mkdirSync(path.dirname(target), { recursive: true });
     writeFileSync(target, enrichHtml(readFileSync(source, "utf8"), routeFromHtml(relative), language));
+  }
+
+  // Fail publication if an article silently falls back to English or the journal stops linking to it.
+  const journal = readFileSync(path.join(destination, "articles.html"), "utf8");
+  for (const article of getLocalizedArticles(language)) {
+    const route = `/articles/${article.slug}`;
+    const url = localizedUrl(route, language);
+    const html = readFileSync(path.join(destination, `${route.slice(1)}.html`), "utf8");
+    const articleData = [...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1])).find((data) => data["@type"] === "Article");
+    if (articleData?.inLanguage !== language || articleData.headline !== article.title
+      || articleData.mainEntityOfPage?.["@id"] !== url
+      || !html.includes(`<link rel="canonical" href="${url}"`)
+      || !journal.includes(`href="${new URL(url).pathname}"`)) {
+      throw new Error(`Invalid localized article or journal link: ${url}`);
+    }
   }
 
   const nextAssets = path.join(buildOut, "_next");

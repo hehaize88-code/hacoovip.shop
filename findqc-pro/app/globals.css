@@ -3286,6 +3286,17 @@ main {
   margin-top: 22px;
 }
 
+.article-lookup { margin-block: 20px; }
+.hero-copy .hero-guide-links { margin: 0 0 20px; align-items: center; }
+.hero-guide-links .guide-start {
+  padding: 11px 15px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: white;
+  text-decoration: none;
+}
+.guide-method-card > .text-link { margin-top: 16px; }
+
 .hero-guide-links a {
   display: inline-flex;
   align-items: center;

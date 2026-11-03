@@ -14,7 +14,7 @@ Sitemap status: every indexable URL uses an explicit content modification date; 
 
 Editorial trust status: localized author responsibility, source hierarchy, verification, update history and correction guidance are part of the production build.
 
-Article localization status: evidence-led articles may remain English-only until a reviewed human translation exists; the build limits hreflang and sitemap entries to genuinely available languages.
+Articles are published in English, Polish, Spanish, German and Romanian. Each edition has its own body, canonical URL and reciprocal language links. The multilingual build checks every article against its language-specific journal and structured data.
 
 Category route status: the homepage category band and the nine-item Products index open the matching `cnfanshp.com` categories directly; category-specific QC guide links remain internal where they are explicitly labelled as guides.
 

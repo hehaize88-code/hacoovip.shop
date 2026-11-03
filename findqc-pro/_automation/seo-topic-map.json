@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-05",
+  "lastUpdated": "2026-11-03",
   "latestPublishedCommit": "06495854029477a427f631e09ad4661c6cb272c7",
   "articles": [
     {
@@ -181,9 +181,7 @@
         "bounded conclusions"
       ],
       "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
-      "languages": [
-        "en"
-      ]
+      "languages": ["en", "pl", "es", "de", "ro"]
     },
     {
       "slug": "hoodie-qc-checklist",
@@ -196,9 +194,7 @@
         "print placement"
       ],
       "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
-      "languages": [
-        "en"
-      ]
+      "languages": ["en", "pl", "es", "de", "ro"]
     },
     {
       "slug": "t-shirt-qc-checklist",
@@ -211,9 +207,7 @@
         "graphic alignment"
       ],
       "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
-      "languages": [
-        "en"
-      ]
+      "languages": ["en", "pl", "es", "de", "ro"]
     },
     {
       "slug": "qc-weight-dimensions-shipping-estimates",
@@ -226,9 +220,45 @@
         "quote inputs"
       ],
       "source": "GSC query and editorial gap review on 2026-10-05; priority is not a measured search-volume estimate",
+      "languages": ["en", "pl", "es", "de", "ro"]
+    },
+    {
+      "slug": "1688-image-search-from-screenshot",
+      "primaryQuery": "1688 image search from screenshot",
+      "intent": "Find a listing from a reference image, then verify a specific variant with archived photos",
+      "focus": [
+        "image crop",
+        "offer ID",
+        "visual alternatives",
+        "variant photo groups"
+      ],
       "languages": [
-        "en"
-      ]
+        "en",
+        "pl",
+        "es",
+        "de",
+        "ro"
+      ],
+      "source": "Bing Webmaster Tools query review and competitor research, 2026-11-03"
+    },
+    {
+      "slug": "weidian-youshop-short-link-qc",
+      "primaryQuery": "Weidian QC from YouShop short link",
+      "intent": "Resolve an app share link and check photos for the correct Weidian variant",
+      "focus": [
+        "itemID",
+        "short link",
+        "shop vs product URL",
+        "empty QC results"
+      ],
+      "languages": [
+        "en",
+        "pl",
+        "es",
+        "de",
+        "ro"
+      ],
+      "source": "Bing Webmaster Tools query review and competitor research, 2026-11-03"
     }
   ]
 }

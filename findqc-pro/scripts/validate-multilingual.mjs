@@ -349,8 +349,8 @@ for (const language of languages) {
   const faqHtml = readFileSync(htmlPath(faqPath), "utf8");
   const faq = schemaOfType(structuredData(faqHtml, faqPath), "FAQPage");
   const faqVisibleText = visibleText(faqHtml);
-  if (faq?.inLanguage !== language || faq?.mainEntity?.length !== 17) {
-    failures.push(`FAQPage must contain 17 ${language} questions: ${faqPath}`);
+  if (faq?.inLanguage !== language || faq?.mainEntity?.length !== 20) {
+    failures.push(`FAQPage must contain 20 ${language} questions: ${faqPath}`);
   } else {
     for (const entity of faq.mainEntity) {
       if (!faqVisibleText.includes(entity.name) || !faqVisibleText.includes(entity.acceptedAnswer?.text)) {

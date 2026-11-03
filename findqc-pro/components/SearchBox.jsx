@@ -60,7 +60,7 @@ export default function SearchBox({ compact = false }) {
         />
       </div>
       <button type="submit">
-        {t("search.button")} <ArrowIcon size={17} />
+        {t(compact ? "search.compactButton" : "search.button")} <ArrowIcon size={17} />
       </button>
       {!compact && <p>{t("search.hint")}</p>}
     </form>

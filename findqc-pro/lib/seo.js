@@ -12,8 +12,8 @@ const OPEN_GRAPH_LOCALES = {
 const CORE_PAGE_SEO = {
   en: {
     "/": {
-      title: "FindQC Pro: QC Finder Guides & Photo Checklists",
-      description: "Find QC photos with independent search guides. Use hoodie and T-shirt checklists, compare QC tools, and search matching products in the main catalog.",
+      title: "FindQC Guide to Finding QC Photos by Product Link",
+      description: "Learn how to find warehouse QC photos using a Weidian or Taobao link or a 1688 screenshot. Check the seller and selected size, or search the product catalog.",
     },
     "/products": {
       title: "Product Finder: 108 Mapped Listings",
@@ -38,8 +38,8 @@ const CORE_PAGE_SEO = {
   },
   pl: {
     "/": {
-      title: "FindQC Pro: poradniki zdjęć QC i wyszukiwanie",
-      description: "Niezależne poradniki wyszukiwania i kontroli zdjęć QC. Porównuj wymiary, sprawdzaj ubrania i wyszukuj produkty w głównym katalogu.",
+      title: "Jak znaleźć zdjęcia QC po linku do produktu",
+      description: "Sprawdź, jak znaleźć zdjęcia QC po linku z Weidian lub Taobao albo po zrzucie ekranu z 1688. Porównaj sprzedawcę, rozmiar i kolor lub przeszukaj katalog.",
     },
     "/products": {
       title: "Wyszukiwarka produktów: 108 przypisanych ofert",
@@ -64,8 +64,8 @@ const CORE_PAGE_SEO = {
   },
   es: {
     "/": {
-      title: "FindQC Pro: guías de fotos QC y búsqueda",
-      description: "Guías independientes para buscar y revisar fotos QC. Compara medidas, revisa prendas y busca productos en el catálogo principal.",
+      title: "Cómo encontrar fotos QC con el enlace de un producto",
+      description: "Aprende a buscar fotos QC con un enlace de Weidian o Taobao, o con una captura de 1688. Comprueba vendedor, talla y color, o busca productos en el catálogo.",
     },
     "/products": {
       title: "Buscador de productos: 108 listados mapeados",
@@ -90,8 +90,8 @@ const CORE_PAGE_SEO = {
   },
   de: {
     "/": {
-      title: "FindQC Pro: QC-Foto-Ratgeber & Produktsuche",
-      description: "Unabhängige Ratgeber zur Suche und Prüfung von QC-Fotos. Vergleiche Maße, prüfe Kleidung und suche Produkte im Hauptkatalog.",
+      title: "QC-Bilder per Produktlink finden – FindQC-Ratgeber",
+      description: "So findest du QC-Bilder mit einem Weidian- oder Taobao-Link oder einem 1688-Screenshot. Prüfe Verkäufer, Farbe und Größe oder durchsuche den Produktkatalog.",
     },
     "/products": {
       title: "Produktsuche: 108 zugeordnete Angebote",
@@ -116,8 +116,8 @@ const CORE_PAGE_SEO = {
   },
   ro: {
     "/": {
-      title: "FindQC Pro: ghiduri foto QC și căutare",
-      description: "Ghiduri independente pentru căutarea și verificarea pozelor QC. Compară măsurători, verifică haine și caută produse în catalogul principal.",
+      title: "Cum găsești poze QC după linkul produsului",
+      description: "Află cum găsești poze QC cu un link Weidian sau Taobao ori cu o captură de pe 1688. Verifică vânzătorul, mărimea și culoarea sau caută în catalog.",
     },
     "/products": {
       title: "Căutare produse: 108 listări asociate",

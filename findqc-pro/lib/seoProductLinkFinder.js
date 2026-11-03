@@ -1,14 +1,14 @@
 export const productLinkFinderArticle = {
   slug: "find-qc-photos-by-product-link",
-  title: "Find QC Photos by Product Link: Taobao, Weidian & 1688",
+  title: "Find QC Photos by Product Link for Taobao, Weidian and 1688",
   shortTitle: "Find QC Photos by Product Link",
-  description: "Use a QC photo finder with a Taobao, Weidian or 1688 product link, then verify the exact listing, option and evidence before relying on a match.",
-  excerpt: "A link-first QC finder workflow for Taobao, Weidian and 1688: clean the input, confirm item identity, audit the photo set and recover when no exact match appears.",
+  description: "Choose the right product URL, check its marketplace ID, and find QC photos for the exact colour and size. See what to do with short links or empty galleries.",
+  excerpt: "Choose the right product URL, check its marketplace ID, and find QC photos for the exact colour and size. See what to do with short links or empty galleries.",
   category: "FindQC Search Guide",
   readTime: "10 min read",
   date: "5 September 2026",
   dateISO: "2026-09-05",
-  updatedISO: "2026-10-05",
+  updatedISO: "2026-11-03",
   languages: ["en"],
   heroImage: "/products/shoes-60.jpg",
   heroAlt: "Editorial footwear image illustrating a product-link QC photo search and listing identity check",
@@ -23,9 +23,10 @@ export const productLinkFinderArticle = {
   ],
   sourceIntro: "FindQC's official search-method guide was rechecked on 5 October 2026; the linked legal references were last reviewed on 5 September 2026. Marketplace interfaces and listing URLs can change, so the workflow below focuses on identity and evidence checks rather than undocumented controls.",
   intro: [
-    "A product link is usually the cleanest starting point for a QC photo finder because it may carry a stable item identifier that free-text searches do not. FindQC's published search guidance describes link search for supported marketplaces including Taobao, Weidian and 1688. The useful result, however, is not simply a gallery that looks similar. It is a gallery tied closely enough to the intended source listing that its QC photos can answer a specific pre-purchase question.",
-    "This guide shows how to find QC photos by product link without turning a possible match into a guarantee. It covers link preparation, marketplace identity, result verification, photo-set review and failure recovery. FindQC remains a research layer: a buyer's selected shopping agent controls the live order, warehouse photography, return or exchange handling, packaging and shipment under that agent's current terms.",
-  ],
+  "Start on the page where you choose the size and colour. For a Weidian item, look for itemID= in the product address. A Taobao product usually has an id= number, and a common 1688 offer address ends in /offer/ followed by a number and .html. Copy the entire product URL and keep the shop name and selected option beside it. A shop homepage, an image address or an order number leads to a different search.",
+  "Use the product-link field on FindQC to look for existing warehouse photos. The search box on the FindQC Pro homepage is for browsing the product catalog. When a QC result appears, check that its link uses the same marketplace and item number, then open the album for your size and colour. A photo of a different option can explain the construction while leaving the fit or colour you ordered unresolved.",
+  "If a mobile share link opens the store instead of an individual offer, ask the sender for the item page. If the exact listing opens but no photos appear, save that outcome. A service may lack a record for a valid item. Use a screenshot to look for alternatives only after you have recorded which listing you checked."
+],
   sections: [
     {
       id: "prepare-link",
@@ -103,6 +104,14 @@ export const productLinkFinderArticle = {
   ],
   sources: [
     {
+  "label": "FindQC guide to locating QC records",
+  "href": "https://findqc.com/how-findqc-works"
+},
+    {
+  "label": "Marketplace product link formats",
+  "href": "https://qc-finder.net/guides/weidian-taobao-1688-links"
+},
+    {
       label: "FindQC Academy: choosing a search method",
       href: "https://academy.findqc.com/2024/12/21/mastering-qc-finder-choosing-the-best-search-method/",
       note: "Official comparison of link, image and keyword search, including supported marketplace-link use.",
@@ -118,7 +127,7 @@ export const productLinkFinderArticle = {
       note: "Official information about search, collections and third-party QC records.",
     },
   ],
-  related: ["findqc-search-methods", "what-qc-photos-can-prove", "before-you-buy-qc-guide"],
+  related: ["1688-image-search-from-screenshot", "weidian-youshop-short-link-qc", "findqc-search-methods", "what-qc-photos-can-prove", "before-you-buy-qc-guide"],
   cta: {
     eyebrow: "Need another search mode?",
     title: "Compare link, image and keyword search before broadening the match",

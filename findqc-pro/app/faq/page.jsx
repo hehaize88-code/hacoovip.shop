@@ -1,3 +1,4 @@
+import Link from "../../components/LocalizedLink";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import PageHero from "../../components/PageHero";
 import SearchBox from "../../components/SearchBox";
@@ -15,7 +16,14 @@ export const metadata = localizedMetadata({
 const faqGroups = [
   { titleKey: "faq.groups.official", items: [10, 11, 12, 13, 14, 15, 16, 17] },
   { titleKey: "faq.groups.site", items: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+  { titleKey: "faq.groups.lookup", items: [18, 19, 20] },
 ];
+
+const articleForQuestion = {
+  18: "1688-image-search-from-screenshot",
+  19: "weidian-youshop-short-link-qc",
+  20: "qc-weight-dimensions-shipping-estimates",
+};
 
 const faqOrder = faqGroups.flatMap((group) => group.items);
 
@@ -55,7 +63,7 @@ export default function FaqPage() {
 
       <section className="faq-full-list" aria-label="Frequently asked questions">
         {faqGroups.map((group, groupIndex) => {
-          const offset = groupIndex === 0 ? 0 : faqGroups[0].items.length;
+          const offset = faqOrder.indexOf(group.items[0]);
           return (
             <div className="faq-group" key={group.titleKey}>
               <header className="faq-group-heading">
@@ -69,6 +77,7 @@ export default function FaqPage() {
                     <details key={number} open={groupIndex === 0 && index === 0}>
                       <summary><span>{displayNumber}</span><T id={`faq.items.${number}.question`} /><b>+</b></summary>
                       <p><T id={`faq.items.${number}.answer`} /></p>
+                      {articleForQuestion[number] && <Link className="text-link" href={`/articles/${articleForQuestion[number]}`}><T id="home.methodGuide" /></Link>}
                     </details>
                   );
                 })}

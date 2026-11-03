@@ -1,4 +1,5 @@
-import { articles, categories } from "../lib/data";
+import { categories } from "../lib/data";
+import { articles } from "../lib/articleCatalog";
 import { articleLastModified, getRouteLastModified } from "../lib/contentDates";
 
 export const dynamic = "force-static";

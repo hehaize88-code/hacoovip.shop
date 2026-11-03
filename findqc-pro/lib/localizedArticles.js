@@ -24,8 +24,14 @@ const ENGLISH_UI = {
   journal: "Journal",
 };
 
+const lookupLabels = {
+  en: "Open the official FindQC search", de: "Offizielle FindQC-Suche öffnen",
+  pl: "Otwórz oficjalną wyszukiwarkę FindQC", es: "Abrir el buscador oficial de FindQC",
+  ro: "Deschide căutarea oficială FindQC",
+};
+
 export function getArticleUi(language = "en") {
-  return language === "en" ? ENGLISH_UI : { ...ENGLISH_UI, ...ARTICLE_UI_LOCALES[language] };
+  return { ...ENGLISH_UI, ...ARTICLE_UI_LOCALES[language], openLookup: lookupLabels[language] };
 }
 
 function localizeSources(sources, language) {
@@ -37,18 +43,18 @@ function localizeSources(sources, language) {
 function localizeArticle(article, language) {
   if (!article || language === "en") return article;
   const translated = ARTICLE_LOCALES[language]?.[article.slug];
-  if (!translated) return article;
+  if (!translated) throw new Error(`Missing ${language} edition for ${article.slug}`);
   return {
     ...article,
     ...translated,
     slug: article.slug,
     heroImage: article.heroImage,
-    dateISO: article.dateISO,
+    dateISO: translated.dateISO || article.dateISO,
     updatedISO: translated.updatedISO || getRouteLastModified(`/articles/${article.slug}`, language),
     sourceIntro: translated.sourceIntro,
     related: article.related,
-    sources: localizeSources(article.sources, language),
-    cta: { ...article.cta, ...translated.cta, href: article.cta.href, external: article.cta.external },
+    sources: translated.sources || localizeSources(article.sources, language),
+    cta: { ...article.cta, ...translated.cta },
   };
 }
 

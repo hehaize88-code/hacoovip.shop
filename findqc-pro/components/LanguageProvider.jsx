@@ -3,7 +3,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { DEFAULT_LANGUAGE, isSupportedLanguage, translate } from "../lib/i18n";
 import { languagePath, stripLanguagePrefix } from "../lib/routing";
-import { routeIsAvailableInLanguage } from "../lib/articleAvailability";
 
 const STORAGE_KEY = "findqc-pro-language";
 const LanguageContext = createContext(null);
@@ -21,8 +20,7 @@ export default function LanguageProvider({ children }) {
     window.localStorage.setItem(STORAGE_KEY, nextLanguage);
     if (nextLanguage !== DEFAULT_LANGUAGE) {
       const currentPath = stripLanguagePrefix(window.location.pathname);
-      const targetPath = routeIsAvailableInLanguage(currentPath, nextLanguage) ? currentPath : "/articles";
-      const destination = languagePath(targetPath, nextLanguage);
+      const destination = languagePath(currentPath, nextLanguage);
       window.location.assign(`${destination}${window.location.search}${window.location.hash}`);
     }
   }, []);
