@@ -642,7 +642,7 @@
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const url = new URL(link.href, location.href);
       if (url.origin !== location.origin) return;
-      if (!/^\/(?:de\/|fr\/|es\/|it\/)?articles\/[^/]+\/$/.test(url.pathname)) return;
+      if (!/^\/(?:de\/|fr\/|es\/|it\/)?(?:(?:articles|categories|qc-shipping)\/|articles\/[^/]+\/)?$/.test(url.pathname)) return;
       event.preventDefault();
       location.assign(url.href);
     }, true);
@@ -666,6 +666,10 @@
       if (!link) return;
 
       const url = new URL(link.href, location.href);
+      if (/(^|\.)oopbuy\.com$/i.test(url.hostname) && /\/(?:product\/|pages\/goods\/details)/.test(url.pathname)) {
+        send("product_click", { link_domain: url.hostname, link_url: url.origin + url.pathname + url.search, page_path: location.pathname, transport_type: "beacon" });
+        return;
+      }
       if (!/(^|\.)cnfanshp\.com$/i.test(url.hostname)) return;
 
       const common = {
@@ -720,7 +724,7 @@
       send("article_click", {
         page_path: location.pathname,
         article_path: url.pathname,
-        placement: link.closest(".journal-section") ? "homepage" : link.closest(".article-directory-grid") ? "directory" : "related",
+        placement: link.closest(".hero-copy") ? "homepage_hero" : link.closest(".journal-section") ? "homepage" : link.closest(".article-directory-grid") ? "directory" : "related",
         transport_type: "beacon"
       });
     }, true);
