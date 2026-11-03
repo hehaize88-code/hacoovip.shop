@@ -1,0 +1,518 @@
+{
+  "kakobuy-qc-photos-not-showing": {
+    "title": "Pozele QC Kakobuy nu apar după livrare? Verifică etapa comenzii",
+    "description": "Află ce poți verifica dacă lipsește galeria QC Kakobuy, dacă miniaturile nu se deschid sau dacă ai nevoie de o fotografie suplimentară.",
+    "h1": "Pozele QC Kakobuy nu apar după livrare. Ce verifici mai întâi?",
+    "intro": "Ai văzut „livrat” în urmărirea transportului din China, dar nu găsești nicio fotografie a pantofilor pe care îi aștepți. Înainte să ceri alte poze, stabilește unde se oprește traseul pe care îl poți verifica. O confirmare a curierului, o fișă de articol în depozit și un album QC sunt trei lucruri diferite. Notează care dintre ele există deja pentru articolul tău. De aici poți formula o întrebare la care echipa chiar poate răspunde.",
+    "sections": [
+      [
+        "Identifică articolul, chiar dacă ai comandat mai multe produse deodată",
+        "Intră în contul din care ai comandat și deschide poziția exactă din comandă. Compară denumirea, mărimea, culoarea și numărul de bucăți cu confirmarea păstrată când ai plătit. Dacă ai două perechi asemănătoare, referința articolului contează mai mult decât miniatura produsului. Un vânzător poate expedia separat două poziții din aceeași comandă. Găsirea uneia dintre ele în depozit nu dovedește că au ajuns amândouă.",
+        "Păstrează într-o singură notiță referința comenzii, referința articolului din depozit, dacă există, și numărul trimiterii interne din China. Indică separat ce scrie la curier și ce scrie în cont. Dacă trimiți o captură printr-un canal public, ascunde adresa, telefonul și datele de plată. În conversația privată cu asistența, o referință corectă și două capturi relevante sunt mai ușor de urmărit decât un album întreg de imagini fără explicații."
+      ],
+      [
+        "Curierul arată livrarea, dar articolul lipsește din depozit",
+        "În această situație nu ai încă o fișă din care să poți deschide fotografiile. Verifică dacă numărul de urmărire asociat produsului este chiar cel afișat ca livrat. Compară și numărul de colete indicat de vânzător. Dacă numărul lipsește, menționează asta în mesaj. Nu completa tu un cod dintr-o comandă anterioară și nu presupune că două pachete livrate în aceeași zi au fost înregistrate împreună.",
+        "Poți scrie în engleză: „Order [reference], item [variant]. The domestic tracking for [number] shows delivery on [date]. I cannot find a warehouse entry for this item. Could you check whether this shipment has been matched to my order?” Adaugă mesajul exact din cont dacă stadiul s-a schimbat între timp. Asistența are astfel un punct clar de pornire: asocierea trimiterii cu o comandă. O solicitare de fotografii suplimentare nu ar rezolva încă problema."
+      ],
+      [
+        "Articolul este în depozit, dar galeria QC este goală",
+        "Deschide fișa articolului, nu pagina publică a produsului. Verifică dacă în dreptul inspecției apare o observație, dacă varianta coincide cu cea comandată și dacă există o secțiune separată pentru fotografii. Notează formularea pe care o vezi în propria interfață. Denumirile secțiunilor pot varia între aplicație, site și limba selectată. Păstrează o captură în care se văd atât referința, cât și zona goală, ca cele două să nu trebuiască asociate ulterior din memorie.",
+        "Întreabă ce se întâmplă cu fotografiile standard ale acelei poziții: „Warehouse item [reference] is visible in my account. The QC section is empty, and the inspection status says [exact text]. Could you check whether photos are pending or whether an existing gallery is missing from my account?” Nu presupune că lipsesc definitiv și nu promite un interval de încărcare altor cumpărători pe baza acestei comenzi. Pentru decizia ta contează răspunsul primit pentru articol și orice termen afișat chiar în comandă."
+      ],
+      [
+        "Miniaturile sunt acolo, dar imaginea mare nu se deschide",
+        "Observă dacă eroarea apare la toate pozele sau doar la un anumit cadru. Încearcă să redeschizi fișa și, dacă poți, același articol în browser, din același cont. Nu ai nevoie să descarci aplicații dintr-un link trimis de alt cumpărător. Notează dacă alte imagini din galerie se încarcă și dacă eroarea persistă după o reîncărcare obișnuită. Un album cu miniaturi vizibile este un caz diferit de o secțiune complet goală.",
+        "Un mesaj scurt poate preciza „I can see four thumbnails for warehouse item [reference]. The second one opens to a blank screen on [device/browser]. The other three open normally. Could you check access to that image?” Atașează captura cu eroarea, fără date de autentificare. Dacă imaginea devine disponibilă înainte de răspuns, spune ce ai reușit să vezi. Vei evita să primești o nouă serie de fotografii când, de fapt, îți lipsea accesul la un singur fișier."
+      ],
+      [
+        "Ai fotografii, dar niciuna nu arată detaliul care contează",
+        "Dacă poți vedea geanta, dar cureaua detașabilă nu apare în niciun cadru, albumul există deja. Compară întâi descrierea variantei comandate ca să verifici dacă acea curea trebuia inclusă. Apoi formulează cererea pentru un cadru precis: toate piesele așezate separat lângă geantă și eticheta variantei vizibilă. Dacă ai nevoie de o măsurătoare, spune unitatea, locul unde trebuie să stea zero și punctul unde trebuie să se termine măsurarea.",
+        "Întreabă ce serviciu este disponibil pentru produsul tău, dacă există un cost și când poți primi imaginea. Verifică dacă ai un termen de răspuns, retur sau expediere înainte de a aștepta fotografia. O solicitare trimisă nu îți confirmă automat că termenul a fost prelungit. De exemplu, dacă vrei o poză suplimentară a unui fermoar înainte de expediere, cere și confirmarea stadiului coletului. Evită să trimiți instrucțiunea de expediere cât timp decizia ta depinde de răspuns."
+      ],
+      [
+        "Fotografiile publice nu înlocuiesc verificarea comenzii",
+        "Un instrument de căutare a pozelor QC poate găsi imagini atașate unei listări din trecut. Acestea te pot ajuta să identifici detaliile pe care merită să le verifici. Ele nu stabilesc dacă în pachetul tău este aceeași variantă, dacă mărimea corespunde sau dacă o piesă s-a deteriorat în transport. Păstrează imaginile de referință separat de pozele articolului din depozit, cu o notă simplă privind sursa fiecăreia.",
+        "Imaginează-ți că o fotografie publică arată două șireturi de rezervă, iar albumul tău arată doar pantofii. Ai două întrebări diferite: ce accesorii include varianta comandată și ce accesorii a primit depozitul pentru tine. Verifică oferta salvată pentru prima întrebare. Pentru a doua, cere o fotografie a conținutului sau o confirmare în scris. O imagine publică nu poate răspunde la niciuna dintre aceste întrebări pentru comanda ta fără alte dovezi."
+      ],
+      [
+        "Închide solicitarea cu o verificare concretă",
+        "Când primești răspunsul, revino la întrebarea inițială. Articolul a apărut sub referința corectă? Poți deschide albumul din cont? Dacă ai cerut o măsurătoare, se văd în aceeași fotografie începutul ruletei, capătul și unitatea? Salvează răspunsul și legătura către fișa articolului. Dacă fotografia a ajuns pe chat, cere să se identifice exact varianta pe care o arată înainte să decizi expedierea.",
+        "Dacă răspunsul rezolvă numai o parte, continuă pe același fir cu o singură întrebare rămasă. „I can now see the gallery, thank you. The label photo is still unreadable. Could you confirm the size printed on the label for this item?” Precizia contează mai mult decât un mesaj lung. Când ai confirmat varianta și detaliile care îți schimbă decizia, poți compara opțiunile disponibile pentru păstrare, schimb sau retur direct în comanda ta."
+      ],
+      [
+        "Un exemplu complet pentru o comandă împărțită",
+        "Să presupunem că ai comandat un hanorac și o șapcă. Curierul arată o livrare, iar în depozit vezi o fișă cu fotografii numai pentru șapcă. Înainte să spui că lipsesc pozele hanoracului, verifică la vânzător dacă articolele au fost trimise împreună și dacă ai două numere de urmărire. Dacă al doilea colet e încă pe drum, întrebarea privește livrarea. Dacă ambele sosiri sunt confirmate, dar pentru hanorac nu există o poziție în cont, întreabă despre asociere. Dacă poziția există și albumul ei este gol, trimite tocmai referința acelei poziții. Cele trei mesaje sunt diferite, chiar dacă pentru tine efectul inițial este același: nu poți vedea hanoracul. Păstrează separat și termenul șepcii dacă te gândești să le expediezi în același colet internațional."
+      ]
+    ]
+  },
+  "kakobuy-wrong-size-or-item-qc": {
+    "title": "Mărime sau produs greșit în pozele QC Kakobuy? Ce trimiți",
+    "description": "Compară varianta comandată, eticheta și măsurătorile din depozit. Pregătește dovada și cererea de verificare înainte de expedierea internațională.",
+    "h1": "Ai primit altă mărime sau alt produs în pozele QC Kakobuy?",
+    "intro": "Poate ai comandat o geacă L și vezi un M pe etichetă. Sau eticheta spune L, dar lățimea din fotografie pare mai mică decât cea din tabel. Cele două situații cer dovezi diferite. Prima se poate verifica prin comparația opțiunii comandate cu eticheta, a doua printr-o măsurătoare făcută după aceeași metodă. Înainte să alegi între verificare, schimb ori retur, stabilește ce nu corespunde și dacă articolul a intrat deja într-un colet.",
+    "sections": [
+      [
+        "Pune confirmarea comenzii lângă fișa din depozit",
+        "Deschide poziția individuală din comanda Kakobuy și salvează varianta așa cum apare acolo, inclusiv codul de culoare și mărimea, dacă sunt afișate. Pagina actuală a vânzătorului te poate ajuta, dar conținutul sau ordinea opțiunilor se pot schimba. Captura făcută la comandă și detaliile tranzacției arată ce ai ales atunci. Dacă ai cerut modificarea variantei după plată, include și mesajul în care s-a confirmat schimbarea.",
+        "Verifică apoi că pozele aparțin articolului pe care îl ai în față. Două hanorace de aceeași culoare pot avea fotografii aproape identice. Caută referința fișei de depozit, apoi verifică dacă numărul de bucăți corespunde. Eticheta de pe punga de transport și eticheta cusută în haină sunt două dovezi distincte. Dacă se contrazic, salvează ambele cadre și precizează care inscripție apare pe ambalaj și care pe produs."
+      ],
+      [
+        "Când pe etichetă scrie altă mărime",
+        "Cazul cel mai simplu de descris este o diferență lizibilă între varianta cumpărată și mărimea înscrisă pe articol. Un exemplu de sesizare: „Warehouse item [ID]. My confirmed order shows size L in black. The sewn-in label in QC photo [number] appears to say M. Could you check the physical label and confirm the seller’s variant before shipping?” Nu ai nevoie să presupui cine a greșit. Cere o verificare pe articolul fizic și păstrează răspunsul împreună cu fotografia.",
+        "Pentru încălțăminte, o singură etichetă poate include sisteme de mărimi diferite. Notează sistemul pe care îl citești înainte să compari două numere. Dacă este posibil, verifică etichetele ambilor pantofi și pe cea de pe cutie. Dacă textul este neclar, cere o fotografie perpendiculară, suficient de aproape pentru citire. O mărime de pe cutie care corespunde comenzii nu lămurește singură ce mărime au pantofii aflați înăuntru."
+      ],
+      [
+        "Când eticheta este corectă, dar măsurătoarea pare diferită",
+        "Începe cu tabelul pentru modelul și varianta cumpărate. Stabilește dacă cifra se referă la produs întins pe masă, la circumferința completă sau la măsurile corpului. Pozițiile notate cu același cuvânt într-o traducere pot reprezenta metode diferite. De exemplu, lățimea hanoracului între axile se compară cu lățimea măsurată de la o cusătură laterală la cealaltă, la aceeași înălțime. O circumferință menționată fără metodă nu este o comparație sigură.",
+        "Imaginează-ți că într-o fotografie ruleta ajunge la 54 cm, dar prima cifră vizibilă este 3. Nu poți afirma că lățimea este 54 cm și nici nu poți scădea automat trei fără să vezi punctele de contact. Cere o imagine a întregii măsurători, cu materialul așezat fără întindere și rigla în același plan. Specifică ambele repere și centimetrii. Dacă vânzătorul declară o toleranță, noteaz-o exact pentru acel articol. Nu aplica din proprie inițiativă o marjă universală tuturor produselor."
+      ],
+      [
+        "Când bănuiești altă culoare, alt model sau alt set",
+        "Pentru culoare, caută mai întâi codul variantei pe comandă și pe etichetă. O nuanță bleumarin poate părea neagră într-o zonă umbrită. În schimb, un cod de model diferit sau un detaliu structural clar, cum ar fi numărul de buzunare la geaca din fotografie, se poate explica mai ușor. Alege două sau trei diferențe observabile și arată unde se văd. O listă lungă de impresii despre nuanță și textură poate ascunde tocmai diferența care ar lămuri cazul.",
+        "Dacă lipsește o piesă dintr-un set, verifică mai întâi ce include varianta cumpărată, nu doar ce apare în fotografia promoțională. Un top și un pantalon pot fi prezentate împreună, dar vândute ca opțiuni separate. Dacă ai confirmarea pentru setul complet, cere o imagine cu piesele așezate separat. Formulează precis „the QC gallery shows the top only; could you check whether the matching trousers are also present?” până când cineva a verificat fizic conținutul."
+      ],
+      [
+        "Ce atașezi și ce soluție ceri",
+        "Pregătește un mesaj cu patru elemente: referința articolului, varianta confirmată, dovada observată și rezultatul pe care îl dorești. Atașează o captură a opțiunii alese și fotografia QC identificată prin număr sau descriere. Pentru o problemă de dimensiune, adaugă tabelul vânzătorului și metoda folosită în fotografii. Cu cât cererea este mai ușor de verificat, cu atât reduci riscul să primești un răspuns la altă problemă.",
+        "Poți adapta acest text: „For order [order ID], warehouse item [item ID], I ordered [variant]. Photo [number] shows [specific difference]. I have attached the order option and the relevant photo. Please confirm which variant was received. If it is incorrect, my preferred solution is [replacement / return if eligible]. Please tell me the available options, any cost and the deadline for this order.” Dacă încă nu ai o dovadă suficientă, cere întâi verificarea și nu prezenta drept sigur ceva ce fotografia doar sugerează."
+      ],
+      [
+        "Dacă articolul este deja într-un colet",
+        "Verifică stadiul actual al coletului înainte să formulezi solicitarea. Articolul se poate afla în depozit, poate fi inclus într-un colet încă neexpediat sau poate fi deja în tranzit. Spune clar în mesaj ce afișează în acel moment contul. Dacă ai nevoie de oprirea pregătirii, cere confirmarea explicită că articolul sau coletul poate fi reținut și că solicitarea a fost aplicată. Simpla deschidere a unei conversații nu dovedește că procesarea s-a oprit.",
+        "Dacă pachetul a plecat deja, descrie situația așa cum este și verifică opțiunile oferite pentru stadiul respectiv. Dacă primești produsul înainte de rezolvare, păstrează ambalajul identificabil, etichetele și dovezile cerute pentru cazul tău. Nu presupune că un termen de depozitare sau un tarif citit într-un ghid public stabilește automat perioada de retur ori costul transportului înapoi. Verifică în comandă cine confirmă eligibilitatea și înainte de ce dată trebuie să acționezi."
+      ],
+      [
+        "Verifică și articolul de înlocuire înainte de expediere",
+        "Dacă se aprobă un schimb, urmărește referința nouă și păstrează legătura cu poziția inițială. Când apare noua galerie, verifică din nou mărimea, varianta și detaliul pentru care ai cerut schimbul. Nu folosi poza etichetei produsului inițial pentru a închide cazul nou. Dacă soluția este returul, verifică în cont dacă stadiul arată doar solicitarea trimisă, acceptarea de către vânzător sau finalizarea efectivă.",
+        "Încheie notița inițială cu răspunsul primit, acțiunea confirmată și eventualul pas rămas. Pentru o mărime corectă pe etichetă, dar potrivire încă incertă, poate fi suficientă comparația cu o haină proprie măsurată identic. Pentru o variantă confirmată ca greșită, ține articolul separat de planul de expediere până ai o soluție acceptabilă și verificabilă. Astfel, decizia finală rămâne legată de produsul pe care urmează să îl primești."
+      ],
+      [
+        "Un exemplu în care eticheta și senzația de mărime spun lucruri diferite",
+        "Ai comandat un hanorac L și ai o fotografie lizibilă cu litera L. Te îngrijorează însă că pare mai îngust decât hanoracul tău preferat. Înainte de a reclama o mărime greșită, măsoară piesa de acasă pe o suprafață dreaptă, între axile. Deschide tabelul produsului și stabilește dacă aceeași dimensiune este dată pentru produs sau dacă apar numai dimensiunile corporale recomandate. Dacă există o valoare comparabilă, cere o fotografie care să o măsoare după aceeași metodă. Dacă articolul respectă tabelul, dar ți se pare nepotrivit pentru felul în care vrei să îl porți, descrie asta ca preferință de croi și întreabă dacă există opțiuni. Dacă măsurătoarea diferă clar, prezintă tabelul și fotografia împreună. Această distincție face sesizarea mai ușor de verificat fără să atribui o greșeală înainte de a avea dovada."
+      ]
+    ]
+  },
+  "kakobuy-warehouse-storage-guide": {
+    "title": "Cât timp păstrează Kakobuy produsele în depozit? Termen și prelungire",
+    "description": "Află unde verifici termenul de depozitare Kakobuy, ce dată trebuie urmărită pentru fiecare articol și ce să întrebi înainte de prelungire sau expediere.",
+    "h1": "Depozitul Kakobuy. Cum afli până când poți păstra un articol",
+    "intro": "Dacă aștepți mai multe cumpărături ca să le trimiți împreună, prima dată care contează este termenul articolului intrat cel mai devreme în depozit. Ghidul Kakobuy descrie perioada normală de depozitare ca fiind de 100 de zile. Verifică însă termenul afișat pentru fiecare poziție și condițiile aplicabile tipului tău de comandă înainte să planifici coletul. În special, nu porni numărătoarea de la plată sau de la notificarea curierului doar pentru că acestea sunt datele pe care le găsești cel mai ușor.",
+    "sections": [
+      [
+        "Găsește data care se aplică articolului tău",
+        "Deschide articolul din depozit. Notează referința, stadiul, data înregistrării și termenul sau numărul de zile rămase, dacă le vezi. Dacă platforma afișează numai o dată de sosire, nu o transforma singur într-un termen garantat. Un articol cumpărat prin agent și un colet redirecționat fără o asociere completă pot avea situații diferite. Păstrează captura termenului lângă referința articolului.",
+        "Dacă nu găsești informația, întreabă concret: „For warehouse item [ID], which date starts the storage period, and what is the exact deadline currently recorded for this item?” Menționează stadiul afișat. Astfel obții o verificare pentru articolul real și poți evita o confuzie între sosirea fizică și momentul în care produsul a devenit disponibil în cont."
+      ],
+      [
+        "Separă termenul de depozitare de perioada de retur",
+        "Depozitarea privește timpul în care produsul poate rămâne în depozit. Posibilitatea de a returna un articol sau de a primi o înlocuire depinde de comanda respectivă și de condițiile aplicabile. Faptul că ai încă timp pentru depozitare nu dovedește că ai la dispoziție aceeași perioadă pentru a reclama o mărime greșită.",
+        "Verifică pozele QC imediat ce sunt disponibile, indică diferența în scris și cere termenul aplicabil cererii tale. Păstrează separat data-limită pentru o decizie privind produsul și data-limită de depozitare. Dacă aștepți răspuns de la vânzător, întreabă dacă există vreo acțiune pe care trebuie să o faci între timp pentru articolul rămas în depozit."
+      ],
+      [
+        "Când merită să mai aștepți un produs",
+        "Fă o listă cu trei coloane: articolul, următoarea acțiune și data până la care trebuie luată decizia. La pantofi poți avea „verifică eticheta”, la geacă „așteaptă sosirea”, la tricou „gata de expediere”. Un singur articol incert poate întârzia întregul colet. Verifică dacă poți separa produsele gata de plecare și compară opțiunile disponibile.",
+        "Înainte să le grupezi, verifică greutatea, dimensiunile și restricțiile tipului de transport către destinația ta. Un articol voluminos poate schimba liniile disponibile sau greutatea de tarifare. Calculează separat varianta cu un colet și varianta cu două folosind dimensiuni cât mai apropiate de cele reale. Simpla reunire a tuturor articolelor nu garantează prețul cel mai mic."
+      ],
+      [
+        "Ce întrebi despre o prelungire",
+        "Dacă termenul se apropie și produsul nu poate pleca, întreabă ce opțiune de prelungire este disponibilă pentru referința respectivă. Cere costul, data până la care trebuie solicitată, noul termen și modul în care vei primi confirmarea. Dacă ai cinci articole în depozit, verifică exact care dintre ele sunt acoperite. O opțiune afișată pentru o poziție nu garantează aceleași condiții pentru celelalte.",
+        "„I am waiting for an inspection on [item ID]. Can storage be extended for this item, what would it cost, and which new deadline would apply if confirmed?” Salvează confirmarea și verifică dacă data din cont s-a schimbat. Nu considera solicitarea trimisă ori o conversație deschisă drept dovadă a prelungirii."
+      ],
+      [
+        "Lasă timp pentru pregătirea coletului",
+        "Decizia de a expedia poate necesita mai multe verificări: conținut, adresă, metodă, ambalaj și suma finală. Dacă un accesoriu lipsește sau o etichetă este ilizibilă, rezolvă întrebarea înainte să dai instrucțiunea de expediere. O notificare de apropiere a termenului este utilă, dar notița ta cu data confirmată rămâne reperul mai sigur pentru planificare.",
+        "De exemplu, dacă o geacă ajunge după ce o pereche de pantofi se apropie de termen, compară costul prelungirii confirmate cu trimiterea separată a pantofilor. Ia în calcul și dacă geaca ar schimba dimensiunea ambalajului. Poți decide în cunoștință de cauză abia când ai cele două estimări și un termen verificat pentru fiecare piesă."
+      ]
+    ]
+  },
+  "kakobuy-extra-qc-photos": {
+    "title": "Cum ceri fotografii QC suplimentare la Kakobuy",
+    "description": "Patru modele de mesaje pentru poze QC suplimentare: branț, lățimea hainei, etichetă și accesorii. Alege unghiul și reperele înainte să trimiți cererea.",
+    "h1": "Fotografii QC suplimentare la Kakobuy. Patru cereri pe care le poți adapta",
+    "intro": "O fotografie suplimentară merită cerută atunci când răspunsul ți-ar schimba decizia. Dacă eticheta este deja lizibilă și vrei doar aceeași poză dintr-un alt unghi, întrebarea nu este încă suficient de precisă. Descrie în mesaj articolul, zona fizică, cum trebuie fotografiată și ce vrei să poți citi. Înlocuiește câmpurile dintre paranteze în modelele de mai jos.",
+    "sections": [
+      [
+        "Pantofi. Lungimea branțului",
+        "„For warehouse item [ID], if the insole is removable without damage, please lay it flat and measure from the back of the heel to the furthest point of the toe in centimetres. Please include the entire insole and both ends of the ruler in one photo.” Adaugă dacă bănuiești o diferență între pantoful stâng și drept. În acest caz, o singură măsurătoare nu îți răspunde la întrebare.",
+        "Dacă branțul este fix, cere să ți se explice ce măsurătoare alternativă este posibilă. O ruletă așezată lângă talpa exterioară arată o altă dimensiune. Nu compara rezultatele între ele și nu transforma lungimea branțului într-o promisiune de potrivire."
+      ],
+      [
+        "Haină. Lățimea între axile",
+        "„Please lay warehouse item [ID] flat without stretching it. Measure straight across the chest from one underarm seam to the other in centimetres. Please show both seam points and the zero mark.” Verifică dacă metoda coincide cu tabelul vânzătorului. Dacă ai o bluză care îți vine bine, așaz-o în aceeași poziție și măsoar-o identic. Scrie „lățime pe o singură față” lângă cifră ca să o poți deosebi ulterior de o circumferință."
+      ],
+      [
+        "Etichetă. Opțiunea sau codul greu de citit",
+        "„Could you photograph the sewn-in [size/model] label on warehouse item [ID] straight on, with the full code readable? Please include a wider photo that shows which item the label belongs to.” Alege eticheta de care ai nevoie. Un prim-plan perfect al etichetei de întreținere nu ajută dacă tu trebuie să verifici codul de model. Pe o pereche de pantofi, cere ambele etichete dacă bănuiești că perechea a fost asortată greșit."
+      ],
+      [
+        "Accesorii. Tot conținutul în același cadru",
+        "„For warehouse item [ID], my order option includes [specific accessory]. Could you lay the item and all loose accessories side by side, and photograph them together? Please confirm whether [specific piece] is present.” Omite instrucțiunea de desigilare pentru produsele închise. Întreabă mai întâi ce poate fi verificat fără desigilare și dacă deschiderea ambalajului ar afecta opțiunile disponibile."
+      ],
+      [
+        "Confirmă termenul și judecă răspunsul",
+        "Verifică disponibilitatea, eventualul cost și timpul estimat în serviciul afișat pentru articol. Nu presupune că cererea de poze schimbă termenele de depozitare sau de retur. Dacă ai deja un colet în pregătire, cere separat confirmarea stadiului acestuia. Când primești fotografia, verifică dacă arată exact reperele cerute. Dacă lipsește numai marcajul zero al riglei, spune asta fără să reiei întreaga reclamație.",
+        "Păstrează cadrul și interpretarea lui în aceeași notiță. „Eticheta se citește L, lățimea încă nu a fost măsurată” este un rezultat util chiar dacă verificarea nu s-a terminat. Te ajută să ceri următorul detaliu fără să confunzi o informație confirmată cu o presupunere."
+      ],
+      [
+        "Când o singură cerere înlocuiește trei fotografii inutile",
+        "Dacă într-o fotografie pantoful pare să aibă altă culoare decât cutia, nu cere încă o vedere identică. Întreabă dacă eticheta fizică a pantofului și cea de pe cutie au același cod de variantă și cere un cadru în care codurile se pot citi împreună. Dacă se potrivesc, poți decide apoi dacă nuanța merită o imagine nouă. Dacă diferă, ai deja o întrebare concretă pentru verificarea articolului."
+      ]
+    ]
+  },
+  "kakobuy-returns-after-sales-checklist": {
+    "title": "Retur și schimb Kakobuy. Dovezile pe care să le pregătești",
+    "description": "Documentează o problemă înainte de expediere și verifică termenul, eligibilitatea și costurile pentru comanda Kakobuy. Include modele de cereri.",
+    "h1": "Cum pregătești o cerere de retur sau schimb la Kakobuy",
+    "intro": "Un retur începe cu o întrebare verificabilă despre articolul din depozit. Notează ce ai comandat, ce se vede în poze și ce rezultat ai prefera. Aceste trei elemente îți permit să separi o eroare de variantă, un defect vizibil, un accesoriu lipsă și o simplă schimbare de preferință. Contează și dacă articolul este încă în depozit sau a intrat deja în fluxul de expediere.",
+    "sections": [
+      [
+        "Verifică regulile pentru poziția exactă din comandă",
+        "Deschide fișa produsului și mesajele asociate, inclusiv eventualele restricții ale vânzătorului. Notează data până la care se poate solicita o soluție și ce pas trebuie încheiat până atunci. Termenul de păstrare în depozit și cel de retur răspund la întrebări diferite. Dacă nu înțelegi ce înseamnă o dată afișată, cere o confirmare scrisă înainte să aștepți o altă poză."
+      ],
+      [
+        "Pregătește dovada potrivită",
+        "Pentru o mărime greșită, alătură opțiunea comandată și eticheta lizibilă. Pentru o ruptură, atașează o imagine de ansamblu care identifică zona și un cadru apropiat în lumină uniformă. Pentru un accesoriu, arată descrierea variantei în care apare ca inclus. Nu trata o piesă aflată doar în fotografia publicitară ca dovadă că făcea parte din comandă.",
+        "Păstrează imaginile originale și, dacă marchezi o zonă, lucrează pe o copie. Menționează referința fișei de depozit la fiecare grup de imagini. Atunci când vorbești cu asistența, explică ce observi înainte să sugerezi cauza. O urmă de pe material poate necesita un al doilea unghi pentru a fi deosebită de o reflexie."
+      ],
+      [
+        "Solicită o singură soluție principală",
+        "„For warehouse item [ID], I ordered [option]. Photo [reference] shows [specific difference]. I would prefer [exchange / return if eligible]. Please confirm the steps, deadline and any domestic shipping cost for this order.” Dacă verificarea este încă incompletă, schimbă cererea în „please confirm the variant on the physical item”. Sari astfel peste o discuție prematură despre schimb când problema ar putea fi doar o etichetă ilizibilă."
+      ],
+      [
+        "Urmărește etapele fără să confunzi aprobarea cu finalizarea",
+        "Cererea trimisă, acceptarea ei, expedierea înapoi către vânzător și încheierea financiară sunt evenimente distincte. Notează ce s-a confirmat și care este următorul pas. Dacă este vorba despre un schimb, verifică dacă vei primi o fișă nouă și în ce loc vor apărea pozele. Nu aproba trimiterea internațională a produsului inițial cât timp speri să îl schimbi."
+      ],
+      [
+        "Verifică rezultatul în cont",
+        "La înlocuire, verifică iarăși eticheta și detaliul contestat. La retur, urmărește dacă ai primit confirmarea procesării și dacă suma ori costurile corespund celor convenite. Păstrează mesajele și documentele relevante împreună, în caz că următoarea persoană care îți răspunde are nevoie de cronologia cazului. O fotografie de depozit te ajută să descrii un defect vizibil, dar decizia de eligibilitate aparține procesului aplicabil comenzii."
+      ],
+      [
+        "Exemplu de notiță pe care o poți actualiza",
+        "Scrie pe un singur rând „am comandat varianta cu curea, oferta salvată arată cureaua inclusă, galeria arată doar corpul genții”. Când primești răspunsul, completează dacă depozitul a verificat interiorul și ce a găsit. Dacă piesa apare într-o nouă fotografie, închizi cererea de verificare. Dacă lipsa este confirmată, poți cere o soluție pentru piesa lipsă, fără să descrii toată geanta ca fiind greșită. Notează separat termenul până la care trebuie să alegi și dacă soluția propusă presupune returnarea tuturor componentelor."
+      ]
+    ]
+  },
+  "kakobuy-shoe-qc-checklist": {
+    "title": "Pantofi Kakobuy. Verifică mărimea, branțul și perechea în pozele QC",
+    "description": "Un traseu de verificare pentru încălțăminte: etichetele ambilor pantofi, măsurarea branțului, forma călcâiului, îmbinarea tălpii și accesoriile.",
+    "h1": "Cum verifici o pereche de pantofi în pozele QC Kakobuy",
+    "intro": "La încălțăminte, cel mai util cadru de început arată ambii pantofi împreună, pe o suprafață plană. Înainte să mărești o urmă de adeziv, verifică mărimea, modelul și dacă ai într-adevăr o pereche cu aceleași caracteristici. Unele diferențe aparent mari dispar când cei doi pantofi sunt orientați la fel. Altele, precum două coduri diferite pe etichetele interioare, se pot documenta fără interpretări despre perspectivă.",
+    "sections": [
+      [
+        "Compară cele două etichete, apoi cutia",
+        "Citește mărimea și sistemul în care este exprimată, codul stilului și varianta de culoare, dacă aceste informații sunt prezente. Cere câte o fotografie pentru fiecare pantof dacă doar una dintre etichete este vizibilă. Confruntă rezultatul cu opțiunea cumpărată. Eticheta cutiei poate confirma ambalajul folosit, însă este posibil ca perechea din interior să fie alta. Salvează identificarea produsului înainte de a discuta defectele de finisaj."
+      ],
+      [
+        "Obține o măsurătoare comparabilă a branțului",
+        "Pentru un branț detașabil, cere ca acesta să fie așezat drept, cu marcajul zero la capătul călcâiului și cu rigla până la cel mai îndepărtat punct al vârfului. Cele două capete și unitatea trebuie să fie lizibile în același cadru. Întreabă înainte dacă branțul poate fi scos fără să fie deteriorat. Dacă este lipit, nu cere dezlipirea doar pentru o poză.",
+        "Măsoară apoi un branț de la o pereche pe care o porți confortabil, cu aceeași metodă. Notează că lungimea comparabilă nu garantează lățimea, spațiul deasupra degetelor sau confortul călcâiului. Măsura exterioară a tălpii nu este un înlocuitor pentru măsura interioară."
+      ],
+      [
+        "Privește perechea din față, din spate și de jos",
+        "În vederea de sus, urmărește forma vârfurilor și poziția șireturilor. Din spate, verifică dacă elementele de la călcâi au aceeași poziție față de talpă pe ambele părți. Cere un cadru la același nivel cu perechea dacă unul dintre pantofi este mai aproape de aparat. Vederea tălpilor îți permite să verifici modelul și eventuale urme vizibile în zonele de contact."
+      ],
+      [
+        "Localizează clar o posibilă desprindere",
+        "O dungă lucioasă pe marginea tălpii poate fi adeziv sau lumină reflectată. Identifică locul în raport cu un reper fix, de exemplu începutul panoului lateral. Cere un cadru apropiat din lateral și încă unul puțin mai sus. O fantă vizibilă în ambele cadre merită discutată cu asistența. Nu cere deformarea forțată a pantofului pentru a testa lipitura și nu deduce rezistența la purtare dintr-o fotografie."
+      ],
+      [
+        "Verifică accesoriile și închide decizia",
+        "Dacă ai comandat o variantă cu șireturi suplimentare, talonete ori un anumit tip de cutie, verifică descrierea opțiunii și cere o imagine cu piesele în același loc. Pentru o cutie lovită, distinge deteriorarea ambalajului de cea a pantofilor. Spune care dintre ele contează pentru tine. Când ai o neconcordanță, trimite comanda, fotografia relevantă și rezultatul dorit înainte să incluzi perechea în colet."
+      ],
+      [
+        "O verificare rapidă înainte să scoți cutia din planul de transport",
+        "Poate vrei să reduci volumul coletului și ai în vedere renunțarea la cutie. Înainte de a cere ceva în acest sens, citește eticheta cutiei, salvează o fotografie și verifică dacă accesoriile sunt puse în interior. Dacă există o neconcordanță nerezolvată ori ai nevoie de ambalaj pentru o eventuală solicitare, întreabă ce condiții se aplică înainte să aprobi modificarea. În felul acesta separi alegerea ambalajului de decizia dacă perechea este cea comandată. Dacă păstrezi cutia, precizează ce protecție dorești și verifică opțiunile oferite efectiv pentru coletul tău."
+      ]
+    ]
+  },
+  "kakobuy-size-measurement-qc-photo-limits": {
+    "title": "Măsurători în pozele QC Kakobuy. Cum citești corect ruleta",
+    "description": "Învață să compari lățimea la piept, lungimea mânecii și branțul folosind aceleași repere. Vezi când fotografia nu permite o citire sigură.",
+    "h1": "Ce poți afla despre mărime dintr-o fotografie cu ruleta",
+    "intro": "O fotografie cu o cifră foarte clară poate fi totuși inutilă. Dacă nu se vede unde începe ruleta, dacă unitatea lipsește sau dacă produsul este prins sub un unghi, cifra nu răspunde la întrebarea ta. O măsurătoare care ajută la alegerea mărimii descrie o dimensiune anume, între două puncte cunoscute, cu produsul într-o poziție clară.",
+    "sections": [
+      [
+        "Denumește dimensiunea înainte să ceri poza",
+        "La un tricou, „lungime” poate însemna de la umărul superior la tiv sau de la centrul gulerului de la spate la tiv. La o mânecă raglan nu există cusătura obișnuită a umărului de la care ai măsura o mânecă montată clasic. Spune metoda folosită de tabelul vânzătorului sau compară cu o haină pe care o poți măsura tu în același fel."
+      ],
+      [
+        "Verifică începutul, sfârșitul și unitatea",
+        "Urmărește marcajul zero al scalei, nu presupune că se află la marginea fizică a riglei. Confirmă și dacă scala indică centimetri sau inci. O fotografie apropiată numai de capătul final poate ajuta la citirea cifrei, dar are nevoie de o vedere mai largă care să arate traseul. Dacă produsul are margini curbate, întreabă dacă lungimea a fost luată în linie dreaptă sau urmând curba."
+      ],
+      [
+        "Controlează poziția și tensiunea materialului",
+        "Pentru lățimea la piept, cere ca haina să fie așezată neted, fără întindere, și ca ruleta să meargă drept de la o axilă la cealaltă. O cută poate scurta dimensiunea aparentă, iar întinderea unui tricot o poate mări. Dacă ruleta stă mai sus decât materialul într-o parte, perspectiva poate muta locul în care pare să se întâlnească cu marginea. Cere un cadru perpendicular în loc să citești fracțiuni de centimetru dintr-o imagine oblică."
+      ],
+      [
+        "Compară lucruri măsurate la fel",
+        "Lățimea pe o singură față nu este același lucru cu circumferința corpului. Dacă tabelul oferă măsuri corporale recomandate, nu scădea direct măsura produsului fotografiat din cifra respectivă. La încălțăminte, compară un branț detașabil cu un alt branț și notează forma vârfului. Chiar când lungimile coincid, o formă îngustă sau o căptușeală groasă poate schimba senzația la purtare."
+      ],
+      [
+        "Decide dacă diferența este documentată",
+        "Păstrează împreună fotografia, metoda și rândul corespunzător variantei din tabel. Dacă rezultatul pare incompatibil, cere o repetare folosind exact aceleași două repere. Menționează o toleranță numai dacă vânzătorul o specifică pentru acel produs. Dacă toate dovezile arată o abatere, descrie cifrele și cere ce opțiuni ai. Dacă poza permite numai o estimare, scrie ce nu se vede și solicită acel detaliu înainte de expediere."
+      ],
+      [
+        "Exemplu de citire greșită la mânecă",
+        "Să presupunem că măsori de la îmbinarea umărului la marginea manșetei și compari cifra cu fotografia unei haine raglan. În fotografie ruleta pleacă de lângă guler și traversează și o parte din umăr. Chiar dacă ambele cifre sunt în centimetri, diferența dintre ele nu descrie diferența dintre mâneci. Alege un traseu comun și repetă măsurarea de acasă. Dacă nu există repere comparabile, notează că măsurătorile au rămas neechivalente. Vei evita să soliciți un schimb pe baza unei diferențe care vine doar din punctul de pornire. Aceeași verificare se aplică lungimii gecii dacă un tabel include gulerul iar celălalt se oprește la cusătura lui."
+      ]
+    ]
+  },
+  "kakobuy-qc-finder-vs-warehouse-photos": {
+    "title": "QC Finder sau pozele din depozitul Kakobuy? Cum le folosești",
+    "description": "Află cum să folosești pozele publice pentru a compara listări și cum verifici produsul tău cu imaginile din fișa de depozit Kakobuy.",
+    "h1": "QC Finder și fotografiile articolului tău din depozit",
+    "intro": "O galerie publică poate arăta cum arăta un produs cumpărat anterior prin același link. Pozele din fișa ta de depozit sunt cele pe care le folosești ca să verifici ce urmează să expediezi. Poți profita de ambele surse dacă notezi de fiecare dată cărui articol îi aparține fotografia și ce întrebare vrei să rezolvi cu ea.",
+    "sections": [
+      [
+        "Înainte de cumpărare, caută după referința corectă",
+        "Copiază linkul complet al listării sau identificatorul pe care instrumentul îl acceptă. Verifică dacă rezultatul se referă la același vânzător și produs. Unele variante împart aceeași pagină, deși diferă puternic prin culoare, materiale sau accesorii. Dacă rezultatul nu arată opțiunea exactă, tratează-l ca exemplu de model și notează ce trebuie să verifici ulterior.",
+        "Uită-te la contextul fiecărei imagini. O poză recentă, cu etichetă lizibilă și variantă identificabilă, te ajută mai mult decât mai multe miniaturi fără dată. Chiar și cea mai bună imagine rămâne legată de articolul fotografiat atunci."
+      ],
+      [
+        "Folosește exemplele pentru a pregăti întrebări",
+        "Dintr-o galerie veche poți observa unde se găsește eticheta, dacă un buzunar are fermoar sau dacă o piesă pare detașabilă. Transformă observația într-o întrebare pentru propria comandă: „se vede același cod de model?” sau „a fost inclusă cureaua menționată în varianta mea?”. Astfel, galeria publică devine o listă de repere și nu o promisiune despre ce vei primi."
+      ],
+      [
+        "După sosire, lucrează cu fișa ta de articol",
+        "Deschide albumul din cont și identifică poziția cumpărată. Dacă poza publică și cea din depozit arată diferit, compară mai întâi codul, mărimea, perspectiva și lumina. O geantă umplută în fotografia publică și una pliată în fotografia de depozit pot avea siluete foarte diferite fără să fie automat alt model. Cere același unghi înainte să formulezi o reclamație."
+      ],
+      [
+        "Când nu găsești nicio fotografie publică",
+        "Lipsa rezultatelor arată doar că instrumentul nu îți afișează o imagine pentru căutarea respectivă. Verifică dacă linkul este complet și dacă ai căutat produsul corect. Nu interpreta absența drept dovadă de calitate slabă sau drept confirmare că nimeni nu a cumpărat produsul. Dacă nici pozele articolului tău nu apar, verificarea trebuie mutată în fișa comenzii și în stadiul depozitului."
+      ],
+      [
+        "Salvează dovada potrivită pentru solicitare",
+        "Pentru o neconcordanță, trimite opțiunea comandată și pozele propriului articol. Poți adăuga o imagine publică pentru a arăta unghiul dorit, dar etichetează clar sursa. Spune ce vrei să se vadă într-o imagine nouă și verifică dacă rezultatul schimbă decizia de păstrare, retur sau expediere. Două fotografii făcute în momente diferite pot sugera o întrebare bună fără să dovedească singure răspunsul."
+      ],
+      [
+        "Un exemplu cu două livrări de pe aceeași listare",
+        "O imagine publică a unui hanorac albastru arată fermoarul cu un anumit tip de cursor. În fișa produsului tău negru apare un cursor diferit. Mai întâi verifică dacă cele două variante sunt descrise identic și dacă modelul a fost actualizat. Dacă pe comanda ta există o imagine clară a cursorului promis, folosește-o pentru comparație. În lipsa ei, întreabă dacă fotografia din depozit corespunde versiunii vândute pentru varianta ta. Referința publică arată de unde vine nelămurirea, dar nu poate confirma ce finisaj trebuie livrat pentru toate culorile. Salvează răspunsul lângă fotografia articolului tău."
+      ]
+    ]
+  },
+  "kakobuy-stitching-finish-qc-checklist": {
+    "title": "Cusături și finisaje în pozele QC Kakobuy. Ce verifici",
+    "description": "Urmărește cusăturile în zonele solicitate, diferențiază un capăt de ață de o deschidere și cere imagini clare înainte de expediere.",
+    "h1": "Cum verifici cusăturile și finisajele într-o fotografie QC",
+    "intro": "Pornește de la fotografia de ansamblu și identifică exact zona pe care o mărești. Un capăt de fir liber, o cusătură decorativă neregulată și un punct în care două panouri de material se despart nu sunt aceeași problemă. Dacă le descrii separat, poți cere o verificare care să arate construcția reală și efectul vizibil asupra produsului.",
+    "sections": [
+      [
+        "Urmărește traseul unei cusături",
+        "Privește îmbinarea continuu de la un reper la altul, de exemplu de la axilă până la tiv. Caută schimbări bruște ale liniei, porțiuni unde marginile se îndepărtează și zone în care firul pare întrerupt. Stabilește dacă linia vizibilă este cusătura care unește panourile sau o tighelire exterioară decorativă. Două linii paralele pot avea funcții diferite."
+      ],
+      [
+        "Acordă prioritate punctelor care țin greutatea",
+        "La pantaloni, caută colțurile buzunarelor, zona dintre picioare și prinderea găicilor. La geantă, urmărește prinderile mânerelor; la geacă, baza fermoarului și îmbinarea mânecilor. O neregularitate la mijlocul unui ornament poate fi mai puțin importantă practic decât o deschidere la capătul unui buzunar. O fotografie nu îți spune însă cât va rezista efectiv îmbinarea în timp."
+      ],
+      [
+        "Diferențiază o umbră de o deschidere",
+        "Un fir negru pe un material deschis poate părea o tăietură dacă lumina vine din lateral. Cere o fotografie perpendiculară și încă una care să arate aceeași zonă dintr-un unghi ușor schimbat. Include un cadru mai larg ca să identifici piesa. Dacă marginea este ascunsă într-un pliu, cere ca produsul să fie așezat plat, fără să fie întins sau desfăcut."
+      ],
+      [
+        "Verifică tivul și capetele de fir",
+        "Compară porțiuni construite în același mod, de exemplu două manșete ale aceleiași haine. O margine finisată prin surfilare arată diferit de un tiv întors, iar unele modele au deliberat margini lăsate vizibile. Verifică fotografia de prezentare a variantei și poziția exactă. Nu cere tăierea unui fir înainte să afli dacă leagă cusătura structurală și ce opțiuni ai pentru comandă."
+      ],
+      [
+        "Cere o verificare pe care o poți repeta",
+        "Scrie „Please show the seam at the lower outside corner of the left pocket, once from the front and once from the inside if accessible.” După primirea imaginilor, urmărește dacă vezi o simplă coadă de fir sau două straturi de material care se separă. Dacă a doua situație se confirmă, atașează cadrele și întreabă despre soluțiile disponibile înainte de trimitere. Păstrează poziția și descrierea în notițe pentru a nu confunda două zone asemănătoare."
+      ],
+      [
+        "Exemplu de verificare a unui buzunar",
+        "Într-o fotografie de ansamblu colțul unui buzunar aplicat pare să se ridice. Urmărește întâi dacă există o linie continuă de cusătură între colț și restul buzunarului. Cere un prim-plan în care să se vadă punctul de fixare și o porțiune din materialul hainei. Dacă mare parte din buzunar stă deasupra mesei din cauza unei cute, roagă depozitul să așeze haina plat. Dacă rămâne vizibil un gol între margine și corpul hainei, întreabă dacă această deschidere este intenționată pe modelul respectiv. Nu recomanda repararea sau tăierea firelor înainte să știi ce soluții ai în comandă și dacă vrei să păstrezi articolul."
+      ]
+    ]
+  },
+  "kakobuy-alignment-symmetry-print-placement-qc": {
+    "title": "Este imprimeul strâmb? Verificarea alinierii în pozele QC Kakobuy",
+    "description": "Compară imprimeurile, buzunarele și cusăturile cu reperele hainei și separă o diferență de poziție de efectul unei fotografii oblice.",
+    "h1": "Cum verifici alinierea imprimeului și simetria hainei la Kakobuy",
+    "intro": "Un imprimeu care pare înclinat pe ecran poate urma pur și simplu o haină așezată oblic. Rotește mental fotografia astfel încât axa articolului să fie clară și caută două repere fizice de aceeași parte și de cealaltă. Poziția graficii față de guler, tiv și cusături îți spune mai mult decât distanța față de marginea fotografiei.",
+    "sections": [
+      [
+        "Alege repere care aparțin hainei",
+        "Pentru un tricou, caută centrul gulerului și centrul tivului. La un hanorac cu fermoar, linia fermoarului oferă un reper central, dacă haina este închisă și netezită. La un buzunar aplicat, colțurile și cusăturile laterale pot fi mai utile decât grafica. Nu folosi fundalul sau marginea mesei pentru măsurători dacă haina nu este așezată paralel cu acestea."
+      ],
+      [
+        "Verifică așezarea înainte să judeci imprimeul",
+        "Dacă un umăr este ridicat sau o mânecă este pliată sub produs, materialul se poate răsuci. În fotografia de ansamblu, verifică dacă ambele cusături laterale se văd și dacă tivul este întins uniform. Cere o fotografie de sus, cu articolul netezit fără tensiune, când poziția împiedică comparația. Un cadru frontal poate rezolva dubiul mai repede decât o mărire a aceleiași imagini oblice."
+      ],
+      [
+        "Compară elementele care ar trebui să fie simetrice",
+        "Un imprimeu amplasat intenționat pe partea stângă nu trebuie să fie centrat pe toată haina. Consultă imaginile variantei alese și uită-te la relația dintre desen și anumite detalii, de exemplu fermoarul sau muchia buzunarului. Pentru două buzunare care ar trebui să aibă aceeași înălțime, compară colțurile echivalente cu tivul. La croieli asimetrice sau la mărimi diferite, o comparație cu fotografia comercială are limite."
+      ],
+      [
+        "Măsoară numai dacă reperul este clar",
+        "Dacă poziția desenului este importantă pentru tine, cere o distanță concretă: „Could you show the distance from the centre of the collar seam to the top of the print with the hoodie laid flat?” Pentru o comparație stânga-dreapta, precizează aceeași cotă pe cele două părți. O ruletă lângă produs nu măsoară deplasarea imprimeului dacă nu pornește de la un punct identificabil și nu ajunge la marginea lui."
+      ],
+      [
+        "Descrie ce se repetă în două imagini",
+        "Dacă desenul continuă să pară rotit când haina este așezată corect, salvează poza inițială și noua fotografie. Indică unde apare abaterea față de reperele hainei și verifică cu asistența dacă este o caracteristică a variantei sau o diferență a articolului primit. Dacă fotografia nu permite o măsură exactă, nu inventa milimetri din pixeli. Precizează ce observi și ce condiție ar schimba decizia ta de expediere."
+      ],
+      [
+        "Un exercițiu cu două buzunare și un fermoar",
+        "Imaginează-ți că buzunarul drept pare mai sus decât cel stâng la o geacă închisă. Trasează vizual o linie între colțurile superioare și urmărește dacă aceeași înclinare apare și la tiv. Dacă tivul, gulerul și buzunarele urmează aceeași pantă, poza singură nu poate izola o problemă la buzunar. Dacă tivul este drept, iar diferența apare numai la colțul buzunarului, cere o fotografie frontală nouă și măsurători de la același tiv la cele două colțuri. Rezultatul te ajută să discuți un detaliu identificabil. Evită să invoci o toleranță fără o specificație care se aplică acelui produs."
+      ]
+    ]
+  },
+  "kakobuy-qc-color-lighting-errors": {
+    "title": "Culoare greșită în pozele QC Kakobuy sau efect de lumină?",
+    "description": "Compară codul variantei, umbrele și reflexiile înainte să reclami culoarea. Află ce cadru suplimentar poate lămuri neconcordanța.",
+    "h1": "Cum verifici o diferență de culoare în pozele QC Kakobuy",
+    "intro": "O fotografie din depozit poate arăta o geacă bleumarin aproape neagră sau o cămașă albă ușor crem. Înainte să declari că a sosit altă variantă, caută codul comenzii și culoarea înscrisă pe etichetă. Apoi privește toate elementele din cadru. Dacă și fundalul, scala albă sau eticheta par colorate în aceeași direcție, lumina ori procesarea imaginii poate influența întregul cadru.",
+    "sections": [
+      [
+        "Separă codul produsului de impresia vizuală",
+        "Compară numele sau codul culorii din confirmarea comenzii cu eticheta fizică. Dacă aceeași fotografie arată un cod clar diferit, poți descrie nepotrivirea fără să interpretezi nuanța pe ecran. Dacă eticheta nu include culoarea, cere să se verifice varianta primită. Numele comercial al unei nuanțe nu are o valoare universală între vânzători."
+      ],
+      [
+        "Caută zone în lumină și în umbră",
+        "Compară partea luminată a unui panou cu zonele pliate din același material. În umbră poți pierde mult din diferența dintre două culori închise. La materiale lucioase, reflexia poate prelua culoarea obiectelor din jur. Uită-te și dacă diferența se schimbă la marginea pliului, unde țesătura își schimbă unghiul față de lumină."
+      ],
+      [
+        "Controlează comparația dintre imagini",
+        "Ai mai multe informații din două cadre ale aceluiași articol realizate în condiții similare decât din imagini ale unor produse diferite pe ecrane diferite. O fotografie de catalog poate folosi iluminare de studio și editare. Reglajele ecranului și compresia capturilor afectează și ele comparația. Păstrează imaginile originale și evită filtrele când trimiți o cerere de verificare."
+      ],
+      [
+        "Cere o vedere care răspunde întrebării",
+        "Pentru două panouri care par să aibă nuanțe diferite, cere ca ambele să fie vizibile simultan, pe același plan și sub aceeași lumină. Pentru un produs care pare altă culoare în întregime, cere o vedere largă în lumină uniformă și o imagine cu eticheta. Un obiect de referință în același cadru poate ajuta la observarea unei dominante evidente, dar o poză obișnuită nu este o măsurătoare colorimetrică."
+      ],
+      [
+        "Decide ce poți susține",
+        "„Pe comandă scrie codul X, iar pe etichetă apare Y” este o neconcordanță concretă. „Panoul drept pare mai deschis în ambele cadre, chiar și atunci când unghiul se schimbă” este o observație care merită verificată fizic. „Culoarea exactă nu poate fi stabilită din aceste poze” este și el un rezultat util. Cere acces la opțiunile comenzii înainte de expediere dacă această incertitudine contează pentru tine."
+      ],
+      [
+        "Exemplu cu două suprafețe diferite pe aceeași geantă",
+        "Corpul unei genți negre poate fi mat, iar cureaua mai lucioasă. Un cadru făcut de sus poate face cureaua să pară gri prin reflexia unei surse de lumină. Cere o imagine în care cureaua să fie așezată lângă corpul genții, fără să fie răsucită, și încă una în care unghiul se schimbă ușor. Dacă diferența se mută odată cu reflexia, ține cont de finisaj înainte să reclami altă culoare. Dacă diferența persistă în lumină uniformă și există și coduri de variantă distincte, trimite ambele observații. Dacă tu ai nevoie de o potrivire exactă între materiale, spune asta explicit și acceptă că nicio captură de ecran nu o va măsura cu precizie."
+      ]
+    ]
+  },
+  "kakobuy-material-texture-qc-evidence": {
+    "title": "Material și textură în fotografiile QC Kakobuy",
+    "description": "Află cum se văd suprafața, îmbinările și uzura în poze și de ce compoziția, impermeabilitatea sau rezistența cer alte dovezi.",
+    "h1": "Ce îți spune o fotografie QC Kakobuy despre material",
+    "intro": "Poți observa o scămoșare locală, o tăietură ori o îmbinare vizibilă într-un material. Este mult mai greu să afli compoziția fibrei, grosimea exactă sau rezistența în timp de la distanță. Începe prin a numi proprietatea care contează pentru tine. „Vreau să văd dacă stratul de la colț este deja desprins” cere o imagine diferită de „vreau să verific ce compoziție declară eticheta”.",
+    "sections": [
+      [
+        "Pornește de la suprafața întreagă",
+        "Privește produsul din față și din spate pentru a localiza diferențele de aspect. Notează dacă o zonă pare mai rugoasă decât restul, dacă diferența apare lângă o cusătură ori dacă se oprește la marginea unui pliu. Zoomul într-o imagine mică poate accentua granulația și poate crea modele care nu se văd fizic. Un prim-plan nou cu focalizare bună este mai util decât o captură mărită."
+      ],
+      [
+        "Ia în calcul direcția fibrelor și a luminii",
+        "Catifeaua, materialele cu puf și unele suprafețe periate pot părea mai închise când fibrele stau în altă direcție. O zonă de culoare diferită lângă un pliu nu dovedește automat că materialul este pătat. Cere două cadre cu aceeași zonă în lumină uniformă, la unghiuri ușor diferite, fără a zgâria sau freca produsul. Verifică dacă semnul rămâne la același reper fizic."
+      ],
+      [
+        "Urmărește marginile și îmbinările",
+        "La o geantă, verifică stratul exterior în colțuri și lângă găurile de prindere. La o haină, urmărește unde materialul principal se întâlnește cu o bordură sau cu o întăritură. În aceste zone se pot vedea margini deja ridicate ori diferențe între panouri. O fotografie de ansamblu arată poziția, iar un cadru apropiat poate clarifica dacă suprafața este continuă."
+      ],
+      [
+        "Verifică declarația de compoziție separat",
+        "Dacă ai nevoie să citești compoziția declarată, cere o fotografie lizibilă a etichetei, inclusiv procentele și porțiunile la care se referă. Căptușeala și exteriorul pot avea descrieri diferite. O etichetă lizibilă arată ce declară produsul, nu validează independent conținutul fibrelor. Aspectul unei granulații în poză nu poate confirma, de unul singur, un anumit tip de piele."
+      ],
+      [
+        "Fă diferența între un defect vizibil și o proprietate de utilizare",
+        "Dacă o margine este fisurată în ambele cadre, poți documenta locul și cere verificarea comenzii. Dacă întrebarea este cât de caldă va fi geaca sau cât de bine va rezista la apă, cere specificațiile relevante și decide câtă încredere poți acorda sursei. Nu transforma o suprafață lucioasă într-o promisiune de impermeabilitate. Fotografierea materialului trebuie să respecte starea produsului și opțiunile tale de retur."
+      ],
+      [
+        "Când presupusa pată poate fi direcția pufului",
+        "Pe un panou de geacă pare să existe o zonă dreptunghiulară mai închisă. Uită-te dacă urmează linia unui pliu de ambalare și dacă în cadru apar alte zone similare orientate în aceeași direcție. Cere o fotografie de sus în lumină uniformă și una ușor laterală. Dacă aspectul se schimbă când se schimbă direcția luminii, cere confirmarea fizică a suprafeței înainte să formulezi o reclamație despre pată. Dacă limita rămâne vizibilă în ambele cadre, descrie poziția și dimensiunea aproximativă în raport cu o cusătură apropiată. Nu propune curățarea cu apă sau cu soluții ca metodă de verificare a unui articol pe care încă îl poți returna."
+      ]
+    ]
+  },
+  "kakobuy-hoodie-qc-checklist": {
+    "title": "Poze QC pentru hanorace Kakobuy. Măsuri, imprimeu și cusături",
+    "description": "Verifică lățimea la piept, lungimea și mânecile hanoracului, apoi compară gluga, buzunarul, manșetele și poziția graficii.",
+    "h1": "Cum verifici un hanorac în pozele din depozitul Kakobuy",
+    "intro": "Înainte să interpretezi forma unui hanorac, verifică varianta și tipul de croi pe care le-ai comandat. Un umăr căzut, o lungime scurtă sau un buzunar ușor coborât pot fi caracteristici ale modelului. Pentru comparație, alege un hanorac propriu cu o croială apropiată și măsoară-l pe masă, fără să întinzi materialul. Dacă te interesează în primul rând potrivirea, asta îți oferă un reper mai bun decât litera de pe etichetă.",
+    "sections": [
+      [
+        "Începe cu măsurătoarea care contează la purtare",
+        "Pentru lățime, cere distanța pe o singură față între cele două cusături de sub brațe. Pentru lungime, stabilește dacă măsori de la punctul de lângă guler sau de la mijlocul spatelui. Cere o fotografie cu ambele capete și zero vizibil. Termină comparația la marginea tivului, inclusiv sau exclusiv banda elastică, folosind aceeași metodă la ambele haine."
+      ],
+      [
+        "Ține cont de construcția mânecii",
+        "La o mânecă montată clasic, se poate măsura de la cusătura umărului până la capătul manșetei. La raglan sau la umeri foarte căzuți, acea distanță poate înșela. Poți compara traseul de la mijlocul gulerului, peste umăr și până la manșetă, dacă același traseu este folosit la haina de referință. Păstrează metoda scrisă lângă valoare ca să nu compari ulterior două dimensiuni diferite."
+      ],
+      [
+        "Judecă imprimeul în raport cu haina",
+        "Cere un cadru de sus cu hanoracul netezit. Compară grafica cu centrul gulerului și cu muchia buzunarului, nu cu marginea mesei. O parte pliată sub haină poate schimba aparent distanța față de cusătura laterală. La un imprimeu care trece peste fermoar, verifică dacă cele două părți se întâlnesc când fermoarul este închis și dacă modelul comercial urmărește același efect."
+      ],
+      [
+        "Privește gluga, buzunarul și manșetele",
+        "Verifică prinderea glugii la guler și ieșirile șnurului dacă modelul le include. Urmărește cusăturile de la colțurile buzunarului, unde materialul este solicitat la purtare. La manșete și tiv urmărește regularitatea marginii și eventualele puncte desprinse. O încrețire simetrică la banda elastică poate fi firească. Fotografia îți poate arăta finisajul exterior, dar nu cât de bine revine elasticul după spălări."
+      ],
+      [
+        "Decide ce imagine suplimentară lipsește",
+        "Pentru grafică, cere o vedere completă și una apropiată de conturul suspect. Pentru mărime, cere o singură dimensiune după reperele definite. Dacă eticheta spune mărimea corectă, dar măsurătoarea diferă de tabelul variantei, păstrează ambele dovezi și cere verificarea. Nu afirma că haina este din alt material sau are o anumită greutate doar după cât de groasă pare în poză. Procesează neconcordanțele înainte să alegi trimiterea internațională."
+      ],
+      [
+        "Exemplu cu un hanorac scurt și lat",
+        "Dacă modelul din fotografii pare mai larg decât cel pe care îl deții, dar lățimea măsurată coincide, verifică lungimea. Un corp mai scurt face lățimea să pară mai mare în imagine, chiar și când cele două lățimi sunt identice. Compară separat poziția benzii din talie și locul în care ajunge manșeta. Pentru o margine elastică, notează dacă măsurătoarea a fost luată în repaus. Dacă îți place să porți hanoracul peste un tricou lung, verifică diferența de lungime folosind cele două haine proprii. Astfel eviți să reclami dimensiunea greșită când aspectul vine de fapt din proporția intenționată a modelului."
+      ]
+    ]
+  },
+  "kakobuy-bag-qc-checklist": {
+    "title": "Poze QC pentru genți Kakobuy. Formă, curea, căptușeală și feronerie",
+    "description": "Verifică dimensiunile genții, prinderile curelei, fermoarele și accesoriile incluse. Află ce unghiuri să ceri când geanta a sosit pliată.",
+    "h1": "Cum verifici o geantă în fotografiile QC Kakobuy",
+    "intro": "Începe cu fotografia de ansamblu și identifică tipul de geantă, mărimea, culoarea și configurația curelei. O geantă moale fotografiată goală poate părea deformată comparativ cu fotografia de prezentare a unei genți umplute. Înainte să reclami forma, verifică dacă panourile, baza și poziția prinderilor corespund modelului. Notează din comandă dacă ar trebui să existe o curea, o husă ori un alt accesoriu separat.",
+    "sections": [
+      [
+        "Citește dimensiunile după repere clare",
+        "Pentru lățime, întreabă dacă măsurătoarea se ia la bază sau în zona cea mai lată. Pentru înălțime, măsoară corpul fără mânere dacă așa o definește descrierea. Adâncimea nu se poate citi dintr-o fotografie frontală a unei genți aplatizate. Cere o vedere laterală și evită să transformi lățimea unei fețe în presupuneri despre volumul util din interior."
+      ],
+      [
+        "Privește colțurile și linia bazei",
+        "Urmărește cele patru colțuri, cusăturile laterale și simetria curelelor. Dacă un panou pare răsucit, vezi dacă geanta este așezată înclinat sau dacă un colț este pliat sub ea. Cere o fotografie din față și una din spate, cu geanta sprijinită fără presiune. O urmă adâncă rămasă în același punct în ambele cadre merită o confirmare fizică. O cută vizibilă într-o singură imagine poate proveni din ambalare."
+      ],
+      [
+        "Verifică feroneria și prinderile curelei",
+        "Caută cârligele, inelele, cataramele și zona de material în care sunt fixate. Compară cele două capete ale curelei și verifică dacă numărul de elemente corespunde variantei. Metalul lucios reflectă lumina din depozit. Pentru o presupusă zgârietură, cere un al doilea unghi. O poză arată o suprafață, dar nu dovedește că mecanismul închide bine sau că prinderea suportă o anumită greutate."
+      ],
+      [
+        "Întreabă ce se poate vedea în interior",
+        "Dacă interiorul este accesibil, o fotografie din deschidere poate arăta căptușeala, compartimentele și eventualele buzunare cu fermoar. Identifică ceea ce trebuie verificat înainte de a cere imaginile. „Este prezent buzunarul interior cu fermoar din varianta mea?” va primi mai ușor un răspuns decât „arată-mi tot”. Nu cere desigilarea sau îndepărtarea protecțiilor fără să verifici condițiile comenzii."
+      ],
+      [
+        "Confirmă piesele înainte de expediere",
+        "Cere să fie așezate împreună geanta și accesoriile libere. O curea care nu apare într-un cadru poate fi încă în interior. După ce primești imaginea, compară cu lista variantei, nu cu o fotografie în care apar accesorii prezentate separat. Dacă lipsește o piesă confirmată în comandă, trimite dovada și precizează dacă preferi verificarea conținutului, completarea lui sau o altă soluție disponibilă înainte de expediere."
+      ],
+      [
+        "Exemplu cu o curea detașabilă",
+        "O fotografie arată două inele laterale pe geantă, însă nicio curea. Inelele arată că modelul permite atașarea unei curele, dar nu confirmă singure ce accesorii include opțiunea aleasă. Caută descrierea exactă a variantei din comandă. Dacă aceasta include cureaua, cere să fie verificat compartimentul interior și apoi să fie așezată cureaua lângă geantă. Dacă apare în noua poză, verifică tipul cârligelor și catarama de reglare. Dacă nu apare, cere confirmarea fizică înainte să discuți soluția. Astfel, o întrebare despre conținut nu se transformă prematur într-un retur al întregii genți."
+      ]
+    ]
+  },
+  "kakobuy-jacket-qc-checklist": {
+    "title": "Poze QC pentru geci Kakobuy. Mâneci, fermoar, căptușeală și buzunare",
+    "description": "Compară măsurătorile gecii cu una asemănătoare și verifică fixarea fermoarului, căptușeala, buzunarele și cusăturile vizibile.",
+    "h1": "Cum verifici o geacă în pozele QC Kakobuy",
+    "intro": "O geacă îți poate părea prea lată sau prea scurtă dacă o compari cu un tricou ori cu o fotografie de catalog purtată de model. Alege ca reper o geacă pe care o porți cu același strat dedesubt. Confirmă apoi mărimea comandată, lungimea, tipul de închidere, gluga și buzunarele. O geacă subțire și o jachetă matlasată pot avea aceeași lățime exterioară, dar spațiu interior foarte diferit.",
+    "sections": [
+      [
+        "Măsoară geaca în poziția potrivită",
+        "Pentru lățimea la piept, cere ca geaca să fie închisă și așezată fără întindere. Pentru lungime, numește reperul de la care începe ruleta și dacă se include sau nu gulerul. La modelele mai lungi în spate, cere o măsurătoare pentru partea care te interesează. Verifică să se vadă capetele, unitatea și modul în care stă materialul pe masă."
+      ],
+      [
+        "Compară mânecile după aceeași metodă",
+        "Pentru o mânecă montată, poți folosi distanța dintre cusătura umărului și marginea manșetei. La raglan ori la un umăr căzut, folosește un traseu pe care îl poți reproduce și la geaca ta de referință. Dacă diferența pare semnificativă, confirmă mai întâi unde a fost așezat punctul zero. Doar litera de pe etichetă nu explică o diferență între croieli."
+      ],
+      [
+        "Urmărește linia fermoarului și a prinderilor",
+        "Privește geaca închisă din față pentru a compara cele două jumătăți, partea de jos și gulerul. O cută din ambalare poate face ca fermoarul să pară ondulat. Cere o vedere cu materialul îndreptat, fără tragere. Privește baza fermoarului și zona în care este cusută banda de fiecare parte. Dacă ai nevoie să confirmi funcționarea, cere o verificare disponibilă pentru articol. Un cadru cu fermoarul închis nu dovedește singur că acesta culisează bine."
+      ],
+      [
+        "Verifică interiorul fără să presupui prea mult",
+        "O imagine din interior arată căptușeala, marginea buzunarelor și o parte dintre cusături. Cere o vedere a unei zone precise dacă ai observat o ruptură lângă axilă sau la baza unui buzunar. La o geacă reversibilă verifică ambele fețe. La una cu glugă detașabilă, confirmă că piesa și prinderile aparțin variantei cumpărate. Aspectul matlasat sau lucios nu poate confirma impermeabilitatea și nici compoziția umpluturii."
+      ],
+      [
+        "Pregătește solicitarea înainte să formezi coletul",
+        "Pentru o posibilă eroare de model, compară fotografiile cu varianta confirmată și indică două repere clare, cum ar fi tipul manșetei și numărul de buzunare. Pentru un defect, trimite o imagine de ansamblu și un prim-plan. Pentru o diferență de măsură, atașează metoda și fotografia completă a ruletei. Alege un singur pas următor și verifică regulile actuale privind solicitările suplimentare ori returul înainte de expediere."
+      ],
+      [
+        "Exemplu cu o căptușeală pe care fotografia o ascunde",
+        "Într-un cadru frontal geaca arată bine, dar la deschidere apare o zonă încrețită sub braț. Cere o fotografie cu geaca deschisă și cu partea respectivă întinsă natural, ca să vezi unde este prinsă căptușeala. Nu presupune că materialul în exces este automat o ruptură; unele porțiuni au nevoie de lejeritate pentru mișcare. Dacă se văd două margini separate unde ar trebui să existe o cusătură, arată locul și cere verificarea fizică. Verifică și dacă deschiderea face parte dintr-un buzunar sau din construcția modelului înainte de a formula o solicitare de schimb."
+      ]
+    ]
+  }
+}

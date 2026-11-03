@@ -1,0 +1,100 @@
+{
+  "kakobuy-qc-photos-not-showing": {
+    "title": "Kakobuy QC Photos Not Showing? Check Your Warehouse Order",
+    "description": "Find out why your Kakobuy QC photos are missing after delivery. Check the order record, diagnose blank images and ask for the evidence you need before shipping.",
+    "h1": "Kakobuy QC Photos Not Showing After Delivery? Start Here",
+    "intro": "If a seller says your item has arrived but you cannot see any QC photos, open the individual order in your Kakobuy account. Look for a warehouse record that matches the item and the option you bought. What you find there will tell you whether to trace an incoming delivery, ask about an inspection, report a broken image or request one extra view. Keep the item out of an international parcel while you are waiting for evidence that could change your decision.",
+    "sections": [
+      [
+        "First, find the record that belongs to you",
+        "A shopping link, a domestic tracking number and a warehouse item reference answer different questions. The link identifies what the seller listed. Domestic tracking follows the package on its way to the warehouse. The item reference connects the piece in storage with your purchase. Start with the order confirmation, open its details and copy the identifiers exactly as they appear. Keep them private when asking a public community for advice.",
+        "If you ordered two sizes of the same hoodie, the title and thumbnail may look identical on both rows. Match the selected size and colour before opening either gallery. A link to a seller's current listing may now open a different default option. Your saved order details are the better record of the option you selected. For a forwarded purchase, also look for the domestic tracking reference you entered when you registered the parcel."
+      ],
+      [
+        "The carrier says delivered, but there is no warehouse entry",
+        "A delivery scan tells you what the carrier recorded about a parcel. It cannot tell you which item was inside, whether the warehouse has associated it with your account or whether somebody has photographed it. Open the tracking details and note the delivery time. Then look for a warehouse entry against the same purchase. If the seller split the order into two domestic parcels, check both tracking numbers before reporting that one item has disappeared.",
+        "Suppose a shirt and a cap share one seller order. The cap already has photographs. The shirt has a delivery scan but no item entry in your account. Sending the cap's warehouse reference could send support to a perfectly healthy record. Give the seller order, the shirt's own details and the tracking number that is supposed to contain the shirt. Ask which receiving record, if any, matches it. Keep the reference for the cap separate so you can explain the difference if needed."
+      ],
+      [
+        "Your item is in storage, but the photo area is empty",
+        "Read the status and any staff note beside the exact item. A warehouse entry can establish that an item is recorded without telling you whether its photo set has been attached. Save a screenshot that shows the item reference, selected option, current status and empty area together. If that takes two screenshots, include the same reference in each. This gives support enough information to identify the issue even if the display changes later.",
+        "Ask whether an inspection set exists for that item, whether you are looking in the right place for your order type, and what the next step is if the set is missing. A photograph available for somebody else's order does not answer those questions. If the page shows an after-sales deadline, include it in your message and ask what action preserves your options. An open chat or a pending photo request does not establish that a deadline has moved."
+      ],
+      [
+        "There are thumbnails, but the full photos will not open",
+        "This symptom is worth reporting precisely because the warehouse may already have taken the pictures. Try opening a second thumbnail from the same item. If one photograph opens and one stays blank, record which view fails. If none open, try a normal refresh and reopen the order through your account. If convenient, compare the same item in a second supported browser while signed into your own account.",
+        "Describe what you actually saw. “Both overview photos open, but tapping the size-label thumbnail shows a blank panel” is more informative than “no QC”. Tell support which device or browser showed the problem and whether the same picture opened elsewhere. Crop unrelated personal information out of any screen capture. A public album cannot fix a private gallery display problem, and a buyer should never need to give another shopper a password or sign-in code to troubleshoot it."
+      ],
+      [
+        "The photos opened, but you still cannot decide",
+        "Name the decision you need to make. If you cannot tell whether the warehouse received the right model, request a readable product label beside the item. If a shoe's fit is uncertain, ask whether the insole is removable and whether a photograph can show the heel and toe ends against the same scale. For a jacket with a possible stain, ask for one close-up and one wider view that shows where the mark lies.",
+        "For example, “Please photograph the hoodie laid flat, with the tape running straight from one underarm seam to the other and both ends visible” gives the photographer a repeatable task. “Please take better QC” leaves them guessing. Check the service options, any charge and the expected availability in your order before confirming a request. Once the new photograph arrives, compare it with the seller's measurement for that same size and method."
+      ],
+      [
+        "A public QC finder shows pictures, but your order has none",
+        "A public result can show what another buyer received from a listing at another time. It can help you decide which detail to inspect later. It cannot establish who owns the photographed piece or whether the warehouse has completed your own inspection. Even a familiar background and an identical-looking label are insufficient to connect a public photograph to your order.",
+        "Use the difference to make your question sharper. If a public picture shows a removable strap and your bag's overview does not, check whether your selected option included the strap. Then ask for a photo of the actual bag with the supplied parts laid beside it. Until you see your item or receive a clear answer about its contents, keep the public image with your research and the warehouse correspondence with your order."
+      ],
+      [
+        "Send one message that a warehouse colleague can act on",
+        "For an unlinked delivery, adapt this message. “My order [order reference], item [name and option], has domestic tracking [reference]. The carrier recorded delivery on [date and time shown]. I cannot find a matching warehouse item in my account. Please check whether the parcel has been associated with this order and tell me the next step.”",
+        "For an existing item with no visible set, use a shorter request. “Warehouse item [reference] shows [status]. The photo area is [empty / showing thumbnails that fail to open]. I checked [what you tried]. Could you confirm whether inspection photos exist for this item and where I can view them? The order shows [deadline, if present].” Keep the reply in the same conversation so that a second colleague can follow the record."
+      ],
+      [
+        "Decide what counts as resolved",
+        "Return to the same item after the reply. Check that the photographs open, identify the ordered option and show enough evidence for the decision in front of you. If support restored a gallery but the only size-label image is unreadable, the display problem is resolved and the remaining task is a specific label request. Make that distinction when you reply.",
+        "If a deadline or parcel-packing step is approaching, check the live status again before assuming the item is still available for inspection. Ask whether packing can be held and wait for confirmation of what the warehouse can actually do. When everything matches, save the useful views and continue with your parcel. If a detail clearly conflicts with the order, keep the original photo and the selected option together for an after-sales request."
+      ]
+    ]
+  },
+  "kakobuy-wrong-size-or-item-qc": {
+    "title": "Wrong Size or Wrong Item in Kakobuy QC? How to Report It",
+    "description": "Compare your Kakobuy order with warehouse photos, document a size or item mismatch and send a clear replacement or return request before shipping.",
+    "h1": "Wrong Size or Wrong Item in Kakobuy QC Photos? Check Before Shipping",
+    "intro": "A size tag showing M when you ordered L is a specific discrepancy you can report. A hoodie that looks small in a wide-angle photo needs a different check. Before asking for a return, open the exact order, identify the option you selected and compare it with evidence from your own warehouse item. Keep it out of the international parcel while the discrepancy is being checked. If packing is already underway, ask whether the warehouse can still pause it and wait for an answer.",
+    "sections": [
+      [
+        "Compare the option you paid for with the item in the photo",
+        "Start with the order detail as it stood when the purchase was made. Copy the item and warehouse references, selected size, colour or model, and the quantity. Save any seller note explaining how the option names correspond to a label or size chart. A listing can change after purchase. If opening it today selects the first available size automatically, that choice says little about your original order.",
+        "Now check the warehouse gallery against that record. On a multi-item shipment, look for differences in colour code, tag design or packaging that help identify the correct item. If two rows look alike and their photos may be reversed, flag both references and explain why. Asking the team to verify which pictures belong to which item can be quicker than arranging an exchange for stock that was correct all along."
+      ],
+      [
+        "A different label and a poor fit need different evidence",
+        "If the size printed on the physical garment differs from the size recorded on the order, save a readable close-up and a wider view of the same garment. A clear label comparison is often enough to request an identity check. If the label matches and the garment looks unexpectedly narrow, compare a measurement with the seller's chart for that selected variant. A label can be correctly printed on a garment whose cut does not suit you.",
+        "Use the seller's own measurement points. Some charts describe a flat width and others give the distance around the garment or suggest the buyer's body measurements. For example, a 52 cm underarm width and a 104 cm circumference need not disagree. They describe different ways to measure. Ask what the chart means if it is ambiguous. Do not double a figure without first checking the chart's units and method.",
+        "A useful photo shows the garment flat, the tape starting at the specified seam and its end visible on the other side. A tape pulled diagonally across folds can give a misleading result. If the original photo hides the starting mark, ask for one replacement photograph using the same method rather than presenting a guessed dimension as proof."
+      ],
+      [
+        "For a wrong colour or model, choose an identifying detail",
+        "A graphic in the wrong position might reflect a different version, a different size or simply a folded garment. Look for one feature the ordered variant is supposed to have, such as a specified pocket arrangement or a model code on the label. Capture the seller's option description alongside the warehouse detail. Explain the single difference a colleague can check without having to interpret the whole listing.",
+        "Colours need extra care. Deep green can look almost black under a warehouse light. A clear option code that contradicts the order is stronger evidence than the brightness of the photograph on your phone. If the code matches and the colour remains doubtful, request a wider photograph in more even lighting, ideally with the tag visible in the same set. Describe the colour as uncertain until you have a better comparison."
+      ],
+      [
+        "Check the contents before reporting a missing part",
+        "For a bag that seems to lack its shoulder strap, read the seller's description for the option you actually selected. A photograph of a styled bag may include accessories that a basic variant does not include. If the description explicitly lists the strap, save that line. Then check the interior photos for a pouch, a folded strap or a compartment the overview did not show.",
+        "Ask for a single layout photo of the bag, the packaging and the included parts if the service permits it. The fact that an accessory is out of frame does not establish that it was absent from the delivery. Likewise, a sealed carton may limit what can be verified without opening it. Ask how opening the package would affect return eligibility before you authorise the warehouse to disturb a seal."
+      ],
+      [
+        "Build a short evidence record the seller can follow",
+        "Choose the smallest set that proves the point. Usually you need the original option, one full view that identifies the item, and a close-up or measurement that demonstrates the difference. Name each piece clearly when you refer to it. Leave the original files intact and make a separate annotated copy if an arrow helps show a tiny printed code or an obscure seam.",
+        "An example might read, “Order shows navy size L. Photo A shows the whole hoodie associated with warehouse item [reference]. In Photo B, the sewn label reads M. Please verify the label against the order before shipping.” That tells the reader what was ordered, what the evidence shows and what action you want. You do not need to speculate about who selected the wrong piece to make the request actionable."
+      ],
+      [
+        "Choose a request that matches the problem",
+        "When identity is uncertain, ask for verification first. When the mismatch is clearly documented and you still want the item, ask whether the correct option is available for an exchange. If it is unavailable or the order is time-sensitive, ask which return or refund options the seller will accept. Check the displayed terms, domestic shipping costs and any handling requirements before choosing.",
+        "Here is a message you can adapt. “For warehouse item [reference] from order [reference], I selected [exact option]. The attached [photo or measurement] shows [observable difference]. Please confirm whether this is the correct item. If a mismatch is confirmed, I would prefer [exchange for the specified option / return if eligible]. Please tell me the applicable deadline, any costs and the next action I need to take.”",
+        "A changing stock level may affect the answer. If an agent offers a different size or another model, ask for the exact alternative and its price before agreeing. If you have a deadline for receiving the parcel, check whether the alternative will require another domestic delivery and inspection. A quick agreement to a substitute can leave you with a second item that still does not fit your original requirements."
+      ],
+      [
+        "Keep the after-sales clock separate from warehouse storage",
+        "A long warehouse allowance gives you time to plan an international parcel. It does not establish how long a seller will accept a return or whether a particular option can be exchanged. Read the terms attached to the live order and retain any dated instruction you receive. Ask what needs to be submitted before the displayed deadline. If time is short, report the observed mismatch promptly and state which extra view is still pending.",
+        "Before moving other items into a parcel, check that this item has been left out. A message asking customer service to investigate is different from a confirmed warehouse hold. If a parcel already exists, include its reference and ask whether the item can still be removed at its current stage. Wait for a clear response before planning around that possibility."
+      ],
+      [
+        "Verify the outcome on the correct order line",
+        "If the warehouse confirms a gallery mix-up, reopen the photographs and check that they now match the correct item. If the seller sends a replacement, inspect the replacement's own label and option before closing your notes. An acknowledgement that a return was requested is only the first step. Check the recorded outcome and any amount or credit actually issued against the terms you accepted.",
+        "Finally, save the original discrepancy and the resolution together. If the replacement looks right, that record can be as short as the original order line, the new label photo and the confirmation. If the case remains open, reply with the one detail still unresolved. A precise record lets you explain the next step without repeating the whole story each time the person handling the order changes."
+      ]
+    ]
+  }
+}

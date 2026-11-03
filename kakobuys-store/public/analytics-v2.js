@@ -17,6 +17,14 @@
     if (!link) return;
     try {
       var url = new URL(link.href, location.href);
+      var entry = url.origin === location.origin && link.closest('[data-guide-entry]');
+      if (entry && url.origin === location.origin && url.pathname !== location.pathname) {
+        window.gtag('event', 'select_guide', {
+          guide_path: url.pathname, entry_point: entry.dataset.guideEntry,
+          page_path: location.pathname, transport_type: 'beacon'
+        });
+      }
+
       if (url.hostname === 'www.cnfanshp.com' || url.hostname === 'cnfanshp.com') {
         window.gtag('event', 'outbound_catalog_click', {
           link_url: url.href,

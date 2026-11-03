@@ -1,18 +1,17 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { localeCodes, localizedRoutes } from "../app/editorial.ts";
 import { findRoutes } from "../app/finds-data.ts";
 
 const root = resolve(dirname(new URL(import.meta.url).pathname), "..");
 const workerUrl = pathToFileURL(resolve(root, "dist/server/index.js"));
 workerUrl.searchParams.set("static-render", `${Date.now()}`);
 const worker = (await import(workerUrl.href)).default;
-const languages = ["", "de", "fr", "es", "it", "pl", "pt", "ro"];
-const localized = ["", "categories", "qc-hub", "guides", "faq", "articles", "under-25", "qc-first", "new-this-week", "read-kakobuy-qc-photos", "kakobuy-spreadsheet-first-time-guide", "product-price-vs-parcel-cost"];
-const englishOnly = ["kakobuy-warehouse-storage-guide", "kakobuy-returns-after-sales-checklist", "kakobuy-stitching-finish-qc-checklist", "kakobuy-alignment-symmetry-print-placement-qc", "kakobuy-size-measurement-qc-photo-limits", "kakobuy-qc-color-lighting-errors", "kakobuy-material-texture-qc-evidence", "kakobuy-shoe-qc-checklist", "kakobuy-qc-finder-vs-warehouse-photos", "kakobuy-extra-qc-photos", "kakobuy-hoodie-qc-checklist", "kakobuy-bag-qc-checklist", "kakobuy-jacket-qc-checklist", "finds", ...findRoutes];
+const languages = localeCodes.map(code => code === "en" ? "" : code);
 const allRoutes = [
-  ...languages.flatMap((language) => localized.map((slug) => [language, slug].filter(Boolean).join("/"))),
-  ...englishOnly,
+  ...languages.flatMap(language => localizedRoutes.map(slug => [language, slug].filter(Boolean).join("/"))),
+  "finds", ...findRoutes,
 ];
 const requestedRoutes = process.argv.slice(2);
 const routes = requestedRoutes.length ? requestedRoutes : allRoutes;
@@ -35,6 +34,7 @@ for (const route of routes) {
   html = html.replace(/<link\b[^>]*rel="modulepreload"[^>]*>/gi, "");
   const language = languages.includes(route.split("/")[0]) && route ? route.split("/")[0] : "en";
   html = html.replace(/<html lang="[^"]*"/, `<html lang="${language}"`);
+  if (!html.includes('href="/readability-v2.css"')) html=html.replace("</head>", '<link rel="stylesheet" href="/readability-v2.css"></head>');
   await writeFile(destination, html);
 }
 

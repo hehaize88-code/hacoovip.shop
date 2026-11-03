@@ -1,11 +1,12 @@
+import decisions from "./editorial/decision-aids.json";
 import type { Metadata } from "next";
 import "./globals.css";
 
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kakobuys.store"),
-  title: "Kakobuy QC Checklist 2026: Photos, Sizing & Returns",
-  description: "Check Kakobuy warehouse QC photos for size, stitching, color and defects, then decide whether to ship, request evidence or return.",
+  title: decisions.en.homeTitle,
+  description: decisions.en.homeDesc,
   alternates: {
     canonical: "/",
     languages: {
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kakobuy QC Checklist 2026: Photos, Sizing & Returns",
-    description: "Check Kakobuy warehouse QC photos for size, stitching, color and defects, then decide whether to ship, request evidence or return.",
+    title: decisions.en.homeTitle,
+    description: decisions.en.homeDesc,
     type: "website",
     url: "/",
     siteName: "Kakobuy QC Index",

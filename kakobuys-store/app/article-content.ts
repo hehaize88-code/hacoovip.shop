@@ -238,12 +238,12 @@ export const longArticles: LongArticle[] = [
     primaryKeyword: "Kakobuy parcel warehouse policy storage duration",
     secondaryKeywords: ["Kakobuy 100 days storage", "Kakobuy warehouse storage time", "Kakobuy 90 day reminder", "Kakobuy parcel consolidation"],
     intro: "The current Kakobuy parcel warehouse policy describes a normal storage duration of 100 days and a reminder after 90 days. That window can support quality-control review and consolidation, but it should not be mistaken for a 100-day return period or a reason to ignore an order. Inspection, seller-return eligibility, parcel planning and storage expiration follow different clocks, so the useful approach is to record each deadline separately and act on the shortest one first.",
-    quickAnswer: "Check every item as soon as it is stocked, record the storage and return deadlines shown for that order, resolve QC problems immediately, and consolidate only after every keep-or-return decision is complete. Use the remaining storage time to compare measured weight, dimensions, packaging and shipping routes—not to postpone inspection.",
+    quickAnswer: "Record both deadlines when each item is stocked. Resolve any return or exchange before grouping items into a parcel. Use the remaining storage time to compare packing options and shipping estimates.",
     sections: [
       {
         heading: "What Kakobuy says about warehouse storage",
         paragraphs: [
-          "Kakobuy describes its service as a purchasing and freight-forwarding workflow. Its public help page says the normal storage period is 100 days and that a storage reminder is sent after 90 days. Its service pages also say that goods are sent to the Kakobuy warehouse, inspected and stored, and that users can select warehouse items to submit as one parcel. This creates a practical gap between domestic arrival and international dispatch.",
+          "Kakobuy’s help centre says it sends a reminder after 90 days for standard orders. The reminder is a prompt to act. Open each stored item and check its own deadline, especially when several sellers delivered on different days.",
           "The advertised period is a platform-level statement, not a substitute for the live information attached to an individual order. Policies can change, special items may be handled differently, and the day count displayed in the account is the operational record to follow. Save the stocking date, note the displayed deadline and recheck it before planning around the full period."
         ],
         bullets: ["Confirm the warehouse stocking date for each item.", "Record the storage deadline shown in the live account.", "Treat policy summaries as guidance and the live order as the current record."]
@@ -845,7 +845,7 @@ export const longArticles: LongArticle[] = [
         heading: "Compare the overall shape before zooming in",
         paragraphs: [
           "Use front, side, heel and top views to understand the silhouette. Compare the height of both heel counters, the curve of both toe boxes, the opening shape and the way each upper sits on its sole. Temporary packing pressure, loose laces and camera angle can make a shoe look asymmetric, so look for the same difference across more than one useful view.",
-          "Place the imagined center line through each shoe and compare matched landmarks rather than comparing the outer edge of a left shoe with the outer edge of a right shoe. The pair need not be photographically identical, but a persistent twist, collapsed panel or visibly different height deserves clarification. Shape review should happen before micro-details because a major silhouette issue is more decision-relevant than a loose thread."
+          "Compare matching points on the left and right shoes: the heel seam, the toe tip and the first eyelet. If one shoe sits closer to the camera, ask for a level photograph with both heels aligned."
         ]
       },
       {
@@ -859,7 +859,7 @@ export const longArticles: LongArticle[] = [
         heading: "Check panels, stitching and paired placement",
         paragraphs: [
           "Follow the major seam lines on both shoes. Look for skipped stitches, open joins, thread nests, abrupt line changes and a seam that ends before the panel edge. Then compare paired design elements such as overlays, stripes, embroidery, perforations and eye rows. Use fixed anchors—the sole edge, center seam or eyelet line—so the comparison is repeatable.",
-          "Small variation can be normal manufacturing tolerance, while camera tilt can amplify it. The useful question is whether the difference is visible, persistent and above your preset acceptance threshold. Do not turn a warehouse image into a claim about factory method or authenticity. Record the observable fact: for example, the rear overlay on the right shoe sits visibly closer to the collar seam than the corresponding overlay on the left."
+          "Follow the same seam from start to finish on both shoes. A stitch that appears uneven only in an oblique view needs a straight-on close-up before you decide."
         ],
         bullets: ["Trace main seams from start to finish.", "Compare matched panels from the same angle.", "Use a nearby edge as the placement anchor.", "Describe the visible difference without assigning an unsupported cause."]
       },
@@ -867,7 +867,7 @@ export const longArticles: LongArticle[] = [
         heading: "Inspect the midsole join and visible glue",
         paragraphs: [
           "Examine the boundary where the upper meets the midsole around the whole pair. Look for an open gap, lifted edge, cracked surface, deep dent or glue that crosses onto a prominent upper panel. Bright reflections can resemble glue and a dark shadow can resemble separation, so compare adjacent frames and ask whether the mark remains in the same physical place.",
-          "A small finish trace and a true attachment gap are different decisions. Zooming a compressed photo far beyond its useful detail can make ordinary edges look rough. When the evidence is unclear, request an even-lit side image of the exact area plus a wider frame that identifies the shoe and location. Do not ask warehouse staff to predict whether an attachment will fail during wear; photographs cannot establish that."
+          "Ask for a close-up and a wider side view of the same join. A bright glue trace on a closed edge and an edge that visibly lifts away call for different follow-up questions."
         ]
       },
       {
@@ -881,7 +881,7 @@ export const longArticles: LongArticle[] = [
         heading: "Verify size evidence without promising fit",
         paragraphs: [
           "A readable size tag can confirm the marked size; it cannot prove that the shoe will fit a particular foot. Match the tag to the order and note every displayed system. If fit risk is high, an insole or outsole measurement may add evidence, but only when the ruler starts at a clear edge, remains flat, reaches the endpoint and belongs to the correct shoe.",
-          "Compare any visible measurement with a shoe or removable insole you already use, measured by the same method. Seller charts may define length differently, and outsole length is not the same as internal usable length. Do not convert one measurement into guaranteed comfort, width or arch support. The outcome is a better-informed size decision, not a fit certificate."
+          "Measure a removable insole you already wear from heel to longest toe, using the same method. An outside sole measurement cannot give the inside length."
         ],
         bullets: ["Confirm marked size and system.", "Specify whether a request is for insole, internal or outsole length.", "Require visible ruler endpoints.", "Keep fit and comfort as unknowns that photos cannot settle."]
       },
@@ -889,7 +889,7 @@ export const longArticles: LongArticle[] = [
         heading: "Turn the pair over and inspect the outsole",
         paragraphs: [
           "An outsole view can reveal whether both tread patterns match, whether the pair appears unused at the warehouse, and whether there are visible cuts, missing sections, deep contamination or major molding differences. Ask for both outsoles in one frame when direct comparison matters. Check that the image really shows the same pair as the upper views by matching size or other visible identifiers where possible.",
-          "Normal molding lines, light dust and photographic glare should not be upgraded into defects without supporting evidence. An outsole photo also cannot prove grip, compound, flexibility or wear life. Record only what the surface shows. If a suspicious area is at the edge, request a second angle that includes both the outsole face and the sidewall so a shadow is not mistaken for missing material."
+          "Check apparent marks in a second view. A photograph can show a chipped edge but cannot establish grip, flexibility or wear life."
         ]
       },
       {
@@ -903,7 +903,7 @@ export const longArticles: LongArticle[] = [
         heading: "Make a ship, clarify or after-sales decision",
         paragraphs: [
           "Ship when identity is complete, both shoes are present, the visible pair passes your preset shape and finish thresholds, and the remaining unknowns are acceptable. Clarify when one controlled view, label photo or measurement can change the outcome. Use the current after-sales route when the live order remains eligible and clear evidence shows a wrong option, missing component or visible condition problem above your threshold.",
-          "Keep the request factual and localized: order fact, observed fact, image location and desired next step. Avoid a general message such as ‘check quality again.’ Save the original gallery, your selected evidence and the resulting status together. A strong Kakobuy shoe QC record does not claim that photographs prove everything; it shows that the most important visible risks were reviewed before international shipping made the decision harder to reverse."
+          "Name the order, the photo and the exact mismatch. Save the warehouse reply with the gallery so you can check the same detail before releasing the pair."
         ],
         bullets: ["SHIP: visible evidence passes the threshold and unknowns are acceptable.", "CLARIFY: one specific image or measurement can decide the case.", "AFTER-SALES: a material mismatch is visible and the current order offers a route.", "HOLD: do not submit the pair while a decision-changing issue remains open."]
       }

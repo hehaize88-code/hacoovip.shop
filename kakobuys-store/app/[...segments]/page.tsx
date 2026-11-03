@@ -1,7 +1,7 @@
 import { SitePage } from "../site-page";
 import type { Metadata } from "next";
-import { longArticles } from "../article-content";
-import articleTranslations from "../article-translations.json";
+import { articleRoutes, articlesFor, type Language } from "../editorial";
+import decisions from "../editorial/decision-aids.json";
 import { finds } from "../finds-data";
 import { notFound } from "next/navigation";
 
@@ -84,7 +84,7 @@ const localeSeo: Record<string, {
 };
 
 function routeContext(segments: string[]) {
-  const language = localeCodes.includes(segments[0]) ? segments[0] : "en";
+  const language = (localeCodes.includes(segments[0]) ? segments[0] : "en") as Language;
   const routeSegments = language === "en" ? segments : segments.slice(1);
   return { language, route: routeSegments[0] || "", routeSegments };
 }
@@ -97,10 +97,7 @@ function languagePath(language: string, route = "") {
 export async function generateMetadata({ params }: { params: Promise<{ segments?: string[] }> }): Promise<Metadata> {
   const { segments = [] } = await params;
   const { language, route, routeSegments } = routeContext(segments);
-  const articleIndex = longArticles.findIndex(item => item.slug === route);
-  const article = articleIndex < 0 || (language !== "en" && articleIndex >= 3) ? undefined : language === "en"
-    ? longArticles[articleIndex]
-    : articleTranslations[language as keyof typeof articleTranslations][articleIndex];
+  const article = articlesFor(language).find(item => item.slug === route);
   const find = language === "en" ? finds.find(item => item.slug === route) : undefined;
   if (find) return {
     title: `${find.name} | Kakobuy Finds Record`,
@@ -116,26 +113,14 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
   };
   if (article) {
     const canonicalPath = language === "en" ? `/${article.slug}/` : `/${language}/${article.slug}/`;
-    const isEnglishOnlyArticle = language === "en" && articleIndex >= 3;
-    const canonical = isEnglishOnlyArticle ? `https://kakobuys.store/${article.slug}/` : canonicalPath;
+    const canonical = canonicalPath;
     return {
       title: article.seoTitle,
       description: article.seoDescription,
-      robots: isEnglishOnlyArticle ? { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } } : undefined,
-      alternates: {
-        canonical,
-        languages: articleIndex < 3 ? {
-          en: `/${article.slug}/`,
-          de: `/de/${article.slug}/`,
-          fr: `/fr/${article.slug}/`,
-          es: `/es/${article.slug}/`,
-          it: `/it/${article.slug}/`,
-          pl: `/pl/${article.slug}/`,
-          pt: `/pt/${article.slug}/`,
-          ro: `/ro/${article.slug}/`,
-          "x-default": `/${article.slug}/`
-        } : { en: canonical, "x-default": canonical }
-      },
+      alternates: {canonical, languages:{
+        ...Object.fromEntries(allLocaleCodes.map(code=>[code,languagePath(code,route)])),
+        "x-default":languagePath("en",route)
+      }},
       openGraph: { title: article.seoTitle, description: article.seoDescription, type: "article", url: canonical }
     };
   }
@@ -143,8 +128,8 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
   if (routeSegments.length > 1 || (route && !localizedPageSlugs.includes(route))) return {};
   const seo = localeSeo[language];
   const pageTitle = route ? seo.pages[route] : seo.homeTitle;
-  const title = route ? `${pageTitle} | ${seo.suffix}` : seo.homeTitle;
-  const description = route ? seo.description(pageTitle) : seo.homeDescription;
+  const title = !route ? decisions[language].homeTitle : route === "qc-hub" ? decisions[language].hubTitle : `${pageTitle} | ${seo.suffix}`;
+  const description = !route ? decisions[language].homeDesc : route === "qc-hub" ? decisions[language].hubLead : seo.description(pageTitle);
   const canonical = languagePath(language, route);
   const languages = Object.fromEntries(allLocaleCodes.map(code => [code, languagePath(code, route)]));
   return {
@@ -158,11 +143,10 @@ export async function generateMetadata({ params }: { params: Promise<{ segments?
 export default async function RoutedPage({ params }: { params: Promise<{ segments: string[] }> }) {
   const { segments = [] } = await params;
   const { language, route, routeSegments } = routeContext(segments);
-  const localizedArticle = longArticles.slice(0, 3).some(item => item.slug === route);
+  const localizedArticle = articleRoutes.includes(route);
   const englishOnlyRoute = language === "en" && (
     route === "finds" ||
-    finds.some(item => item.slug === route) ||
-    longArticles.some(item => item.slug === route)
+    finds.some(item => item.slug === route)
   );
   const localizedRoute = localizedPageSlugs.includes(route) || localizedArticle;
   const localizedHome = language !== "en" && routeSegments.length === 0;

@@ -346,6 +346,9 @@ const SEO_COPY_OVERRIDES = {
   },
 };
 
+// Editorial pages carry their translated metadata in the static HTML.
+const editorialPages = new Set([...Object.keys(ARTICLE_METADATA), "kakobuy-qc-photos-not-showing", "kakobuy-wrong-size-or-item-qc"]);
+LOCALIZED_PAGE_SLUGS.push(...[...editorialPages].filter(slug => !LOCALIZED_PAGE_SLUGS.includes(slug)));
 const canonicalPaths = new Set(["/"]);
 for (const slug of LOCALIZED_PAGE_SLUGS) canonicalPaths.add(`/${slug}/`);
 for (const slug of Object.keys(ENGLISH_ONLY_PAGES)) canonicalPaths.add(`/${slug}/`);
@@ -537,6 +540,9 @@ export default {
     headers.set("Cache-Control", "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800");
     const { language, slug } = pageContext(pagePath);
     if (slug.startsWith("find-")) headers.set("X-Robots-Tag", "noindex, follow");
+    if (slug === "home" || slug === "qc-hub" || editorialPages.has(slug)) {
+      return new Response(response.body, {status: response.status, headers});
+    }
     const canonicalUrl = CANONICAL_ORIGIN + pagePath;
     const metadata = pageMetadata(language, slug);
     const htmlResponse = new Response(response.body, {

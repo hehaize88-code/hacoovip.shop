@@ -1,0 +1,810 @@
+{
+  "en": {
+    "homeTitle": "Kakobuy QC Photos: Read Your Warehouse Pictures Before Shipping",
+    "homeDesc": "Check the photos for your own Kakobuy order, compare measurements, and decide when to ship, ask for another angle or report a mismatch.",
+    "homeH1": "How to read your Kakobuy QC photos",
+    "homeLead": "Open the warehouse entry for your item and compare it with the size, colour and quantity you ordered. Pick the guide that matches what you see.",
+    "hubTitle": "Kakobuy QC Checklists for Shoes, Hoodies, Bags and Jackets",
+    "hubH1": "Choose a QC checklist for your item",
+    "hubLead": "A shoe needs matched views of both heels; a hoodie needs a chest measurement with the tape ends visible. Choose the checklist for the item in front of you.",
+    "readLink": "Read your warehouse photos",
+    "requestLink": "Request a specific photo",
+    "storageLink": "Check your warehouse storage deadline",
+    "missingLink": "My QC photos are missing",
+    "mismatchLink": "My photos show the wrong size or item",
+    "researchLabel": "QC articles",
+    "relatedHeading": "Where to go next",
+    "sourceLabel": "Official Kakobuy guidance",
+    "storage": {
+      "title": "When does warehouse storage end?",
+      "lead": "For standard purchasing and forwarding orders, Kakobuy’s published rule gives 100 days from the “in storage” status. Use the warehouse record for the specific item to check which rules and dates apply.",
+      "rows": [
+        [
+          "Start date",
+          "Look for the date the item was marked in storage. The day you paid or the day the domestic carrier delivered it may be earlier."
+        ],
+        [
+          "Deadline",
+          "Open the item in your warehouse and look for its storage details. If the end date is absent or conflicts with a notice, ask support to confirm it in writing against the item reference."
+        ],
+        [
+          "Near expiry",
+          "Decide whether to submit the parcel now. If you need more time, ask what options are available, what they cost and when they take effect. Keep the original deadline until a change is confirmed."
+        ],
+        [
+          "Return window",
+          "Check return eligibility separately on the order. Days left in storage do not tell you how long you have to report a wrong size or a defect."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Three checks before shipping",
+      "lead": "Keep the order line and its own photo set open together. A photo from another buyer can suggest where to look; it cannot settle what is in your parcel.",
+      "rows": [
+        [
+          "Order match",
+          "Compare the item reference, option code, size and quantity. If two similar orders arrived together, verify which photo belongs to which item."
+        ],
+        [
+          "Visible evidence",
+          "Find an overall view and a close-up of the point in question. For a measurement, check the unit and both ends of the tape before reading the number."
+        ],
+        [
+          "Your decision",
+          "If the photos answer your question, record the result. If a detail is hidden, request that one view. If the order and label disagree, keep both records and report the mismatch before submitting the parcel."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Four photo requests you can copy",
+      "lead": "Replace the brackets with your item reference and the exact detail you need. Ask about availability or fees before approving a paid photo request.",
+      "rows": [
+        [
+          "Insole",
+          "For item [reference], if the insole is removable, please photograph it flat beside a centimetre ruler from the back of the heel to the longest toe. Please show both ends and say which shoe you measured."
+        ],
+        [
+          "Chest",
+          "For item [reference], please lay the garment flat without stretching it and measure straight from one underarm seam to the other. Please show both endpoints and the centimetre markings in one photo."
+        ],
+        [
+          "Label",
+          "For item [reference], please send one photo showing where the label sits on the item and one sharp close-up showing its size and option code."
+        ],
+        [
+          "Missing accessory",
+          "For item [reference], the selected option lists [accessory]. Could you check the packaging and show the item and everything included together? Please keep sealed packaging closed unless we agree otherwise."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Check one pair, one measurement at a time",
+      "lead": "Start with the exact size and colour on the order. Ask for comparable views of both shoes before deciding a difference is real.",
+      "rows": [
+        [
+          "Pair and labels",
+          "Put both shoes together, then compare the labels on each shoe with the option ordered. A box label alone cannot identify both shoes."
+        ],
+        [
+          "Insole length",
+          "For a removable insole, measure heel to longest toe in centimetres. Compare it with an insole you wear comfortably, measured the same way."
+        ],
+        [
+          "Heel alignment",
+          "Request a straight rear view with both heels on the same flat surface and the camera centred. A shoe angled towards the lens can look taller."
+        ],
+        [
+          "Accessories",
+          "List only what your selected option includes. If the laces, insert or other accessory is out of frame, request one view of all contents."
+        ]
+      ]
+    }
+  },
+  "de": {
+    "homeTitle": "Kakobuy-QC-Fotos: Lagerbilder vor dem Versand prüfen",
+    "homeDesc": "Vergleiche die Lagerfotos deiner Kakobuy-Bestellung mit Größe, Farbe und Stückzahl. Finde heraus, wann du ein weiteres Foto brauchst oder eine Abweichung melden solltest.",
+    "homeH1": "So prüfst du deine Kakobuy-QC-Fotos",
+    "homeLead": "Öffne den Lagereintrag des Artikels. Gleiche die Bilder mit der bestellten Variante ab und wähle die Anleitung für die Frage, die noch offen ist.",
+    "hubTitle": "Kakobuy-QC-Checklisten für Schuhe, Hoodies, Taschen und Jacken",
+    "hubH1": "Die passende QC-Checkliste für deinen Artikel",
+    "hubLead": "Bei Schuhen hilft ein gemeinsames Foto beider Fersen. Bei einem Hoodie brauchst du für die Brustweite ein Bild mit beiden Enden des Maßbands. Wähle hier den passenden Prüfablauf.",
+    "readLink": "Lagerfotos Schritt für Schritt prüfen",
+    "requestLink": "Ein bestimmtes Foto anfordern",
+    "storageLink": "Lagerfrist für meinen Artikel prüfen",
+    "missingLink": "Meine QC-Fotos fehlen",
+    "mismatchLink": "Größe oder Artikel stimmt nicht",
+    "researchLabel": "Artikel zur Qualitätskontrolle",
+    "relatedHeading": "Weiterführende Anleitungen",
+    "sourceLabel": "Offizielle Hinweise von Kakobuy",
+    "storage": {
+      "title": "Wann endet die Lagerfrist?",
+      "lead": "Für reguläre Einkaufs- und Weiterleitungsaufträge nennt Kakobuy 100 Tage ab dem Status „in storage“ (eingelagert). Prüfe im Lagereintrag des einzelnen Artikels, welche Frist für ihn gilt.",
+      "rows": [
+        [
+          "Beginn",
+          "Suche das Datum, an dem dein Artikel als eingelagert markiert wurde. Das Kaufdatum oder die Zustellung durch den chinesischen Paketdienst kann früher liegen."
+        ],
+        [
+          "Fristende",
+          "Öffne die Lagerdetails des Artikels. Fehlt das Enddatum oder widerspricht es einer Mitteilung, bitte den Support unter Angabe der Artikelreferenz um schriftliche Bestätigung."
+        ],
+        [
+          "Kurz vor Ablauf",
+          "Prüfe, ob du das Paket jetzt zum Versand anmelden kannst. Brauchst du mehr Zeit, frage nach den verfügbaren Möglichkeiten, den Kosten und dem Wirksamkeitsdatum. Bis zur Bestätigung gilt die bisherige Frist."
+        ],
+        [
+          "Rückgabe",
+          "Prüfe die Rückgabefrist gesondert im Auftrag. Aus der restlichen Lagerzeit lässt sich nicht ableiten, wie lange du eine falsche Größe oder einen Mangel melden kannst."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Drei Prüfungen vor dem Versand",
+      "lead": "Öffne die Bestellposition und die zugehörigen Fotos nebeneinander. Bilder anderer Käufer können auf Details hinweisen; entscheidend sind die Aufnahmen deines Artikels.",
+      "rows": [
+        [
+          "Zuordnung",
+          "Vergleiche Artikelreferenz, Variantencode, Größe und Stückzahl. Bei zwei ähnlichen Bestellungen muss zuerst klar sein, welcher Fotosatz zu welchem Artikel gehört."
+        ],
+        [
+          "Sichtbare Details",
+          "Suche eine Gesamtansicht und eine Nahaufnahme der fraglichen Stelle. Bei einem Maß müssen Einheit und beide Enden des Maßbands erkennbar sein."
+        ],
+        [
+          "Entscheidung",
+          "Ist die Frage geklärt, halte das Ergebnis fest. Fehlt ein Detail, fordere gezielt ein weiteres Bild an. Weicht das Etikett von der Bestellung ab, sichere beide Belege und melde den Unterschied vor der Versandfreigabe."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Vier Vorlagen für zusätzliche Fotos",
+      "lead": "Ersetze die Platzhalter durch deine Artikelreferenz und das gesuchte Detail. Kläre bei kostenpflichtigen Aufnahmen vorab den Preis.",
+      "rows": [
+        [
+          "Einlegesohle",
+          "Könnt ihr bei Artikel [Referenz] die Einlegesohle, sofern sie herausnehmbar ist, flach neben einem Zentimetermaß fotografieren? Bitte von der Ferse bis zur längsten Spitze messen, beide Enden zeigen und angeben, welcher Schuh gemessen wurde."
+        ],
+        [
+          "Brustweite",
+          "Bitte legt Artikel [Referenz] flach hin, ohne den Stoff zu dehnen, und messt gerade von einer Achselnaht zur anderen. Bitte zeigt beide Messpunkte und die Zentimeterskala auf demselben Foto."
+        ],
+        [
+          "Etikett",
+          "Bitte zeigt bei Artikel [Referenz] auf einem Foto, wo das Etikett angebracht ist, und auf einer scharfen Nahaufnahme die Größe und den Variantencode."
+        ],
+        [
+          "Fehlendes Zubehör",
+          "Bei Artikel [Referenz] gehört laut gewählter Variante [Zubehör] dazu. Könnt ihr die Verpackung prüfen und den Artikel mit dem gesamten Inhalt fotografieren? Bitte lasst versiegelte Verpackungen bis zur Rücksprache geschlossen."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Ein Paar Schuhe richtig vergleichen",
+      "lead": "Beginne mit der bestellten Größe und Farbe. Erst auf vergleichbaren Aufnahmen beider Schuhe lässt sich eine sichtbare Abweichung sinnvoll beurteilen.",
+      "rows": [
+        [
+          "Paar und Etiketten",
+          "Lass beide Schuhe zusammen zeigen und vergleiche die Etiketten an beiden Schuhen mit der Bestellung. Das Kartonetikett allein reicht dafür nicht."
+        ],
+        [
+          "Sohlenlänge",
+          "Miss eine herausnehmbare Einlegesohle von der Ferse bis zur längsten Spitze in Zentimetern. Miss eine gut passende eigene Sohle zum Vergleich genauso."
+        ],
+        [
+          "Fersenstellung",
+          "Bitte um eine gerade Rückansicht beider Fersen auf derselben ebenen Fläche, mit der Kamera mittig. Schon eine leichte Drehung kann einen Schuh höher erscheinen lassen."
+        ],
+        [
+          "Zubehör",
+          "Prüfe nur Teile, die zur bestellten Variante gehören. Sind Zweitschnürsenkel oder Einlagen nicht im Bild, bitte um eine Übersicht des gesamten Inhalts."
+        ]
+      ]
+    }
+  },
+  "fr": {
+    "homeTitle": "Photos QC Kakobuy : vérifier ses articles avant l’expédition",
+    "homeDesc": "Comparez les photos d’entrepôt de votre commande Kakobuy avec la taille, la couleur et la quantité choisies. Repérez quand demander une autre vue ou signaler une erreur.",
+    "homeH1": "Comment lire les photos QC de votre commande Kakobuy",
+    "homeLead": "Ouvrez la fiche de l’article dans l’entrepôt et retrouvez la variante sur votre commande. Choisissez ensuite le guide qui répond à votre doute.",
+    "hubTitle": "Listes de contrôle QC Kakobuy : chaussures, sweats, sacs et vestes",
+    "hubH1": "Quelle liste de contrôle pour votre article ?",
+    "hubLead": "Pour des chaussures, une vue de dos des deux talons permet de comparer la paire. Pour un sweat, il faut voir les deux extrémités du mètre pour lire la largeur de poitrine.",
+    "readLink": "Lire les photos de mon article",
+    "requestLink": "Demander une photo précise",
+    "storageLink": "Vérifier la date limite de stockage",
+    "missingLink": "Mes photos QC ne s’affichent pas",
+    "mismatchLink": "La taille ou l’article ne correspond pas",
+    "researchLabel": "Articles sur le contrôle qualité",
+    "relatedHeading": "Pour poursuivre la vérification",
+    "sourceLabel": "Informations officielles de Kakobuy",
+    "storage": {
+      "title": "Quand le stockage prend-il fin ?",
+      "lead": "Pour les commandes ordinaires d’achat ou de réexpédition, Kakobuy indique une durée de 100 jours à compter du statut « in storage » (mis en stock). Vérifiez les dates applicables sur la fiche de chaque article.",
+      "rows": [
+        [
+          "Point de départ",
+          "Relevez la date de mise en stock. Le paiement et la livraison par le transporteur en Chine peuvent avoir eu lieu plus tôt."
+        ],
+        [
+          "Échéance",
+          "Consultez les détails de stockage de l’article. Si la date de fin est absente ou contredit un avis reçu, demandez au service client de la confirmer par écrit en précisant la référence."
+        ],
+        [
+          "À l’approche de la date limite",
+          "Voyez si vous pouvez déjà soumettre le colis à l’expédition. Si vous avez besoin de temps, demandez quelles options sont disponibles, à quel prix et à partir de quand. Gardez l’ancienne échéance tant que le changement n’est pas confirmé."
+        ],
+        [
+          "Retour",
+          "Vérifiez séparément les conditions et le délai de retour de la commande. Les jours de stockage restants ne disent pas combien de temps il reste pour signaler une erreur ou un défaut."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Trois vérifications avant l’envoi",
+      "lead": "Gardez la ligne de commande et ses propres photos ouvertes côte à côte. Les images d’un autre acheteur donnent des repères, mais ne montrent pas l’exemplaire qui sera expédié.",
+      "rows": [
+        [
+          "Correspondance",
+          "Vérifiez la référence, le code de l’option, la taille et la quantité. Si deux articles semblables sont arrivés ensemble, rattachez chaque série de photos à sa commande."
+        ],
+        [
+          "Détail visible",
+          "Cherchez une vue d’ensemble et un gros plan du point à vérifier. Pour lire une mesure, il faut voir l’unité et les deux points entre lesquels le mètre est posé."
+        ],
+        [
+          "Décision",
+          "Si les images répondent à votre question, notez le résultat. Si un détail reste caché, demandez seulement cette vue. En cas d’écart entre l’étiquette et la commande, gardez les deux justificatifs et signalez-le avant l’envoi."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Quatre demandes de photos à copier",
+      "lead": "Remplacez les éléments entre crochets par la référence de l’article et le détail voulu. Faites préciser les éventuels frais avant de valider une prestation.",
+      "rows": [
+        [
+          "Semelle intérieure",
+          "Pour l’article [référence], si la semelle intérieure est amovible, pourriez-vous la poser à plat contre une règle en centimètres, du talon à la pointe la plus longue ? Merci de montrer les deux extrémités et de préciser quel pied a été mesuré."
+        ],
+        [
+          "Largeur de poitrine",
+          "Pour l’article [référence], merci de poser le vêtement à plat sans l’étirer et de mesurer en ligne droite d’une couture d’aisselle à l’autre. Pourriez-vous montrer les deux points et les centimètres sur une seule photo ?"
+        ],
+        [
+          "Étiquette",
+          "Pour l’article [référence], pourriez-vous prendre une photo situant l’étiquette sur l’article, puis un gros plan net où l’on puisse lire la taille et le code de la variante ?"
+        ],
+        [
+          "Accessoire manquant",
+          "Pour l’article [référence], mon option comprend [accessoire]. Pourriez-vous vérifier l’emballage et montrer l’article avec tout son contenu ? Merci de garder tout emballage scellé fermé en attendant mon accord."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Comment comparer les deux chaussures",
+      "lead": "Reprenez la taille et la couleur figurant sur votre commande. Pour juger un écart, commencez par obtenir des vues comparables des deux chaussures.",
+      "rows": [
+        [
+          "Paire et étiquettes",
+          "Demandez une vue des deux chaussures et comparez chacune de leurs étiquettes à l’option commandée. L’étiquette de la boîte ne suffit pas à identifier les deux pieds."
+        ],
+        [
+          "Longueur de la semelle",
+          "Mesurez la semelle intérieure amovible du talon à sa pointe la plus longue, en centimètres. Mesurez de la même façon une semelle qui vous convient."
+        ],
+        [
+          "Alignement des talons",
+          "Demandez une vue de dos bien centrée, les deux talons posés sur une même surface plane. Une chaussure tournée vers l’objectif peut paraître plus haute."
+        ],
+        [
+          "Accessoires",
+          "Reprenez le contenu annoncé pour l’option choisie. Si les lacets ou les inserts sont hors champ, demandez une vue d’ensemble de tout le contenu."
+        ]
+      ]
+    }
+  },
+  "es": {
+    "homeTitle": "Fotos QC de Kakobuy: cómo revisar tu pedido antes del envío",
+    "homeDesc": "Compara las fotos de almacén de tu pedido de Kakobuy con la talla, el color y la cantidad elegidos. Aprende cuándo pedir otra foto o comunicar una diferencia.",
+    "homeH1": "Cómo revisar las fotos QC de tu pedido en Kakobuy",
+    "homeLead": "Abre la ficha de tu artículo en el almacén y ten a mano la variante que figura en el pedido. Elige la guía según la duda que te quede al mirar las fotos.",
+    "hubTitle": "Listas de control QC de Kakobuy para zapatillas, sudaderas, bolsos y chaquetas",
+    "hubH1": "Elige la lista de comprobación para tu artículo",
+    "hubLead": "Para comparar unas zapatillas conviene ver ambos talones en una foto tomada desde atrás, con la cámara centrada. En una sudadera, para leer el ancho de pecho necesitas ver dónde empieza y termina la cinta.",
+    "readLink": "Interpretar las fotos de mi artículo",
+    "requestLink": "Pedir una foto concreta",
+    "storageLink": "Comprobar el plazo de almacenamiento",
+    "missingLink": "No aparecen mis fotos QC",
+    "mismatchLink": "La talla o el artículo no coincide",
+    "researchLabel": "Guías de control de calidad",
+    "relatedHeading": "Continúa la revisión",
+    "sourceLabel": "Información oficial de Kakobuy",
+    "storage": {
+      "title": "¿Cuándo vence el plazo de almacenamiento?",
+      "lead": "Para los pedidos ordinarios de compra o reenvío, Kakobuy indica 100 días desde el estado «in storage» (en almacén). Comprueba en la ficha del artículo qué fechas se aplican a tu pedido.",
+      "rows": [
+        [
+          "Inicio del plazo",
+          "Busca la fecha en la que el artículo pasó a estar en almacén. El pago o la entrega del transportista en China pueden ser anteriores."
+        ],
+        [
+          "Vencimiento",
+          "Consulta los datos de almacenamiento del artículo. Si no figura la fecha final o no coincide con un aviso, pide al servicio de atención que te la confirme por escrito con la referencia del artículo."
+        ],
+        [
+          "Si queda poco tiempo",
+          "Valora si puedes solicitar ya el envío del paquete. Si necesitas más tiempo, pregunta qué opciones hay, cuánto cuestan y cuándo entran en vigor. Cuenta con el plazo original hasta recibir confirmación."
+        ],
+        [
+          "Devoluciones",
+          "Revisa por separado el plazo de devolución del pedido. Los días que quedan de almacenamiento no indican cuánto tiempo tienes para reclamar una talla equivocada o un defecto."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Tres comprobaciones antes del envío",
+      "lead": "Abre a la vez el detalle de la compra y las fotos de ese mismo artículo. Las imágenes de otro comprador sirven de referencia, pero no muestran la unidad que vas a recibir.",
+      "rows": [
+        [
+          "Identidad",
+          "Compara referencia, código de variante, talla y cantidad. Si llegaron dos pedidos parecidos a la vez, comprueba a cuál pertenece cada grupo de fotos."
+        ],
+        [
+          "Detalle visible",
+          "Busca una imagen de conjunto y un primer plano del punto dudoso. Antes de leer una medida, localiza la unidad y ambos extremos de la cinta."
+        ],
+        [
+          "Decisión",
+          "Si las imágenes aclaran la duda, anota el resultado. Si falta una vista, pide esa foto concreta. Si la etiqueta contradice lo pedido, guarda ambas pruebas y comunica la diferencia antes de solicitar el envío."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Cuatro mensajes para pedir fotos adicionales",
+      "lead": "Sustituye los corchetes por la referencia y el detalle que necesitas. Pregunta el precio antes de aceptar un servicio de pago.",
+      "rows": [
+        [
+          "Plantilla de la zapatilla",
+          "Para el artículo [referencia], si se puede sacar la plantilla, ¿podéis fotografiarla en plano junto a una regla en centímetros, desde el talón hasta la punta más larga? Mostrad ambos extremos e indicad a qué pie corresponde."
+        ],
+        [
+          "Ancho de pecho",
+          "Para el artículo [referencia], ¿podéis colocar la prenda plana sin estirarla y medir en línea recta de una costura de la axila a la otra? Mostrad los dos puntos y la escala en centímetros en una sola foto."
+        ],
+        [
+          "Etiqueta",
+          "Para el artículo [referencia], ¿podéis hacer una foto en la que se vea dónde está la etiqueta y otra de cerca en la que se lean bien la talla y el código de la variante?"
+        ],
+        [
+          "Accesorio sin localizar",
+          "En el artículo [referencia], la variante que elegí incluye [accesorio]. ¿Podéis comprobar el embalaje y mostrar todo el contenido junto al artículo? Dejad cerrado cualquier envoltorio precintado hasta que lo acordemos."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Compara las dos zapatillas paso a paso",
+      "lead": "Parte de la talla y el color que figuran en el pedido. Antes de concluir que hay una diferencia, compara las dos zapatillas con fotos tomadas desde el mismo ángulo.",
+      "rows": [
+        [
+          "Par y etiquetas",
+          "Pide ver las dos zapatillas juntas y compara la etiqueta de cada una con lo que pediste. La etiqueta de la caja no permite identificar por sí sola las dos unidades."
+        ],
+        [
+          "Longitud de la plantilla",
+          "Si la plantilla es extraíble, mide en centímetros desde el talón hasta la punta más larga. Compara con una plantilla que te quede bien, medida del mismo modo."
+        ],
+        [
+          "Altura de los talones",
+          "Pide una vista trasera centrada con ambos talones sobre la misma superficie plana. Si una zapatilla está girada hacia la cámara, puede parecer más alta."
+        ],
+        [
+          "Accesorios",
+          "Revisa solo lo incluido en la variante elegida. Si no se ven los cordones de repuesto u otro accesorio, pide una foto del conjunto completo."
+        ]
+      ]
+    }
+  },
+  "it": {
+    "homeTitle": "Foto QC Kakobuy: come controllare il tuo ordine prima della spedizione",
+    "homeDesc": "Confronta le foto di magazzino del tuo ordine Kakobuy con taglia, colore e quantità richiesti. Valuta quando chiedere un’altra foto o segnalare un errore.",
+    "homeH1": "Come leggere le foto QC del tuo ordine Kakobuy",
+    "homeLead": "Apri la scheda dell’articolo in magazzino e affiancala alla variante scelta nell’ordine. Parti dalla guida che risponde al dubbio emerso guardando le foto.",
+    "hubTitle": "Checklist QC Kakobuy per scarpe, felpe, borse e giacche",
+    "hubH1": "Scegli la checklist per il tuo articolo",
+    "hubLead": "Per confrontare un paio di scarpe serve una vista posteriore di entrambi i talloni. Per leggere la larghezza di una felpa devono vedersi i due estremi del metro.",
+    "readLink": "Leggi le foto del tuo articolo",
+    "requestLink": "Chiedi una foto specifica",
+    "storageLink": "Verifica la scadenza del deposito",
+    "missingLink": "Le mie foto QC non compaiono",
+    "mismatchLink": "La taglia o l’articolo non corrisponde",
+    "researchLabel": "Articoli sul controllo qualità",
+    "relatedHeading": "Prosegui il controllo",
+    "sourceLabel": "Indicazioni ufficiali di Kakobuy",
+    "storage": {
+      "title": "Quando scade il periodo di deposito?",
+      "lead": "Per gli ordini ordinari di acquisto e inoltro, Kakobuy indica 100 giorni a partire dallo stato «in storage» (in magazzino). Controlla nella scheda del singolo articolo quali date si applicano.",
+      "rows": [
+        [
+          "Inizio del periodo",
+          "Cerca la data in cui l’articolo è stato registrato in magazzino. Il pagamento e la consegna del corriere in Cina possono risalire a giorni precedenti."
+        ],
+        [
+          "Scadenza",
+          "Apri i dettagli di deposito dell’articolo. Se la scadenza non compare o differisce da un avviso, chiedi all’assistenza di confermarla per iscritto indicando il riferimento dell’articolo."
+        ],
+        [
+          "Se manca poco",
+          "Valuta se puoi già richiedere la spedizione del pacco. Se serve più tempo, chiedi quali opzioni sono disponibili, quanto costano e da quando valgono. Mantieni come riferimento la vecchia scadenza fino alla conferma."
+        ],
+        [
+          "Reso",
+          "Controlla separatamente le condizioni e la scadenza del reso nell’ordine. I giorni di deposito rimasti non indicano quanto tempo hai per segnalare una taglia errata o un difetto."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Tre controlli prima di spedire",
+      "lead": "Affianca la riga dell’ordine alle foto scattate proprio a quell’articolo. Le foto di altri acquirenti possono suggerirti dove guardare, ma non mostrano l’esemplare destinato a te.",
+      "rows": [
+        [
+          "Corrispondenza",
+          "Confronta riferimento, codice della variante, taglia e quantità. Se sono arrivati due ordini simili, accertati che ogni serie di foto sia associata all’articolo giusto."
+        ],
+        [
+          "Dettaglio visibile",
+          "Cerca una vista d’insieme e un primo piano del punto in dubbio. Per leggere una misura, controlla l’unità e i due punti su cui è appoggiato il metro."
+        ],
+        [
+          "Decisione",
+          "Se la foto risolve il dubbio, annota l’esito. Se un dettaglio rimane nascosto, chiedi quell’inquadratura. Se l’etichetta contraddice l’ordine, conserva entrambe le prove e segnala lo scarto prima della spedizione."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Quattro messaggi pronti per chiedere altre foto",
+      "lead": "Sostituisci le parentesi quadre con il riferimento dell’articolo e il dettaglio da verificare. Chiedi il prezzo prima di approvare un servizio a pagamento.",
+      "rows": [
+        [
+          "Soletta",
+          "Per l’articolo [riferimento], se la soletta è estraibile, potreste fotografarla distesa accanto a un righello in centimetri, dal tallone alla punta più lunga? Mostrate entrambe le estremità e indicate quale scarpa avete misurato."
+        ],
+        [
+          "Larghezza del torace",
+          "Per l’articolo [riferimento], potreste stendere il capo senza tirarlo e misurare in linea retta da una cucitura ascellare all’altra? Mostrate entrambi i punti e i centimetri in un’unica foto."
+        ],
+        [
+          "Etichetta",
+          "Per l’articolo [riferimento], potreste fotografare l’etichetta prima nella sua posizione sul capo e poi da vicino, in modo che si leggano bene taglia e codice della variante?"
+        ],
+        [
+          "Accessorio mancante",
+          "Per l’articolo [riferimento], la variante scelta comprende [accessorio]. Potreste controllare l’imballaggio e fotografare tutto il contenuto insieme all’articolo? Lasciate chiuse le confezioni sigillate finché non ci siamo accordati."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Come confrontare le due scarpe",
+      "lead": "Verifica prima taglia e colore sull’ordine. Per decidere se esiste una differenza, osserva entrambe le scarpe dallo stesso punto di vista.",
+      "rows": [
+        [
+          "Paio ed etichette",
+          "Fai fotografare le scarpe insieme e confronta entrambe le etichette con la variante scelta. L’etichetta della scatola da sola non identifica le due scarpe."
+        ],
+        [
+          "Lunghezza della soletta",
+          "Se è estraibile, misura la soletta in centimetri dal tallone alla punta più lunga. Confrontala con una soletta che calza bene, misurata nello stesso modo."
+        ],
+        [
+          "Allineamento dei talloni",
+          "Chiedi una vista posteriore centrata, con entrambi i talloni sullo stesso piano. Se una scarpa è girata verso l’obiettivo, il tallone può sembrare più alto."
+        ],
+        [
+          "Accessori",
+          "Controlla quello che la variante scelta dichiara incluso. Se i lacci di ricambio o altri accessori sono fuori campo, chiedi una foto di tutto il contenuto."
+        ]
+      ]
+    }
+  },
+  "pl": {
+    "homeTitle": "Zdjęcia QC Kakobuy: jak sprawdzić zamówienie przed wysyłką",
+    "homeDesc": "Porównaj zdjęcia z magazynu Kakobuy z rozmiarem, kolorem i liczbą zamówionych sztuk. Sprawdź, kiedy poprosić o dodatkowe zdjęcie, a kiedy zgłosić pomyłkę.",
+    "homeH1": "Jak sprawdzić swoje zdjęcia QC z magazynu Kakobuy",
+    "homeLead": "Otwórz kartę produktu w magazynie i odszukaj wybrany wariant w zamówieniu. Wybierz poradnik odpowiadający na pytanie, które pojawiło się po obejrzeniu zdjęć.",
+    "hubTitle": "Listy kontrolne QC Kakobuy: buty, bluzy, torby i kurtki",
+    "hubH1": "Wybierz listę kontrolną dla swojego produktu",
+    "hubLead": "Do porównania butów przyda się jedno zdjęcie obu pięt od tyłu. Przy mierzeniu bluzy na wysokości klatki piersiowej na zdjęciu powinno być widać oba końce miarki.",
+    "readLink": "Jak czytać zdjęcia z magazynu",
+    "requestLink": "Jak poprosić o konkretne zdjęcie",
+    "storageLink": "Sprawdź termin przechowywania",
+    "missingLink": "Nie widzę zdjęć QC",
+    "mismatchLink": "Rozmiar lub produkt nie zgadza się z zamówieniem",
+    "researchLabel": "Poradniki o kontroli jakości",
+    "relatedHeading": "Co sprawdzić dalej",
+    "sourceLabel": "Oficjalne informacje Kakobuy",
+    "storage": {
+      "title": "Kiedy upływa termin przechowywania?",
+      "lead": "Dla zwykłych zamówień z usługą zakupu lub dalszej wysyłki Kakobuy podaje 100 dni od uzyskania statusu „in storage” (przyjęto do magazynu). Sprawdź w karcie danej pozycji, jakie terminy jej dotyczą.",
+      "rows": [
+        [
+          "Początek",
+          "Odszukaj datę oznaczenia produktu jako przyjętego do magazynu. Data zapłaty lub doręczenia paczki przez przewoźnika w Chinach może być wcześniejsza."
+        ],
+        [
+          "Termin końcowy",
+          "Sprawdź szczegóły przechowywania produktu. Jeśli brak daty lub różni się ona od daty w powiadomieniu, podaj obsłudze numer pozycji i poproś o pisemne potwierdzenie."
+        ],
+        [
+          "Tuż przed terminem",
+          "Sprawdź, czy możesz już zlecić wysyłkę. Jeżeli potrzebujesz więcej czasu, zapytaj o dostępne możliwości, koszt i datę ich wejścia w życie. Do chwili potwierdzenia zmiany przyjmuj dotychczasowy termin."
+        ],
+        [
+          "Zwrot",
+          "Sprawdź warunki i termin zwrotu osobno w zamówieniu. Liczba pozostałych dni przechowywania nie wskazuje, ile czasu zostało na zgłoszenie złego rozmiaru lub wady."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Trzy rzeczy do sprawdzenia przed wysyłką",
+      "lead": "Otwórz obok siebie pozycję zamówienia i przypisane do niej zdjęcia. Zdjęcia innego kupującego mogą podpowiedzieć, co obejrzeć, ale nie pokazują egzemplarza, który trafi do Twojej paczki.",
+      "rows": [
+        [
+          "Zgodność zamówienia",
+          "Porównaj numer pozycji, kod wariantu, rozmiar i liczbę sztuk. Jeśli dwa podobne zamówienia dotarły razem, upewnij się, które zdjęcia dotyczą którego produktu."
+        ],
+        [
+          "Widoczny szczegół",
+          "Znajdź ujęcie całego produktu i zbliżenie interesującego Cię miejsca. Przed odczytaniem wymiaru sprawdź jednostkę oraz oba końce miarki."
+        ],
+        [
+          "Decyzja",
+          "Jeśli zdjęcie rozstrzyga wątpliwość, zapisz wynik. Jeśli szczegół jest zasłonięty, poproś o to jedno ujęcie. Gdy metka nie zgadza się z zamówieniem, zachowaj oba dowody i zgłoś rozbieżność przed zleceniem wysyłki."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Cztery gotowe prośby o dodatkowe zdjęcia",
+      "lead": "Wstaw numer pozycji i potrzebny szczegół w miejsce nawiasów kwadratowych. Przed zamówieniem płatnej usługi zapytaj o cenę.",
+      "rows": [
+        [
+          "Wkładka do buta",
+          "Czy możecie dla pozycji [numer] położyć wyjmowaną wkładkę płasko obok linijki z podziałką centymetrową i zmierzyć ją od pięty do najdalszego końca z przodu? Proszę pokazać oba końce i wskazać, z którego buta jest wkładka."
+        ],
+        [
+          "Szerokość pod pachami",
+          "Proszę rozłożyć ubranie [numer pozycji] na płasko bez rozciągania i zmierzyć je w linii prostej od szwu pod jedną pachą do szwu pod drugą. Czy na jednym zdjęciu możecie pokazać oba końce i podziałkę w centymetrach?"
+        ],
+        [
+          "Metka",
+          "Proszę o zdjęcie pokazujące, gdzie znajduje się metka produktu [numer pozycji], oraz o ostre zbliżenie z czytelnym rozmiarem i kodem wariantu."
+        ],
+        [
+          "Brakujący dodatek",
+          "Według opisu wariant produktu [numer pozycji] obejmuje [dodatek]. Czy możecie sprawdzić opakowanie i sfotografować produkt wraz z całą zawartością? Proszę nie otwierać zapieczętowanych opakowań bez wcześniejszego uzgodnienia."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Jak porównać oba buty",
+      "lead": "Najpierw sprawdź rozmiar i kolor na zamówieniu. Zanim uznasz różnicę za rzeczywistą, porównaj buty na zdjęciach wykonanych pod tym samym kątem.",
+      "rows": [
+        [
+          "Para i oznaczenia",
+          "Poproś o zdjęcie obu butów razem i porównaj oznaczenie każdego z wybranym wariantem. Sama naklejka na pudełku nie pozwala sprawdzić obu sztuk."
+        ],
+        [
+          "Długość wkładki",
+          "Wyjmowaną wkładkę mierz w centymetrach od pięty do najdalszego punktu z przodu. W taki sam sposób zmierz wkładkę z własnego, wygodnego buta."
+        ],
+        [
+          "Ustawienie pięt",
+          "Poproś o zdjęcie dokładnie od tyłu, z obiektywem pośrodku i obiema piętami na jednej płaskiej powierzchni. But obrócony w stronę aparatu może wydawać się wyższy."
+        ],
+        [
+          "Akcesoria",
+          "Porównaj zawartość tylko z tym, co obejmuje wybrany wariant. Jeśli dodatkowe sznurówki lub inne akcesoria nie są widoczne, poproś o zdjęcie całej zawartości."
+        ]
+      ]
+    }
+  },
+  "pt": {
+    "homeTitle": "Fotos QC da Kakobuy: como verificar a encomenda antes do envio",
+    "homeDesc": "Compare as fotos de armazém da sua encomenda Kakobuy com o tamanho, a cor e a quantidade que escolheu. Veja quando pedir outra foto ou comunicar uma diferença.",
+    "homeH1": "Como analisar as fotos QC da sua encomenda Kakobuy",
+    "homeLead": "Abra a ficha do artigo no armazém e consulte a variante escolhida na encomenda. Selecione o guia que responde à dúvida que surgiu ao ver as fotos.",
+    "hubTitle": "Listas de verificação QC da Kakobuy para ténis, sweatshirts, malas e casacos",
+    "hubH1": "Escolha a lista de verificação para o seu artigo",
+    "hubLead": "Para comparar um par de ténis, é útil ter uma foto dos dois calcanhares vistos de trás. Numa sweatshirt, a medida do peito exige que se vejam as duas extremidades da fita métrica.",
+    "readLink": "Interpretar as fotos do meu artigo",
+    "requestLink": "Pedir uma foto específica",
+    "storageLink": "Verificar o prazo de armazenamento",
+    "missingLink": "Não consigo ver as minhas fotos QC",
+    "mismatchLink": "O tamanho ou o artigo não corresponde",
+    "researchLabel": "Artigos sobre controlo de qualidade",
+    "relatedHeading": "Continue a verificação",
+    "sourceLabel": "Informação oficial da Kakobuy",
+    "storage": {
+      "title": "Quando termina o prazo de armazenamento?",
+      "lead": "Para encomendas normais de compra ou reencaminhamento, a Kakobuy indica 100 dias a partir do estado «in storage» (em armazém). Confirme na ficha de cada artigo quais os prazos aplicáveis.",
+      "rows": [
+        [
+          "Início do prazo",
+          "Procure a data em que o artigo passou ao estado de armazenado. O pagamento ou a entrega pela transportadora na China podem ter ocorrido antes."
+        ],
+        [
+          "Data-limite",
+          "Consulte os dados de armazenamento do artigo. Se a data de fim não aparecer ou não coincidir com um aviso, peça confirmação por escrito ao apoio ao cliente, indicando a referência."
+        ],
+        [
+          "Perto do fim",
+          "Verifique se já pode pedir a expedição do volume. Se precisar de mais tempo, pergunte que opções existem, quanto custam e quando entram em vigor. Conte com o prazo inicial até receber confirmação da alteração."
+        ],
+        [
+          "Devolução",
+          "Verifique separadamente as condições e o prazo de devolução da encomenda. Os dias que restam em armazém não indicam quanto tempo tem para comunicar um tamanho errado ou um defeito."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Três verificações antes de pedir o envio",
+      "lead": "Abra lado a lado a linha da encomenda e as fotos do artigo correspondente. As fotos de outros compradores ajudam a saber onde procurar, mas não mostram a unidade que vai receber.",
+      "rows": [
+        [
+          "Correspondência",
+          "Compare a referência, o código da variante, o tamanho e a quantidade. Se chegaram duas encomendas parecidas ao mesmo tempo, confirme a que artigo pertence cada conjunto de fotos."
+        ],
+        [
+          "Pormenor visível",
+          "Procure uma vista geral e um grande plano da zona em dúvida. Antes de ler uma medida, veja a unidade e os pontos onde começa e termina a fita métrica."
+        ],
+        [
+          "Decisão",
+          "Se a foto esclarecer a dúvida, registe o resultado. Se um pormenor estiver tapado, peça essa vista. Se a etiqueta não corresponder à encomenda, guarde os dois registos e comunique a diferença antes da expedição."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Quatro mensagens prontas para pedir outras fotos",
+      "lead": "Substitua o texto entre parênteses retos pela referência e pelo pormenor que pretende ver. Confirme o preço antes de aceitar um serviço pago.",
+      "rows": [
+        [
+          "Palmilha",
+          "Para o artigo [referência], se a palmilha for amovível, podem fotografá-la estendida ao lado de uma régua em centímetros, do calcanhar até à ponta mais comprida? Por favor, mostrem as duas extremidades e indiquem qual o pé que mediram."
+        ],
+        [
+          "Largura do peito",
+          "Para o artigo [referência], podem estender a peça sem puxar pelo tecido e medir em linha reta entre as costuras das axilas? Agradeço que a foto mostre os dois pontos e as marcas em centímetros."
+        ],
+        [
+          "Etiqueta",
+          "Para o artigo [referência], podem enviar uma foto a mostrar onde está a etiqueta e outra, bem focada e de perto, em que se leiam o tamanho e o código da variante?"
+        ],
+        [
+          "Acessório em falta",
+          "No artigo [referência], a opção escolhida inclui [acessório]. Podem verificar a embalagem e fotografar o artigo com todo o conteúdo? Agradeço que não abram embalagens seladas sem falarmos primeiro."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Como comparar os dois ténis",
+      "lead": "Comece pelo tamanho e pela cor que constam da encomenda. Antes de concluir que há uma diferença, compare os dois ténis em fotos tiradas do mesmo ângulo.",
+      "rows": [
+        [
+          "Par e etiquetas",
+          "Peça para ver o par junto e compare a etiqueta de cada ténis com a variante escolhida. A etiqueta da caixa, por si só, não identifica os dois pés."
+        ],
+        [
+          "Comprimento da palmilha",
+          "Se for amovível, meça a palmilha em centímetros, do calcanhar à ponta mais comprida. Compare com uma palmilha que lhe sirva bem e que tenha medido da mesma forma."
+        ],
+        [
+          "Alinhamento dos calcanhares",
+          "Peça uma foto de trás, centrada e com os calcanhares apoiados na mesma superfície plana. Um ténis rodado para a câmara pode parecer mais alto."
+        ],
+        [
+          "Acessórios",
+          "Verifique só o que vem na opção que escolheu. Se não vir os atacadores suplentes ou outro acessório, peça uma foto de todo o conteúdo."
+        ]
+      ]
+    }
+  },
+  "ro": {
+    "homeTitle": "Fotografii QC Kakobuy: verifică produsul înainte de expediere",
+    "homeDesc": "Compară fotografiile din depozit cu mărimea, culoarea și cantitatea pe care le-ai comandat la Kakobuy. Află când să ceri alt unghi și cum să semnalezi o neconcordanță.",
+    "homeH1": "Cum verifici fotografiile QC ale comenzii tale Kakobuy",
+    "homeLead": "Deschide fișa produsului din depozit și caută varianta aleasă în comandă. Alege ghidul în funcție de ce vrei să lămurești privind fotografiile.",
+    "hubTitle": "Liste de verificare QC Kakobuy pentru pantofi, hanorace, genți și jachete",
+    "hubH1": "Alege lista de verificare pentru produsul tău",
+    "hubLead": "La încălțăminte, o fotografie din spate a ambilor pantofi permite compararea călcâielor. La un hanorac trebuie să vezi capetele centimetrului pentru a citi corect lățimea la piept.",
+    "readLink": "Cum interpretez fotografiile din depozit",
+    "requestLink": "Cum cer o fotografie anume",
+    "storageLink": "Verifică termenul de depozitare",
+    "missingLink": "Nu îmi apar fotografiile QC",
+    "mismatchLink": "Mărimea sau produsul nu corespunde",
+    "researchLabel": "Articole despre controlul calității",
+    "relatedHeading": "Continuă verificarea",
+    "sourceLabel": "Informații oficiale Kakobuy",
+    "storage": {
+      "title": "Când expiră perioada de depozitare?",
+      "lead": "Pentru comenzile obișnuite de achiziție și reexpediere, Kakobuy indică 100 de zile de la trecerea în starea „in storage” (în depozit). Verifică în fișa fiecărui produs termenul care i se aplică.",
+      "rows": [
+        [
+          "Începutul perioadei",
+          "Caută data la care produsul a fost marcat ca intrat în depozit. Plata comenzii și livrarea de către curierul din China pot avea loc mai devreme."
+        ],
+        [
+          "Data-limită",
+          "Deschide detaliile de depozitare ale produsului. Dacă data de expirare lipsește sau diferă de cea dintr-o notificare, trimite referința produsului și cere echipei de asistență să confirme data în scris."
+        ],
+        [
+          "Aproape de expirare",
+          "Verifică dacă poți solicita acum expedierea coletului. Dacă ai nevoie de timp, întreabă ce opțiuni există, cât costă și de când se aplică. Ține cont de termenul inițial până când primești confirmarea modificării."
+        ],
+        [
+          "Retur",
+          "Verifică separat condițiile și termenul de retur al comenzii. Zilele de depozitare rămase nu îți spun cât mai ai la dispoziție pentru a semnala o mărime greșită sau un defect."
+        ]
+      ]
+    },
+    "read": {
+      "title": "Trei verificări înainte de expediere",
+      "lead": "Ține deschise în paralel poziția din comandă și fotografiile făcute acelui produs. Fotografiile altui cumpărător îți pot arăta ce să urmărești, dar nu arată exemplarul care va ajunge la tine.",
+      "rows": [
+        [
+          "Identificarea produsului",
+          "Compară referința, codul variantei, mărimea și cantitatea. Dacă au sosit două comenzi asemănătoare, verifică mai întâi cărei poziții îi corespunde fiecare set de fotografii."
+        ],
+        [
+          "Detaliul vizibil",
+          "Caută o imagine de ansamblu și un prim-plan al zonei în discuție. Înainte de a citi o măsurătoare, identifică unitatea și cele două puncte între care a fost întins centimetrul."
+        ],
+        [
+          "Decizia",
+          "Dacă imaginile răspund întrebării, notează rezultatul. Dacă un detaliu este acoperit, cere acel unghi. Dacă eticheta și comanda diferă, salvează ambele dovezi și semnalează diferența înainte de expediere."
+        ]
+      ]
+    },
+    "extra": {
+      "title": "Patru mesaje pe care le poți copia când ceri alte fotografii",
+      "lead": "Înlocuiește textul dintre paranteze drepte cu referința produsului și detaliul dorit. Întreabă cât costă serviciul înainte de a accepta plata.",
+      "rows": [
+        [
+          "Branț",
+          "Pentru produsul [referință], dacă branțul se poate scoate, îl puteți fotografia întins lângă o riglă gradată în centimetri, de la călcâi până la punctul cel mai îndepărtat al vârfului? Vă rog să se vadă ambele capete și să precizați ce pantof ați măsurat."
+        ],
+        [
+          "Lățimea la piept",
+          "Pentru produsul [referință], puteți așeza haina pe o suprafață plană, fără a întinde materialul, și măsura în linie dreaptă între cusăturile de sub brațe? Vă rog să apară în aceeași fotografie cele două puncte și gradațiile în centimetri."
+        ],
+        [
+          "Etichetă",
+          "Pentru produsul [referință], puteți trimite o fotografie din care să se vadă unde este prinsă eticheta și un prim-plan clar în care să se poată citi mărimea și codul variantei?"
+        ],
+        [
+          "Accesoriu care lipsește",
+          "Pentru produsul [referință], varianta aleasă include [accesoriu]. Puteți verifica ambalajul și fotografia produsul împreună cu întregul conținut? Vă rog să nu deschideți ambalajele sigilate până nu stabilim acest lucru."
+        ]
+      ]
+    },
+    "shoe": {
+      "title": "Cum compari cei doi pantofi",
+      "lead": "Pornește de la mărimea și culoarea din comandă. Înainte de a trage o concluzie, compară pantofii în fotografii făcute din același unghi.",
+      "rows": [
+        [
+          "Pereche și etichete",
+          "Cere o fotografie cu ambii pantofi, apoi compară eticheta fiecăruia cu varianta comandată. Eticheta de pe cutie nu identifică singură ambii pantofi."
+        ],
+        [
+          "Lungimea branțului",
+          "Dacă branțul este detașabil, măsoară-l în centimetri de la călcâi până la punctul cel mai îndepărtat al vârfului. Folosește aceeași metodă pentru a măsura un branț care ți se potrivește."
+        ],
+        [
+          "Alinierea călcâielor",
+          "Cere o vedere din spate, centrată, cu ambele călcâie sprijinite pe aceeași suprafață plană. Un pantof întors spre cameră poate părea mai înalt."
+        ],
+        [
+          "Accesorii",
+          "Verifică numai accesoriile incluse în varianta aleasă. Dacă șireturile de rezervă sau alt accesoriu nu sunt în cadru, cere o fotografie cu întregul conținut."
+        ]
+      ]
+    }
+  }
+}

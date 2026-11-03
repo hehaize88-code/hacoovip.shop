@@ -1,0 +1,504 @@
+{
+  "kakobuy-qc-photos-not-showing": {
+    "title": "Photos QC Kakobuy introuvables après la livraison",
+    "description": "Colis livré, galerie vide ou image qui refuse de s’ouvrir ? Identifiez l’étape concernée et adressez une demande précise à propos de votre article.",
+    "h1": "Photos QC Kakobuy introuvables après la livraison",
+    "intro": "Le transporteur affiche « livré », mais vous cherchez toujours les photos de contrôle de votre achat. Ce décalage peut correspondre à plusieurs situations. Avant de demander de nouvelles prises de vue, retrouvez la ligne de commande, puis regardez si elle possède une fiche d’entrepôt et une galerie. Le premier élément manquant indique généralement quelle question poser. Il évite aussi de dépenser pour une photographie supplémentaire alors que le problème porte sur le rattachement du colis.",
+    "sections": [
+      [
+        "Retrouver le bon article dans le bon compte",
+        "Ouvrez la commande avec le compte utilisé pour l’achat. Relevez la référence de la ligne, la variante choisie et, s’il est disponible, le numéro de suivi du trajet en Chine. Le numéro du futur envoi international ne permet pas nécessairement d’identifier le colis remis par le vendeur. Si plusieurs articles figurent dans votre commande, vérifiez-les séparément. Deux tailles d’un même modèle peuvent correspondre à deux lignes, voire à deux livraisons différentes.",
+        "Passez ensuite de la commande à la fiche correspondant au stock reçu. Comparez la référence, la couleur et la taille. Si vous étiez parti d’une galerie publique accessible depuis un lien produit, revenez dans votre propre compte. Une image prise lors d’un achat précédent renseigne sur cet ancien exemplaire. Elle n’indique ni que votre article est arrivé ni qu’une photo existe déjà pour votre commande."
+      ],
+      [
+        "Le transporteur a livré, mais aucune fiche n’apparaît",
+        "La preuve de livraison concerne le trajet du vendeur jusqu’à l’adresse de réception. Elle ne montre pas à elle seule que le colis a été ouvert, que son contenu a été rapproché de votre achat ou que chaque article a été enregistré. Vérifiez le numéro de suivi contre celui de votre commande. Si le vendeur a scindé l’envoi, le message « livré » peut ne concerner qu’une partie des articles.",
+        "Adressez une question sur la réception plutôt qu’une demande de photo. « Pour la position [référence et variante], le suivi intérieur [numéro] indique une livraison le [date et heure affichées]. Je ne trouve pas de fiche correspondante dans mon stock. Pouvez-vous vérifier si ce colis a été reçu et rattaché à cette ligne ? » Joignez la partie utile du suivi. Gardez vos coordonnées et vos informations de connexion hors de toute publication publique."
+      ],
+      [
+        "Une fiche existe, mais elle ne contient aucune image",
+        "La recherche se resserre. Ouvrez la fiche elle-même et notez le statut exact, les observations du personnel et la référence visible. Une ligne de commande active et une fiche d’article en stock n’ont pas forcément la même fonction. Si la fiche correspond bien à votre achat, faites une capture qui montre à la fois sa référence et l’emplacement vide de la galerie.",
+        "Demandez si les images standard sont en attente ou si une galerie a déjà été associée à cette fiche. Indiquez l’heure de votre dernière vérification. Évitez de fixer vous-même un délai universel de mise en ligne : les étapes affichées et les services disponibles peuvent varier selon la situation. L’absence d’image ne permet pas davantage de conclure que l’article a un défaut ou que le contrôle a déjà été effectué."
+      ],
+      [
+        "Les vignettes sont visibles, mais une image ne charge pas",
+        "Vous avez ici un problème d’accès à examiner. Notez ce qui se passe lorsque vous ouvrez chaque vue : écran vide, message d’erreur, chargement continu ou miniature illisible. Rechargez une fois la fiche, puis essayez éventuellement un autre navigateur courant avec le même compte. Regardez si le problème touche toute la galerie ou seulement, par exemple, le gros plan de l’étiquette.",
+        "Précisez le résultat dans votre message. « Pour [référence], je peux ouvrir la photo de face et celle de dos. La vignette de l’étiquette apparaît, mais l’image reste vide après actualisation. Voici le message affiché. Pouvez-vous vérifier cette image ? » Cette description oriente la vérification vers le fichier concerné. Commander à nouveau l’article ou demander une photographie payante ne résout pas nécessairement une erreur d’affichage."
+      ],
+      [
+        "Il y a des photos, mais pas celle dont vous avez besoin",
+        "Identifiez la décision que vous ne pouvez pas prendre. Pour une veste, l’étiquette peut être lisible alors que la largeur à plat manque. Pour une paire de baskets, un seul talon peut être visible alors que vous voulez comparer les deux. Une demande comme « les deux talons de dos, côte à côte sur le même plan » est plus exploitable que « davantage de photos ».",
+        "Pour une mesure, nommez l’unité et les points de départ et d’arrivée. Demandez par exemple une photo du vêtement posé à plat avec le mètre d’une couture d’aisselle à l’autre, sans tension, et les deux extrémités visibles. Vérifiez dans la commande si ce service est disponible et quel tarif est affiché avant de le valider. Une demande supplémentaire porte sur un détail précis ; elle ne sert pas à localiser un article dont la fiche manque."
+      ],
+      [
+        "Plusieurs articles doivent partir dans le même colis",
+        "Imaginons que deux achats soient documentés et qu’un troisième reste sans photo. Conservez le lien entre chaque pièce, sa galerie et sa propre date limite. Le fait que le dernier achat vienne d’arriver ne prolonge pas forcément le stockage des précédents. Vérifiez également, pour l’article en question, le délai d’une éventuelle demande de retour. Il peut suivre un autre calendrier que celui de l’entreposage.",
+        "Si la vue manquante est indispensable pour décider, gardez la position concernée hors de l’envoi international pendant la clarification, si le statut le permet. N’interprétez pas un message envoyé comme une confirmation de blocage du colis. Si l’emballage a déjà commencé, demandez explicitement quelles actions restent possibles. Notez la réponse avec la référence de la pièce afin de ne pas la confondre plus tard avec celle d’un autre achat."
+      ],
+      [
+        "Un modèle de message à adapter au problème observé",
+        "« Commande [référence], article [variante]. Dans mon compte, je vois [aucune fiche / une fiche sans images / une image précise impossible à ouvrir]. Dernière vérification le [date et heure]. Le suivi intérieur indique [état, si utile]. Pouvez-vous vérifier [le rattachement / le statut des photos standard / l’accès à la vue concernée] et m’indiquer la prochaine étape pour cet article ? »",
+        "Supprimez les options inutiles avant l’envoi. Lorsque les photos deviennent accessibles, comparez d’abord l’identité de la pièce, la variante et la quantité avec votre commande. Si la galerie révèle ensuite une erreur de taille, traitez-la comme une question distincte en citant l’image correspondante. Vous garderez ainsi une trace claire du premier problème, de sa résolution et de la décision qui reste à prendre."
+      ]
+    ]
+  },
+  "kakobuy-wrong-size-or-item-qc": {
+    "title": "Mauvaise taille ou mauvais article sur les photos QC Kakobuy ?",
+    "description": "Comparez variante commandée, étiquette et mesure visible, puis préparez la demande adaptée avant de faire expédier l’article.",
+    "h1": "Mauvaise taille ou mauvais article sur les photos QC Kakobuy ?",
+    "intro": "La photo de l’entrepôt montre bien le sweat que vous attendiez, mais l’étiquette semble indiquer une autre taille. Dans un autre cas, c’est le fermoir d’un sac qui ne ressemble pas à celui de la fiche vendeur. Pour avancer, placez côte à côte ce que vous avez choisi et ce que la photo permet de lire. Vous pourrez alors demander une vérification précise, une vue supplémentaire ou une solution après-vente, selon ce que les éléments établissent.",
+    "sections": [
+      [
+        "Rassembler la commande et la photo du même exemplaire",
+        "Retrouvez la ligne d’achat avec l’option vendeur sélectionnée. Un titre comme « veste à capuche » n’identifie pas à lui seul la couleur, la taille ou la version commandée. Conservez la référence, le libellé exact de la variante et la vue correspondante de l’entrepôt. Si possible, utilisez l’enregistrement de l’achat. Le vendeur peut avoir modifié les variantes, les illustrations ou le tableau des tailles depuis votre paiement.",
+        "Vérifiez aussi à quelle pièce appartient le gros plan. Si vous avez pris deux tailles du même modèle, une confusion entre vos propres galeries est facile. Ouvrez la vue d’ensemble puis le détail depuis la même fiche. Une photo publique provenant d’une commande antérieure peut aider à reconnaître un modèle, mais n’établit pas ce qui a été livré pour votre position. Si le rattachement reste incertain, demandez à l’entrepôt de le confirmer."
+      ],
+      [
+        "L’étiquette indique une autre taille que la commande",
+        "Si votre sélection indique « L » et que l’étiquette cousue affiche nettement « M », citez ces deux indications et joignez les vues correspondantes. Assurez-vous de lire une taille plutôt qu’une référence de fabrication. Sur une chaussure, plusieurs systèmes de pointure peuvent figurer sur la même étiquette. Un chiffre lu à gauche du tableau n’est comparable à celui de votre commande que si le système concerné correspond.",
+        "Une boîte portant la bonne pointure ne suffit pas à établir celle des chaussures qu’elle contient. Demandez, si nécessaire, une vue de l’étiquette de chaque pied et un cadrage montrant les deux chaussures ensemble. Pour un vêtement, faites distinguer l’étiquette de l’emballage et celle de la pièce. Si l’inscription est simplement floue, demandez une image lisible avant de présenter la livraison comme incorrecte."
+      ],
+      [
+        "L’étiquette correspond, mais le vêtement paraît trop petit",
+        "Il s’agit maintenant d’une question de dimensions. Consultez le tableau du vendeur associé à la version achetée. Vérifiez s’il donne des dimensions du vêtement fini ou des mensurations corporelles. Une largeur de poitrine relevée à plat ne se compare pas directement à un tour de poitrine. De même, une manche mesurée depuis le col ne donne pas le même résultat qu’une longueur prise depuis la couture de l’épaule.",
+        "Demandez une photo qui reprend la méthode annoncée : pièce à plat, sans tirer, début et fin du mètre, graduations lisibles et unité explicite. Comparez ensuite, si vous le souhaitez, avec une pièce qui vous va et que vous avez mesurée de la même manière. Cette comparaison aide à décider si vous voulez la garder. Elle ne prouve pas à elle seule une erreur de livraison, et il n’existe pas de marge d’écart à appliquer arbitrairement à toutes les annonces."
+      ],
+      [
+        "Le modèle, la couleur ou les accessoires semblent différents",
+        "Cherchez d’abord un détail stable : nombre de poches, type de fermeture, marquage de version ou emplacement d’une attache. Une photo prise de biais peut cacher une poche ou modifier les proportions. Indiquez la vue qui permettrait de départager les deux modèles. Ajoutez le petit extrait de votre commande qui montre l’option correspondante, surtout si plusieurs photos de versions différentes figurent dans la même annonce.",
+        "Pour une couleur douteuse, relevez le code ou le nom choisi et comparez-le à l’étiquette si elle porte cette indication. Une veste bleu nuit sous un éclairage froid peut sembler noire. Pour un accessoire invisible, vérifiez qu’il est inclus dans votre option, puis demandez si l’entrepôt peut contrôler le contenu concerné. L’absence d’une bandoulière sur une vue de face ne permet pas de savoir si elle est rangée à l’intérieur du sac."
+      ],
+      [
+        "Écrire une demande proportionnée à ce que vous savez",
+        "Si l’écart est lisible : « Position [référence]. J’ai sélectionné [option exacte]. Sur la photo [fichier ou vue], l’étiquette de l’article indique [valeur]. Je joins la sélection et l’image correspondante. Pouvez-vous vérifier si j’ai reçu la variante commandée et m’indiquer les solutions disponibles pour cette commande ? »",
+        "Si la photo ne suffit pas : « L’étiquette correspond, mais je ne peux pas vérifier [point précis]. Pouvez-vous fournir ou vérifier [vue ou mesure], de [départ] à [arrivée], en [unité] ? Merci de m’indiquer le prix éventuel avant confirmation. » Si vous devez faire suspendre un emballage ou une expédition, ajoutez une demande distincte et attendez une confirmation explicite. Une question sur la taille ne vaut pas instruction de bloquer le colis."
+      ],
+      [
+        "Comprendre les suites proposées",
+        "Si vous souhaitez toujours l’article dans la bonne version, demandez comment un échange se déroulerait pour cette ligne. Si l’option reçue est celle que vous avez sélectionnée, mais que la coupe ne vous convient pas, présentez la situation comme telle. Les conditions du vendeur et les choix affichés peuvent différer d’une erreur d’article confirmée. Faites préciser les éventuels frais intérieurs, la date limite et l’action à valider dans le compte.",
+        "Gardez la pièce hors de l’envoi international pendant votre décision lorsque le statut le permet. Si le colis a déjà été constitué, demandez si une modification est encore possible. Ne confondez pas un accord de principe sur un retour avec la réception effective de l’article par le vendeur ou un remboursement enregistré. Conservez le message, la date et la référence pour pouvoir suivre chaque étape séparément."
+      ],
+      [
+        "Vérifier le remplacement ou la correction de galerie",
+        "Si l’entrepôt corrige simplement les images attribuées à la fiche, comparez la nouvelle galerie avec la variante commandée. En cas de remplacement physique, les anciennes photos décrivent l’article renvoyé. Avant de décider d’expédier, demandez à identifier le nouvel exemplaire et vérifiez de nouveau l’étiquette, la vue d’ensemble et le point à l’origine de votre demande.",
+        "Vous pouvez terminer par une note très courte : « Pour [position], le doute concernait [détail]. La photo ou la réponse [référence] confirme [observation]. J’ai choisi [expédition, vérification supplémentaire ou solution proposée]. » Cela évite de rouvrir le dossier de la mauvaise pièce et vous laisse une trace exploitable si plusieurs vendeurs, plusieurs tailles ou plusieurs numéros de suivi interviennent dans le même colis."
+      ]
+    ]
+  },
+  "kakobuy-warehouse-storage-guide": {
+    "title": "Combien de temps Kakobuy garde-t-il un article en entrepôt ?",
+    "description": "Retrouvez la date limite de chaque article, vérifiez les possibilités de prolongation et distinguez stockage, contrôle photo et retour au vendeur.",
+    "h1": "Combien de temps Kakobuy garde-t-il un article en entrepôt ?",
+    "intro": "Quand des achats arrivent à des dates différentes, ils ne disposent pas forcément du même temps de stockage. Pour chaque pièce, notez son statut, la date limite affichée et la décision qui reste à prendre. Une livraison signalée par le transporteur, l’enregistrement en entrepôt et la disponibilité pour l’expédition ne correspondent pas nécessairement au même événement.",
+    "sections": [
+      [
+        "Repérer le point de départ applicable à votre achat",
+        "Ouvrez la fiche de l’article en stock et cherchez la date d’échéance ou le nombre de jours restants. Notez le statut auquel cette information se rapporte. La période de 100 jours souvent citée ne suffit pas à calculer le dernier jour pour une commande précise. Consultez les conditions du service applicable et la date enregistrée dans le compte. Si le point de départ est ambigu, demandez pour cette référence la date de début et l’échéance retenues."
+      ],
+      [
+        "Vérifier le délai de retour séparément",
+        "Pouvoir garder un article dans l’entrepôt n’indique pas combien de temps le vendeur accepte une demande d’échange ou de retour. Vérifiez donc les photos dès que la pièce est enregistrée. Si la taille ne correspond pas ou qu’une couture semble ouverte, conservez l’option achetée et les vues utiles, puis renseignez-vous sur la démarche disponible. Attendre le rappel de fin de stockage risquerait de laisser passer un autre délai."
+      ],
+      [
+        "Faire coïncider les arrivées sans perdre de vue le premier article",
+        "Pour chaque référence, inscrivez « prête à partir », « mesure demandée » ou « réponse du vendeur attendue ». Une paire de chaussures acceptée peut arriver bien avant le sweat destiné au même colis. Partez de l’échéance la plus proche pour comparer vos possibilités : expédier séparément, attendre le nouvel achat ou prolonger si l’option existe. Vérifiez les dimensions et les lignes disponibles avant de conclure qu’un regroupement sera plus économique."
+      ],
+      [
+        "Demander une prolongation avec une date précise",
+        "Consultez les services proposés pour la position concernée. Relevez le prix affiché, la durée et le moment où la prolongation prend effet. « Pour [référence], mon stock affiche une échéance au [date]. Puis-je prolonger cette position ? Quel montant et quelle nouvelle date s’appliquent ? » Après confirmation, vérifiez le changement dans la fiche. Une question envoyée ou un service ajouté au panier ne représente pas encore une prolongation enregistrée."
+      ],
+      [
+        "Deux articles, deux calendriers",
+        "Votre manteau est contrôlé et accepté, mais le sac prévu dans le même colis n’a pas encore de fiche d’entrepôt. Prenez comme point de décision l’échéance confirmée du manteau. Le sac devra encore être contrôlé à son arrivée. Comparez donc le départ séparé et une éventuelle prolongation avant de compter sur son inclusion dans le même envoi."
+      ],
+      [
+        "Prendre une décision avant l’échéance",
+        "Si les pièces sont prêtes et acceptées, vérifiez leur sélection dans le colis, son conditionnement et les modalités d’expédition. Si une photo ou un échange reste en attente, faites préciser les solutions possibles dans cet état et leur date limite. Une conversation avec le service client ne suspend pas automatiquement le stockage. Conservez la réponse avec la référence et fixez votre propre rappel avant la première échéance, plutôt que le jour même."
+      ]
+    ]
+  },
+  "kakobuy-extra-qc-photos": {
+    "title": "Demander des photos QC Kakobuy en plus – quatre modèles",
+    "description": "Quatre demandes prêtes à adapter pour obtenir une mesure, une étiquette lisible, une vue d’un défaut ou la confirmation d’un accessoire.",
+    "h1": "Demander des photos QC Kakobuy en plus – quatre modèles",
+    "intro": "Regardez la galerie existante avant de commander une autre photo. Si la vue d’ensemble et le détail répondent déjà à la question, un nouvel angle apporte peu. Si l’extrémité du mètre est coupée ou qu’une attache est cachée, formulez la demande autour de cette incertitude précise. Vous pourrez ensuite décider à partir d’une réponse vérifiable.",
+    "sections": [
+      [
+        "1. Demander une mesure exploitable",
+        "« Pour la position [référence], pouvez-vous poser le vêtement à plat sans l’étirer et mesurer d’une couture d’aisselle à l’autre ? Merci de montrer les deux extrémités du mètre et l’échelle en centimètres sur la même image. » Pour une chaussure, précisez si vous cherchez la longueur de la semelle intérieure, à condition qu’elle soit amovible. Une règle sous la semelle extérieure ne mesure pas l’espace disponible pour le pied."
+      ],
+      [
+        "2. Lire l’étiquette du produit lui-même",
+        "« Pour [référence], merci de photographier le marquage de taille et de modèle sur l’article, assez près pour lire toute l’inscription. Pour une paire, merci de rattacher chaque étiquette au bon pied. » Une étiquette de boîte peut ne pas correspondre à son contenu. Sur un vêtement, l’étiquette de taille et celle d’entretien peuvent être cousues à différents endroits. Dites quelle information vous cherchez plutôt que de demander tous les marquages possibles."
+      ],
+      [
+        "3. Distinguer une trace d’un reflet",
+        "« Sur la photo [numéro], je vois un trait clair près de [emplacement]. Pourriez-vous montrer la zone entière puis un détail sous un angle légèrement différent, avec un éclairage régulier ? » La première vue situe la trace, la seconde aide à vérifier si elle se déplace avec le reflet. Évitez de demander de découdre, frotter ou nettoyer l’article pour tester une hypothèse. Une constatation visuelle suffit souvent à choisir la suite."
+      ],
+      [
+        "4. Vérifier un accessoire inclus",
+        "« D’après l’option achetée, [accessoire] accompagne l’article [référence]. Pouvez-vous montrer ensemble les éléments visibles de la livraison, si le conditionnement permet cette vérification ? » Vérifiez d’abord la composition exacte de votre option. Une bandoulière absente d’une vue de face peut se trouver à l’intérieur du sac. Pour un produit scellé, demandez ce qu’il est possible de vérifier sans l’ouvrir et quelles seraient les conséquences d’une ouverture."
+      ],
+      [
+        "Choisir le bon modèle de demande",
+        "Si une étiquette de pointure est illisible, une mesure de la semelle extérieure donnera un chiffre sans clarifier la variante. Commencez par l’étiquette. Si le marquage est correct et que votre question porte désormais sur la longueur, demandez ensuite la mesure pertinente. Cette progression évite de commander plusieurs vues dont aucune ne répond exactement au doute initial."
+      ],
+      [
+        "Avant de valider et après réception",
+        "Consultez la disponibilité, le tarif annoncé et le statut de la position. Tenez compte d’une date limite de retour ou de stockage. En recevant l’image, vérifiez sa référence, puis posez une seule question : répond-elle au point qui bloquait votre décision ? Un zéro du mètre illisible justifie une demande de précision. Une nouvelle vue générale ne permettra en revanche pas de conclure sur le confort ou la durabilité de l’article."
+      ]
+    ]
+  },
+  "kakobuy-returns-after-sales-checklist": {
+    "title": "Préparer un retour ou un échange Kakobuy",
+    "description": "Rassemblez variante achetée, photo QC, statut et description de l’écart pour demander une solution lisible avant l’envoi international.",
+    "h1": "Préparer un retour ou un échange Kakobuy",
+    "intro": "Un dossier de retour doit permettre de comprendre le problème sans relire toutes vos commandes. Identifiez d’abord la pièce concernée et ce qui diffère de votre sélection. Une livraison incorrecte, un défaut visible et un article conforme qui ne vous convient pas peuvent appeler des démarches différentes.",
+    "sections": [
+      [
+        "Vérifier les possibilités dans la commande",
+        "Ouvrez la position et notez les actions disponibles, le statut et les dates indiquées. Distinguez durée du stockage, délai de demande et réexpédition intérieure au vendeur. Garder une pièce à l’entrepôt ne prolonge pas forcément le droit de présenter une demande. Si le colis international est déjà en préparation, demandez si la pièce peut encore être mise de côté. Une simple prise de contact ne confirme pas l’arrêt de l’emballage."
+      ],
+      [
+        "Sélectionner les preuves qui répondent au problème",
+        "Conservez l’option achetée, la référence et les photos de la même fiche. Pour une mauvaise taille, associez la sélection et une image lisible de l’étiquette. Pour une couture qui s’ouvre, montrez l’emplacement sur une vue large et le détail sur un gros plan. Limitez les captures aux éléments utiles. Les références resteront lisibles sans exposer d’autres achats ni imposer à l’interlocuteur de deviner ce qu’il doit regarder."
+      ],
+      [
+        "Formuler l’écart en une phrase vérifiable",
+        "« Pour la position [référence], j’ai sélectionné [option]. La photo [vue] montre [observation]. Pourriez-vous contrôler [point précis] ? » Indiquez ensuite votre préférence : correction, remplacement ou retour. Si vous ne savez pas encore si la taille est incorrecte, demandez d’abord une mesure. Un doute présenté comme un fait peut conduire à un aller-retour inutile alors qu’une seule prise de vue ciblée aurait permis de trancher."
+      ],
+      [
+        "Comprendre le chemin proposé",
+        "En cas d’échange, faites préciser qui confirme la bonne variante et comment reconnaître la pièce remplaçante. Pour un retour, vérifiez les étapes, les éventuels frais intérieurs et le mode de remboursement prévu. N’appliquez pas à toutes les commandes une gratuité ou un délai unique. Si vous acceptez une solution, gardez la confirmation avec sa date et sa référence afin de ne pas la confondre avec la demande de transport international."
+      ],
+      [
+        "Deux demandes qui paraissent identiques",
+        "Une bandoulière ne figure pas dans la vue de face. Si l’option achetée la comprend, demandez si elle est rangée dans le sac et faites confirmer le contenu. Si seul le visuel principal la montre alors que votre option précise « sans bandoulière », présentez plutôt une demande sur les possibilités de retour. L’image de départ est identique, mais la situation commerciale change."
+      ],
+      [
+        "Suivre le résultat réel",
+        "Une demande enregistrée, une demande acceptée et une opération terminée ne sont pas forcément la même étape. En cas de remplacement, examinez la nouvelle galerie avant de choisir l’expédition. Pour un remboursement, vérifiez l’écriture prévue sur votre compte. Si vous devez relancer, rappelez la dernière étape confirmée et sa date, au lieu d’ouvrir plusieurs demandes avec des descriptions différentes. Votre interlocuteur saura ainsi exactement où reprendre le suivi."
+      ]
+    ]
+  },
+  "kakobuy-stitching-finish-qc-checklist": {
+    "title": "QC Kakobuy des coutures, ourlets et finitions",
+    "description": "Distinguez fil qui dépasse, bord volontairement brut et couture ouverte, puis demandez la vue adaptée à la zone concernée.",
+    "h1": "QC Kakobuy des coutures, ourlets et finitions",
+    "intro": "Un petit bout de fil à l’ourlet et deux pièces de tissu qui s’écartent sous la manche ne décrivent pas le même problème. Tous deux peuvent pourtant prendre la forme d’un trait clair sur une photo peu nette. Situez la ligne dans la construction de l’article avant de demander au vendeur une solution.",
+    "sections": [
+      [
+        "Suivre la ligne de couture",
+        "Partez d’un raccord facile à reconnaître, par exemple l’épaule, et suivez la ligne jusqu’à son prochain croisement. La rangée de points s’arrête-t-elle à une jonction prévue ou distingue-t-on un espace entre les couches de tissu ? Gardez une vue large à côté du détail. Elle permettra de voir si le vêtement est replié, si une manche masque le bord ou si la ligne semble réellement interrompue."
+      ],
+      [
+        "Examiner les points sollicités",
+        "Sur un sweat, les angles de poche, les aisselles, le montage des manches et la base de la capuche méritent une attention particulière. Sur un sac, vérifiez plutôt les pieds d’anse et les attaches de sangle. Regardez si la couture prend encore les deux pièces de matière. Une image peut montrer une ouverture, mais elle ne permet pas de connaître la résistance future d’un assemblage qui paraît propre."
+      ],
+      [
+        "Distinguer ourlet, finition et fil libre",
+        "Une extrémité de fil apparente ne signifie pas nécessairement que toute la couture va se défaire. Cherchez une ligne de points continue, des bords qui bâillent ou des boucles tirées. Comparez un ourlet brut avec l’option réellement achetée : certains modèles sont volontairement coupés ou effilochés. Évitez de demander de couper ou de tirer le fil avant d’avoir documenté la situation, car cela modifierait précisément la zone à vérifier."
+      ],
+      [
+        "Demander un gros plan qui conserve le contexte",
+        "« Pour [référence], pourriez-vous montrer le coin droit de la poche, d’abord avec la poche identifiable, puis de plus près pour distinguer le bord et les points ? » Si le pli empêche de voir, demandez de poser la pièce à plat sans tendre le tissu. Il n’est pas nécessaire de tester la solidité en tirant. Une vue intérieure, si elle est accessible, peut aider à distinguer une surpiqûre décorative d’une couture d’assemblage."
+      ],
+      [
+        "Un coin de poche mal visible",
+        "Sur une photo de hoodie, un fil clair dépasse près de la poche kangourou. Il pourrait s’agir d’une extrémité ordinaire. Demandez une vue où la poche repose sans tension. Si les deux couches restent solidaires et la rangée de points continue, décrivez un fil apparent. Si le coin bâille et que la couture s’interrompt au même endroit, demandez la vérification de cet assemblage précis."
+      ],
+      [
+        "Décider à partir de l’observation",
+        "Si la ligne reste fermée et que seul un détail esthétique vous gêne, évaluez-le selon votre propre usage. Si l’assemblage s’ouvre à une zone sollicitée, gardez la référence et les vues utiles, puis demandez les possibilités pour cet achat. Si seule une ombre apparaît, présentez-la comme une incertitude. Une photo supplémentaire bien cadrée vous apprendra davantage qu’une accusation générale sur la qualité de toute la pièce."
+      ]
+    ]
+  },
+  "kakobuy-alignment-symmetry-print-placement-qc": {
+    "title": "QC Kakobuy – symétrie, alignement et position du motif",
+    "description": "Utilisez les repères du vêtement, neutralisez la perspective et vérifiez un motif apparemment décentré sur la variante commandée.",
+    "h1": "QC Kakobuy – symétrie, alignement et position du motif",
+    "intro": "Une inscription peut sembler oblique parce que l’appareil a été incliné. À l’inverse, une photo bien centrée peut masquer un motif réellement décalé sur le vêtement. Partez de la construction de l’article et des repères que vous pouvez retrouver dans plusieurs vues.",
+    "sections": [
+      [
+        "Définir un axe et deux repères horizontaux",
+        "Pour un tee-shirt, cherchez le milieu du col, celui de l’ourlet et les deux emmanchures. Sur une veste, une fermeture droite correctement disposée peut fournir un axe central. Le bord du sol ou le milieu de l’image ne sont pas des repères du vêtement. Vérifiez que les épaules sont déployées de manière comparable et que l’ourlet n’est pas remonté d’un côté."
+      ],
+      [
+        "Comparer avec la bonne version",
+        "Certains motifs sont volontairement décentrés. Un imprimé de poitrine placé à gauche n’a pas vocation à être à la même distance des deux coutures latérales. Consultez les vues de la couleur et de la version achetées. Sur un modèle rayé, vérifiez si le raccord que vous attendez existe aussi sur le visuel de référence. Une autre saison ou une autre variante peut avoir une implantation différente."
+      ],
+      [
+        "Séparer position, rotation et déformation",
+        "Regardez d’abord où commence le motif. Examinez ensuite son orientation par rapport à l’axe choisi, puis la forme des lettres ou du dessin. Un pli peut déformer une lettre sans que l’impression ait été posée de travers. Si un écart vous semble important, indiquez les deux distances que vous souhaitez comparer sur la pièce. Sans échelle lisible, ne transformez pas un nombre de pixels en centimètres ou en tolérance de fabrication."
+      ],
+      [
+        "Adapter la vue à l’article",
+        "Pour deux chaussures, demandez une vue arrière à hauteur égale et une vue de dessus. Sur un sac posé droit, les pieds d’anse peuvent servir de points comparables. Pour un maillot, utilisez col, épaules et bord inférieur. Si un doute subsiste, demandez une photo perpendiculaire à la pièce, montrant ensemble l’axe de référence et le détail discuté. Plusieurs gros plans pris de biais reproduiraient le même problème."
+      ],
+      [
+        "Une inscription inclinée sur un maillot",
+        "Le numéro dans le dos semble pencher à droite. Le col et le bas du maillot penchent aussi par rapport au cadre. Reliez mentalement leur milieu respectif : si l’axe du numéro suit cette même ligne, une part de l’impression vient du cadrage. Si le numéro reste incliné par rapport à une pièce correctement déployée, demandez une vérification du placement en joignant cette vue."
+      ],
+      [
+        "Décrire l’écart sans le généraliser",
+        "« Sur la vue de face de [référence], l’extrémité gauche du texte est à hauteur de [repère], la droite semble plus basse. La variante achetée montre une ligne horizontale. Pouvez-vous vérifier le placement ? » Joignez les deux vues. Si l’impression ne paraît oblique que sur une photo inclinée, dites-le. La relation entre deux repères est plus facile à contrôler qu’une affirmation selon laquelle toute la pièce est de travers."
+      ]
+    ]
+  },
+  "kakobuy-size-measurement-qc-photo-limits": {
+    "title": "Lire les mesures sur une photo QC Kakobuy",
+    "description": "Repérez les limites du mètre, comparez les mesures à plat et formulez une demande de nouvelle mesure sans confondre taille et coupe.",
+    "h1": "Lire les mesures sur une photo QC Kakobuy",
+    "intro": "Un chiffre bien lisible au bout d’un mètre n’est utile que si l’on sait où la mesure a commencé. La largeur au niveau des aisselles, la longueur d’un ourlet courbe et celle d’une semelle extérieure peuvent être faciles à lire, mais répondent à des questions très différentes. Comparez d’abord les méthodes, ensuite les valeurs.",
+    "sections": [
+      [
+        "Choisir une référence qui mesure la même chose",
+        "Relisez le tableau associé à la variante commandée. S’agit-il des mensurations d’une personne ou des dimensions du produit fini ? La matière est-elle posée au repos ou extensible ? Une veste doublée dont la largeur extérieure vous convient peut laisser moins de place à l’intérieur. Pour votre décision personnelle, mesurez un article comparable qui vous va, en adoptant la même méthode que celle du vendeur."
+      ],
+      [
+        "Voir le départ, l’arrivée et l’unité",
+        "Une bonne vue montre le zéro, le point d’arrivée et les graduations. Si le mètre commence hors cadre, même un gros plan très net du dernier chiffre ne résout pas le problème. Un ruban placé en diagonale ou soulevé au-dessus du tissu peut mesurer une autre distance. Demandez une vue d’ensemble prise de dessus et, si nécessaire, un détail du chiffre final permettant de retrouver la même prise."
+      ],
+      [
+        "Distinguer largeur, longueur et tour",
+        "La largeur à plat d’un haut se mesure par exemple d’une couture d’aisselle à l’autre. La doubler donne une approximation géométrique du pourtour du vêtement, pas le tour de poitrine d’une personne. Pour une manche, le point de départ peut être la couture d’épaule ou le col. Sur un raglan, la couture d’épaule traditionnelle manque. Précisez le trajet avant de comparer les chiffres avec le tableau."
+      ],
+      [
+        "Traiter les chaussures à part",
+        "Pointure d’étiquette, semelle extérieure et première de propreté apportent des informations différentes. Si la semelle intérieure est amovible, demandez sa longueur posée à plat, avec le talon et l’extrémité la plus longue visibles. Il ne faut pas arracher une semelle collée pour obtenir l’image. Comparez avec une chaussure de forme similaire et gardez en tête que deux longueurs égales ne garantissent ni la même largeur ni le même maintien."
+      ],
+      [
+        "Une même unité, deux mesures différentes",
+        "La ligne du tableau concerne le dessous des aisselles mais, sur la photo, le ruban traverse le vêtement plus bas, à hauteur de taille. Même si les deux chiffres sont en centimètres, ils ne décrivent pas la même largeur, notamment sur un modèle cintré. Demandez le bon emplacement avant de calculer un écart et gardez la vue permettant de retrouver le point de départ."
+      ],
+      [
+        "Remplacer seulement la vue inexploitable",
+        "« Merci de poser [référence] sans tension et de mesurer [distance], depuis [départ] jusqu’à [arrivée], en centimètres. Je souhaite la comparer à [ligne du tableau]. » Conservez la méthode avec la photo. Un petit écart apparent peut tenir à l’angle ou au placement du ruban. Si un écart clair subsiste à méthode égale, faites vérifier la variante avant de faire partir l’article à l’international."
+      ]
+    ]
+  },
+  "kakobuy-qc-color-lighting-errors": {
+    "title": "Couleur sur une photo QC Kakobuy – éclairage ou mauvaise variante ?",
+    "description": "Vérifiez code couleur, ombres et reflets avant de signaler un écart entre le visuel vendeur et la photo de l’entrepôt.",
+    "h1": "Couleur sur une photo QC Kakobuy – éclairage ou mauvaise variante ?",
+    "intro": "L’annonce montre une veste olive et la photo d’entrepôt paraît brune. Pour chercher l’origine de la différence, distinguez la variante choisie, la surface réellement photographiée et le rendu sur votre écran. Un éclairage mixte peut déjà produire plusieurs teintes sur une seule pièce.",
+    "sections": [
+      [
+        "Partir de l’option achetée",
+        "Conservez le nom et, lorsqu’il existe, le code couleur figurant dans votre sélection. Comparez-les à l’indication lisible sur la pièce ou sur une étiquette clairement associée. Les noms commerciaux tels que « pierre » ou « graphite » ne constituent pas des références colorimétriques normalisées. Si un code lisible diffère, vous avez un élément plus précis à faire vérifier qu’une impression générale de couleur trop chaude."
+      ],
+      [
+        "Examiner la photo entière",
+        "Observez les zones claires et les éléments supposés neutres sans les traiter comme une charte calibrée. Si toutes les surfaces blanches tirent vers le jaune, l’éclairage ou la balance des blancs peut affecter l’ensemble. Une ombre froide peut faire paraître une manche noire presque marine. Cherchez le même détail dans une autre zone de l’image ou sur une seconde vue avant de conclure."
+      ],
+      [
+        "Tenir compte de la surface et de l’angle",
+        "Le satin, le métal poli et les matières à poil peuvent changer fortement de luminosité quand l’angle varie. Un tissu brossé peut même présenter deux bandes de clarté différente selon le sens du poil. Voyez si la zone claire suit la lumière entre deux photos. Un contraste qui reste le long d’une même couture mérite une vérification ciblée, surtout si les deux panneaux devraient être dans la même matière."
+      ],
+      [
+        "Demander une comparaison suffisamment contrôlée",
+        "« Pour [référence], pourriez-vous montrer toute la face avant et le code couleur sous une lumière régulière, sans reflet direct ? Sur la vue actuelle, la manche gauche se trouve entièrement dans l’ombre. » Évitez les demandes vagues de photos plus jolies ou plus saturées. Une vue large permet de voir si les deux parties sont exposées de la même manière, tandis que le gros plan sert à lire le code."
+      ],
+      [
+        "Comparer deux pièces d’un ensemble",
+        "Le haut et le bas d’un ensemble paraissent de deux verts différents sur des photos séparées. Si les deux pièces sont accessibles ensemble, demandez une photo sur le même fond dans la même lumière. Comparez d’abord deux panneaux de matière similaire. Un bord-côte peut naturellement renvoyer la lumière différemment du tissu principal. Un contraste persistant entre deux panneaux comparables est plus exploitable."
+      ],
+      [
+        "Qualifier le résultat",
+        "Écrivez séparément un code incorrect, un désaccord entre deux éléments d’un ensemble et une simple différence de luminosité par rapport à l’annonce. En présence d’un code clairement différent, demandez de vérifier la variante livrée. Pour une nuance subtile, décidez si l’incertitude reste importante pour votre usage. Une capture d’écran sur un écran non calibré ne fournit pas la couleur exacte que vous verrez dehors."
+      ]
+    ]
+  },
+  "kakobuy-material-texture-qc-evidence": {
+    "title": "Matière et texture sur les photos QC Kakobuy",
+    "description": "Comparez reliefs, revêtements et défauts visibles sans déduire la composition, le toucher ou la résistance d’un simple gros plan.",
+    "h1": "Matière et texture sur les photos QC Kakobuy",
+    "intro": "Une texture qui semble grossière peut venir de l’accentuation de l’image. À l’inverse, une lumière frontale peut effacer le relief d’une matière travaillée. Servez-vous des photos pour décrire des indices visibles et poser une question concrète. Elles ne remplacent ni une étiquette de composition ni l’examen du produit en main.",
+    "sections": [
+      [
+        "Identifier la partie de l’article",
+        "Situez d’abord la variante et la zone. L’extérieur d’une veste, sa doublure et son bord-côte peuvent volontairement être réalisés dans des matières différentes. Comparez la zone à la partie correspondante de l’option achetée. Le gros plan d’une parementure intérieure ne dit pas grand-chose sur l’extérieur. Une vue générale avec des coutures reconnaissables aide à rattacher un détail non légendé à la bonne pièce."
+      ],
+      [
+        "Décrire la surface sans deviner les fibres",
+        "Vous pouvez décrire des côtes visibles, une trame apparente ou un revêtement irrégulier. Ces indices ne permettent pas de déterminer avec certitude le pourcentage précis d’une fibre. La douceur, la respirabilité et la résistance dans le temps ne sont pas davantage des observations photographiques sûres. Pour comparer une composition annoncée, demandez une image lisible de l’étiquette et conservez cette déclaration séparément de vos observations."
+      ],
+      [
+        "Vérifier l’effet de la lumière et de la compression",
+        "Sur un tissu gratté, les poils orientés différemment peuvent donner des bandes plus sombres. La compression numérique peut transformer une trame régulière en quadrillage ou en taches. Cherchez la même zone dans une seconde vue. Si le motif disparaît en changeant d’angle, le dommage permanent n’est pas établi. Si une limite nette revient au même endroit, demandez un gros plan sous une lumière plus diffuse."
+      ],
+      [
+        "Regarder les jonctions",
+        "Examinez les raccords entre matières, par exemple au bord d’une poche, le long d’une fermeture ou près d’un poignet. Cherchez un décollement visible, un assemblage ouvert ou une abrasion déjà présente. Une tranche volontairement brute ou un renfort prévu par le modèle peut être rugueux sans être défectueux. Évitez les essais de grattage, de traction ou d’eau lorsqu’une comparaison visuelle suffit à votre décision."
+      ],
+      [
+        "Un exemple près d’une boucle",
+        "Une petite zone mate apparaît à côté d’une boucle métallique brillante. Demandez la même zone avec la boucle visible sous un autre angle. Si la tache lumineuse se déplace, un reflet explique peut-être le premier aspect. Si son contour reste au même endroit, un gros plan peut préciser l’état de surface. Vous pouvez ainsi décrire l’incertitude sans attribuer d’emblée un type de cuir ou de revêtement."
+      ],
+      [
+        "Garder une observation exploitable",
+        "« Sur [référence], la zone près de la fermeture apparaît mate dans l’image [numéro]. Pourriez-vous la montrer dans son contexte puis de près, sans reflet direct ? » À réception, séparez trois possibilités : un écart visible, une question sur l’étiquette ou une impression encore incertaine. Évitez les conclusions sur l’authenticité, la qualité exacte ou les performances que ni les images ni les indications disponibles ne permettent d’établir."
+      ]
+    ]
+  },
+  "kakobuy-shoe-qc-checklist": {
+    "title": "QC chaussures Kakobuy – paire, étiquette et semelle intérieure",
+    "description": "Comparez les deux chaussures sur des vues comparables et demandez une mesure de semelle qui réponde vraiment à votre question de pointure.",
+    "h1": "QC chaussures Kakobuy – paire, étiquette et semelle intérieure",
+    "intro": "Gardez la commande à côté de la fiche d’entrepôt. Vérifiez le modèle, le coloris, la pointure et le contenu de l’offre. Une vue de profil très nette du pied gauche donne peu d’informations sur le talon droit, la bonne étiquette ou les accessoires qui auraient dû accompagner la paire.",
+    "sections": [
+      [
+        "Voir les deux pieds dans la même position",
+        "Pour examiner la forme, recherchez une vue commune de dessus et une vue arrière bien centrée. Les chaussures doivent se trouver sur le même plan, à distance comparable de l’objectif et avec un laçage similaire. Un pied tourné peut paraître plus court ou plus large. Comparez ensuite boîte à orteils, hauteur des talons et ligne des semelles en utilisant le même point de construction à gauche et à droite."
+      ],
+      [
+        "Lire les étiquettes des chaussures",
+        "Comparez le marquage sur l’article avec votre sélection. Si plusieurs systèmes de pointure sont présents, vérifiez la bonne colonne. Une boîte étiquetée correctement reste un indice supplémentaire ; elle ne remplace pas l’étiquette intérieure. Si les pieds semblent dépareillés, demandez de voir les deux marquages avec une identification claire de la chaussure correspondante. Regardez aussi le code modèle ou coloris lorsqu’il est indiqué."
+      ],
+      [
+        "Faire mesurer la bonne longueur",
+        "« Si la semelle intérieure de [référence] se retire sans dommage, pourriez-vous la photographier à plat près d’un mètre, du talon au point le plus long, avec les graduations en centimètres visibles ? » Comparez ensuite avec la première de propreté d’une paire personnelle de forme voisine. Longueur de semelle extérieure, pointure annoncée et espace intérieur sont des informations différentes. Une même longueur ne garantit pas la largeur ni la hauteur nécessaire aux orteils."
+      ],
+      [
+        "Examiner collage, coutures et accessoires",
+        "Suivez la jonction entre tige et semelle intermédiaire sur chaque pied. Un reflet le long d’un collage brillant ne ressemble pas à un écart qui reste visible au même endroit sous un autre angle. Demandez une vue de la semelle d’usure si le motif ou la version compte pour votre achat. Vérifiez les lacets de rechange et accessoires contre votre option précise. Un élément invisible peut encore être dans l’emballage."
+      ],
+      [
+        "Un exemple quand la pointure correspond",
+        "La boîte et les deux chaussures portent la pointure choisie mais l’avant paraît plus étroit que votre paire habituelle. Un autre cliché de la boîte ne vous aidera guère. Demandez les chaussures ensemble vues de dessus et, si elle est amovible, la longueur de la semelle intérieure. Une longueur comparable et une pointe plus étroite soulèvent une question de confort, même en l’absence d’erreur de variante."
+      ],
+      [
+        "Limiter la demande à la décision ouverte",
+        "Pour un talon paraissant incliné, demandez les deux talons ensemble de dos. Pour une étiquette différente, joignez l’option achetée et faites vérifier la variante. Pour une boîte légèrement marquée, décidez si elle compte pour votre usage. Les photos documentent les caractéristiques visibles. Elles ne permettent pas de vérifier avec certitude le confort, la tenue du collage dans la durée ni l’authenticité de la paire."
+      ]
+    ]
+  },
+  "kakobuy-qc-finder-vs-warehouse-photos": {
+    "title": "QC Finder Kakobuy ou photos d’entrepôt – quelle image utiliser ?",
+    "description": "Distinguez les photos publiques de référence de celles de votre propre article et utilisez chaque source pour la décision qu’elle peut éclairer.",
+    "h1": "QC Finder Kakobuy ou photos d’entrepôt – quelle image utiliser ?",
+    "intro": "Une recherche QC à partir du lien produit peut révéler des angles absents de l’annonce avant l’achat. Après l’achat, la galerie d’entrepôt se rapporte à une ligne précise de votre commande. Deux photos portant le même nom de modèle peuvent néanmoins montrer une autre couleur, une version différente ou des fabrications éloignées dans le temps.",
+    "sections": [
+      [
+        "Avant l’achat, vérifier le lien avec le produit",
+        "Comparez le vendeur, l’identifiant et la déclinaison, pas seulement le nom commercial. Notez la taille et la couleur que la photo de référence permet de reconnaître et celles qui restent incertaines. Une image de la chaussure noire peut montrer où se trouve le marquage de pointure. Elle renseigne moins sur la teinte d’une paire grise. Si le rattachement au modèle est fragile, utilisez la photo comme orientation générale."
+      ],
+      [
+        "Tenir compte de l’âge de la référence",
+        "Une même annonce peut évoluer et proposer de nouvelles variantes. Une photo ancienne peut aider à comprendre une coupe ou à repérer un détail à contrôler. Elle n’identifie pas le lot de votre future commande. L’absence d’images publiques ne démontre pas un défaut. Réciproquement, une galerie soignée d’un achat antérieur ne prouve pas que votre propre pièce arrivera sans problème."
+      ],
+      [
+        "Après l’arrivée, repartir de votre commande",
+        "Ouvrez la galerie depuis la fiche et comparez sa référence à votre option. C’est ainsi que vous rattachez une fermeture abîmée, un accessoire manquant ou une étiquette différente à votre exemplaire. Conservez l’image précise avec sa référence si vous devez contacter le service client. Une vue publique peut aider à expliquer l’aspect attendu. Elle ne remplace pas la preuve de ce qui est visible sur votre pièce."
+      ],
+      [
+        "Comparer les angles avant de comparer les détails",
+        "Choisissez le même côté et la même zone. Un sac photographié rempli ne prend pas la même forme qu’un sac souple posé à plat. Sur un vêtement, plis et éclairage modifient le rendu des coutures et de l’impression. Si un détail déterminant n’apparaît que sur la référence publique, demandez cet angle pour votre exemplaire, au lieu de déclarer un défaut sur la seule base d’un cadrage différent."
+      ],
+      [
+        "Deux boucles différentes sur le même lien vendeur",
+        "Une galerie publique montre un sac à boucle argentée ; votre galerie personnelle montre une boucle foncée. Vérifiez d’abord si le vendeur propose deux finitions et laquelle a été achetée. Si le choix est clair, un second angle de votre sac permettra de distinguer reflet et différence réelle. La référence publique a fait émerger la question. Votre sélection et vos images permettent ensuite d’étayer la réponse."
+      ],
+      [
+        "Prendre la décision avec la bonne source",
+        "Avant l’achat, la recherche permet de préparer une liste de questions : quelle mesure compte, quel accessoire doit être présent, où lire le code ? Après l’enregistrement en stock, votre galerie permet de décider entre expédition, clarification et démarche après-vente. Si aucune photo de votre propre achat n’apparaît, vérifiez la fiche et son rattachement. Accumuler les photos de commandes d’autres clients ne résout pas cette absence."
+      ]
+    ]
+  },
+  "kakobuy-hoodie-qc-checklist": {
+    "title": "QC sweat à capuche Kakobuy – mesures, manches et imprimé",
+    "description": "Vérifiez largeur de poitrine, construction des manches, position du motif, capuche et coutures sur les photos de votre hoodie.",
+    "h1": "QC sweat à capuche Kakobuy – mesures, manches et imprimé",
+    "intro": "Un sweat ample n’est pas coupé comme un modèle ajusté à fermeture. Commencez par l’option commandée et gardez à côté un vêtement de coupe similaire qui vous convient. Contrôlez le coloris, le type de capuche et la présence ou l’absence de fermeture avant d’interpréter les dimensions.",
+    "sections": [
+      [
+        "Mesurer la poitrine et la longueur de manière cohérente",
+        "Posez le haut à plat, sans tension. Pour la largeur de poitrine, les points sous les aisselles doivent être à hauteur comparable. Pour la longueur, précisez le départ : haut de l’épaule ou milieu de l’encolure dans le dos. Utilisez la même méthode pour le tableau, le vêtement de référence et la photo QC. Incluez le bord-côte inférieur uniquement si les deux relevés le comptent de la même façon."
+      ],
+      [
+        "Décrire la construction de la manche",
+        "Une emmanchure descendue réduit la longueur mesurée depuis la couture sans nécessairement raccourcir la manche portée. Un raglan n’a pas le repère d’une manche montée classique. Demandez au besoin la distance du col au poignet et identifiez clairement cette méthode. Ne la comparez pas directement à une valeur prise depuis l’épaule. Un poignet étiré ou un bout de mètre masqué peut aussi fausser l’interprétation."
+      ],
+      [
+        "Situer l’impression sur le vêtement",
+        "Repérez le milieu de l’encolure et celui du bas. Examinez le motif par rapport à ces points, pas par rapport au cadre. Une poche kangourou peut fournir d’autres repères si elle est correctement déployée. Un pli peut pencher des lettres ou couper visuellement le dessin. Demandez une photo perpendiculaire, devant lissé sans étirer le tissu, avant de signaler une impression posée de travers."
+      ],
+      [
+        "Examiner capuche, poche et bords-côtes",
+        "Contrôlez les cordons, les œillets et la doublure de capuche selon la version choisie. Regardez les angles de poche et les raccords des poignets et du bas. Un gros plan est utile si une couche de tissu se soulève précisément à une jonction. Distinguez l’extrémité du cordon d’un fil de couture. Vous ne pouvez pas déduire avec certitude le poids du tissu ou son pouvoir isolant de son seul aspect."
+      ],
+      [
+        "Un hoodie à emmanchure descendue",
+        "La manche de votre futur sweat paraît courte depuis la couture d’épaule, mais cette couture descend beaucoup sur le bras. Comparez la distance totale du col au poignet avec celle d’un sweat de coupe voisine. Ajoutez largeur de poitrine et longueur du corps si nécessaire. Ces trois indications complètent l’interprétation de la coupe ; une courte mesure prise depuis une couture très basse ne suffit pas à elle seule."
+      ],
+      [
+        "Formuler une demande utilisable",
+        "« Pour le hoodie [référence], merci de montrer la largeur à plat d’une couture d’aisselle à l’autre et une vue droite du devant avec le col et l’ourlet. Ne pas étirer le tissu ni les poignets. » Supprimez la partie déjà documentée. Pour une erreur manifeste de variante, joignez plutôt la sélection et l’étiquette. Pour un doute de coupe, une mesure comparable est plus utile qu’une nouvelle série de vues générales."
+      ]
+    ]
+  },
+  "kakobuy-bag-qc-checklist": {
+    "title": "QC sac Kakobuy – dimensions, bouclerie, doublure et sangle",
+    "description": "Vérifiez forme, ouverture utile, attaches et contenu livré sans confondre reflets de métal et défauts permanents.",
+    "h1": "QC sac Kakobuy – dimensions, bouclerie, doublure et sangle",
+    "intro": "Consultez la variante achetée. Un seul lien vendeur peut réunir plusieurs tailles, des bandoulières différentes ou un ensemble avec petite pochette. Notez ce que votre option inclut. La photo d’une autre version ne suffit pas à signaler une pièce manquante.",
+    "sections": [
+      [
+        "Choisir les dimensions utiles à votre usage",
+        "Si vous voulez transporter un objet précis, la largeur d’ouverture et le passage le plus étroit peuvent compter davantage que la largeur extérieure du fond. Demandez la hauteur, la largeur ou la profondeur avec des points de mesure explicites. La hauteur des anses ne correspond pas à celle du corps du sac. Pour un porté épaule, la distance libre entre l’anse et le bord supérieur peut être plus utile que la longueur totale de la lanière."
+      ],
+      [
+        "Examiner la forme en tenant compte de l’emballage",
+        "Un sac souple vide peut s’affaisser d’un côté. Cherchez les vues de profil, du fond et du dos avant d’interpréter un panneau comme définitivement déformé. Comparez les coutures et points d’attache à la même hauteur. Sur un modèle rigide, repérez les plis qui restent visibles au même endroit sur plusieurs vues. Demandez si nécessaire une photo en position droite sans imposer de charge à la pièce."
+      ],
+      [
+        "Regarder les anses et la bouclerie",
+        "Contrôlez les pieds d’anse, passants, mousquetons et positions de réglage prévues. Un point brillant sur une boucle polie peut être un reflet ou un film protecteur. Pour une zone importante, demandez un second angle en conservant un repère sur le sac. Une photo peut montrer une vis absente ou une couture ouverte. Elle n’indique pas quel poids une anse apparemment intacte pourra supporter à long terme."
+      ],
+      [
+        "Vérifier l’intérieur et les éléments livrés",
+        "Si l’ouverture est accessible, comparez la doublure, les finitions visibles et la disposition des poches. Quand la sangle amovible ne figure pas sur la vue extérieure, demandez si elle est rangée dans un compartiment ou emballée à part. Vérifiez d’abord qu’elle est incluse dans l’option achetée. Pour une pièce scellée, faites préciser les possibilités et les conséquences d’une ouverture avant de la demander."
+      ],
+      [
+        "Le cas d’une pochette rigide à transporter",
+        "La base du sac paraît assez large pour votre pochette de documents, mais le zip s’arrête avant les deux côtés. Demandez la largeur de passage libre entre les extrémités du zip et regardez si une séparation intérieure réduit encore le passage. Une photo avec le ruban placé à l’ouverture répond plus directement à votre besoin qu’une nouvelle mesure du dessous du sac."
+      ],
+      [
+        "Regrouper les observations utiles",
+        "« Pour le sac [référence], je ne distingue pas l’attache arrière droite de l’anse. Pourriez-vous montrer le dos entier puis cette attache de plus près sous un autre angle ? La variante comprend aussi [élément]. Pouvez-vous vérifier le contenu ? » Retirez le second point s’il est déjà résolu. Comparez la réponse aux caractéristiques nécessaires pour votre usage avant de décider si vous souhaitez faire partir la pièce."
+      ]
+    ]
+  },
+  "kakobuy-jacket-qc-checklist": {
+    "title": "QC veste Kakobuy – mesures, fermeture et doublure",
+    "description": "Contrôlez épaules, manches, ligne du devant et finitions intérieures à partir de vues d’entrepôt adaptées à votre veste.",
+    "h1": "QC veste Kakobuy – mesures, fermeture et doublure",
+    "intro": "Une veste doublée destinée à être portée sur plusieurs couches ne se compare pas à un coupe-vent fin. Choisissez une pièce personnelle de même usage, puis vérifiez la construction de la version achetée. Capuche amovible, type de fermeture et doublures différentes peuvent se trouver sous une même annonce.",
+    "sections": [
+      [
+        "Relier poitrine, épaules et épaisseur",
+        "Comparez la largeur à plat au niveau des aisselles. Les deux vestes doivent être mesurées avec la même méthode et dans le même état de fermeture. Une doublure épaisse peut réduire l’espace intérieur à dimension extérieure égale. Utilisez le tableau de la variante et votre veste de référence. La lettre de taille seule ne permet pas de déterminer la place restante pour un pull."
+      ],
+      [
+        "Identifier le départ de la manche",
+        "Précisez si la mesure part de la couture d’épaule, du haut de l’épaule ou du col. Avec une épaule tombante ou une manche raglan, ces trajets ne sont pas interchangeables. Si vous portez des gants, l’ouverture du poignet et sa fermeture peuvent aussi avoir de l’importance. Sur une vue de face, deux manches légèrement différentes en apparence peuvent simplement être repliées sous des angles différents."
+      ],
+      [
+        "Contrôler l’alignement du devant",
+        "En cas de ligne oblique, demandez une photo prise perpendiculairement, veste posée à plat, fermeture principale correctement disposée si le modèle s’y prête. Comparez col, bas et entrées de poche par rapport au milieu. Certaines vestes ont une patte volontairement asymétrique. Vérifiez la construction de la référence commandée plutôt qu’une symétrie théorique. La photo montre le tracé du zip, pas sa durabilité ni sa fluidité au quotidien."
+      ],
+      [
+        "Examiner doublure, poches et raccords",
+        "Regardez si une couture intérieure s’ouvre, si une partie du bas se détache ou si un élément de capuche manque visiblement. Une seule vue intérieure ciblée suffit souvent pour un doute précis. Un garnissage comprimé par l’emballage ne prouve pas qu’une zone est vide. L’imperméabilité, la chaleur et la quantité exacte de rembourrage ne se déduisent pas de manière fiable d’une galerie."
+      ],
+      [
+        "Un bas de veste qui semble décalé",
+        "La partie avant droite paraît plus courte, mais un bord du bas est replié et la fermeture se trouve en diagonale. Faites vérifier la veste posée à plat avec les deux côtés dégagés. Un modèle volontairement plus long dans le dos doit être comparé gauche contre droite, pas devant contre dos. Si l’écart persiste, demandez deux longueurs prises depuis le même repère d’épaule jusqu’aux points correspondants du bas."
+      ],
+      [
+        "Décider avant de choisir l’emballage",
+        "Si un seul chiffre manque, demandez la distance concernée et les deux extrémités du mètre. Si un élément de construction identifiable diffère de la version choisie, associez la photo à la preuve de sélection et demandez une vérification. Réglez d’abord cette question, puis choisissez la protection et l’expédition internationale. Des éléments structurés fragiles peuvent justifier des précautions, une fois la veste elle-même acceptée."
+      ]
+    ]
+  }
+}

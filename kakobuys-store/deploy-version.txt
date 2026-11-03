@@ -1,4 +1,2 @@
-kakobuys.store SEO and editorial release
-Release: 2026-10-06-qc-guides-v2
-Articles: 16 English guides; 4 new; 3 core guides improved
-Automation: existing single-site exclusion preserved
+kakobuys.store editorial release
+2026-11-03 — 18 guides in each of 8 languages

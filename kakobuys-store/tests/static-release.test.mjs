@@ -3,9 +3,10 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
 import { newArticles } from '../app/article-expansion.ts';
+import { localeCodes, newSlugs } from '../app/editorial.ts';
 
-test('new guides are complete, linked from every English hub and exported without hydration', async () => {
-  const hubs = await Promise.all(['index.html', 'qc-hub/index.html', 'guides/index.html', 'articles/index.html'].map(path => readFile(new URL(`../${path}`, import.meta.url), 'utf8')));
+test('category guides retain complete English text and links from topic and article directories', async () => {
+  const hubs = await Promise.all(['qc-hub/index.html', 'guides/index.html', 'articles/index.html'].map(path => readFile(new URL(`../${path}`, import.meta.url), 'utf8')));
   for (const article of newArticles) {
     const html = await readFile(new URL(`../${article.slug}/index.html`, import.meta.url), 'utf8');
     const count = [article.intro, article.quickAnswer, ...article.sections.flatMap(s => [s.heading, ...s.paragraphs])].join(' ').split(/\s+/).length;
@@ -29,7 +30,7 @@ test('analytics initializes once and records the catalog click and search', asyn
   }
   const context = vm.createContext({
     window: {}, Element, HTMLFormElement, URL, Date,
-    location: { href: 'https://kakobuys.store/', pathname: '/' },
+    location: { href: 'https://kakobuys.store/', origin: 'https://kakobuys.store', pathname: '/' },
     document: { createElement: () => ({}), head: { appendChild() {} }, addEventListener: (name, handler) => { handlers[name] = handler; } }
   });
   const code = await readFile(new URL('../public/analytics-v2.js', import.meta.url), 'utf8');
@@ -37,6 +38,29 @@ test('analytics initializes once and records the catalog click and search', asyn
   vm.runInContext(code, context);
   handlers.click({ target: new Element() });
   handlers.submit({ target: new HTMLFormElement() });
+  class GuideLink extends Element {
+    constructor(){super();this.href='https://kakobuys.store/fr/kakobuy-extra-qc-photos/';}
+    closest(selector){return selector==='a'?this:{dataset:{guideEntry:'home'}};}
+  }
+  handlers.click({target:new GuideLink()});
+  const selection=context.window.dataLayer.find(args=>args[1]==='select_guide');
+  assert.equal(selection[2].guide_path,'/fr/kakobuy-extra-qc-photos/');
+  assert.equal(selection[2].entry_point,'home');
   assert.equal(context.window.dataLayer.filter(a => a[0] === 'config').length, 1);
-  assert.equal(JSON.stringify(context.window.dataLayer.filter(a => a[0] === 'event').map(a => a[1])), JSON.stringify(['outbound_catalog_click', 'catalog_search']));
+  assert.equal(JSON.stringify(context.window.dataLayer.filter(a => a[0] === 'event').map(a => a[1])), JSON.stringify(['outbound_catalog_click', 'catalog_search', 'select_guide']));
+});
+
+test('each language publishes both new guides with a local entry link and reciprocal alternates', async () => {
+  for (const lang of localeCodes) {
+    const prefix = lang === 'en' ? '' : lang + '/';
+    const dir = await readFile(new URL('../' + prefix + 'articles/index.html', import.meta.url),'utf8');
+    assert.equal((dir.match(/<article>/g) ?? []).length,18);
+    for (const slug of newSlugs) {
+      assert.ok(dir.includes('href="/' + prefix + slug + '/"'));
+      const page = await readFile(new URL('../' + prefix + slug + '/index.html',import.meta.url),'utf8');
+      assert.ok(page.includes('<html lang="' + lang + '"'));
+      assert.equal((page.match(/rel="alternate"/g) ?? []).length,9);
+      assert.ok(page.includes('"inLanguage":"' + lang + '"'));
+    }
+  }
 });

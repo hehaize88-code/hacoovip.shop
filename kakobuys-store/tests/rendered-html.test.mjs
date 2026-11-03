@@ -119,8 +119,8 @@ test("homepage aligns the title, heading and WebSite data to the QC decision lan
   );
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /Kakobuy QC Checklist 2026: Photos, Sizing (?:&amp;|&) Returns/);
-  assert.match(html, /Kakobuy QC[\s\S]*Check Before Shipping/);
+  assert.match(html, /Kakobuy QC Photos: Read Your Warehouse Pictures Before Shipping/);
+  assert.match(html, /How to read your Kakobuy QC photos/);
   assert.match(html, /"@type":"WebSite"/);
   assert.match(html, />QC Research</);
   assert.doesNotMatch(html, />SEO Articles</);
@@ -130,7 +130,7 @@ test("route hubs expose unique canonical metadata and language alternates", asyn
   const worker = await loadWorker();
   const cases = [
     ["/articles", "Kakobuy QC Research: Risk, Sizing and Warehouse Decisions", "https://kakobuys.store/articles/"],
-    ["/de/qc-hub", "Kakobuy QC-Checkliste", "https://kakobuys.store/de/qc-hub/"],
+    ["/de/qc-hub", "QC-Checklisten", "https://kakobuys.store/de/qc-hub/"],
   ];
 
   for (const [path, title, canonical] of cases) {
@@ -201,7 +201,7 @@ test("FAQ renders thirteen localized questions, related guides and FAQPage data"
   }
 });
 
-test("English article center includes all English-only guides", async () => {
+test("English article center includes all eighteen guides", async () => {
   const worker = await loadWorker();
   const center = await worker.fetch(
     new Request("http://localhost/articles", { headers: { accept: "text/html" } }),
@@ -209,7 +209,7 @@ test("English article center includes all English-only guides", async () => {
     { waitUntil() {}, passThroughOnException() {} },
   );
   const centerHtml = await center.text();
-  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 16);
+  assert.equal((centerHtml.match(/<article>/g) ?? []).length, 18);
   assert.match(centerHtml, /Kakobuy Warehouse Storage Guide/);
   assert.match(centerHtml, /Kakobuy Returns and After-Sales Checklist/);
   assert.match(centerHtml, /Kakobuy Stitching and Finish QC Checklist/);
@@ -442,7 +442,7 @@ test("production page routing returns real 404s for false article paths", async 
   const pagesWorkerUrl = new URL("../_worker.js", import.meta.url);
   pagesWorkerUrl.searchParams.set("routing", `${process.pid}-${Date.now()}`);
   const pagesWorker = (await import(pagesWorkerUrl.href)).default;
-  const validAssets = new Set(["/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/kakobuy-qc-color-lighting-errors/", "/kakobuy-material-texture-qc-evidence/", "/kakobuy-shoe-qc-checklist/", "/kakobuy-qc-finder-vs-warehouse-photos/", "/finds/", "/find-5756/"]);
+  const validAssets = new Set(["/de/kakobuy-warehouse-storage-guide/", "/kakobuy-warehouse-storage-guide/", "/kakobuy-returns-after-sales-checklist/", "/kakobuy-stitching-finish-qc-checklist/", "/kakobuy-alignment-symmetry-print-placement-qc/", "/kakobuy-size-measurement-qc-photo-limits/", "/kakobuy-qc-color-lighting-errors/", "/kakobuy-material-texture-qc-evidence/", "/kakobuy-shoe-qc-checklist/", "/kakobuy-qc-finder-vs-warehouse-photos/", "/finds/", "/find-5756/"]);
   const env = { ASSETS: { fetch: async (request) => {
     const path = new URL(request.url).pathname;
     return validAssets.has(path)
@@ -450,7 +450,7 @@ test("production page routing returns real 404s for false article paths", async 
       : new Response("<!doctype html><title>Page Not Found</title>", { status: 404, headers: { "content-type": "text/html" } });
   } } };
 
-  for (const path of ["/articles/how-to-read-kakobuy-qc-photos/", "/not-real-92731/", "/de/kakobuy-warehouse-storage-guide/"]) {
+  for (const path of ["/articles/how-to-read-kakobuy-qc-photos/", "/not-real-92731/", "/de/unpublished-guide/"]) {
     const response = await pagesWorker.fetch(new Request(`https://kakobuys.store${path}`), env);
     assert.equal(response.status, 404, `${path} must return a real 404`);
     assert.equal(response.headers.get("x-robots-tag"), "noindex, follow");
