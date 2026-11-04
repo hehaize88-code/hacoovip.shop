@@ -73,7 +73,7 @@ for(const p of pages){const source=fs.readFileSync(p.file,'utf8');for(const lang
   const href=a.getAttribute('href');if(href.startsWith('/')&&!href.startsWith('//'))a.setAttribute('href',urlFor(href,lang));
  }
  const alternate=languages.map(l=>`<link rel="alternate" hreflang="${langTag(l)}" href="${origin+urlFor(p.route,l)}">`).join('')+`<link rel="alternate" hreflang="x-default" href="${origin+p.route}">`;
- doc.querySelector('head').insertAdjacentHTML('beforeend',alternate+'<meta name="site-release" content="2026-10-07-multilingual-15-guides">');
+ doc.querySelector('head').insertAdjacentHTML('beforeend',alternate+'<meta name="site-release" content="2026-11-04-multilingual-18-guides">');
  for(const node of doc.querySelectorAll('script[type="application/ld+json"]')){
   let data=schemaStrings(JSON.parse(node.textContent),translate);
   function urls(v,key=''){if(Array.isArray(v))return v.map(x=>urls(x,key));if(v&&typeof v==='object')return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,urls(x,k)]));if(key==='inLanguage')return langTag(lang);if(typeof v==='string'&&v.startsWith(origin)&&['url','@id','item'].includes(key)){const u=new URL(v);if(!/\.[a-z0-9]+$/i.test(u.pathname))return origin+urlFor(u.pathname,lang)+u.search+u.hash;}return v;}
@@ -82,7 +82,7 @@ for(const p of pages){const source=fs.readFileSync(p.file,'utf8');for(const lang
  doc.querySelector('body').insertAdjacentHTML('beforeend','<script src="/site-interactions.js" defer></script>');
  const dest=path.join(output,urlFor(p.route,lang),'index.html');fs.mkdirSync(path.dirname(dest),{recursive:true});fs.writeFileSync(dest,doc.toString());total++;
 }}
-const entries=[];for(const p of pages)for(const lang of languages){const alternatives=languages.map(l=>`<xhtml:link rel="alternate" hreflang="${langTag(l)}" href="${origin+urlFor(p.route,l)}"/>`).join('');entries.push(`<url><loc>${origin+urlFor(p.route,lang)}</loc><lastmod>2026-10-07</lastmod>${alternatives}<xhtml:link rel="alternate" hreflang="x-default" href="${origin+p.route}"/></url>`);}
+const entries=[];for(const p of pages)for(const lang of languages){const alternatives=languages.map(l=>`<xhtml:link rel="alternate" hreflang="${langTag(l)}" href="${origin+urlFor(p.route,l)}"/>`).join('');entries.push(`<url><loc>${origin+urlFor(p.route,lang)}</loc><lastmod>${["/", "/shipping/", "/articles/"].includes(p.route)||/superbuy-(shipping-cost-guide|qc-photos-checklist|payment-methods-fees|returns-refunds|warehouse-storage)/.test(p.route)||p.route.includes("how-long-does-superbuy-shipping-take")?"2026-11-04":"2026-10-07"}</lastmod>${alternatives}<xhtml:link rel="alternate" hreflang="x-default" href="${origin+p.route}"/></url>`);}
 fs.writeFileSync(path.join(output,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${entries.join('')}</urlset>`);
-fs.writeFileSync(path.join(output,'_deployment.txt'),`2026-10-07-multilingual-15-guides\n${total} pages; ${languages.join(', ')}\n`);
+fs.writeFileSync(path.join(output,'_deployment.txt'),`2026-11-04-multilingual-18-guides\n${total} pages; ${languages.join(', ')}\n`);
 console.log(`Published ${total} complete static pages in ${languages.length} languages.`);

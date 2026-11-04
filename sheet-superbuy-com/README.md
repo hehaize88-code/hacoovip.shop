@@ -120,9 +120,9 @@ The timeout defaults can be overridden for a controlled canary with `SITES_INSTA
 ## Multilingual static publication (October 2026)
 
 `npm run export:pages-root` renders the English source, then runs
-`scripts/localize-static.mjs` and validates 154 HTML pages. The seven locales
+`scripts/localize-static.mjs` and validates 175 HTML pages. The seven locales
 are English, French, German, Spanish, Italian, Indonesian and Simplified Chinese.
-Every locale contains the same 15 complete articles and seven core pages.
+Every locale contains the same 18 complete articles and seven core pages.
 
 The translations in `content/translations/*.json` are committed content, not
 a live translation dependency. The publisher refuses missing translations.
@@ -143,3 +143,27 @@ Shopping Agent User Guidance, APP User Guidance and official shipping calculator
 on 2026-10-07. Measurement scenarios are original editorial examples; they are
 not fit guarantees or claims of a universal Superbuy size chart. Existing dated
 destination-policy references retain their historical review dates.
+
+## November 2026 search improvements
+
+The 2026-11-04 release adds complete payment, returns and warehouse-storage guides
+in all seven locales. Shipping-cost, delivery-time and QC-checklist articles gain
+practical decision tables. Home and guide indexes expose these topics earlier;
+related links follow the reading task rather than always selecting the first entries.
+All article templates include clickable official resources. New and substantially
+revised article metadata and sitemap dates reflect this release; older destination
+policy review dates are retained.
+
+`main_site_click`, `article_click`, `search_submit`, `language_change` and
+`shipping_calculator_use` retain their existing behavior. `official_tool_click`
+measures the new official freight-query link independently. The local calculator
+estimates chargeable weight, not a currency quote.
+
+After editing content, run the static export and locale validation. Validation checks
+175 canonical documents, 18 articles per locale, localized paragraph/list/table
+parity, complete internal and language links, and stylesheet/script files. Production
+serves the committed static files in this directory; the Cloudflare Pages build
+command is empty. Source changes alone are insufficient to publish an update.
+
+The static build clears only `.next` and `out` first. This prevents an older
+export cache from silently omitting newly added dynamic article routes.

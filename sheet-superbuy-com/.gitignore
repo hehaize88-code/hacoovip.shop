@@ -40,3 +40,6 @@ next-env.d.ts
 /.sites-runtime/
 /outputs/
 /work/
+
+# Editorial assembly files; final content lives in app/ and translations/.
+/content/research-20261104/

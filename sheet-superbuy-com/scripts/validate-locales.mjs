@@ -22,14 +22,18 @@ for(const file of files){
  assert(!html.includes('self.__next_f')&&!html.includes('translate.google.com'),file);
  assert(doc.querySelector('meta[name="robots"]').getAttribute('content').includes('index'),file);
  for(const n of doc.querySelectorAll('script[type="application/ld+json"]'))JSON.parse(n.textContent);
+ for(const a of doc.querySelectorAll('link[rel="stylesheet"],script[src]')){const asset=a.getAttribute('href')||a.getAttribute('src');if(asset.startsWith('/'))assert(fs.existsSync(path.join(root,asset)),`${file}: missing asset ${asset}`);}
+ const alternates=doc.querySelectorAll('link[rel="alternate"][hreflang]');
+ for(const alternate of alternates){const target=new URL(alternate.getAttribute('href')).pathname;assert(fs.existsSync(path.join(root,target,'index.html')),`${file}: missing alternate ${target}`);}
+
  for(const a of doc.querySelectorAll('a[href]')){
   const href=a.getAttribute('href');if(href.startsWith('/')&&!href.startsWith('//')){
    const url=new URL(href,origin);const target=path.join(root,url.pathname,url.pathname.endsWith('/')?'index.html':'');
    assert(fs.existsSync(target),`${file}: missing ${href}`);links++;
    if(!a.hasAttribute('data-language')&&lang!=='en')assert(url.pathname.startsWith(`/${lang}/`),`${file}: lost language ${href}`);
-  }else if(href.startsWith('http'))assert(['cnfanshp.com','www.cnfanshp.com','sheet-superbuy.com'].includes(new URL(href).hostname),`${file}: unexpected outbound destination ${href}`);
+  }else if(href.startsWith('http'))assert(['cnfanshp.com','www.cnfanshp.com','sheet-superbuy.com','www.superbuy.com'].includes(new URL(href).hostname),`${file}: unexpected outbound destination ${href}`);
  }
- if(route.endsWith('/articles/'))assert.equal(doc.querySelectorAll('.article-card').length,15,file);
+ if(route.endsWith('/articles/'))assert.equal(doc.querySelectorAll('.article-card').length,18,file);
  if(route.includes('/articles/')&&!route.endsWith('/articles/')){
    const h2=doc.querySelectorAll('.article-body h2');assert(h2.length>=5,file);
    if(lang!=='en'){
@@ -37,9 +41,13 @@ for(const file of files){
     assert.equal(doc.querySelectorAll('.article-body section').length,english.querySelectorAll('.article-body section').length,file);
     assert.equal(doc.querySelectorAll('.article-body p').length,english.querySelectorAll('.article-body p').length,file);
     assert.notEqual(doc.querySelector('h1').textContent,english.querySelector('h1').textContent,file);
+    for(const selector of ['.article-body li','.article-body table','.article-body th','.article-body td'])assert.equal(doc.querySelectorAll(selector).length,english.querySelectorAll(selector).length,`${file}: structure mismatch ${selector}`);
+    const enParagraphs=english.querySelectorAll('.article-body section p').map(p=>p.textContent.trim());
+    for(const p of doc.querySelectorAll('.article-body section p'))assert(!enParagraphs.includes(p.textContent.trim()),`${file}: English paragraph fallback`);
+
    }
  }
 }
-assert.equal(files.length,154);
-assert.equal((fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').match(/<loc>/g)||[]).length,154);
-console.log(`PASS: ${files.length} pages; 15 articles × 7 languages; ${links} internal links; canonical, hreflang and paragraph parity.`);
+assert.equal(files.length,175);
+assert.equal((fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').match(/<loc>/g)||[]).length,175);
+console.log(`PASS: ${files.length} pages; 18 articles × 7 languages; ${links} internal links; canonical, hreflang and paragraph parity.`);

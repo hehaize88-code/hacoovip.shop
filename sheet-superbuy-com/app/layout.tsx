@@ -6,9 +6,9 @@ import {
 } from "./seo";
 import { AnalyticsEvents } from "./analytics-events";
 
-const siteTitle = "Superbuy Spreadsheet: Link Checks & Product Finds";
+const siteTitle = "Superbuy Spreadsheet: Product Finds, QC & Shipping";
 const siteDescription =
-  "Browse Superbuy spreadsheet product links, troubleshoot unavailable listings, compare sizes and review QC photos before planning shipping.";
+  "Find Superbuy product links, check QC photos and sizes, calculate parcel weight, and plan payment, shipping and returns with practical buying guides.";
 const isCloudflarePagesStaticExport =
   process.env.CLOUDFLARE_PAGES_STATIC_EXPORT === "1" ||
   process.env.CF_PAGES === "1";

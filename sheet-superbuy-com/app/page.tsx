@@ -15,9 +15,9 @@ import {
 } from "./components";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Superbuy Spreadsheet: Link Checks & Product Finds",
+  title: "Superbuy Spreadsheet: Product Finds, QC & Shipping",
   description:
-    "Browse Superbuy spreadsheet product links, troubleshoot unavailable listings, compare sizes and review QC photos before planning shipping.",
+    "Find Superbuy product links, check QC photos and sizes, calculate parcel weight, and plan payment, shipping and returns with practical buying guides.",
   path: "/",
 });
 
@@ -61,7 +61,7 @@ export default function Home() {
           <div className="hero-grid">
             <div className="hero-copy">
               <div className="eyebrow"><span className="status-dot" /> Independent product research</div>
-              <h1 className="hero-verification-title">Superbuy Spreadsheet: Links, Finds &amp; QC</h1>
+              <h1 className="hero-verification-title">Superbuy Spreadsheet: Finds, QC &amp; Shipping</h1>
             </div>
             <div className="hero-manifesto">
               <span className="manifesto-code">WHY / 01</span>
@@ -84,6 +84,15 @@ export default function Home() {
             <div className="search-label"><span>01</span><strong>Search the live catalogue</strong></div>
             <SearchBar variant="hero" />
           </div>
+
+          <nav className="guide-shortcuts" aria-label="Popular buying questions">
+            <Link href="/shipping/">Shipping calculator</Link>
+            <Link href="/articles/superbuy-shipping-cost-guide/">Shipping cost breakdown</Link>
+            <Link href="/articles/how-long-does-superbuy-shipping-take/">Delivery time and tracking</Link>
+            <Link href="/articles/superbuy-payment-methods-fees/">Payment methods and fees</Link>
+            <Link href="/articles/superbuy-returns-refunds/">Returns after QC</Link>
+            <Link href="/articles/superbuy-warehouse-storage/">Warehouse storage deadlines</Link>
+          </nav>
 
           <div className="hero-ledger">
             <a className="hero-feature" href={products[0].url} target="_blank" rel="noopener sponsored nofollow">
@@ -229,7 +238,7 @@ export default function Home() {
         </section>
 
         <section className="section shell latest-guides">
-          <SectionHeading eyebrow="Latest articles" title="Solve the next buying decision" body="Link troubleshooting, size comparisons and warehouse measurements, followed by destination-specific shipping guides." />
+          <SectionHeading eyebrow="Latest articles" title="Solve the next buying decision" body="Payment, returns and storage guides, plus practical shipping cost, timing and warehouse checks." />
           <div className="article-grid">
             {articles.slice(0, 4).map((article) => <article className="article-card" key={article.slug}>
               <span>{article.topic}</span><h2>{article.title}</h2><p>{article.deck}</p>

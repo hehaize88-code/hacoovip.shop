@@ -6,6 +6,7 @@
     const anchor=event.target.closest?.('a[href]');if(!anchor)return;
     const dest=new URL(anchor.href,location.href);
     if(anchor.dataset.language){localStorage.setItem('sheet-language',anchor.dataset.language);track('language_change',{selected_language:anchor.dataset.language});}
+    else if(anchor.dataset.officialTool){track('official_tool_click',{tool:anchor.dataset.officialTool,link_domain:dest.hostname});}
     else if(dest.hostname==='www.cnfanshp.com'||dest.hostname==='cnfanshp.com'){
       const kind=/\/AllProducts\/\d+\.html$/.test(dest.pathname)?'product':dest.pathname==='/AllProducts/'?'catalogue':'category';
       track('main_site_click',{link_type:kind,link_domain:dest.hostname,link_url:dest.href,link_text:anchor.textContent.trim().slice(0,100)});

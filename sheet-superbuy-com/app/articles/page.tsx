@@ -15,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/articles/",
 });
 
-const prioritySlugs = ["superbuy-spreadsheet-links-not-working", "superbuy-qc-measurements-detailed-photos", "superbuy-shoe-size-guide", "superbuy-hoodie-size-guide"];
+const prioritySlugs = ["superbuy-shipping-cost-guide", "how-long-does-superbuy-shipping-take", "superbuy-payment-methods-fees", "superbuy-returns-refunds", "superbuy-warehouse-storage", "superbuy-qc-photos-checklist"];
 const displayedArticles = [...articles].sort((left, right) => {
   const leftIndex = prioritySlugs.indexOf(left.slug);
   const rightIndex = prioritySlugs.indexOf(right.slug);
@@ -60,8 +60,8 @@ export default function ArticlesPage() {
         />
         <section className="content-section shell">
           <div className="research-note research-note-wide">
-            <span>EDITORIAL UPDATE · 7 OCTOBER 2026</span>
-            <p>Browse all guides below. New measurement examples are illustrative. Earlier destination-policy references retain their stated review dates; check current official rules before shipping.</p>
+            <span>EDITORIAL UPDATE · 4 NOVEMBER 2026</span>
+            <p>New payment, return and storage guides are available in every language. Shipping and QC guides include decision tables and official links. Earlier destination-policy references retain their stated review dates; check current rules before shipping.</p>
           </div>
           <div className="article-grid">
             {displayedArticles.map((article) => (

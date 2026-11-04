@@ -1,0 +1,382 @@
+[
+  {
+    "slug": "superbuy-payment-methods-fees",
+    "topic": "Payments and account balance",
+    "title": "Superbuy Payment Methods & Fees: Cards, Wise and Balance",
+    "deck": "Compare payment options using the amount debited and CNY credited, keep product and freight budgets separate, and resolve pending payments without creating duplicate charges.",
+    "date": "2026-11-04",
+    "updated": "4 November 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "payment-options",
+        "title": "Which Superbuy payment methods should you compare?",
+        "paragraphs": [
+          "Superbuy's shopping guide lists cards, Alipay, WeChat and bank transfers; its Help Center also links to Wise. These references identify options to investigate, not a promise that every method will appear for every account. Open your own payment or top-up screen, select the currency you intend to use, and read the available choices before comparing costs. An old screenshot cannot establish today's availability, minimum amount, verification requirements or fee for your transaction.",
+          "Start with a modest, defined purchase budget rather than funding a large speculative balance. Write down the item total, domestic delivery, selected services and a separate international-shipping allowance. Decide which payment method you can document clearly if a transfer needs tracing. Convenience matters, but a familiar logo alone does not show the total cost. Compare the exact transaction presented to you, including any charge displayed by your bank or payment provider before confirmation."
+        ]
+      },
+      {
+        "id": "compare-cost",
+        "title": "Read four numbers before you confirm",
+        "paragraphs": [
+          "A useful comparison records four things: the currency leaving your account, the total amount leaving it, the CNY amount credited or applied to the order, and any later issuer charge. A displayed exchange rate is only one input. A payment can have a competitive headline rate and still cost more after a fixed fee. Conversely, a method with a visible fee can produce a better net result. Use the same desired CNY amount and compare quotes close together in time.",
+          "The table is a recording template, not a fee schedule. Fill it with the final payment screen and your provider's confirmation. If a fee is already included in the total debit, do not add it again. If the issuer has not yet settled the transaction, label that component provisional. Keep screenshots with the date, amount and transaction reference, while excluding full card numbers, security codes and other information that customer support does not need."
+        ],
+        "table": {
+          "headers": [
+            "Comparison field",
+            "What to record"
+          ],
+          "rows": [
+            [
+              "Total debit",
+              "All money charged in your payment currency, without counting an included fee twice."
+            ],
+            [
+              "Net CNY credit",
+              "The amount available for the order or added to paid balance."
+            ],
+            [
+              "Separate provider cost",
+              "Any additional issuer or transfer charge, confirmed after settlement."
+            ],
+            [
+              "Status and reference",
+              "Whether the transaction is pending, credited, reversed or still being traced."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "exchange-example",
+        "title": "An illustrative exchange-cost comparison",
+        "paragraphs": [
+          "Suppose two hypothetical methods would each credit CNY 700. Method A debits USD 103 in total, while Method B debits USD 105. Before any separately billed issuer charge, A costs USD 2 less for the same credit. Dividing CNY credited by the total USD debit gives approximately 6.796 for A and 6.667 for B. These are invented arithmetic inputs for comparison; they are not current Superbuy exchange rates or quotes for a real payment.",
+          "Now suppose A later attracts a separately billed USD 3 issuer charge while B has none. A's complete debit becomes USD 106, reversing the earlier comparison. This is why the cheapest-looking payment screen need not be the cheapest completed transaction. Reconcile the final statement against the credited balance before drawing a conclusion. Compare like with like: a card authorisation, a settled payment, a transfer quote and a bank account debit can represent different stages of the same transaction."
+        ]
+      },
+      {
+        "id": "payment-instructions",
+        "title": "Cards, Wise and transfers: follow the actual instructions",
+        "paragraphs": [
+          "For a card payment, check the selected currency, billing details, issuer approval step and final total. If authentication fails, read the error before retrying. A mismatch in address or an issuer restriction needs a different remedy from a temporary page error. For a Wise or bank-transfer option shown in your account, copy the current beneficiary details and required reference exactly from the official payment flow. Never reuse payment instructions from an unsolicited message or an unrelated older order.",
+          "A transfer reference can be essential for matching a payment to the intended account. Save the sender receipt, reference, currency and amount, then check whether the account records a credit. Do not infer completion merely because the sending provider accepted the instruction. If the quoted processing window passes, send support a concise reconciliation request through the official account. Include only the necessary payment evidence, and ask which stage remains unresolved instead of opening several competing requests."
+        ]
+      },
+      {
+        "id": "balance-budget",
+        "title": "Account balance is a ledger, not a shipping budget",
+        "paragraphs": [
+          "Treat your balance as a transaction record. Note each top-up, order payment, service charge, refund and adjustment so that a changing total has an explanation. If CNY 500 is credited and an order uses CNY 320, the arithmetic remainder is CNY 180 before other entries. That example does not establish whether a particular balance can be withdrawn, whether credits have conditions or whether a promotional amount follows the same rules as money you paid.",
+          "Do not spend the whole remainder on another product until you have estimated the first parcel. Product payment and international freight are separate stages in Superbuy's fee structure. Leave room for packing choices, the measured parcel, the selected line and any confirmed adjustments. Use the shipping-cost guide to build the parcel budget, then replace estimates with the account's actual quote. A small available balance is not evidence that the international shipping bill has already been paid."
+        ]
+      },
+      {
+        "id": "payment-status",
+        "title": "Pending, failed and duplicate-looking payments need different checks",
+        "paragraphs": [
+          "When a payment looks pending, compare the provider's status with the order or balance history. Record the time and reference, then follow the processing guidance displayed for that method. A pending authorisation does not by itself establish that a second completed charge exists. When a payment explicitly fails, identify the stated cause and confirm whether a debit or balance credit nevertheless appeared before attempting another payment. Repeated retries make an unclear record harder to reconcile.",
+          "If two entries appear, first determine whether they are two settled transactions or a temporary authorisation alongside a settlement. Compare amounts, currencies and references rather than relying on matching dates. Send the official support team a brief timeline and ask them to identify the credited transaction. If your payment provider must investigate, use its own support process. Keep the order decision separate: do not approve another product purchase simply to use a credit whose origin is still uncertain."
+        ]
+      },
+      {
+        "id": "refund-withdrawal",
+        "title": "A refund, a balance credit and a withdrawal are different outcomes",
+        "paragraphs": [
+          "An order cancellation request is not proof of an approved refund, and an approved refund is not proof that money has returned to the original funding account. Check the order decision, the transaction ledger and the receiving payment account separately. Ask where the refund will go, what amount is approved, whether any charges are excluded and what processing guidance applies. Do not assume that exchange differences or third-party payment costs will be reversed automatically.",
+          "Before topping up more than needed, read the current rules for withdrawing unused paid balance. A promotional credit may have different conditions; distinguish it from your own funds. For a refund after a QC problem, keep the seller remedy and return costs in the order conversation, then reconcile the financial entries after the decision. Our returns guide explains that evidence workflow. This payment guide does not promise a fixed refund deadline, a free withdrawal or a universal return entitlement."
+        ]
+      },
+      {
+        "id": "payment-record",
+        "title": "Save a reusable payment record",
+        "paragraphs": [
+          "Create one record per payment with the related order or parcel number, method, currency, quoted total, confirmed debit, credited amount, reference and status. Add a short note when the payment changes from pending to credited, or when a refund or adjustment appears. This is enough to answer most reconciliation questions without a pile of unlabelled screenshots. For a later purchase, start a new record so that a top-up for one parcel is not mistaken for another order's payment.",
+          "Before confirming, check that you are on the official site, the intended account is signed in, the amount matches the purchase stage and you understand any displayed fee. After confirming, verify the matching account entry and keep the receipt until the order and parcel are resolved. The useful target is a traceable, correctly funded purchase, not a particular payment brand. Recheck the available options for each new payment because country, account, currency and provider conditions may change."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Official shopping-agent guide",
+        "url": "https://www.superbuy.com/en/page/guide/shoppingagent/"
+      },
+      {
+        "label": "Official fee structure",
+        "url": "https://www.superbuy.com/en/page/guide/feecomposition/"
+      },
+      {
+        "label": "Official Help Center",
+        "url": "https://www.superbuy.com/en/page/help/"
+      }
+    ],
+    "relatedSlugs": [
+      "superbuy-returns-refunds",
+      "superbuy-shipping-cost-guide",
+      "superbuy-warehouse-storage"
+    ]
+  },
+  {
+    "slug": "superbuy-returns-refunds",
+    "topic": "Returns and warehouse decisions",
+    "title": "Superbuy Returns & Refunds: What to Do After a QC Problem",
+    "deck": "A practical Superbuy return guide: identify a QC problem, document the order, confirm eligibility and costs, and distinguish a refund from a balance withdrawal.",
+    "date": "2026-11-04",
+    "updated": "4 November 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "first-response",
+        "title": "Found a QC problem? Pause the parcel decision",
+        "paragraphs": [
+          "If warehouse photos suggest that an item is wrong, damaged or incomplete, first keep it out of an international parcel while you investigate. Record the order number, selected option and exact concern. A photo can reveal a reason to ask questions without proving what caused the problem. Your immediate goal is a documented decision: accept the item, obtain better evidence, request an exchange or ask whether a return is possible.",
+          "Treat this guide as an evidence workflow, not a promise that every order can be refunded. Superbuy’s buying guide identifies order enquiry and warehouse photos as parts of its process. The seller, product, purchase stage and applicable terms still matter. Check the current order screen and ask for the relevant deadline promptly. Free warehouse storage does not mean that a seller’s return opportunity remains open for the same period."
+        ]
+      },
+      {
+        "id": "order-stage",
+        "title": "Match the request to the current order stage",
+        "paragraphs": [
+          "Before writing to support, establish where the item actually is. A request to cancel an unpurchased order is different from returning goods that have reached the warehouse. After international dispatch, a parcel issue also needs the shipment record. Use the status shown in your account and the most recent message, not the date you placed the order or an assumption based on another buyer’s experience.",
+          "The table is a triage checklist rather than an eligibility policy. Ask which action is still available and what approval is needed before any movement occurs. If a parcel has been submitted but has not visibly left the warehouse, ask immediately whether it can be held; do not assume that a message automatically stops packing. Keep the confirmation attached to the same order or parcel conversation."
+        ],
+        "table": {
+          "headers": [
+            "Order stage",
+            "Useful first request",
+            "Evidence to retain"
+          ],
+          "rows": [
+            [
+              "Not yet purchased",
+              "Ask whether cancellation is still available.",
+              "Order status and payment record."
+            ],
+            [
+              "Purchased or seller dispatched",
+              "Ask the agent to confirm the seller’s options.",
+              "Seller dispatch status and requested remedy."
+            ],
+            [
+              "Stored in the warehouse",
+              "Request a review before parcel submission.",
+              "Ordered option, QC images and measurements."
+            ],
+            [
+              "Parcel submitted",
+              "Ask whether a hold is possible.",
+              "Parcel number and written response."
+            ],
+            [
+              "Internationally dispatched or delivered",
+              "Open the appropriate parcel after-sales enquiry.",
+              "Tracking, packing evidence and delivery photos."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "evidence",
+        "title": "Build evidence that identifies the actual mismatch",
+        "paragraphs": [
+          "Start with identity. Save the original listing, seller, chosen colour, size, quantity and any agreed specification. Then match those details to the warehouse item number. A general product picture is less useful than the option actually ordered. If two similar items are in storage, label each image clearly so that a return request cannot accidentally refer to the correct item while describing the wrong one.",
+          "Next, distinguish a visible fact from an interpretation. “The order says blue, while the label in photo two says black” is stronger than “this looks bad.” For a size issue, state what was measured, the unit and both endpoints. A flat chest width is not a body circumference. When lighting, folding or camera angle makes the evidence uncertain, request the missing view before treating the difference as established.",
+          "Keep an unedited copy of each image and use a separate annotated copy to point out the concern. Include an overall view as well as a close-up, because a close-up alone may not identify the item. Avoid sending a large collection of unrelated pictures. A short numbered set, with one sentence explaining each image, makes it easier for another person to verify the same issue independently."
+        ]
+      },
+      {
+        "id": "eligibility",
+        "title": "Confirm eligibility before approving return shipping",
+        "paragraphs": [
+          "Do not apply one return rule to every marketplace or product. Superbuy’s storefront warns that certain secondhand or unverifiable-source purchases cannot be returned or exchanged. Other cases still require the specific seller and order terms to be checked. Ask whether the request is being assessed as a wrong item, a defect, a size concern or a change of mind; those descriptions are not interchangeable.",
+          "Ask for the deadline applicable to this order, the required item condition and the next approval step. Preserve tags, accessories and packaging while the request is unresolved unless the agent gives a clear alternative instruction. If the seller refuses, request the reason and the evidence used to reach that decision. An exchange, additional inspection or an agreed partial remedy may be discussed, but none should be presented as automatic."
+        ]
+      },
+      {
+        "id": "request",
+        "title": "Send one clear return or exchange request",
+        "paragraphs": [
+          "A useful message contains the order number, the ordered option, the observed mismatch and the remedy you are requesting. Explain whether you want clarification first or are ready to request a return. Ask for eligibility, any deadline, the itemised cost and the expected next step. Keep the request in the relevant account conversation so the person handling it can connect the evidence with the purchase record.",
+          "For example: “Order [number], option [colour and size]. The attached order record shows [specification], while warehouse photo [number] shows [observation]. Please review whether this item can be returned or exchanged. Before proceeding, confirm the deadline, costs, packaging requirements and refund destination. Please keep this item out of my international parcel while the request is reviewed, and confirm whether that hold is possible.” Replace every bracket with accurate information."
+        ],
+        "bullets": [
+          "State the requested remedy without exaggerating what the photos prove.",
+          "Attach the order evidence and a small, numbered image set.",
+          "Ask who must approve the request and whether a hold is confirmed.",
+          "Confirm the return address through the agent before authorising movement.",
+          "Save the decision and follow up in the same conversation."
+        ]
+      },
+      {
+        "id": "costs",
+        "title": "Compare the complete cost of each available remedy",
+        "paragraphs": [
+          "A product-price refund and a cost-free return are different outcomes. Before authorising anything, ask for a breakdown of return delivery, any applicable service charge, original domestic delivery and services already completed. Ask which amounts would be refunded and which would remain payable. Responsibility depends on the confirmed case and terms; a public guide cannot assign every shipping charge to the buyer or seller in advance.",
+          "Use a simple decision record. Write the amount expected back, every confirmed deduction and the cost of an alternative replacement. Leave unknown amounts marked as unknown. For a low-value item, paying for additional photos, return delivery and another purchase may change the decision. For a serious mismatch, better evidence may justify proceeding. Compare only remedies actually offered, and keep affordability separate from whether the item meets your needs."
+        ]
+      },
+      {
+        "id": "refund",
+        "title": "Track the refund separately from any balance withdrawal",
+        "paragraphs": [
+          "Record each stage: request submitted, seller decision, return dispatched if required, seller receipt, refund approved and money credited. A status such as “return accepted” does not by itself show that funds have arrived. If progress stops, ask which stage is pending and what evidence or action is needed. Include the relevant order or return tracking number instead of opening unrelated conversations that lose the chronology.",
+          "Then verify where the refund went. A credit visible in a platform balance is not the same thing as money received by your bank or card account. If you want to withdraw a balance, check the available withdrawal process, destination, amount, possible charges and displayed timing separately. Compare the actual credit with the written decision, and ask about any difference before assuming a payment-provider delay or a missing refund."
+        ]
+      },
+      {
+        "id": "next-order",
+        "title": "Reduce return problems on the next purchase",
+        "paragraphs": [
+          "Save the selected option and seller terms before paying, especially when a listing has many colours or ambiguous size labels. Ask about a decisive specification before purchase rather than relying on a thumbnail. At warehouse arrival, review the item promptly and keep a short decision log. Mark it as ready to ship, awaiting evidence or under review; this prevents an unresolved item from being accidentally included in a larger parcel.",
+          "For a delivered parcel, preserve the outer packaging, labels, contents and photos that show the condition on receipt. Describe damage or missing contents factually and use the account’s appropriate after-sales channel. The Help Center provides after-sales and account-balance help categories, but an individual case still needs its own record. Keep that record until the issue and any subsequent payment movement have been reconciled, then use what you learned to improve the next order."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Superbuy shopping-agent user guidance",
+        "url": "https://www.superbuy.com/en/page/guide/shoppingagent/"
+      },
+      {
+        "label": "Superbuy purchasing notices and source restrictions",
+        "url": "https://www.superbuy.com/en/page/shoppingagent/"
+      },
+      {
+        "label": "Superbuy Help Center: after-sales and balance support",
+        "url": "https://www.superbuy.com/en/page/help/"
+      }
+    ],
+    "relatedSlugs": [
+      "superbuy-qc-photos-checklist",
+      "superbuy-order-evidence-checklist",
+      "superbuy-payment-methods-fees",
+      "superbuy-warehouse-storage"
+    ]
+  },
+  {
+    "slug": "superbuy-warehouse-storage",
+    "topic": "Storage planning",
+    "title": "Superbuy Warehouse Storage: Deadlines, Extensions & Fees",
+    "deck": "Plan Superbuy warehouse storage with item-level deadlines, a worked fee example, a consolidation decision table and a checklist for requesting an extension.",
+    "date": "2026-11-04",
+    "updated": "4 November 2026",
+    "readingTime": "8 min read",
+    "sections": [
+      {
+        "id": "storage-policy",
+        "title": "How long can items stay in a Superbuy warehouse?",
+        "paragraphs": [
+          "Superbuy warehouse storage is time to organise an order, inspect what arrived and prepare a sensible parcel. It is not a reason to postpone every decision until the last day. Start with the oldest item, because a new purchase does not make an earlier arrival new again. This guide shows how to keep a small storage register, compare waiting with shipping, and request clear confirmation when an item needs more time. The examples are planning exercises, not quotations from your account.",
+          "Published policy: 90 days free; then CN¥0.1/item/day, maximum 180 days. Arrange extensions beforehand; unattended expiry can lead to disposal. Check your account and official terms before acting."
+        ]
+      },
+      {
+        "id": "item-deadlines",
+        "title": "Track the deadline of each item, not the age of the account",
+        "paragraphs": [
+          "Use the warehouse record as your operational source. Open each item and record its identifier, arrival or storage date, displayed remaining time, and current status. Do not calculate an exact expiry from the shopping-cart payment date: purchase, seller dispatch and warehouse intake describe different events. Where the interface gives a specific deadline, copy that value and its displayed timezone. If two screens disagree, save both and ask support which one applies rather than choosing the later date.",
+          "A useful register needs only one row per warehouse item. Add the ordered option, QC decision, next action and the date you will review it. Mark the oldest unresolved item clearly. Set a personal reminder before the displayed deadline, with enough time for a reply, a payment problem or a packing change. That reminder is your own precaution, not an extra grace period supplied by Superbuy. Recheck the record when an item is exchanged or moved; do not assume its clock resets."
+        ]
+      },
+      {
+        "id": "storage-fee-example",
+        "title": "Calculate a storage fee without confusing it with freight",
+        "paragraphs": [
+          "Estimate a paid extension with the chargeable item count, the confirmed daily rate and the approved number of chargeable days. For an arithmetic illustration only, four eligible items kept for twelve chargeable days at the published rate produce 4 × 12 × 0.1 = CN¥4.80. This calculation does not prove that an extension is available for those items or that the interface will bill on that schedule. Confirm how your warehouse records define an item, especially for sets, multiple quantities and split arrivals.",
+          "Keep that estimate in a separate budget row. Storage is different from international freight, packaging, inspection, payment charges and destination costs. A small storage figure cannot make an otherwise unaffordable shipment affordable. Compare the amount you expect to save by waiting with the costs and uncertainty waiting adds. Keep a record of the service purchase and any resulting deadline. If the displayed charge differs from your calculation, check the item count and dates before treating the difference as an error."
+        ]
+      },
+      {
+        "id": "consolidation",
+        "title": "Decide whether waiting for consolidation is worthwhile",
+        "paragraphs": [
+          "Waiting for another order can make sense when its seller has a credible dispatch update, the oldest item has comfortable time remaining, and the contents suit the same parcel. It becomes less convincing when the new order is a preorder with no firm readiness date, an exchange that still needs approval, or an item that needs a different shipping route. Decide what the current parcel is waiting for. A specific missing item is a plan; repeatedly adding new purchases is an open-ended delay.",
+          "Compare two practical scenarios: ship the ready items now, or wait and ship a combined parcel later. Use the same destination and comparable packing assumptions in both estimates. Consider packed dimensions as well as weight: a larger box can change the billable weight or available routes. Also compare the consequences of delay. A gift, a replacement needed for work or a seasonal purchase may lose usefulness even when the eventual freight bill is slightly lower. Choose according to the complete trade-off."
+        ],
+        "table": {
+          "headers": [
+            "Situation",
+            "Useful next action"
+          ],
+          "rows": [
+            [
+              "Ready items; another order has a clear dispatch update",
+              "Compare shipping now with a dated waiting plan."
+            ],
+            [
+              "A preorder has no confirmed readiness date",
+              "Plan the ready parcel independently."
+            ],
+            [
+              "One item has an unresolved QC issue",
+              "Keep it out of the ready parcel and confirm its deadline."
+            ],
+            [
+              "The oldest item is approaching its displayed deadline",
+              "Confirm shipping or an available extension before more shopping."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "extend-storage",
+        "title": "Request an extension and verify the result",
+        "paragraphs": [
+          "Before requesting extra storage, identify the exact items and the date you need them held until. Check whether the relevant service is available in your account, what it costs, and which updated deadline will apply after purchase. Ask about any maximum limit that constrains the request. Do not interpret a paid option as permission to store indefinitely, and do not assume that sending a message alone completes a service order. You need a confirmed action attached to the correct warehouse records.",
+          "A concise support request can say: please confirm the current deadline for item [identifier], whether storage until [date] is available, the total charge, and the action required to secure it. Include the warehouse status and any existing parcel or service reference. After the reply, complete the instructed step and check the resulting status. Save the confirmation alongside your register. If the request cannot be fulfilled, choose a realistic alternative promptly instead of waiting for a deadline to create the decision for you."
+        ]
+      },
+      {
+        "id": "returns-and-qc",
+        "title": "Keep the return deadline separate from storage time",
+        "paragraphs": [
+          "Warehouse storage and seller returns answer different questions. Storage concerns how long an item can remain in the warehouse. Return eligibility concerns whether that particular purchase can be sent back under its applicable conditions. A generous remaining storage balance does not establish that a seller will accept a return. Review QC evidence as soon as it is available, compare the model, colour, size and quantity with the order, and ask about a mismatch while the relevant purchase record is still easy to investigate.",
+          "Keep a problem item separate from items ready to ship. Record what is wrong, the evidence supporting it, the requested remedy and the next response you are waiting for. Before requesting label removal, compression or other changes, consider whether they could complicate a possible return. If an investigation is approaching the storage deadline, raise both issues in the same enquiry. Ask how the affected item should be handled during the review; do not assume an open conversation automatically pauses the storage clock."
+        ]
+      },
+      {
+        "id": "expiry",
+        "title": "What to do near or after a storage deadline",
+        "paragraphs": [
+          "Near a deadline, switch from browsing to resolving the existing warehouse list. Confirm which items are ready, which have unresolved issues, and which require a confirmed extension or other handling instruction. A draft parcel is not evidence that the warehouse has completed every required action. Check whether payment, address information, item restrictions or packing choices still need attention. Use the actual account status to establish what has been submitted and accepted, and request clarification where a status label does not explain the next step.",
+          "If a deadline has already passed or an item is no longer visible, contact official support with its identifier and your saved records. Ask what its present status is and which options, if any, remain available. Do not order a replacement or assume recovery until you have an answer about the original. Preserve the reply and any charges or instructions. This guide cannot promise that an expired item can be retrieved, that a fee will reverse an action already taken, or that an exception will be granted."
+        ]
+      },
+      {
+        "id": "checklist",
+        "title": "Final warehouse-to-parcel checklist",
+        "paragraphs": [
+          "Before submitting the parcel, reconcile the warehouse register with the selected contents one last time. Resolve each item into a clear decision: ship, continue an approved hold, pursue a return, or request another confirmed action. Review the oldest deadline first and make sure the records match the package you intend to send. The checklist below is an editorial planning aid; your account's displayed terms and confirmed instructions determine the actual service. Keep the evidence until the relevant order and parcel issues are closed."
+        ],
+        "bullets": [
+          "Every item has a recorded identifier, deadline and decision.",
+          "QC questions are resolved or clearly excluded from the parcel.",
+          "Any extension is confirmed for the correct items and dates.",
+          "Packing assumptions and the live route quote describe the same parcel.",
+          "Service receipts, support replies and parcel references are saved."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Superbuy official fee structure",
+        "url": "https://www.superbuy.com/en/page/guide/feecomposition/"
+      },
+      {
+        "label": "Superbuy official shopping-agent guide",
+        "url": "https://www.superbuy.com/en/page/guide/shoppingagent/"
+      },
+      {
+        "label": "Superbuy Help Center",
+        "url": "https://www.superbuy.com/en/page/help/"
+      }
+    ],
+    "relatedSlugs": [
+      "superbuy-shipping-cost-guide",
+      "how-long-does-superbuy-shipping-take",
+      "superbuy-returns-refunds",
+      "superbuy-payment-methods-fees"
+    ]
+  }
+]

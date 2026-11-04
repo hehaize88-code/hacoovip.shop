@@ -10,9 +10,9 @@ import {
 } from "../seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Superbuy Shipping Calculator & Cost Guide",
+  title: "Superbuy Shipping Calculator: Weight & Cost Breakdown",
   description:
-    "Use a free Superbuy chargeable-weight calculator, then plan shipping cost, volumetric weight, consolidation, packaging, routes, customs, and final freight.",
+    "Calculate actual and volumetric parcel weight, see a worked cost breakdown, and open Superbuy’s official calculator for current destination-specific shipping quotes.",
   path: "/shipping/",
 });
 
@@ -30,7 +30,7 @@ const shippingSchema = {
       },
       image: SOCIAL_IMAGE,
       datePublished: "2026-08-14",
-      dateModified: "2026-09-08",
+      dateModified: "2026-11-04",
       author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
       publisher: {
         "@type": "Organization",
@@ -64,6 +64,12 @@ export default function ShippingPage() {
             <p>Reviewed against Superbuy&apos;s official fee structure, user guidance, forwarding guide, shipping calculator, help centre, and service terms. Prices, route names, limits, and temporary notices can change; confirm the live parcel screen before payment.</p>
           </div>
           <ChargeableWeightCalculator />
+          <div className="callout official-quote">
+            <h2>Need a shipping price for your destination?</h2>
+            <p>This tool estimates billing weight. For a current price, enter your destination, packed dimensions, weight and item category in Superbuy’s official calculator. Compare only lines that accept the complete parcel.</p>
+            <a className="button button-primary" href="https://www.superbuy.com/en/page/query/freight/" target="_blank" rel="noopener noreferrer" data-official-tool="shipping_quote">Open official shipping quotes <ArrowIcon /></a>
+            <Link className="text-link" href="/articles/superbuy-shipping-cost-guide/">See the worked cost breakdown</Link>
+          </div>
           <p className="calculator-followup">
             After testing your packed dimensions, use the destination guide for the <Link href="/articles/superbuy-shipping-to-usa/">USA</Link>, <Link href="/articles/superbuy-shipping-to-uk/">UK</Link>, <Link href="/articles/superbuy-shipping-to-netherlands/">Netherlands</Link>, <Link href="/articles/superbuy-shipping-to-canada/">Canada</Link>, or <Link href="/articles/superbuy-shipping-to-australia/">Australia</Link>. For timing, read the <Link href="/articles/how-long-does-superbuy-shipping-take/">stage-by-stage delivery guide</Link>.
           </p>

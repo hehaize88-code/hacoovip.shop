@@ -1,0 +1,158 @@
+{
+  "superbuy-shipping-cost-guide": {
+    "sections": [
+      {
+        "id": "cost-example",
+        "title": "A worked shipping estimate: weight first, price second",
+        "paragraphs": [
+          "For a 2.40 kg parcel measuring 45 × 35 × 25 cm, a sample divisor of 6,000 gives 6.56 kg of volumetric weight. Reducing only the height to 15 cm gives 3.94 kg. These are calculation examples, not carrier quotes: the route may use another divisor, rounding rule or minimum. Keeping fragile contents protected remains part of the decision.",
+          "To obtain a price, take the packed measurements to the official shipping calculator, enter the destination and eligible contents, and compare the displayed lines. Save the quote date and conditions. Never multiply the planning weight by a guessed universal price per kilogram. A lower weight does not establish a saving until both packages have eligible quotes."
+        ],
+        "table": {
+          "headers": [
+            "Budget line",
+            "Input to record",
+            "Where to confirm"
+          ],
+          "rows": [
+            [
+              "Product and China delivery",
+              "Selected option, quantity and domestic courier fee",
+              "Live order"
+            ],
+            [
+              "Payment",
+              "Amount debited and balance credited",
+              "Payment receipt and account ledger"
+            ],
+            [
+              "International freight",
+              "Packed weight, dimensions and eligible route",
+              "Official calculator and parcel quote"
+            ],
+            [
+              "Optional services",
+              "Only services selected for this parcel",
+              "Warehouse or parcel screen"
+            ],
+            [
+              "Destination charges",
+              "Applicable import and carrier costs",
+              "Current destination authority and carrier information"
+            ]
+          ]
+        }
+      }
+    ],
+    "relatedSlugs": [
+      "superbuy-payment-methods-fees",
+      "superbuy-warehouse-storage",
+      "how-long-does-superbuy-shipping-take",
+      "superbuy-shipping-to-usa"
+    ]
+  },
+  "how-long-does-superbuy-shipping-take": {
+    "sections": [
+      {
+        "id": "tracking-action",
+        "title": "Match the tracking stage to the next useful action",
+        "paragraphs": [
+          "Count the journey from the event that matters. A carrier transit estimate generally begins later than the day you pay for an item. Seller preparation, China delivery, warehouse review, parcel packing and carrier acceptance are separate stages. A newly created tracking number does not by itself establish carrier possession.",
+          "Keep a short dated timeline with the last confirmed event and the order or parcel reference. If the status stops progressing beyond the service window shown for your order, ask about that specific handoff. Do not place another order or pay a second shipping charge simply because the tracking page has not refreshed."
+        ],
+        "table": {
+          "headers": [
+            "Current stage",
+            "Evidence to check",
+            "Next action"
+          ],
+          "rows": [
+            [
+              "Seller has not dispatched",
+              "Order status and seller message",
+              "Ask through order enquiry"
+            ],
+            [
+              "At warehouse",
+              "Item record, QC images and outstanding requests",
+              "Resolve QC before submitting the parcel"
+            ],
+            [
+              "Parcel processing",
+              "Packing status and payment confirmation",
+              "Check whether an action is pending"
+            ],
+            [
+              "Tracking number created",
+              "First carrier acceptance scan",
+              "Confirm handover if the stated window passes"
+            ],
+            [
+              "International transit or customs",
+              "Latest carrier event and any document request",
+              "Follow the official tracking or support instructions"
+            ],
+            [
+              "Local delivery",
+              "Destination carrier and delivery attempt",
+              "Check the address and collection instructions"
+            ]
+          ]
+        }
+      }
+    ],
+    "relatedSlugs": [
+      "superbuy-shipping-cost-guide",
+      "superbuy-warehouse-storage",
+      "superbuy-returns-refunds",
+      "superbuy-order-evidence-checklist"
+    ]
+  },
+  "superbuy-qc-photos-checklist": {
+    "sections": [
+      {
+        "id": "qc-decision",
+        "title": "Turn a QC concern into a precise request",
+        "paragraphs": [
+          "Start with the smallest missing piece of evidence that can change your decision. For a suspected size mismatch, identify the order, ordered size, received label, measurement endpoints and unit. For visible damage, request a close-up and an overall image showing where the damage sits. An uncertain photograph is a reason to clarify, not proof that the item is defective.",
+          "Keep the item out of the international parcel while an important question remains open. Ask the agent to confirm the seller-specific return eligibility, deadline and potential costs. Warehouse storage time does not extend the seller’s return window. The returns guide below provides an evidence checklist and a request template."
+        ],
+        "table": {
+          "headers": [
+            "Concern",
+            "Useful evidence",
+            "Decision"
+          ],
+          "rows": [
+            [
+              "Wrong option",
+              "Order variant and received label in clear images",
+              "Ask for correction before shipping"
+            ],
+            [
+              "Fit uncertainty",
+              "Comparable flat measurements with visible endpoints",
+              "Compare with a garment you already use"
+            ],
+            [
+              "Possible defect",
+              "Close-up plus overall location",
+              "Request assessment and available remedies"
+            ],
+            [
+              "No material issue",
+              "Matching option and sufficient condition evidence",
+              "Record approval and plan packaging"
+            ]
+          ]
+        }
+      }
+    ],
+    "relatedSlugs": [
+      "superbuy-returns-refunds",
+      "superbuy-qc-measurements-detailed-photos",
+      "superbuy-order-evidence-checklist",
+      "superbuy-warehouse-storage"
+    ]
+  }
+}

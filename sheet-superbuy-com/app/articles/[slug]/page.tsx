@@ -152,7 +152,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: article.deck,
       url: canonical,
       publishedTime: article.date,
-      modifiedTime: "2026-10-07",
+      modifiedTime: article.modifiedISO || (article.date > "2026-10-07" ? article.date : "2026-10-07"),
       authors: [`${SITE_NAME} editorial`],
       images: [
         {
@@ -171,7 +171,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const article = getArticle(slug);
   if (!article) notFound();
   const visual = articleVisuals[article.slug];
-  const relatedArticles = articles.filter((item) => item.slug !== article.slug).slice(0, 4);
+  const defaultRelated = /shipping/.test(slug) ? ["superbuy-shipping-cost-guide", "how-long-does-superbuy-shipping-take", "superbuy-warehouse-storage", "superbuy-payment-methods-fees"] : /qc|size|evidence/.test(slug) ? ["superbuy-qc-photos-checklist", "superbuy-returns-refunds", "superbuy-qc-measurements-detailed-photos", "superbuy-order-evidence-checklist"] : ["how-to-use-a-superbuy-spreadsheet", "superbuy-payment-methods-fees", "superbuy-qc-photos-checklist", "superbuy-shipping-cost-guide"];
+  const relatedArticles = (article.relatedSlugs || defaultRelated).filter(s => s !== slug).map(getArticle).filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const sources = article.sources || [{label: "Superbuy shopping agent guidance", url: "https://www.superbuy.com/en/page/guide/shoppingagent/"}, {label: "Superbuy service and fee schedule", url: "https://www.superbuy.com/en/page/guide/feecomposition/"}, {label: "Superbuy official shipping calculator", url: "https://www.superbuy.com/en/page/query/freight/"}];
   const articleUrl = `${SITE_URL}/articles/${article.slug}/`;
 
   const schema = {
@@ -188,8 +190,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         },
         image: [SOCIAL_IMAGE],
         datePublished: article.date,
-        dateModified: "2026-10-07",
+        dateModified: article.modifiedISO || (article.date > "2026-10-07" ? article.date : "2026-10-07"),
         inLanguage: "en",
+        citation: sources.map(source => source.url),
         author: { "@type": "Organization", name: "SheetSuperbuy editorial" },
         publisher: {
           "@type": "Organization",
@@ -243,9 +246,15 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <section id={section.id} key={section.id}>
               <h2>{section.title}</h2>
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.table && <div className="guide-table-wrap" tabIndex={0} role="region" aria-label={section.title}><table className="guide-table"><thead><tr>{section.table.headers.map(header => <th scope="col" key={header}>{header}</th>)}</tr></thead><tbody>{section.table.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j}>{cell}</td>)}</tr>)}</tbody></table></div>}
               {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
             </section>
           ))}
+          <section className="official-sources">
+            <h2>Official sources and current terms</h2>
+            <p>Use these official pages to confirm current services and conditions. Examples and checklists in this guide are independent editorial advice. The live order, warehouse and parcel screens determine the options available to you.</p>
+            <ul>{sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label} ↗</a></li>)}</ul>
+          </section>
           <section className="related-reading">
             <h2>Continue your research</h2>
             <ul>{relatedArticles.map((item) => <li key={item.slug}><Link href={`/articles/${item.slug}/`}>{item.title}</Link></li>)}</ul>

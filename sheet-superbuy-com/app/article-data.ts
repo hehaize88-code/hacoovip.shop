@@ -1,10 +1,13 @@
 import newArticles from "./new-articles.json";
+import novemberArticles from "./november-articles.json";
+import articleUpdates from "./article-updates.json";
 
 export type ArticleSection = {
   id: string;
   title: string;
   paragraphs: string[];
   bullets?: string[];
+  table?: { headers: string[]; rows: string[][] };
 };
 
 export type Article = {
@@ -16,9 +19,12 @@ export type Article = {
   updated: string;
   readingTime: string;
   sections: ArticleSection[];
+  modifiedISO?: string;
+  sources?: {label: string; url: string}[];
+  relatedSlugs?: string[];
 };
 
-export const articles: Article[] = [
+const originalArticles: Article[] = [
   ...newArticles,
   {
     slug: "superbuy-shipping-to-usa",
@@ -960,6 +966,15 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+const updates: Record<string, {sections: ArticleSection[]; relatedSlugs: string[]}> = articleUpdates;
+export const articles: Article[] = [...novemberArticles, ...originalArticles].map((article) => {
+  const update = updates[article.slug];
+  return {
+    ...article,
+    ...(update ? {sections: [...update.sections, ...article.sections], relatedSlugs: update.relatedSlugs, updated: "4 November 2026", modifiedISO: "2026-11-04"} : {}),
+  };
+});
 
 export function getArticle(slug: string) {
   return articles.find((article) => article.slug === slug);
