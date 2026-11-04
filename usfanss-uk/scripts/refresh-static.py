@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-DATE = '2026-10-07'
+DATE = '2026-11-04'
 DOMAIN = 'https://usfanss.uk'
 LANGS = ['en', 'de', 'fr', 'es', 'it', 'pl']
 NAMES = {'en':'English','de':'Deutsch','fr':'Français','es':'Español','it':'Italiano','pl':'Polski'}
@@ -31,7 +31,8 @@ OLD_LABELS = {
  'Artículos SEO':0,'Articoli SEO':0,'Artykuły SEO':0,
  'Product Tags':1,'Produkt-Tags':1,'Étiquettes':1,'Etiquetas':1,'Etichette':1,'Etykiety':1,
 }
-NEW_SLUGS = ['usfans-size-guide-uk','usfans-payment-failed-uk','usfans-order-received-not-in-warehouse']
+NEW_SLUGS = ['usfans-coupon-codes-shipping-discounts','usfans-vs-cnfans-uk','usfans-link-converter-guide']
+UI = json.loads((ROOT/'content/ui-2026-11.json').read_text())
 DISCLOSURE = {
  'en': 'Independent guidance; this website does not operate USFans or process your USFans orders. Service details can change. Check your current order and the official help entry before acting.',
  'de': 'Unabhängiger Ratgeber: Diese Website betreibt USFans nicht und bearbeitet keine USFans-Bestellungen. Die Leistungen können sich ändern. Prüfe vor einer Entscheidung deine aktuelle Bestellung und den offiziellen Hilfeeintrag.',
@@ -79,7 +80,7 @@ def title_for(slug,lang):
  return DATA[(slug,lang)]['title']
 
 def body(data):
- lang=data['lang'];c=COPY[lang];slug=data['slug'];parts=[]
+ lang=data['lang'];c=COPY[lang];slug=data['slug'];parts=[];modified=data.get('modified','2026-10-07')
  for i,sec in enumerate(data['sections'],1):
   text=''.join('<p>'+esc(p)+'</p>' for p in sec['paragraphs'])
   if 'table' in sec:
@@ -93,14 +94,14 @@ def body(data):
  for other in dict.fromkeys(data['related']):
   target_lang=lang
   related.append(f'<p><a href="{route(other,target_lang)}" data-track="article_internal_click" data-article="{other}" data-placement="related_guides">{esc(title_for(other,target_lang))}</a></p>')
- source='<section class="article-sources"><h2>'+c[9]+' · '+DATE+'</h2>'
+ source='<section class="article-sources"><h2>'+c[9]+'</h2>'
  for item in data['sources']:
-  source+='<p><cite>'+esc(item['label'])+'</cite></p>'
+  source+='<p><cite><a href="'+esc(item['url'],quote=True)+'" data-track="official_source_click" data-placement="article_sources">'+esc(item['label'])+' ↗</a></cite> · '+esc(item.get('checked',modified))+'</p>'
  source+='</section>' if data['sources'] else '</section>'
  if not data['sources']:source=''
  disclosure=DISCLOSURE[lang]
  return f'''<article class="article-page" data-article="{slug}">
- <header class="article-hero section-wrap"><a href="{'/' if lang=='en' else '/'+lang+'/'}articles/">← {c[0]}</a><small>{c[6]} {data['published']} · {c[7]} {DATE} · {max(6,round(main_words(data)/180))} min</small><h1>{esc(data['title'])}</h1><p>{esc(data['intro'])}</p>{toc}</header>
+ <header class="article-hero section-wrap"><a href="{'/' if lang=='en' else '/'+lang+'/'}articles/">← {c[0]}</a><small>{c[6]} {data['published']} · {c[7]} {modified} · {max(6,round(main_words(data)/180))} min</small><h1>{esc(data['title'])}</h1><p>{esc(data['intro'])}</p>{toc}</header>
  <div class="article-layout section-wrap"><aside><img src="{data['image']}" alt="" width="520" height="520" loading="lazy"/><span>{c[11]}</span></aside><div class="article-body">{''.join(parts)}
  <div class="article-disclaimer"><p>{disclosure}</p></div>{source}<section class="related-guides"><h2>{c[10]}</h2><div>{''.join(related)}</div></section>SEARCH_SLOT</div></div></article>'''
 
@@ -120,12 +121,13 @@ for (slug,lang),data in DATA.items():
  for code in equivalents:
   a=soup.new_tag('a',href=route(slug,code),hreflang=code,attrs={'class':'active' if code==lang else ''});a.string=code.upper()+' '+NAMES[code];menu.append(a)
  set_meta(soup,'og:url',canonical,True);set_meta(soup,'og:type','article',True)
- set_meta(soup,'article:published_time',data['published'],True);set_meta(soup,'article:modified_time',DATE,True)
+ modified=data.get('modified','2026-10-07')
+ set_meta(soup,'article:published_time',data['published'],True);set_meta(soup,'article:modified_time',modified,True)
  template=parse((ROOT/('' if lang=='en' else lang)/'articles/usfans-spreadsheet-guide/index.html').read_text())
  form=str(template.select_one('form.boarding-pass'))
  article=parse(body(data).replace('SEARCH_SLOT',form)).article
  slot=soup.find(string=lambda text:text and 'ARTICLE_SLOT' in text);assert slot is not None;slot.replace_with(article)
- schema=[{'@context':'https://schema.org','@type':'Article','headline':data['title'],'description':data['description'],'url':canonical,'mainEntityOfPage':{'@type':'WebPage','@id':canonical},'inLanguage':lang,'datePublished':data['published'],'dateModified':DATE,'image':DOMAIN+data['image'],'author':{'@type':'Organization','name':'USFanss.uk'},'citation':[x['url'] for x in data['sources']]}, {'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'USFanss.uk','item':DOMAIN+('/' if lang=='en' else '/'+lang+'/')},{'@type':'ListItem','position':2,'name':COPY[lang][0],'item':DOMAIN+('/' if lang=='en' else '/'+lang+'/')+'articles/'},{'@type':'ListItem','position':3,'name':data['title'],'item':canonical}]}]
+ schema=[{'@context':'https://schema.org','@type':'Article','headline':data['title'],'description':data['description'],'url':canonical,'mainEntityOfPage':{'@type':'WebPage','@id':canonical},'inLanguage':lang,'datePublished':data['published'],'dateModified':modified,'image':DOMAIN+data['image'],'author':{'@type':'Organization','name':'USFanss.uk'},'citation':[x['url'] for x in data['sources']]}, {'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'USFanss.uk','item':DOMAIN+('/' if lang=='en' else '/'+lang+'/')},{'@type':'ListItem','position':2,'name':COPY[lang][0],'item':DOMAIN+('/' if lang=='en' else '/'+lang+'/')+'articles/'},{'@type':'ListItem','position':3,'name':data['title'],'item':canonical}]}]
  for item in schema:
   tag=soup.new_tag('script',type='application/ld+json');tag.string=json.dumps(item,ensure_ascii=False).replace('<','\\u003c');soup.head.append(tag)
  dest=ROOT/(route(slug,lang).lstrip('/')+'index.html');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(str(soup).rstrip()+'\n')
@@ -134,7 +136,8 @@ def make_card(slug,lang,placement):
  actual=lang;data=DATA[(slug,actual)];c=COPY[lang]
  language_note='' if actual==lang else ' · '+c[12]
  date_label=c[6] if data['new'] else c[7]
- return parse(f'''<a class="article-card" href="{route(slug,actual)}" data-track="article_internal_click" data-article="{slug}" data-placement="{placement}"><div class="article-image"><img src="{data['image']}" width="520" height="520" loading="lazy" alt=""/></div><small>{date_label} {DATE}{language_note}</small><h3 lang="{actual}">{esc(data['title'])}</h3><b>{c[5]} ↗</b></a>''').a
+ date=data['published'] if data['new'] else data.get('modified','2026-10-07')
+ return parse(f'''<a class="article-card" href="{route(slug,actual)}" data-track="article_internal_click" data-article="{slug}" data-placement="{placement}"><div class="article-image"><img src="{data['image']}" width="520" height="520" loading="lazy" alt=""/></div><small>{date_label} {date}{language_note}</small><h3 lang="{actual}">{esc(data['title'])}</h3><b>{c[5]} ↗</b></a>''').a
 
 for lang in LANGS:
  pre='' if lang=='en' else lang+'/'
@@ -155,7 +158,9 @@ for lang in LANGS:
   else:
    grid.clear()
    for slug in ARTICLE_ORDER:grid.append(make_card(slug,lang,'article_cards'))
-   soup.h1.string=COPY[lang][2];set_title(soup,COPY[lang][2])
+   soup.h1.string=COPY[lang][2];set_title(soup,COPY[lang][2],UI[lang]['hub_description'])
+   intro=soup.select_one('.interior-hero>div>p:not(.overline)')
+   if intro:intro.string=UI[lang]['hub_description']
   path.write_text(str(soup).rstrip()+'\n')
 
 def public_html():
@@ -166,6 +171,11 @@ def public_html():
 
 for path in public_html():
  soup=parse(path.read_text());lang=soup.html.get('lang','en');c=COPY.get(lang,COPY['en'])
+ ui=UI.get(lang,UI['en']);pre='/' if lang=='en' else '/'+lang+'/'
+ shipping=route('usfans-shipping-cost-guide',lang)
+ for nav in soup.select('.site-header>nav,.mobile-nav>div,footer>nav'):
+  if not nav.select_one('a[data-nav="shipping"]'):
+   a=soup.new_tag('a',href=shipping,attrs={'data-nav':'shipping','data-track':'article_internal_click','data-article':'usfans-shipping-cost-guide','data-placement':'navigation'});a.string=ui['shipping'];nav.append(a)
  for node in list(soup.find_all(string=True)):
   if node.parent.name in {'script','style'}:continue
   key=str(node).strip()
@@ -187,6 +197,16 @@ for path in public_html():
    a['data-track']='main_product_click' if '/AllProducts/' in url.path else 'main_category_click';a['data-placement']='catalog'
  # Correct the homepage heading and metadata while preserving all modules.
  rel=path.relative_to(ROOT).as_posix();core=rel.removeprefix(lang+'/') if lang!='en' else rel
+ if core=='qc-desk/index.html':
+  for li,copy in zip(soup.select('.qc-manual ol li'),ui['qc_steps']):li.p.string=copy
+ if core in ['index.html','articles/index.html','help/index.html','qc-desk/index.html']:
+  old=soup.select_one('.guide-paths')
+  if old:old.decompose()
+  paths=parse('<nav class="guide-paths section-wrap" aria-label="'+esc(ui['next'],quote=True)+'"><h2>'+esc(ui['next'])+'</h2><div></div></nav>').nav
+  for slug in ['usfans-shipping-cost-guide','usfans-qc-photos-guide','usfans-returns-before-uk-shipping']+NEW_SLUGS:
+   a=soup.new_tag('a',href=route(slug,lang),attrs={'data-track':'article_internal_click','data-article':slug,'data-placement':'guide_paths'});a.string=title_for(slug,lang);paths.div.append(a)
+  footer=soup.select_one('main>footer')
+  if footer:footer.insert_before(paths)
  if core=='index.html' and lang=='en':
   set_title(soup,'USFans Spreadsheet UK | Product Finds, QC & Shipping','Browse USFans product finds, compare approximate USD prices and use practical guides for sizing, QC, payments and UK shipping.')
   hero=soup.select_one('.hero h1')
@@ -209,7 +229,12 @@ for (slug,lang),data in DATA.items():
   entry=ET.SubElement(root,'{'+ns+'}url');ET.SubElement(entry,'{'+ns+'}loc').text=url;entries[url]=entry
  entry=entries[url];modified=entry.find('{'+ns+'}lastmod')
  if modified is None:modified=ET.SubElement(entry,'{'+ns+'}lastmod')
- modified.text=DATE
+ modified.text=data.get('modified','2026-10-07')
+for url,entry in entries.items():
+ if '/articles/' not in url or url.endswith('/articles/'):
+  modified=entry.find('{'+ns+'}lastmod')
+  if modified is None:modified=ET.SubElement(entry,'{'+ns+'}lastmod')
+  modified.text=DATE
 tree.write(sm,encoding='unicode',xml_declaration=True)
 print('Rendered',len(DATA),'article pages; new English word counts:',{s:main_words(DATA[(s,'en')]) for s in NEW_SLUGS})
 print('Sitemap entries:',len(entries))

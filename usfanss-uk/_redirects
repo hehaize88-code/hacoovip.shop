@@ -1,4 +1,4 @@
-https://www.usfanss.uk/* https://usfanss.uk/:splat 308
+# www redirects are configured in Cloudflare Bulk Redirects; Pages does not support host matching here.
 /articles /articles/ 308
 /categories /categories/ 308
 /products /products/ 308

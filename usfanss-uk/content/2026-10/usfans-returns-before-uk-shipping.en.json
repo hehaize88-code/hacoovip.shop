@@ -1,9 +1,9 @@
 {
   "slug": "usfans-returns-before-uk-shipping",
   "lang": "en",
-  "title": "USFans Returns and Refunds Before Shipping to the UK",
-  "description": "USFans returns and refunds are most manageable while an item is still in the warehouse and the order evidence is current. This guide explains how to document a wrong variant or visible defect, read item-specific timing, contact the correct support stage and avoid promising a refund that depends on seller acceptance and current policy.",
-  "intro": "USFans returns and refunds are most manageable while an item is still in the warehouse and the order evidence is current. This guide explains how to document a wrong variant or visible defect, read item-specific timing, contact the correct support stage and avoid promising a refund that depends on seller acceptance and current policy.",
+  "title": "USFans Returns and Refunds: What to Check Before Shipping",
+  "description": "Check USFans return eligibility, warehouse deadlines and refund records. Use a clear request template before submitting a parcel for international shipping.",
+  "intro": "For a USFans return, first identify the exact order, the visible problem and the current application deadline. Keep the item in the warehouse while you clarify the seller-side options. A return request, seller approval and a completed refund are different stages. This guide shows what evidence to save and what to ask without promising a refund or a universal return window.",
   "sections": [
     {
       "heading": "Separate marketplace returns from parcel after-sales",
@@ -76,21 +76,28 @@
       ]
     },
     {
-      "heading": "Official sources checked",
+      "heading": "A return request you can adapt",
       "paragraphs": [
-        "USFans Beginner's Guide ↗",
-        "USFans Help Center ↗",
-        "USFans Shipping Fee Estimation ↗"
+        "State: “Order [reference], variant [size/colour]. I ordered [description], but QC photo [number] shows [specific mismatch]. Please confirm the available return or exchange option, the application deadline and any domestic return cost before I submit the item for international shipping.” Replace every bracket with the facts of your own order.",
+        "After the reply, record whether the case is awaiting evidence, seller approval, return transport or refund processing. Confirm the refund amount and destination from the transaction record. Do not interpret a submitted request as approval, or an approved return as money already received by your original payment method."
       ]
     }
   ],
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
-    "usfans-qc-photos-guide"
+    "usfans-qc-photos-guide",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-payment-failed-uk",
+    "usfans-shipping-cost-guide"
   ],
-  "sources": [],
+  "sources": [
+    {
+      "label": "USFans Help Center — after-sales and shopping-agent guidance",
+      "url": "https://usfans.com/help/category/all",
+      "checked": "2026-11-04"
+    }
+  ],
   "image": "/products/polo.webp",
   "published": "2026-09-07",
-  "new": false
+  "new": false,
+  "modified": "2026-11-04"
 }

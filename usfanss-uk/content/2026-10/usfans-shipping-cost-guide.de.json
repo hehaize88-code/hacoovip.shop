@@ -1,10 +1,17 @@
 {
   "slug": "usfans-shipping-cost-guide",
   "lang": "de",
-  "title": "USFans-Versandkosten: Gewicht, Volumen und Kostenschätzung",
-  "description": "USFans Versand mit Paketgewicht, Abmessungen und Routenregeln zu schätzen. Vergleichen Sie ein Arbeitsvolumenbeispiel, Verpackungsoptionen und abschließende Abrechnungsprüfungen.",
-  "intro": "USFans Versand hat keinen einzigen Preis pro Kilogramm, der für jedes Paket gilt. Beginnen Sie mit dem Ziel, gepackten Abmessungen, dem tatsächlichen Gewicht und der Abrechnungsregel einer förderfähigen Route. Halten Sie den Produktpreis vom internationalen Versand getrennt. Die nachfolgende Berechnung ist eine Darstellung des Volumens, kein aktuelles USFans Angebot; verwenden Sie die Live-Paketschätzung für den zu zahlenden Betrag.",
+  "title": "Was kostet USFans Versand? Gewicht und Paketbeispiele",
+  "description": "Berechne USFans Versandkosten mit tatsächlichem Gewicht und Volumengewicht. Prüfe ein 3-kg-Beispiel, passende Linien und aktuelle Angebote.",
+  "intro": "USFans Versandkosten hängen von Ziel, Packmaßen, tatsächlichem Gewicht und Versandlinie ab. Einen verlässlichen allgemeinen Kilopreis gibt es nicht. Ein 3-kg-Paket kann im folgenden Beispiel 4 kg Volumengewicht haben. Nutze die Rechnung und vergleiche danach aktuelle Linien für dein Paket; das Beispiel ist kein aktuelles Preisangebot.",
   "sections": [
+    {
+      "heading": "Was kostet USFans Versand für 2 kg, 5 kg oder 10 kg?",
+      "paragraphs": [
+        "Das Gewicht allein bestimmt den Preis eines Pakets von 2 kg, 5 kg oder 10 kg nicht. Halte Ziel, fertige Packmaße, Artikelarten und tatsächliches Gewicht bereit und prüfe geeignete Linien samt Abrechnungsregeln. Ein sperriges 2-kg-Paket kann höher abgerechnet werden. Multipliziere deshalb keinen alten Kilopreis mit dem neuen Gewicht.",
+        "Notiere für jedes Angebot Linie, Währung, Abrechnungsgewicht, enthaltene Leistungen und Datum. Prüfe nach Umpacken oder Inhaltsänderungen erneut. Beurteile Gutscheine anhand der endgültigen Zahlung, statt einen beworbenen Rabatt als garantierten Abzug auf sämtliche Gebühren zu behandeln."
+      ]
+    },
     {
       "heading": "Die vier Kostenbestandteile trennen",
       "paragraphs": [
@@ -122,8 +129,9 @@
   ],
   "image": "/products/crewneck.webp",
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
+    "usfans-coupon-codes-shipping-discounts",
+    "usfans-fees-uk-buyers-total-cost",
+    "usfans-vs-cnfans-uk",
     "usfans-qc-photos-guide"
   ],
   "sources": [
@@ -135,5 +143,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

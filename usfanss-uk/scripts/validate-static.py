@@ -6,7 +6,7 @@ import json,re,xml.etree.ElementTree as ET
 root=Path(__file__).resolve().parents[1]
 languages=['en','de','fr','es','it','pl']
 order=json.loads((root/'content/2026-10/article-order.json').read_text())
-assert len(order)==len(set(order))==14
+assert len(order)==len(set(order))==17
 data={(d['slug'],d['lang']):d for p in (root/'content/2026-10').glob('*.??.json') for d in [json.loads(p.read_text())]}
 for lang in languages:
  assert {slug for slug,code in data if code==lang}==set(order),(lang,'missing translations')
@@ -87,4 +87,4 @@ for datafile in (root/'content/2026-10').glob('*.en.json'):
   text=d['intro']+' '+' '.join(x['heading']+' '+' '.join(x['paragraphs']) for x in d['sections'])
   count=len(re.findall(r"\b[\w]+(?:['’-][\w]+)*\b",text));assert 1200<=count<=1800,(datafile,count)
 print(f'Validated {len(pages)} complete documents, {len(urls)} sitemap URLs, schemas, images, forms and internal links.')
-print('All six languages contain the same 14 full articles, section/paragraph/table structure and same-page language links.')
+print('All six languages contain the same 17 full articles, section/paragraph/table structure and same-page language links.')

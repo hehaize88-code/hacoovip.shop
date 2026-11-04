@@ -1,9 +1,9 @@
 {
   "slug": "usfans-returns-before-uk-shipping",
   "lang": "es",
-  "title": "Devoluciones y reembolsos USFans antes del envío al Reino Unido",
-  "description": "Los retornos y reembolsos de USFans son más manejables mientras que un artículo todavía está en el almacén y la evidencia del pedido es actual. Esta guía explica cómo documentar una variante incorrecta o defecto visible, leer el tiempo específico de artículo, ponerse en contacto con la etapa de soporte correcta y evitar prometer un reembolso que depende de la aceptación del vendedor y la política actual.",
-  "intro": "Los retornos y reembolsos de USFans son más manejables mientras que un artículo todavía está en el almacén y la evidencia del pedido es actual. Esta guía explica cómo documentar una variante incorrecta o defecto visible, leer el tiempo específico de artículo, ponerse en contacto con la etapa de soporte correcta y evitar prometer un reembolso que depende de la aceptación del vendedor y la política actual.",
+  "title": "Devoluciones y reembolsos USFans: antes de enviar",
+  "description": "Comprueba requisitos, plazos y registros de reembolso USFans. Usa una solicitud clara antes de tramitar la entrega internacional.",
+  "intro": "Para devolver en USFans identifica primero pedido, problema visible y plazo actual. Mantén el artículo en almacén mientras aclaras las opciones con el vendedor. Solicitud, aprobación y reembolso completado son etapas distintas. Esta guía explica las pruebas y preguntas útiles sin garantizar un reembolso ni un plazo universal.",
   "sections": [
     {
       "heading": "Retorno separado del mercado de paquetes después de ventas",
@@ -76,21 +76,28 @@
       ]
     },
     {
-      "heading": "Fuentes oficiales verificadas",
+      "heading": "Una solicitud de devolución que puedes adaptar",
       "paragraphs": [
-        "Guía de inicio de USFans",
-        "USFans Centro de ayuda",
-        "USFans Shipping Fee Estimation"
+        "Escribe: «Pedido [referencia], variante [talla/color]. Pedí [descripción], pero la foto QC [número] muestra [diferencia concreta]. Confirmen devolución o cambio disponibles, plazo de solicitud y posible coste nacional antes de tramitar el envío internacional». Sustituye cada corchete por los datos reales de tu pedido.",
+        "Tras la respuesta anota si faltan pruebas, aprobación del vendedor, transporte de vuelta o procesamiento del reembolso. Verifica importe y destino en las transacciones. Enviar una solicitud no equivale a aprobación; aprobar una devolución no implica que el dinero haya llegado ya al método de pago original."
       ]
     }
   ],
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
-    "usfans-qc-photos-guide"
+    "usfans-qc-photos-guide",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-payment-failed-uk",
+    "usfans-shipping-cost-guide"
   ],
-  "sources": [],
+  "sources": [
+    {
+      "label": "USFans Help Center — after-sales and shopping-agent guidance",
+      "url": "https://usfans.com/help/category/all",
+      "checked": "2026-11-04"
+    }
+  ],
   "image": "/products/polo.webp",
   "published": "2026-09-07",
-  "new": false
+  "new": false,
+  "modified": "2026-11-04"
 }

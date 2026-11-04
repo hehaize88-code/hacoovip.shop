@@ -1,9 +1,9 @@
 {
   "slug": "usfans-returns-before-uk-shipping",
   "lang": "fr",
-  "title": "Retours et remboursements USFans avant l’envoi au Royaume-Uni",
-  "description": "Les retours et remboursements USFans sont les plus gérables alors qu'un article est toujours dans l'entrepôt et que la preuve de commande est à jour. Ce guide explique comment documenter une variante fausse ou un défaut visible, lire le calendrier spécifique à l'article, contacter l'étape de support correcte et éviter de promettre un remboursement qui dépend de l'acceptation du vendeur et de la politique actuelle.",
-  "intro": "Les retours et remboursements USFans sont les plus gérables alors qu'un article est toujours dans l'entrepôt et que la preuve de commande est à jour. Ce guide explique comment documenter une variante fausse ou un défaut visible, lire le calendrier spécifique à l'article, contacter l'étape de support correcte et éviter de promettre un remboursement qui dépend de l'acceptation du vendeur et de la politique actuelle.",
+  "title": "Retours et remboursements USFans : avant l’expédition",
+  "description": "Vérifiez admissibilité au retour, échéances et remboursement USFans. Utilisez une demande précise avant l’envoi international du colis.",
+  "intro": "Pour un retour USFans, identifiez d’abord commande, problème visible et délai actuel de demande. Gardez l’article en entrepôt pendant la clarification des options avec le vendeur. Demande, accord et remboursement terminé sont des étapes distinctes. Ce guide explique quelles preuves conserver et quelles questions poser, sans garantir remboursement ni délai universel.",
   "sections": [
     {
       "heading": "Rendements distincts du marché des colis après-vente",
@@ -76,21 +76,28 @@
       ]
     },
     {
-      "heading": "Sources officielles contrôlées",
+      "heading": "Une demande de retour à adapter",
       "paragraphs": [
-        "USFans Guide du débutant",
-        "Centre d'aide USFans",
-        "Estimation des frais d'expédition USFans"
+        "Écrivez : « Commande [référence], variante [taille/couleur]. J’ai commandé [description], mais la photo QC [numéro] montre [écart précis]. Merci de confirmer les options de retour ou échange, la date limite et les frais intérieurs éventuels avant mon expédition internationale. » Remplacez chaque crochet par les faits de votre commande.",
+        "Après réponse, notez si le dossier attend des preuves, l’accord vendeur, le transport retour ou le remboursement. Vérifiez montant et destination dans les transactions. Une demande envoyée n’est pas un accord ; un retour accepté ne signifie pas que l’argent est déjà arrivé sur votre moyen de paiement initial."
       ]
     }
   ],
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
-    "usfans-qc-photos-guide"
+    "usfans-qc-photos-guide",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-payment-failed-uk",
+    "usfans-shipping-cost-guide"
   ],
-  "sources": [],
+  "sources": [
+    {
+      "label": "USFans Help Center — after-sales and shopping-agent guidance",
+      "url": "https://usfans.com/help/category/all",
+      "checked": "2026-11-04"
+    }
+  ],
   "image": "/products/polo.webp",
   "published": "2026-09-07",
-  "new": false
+  "new": false,
+  "modified": "2026-11-04"
 }

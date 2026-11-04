@@ -8,7 +8,7 @@ static publication input.
 The complete article sources live in `content/2026-10/*.{lang}.json`. Their
 templates are in `templates/`. `article-order.json` is the shared article
 registry: every English, German, French, Spanish, Italian and Polish hub must
-contain the same 14 articles. Each translated article preserves the original
+contain the same 17 articles. Each translated article preserves the original
 sections, paragraphs, tables, references and related-guide relationships.
 Homepages show the same four featured articles in the selected language.
 
@@ -29,5 +29,16 @@ npm run build:pages
 
 `dist/pages` excludes source files and editorial JSON. The committed public
 HTML is also updated by the build for the existing GitHub-linked deployment.
+Cloudflare Pages exports those verified documents with
+`python3 usfanss-uk/scripts/export-static.py` from the repository root and
+publishes `usfanss-uk/dist/pages` (production branch `main`).
 Only `usfanss-uk/` belongs to this site. Automatic article publication remains
 disabled for this domain in the shared scheduler.
+
+The 2026-11-04 update adds coupons, USFans/CNFans comparison and product-link
+guides in all six languages. CNFans maintenance is a dated observation, not
+a prediction or an assertion about individual orders. No universal coupon,
+unverified shipping price or matched-order test is claimed. Keep article
+modified dates independent from build dates. Official references are clickable.
+The www host redirect is managed in Cloudflare Bulk Redirects, because Pages
+`_redirects` supports paths but not host matching. Preserve path and query.

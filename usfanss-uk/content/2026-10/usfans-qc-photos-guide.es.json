@@ -1,10 +1,17 @@
 {
   "slug": "usfans-qc-photos-guide",
   "lang": "es",
-  "title": "Fotos QC USFans: un método práctico de revisión",
-  "description": "Las fotos de USFans QC pueden reducir la incertidumbre antes del envío internacional, pero sólo si las inspecciona en un orden consistente y entiende sus límites. Esta guía convierte imágenes de almacén en un registro de decisión práctico sin pretender que las fotografías pueden garantizar materiales, durabilidad o elegibilidad de ruta.",
-  "intro": "Las fotos de USFans QC pueden reducir la incertidumbre antes del envío internacional, pero sólo si las inspecciona en un orden consistente y entiende sus límites. Esta guía convierte imágenes de almacén en un registro de decisión práctico sin pretender que las fotografías pueden garantizar materiales, durabilidad o elegibilidad de ruta.",
+  "title": "Fotos QC de USFans: dónde verlas y cómo comprobar tallas",
+  "description": "Encuentra fotos QC USFans, revisa la variante y solicita medidas útiles. Aprende qué hacer si faltan imágenes del almacén.",
+  "intro": "Las fotos QC USFans ayudan a revisar estado visible, variante y medidas antes del envío. Empieza por el artículo correcto del almacén y su pedido. Si faltan imágenes, distingue entrega del vendedor, procesamiento y disponibilidad de fotos. Una imagen clara muestra detalles visibles, pero no demuestra materiales, autenticidad ni durabilidad.",
   "sections": [
+    {
+      "heading": "¿Dónde están mis fotos QC y por qué faltan?",
+      "paragraphs": [
+        "Abre el pedido y el registro de almacén del artículo exacto. Comprueba su etapa de procesamiento: una entrega registrada por el vendedor no prueba que las fotos estén listas. Revisa la referencia antes de atribuir imágenes de otro pedido a esta compra.",
+        "Si el registro existe pero faltan vistas o son poco claras, pide al soporte oficial la imagen concreta indicando la referencia. Para una talla, explica los extremos de la medición. Haz una solicitud precisa y revisa la respuesta antes de enviar el artículo internacionalmente."
+      ]
+    },
     {
       "heading": "Resolver el detalle decisivo antes de solicitar más fotos",
       "paragraphs": [
@@ -80,8 +87,9 @@
   "image": "/products/sneakers.jpg",
   "related": [
     "usfans-size-guide-uk",
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide"
+    "usfans-returns-before-uk-shipping",
+    "usfans-order-received-not-in-warehouse",
+    "usfans-link-converter-guide"
   ],
   "sources": [
     {
@@ -92,5 +100,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

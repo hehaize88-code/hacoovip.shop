@@ -1,9 +1,9 @@
 {
   "slug": "usfans-returns-before-uk-shipping",
   "lang": "de",
-  "title": "USFans: Rücksendungen und Erstattungen vor dem Versand nach Großbritannien",
-  "description": "USFans Renditen und Erstattungen sind am meisten beherrschbar, während ein Artikel noch im Lager ist und der Auftragsnachweis aktuell ist. Diese Anleitung erklärt, wie man eine falsche Variante oder einen sichtbaren Defekt dokumentieren, artikelspezifisches Timing lesen, die richtige Supportstufe kontaktieren und eine Rückerstattung, die von der Verkäuferakzeptanz und aktuellen Politik abhängt, vermeiden kann.",
-  "intro": "USFans Renditen und Erstattungen sind am meisten beherrschbar, während ein Artikel noch im Lager ist und der Auftragsnachweis aktuell ist. Diese Anleitung erklärt, wie man eine falsche Variante oder einen sichtbaren Defekt dokumentieren, artikelspezifisches Timing lesen, die richtige Supportstufe kontaktieren und eine Rückerstattung, die von der Verkäuferakzeptanz und aktuellen Politik abhängt, vermeiden kann.",
+  "title": "USFans Rückgabe und Erstattung: Vor dem Versand prüfen",
+  "description": "Prüfe Rückgabebedingungen, Lagerfristen und Erstattungsstatus bei USFans. Nutze eine konkrete Anfrage vor dem internationalen Versand.",
+  "intro": "Bestimme für eine USFans Rückgabe zuerst Bestellung, sichtbares Problem und aktuelle Antragsfrist. Lass den Artikel im Lager, während du die Möglichkeiten mit dem Verkäufer klärst. Antrag, Zustimmung und abgeschlossene Erstattung sind unterschiedliche Schritte. Hier erfährst du, welche Nachweise und Fragen helfen, ohne eine Erstattung oder allgemeine Rückgabefrist zu versprechen.",
   "sections": [
     {
       "heading": "Separater Marktplatz kehrt von Paketnachverkauf zurück",
@@ -76,21 +76,28 @@
       ]
     },
     {
-      "heading": "Geprüfte Quellen",
+      "heading": "Eine anpassbare Rückgabeanfrage",
       "paragraphs": [
-        "USFans Anfängerhandbuch",
-        "USFans Help Center RIC",
-        "USFans Versand Fee Schätzung ✓"
+        "Schreibe: „Bestellung [Referenz], Variante [Größe/Farbe]. Bestellt wurde [Beschreibung], QC-Foto [Nummer] zeigt jedoch [konkrete Abweichung]. Bitte bestätigen Sie Rückgabe- oder Umtauschmöglichkeiten, Antragsfrist und mögliche Inlandskosten, bevor ich den internationalen Versand beantrage.“ Ersetze alle Klammern durch die Angaben deiner Bestellung.",
+        "Notiere nach der Antwort, ob Nachweise, Verkäuferzustimmung, Rücktransport oder Erstattungsbearbeitung ausstehen. Prüfe Betrag und Ziel der Erstattung im Transaktionsdatensatz. Ein eingereichter Antrag ist keine Zustimmung, und eine genehmigte Rückgabe bedeutet nicht, dass das Geld bereits auf dem ursprünglichen Zahlungsmittel angekommen ist."
       ]
     }
   ],
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
-    "usfans-qc-photos-guide"
+    "usfans-qc-photos-guide",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-payment-failed-uk",
+    "usfans-shipping-cost-guide"
   ],
-  "sources": [],
+  "sources": [
+    {
+      "label": "USFans Help Center — after-sales and shopping-agent guidance",
+      "url": "https://usfans.com/help/category/all",
+      "checked": "2026-11-04"
+    }
+  ],
   "image": "/products/polo.webp",
   "published": "2026-09-07",
-  "new": false
+  "new": false,
+  "modified": "2026-11-04"
 }

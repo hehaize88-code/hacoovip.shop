@@ -1,10 +1,17 @@
 {
   "slug": "usfans-shipping-cost-guide",
   "lang": "pl",
-  "title": "Koszt wysyłki USFans: waga, objętość i wycena",
-  "description": "Oszacuj koszty wysyłki USFans na podstawie wagi, wymiarów i zasad danej linii. Porównaj przykład masy objętościowej i warianty pakowania.",
-  "intro": "USFans wysyłka nie ma jednej ceny za kilogram, który ma zastosowanie do każdej paczki. Zacznij od miejsca przeznaczenia, spakowanych wymiarów, rzeczywistej wagi i zasady naliczania opłat za kwalifikującą się trasę. Przechowywać cenę produktu oddzielnie od wysyłki międzynarodowej. Poniższe obliczenia są ilustracją wielkości, a nie aktualnego cytatu z USFans; należy wykorzystać szacunkową wartość paczek na żywo w odniesieniu do kwoty do zapłaty.",
+  "title": "Ile kosztuje wysyłka USFans? Waga i przykłady paczek",
+  "description": "Oblicz wysyłkę USFans według wagi rzeczywistej i objętościowej. Zobacz przykład 3 kg, zasady linii i dane do aktualnej wyceny.",
+  "intro": "Koszt wysyłki USFans zależy od celu, wymiarów zapakowanej paczki, wagi rzeczywistej i linii. Nie ma wiarygodnej uniwersalnej stawki za kilogram. Paczka ważąca 3 kg może mieć wagę objętościową 4 kg, jak w przykładzie poniżej. Najpierw wykonaj obliczenie, następnie porównaj aktualne linie dla swojej paczki. Przykład nie jest bieżącą ceną wysyłki.",
   "sections": [
+    {
+      "heading": "Ile kosztuje wysyłka USFans dla 2 kg, 5 kg lub 10 kg?",
+      "paragraphs": [
+        "Sama waga nie określa ceny paczki 2 kg, 5 kg ani 10 kg. Przygotuj cel, końcowe wymiary, rodzaje towarów i wagę rzeczywistą, a następnie sprawdź dostępne linie oraz zasady rozliczenia. Duża paczka 2 kg może być rozliczana powyżej tej wagi. Nie mnóż dawnej stawki kilogramowej przez nową wagę.",
+        "Dla każdej wyceny zapisz linię, walutę, wagę rozliczeniową, uwzględnione usługi i datę. Sprawdź ponownie po przepakowaniu lub zmianie zawartości. Kupony porównuj według końcowej płatności, bez zakładania, że reklamowany rabat obniża każdą opłatę."
+      ]
+    },
     {
       "heading": "Oddziel cztery składniki kosztu",
       "paragraphs": [
@@ -122,8 +129,9 @@
   ],
   "image": "/products/crewneck.webp",
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
+    "usfans-coupon-codes-shipping-discounts",
+    "usfans-fees-uk-buyers-total-cost",
+    "usfans-vs-cnfans-uk",
     "usfans-qc-photos-guide"
   ],
   "sources": [
@@ -135,5 +143,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026- 10- 07"
+  "modified": "2026-11-04"
 }

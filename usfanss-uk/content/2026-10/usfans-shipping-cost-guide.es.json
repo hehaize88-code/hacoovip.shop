@@ -1,10 +1,17 @@
 {
   "slug": "usfans-shipping-cost-guide",
   "lang": "es",
-  "title": "Gastos de envío USFans: peso, volumen y estimación",
-  "description": "Estimación de envío de USFans utilizando el peso de paquete, dimensiones y reglas de ruta. Compare un ejemplo de volumen trabajado, opciones de embalaje y cheques finales de facturación.",
-  "intro": "El envío de USFans no tiene precio único por kilogramo que se aplica a cada paquete. Comience con el destino, dimensiones empaquetadas, peso real y la regla de facturación de una ruta elegible. Mantenga el precio del producto separado del envío internacional. El cálculo a continuación es una ilustración del volumen, no una cotización actual de USFans; utilice la estimación de paquetes en vivo para la cantidad pagada.",
+  "title": "¿Cuánto cuesta el envío de USFans? Peso y ejemplos",
+  "description": "Calcula el envío USFans con peso real y volumétrico. Revisa un ejemplo de 3 kg, rutas y datos necesarios para obtener un presupuesto actual.",
+  "intro": "El coste de envío USFans depende del destino, las dimensiones embaladas, el peso real y la ruta. No existe un precio universal fiable por kilo. Un paquete de 3 kg puede equivaler a 4 kg volumétricos en el ejemplo. Calcula primero y compara después las rutas actuales para tu paquete; el ejemplo no es una tarifa vigente.",
   "sections": [
+    {
+      "heading": "¿Cuánto cuesta enviar 2 kg, 5 kg o 10 kg con USFans?",
+      "paragraphs": [
+        "El peso por sí solo no fija el precio de un paquete de 2 kg, 5 kg o 10 kg. Prepara destino, dimensiones finales, tipos de artículos y peso real; después comprueba rutas y reglas de facturación. Un paquete voluminoso de 2 kg puede facturarse por encima de ese peso. No multipliques una tarifa antigua por kilo por el nuevo peso.",
+        "En cada presupuesto registra ruta, moneda, peso facturable, servicios y fecha. Revisa los datos tras cambiar embalaje o contenido. Compara cualquier cupón con el importe final, sin interpretar el descuento anunciado como una reducción garantizada de todas las partidas."
+      ]
+    },
     {
       "heading": "Separar los cuatro componentes del coste",
       "paragraphs": [
@@ -122,8 +129,9 @@
   ],
   "image": "/products/crewneck.webp",
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
+    "usfans-coupon-codes-shipping-discounts",
+    "usfans-fees-uk-buyers-total-cost",
+    "usfans-vs-cnfans-uk",
     "usfans-qc-photos-guide"
   ],
   "sources": [
@@ -135,5 +143,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

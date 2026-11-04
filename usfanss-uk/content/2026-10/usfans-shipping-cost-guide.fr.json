@@ -1,10 +1,17 @@
 {
   "slug": "usfans-shipping-cost-guide",
   "lang": "fr",
-  "title": "Frais de livraison USFans : poids, volume et estimation",
-  "description": "Estimer l'expédition USFans en utilisant le poids du colis, les dimensions et les règles de route. Comparer un exemple de volume travaillé, des choix d'emballage et des vérifications de facturation finales.",
-  "intro": "USFans expédition n'a pas de prix unique par kilogramme qui s'applique à chaque colis. Commencez par la destination, les dimensions emballées, le poids réel et la règle de facturation d'un itinéraire admissible. Gardez le prix du produit séparé de l'expédition internationale. Le calcul ci-dessous est une illustration du volume, et non un devis USFans courant; utilisez l'estimation de colis en direct pour le montant payable.",
+  "title": "Combien coûte la livraison USFans ? Poids et exemples",
+  "description": "Calculez les frais USFans avec le poids réel et volumétrique. Exemple de colis de 3 kg, choix des lignes et données pour une estimation actuelle.",
+  "intro": "Le coût de livraison USFans dépend du pays, des dimensions emballées, du poids réel et de la ligne choisie. Il n’existe pas de tarif universel fiable au kilo. Un colis de 3 kg peut représenter 4 kg volumétriques dans notre exemple. Faites le calcul puis comparez les lignes actuelles de votre colis : l’exemple n’est pas un prix de transport en vigueur.",
   "sections": [
+    {
+      "heading": "Quel prix pour un colis USFans de 2 kg, 5 kg ou 10 kg ?",
+      "paragraphs": [
+        "Le poids seul ne détermine pas le prix d’un colis de 2 kg, 5 kg ou 10 kg. Préparez destination, dimensions finales, types d’articles et poids réel, puis vérifiez les lignes admissibles et leurs règles. Un colis volumineux de 2 kg peut être facturé au-delà de son poids réel. Ne multipliez pas un ancien tarif au kilo par votre nouveau poids.",
+        "Pour chaque estimation, notez ligne, devise, poids facturable, services inclus et date. Revérifiez après reconditionnement ou changement du contenu. Comparez tout coupon au paiement final, sans considérer le rabais annoncé comme une réduction garantie sur chaque poste."
+      ]
+    },
     {
       "heading": "Distinguer les quatre catégories de coûts",
       "paragraphs": [
@@ -122,8 +129,9 @@
   ],
   "image": "/products/crewneck.webp",
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
+    "usfans-coupon-codes-shipping-discounts",
+    "usfans-fees-uk-buyers-total-cost",
+    "usfans-vs-cnfans-uk",
     "usfans-qc-photos-guide"
   ],
   "sources": [
@@ -135,5 +143,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

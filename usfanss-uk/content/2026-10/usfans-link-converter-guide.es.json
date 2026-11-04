@@ -1,0 +1,91 @@
+{
+  "slug": "usfans-link-converter-guide",
+  "lang": "es",
+  "title": "Cómo convertir enlaces para USFans: Taobao, Weidian y CNFans",
+  "description": "Recupera el enlace original, ábrelo en USFans y verifica vendedor, ID y variante. Soluciona enlaces incorrectos o que ya no cargan.",
+  "intro": "Para abrir un producto en USFans, recupera el enlace original del marketplace, úsalo en la búsqueda oficial y revisa el artículo antes de comprar. Un conversor cambia dónde consultas una publicación; no mueve pedidos existentes, saldo ni mercancía del almacén. Esta guía cubre Taobao, Weidian y enlaces compartidos mediante otros agentes como CNFans. También explica qué hacer si aparece otro producto, se pierde la talla seleccionada o la página deja de cargar.",
+  "sections": [
+    {
+      "heading": "Identifica el tipo de enlace",
+      "paragraphs": [
+        "Determina si la dirección pertenece a un marketplace, una ficha de agente, un servicio de enlaces cortos, una tienda o un álbum de fotos. Son entradas diferentes. Una ficha identifica una publicación concreta; un álbum puede mostrar solo imágenes y contactos del vendedor. Una tienda reúne muchos productos. No todas las URL compartidas contienen información suficiente para recuperar un artículo comprable específico.",
+        "Guarda el enlace completo antes de modificarlo. Anota nombre visible, vendedor y opción elegida si aparecen. Si procede de una hoja de productos, conserva las notas de esa fila como contexto, pero contrástalas con la publicación real. Los precios y las fotos pueden ser antiguos. El objetivo es mantener la identidad del artículo, no simplemente abrir una página con una imagen parecida o un precio inicial atractivo."
+      ]
+    },
+    {
+      "heading": "Recupera la publicación original",
+      "paragraphs": [
+        "En una página de agente accesible busca un enlace visible a la fuente, al producto original o al marketplace. Síguelo y comprueba identificador y vendedor cuando estén disponibles. El número interno del agente no tiene por qué coincidir con el ID original. Si falta la fuente, pide la URL a quien compartió el producto en lugar de inventar otra dirección cambiando el dominio del agente.",
+        "CNFans mostraba un aviso de mantenimiento cuando lo revisamos el 4 de noviembre de 2026, por lo que un enlace antiguo quizá no permita consultar su fuente ahora. Busca un enlace Taobao o Weidian asociado en tus notas o en la hoja original. Una página temporalmente inaccesible no demuestra que el vendedor haya retirado el producto. Tampoco pagues en un dominio parecido que prometa restaurar el acceso."
+      ]
+    },
+    {
+      "heading": "Pega la URL en la búsqueda oficial USFans",
+      "paragraphs": [
+        "Abre la web oficial USFans e introduce la URL recuperada en su búsqueda por enlace de producto. USFans describe esa operación como parte del proceso de compra. Usa la dirección completa del artículo, no una imagen, un seguimiento de paquete o una página de ayuda. Si copiaste un mensaje con varias URL y comentarios, separa primero el enlace real para evitar una entrada ambigua.",
+        "Espera a que cargue la ficha y comprueba qué muestra. Si aparece un error, guarda el mensaje y vuelve a la publicación original antes de probar inmediatamente otro vendedor. Esta guía independiente no ofrece un conversor que transfiera pedidos ni garantice compatibilidad universal. La ficha oficial y sus opciones actuales muestran si USFans puede presentar esa publicación concreta en ese momento."
+      ]
+    },
+    {
+      "heading": "Verifica la identidad antes del precio",
+      "paragraphs": [
+        "Compara vendedor, identificador, imágenes principales y lista completa de opciones con la fuente. Selecciona de nuevo color, talla, modelo y cantidad exactos. La página convertida puede mostrar una variante predeterminada o la opción más barata. No supongas que conserva la selección anterior. Un precio bajo no sirve si corresponde a un accesorio en vez del artículo completo que querías.",
+        "Lee tablas de tallas y notas disponibles, especialmente en productos personalizados o variantes identificadas mediante códigos. Guarda la opción final. Si fuente y agente discrepan en existencias, precio o tallas, pide aclaraciones antes de pagar. No elijas simplemente la alternativa más parecida. Corregir una variante equivocada tras comprar puede exigir negociación y costes de devolución que una comprobación cuidadosa habría evitado."
+      ]
+    },
+    {
+      "heading": "Trata enlaces cortos, álbumes e ID ausentes",
+      "paragraphs": [
+        "Abre un enlace corto con un navegador normal y revisa el destino antes de copiar la dirección final. Detente si pide credenciales ajenas o dirige a un servicio inesperado. Una URL abreviada puede llevar a una tienda, una campaña o una publicación eliminada. Que la redirección funcione no confirma por sí solo la identidad ni la disponibilidad del artículo.",
+        "Para álbumes o recomendaciones basadas solo en fotos, pide la publicación exacta y la variante. La búsqueda por imagen puede encontrar candidatos, pero el parecido no prueba mismo vendedor, materiales o versión. Cada resultado debe comprobarse como una opción nueva. Si no puedes obtener fuente fiable ni identificador, no fabriques una URL combinando el nombre del marketplace con un número cualquiera."
+      ]
+    },
+    {
+      "heading": "Resuelve una ficha rota o incorrecta",
+      "paragraphs": [
+        "Si la publicación original no abre, verifica que el enlace esté completo y señale un artículo específico. Si la fuente abre pero USFans no la muestra, conserva ambas URL y el error exacto para soporte oficial. Una publicación retirada, una variante agotada y un problema de visualización del agente son situaciones distintas. Llamarlas todas «conversor roto» dificulta identificar la causa.",
+        "Si aparece otro producto, detente y compara los identificadores antes de usar el carrito. Una fila reutilizada, una publicación modificada o una fuente errónea pueden explicar el cambio. Elimina la selección incorrecta y regresa a una fuente verificada. No repitas pagos mientras pruebas enlaces. Un fallo de ficha requiere investigar el producto; un pago completado con pedido pendiente corresponde al seguimiento del pago y del pedido."
+      ]
+    },
+    {
+      "heading": "Conserva un registro hasta el almacén",
+      "paragraphs": [
+        "Antes de comprar guarda de forma privada URL fuente, URL USFans, vendedor, ID, variante, cantidad, precio y fecha. Añade las medidas de la tabla que influyeron en tu elección. Ese registro permite comparar el artículo recibido con lo que querías aunque cambie la publicación. No incluyas tokens de cuenta, direcciones ni datos de pago en hojas públicas o solicitudes a conversores.",
+        "Tras la recepción compara el pedido con las fotos QC y las medidas necesarias. La conversión termina al encontrar la publicación correcta; no sustituye inspección, comprobación del envío ni revisión de devoluciones. Si el artículo es erróneo, describe la diferencia concreta con las pruebas guardadas. Mantén ese artículo fuera del paquete internacional mientras aclaras las opciones posventa disponibles para el pedido actual."
+      ]
+    },
+    {
+      "heading": "Preguntas sobre enlaces entre agentes",
+      "paragraphs": [
+        "¿Se puede convertir un enlace CNFans a USFans? A menudo lo útil es recuperar la fuente del marketplace y comprobar si USFans la abre, no cambiar solo el dominio. ¿Costará lo mismo? Revisa variante, precio actual del vendedor, moneda y cargos. ¿La conversión reserva existencias? No: abrir una publicación no constituye una reserva ni una compra terminada.",
+        "¿Un conversor puede trasladar un artículo ya comprado? No: pedido, saldo y mercancía almacenada son registros de cuenta distintos. Consulta al agente sobre soluciones logísticas admitidas en lugar de suponer que una URL puede transferirlos. Confirma al terminar identidad, variante y condiciones actuales. Después usa nuestras guías del primer pedido y de QC, manteniendo la fuente original disponible para futuras comprobaciones."
+      ]
+    }
+  ],
+  "image": "/products/hoodie.webp",
+  "related": [
+    "usfans-first-order-link-to-warehouse",
+    "usfans-spreadsheet-guide",
+    "usfans-qc-photos-guide"
+  ],
+  "sources": [
+    {
+      "label": "USFans — ordering, warehouse inspection and consolidation",
+      "url": "https://www.usfans.com/faq",
+      "checked": "2026-11-04"
+    },
+    {
+      "label": "USFans",
+      "url": "https://www.usfans.com/",
+      "checked": "2026-11-04"
+    },
+    {
+      "label": "CNFans — maintenance notice, 2026-11-04",
+      "url": "https://cnfans.com/",
+      "checked": "2026-11-04"
+    }
+  ],
+  "new": true,
+  "published": "2026-11-04",
+  "modified": "2026-11-04"
+}

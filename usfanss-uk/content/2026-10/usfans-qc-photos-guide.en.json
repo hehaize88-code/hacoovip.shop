@@ -1,10 +1,17 @@
 {
   "slug": "usfans-qc-photos-guide",
   "lang": "en",
-  "title": "USFans QC Photos Guide: A Practical Inspection Order",
-  "description": "USFans QC photos can reduce uncertainty before international shipping, but only if you inspect them in a consistent order and understand their limits. This guide turns warehouse images into a practical decision record without pretending that photographs can guarantee materials, durability or route eligibility.",
-  "intro": "USFans QC photos can reduce uncertainty before international shipping, but only if you inspect them in a consistent order and understand their limits. This guide turns warehouse images into a practical decision record without pretending that photographs can guarantee materials, durability or route eligibility.",
+  "title": "USFans QC Photos: Find Images, Check Sizes and Request Details",
+  "description": "Find your USFans QC photos, check the ordered variant and request useful measurements. Learn what to do if warehouse photos are missing.",
+  "intro": "USFans QC photos help you check visible condition, the ordered variant and useful measurements before shipping. Start from the matching warehouse item and its order record. If images are missing, distinguish seller delivery, warehouse processing and photo availability before requesting help. A clear photograph is evidence of what is visible, not proof of material, authenticity or long-term durability.",
   "sections": [
+    {
+      "heading": "Where are my QC photos, and why are they missing?",
+      "paragraphs": [
+        "Open the order and warehouse record for the exact item. Confirm that the item has reached the warehouse processing stage; a seller delivery scan alone does not establish that inspection photos are ready. Check the item reference before assuming that images from another order belong to this purchase.",
+        "If the item record is available but the expected views are missing or unclear, ask official support with the item reference and the specific view needed. For a size question, describe the measurement endpoints. Keep the request focused and review the response before submitting the item for international shipping."
+      ]
+    },
     {
       "heading": "Resolve the decisive detail before requesting more photos",
       "paragraphs": [
@@ -80,8 +87,9 @@
   "image": "/products/sneakers.jpg",
   "related": [
     "usfans-size-guide-uk",
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide"
+    "usfans-returns-before-uk-shipping",
+    "usfans-order-received-not-in-warehouse",
+    "usfans-link-converter-guide"
   ],
   "sources": [
     {
@@ -92,5 +100,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

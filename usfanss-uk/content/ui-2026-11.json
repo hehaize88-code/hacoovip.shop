@@ -1,0 +1,80 @@
+{
+  "en": {
+    "shipping": "Shipping",
+    "next": "Plan your next step",
+    "hub_description": "17 practical USFans guides: calculate shipping, check QC photos, resolve returns and payments, verify coupons and find the original product link.",
+    "qc_steps": [
+      "Start with the full front and back views. Compare the ordered colour, shape and symmetry; check both shoes when reviewing a pair. Lighting can affect colour, so ask for a clearer view if that detail changes your decision.",
+      "Inspect seams, prints, labels and closures in a fixed order. Look for visible gaps, loose stitching, broken hardware or missing components. A close-up of a logo should not distract from whether the item is complete and usable.",
+      "Compare the size label with the selected variant. For clothing, request the exact flat measurements you need and compare with a garment that fits. A visible ruler should show both endpoints, not just a number near the fabric.",
+      "Check stains, holes, scratches and missing accessories against several views. Distinguish a packaging crease from a visible defect. Describe the location precisely if warehouse staff need to inspect it again.",
+      "Use the item reference and ask one actionable question: for example, show the chest width from seam to seam or confirm whether a mark can be removed. Check current service charges before requesting additional work.",
+      "Save the ordered variant, warehouse images, measurements and support replies. Resolve a decisive mismatch and check the current return deadline before international dispatch. Photographs do not prove material composition, authenticity or long-term durability."
+    ]
+  },
+  "de": {
+    "shipping": "Versand",
+    "next": "Plane den nächsten Schritt",
+    "hub_description": "17 praktische USFans-Ratgeber: Versand berechnen, QC-Fotos prüfen, Rückgaben und Zahlungen klären, Gutscheine prüfen und Produktquellen finden.",
+    "qc_steps": [
+      "Beginne mit vollständigen Vorder- und Rückansichten. Vergleiche bestellte Farbe, Form und Symmetrie; prüfe bei einem Paar beide Schuhe. Licht verändert Farben. Fordere eine klarere Ansicht an, wenn sie für die Entscheidung wichtig ist.",
+      "Prüfe Nähte, Drucke, Etiketten und Verschlüsse in fester Reihenfolge. Achte auf Lücken, lose Nähte, defekte Beschläge und fehlende Teile. Eine Logoaufnahme darf nicht davon ablenken, ob der Artikel vollständig und nutzbar ist.",
+      "Vergleiche das Größenetikett mit der bestellten Variante. Fordere bei Kleidung genau definierte flache Maße an und vergleiche ein passendes Kleidungsstück. Das Lineal muss beide Messpunkte zeigen, nicht nur eine Zahl neben dem Stoff.",
+      "Prüfe Flecken, Löcher, Kratzer und fehlendes Zubehör aus mehreren Ansichten. Unterscheide Verpackungsfalten von sichtbaren Defekten. Beschreibe die Stelle genau, wenn das Lager sie erneut kontrollieren soll.",
+      "Nenne die Artikelreferenz und stelle eine konkrete Frage: etwa Brustweite von Naht zu Naht zeigen oder einen Fleck auf Entfernbarkeit prüfen. Kläre aktuelle Gebühren, bevor du zusätzliche Arbeit beauftragst.",
+      "Speichere Variante, Lagerbilder, Maße und Supportantworten. Kläre entscheidende Abweichungen und die aktuelle Rückgabefrist vor dem internationalen Versand. Fotos belegen weder Materialzusammensetzung noch Echtheit oder langfristige Haltbarkeit."
+    ]
+  },
+  "fr": {
+    "shipping": "Livraison",
+    "next": "Préparer la prochaine étape",
+    "hub_description": "17 guides pratiques USFans : calculer la livraison, vérifier le QC, gérer retours et paiements, contrôler les coupons et retrouver les liens produits.",
+    "qc_steps": [
+      "Commencez par les vues complètes avant et arrière. Comparez couleur commandée, forme et symétrie ; examinez les deux chaussures d’une paire. La lumière modifie les couleurs : demandez une vue plus claire si ce détail est décisif.",
+      "Examinez coutures, impressions, étiquettes et fermetures dans un ordre fixe. Cherchez espaces, coutures lâches, pièces cassées ou manquantes. Un gros plan du logo ne doit pas faire oublier l’intégrité de l’article.",
+      "Comparez l’étiquette avec la variante commandée. Pour un vêtement, demandez des mesures à plat précises et comparez avec une pièce qui vous va. La règle doit montrer les deux extrémités, pas seulement un nombre près du tissu.",
+      "Vérifiez taches, trous, rayures et accessoires manquants sur plusieurs vues. Distinguez un pli d’emballage d’un défaut visible. Décrivez précisément l’emplacement si l’entrepôt doit le réexaminer.",
+      "Indiquez la référence et posez une question concrète : montrer la largeur entre coutures ou vérifier si une marque s’enlève. Consultez les éventuels frais actuels avant de demander une prestation supplémentaire.",
+      "Conservez variante, photos, mesures et réponses du support. Résolvez les écarts décisifs et vérifiez le délai de retour avant expédition internationale. Les photos ne prouvent ni composition, ni authenticité, ni durabilité."
+    ]
+  },
+  "es": {
+    "shipping": "Envío",
+    "next": "Prepara el siguiente paso",
+    "hub_description": "17 guías prácticas USFans: calcula el envío, revisa QC, resuelve devoluciones y pagos, verifica cupones y recupera los enlaces originales.",
+    "qc_steps": [
+      "Empieza por las vistas completas delantera y trasera. Compara color pedido, forma y simetría; revisa ambos zapatos del par. La iluminación altera el color: pide otra vista si ese detalle cambia tu decisión.",
+      "Revisa costuras, estampados, etiquetas y cierres en un orden fijo. Busca huecos, hilos sueltos, piezas rotas o componentes ausentes. Un primer plano del logotipo no debe distraerte de comprobar que el artículo está completo.",
+      "Compara la etiqueta de talla con la variante elegida. En ropa, pide medidas en plano concretas y compáralas con una prenda que te quede bien. La regla debe mostrar ambos extremos, no solo una cifra junto al tejido.",
+      "Comprueba manchas, agujeros, arañazos y accesorios ausentes desde varias vistas. Distingue un pliegue del embalaje de un defecto visible. Describe la ubicación exacta si el almacén debe revisarla.",
+      "Incluye la referencia y plantea una pregunta concreta: mostrar el ancho entre costuras o confirmar si una marca se elimina. Consulta las tarifas actuales antes de pedir trabajo adicional.",
+      "Guarda variante, imágenes, medidas y respuestas. Resuelve diferencias decisivas y verifica el plazo de devolución antes del envío internacional. Las fotos no prueban composición, autenticidad ni durabilidad."
+    ]
+  },
+  "it": {
+    "shipping": "Spedizione",
+    "next": "Prepara il prossimo passo",
+    "hub_description": "17 guide pratiche USFans: calcola la spedizione, controlla le foto QC, gestisci resi e pagamenti, verifica i coupon e recupera i link originali.",
+    "qc_steps": [
+      "Parti dalle viste complete davanti e dietro. Confronta colore ordinato, forma e simmetria; per un paio controlla entrambe le scarpe. La luce può alterare il colore: chiedi una vista più chiara se il dettaglio è decisivo.",
+      "Controlla cuciture, stampe, etichette e chiusure in un ordine costante. Cerca spazi, fili allentati, parti rotte o mancanti. Un primo piano del logo non deve distrarti dalla completezza e utilizzabilità dell’articolo.",
+      "Confronta l’etichetta con la variante ordinata. Per l’abbigliamento richiedi misure precise a capo steso e confrontale con un capo che ti veste bene. Il righello deve mostrare entrambi gli estremi della misura.",
+      "Verifica macchie, fori, graffi e accessori mancanti da più angolazioni. Distingui le pieghe da imballaggio dai difetti visibili. Indica esattamente la zona se il magazzino deve ricontrollarla.",
+      "Usa il riferimento dell’articolo e fai una domanda concreta: mostrare la larghezza tra le cuciture o verificare se una macchia si rimuove. Controlla i costi attuali prima di richiedere un servizio aggiuntivo.",
+      "Conserva variante, foto, misure e risposte dell’assistenza. Risolvi le differenze decisive e verifica il termine di reso prima della spedizione internazionale. Le foto non provano composizione, autenticità o durata."
+    ]
+  },
+  "pl": {
+    "shipping": "Wysyłka",
+    "next": "Zaplanuj kolejny krok",
+    "hub_description": "17 praktycznych poradników USFans: wyceń wysyłkę, sprawdź QC, wyjaśnij zwroty i płatności, zweryfikuj kupony i znajdź oryginalne linki.",
+    "qc_steps": [
+      "Zacznij od pełnego przodu i tyłu. Porównaj zamówiony kolor, kształt i symetrię; przy parze sprawdź oba buty. Oświetlenie zmienia kolory, więc poproś o wyraźniejsze ujęcie, jeśli ten szczegół wpływa na decyzję.",
+      "Sprawdzaj szwy, nadruki, metki i zapięcia w stałej kolejności. Szukaj przerw, luźnych nici, uszkodzonych okuć i brakujących części. Zbliżenie logo nie powinno odciągać uwagi od kompletności produktu.",
+      "Porównaj metkę rozmiaru z wybranym wariantem. Dla ubrania zamów dokładne pomiary na płasko i porównaj je z dobrze dopasowaną rzeczą. Linijka musi pokazywać oba końce pomiaru, a nie tylko liczbę obok materiału.",
+      "Sprawdź plamy, dziury, zarysowania i brakujące dodatki na kilku zdjęciach. Odróżnij zagniecenie od opakowania od widocznej wady. Dokładnie wskaż miejsce wymagające ponownej kontroli magazynu.",
+      "Podaj numer artykułu i konkretne pytanie: pokaż szerokość między szwami albo sprawdź, czy ślad da się usunąć. Przed zamówieniem dodatkowej pracy sprawdź aktualną opłatę.",
+      "Zachowaj wariant, zdjęcia, pomiary i odpowiedzi obsługi. Wyjaśnij istotne różnice i sprawdź termin zwrotu przed wysyłką międzynarodową. Fotografie nie dowodzą składu, autentyczności ani trwałości."
+    ]
+  }
+}

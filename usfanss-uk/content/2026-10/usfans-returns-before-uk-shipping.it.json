@@ -1,9 +1,9 @@
 {
   "slug": "usfans-returns-before-uk-shipping",
   "lang": "it",
-  "title": "Resi e rimborsi USFans prima della spedizione nel Regno Unito",
-  "description": "USFans restituisce e rimborsi sono più gestibili mentre un elemento è ancora nel magazzino e le prove dell'ordine è attuale. Questa guida spiega come documentare una variante sbagliata o un difetto visibile, leggere la tempistica specifica dell'elemento, contattare la fase di supporto corretta ed evitare di promettere un rimborso che dipende dall'accettazione del venditore e dalla politica corrente.",
-  "intro": "USFans restituisce e rimborsi sono più gestibili mentre un elemento è ancora nel magazzino e le prove dell'ordine è attuale. Questa guida spiega come documentare una variante sbagliata o un difetto visibile, leggere la tempistica specifica dell'elemento, contattare la fase di supporto corretta ed evitare di promettere un rimborso che dipende dall'accettazione del venditore e dalla politica corrente.",
+  "title": "Resi e rimborsi USFans: cosa verificare prima della spedizione",
+  "description": "Verifica condizioni di reso, scadenze e stato del rimborso USFans. Usa una richiesta precisa prima di spedire il pacco all’estero.",
+  "intro": "Per un reso USFans identifica prima ordine, problema visibile e termine attuale della richiesta. Tieni l’articolo in magazzino mentre chiarisci le opzioni con il venditore. Richiesta, approvazione e rimborso completato sono fasi diverse. La guida spiega quali prove conservare e quali domande fare, senza promettere rimborsi o un termine valido per tutti.",
   "sections": [
     {
       "heading": "Il mercato separato ritorna dal pacco dopo le vendite",
@@ -76,21 +76,28 @@
       ]
     },
     {
-      "heading": "Fonti ufficiali controllate",
+      "heading": "Una richiesta di reso da adattare",
       "paragraphs": [
-        "Guida del principiante USFans ↗",
-        "Centro assistenza USFans ↗",
-        "USFans Shipping Fee stima ↗"
+        "Scrivi: «Ordine [riferimento], variante [taglia/colore]. Ho ordinato [descrizione], ma la foto QC [numero] mostra [differenza precisa]. Confermate le opzioni di reso o cambio, il termine della richiesta e l’eventuale costo del trasporto interno prima della spedizione internazionale». Sostituisci ogni parentesi con i dati reali del tuo ordine.",
+        "Dopo la risposta annota se la pratica attende prove, approvazione del venditore, trasporto di ritorno o elaborazione del rimborso. Verifica importo e destinazione nel registro delle transazioni. Una richiesta inviata non è un’approvazione; un reso approvato non significa che il denaro sia già arrivato sul metodo di pagamento originale."
       ]
     }
   ],
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
-    "usfans-qc-photos-guide"
+    "usfans-qc-photos-guide",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-payment-failed-uk",
+    "usfans-shipping-cost-guide"
   ],
-  "sources": [],
+  "sources": [
+    {
+      "label": "USFans Help Center — after-sales and shopping-agent guidance",
+      "url": "https://usfans.com/help/category/all",
+      "checked": "2026-11-04"
+    }
+  ],
   "image": "/products/polo.webp",
   "published": "2026-09-07",
-  "new": false
+  "new": false,
+  "modified": "2026-11-04"
 }

@@ -1,10 +1,17 @@
 {
   "slug": "usfans-shipping-cost-guide",
   "lang": "en",
-  "title": "USFans Shipping Cost: Weight, Volume and Estimate Checklist",
-  "description": "Estimate USFans shipping using parcel weight, dimensions and route rules. Compare a worked volume example, packaging choices and final billing checks.",
-  "intro": "USFans shipping has no single price per kilogram that applies to every parcel. Start with the destination, packed dimensions, actual weight and the billing rule of an eligible route. Keep the product price separate from international shipping. The calculation below is an illustration of volume, not a current USFans quote; use the live parcel estimate for the amount payable.",
+  "title": "How Much Does USFans Shipping Cost? Weight and Parcel Examples",
+  "description": "Calculate USFans shipping cost from actual and volumetric weight. See a 3 kg parcel example, route checks and the inputs needed for a current quote.",
+  "intro": "USFans shipping cost depends on the destination, packed dimensions, actual weight and the selected route. There is no reliable universal price per kilogram. A 3 kg parcel can have a 4 kg volumetric weight in the example below. Start with the calculation, then compare the current routes for your own parcel; the worked example is not a live shipping price.",
   "sections": [
+    {
+      "heading": "How much is USFans shipping for 2 kg, 5 kg or 10 kg?",
+      "paragraphs": [
+        "Weight alone cannot determine the price of a 2 kg, 5 kg or 10 kg parcel. Prepare the destination, dimensions after packing, item types and actual weight, then check eligible routes and their billing rules. A bulky 2 kg parcel can be billed above its scale weight; do not multiply an old per-kilogram rate by your new weight.",
+        "For each quote, record the route, currency, billable weight, included services and date. Recheck after repacking or changing the contents. Compare any coupon against the final payable amount rather than treating the advertised discount as a guaranteed reduction on every fee."
+      ]
+    },
     {
       "heading": "Separate the four cost layers",
       "paragraphs": [
@@ -122,8 +129,9 @@
   ],
   "image": "/products/crewneck.webp",
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
+    "usfans-coupon-codes-shipping-discounts",
+    "usfans-fees-uk-buyers-total-cost",
+    "usfans-vs-cnfans-uk",
     "usfans-qc-photos-guide"
   ],
   "sources": [
@@ -135,5 +143,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

@@ -1,10 +1,17 @@
 {
   "slug": "usfans-qc-photos-guide",
   "lang": "de",
-  "title": "USFans QC-Fotos: Ein praktischer Leitfaden zur Prüfung",
-  "description": "USFans QC-Fotos können Unsicherheit vor dem internationalen Versand reduzieren, aber nur, wenn Sie sie in einer konsequenten Reihenfolge inspizieren und ihre Grenzen verstehen. Diese Anleitung verwandelt Lagerbilder in einen praktischen Entscheidungsrekord, ohne zu behaupten, dass Fotografien Materialien, Haltbarkeit oder Routenberechtigung garantieren können.",
-  "intro": "USFans QC-Fotos können Unsicherheit vor dem internationalen Versand reduzieren, aber nur, wenn Sie sie in einer konsequenten Reihenfolge inspizieren und ihre Grenzen verstehen. Diese Anleitung verwandelt Lagerbilder in einen praktischen Entscheidungsrekord, ohne zu behaupten, dass Fotografien Materialien, Haltbarkeit oder Routenberechtigung garantieren können.",
+  "title": "USFans QC-Fotos: Bilder finden, Größen prüfen, Details anfragen",
+  "description": "Finde USFans QC-Fotos, prüfe die bestellte Variante und fordere sinnvolle Maße an. So gehst du bei fehlenden Lagerbildern vor.",
+  "intro": "USFans QC-Fotos helfen vor dem Versand bei sichtbarem Zustand, Variante und Maßen. Beginne mit dem passenden Lagerartikel und Bestelldatensatz. Fehlen Bilder, unterscheide Verkäuferzustellung, Lagerbearbeitung und Fotobereitstellung. Ein klares Bild zeigt sichtbare Details, beweist aber weder Material noch Echtheit oder Haltbarkeit.",
   "sections": [
+    {
+      "heading": "Wo sind meine QC-Fotos und warum fehlen sie?",
+      "paragraphs": [
+        "Öffne Bestellung und Lagereintrag des genauen Artikels. Prüfe den Bearbeitungsstand im Lager: Eine Zustellmeldung des Verkäufers bedeutet noch nicht, dass Inspektionsbilder bereitstehen. Kontrolliere die Artikelreferenz, bevor du Bilder eines anderen Auftrags dieser Bestellung zuordnest.",
+        "Ist der Lagereintrag vorhanden, fehlen aber Ansichten oder sind sie unklar, frage den offiziellen Support mit Artikelreferenz und gewünschter Aufnahme. Beschreibe bei Größenfragen die Messpunkte. Halte die Anfrage konkret und prüfe die Antwort vor der internationalen Paketaufgabe."
+      ]
+    },
     {
       "heading": "Lösen Sie das entscheidende Detail, bevor Sie weitere Fotos anfordern",
       "paragraphs": [
@@ -80,8 +87,9 @@
   "image": "/products/sneakers.jpg",
   "related": [
     "usfans-size-guide-uk",
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide"
+    "usfans-returns-before-uk-shipping",
+    "usfans-order-received-not-in-warehouse",
+    "usfans-link-converter-guide"
   ],
   "sources": [
     {
@@ -92,5 +100,5 @@
   ],
   "new": false,
   "published": "2026-08-12",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

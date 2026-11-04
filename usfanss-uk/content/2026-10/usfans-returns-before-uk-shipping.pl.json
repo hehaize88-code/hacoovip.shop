@@ -1,9 +1,9 @@
 {
   "slug": "usfans-returns-before-uk-shipping",
   "lang": "pl",
-  "title": "Zwroty i refundacje USFans przed wysyłką do Wielkiej Brytanii",
-  "description": "USFans zwroty i zwroty są najbardziej możliwe do zarządzania, podczas gdy przedmiot jest nadal w magazynie i zamówienia dowody jest obecny. Niniejszy przewodnik wyjaśnia, jak udokumentować błędny wariant lub widoczną wadę, przeczytać określony czas, skontaktować się z właściwym etapem wsparcia i uniknąć obiecujących refundacji, które zależą od akceptacji sprzedającego i obecnej polityki.",
-  "intro": "USFans zwroty i zwroty są najbardziej możliwe do zarządzania, podczas gdy przedmiot jest nadal w magazynie i zamówienia dowody jest obecny. Niniejszy przewodnik wyjaśnia, jak udokumentować błędny wariant lub widoczną wadę, przeczytać określony czas, skontaktować się z właściwym etapem wsparcia i uniknąć obiecujących refundacji, które zależą od akceptacji sprzedającego i obecnej polityki.",
+  "title": "Zwroty i refundacje USFans: co sprawdzić przed wysyłką",
+  "description": "Sprawdź warunki zwrotu, terminy i status refundacji USFans. Użyj konkretnego zgłoszenia przed nadaniem paczki międzynarodowej.",
+  "intro": "Przy zwrocie USFans najpierw ustal zamówienie, widoczny problem i aktualny termin zgłoszenia. Pozostaw towar w magazynie podczas wyjaśniania opcji ze sprzedawcą. Wniosek, zgoda i zakończony zwrot pieniędzy to różne etapy. Poradnik wskazuje potrzebne dowody i pytania, bez obietnicy refundacji ani jednego terminu dla wszystkich.",
   "sections": [
     {
       "heading": "Oddzielny rynek powraca ze sprzedaży paczek",
@@ -76,21 +76,28 @@
       ]
     },
     {
-      "heading": "Skontrolowane źródła urzędowe",
+      "heading": "Wzór zgłoszenia do dostosowania",
       "paragraphs": [
-        "Przewodnik dla początkujących",
-        "USFans Help Center",
-        "USFans Shipping Fee Estimation"
+        "Napisz: „Zamówienie [numer], wariant [rozmiar/kolor]. Zamówiłem [opis], ale zdjęcie QC [numer] pokazuje [konkretna różnica]. Proszę potwierdzić możliwość zwrotu lub wymiany, termin zgłoszenia i koszt transportu krajowego przed wysyłką międzynarodową”. Zastąp nawiasy rzeczywistymi informacjami o swoim zamówieniu.",
+        "Po odpowiedzi zapisz, czy sprawa czeka na dowody, zgodę sprzedawcy, transport zwrotny czy rozliczenie. Sprawdź kwotę i miejsce refundacji w transakcjach. Wysłany wniosek nie oznacza zgody, a zatwierdzony zwrot nie oznacza pieniędzy już otrzymanych na pierwotną metodę płatności."
       ]
     }
   ],
   "related": [
-    "usfans-first-order-link-to-warehouse",
-    "usfans-spreadsheet-guide",
-    "usfans-qc-photos-guide"
+    "usfans-qc-photos-guide",
+    "usfans-warehouse-before-uk-shipping",
+    "usfans-payment-failed-uk",
+    "usfans-shipping-cost-guide"
   ],
-  "sources": [],
+  "sources": [
+    {
+      "label": "USFans Help Center — after-sales and shopping-agent guidance",
+      "url": "https://usfans.com/help/category/all",
+      "checked": "2026-11-04"
+    }
+  ],
   "image": "/products/polo.webp",
   "published": "2026-09-07",
-  "new": false
+  "new": false,
+  "modified": "2026-11-04"
 }

@@ -1,0 +1,91 @@
+{
+  "slug": "usfans-link-converter-guide",
+  "lang": "en",
+  "title": "How to Convert Product Links to USFans: Taobao, Weidian and CNFans",
+  "description": "Find the original product link, open it on USFans and verify the seller, item ID and variant. Troubleshoot broken Taobao, Weidian or CNFans links.",
+  "intro": "To move a product find to USFans, recover the original marketplace product link, use it in the official USFans search and check the resulting item before ordering. A link converter changes where you view a listing; it does not move an existing order, account funds or warehouse goods. This guide covers Taobao, Weidian and links shared through another agent such as CNFans. It also explains what to do when a link opens the wrong product, loses its selected size or no longer loads.",
+  "sections": [
+    {
+      "heading": "Identify the type of link you have",
+      "paragraphs": [
+        "First decide whether the address belongs to a marketplace, an agent product page, a short-link service, a shop homepage or a photo album. These are different inputs. A marketplace product page identifies a particular listing, while an album may only show images and seller contact information. A shop link can contain many products. Do not assume that every shared URL contains enough information to recover one purchasable item.",
+        "Save the full original link before making changes. Record the visible product name, seller and selected option if you can see them. If the link came from a spreadsheet, keep its row notes as context, but verify them against the actual listing. Spreadsheet prices and photographs can be old. The goal is to preserve the item's identity, not merely to open a page with a similar picture or an appealing headline price."
+      ]
+    },
+    {
+      "heading": "Recover the original marketplace listing",
+      "paragraphs": [
+        "On an accessible agent page, look for a visible source, original-product or marketplace link. Follow that link and confirm the item identifier and seller where available. An agent's internal product number is not necessarily the marketplace item ID. If the source is unavailable, ask the person who shared the find for the original product URL rather than guessing a new address by replacing the agent's domain name.",
+        "CNFans was displaying a maintenance notice on our 4 November 2026 check, so an old shared agent link may not expose its source at present. Search your saved order notes or the original spreadsheet for an accompanying Taobao or Weidian link. Do not interpret a temporary inaccessible page as proof that the seller has removed the product. Equally, do not pay through a lookalike domain claiming to restore access to a closed page."
+      ]
+    },
+    {
+      "heading": "Paste the product URL into official USFans search",
+      "paragraphs": [
+        "Open the official USFans website and use its product-link search to submit the recovered marketplace URL. USFans describes pasting product links as part of its ordering workflow. Use the complete product address rather than an image URL, tracking link for a parcel, or a support-page address. If you have copied a message containing several URLs and commentary, isolate the actual product link first so the intended input is clear.",
+        "Allow the resulting page to load and inspect what it displays. If there is an error, preserve the message and return to the source listing instead of immediately trying a different seller. This independent guide does not provide a converter that transfers orders or guarantees compatibility with every link. The official product page and its live purchasing options are the evidence that USFans can currently present that particular listing."
+      ]
+    },
+    {
+      "heading": "Check identity before comparing the displayed price",
+      "paragraphs": [
+        "Compare the seller, product identifier, main images and full option list with the source. Select the exact colour, size, model and quantity again. A converted page may initially display a default variant or the cheapest option in a range. The old link's selected option should not be assumed to survive the move. A low displayed price is meaningless if it belongs to an accessory rather than the complete item you wanted.",
+        "Read any available size chart and seller notes, especially for customised products or variants described by codes. Save the final selected option in your order notes. If the source and agent page disagree about stock, price or available sizes, request clarification before paying. Do not resolve the mismatch by selecting the nearest-looking option. Once purchased, correcting an unintended variant can involve seller negotiation and return costs that careful checking could have avoided."
+      ]
+    },
+    {
+      "heading": "Handle short links, albums and missing identifiers",
+      "paragraphs": [
+        "For a short link, open it only through a normal browser and inspect the destination before copying the final product address. Stop if it asks for unrelated credentials or leads to a different service from the one expected. A shortened URL can redirect to a shop, campaign or removed listing rather than a product. Its successful redirection does not by itself confirm the identity or availability of the item.",
+        "For a photo album or image-only recommendation, ask for the exact marketplace listing and variant details. Image search can help find possible matches, but visual similarity is not proof of the same seller, materials or version. Treat each result as a new candidate that needs checking. If no reliable source link or item identifier can be obtained, do not manufacture a product URL by combining a marketplace name with an arbitrary number."
+      ]
+    },
+    {
+      "heading": "Troubleshoot a broken or incorrect product page",
+      "paragraphs": [
+        "If the original marketplace page no longer loads, check whether the link was copied completely and whether it leads to a specific item. If the source opens but USFans does not display it, retain both URLs and the exact error message for official support. These are different situations: a removed seller listing, an unavailable option and an agent-side display problem should not all be described simply as a broken converter.",
+        "If a different product appears, stop and compare identifiers before doing anything with the cart. A reused spreadsheet row, changed seller listing or wrong source can explain a mismatch. Clear the incorrect selection and return to a verified source. Avoid repeatedly submitting payments while testing links. A product-page error needs a product investigation; a successful payment with a pending order belongs in the payment and order-status workflow instead."
+      ]
+    },
+    {
+      "heading": "Keep a usable record from link to warehouse",
+      "paragraphs": [
+        "Before ordering, save the source URL, USFans URL, seller, item ID, variant, quantity, displayed price and date in one private note. Add the size-chart measurements that influenced your choice. This record helps you compare the warehouse item with what you intended to buy even if the listing changes later. Do not place account tokens, address information or payment details in a publicly shared spreadsheet or converter request.",
+        "After warehouse receipt, compare the order record with the QC photographs and any required measurements. Link conversion ends at finding the correct listing; it does not replace inspection, shipping checks or seller-return review. If the item is wrong, describe the specific difference using the saved evidence. Keep the affected item out of an international parcel while you clarify the available after-sales action under the current order conditions."
+      ]
+    },
+    {
+      "heading": "Questions about converting between shopping agents",
+      "paragraphs": [
+        "Can you convert a CNFans link to USFans? Often the useful step is recovering the underlying marketplace link and checking whether USFans can open it, rather than changing the domain in the URL. Will the product cost the same? Verify the selected variant, current seller price, currency and any service charges. Does the conversion reserve stock? No; opening a listing is not a reservation or a completed purchase.",
+        "Can a purchased item be moved with a link converter? No: an order, balance and stored item are separate account records. Ask the relevant agent about any supported logistics arrangement rather than assuming a URL can transfer them. Before you finish, confirm that the product identity, variant and live purchasing conditions match your intention. Then use our first-order and QC guides for the next steps, keeping the original source available for reference."
+      ]
+    }
+  ],
+  "image": "/products/hoodie.webp",
+  "related": [
+    "usfans-first-order-link-to-warehouse",
+    "usfans-spreadsheet-guide",
+    "usfans-qc-photos-guide"
+  ],
+  "sources": [
+    {
+      "label": "USFans — ordering, warehouse inspection and consolidation",
+      "url": "https://www.usfans.com/faq",
+      "checked": "2026-11-04"
+    },
+    {
+      "label": "USFans",
+      "url": "https://www.usfans.com/",
+      "checked": "2026-11-04"
+    },
+    {
+      "label": "CNFans — maintenance notice, 2026-11-04",
+      "url": "https://cnfans.com/",
+      "checked": "2026-11-04"
+    }
+  ],
+  "new": true,
+  "published": "2026-11-04",
+  "modified": "2026-11-04"
+}
