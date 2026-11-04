@@ -36,6 +36,9 @@ for path in root.rglob('*.html'):
  s=BeautifulSoup(text,'html.parser');pages.append((path,s))
  assert not any('self.__next' in x.get_text() or '/_next/' in x.get('src','') for x in s.select('script')),path
  assert len(s.select('h1'))==1,(path,'H1 count')
+ for nav in s.select('.site-header>nav,.mobile-nav>div,footer>nav'):
+  if nav.select_one('a[href*="articles/"]'):
+   assert nav.select_one('a[data-nav="shipping"]'),(path,'missing localized shipping navigation')
  for script in s.select('script[type="application/ld+json"]'):json.loads(script.string or script.get_text())
  for form in s.select('form[action="https://cnfanshp.com/search.html"]'):
   assert form.get('data-track')=='main_search_submit',path

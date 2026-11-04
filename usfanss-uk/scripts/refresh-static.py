@@ -169,7 +169,8 @@ def public_html():
   if any(p.startswith('.') or p in {'templates','node_modules','dist','content'} for p in rel.parts):continue
   yield path
 
-for path in public_html():
+# Snapshot paths before rewriting documents so traversal is independent of writes.
+for path in sorted(public_html()):
  soup=parse(path.read_text());lang=soup.html.get('lang','en');c=COPY.get(lang,COPY['en'])
  ui=UI.get(lang,UI['en']);pre='/' if lang=='en' else '/'+lang+'/'
  shipping=route('usfans-shipping-cost-guide',lang)
