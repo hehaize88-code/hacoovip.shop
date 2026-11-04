@@ -30,3 +30,12 @@ for (const file of files) {
 }
 
 console.log(`Corrected HTML lang attributes in ${files.length} exported pages.`);
+
+// Keep previously submitted sitemap URLs working and derive every variant from
+// the generated canonical sitemap, so new translations cannot be omitted.
+const sitemap = await readFile(join(outputDir, "sitemap.xml"), "utf8");
+const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+await writeFile(join(outputDir, "sitemap-index.xml"), '<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://usfanss.pl/sitemap.xml</loc></sitemap></sitemapindex>\n');
+await writeFile(join(outputDir, "sitemap-pages.xml"), sitemap);
+await writeFile(join(outputDir, "google-sitemap.txt"), `${urls.join("\n")}\n`);
+console.log(`Published XML index and compatibility sitemaps for ${urls.length} canonical URLs.`);

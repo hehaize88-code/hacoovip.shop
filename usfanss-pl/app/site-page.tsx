@@ -1,10 +1,14 @@
 import type { ArticleSlug, Locale, PageKind } from "./site-data";
 import { allProducts, articleSlugs, categories, copy, getArticles, locales, products, routeFor } from "./site-data";
 import { researchedFaqs, researchedSteps } from "./researched-content";
+import { editorialCopy, editorialDate, articleSources, topicSlugs, newFaqs, decisionNotes } from "./editorial";
 
 const siteBase = "https://usfanss.pl";
 
 const articleDates: Record<ArticleSlug, string> = {
+  "usfans-reviews-poland": editorialDate,
+  "usfans-payments-poland": editorialDate,
+  "usfans-link-troubleshooting": editorialDate,
   "first-time-spreadsheet-checklist": "2026-08-12",
   "read-usfans-qc-photos": "2026-08-12",
   "product-price-vs-parcel-cost": "2026-08-12",
@@ -16,26 +20,6 @@ const articleDates: Record<ArticleSlug, string> = {
   "usfans-returns-before-shipping-poland": "2026-10-06",
   "usfans-hoodies-poland-selection": "2026-10-06",
   "usfans-shoes-poland-shoebox": "2026-10-06",
-};
-
-const articleResearchLabels: Record<Locale, string> = {
-  pl: "Przegląd redakcyjny · aktualizacja 6 października 2026",
-  en: "Editorial review · updated 6 October 2026",
-  de: "Redaktionelle Prüfung · aktualisiert am 6. Oktober 2026",
-  fr: "Revue éditoriale · mis à jour le 6 octobre 2026",
-  it: "Revisione editoriale · aggiornato il 6 ottobre 2026",
-  es: "Revisión editorial · actualizado el 6 de octubre de 2026",
-  ro: "Revizuire editorială · actualizat la 6 octombrie 2026",
-};
-
-const routeResearchLabels: Record<Locale, string> = {
-  pl: "Sprawdzone w publicznym kalkulatorze USFans · aktualizacja 15 września 2026",
-  en: "Checked in the public USFans estimator · updated 15 September 2026",
-  de: "Im öffentlichen USFans-Schätzer geprüft · aktualisiert am 15. September 2026",
-  fr: "Vérifié dans l’estimateur public USFans · mis à jour le 15 septembre 2026",
-  it: "Verificato nello stimatore pubblico USFans · aggiornato il 15 settembre 2026",
-  es: "Verificado en el estimador público de USFans · actualizado el 15 de septiembre de 2026",
-  ro: "Verificat în estimatorul public USFans · actualizat la 15 septembrie 2026",
 };
 
 const categoryLabels: Record<Locale, string[]> = {
@@ -71,6 +55,8 @@ function Header({ locale, page, article }: { locale: Locale; page: PageKind; art
         {(["finds", "categories", "guides", "articles", "faq"] as const).map((item) => (
           <a className={activePage === item ? "active" : ""} key={item} href={routeFor(locale, item)}>{c.nav[item]}</a>
         ))}
+        <a href={routeFor(locale, "article", "read-usfans-qc-photos")} data-guide-entry="navigation">{editorialCopy[locale].qc}</a>
+        <a href={routeFor(locale, "article", "usfans-shipping-to-poland")} data-guide-entry="navigation">{editorialCopy[locale].shipping}</a>
       </nav>
       <div className="nav-actions">
         <details className="language-menu">
@@ -152,7 +138,7 @@ function ArticleCards({ locale, limit }: { locale: Locale; limit?: number }) {
   return (
     <div className="article-grid">
       {visibleSlugs.map((slug, index) => (
-        <a className={`article-card article-card-${index + 1}`} href={routeFor(locale, "article", slug)} key={slug}>
+        <a className={`article-card article-card-${index + 1}`} href={routeFor(locale, "article", slug)} data-guide-entry="article-card" key={slug}>
           <div className="article-top"><span>{String(index + 1).padStart(2, "0")}</span><i>↗</i></div>
           <p>{c.planned}</p><h3>{articles[slug].title}</h3><small>{articles[slug].excerpt}</small>
           <b>{c.readArticle} →</b>
@@ -162,14 +148,19 @@ function ArticleCards({ locale, limit }: { locale: Locale; limit?: number }) {
   );
 }
 
+function faqItems(locale: Locale): Array<[string, string, ArticleSlug?]> {
+  return [...newFaqs[locale], ...researchedFaqs[locale].map(([q, a], i) => [q, a, (["usfans-reviews-poland", "usfans-link-troubleshooting", "first-time-spreadsheet-checklist", "read-usfans-qc-photos", "usfans-returns-before-shipping-poland", "product-price-vs-parcel-cost", "usfans-shipping-to-poland", "read-usfans-qc-photos", "usfans-poland-route-availability", "usfans-reviews-poland"] as ArticleSlug[])[i]] as [string, string, ArticleSlug])];
+}
+
 function FAQList({ locale, limit }: { locale: Locale; limit?: number }) {
-  return (
-    <div className="faq-list">
-      {researchedFaqs[locale].slice(0, limit).map(([question, answer]) => (
-        <details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>
-      ))}
-    </div>
-  );
+  return <div className="faq-list">{faqItems(locale).slice(0, limit).map(([question, answer, slug]) =>
+    <details key={question}><summary>{question}<span>+</span></summary><p>{answer}{slug && <a className="faq-guide" data-guide-entry="faq" href={routeFor(locale, "article", slug)}>{getArticles(locale)[slug].title} →</a>}</p></details>
+  )}</div>;
+}
+
+function TopicLinks({ locale }: { locale: Locale }) {
+  const e = editorialCopy[locale];
+  return <section className="topic-section"><h2>{e.topics}</h2><p>{e.topicIntro}</p><div className="topic-links">{topicSlugs.map(slug => <a key={slug} href={routeFor(locale, "article", slug)} data-guide-entry="topic">{getArticles(locale)[slug].title}<span aria-hidden="true">↗</span></a>)}</div></section>;
 }
 
 function SectionHead({ kicker, title, body }: { kicker: string; title: string; body: string }) {
@@ -195,6 +186,7 @@ function HomePage({ locale }: { locale: Locale }) {
       <section className="quick-nav" aria-label="Independent pages">
         {(["finds", "categories", "guides", "articles", "faq"] as const).map((item, index) => <a href={routeFor(locale, item)} key={item}><span>0{index + 1}</span><strong>{c.nav[item]}</strong><i>↗</i></a>)}
       </section>
+      <TopicLinks locale={locale} />
       <section className="section"><SectionHead kicker={c.categoriesKicker} title={c.categoriesTitle} body={c.categoriesBody} /><CategoryGrid locale={locale} limit={6} /><a className="section-route" href={routeFor(locale, "categories")}>{c.nav.categories} →</a></section>
       <section className="section light-panel"><SectionHead kicker={c.findsKicker} title={c.findsTitle} body={c.findsBody} /><ProductGrid locale={locale} limit={3} /><a className="section-route" href={routeFor(locale, "finds")}>{c.nav.finds} →</a></section>
       <section className="section"><SectionHead kicker={c.articleKicker} title={c.articlesTitle} body={c.articlesBody} /><ArticleCards locale={locale} limit={4} /><a className="section-route" href={routeFor(locale, "articles")}>{c.articleIndex} →</a></section>
@@ -209,7 +201,7 @@ function InnerHero({ kicker, title, body }: { kicker: string; title: string; bod
 
 function FindsPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  return <><InnerHero kicker={c.findsKicker} title={c.findsTitle} body={c.findsBody} /><section className="section internal-section"><Search locale={locale} /><ProductGrid locale={locale} /></section></>;
+  return <><InnerHero kicker={c.findsKicker} title={c.findsTitle} body={c.findsBody} /><TopicLinks locale={locale} /><section className="section internal-section"><Search locale={locale} /><ProductGrid locale={locale} /></section></>;
 }
 
 function CategoriesPage({ locale }: { locale: Locale }) {
@@ -219,17 +211,17 @@ function CategoriesPage({ locale }: { locale: Locale }) {
 
 function GuidesPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  return <><InnerHero kicker={c.guidesKicker} title={c.guidesTitle} body={c.guidesBody} /><section className="section how-section"><div><p className="section-kicker">{c.howKicker}</p><h2>{c.howTitle}</h2><p>{c.howBody}</p></div><ol className="steps">{researchedSteps[locale].map(([title, body], i) => <li key={title}><span>0{i + 1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section><section className="section"><ArticleCards locale={locale} /></section></>;
+  return <><InnerHero kicker={c.guidesKicker} title={c.guidesTitle} body={c.guidesBody} /><TopicLinks locale={locale} /><section className="section how-section"><div><p className="section-kicker">{c.howKicker}</p><h2>{c.howTitle}</h2><p>{c.howBody}</p></div><ol className="steps">{researchedSteps[locale].map(([title, body], i) => <li key={title}><span>0{i + 1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section><section className="section"><ArticleCards locale={locale} /></section></>;
 }
 
 function ArticlesPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  return <><InnerHero kicker={c.articleKicker} title={c.articlesTitle} body={c.articlesBody} /><section className="section internal-section"><ArticleCards locale={locale} /></section></>;
+  return <><InnerHero kicker={c.articleKicker} title={c.articlesTitle} body={c.articlesBody} /><TopicLinks locale={locale} /><section className="section internal-section"><ArticleCards locale={locale} /></section></>;
 }
 
 function FAQPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
-  return <><InnerHero kicker={c.faqKicker} title={c.faqTitle} body={c.faqIntro} /><section className="section faq-page"><FAQList locale={locale} /></section></>;
+  return <><InnerHero kicker={c.faqKicker} title={c.faqTitle} body={c.faqIntro} /><TopicLinks locale={locale} /><section className="section faq-page"><FAQList locale={locale} /></section></>;
 }
 
 function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
@@ -238,9 +230,12 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
   const articleUrl = `${siteBase}${routeFor(locale, "article", slug)}`;
   const articlesUrl = `${siteBase}${routeFor(locale, "articles")}`;
   const relatedMap: Record<ArticleSlug, ArticleSlug[]> = {
-    "first-time-spreadsheet-checklist": ["usfans-sizing-poland", "read-usfans-qc-photos", "product-price-vs-parcel-cost"],
+    "usfans-reviews-poland": ["usfans-payments-poland", "first-time-spreadsheet-checklist", "read-usfans-qc-photos"],
+    "usfans-payments-poland": ["product-price-vs-parcel-cost", "usfans-shipping-to-poland", "usfans-tracking-guide"],
+    "usfans-link-troubleshooting": ["first-time-spreadsheet-checklist", "usfans-sizing-poland", "usfans-reviews-poland"],
+    "first-time-spreadsheet-checklist": ["usfans-link-troubleshooting", "usfans-reviews-poland", "product-price-vs-parcel-cost"],
     "read-usfans-qc-photos": ["usfans-sizing-poland", "usfans-returns-before-shipping-poland", "usfans-shipping-to-poland"],
-    "product-price-vs-parcel-cost": ["usfans-shipping-to-poland", "usfans-shoes-poland-shoebox", "usfans-poland-route-availability"],
+    "product-price-vs-parcel-cost": ["usfans-payments-poland", "usfans-shoes-poland-shoebox", "usfans-shipping-to-poland"],
     "usfans-poland-preorder-checklist": ["first-time-spreadsheet-checklist", "usfans-sizing-poland", "usfans-shipping-to-poland"],
     "usfans-poland-route-availability": ["usfans-shipping-to-poland", "product-price-vs-parcel-cost", "usfans-tracking-guide"],
     "usfans-shipping-to-poland": ["product-price-vs-parcel-cost", "usfans-shoes-poland-shoebox", "usfans-tracking-guide"],
@@ -251,10 +246,9 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
     "usfans-shoes-poland-shoebox": ["usfans-sizing-poland", "product-price-vs-parcel-cost", "usfans-shipping-to-poland"],
   };
   const relatedSlugs = relatedMap[slug];
-  const isHistorical = slug === "usfans-poland-preorder-checklist" || slug === "usfans-poland-route-availability";
-  const isNew = articleDates[slug] === "2026-10-06";
-  const isRefreshed = !isHistorical && (locale === "pl" || (locale === "en" && slug !== "usfans-tracking-guide"));
-  const modifiedDate = isNew || isRefreshed ? "2026-10-06" : articleDates[slug];
+  const modifiedDate = editorialDate;
+  const e = editorialCopy[locale];
+  const decisionNote = decisionNotes[locale][articleSlugs.indexOf(slug)];
   const categoryIndex = slug === "usfans-hoodies-poland-selection" ? 1 : slug === "usfans-shoes-poland-shoebox" ? 0 : null;
   const articleCtaHref = categoryIndex === null ? allProducts : categories[categoryIndex][2];
   const articleCtaLabel = categoryIndex === null ? c.finalCta : categoryLabels[locale][categoryIndex];
@@ -265,17 +259,20 @@ function ArticlePage({ locale, slug }: { locale: Locale; slug: ArticleSlug }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       <article className="article-page">
-        <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{slug === "usfans-poland-route-availability" ? routeResearchLabels[locale] : modifiedDate === "2026-10-06" ? articleResearchLabels[locale] : modifiedDate}</small></header>
+        <header><a href={routeFor(locale, "articles")}>← {c.articleIndex}</a><p>{c.articleKicker} · 2026</p><h1>{article.title}</h1><strong>{article.excerpt}</strong><small className="research-note">{e.updated}</small></header>
+        {slug === "usfans-poland-route-availability" && <p className="historical-note">{e.historical}</p>}
         <div className="article-layout">
           <aside><span>{c.keyTakeaways}</span><ul>{article.points.map((point) => <li key={point}>{point}</li>)}</ul><nav className="article-toc" aria-label={c.nav.articles}>{article.sections.map(([heading], index) => <a href={`#section-${index + 1}`} key={heading}>{heading}</a>)}</nav></aside>
           <div className="article-body">
             <div className="article-intro">{article.intro.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
             {article.sections.map(([heading, body], index) => <section id={`section-${index + 1}`} key={heading}><h2>{heading}</h2>{body.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
+            {decisionNote && <div className="decision-note"><h2>{e.next}</h2><p>{decisionNote}</p></div>}
+            <div className="article-sources official-sources"><h2>{e.sources}</h2><p>{e.scope}</p><ul>{articleSources(locale, slug).map(source => <li key={source.href}><a href={source.href} target="_blank" rel="noopener noreferrer">{source.label} ↗</a></li>)}</ul></div>
             {article.sources && <div className="article-sources"><h2>{({pl:"Źródła i zakres weryfikacji",en:"Sources and verification scope",de:"Quellen und Prüfumfang",fr:"Sources et portée de la vérification",it:"Fonti e ambito della verifica",es:"Fuentes y alcance de la verificación",ro:"Surse și limitele verificării"})[locale]}</h2><ul>{article.sources.map(source => <li key={source}>{source}</li>)}</ul></div>}
             <div className="article-check"><strong>{c.disclaimer}</strong></div>
-            <nav className="article-related" aria-label="Related USFans guides">
+            <nav className="article-related" aria-label={c.articleIndex}>
               <span>{c.articleIndex}</span>
-              {relatedSlugs.map((relatedSlug) => <a href={routeFor(locale, "article", relatedSlug)} key={relatedSlug}>{getArticles(locale)[relatedSlug].title} →</a>)}
+              {relatedSlugs.map((relatedSlug) => <a href={routeFor(locale, "article", relatedSlug)} data-guide-entry="related" key={relatedSlug}>{getArticles(locale)[relatedSlug].title} →</a>)}
               <a className="article-related-cta" href={articleCtaHref} target="_blank" rel="noopener noreferrer">{articleCtaLabel} ↗</a>
             </nav>
           </div>
@@ -297,7 +294,7 @@ function Footer({ locale }: { locale: Locale }) {
 
 export function SitePage({ locale, page, article }: { locale: Locale; page: PageKind; article?: ArticleSlug }) {
   const languageTag = locales.find((item) => item.code === locale)?.lang ?? locale;
-  const faqJson = page === "faq" ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: researchedFaqs[locale].map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) } : null;
+  const faqJson = page === "faq" ? { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqItems(locale).map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) } : null;
   const siteJson = page === "home" ? [{ "@context": "https://schema.org", "@type": "WebSite", name: "USFans Spreadsheet Polska", alternateName: ["USFans", "US Fans Lista"], url: `${siteBase}${routeFor(locale, "home")}`, inLanguage: languageTag }, { "@context": "https://schema.org", "@type": "Organization", name: "USFanss", url: siteBase, logo: `${siteBase}/usfans-logo.png` }] : [];
   const itemListJson = page === "finds" ? { "@context": "https://schema.org", "@type": "ItemList", numberOfItems: products.length, itemListElement: products.map((product, index) => ({ "@type": "ListItem", position: index + 1, name: product.name, url: product.href, image: product.image })) } : null;
   return (

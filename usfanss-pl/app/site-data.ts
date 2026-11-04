@@ -3,6 +3,7 @@ import { researchedEnglishArticles } from "./english-articles";
 import { polandPreorderArticle } from "./poland-preorder-article";
 import { polandRouteAvailabilityArticle } from "./poland-route-availability-article";
 import { priorityEnglishArticles } from "./priority-english-articles";
+import { growthArticles } from "./content/growth";
 
 export type Locale = "pl" | "en" | "de" | "fr" | "it" | "es" | "ro";
 export type PageKind = "home" | "finds" | "categories" | "guides" | "articles" | "faq" | "article";
@@ -52,6 +53,9 @@ export const articleSlugs = [
   "usfans-returns-before-shipping-poland",
   "usfans-hoodies-poland-selection",
   "usfans-shoes-poland-shoebox",
+  "usfans-reviews-poland",
+  "usfans-payments-poland",
+  "usfans-link-troubleshooting",
 ] as const;
 export type ArticleSlug = typeof articleSlugs[number];
 
@@ -149,13 +153,14 @@ const articleTranslations: Record<Exclude<Locale, "en">, Record<HistoricArticleS
 };
 
 export function getArticles(locale: Locale): Record<ArticleSlug, LocalArticle> {
-  const existing = locale === "en" ? englishArticles : { ...englishArticles, ...articleTranslations[locale] };
+  const existing = locale === "en" ? englishArticles : articleTranslations[locale];
   return {
     ...existing,
     ...refreshedArticles[locale],
     ...newArticles[locale],
     "usfans-poland-preorder-checklist": polandPreorderArticle[locale],
     "usfans-poland-route-availability": polandRouteAvailabilityArticle[locale],
+    ...growthArticles[locale],
   } as Record<ArticleSlug, LocalArticle>;
 }
 
@@ -220,7 +225,18 @@ const pageSeo: Record<Locale, Record<IndexPage, { title: string; description: st
   },
 };
 
+const hubSeo: Record<Locale, { faq: string; articles: string; description: string }> = {
+  pl: { faq: "USFans FAQ: opinie, BLIK, QC, wysyłka i linki", articles: "USFans poradniki: opinie, płatności, QC i wysyłka do Polski", description: "Sprawdź opinie USFans, dostępne płatności i BLIK, napraw niedziałający link, porównaj rozmiary, zdjęcia QC oraz pełny koszt paczki do Polski." },
+  en: { faq: "USFans FAQ: Reviews, Payments, QC, Shipping & Links", articles: "USFans Guides: Reviews, Payments, QC & Poland Shipping", description: "Check USFans reviews, payment methods and BLIK, troubleshoot product links, compare sizing and QC photos, and plan the full cost of a parcel to Poland." },
+  de: { faq: "USFans FAQ: Erfahrungen, Zahlung, QC und Versand", articles: "USFans Ratgeber: Erfahrungen, Zahlung, QC und Polen-Versand", description: "USFans Erfahrungen einordnen, Zahlungen und BLIK prüfen, fehlerhafte Links klären sowie Größen, QC-Fotos und Paketkosten nach Polen vergleichen." },
+  fr: { faq: "FAQ USFans : avis, paiement, QC, livraison et liens", articles: "Guides USFans : avis, paiement, QC et livraison en Pologne", description: "Évaluez les avis USFans, vérifiez paiements et BLIK, corrigez un lien, comparez tailles et photos QC puis calculez le colis vers la Pologne." },
+  it: { faq: "USFans FAQ: recensioni, pagamenti, QC e spedizione", articles: "Guide USFans: recensioni, pagamenti, QC e spedizione", description: "Valuta recensioni USFans, pagamenti e BLIK, risolvi link non funzionanti, controlla taglie e foto QC e calcola il costo del pacco in Polonia." },
+  es: { faq: "USFans FAQ: opiniones, pagos, QC, envíos y enlaces", articles: "Guías USFans: opiniones, pagos, QC y envíos a Polonia", description: "Evalúa opiniones USFans, comprueba pagos y BLIK, revisa enlaces rotos, compara tallas y fotos QC y calcula el coste del paquete a Polonia." },
+  ro: { faq: "USFans FAQ: păreri, plăți, QC, livrare și linkuri", articles: "Ghiduri USFans: păreri, plăți, QC și livrare în Polonia", description: "Evaluează părerile USFans, verifică plățile și BLIK, repară linkurile, compară mărimi și fotografii QC și calculează coletul către Polonia." },
+};
+
 export function getPageSeo(locale: Locale, page: IndexPage) {
+  if (page === "faq" || page === "articles" || page === "guides") return { title: hubSeo[locale][page === "guides" ? "articles" : page], description: hubSeo[locale].description };
   return pageSeo[locale][page];
 }
 
@@ -244,6 +260,6 @@ export function parseRoute(slug: string[]): { locale: Locale; page: PageKind; ar
 
 
 export function getArticleLocales(article: ArticleSlug) {
-  const full = ["usfans-poland-preorder-checklist", "usfans-poland-route-availability", "usfans-sizing-poland", "usfans-returns-before-shipping-poland", "usfans-hoodies-poland-selection", "usfans-shoes-poland-shoebox"].includes(article);
-  return full ? locales : locales.filter(locale => locale.code === "pl" || locale.code === "en");
+  // Only publish complete localized records. Missing translations fail the build tests.
+  return locales.filter(locale => Boolean(getArticles(locale.code)[article]));
 }
