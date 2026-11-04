@@ -2,12 +2,16 @@
 from pathlib import Path
 from urllib.parse import urlparse,unquote
 from bs4 import BeautifulSoup
+from datetime import date
 import json,re,xml.etree.ElementTree as ET
 root=Path(__file__).resolve().parents[1]
 languages=['en','de','fr','es','it','pl']
 order=json.loads((root/'content/2026-10/article-order.json').read_text())
 assert len(order)==len(set(order))==17
 data={(d['slug'],d['lang']):d for p in (root/'content/2026-10').glob('*.??.json') for d in [json.loads(p.read_text())]}
+for key,d in data.items():
+ for field in ['published','modified']:
+  if field in d:assert date.fromisoformat(d[field]).isoformat()==d[field],(key,field,'invalid ISO date')
 for lang in languages:
  assert {slug for slug,code in data if code==lang}==set(order),(lang,'missing translations')
  for slug in order:
@@ -77,6 +81,8 @@ for lang in languages:
   for a in article.select('.related-guides a'):
    assert a['href'].startswith('/'+pre+'articles/'),(lang,slug,'related guide leaves locale')
 urls=[e.text for e in ET.parse(root/'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+for entry in ET.parse(root/'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod'):
+ assert entry.text and date.fromisoformat(entry.text).isoformat()==entry.text,('invalid sitemap date',entry.text)
 assert len(urls)==len(set(urls))
 for url in urls:
  path=root/(urlparse(url).path.lstrip('/')+'index.html');assert path.exists(),url
