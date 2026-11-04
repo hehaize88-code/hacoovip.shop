@@ -1,3 +1,4 @@
+import releaseArticles from "../../content/seo-20261104-articles.json";
 import newArticles from "../../content/new-articles.json";
 import type { ArticleSource, RelatedGuide, Section } from "./article-content";
 
@@ -165,7 +166,7 @@ export const priorityArticles:PriorityArticle[]=[
     title:"Hipobuy Review 2026: Is Hipobuy Legit, Safe and Worth Using?",
     description:"An independent Hipobuy review separating official service claims, Trustpilot signals, buying risks and a practical safety checklist.",
     dek:"A balanced answer to the questions behind ‘Hipobuy legit?’—what can be verified, what remains uncertain and how to reduce avoidable risk.",
-    sources:[hipobuySource,{label:"Trustpilot · Hipobuy reviews",href:"https://www.trustpilot.com/review/hipobuy.com"},{label:"Google Play · Hipobuy app",href:"https://play.google.com/store/apps/details?id=com.hipobuy.app"}],
+    sources:[hipobuySource,{label:"Trustpilot · Hipobuy reviews",href:"https://www.trustpilot.com/review/hipobuy.com"},{label:"Google Play · Hipobuy app",href:"https://play.google.com/store/apps/details?id=com.hipobuy.shop.google"}],
     related:[{title:"How to Buy with Hipobuy",href:"/articles/how-to-buy-with-hipobuy/"},{title:"Hipobuy QC Photos",href:"/articles/hipobuy-qc-photos/"},{title:"Tracking, Returns and Refunds",href:"/articles/hipobuy-tracking-returns-refunds/"}],
     sections:[
       {heading:"Define what ‘legit’ can actually mean",paragraphs:[
@@ -235,7 +236,7 @@ export const priorityArticles:PriorityArticle[]=[
     title:"Hipobuy Warehouse Guide: 90-Day Storage, QC and Consolidation",
     description:"Use Hipobuy warehouse storage, QC decisions and parcel consolidation deliberately before international shipping.",
     dek:"A warehouse workflow for organising arrivals, resolving defects and building a parcel without wasting storage time.",
-    sources:[hipobuySource,{label:"Google Play · Hipobuy app",href:"https://play.google.com/store/apps/details?id=com.hipobuy.app"}],
+    sources:[hipobuySource,{label:"Google Play · Hipobuy app",href:"https://play.google.com/store/apps/details?id=com.hipobuy.shop.google"}],
     related:[{title:"Hipobuy QC Photos",href:"/articles/hipobuy-qc-photos/"},{title:"Shipping Cost 2026",href:"/articles/hipobuy-shipping-cost/"},{title:"Tracking, Returns and Refunds",href:"/articles/hipobuy-tracking-returns-refunds/"}],
     sections:[
       {heading:"Treat storage as a deadline, not a promise",paragraphs:[
@@ -301,6 +302,6 @@ export const priorityArticles:PriorityArticle[]=[
   }
 ];
 
-priorityArticles.push(...newArticles);
+priorityArticles.push(...newArticles, ...releaseArticles);
 
 export function getPriorityArticle(slug:string){return priorityArticles.find(article=>article.slug===slug);}

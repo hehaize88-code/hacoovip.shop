@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Browse Hipobuy Finds by Category, Price & Product Link",
-  description: "Filter 60 checked product rows by category, compare dated USD reference prices and open each exact product link.",
+  title: "Hipobuy Finds: Product Links & Budget Filters",
+  description: "Search Hipobuy product links by category and reference price. Compare budget finds under $30, check product details and plan the full cost.",
   alternates: { canonical: "/spreadsheet/" },
 };
 

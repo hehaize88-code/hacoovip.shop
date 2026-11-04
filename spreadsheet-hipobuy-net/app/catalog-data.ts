@@ -1,4 +1,4 @@
-export const CATALOG_CHECKED_DATE = "2026-08-24";
+export const CATALOG_CHECKED_DATE = "2026-11-04";
 export const USD_REFERENCE_RATE = 0.13894;
 
 export type CatalogCategory = {
@@ -63,16 +63,16 @@ export const catalogCategories: CatalogCategory[] = [
 ];
 
 export const catalogProducts: CatalogProduct[] = [
-  { id: "6045", name: "shoes-60", category: "shoes", cny: 330, image: "/uploads/allimg/20260417/1-26041G55S9251.jpg" },
-  { id: "6044", name: "shoes-59", category: "shoes", cny: 399, image: "/uploads/allimg/20260417/1-26041G55T0302.jpg" },
-  { id: "6043", name: "shoes-58", category: "shoes", cny: 280, image: "/uploads/allimg/20260417/1-26041G55T15c.jpg" },
-  { id: "6042", name: "shoes-57", category: "shoes", cny: 340, image: "/uploads/allimg/20260417/1-26041G55THL.jpg" },
-  { id: "6041", name: "shoes-56", category: "shoes", cny: 449, image: "/uploads/allimg/20260417/1-26041G55TVK.jpg" },
-  { id: "6040", name: "shoes-55", category: "shoes", cny: 459, image: "/uploads/allimg/20260417/1-26041G55Ta19.jpg" },
-  { id: "6039", name: "shoes-54", category: "shoes", cny: 298, image: "/uploads/allimg/20260417/1-26041G55U0V9.jpg" },
-  { id: "6038", name: "shoes-53", category: "shoes", cny: 450, image: "/uploads/allimg/20260417/1-26041G55U0115.jpg" },
-  { id: "6037", name: "shoes-52", category: "shoes", cny: 400, image: "/uploads/allimg/20260417/1-26041G55U1U5.jpg" },
-  { id: "6036", name: "shoes-51", category: "shoes", cny: 280, image: "/uploads/allimg/20260417/1-26041G55U22J.jpg" },
+  { id: "6045", name: "D10R Fashionable sneakers-YT", category: "shoes", cny: 330, image: "/uploads/allimg/20260417/1-26041G55S9251.jpg" },
+  { id: "6044", name: "M B-Venet*", category: "shoes", cny: 399, image: "/uploads/allimg/20260417/1-26041G55T0302.jpg" },
+  { id: "6043", name: "O-White shoes", category: "shoes", cny: 280, image: "/uploads/allimg/20260417/1-26041G55T15c.jpg" },
+  { id: "6042", name: "GODB-SSTR-1", category: "shoes", cny: 340, image: "/uploads/allimg/20260417/1-26041G55THL.jpg" },
+  { id: "6041", name: "OG-Yzy35OV2", category: "shoes", cny: 449, image: "/uploads/allimg/20260417/1-26041G55TVK.jpg" },
+  { id: "6040", name: "OG-3", category: "shoes", cny: 459, image: "/uploads/allimg/20260417/1-26041G55Ta19.jpg" },
+  { id: "6039", name: "LM 55-New basketball shoes comfortable", category: "shoes", cny: 298, image: "/uploads/allimg/20260417/1-26041G55U0V9.jpg" },
+  { id: "6038", name: "DD 7-High Edition Chinese Shoes V Home Camouflage Platform Rivet Shoes", category: "shoes", cny: 450, image: "/uploads/allimg/20260417/1-26041G55U0115.jpg" },
+  { id: "6037", name: "HH 17-Fashionable sneakers", category: "shoes", cny: 400, image: "/uploads/allimg/20260417/1-26041G55U1U5.jpg" },
+  { id: "6036", name: "Youthful trendy shoes", category: "shoes", cny: 280, image: "/uploads/allimg/20260417/1-26041G55U22J.jpg" },
   { id: "5974", name: "Patagonia classic loose-fitting crew neck", category: "hoodies", cny: 140, image: "/uploads/allimg/20260417/1-26041G1101D39.webp" },
   { id: "5970", name: "Miu Miu's new collared patchwork casual", category: "hoodies", cny: 160, image: "/uploads/allimg/20260417/1-26041G1054H39.webp" },
   { id: "5968", name: "Balenciaga new collection", category: "hoodies", cny: 159, image: "/uploads/allimg/20260417/1-26041G10133Z9.webp" },

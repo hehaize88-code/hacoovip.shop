@@ -3,7 +3,7 @@
 Source JSX remains authoritative. Run next build before this script. Translation
 dictionaries are committed, so normal builds never depend on a translation API.
 """
-import argparse, html, json, re, shutil
+import argparse, copy, html, json, re, shutil
 from pathlib import Path
 from urllib.parse import urlsplit
 from bs4 import BeautifulSoup, Comment, Doctype, NavigableString
@@ -56,12 +56,6 @@ def prepare(file):
     for x in soup.find_all(string=lambda t:isinstance(t,Comment)):x.extract()
     for x in soup.select('[hidden]'):
         if not x.get_text(strip=True) and not x.find(['script','meta','link','title']):x.decompose()
-    # A third-party reference remains attributed in prose; navigation only uses
-    # this independent site and its owner's catalogue.
-    for a in soup.select('a[href]'):
-        href=a['href'];u=urlsplit(href)
-        if u.scheme in ['http','https'] and u.hostname not in ['spreadsheet-hipobuy.net','cnfanshp.com','www.cnfanshp.com']:
-            a.name='span';a.attrs={}
     for x in soup.select('meta[name="keywords"]'):x.decompose()
     # The search API and native filtering remain usable without React hydration.
     for el in soup.select('.product-card'):
@@ -175,7 +169,7 @@ def localize(soup,lang,route,dictionary):
     for script in soup.select('script[type="application/ld+json"]'):
         try:script.string=json.dumps(structured(json.loads(script.get_text())),ensure_ascii=False)
         except json.JSONDecodeError:raise RuntimeError(f'Invalid schema on {route}')
-    script=soup.new_tag('script',src='/site.js?v=20261007',defer='');soup.body.append(script)
+    script=soup.new_tag('script',src='/site.js?v=20261104',type='module');soup.body.append(script)
     return str(soup)
 
 def main():
@@ -199,13 +193,16 @@ def main():
         for lang in LANGS:
             target=OUT/((lang+'/') if lang!='en' else '')/rel
             target.parent.mkdir(parents=True,exist_ok=True)
-            target.write_text(localize(BeautifulSoup(str(source),'html.parser'),lang,route,dictionaries.get(lang,{})))
+            # Keep adjacent JSX text nodes separate, just as the extraction step
+            # sees them. Re-parsing HTML joins dates/prices to their labels and
+            # silently bypasses translations such as "rows" and "CHECKED".
+            target.write_text(localize(copy.deepcopy(source),lang,route,dictionaries.get(lang,{})))
     from xml.etree.ElementTree import Element,SubElement,tostring,register_namespace
     ns='http://www.sitemaps.org/schemas/sitemap/0.9';xn='http://www.w3.org/1999/xhtml'
     register_namespace('',ns);register_namespace('xhtml',xn);root=Element('{'+ns+'}urlset')
     for route in routes:
         for lang in LANGS:
-            u=SubElement(root,'{'+ns+'}url');SubElement(u,'{'+ns+'}loc').text=BASE+locale_url(route,lang);SubElement(u,'{'+ns+'}lastmod').text='2026-10-07'
+            u=SubElement(root,'{'+ns+'}url');SubElement(u,'{'+ns+'}loc').text=BASE+locale_url(route,lang);SubElement(u,'{'+ns+'}lastmod').text='2026-11-04'
             for alternate in LANGS+['x-default']:
                 SubElement(u,'{'+xn+'}link',{'rel':'alternate','hreflang':'zh-CN' if alternate=='zh' else alternate,'href':BASE+locale_url(route,'en' if alternate=='x-default' else alternate)})
     (OUT/'sitemap.xml').write_bytes(tostring(root,encoding='utf-8',xml_declaration=True))

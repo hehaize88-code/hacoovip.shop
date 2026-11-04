@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import releaseArticles from "../content/seo-20261104-articles.json";
 import { SiteHeader } from "./site-header";
 
 const categories = [
@@ -19,13 +20,15 @@ const categories = [
 ];
 
 const products = [
-  { id: "HB-5974", name: "Classic loose-fit sweatshirt", category: "Hoodies", price: "$19.45", source: "¥140", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1101D39.webp", href: "https://cnfanshp.com/AllProducts/5974.html", checked: "2026-08-22" },
-  { id: "HB-6045", name: "Shoes · item 6045", category: "Shoes", price: "$45.85", source: "¥330", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55S9251.jpg", href: "https://cnfanshp.com/AllProducts/6045.html", checked: "2026-08-22" },
-  { id: "HB-5971", name: "Letter-embroidered cap", category: "Headwear", price: "$12.35", source: "¥89", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G10Fc05.webp", href: "https://cnfanshp.com/AllProducts/5971.html", checked: "2026-08-22" },
-  { id: "HB-6043", name: "Shoes · item 6043", category: "Shoes", price: "$38.90", source: "¥280", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55T15c.jpg", href: "https://cnfanshp.com/AllProducts/6043.html", checked: "2026-08-22" },
+  { id: "HB-5974", name: "Classic loose-fit sweatshirt", category: "Hoodies", price: "$19.45", source: "¥140", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G1101D39.webp", href: "https://cnfanshp.com/AllProducts/5974.html", checked: "2026-11-04" },
+  { id: "HB-6045", name: "D10R Fashionable sneakers-YT", category: "Shoes", price: "$45.85", source: "¥330", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55S9251.jpg", href: "https://cnfanshp.com/AllProducts/6045.html", checked: "2026-11-04" },
+  { id: "HB-5971", name: "Letter-embroidered cap", category: "Headwear", price: "$12.37", source: "¥89", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G10Fc05.webp", href: "https://cnfanshp.com/AllProducts/5971.html", checked: "2026-11-04" },
+  { id: "HB-6043", name: "O-White shoes", category: "Shoes", price: "$38.90", source: "¥280", image: "https://cnfanshp.com/uploads/allimg/20260417/1-26041G55T15c.jpg", href: "https://cnfanshp.com/AllProducts/6043.html", checked: "2026-11-04" },
 ];
 
-const guides = [{"tag": "LINK CHECKS", "title": "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives", "text": "Check a broken Hipobuy spreadsheet link, distinguish a missing listing from an unavailable option, and compare alternatives without ordering the wrong item.", "href": "/articles/hipobuy-spreadsheet-links-not-working/"}, {"tag": "HOODIE SIZING", "title": "Hipobuy Hoodie Size Guide: Measurements, Fit and QC", "text": "Compare hoodie chest width, body length, shoulders and sleeves with a garment you own, then use warehouse measurements to check your selected size.", "href": "/articles/hipobuy-hoodie-size-guide/"}, {"tag": "SNEAKER SIZING", "title": "Hipobuy Sneaker Sizing: EU, US and Insole Measurements", "text": "Separate shoe labels, foot length and insole measurements, then inspect both shoes before approving a warehouse order.", "href": "/articles/hipobuy-sneaker-size-guide/"}, {"tag": "JERSEY SIZING", "title": "Hipobuy Jersey Sizing: Player vs Fan Versions and QC", "text": "Compare jersey versions, garment measurements, names, numbers and badges before approving a football or basketball jersey for shipping.", "href": "/articles/hipobuy-jersey-size-guide/"}, {"tag": "QC", "title": "Read warehouse photos", "text": "Check variants, measurements, construction and visible damage in order.", "href": "/articles/hipobuy-qc-photos/"}, {"tag": "SHIPPING", "title": "Plan parcel weight and cost", "text": "Compare actual weight, volumetric weight and your own cost estimates.", "href": "/shipping/"}];
+const originalGuides = [{"tag": "LINK CHECKS", "title": "Hipobuy Spreadsheet Links Not Working: Checks and Alternatives", "text": "Check a broken Hipobuy spreadsheet link, distinguish a missing listing from an unavailable option, and compare alternatives without ordering the wrong item.", "href": "/articles/hipobuy-spreadsheet-links-not-working/"}, {"tag": "HOODIE SIZING", "title": "Hipobuy Hoodie Size Guide: Measurements, Fit and QC", "text": "Compare hoodie chest width, body length, shoulders and sleeves with a garment you own, then use warehouse measurements to check your selected size.", "href": "/articles/hipobuy-hoodie-size-guide/"}, {"tag": "SNEAKER SIZING", "title": "Hipobuy Sneaker Sizing: EU, US and Insole Measurements", "text": "Separate shoe labels, foot length and insole measurements, then inspect both shoes before approving a warehouse order.", "href": "/articles/hipobuy-sneaker-size-guide/"}, {"tag": "JERSEY SIZING", "title": "Hipobuy Jersey Sizing: Player vs Fan Versions and QC", "text": "Compare jersey versions, garment measurements, names, numbers and badges before approving a football or basketball jersey for shipping.", "href": "/articles/hipobuy-jersey-size-guide/"}, {"tag": "QC", "title": "Read warehouse photos", "text": "Check variants, measurements, construction and visible damage in order.", "href": "/articles/hipobuy-qc-photos/"}, {"tag": "SHIPPING", "title": "Plan parcel weight and cost", "text": "Compare actual weight, volumetric weight and your own cost estimates.", "href": "/shipping/"}];
+
+const guides = [...releaseArticles.map(a=>({tag:a.tag,title:a.title,text:a.description,href:`/articles/${a.slug}/`})),...originalGuides.slice(0,3)];
 
 const faqs = [
   { question: "What does Hipobuy say it does?", answer: "Its official app listings describe a shopping service for products from Chinese marketplaces, followed by international shipping." },
@@ -54,7 +57,7 @@ export default function Home() {
             <label htmlFor="hero-query">Search the main catalogue</label>
             <div><span>⌕</span><input id="hero-query" name="keywords" required placeholder="Shoes, hoodie, product ID…" /><input type="hidden" name="channelid" value="2" /><button type="submit">Search ↗</button></div>
           </form>
-          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>15</b> practical articles</span><span><b>07 OCT</b> guides updated</span></div>
+          <div className="trust-line"><span><b>60</b> checked rows</span><span><b>18</b> practical articles</span><span><b>04 NOV</b> guides updated</span></div>
         </div>
 
         <div className="hero-board" aria-label="Directory preview">
@@ -105,7 +108,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="guide-section" id="guides"><nav className="internal-category-links" aria-label="Product research categories"><a href="/categories/shoes/">Sneaker finds</a><a href="/categories/hoodies/">Hoodie finds</a><a href="/categories/jerseys/">Jersey finds</a><a href="/categories/">All categories</a></nav><a className="all-guides-link" href="/articles/">Browse all 15 guides</a>
+      <section className="guide-section" id="guides"><nav className="internal-category-links" aria-label="Product research categories"><a href="/categories/shoes/">Sneaker finds</a><a href="/categories/hoodies/">Hoodie finds</a><a href="/categories/jerseys/">Jersey finds</a><a href="/categories/">All categories</a></nav><a className="all-guides-link" href="/articles/">Browse all 18 guides</a>
         <div className="section-kicker">04 / RESEARCH NOTES</div>
         <div className="section-heading compact"><h2>Useful guides,<br />kept practical.</h2><p>Platform facts can change. Each guide separates what the sheet shows from what must be confirmed at checkout.</p></div>
         <div className="guide-grid">{guides.map((guide, index) => <article key={guide.title}><div><span>{guide.tag}</span><small>{String(index + 1).padStart(2,"0")}</small></div><h3>{guide.title}</h3><p>{guide.text}</p><a href={guide.href}>Read guide <b>→</b></a></article>)}</div>
@@ -117,7 +120,7 @@ export default function Home() {
         <div className="faq-card-grid">{faqs.map((faq, index) => <a href="/faq/" key={faq.question}><span>0{index + 1}</span><h3>{faq.question}</h3><p>{faq.answer}</p><b>Read all FAQs →</b></a>)}</div>
       </section>
 
-      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>FACTS REVIEWED · 07 OCT 2026</span></div></footer>
+      <footer><div className="footer-brand notranslate" data-no-translate><span className="footer-logo"><img src="/hipobuy-logo.png" alt="Hipobuy" /></span><strong>SHEET</strong></div><p>Independent product-discovery resource. Not affiliated with Hipobuy or the marketplaces referenced by product listings.</p><div><a href="#top">Back to top ↑</a><span>FACTS REVIEWED · 04 NOV 2026</span></div></footer>
     </main>
   );
 }

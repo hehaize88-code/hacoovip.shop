@@ -60,6 +60,7 @@ export function SiteHeader({ home = false }: { home?: boolean }) {
         <Link href="/shipping/">Shipping</Link>
         <Link href="/faq/">FAQ</Link>
         <Link href="/articles/">Articles</Link>
+        <Link href="/articles/how-to-buy-with-hipobuy/">How to buy</Link>
       </nav>
       <div className="header-actions">
         <label className="language-select notranslate" data-no-translate>

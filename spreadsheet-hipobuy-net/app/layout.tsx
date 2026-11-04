@@ -5,7 +5,7 @@ import { AnalyticsEvents } from "./analytics-events";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spreadsheet-hipobuy.net"),
-  title: "Hipobuy Spreadsheet 2026: Updated Finds, QC & Shipping",
+  title: "Hipobuy Spreadsheet: Shoes, Hoodies & Jersey Finds",
   description: "Browse Hipobuy spreadsheet finds for shoes, hoodies and jerseys. Compare sizing, check QC photos and plan shipping with practical buying guides.",
   keywords: ["Hipobuy spreadsheet", "Hipobuy spreadsheet 2026", "Hipobuy finds", "Hipobuy QC photos", "Hipobuy shipping"],
   robots: { index: true, follow: true },

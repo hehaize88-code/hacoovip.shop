@@ -14,9 +14,9 @@ Use these settings when connecting `hehaize88-code/hacoovip.shop`:
 
 The repository directory already contains the exported static site at its root, including `index.html`, route folders, `_next` assets, `robots.txt`, `sitemap.xml`, `_headers`, and a real `404.html`. Cloudflare therefore does not need to compile Next.js during deployment.
 
-For future source changes, run `npm ci`, `python -m pip install -r scripts/requirements-localization.txt`, `npm run build:static`, and `npm run export:publish` before committing. The build generates and verifies 28 routes in all eight languages (224 pages). The publish command copies only this site's validated export into its existing deployment directory.
+For future source changes, run `npm ci`, `python -m pip install -r scripts/requirements-localization.txt`, `npm run build:static`, and `npm run export:publish` before committing. The build generates and verifies 31 routes in all eight languages (248 pages). The publish command copies only this site's validated export into its existing deployment directory.
 
-Translations live in `app/translations/` with reviewed corrections in `content/translation-overrides.json`. All eight language versions include the same 15 articles. Language switches preserve the current page, and legacy `?lang=` links redirect to the corresponding localized path. Production uses static HTML and `public/site.js` for navigation, filters, the parcel planner and analytics events; React hydration is intentionally removed from the exported pages.
+Translations live in `app/translations/` with reviewed corrections in `content/translation-overrides.json`. All eight language versions include the same 18 articles. Language switches preserve the current page, and legacy `?lang=` links redirect to the corresponding localized path. Production uses static HTML and `public/site.js` for navigation, filters, the parcel planner and analytics events; React hydration is intentionally removed from the exported pages.
 
 Run `tests/localized-static.mjs` with a local server serving `out/` on port 8765 to check language switching, filters, the planner, analytics event classification and mobile overflow. It uses Playwright Chromium; set `CHROME_EXECUTABLE` to use an installed compatible Chromium executable.
 
@@ -28,3 +28,9 @@ Run `tests/localized-static.mjs` with a local server serving `out/` on port 8765
 - `_next/`: versioned JavaScript and CSS assets
 
 The site has no server-side database or secret environment-variable requirement.
+
+## November 2026 editorial release
+
+Three new guides cover budget finds, marketplace link checks and rehearsal packing. Five existing articles add evidence tables, worked examples or current review-source context. Source links remain clickable. The native catalogue supports budget and price-order filters; the link checker accepts full marketplace product URLs only and preserves the original marketplace identity. `content/catalog-verified-20261104.json` records the 60 catalogue-page checks; their references must not be rehosted by retaining directory IDs because different catalogues use different IDs.
+
+Run `node --test tests/product-link.test.mjs` and the static export release gate before publishing. All translation dictionaries are committed and the normal build does not use online translation. `public/release.json` identifies the published release for post-deployment checks.

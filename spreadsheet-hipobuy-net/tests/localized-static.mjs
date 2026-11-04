@@ -20,8 +20,8 @@ await page.goto('http://127.0.0.1:8765/articles/hipobuy-hoodie-size-guide/?lang=
 assert.equal(await page.locator('.article-copy section').count(),8);
 await page.goto('http://127.0.0.1:8765/zh/spreadsheet/');
 assert.equal(await page.locator('.data-row:visible').count(),60);
-await page.locator('.sheet-controls select').selectOption('jerseys');assert.equal(await page.locator('.data-row:visible').count(),10);
-await page.locator('.sheet-controls select').selectOption('All');await page.locator('.sheet-controls input').fill('6045');assert.equal(await page.locator('.data-row:visible').count(),1);
+await page.locator('[data-sheet-category]').selectOption('jerseys');assert.equal(await page.locator('.data-row:visible').count(),10);
+await page.locator('[data-sheet-category]').selectOption('All');await page.locator('[data-sheet-search]').fill('6045');assert.equal(await page.locator('.data-row:visible').count(),1);
 await page.goto('http://127.0.0.1:8765/shipping/');
 for(const [key,value] of Object.entries({weight:'2',length:'40',width:'30',height:'20',divisor:'6000'}))await page.locator(`#weight-planner input[name="${key}"]`).fill(value);
 assert.equal(await page.locator('#volume-result').textContent(),'4.000');assert.equal(await page.locator('#chargeable-result').textContent(),'4.000');
@@ -41,7 +41,7 @@ for(const lang of langs){const prefix=lang==='en'?'':`/${lang}`;
   await page.goto(`http://127.0.0.1:8765${prefix}${route}`);
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1);
   assert(!overflow,`Horizontal overflow: ${lang} ${route}`);
-  if(route==='/articles/')assert.equal(await page.locator('.article-index>a').count(),15);
+  if(route==='/articles/')assert.equal(await page.locator('.article-index>a').count(),18);
  }
 }
 await page.goto('http://127.0.0.1:8765/zh/articles/hipobuy-jersey-size-guide/');await page.screenshot({path:'/tmp/hipobuy-zh-mobile.png',fullPage:true});
