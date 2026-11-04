@@ -1,0 +1,338 @@
+{
+  "en": [
+    {
+      "q": "Where do I find USFans tracking?",
+      "a": "The official beginner guide directs buyers to User Center and Parcels after dispatch. Select the relevant parcel and examine its tracking history, route and destination. If you have several parcels, check the items assigned to each one rather than assuming they share a tracking number. Copy the number directly from the record, keeping letters and leading zeroes intact. Save a dated screenshot of the current status so a later change can be compared with the original evidence."
+    },
+    {
+      "q": "Does a tracking gap prove a parcel is lost?",
+      "a": "When USFans tracking is not updating, compare the last scan with the route description and its stated tracking coverage. International forwarding may involve an origin carrier, a transport leg and a destination delivery partner. A lack of new scans is incomplete information; it is not by itself proof of loss or proof that everything is proceeding normally. Read the full event text and location, including any date or time-zone differences, before drawing a conclusion."
+    },
+    {
+      "q": "Which costs belong in my total budget?",
+      "a": "The USFans product price is not automatically the delivered price. The official beginner workflow separates purchasing the item from submitting an international parcel later. Start a budget with distinct lines for goods, seller-to-warehouse delivery, payment or platform charges shown at checkout, optional warehouse services, international shipping and any destination charges that apply. Some lines may be absent for a particular order; others only become known after packing. Keeping them separate makes a quote understandable without assuming every buyer pays the same combination."
+    },
+    {
+      "q": "Why can the final shipping charge change?",
+      "a": "The official beginner guide explains that a shipping deposit can differ from the final charge once the package is measured. Reconcile the final parcel statement rather than assuming the estimate was an all-inclusive fixed price. If a difference appears, ask for the relevant weight, dimensions, billing rule and adjustment entry. An eligible shipping adjustment to the account balance is not automatically a refund to the original bank card. Keep the two transactions separate in your budget and payment records."
+    },
+    {
+      "q": "Does the return window guarantee acceptance?",
+      "a": "Public USFans product pages describe applying for a return within five days after warehouse arrival, while the service agreement attaches conditions to its no-reason return promise and seller cooperation. A request window is not a guarantee that every item qualifies or that every associated cost is refundable. Use the current order details and applicable seller terms to confirm the deadline, eligibility, condition requirements and any fees before deciding to wait."
+    },
+    {
+      "q": "Is a balance refund the same as a card refund?",
+      "a": "Maintain a timeline with the request date, approval reference, return shipment details when provided, receipt confirmation and refund entry. If the account shows a balance credit, note its amount and currency. If you then request a withdrawal, record that as a separate transaction with its own method and status. Avoid opening duplicate withdrawal requests merely because a bank statement has not yet changed; first confirm whether the earlier request was accepted, processed or still awaiting action."
+    },
+    {
+      "q": "How do I compare shoe measurements?",
+      "a": "Suppose your reference insole measures 27.0 cm and a warehouse photograph appears to show 27.5 cm. The numerical difference is 0.5 cm, not a guaranteed size conversion. First confirm that both measurements run between the same endpoints, that the ruler starts at zero, and that neither image measures the outsole instead. These are illustrative inputs, not measurements of any catalog shoe."
+    },
+    {
+      "q": "Which shoe measurement should I request?",
+      "a": "Also compare width, toe shape and intended socks. Ask for a clear ruler photograph when the existing view hides either endpoint. Record the selected size label separately from measured length. If the seller chart gives foot length, use a foot measurement instead of substituting the insole. A matching length alone cannot establish comfort or guarantee fit."
+    },
+    {
+      "q": "Are catalog images warehouse QC photos?",
+      "a": "No. Catalog images describe a listing; warehouse QC shows the unit received for your order. Compare both, and do not assume an image on this site belongs to your purchase."
+    },
+    {
+      "q": "Is this the official USFans website?",
+      "a": "No. usfanss.store is an independent discovery and buying-guide site. Account, order, payment and after-sales actions take place on the relevant official service."
+    }
+  ],
+  "de": [
+    {
+      "q": "Wo finde ich das USFans Tracking?",
+      "a": "Die offizielle Anleitung verweist nach dem Versand auf User Center und Parcels. Prüfe Route, Ziel und Verlauf des ausgewählten Pakets. Bei mehreren Paketen kontrolliere die jeweils enthaltenen Artikel. Kopiere den Code einschließlich Buchstaben und führender Nullen. Ein datierter Screenshot hilft, spätere Änderungen mit dem ursprünglichen Stand zu vergleichen."
+    },
+    {
+      "q": "Beweist eine Scanpause einen Verlust?",
+      "a": "Wenn USFans Tracking nicht aktualisiert wird, vergleiche den letzten Scan mit der beschriebenen Trackingabdeckung. Ursprungsdienstleister, internationaler Transport und örtliche Zustellung können beteiligt sein. Fehlende Scans beweisen weder Verlust noch normalen Fortschritt. Prüfe Ereignistext, Ort, Zeitpunkt und mögliche Zeitzonenunterschiede, bevor du eine Ursache annimmst."
+    },
+    {
+      "q": "Welche Kosten gehören ins Budget?",
+      "a": "Der Warenpreis ist nicht automatisch der gelieferte Gesamtpreis. Der offizielle Ablauf trennt Einkauf und späteren internationalen Paketversand. Lege Posten für Waren, Inlandslieferung, angezeigte Zahlungsgebühren, Zusatzleistungen, internationalen Transport und anwendbare Zielgebühren an. Manche entfallen für deinen Auftrag, andere stehen erst nach der Verpackung fest."
+    },
+    {
+      "q": "Warum ändert sich die Versandabrechnung?",
+      "a": "Die offizielle Anleitung erläutert Unterschiede zwischen Versandvorauszahlung und Endbetrag nach Vermessung. Gleiche den endgültigen Nachweis ab und frage gegebenenfalls nach Gewicht, Maßen, Abrechnungsregel und Anpassung. Eine Versandgutschrift aufs Guthaben ist nicht automatisch eine Rückzahlung auf die Karte. Führe diese Bewegungen getrennt."
+    },
+    {
+      "q": "Garantiert die Rückgabefrist eine Annahme?",
+      "a": "Öffentliche Produktseiten nennen eine Rückgabeanfrage innerhalb von fünf Tagen nach Lagereingang; die Vereinbarung ergänzt Bedingungen zur Rückgabe ohne Grund und Verkäufermitwirkung. Das Zeitfenster garantiert weder die Eignung aller Artikel noch sämtliche Kostenerstattung. Prüfe aktuelle Bestell- und Verkäuferbedingungen, bevor du wartest."
+    },
+    {
+      "q": "Ist Guthaben gleich einer Kartenrückzahlung?",
+      "a": "Dokumentiere Antrag, Zustimmung, Rückversand, Eingang und Gutschrift. Bei Guthaben notiere Betrag und Währung. Eine spätere Auszahlung ist eine eigene Transaktion mit Methode und Status. Dupliziere sie nicht nur wegen eines unveränderten Bankkontos; prüfe zuerst, ob die erste angenommen, bearbeitet oder noch handlungsbedürftig ist."
+    },
+    {
+      "q": "Wie vergleiche ich Schuhmaße?",
+      "a": "Misst deine Referenzinnensohle 27.0 cm und das Lagerfoto scheinbar 27.5 cm, beträgt die Differenz 0.5 cm, ohne garantierte Größenumrechnung. Prüfe gleiche Endpunkte, Nullpunkt und ob wirklich innen statt außen gemessen wird. Die Werte sind Beispiele, keine Maße eines Katalogschuhs."
+    },
+    {
+      "q": "Welche Schuhmessung sollte ich anfordern?",
+      "a": "Berücksichtige Breite, Zehenform und Socken. Bitte um ein klares Linealfoto, wenn Endpunkte fehlen. Notiere Etikett und gemessene Länge getrennt. Gibt die Tabelle Fußlänge an, miss den Fuß. Gleiche Länge garantiert weder Komfort noch Passform."
+    },
+    {
+      "q": "Sind Katalogbilder Lager-QC-Fotos?",
+      "a": "Nein. Katalogbilder zeigen ein Angebot; Lager-QC zeigt die für deine Bestellung erhaltene Ware. Ein Bild auf dieser Website gehört nicht automatisch zu deinem Kauf."
+    },
+    {
+      "q": "Ist dies die offizielle USFans-Website?",
+      "a": "Nein. usfanss.store ist ein unabhängiger Entdeckungs- und Kaufratgeber. Konto, Bestellung, Zahlung und Support gehören zum jeweiligen offiziellen Dienst."
+    }
+  ],
+  "es": [
+    {
+      "q": "¿Dónde encuentro el tracking USFans?",
+      "a": "La guía oficial dirige a User Center y Parcels después del envío. Selecciona el paquete y revisa ruta, destino e historial. Si tienes varios, comprueba qué artículos contiene cada uno. Copia el código conservando letras y ceros iniciales. Guarda una captura fechada para comparar cualquier cambio posterior con el estado original."
+    },
+    {
+      "q": "¿Una pausa demuestra pérdida?",
+      "a": "Cuando el tracking USFans no se actualiza, compara la última lectura con la cobertura anunciada para la ruta. Puede haber un operador de origen, un trayecto internacional y un repartidor local. El silencio no prueba pérdida ni avance normal. Revisa evento, lugar, fecha y diferencias horarias antes de interpretar la pausa."
+    },
+    {
+      "q": "¿Qué costes incluyo en el presupuesto?",
+      "a": "El precio del producto no es automáticamente el precio entregado. El proceso oficial separa compra y posterior paquete internacional. Crea partidas para artículos, transporte al almacén, cargos mostrados al pagar, servicios opcionales, envío internacional y costes de destino aplicables. Algunas partidas no existirán en tu pedido; otras se conocen después del embalaje."
+    },
+    {
+      "q": "¿Por qué cambia el cargo final de envío?",
+      "a": "La guía oficial explica que el depósito de envío puede diferir del cargo final tras medir el paquete. Revisa el estado definitivo y pide peso, dimensiones, regla de facturación y ajuste si hay diferencias. Un abono de envío al saldo no implica automáticamente devolución a la tarjeta. Mantén separados esos movimientos."
+    },
+    {
+      "q": "¿El plazo garantiza aceptar la devolución?",
+      "a": "Las páginas públicas indican solicitar devolución dentro de cinco días desde la llegada al almacén; el acuerdo añade condiciones a la promesa sin motivo y a la cooperación del vendedor. El plazo no garantiza que todo artículo sea elegible ni que todos los gastos se devuelvan. Consulta pedido y términos actuales antes de esperar."
+    },
+    {
+      "q": "¿Abonar saldo equivale a devolver a la tarjeta?",
+      "a": "Registra solicitud, aprobación, envío de retorno, recepción y abono. Si se acredita saldo, anota moneda e importe. La retirada posterior es otra transacción con método y estado propios. Antes de duplicarla porque no cambie el banco, verifica si la anterior fue aceptada, procesada o requiere alguna acción."
+    },
+    {
+      "q": "¿Cómo comparo medidas de zapatillas?",
+      "a": "Si tu plantilla mide 27.0 cm y la foto parece mostrar 27.5 cm, la diferencia es 0.5 cm, no una conversión garantizada. Comprueba extremos, inicio en cero y que no se mida la suela exterior. Son ejemplos, no medidas de un producto del catálogo."
+    },
+    {
+      "q": "¿Qué medida debería solicitar?",
+      "a": "Compara también anchura, puntera y calcetines. Pide una foto clara si algún extremo queda oculto. Registra talla y longitud por separado. Si la tabla usa longitud del pie, mide el pie en vez de la plantilla. Coincidir en longitud no garantiza comodidad."
+    },
+    {
+      "q": "¿Las imágenes de catálogo son fotos QC?",
+      "a": "No. El catálogo ilustra el anuncio; el QC muestra la unidad recibida para tu pedido. Una imagen de esta web no pertenece automáticamente a tu compra."
+    },
+    {
+      "q": "¿Es esta la web oficial de USFans?",
+      "a": "No. usfanss.store es una guía independiente. Cuenta, pedidos, pagos y posventa se gestionan en el servicio oficial correspondiente."
+    }
+  ],
+  "fr": [
+    {
+      "q": "Où trouver le suivi USFans ?",
+      "a": "Le guide officiel indique User Center puis Parcels après l’expédition. Vérifiez ligne, destination et historique du colis choisi. Avec plusieurs colis, contrôlez les articles affectés à chacun. Copiez le code sans supprimer lettres ou zéros initiaux. Conservez une capture datée pour comparer les informations lorsque le statut évoluera."
+    },
+    {
+      "q": "Une pause prouve-t-elle une perte ?",
+      "a": "Si le suivi USFans ne s’actualise plus, comparez le dernier scan avec la couverture annoncée. Un opérateur d’origine, un trajet international et un distributeur local peuvent se succéder. L’absence de scan ne prouve ni perte ni progression normale. Examinez texte, lieu, date et décalage horaire avant d’interpréter la pause."
+    },
+    {
+      "q": "Quels coûts inclure au budget ?",
+      "a": "Le prix du produit n’est pas automatiquement le prix livré. Le parcours officiel sépare achat puis colis international. Créez des lignes pour articles, livraison à l’entrepôt, frais affichés au paiement, services facultatifs, transport international et éventuels coûts à destination. Certaines lignes ne s’appliquent pas ; d’autres ne sont connues qu’après emballage."
+    },
+    {
+      "q": "Pourquoi le coût final du transport change-t-il ?",
+      "a": "Le guide officiel explique que le dépôt d’expédition peut différer du coût final après mesure. Réconciliez le relevé définitif et demandez poids, dimensions, règle et écriture d’ajustement si nécessaire. Un avoir de transport au solde n’est pas automatiquement un remboursement sur carte. Conservez ces mouvements séparément dans vos comptes."
+    },
+    {
+      "q": "Le délai garantit-il le retour ?",
+      "a": "Les pages publiques indiquent une demande dans les cinq jours suivant l’arrivée à l’entrepôt ; l’accord ajoute des conditions à la promesse sans motif et à la coopération du vendeur. La fenêtre ne garantit ni admissibilité universelle ni remboursement de tous les frais. Consultez commande et règles actuelles avant d’attendre."
+    },
+    {
+      "q": "Un avoir équivaut-il à un remboursement sur carte ?",
+      "a": "Notez demande, accord, retour, réception et crédit. Si le solde est crédité, relevez montant et devise. Un retrait ultérieur constitue une autre transaction avec méthode et statut propres. Avant de le dupliquer parce que la banque ne change pas, vérifiez si le premier est accepté, traité ou attend une action."
+    },
+    {
+      "q": "Comment comparer les mesures de chaussures ?",
+      "a": "Si votre semelle intérieure mesure 27.0 cm et la photo semble montrer 27.5 cm, l’écart est 0.5 cm, sans conversion de taille garantie. Vérifiez extrémités, départ à zéro et absence de confusion avec la semelle extérieure. Ce sont des exemples, pas des mesures du catalogue."
+    },
+    {
+      "q": "Quelle mesure demander ?",
+      "a": "Comparez largeur, forme de pointe et chaussettes. Demandez une photo claire si une extrémité manque. Notez étiquette et longueur séparément. Si le tableau donne la longueur du pied, mesurez celui-ci. Une longueur identique ne garantit pas le confort."
+    },
+    {
+      "q": "Les images du catalogue sont-elles du QC ?",
+      "a": "Non. Le catalogue illustre une annonce ; le QC montre l’unité reçue pour votre commande. Une image ici ne correspond pas automatiquement à votre achat."
+    },
+    {
+      "q": "Est-ce le site officiel de USFans ?",
+      "a": "Non. usfanss.store est un guide indépendant. Compte, commandes, paiements et après-vente se traitent auprès du service officiel concerné."
+    }
+  ],
+  "it": [
+    {
+      "q": "Dove trovo il tracking USFans?",
+      "a": "La guida ufficiale indica User Center e Parcels dopo la spedizione. Seleziona il pacco, controlla linea, destinazione e cronologia. Con più pacchi, verifica gli articoli assegnati a ciascuno. Copia il codice conservando lettere e zeri iniziali. Salva una schermata datata: permette di confrontare un aggiornamento successivo con ciò che risultava prima."
+    },
+    {
+      "q": "Una pausa dimostra lo smarrimento?",
+      "a": "Quando il tracking non si aggiorna, confronta l’ultima scansione con la copertura descritta per la linea. Possono intervenire un operatore all’origine, il trasporto internazionale e un corriere locale. Il silenzio non prova né smarrimento né regolare avanzamento. Leggi evento, località e orario, considerando eventuali differenze di fuso, prima di attribuire un significato alla pausa."
+    },
+    {
+      "q": "Quali costi includere nel budget?",
+      "a": "Il prezzo del prodotto non coincide automaticamente con quello consegnato a casa. Il percorso ufficiale separa l’acquisto dalla successiva spedizione internazionale. Crea righe distinte per articoli, consegna al magazzino, commissioni mostrate al pagamento, servizi opzionali, trasporto internazionale ed eventuali costi a destinazione. Alcuni importi non si applicano a tutti gli ordini; altri si conoscono solo dopo l’imballaggio."
+    },
+    {
+      "q": "Perché cambia il costo finale della spedizione?",
+      "a": "La guida ufficiale spiega che il deposito di spedizione può differire dal costo finale dopo la misurazione. Confronta il rendiconto definitivo e chiedi peso, dimensioni, regola di fatturazione e voce di rettifica se non coincidono. Un accredito del trasporto sul saldo non equivale automaticamente a un rimborso sulla carta. Mantieni distinti i due movimenti."
+    },
+    {
+      "q": "La finestra di reso garantisce l’accettazione?",
+      "a": "Le pagine prodotto pubbliche indicano una richiesta entro cinque giorni dall’arrivo in magazzino; l’accordo di servizio aggiunge condizioni alla promessa di reso senza motivo e alla collaborazione del venditore. La finestra non garantisce che ogni articolo sia idoneo o che tutte le spese siano restituite. Verifica ordine e condizioni attuali prima di aspettare."
+    },
+    {
+      "q": "Il saldo equivale a un rimborso sulla carta?",
+      "a": "Annota richiesta, approvazione, spedizione di ritorno, ricezione e accredito. Se il saldo aumenta, registra importo e valuta. Un eventuale prelievo è un’altra transazione, con metodo e stato propri. Prima di duplicare la richiesta perché la banca non mostra ancora il movimento, verifica se la precedente è accettata, elaborata o in attesa."
+    },
+    {
+      "q": "Come confronto le misure delle scarpe?",
+      "a": "Se la soletta di riferimento misura 27.0 cm e la foto sembra indicare 27.5 cm, la differenza è 0.5 cm: non una conversione garantita. Controlla estremi uguali, partenza dallo zero e che non sia misurata la suola esterna. Sono esempi, non misure di scarpe del catalogo."
+    },
+    {
+      "q": "Quale misura devo richiedere?",
+      "a": "Confronta larghezza, forma della punta e calze. Chiedi una foto chiara se un estremo è nascosto. Registra separatamente etichetta e lunghezza. Se la tabella indica il piede, misura il piede anziché la soletta. La stessa lunghezza non garantisce comfort o vestibilità."
+    },
+    {
+      "q": "Le immagini di catalogo sono foto QC?",
+      "a": "No. Il catalogo illustra l’inserzione; il QC mostra l’unità ricevuta per il tuo ordine. Un’immagine qui non appartiene automaticamente al tuo acquisto."
+    },
+    {
+      "q": "Questo è il sito ufficiale USFans?",
+      "a": "No. usfanss.store è una guida indipendente. Account, ordini, pagamenti e assistenza si gestiscono nel servizio ufficiale pertinente."
+    }
+  ],
+  "pl": [
+    {
+      "q": "Gdzie znajdę tracking USFans?",
+      "a": "Oficjalny poradnik wskazuje User Center i Parcels po nadaniu. Sprawdź trasę, kraj i historię wybranej paczki. Przy kilku przesyłkach zweryfikuj przypisane przedmioty. Skopiuj kod wraz z literami i zerami początkowymi. Zachowaj zrzut z datą, aby porównać późniejszą zmianę z wcześniejszym stanem."
+    },
+    {
+      "q": "Czy brak skanów dowodzi zaginięcia?",
+      "a": "Gdy tracking USFans stoi, porównaj ostatni skan z opisanym zakresem śledzenia. Mogą uczestniczyć operator początkowy, transport międzynarodowy i lokalny doręczyciel. Brak skanów nie dowodzi ani zaginięcia, ani prawidłowego ruchu. Sprawdź treść, miejsce, datę oraz różnice stref czasowych przed wyciąganiem wniosków."
+    },
+    {
+      "q": "Jakie koszty uwzględnić w budżecie?",
+      "a": "Cena produktu nie jest automatycznie ceną dostarczonego zakupu. Oficjalny proces rozdziela zakup i późniejszą paczkę międzynarodową. Utwórz pozycje dla towaru, dostawy do magazynu, opłat widocznych przy płatności, usług dodatkowych, transportu i kosztów docelowych. Niektóre pozycje nie wystąpią, inne poznasz dopiero po pakowaniu."
+    },
+    {
+      "q": "Dlaczego końcowa opłata wysyłki się zmienia?",
+      "a": "Oficjalny poradnik wyjaśnia, że zaliczka wysyłkowa może różnić się od końcowej opłaty po pomiarze. Porównaj rozliczenie i poproś w razie potrzeby o wagę, wymiary, zasadę naliczania i korektę. Uznanie salda za transport nie oznacza automatycznie zwrotu na kartę. Zapisuj te operacje oddzielnie."
+    },
+    {
+      "q": "Czy termin zwrotu gwarantuje akceptację?",
+      "a": "Publiczne strony produktów wskazują wniosek do pięciu dni od przybycia do magazynu; umowa dodaje warunki obietnicy bez podania przyczyny i współpracy sprzedawcy. Okno nie gwarantuje kwalifikacji każdego towaru ani oddania wszystkich kosztów. Sprawdź bieżące zamówienie i zasady przed czekaniem."
+    },
+    {
+      "q": "Czy saldo oznacza zwrot na kartę?",
+      "a": "Notuj wniosek, zgodę, wysyłkę zwrotną, odbiór i uznanie. Jeśli rośnie saldo, zapisz kwotę i walutę. Późniejsza wypłata jest osobną transakcją z własną metodą i statusem. Nie duplikuj jej tylko dlatego, że bank nie pokazuje zmiany; sprawdź akceptację, przetworzenie lub wymagane działanie pierwszej."
+    },
+    {
+      "q": "Jak porównywać wymiary butów?",
+      "a": "Jeśli wkładka odniesienia ma 27.0 cm, a zdjęcie pokazuje 27.5 cm, różnica wynosi 0.5 cm, bez gwarantowanej konwersji rozmiaru. Sprawdź punkty końcowe, początek od zera i brak pomylenia z podeszwą. To przykłady, nie pomiary katalogowych butów."
+    },
+    {
+      "q": "O jaki pomiar poprosić?",
+      "a": "Porównaj szerokość, kształt noska i skarpety. Poproś o wyraźne zdjęcie przy zasłoniętym końcu. Zapisz metkę i długość osobno. Gdy tabela opisuje stopę, mierz stopę zamiast wkładki. Sama zgodna długość nie gwarantuje wygody."
+    },
+    {
+      "q": "Czy zdjęcia katalogu to magazynowe QC?",
+      "a": "Nie. Katalog przedstawia ofertę, a QC egzemplarz przyjęty dla zamówienia. Zdjęcie tutaj nie należy automatycznie do Twojego zakupu."
+    },
+    {
+      "q": "Czy to oficjalna witryna USFans?",
+      "a": "Nie. usfanss.store jest niezależnym poradnikiem. Konto, zamówienia, płatności i obsługa należą do właściwego oficjalnego serwisu."
+    }
+  ],
+  "pt": [
+    {
+      "q": "Onde encontro o rastreamento USFans?",
+      "a": "O guia oficial indica User Center e Parcels após o despacho. Confira rota, destino e histórico do pacote escolhido. Com vários pacotes, verifique os itens incluídos em cada um. Copie o código preservando letras e zeros iniciais. Guarde uma captura datada para comparar mudanças posteriores com a informação original."
+    },
+    {
+      "q": "Uma pausa prova extravio?",
+      "a": "Quando o rastreamento USFans não atualiza, compare a última leitura com a cobertura descrita para a rota. Podem participar operador de origem, transporte internacional e entrega local. A ausência de leitura não prova perda nem andamento normal. Confira texto, local, data e diferenças de fuso antes de interpretar o intervalo."
+    },
+    {
+      "q": "Quais custos entram no orçamento?",
+      "a": "O preço do produto não é automaticamente o custo entregue. O processo oficial separa compra e posterior pacote internacional. Crie linhas para itens, entrega ao armazém, taxas exibidas no pagamento, serviços opcionais, frete internacional e custos aplicáveis no destino. Algumas linhas não existirão no seu pedido; outras só serão conhecidas após embalar."
+    },
+    {
+      "q": "Por que o frete final muda?",
+      "a": "O guia oficial explica que o depósito de envio pode diferir do custo final após medição. Reconcilie o registro definitivo e peça peso, medidas, regra de cobrança e ajuste quando necessário. Um crédito de frete no saldo não implica automaticamente estorno no cartão. Mantenha os movimentos separados no orçamento."
+    },
+    {
+      "q": "O prazo garante aceitar a devolução?",
+      "a": "Páginas públicas indicam solicitar devolução até cinco dias após chegada ao armazém; o contrato acrescenta condições à promessa sem motivo e à colaboração do vendedor. A janela não garante elegibilidade de todo item ou devolução de todas as despesas. Confira pedido e termos atuais antes de esperar."
+    },
+    {
+      "q": "Crédito no saldo equivale a estorno no cartão?",
+      "a": "Registre solicitação, aprovação, retorno, recebimento e crédito. Se o saldo aumentar, anote valor e moeda. Um saque posterior é outra transação, com método e status próprios. Antes de duplicar porque o banco não mudou, verifique se a primeira solicitação foi aceita, processada ou aguarda ação."
+    },
+    {
+      "q": "Como comparar medidas de tênis?",
+      "a": "Se a palmilha de referência mede 27.0 cm e a foto parece indicar 27.5 cm, a diferença é 0.5 cm, sem conversão garantida de tamanho. Confira extremidades, início no zero e se não foi medida a sola externa. São exemplos, não medidas do catálogo."
+    },
+    {
+      "q": "Qual medida devo solicitar?",
+      "a": "Compare largura, formato da ponta e meias. Peça foto clara se uma extremidade estiver escondida. Registre etiqueta e comprimento separadamente. Se a tabela usa comprimento do pé, meça o pé. Igualdade de comprimento não garante conforto ou ajuste."
+    },
+    {
+      "q": "As imagens do catálogo são fotos QC?",
+      "a": "Não. O catálogo ilustra o anúncio; o QC mostra a unidade recebida no seu pedido. Uma imagem aqui não pertence automaticamente à sua compra."
+    },
+    {
+      "q": "Este é o site oficial da USFans?",
+      "a": "Não. usfanss.store é um guia independente. Conta, pedidos, pagamentos e pós-venda são tratados no serviço oficial correspondente."
+    }
+  ],
+  "zh-cn": [
+    {
+      "q": "在哪里查看 USFans 物流？",
+      "a": "官方新手指南说明，发货后可在 User Center 的 Parcels 中查看包裹。核对所选线路、目的地和追踪历史。有多个包裹时，要逐个检查包含的商品，不能默认共用一个单号。直接复制编号并保留字母及开头的零，同时保存带日期的状态截图，便于之后比较变化。"
+    },
+    {
+      "q": "追踪暂停是否说明丢件？",
+      "a": "遇到 USFans tracking not updating，即物流不更新时，应把最后一条记录与线路说明中的追踪范围对照。运输可能经过始发承运商、国际干线和目的地派送公司。暂时没有新扫描属于信息不完整，既不能直接证明丢件，也不能证明一切正常。先读完整事件、地点、时间，并留意时区差异。"
+    },
+    {
+      "q": "总预算应包含哪些费用？",
+      "a": "商品价格不自动等于送到家里的总价。官方新手流程将商品购买与之后提交国际包裹分开。预算应分别列商品、卖家到仓运费、付款页面显示的手续费或平台费、可选仓库服务、国际运输，以及适用的目的地费用。部分项目可能不发生，部分则要打包后才能确定。"
+    },
+    {
+      "q": "为什么最终运费可能变化？",
+      "a": "官方新手指南解释，预收运费可能在最终测量后与实际费用不同。应核对最后的包裹账单，而非默认估价是固定全包价。发生差额时，询问对应重量、尺寸、计费规则和调整记录。运费差额退到账户余额，不自动等于退回原银行卡，应在记录中区分这两个动作。"
+    },
+    {
+      "q": "有退货窗口就一定能退吗？",
+      "a": "USFans 公开商品页提到可在到仓后五天内申请退货，服务协议则对无理由退货承诺和卖家配合附有条件。申请窗口不代表所有商品都能退，也不意味着所有相关支出全部可退。决定等待前，应检查当前订单及卖家条款中的期限、资格、状态要求和费用。"
+    },
+    {
+      "q": "退到账户余额等于退回银行卡吗？",
+      "a": "时间线应包含请求日期、批准编号、可获得的退货单号、签收确认和退款记录。若显示余额入账，记录金额与币种；之后提现则是另一笔交易，有自己的方式和状态。银行卡尚未变化时，不要直接重复提现，应先确认原请求是否接受、处理完成或仍需操作。"
+    },
+    {
+      "q": "怎样对比鞋子测量？",
+      "a": "假设参考鞋垫长 27.0 cm，仓库照片看起来为 27.5 cm，差值是 0.5 cm，但这不是保证有效的鞋码换算。先确认两次采用相同端点、尺子从零开始，而且没有把外底当作鞋垫。以上只是示例数字，不是目录中某双鞋的实测数据。"
+    },
+    {
+      "q": "应该申请哪种鞋子测量？",
+      "a": "同时比较宽度、鞋头形状和计划穿的袜子。端点被遮挡时要求清楚的尺子照片，把鞋码标签与实际长度分开记录。卖家表格如果用脚长，就测脚长，不能直接用鞋垫替代。长度相同也不能保证舒适或合脚。"
+    },
+    {
+      "q": "目录展示图就是仓库 QC 照片吗？",
+      "a": "不是。目录图描述卖家展示的商品，仓库 QC 则对应你订单实际收到的那一件。不能默认本网站的一张图片属于自己的订单。"
+    },
+    {
+      "q": "这里是 USFans 官方网站吗？",
+      "a": "不是。usfanss.store 是独立选品与购买指南网站。账户、订单、付款和售后应在对应的官方服务中处理。"
+    }
+  ]
+}

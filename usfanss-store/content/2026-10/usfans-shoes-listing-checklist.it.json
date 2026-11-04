@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · GUIDA ALL’ACQUISTO · 2026",
   "title": "Scarpe USFans: taglie, varianti e venditore",
-  "description": "Una lista di controllo della scoperta del prodotto per decidere se una pagina del prodotto della scarpa è abbastanza chiara da ordinare, prima che inizi l'ispezione del magazzino o la pianificazione del pacco.",
-  "updated": "Aggiornato il 7 ottobre 2026",
+  "description": "Controlla le scarpe USFans con tabella specifica, lunghezza della soletta, variante scelta e dati del venditore prima di ordinare.",
+  "updated": "Aggiornato il 4 novembre 2026",
   "readingTime": "7 minuti di lettura",
   "contentsLabel": "IN QUESTA GUIDA",
   "factTitle": "Fonti e ambito della guida",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Confrontare il giusto tipo di lunghezza",
+      "heading": "Un esempio di misura riproducibile",
       "paragraphs": [
-        "Lunghezza del piede, lunghezza del sottopiede e lunghezza del sottopiede descrivono cose diverse. Un grafico etichettato lunghezza del piede deve essere confrontato con una misurazione del piede, mentre una fotografia del sottopiede deve essere confrontata con un'apposita soletta di esempio di confronto misurata nello stesso modo. Trattare tutti e tre come una lunghezza di scarpa universale può creare un errore di dimensione evitabile.",
-        "Utilizzare le istruzioni di misura del venditore quando fornito e account per i calzini e l'uso previsti. La larghezza, la forma della punta e la costruzione possono influenzare la misura anche quando la lunghezza appare adatta. Non aggiungere un'indennità universale e promettere un risultato garantito. Se la pagina del prodotto non definisce il suo grafico, risolvi l'incertezza prima di scegliere una dimensione; l'etichetta da sola non può fornire la definizione mancante."
+        "Se la soletta di riferimento misura 27.0 cm e la foto sembra indicare 27.5 cm, la differenza è 0.5 cm: non una conversione garantita. Controlla estremi uguali, partenza dallo zero e che non sia misurata la suola esterna. Sono esempi, non misure di scarpe del catalogo.",
+        "Confronta larghezza, forma della punta e calze. Chiedi una foto chiara se un estremo è nascosto. Registra separatamente etichetta e lunghezza. Se la tabella indica il piede, misura il piede anziché la soletta. La stessa lunghezza non garantisce comfort o vestibilità."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "it",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

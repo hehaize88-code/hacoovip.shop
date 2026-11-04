@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · PORADNIK ZAKUPOWY · 2026",
   "title": "USFans Spreadsheet 2026: odzież, buty i linki do produktów",
-  "description": "Praktyczny sposób korzystania z arkusza kalkulacyjnego USFans jako listy wyboru, weryfikowania każdej strony produktu na żywo i unikania czerstwych, niedopasowanych lub niekompletnych linków produktu.",
-  "updated": "Aktualizacja: 7 października 2026",
+  "description": "Porównaj linki USFans według kategorii, wariantu, dowodów sprzedawcy i wymiarów. Następnie sprawdź QC, koszty i warunki paczki.",
+  "updated": "Aktualizacja: 4 listopada 2026",
   "readingTime": "7 minut czytania",
   "contentsLabel": "W TYM PORADNIKU",
   "factTitle": "Podstawa informacji i zakres",
@@ -77,5 +77,5 @@
   "slug": "usfans-spreadsheet-2026",
   "lang": "pl",
   "published": "2026-09-08",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

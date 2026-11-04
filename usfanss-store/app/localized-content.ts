@@ -1,10 +1,13 @@
+import faqAdditions from "./faq-additions.json";
+import seoCopy from "./seo-release.json";
 import type { Lang } from "./site-shell";
 import { allArticles, allShipping } from "./content-data";
-export const articleSlugs = ["usfans-jacket-finds-sizing-packing", "usfans-pants-shorts-waist-inseam", "usfans-t-shirt-finds-sizing-print", "how-to-use-usfans", "usfans-bag-accessory-listing-checklist", "usfans-hoodie-listing-checklist", "usfans-jersey-listing-checklist", "usfans-listing-red-flags", "usfans-product-links-guide", "usfans-qc-photos-guide", "usfans-review-2026", "usfans-shoes-listing-checklist", "usfans-spreadsheet-2026", "usfans-wear-size-fabric-guide"] as const;
+export const articleSlugs = ["usfans-tracking-not-updating", "usfans-fees-explained", "usfans-returns-refunds", "usfans-spreadsheet-2026", "usfans-shoes-listing-checklist", "how-to-use-usfans", "usfans-qc-photos-guide", "usfans-review-2026", "usfans-jacket-finds-sizing-packing", "usfans-pants-shorts-waist-inseam", "usfans-t-shirt-finds-sizing-print", "usfans-bag-accessory-listing-checklist", "usfans-hoodie-listing-checklist", "usfans-jersey-listing-checklist", "usfans-listing-red-flags", "usfans-product-links-guide", "usfans-wear-size-fabric-guide"] as const;
 export type ArticleSlug = typeof articleSlugs[number];
 export const localizedArticleSlugs: readonly ArticleSlug[] = articleSlugs;
 export const articleSlugsForLanguage = (_lang:Lang): readonly ArticleSlug[] => articleSlugs;
 export type Article = { slug:string; lang:string; published:string; modified:string; kicker:string; title:string; description:string; updated:string; readingTime:string; contentsLabel:string; factTitle:string; factNote:string; imageCaption:string; sections:Array<{heading:string;paragraphs:string[]}> };
+type FaqLocale = {label:string;eyebrow:string;title:string;body:string;cardTitle:string;cardBody:string;open:string;questions:Array<{q:string;a:string}>};
 export const faqText: Record<Lang,FaqLocale> = {
   en:{label:"FAQ",eyebrow:"FREQUENTLY ASKED QUESTIONS",title:"Clear answers before you place an order.",body:"Ten practical answers based on the workflow and policies currently described on USFans’ public pages.",cardTitle:"Questions worth answering before checkout.",cardBody:"Returns, warehouse photos, seller delivery, international shipping and what an agent actually does.",open:"Open all answers",questions:[
     {q:"What is USFans?",a:"USFans describes itself as a shopping-agent platform for purchasing from Chinese marketplaces such as Taobao, 1688 and Weidian. The agent purchases from the seller, receives the item at its warehouse, provides inspection photos and later handles the international parcel selected by the customer."},
@@ -42,5 +45,10 @@ export const faqText: Record<Lang,FaqLocale> = {
 };
 
 
+for (const lang of Object.keys(faqText) as Lang[]) {
+  faqText[lang].questions.push(...faqAdditions[lang]);
+  faqText[lang].body = seoCopy[lang].faqDesc;
+  faqText[lang].title = seoCopy[lang].faqTitle;
+}
 export const articleData = allArticles as Record<Lang,Record<ArticleSlug,Article>>;
 export const shippingData = allShipping as Record<Lang,Article>;

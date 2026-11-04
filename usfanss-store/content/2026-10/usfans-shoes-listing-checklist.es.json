@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · GUÍA DE COMPRA · 2026",
   "title": "Zapatillas USFans: tallas, variantes y vendedor",
-  "description": "Una lista de comprobación de descubrimiento de productos para decidir si una página de producto de zapato es lo suficientemente clara para ordenar, antes de que comience la inspección del almacén o la planificación de paquetes.",
-  "updated": "Actualizado el 7 de octubre de 2026",
+  "description": "Comprueba zapatillas USFans con tabla específica, longitud de plantilla, variante y datos del vendedor antes de comprar.",
+  "updated": "Actualizado el 4 de noviembre de 2026",
   "readingTime": "7 minutos de lectura",
   "contentsLabel": "EN ESTA GUÍA",
   "factTitle": "Fuentes y alcance",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Compare el tipo correcto de longitud",
+      "heading": "Un ejemplo de medida reproducible",
       "paragraphs": [
-        "Longitud del pie, longitud de la plantilla y longitud de la plantilla describen cosas diferentes. Se debe comparar una longitud de pie etiquetada con una medición de pie, mientras que una fotografía de la plantilla debe compararse con una plantilla de ejemplo de comparación adecuada medida de la misma manera. Tratar a los tres como una longitud de zapato universal puede crear un error de tamaño evitable.",
-        "Utilice las instrucciones de medición del vendedor cuando se proporciona y cuenta los calcetines previstos y el uso. La anchura, la forma de los pies y la construcción pueden afectar el ajuste incluso cuando la longitud aparece adecuada. No añadir un subsidio universal y prometer un resultado garantizado. Si la página del producto no define su gráfico, resuelva esa incertidumbre antes de elegir un tamaño; la etiqueta por sí sola no puede suministrar la definición que falta."
+        "Si tu plantilla mide 27.0 cm y la foto parece mostrar 27.5 cm, la diferencia es 0.5 cm, no una conversión garantizada. Comprueba extremos, inicio en cero y que no se mida la suela exterior. Son ejemplos, no medidas de un producto del catálogo.",
+        "Compara también anchura, puntera y calcetines. Pide una foto clara si algún extremo queda oculto. Registra talla y longitud por separado. Si la tabla usa longitud del pie, mide el pie en vez de la plantilla. Coincidir en longitud no garantiza comodidad."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "es",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

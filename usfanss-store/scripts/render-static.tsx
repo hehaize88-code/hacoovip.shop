@@ -1,3 +1,4 @@
+import seoCopy from "../app/seo-release.json";
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
@@ -16,16 +17,7 @@ const coreRoutes: Route[] = [
   {path:"/",page:"home"},{path:"/categories/",page:"categories"},{path:"/finds/",page:"finds"},{path:"/articles/",page:"articles"},{path:"/faq/",page:"faq"},{path:"/qc-guide/",page:"qc"},{path:"/shipping/",page:"shipping"},
 ];
 
-const homeMeta: Record<Lang,{title:string;description:string}> = {
-  en:{title:"USFans Spreadsheet 2026: Clothing, Shoes & QC Finds",description:"Browse curated USFans spreadsheet links for shoes, hoodies, bags and jerseys, with listing checks, sizing tips and QC guides. Updated for 2026."},
-  de:{title:"USFans Produktfunde 2026 | Schuhe, Hoodies, Taschen & Trikots",description:"Entdecke geprüfte Produktfunde nach Kategorie, passende Produktbilder, Kaufratgeber, QC-Prüfungen und Pakethinweise."},
-  es:{title:"Productos USFans 2026 | Zapatillas, sudaderas, bolsos y camisetas",description:"Explora productos verificados por categoría, imágenes coincidentes, guías de compra, controles QC y consejos para paquetes."},
-  fr:{title:"Produits USFans 2026 | Chaussures, sweats, sacs et maillots",description:"Explorez des produits vérifiés par catégorie, leurs images correspondantes, des guides d’achat, le contrôle QC et la préparation du colis."},
-  it:{title:"Prodotti USFans 2026 | Scarpe, felpe, borse e maglie",description:"Esplora prodotti verificati per categoria, immagini corrispondenti, guide all’acquisto, controlli QC e note per il pacco."},
-  pl:{title:"Produkty USFans 2026 | Buty, bluzy, torby i koszulki",description:"Odkrywaj sprawdzone produkty według kategorii, zgodne zdjęcia, poradniki zakupowe, kontrolę QC i planowanie paczki."},
-  pt:{title:"Produtos USFans 2026 | Tênis, moletons, bolsas e camisas",description:"Explore produtos verificados por categoria, imagens correspondentes, guias de compra, inspeção QC e planejamento do pacote."},
-  "zh-cn":{title:"USFans 产品精选 2026｜鞋子、连帽衫、包袋与球衣",description:"按分类查看已核验的真实商品、对应首图、购买指南、质检要点和国际包裹规划说明。"},
-};
+const homeMeta = Object.fromEntries(languages.map(lang=>[lang,{title:seoCopy[lang].homeTitle,description:seoCopy[lang].homeDesc}])) as Record<Lang,{title:string;description:string}>;
 
 const localizedPath = (lang:Lang,path:string) => lang === "en" ? path : `/${lang}${path}`;
 const absolute = (lang:Lang,path:string) => `${site}${localizedPath(lang,path)}`;
@@ -49,11 +41,12 @@ const googleTag = `
     gtag('event', isProduct ? 'product_click' : 'main_site_click', {
       link_url: link.href,
       link_text: (link.textContent || '').trim().slice(0, 100),
-      page_path: location.pathname
+      page_path: location.pathname,
+      language: document.documentElement.lang
     });
   }, true);
   document.addEventListener('submit', function(event) {
-    if (event.target && event.target.matches('.search-box')) gtag('event', 'search_submit', { page_path: location.pathname });
+    if (event.target && event.target.matches('.search-box')) gtag('event', 'search_submit', { page_path: location.pathname, language: document.documentElement.lang });
   }, true);
   document.addEventListener('change', function(event) {
     if (event.target && event.target.matches('.language select')) gtag('event', 'language_switch', { language: event.target.value, page_path: location.pathname });
@@ -65,10 +58,10 @@ function metadata(route:Route,lang:Lang) {
   if (route.page === "article" && route.article) { const article = articleData[lang][route.article]!; return {title:article.title,description:article.description}; }
   const copy = getSiteCopy(lang);
   if (route.page === "categories") return {title:`${copy.categories} | USFans`,description:copy.categoriesBody};
-  if (route.page === "finds") return {title:`${copy.finds} | USFans`,description:copy.findsBody};
-  if (route.page === "articles") return {title:`${copy.buyingGuides} | USFans`,description:copy.articlesBody};
-  if (route.page === "faq") return {title:`${faqText[lang].label} | USFans`,description:faqText[lang].body};
-  if (route.page === "qc") return {title:`${copy.qc} | USFans`,description:copy.qcBody};
+  if (route.page === "finds") return {title:seoCopy[lang].findsTitle,description:seoCopy[lang].findsDesc};
+  if (route.page === "articles") return {title:seoCopy[lang].articlesTitle,description:seoCopy[lang].articlesDesc};
+  if (route.page === "faq") return {title:seoCopy[lang].faqTitle,description:seoCopy[lang].faqDesc};
+  if (route.page === "qc") return {title:seoCopy[lang].qcTitle,description:seoCopy[lang].qcDesc};
   return {title:shippingData[lang].title,description:shippingData[lang].description};
 }
 
@@ -84,7 +77,7 @@ await writeFile(join(root,"static-assets",cssAsset),cssBytes);
 await writeFile(join(root,"static-assets",jsAsset),jsBytes);
 await rm(join(root,"static-assets/app.css"));
 await rm(join(root,"static-assets/app.js"));
-const sitemapUrls:string[] = [];
+const sitemapUrls:Array<{url:string;modified:string}> = [];
 for (const lang of languages) {
   const routes: Route[] = [...coreRoutes, ...articleSlugsForLanguage(lang).map(article => ({path:`/articles/${article}/`,page:"article" as const,article}))];
   for (const route of routes) {
@@ -93,14 +86,15 @@ for (const lang of languages) {
     const alternateLanguages = route.page === "article" && route.article ? languages.filter(code => articleSlugsForLanguage(code).includes(route.article!)) : languages;
     const alternates = alternateLanguages.map(code => `<link rel="alternate" hreflang="${hreflang[code]}" href="${absolute(code,route.path)}"/>`).join("");
     const body = renderToStaticMarkup(<SiteShell page={route.page} article={route.article} initialLang={lang}/>);
+    const ogImage = route.article && ["usfans-tracking-not-updating","usfans-fees-explained","usfans-returns-refunds"].includes(route.article) ? `${site}/usfans-logo.png` : `${site}/products/product-3402.webp`;
     const ogType = route.page === "article" ? "article" : "website";
     const localizedTypography = lang === "zh-cn" ? `<style>.atlas-copy .hero-slogan{font-size:clamp(42px,6.3vw,84px);line-height:1.12;letter-spacing:-.035em}.inner-hero h1,.article-hero h1{line-height:1.15;letter-spacing:-.035em}</style>` : "";
-    const html = `<!doctype html><html lang="${htmlLang[lang]}"><head>${googleTag}<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${escape(meta.title)}</title><meta name="description" content="${escape(meta.description)}"/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="${canonical}"/>${alternates}<link rel="alternate" hreflang="x-default" href="${absolute("en",route.path)}"/><meta property="og:title" content="${escape(meta.title)}"/><meta property="og:description" content="${escape(meta.description)}"/><meta property="og:url" content="${canonical}"/><meta property="og:type" content="${ogType}"/><meta property="og:image" content="${site}/products/product-3402.webp"/><meta property="og:image:width" content="750"/><meta property="og:image:height" content="750"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(meta.title)}"/><meta name="twitter:description" content="${escape(meta.description)}"/><meta name="twitter:image" content="${site}/products/product-3402.webp"/><link rel="icon" href="/favicon.svg"/><link rel="stylesheet" href="/static-assets/${cssAsset}"/>${localizedTypography}</head><body><div id="root">${body}</div><script type="module" src="/static-assets/${jsAsset}"></script></body></html>`;
+    const html = `<!doctype html><html lang="${htmlLang[lang]}"><head>${googleTag}<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${escape(meta.title)}</title><meta name="description" content="${escape(meta.description)}"/><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="${canonical}"/>${alternates}<link rel="alternate" hreflang="x-default" href="${absolute("en",route.path)}"/><meta property="og:title" content="${escape(meta.title)}"/><meta property="og:description" content="${escape(meta.description)}"/><meta property="og:url" content="${canonical}"/><meta property="og:type" content="${ogType}"/><meta property="og:image" content="${ogImage}"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="${escape(meta.title)}"/><meta name="twitter:description" content="${escape(meta.description)}"/><meta name="twitter:image" content="${ogImage}"/><link rel="icon" href="/favicon.svg"/><link rel="stylesheet" href="/static-assets/${cssAsset}"/>${localizedTypography}</head><body><div id="root">${body}</div><script type="module" src="/static-assets/${jsAsset}"></script></body></html>`;
     const outputPath = localizedPath(lang,route.path);
     const target = outputPath === "/" ? join(root,"index.html") : join(root,outputPath.slice(1),"index.html");
     await mkdir(dirname(target),{recursive:true});
     await writeFile(target,html);
-    sitemapUrls.push(canonical);
+    sitemapUrls.push({url:canonical,modified:route.article?articleData[lang][route.article].modified:"2026-11-04"});
   }
 }
 
@@ -109,7 +103,7 @@ await writeFile(join(root,"404.html"),notFound);
 await cp(join(root,"public","products"),join(root,"products"),{recursive:true});
 for (const file of ["favicon.svg","usfans-logo.png"]) await cp(join(root,"public",file),join(root,file));
 await writeFile(join(root,"robots.txt"),`User-agent: *\nAllow: /\nSitemap: ${site}/sitemap.xml\n`);
-await writeFile(join(root,"sitemap.xml"),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map(url=>`  <url><loc>${url}</loc><lastmod>2026-10-07</lastmod></url>`).join("\n")}\n</urlset>\n`);
+await writeFile(join(root,"sitemap.xml"),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.map(entry=>`  <url><loc>${entry.url}</loc><lastmod>${entry.modified}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 await writeFile(join(root,"_redirects"),`http://usfanss.store/* https://usfanss.store/:splat 301\nhttp://www.usfanss.store/* https://usfanss.store/:splat 301\nhttps://www.usfanss.store/* https://usfanss.store/:splat 301\n`);
 await writeFile(join(root,"_headers"),`/*\n  Cache-Control: public, max-age=0, s-maxage=300, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Vary: Accept-Encoding\n\n/static-assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/products/*\n  Cache-Control: public, max-age=31536000, immutable\n`);
 await rm(join(root,".static-build"),{recursive:true,force:true});

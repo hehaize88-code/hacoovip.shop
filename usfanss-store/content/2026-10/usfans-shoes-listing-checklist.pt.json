@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · GUIA DE COMPRA · 2026",
   "title": "Tênis USFans: tamanhos, opções e vendedor",
-  "description": "Uma lista de verificação do produto-descoberta para decidir se uma página do produto sapato é clara o suficiente para encomendar — antes da inspeção do armazém ou planejamento de encomendas começar.",
-  "updated": "Atualizado em 7 de outubro de 2026",
+  "description": "Confira tênis USFans pela tabela específica, comprimento da palmilha, variante e informações do vendedor antes de comprar.",
+  "updated": "Atualizado em 4 de novembro de 2026",
   "readingTime": "7 minutos de leitura",
   "contentsLabel": "NESTE GUIA",
   "factTitle": "Fontes e limites",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Compare o tipo certo de comprimento",
+      "heading": "Um exemplo de medida reproduzível",
       "paragraphs": [
-        "Comprimento do pé, comprimento da palmilha e comprimento da sola descrevem coisas diferentes. Deve comparar-se um gráfico com o comprimento do pé marcado com uma medição do pé, enquanto uma fotografia de palmilha deve ser comparada com um exemplo de comparação adequado de palmilha medida da mesma forma. Tratar todos os três como um tamanho de sapato universal pode criar um erro de tamanho evitável.",
-        "Use as instruções de medição do vendedor quando fornecidas e explique as meias pretendidas e use. Largura, forma do dedo do pé e construção podem afetar o ajuste mesmo quando o comprimento parece adequado. Não adicione um subsídio universal e prometa um resultado garantido. Se a página do produto não definir seu gráfico, resolva essa incerteza antes de escolher um tamanho; o rótulo sozinho não pode fornecer a definição em falta."
+        "Se a palmilha de referência mede 27.0 cm e a foto parece indicar 27.5 cm, a diferença é 0.5 cm, sem conversão garantida de tamanho. Confira extremidades, início no zero e se não foi medida a sola externa. São exemplos, não medidas do catálogo.",
+        "Compare largura, formato da ponta e meias. Peça foto clara se uma extremidade estiver escondida. Registre etiqueta e comprimento separadamente. Se a tabela usa comprimento do pé, meça o pé. Igualdade de comprimento não garante conforto ou ajuste."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "pt",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

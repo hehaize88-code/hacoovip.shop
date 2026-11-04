@@ -1,17 +1,25 @@
-# USFans Store content release — 2026-10-07
+# USFans Store content release — 2026-11-04
 
-The canonical source is `2026-10/<slug>.<language>.json`. Every article has an entry for en, de, es, fr, it, pl, pt and zh-cn. `app/content-data.ts` imports them explicitly, without an English fallback. Shipping remains a separate guide.
+Canonical content lives in `2026-10/` (existing guides) and `2026-11/` (new guides). All seventeen articles have explicit en, de, es, fr, it, pl, pt and zh-cn records. Shipping is a separate guide; no English fallback is used.
 
-This release adds T-shirt fit/print, jacket sizing/packing, and pants/shorts waist/rise/inseam guides, updates eleven original articles, and expands each language directory to fourteen articles. Topic selection uses public category and competitor research, not verified private GSC, Bing or GA4 metrics. No search-volume or traffic forecast is implied.
+This release adds tracking troubleshooting, complete-cost planning, and returns/refunds in all eight languages. Each new English article contains 1,200–1,800 words. Every translation preserves the eight sections, two paragraphs per section, worked examples, caveats and actions. New process guides do not show unrelated product photos.
 
-Published dates are retained; revisions are dated 2026-10-07. Worked measurements are illustrative. Unsupported current rating claims are excluded. Internal guide links preserve language and FAQ stays separate.
+Existing reviews replace unsupported customer anecdotes with a reproducible evidence standard. Shoe guides add an illustrative insole measurement comparison. Core article descriptions are revised in every language. All articles include official source links and topic-aware internal navigation. Existing publication dates are retained; substantive revision dates are November 4, 2026.
 
-Twenty product destinations and corresponding lead images were individually checked in the live primary catalog on 2026-10-07. Old IDs were not carried across domains. Numeric prices are omitted because their currency semantics could not be reliably reconciled; cards lead to the current source price. Images remain on the primary catalog domain.
+Home, finds, guide index, QC and FAQ metadata now describe their actual task. The Italian homepage addresses shoes and sizing. FAQ contains twenty localized questions. Homepage and core pages link directly to the new guides and the established spreadsheet, beginner, QC and product articles.
+
+Catalog destinations are retained; generic source names are displayed as localized category plus catalog ID, without invented brands or model claims. Existing GA4 product/outbound/search/article events are retained, with language added where missing. No GA4 account settings or key-event definitions are changed by this release.
 
 ## Build and release
 
-Run `npm run build:static`. It renders static output in this directory and runs `scripts/validate-static.py`. The gate checks 168 pages, fourteen articles in eight languages, paragraph/section parity, English article length, worked measurements, canonical/hreflang, local links/assets, schema dates and the catalog manifest.
+Run `npm run build:static`. It builds complete HTML in this directory and validates 192 pages, 17 articles in 8 languages, content structure parity, English length, 20 FAQs, canonical/hreflang, links/assets, schema dates and worked examples. CSS and JS use content-hashed filenames; the language-switching client is 223 bytes.
 
-Complete content is rendered in HTML. The small static client only switches language; immutable CSS/JS filenames use content hashes. Existing GA4 configuration is retained, including product, outbound, search, language and article-selection events.
+A focused type check for the published static entry points is:
 
-Deploy only this directory through the repository's existing Cloudflare Pages project `usfanss-store`. Other sites in the shared repository are outside this release.
+```
+./node_modules/.bin/tsc --noEmit --strict --skipLibCheck --resolveJsonModule --esModuleInterop --moduleResolution bundler --module esnext --target es2021 --jsx react-jsx app/site-shell.tsx app/localized-content.ts scripts/render-static.tsx app/static-client.tsx
+```
+
+The repository-wide type check also includes unused legacy article modules and Worker bindings with pre-existing errors. They are not part of the production static renderer.
+
+Deploy only this directory through the existing Cloudflare Pages project `usfanss-store`. The site-specific publishing workflow validates generated output before producing its release commit; bot commits are excluded from its publish job to prevent loops. Do not deploy other sites in this shared repository.

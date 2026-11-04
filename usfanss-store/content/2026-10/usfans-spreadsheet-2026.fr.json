@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · GUIDE D’ACHAT · 2026",
   "title": "USFans Spreadsheet 2026 : vêtements, chaussures et liens",
-  "description": "Une façon pratique d'utiliser un tableur USFans comme une liste de sélection, de vérifier chaque page de produit en direct et d'éviter les liens de produits inexistants, mal appariés ou incomplets.",
-  "updated": "Mis à jour le 7 octobre 2026",
+  "description": "Comparez les liens USFans par catégorie, variante, preuves vendeur et mesures. Vérifiez ensuite QC, frais et conditions du colis.",
+  "updated": "Mis à jour le 4 novembre 2026",
   "readingTime": "7 minutes de lecture",
   "contentsLabel": "DANS CE GUIDE",
   "factTitle": "Éléments vérifiés et limites",
@@ -77,5 +77,5 @@
   "slug": "usfans-spreadsheet-2026",
   "lang": "fr",
   "published": "2026-09-08",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

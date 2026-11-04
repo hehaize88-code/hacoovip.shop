@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · KAUFRATGEBER · 2026",
   "title": "USFans Schuhe: Größen, Varianten und Verkäufer prüfen",
-  "description": "Eine Produkt-Entdeckungs-Checkliste für die Entscheidung, ob eine Schuhprodukt-Seite klar genug ist, um zu bestellen – bevor die Lagerinspektion oder Paketplanung beginnt.",
-  "updated": "Aktualisiert am 7. Oktober 2026",
+  "description": "Prüfe USFans-Schuhe anhand passender Größentabelle, Innenlänge, gewählter Variante und Verkäuferangaben vor dem Kauf.",
+  "updated": "Aktualisiert am 4. November 2026",
   "readingTime": "7 Minuten Lesezeit",
   "contentsLabel": "IN DIESEM RATGEBER",
   "factTitle": "Belege und Geltungsbereich",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Vergleichen Sie die richtige Länge",
+      "heading": "Ein nachvollziehbares Messbeispiel",
       "paragraphs": [
-        "Fußlänge, Laufsohlenlänge und Laufsohlenlänge beschreiben verschiedene Dinge. Eine mit einer Fußmessung beschriftete Fußlänge sollte verglichen werden, während eine Insole-Fotografie mit einer geeigneten Vergleichsbeispiel-Insole, die in gleicher Weise gemessen wird, verglichen werden sollte. Alle drei als eine universelle Schuhlänge zu behandeln, kann einen vermeidbaren Größenfehler verursachen.",
-        "Verwenden Sie die Verkäufer-Meßanleitungen, wenn vorgesehen und Konto für die beabsichtigten Socken und Verwendung. Breite, Zehenform und Konstruktion können auch bei passender Länge die Passform beeinflussen. Fügen Sie keine Universalzulage hinzu und versprechen Sie ein garantiertes Ergebnis. Wenn die Produktseite ihr Diagramm nicht definiert, lösen Sie diese Unsicherheit, bevor Sie eine Größe wählen; das Etikett allein kann die fehlende Definition nicht liefern."
+        "Misst deine Referenzinnensohle 27.0 cm und das Lagerfoto scheinbar 27.5 cm, beträgt die Differenz 0.5 cm, ohne garantierte Größenumrechnung. Prüfe gleiche Endpunkte, Nullpunkt und ob wirklich innen statt außen gemessen wird. Die Werte sind Beispiele, keine Maße eines Katalogschuhs.",
+        "Berücksichtige Breite, Zehenform und Socken. Bitte um ein klares Linealfoto, wenn Endpunkte fehlen. Notiere Etikett und gemessene Länge getrennt. Gibt die Tabelle Fußlänge an, miss den Fuß. Gleiche Länge garantiert weder Komfort noch Passform."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "de",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

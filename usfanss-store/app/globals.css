@@ -105,3 +105,20 @@ footer{min-height:170px;padding:45px 5vw;border-top:1px solid;display:grid;grid-
 @media(max-width:760px){.article-layout aside{max-height:250px;overflow:auto}.article-hero h1{font-size:clamp(32px,8vw,49px)}}
 
 .find-card .product-image{height:auto;aspect-ratio:1}.category-grid img{height:auto;aspect-ratio:1}
+
+/* Crawlable task navigation and readable source notes in every locale. */
+.guide-hub{padding-top:32px;padding-bottom:32px;background:var(--sky)}
+.guide-hub>h2{font-size:clamp(24px,3vw,36px);line-height:1.15;margin:0 0 22px}
+.guide-hub>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.guide-hub h3{font-size:18px;margin:0 0 12px;line-height:1.3}
+.guide-hub ul,.source-panel ul{padding-left:18px;margin:0}
+.guide-hub li,.source-panel li{margin:10px 0;line-height:1.5}
+.guide-hub a,.source-panel a{text-decoration:underline;text-underline-offset:3px;font-size:14px;overflow-wrap:anywhere}
+.article-content .source-panel{padding:22px;background:var(--sky);border:1px solid;margin-top:32px}
+.article-content .source-panel h2{font-size:24px;line-height:1.25;letter-spacing:-.02em;margin:0 0 14px}
+.article-content .source-panel p{font-family:inherit;font-size:14px;line-height:1.6}
+.size-hint{font-size:11px;line-height:1.45;text-transform:none;letter-spacing:0;display:block;margin:8px 0}
+.article-breadcrumb{font-size:13px;line-height:1.5;margin-bottom:24px}.article-breadcrumb a{text-decoration:underline}
+@media(max-width:760px){.guide-hub>div{grid-template-columns:1fr;gap:16px}.guide-hub{padding:24px 16px}.guide-hub h3{font-size:17px}.guide-hub li{margin:8px 0}.size-hint{font-size:11px}.article-content h2{font-size:28px;line-height:1.2;letter-spacing:-.025em}.article-layout{padding-top:30px}}
+
+.find-meta .size-hint{text-transform:none;letter-spacing:0}

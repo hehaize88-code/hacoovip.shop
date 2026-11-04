@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · GUIDE D’ACHAT · 2026",
   "title": "Chaussures USFans : tailles, variantes et vendeur",
-  "description": "Une liste de vérification pour déterminer si une page de produit de chaussures est suffisamment claire pour commander, avant que l'inspection de l'entrepôt ou la planification des colis ne commence.",
-  "updated": "Mis à jour le 7 octobre 2026",
+  "description": "Vérifiez les chaussures USFans avec le tableau précis, la longueur intérieure, la variante et les informations du vendeur.",
+  "updated": "Mis à jour le 4 novembre 2026",
   "readingTime": "7 minutes de lecture",
   "contentsLabel": "DANS CE GUIDE",
   "factTitle": "Éléments vérifiés et limites",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Comparer le bon type de longueur",
+      "heading": "Un exemple de mesure reproductible",
       "paragraphs": [
-        "La longueur du pied, la longueur de la semelle intérieure et la longueur de la semelle extérieure décrivent différentes choses. La longueur d'une carte doit être comparée à une mesure du pied, tandis qu'une photographie de la semelle intérieure doit être comparée à un exemple de comparaison approprié de la même façon. Traiter les trois comme une seule longueur de chaussure universelle peut créer une erreur de taille évitable.",
-        "Utiliser les instructions de mesure du vendeur lorsqu'elles sont fournies et tenir compte des chaussettes prévues et de l'utilisation. La largeur, la forme des orteils et la construction peuvent affecter l'ajustement même lorsque la longueur semble appropriée. N'ajoutez pas d'allocation universelle et promettez un résultat garanti. Si la page produit ne définit pas son graphique, résoudre cette incertitude avant de choisir une taille; l'étiquette ne peut à elle seule fournir la définition manquante."
+        "Si votre semelle intérieure mesure 27.0 cm et la photo semble montrer 27.5 cm, l’écart est 0.5 cm, sans conversion de taille garantie. Vérifiez extrémités, départ à zéro et absence de confusion avec la semelle extérieure. Ce sont des exemples, pas des mesures du catalogue.",
+        "Comparez largeur, forme de pointe et chaussettes. Demandez une photo claire si une extrémité manque. Notez étiquette et longueur séparément. Si le tableau donne la longueur du pied, mesurez celui-ci. Une longueur identique ne garantit pas le confort."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "fr",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

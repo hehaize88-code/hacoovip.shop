@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/publish-usfanss-store-pages.yml"
+      - "usfanss-store/**"
   workflow_dispatch:
 
 permissions:

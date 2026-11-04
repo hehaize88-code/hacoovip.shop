@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · BUYING GUIDE · 2026",
   "title": "USFans Shoes Listing Checklist: Verify Size, Variant and Seller Evidence",
-  "description": "A product-discovery checklist for deciding whether a shoe listing is clear enough to order—before warehouse QC or parcel planning begins.",
-  "updated": "Updated October 7, 2026",
+  "description": "Check USFans shoes by the exact size chart, insole measurement, selected variant and seller evidence before you order.",
+  "updated": "Updated November 4, 2026",
   "readingTime": "7 minute read",
   "contentsLabel": "IN THIS GUIDE",
   "factTitle": "Evidence and scope",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Compare the right kind of length",
+      "heading": "A measurement example you can reproduce",
       "paragraphs": [
-        "Foot length, insole length and outsole length describe different things. A chart labelled foot length should be compared with a foot measurement, while an insole photograph should be compared with a suitable reference insole measured in the same way. Treating all three as one universal shoe length can create an avoidable size error.",
-        "Use the seller measurement instructions when provided and account for the intended socks and use. Width, toe shape and construction can affect fit even when length appears suitable. Do not add a universal allowance and promise a guaranteed result. If the listing does not define its chart, resolve that uncertainty before choosing a size; the label alone cannot supply the missing definition."
+        "Suppose your reference insole measures 27.0 cm and a warehouse photograph appears to show 27.5 cm. The numerical difference is 0.5 cm, not a guaranteed size conversion. First confirm that both measurements run between the same endpoints, that the ruler starts at zero, and that neither image measures the outsole instead. These are illustrative inputs, not measurements of any catalog shoe.",
+        "Also compare width, toe shape and intended socks. Ask for a clear ruler photograph when the existing view hides either endpoint. Record the selected size label separately from measured length. If the seller chart gives foot length, use a foot measurement instead of substituting the insole. A matching length alone cannot establish comfort or guarantee fit."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "en",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }

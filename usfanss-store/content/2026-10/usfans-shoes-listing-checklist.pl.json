@@ -1,8 +1,8 @@
 {
   "kicker": "USFans · PORADNIK ZAKUPOWY · 2026",
   "title": "Buty USFans: rozmiary, warianty i sprzedawca",
-  "description": "Lista kontrolna produktu do ustalenia, czy strona produktu obuwniczego jest wystarczająco jasna, aby zamówić - przed rozpoczęciem inspekcji magazynu lub planowania działki.",
-  "updated": "Aktualizacja: 7 października 2026",
+  "description": "Sprawdź buty USFans według właściwej tabeli, długości wkładki, wybranego wariantu i danych sprzedawcy przed zakupem.",
+  "updated": "Aktualizacja: 4 listopada 2026",
   "readingTime": "7 minut czytania",
   "contentsLabel": "W TYM PORADNIKU",
   "factTitle": "Podstawa informacji i zakres",
@@ -74,15 +74,15 @@
       ]
     },
     {
-      "heading": "Porównaj odpowiedni rodzaj długości",
+      "heading": "Przykład pomiaru do odtworzenia",
       "paragraphs": [
-        "Długość stopy, długość podeszwy i długość podeszwy opisują różne rzeczy. Należy porównać długość stopy oznakowanej na wykresie z pomiarem stopy, natomiast zdjęcie z podeszwy powinno być porównywane z odpowiednią przykładową wkładką porównawczą mierzoną w ten sam sposób. Traktowanie wszystkich trzech jako jednej uniwersalnej długości buta może spowodować niemożliwy do uniknięcia błąd wielkości.",
-        "Stosować instrukcje pomiarowe sprzedawcy, gdy są podane i uwzględnić zamierzone skarpety i zastosowanie. Szerokość, kształt palca i konstrukcja mogą wpływać na dopasowanie nawet wtedy, gdy długość wydaje się odpowiednia. Nie dodawaj uniwersalnego dodatku i obiecaj gwarantowany wynik. Jeżeli strona produktu nie definiuje swojego wykresu, należy rozwiązać tę niepewność przed wybraniem rozmiaru; sama etykieta nie może dostarczyć brakującej definicji."
+        "Jeśli wkładka odniesienia ma 27.0 cm, a zdjęcie pokazuje 27.5 cm, różnica wynosi 0.5 cm, bez gwarantowanej konwersji rozmiaru. Sprawdź punkty końcowe, początek od zera i brak pomylenia z podeszwą. To przykłady, nie pomiary katalogowych butów.",
+        "Porównaj szerokość, kształt noska i skarpety. Poproś o wyraźne zdjęcie przy zasłoniętym końcu. Zapisz metkę i długość osobno. Gdy tabela opisuje stopę, mierz stopę zamiast wkładki. Sama zgodna długość nie gwarantuje wygody."
       ]
     }
   ],
   "slug": "usfans-shoes-listing-checklist",
   "lang": "pl",
   "published": "2026-08-14",
-  "modified": "2026-10-07"
+  "modified": "2026-11-04"
 }
