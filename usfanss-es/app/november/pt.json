@@ -1,0 +1,331 @@
+[
+  {
+    "slug": "usfans-metodos-pago",
+    "card": [
+      "Pagamentos",
+      "Como pagar na USFans: métodos, saldo e pagamentos recusados",
+      "Confirme os métodos disponíveis, separe artigo e envio e esclareça um débito incerto antes de tentar novamente.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Antes de pagar na USFans, identifique o objetivo do pagamento, os métodos disponíveis na sua conta e o resultado da tentativa anterior. Este guia acompanha compra, saldo e envio posterior para Espanha. Explica também o que guardar quando o banco mostra um débito mas a encomenda continua por pagar. Este sítio independente não recebe pagamentos nem acede ao seu saldo.",
+      "sections": [
+        {
+          "heading": "Identifique primeiro o que está a pagar",
+          "paragraphs": [
+            "O guia oficial separa o artigo e a entrega interna chinesa do depósito posterior para transporte internacional. Um produto pago não significa que a entrega em Espanha esteja paga. Confirme se está a comprar, carregar saldo, liquidar uma diferença ou pagar um volume.",
+            "Registe encomenda, variante, quantidade, montante, moeda e encargos apresentados. Se houver uma diferença a pagar, pergunte qual a rubrica alterada. Compare o detalhe com o recibo anterior antes de concluir que existe um pagamento duplicado."
+          ]
+        },
+        {
+          "heading": "PayPal, cartão e Google Pay: confirme no seu ecrã",
+          "paragraphs": [
+            "O guia público menciona PayPal, cartões e Google Pay. Isso não garante disponibilidade para todas as contas, países, moedas ou etapas. Use as opções do pagamento atual. Não transfira dinheiro para particulares que prometam desbloquear um método.",
+            "Compare montante autorizado, moeda, encargos indicados e conversão apresentada. O preço do artigo não explica necessariamente o débito final. Quando existirem moedas diferentes, compare antes de aprovar e guarde os comprovativos do prestador de pagamento e da encomenda."
+          ]
+        },
+        {
+          "heading": "Carregar saldo não é o mesmo que pagar uma encomenda",
+          "paragraphs": [
+            "Se a conta disponibilizar saldo, distinga adicionar fundos de os aplicar numa compra. Um carregamento bem-sucedido pode deixar a encomenda por pagar. Da mesma forma, um reembolso no saldo não implica uma entrada no banco.",
+            "Antes de carregar um montante elevado, confirme variantes, possibilidade de envio e condições de levantamento. Defina os artigos necessários e registe saldo anterior e posterior. Assim poderá explicar o que foi pago e onde devem estar os fundos."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "Reembolsos USFans e levantamento de saldo: o que verificar"
+            }
+          ]
+        },
+        {
+          "heading": "Verificações antes de confirmar",
+          "paragraphs": [
+            "Compare produto, tamanho, cor e quantidade com a ficha guardada. Reveja serviços opcionais e dados do destinatário pedidos. Um cupão deve produzir uma dedução elegível e visível; um anúncio não prova que a encomenda beneficia dele.",
+            "Guarde referência, data, montante, moeda e estado. Não partilhe número completo do cartão, código de segurança ou códigos de utilização única. Recorte capturas para o apoio e oculte movimentos alheios. Confirme que a autorização corresponde ao resumo final."
+          ]
+        },
+        {
+          "heading": "Pagamento recusado sem débito aparente",
+          "paragraphs": [
+            "Leia o erro do prestador. Autenticação incompleta, dados de faturação, limites ou restrições bancárias são pontos possíveis de verificação, não um diagnóstico certo. Siga as instruções e contacte o emissor quando a recusa vem do banco.",
+            "Antes de repetir, atualize o histórico e o estado da encomenda. Se ambos confirmarem falha sem operação pendente, pondere uma tentativa corrigida. Se algum estado continuar incerto, esclareça-o primeiro. Mudar imediatamente de método pode criar duas operações para conciliar."
+          ]
+        },
+        {
+          "heading": "Existe débito no banco mas a encomenda está por pagar",
+          "paragraphs": [
+            "Veja se o movimento está pendente ou concluído e se a plataforma tem referência de pagamento. Uma autorização pendente não é automaticamente um débito duplicado definitivo. Uma encomenda não paga também não prova ausência de movimento bancário.",
+            "Envie ao apoio oficial encomenda, referência, montante, moeda, hora e estados exatos. Pergunte se o pagamento chegou, continua em processamento ou deve ser repetido. Exemplo: «A encomenda X está por pagar; a referência Y mostra este estado desde esta hora. Devo esperar ou tentar novamente?»"
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Contacto oficial USFans"
+            }
+          ]
+        },
+        {
+          "heading": "O transporte internacional vem depois do QC",
+          "paragraphs": [
+            "Após receção no armazém, examine fotografias e resolva devoluções antes de preparar o volume. Depois confirme morada, código postal, linha elegível, medidas, serviços e cotação. Uma linha para Espanha continental não garante entrega nas Canárias.",
+            "Separe orçamento de produto e transporte. Exemplo hipotético: 40 € de artigos e 4 € de entrega interna somam 44 € antes de outros encargos. Não é o preço entregue em Espanha. Acrescente a cotação internacional e extras aplicáveis quando conhecidos; os números não são tarifas USFans."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Taxas USFans: calcular o custo total da compra"
+            },
+            {
+              "url": "/articles/shipping-cost-guide/",
+              "label": "Envios para Espanha e ilhas"
+            }
+          ]
+        },
+        {
+          "heading": "Mantenha o registo até resolver a operação",
+          "paragraphs": [
+            "No final compare estado, comprovativo do prestador e movimentos de saldo. Guarde a resposta do apoio. Se começar um reembolso, crie um registo ligado ao pagamento original em vez de o eliminar.",
+            "Métodos e etapas oficiais verificados em 4 de novembro de 2026. Opções, encargos e nomes de ecrãs podem mudar. Estas listas são orientação editorial independente; confirme as condições da sua operação na plataforma."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Guia oficial para começar"
+            },
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Ajuda oficial: conta e pagamentos"
+            },
+            {
+              "url": "/articles/usfans-cupones-descuento/",
+              "label": "Cupões USFans: aplicar o desconto e perceber os erros"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Identifique a etapa, verifique método e total, guarde a referência e esclareça débitos incertos antes de repetir. Reveja o QC antes de pagar o transporte internacional."
+    }
+  },
+  {
+    "slug": "usfans-reembolsos-retirar-saldo",
+    "card": [
+      "Reembolsos",
+      "Reembolsos USFans e levantamento de saldo: o que verificar",
+      "Distinga devolução do artigo, ajuste de transporte e levantamento. Confirme o destino do dinheiro e prepare um pedido claro.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Uma devolução aprovada, um crédito no saldo USFans e dinheiro recebido no banco são eventos distintos. Confundi-los pode ocultar uma etapa ainda pendente. Este guia ajuda a seguir montantes e deduções e a colocar perguntas precisas. Não promete prazo universal nem levantamento automático: ambos devem ser confirmados para a sua operação.",
+      "sections": [
+        {
+          "heading": "Identifique o tipo de reembolso",
+          "paragraphs": [
+            "É um cancelamento antes da compra, uma devolução após QC, um ajuste de portes ou levantamento de saldo não usado? Cada caso tem registos próprios. A aceitação do vendedor não prova que um reembolso bancário foi iniciado.",
+            "Relacione encomenda do artigo, número do volume e referência de levantamento. «Creditar o reembolso aprovado» e «devolver saldo ao método original» são pedidos diferentes. Diga claramente qual o resultado esperado."
+          ]
+        },
+        {
+          "heading": "Acompanhe o dinheiro por etapas",
+          "paragraphs": [
+            "Separe pedido, decisão, movimento registado e receção no destino. Anote os termos exatos da interface. Se surgir «reembolsado», consulte saldo e pagamentos; peça destino e referência quando não forem claros.",
+            "Num levantamento, confirme se é necessário pedido próprio, quais os fundos elegíveis e a ligação ao pagamento inicial. Não presuma que outro cartão ou a conta de um conhecido podem receber o valor. Este sítio não pode alterar o destinatário."
+          ]
+        },
+        {
+          "heading": "A devolução no armazém exige uma decisão própria",
+          "paragraphs": [
+            "Documente tamanho, cor ou defeito enquanto o artigo está no armazém. Compare variante pedida e QC e descreva a diferença concreta. Mantenha o produto fora do volume internacional durante a decisão. Uma pergunta sobre dinheiro não substitui um pedido de devolução necessário.",
+            "Pergunte pelas condições e custos antes de aceitar. Preço, transporte interno, serviços e encargos de pagamento não são automaticamente reembolsáveis em conjunto. Peça as rubricas incluídas e eventuais deduções ainda possíveis."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-devoluciones-almacen/",
+              "label": "Devoluções do armazém USFans: procedimento e condições"
+            },
+            {
+              "url": "/articles/qc-photos-guide/",
+              "label": "Verificar fotografias QC antes de enviar"
+            }
+          ]
+        },
+        {
+          "heading": "Separe ajuste de portes e reembolso do artigo",
+          "paragraphs": [
+            "A ajuda oficial distingue peso faturável estimado e real. Compare o ajuste com depósito e cálculo final do volume: montante inicial, peso ou dimensões, linha e movimento registado. Retirar embalagem não prova um reembolso específico.",
+            "Exemplo hipotético: depósito de 60 € e custo final confirmado de 54 € deixam 6 € antes de outros ajustes aplicáveis. A subtração não determina prazo nem destino. Se o custo final for superior, peça o cálculo da diferença a pagar."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/help/HCON_STATIC_053",
+              "label": "Ajuda oficial sobre peso faturável"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans rehearsal: simulação de embalagem e peso volumétrico"
+            }
+          ]
+        },
+        {
+          "heading": "Confira o levantamento antes de o enviar",
+          "paragraphs": [
+            "Verifique montante disponível, moeda, destino permitido, encargos indicados e possibilidade de correção. Se o método original já não funcionar, informe o apoio antes de indicar outro. Evite intermediários que prometem levantar fundos por si.",
+            "Registe montante solicitado e esperado separadamente. Encargos ou conversão aplicáveis devem explicar diferenças. Guarde confirmação e referência; não repita pedidos sobre os mesmos fundos só porque ainda não aparece uma entrada bancária."
+          ]
+        },
+        {
+          "heading": "Porque um prazo único pode enganar",
+          "paragraphs": [
+            "Um prazo pode cobrir aceitação do vendedor, crédito no saldo, análise do levantamento, envio ao prestador ou processamento bancário. Pergunte pela etapa, início, dias úteis e documentos em falta. Relatos diferentes podem referir fases distintas.",
+            "Depois do prazo confirmado, responda com referência e data inicial. Peça estado e próxima atualização. Se o banco não encontrar o reembolso, solicite à plataforma a referência do prestador necessária para o localizar."
+          ]
+        },
+        {
+          "heading": "Prepare um pedido que possa ser investigado",
+          "paragraphs": [
+            "Exemplo: «A encomenda A recebeu aprovação deste montante nesta data. O saldo mostra o crédito, mas o levantamento B mantém este estado. Confirmem destino, referência e próximo passo». Se nem o crédito existir, indique isso diretamente.",
+            "Junte recibo, histórico recortado e último estado. Oculte dados completos do cartão, códigos e movimentos alheios. Guarde a resposta. Para assuntos bancários use o canal oficial do prestador e a sua referência, não apenas o número de encomenda."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Contacto oficial USFans"
+            }
+          ]
+        },
+        {
+          "heading": "Concilie as quantias antes de encerrar",
+          "paragraphs": [
+            "Compare pagamento inicial, reembolso aprovado, deduções, saldo e levantamento recebido. Um artigo de 30 € e 4 € de portes separados não provam que sejam devidos 34 €. Um crédito de 30 € e o seu levantamento são o mesmo dinheiro, não dois reembolsos.",
+            "Fontes oficiais verificadas em 4 de novembro de 2026. Este é um método de organização, não um substituto das condições da encomenda. Separar artigo, serviços e transporte desde o início facilita a verificação posterior."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Ajuda oficial: conta e pagamentos"
+            },
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Como pagar na USFans: métodos, saldo e pagamentos recusados"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Taxas USFans: calcular o custo total da compra"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Siga aprovação, crédito, levantamento e receção separadamente. Confirme montante e destino e utilize o prazo indicado para a sua operação."
+    }
+  },
+  {
+    "slug": "usfans-cupones-descuento",
+    "card": [
+      "Cupões",
+      "Cupões USFans: aplicar o desconto e perceber os erros",
+      "Verifique validade, mínimo, linha de envio e dedução final. Compare totais reais sem depender de códigos não confirmados.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Um cupão útil aplica-se ao seu pagamento e reduz uma despesa já planeada. Um vídeo ou captura de outra conta não demonstra elegibilidade. Este guia explica como verificar condições e preço antes de pagar. Não publica códigos universais nem promete uma percentagem fixa.",
+      "sections": [
+        {
+          "heading": "Distinga o tipo de promoção",
+          "paragraphs": [
+            "A oferta refere-se ao artigo, transporte internacional, serviço ou registo? São utilizações diferentes. Um desconto de transporte não reduz necessariamente o preço do produto. Siga o texto da conta ou campanha oficial.",
+            "O valor acumulado de vários cupões não equivale ao desconto utilizável num único pagamento. Cada oferta pode ter mínimo, âmbito e validade diferentes. Anote a concreta e confirme se ainda será útil quando o volume estiver pronto."
+          ]
+        },
+        {
+          "heading": "Verifique as condições antes da poupança",
+          "paragraphs": [
+            "Registe benefício, etapa, mínimo, validade, destino ou linha e possibilidade de acumulação. São perguntas de controlo, não regras universais USFans. Esclareça condições em falta antes de comprar dependendo da oferta.",
+            "Uma percentagem exige base de cálculo e, quando aplicável, limite máximo. Verifique serviços e encargos excluídos. Uma promoção não prova isenção aduaneira: desconto e tratamento de importação são questões separadas."
+          ]
+        },
+        {
+          "heading": "Aplique a oferta e confira o resumo",
+          "paragraphs": [
+            "Abra os detalhes na conta oficial. Utilize o campo de código se existir ou selecione o cupão apresentado. Nomes e fluxos podem mudar; nenhum botão é universal. Um catálogo externo não deve recolher credenciais de pagamento.",
+            "Compare antes e depois, dedução e montante autorizado. Se o total não mudar, não presuma um desconto invisível posterior. Peça explicação ou avance apenas se aceitar o preço sem desconto."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Como pagar na USFans: métodos, saldo e pagamentos recusados"
+            }
+          ]
+        },
+        {
+          "heading": "Descubra porque o cupão não se aplica",
+          "paragraphs": [
+            "Se faltar, verifique validade, conta e etapa. Se estiver desativado, compare mínimo e âmbito. Se o resultado divergir, confira base, limite e exclusões. A causa efetiva deve ser confirmada no ecrã ou pelo apoio.",
+            "Mantenha artigos, destino e linha iguais durante o teste. Envie ao apoio identificador, condições, encomenda ou volume e erro. Não forneça palavra-passe ou códigos bancários a terceiros que prometem ativação externa."
+          ]
+        },
+        {
+          "heading": "Exemplos de limite e gasto mínimo",
+          "paragraphs": [
+            "Exemplo hipotético: 10% sobre 50 € elegíveis com limite de 4 € desconta 4 €, não 5 €. Restam 46 €. Um serviço excluído de 6 € leva o total a 52 €. Não são preços nem promoções atuais USFans.",
+            "Outro exemplo: desconto de 5 € exige 60 €, mas planeava gastar 52 €. Acrescentar um artigo de 8 € deixa 55 € após o cupão, ou 3 € acima do plano, antes de transporte adicional. Decida se precisa realmente do artigo extra."
+          ]
+        },
+        {
+          "heading": "Compare linhas para o mesmo volume",
+          "paragraphs": [
+            "Mantenha morada, artigos, embalagem e medidas constantes. Compare total, serviços necessários, seguimento, restrições, compensação e prazo estimado. Uma percentagem maior pode deixar um preço final mais alto.",
+            "Para as Canárias introduza morada e código postal reais. Uma cotação continental não se torna adequada por subtrair uma percentagem. Uma linha indisponível não é alternativa. Medidas após embalagem ajudam, mas a referência é a cotação atual."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-canarias-envios/",
+              "label": "Envios USFans para as Canárias: verificar antes de pagar"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans rehearsal: simulação de embalagem e peso volumétrico"
+            }
+          ]
+        },
+        {
+          "heading": "Não presuma devolução do cupão após cancelar",
+          "paragraphs": [
+            "Antes de cancelar ou alterar o volume, pergunte se a oferta regressa e mantém validade. Depende das condições e do estado da operação. Mesmo que reapareça, confirme a data de expiração.",
+            "O valor do cupão não é automaticamente saldo levantável. Se o reembolso diferir do preço inicial, pergunte como foi distribuído o desconto e qual o montante efetivamente pago a devolver. Separe redução, débito e saldo."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "Reembolsos USFans e levantamento de saldo: o que verificar"
+            }
+          ]
+        },
+        {
+          "heading": "Deixe o desconto para a última verificação",
+          "paragraphs": [
+            "Escolha primeiro produtos necessários, tamanhos e variantes; estime o custo completo e só depois teste a oferta. Não apresse o QC nem escolha uma linha inadequada por causa de uma validade. Guarde o recibo com desconto confirmado.",
+            "Guia independente de 4 de novembro de 2026 com referências oficiais abaixo. Não confirma códigos ativos nem benefícios individuais. Leia os termos da conta e consulte o apoio perante dúvidas; uma captura não substitui as condições aplicáveis."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Ajuda oficial: conta e pagamentos"
+            },
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Guia oficial para começar"
+            },
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Contacto oficial USFans"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Taxas USFans: calcular o custo total da compra"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Confira âmbito e condições, confirme o desconto visível antes de pagar e compare totais completos. O cupão deve melhorar uma compra adequada às suas necessidades."
+    }
+  }
+]

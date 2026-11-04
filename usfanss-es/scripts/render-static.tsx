@@ -12,7 +12,7 @@ import { dictionaries, Lang } from "../app/i18n";
 
 const root = process.cwd();
 const site = "https://usfanss.es";
-const buildRevision = process.env.GITHUB_SHA || "manual-2026-10-07";
+const buildRevision = process.env.GITHUB_SHA || "manual-2026-11-04";
 const originalChecked = "2026-08-13";
 const socialImage = `${site}/usfans-logo.png`;
 
@@ -40,7 +40,7 @@ const baseRoutes: BaseRoute[] = [
 
 const languagesFor = (route: BaseRoute) => (route.slug ? articleLanguages(route.slug) : Object.keys(languageConfig)) as Lang[];
 const publishedFor = (route: BaseRoute) => route.slug ? articlePublished(route.slug) : originalChecked;
-const modifiedFor = (route: BaseRoute, lang: Lang) => route.slug ? articleModified(route.slug,lang) : "2026-10-07";
+const modifiedFor = (route: BaseRoute, lang: Lang) => route.slug ? articleModified(route.slug,lang) : "2026-11-04";
 
 const localizedPath = (path: string, lang: Lang) => {
   const prefix = languageConfig[lang].prefix;

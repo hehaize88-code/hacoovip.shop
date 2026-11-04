@@ -1,14 +1,15 @@
 "use client";
 
+import { GuideTopics, NextGuides } from "./components/GuideLinks";
 import { SiteShell } from "./components/SiteShell";
 import { useLanguage } from "./components/LanguageProvider";
 import { getArticles } from "./articleRegistry";
-import { articleSlugs, catalogBase, categorySlugs, productUrl, products, productCategory } from "./data";
+import { catalogBase, categorySlugs, productUrl, products, productCategory } from "./data";
 
 export default function Home() {
   const { d, lang, withLang } = useLanguage();
   const articles = getArticles(lang);
-  const featuredArticles = [11,12,13,14,2,1,0,3].map(index=>articles.find(article=>article.slug===articleSlugs[index])).filter(article=>!!article).slice(0,6);
+  const featuredArticles = ["usfans-metodos-pago", "usfans-reembolsos-retirar-saldo", "usfans-cupones-descuento", "shipping-cost-guide", "usfans-canarias-envios", "usfans-ropa-guia"].map(slug=>articles.find(article=>article.slug===slug)).filter(article=>!!article);
   return <SiteShell>
     <section className="hero">
       <div className="hero-copy">
@@ -33,6 +34,8 @@ export default function Home() {
       {d.categoryNames.map((name, index) => <a key={categorySlugs[index]} href={`${catalogBase}/${categorySlugs[index]}/`} target="_blank" rel="noreferrer"><span>0{index + 1}</span>{name}<b>↗</b></a>)}
     </section>
 
+    <NextGuides slugs={["que-es-usfans-como-funciona", "usfans-metodos-pago", "usfans-canarias-envios"]}/>
+
     <section className="discover">
       <div className="section-title"><div><span>{d.current}</span><h2>{d.findsA}<br/><em>{d.findsB}</em></h2></div><p>{d.findsDesc}</p></div>
       <div className="product-grid">{products.map((item,index) => <a className={`product ${item.tone} p${index+1}`} key={item.id} href={productUrl(item.id)} target="_blank" rel="noreferrer">
@@ -48,6 +51,7 @@ export default function Home() {
 
     <section className="home-articles">
       <div className="section-title"><div><span>{d.pages.articles[0]}</span><h2>{d.pages.articles[1]}</h2></div><p>{d.pages.articles[2]}</p></div>
+      <GuideTopics/>
       <div className="article-grid">{featuredArticles.map(entry => { const article = entry.card; return <a key={article[1]} href={withLang(`/articles/${entry.slug}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>; })}</div>
       <a className="all-articles-link" href={withLang("/articles/")}>{d.nav[3]} →</a>
     </section>

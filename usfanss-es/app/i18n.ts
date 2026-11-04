@@ -1,3 +1,5 @@
+import { novemberTaxFaq } from "./novemberReview";
+import { novemberCopy } from "./novemberCopy";
 import { octoberCards } from "./editorialOctober";
 import { spanishGrowthCards } from "./growthArticles";
 
@@ -233,7 +235,11 @@ const spainAddressCards: Record<Lang, string[]> = {
 const complete = (dictionary: typeof es, lang: Lang, verified: string): typeof es => ({
   ...dictionary,
   verified,
-  faqs: [...dictionary.faqs, ...faqExtras[lang]],
+  heroA: novemberCopy[lang].hero[0],
+  heroB: novemberCopy[lang].hero[1],
+  heroDesc: novemberCopy[lang].intro,
+  pages: { ...dictionary.pages, categories: novemberCopy[lang].categories, how: novemberCopy[lang].how, articles: novemberCopy[lang].articles },
+  faqs: [...dictionary.faqs, ...faqExtras[lang], ...novemberCopy[lang].faq, novemberTaxFaq(lang)],
   articles: [...dictionary.articles, spainAddressCards[lang], ...(lang === "es" ? [...spanishGrowthCards, ...octoberCards] : [])],
 });
 

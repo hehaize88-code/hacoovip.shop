@@ -1,8 +1,10 @@
 "use client";
 
+import { GuideTopics, NextGuides, relatedSlugs } from "./GuideLinks";
+import { novemberCopy } from "../novemberCopy";
 import { SiteShell } from "./SiteShell";
 import { useLanguage } from "./LanguageProvider";
-import { articleSlugs, catalogBase, categorySlugs, productUrl, products, productCategory } from "../data";
+import { catalogBase, categorySlugs, productUrl, products, productCategory } from "../data";
 import { articleModified } from "../articleMeta";
 import { getArticles, getArticle } from "../articleRegistry";
 
@@ -28,18 +30,18 @@ export function DiscoverPage() {
 }
 
 export function CategoriesPage() {
-  const { d } = useLanguage();
-  return <SiteShell><PageHero page="categories"/><section className="inner-section category-cards">{d.categoryNames.map((name,index) => <a key={name} href={`${catalogBase}/${categorySlugs[index]}/`} target="_blank" rel="noreferrer"><span>0{index+1}</span><h2>{name}</h2><p>{d.browseCategory}</p><b>↗</b></a>)}</section></SiteShell>;
+  const { d, lang } = useLanguage();
+  return <SiteShell><PageHero page="categories"/><section className="inner-section category-cards">{d.categoryNames.map((name,index) => <a key={name} href={`${catalogBase}/${categorySlugs[index]}/`} target="_blank" rel="noreferrer"><span>0{index+1}</span><h2>{name}</h2><p>{d.browseCategory}</p><b>↗</b></a>)}</section><section className="category-advice"><h2>{novemberCopy[lang].checks}</h2><ul>{novemberCopy[lang].notes.map(note=><li key={note}>{note}</li>)}</ul></section><NextGuides slugs={["usfans-ropa-guia","usfans-guia-tallas","usfans-comisiones-coste-total"]}/></SiteShell>;
 }
 
 export function HowPage() {
-  const { d } = useLanguage();
-  return <SiteShell><PageHero page="how"/><section className="process-page"><div className="process-line"/>{d.steps.map((step,index) => <article key={step[0]}><div><b>0{index+1}</b><span>{d.howFacts[index]}</span></div><h2>{step[0]}</h2><p>{step[1]}</p></article>)}</section><section className="facts compact-facts">{d.facts.map((fact,index) => <article className={index===0?"fact big":"fact"} key={fact[1]}><b>{fact[0]}</b><h3>{fact[1]}</h3><p>{fact[2]}</p></article>)}</section></SiteShell>;
+  const { d, lang, withLang } = useLanguage();
+  return <SiteShell><PageHero page="how"/><section className="category-advice"><h2>{novemberCopy[lang].process}</h2><p>{novemberCopy[lang].processText}</p><a className="button-link" href={withLang("/categories/")}>{d.pages.categories[1]} →</a></section><NextGuides slugs={["que-es-usfans-como-funciona","usfans-metodos-pago","usfans-opiniones-fiabilidad"]}/><section className="process-page"><div className="process-line"/>{d.steps.map((step,index) => <article key={step[0]}><div><b>0{index+1}</b><span>{d.howFacts[index]}</span></div><h2>{step[0]}</h2><p>{step[1]}</p></article>)}</section><section className="facts compact-facts">{d.facts.map((fact,index) => <article className={index===0?"fact big":"fact"} key={fact[1]}><b>{fact[0]}</b><h3>{fact[1]}</h3><p>{fact[2]}</p></article>)}</section></SiteShell>;
 }
 
 export function ArticlesPage() {
   const { d, lang, withLang } = useLanguage();
-  return <SiteShell><PageHero page="articles"/><section className="inner-section article-grid">{getArticles(lang).slice().reverse().map(({card:article,slug}) => <a key={article[1]} href={withLang(`/articles/${slug}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</section></SiteShell>;
+  return <SiteShell><PageHero page="articles"/><GuideTopics expanded/><section className="inner-section article-grid">{getArticles(lang).slice().reverse().map(({card:article,slug}) => <a key={article[1]} href={withLang(`/articles/${slug}/`)}><div><span>{article[0]}</span><b>{article[3]}</b></div><h2>{article[1]}</h2><p>{article[2]}</p><strong>{d.readArticle} →</strong></a>)}</section></SiteShell>;
 }
 
 export function FaqPage() {
@@ -49,16 +51,14 @@ export function FaqPage() {
 
 export function ArticlePage({ slug }: { slug: string }) {
   const { d, lang, withLang } = useLanguage();
-  const index = articleSlugs.indexOf(slug);
   const entry = getArticle(lang,slug);
   const article = entry?.card;
   const content = entry?.content;
   if (!article || !content) return <SiteShell><section className="inner-section"><h1>Artículo no disponible</h1><a href={withLang("/articles/")}>← {d.pages.articles[1]}</a></section></SiteShell>;
-  const preferred = index === 1 || index === 12 ? [12,1,10] : index === 2 || index === 11 || index === 13 ? [11,13,2,3] : [14,0,4,1];
-  const relatedArticles = [...new Set([...preferred,0,1,2,3])].filter(i=>i!==index).map(i=>getArticle(lang,articleSlugs[i])).filter(article=>!!article).slice(0,3);
+  const relatedArticles = (relatedSlugs[slug] ?? []).map(item=>getArticle(lang,item)).filter(article=>!!article);
   const text = [content.standfirst,...content.sections.flatMap(s=>[s.heading,...s.paragraphs,...(s.bullets??[])]),content.takeaway].join(" ");
   const minutes = Math.max(1,Math.ceil(lang === "zh" ? text.length / 400 : text.split(/\s+/).length / 200));
   const date = articleModified(slug,lang);
   const tocLabel = {es:"En esta guía",en:"In this guide",fr:"Dans ce guide",de:"In diesem Ratgeber",it:"In questa guida",pl:"W tym poradniku",pt:"Neste guia",zh:"本文目录"}[lang];
-  return <SiteShell><article className="article-page"><div className="article-inner"><a className="article-back" href={withLang("/articles/")}>← {d.pages.articles[1]}</a><div className="article-heading"><span>{article[0]}</span><h1>{article[1]}</h1><p>{article[2]}</p><div><time dateTime={date}>{new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : lang,{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(`${date}T00:00:00Z`))}</time><b>{d.readTime}: {minutes} min</b></div></div><p className="article-standfirst">{content.standfirst}</p><nav className="article-toc" aria-label={tocLabel}><b>{tocLabel}</b><ol>{content.sections.map((section,i)=><li key={section.heading}><a href={`#section-${i+1}`}>{section.heading}</a></li>)}</ol></nav><div className="article-body">{content.sections.map((section,sectionIndex) => <section id={`section-${sectionIndex+1}`} key={section.heading}><span>{String(sectionIndex+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{item}</li>)}</ul>}{section.links&&<ul className="article-sources">{section.links.map(link=><li key={link.url}><a href={link.url.startsWith("/") ? withLang(link.url) : link.url} target={link.url.startsWith("/") ? undefined : "_blank"} rel={link.url.startsWith("/") ? undefined : "noopener noreferrer"}>{link.label} {link.url.startsWith("/") ? "→" : "↗"}</a></li>)}</ul>}</div></section>)}</div><aside className="article-takeaway"><b>{d.important}</b><p>{content.takeaway}</p></aside><section className="article-related"><span>{d.pages.articles[0]}</span><h2>{d.pages.articles[1]}</h2><div>{relatedArticles.map(related => <a key={related.slug} href={withLang(`/articles/${related.slug}/`)}>{related.card[1]} →</a>)}</div></section><a className="article-cta" href={`${catalogBase}/AllProducts/`} target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div></article></SiteShell>;
+  return <SiteShell><article className="article-page"><div className="article-inner"><a className="article-back" href={withLang("/articles/")}>← {d.pages.articles[1]}</a><div className="article-heading"><span>{article[0]}</span><h1>{article[1]}</h1><p>{article[2]}</p><div><time dateTime={date}>{new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : lang,{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(`${date}T00:00:00Z`))}</time><b>{d.readTime}: {minutes} min</b></div></div><p className="article-standfirst">{content.standfirst}</p><div className="article-actions"><a href={withLang("/categories/")}>{d.pages.categories[1]} →</a><a href={`${catalogBase}/AllProducts/`} target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div><nav className="article-toc" aria-label={tocLabel}><b>{tocLabel}</b><ol>{content.sections.map((section,i)=><li key={section.heading}><a href={`#section-${i+1}`}>{section.heading}</a></li>)}</ol></nav><div className="article-body">{content.sections.map((section,sectionIndex) => <section id={`section-${sectionIndex+1}`} key={section.heading}><span>{String(sectionIndex+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{item}</li>)}</ul>}{section.links&&<ul className="article-sources">{section.links.map(link=><li key={link.url}><a href={link.url.startsWith("/") ? withLang(link.url) : link.url} target={link.url.startsWith("/") ? undefined : "_blank"} rel={link.url.startsWith("/") ? undefined : "noopener noreferrer"}>{link.label} {link.url.startsWith("/") ? "→" : "↗"}</a></li>)}</ul>}</div></section>)}</div><aside className="article-takeaway"><b>{d.important}</b><p>{content.takeaway}</p></aside><section className="article-related"><span>{d.pages.articles[0]}</span><h2>{d.pages.articles[1]}</h2><div>{relatedArticles.map(related => <a key={related.slug} href={withLang(`/articles/${related.slug}/`)}><strong>{related.card[1]} →</strong><p>{related.card[2]}</p></a>)}</div></section><a className="article-cta" href={`${catalogBase}/AllProducts/`} target="_blank" rel="noreferrer">{d.openCatalog} ↗</a></div></article></SiteShell>;
 }

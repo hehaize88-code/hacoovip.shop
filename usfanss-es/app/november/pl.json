@@ -1,0 +1,331 @@
+[
+  {
+    "slug": "usfans-metodos-pago",
+    "card": [
+      "Płatności",
+      "Jak płacić na USFans: metody, saldo i odrzucone płatności",
+      "Sprawdź dostępne metody, oddziel produkt od wysyłki i wyjaśnij niepewne obciążenie przed kolejną próbą.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Przed płatnością na USFans ustal, za co płacisz, jakie metody oferuje konto i czy poprzednia próba się powiodła. Poradnik obejmuje zakup, saldo i późniejszą wysyłkę do Hiszpanii. Wyjaśnia również, jakie dowody zachować, gdy bank pokazuje obciążenie, a zamówienie nadal czeka na zapłatę. Ta niezależna strona nie przyjmuje pieniędzy i nie ma dostępu do Twojego konta.",
+      "sections": [
+        {
+          "heading": "Najpierw ustal cel płatności",
+          "paragraphs": [
+            "Oficjalny poradnik oddziela produkt z transportem krajowym w Chinach od późniejszej zaliczki na wysyłkę międzynarodową. Opłacony artykuł nie oznacza opłaconej dostawy do Hiszpanii. Sprawdź, czy operacja dotyczy zakupu, doładowania, dopłaty czy paczki.",
+            "Zapisz numer zamówienia, wariant, ilość, kwotę, walutę i pokazane opłaty. Przy dopłacie zapytaj, która pozycja się zmieniła. Porównaj rozbicie z poprzednim potwierdzeniem, zamiast od razu uznawać dwie kwoty za podwójną płatność."
+          ]
+        },
+        {
+          "heading": "PayPal, karta i Google Pay: sprawdź własny ekran",
+          "paragraphs": [
+            "Publiczny poradnik wymienia PayPal, karty i Google Pay. Nie gwarantuje ich dostępności dla każdego konta, kraju, waluty i etapu. Korzystaj z opcji widocznych w bieżącej płatności. Nie przelewaj pieniędzy osobie prywatnej obiecującej odblokowanie metody.",
+            "Porównaj autoryzowaną kwotę, walutę, ujawnione opłaty i przeliczenie. Cena artykułu nie musi wyjaśniać końcowego obciążenia. Przy różnych walutach porównaj informacje przed zatwierdzeniem i zachowaj potwierdzenie operatora oraz zamówienia."
+          ]
+        },
+        {
+          "heading": "Doładowanie salda to nie to samo co opłacenie zamówienia",
+          "paragraphs": [
+            "Jeśli konto oferuje saldo, odróżnij dodanie środków od ich użycia do zakupu. Udane doładowanie może pozostawić zamówienie nieopłacone. Podobnie zwrot na saldo nie musi oznaczać wpływu na rachunek bankowy.",
+            "Przed większą wpłatą potwierdź wariant, możliwość wysyłki i warunki wypłaty. Określ potrzebne produkty oraz zapisz saldo przed operacją i po niej. Ułatwi to wyjaśnienie, na co przeznaczono środki i gdzie powinny się znajdować."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "Zwrot USFans i wypłata salda: co sprawdzić"
+            }
+          ]
+        },
+        {
+          "heading": "Lista kontroli przed zatwierdzeniem",
+          "paragraphs": [
+            "Porównaj produkt, rozmiar, kolor i ilość z zapisaną ofertą. Sprawdź opcjonalne usługi i wymagane dane odbiorcy. Kupon powinien dać uprawnioną, widoczną obniżkę; baner promocyjny nie dowodzi, że dotyczy Twojej transakcji.",
+            "Zachowaj referencję, datę, kwotę, walutę i status. Nie udostępniaj pełnego numeru karty, kodu zabezpieczającego ani kodów jednorazowych. Przytnij zrzuty dla obsługi i ukryj obce operacje. Ostateczna autoryzacja musi odpowiadać podsumowaniu."
+          ]
+        },
+        {
+          "heading": "Odrzucona płatność bez widocznego obciążenia",
+          "paragraphs": [
+            "Przeczytaj komunikat operatora. Niedokończona autoryzacja, dane rozliczeniowe, limity lub blokada banku to możliwe punkty kontroli, a nie pewna diagnoza. Postępuj zgodnie z komunikatem i skontaktuj się z wystawcą karty, jeśli to on odrzucił płatność.",
+            "Przed ponowieniem odśwież historię i status zamówienia. Gdy oba systemy potwierdzają błąd bez operacji oczekującej, rozważ poprawioną próbę. Jeśli stan jest niepewny, najpierw go wyjaśnij. Szybka zmiana metody może stworzyć dwie transakcje wymagające uzgodnienia."
+          ]
+        },
+        {
+          "heading": "Bank pokazuje obciążenie, zamówienie nadal nieopłacone",
+          "paragraphs": [
+            "Sprawdź, czy wpis jest oczekujący czy ostateczny i czy platforma ma referencję płatności. Blokada autoryzacyjna nie jest automatycznie zakończonym podwójnym pobraniem. Nieopłacone zamówienie nie dowodzi też, że bank nic nie zarejestrował.",
+            "Przekaż oficjalnej obsłudze numer zamówienia, referencję, kwotę, walutę, godzinę i dokładne statusy. Zapytaj, czy płatność otrzymano, jest przetwarzana czy należy ponowić próbę. Przykład: „Zamówienie X jest nieopłacone; referencja Y ma taki status od tej godziny. Czekać czy próbować ponownie?”"
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Oficjalny kontakt USFans"
+            }
+          ]
+        },
+        {
+          "heading": "Wysyłkę międzynarodową opłać po kontroli QC",
+          "paragraphs": [
+            "Po przyjęciu towaru do magazynu obejrzyj zdjęcia i rozwiąż zwroty przed utworzeniem paczki. Następnie sprawdź adres, kod pocztowy, dostępną linię, wymiary, usługi i wycenę. Linia do kontynentalnej Hiszpanii nie gwarantuje obsługi Kanarów.",
+            "Oddziel budżet produktu i transportu. Przykład hipotetyczny: artykuły za 40 € i dostawa krajowa za 4 € dają 44 € przed innymi kosztami. To nie cena dostarczenia do Hiszpanii. Dodaj rzeczywistą wycenę międzynarodową i właściwe dodatki; podane liczby nie są cennikiem USFans."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Opłaty USFans: jak obliczyć całkowity koszt zakupu"
+            },
+            {
+              "url": "/articles/shipping-cost-guide/",
+              "label": "Wysyłka do Hiszpanii i na wyspy"
+            }
+          ]
+        },
+        {
+          "heading": "Zachowaj historię do wyjaśnienia sprawy",
+          "paragraphs": [
+            "Po rozwiązaniu problemu porównaj status końcowy, potwierdzenie operatora i ruchy salda. Zachowaj odpowiedź obsługi. Przy rozpoczęciu zwrotu utwórz powiązany zapis, zamiast usuwać pierwotną płatność.",
+            "Oficjalne metody i etapy sprawdzono 4 listopada 2026 r. Opcje, opłaty i nazwy ekranów mogą się zmieniać. Listy kontrolne są niezależną wskazówką redakcyjną; warunki własnej operacji należy sprawdzić na platformie."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Oficjalny poradnik dla początkujących"
+            },
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Oficjalna pomoc: konto i płatności"
+            },
+            {
+              "url": "/articles/usfans-cupones-descuento/",
+              "label": "Kupony USFans: zastosowanie rabatu i wyjaśnianie błędów"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Ustal etap, sprawdź metodę i sumę, zachowaj referencję i wyjaśnij niepewne obciążenia przed ponowieniem. Kontrolę QC wykonaj przed opłatą za wysyłkę międzynarodową."
+    }
+  },
+  {
+    "slug": "usfans-reembolsos-retirar-saldo",
+    "card": [
+      "Zwroty pieniędzy",
+      "Zwrot USFans i wypłata salda: co sprawdzić",
+      "Oddziel zwrot produktu, korektę transportu i wypłatę. Ustal cel przelewu i przygotuj precyzyjne zgłoszenie.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Zatwierdzony zwrot towaru, uznanie salda USFans i wpływ na konto bankowe to różne zdarzenia. Ich pomylenie może ukryć etap, który nadal pozostaje otwarty. Poradnik pomaga śledzić kwoty i potrącenia oraz zadawać konkretne pytania. Nie obiecuje jednego terminu ani automatycznej wypłaty: trzeba je potwierdzić dla własnej operacji.",
+      "sections": [
+        {
+          "heading": "Określ rodzaj zwrotu",
+          "paragraphs": [
+            "Czy chodzi o anulowanie przed zakupem, zwrot po QC, rozliczenie wysyłki czy wypłatę niewykorzystanego salda? Każda sytuacja ma inne zapisy. Zgoda sprzedawcy nie potwierdza rozpoczęcia zwrotu przez bank.",
+            "Powiąż numer zamówienia, paczki i ewentualnej wypłaty. „Uznanie zatwierdzonego zwrotu” oraz „wypłata salda na pierwotną metodę” to różne prośby. Wyraźnie wskaż oczekiwany rezultat."
+          ]
+        },
+        {
+          "heading": "Śledź pieniądze etapami",
+          "paragraphs": [
+            "Rozróżnij wniosek, decyzję, zapisany ruch i otrzymanie środków. Notuj dokładne etykiety interfejsu. Przy statusie „zwrócono” sprawdź saldo i płatności; jeśli nie widać miejsca docelowego lub referencji, zapytaj o nie.",
+            "Przy wypłacie potwierdź potrzebę osobnego wniosku, kwalifikujące się środki i powiązanie z pierwotnym płatnikiem. Nie zakładaj, że inna karta lub konto znajomego mogą je otrzymać. Ta strona nie może zmienić odbiorcy."
+          ]
+        },
+        {
+          "heading": "Zwrot w magazynie ma osobny przebieg",
+          "paragraphs": [
+            "Dokumentuj nieprawidłowy rozmiar, kolor lub wadę, gdy produkt jest w magazynie. Porównaj zamówiony wariant ze zdjęciami i opisz konkretną różnicę. Nie dodawaj artykułu do paczki międzynarodowej podczas rozpatrywania. Pytanie o pieniądze nie zastępuje wymaganego zgłoszenia zwrotu.",
+            "Zapytaj o warunki i koszty przed zgodą. Cena produktu, dostawa krajowa, usługi i opłaty płatnicze nie są automatycznie zwracane razem. Poproś o listę uwzględnionych pozycji i pozostałych możliwych potrąceń."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-devoluciones-almacen/",
+              "label": "Zwroty z magazynu USFans: procedura i warunki"
+            },
+            {
+              "url": "/articles/qc-photos-guide/",
+              "label": "Kontrola zdjęć QC przed wysyłką"
+            }
+          ]
+        },
+        {
+          "heading": "Oddziel korektę wysyłki od zwrotu za artykuł",
+          "paragraphs": [
+            "Oficjalna pomoc rozróżnia szacowaną i rzeczywistą wagę rozliczeniową. Porównaj korektę z zaliczką oraz rozliczeniem paczki: kwotą początkową, wagą lub wymiarami, linią i zapisanym ruchem. Usunięcie opakowania nie dowodzi konkretnej należnej kwoty.",
+            "Przykład hipotetyczny: zaliczka 60 € i potwierdzony koszt 54 € pozostawiają 6 € przed innymi właściwymi korektami. Odejmowanie nie określa terminu ani celu wypłaty. Jeśli koszt końcowy jest wyższy, poproś o wyliczenie dopłaty."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/help/HCON_STATIC_053",
+              "label": "Oficjalna pomoc dotycząca wagi rozliczeniowej"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans rehearsal: próbne pakowanie i waga objętościowa"
+            }
+          ]
+        },
+        {
+          "heading": "Sprawdź wypłatę przed złożeniem",
+          "paragraphs": [
+            "Zweryfikuj dostępny zakres środków, walutę, dozwolone miejsce docelowe, opłaty i możliwość poprawy. Jeśli pierwotna metoda nie działa, poinformuj obsługę przed wskazaniem innej. Unikaj pośredników obiecujących wypłatę za Ciebie.",
+            "Oddziel kwotę wnioskowaną od oczekiwanej. Właściwe opłaty lub przeliczenie powinny wyjaśniać różnicę. Zachowaj potwierdzenie i numer; nie składaj wielokrotnie wniosków na te same środki tylko dlatego, że bank jeszcze nic nie pokazuje."
+          ]
+        },
+        {
+          "heading": "Dlaczego jeden termin nie wystarcza",
+          "paragraphs": [
+            "Termin może dotyczyć zgody sprzedawcy, uznania salda, przeglądu wypłaty, przekazania operatorowi lub banku. Zapytaj o etap, moment rozpoczęcia, dni robocze i brakujące dokumenty. Różne relacje użytkowników mogą opisywać inne fazy.",
+            "Po przekroczeniu potwierdzonego terminu podaj referencję i datę rozpoczęcia. Poproś o status i następną aktualizację. Jeśli bank nie znajduje zwrotu, poproś platformę o numer refundacji operatora potrzebny do śledzenia."
+          ]
+        },
+        {
+          "heading": "Napisz zgłoszenie możliwe do sprawdzenia",
+          "paragraphs": [
+            "Przykład: „Dla zamówienia A zatwierdzono tę kwotę w tym dniu. Saldo pokazuje uznanie, ale wypłata B ma taki status. Proszę potwierdzić cel, referencję i następny krok”. Jeśli brakuje już uznania salda, zaznacz to wprost.",
+            "Dołącz potwierdzenie, przyciętą historię i ostatni status. Ukryj pełne dane karty, kody i obce operacje. Zachowaj odpowiedź. Przy problemie bankowym użyj oficjalnego kanału operatora i jego referencji, nie tylko numeru zamówienia."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Oficjalny kontakt USFans"
+            }
+          ]
+        },
+        {
+          "heading": "Uzgodnij kwoty przed zamknięciem sprawy",
+          "paragraphs": [
+            "Porównaj pierwotną płatność, zatwierdzony zwrot, potrącenia, saldo i otrzymaną wypłatę. Produkt za 30 € oraz osobna dostawa za 4 € nie dowodzą, że należy się 34 €. Uznanie 30 € i późniejsza wypłata to te same pieniądze, nie dwa zwroty.",
+            "Oficjalne źródła sprawdzono 4 listopada 2026 r. To metoda dokumentowania, nie zamiennik warunków zamówienia. Oddzielenie produktu, usług i transportu od początku ułatwia późniejsze rozliczenie."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Oficjalna pomoc: konto i płatności"
+            },
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Jak płacić na USFans: metody, saldo i odrzucone płatności"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Opłaty USFans: jak obliczyć całkowity koszt zakupu"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Osobno śledź zatwierdzenie, uznanie salda, wypłatę i otrzymanie. Sprawdź kwotę i cel oraz korzystaj z terminu potwierdzonego dla Twojej operacji."
+    }
+  },
+  {
+    "slug": "usfans-cupones-descuento",
+    "card": [
+      "Kupony",
+      "Kupony USFans: zastosowanie rabatu i wyjaśnianie błędów",
+      "Sprawdź ważność, minimum, linię wysyłki i końcową obniżkę. Porównuj rzeczywiste sumy bez polegania na niesprawdzonych kodach.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Przydatny kupon pasuje do Twojej płatności i obniża wcześniej planowany wydatek. Film lub zrzut innego konta nie potwierdza uprawnienia. Ten poradnik pokazuje kontrolę warunków i ceny przed zapłatą. Nie publikuje uniwersalnego kodu ani nie obiecuje stałego procentu.",
+      "sections": [
+        {
+          "heading": "Rozpoznaj typ promocji",
+          "paragraphs": [
+            "Czy oferta dotyczy produktu, transportu międzynarodowego, usługi czy rejestracji? To różne zastosowania. Rabat na transport nie musi obniżać ceny artykułu. Kieruj się tekstem w swoim koncie lub oficjalnej kampanii.",
+            "Łączna wartość wielu kuponów nie jest rabatem dostępnym w jednej płatności. Każdy może mieć inne minimum, zakres i datę ważności. Zapisz konkretny kupon i sprawdź, czy będzie pasować, gdy paczka będzie gotowa."
+          ]
+        },
+        {
+          "heading": "Sprawdź warunki przed obliczeniem oszczędności",
+          "paragraphs": [
+            "Zapisz korzyść, etap płatności, minimum, termin, cel lub linię i możliwość łączenia. To pytania kontrolne, nie jednolite reguły USFans. Wyjaśnij brakujące warunki przed zakupem zależnym od oferty.",
+            "Procent wymaga podstawy naliczania i ewentualnego limitu. Sprawdź wyłączone usługi i opłaty. Promocja nie dowodzi zwolnienia celnego: rabat handlowy i zasady importu są osobnymi sprawami."
+          ]
+        },
+        {
+          "heading": "Zastosuj ofertę i skontroluj podsumowanie",
+          "paragraphs": [
+            "Otwórz szczegóły w oficjalnym koncie. Użyj pola kodu, jeśli istnieje, lub wybierz proponowany kupon. Nazwy i przebieg mogą się zmienić; nie zakładamy jednego uniwersalnego przycisku. Katalog zewnętrzny nie powinien zbierać danych płatniczych.",
+            "Porównaj kwotę przed i po, obniżkę oraz ostateczną autoryzację. Jeśli suma się nie zmieniła, nie zakładaj późniejszego niewidocznego rabatu. Poproś o wyjaśnienie lub kontynuuj tylko wtedy, gdy akceptujesz cenę bez zniżki."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Jak płacić na USFans: metody, saldo i odrzucone płatności"
+            }
+          ]
+        },
+        {
+          "heading": "Znajdź powód braku rabatu",
+          "paragraphs": [
+            "Brak kuponu: sprawdź ważność, konto i etap. Kupon nieaktywny: porównaj minimum i zakres. Inny wynik niż oczekiwany: sprawdź podstawę, limit i wyłączenia. Faktyczną przyczynę musi potwierdzić ekran lub obsługa.",
+            "Podczas sprawdzania nie zmieniaj jednocześnie produktów, celu i linii. Przekaż obsłudze identyfikator kuponu, warunki, numer zamówienia lub paczki i błąd. Nie udostępniaj hasła ani kodów bankowych komuś obiecującemu zewnętrzną aktywację."
+          ]
+        },
+        {
+          "heading": "Przykłady limitu i minimalnego wydatku",
+          "paragraphs": [
+            "Hipotetycznie: 10% od uprawnionych 50 € z limitem 4 € daje obniżkę 4 €, nie 5 €. Pozostaje 46 €. Wyłączona usługa za 6 € podnosi sumę do 52 €. To nie aktualne ceny ani promocje USFans.",
+            "Drugi przykład: rabat 5 € wymaga 60 €, a planujesz wydać 52 €. Dodanie produktu za 8 € daje po kuponie 55 €, czyli 3 € więcej niż plan, przed dodatkowym transportem. Zdecyduj, czy dodatkowy produkt jest potrzebny."
+          ]
+        },
+        {
+          "heading": "Porównuj linie dla tej samej paczki",
+          "paragraphs": [
+            "Utrzymuj identyczny adres, produkty, opakowanie i wymiary. Porównaj sumę, potrzebne usługi, śledzenie, ograniczenia, warunki rekompensaty i szacowany czas. Wyższy procent może pozostawić wyższą cenę końcową.",
+            "Dla Kanarów wpisz prawdziwy adres i kod pocztowy. Oferta kontynentalna nie staje się właściwa przez odjęcie procentu. Niedostępna linia nie jest opcją. Pomiary po pakowaniu pomagają, lecz odniesieniem pozostaje aktualna wycena."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-canarias-envios/",
+              "label": "Wysyłka USFans na Wyspy Kanaryjskie: co sprawdzić"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans rehearsal: próbne pakowanie i waga objętościowa"
+            }
+          ]
+        },
+        {
+          "heading": "Nie zakładaj zwrotu kuponu po anulowaniu",
+          "paragraphs": [
+            "Przed anulowaniem lub zmianą paczki zapytaj, czy oferta wróci i zachowa ważność. Zależy to od warunków oraz stanu transakcji. Nawet po ponownym pojawieniu się kuponu sprawdź termin ważności.",
+            "Wartość kuponu nie jest automatycznie saldem do wypłaty. Jeśli zwrot różni się od pierwotnej ceny, zapytaj o rozdzielenie rabatu i zwracaną kwotę rzeczywiście zapłaconą. Oddziel zniżkę, obciążenie i saldo."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "Zwrot USFans i wypłata salda: co sprawdzić"
+            }
+          ]
+        },
+        {
+          "heading": "Sprawdź promocję na końcu wyboru",
+          "paragraphs": [
+            "Najpierw wybierz potrzebne produkty, rozmiary i warianty, oszacuj pełny koszt, potem testuj kupon. Nie przyspieszaj QC ani nie wybieraj złej linii tylko przez datę wygaśnięcia. Zachowaj potwierdzenie ceny po rabacie.",
+            "Niezależny poradnik z 4 listopada 2026 r. z oficjalnymi źródłami poniżej. Nie potwierdza aktywnych kodów ani korzyści konkretnego konta. Niejasne warunki sprawdź w koncie lub u obsługi; zrzut nie zastępuje obowiązujących zasad."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Oficjalna pomoc: konto i płatności"
+            },
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Oficjalny poradnik dla początkujących"
+            },
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Oficjalny kontakt USFans"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Opłaty USFans: jak obliczyć całkowity koszt zakupu"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Sprawdź zakres i warunki, potwierdź widoczny rabat przed zapłatą i porównaj pełne sumy. Kupon powinien poprawiać zakup odpowiadający Twoim potrzebom."
+    }
+  }
+]

@@ -1,0 +1,331 @@
+[
+  {
+    "slug": "usfans-metodos-pago",
+    "card": [
+      "Paiement",
+      "Comment payer sur USFans : moyens, solde et paiements refusés",
+      "Vérifiez les moyens disponibles, distinguez produit et transport et clarifiez un débit incertain avant de réessayer.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Pour payer sur USFans, identifiez d’abord l’objet du paiement, les moyens proposés dans votre compte et le résultat d’une éventuelle tentative précédente. Ce guide couvre l’achat, le solde et le transport ultérieur vers l’Espagne. Il explique aussi quelles preuves conserver lorsque la banque affiche un débit mais que la commande reste impayée. Ce site indépendant ne reçoit aucun paiement et n’accède pas à votre compte.",
+      "sections": [
+        {
+          "heading": "Identifiez ce que couvre le paiement",
+          "paragraphs": [
+            "Le guide officiel distingue l’achat et la livraison intérieure chinoise du dépôt ultérieur pour le transport international. Un produit payé ne signifie donc pas que sa livraison en Espagne est réglée. Vérifiez si l’opération correspond à une commande, une recharge, un complément ou un colis.",
+            "Notez numéro, variante, quantité, montant, devise et frais affichés. Si un complément est demandé, faites préciser le poste qui a changé. Comparez le détail avec le reçu précédent au lieu de conclure immédiatement à un double paiement."
+          ]
+        },
+        {
+          "heading": "PayPal, carte et Google Pay : vérifiez votre écran",
+          "paragraphs": [
+            "Le guide public mentionne PayPal, les cartes et Google Pay. Leur disponibilité n’est pas garantie pour chaque compte, devise, pays ou étape. Seules les options de votre paiement actuel permettent de savoir quoi utiliser. Ne versez pas de fonds à un particulier qui promet de débloquer une méthode.",
+            "Comparez montant autorisé, devise, frais déclarés et conversion présentée. Deux prix exprimés dans des monnaies différentes ne se comparent pas directement. Conservez le justificatif du prestataire et celui de la commande ; le prix du produit ne suffit pas à expliquer le débit final."
+          ]
+        },
+        {
+          "heading": "Recharger un solde ne règle pas forcément une commande",
+          "paragraphs": [
+            "Si votre compte propose un solde, distinguez ajout de fonds et règlement d’un achat. Une recharge réussie peut laisser la commande impayée tant que le montant n’est pas affecté. À l’inverse, un remboursement crédité au solde ne correspond pas nécessairement à un versement bancaire.",
+            "Avant une recharge importante, confirmez variantes, possibilité d’expédition et conditions de retrait. Définissez les articles nécessaires, puis relevez le solde avant et après l’opération. Cette trace permet de savoir ce que les fonds ont réellement financé."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "Remboursements USFans et retrait du solde : les vérifications"
+            }
+          ]
+        },
+        {
+          "heading": "Contrôles avant la confirmation",
+          "paragraphs": [
+            "Comparez produit, taille, couleur et quantité avec l’annonce conservée. Vérifiez les services facultatifs et les coordonnées demandées. Un coupon doit produire une déduction applicable et visible ; une bannière promotionnelle ne prouve pas que votre commande en bénéficie.",
+            "Gardez référence, date, montant, devise et statut. Ne partagez ni numéro complet de carte, ni cryptogramme, ni code à usage unique. Recadrez les captures destinées au support et masquez les autres opérations. Confirmez enfin que le montant autorisé est bien celui du récapitulatif."
+          ]
+        },
+        {
+          "heading": "Paiement refusé sans débit apparent",
+          "paragraphs": [
+            "Lisez l’erreur : authentification inachevée, coordonnées de facturation, plafond ou restriction signalée par la banque sont des points à vérifier, pas un diagnostic certain. Suivez les instructions du prestataire et contactez l’émetteur si le refus vient de lui.",
+            "Avant de recommencer, actualisez l’historique. Si les deux systèmes confirment l’échec sans opération en attente, envisagez une tentative corrigée. Si un statut reste incertain, clarifiez-le d’abord. Changer immédiatement de moyen peut créer deux dossiers à rapprocher."
+          ]
+        },
+        {
+          "heading": "Débit bancaire et commande toujours impayée",
+          "paragraphs": [
+            "Vérifiez si l’écriture bancaire est en attente ou définitive et si la plateforme possède une référence. Une autorisation en attente n’est pas automatiquement un double débit confirmé. Inversement, une commande impayée ne prouve pas que la banque n’a rien enregistré.",
+            "Adressez au support officiel numéro de commande, référence, montant, devise, heure et statuts exacts. Demandez si le paiement est reçu, encore traité, ou à renouveler. Exemple : « La commande X reste impayée ; la référence Y affiche ce statut depuis cette heure. Dois-je attendre ou réessayer ? »"
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Contact officiel USFans"
+            }
+          ]
+        },
+        {
+          "heading": "Le transport international vient après le contrôle QC",
+          "paragraphs": [
+            "Après réception en entrepôt, examinez les photos et réglez les retours avant de constituer le colis. Vérifiez ensuite adresse, code postal, ligne admissible, dimensions, services et devis. Une ligne pour l’Espagne continentale ne garantit pas la desserte des Canaries.",
+            "Séparez budget produit et budget transport. Exemple fictif : 40 € d’articles plus 4 € de livraison intérieure donnent 44 € avant les autres postes. Ce n’est pas le prix rendu en Espagne. Ajoutez le devis international et les frais applicables lorsqu’ils sont connus ; ces chiffres ne sont pas des tarifs USFans."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Frais USFans : calculer le coût total avant d’acheter"
+            },
+            {
+              "url": "/articles/shipping-cost-guide/",
+              "label": "Livraison vers l’Espagne et les îles"
+            }
+          ]
+        },
+        {
+          "heading": "Conservez un historique jusqu’à la résolution",
+          "paragraphs": [
+            "Une fois l’incident réglé, rapprochez statut final, reçu du prestataire et mouvements de solde. Conservez la réponse du support. Si un remboursement débute, créez un suivi relié au paiement initial plutôt que de supprimer l’ancienne opération.",
+            "Moyens de paiement et étapes officielles vérifiés le 4 novembre 2026. Options, frais et libellés peuvent évoluer. Ces contrôles sont des conseils éditoriaux indépendants ; les conditions de votre transaction restent à vérifier dans la plateforme."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Guide officiel pour débuter"
+            },
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Aide officielle : compte et paiement"
+            },
+            {
+              "url": "/articles/usfans-cupones-descuento/",
+              "label": "Coupons USFans : appliquer une remise et comprendre un refus"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Identifiez l’étape, vérifiez moyen et total, conservez la référence et clarifiez un débit incertain avant de recommencer. Contrôlez le QC avant le paiement du transport international."
+    }
+  },
+  {
+    "slug": "usfans-reembolsos-retirar-saldo",
+    "card": [
+      "Remboursements",
+      "Remboursements USFans et retrait du solde : les vérifications",
+      "Distinguez retour d’article, ajustement de transport et retrait du solde. Identifiez la destination de l’argent et préparez votre demande.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Un retour accepté, un crédit au solde USFans et une somme reçue à la banque sont trois événements distincts. Les confondre peut masquer une étape manquante. Ce guide aide à suivre les montants, comprendre les déductions et poser une question précise. Aucun délai universel ni retrait automatique n’est promis : ils doivent être confirmés pour votre opération.",
+      "sections": [
+        {
+          "heading": "Identifiez la nature du remboursement",
+          "paragraphs": [
+            "S’agit-il d’une annulation avant achat, d’un retour après QC, d’un ajustement du transport ou d’un retrait de fonds inutilisés ? Chaque cas possède son propre dossier. L’accord du vendeur ne prouve pas qu’un remboursement bancaire a été lancé.",
+            "Reliez les références : commande pour l’article, colis pour le transport, demande pour le retrait. « Créditer le remboursement approuvé » et « retirer le solde vers le moyen initial » désignent des résultats différents. Nommez celui que vous attendez."
+          ]
+        },
+        {
+          "heading": "Suivez les étapes séparément",
+          "paragraphs": [
+            "Distinguez demande, décision, mouvement enregistré et réception à destination. Relevez les libellés exacts de votre interface. Si la commande indique « remboursé », consultez solde et historique des paiements ; demandez destination et référence si elles sont absentes.",
+            "Pour un retrait, confirmez la nécessité d’une demande distincte, l’éligibilité des fonds et l’opération d’origine. N’imaginez pas qu’une carte différente ou le compte d’un proche peut les recevoir. Ce site ne peut consulter le solde ni changer le destinataire."
+          ]
+        },
+        {
+          "heading": "Le retour en entrepôt reste une démarche distincte",
+          "paragraphs": [
+            "Documentez taille, couleur ou défaut pendant que l’article est encore en entrepôt. Comparez la variante commandée aux photos et décrivez la différence. Gardez l’article hors du colis international pendant la décision. Une question sur l’argent ne remplace pas une demande de retour nécessaire.",
+            "Demandez les conditions et frais avant d’accepter. Prix du produit, port intérieur, services et frais de paiement ne sont pas automatiquement remboursables ensemble. Faites détailler les postes inclus et les éventuelles déductions restantes."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-devoluciones-almacen/",
+              "label": "Retours depuis l’entrepôt USFans : démarches et conditions"
+            },
+            {
+              "url": "/articles/qc-photos-guide/",
+              "label": "Photos QC : contrôles avant l’envoi"
+            }
+          ]
+        },
+        {
+          "heading": "Séparez ajustement de port et remboursement d’article",
+          "paragraphs": [
+            "L’aide officielle distingue poids de facturation estimé et réel. Comparez donc l’ajustement avec le dépôt et le calcul final du colis : montant initial, poids ou dimensions, ligne et mouvement enregistré. Retirer un emballage ne prouve pas un remboursement précis.",
+            "Exemple fictif : dépôt de 60 €, coût final confirmé de 54 €, soit 6 € d’écart avant d’autres ajustements éventuels. Cette soustraction ne fixe ni délai ni destination. Si le coût final dépasse le dépôt, demandez le calcul du complément."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/help/HCON_STATIC_053",
+              "label": "Aide officielle : poids facturable"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans rehearsal : emballage et poids volumétrique"
+            }
+          ]
+        },
+        {
+          "heading": "Vérifiez le retrait avant de l’envoyer",
+          "paragraphs": [
+            "Contrôlez montant disponible, devise, destination admise, frais annoncés et possibilité de correction. Si le moyen d’origine n’est plus utilisable, expliquez-le au support avant d’en proposer un autre. Évitez les intermédiaires promettant de retirer les fonds à votre place.",
+            "Notez séparément montant demandé et montant attendu. Des frais ou une conversion applicables doivent expliquer toute différence. Gardez confirmation et référence ; ne multipliez pas les demandes sur les mêmes fonds parce que la banque n’affiche pas encore d’entrée."
+          ]
+        },
+        {
+          "heading": "Pourquoi un délai unique n’est pas fiable",
+          "paragraphs": [
+            "Un délai peut couvrir accord du vendeur, crédit du solde, examen du retrait, envoi au prestataire ou traitement bancaire. Demandez quelle étape il concerne, son point de départ, l’usage de jours ouvrés et les pièces éventuellement manquantes.",
+            "Si le délai confirmé est dépassé, répondez avec la référence et la date de début. Demandez statut et prochaine mise à jour. Si la banque ne retrouve rien, demandez la référence de remboursement propre au prestataire pour permettre le suivi."
+          ]
+        },
+        {
+          "heading": "Préparez une demande exploitable",
+          "paragraphs": [
+            "Exemple : « La commande A a reçu un accord de remboursement à cette date. Le solde montre ce crédit, mais le retrait B reste dans cet état. Merci de confirmer destination, référence et prochaine étape. » Si le crédit n’existe pas, précisez-le.",
+            "Joignez reçu, historique recadré et dernier statut. Masquez données complètes de carte, codes et opérations sans rapport. Conservez la réponse. Pour un problème bancaire, contactez le canal officiel du prestataire avec sa référence, pas uniquement le numéro de commande."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Contact officiel USFans"
+            }
+          ]
+        },
+        {
+          "heading": "Rapprochez les montants pour clore le dossier",
+          "paragraphs": [
+            "Comparez paiement initial, remboursement approuvé, déductions, crédits et retrait reçu. Un article de 30 € et un port distinct de 4 € ne prouvent pas que 34 € sont dus. Un crédit de 30 € puis son retrait constituent le même argent, pas deux remboursements.",
+            "Références officielles vérifiées le 4 novembre 2026. Ce guide propose une méthode de suivi, sans remplacer les conditions de la commande. Séparer article, services et transport dès le départ simplifie la vérification ultérieure."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Aide officielle : compte et paiement"
+            },
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Comment payer sur USFans : moyens, solde et paiements refusés"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Frais USFans : calculer le coût total avant d’acheter"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Suivez accord, crédit au solde, retrait et réception séparément. Vérifiez montant et destination et utilisez le délai confirmé pour votre opération."
+    }
+  },
+  {
+    "slug": "usfans-cupones-descuento",
+    "card": [
+      "Coupons",
+      "Coupons USFans : appliquer une remise et comprendre un refus",
+      "Vérifiez expiration, minimum, ligne admissible et déduction finale. Comparez les vrais totaux sans dépendre d’un code non vérifié.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Un coupon utile s’applique à votre paiement et réduit une dépense que vous envisagiez déjà. Une vidéo ou la capture d’un autre compte ne prouve pas votre éligibilité. Ce guide explique comment vérifier les conditions et le total avant de payer. Il ne publie pas de code universel et ne promet aucun pourcentage fixe.",
+      "sections": [
+        {
+          "heading": "Distinguez les types de promotion",
+          "paragraphs": [
+            "L’offre vise-t-elle produit, transport international, service ou inscription ? Ces usages diffèrent. Une réduction de transport ne diminue pas forcément le prix de l’article. Fiez-vous au texte de votre compte ou de la campagne officielle.",
+            "La valeur cumulée de plusieurs coupons n’est pas la remise disponible sur un seul paiement. Chaque offre peut avoir son minimum, son périmètre et son expiration. Notez celle que vous utiliserez et vérifiez qu’elle sera encore pertinente lorsque le colis sera prêt."
+          ]
+        },
+        {
+          "heading": "Vérifiez les conditions avant le calcul",
+          "paragraphs": [
+            "Relevez avantage, étape, minimum, expiration, destination ou ligne et règles de cumul. Ce sont des points à contrôler, pas des règles identiques pour tous les coupons. Si une condition manque, demandez-la avant de compter sur la promotion.",
+            "Un pourcentage nécessite une base et, le cas échéant, un plafond. Vérifiez les frais ou services exclus. Une remise n’établit pas une exonération douanière : promotion commerciale et obligations d’importation restent des questions séparées."
+          ]
+        },
+        {
+          "heading": "Appliquez l’offre puis vérifiez le total",
+          "paragraphs": [
+            "Ouvrez les détails dans votre compte officiel. Utilisez le champ de code s’il existe, ou sélectionnez l’offre proposée. Les libellés évoluent ; aucun bouton précis n’est supposé universel. Un catalogue externe n’a pas à recevoir vos identifiants de paiement.",
+            "Comparez le récapitulatif avant et après. Vérifiez la déduction et le montant autorisé. S’il reste identique, ne payez pas en supposant qu’une remise invisible arrivera plus tard : demandez une explication ou acceptez consciemment le prix sans réduction."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Comment payer sur USFans : moyens, solde et paiements refusés"
+            }
+          ]
+        },
+        {
+          "heading": "Diagnostiquez un coupon indisponible",
+          "paragraphs": [
+            "Offre absente : examinez validité, compte et étape. Offre désactivée : comparez minimum et périmètre. Calcul inattendu : contrôlez base, plafond et exclusions. L’interface ou le support doit confirmer la véritable cause.",
+            "Gardez contenu, destination et ligne constants pendant la vérification. Pour le support, fournissez identifiant du coupon, conditions, commande ou colis et message d’erreur. Ne donnez jamais mot de passe ou code bancaire à un tiers pour l’activer."
+          ]
+        },
+        {
+          "heading": "Exemples de plafond et de minimum",
+          "paragraphs": [
+            "Exemple fictif : 10 % sur 50 € admissibles avec un plafond de 4 € enlève 4 €, et non 5 €. Il reste 46 €. Un service exclu de 6 € donne 52 € au total. Ce ne sont ni tarifs ni promotions USFans actuels.",
+            "Autre exemple : une remise de 5 € exige 60 €, contre un panier prévu de 52 €. Ajouter 8 € laisse 55 € après remise, soit 3 € de plus que prévu avant transport supplémentaire. Le coupon ne fait économiser que si cet achat additionnel vous est utile."
+          ]
+        },
+        {
+          "heading": "Comparez les lignes pour le même colis",
+          "paragraphs": [
+            "Conservez adresse, articles, emballage et mesures identiques. Comparez total payable, services nécessaires, suivi, restrictions, compensation et délai estimé. Un plus grand pourcentage peut laisser une ligne plus chère au final.",
+            "Pour les Canaries, utilisez l’adresse et le code postal réels ; ne transformez pas un devis continental avec une simple réduction. Une ligne non admissible n’est pas une option. Des mesures après préparation peuvent améliorer la comparaison, mais le devis actuel fait référence."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-canarias-envios/",
+              "label": "Livraison USFans aux Canaries : vérifications avant paiement"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans rehearsal : emballage et poids volumétrique"
+            }
+          ]
+        },
+        {
+          "heading": "Ne supposez pas qu’une annulation restitue le coupon",
+          "paragraphs": [
+            "Avant d’annuler ou modifier, demandez si l’offre sera rétablie et restera utilisable. Cela dépend des conditions et de l’état de l’opération. Vérifiez toujours l’expiration, même si le coupon réapparaît.",
+            "La valeur affichée d’un coupon n’est pas automatiquement un solde retirable. En cas de remboursement différent du prix initial, demandez comment la réduction a été répartie et quel montant réellement payé sera rendu. Distinguez remise et argent versé."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "Remboursements USFans et retrait du solde : les vérifications"
+            }
+          ]
+        },
+        {
+          "heading": "Vérifiez la promotion à la fin du choix",
+          "paragraphs": [
+            "Choisissez d’abord les articles nécessaires, tailles et variantes ; estimez le coût complet, puis testez l’offre. Ne bâclez pas le QC et ne choisissez pas une mauvaise ligne uniquement pour respecter une expiration. Gardez le reçu remisé.",
+            "Guide indépendant préparé le 4 novembre 2026 avec les références officielles ci-dessous. Il ne valide aucun code actif ni avantage propre à un compte. Consultez les termes réels et le support en cas d’ambiguïté ; une capture ne remplace pas les conditions applicables."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Aide officielle : compte et paiement"
+            },
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Guide officiel pour débuter"
+            },
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Contact officiel USFans"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "Frais USFans : calculer le coût total avant d’acheter"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Vérifiez périmètre et conditions, constatez la remise avant paiement et comparez les totaux complets. Le coupon doit améliorer un achat déjà adapté à vos besoins."
+    }
+  }
+]

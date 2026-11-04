@@ -52,3 +52,19 @@
 }
 
 @media(min-width:601px){.article-grid>a{min-height:270px;padding:25px}.article-grid h2{font-size:27px;line-height:1.2;margin:26px 0 14px}.article-grid p{font-size:14px;line-height:1.65}.article-grid strong{padding-top:20px}}
+
+/* November: clear next actions, readable mobile guides, full topic access. */
+.next-guides{padding:28px 5vw;background:#f2ede4;border-block:1px solid var(--line)}
+.next-guides h2,.category-advice h2{font-size:24px;line-height:1.25;margin:0 0 18px;letter-spacing:-.025em}
+.next-guides>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.next-guides a{display:flex;flex-direction:column;gap:9px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.next-guides strong{font-size:16px;line-height:1.4}.next-guides span{font-size:13px;line-height:1.6;color:#5f5a53}
+.category-advice{padding:32px 5vw;max-width:1100px}.category-advice p,.category-advice li{font-size:16px;line-height:1.75}.category-advice li{margin:12px 0}.category-advice ul{padding-left:21px}
+.button-link,.article-actions a{display:inline-block;border:1px solid var(--line);border-radius:30px;padding:13px 19px;font-weight:700;line-height:1.4;background:white}
+.guide-topics{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.topic-name{display:inline-block;font-weight:750;font-size:13px;padding:10px 14px;background:#e7e0ff;border-radius:24px}
+.guide-topics.expanded{padding:25px 5vw;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;background:#f2ede4}
+.guide-topics ul{padding-left:20px;scroll-margin-top:25px}.guide-topics li{font-size:14px;line-height:1.55;margin:12px 0}.guide-topics li a:hover{text-decoration:underline}
+.article-actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.article-actions a{font-size:14px}.article-related strong{font-size:16px;line-height:1.4}.article-related p{font-size:13px!important;line-height:1.6;color:#655f56}
+@media(min-width:901px){.topbar{grid-template-columns:150px 1fr auto;padding-inline:3vw}.nav{gap:15px}.nav>a{font-size:11px}.top-actions>a{padding:12px;font-size:10px}}
+@media(min-width:901px) and (max-width:1180px){.top-actions>a{display:none}.nav{gap:10px}.topbar{grid-template-columns:135px 1fr auto;padding-inline:20px}}
+@media(max-width:600px){.next-guides{padding:22px 14px}.next-guides>div{grid-template-columns:1fr;gap:8px}.next-guides a{padding:14px}.next-guides h2,.category-advice h2{font-size:22px}.category-advice{padding:25px 14px}.category-advice p,.category-advice li{font-size:14px;line-height:1.7}.guide-topics.expanded{padding:22px 14px;grid-template-columns:1fr;gap:8px}.guide-topics li{font-size:14px}.page-hero p{font-size:14px;line-height:1.65}.category-cards p{font-size:12px}.article-actions a{font-size:13px;padding:11px 14px}.article-body p,.article-body li{font-size:15px;line-height:1.8}.article-heading h1{font-size:clamp(32px,9vw,46px);line-height:1.08;overflow-wrap:anywhere}.nav a{min-height:30px;display:flex;align-items:center}}

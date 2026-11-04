@@ -50,3 +50,5 @@ for (const [lang, prefix] of Object.entries(languages)) {
   console.log(`${lang}: ${links.size} complete articles`);
 }
 console.log(`Verified ${articlesChecked} article pages and ${switchesChecked} same-article language switches.`);
+
+await import("./verify-release.mjs");

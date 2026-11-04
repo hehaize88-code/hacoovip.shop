@@ -1,0 +1,331 @@
+[
+  {
+    "slug": "usfans-metodos-pago",
+    "card": [
+      "Zahlung",
+      "Bei USFans bezahlen: Methoden, Guthaben und abgelehnte Zahlungen",
+      "Verfügbare Zahlungsarten prüfen, Artikel und Versand trennen und unklare Belastungen vor einem neuen Versuch klären.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Vor einer USFans-Zahlung helfen drei Fragen: Wofür zahle ich, welche Methode bietet mein Konto an und war der vorige Versuch erfolgreich? Dieser Leitfaden begleitet Artikelkauf, Guthaben und späteren Versand nach Spanien. Er zeigt auch, welche Belege bei widersprüchlichen Bank- und Bestellanzeigen nützlich sind. Diese unabhängige Website nimmt keine Zahlungen an und hat keinen Zugriff auf dein Konto.",
+      "sections": [
+        {
+          "heading": "Zuerst den Zweck der Zahlung feststellen",
+          "paragraphs": [
+            "Der offizielle Leitfaden trennt Artikel samt chinesischem Inlandsversand von der späteren Anzahlung für internationalen Versand. Ein bezahlter Artikel bedeutet deshalb nicht, dass die Zustellung nach Spanien bezahlt ist. Prüfe, ob du eine Bestellung, Guthabenaufladung, Nachzahlung oder ein Paket bezahlst.",
+            "Notiere Bestellnummer, Variante, Menge, Betrag, Währung und ausgewiesene Kosten. Bei einer Nachzahlung nach dem geänderten Posten fragen. Vergleiche die Aufschlüsselung mit dem alten Beleg, statt aus zwei unterschiedlichen Summen sofort eine Doppelzahlung abzuleiten."
+          ]
+        },
+        {
+          "heading": "PayPal, Karte und Google Pay im eigenen Konto prüfen",
+          "paragraphs": [
+            "Der öffentliche Einsteigerleitfaden nennt PayPal, Karten und Google Pay. Das garantiert keine Verfügbarkeit für jedes Konto, Land, jede Währung oder Zahlungsphase. Maßgeblich sind die aktuellen Optionen auf deiner Zahlungsseite. Überweise nichts an Privatpersonen, die eine Methode freischalten wollen.",
+            "Vergleiche den zu bestätigenden Betrag, Währung, ausgewiesene Zahlungsgebühren und Umrechnung. Ein Produktpreis erklärt nicht automatisch die endgültige Belastung. Bewahre sowohl den Beleg des Zahlungsdienstleisters als auch die Bestellbestätigung auf."
+          ]
+        },
+        {
+          "heading": "Guthaben aufladen und bestellen sind getrennte Vorgänge",
+          "paragraphs": [
+            "Wenn dein Konto Guthaben anbietet, prüfe, ob du Geld einzahlst oder es einer Bestellung zuordnest. Eine erfolgreiche Aufladung kann eine Bestellung unbezahlt lassen. Ebenso kann eine Erstattung im Guthaben erscheinen, ohne dass die Bank einen Eingang zeigt.",
+            "Vor größeren Aufladungen Varianten, Versandmöglichkeit und aktuelle Auszahlungsbedingungen prüfen. Plane die benötigten Artikel und notiere den Kontostand vor und nach dem Vorgang. So lässt sich später nachvollziehen, wofür das Geld verwendet wurde."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "USFans-Erstattung und Guthaben auszahlen: was zu prüfen ist"
+            }
+          ]
+        },
+        {
+          "heading": "Kontrollliste vor der Bestätigung",
+          "paragraphs": [
+            "Produkt, Größe, Farbe und Menge mit dem gespeicherten Angebot abgleichen. Optionale Leistungen und angeforderte Empfängerdaten prüfen. Ein Gutschein muss einen zulässigen, sichtbaren Abzug bewirken; ein Werbebanner belegt keinen Rabatt auf deine Bestellung.",
+            "Referenz, Datum, Betrag, Währung und Status sichern. Keine vollständigen Kartennummern, Prüfziffern oder Einmalcodes weitergeben. Screenshots für den Support zuschneiden und fremde Vorgänge ausblenden. Der bestätigte Betrag muss zum letzten Bestellüberblick passen."
+          ]
+        },
+        {
+          "heading": "Abgelehnt, aber keine Belastung erkennbar",
+          "paragraphs": [
+            "Die Fehlermeldung lesen. Unvollständige Authentifizierung, Rechnungsdaten, Kartenlimit oder eine Bankbeschränkung sind mögliche Prüfpunkte, keine sichere Diagnose. Anweisungen des Dienstleisters befolgen und bei einer bankseitigen Ablehnung den Kartenherausgeber fragen.",
+            "Vor einem neuen Versuch Bestell- und Zahlungshistorie aktualisieren. Bestätigen beide Seiten einen Fehler ohne offenen Vorgang, kann ein korrigierter Versuch sinnvoll sein. Bei unklarem Status zuerst nachfragen. Ein sofortiger Methodenwechsel kann zwei getrennte Vorgänge erzeugen."
+          ]
+        },
+        {
+          "heading": "Bankbelastung trotz unbezahlter Bestellung",
+          "paragraphs": [
+            "Prüfe, ob der Bankeintrag vorgemerkt oder endgültig ist und ob die Plattform eine Zahlungsreferenz hat. Eine Vormerkung ist nicht automatisch eine endgültige Doppelbelastung. Eine unbezahlte Bestellung beweist umgekehrt nicht, dass die Bank nichts erfasst hat.",
+            "Dem offiziellen Support Bestellnummer, Referenz, Betrag, Währung, Uhrzeit und genaue Zustände nennen. Frage, ob die Zahlung einging, noch verarbeitet wird oder wiederholt werden soll. Beispiel: „Bestellung X ist unbezahlt; Referenz Y zeigt seit dieser Uhrzeit diesen Status. Soll ich warten oder erneut versuchen?“"
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Offizieller USFans-Kontakt"
+            }
+          ]
+        },
+        {
+          "heading": "Internationalen Versand erst nach QC bezahlen",
+          "paragraphs": [
+            "Nach Lagereingang Fotos prüfen und Rückgaben klären, bevor das Paket zusammengestellt wird. Danach Adresse, Postleitzahl, zulässige Linie, Maße, Leistungen und Angebot kontrollieren. Eine Festlandroute bedient nicht automatisch die Kanaren.",
+            "Artikel- und Versandbudget trennen. Fiktives Beispiel: 40 € Artikel plus 4 € Inlandsversand ergeben 44 € vor weiteren Kosten. Das ist kein Gesamtpreis bis Spanien. Erst das tatsächliche internationale Angebot und anwendbare Zusatzkosten ergänzen; die Zahlen sind keine USFans-Tarife."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "USFans Gebühren: Gesamtkosten vor dem Kauf berechnen"
+            },
+            {
+              "url": "/articles/shipping-cost-guide/",
+              "label": "Versand nach Spanien und auf die Inseln"
+            }
+          ]
+        },
+        {
+          "heading": "Den Vorgang bis zur Klärung dokumentieren",
+          "paragraphs": [
+            "Am Ende Bestellstatus, Zahlungsbeleg und Guthabenbewegungen abgleichen. Die Supportantwort beim ursprünglichen Beleg aufbewahren. Beginnt eine Erstattung, einen verknüpften Datensatz anlegen und den ursprünglichen Zahlungsvorgang behalten.",
+            "Offizielle Zahlungsarten und Abläufe wurden am 4. November 2026 geprüft. Optionen, Gebühren und Bezeichnungen können sich ändern. Die Checklisten sind unabhängige redaktionelle Hilfen; für die eigene Zahlung gelten die dort angezeigten Bedingungen."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Offizieller Einsteigerleitfaden"
+            },
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Offizielle Hilfe zu Konto und Zahlung"
+            },
+            {
+              "url": "/articles/usfans-cupones-descuento/",
+              "label": "USFans-Gutscheine: Rabatt anwenden und Fehler prüfen"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Zahlungsphase bestimmen, Methode und Endbetrag prüfen, Referenz sichern und unklare Belastungen vor Wiederholung klären. Vor internationalem Versand zuerst QC kontrollieren."
+    }
+  },
+  {
+    "slug": "usfans-reembolsos-retirar-saldo",
+    "card": [
+      "Erstattungen",
+      "USFans-Erstattung und Guthaben auszahlen: was zu prüfen ist",
+      "Artikelrückgabe, Versandkorrektur und Auszahlung unterscheiden. Geldziel verfolgen und eine nachvollziehbare Supportanfrage vorbereiten.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Eine genehmigte Rückgabe, eine USFans-Guthabengutschrift und ein Bankeingang sind verschiedene Ereignisse. Werden sie verwechselt, bleibt eine offene Stufe leicht unbemerkt. Dieser Leitfaden hilft, Beträge und Abzüge zu verfolgen und gezielt nachzufragen. Er verspricht weder eine allgemeine Erstattungsfrist noch eine automatische Auszahlung; beides muss für den konkreten Vorgang geklärt werden.",
+      "sections": [
+        {
+          "heading": "Die Art der Erstattung bestimmen",
+          "paragraphs": [
+            "Geht es um eine Stornierung vor dem Kauf, eine Rückgabe nach QC, eine Versandabrechnung oder ungenutztes Guthaben? Jeder Fall gehört zu einem anderen Nachweis. Die Zustimmung des Verkäufers beweist keine bereits ausgelöste Bankerstattung.",
+            "Verknüpfe Artikelbestellung, Paketnummer und gegebenenfalls Auszahlungsreferenz. „Genehmigten Betrag gutschreiben“ und „Guthaben auf das ursprüngliche Zahlungsmittel auszahlen“ sind verschiedene Anliegen. Benenne das erwartete Ergebnis ausdrücklich."
+          ]
+        },
+        {
+          "heading": "Die Geldbewegung in Stufen verfolgen",
+          "paragraphs": [
+            "Antrag, Entscheidung, gebuchte Bewegung und Eingang am Ziel getrennt prüfen. Die genauen Kontobezeichnungen notieren. Bei „erstattet“ sowohl Guthaben als auch Zahlungshistorie ansehen; fehlen Ziel oder Referenz, danach fragen.",
+            "Für Auszahlungen klären, ob ein eigener Antrag nötig ist, welche Mittel berechtigt sind und auf welche ursprüngliche Zahlung sie sich beziehen. Nicht voraussetzen, dass eine fremde Karte oder ein anderes Konto zulässig ist. Diese Website kann das Ziel nicht ändern."
+          ]
+        },
+        {
+          "heading": "Rückgaben im Lager haben einen eigenen Ablauf",
+          "paragraphs": [
+            "Falsche Größe, Farbe oder sichtbaren Fehler im Lager dokumentieren. Bestellte Variante und QC-Bilder vergleichen und die konkrete Abweichung benennen. Den Artikel während der Entscheidung nicht ins internationale Paket aufnehmen. Eine Geldanfrage ersetzt keinen erforderlichen Rückgabeantrag.",
+            "Bedingungen und Kosten vor Zustimmung erfragen. Artikelpreis, Inlandsporto, Leistungen und Zahlungsgebühren sind nicht automatisch gemeinsam erstattbar. Enthaltene Posten und noch mögliche Abzüge schriftlich aufschlüsseln lassen."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-devoluciones-almacen/",
+              "label": "USFans Rücksendung aus dem Lager: Ablauf und Bedingungen"
+            },
+            {
+              "url": "/articles/qc-photos-guide/",
+              "label": "QC-Fotos vor dem Versand prüfen"
+            }
+          ]
+        },
+        {
+          "heading": "Versandkorrektur von Artikelerstattung trennen",
+          "paragraphs": [
+            "Die offizielle Abrechnungshilfe unterscheidet geschätztes und tatsächliches Abrechnungsgewicht. Einen Versandausgleich daher mit Anzahlung und Endabrechnung vergleichen: Ausgangsbetrag, Gewicht oder Maße, Linie und gebuchte Korrektur. Entfernte Verpackung beweist keinen bestimmten Rückzahlungsbetrag.",
+            "Fiktives Beispiel: 60 € Anzahlung und bestätigte 54 € Endkosten ergeben 6 € Differenz vor weiteren möglichen Anpassungen. Die Rechnung bestimmt weder Zeitpunkt noch Ziel. Liegen die Endkosten höher, die Berechnung der Nachzahlung anfordern."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/help/HCON_STATIC_053",
+              "label": "Offizielle Hilfe zum Abrechnungsgewicht"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans Rehearsal: Probepacken und Volumengewicht berechnen"
+            }
+          ]
+        },
+        {
+          "heading": "Auszahlung vor dem Absenden kontrollieren",
+          "paragraphs": [
+            "Verfügbaren Betrag, Währung, zulässiges Ziel, ausgewiesene Gebühren und Korrekturmöglichkeiten prüfen. Ist das alte Zahlungsmittel abgelaufen oder nicht nutzbar, den Support vor Angabe einer Alternative informieren. Keine fremden Vermittler mit der Auszahlung beauftragen.",
+            "Beantragten und erwarteten Empfangsbetrag getrennt notieren. Anwendbare Gebühren oder Umrechnung müssen Unterschiede erklären. Bestätigung und Referenz sichern; denselben Betrag nicht wiederholt beantragen, nur weil noch kein Bankeingang sichtbar ist."
+          ]
+        },
+        {
+          "heading": "Warum eine allgemeine Frist wenig aussagt",
+          "paragraphs": [
+            "Eine Frist kann Verkäuferfreigabe, Gutschrift, Auszahlungsprüfung, Übergabe an den Zahlungsdienst oder Bankbearbeitung betreffen. Frage nach Stufe, Beginn, Werktagen und fehlenden Unterlagen. Sonst werden unterschiedliche Wartezeiten fälschlich verglichen.",
+            "Nach Ablauf der bestätigten Frist mit Referenz und Startdatum nachfassen. Aktuellen Status und nächste Rückmeldung erfragen. Findet die Bank nichts, die für den Zahlungsdienst relevante Erstattungsreferenz zur Nachverfolgung anfordern."
+          ]
+        },
+        {
+          "heading": "Eine prüfbare Supportanfrage schreiben",
+          "paragraphs": [
+            "Beispiel: „Für Bestellung A wurde an diesem Datum dieser Betrag genehmigt. Die Gutschrift erscheint im Guthaben, Auszahlung B bleibt in diesem Status. Bitte Ziel, Referenz und nächsten Schritt bestätigen.“ Fehlt schon die Gutschrift, genau das erwähnen.",
+            "Beleg, zugeschnittene Historie und letzten Status beifügen. Vollständige Kartendaten, Codes und fremde Transaktionen ausblenden. Antwort aufbewahren. Bei bankseitigen Fragen den offiziellen Dienstleister mit dessen Referenz kontaktieren, nicht nur mit der Bestellnummer."
+          ],
+          "links": [
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Offizieller USFans-Kontakt"
+            }
+          ]
+        },
+        {
+          "heading": "Zum Abschluss die Beträge abstimmen",
+          "paragraphs": [
+            "Ursprungszahlung, genehmigte Erstattung, Abzüge, Guthaben und empfangene Auszahlung vergleichen. 30 € Artikel plus separate 4 € Porto bedeuten nicht automatisch 34 € Anspruch. Eine 30-€-Gutschrift und deren spätere Auszahlung sind dasselbe Geld, keine zwei Erstattungen.",
+            "Offizielle Hilfen wurden am 4. November 2026 geprüft. Dies ist eine Dokumentationshilfe und kein Ersatz für die Bestellbedingungen. Wer Artikel, Leistungen und Versand von Anfang an trennt, kann spätere Bewegungen leichter nachvollziehen."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Offizielle Hilfe zu Konto und Zahlung"
+            },
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Bei USFans bezahlen: Methoden, Guthaben und abgelehnte Zahlungen"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "USFans Gebühren: Gesamtkosten vor dem Kauf berechnen"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Freigabe, Guthabengutschrift, Auszahlung und Eingang einzeln verfolgen. Betrag und Ziel prüfen und die für den eigenen Vorgang bestätigte Frist verwenden."
+    }
+  },
+  {
+    "slug": "usfans-cupones-descuento",
+    "card": [
+      "Gutscheine",
+      "USFans-Gutscheine: Rabatt anwenden und Fehler prüfen",
+      "Ablaufdatum, Mindestbetrag, Versandlinie und tatsächlichen Abzug prüfen. Endpreise vergleichen, ohne ungeprüfte Codes vorauszusetzen.",
+      "7 min"
+    ],
+    "content": {
+      "standfirst": "Ein nützlicher Gutschein passt zur eigenen Zahlung und senkt eine ohnehin geplante Ausgabe. Ein Video oder Screenshot eines anderen Kontos beweist keine Berechtigung. Dieser Leitfaden erklärt Bedingungen und Preisvergleich vor der Zahlung. Er veröffentlicht keinen angeblich universellen Code und verspricht keinen festen Rabatt.",
+      "sections": [
+        {
+          "heading": "Zuerst die Aktion einordnen",
+          "paragraphs": [
+            "Gilt das Angebot für Artikel, internationalen Versand, eine Leistung oder Registrierung? Diese Zwecke unterscheiden sich. Ein Versandrabatt senkt nicht automatisch den Produktpreis. Maßgeblich ist der Text im eigenen Konto oder der offiziellen Aktion.",
+            "Der Gesamtwert mehrerer Gutscheine entspricht nicht dem Abzug bei einer einzelnen Zahlung. Mindestbetrag, Geltungsbereich und Ablauf können unterschiedlich sein. Notiere das konkrete Angebot und prüfe, ob es zur geplanten Paketfertigstellung passt."
+          ]
+        },
+        {
+          "heading": "Bedingungen vor dem Sparbetrag prüfen",
+          "paragraphs": [
+            "Vorteil, Zahlungsphase, Mindestbetrag, Ablauf, Ziel oder Linie und Kombinierbarkeit notieren. Das sind Prüffragen, keine universellen USFans-Regeln. Fehlende Angaben vor einem davon abhängigen Kauf klären.",
+            "Ein Prozentsatz braucht eine Berechnungsgrundlage und gegebenenfalls einen Höchstbetrag. Ausgeschlossene Leistungen oder Kosten beachten. Eine Werbeaktion beweist keine Zollbefreiung; Rabatt und Einfuhrbehandlung sind getrennte Fragen."
+          ]
+        },
+        {
+          "heading": "Angebot anwenden und Endsumme kontrollieren",
+          "paragraphs": [
+            "Details im offiziellen Konto öffnen. Ein vorhandenes Codefeld verwenden oder ein angebotenes Guthaben beziehungsweise einen Gutschein auswählen, wie es die Oberfläche vorsieht. Beschriftungen können wechseln. Zahlungsdaten gehören nicht in einen externen Produktkatalog.",
+            "Vorher- und Nachherbetrag vergleichen. Abzug und endgültige Autorisierung prüfen. Bleibt der Gesamtpreis unverändert, nicht auf einen späteren unsichtbaren Rabatt vertrauen. Nachfragen oder nur dann fortfahren, wenn der Preis ohne Rabatt akzeptabel ist."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-metodos-pago/",
+              "label": "Bei USFans bezahlen: Methoden, Guthaben und abgelehnte Zahlungen"
+            }
+          ]
+        },
+        {
+          "heading": "Nicht verfügbare Gutscheine eingrenzen",
+          "paragraphs": [
+            "Fehlt das Angebot, Gültigkeit, Konto und Zahlungsphase prüfen. Ist es gesperrt, Mindestbetrag und Geltungsbereich vergleichen. Bei unerwarteter Summe Grundlage, Deckelung und Ausschlüsse prüfen. Den tatsächlichen Grund muss Anzeige oder Support bestätigen.",
+            "Inhalt, Ziel und Linie während der Prüfung gleich lassen. Für Support Gutscheinkennung, Bedingungen, Bestellung oder Paket und Fehlermeldung angeben. Kein Passwort und keinen Bankcode an Dritte zur angeblichen Freischaltung geben."
+          ]
+        },
+        {
+          "heading": "Rechenbeispiele für Deckel und Mindestbetrag",
+          "paragraphs": [
+            "Fiktiv: 10 % auf berechtigte 50 € mit 4 € Höchstrabatt ergeben 4 € Abzug statt 5 €. Es bleiben 46 €. Mit einer ausgeschlossenen 6-€-Leistung sind 52 € zu zahlen. Das sind keine aktuellen USFans-Preise oder Aktionen.",
+            "Weiteres Beispiel: 5 € Rabatt ab 60 €, geplanter Einkauf aber 52 €. Ein zusätzlicher 8-€-Artikel führt nach Rabatt zu 55 €, also 3 € mehr als geplant, vor Zusatzversand. Entscheidend ist, ob du den zusätzlichen Artikel tatsächlich brauchst."
+          ]
+        },
+        {
+          "heading": "Versandlinien für dasselbe Paket vergleichen",
+          "paragraphs": [
+            "Adresse, Artikel, Verpackung und Maße konstant halten. Endsumme, benötigte Leistungen, Tracking, Einschränkungen, Entschädigungsbedingungen und geschätzte Laufzeit vergleichen. Ein größerer Prozentsatz kann trotzdem einen höheren Endpreis hinterlassen.",
+            "Für die Kanaren die echte Inseladresse und Postleitzahl eingeben. Ein Festlandangebot wird nicht durch Prozentrechnung passend. Eine unzulässige Linie ist keine Alternative. Verpackungsmaße können den Vergleich verbessern; maßgeblich bleibt das aktuelle Angebot."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-canarias-envios/",
+              "label": "USFans Versand auf die Kanaren: Voraussetzungen prüfen"
+            },
+            {
+              "url": "/articles/usfans-rehearsal-peso-volumetrico/",
+              "label": "USFans Rehearsal: Probepacken und Volumengewicht berechnen"
+            }
+          ]
+        },
+        {
+          "heading": "Gutscheinrückgabe bei Storno nicht voraussetzen",
+          "paragraphs": [
+            "Vor Stornierung oder Paketänderung klären, ob die Aktion zurückkehrt und weiter verwendbar ist. Das hängt von Bedingungen und Vorgangsstatus ab. Selbst bei erneutem Erscheinen das Ablaufdatum prüfen.",
+            "Ein Gutscheinwert ist nicht automatisch auszahlbares Geld. Bei abweichender Erstattung fragen, wie der Rabatt verteilt wurde und welcher tatsächlich gezahlte Betrag zurückkommt. Rabatt, Zahlung und Guthaben getrennt erfassen."
+          ],
+          "links": [
+            {
+              "url": "/articles/usfans-reembolsos-retirar-saldo/",
+              "label": "USFans-Erstattung und Guthaben auszahlen: was zu prüfen ist"
+            }
+          ]
+        },
+        {
+          "heading": "Den Rabatt zuletzt prüfen",
+          "paragraphs": [
+            "Zuerst benötigte Produkte, Größen und Varianten wählen, dann Gesamtkosten schätzen und das Angebot testen. QC nicht überstürzen und keine ungeeignete Linie nur wegen eines Ablaufdatums wählen. Den bestätigten Rabattbeleg aufbewahren.",
+            "Unabhängiger Leitfaden vom 4. November 2026 mit den unten verlinkten offiziellen Grundlagen. Er bestätigt keine aktiven Codes oder kontospezifischen Vorteile. Unklare Bedingungen im eigenen Konto oder beim Support prüfen; Screenshots ersetzen die geltenden Regeln nicht."
+          ],
+          "links": [
+            {
+              "url": "https://usfans.com/help/category/all",
+              "label": "Offizielle Hilfe zu Konto und Zahlung"
+            },
+            {
+              "url": "https://usfans.com/beginner-guide",
+              "label": "Offizieller Einsteigerleitfaden"
+            },
+            {
+              "url": "https://www.usfans.com/about?key=2",
+              "label": "Offizieller USFans-Kontakt"
+            },
+            {
+              "url": "/articles/usfans-comisiones-coste-total/",
+              "label": "USFans Gebühren: Gesamtkosten vor dem Kauf berechnen"
+            }
+          ]
+        }
+      ],
+      "takeaway": "Geltungsbereich und Bedingungen prüfen, den sichtbaren Abzug vor Zahlung bestätigen und vollständige Endpreise vergleichen. Ein Gutschein soll einen passenden Kauf verbessern."
+    }
+  }
+]

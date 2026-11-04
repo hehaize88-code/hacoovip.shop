@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { languageOptions, Lang } from "../i18n";
 import { useLanguage } from "./LanguageProvider";
+import { novemberCopy } from "../novemberCopy";
 import { catalogBase } from "../data";
 
 const routes = ["/discover/", "/categories/", "/how-it-works/", "/articles/", "/faq/"];
@@ -18,6 +19,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       </a>
       <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
         {d.nav.map((label, index) => <a key={routes[index]} href={withLang(routes[index])} onClick={() => setMenuOpen(false)}>{label}</a>)}
+        {novemberCopy[lang].nav.map((label, index) => <a key={label} href={withLang(`/articles/${index === 0 ? "qc-photos-guide" : "shipping-cost-guide"}/`)}>{label}</a>)}
         <label className="mobile-language">
           <span>{d.language}</span>
           <select value={lang} onChange={(event) => setLang(event.target.value as Lang)}>

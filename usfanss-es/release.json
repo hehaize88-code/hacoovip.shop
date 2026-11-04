@@ -1,19 +1,9 @@
 {
   "site": "https://usfanss.es",
-  "release": "multilingual-15-2026-10-07",
-  "source_commit": "ddf4356046ce106bf5eec84751fdeb9f0c197f10",
-  "verified_export_commit": "585574a8d4dfdfa4df95bad3c21d21230180a811",
-  "sitemap_pages": 168,
-  "articles_per_language": {
-    "es": 15,
-    "en": 15,
-    "fr": 15,
-    "de": 15,
-    "it": 15,
-    "pl": 15,
-    "pt": 15,
-    "zh-cn": 15
-  },
-  "deployment_request": "2026-10-07T14:41:19+08:00",
-  "deployment_reason": "Deploy usfanss.es after build watch include rule was confirmed and saved"
+  "release": "multilingual-18-2026-11-04",
+  "sitemap_pages": 192,
+  "articles_per_language": {"es":18,"en":18,"fr":18,"de":18,"it":18,"pl":18,"pt":18,"zh-cn":18},
+  "new_article_slugs": ["usfans-metodos-pago","usfans-reembolsos-retirar-saldo","usfans-cupones-descuento"],
+  "source_revision_location": "HTML build-revision meta and .pages-deploy after the publish workflow",
+  "publication_mode": "user-requested manual maintenance"
 }

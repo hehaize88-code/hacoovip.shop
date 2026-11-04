@@ -4,8 +4,10 @@ set -euo pipefail
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${project_root}"
 
-rm -rf static-assets .static-build
+# Retain fingerprinted assets so cached HTML from the previous release keeps its styles.
+rm -rf .static-build
 mkdir -p static-assets .static-build
+rm -f static-assets/app.js static-assets/app.css
 
 ./node_modules/.bin/esbuild scripts/static-interactions.ts \
   --bundle \
