@@ -1,0 +1,1 @@
+{"name":"vigorbuybrowse-com","main":"dist/worker.js","compatibility_date":"2026-11-19","assets":{"directory":"dist/public","binding":"ASSETS","run_worker_first":true},"routes":[{"pattern":"vigorbuybrowse.com","custom_domain":true},{"pattern":"www.vigorbuybrowse.com","custom_domain":true}],"build":{"command":"npm run build"}}
