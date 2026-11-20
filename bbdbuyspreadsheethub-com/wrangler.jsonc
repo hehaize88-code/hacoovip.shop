@@ -1,0 +1,9 @@
+{
+  "name": "bbdbuyspreadsheethub",
+  "main": "src/production.js",
+  "compatibility_date": "2026-11-01",
+  "routes": [
+    {"pattern":"bbdbuyspreadsheethub.com","custom_domain":true},
+    {"pattern":"www.bbdbuyspreadsheethub.com","custom_domain":true}
+  ]
+}
