@@ -11,7 +11,7 @@ function bindLanguagePicker(){
  document.addEventListener('pointerdown',event=>{if(picker.open&&!picker.contains(event.target))picker.open=false})
  picker.addEventListener('keydown',event=>{if(event.key==='Escape'){picker.open=false;summary.focus()}})
 }
-const analyticsTag = `<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NHQMJ7TV"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());</script>`;
+const analyticsTag = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSW6QFWHSP"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZSW6QFWHSP');</script>`;
 
 async function render(request){
  const url=new URL(request.url), parts=url.pathname.split('/').filter(Boolean)
