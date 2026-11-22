@@ -1,0 +1,10 @@
+{
+  "name": "eastmallbuysheethub-com",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-11-20",
+  "build": {"command": "npm run build"},
+  "routes": [
+    {"pattern": "eastmallbuysheethub.com", "custom_domain": true},
+    {"pattern": "www.eastmallbuysheethub.com", "custom_domain": true}
+  ]
+}
