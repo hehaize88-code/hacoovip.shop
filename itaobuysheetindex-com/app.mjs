@@ -11,7 +11,24 @@ function bindLanguagePicker(){
  document.addEventListener('pointerdown',event=>{if(picker.open&&!picker.contains(event.target))picker.open=false})
  picker.addEventListener('keydown',event=>{if(event.key==='Escape'){picker.open=false;summary.focus()}})
 }
-async function render(request){
+// Serve the last verified source IDs immediately while refreshing from the live catalog.
+const mapRefreshes=new Map()
+async function mapData(key, fallback, refresh, ctx){
+ const cache=globalThis.caches?.default
+ if(!cache||!ctx)return fallback
+ const entry=new Request('https://itaobuysheetindex.com/.map-cache-v1/'+key)
+ const cached=await cache.match(entry)
+ const saved=cached?await cached.json():null
+ if(!saved||Date.now()-saved.at>3600000){
+   if(!mapRefreshes.has(key)){
+     const update=refresh().then(value=>cache.put(entry,Response.json({value,at:Date.now()},{headers:{'cache-control':'public,max-age=604800'}}))).catch(()=>{}).finally(()=>mapRefreshes.delete(key))
+     mapRefreshes.set(key,update)
+   }
+   ctx.waitUntil(mapRefreshes.get(key))
+ }
+ return saved?.value??fallback
+}
+async function render(request,env,ctx){
  const url=new URL(request.url), parts=url.pathname.split('/').filter(Boolean)
  const primary='https://itaobuysheetindex.com'
  if(url.origin!==primary)return Response.redirect(primary+url.pathname+url.search,308)
@@ -23,7 +40,7 @@ async function render(request){
  const xml=(tag,rows)=>new Response('<?xml version="1.0" encoding="UTF-8"?><'+tag+' xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+rows+'</'+tag+'>',{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public,max-age=3600'}})
  if(url.pathname==='/sitemap.xml'||/^\/sitemap-products-\d+\.xml$/.test(url.pathname)){
    try{
-     const {total}=await catalog()
+     const total=await mapData('count',sitemapIds.reduce((n,ids)=>n+ids.length,0),async()=>(await catalog()).total,ctx)
      const pages=Math.ceil(total/60), groups=Math.ceil(pages/10)
      if(url.pathname==='/sitemap.xml'){
        const maps=Object.keys(languages).map(lang=>'sitemap-'+lang+'.xml')
@@ -32,7 +49,8 @@ async function render(request){
      }
      const group=Number(url.pathname.match(/(\d+)\.xml$/)[1])
      if(group<1||group>groups)return new Response(null,{status:404})
-     const ids=await productMapIds(group,pages)
+     const refresh=()=>productMapIds(group,pages)
+     const ids=sitemapIds[group-1]?await mapData('ids-'+group,sitemapIds[group-1],refresh,ctx):await refresh()
      return xml('urlset',Object.keys(languages).flatMap(lang=>ids.map(id=>'<url><loc>'+primary+'/'+lang+'/product/'+id+'/</loc></url>')).join(''))
    }catch{return new Response('Catalog temporarily unavailable',{status:503})}
  }
@@ -77,7 +95,7 @@ async function render(request){
  }}
  }else{status=404;body='<section class="notice"><h1>404</h1><a href="'+base+'">'+t.home+'</a></section>'}
  }catch(e){console.error('catalog response:',String(e).slice(0,150));status=e.message==='missing'?404:503;body='<section class="notice"><h1>'+t.error+'</h1><a href="'+escape(url.pathname+url.search)+'">'+t.retry+'</a></section>'}
- const html='<!doctype html><html lang="'+lang+'"><meta charset="utf-8"><link rel="icon" href="/favicon.ico"><meta name="viewport" content="width=device-width,initial-scale=1">'+(status===200?'<link rel="canonical" href="'+escape(primary+url.pathname+url.search)+'">':'<meta name="robots" content="noindex">')+'<title>'+escape(title)+' | iTaoBuy</title><style>'+css+'</style><header><div class="wrap"><a class="brand" href="'+base+'"><img class="official-logo" src="/brand/logo.png" alt="iTaoBuy" width="370" height="160"></a><nav><a href="'+base+'">'+t.home+'</a><a href="'+link()+'">'+t.sheet+'</a><a href="'+base+'categories/">'+t.categories+'</a><a href="'+base+'image-search/">'+t.imgSearch+'</a><a href="'+base+'faq/">'+t.faq+'</a></nav><div class="actions">'+langNav+'<select class="language" id="currency" aria-label="'+escape(t.currency)+'">'+currencies.map(c=>'<option>'+c+'</option>').join('')+'</select><a class="btn" href="'+register+'">'+t.register+'</a></div></div></header><main class="wrap">'+body+'</main><footer class="wrap foot"><strong>'+escape(t.hero)+'</strong><a href="'+base+'faq/">'+t.faq+'</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+bindLanguagePicker.toString()+')();('+moneyScript.toString()+')()</script></html>'
+ const html='<!doctype html><html lang="'+lang+'"><head><meta charset="utf-8"><script async src="https://www.googletagmanager.com/gtag/js?id=G-BLS5P75T4H"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-BLS5P75T4H");</script><link rel="icon" href="/favicon.ico"><meta name="viewport" content="width=device-width,initial-scale=1">'+(status===200?'<link rel="canonical" href="'+escape(primary+url.pathname+url.search)+'">':'<meta name="robots" content="noindex">')+'<title>'+escape(title)+' | iTaoBuy</title><style>'+css+'</style></head><body><header><div class="wrap"><a class="brand" href="'+base+'"><img class="official-logo" src="/brand/logo.png" alt="iTaoBuy" width="370" height="160"></a><nav><a href="'+base+'">'+t.home+'</a><a href="'+link()+'">'+t.sheet+'</a><a href="'+base+'categories/">'+t.categories+'</a><a href="'+base+'image-search/">'+t.imgSearch+'</a><a href="'+base+'faq/">'+t.faq+'</a></nav><div class="actions">'+langNav+'<select class="language" id="currency" aria-label="'+escape(t.currency)+'">'+currencies.map(c=>'<option>'+c+'</option>').join('')+'</select><a class="btn" href="'+register+'">'+t.register+'</a></div></div></header><main class="wrap">'+body+'</main><footer class="wrap foot"><strong>'+escape(t.hero)+'</strong><a href="'+base+'faq/">'+t.faq+'</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+bindLanguagePicker.toString()+')();('+moneyScript.toString()+')()</script></body></html>'
  return new Response(html,{status,headers:{'x-robots-tag':status===200?'index, follow':'noindex, follow','content-type':'text/html; charset=utf-8','cache-control':status===200?'public, max-age=60, s-maxage=300':'no-store'}})
 }
 export default {fetch:render}

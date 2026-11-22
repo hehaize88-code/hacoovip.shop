@@ -7,6 +7,7 @@ function wrap(files,bindings){
  return 'const {'+list+'}=(()=>{\n'+files.map(moduleSource).join('\n')+'\nreturn {'+list+'};})();\n'
 }
 const worker=[
+ inject('sitemapIds', JSON.parse(read('sitemap-ids.json'))),
  inject('brandAssets',Object.fromEntries(['logo.png','favicon.ico'].map(name=>[name,fs.readFileSync('brand/'+name).toString('base64')]))),
  inject('seed',JSON.parse(read('rates-seed.json'))),
  wrap(['money.mjs'],['currencies','ratesResponse','priceTag','moneyScript']),
