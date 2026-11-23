@@ -19,11 +19,21 @@ async function render(request){
  if(asset)return new Response(Uint8Array.from(atob(brandAssets[asset]),x=>x.charCodeAt(0)),{headers:{'Content-Type':asset==='logo.png'?'image/png':'image/x-icon','Cache-Control':'public,max-age=86400'}})
  const primary='https://ootdbuysheetindex.com'
  if(url.pathname==='/')return Response.redirect(primary+'/en/'+url.search,308)
- if(url.pathname==='/robots.txt')return new Response('User-agent: *\nAllow: /\nSitemap: '+primary+'/sitemap.xml\n',{headers:{'content-type':'text/plain; charset=utf-8'}})
- const xml=(tag,rows)=>new Response('<?xml version="1.0" encoding="UTF-8"?><'+tag+' xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+rows+'</'+tag+'>',{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public,max-age=3600'}})
- if(url.pathname==='/sitemap.xml')return xml('sitemapindex',Object.keys(languages).map(k=>'<sitemap><loc>'+primary+'/sitemap-'+k+'.xml</loc></sitemap>').join(''))
+ const languageCodes=Object.keys(languages)
+ const sitemapPath=lang=>'/sitemap-'+lang+'.xml'
+ if(url.pathname==='/robots.txt'){
+  const maps=['/sitemap.xml',...languageCodes.filter(lang=>lang!=='en').map(sitemapPath)]
+  return new Response('User-agent: *\nAllow: /\n'+maps.map(path=>'Sitemap: '+primary+path).join('\n')+'\n',{headers:{'content-type':'text/plain; charset=utf-8'}})
+ }
  const map=url.pathname.match(/^\/sitemap-([a-zA-Z-]+)\.xml$/)
- if(map&&Object.hasOwn(languages,map[1]))return xml('urlset',['','spreadsheet/','categories/','image-search/','faq/',...Object.keys(imageNames).map(id=>'product/'+id+'/')].map(path=>'<url><loc>'+primary+'/'+map[1]+'/'+path+'</loc></url>').join(''))
+ if(url.pathname==='/sitemap.xml'||(map&&Object.hasOwn(languages,map[1]))){
+  const lang=map?map[1]:'en'
+  const sections=['','spreadsheet/','categories/','image-search/','faq/']
+  const paths=(map?[lang]:languageCodes).flatMap(code=>sections.map(section=>'/'+code+'/'+section))
+  for(const id of Object.keys(imageNames))paths.push('/'+lang+'/product/'+id+'/')
+  const rows=paths.map(path=>'<url><loc>'+primary+path+'</loc></url>').join('')
+  return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+rows+'</urlset>',{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public,max-age=3600'}})
+ }
  if(url.pathname.startsWith('/visual-api/'))return visualApi(request)
  const lang=Object.hasOwn(languages,parts[0])?parts[0]:'en', t=copy[lang]
  const route=parts[1]||'home',base='/'+lang+'/', q=(url.searchParams.get('q')||'').slice(0,120),cat=url.searchParams.get('cat')||'',page=Math.max(1,Math.min(10000,parseInt(url.searchParams.get('page'))||1))
