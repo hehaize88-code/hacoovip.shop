@@ -1,4 +1,5 @@
 {
+  "keep_names": false,
   "name": "itaobuysheetindex-com",
   "main": "dist/server/index.js",
   "compatibility_date": "2026-11-01",
