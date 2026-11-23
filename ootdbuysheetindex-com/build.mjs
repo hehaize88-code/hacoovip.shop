@@ -1,7 +1,28 @@
 import fs from 'node:fs'
+import {compileFunction} from 'node:vm'
 const read=file=>fs.readFileSync(new URL(file,import.meta.url),'utf8')
 const inject=(name,value)=>'const '+name+'='+JSON.stringify(value)+';\n'
-const moduleSource=file=>read(file).replace(/^import .*\n/gm,'').replace(/\bexport (?=const |let |async function |function )/g,'')
+const strippedSource=file=>read(file).replace(/^import .*\n/gm,'').replace(/\bexport (?=const |let |async function |function )/g,'')
+// Capture browser code before Wrangler transforms Worker functions. Only
+// declarations are hoisted; no Worker initialization runs during extraction.
+const clientModules = {
+  visualClient: 'visual.mjs',
+  bindProduct: 'product.mjs',
+  bindLanguagePicker: 'app.mjs',
+  moneyScript: 'money.mjs'
+}
+const clientScripts = Object.entries(clientModules).map(([name, file]) => {
+  const declarations = strippedSource(file).replace(/^export default .*$/gm, '')
+  const getClient = compileFunction('return ' + name + ';\n' + declarations)
+  return [name + '.toString()', JSON.stringify(getClient().toString())]
+})
+function moduleSource(file) {
+  let source = strippedSource(file)
+  for (const [expression, literal] of clientScripts) {
+    source = source.replaceAll(expression, () => literal)
+  }
+  return source
+}
 function wrap(files,bindings){
  const list=bindings.join(',')
  return 'const {'+list+'}=(()=>{\n'+files.map(moduleSource).join('\n')+'\nreturn {'+list+'};})();\n'
