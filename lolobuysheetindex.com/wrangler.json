@@ -3,6 +3,7 @@
   "main": "dist/server/index.js",
   "compatibility_date": "2026-11-01",
   "workers_dev": false,
+  "no_bundle": true,
   "build": { "command": "node build.mjs" },
   "routes": [
     { "pattern": "lolobuysheetindex.com", "custom_domain": true },
