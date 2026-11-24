@@ -1,0 +1,1 @@
+{"name":"fansbuysheetindex-com","main":"dist/server/index.js","compatibility_date":"2026-10-01","workers_dev":false,"build":{"command":"node build.mjs"},"routes":[{"pattern":"fansbuysheetindex.com","custom_domain":true},{"pattern":"www.fansbuysheetindex.com","custom_domain":true}]}
