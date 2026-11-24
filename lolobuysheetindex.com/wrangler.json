@@ -1,0 +1,11 @@
+{
+  "name": "lolobuysheetindex-com",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "build": { "command": "node build.mjs" },
+  "routes": [
+    { "pattern": "lolobuysheetindex.com", "custom_domain": true },
+    { "pattern": "www.lolobuysheetindex.com", "custom_domain": true }
+  ]
+}
