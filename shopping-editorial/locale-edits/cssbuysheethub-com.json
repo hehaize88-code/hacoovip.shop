@@ -183,6 +183,11 @@
         "13": "판매자 배송과 국제 운송을 구분해 시간순으로 정리하기",
         "19": "내용물을 옮기기 전에 배송된 상태 그대로 기록하기"
       }
+    },
+    "it": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "7": "La guida Buy For Me di CSSBuy spiega come inviare il link del prodotto e come usare Expert Buy quando la ricerca non trova l’articolo. Se devi inserire i dati a mano, indica il link originale e la variante esatta. Puoi scrivere: «Scegli il modello in tela nera con la tracolla regolabile. Se questa combinazione è esaurita, contattami prima di acquistare». In questo modo chi ordina per te sa cosa fare. Una nota come «prendi quello migliore» lascia aperta la scelta più importante."
+      }
     }
   }
 }

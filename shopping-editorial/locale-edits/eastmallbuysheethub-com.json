@@ -154,6 +154,11 @@
         "22": "어느 단계에서 환불을 확인할 수 없는지 밝혀 문의하기",
         "27": "지갑 거래 내역, 플랫폼의 처리 완료 안내, 실제 수취 계좌 명세가 일치할 때 출금 건을 마감하세요. 아직 처리 중인 상품 주문 환불은 별도로 표시합니다. 처음 사용 가능했던 잔액, 신청액, 플랫폼 처리액, 수취 계좌, 남은 차액을 설명하는 수수료나 환율 차이를 기록해 두세요. 그래야 비슷한 거래를 일일이 기억하지 않고도 다음 구매 때 신뢰할 수 있는 장부를 활용할 수 있습니다."
       }
+    },
+    "it": {
+      "eastmallbuy-cancellation-after-waybill-submitted": {
+        "12": "Una richiesta che riguarda tutto il pacco può avere conseguenze più ampie del reso di un singolo articolo. «Annullate tutto» può significare annullare cinque acquisti, fermare una spedizione internazionale oppure stornare un movimento sul saldo. Meglio scrivere: «Potete verificare se è ancora possibile bloccare la spedizione con lettera di vettura W prima della partenza? Devo restituire l’articolo dell’ordine A e voglio tenere gli altri quattro». Il personale saprà quale intervento è urgente in magazzino e potrà affrontare la parte economica dopo aver verificato lo stato del pacco."
+      }
     }
   }
 }
