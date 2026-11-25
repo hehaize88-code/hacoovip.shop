@@ -9,3 +9,6 @@ const urls=(paths,lang)=>xml('<urlset xmlns="http://www.sitemaps.org/schemas/sit
 const paths=['/','/spreadsheet/','/categories/','/image-search/','/guides/','/faq/'];fs.writeFileSync('dist/public/sitemap-pages.xml',xml('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+LANGS.flatMap(l=>paths.map(p=>'<url><loc>'+esc(loc(p,l))+'</loc></url>')).join('')+'</urlset>'));
 const excluded=new Set(index.report.unavailableSourceIds);const products=index.products.filter(p=>!excluded.has(String(p[0]))).map(p=>'/product/'+p[0]);const maps=['sitemap-pages.xml'];for(const l of LANGS){const f='sitemap-products-'+l+'.xml';maps.push(f);fs.writeFileSync('dist/public/'+f,urls(products,l))}
 fs.writeFileSync('dist/public/sitemap.xml',xml('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+maps.map(f=>'<sitemap><loc>'+DOMAIN+'/'+f+'</loc></sitemap>').join('')+'</sitemapindex>'));fs.writeFileSync('dist/public/robots.txt','User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: '+DOMAIN+'/sitemap.xml\n');console.log('Built',products.length,'products;',index.images.length,'image signatures;',LANGS.length,'languages.');
+
+import {attachEditorial} from '../../shopping-editorial/build.mjs';
+attachEditorial('dist/worker.js');

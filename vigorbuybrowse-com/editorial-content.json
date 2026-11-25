@@ -1,0 +1,884 @@
+{
+  "articles": [
+    {
+      "slug": "how-to-shortlist-vigorbuy-spreadsheet-finds-when-several-listings-share-a-photo",
+      "title": "How to shortlist VigorBuy spreadsheet finds when several listings share a photo",
+      "description": "Compare the merchant, selected option, delivered quantity and evidence before saving two similar finds as substitutes.",
+      "sections": [
+        {
+          "heading": "Start with the thing you want to receive",
+          "paragraphs": [
+            "Write a one-line specification before opening the spreadsheet. For a tote, it could be “black canvas, zip closure, shoulder handles long enough for a winter coat.” That sentence gives you three details to verify independently. A search for a black tote might return a pouch, an open-top shopper and a zip-top bag with almost identical thumbnails. Only one meets the brief. Searching with a picture can broaden the shortlist, but a visual match still needs a working merchant listing."
+          ]
+        },
+        {
+          "heading": "Give each candidate its own identity",
+          "paragraphs": [
+            "Record the marketplace, seller, item link and exact option as separate fields. A single listing can offer a bag in two sizes and sell a removable strap on its own. A row containing just the lowest price and a hero image could accidentally describe the strap. Select the intended option at the destination and note which image, description and price accompany it. Save the original words if the translation makes two sizes sound alike."
+          ]
+        },
+        {
+          "heading": "Compare evidence that addresses your specification",
+          "paragraphs": [
+            "A photo showing the entire tote is good evidence for handle placement. A close-up of the top is better evidence for the zip. A previous customer's photo may show a different size, so look for a label or another way to connect the view to the selected option. If neither listing shows the opening, ask the seller or purchasing service for that detail before choosing. A missing picture is an unanswered question."
+          ]
+        },
+        {
+          "heading": "Make a decision you can revisit",
+          "paragraphs": [
+            "Put one specific reason next to each shortlist entry. “Zip visible, handle drop unconfirmed” tells you what to ask. “Good quality” records an impression that another person cannot check. Reopen the first choice on VigorBuy before paying and compare the selected option against your saved specification. If the seller has replaced the option or changed the quantity, treat the new offer as a fresh decision."
+          ]
+        },
+        {
+          "heading": "Work through a three-listing comparison",
+          "paragraphs": [
+            "Consider a hypothetical shopping trip for a work bag that must hold a notebook measuring 29 by 21 cm. The opening matters as much as the outside width. A listing for a 32 cm tote sounds promising, but the zip may stop several centimetres short of the side seams. Another bag may have a large opening and narrow sharply at the bottom. Add the notebook as a separate requirement in your notes. With that detail written down, you can tell exactly which dimension to request.",
+            "Imagine that the first seller provides a clear size diagram but no interior image. The second gives excellent interior photos yet lists several sizes under one picture. A third advertises a low price, and its lowest-priced option is a detachable pouch. Do not rank them immediately. For the first, identify the missing interior detail. For the second, check which diagram corresponds to which option. For the third, select the bag itself and see whether the comparison price still looks attractive.",
+            "A useful result might be “the first bag is wide enough, but the zip opening is unknown; the second bag's large option has an opening that fits; the third only fits my budget at the pouch price.” At that point the third option is no longer a cost-saving alternative to the others. The first is still viable if you can establish one measurement. Only the second is ready for a purchase decision. None of those conclusions depends on which seller uploaded the most polished cover photo."
+          ]
+        },
+        {
+          "heading": "Interpret repeated photographs without discarding good listings",
+          "paragraphs": [
+            "Repeated photography can occur in different ways. A merchant may show the same overall view under each colour and use a small swatch to indicate the change. Several sellers may show the same studio photograph while giving different measurements. A buyer may upload an image that looks similar to the seller's studio view, yet shows another size. First decide which of these situations you appear to be looking at. Then choose an independent detail that would distinguish the offers.",
+            "For a tote, compare the stitching at the handle base, interior pocket layout and opening shape. For a coat, consider the number and position of buttons and vents. You do not have to become an expert on construction to use this approach. The detail merely needs to be visible, relevant to your purchase and specific enough to compare. A buyer photo showing the handle attachment can settle that question even when it tells you nothing about how the lining feels.",
+            "Give each photo a limited job. Use the seller's diagram for the measurements the seller claims. Use a historical inspection photo to see a previous example. Use the current listing to check the option you can buy today. If those sources disagree, record the disagreement instead of averaging them into one conclusion. For example, a 36 cm width on the current large option and a 31 cm wide bag in an older image may describe different sizes. Before calling it a defect, find out which size appears in the image."
+          ]
+        },
+        {
+          "heading": "Prune a shortlist without losing useful alternatives",
+          "paragraphs": [
+            "Set aside options that fail a requirement you cannot compromise on. If the bag must close fully for commuting, an otherwise attractive open-top tote can leave the active list. Put it in a separate note if it might work for another use. Next remove actual duplicates: two entries leading to the same marketplace, seller, item and variant represent one purchasing decision. Keep the clearest reference photos from both entries alongside that one row.",
+            "For the remaining choices, give price its proper context. Compare the price of one selected bag with one selected bag. Add any domestic delivery amount displayed for that variant and quantity; an unknown amount should stay unknown. A rounded converted price can be helpful while browsing, but carry the underlying listing currency in your comparison so that rounding cannot reverse a close result. If only one candidate shows a shipping amount, label that difference rather than treating the missing charge as zero.",
+            "Stop when further browsing does not change the choice you can make. You may have one confirmed option, one promising option needing a measurement and no use for a fourth or fifth listing. Put the unresolved question first in your note so the next visit takes seconds. A short, well-evidenced shortlist is also easier to revise if a seller changes an option before you order."
+          ]
+        },
+        {
+          "heading": "Hand the decision from the spreadsheet to VigorBuy",
+          "paragraphs": [
+            "Open the chosen item through VigorBuy and keep the saved seller record beside it. Choose the intended option, check quantity and read the resulting product summary. If the seller has replaced one colour name with two similar swatches, the old screenshot is useful context, but it cannot tell you which new swatch corresponds to the earlier option. Pause and request the missing detail. A current, explicit answer is worth more than guessing from the order of colours in the menu.",
+            "Once the purchase is submitted, put the order reference in the same note. When warehouse images appear, return to the original checks: colour, closure, dimensions if requested and included accessories. The note now connects three distinct facts: what you wanted, what the seller offered and what the warehouse actually received. If they agree, you can move on to the shipping decision. If they differ, you already have the relevant images and option text ready for the inquiry."
+          ]
+        },
+        {
+          "heading": "What to save after the purchase",
+          "paragraphs": [
+            "Archive the checked row instead of deleting the evidence when you finish browsing. If you buy the same design again months later, reopen the original marketplace item and compare the current option menu with the archived selection. The old row can tell you what worked last time. The current offer determines what you can order now."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent VigorBuy spreadsheet research template",
+          "url": "https://spreadsheet-vigorbuy.com/"
+        },
+        {
+          "title": "Independent reference on listing-level photo history",
+          "url": "https://vigorbuywithqc.com/about"
+        }
+      ]
+    },
+    {
+      "slug": "using-a-vigorbuy-link-converter-without-losing-the-seller-or-variant",
+      "title": "Using a VigorBuy link converter without losing the seller or variant",
+      "description": "Recover the original marketplace address, verify the destination and reselect the correct variant before purchase.",
+      "sections": [
+        {
+          "heading": "Recognise what the link identifies",
+          "paragraphs": [
+            "A marketplace listing can appear under an agent address, a mobile share link or the seller's own product URL. A converter attempts to carry the listing identity into a different agent interface. That distinction matters for a product with options. Successfully opening the right seller page does not show that a specific size, colour or quantity travelled with the link. Start by recording those details while the original offer is still on screen."
+          ]
+        },
+        {
+          "heading": "Resolve a shortened share link",
+          "paragraphs": [
+            "Open the share link in a browser and look for the actual product page. A profile, search result or shopping cart may have a share button too. You need the individual item. Copy its product address after it opens, and keep the marketplace name alongside the item number. If the page only opens in an app, use its product-sharing option or request the original product URL from the person who shared it."
+          ]
+        },
+        {
+          "heading": "Check the conversion using more than the title",
+          "paragraphs": [
+            "The independent VigorBuy converter documents a marketplace identifier and product number in the destination path. Compare the marketplace and item number where visible, then open the listing and check the seller and option menu. Translated titles can change word order. A matching photograph is also weak evidence on its own because several sellers can reuse it. If the seller differs, the conversion has not recovered the offer you intended to compare."
+          ]
+        },
+        {
+          "heading": "Rebuild the actual order",
+          "paragraphs": [
+            "Suppose the original link showed a linen shirt in blue, size M. At the destination, select blue and M again and check that the order summary repeats both choices. Compare the quantity and current option price with the original. If VigorBuy cannot load the listing, do not replace the item number with a guessed one. Ask for a current seller link and compare any replacement from the beginning."
+          ]
+        },
+        {
+          "heading": "Read a marketplace identifier without confusing it with a variant",
+          "paragraphs": [
+            "A useful way to think about a product link is as an address for a seller page. The street address gets you to the building. It does not identify what you intend to pick up inside. On a marketplace listing, the item number identifies an offer that may contain dozens of combinations. An option identifier, where one is present, can identify a narrower choice. An agent or converter might preserve the marketplace item while dropping a field that only made sense in the original interface.",
+            "To see whether this matters, open the source and observe what changes when you select a different size. The title and product address may stay exactly the same while the selected price, picture or stock changes. If the address stays the same for both choices, sending that address to someone else gives them no reliable way to know which size you were looking at. Copy the option text separately. A saved photograph with the highlighted option is especially helpful if two options use similar translated names.",
+            "The independent converter describes a numerical marketplace component in VigorBuy's product links. That detail helps recognise whether a conversion points to the expected marketplace. It does not mean it is sensible to construct links by guessing at a number. Prefer a current product URL and a converter that recognises its format. A number copied from the seller's store address, a review, a search page or a promotional share token can be perfectly valid for its original purpose and still be wrong for a product lookup."
+          ]
+        },
+        {
+          "heading": "Test a conversion with two similar merchant offers",
+          "paragraphs": [
+            "Consider two shops that sell a notebook cover in black and brown. They use the same studio photograph. One listing includes a pen loop and the other sells the loop separately. Both stores use a translated title resembling “simple notebook cover.” A conversion that lands you on the second shop can look correct at first glance. The difference will only become visible once you inspect the seller identity and what each option includes.",
+            "Create a quick before-and-after note. On the source side, write the marketplace, seller name, item number if visible, selected configuration and whether the loop is included. On the VigorBuy side, find the same fields. A change in word order or punctuation is a weak reason to reject a match. A different seller, item number or inclusion is a strong reason to stop. When some fields are hidden, weigh the remaining evidence and ask for the merchant URL if the missing information matters.",
+            "The same method applies when a link appears to work on a phone but the desktop view opens a different-looking interface. The mobile page may emphasise a colour swatch and the desktop page may show a long text menu. Match the underlying seller page and option before deciding the two interfaces disagree. If the mobile app selected the brown cover on the original device and the browser opens black by default, the converter may have resolved the right listing while leaving the colour unselected."
+          ]
+        },
+        {
+          "heading": "Deal with mixed text, regional pages and unavailable offers",
+          "paragraphs": [
+            "Marketplace share messages often include an invitation to open an app, descriptive words and a link. If a tool asks for a URL and rejects the full message, copy only the actual product address. Preserve any product-identifying fields already present. If you cannot identify the URL in the message, ask the sender to open the item and use the product's own sharing function. A screenshot is useful supporting evidence but does not reconstruct an unknown seller link.",
+            "When a link opens in the marketplace but appears unavailable on the agent, record both observations. A sign-in screen, regional display, expired share token and removed product can produce very different experiences. Some offer no evidence about whether the merchant has stock. Do not treat a retrieval error as permission to choose a visually similar item from a different shop. If the original seller is essential, send the original product address and a concise description of the error to the official purchasing service.",
+            "If the source seller no longer offers the item, a valid conversion cannot make it available again. You can search for a replacement, but create a new comparison entry for the new seller. Check the current option menu and price and look up historical photos using the replacement listing's own identity. A prior buyer's evidence about the old listing does not establish what the replacement seller will ship, even if the same product name appears on both pages."
+          ]
+        },
+        {
+          "heading": "Record the converted link for the next person",
+          "paragraphs": [
+            "For a personal shortlist, keep one stable product record containing the original seller URL and the checked VigorBuy destination. Add the option separately in plain text. If you share the find, describe it as the seller's listing and tell the reader to select their own size and colour. Do not share your order details, account-specific checkout address or a screenshot showing payment information merely to point someone to a product.",
+            "If you maintain a family or group list, use a date and short status such as “listing matched, brown cover with loop available when checked.” That communicates exactly how far you verified the offer. It leaves the next person free to check today's price and availability. It also helps distinguish a real link repair from an unnoticed seller substitution: a change in the seller or marketplace item number deserves a new row or an explicit revision note."
+          ]
+        },
+        {
+          "heading": "When conversion is complete",
+          "paragraphs": [
+            "A useful stopping test is whether a second person could open the two saved addresses and explain why they identify the same seller offer. If the only common evidence is a cover photo, the check is unfinished. Once marketplace, merchant, item and intended selection all align, the next decision concerns the purchase itself."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent VigorBuy link conversion guide",
+          "url": "https://vigorbuywithqc.com/link-converter"
+        }
+      ]
+    },
+    {
+      "slug": "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways",
+      "title": "Reading VigorBuy QC photos when a listing has several colourways",
+      "description": "Decide which historical photos actually apply to the option you want, then inspect your own warehouse images before shipment.",
+      "sections": [
+        {
+          "heading": "Trace the picture to the item",
+          "paragraphs": [
+            "VigorBuy describes pre-shipment inspection images in its app listing. Independent QC finders can also surface photographs of earlier purchases. Keep those two sets distinct. When browsing old photos, start with the marketplace and seller listing. Next look for the colourway and any option label in the image. A match at listing level can be useful for examining the general shape even when the photograph shows a different colour."
+          ]
+        },
+        {
+          "heading": "Use landmarks that survive lighting changes",
+          "paragraphs": [
+            "For a two-tone jacket, compare panel placement, contrast stitching, pocket shape and fastener colour before making a judgment about shade. Overhead light can make navy look black. A white background can exaggerate the difference between two images taken under different lighting. Look for an image that includes the full garment and then a detail that is independent of colour, such as a patch location. Write down which conclusions rely on lighting."
+          ]
+        },
+        {
+          "heading": "Read your own warehouse set as a new inspection",
+          "paragraphs": [
+            "Compare the option printed in the order with the label and the item laid out in your photos. Count pieces if a set has several parts. Trace each visible seam and edge, then look at the reverse if it matters to your decision. A cropped cuff or folded hem is simply outside the available view. If a concern affects whether you would ship, ask about a targeted photo before approving the parcel."
+          ]
+        },
+        {
+          "heading": "Turn an observation into an actionable question",
+          "paragraphs": [
+            "“The listing shows a dark zip on the blue option. My front photo appears to show a white zip. Could you check the zip and send one close-up beside the label?” gives the person inspecting the item a clear task. Keep the relevant order reference with that message. Once you have the answer, decide whether to keep the item or ask about seller-specific after-sales options while it is still in the warehouse."
+          ]
+        },
+        {
+          "heading": "Read colour evidence in three passes",
+          "paragraphs": [
+            "First study the whole item without zooming. Establish the dominant colour layout: dark sleeves with a lighter front, a solid body with a contrasting collar, or a reversible construction with different sides. These relationships can be more reliable than trying to name a precise shade on a screen. Next compare the selected seller option and any visible label. Finally look at the disputed area close up. This order reduces the chance that a brightly lit corner becomes your entire basis for rejecting the garment.",
+            "Consider an item offered in charcoal with a silver zip and navy with a black zip. One photo in an independent gallery could make the navy fabric look charcoal, especially if the image is compressed. If the zip appears black and the label includes the navy option code, the evidence points in a different direction than a quick visual judgement. If only the fabric is visible, the evidence remains incomplete. The sensible next step depends on whether the exact colourway matters enough to seek another view.",
+            "An additional picture can introduce its own ambiguity. Two images taken under different lights may make the same fabric look different. Ask for the relevant label and colour detail in the same frame if possible, or request a direct check of the seller's option identifier. A warehouse may be able to confirm the text of the label even when it cannot deliver a colour-calibrated photograph. State which answer would allow you to decide."
+          ]
+        },
+        {
+          "heading": "Compare construction details specific to the selected option",
+          "paragraphs": [
+            "Some colourways differ in more than fabric shade. A pocket may be positioned differently on one version, the underside of a collar may use another colour, or a set may include a belt only in selected configurations. Read the seller option description for these distinctions before inspecting photos. Otherwise, a legitimate feature of another colourway can be mistaken for a defect, or a missing feature can go unnoticed because the overall colour looks right.",
+            "Make a short inventory of the identifying features visible in the seller material for your option. Write “two chest pockets with flaps, dark buttons, plain hem” instead of “looks like the picture.” Compare each against your warehouse set. If there are two pockets but one flap appears folded inside, ask for a view with both laid flat. If the seller's description includes an adjustable cuff but the sleeve ends are folded under the body, note that the feature has not yet been checked.",
+            "Treat the back and inside as separate views. A front image may establish the alignment of the pockets but say almost nothing about a back print or interior label. Request the missing view only if it addresses a real purchasing question. A shopper who only cares about the front pattern may already have enough information. A shopper who ordered a reversible jacket needs evidence from both sides to establish that the configuration is correct."
+          ]
+        },
+        {
+          "heading": "Separate appearance concerns from verifiable discrepancies",
+          "paragraphs": [
+            "“Wrong item” and “I do not like how it looks” can lead to different conversations with a seller. If your order says short sleeves and the warehouse picture clearly shows long sleeves, identify the visible discrepancy and quote the selected option. If the garment matches the seller information but the colour looks less appealing to you in a candid photo, ask what after-sales options apply to a preference-based request. Do not describe it as a confirmed fulfilment error without evidence.",
+            "A claim that a material feels rough, a zip sticks, or a seam is uncomfortable may require a physical check. A photograph can show a loose thread or irregular alignment, but it cannot establish how a garment feels on a particular wearer. Explain the decision you are trying to make and ask what inspection the warehouse can reasonably perform. If it can only provide another picture, decide whether that picture would actually resolve your question before requesting it.",
+            "When you mark up an image, point to a single location with a simple circle or arrow and keep a copy without annotations. Avoid increasing saturation or applying a filter to emphasise a difference; that changes the very evidence you want someone else to interpret. Naming the image, order reference and selected option saves the support agent from trying to match a small crop to several similar items in the same account."
+          ]
+        },
+        {
+          "heading": "Decide when to release the parcel",
+          "paragraphs": [
+            "Finish with a brief inspection note. Record the option ordered, what your photos confirm and any limitation you accept. For example: “Navy label matches, dark zip and pocket layout visible, precise shade under daylight uncertain; acceptable to me.” This wording is useful even if you never contact support. It documents why you approved the item on the information available at the time.",
+            "If one critical question remains, keep the affected item out of the outgoing selection while you ask about the current timetable for a response. Other items with resolved inspections can be considered separately. Do not assume that waiting for clarification automatically extends a warehouse deadline or keeps a seller remedy available. Check the dates shown for your purchase and ask how long you have to act. A sound QC decision combines the evidence about the goods with the practical deadline for making that decision."
+          ]
+        },
+        {
+          "heading": "Reuse pictures responsibly when shopping again",
+          "paragraphs": [
+            "A photo from your completed purchase can be a valuable reference for your next order. Label it with the date, seller item number and option actually received. If the seller later changes the colour labels or revises the design, the older photograph remains accurate for your original purchase. It becomes a point of comparison to verify again, rather than evidence that every future version will have precisely the same construction."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent reference on listing-level photo history",
+          "url": "https://vigorbuywithqc.com/about"
+        }
+      ]
+    },
+    {
+      "slug": "a-vigorbuy-size-check-for-shirts-using-a-garment-you-already-own",
+      "title": "A VigorBuy size check for shirts using a garment you already own",
+      "description": "Compare flat garment measurements, chart definitions and size labels before selecting a shirt through VigorBuy.",
+      "sections": [
+        {
+          "heading": "Pick a reference shirt you actually wear",
+          "paragraphs": [
+            "Choose a shirt with a similar cut and fabric. A stretchy gym top is a poor reference for a woven overshirt. Fasten the buttons, lay the garment flat and smooth it without stretching it. Measure across the chest, between the shoulder seams, along the sleeve and down the back. Take a photo of each measuring position so you can repeat the measurement if the seller's chart uses another starting point."
+          ]
+        },
+        {
+          "heading": "Read the seller's measuring method",
+          "paragraphs": [
+            "A chart may list full chest circumference while you measured a flat width. If the seller confirms the chart gives full circumference, a flat width of 54 cm corresponds to approximately 108 cm around a laid-flat garment. This is a worked conversion, not a size recommendation. A measurement of a person's chest has a different meaning again. Compare figures only after identifying whether each refers to a body, a whole garment or one side laid flat."
+          ]
+        },
+        {
+          "heading": "Choose between two sizes by the limiting dimension",
+          "paragraphs": [
+            "A shirt can be roomy through the chest and short in the sleeves. Mark which reference measurements are essential for the way you wear the garment. Someone layering it over a sweater may prioritise chest and upper arm room. Someone tucking it into trousers may care more about body length. Check each dimension for both candidate sizes before choosing. A single global letter such as L cannot settle that comparison."
+          ]
+        },
+        {
+          "heading": "Use warehouse evidence to settle a remaining doubt",
+          "paragraphs": [
+            "The label helps confirm which size was sent. If you also need to verify the chest width, ask whether a flat measurement is available and specify “straight across the front from underarm to underarm, garment buttoned and unstretched.” Check the response and any service charge before asking for multiple angles. If the seller supplies no chart and fit is critical, a different listing with measurable details may be easier to evaluate."
+          ]
+        },
+        {
+          "heading": "Make shoulder, sleeve and length measurements comparable",
+          "paragraphs": [
+            "Shoulder width is straightforward on a shirt with conventional shoulder seams. Lay it flat and measure between the points where the shoulder seams meet the sleeves. On a dropped-shoulder shirt those seams sit farther down the arms. A larger shoulder measurement can simply reflect that construction. Compare how the garment is cut as well as the number. On a raglan shirt, ask what the seller means by shoulder width before comparing it with a conventional shirt.",
+            "For sleeve length, establish whether the seller measures from the outer shoulder seam to the cuff, from the centre back of the neck, or along the underside of the sleeve. Two measurements in centimetres can differ substantially even on the same shirt if their starting points differ. Photograph the measuring tape together with both endpoints on your own shirt. If a seller supplies a diagram, repeat the measurement using that method before concluding the candidate has unusually short sleeves.",
+            "Body length has similar traps. A shirt can have a curved hem with the back longer than the front. A seller may measure from the high point near the collar to the front hem, while you measured from the centre back of the neck to the back hem. Record both the starting point and the side of the shirt. If you wear it untucked, compare the length at the point that matters for your preferred silhouette. If you tuck it in, check that the relevant part of the hem provides enough material."
+          ]
+        },
+        {
+          "heading": "Use a worked comparison instead of chasing a size label",
+          "paragraphs": [
+            "Imagine your favourite woven shirt measures 55 cm across the chest, 45 cm across the shoulder seams and 73 cm down the back using a method you can reproduce. A seller describes one candidate size as 54, 45 and 70 cm and the next as 57, 47 and 73 cm under the same definitions. Neither size is a simple copy. The first is close at the shoulder and chest but three centimetres shorter. The second is the same length and roomier across the upper body.",
+            "Decide which difference has practical consequences for you. For someone wearing the shirt open over a tee, extra chest room might work well. For another buyer who needs a neat shoulder line under a jacket, the wider shoulders might be unwelcome. The arithmetic narrows the question to a real trade-off. It cannot decide personal preference or guarantee that two garments with matching measurements drape the same way. Fabric weight, stiffness and continued shaping below the chest can all change how they wear.",
+            "If a difference is small and the seller lists a manufacturing tolerance, consider the range rather than treating a single number as exact. A buyer who needs a minimum sleeve length should look at the shorter end of the claimed range. Where no tolerance is provided, do not invent one. Ask how the displayed measurement was obtained and decide whether the uncertainty is acceptable. This is particularly important if the shirt is being bought for a fixed occasion with little room for a second purchase."
+          ]
+        },
+        {
+          "heading": "Account for fabric and how the shirt will be worn",
+          "paragraphs": [
+            "A laid-flat comparison is strongest when the shirt you own and the seller's item have comparable construction. A stretch overshirt may allow more movement at a given width than a non-stretch woven shirt. A thick fleece can occupy internal space even when its external chest measures the same as a thinner cotton shirt. Use the seller's stated material and close-up images as clues, acknowledging the aspects you cannot judge from a screen.",
+            "Consider the garment underneath. Measure the reference shirt in the way you normally wear it, then ask whether the new one will need to accommodate another layer. Someone measuring a close-fitting summer shirt for a winter overshirt may start from an unsuitable reference. It is often easier to use a jacket or shirt that already performs the intended job than to add an arbitrary allowance to a body measurement. Keep the comparison method consistent across all candidate listings.",
+            "For shared shopping lists, attach the measurements to a person and use case without including more personal information than necessary. “Reference overshirt with a thin sweater” is enough. Giving one general instruction such as “choose M for everyone” can conceal substantial differences between sellers and bodies. If two people want different fits, separate their candidate notes even when they choose the same listing and colour."
+          ]
+        },
+        {
+          "heading": "Evaluate the warehouse measurement before approving the shirt",
+          "paragraphs": [
+            "A tape in a photo can be helpful only if you can see how it is being used. Check that the tape begins at the intended point, runs in the intended direction and shows a readable value at the other end. A tape lying diagonally across the chest measures farther than a horizontal one. A garment pulled taut can also produce a larger apparent width. If the photo is unclear, request clarification about that precise issue.",
+            "Compare the observed number with the method in your original note. If the methods differ, the first step is to align them. If they match and the size genuinely differs from your purchased option, ask the agent which seller-specific resolution is available and when you must decide. If the garment matches the advertised size but you no longer want that fit, describe the concern accurately. Goods still in the warehouse remain easier to identify and discuss than garments already packed into an international parcel."
+          ]
+        },
+        {
+          "heading": "Keep the reference for a repeat purchase",
+          "paragraphs": [
+            "Save the seller chart and measurement image with the option you ultimately received. If you reorder a second colour, compare its current chart with that saved reference. A seller can revise sizing or introduce another fabric under an existing item number, so the earlier fit is evidence about your first garment and a starting point for the next one."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent reference on listing-level photo history",
+          "url": "https://vigorbuywithqc.com/about"
+        }
+      ]
+    },
+    {
+      "slug": "why-a-vigorbuy-shipping-calculator-changes-when-the-box-changes",
+      "title": "Why a VigorBuy shipping calculator changes when the box changes",
+      "description": "Compare the same destination and service using packed dimensions, scale weight and optional packaging.",
+      "sections": [
+        {
+          "heading": "Start with the parcel that will travel",
+          "paragraphs": [
+            "A product weight is a useful input for a rough estimate. The object leaving the warehouse includes packaging and sometimes more than one item. For a pair of shoes, distinguish the shoes alone, the retail box and the outer parcel. Record which one the weight describes. A calculator may accept grams while a carrier quote displays kilograms. An entry of 850 grams represents 0.85 kg. Misreading that field can distort every route comparison."
+          ]
+        },
+        {
+          "heading": "Check whether the route uses parcel volume",
+          "paragraphs": [
+            "Some services compare scale weight with a weight derived from outer dimensions. Read the rule on the route you are considering. As a purely mathematical example, a 40 × 30 × 20 cm box occupies 24,000 cubic centimetres. Reducing only its height to 15 cm gives 18,000 cubic centimetres, one quarter less volume. Translating that difference into a charge requires the actual route's divisor, minimum and rounding rules. The geometry alone cannot supply a price."
+          ]
+        },
+        {
+          "heading": "Compare two real packing choices",
+          "paragraphs": [
+            "Imagine shipping shoes with the retail box retained or asking about shipping them without it. Record the estimated dimensions and weight for both options, retain the same country and route, and read any available packing fees. Consider whether the box matters for storage, gifting or protecting the item. A theoretical reduction can disappear if other goods determine the outer box size. If the goods need support, ask what protection the alternative provides."
+          ]
+        },
+        {
+          "heading": "Replace the estimate when better inputs arrive",
+          "paragraphs": [
+            "The independent VigorBuy calculator describes its rates as broad estimates. Use those for planning, then compare the confirmed available service and total in the official order flow. Keep a copy showing the date, route, destination, inputs and packing selections. When the final amount differs, compare those inputs line by line. This gives you a more specific support question than asking why shipping is expensive."
+          ]
+        },
+        {
+          "heading": "Work through a chargeable-weight illustration",
+          "paragraphs": [
+            "To see why a smaller box sometimes helps and sometimes does not, use a deliberately hypothetical service. Suppose its rule uses cubic centimetres divided by 6,000 and compares the result with actual kilograms. This is an example divisor for arithmetic, not a stated VigorBuy tariff. For a 40 × 30 × 20 cm box the calculated figure is 4 kg. If the scales show 2.5 kg, the volume side determines the comparison. Reducing the height to 15 cm lowers the calculated figure to 3 kg.",
+            "Now imagine the same two box sizes around a dense 5 kg load. The volume figures remain 4 kg and 3 kg. Under this hypothetical rule the scale figure of 5 kg governs both. Removing spare space could make the parcel easier to handle but would not change the chargeable-weight comparison. Conversely, a reduction from 4 kg to 3 kg is not a guaranteed percentage saving in money. Minimum charges, rate steps, rounding and service fees can change the result.",
+            "Use this illustration as a question generator. Does your actual service use volume at all for this parcel? Does it use the same units as the example? Are outer dimensions rounded individually? Does the service compare the figures before or after rounding? If the route displays a flat price band, find the next relevant boundary instead of assuming a price per gram. Stop doing arithmetic when the route rules or confirmed measurements are missing; at that point the live quote is the appropriate source."
+          ]
+        },
+        {
+          "heading": "Understand why product dimensions can be misleading",
+          "paragraphs": [
+            "A retailer's measurement may describe an object in use rather than how it travels. A storage basket can stand 30 cm high but nest inside another one. A garment can fold substantially, although zips or stiff panels may limit compression. A fragile item may need enough padding that the packed dimensions are much larger than the item. Even a shoebox already suitable for carrying shoes may require an outer carton before international dispatch. Ask which measurement you have before entering it.",
+            "For an irregular object, carriers generally need a box or bounding dimensions under their own rules. Measuring the narrow middle of a curved item while ignoring protruding ends can underestimate the space it occupies. If you ask the warehouse for dimensions, specify the final outside length, width and height after the selected packing method. If a repack is still only a proposal, mark those numbers as estimates. A difference of a few centimetres can matter when the box is close to a size limit.",
+            "The number of items can also mislead. Three folded shirts might fit beside shoes without changing the outer dimensions materially. One additional rigid object might force a larger box for the entire parcel. Rather than adding the volumes of the individual product descriptions and treating that as a confirmed box volume, ask about the feasible packed layout. Leave protective clearances to the people packing the goods. A compact arrangement that damages the contents is a poor bargain."
+          ]
+        },
+        {
+          "heading": "Compare eligible routes as well as headline prices",
+          "paragraphs": [
+            "Start the comparison with the same destination, postal code, contents, scale weight and outside dimensions for every route. Record which services actually appear. A service missing from the results might have a size, destination or item restriction. It could also be unavailable at that moment. Unless the interface explains the reason, record the result without guessing. Changing the category to force a cheaper service into view would give you a quote for a parcel different from the one you plan to send.",
+            "Read what the estimate includes. A number labelled as basic freight may appear beside separate charges for handling, packing or optional cover. A quoted transit range may refer only to the period after carrier handover. If timing matters, keep the warehouse stage in your own schedule rather than folding it into a delivery promise. Compare services on the combination you actually value. A cheaper route with a lower size limit or unsuitable handling conditions cannot serve as an alternative.",
+            "Check that currency and weight units remain consistent when switching between a directory calculator and the account. A two-kilogram estimate and a 2,000-gram estimate can describe the same physical parcel, but entering 2 in a grams field describes a radically different one. A converted total rounded to the nearest whole currency unit may also conceal a small difference between two services. Use the live account total in its stated currency for the purchase decision."
+          ]
+        },
+        {
+          "heading": "Evaluate a discrepancy with a reproducible note",
+          "paragraphs": [
+            "Imagine you saved a planning quote based on an item weight of 1.8 kg and an assumed carton. The warehouse later measures a packed 2.2 kg and uses a taller box to protect the contents. If the price increases, compare the inputs before questioning the arithmetic. Identify which numbers came from the seller, which were your assumptions and which are warehouse measurements. The estimate can be internally consistent and still be too low because the original inputs described a different object.",
+            "If the packed measurements seem implausible, send a question that someone can check. Give the parcel reference, selected packing method, reported dimensions and the specific discrepancy. For example, ask whether a retained retail carton determines the reported height, or whether the weight includes an optional protective insert. A focused answer can reveal whether you need a correction, a different packing choice or simply an updated budget.",
+            "Finally, keep the quote you approved with the packing choices it depended on. If you later compare this shipment with a friend's parcel, compare the contents, outer size, destination and route before drawing a conclusion about cost per kilogram. A screenshot of a low total without those inputs can be interesting but it cannot tell you what the next parcel will cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent VigorBuy shipping calculator and its assumptions",
+          "url": "https://vigorbuywithqc.com/shipping"
+        }
+      ]
+    },
+    {
+      "slug": "vigorbuy-payment-stages-and-how-to-reconcile-two-charges",
+      "title": "VigorBuy payment stages and how to reconcile two charges",
+      "description": "Use the order reference, parcel reference and receipt currency to reconcile item and shipping transactions.",
+      "sections": [
+        {
+          "heading": "Keep two separate records",
+          "paragraphs": [
+            "VigorBuy's developer description explains that the product purchase comes first and shipping follows inspection and bundling. Start a product record with the seller, quantity, selected option and purchase amount. When you submit goods for dispatch, create a parcel record with the items included and its own total. These records answer different questions. One establishes what the agent was asked to buy. The other establishes what was prepared for international delivery."
+          ]
+        },
+        {
+          "heading": "Identify which amount a screenshot displays",
+          "paragraphs": [
+            "A search result may show a starting price for a listing. The purchase summary may show a higher price for the selected variant. Your payment receipt may use a different currency again. Put the amount, currency and reference next to each entry. Avoid subtracting a number in yuan directly from one in dollars. If you compare currencies, record the displayed conversion and any separately itemised charges for that transaction."
+          ]
+        },
+        {
+          "heading": "Work through a mixed order",
+          "paragraphs": [
+            "Suppose you buy a shirt and a bag in separate orders and then send them in one parcel. Three payment records could be entirely consistent with that sequence. Assign each product receipt to its item, then link both items to one parcel receipt. If you are splitting costs with someone, decide how to apportion shared shipping and label the division as your own calculation. A platform receipt for one parcel does not establish two item-specific freight charges."
+          ]
+        },
+        {
+          "heading": "Investigate a transaction you cannot place",
+          "paragraphs": [
+            "First check the reference, merchant description, posted amount and whether the transaction is pending or settled in your payment account. Then look for a matching purchase, parcel or other recorded service. If two settled transactions still appear to pay the same reference, contact the platform and payment provider with the dates and amounts. Redact card details in any attachments. Keep the question tied to a specific receipt so the response can resolve the mismatch."
+          ]
+        },
+        {
+          "heading": "Use a ledger that follows the item and then the box",
+          "paragraphs": [
+            "A helpful purchase ledger has one row per transaction and separate fields for the underlying goods. For each order, record the date, order number, selected option, quantity, amount and currency. Include domestic delivery or another service only if it appears on that summary. When several items travel together, add a parcel row and list all included order numbers. This avoids forcing a shared shipping amount onto one of the products simply because that was the first item you bought.",
+            "Use an illustrative group purchase to test the record. One buyer selects two scarves and another selects a notebook. The scarves share a seller order, while the notebook has a separate seller order. Later all three pieces share one outgoing parcel. Your records should support at least four questions: what the scarves cost, what the notebook cost, what the whole parcel cost to dispatch, and which person is responsible for each agreed share. The answer to the fourth question depends on your private agreement.",
+            "Keep authorised amounts distinct from completed transactions. A cart subtotal is a proposal; an order requiring payment may not yet be paid; a posted payment record establishes a different fact. If an item was cancelled and repurchased, preserve both references with their respective status. Deleting the first order from your notes because it never shipped can make a later adjustment or refund look like an unrelated credit."
+          ]
+        },
+        {
+          "heading": "Reconcile currencies without introducing fictitious fees",
+          "paragraphs": [
+            "Suppose the seller listing gives a local-currency price, the shopping interface shows a converted amount and your payment instrument posts in another currency. Write down the amount and currency actually shown at each stage. A numerical difference can arise before you have evidence of a separate fee. Compare the same transaction using its reference and capture any itemised exchange or processing details where they are shown. Avoid converting today's exchange rate and treating a difference from yesterday's settled payment as proof of an error.",
+            "For a teaching example, imagine an order receipt for 120 units in currency A and a settled payment for 18 units in currency B. Dividing 120 by 18 gives an implied relationship of roughly 6.67 units of A per unit of B for that pair of numbers. It does not establish the market rate or a platform fee because you do not yet know whether both totals cover identical items or charges. Check the itemisation before interpreting the ratio.",
+            "If a payment instrument lists a separate foreign transaction amount, record that line under the provider that actually displayed it. Do the same with discounts. A coupon applied to the later parcel may reduce shipping while leaving the product receipts unchanged. Spreading its value over item prices might suit a personal budget, but it changes the meaning of those recorded prices. Keep the original amounts visible and put your allocation in a separate calculation."
+          ]
+        },
+        {
+          "heading": "Choose a fair method for sharing one parcel",
+          "paragraphs": [
+            "Consider the people sharing the shipment before it leaves. Splitting freight equally by person is easy, but it may not seem fair if one person's rigid shoe box determines most of the parcel size. Splitting by item count can make a tiny accessory bear the same share as a bulky coat. Splitting by scale weight can also miss the effect of volume. There is no universal personal allocation that can be inferred from a single bundled parcel receipt. Agree on the method and label it.",
+            "For example, suppose three people agree to split a hypothetical shipping total of 60 units as 30, 20 and 10, reflecting the rough space and weight each person's goods occupy. The shares add back to the paid parcel total. They are a private division, not three prices quoted by VigorBuy. If one person later asks for the official shipping price of their item alone, explain that it travelled as part of a group and a standalone quote could have been different.",
+            "If an item is removed before dispatch, update both the parcel contents and the personal shares. Carrying its old share forward can make the remaining members' contributions exceed the actual receipt. If a friend pays you in another currency, note the conversion rule you both used for settlement. Keeping that personal transfer separate from the platform receipts protects the accuracy of both records and makes later questions easier to answer."
+          ]
+        },
+        {
+          "heading": "Resolve a possible duplicate without losing a valid order",
+          "paragraphs": [
+            "A duplicate concern needs two pieces of evidence: two transactions that actually settled and a reason to believe they refer to the same purchase or parcel. First compare dates and references. Two equal amounts can be two different products. Two entries around the same time may include a pending authorisation and its completion. Check your payment provider's explanation of the statuses and compare with the orders visible in your VigorBuy account.",
+            "If there are two settled amounts for one order, collect the order detail and both transaction identifiers in a private message to the appropriate support channel. Describe what you expected to pay and what you can see. If one transaction belongs to an outgoing parcel, attach the parcel receipt and check whether that resolves the apparent duplicate. Do not post full card numbers, security codes or unredacted account screenshots in a public community while asking for assistance.",
+            "After a refund or adjustment, record the credit as its own transaction referencing the original. Check it against the provider's settled statement in its stated currency. Closing the issue means you can explain every relevant debit and credit, which item or parcel it belongs to, and any amount still unresolved. That is a more reliable outcome than making a spreadsheet balance by overwriting the original receipt with the total you expected."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "VigorBuy developer description on Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.vigorbuy.android.app"
+        }
+      ]
+    },
+    {
+      "slug": "planning-a-vigorbuy-bundle-when-one-item-has-not-arrived",
+      "title": "Planning a VigorBuy bundle when one item has not arrived",
+      "description": "Compare dispatching available items with waiting for one seller, using your warehouse dates and live parcel options.",
+      "sections": [
+        {
+          "heading": "Build the bundle from received items",
+          "paragraphs": [
+            "Begin with a list of what the warehouse has actually received and what each inspection shows. Put purchases still with a seller in a separate group. A paid order can belong in your budget without being available for packing. Mark any item you are querying over size, damage or quantity. This prevents an unresolved item from slipping into a parcel simply because it arrived before the others."
+          ]
+        },
+        {
+          "heading": "Give the late item a decision date",
+          "paragraphs": [
+            "Use the earliest time-sensitive condition among the goods already received. That could be an event you need them for, a storage deadline shown in your account or a seller's response deadline on a disputed order. Write down the latest day you are willing to wait and which information would change your decision. A seller saying an item will ship tomorrow does not confirm the date it will be received and checked."
+          ]
+        },
+        {
+          "heading": "Compare the two parcel plans",
+          "paragraphs": [
+            "Plan A sends the cleared items now and handles the last purchase separately. Plan B keeps everything together if the late item arrives in time. Examine the likely size of each box, eligible services and any packing charges. A thin shirt might fit inside space you already need. A rigid storage basket might determine the dimensions of the entire carton. Running both scenarios is more informative than assuming a bundle always saves money."
+          ]
+        },
+        {
+          "heading": "Record which items you authorised",
+          "paragraphs": [
+            "Before submitting, compare the selected warehouse lines with your list of cleared orders. Keep the parcel reference and remaining item list together. Later, when another receipt or tracking number appears, you can tell whether it belongs to the international parcel or the incoming purchase. If the deadline arrives with no new information, make the decision using the goods that are available and the current account terms."
+          ]
+        },
+        {
+          "heading": "Map the bundle around what you need it for",
+          "paragraphs": [
+            "Start with the purpose of the shipment. If one item is needed for an event, give it a separate date and decide whether the remaining purchases can travel later. If all the pieces form one outfit or one gift, receiving half the bundle before the deadline may be of little use. A decision based only on the lowest apparent shipping cost can overlook why you bought the goods in the first place.",
+            "For example, imagine a jacket and belt are ready at the warehouse while matching trousers are still with the seller. If you already own suitable trousers, dispatching the jacket could serve your purpose. If all three must match precisely and the trousers might arrive in a different shade, waiting for a warehouse comparison may be worth considering. Write down which relationship between the items matters. That turns “I want them together” into a check you can perform when the final item appears.",
+            "Record what would make waiting no longer reasonable. You might set a personal deadline for a seller dispatch confirmation, for warehouse arrival or for yourself to make the final choice. These are separate events. A tracking label created today cannot ensure that the item will arrive and pass inspection before tomorrow's packing decision. Give the plan enough room for the steps that still have to happen."
+          ]
+        },
+        {
+          "heading": "Calculate the complete cost of each plan",
+          "paragraphs": [
+            "When comparing a single bundle with a split shipment, add every parcel required by each plan. Suppose plan A sends ready goods now and the late item separately. Plan B sends all goods together once ready. Comparing only plan A's first parcel with plan B's full parcel makes the split plan look cheaper because it omits the later shipment. Conversely, assuming two shipments cost exactly twice one shipment ignores the different contents and packaging.",
+            "Run the comparison with the same destination and the same level of protection. A pair of shoes in a retained retail box might set the carton width in both plans. A folded belt could fit beside it with little effect. A garment requiring a rigid presentation box might dominate the carton when added. Record the assumed dimensions and packing decisions for each option. The warehouse's confirmed layout is stronger evidence than your guess about how individual product volumes add up.",
+            "Consider non-freight costs as well. If waiting requires a paid storage extension, include it only once it is a real option with an applicable price. If splitting requires extra protective packing, include the extra service where it is charged. If the later item may need returning to the seller, do not treat international shipping for that item as a certainty. A clear comparison can include an unresolved branch. Label it rather than assigning it a made-up figure."
+          ]
+        },
+        {
+          "heading": "Handle mismatches and last-minute arrivals",
+          "paragraphs": [
+            "A late item arriving at the warehouse is good news, but it has not automatically earned a place in the outgoing parcel. Check the option, condition and count just as you did for the earlier goods. A delayed seller may have offered a substitute, or the purchase may have been split into multiple pieces. Compare what arrived with the latest authorised selection and update the bundle only after you know what is available.",
+            "If the late item arrives while a parcel is already being prepared, check the status and ask the service whether a modification is available. Keep both references handy. Avoid submitting a second parcel containing the original goods on the assumption that the first request disappeared. A request to add an item can affect dimensions, route eligibility and the payable total, so obtain the revised details before making the final choice.",
+            "When the late item fails inspection, return to the decision date and the status of the ready goods. You may be able to dispatch those goods and handle the disputed item separately. You may decide to wait for clarification if the group needs to be assessed together. In either case, check warehouse dates for every item left behind. An inquiry attached to the late item may not preserve storage for goods that arrived much earlier."
+          ]
+        },
+        {
+          "heading": "Communicate the decision to anyone sharing the shipment",
+          "paragraphs": [
+            "For a shared bundle, tell each participant what has arrived, what is awaiting inspection and what still has no confirmed arrival. Include the cutoff time at which a decision will be made and the consequence of failing to receive the missing information. “If there is no warehouse receipt for the trousers by our chosen date, we will decide on the jacket and belt separately” gives everyone a much clearer expectation than “we'll wait a bit.”",
+            "Confirm who will pay each charge and how you will allocate freight if the shipment is split. If the late item belongs to one person, a new separate parcel can change the personal cost significantly. Discuss the calculation before authorising it. Keep the actual platform receipt as the record of what was charged and record any private division of that amount separately. Do not present a private split as the platform's standalone price for each item.",
+            "After the decision, save one sentence explaining it: “Jacket and belt dispatched after QC, trousers remain with seller and will need a separate decision.” Add the outgoing parcel reference when available. If the follow-up shipment happens weeks later, that note will make the tracking history intelligible. It also prevents you from expecting all purchased items in the first delivery and opening a missing-item complaint for something that never entered that parcel."
+          ]
+        },
+        {
+          "heading": "Check the decision once after submission",
+          "paragraphs": [
+            "Reopen the parcel detail and compare its contents with the final bundle note. If one line differs, ask about it promptly while the parcel's stage is clear. A minute spent matching references can prevent a much longer investigation after delivery."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent VigorBuy shipping calculator and its assumptions",
+          "url": "https://vigorbuywithqc.com/shipping"
+        }
+      ]
+    },
+    {
+      "slug": "troubleshooting-a-vigorbuy-product-page-that-cannot-load-a-find",
+      "title": "Troubleshooting a VigorBuy product page that cannot load a find",
+      "description": "Work out whether a failed import points to a broken share URL, a temporary loading problem or a changed listing.",
+      "sections": [
+        {
+          "heading": "Save the original address before retrying",
+          "paragraphs": [
+            "Copy the product link and record the marketplace, seller and option if you know them. An official VigorBuy product page can display a retrieval error and suggest refreshing. That message describes what the page could load at the time. By itself it does not establish that the seller permanently removed the goods. Keeping the original address lets you test the source listing separately instead of guessing from the error."
+          ]
+        },
+        {
+          "heading": "Check the original marketplace page",
+          "paragraphs": [
+            "Open the actual product URL and confirm that it identifies one listing. A shortened share address might land on a sign-in prompt, promotional page or storefront. If you can see the product, inspect the available options. A working listing with the desired size removed presents a different problem from an unavailable listing. Copy a fresh product link using the marketplace's normal sharing route and try it through the official purchasing interface."
+          ]
+        },
+        {
+          "heading": "Compare the evidence from both sides",
+          "paragraphs": [
+            "If the marketplace page opens but VigorBuy still cannot display the product, record the time and the exact message. If both sides open and show a different item than you expected, the seller may have changed the offer or you may have received another link. Use the title, seller, images and option list to describe what differs. Avoid treating an unrelated search result as a repaired version of the original."
+          ]
+        },
+        {
+          "heading": "Decide how to handle a replacement",
+          "paragraphs": [
+            "A new URL is a new candidate. Recheck price, pack count, chart, colours and the seller's terms. Warehouse pictures tied to the earlier item number are still evidence about the earlier listing. If you already have an order, contact support using its reference before placing another purchase. If you are only researching, mark the original row unavailable with a date and keep the replacement in a separate row."
+          ]
+        },
+        {
+          "heading": "Read the error as one observation in a chain",
+          "paragraphs": [
+            "A find passes through several stages before you can buy it. Someone published a link, your browser resolved the address, an agent attempted to retrieve the merchant page and the merchant offered one or more variants. Failure at any of those stages can produce an empty view. Begin by writing down exactly what you saw. “The agent page opened but showed no product information” records a different problem from “the link led to a seller storefront” or “the chosen size is greyed out.”",
+            "A platform message about retrieving information describes that particular request. It may offer a refresh action if you believe the item is still available. Use normal browser controls and the official item entry point, and avoid repeatedly changing several inputs at once. If you refresh, switch links and choose a different seller in the same attempt, you cannot tell which change made the next page work. Keep the originally shared URL available as a baseline.",
+            "Where the error appears on only one device, compare the final addresses and the account context before concluding that the listing has changed. A mobile share link may open an app view while a desktop browser opens a web landing page. If a sign-in prompt blocks the content, that establishes a visibility limit in that context. It is different evidence from an explicit seller statement that the product has been removed."
+          ]
+        },
+        {
+          "heading": "Separate a broken item from a missing variant",
+          "paragraphs": [
+            "Imagine a water bottle sold in three capacities. The listing may be available and have a perfectly good product page, but the 750 ml option you saved last month might no longer appear. If the page loads with a 500 ml option selected by default, the problem is no longer broken import. It is availability of a particular configuration. Refreshing or converting the same listing repeatedly is unlikely to establish that the larger bottle is still for sale.",
+            "Read the current option menu and check whether an unavailable choice is hidden, disabled or replaced by a differently named option. Compare the specifications and included accessories. A similarly coloured bottle might have a different capacity or lid. If the exact option matters, ask the seller or purchasing service whether the original option is currently available and request the corresponding current link or choice. Do not treat a general “in stock” label for another variant as an answer.",
+            "If you already placed an order before the page stopped loading, distinguish future availability from your existing purchase. The seller might remove a listing after dispatching an order, or an order may still require clarification despite an active page. Open the order reference and check its status directly. The public listing tells you about what another buyer can see now; your account and official support are the sources for what happened to your purchase."
+          ]
+        },
+        {
+          "heading": "Evaluate a replacement without importing old assumptions",
+          "paragraphs": [
+            "When a seller sends a new address, build a brief comparison between the old offer and the new one. Use the marketplace, seller identity, product number, selected variant, pack count, units, price and any essential specification. Mark whether the seller confirms the replacement or you found it through image search. A visually similar product found independently has less evidence of being the same merchant offering than a replacement explicitly identified by that merchant.",
+            "Suppose an old listing sold a pair of bottle lids and a replacement shows the same close-up picture. The new option could sell one lid, the whole bottle, or a different thread size. Read the text that specifies the size and compatibility. If the product must fit an existing item, ask for the relevant measurement rather than assuming the same shape means a compatible fit. For a component, a small mismatch can make an otherwise attractive replacement useless.",
+            "Historical photographs remain associated with the order and listing from which they were obtained. You can use old images to describe the appearance you are seeking, but avoid presenting them as photos of the new listing. If a replacement has no matching historical media, say that clearly in your personal shortlist. The first opportunity to inspect your own order will come through the actual purchase and warehouse process."
+          ]
+        },
+        {
+          "heading": "Write a useful report for the directory or purchasing service",
+          "paragraphs": [
+            "A directory operator can investigate a redirect or outdated find if you supply the page where you clicked, the intended product and what the destination actually displayed. Give the marketplace item number when visible and note whether the problem occurs with the full original URL as well as the directory button. Avoid sending personal checkout URLs or account screenshots merely to identify a public listing. A public product link and the observed error are generally better starting points.",
+            "A purchasing service may need different information. If the seller page opens correctly for you, include the full item link, selected option and a screenshot showing that the option is currently offered. If an existing order is involved, add its order reference through official support. Ask whether the problem concerns import, availability or the status of that order. One precise question makes it easier to identify the next useful action.",
+            "Update your saved record when the issue is resolved. If a temporary retrieval failure clears, retain the same listing identity and note when it worked again. If the directory switched to a different seller, preserve the original and identify the replacement explicitly. If the required option is no longer offered, mark that option unavailable rather than discarding an otherwise working listing for all shoppers. The record then captures the real fault and the exact scope of the repair."
+          ]
+        },
+        {
+          "heading": "A quick test before sharing",
+          "paragraphs": [
+            "Open the repaired destination once more and select the intended option. Share the checked seller address and variant text together so the next shopper can repeat your comparison."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "Example of an unavailable VigorBuy product record",
+          "url": "https://vigorbuy.com/product/2/7629430150"
+        },
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent VigorBuy link conversion guide",
+          "url": "https://vigorbuywithqc.com/link-converter"
+        }
+      ]
+    },
+    {
+      "slug": "vigorbuy-warehouse-inspection-for-sets-sold-in-several-configurations",
+      "title": "VigorBuy warehouse inspection for sets sold in several configurations",
+      "description": "Use the option description, expected piece count and a single annotated photo to check a multi-piece purchase.",
+      "sections": [
+        {
+          "heading": "Read the selected configuration as a packing list",
+          "paragraphs": [
+            "Some accessory listings show a full arrangement in the hero image even when buyers can select individual components. Start with the exact option you purchased. Write each expected piece on its own line. “Pouch, long strap, wrist loop” gives the warehouse a clearer reference than “the whole set.” Record whether the selection promises two matching pieces, a pair, or one piece supplied in a chosen colour. Save the wording that establishes that expectation."
+          ]
+        },
+        {
+          "heading": "Inspect from the outside in",
+          "paragraphs": [
+            "In the overall warehouse picture, identify the main item first. Then look for detachable pieces, closures and any inner package that could hold smaller parts. Distinguish a missing component from one that is simply outside the frame. A lanyard packed inside a pouch cannot be checked from a closed front view. Mark what the photo positively establishes and what remains hidden."
+          ]
+        },
+        {
+          "heading": "Ask for the smallest useful extra view",
+          "paragraphs": [
+            "For the pouch example, one overhead view showing the opened pouch beside the straps might resolve both the quantity and colour issue. A request for ten unspecified images gives no guidance on the problem. Provide the order reference, selected option and the one view that would change your decision. Ask about availability and price if an additional inspection service is involved. Keep the original image when annotating a copy for support."
+          ]
+        },
+        {
+          "heading": "Resolve discrepancies while the item is identifiable",
+          "paragraphs": [
+            "If the warehouse confirms that only the pouch arrived, revisit the option wording and order receipt. The seller might have offered the straps separately. If your selection clearly included them, ask what remedy and timetable apply to that particular purchase. Keep the disputed item out of a parcel until you decide. A clear conclusion can be as simple as “all three pieces visible in the second image” or “awaiting seller response for the missing wrist loop.”"
+          ]
+        },
+        {
+          "heading": "Distinguish a bundle from the styling shown in a photograph",
+          "paragraphs": [
+            "A desk organiser might be photographed with a pen, ruler and notebook. The seller could offer the organiser alone or sell a coordinated stationery set through a separate option. Before counting objects in a warehouse photo, locate the seller's explicit description of what one purchased unit contains. Styling props are clues about use, but they are weak evidence of included contents. If the option wording remains ambiguous, ask the purchasing service to confirm the seller's interpretation.",
+            "Look carefully at terms such as “pair,” “set,” “piece” and “accessory.” These may describe different dimensions of the offer. One unit of a two-piece set can legitimately produce two objects from a cart quantity of one. An accessory option may sell only a strap that fits the bag featured prominently in the image. A colour option might refer to the main object while small attachments are supplied in an assorted colour. Write the exact selected text before simplifying it into a personal checklist.",
+            "For a group purchase, specify the selected configuration for every cart line. Three friends choosing the same bag design could select a pouch-only option, a bag with one strap and a bag with a full accessory set. An overall image of three bags and several loose straps may satisfy the total piece count yet still leave one person's order incomplete. Keep the association between items and seller options visible before the contents are combined into a parcel."
+          ]
+        },
+        {
+          "heading": "Choose inspection views that answer different questions",
+          "paragraphs": [
+            "Begin with a full layout of the specific order if it is available. The layout establishes how many separately visible pieces arrived and their broad identity. A close-up can establish a small detail such as the buckle type, attachment point or label. An interior view can establish whether an accessory is stored in a pocket. These views complement one another. Repeated exterior images from slightly different angles may add very little when the unresolved piece is hidden in an inner compartment.",
+            "Ask whether a sealed package can be checked without damage. A gift box might carry an external label listing all the contents, and opening it could affect presentation or seller eligibility for an after-sales request. If you need the gift to stay sealed, a label photo and confirmation of package count may be the best available evidence. Accept the limitation consciously. A label stating that three accessories are included is a different observation from three accessories visibly laid out in one image.",
+            "For items that connect physically, a photo of the attachment points can matter more than the total count. A strap can be present but have a different clip or width from the one the bag requires. Ask for the relevant components side by side so the connection type is visible. If actual fit or operation must be tested, ask what inspection is available. A photograph cannot prove compatibility when the critical dimension or mechanism is hidden."
+          ]
+        },
+        {
+          "heading": "Handle partial deliveries without miscounting the order",
+          "paragraphs": [
+            "An incomplete-looking warehouse record can reflect an actual shortage, a hidden component, a split seller shipment or a configuration that never included the piece. Keep all four possibilities open until the evidence separates them. If the seller has two domestic tracking numbers, establish whether another parcel is outstanding. If one outer package contains smaller sealed packs, determine what is visible without dismantling everything. If the seller's option explicitly names one piece, revisit your initial expectation.",
+            "Suppose you ordered two accessory sets. Each should include one pouch and two straps. A photo shows two pouches and three straps. Your expected total is six objects and five are visible. Ask which order line the image covers and whether a fourth strap is inside either pouch. Do not assume which person's set is incomplete if the components have already been laid together. If colourways differ, count by colour and type as well as total quantity.",
+            "If the missing piece is confirmed, ask what remedies apply to the specific seller order. A seller might propose sending the piece separately, replacing the whole set or handling another after-sales request. Compare the time involved, domestic shipping arrangements, warehouse deadlines and how each option affects the international parcel. A small component can still be essential if the main item cannot be used without it. The lowest monetary value does not always identify the least important piece."
+          ]
+        },
+        {
+          "heading": "Create a traceable decision before shipment",
+          "paragraphs": [
+            "Record each expected component in a sentence or compact list and mark it visible, confirmed by label, confirmed by staff, unresolved or absent. These descriptions should reflect the evidence available for that component. A generic “QC passed” can hide an exception you intended to revisit. A note saying “long strap visible, wrist strap confirmed inside pouch by warehouse message” is enough for later reference without pretending both were visible in the same image.",
+            "If you accept a substitution, preserve its description with the final inspection note. For example, the seller may supply a silver clip instead of a black clip and you may decide that is acceptable. The purchase is then resolved by agreement, not because the original photo showed the ordered configuration. If a different accessory is later reported missing, you can distinguish the specific substitution you accepted from the components that were still required.",
+            "At final delivery, compare the opened package with your accepted contents list. If the earlier inspection confirmed the missing strap arrived separately and was included in the international parcel, retain its separate record as well. Knowing whether a piece was never supplied, was later received or was intentionally left behind makes an eventual support inquiry shorter and much more accurate."
+          ]
+        },
+        {
+          "heading": "A practical label for the saved evidence",
+          "paragraphs": [
+            "Name the final photo set with the order reference and accepted configuration so it cannot be confused with pictures of other variants sold under the same listing."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "Independent reference on listing-level photo history",
+          "url": "https://vigorbuywithqc.com/about"
+        }
+      ]
+    },
+    {
+      "slug": "finding-the-vigorbuy-app-and-keeping-mobile-orders-traceable",
+      "title": "Finding the VigorBuy app and keeping mobile orders traceable",
+      "description": "Identify the developer listing and connect your mobile records to marketplace purchases, warehouse checks and parcels.",
+      "sections": [
+        {
+          "heading": "Start from the publisher listing",
+          "paragraphs": [
+            "VigorBuy publishes a shopping app on the App Store and on Google Play. The Apple listing identifies the developer as Vigorbuy, and the Google Play link identifies the Android app by its package name. Use the linked store pages to check the current publisher and device requirements. A similar icon in an advertisement or a matching search term is weaker evidence. Availability and store details can vary with region and device."
+          ]
+        },
+        {
+          "heading": "Bring a product link into the purchase flow",
+          "paragraphs": [
+            "Copy the seller's product URL, open the item in VigorBuy and compare it with the marketplace page. On a narrow screen, check the complete option text before leaving the selector. Two options can begin with the same word but end with different pack sizes. Set the quantity deliberately, especially if you reopened an existing cart line. Save the resulting order reference beside the original listing for later use."
+          ]
+        },
+        {
+          "heading": "Keep warehouse media attached to the right purchase",
+          "paragraphs": [
+            "A photo saved to a phone quickly loses its context if the gallery contains several similar items. Give the image or note a meaningful reference, such as the order number and selected colour. Retain the original alongside any crop used to show a concern. Review pre-shipment pictures in the account and direct questions to the corresponding purchase while the warehouse can still identify the item."
+          ]
+        },
+        {
+          "heading": "Follow the parcel after several orders are combined",
+          "paragraphs": [
+            "When you submit a parcel, record its reference and the order numbers included. The purchase record explains what the seller sent. The outgoing parcel record identifies the goods dispatched together and the associated shipment information. A screenshot of one tracking event is easier to interpret when the carrier and tracking number are visible. Keep personal addresses and transaction details private when sharing an image outside the official support channel."
+          ]
+        },
+        {
+          "heading": "Check that a store result is the app you meant to install",
+          "paragraphs": [
+            "Search results can contain apps with similar titles or promotional pages that lead to a store later. Use the developer-published listing to compare the app name, publisher information and the purpose described. The VigorBuy listing describes it as a purchasing service for sourcing goods and reviewing them before shipment. A third-party spreadsheet or image gallery may help you discover products without being the official purchasing app. Decide which function you need before relying on an account or placing an order.",
+            "On an iPhone, check the store page for the version, device compatibility and availability in your region. On Android, use the Google Play listing to check the identity associated with the VigorBuy app. Device-specific requirements can change, so a screenshot of an older store page is a poor substitute for the listing shown to your device. If an app is unavailable in your region, seek information from the official service rather than assuming a similarly named app has the same account or order access.",
+            "A review section can describe other people's experiences, but individual reviewers cannot establish what happened to your shipment, the rates currently available to your account or the deadline that applies to a specific purchase. Use the developer description to understand the intended workflow, the seller listing to verify the goods and your account to identify the state of your own order. These sources answer different questions and can be used together."
+          ]
+        },
+        {
+          "heading": "Move a find from a desktop list to a phone",
+          "paragraphs": [
+            "Suppose you locate a bag on a desktop spreadsheet and want to purchase it on a phone. Save the marketplace product address, exact seller option and quantity. If the bag comes in two capacities with the same cover image, write down the capacity as well as the colour. Send yourself the public seller link or use your existing private notes. A screenshot of the picture alone gives the mobile user too little information to recover the correct seller or configuration.",
+            "On the phone, open the item through the official purchase flow and compare the seller page with the desktop note. Check the price for the selected option, the number of units and what each unit includes. Pay attention to horizontally scrolling option selectors: a label may be shortened on a narrow screen. Expand the option or review the final cart wording when available. A product link that resolves correctly can still open with a default selection different from the desktop choice.",
+            "If you discover a mismatch, decide whether it concerns the listing identity or only the selected option. A different seller requires a fresh comparison. A matching seller and product number with another colour selected may only require choosing the intended colour again. A size or capacity that no longer appears raises a separate availability question. Treat each problem at its actual level so that a simple selection change does not become an unintended substitution."
+          ]
+        },
+        {
+          "heading": "Organise mobile evidence by order and stage",
+          "paragraphs": [
+            "Phone galleries often group pictures by date. That is convenient while shopping but less useful when several sellers send similar garments in the same week. Keep a private note for each order and identify the relevant photo set with that reference. For an inspection concern, retain the original warehouse picture and a separate annotated copy. Highlight the disputed detail without editing colour or perspective. If the issue concerns a missing accessory, keep the option description that shows the accessory was included.",
+            "Avoid treating every screenshot as proof of the same thing. A seller picture establishes how the seller advertised an item. A marketplace receipt establishes the selection you authorised. A warehouse picture establishes what the visible view of your particular order showed. A carrier scan documents a shipment event. A clear note says which stage each screenshot belongs to, especially if a support conversation extends over several days and the item subsequently changes status.",
+            "If you switch phones or use a desktop to continue the conversation, check that you have the same reference and full thread. Describe an open issue with its current state rather than starting a competing request. For instance, “order X, second close-up requested yesterday, still deciding about the parcel” gives context. A new message merely saying “wrong one” could be attached to another purchase or interpreted as a request for an immediate return."
+          ]
+        },
+        {
+          "heading": "Understand what app tracking can and cannot tell you",
+          "paragraphs": [
+            "The VigorBuy app description advertises tracking through the purchase and shipment process. A useful tracking habit begins with identifying which object is moving. Before the warehouse receives the goods, a seller or domestic carrier reference may describe the trip toward the warehouse. After several orders are bundled, a new outgoing parcel can describe the international delivery. The first reference may correctly show a completed delivery while the second has only just been created.",
+            "When checking a parcel, record the carrier, number, last event and date. A message that a label exists is a different event from a confirmed carrier handover. A delivery window often refers to a defined portion of the route; check what the account actually states before using it to plan an event. If an update is unclear, official support can investigate more readily with the parcel reference and most recent carrier event than with a cropped notification containing a single word.",
+            "After delivery, reconcile the package with the order references in the parcel. Keep any unresolved purchases active. One bag arriving at your address does not close the separate warehouse question about another item. Once everything is resolved, archive the receipts, relevant inspection notes and final tracking record together. The result is a practical purchase history that remains intelligible even if your phone's screenshots, notifications and tabs eventually disappear."
+          ]
+        },
+        {
+          "heading": "A simple habit for the next order",
+          "paragraphs": [
+            "Save the product and order references when the confirmation first appears. That small step makes the later warehouse review and parcel lookup much easier when several purchases are visible on the same screen."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "VigorBuy developer description on the App Store",
+          "url": "https://apps.apple.com/us/app/vigorbuy-chinas-best-yours/id6752485168"
+        },
+        {
+          "title": "VigorBuy developer description on Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.vigorbuy.android.app"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What information should I save from a VigorBuy spreadsheet row?",
+      "a": "Save the original marketplace link, seller, selected option, quantity and date you checked the price. This gives you something precise to compare with the order summary."
+    },
+    {
+      "q": "Can several sizes share one VigorBuy product link?",
+      "a": "Yes. A seller listing may group sizes and colours under one product number. Open the option selector and check the actual cart selection."
+    },
+    {
+      "q": "Why does a find cost more when I select a variant?",
+      "a": "The headline may represent another option or the cheapest available component. Read the selected price and included pieces before paying."
+    },
+    {
+      "q": "Will a converted agent link remember my size?",
+      "a": "Treat the converted link as a pointer to the seller listing. Reselect and verify the colour, size and quantity on the destination page."
+    },
+    {
+      "q": "What should I do with a shortened marketplace share link?",
+      "a": "Open it, find the individual product and copy its full product address if available. A storefront address does not identify a single item."
+    },
+    {
+      "q": "How do I recognise a substituted listing?",
+      "a": "Compare marketplace, item number, seller, option descriptions and visible features. Recheck a new listing even when its cover photo looks familiar."
+    },
+    {
+      "q": "Does a historical QC picture show my own order?",
+      "a": "Historical photos document a previous purchase. Use the warehouse media associated with your order to see the item you received."
+    },
+    {
+      "q": "Can a warehouse photo establish shirt measurements?",
+      "a": "Only when the measuring position, tape and scale are visible. A size label alone tells you which label was attached."
+    },
+    {
+      "q": "How do I request a more useful picture?",
+      "a": "Give the order reference, explain the unresolved detail and ask for a particular angle or measurement. Confirm whether a charge applies."
+    },
+    {
+      "q": "Can I judge the exact colour from one QC image?",
+      "a": "Lighting and camera processing affect shades. Compare labels and contrasting features, and ask for another view if shade matters."
+    },
+    {
+      "q": "How should I check a set with detachable accessories?",
+      "a": "List each piece included in your selected option. Ask for a single layout showing those pieces together if the original picture leaves any hidden."
+    },
+    {
+      "q": "What does the first VigorBuy payment cover?",
+      "a": "Review the purchase summary for the goods and any charges listed there. The platform describes international shipping as a later stage."
+    },
+    {
+      "q": "Why can two product purchases share one shipping receipt?",
+      "a": "Goods from different purchases may be bundled after inspection. Record the parcel reference alongside each included order."
+    },
+    {
+      "q": "What should I enter as shipping weight?",
+      "a": "Read the unit in the calculator. Distinguish the garment or item weight from the packed parcel weight and update the estimate when packed measurements are available."
+    },
+    {
+      "q": "Does removing a retail box guarantee cheaper shipping?",
+      "a": "Savings depend on final outer dimensions, weight, service rules and packing charges. Compare both packing options with the same destination and route."
+    },
+    {
+      "q": "Can I assume the calculator's transit estimate begins on purchase day?",
+      "a": "Check the service's stated starting event. Seller handling, transfer to the warehouse and inspection can occur before international dispatch."
+    },
+    {
+      "q": "What if a seller page works but VigorBuy cannot import it?",
+      "a": "Copy a current full item URL, refresh the official product page and record any repeatable error with its time before contacting support."
+    },
+    {
+      "q": "Which item should I exclude from a bundle?",
+      "a": "Leave out an item with an unresolved size, quantity or condition question until you decide whether to keep it. Review the warehouse dates for anything you hold."
+    },
+    {
+      "q": "How do I verify the mobile app publisher?",
+      "a": "Open the VigorBuy developer listing in the App Store or Google Play and compare the app identity there before installing."
+    },
+    {
+      "q": "What should I keep if I need to query a payment?",
+      "a": "Record the amount, currency, date, transaction status and product or parcel reference. Redact payment credentials in screenshots."
+    },
+    {
+      "q": "Which number should I use to ask about an international shipment?",
+      "a": "Use the outgoing parcel reference and its tracking number. Add the individual order number when your question concerns a particular item inside it."
+    }
+  ],
+  "keywords": [
+    "VigorBuy spreadsheet finds",
+    "VigorBuy link converter",
+    "VigorBuy QC photos",
+    "VigorBuy shirt size chart",
+    "VigorBuy shipping calculator parcel dimensions",
+    "VigorBuy item payment and shipping payment",
+    "VigorBuy consolidate items warehouse",
+    "VigorBuy failed to get product information",
+    "VigorBuy QC check accessories sets",
+    "VigorBuy app iPhone Android order tracking"
+  ]
+}

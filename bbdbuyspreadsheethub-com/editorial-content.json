@@ -1,0 +1,925 @@
+{
+  "articles": [
+    {
+      "slug": "how-to-prepare-a-bbdbuy-custom-order-when-product-details-do-not-import",
+      "title": "How to prepare a BBDBuy custom order when product details do not import",
+      "description": "Write a usable manual purchase request with the original seller listing, exact option and clear substitution instructions.",
+      "sections": [
+        {
+          "heading": "Decide whether a manual purchase matches the task",
+          "paragraphs": [
+            "BBDBuy offers a product-link purchasing service. Its custom order route is relevant when the usual import does not provide enough product information. Before opening the form, establish who will pay the seller. If you already completed the purchase yourself, giving BBDBuy a second buying instruction could duplicate it. In that case investigate the forwarding route instead. If you want the agent to place the purchase, build the request around the actual seller listing."
+          ]
+        },
+        {
+          "heading": "Identify the variant in the seller's own terms",
+          "paragraphs": [
+            "Copy the product URL and the exact variant text. For example, an apron listing might offer a plain apron, an apron with a pocket and a pair of detachable sleeves. A photograph of all three objects does not identify the right option. Include the colour, configuration, pack count and desired quantity. If the wording is hard to translate, retain the original text alongside a screenshot that shows the selected choice."
+          ]
+        },
+        {
+          "heading": "Write useful instructions about changes",
+          "paragraphs": [
+            "Tell the purchaser what to do if the seller has no stock or offers a different option. “If the forest-green apron with a front pocket is unavailable, please contact me before choosing another colour” is easier to act on than “best one please.” Check any requested price field against the live option. Enter a price in the unit and currency requested. If the seller has changed the price, decide whether you still want that offer."
+          ]
+        },
+        {
+          "heading": "Read the submitted record",
+          "paragraphs": [
+            "Compare the resulting order with your saved specification before paying or authorising further action. Make sure the quantity is the number of units you intended and retain the order reference. If you later need to correct a detail, add the change to that same order through official support. Starting another manual order while the first is active can leave two instructions for one intended purchase."
+          ]
+        },
+        {
+          "heading": "Build the request with a clothing example",
+          "paragraphs": [
+            "Suppose you want an overshirt listed by a seller who offers two fabrics, three colours and several sizes. The main picture shows a cream shirt over a dark tee, but the option menu also includes an entry that translates as “matching inner.” If the import fails, the hero image alone gives the purchaser little guidance about which part of that outfit to buy. Start by copying the seller's exact name for the outer shirt. Then specify the fabric, colour, size and number of units as separate details.",
+            "Check the order of selections on the seller's page. A listing may only reveal the available sizes once you select the fabric. If your screenshot shows the green version highlighted but no size, add a second screenshot after choosing the size. Leave the option text visible. A close-up cropped to the picture may be attractive but it removes the evidence that distinguishes the variant. If the seller provides individual stock counts, record when you saw the selected combination available.",
+            "The price can help recognise a mismatch, although it cannot establish identity by itself. Imagine the displayed starting price belongs to the matching tee. When the overshirt is selected, the displayed amount changes. In your purchase note state that the amount is for one overshirt in the selected configuration. Check the final summary for that configuration. A much lower amount might mean a discount, a stock change or a different item. Resolve the difference before authorising purchase."
+          ]
+        },
+        {
+          "heading": "Make measurement requests answerable",
+          "paragraphs": [
+            "Some manual orders fail because the selected product is clear but the buyer's condition is ambiguous. “Oversized fit” is a preference; two people may understand it differently. If a measurement determines whether you want the item, give the seller a measurement with endpoints. For an overshirt, ask for the width straight across the chest between the points where the sleeves meet the body, with the shirt buttoned and laid flat. Give the unit and state whether you need a seller measurement before purchase or a warehouse check after arrival.",
+            "Pick the question that changes your decision. A buyer who needs a shirt long enough to tuck in might prioritise body length. A buyer who wears it open as a layer might care more about shoulder width. Requesting a complete made-to-measure assessment on a standard seller item can generate a reply that says little about the one important dimension. If your selected size depends on an answer, make that dependency visible to the purchaser before the seller order is placed.",
+            "Clarify acceptable tolerances in your own purchasing decision. If you say a length “around 74 cm” is acceptable, the purchaser cannot know whether 72 or 76 cm would work. State the range you personally can wear, if any. The seller still controls what can be verified for that product. A buyer's requested number is a condition for the decision, not a manufacturer's guarantee. If nobody can confirm an essential detail, leave the purchase pending or choose a listing with better information."
+          ]
+        },
+        {
+          "heading": "Compare replacements as separate offers",
+          "paragraphs": [
+            "A sold-out option often leads to a proposal that sounds close: a different shade, another fabric or the same design from a second seller. Decide which changes you can authorise in advance. A different size typically changes fit; a different seller can change the item itself, the price and the terms. Even when the photograph appears identical, require a fresh seller URL and option description for a replacement that comes from another listing.",
+            "Keep the original and proposed selections side by side. If one proposal appears cheaper, compare matched quantities and any domestic delivery amounts at the exact options. If an alternative comes only as a two-pack, the lower price per shirt does not make it a cheaper total purchase. If the offered colour will not work for you, a similar shade does not become a suitable substitute merely because every other attribute matches.",
+            "Give a clear response linked to the current order. “Please buy one large navy overshirt from the original seller if the cream colour is unavailable, at the amount confirmed in this message” is a bounded instruction. “Any similar one is fine” can move the purchase to another design, seller or price. If the proposed replacement changes more than you accept, ask the agent what action is available for the pending order."
+          ]
+        },
+        {
+          "heading": "Keep the purchase record usable at inspection",
+          "paragraphs": [
+            "When the goods arrive, reopen the option screenshots you saved before purchase. Compare the warehouse item with the actual authorised selection, including any change you approved. A support thread showing that you agreed to navy after cream sold out is important context. Without it, navy can look like a picking mistake even when the purchaser followed your later instructions correctly. Keep the latest agreed option next to the order reference.",
+            "If there is an issue, identify the exact point of disagreement. Perhaps the authorised order names cotton but the label in the image lists a different fibre. Perhaps the order names an outer shirt while the photo shows only the inner tee. Include the relevant order line and the evidence visible in the warehouse photo, and ask a specific question before including the item in an international parcel. Where the image does not establish a detail, ask the warehouse what it can inspect under the current service."
+          ]
+        },
+        {
+          "heading": "A final check before reordering",
+          "paragraphs": [
+            "For a repeat purchase, load the saved custom order as a reference and revisit the seller's original offer. Sellers can reorganise an option menu or sell through a different listing. Confirm the current details even if you recognise the photograph immediately. Save a new order reference if you proceed, so the warehouse pictures from two purchases cannot be accidentally attached to the same inquiry."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "BBDBuy custom order form (sign-in required)",
+          "url": "https://www.bbdbuy.com/diy"
+        },
+        {
+          "title": "Independent guide to BBDBuy ordering tools",
+          "url": "https://bbdbuy.net/tools/"
+        }
+      ]
+    },
+    {
+      "slug": "bbdbuy-forwarding-for-a-purchase-you-already-paid-for",
+      "title": "BBDBuy forwarding for a purchase you already paid for",
+      "description": "Match a seller-paid order to the warehouse details issued inside your own BBDBuy forwarding account.",
+      "sections": [
+        {
+          "heading": "Separate purchasing from forwarding",
+          "paragraphs": [
+            "Forwarding starts with a purchase you made yourself. Your seller needs a delivery address in China, and BBDBuy needs enough information to associate the arriving parcel with your account. A purchasing-agent order has a different starting point because you ask the agent to acquire the goods. Decide which arrangement applies before you pay anyone. Record the marketplace receipt so you can show that the goods have already been purchased."
+          ]
+        },
+        {
+          "heading": "Read the current instructions in the account",
+          "paragraphs": [
+            "Open the official forwarding service and sign in to view your warehouse details. Copy the assigned address, recipient information and identifying fields exactly as displayed. Avoid borrowing another customer's address from a tutorial. Even when the building is the same, a missing personal identifier can make it difficult to identify your parcel. If the seller's address form separates province, city and district, match the fields individually."
+          ]
+        },
+        {
+          "heading": "Connect the incoming parcel to your record",
+          "paragraphs": [
+            "Save the domestic carrier and tracking number as soon as the seller supplies them. Follow the account's directions for creating or updating the forwarding record. If a seller splits one order into several boxes, check whether each tracking number needs its own entry. The seller's order number can identify the purchase but may not help warehouse staff distinguish two physical parcels arriving on different dates."
+          ]
+        },
+        {
+          "heading": "Resolve a delivery mismatch",
+          "paragraphs": [
+            "A domestic scan showing delivery is an important clue, but warehouse matching is a separate event. Compare the delivered address and shipment reference with your forwarding details. If the record remains unresolved, contact BBDBuy with the carrier, tracking number, seller receipt and delivery date. Share recipient information only through official support. Ask whether the parcel has been identified and which field or document is needed to match it to your account."
+          ]
+        },
+        {
+          "heading": "Check the address before the seller creates a label",
+          "paragraphs": [
+            "The most valuable time to inspect an address is before the seller hands the parcel to a carrier. Compare the address the seller will actually use with the address issued in the forwarding instructions. Read it field by field rather than comparing two dense blocks of text. A district name copied into a street field can be difficult to spot when everything appears together. A recipient identifier at the end of a long line can also be lost if a marketplace form has a character limit.",
+            "Where the original uses Chinese text, copy it as instructed and retain a screenshot or account record of the issued details. Translating a building name into another language can create an address the local carrier will not recognise. If the marketplace form requires a field you cannot map confidently, ask the forwarding service which part belongs there. Guessing a phone number, choosing a neighbouring district to get past validation or omitting a suffix can turn a straightforward delivery into a matching problem.",
+            "After the seller confirms dispatch, compare the carrier and tracking number with the actual forwarding entry. A marketplace message may display an internal transaction number next to a courier reference. Label the two separately. If the seller replaces a shipping label, preserve the old number as superseded and use the replacement number for the incoming parcel. This small update prevents a support inquiry from focusing on a tracking record that never belonged to the box in transit."
+          ]
+        },
+        {
+          "heading": "Handle split shipments and mixed seller orders",
+          "paragraphs": [
+            "Suppose a stationery shop sells you a notebook, a pen case and a desk tray. It dispatches the notebook and pen case together and sends the tray a day later from another location. You have one marketplace order and two incoming boxes. A simple note with one row for the order and one tracking field will lose information as soon as the second number appears. Create two incoming-package lines and put both under the same seller order.",
+            "Write the expected contents only to the extent the seller confirms them. If the marketplace merely says the order was split but does not identify which item sits in which box, mark that field unknown. When the first receipt appears, you can update the expected contents of the second parcel based on what has actually arrived. Keep open the possibility that the seller packed a partial quantity in each. The existence of two tracking numbers alone does not tell you how the goods were divided.",
+            "The opposite can also happen: one seller dispatches purchases from two order records in a single box. Preserve both purchase references alongside that incoming tracking number and check how BBDBuy wants such a shipment recorded. Avoid creating duplicate incoming entries with different descriptions unless the official process directs you to do so. The goal is a clear relationship between seller orders and physical packages, whether there are one, two or several of each."
+          ]
+        },
+        {
+          "heading": "Investigate an unmatched delivery without losing the evidence",
+          "paragraphs": [
+            "If the domestic carrier reports delivery but no corresponding item appears in your account, compare the latest evidence before escalating. Read the carrier's location, delivery time and handling note. Check the seller's recipient address against the address issued to you. Inspect the account for an unexpected parcel with the same tracking number or a partially matching description. A carrier scan and a warehouse inventory entry are made for different purposes and can appear at different times.",
+            "Construct a short message that separates what is established from what remains uncertain. For example: “The seller sent my desk tray under this domestic tracking number. The carrier records delivery on Tuesday. I entered the number in my forwarding record, but I cannot match a received item. Could you check whether the parcel has been identified and tell me which further information you need?” Include the order receipt and a copy of the issued address only where official support needs them.",
+            "If the seller used an address different from your forwarding details, contact the seller and carrier through their normal channels as well. A warehouse cannot confirm receipt solely because the courier marked a parcel delivered somewhere in the same city. If the address matches but an identifying detail is missing, tell support which detail was omitted. Preserve the original labels and messages. Editing an old screenshot to add the missing identifier would make it less helpful for establishing what actually happened."
+          ]
+        },
+        {
+          "heading": "Know when the forwarding stage is finished",
+          "paragraphs": [
+            "Once the incoming parcel is matched, reconcile the warehouse record with your own list of goods. The forwarding reference links the incoming shipment to your account. It does not itself identify an international service, prove a particular customs outcome or authorise the final parcel. Review what inspection is available for forwarded goods under the current terms. If you bought the item directly, a seller issue may also require you to contact the marketplace seller yourself.",
+            "Only after the goods are accounted for should you compare outgoing parcel options. Retain the domestic carrier record with the original purchase, then add the international parcel reference when you submit that parcel. Weeks later, a domestic tracking page that says “delivered” will still be correct about its own journey. The separate reference tells you where to look for the delivery that now matters."
+          ]
+        },
+        {
+          "heading": "What to file after successful matching",
+          "paragraphs": [
+            "Store the incoming tracking record and matching confirmation together, including the contents received and any unresolved quantity question. For a split order, mark only the parcel that actually arrived as complete. This creates a usable starting point if the second box turns up much later or if you choose to dispatch the first group before everything else reaches the warehouse. It also gives you a clear history when reconciling domestic delivery charges with a seller."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "BBDBuy forwarding service (sign-in required)",
+          "url": "https://www.bbdbuy.com/forwarding"
+        },
+        {
+          "title": "Independent guide to BBDBuy ordering tools",
+          "url": "https://bbdbuy.net/tools/"
+        }
+      ]
+    },
+    {
+      "slug": "reading-bbdbuy-order-status-from-seller-purchase-to-international-dispatch",
+      "title": "Reading BBDBuy order status from seller purchase to international dispatch",
+      "description": "Identify the current holder of your goods and choose the order or parcel record that can answer a tracking question.",
+      "sections": [
+        {
+          "heading": "Follow the purchase while it is still an order",
+          "paragraphs": [
+            "When you buy a product through BBDBuy, the seller-to-warehouse journey comes before the international parcel. The official app groups order, warehouse and parcel updates in one place. Read the status together with the reference it belongs to. A seller dispatch event attached to an order tells you about the shipment toward the warehouse. A shipping event attached to an outgoing parcel belongs to a later stage."
+          ]
+        },
+        {
+          "heading": "Distinguish warehouse receipt from warehouse readiness",
+          "paragraphs": [
+            "A domestic carrier may mark a delivery complete before the account shows an item ready for inspection or packing. Record the tracking event and check the official account for receipt, inspection and available inventory. If several orders are coming from different shops, check each reference separately. One seller's delivery does not establish that every order in your intended bundle has arrived."
+          ]
+        },
+        {
+          "heading": "Find the parcel that contains the order",
+          "paragraphs": [
+            "After you submit goods for international shipment, save the outgoing parcel number and its list of items. A single parcel can contain purchases from several sellers. If you look up one seller's original tracking number after dispatch, it may still show delivery to the warehouse because that shipment has finished. Use the international parcel's carrier and tracking identifier for the onward leg."
+          ]
+        },
+        {
+          "heading": "Ask a question that fits the current stage",
+          "paragraphs": [
+            "For a seller delay, quote the order number and the date of purchase. For a domestic delivery awaiting warehouse matching, include the incoming tracking record. For a dispatched parcel, identify its carrier, latest scan and destination country. A support request with the correct reference can establish where to look without requiring someone to reconstruct your entire purchase history."
+          ]
+        },
+        {
+          "heading": "Build a timeline that distinguishes three journeys",
+          "paragraphs": [
+            "Picture two shirts from one seller and a tray from another. Your account contains purchases on the same day, yet each seller can dispatch at a different time. The shirts may have a domestic carrier scan while the tray is still awaiting dispatch. Later the warehouse may receive both shirts together, and you may choose to send one shirt with the tray while holding the other. A single timeline labelled “my order” cannot represent those different journeys reliably.",
+            "For each seller purchase, record the reference and the last event you can verify. For each received item, record whether the warehouse has made it available and whether inspection is complete to your satisfaction. For each international parcel, record its contents and outgoing tracking number. The finished timeline has a clear fork wherever one seller order becomes several received items, and a clear join wherever goods from different orders are packed together. You can do this in plain notes; a complicated tracking system is unnecessary.",
+            "Give dates a precise meaning. A seller's dispatch date marks a different event from the warehouse recording receipt. An international label date can precede a carrier's first physical scan. When a friend says an order usually takes a certain number of days, ask which event was used as the beginning and which as the end. Using the purchase date for one order and the dispatch date for another creates a comparison that cannot tell you whether either shipment is unusually slow."
+          ]
+        },
+        {
+          "heading": "Read an apparent delay before choosing whom to contact",
+          "paragraphs": [
+            "Start with the last completed event and the next event you reasonably expect. If BBDBuy has a purchase instruction but the seller has not dispatched, the next question concerns purchasing or merchant fulfilment. If a domestic carrier has marked delivery but no warehouse item appears, the question is about identifying or processing an incoming parcel. If an outgoing tracking number has been created but the carrier has no movement, you need information about the international parcel handover.",
+            "Take account of how specific the available evidence is. A status translated as “sent” could refer to an order sent to a seller, to goods sent by that seller or to an international parcel. Open the detail view and check the associated reference, origin and destination if displayed. A domestic parcel that ends in a Chinese warehouse does not establish that your international package is on its way. The international route will have its own record once you arrange that shipment.",
+            "If the platform displays a service estimate, read its scope and any conditions for follow-up. An estimate for a carrier leg cannot be used to calculate how long a seller has to prepare a made-to-order item. A service announcement may affect one route or destination and leave others unchanged. Use information that applies to your actual record, and ask official support if the account does not make clear what stage is awaiting action."
+          ]
+        },
+        {
+          "heading": "Handle a mismatch between a notification and the account",
+          "paragraphs": [
+            "Notifications are convenient shortcuts, but a short title may omit the item or stage involved. If a push notification says “delivered,” open it from the official app or look up the corresponding record in your account. Identify which purchase, warehouse item or outgoing parcel it references. If several orders have similar product names, compare the reference number. A photo of a green shirt does not help when two green shirts arrived in the same week.",
+            "If a notification seems to contradict the account, note the notification time and the status visible when you checked. Refresh through the official interface and confirm you are signed into the same account used for the purchase. An old email or a previously saved screenshot may correctly describe the earlier state. Preserve it as part of the timeline, but give the current detail view priority for identifying what action is now available.",
+            "If the discrepancy persists, describe the two records precisely. “The email at 10:20 lists parcel X as dispatched; the current parcel detail still shows awaiting handover and there is no first carrier scan” tells support which evidence needs reconciliation. “Tracking is wrong” leaves the recipient to reconstruct the problem. Keep personal data within the official conversation and include order contents only where they help identify the affected item."
+          ]
+        },
+        {
+          "heading": "Close each stage explicitly",
+          "paragraphs": [
+            "As goods change stages, mark the old tracking reference complete for its own purpose. After confirmed warehouse receipt, the domestic carrier number still belongs in your records, but it should no longer be your first place to check international progress. Once the outgoing parcel arrives, verify its contents against the list of included warehouse items. An older seller order can remain partly outstanding even though the box you received is complete.",
+            "For a group purchase, send each person the status relevant to their goods. If one shirt remains in storage while the tray and another shirt have shipped, avoid telling everyone that the whole order has shipped. A simple message naming the included items and parcel date is enough. References kept at the right level allow you to give an accurate update, find an issue quickly and trace each purchase from the seller through to delivery without relying on ambiguous status words."
+          ]
+        },
+        {
+          "heading": "An example of a concise status update",
+          "paragraphs": [
+            "Suppose support confirms that two seller boxes reached the warehouse, one is available and the other awaits identification. Your update can read, “The first box has been matched to order A. The second domestic shipment shows warehouse delivery, and I have provided its tracking number for matching. I have not submitted either item for international dispatch.” This wording gives the reader the relevant next event for each purchase.",
+            "When a later update arrives, change only the affected line. If the second box is matched, record the warehouse item reference and check whether it contains the expected pieces. If the first box ships separately, add the outgoing parcel reference without marking the second as shipped. This approach remains manageable even when the original order is divided across multiple incoming and outgoing parcels."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "Official BBDBuy mobile apps",
+          "url": "https://www.bbdbuy.com/app"
+        },
+        {
+          "title": "Independent BBDBuy shopping walkthrough",
+          "url": "https://bbdbuy.net/guide/"
+        }
+      ]
+    },
+    {
+      "slug": "finding-the-real-pack-size-in-a-bbdbuy-household-spreadsheet-listing",
+      "title": "Finding the real pack size in a BBDBuy household spreadsheet listing",
+      "description": "Use a towel listing to distinguish dimensions, pieces per set and the quantity selected before checkout.",
+      "sections": [
+        {
+          "heading": "Read the item title as a starting clue",
+          "paragraphs": [
+            "BBDBuy's public homepage includes household goods such as a towel described with two dimensions. A pair of numbers in a title can refer to length and width. It says nothing by itself about the number of towels supplied. When following a spreadsheet find into the product page, locate the units, the chosen option and the seller's explanation of what is included. Save the exact wording if more than one package is offered."
+          ]
+        },
+        {
+          "heading": "Calculate pieces in the order",
+          "paragraphs": [
+            "Use a simple relationship: selected bundles multiplied by pieces in each selected bundle. Two single towels deliver two pieces. Two bundles containing three towels each deliver six. These are illustrative quantities, so read the actual seller option before using the calculation. A bundle of assorted colours may not allow you to pick every colour individually. Record any such limitation before ordering for several people."
+          ]
+        },
+        {
+          "heading": "Compare prices on the same basis",
+          "paragraphs": [
+            "If two listings refer to towels of very different sizes, a lower price per towel may still be an unhelpful comparison. Check dimensions, materials claimed by the seller and the number of pieces in each option. Compare the price of equal quantities using the same currency. Keep any domestic delivery cost visible as a separate line if it varies with the number of bundles in your cart."
+          ]
+        },
+        {
+          "heading": "Use the warehouse pictures to confirm the purchase",
+          "paragraphs": [
+            "Check the visible label, quantity and any packaging statement against your order. A sealed multipack can hide the exact count. If a count matters, ask BBDBuy what the warehouse can verify without damaging the packaging or affecting potential return eligibility. If the invoice and photos agree, attach them to the same order record. If they differ, ask for clarification while the items are still individually identifiable."
+          ]
+        },
+        {
+          "heading": "Distinguish a listing dimension from its quantity",
+          "paragraphs": [
+            "A household title such as “34 × 74” could be useful shorthand once the product page confirms units and measuring method. A towel 34 cm wide and 74 cm long has a rectangular area of 2,516 square centimetres before considering hems or shape. The multiplication describes surface area. It cannot tell you whether the seller supplies one towel, two matching towels or a gift box containing additional pieces. Keep the physical dimensions and pack configuration in different fields.",
+            "This distinction becomes more important when search results display short titles or automatically translated text. A size choice might appear next to a quantity selector, and a small thumbnail can make them look like alternative ways of modifying the same order. Select the size first, then inspect the configuration field and the quantity in the cart. Capture a screenshot of the fully selected row if there is any chance of confusing a two-piece set with two units of a one-piece set.",
+            "If the seller offers a sample as well as a full-sized item, read the option price and description together. A sample may be a piece of fabric intended to show colour or texture. Its low price can make the entire listing look cheaper in a table sorted by starting price. Check what amount is payable for the full-sized towel you actually want. If the listing cannot state the contents clearly, the candidate may be unsuitable for a repeatable group purchase."
+          ]
+        },
+        {
+          "heading": "Compare a group order with fixed requirements",
+          "paragraphs": [
+            "Imagine you need one hand towel per person for six guests and want two spares. Your requirement is eight usable towels in a particular size range. Seller A offers single towels with individual colour selection. Seller B offers packs of three in fixed mixed colours. To supply at least eight towels you would need eight singles or three triple packs, yielding nine pieces. Compare the total payable for those actual choices. The price of eight thirds of a pack is mathematically tidy but it is not a purchase you can make.",
+            "Now add the colour constraint. If every guest needs the same colour and the mixed pack contains only one towel in that colour, the apparently economical pack may fail the requirement. If varied colours are acceptable, the extra towel may be a useful spare. The right comparison depends on what you need to receive. Write the number of usable pieces as well as the seller's piece count so a lower unit price cannot conceal a poor match.",
+            "For a mixed family order, record which variant belongs to whom before paying. Two people choosing “blue” may mean different seller swatches. If the store uses named codes, copy those codes. If it uses only pictures, save the selected picture with the order record. A clear note becomes valuable at inspection when similarly coloured items arrive together and you need to establish whether each seller selection is represented."
+          ]
+        },
+        {
+          "heading": "Include domestic delivery and packaging in the comparison",
+          "paragraphs": [
+            "Suppose the seller's checkout indicates one domestic delivery amount for a single order, while another charges by quantity. Record the total displayed for the actual basket at both sellers. Do not multiply a one-item delivery quote by eight unless the seller explicitly applies that rule. Equally, do not assume that adding eight items leaves domestic shipping unchanged. Recalculate the basket and compare like quantities in the same currency.",
+            "Presentation packaging can change the purchase and the later parcel. A boxed towel set may be better suited to gifting than a simple bundle of loose towels. The box can also make the outgoing parcel bulkier. Record whether you want the presentation packaging retained. A lower quoted international freight estimate based on loose packing is not a useful comparison if the gift boxes are an essential part of your order. Ask which packing choices are available before building a budget around them.",
+            "If you remove a candidate from your shortlist, record the reason in plain words. “Only assorted colours,” “sample option was the displayed price,” or “size diagram lacks units” helps you recognise the same limitation if the listing reappears in another spreadsheet category. A shortlist that preserves those reasons is more useful than a long list ranked by a price whose meaning changes from one listing to another."
+          ]
+        },
+        {
+          "heading": "Resolve counting questions at receipt",
+          "paragraphs": [
+            "When goods arrive, check the whole package against the seller's configuration. Six individually wrapped towels can sometimes be counted in one wide image. A sealed three-pack may only display its outer label. The photo verifies what is visible and a label can indicate the stated contents, but neither necessarily proves the contents of a closed package. Decide what level of evidence you need based on whether you will keep the items, give them away sealed or combine them into an international parcel.",
+            "Where opening packaging could affect its presentation or an after-sales request, ask what the warehouse can check without breaking seals. You may prefer a clear photo of each package and its count label. If the seller sent fewer packages than purchased, the bundle arithmetic in your note makes the discrepancy easy to describe. Quote the number of packs ordered, the pieces in each, the number visible and the exact question. This separates a seller shortfall from an incorrect expectation about the original configuration."
+          ]
+        },
+        {
+          "heading": "File a useful repeat-order note",
+          "paragraphs": [
+            "After delivery, record the number of usable pieces, their actual dimensions and whether they matched the intended application. If you received nine mixed towels but used only six because of the colour arrangement, record that result. It may change which pack is economical for your next order. When you return to the seller, verify that the same size, pack composition and price still apply before treating your earlier comparison as current."
+          ]
+        },
+        {
+          "heading": "One question worth settling early",
+          "paragraphs": [
+            "If two offers still look equivalent, ask the seller to confirm in writing the number of full-sized towels supplied in your selected pack. That short answer can settle a question that a dozen more thumbnails cannot."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "Independent spreadsheet and QC finder overview",
+          "url": "https://repsheet.net/spreadsheet/bbdbuy"
+        },
+        {
+          "title": "Official BBDBuy beginner guide",
+          "url": "https://www.bbdbuy.com/help?article=beginner-guide&cat=daigou-guide"
+        }
+      ]
+    },
+    {
+      "slug": "building-a-bbdbuy-shipping-estimate-for-a-bulky-household-item",
+      "title": "Building a BBDBuy shipping estimate for a bulky household item",
+      "description": "Compare a nested parcel with a rigid outer carton and find the inputs needed for an account-specific freight estimate.",
+      "sections": [
+        {
+          "heading": "Start with the item that determines the box",
+          "paragraphs": [
+            "BBDBuy lists household storage items alongside smaller apparel. A lightweight but rigid bin can determine package dimensions even if other items weigh more. Before estimating, note the largest item's outside dimensions and whether the seller expects the item to arrive assembled. If a lid or handle projects beyond the body, allow for it. Retail measurements describe the product, while a freight quote may depend on the box that protects it."
+          ]
+        },
+        {
+          "heading": "Use dimensions to compare two packing scenarios",
+          "paragraphs": [
+            "Suppose a packed carton measures 45 × 30 × 30 cm. Its volume is 40,500 cubic centimetres. If a different arrangement reduces the height to 22 cm, its volume becomes 29,700 cubic centimetres. This arithmetic shows the space saved. To determine whether the savings change the amount payable, enter the actual dimensions, weight and destination into the official estimator and read the chosen route's charging rule."
+          ]
+        },
+        {
+          "heading": "Change one variable at a time",
+          "paragraphs": [
+            "Keep the same destination, contents and service while comparing the two arrangements. Then look at which services are eligible for each packed size. A route disappearing from a comparison can matter more than a small difference in estimated weight. Record any extra wrapping or support required for the smaller layout. A box that needs reinforcement may end up heavier than the preliminary dimensions suggest."
+          ]
+        },
+        {
+          "heading": "Review the final packed information",
+          "paragraphs": [
+            "Use the rate and service shown for your account at the time you intend to ship. A public estimator example cannot confirm the current charge for a specific address. Ask whether the proposed arrangement protects the item and whether it is possible to nest other goods without pressure on the lid or handles. Keep the packed dimensions, carrier option and total together so later changes can be traced to their source."
+          ]
+        },
+        {
+          "heading": "Model what the outer carton must protect",
+          "paragraphs": [
+            "Take a rigid rectangular desk tray as an example. Its bare corners may be vulnerable in transit even if the plastic or wood feels sturdy at home. Packing a thin layer around every side increases more than one dimension. A tray measuring 36 × 26 × 7 cm cannot be represented accurately by entering those same numbers if the supporting carton, padding and raised edges occupy additional space. Ask for the packed measurements when they are available, especially if you are comparing routes near a size threshold.",
+            "Consider whether other purchases can safely occupy unused space. Soft cloths placed inside a rigid container may use space efficiently, but placing a heavy object inside an unsupported plastic bin can crack the base under load. A lid may be designed for light household use and be unable to withstand pressure from another product stacked on top. Describe the actual contents rather than asking the warehouse to pack “as tightly as possible” without qualification.",
+            "If preserving the product's original box matters, record that as a requirement before seeking a cheaper arrangement. A nested configuration may require discarding the presentation box or removing a protective insert. If the item will be given as a gift, that trade-off can outweigh the freight savings. A comparison of a boxed gift and a loose item is partly a packaging decision, not simply a choice between two equivalent transport services."
+          ]
+        },
+        {
+          "heading": "Separate measured weight from a route's billing basis",
+          "paragraphs": [
+            "Scale weight tells you the mass of the packed parcel. Outside dimensions tell you the space it occupies. Some routes apply rules using both. If a service shows a dimensional formula, follow its stated units and divisor. As an illustration only, a service dividing cubic centimetres by 5,000 would calculate 8.1 kg for a carton of 40,500 cubic centimetres. A different divisor or a route billed solely by scale weight would produce a different billing basis for that same carton.",
+            "Suppose the example carton weighs only 3 kg on a scale. On a route that bills the greater of 3 kg and the illustrative 8.1 kg, reducing volume could matter. If the same carton contains dense goods weighing 10 kg, a modest volume reduction may have no corresponding effect on that comparison. The arithmetic explains why a calculator can respond differently to the same change in dimensions. It does not identify the divisor, service or price available to a real BBDBuy parcel.",
+            "Look for fixed charges and rounding. A service might price weight in increments or start with a minimum. Two packed layouts with different calculated weights can therefore fall into the same band. Meanwhile a size threshold may make a previously unavailable service eligible. When comparing two plans, note the list of eligible services as well as the total on the one service they share. Sometimes changing the available options is more important than a small change on the original route."
+          ]
+        },
+        {
+          "heading": "Estimate a household bundle without double counting",
+          "paragraphs": [
+            "For a bin, several towels and a tray, begin with a contents list and describe how the objects might fit together. If the towels fill unused space inside the bin, adding their separate product volumes to the external bin volume exaggerates the final box. If the tray cannot fit through the opening, assuming everything nests would underestimate it. An outline sketch with product dimensions can help identify which arrangement is plausible before requesting the warehouse's assessment.",
+            "Avoid assuming that all items from a large seller order must travel in one international parcel. If one bulky item forces an oversized carton, compare dispatching it separately with sending everything together. For each plan, include all parcels required to deliver the same contents. Comparing one split parcel against the full consolidated parcel makes splitting appear artificially cheap. Add the quoted totals for both split parcels, including charges that apply once per box.",
+            "Keep the scenarios comparable on protection. If one scenario includes a reinforced outer carton because the tray is fragile, a cheaper comparison that removes all protection answers a different question. Ask whether a less bulky packing method can still meet the item's needs. If the warehouse cannot confirm the proposed layout before preparing the parcel, record the uncertainty and keep room in the budget for the confirmed measurement."
+          ]
+        },
+        {
+          "heading": "Prepare the final enquiry about a household parcel",
+          "paragraphs": [
+            "When there is a discrepancy between your estimate and the packed quote, present the two sets of inputs together. Name the official parcel reference, destination, route and packing choices. State the dimensions and scale weight used for each estimate. Identify which figures came from the seller's product page and which came from the warehouse. An agent can then explain whether protective space, a rigid part, a service restriction or another factor changed the calculation.",
+            "If the practical question is whether a handle or lid can travel separately, ask that question directly and confirm whether removing it could affect the item's assembly or the seller's packaging. If a box may be discarded, name the exact box. A seller's decorative sleeve and the protective product carton are different things. Instructions that say “remove all packaging” can eliminate a protection you intended to keep.",
+            "Before authorising the parcel, save the actual selected service and total. Label any preliminary screenshot as an earlier estimate. The next time you buy the same household item, that record will give you a better starting point than the bare product dimensions alone. A new order still needs a current quote, especially if the destination, quantities, route availability or retained packaging have changed since the previous parcel."
+          ]
+        },
+        {
+          "heading": "What makes an estimate reusable",
+          "paragraphs": [
+            "A useful historical quote describes a complete parcel. Keep the dimensions in a stated unit, the packed weight, contents, date, packing method and destination together. That record lets you recognise the effect of adding another product without presenting an old price as a current BBDBuy offer."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "BBDBuy shipping estimate (sign-in required)",
+          "url": "https://www.bbdbuy.com/estimation"
+        },
+        {
+          "title": "Independent guide to BBDBuy ordering tools",
+          "url": "https://bbdbuy.net/tools/"
+        }
+      ]
+    },
+    {
+      "slug": "a-bbdbuy-warehouse-calendar-for-orders-arriving-on-different-dates",
+      "title": "A BBDBuy warehouse calendar for orders arriving on different dates",
+      "description": "Use per-item dates to plan a consolidated parcel without losing track of storage or seller-response deadlines.",
+      "sections": [
+        {
+          "heading": "Give each stored line an individual date",
+          "paragraphs": [
+            "Orders placed on one afternoon may reach the warehouse on different days. Start with the warehouse status and recorded dates for each item. Copy any expiry date shown for that particular line. If only a period is displayed, consult the account's current storage terms about its starting event. Avoid using the original checkout date as an automatic substitute for the start of warehouse storage."
+          ]
+        },
+        {
+          "heading": "Track the question attached to an item",
+          "paragraphs": [
+            "Create one column for inspection and another for the next decision. One shirt may be ready to ship; a second may need a measurement; a third may be with the seller for an exchange. Separate those states. An unresolved inspection does not automatically pause a storage period or a seller's response deadline. Ask the platform what applies if the two processes overlap, and save its reply with the order."
+          ]
+        },
+        {
+          "heading": "Plan from the earliest meaningful deadline",
+          "paragraphs": [
+            "Suppose order A is available and its storage date is approaching, while order B has yet to arrive. The possible choices include shipping A, checking whether A can be extended under the current terms, or waiting if enough time remains. Compare those actions using the actual deadline and any extension price shown in your account. An advertised maximum period does not confirm that a specific extension has been purchased."
+          ]
+        },
+        {
+          "heading": "Close the calendar as items leave",
+          "paragraphs": [
+            "After submitting a parcel, attach its reference to the warehouse lines included. Leave everything else in the active list. If you purchased storage, save the receipt and check that the item shows the expected new date. This simple reconciliation matters most when several visually similar pieces have separate orders. It avoids marking a whole batch complete when only part of it has been shipped."
+          ]
+        },
+        {
+          "heading": "Start your calendar with the first warehouse arrival",
+          "paragraphs": [
+            "Imagine you purchase a jacket, a cap and a household organiser on the same day. The cap arrives first, the jacket arrives several days later and the organiser seller has yet to dispatch. A calendar built from the checkout date gives all three purchases the same apparent storage age. A calendar built from the warehouse records can show something more useful: one stored item with a known date, one newly received item and one purchase that has not entered storage at all.",
+            "Give each line a simple identity. Use the seller order number, the warehouse item reference if available, the product and the variant. A blank field should mean you lack the information. Avoid placing a guessed date in the field for a displayed deadline. If you calculate a planning reminder yourself, call it a reminder and keep it separate from the deadline shown in the account. A conservative reminder can help you act early without becoming a false statement of platform policy.",
+            "For each stored item, record the last time you checked the account. You do not need to log every routine visit. Update when an important fact changes: a warehouse date appears, a photo request is answered, an extension is confirmed or a parcel is submitted. The calendar should tell you which choice is due next. It should not bury important dates under a stream of timestamps with no practical consequence."
+          ]
+        },
+        {
+          "heading": "Handle multiple clocks on one item",
+          "paragraphs": [
+            "A warehoused purchase can have more than one relevant date. A seller may need a prompt response about a return; an inspection question may require a decision before a parcel is submitted; a personal event may make delivery after a certain date unhelpful. These dates describe different processes. An extension of warehouse storage does not necessarily preserve a seller remedy. Conversely, a seller agreeing to investigate a defect does not by itself confirm how long BBDBuy will hold the item.",
+            "Suppose a jacket is awaiting a close-up of a damaged button. Put the unresolved condition and the date of your request in its note. Check the seller-specific after-sales deadline and any warehouse date separately. If the seller needs an answer before the warehouse issue is settled, ask support what evidence can be provided in time and what steps preserve the available options. A note saying “waiting for support” without identifying the deadline can leave you with an avoidable last-minute decision.",
+            "If the account gives only a date without a time, avoid relying on the final hour. Different systems can display dates in different time zones, and the action may require time to process. Set a personal reminder early enough to act during your normal availability. When you need the precise closing time for a costly decision, ask the official service which time zone and event govern that particular deadline."
+          ]
+        },
+        {
+          "heading": "Compare waiting, extending and dispatching",
+          "paragraphs": [
+            "Waiting has value if an incoming item would fit efficiently into an existing parcel. It also creates uncertainty when the seller has not committed to dispatch or when a received item is nearing a deadline. For each option, write down the consequence you can actually establish. Dispatching now creates a quote for the goods on hand. Extending may preserve time if the account offers an extension for that item and confirms its terms. Waiting without confirmation preserves neither a price nor future eligibility.",
+            "A useful comparison uses the whole plan. If shipping the cap now would leave the jacket and organiser for another parcel, consider both parcels when estimating overall cost. If an extension would allow one consolidated parcel, include the extension price and any change in parcel dimensions. A rigid organiser might enlarge the carton enough to reduce the benefit from bundling. Use consistent destination and packaging assumptions when comparing routes, and keep unknown values visible.",
+            "Look beyond cost where necessary. A cap needed for a trip can lose most of its value if you wait too long. A jacket with an unresolved inspection question should not enter a parcel merely to meet a personal dispatch target. Assign a decision owner if several people share an order. One person should know who must choose before the earliest deadline and what evidence that decision requires. This avoids a group assuming that someone else requested the extension or shipment."
+          ]
+        },
+        {
+          "heading": "Verify an extension or dispatch in the account",
+          "paragraphs": [
+            "A submitted request, a payment receipt and an updated warehouse deadline establish different facts. If you buy an extension, retain the authorisation and then check whether the affected line displays the expected new date. Make sure you extended the right item, especially where the same product appears in several orders or colours. If the date does not change, contact the service with both references before relying on the extension.",
+            "When you submit an international parcel, note which items left storage and which stayed. Use the official list of included items, not a recollection of the boxes you intended to select. If one item remained because a route or packing choice made it ineligible, it may still need attention even though the rest of the parcel is underway. Give that item a new next action and retain its original storage information.",
+            "After delivery, archive the completed lines while keeping any outstanding ones active. A clear record of a previous purchase can make the next consolidated order easier to plan. Use the dates and results as historical experience, not a promise about new purchases. Check the storage conditions and account display again for each new group of orders."
+          ]
+        },
+        {
+          "heading": "What your next reminder should say",
+          "paragraphs": [
+            "Use an action and an item reference, such as “check whether the tray has arrived before deciding whether to dispatch cap order A.” That reminder gives you a decision to make. A generic alarm labelled “warehouse” leaves you searching for the item and deadline when time is already short."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "Independent BBDBuy shopping walkthrough",
+          "url": "https://bbdbuy.net/guide/"
+        },
+        {
+          "title": "Independent guide to BBDBuy ordering tools",
+          "url": "https://bbdbuy.net/tools/"
+        }
+      ]
+    },
+    {
+      "slug": "reporting-a-bbdbuy-inspection-mismatch-before-parcel-submission",
+      "title": "Reporting a BBDBuy inspection mismatch before parcel submission",
+      "description": "Document discrepancies in size, colour, quantity or condition and give support a clear question while the goods are still in storage.",
+      "sections": [
+        {
+          "heading": "Identify what the purchase record actually promises",
+          "paragraphs": [
+            "Start with the selected seller option and order confirmation. A cover image might show a whole outfit while the selected option names only the trousers. A translated colour might sound different from the seller's own label. Gather the option text, quantity and identifying image before describing what is wrong. The question becomes much clearer once you know which promise the warehouse result appears to contradict."
+          ]
+        },
+        {
+          "heading": "Describe what the picture establishes",
+          "paragraphs": [
+            "BBDBuy describes warehouse checks that include visible condition, size and colour. A photo of a garment label can establish that it says M. It cannot establish the measured width unless the tape and endpoints are visible as well. If the size is in question, explain whether the issue is the printed label or the actual dimensions. If a part seems absent, establish whether the photo covers the entire package."
+          ]
+        },
+        {
+          "heading": "Write a request someone can act on",
+          "paragraphs": [
+            "Use a short format: order reference, selected option, observed difference and requested next action. For example, “I ordered the black pair with a plain waistband. The photo shows the striped waistband option. Please check the option label and confirm whether these are the correct trousers before I submit a parcel.” Attach one original image and, if helpful, one copy marking the area in question."
+          ]
+        },
+        {
+          "heading": "Compare the available resolutions",
+          "paragraphs": [
+            "Once the mismatch is confirmed, ask what options apply to that seller and order, who pays domestic transport and what deadline governs a response. A replacement may resolve a missing piece but requires time. A refund may have conditions on labels or packaging. Keep all communications in the affected order record and leave the disputed item out of an international parcel until you have made your decision."
+          ]
+        },
+        {
+          "heading": "Establish whether the apparent error is visible, measured or functional",
+          "paragraphs": [
+            "Suppose a warehouse image shows a navy jacket and your order says black. Colour is partly affected by lighting, so the first question might concern the seller's option label. If your order says a jacket has two chest pockets and the image clearly shows one, the discrepancy may be visible directly. If your concern is that a zip sticks, a still image offers limited evidence. Distinguish these cases before deciding what to ask BBDBuy to check.",
+            "For a measured issue, specify the property and the measuring method. “The sleeve looks short” is difficult to confirm. “Please measure from the shoulder seam to the end of the fastened cuff with the sleeve flat” is a reproducible request. Use the seller chart saved at purchase and match its reference points. If the seller measured from the neck and you compare a measurement from the shoulder, the apparent discrepancy may come from the method rather than the garment.",
+            "For a functional concern, ask whether the warehouse can perform the relevant check and whether it could affect packaging or return eligibility. Do not assume an agent will disassemble an item or run a specialised test. A photo may reveal a bent component but cannot establish that every function of an electronic or mechanical product operates correctly. Keep your claim within the available evidence and decide whether a limited answer is enough for you."
+          ]
+        },
+        {
+          "heading": "Build an evidence pair the seller can understand",
+          "paragraphs": [
+            "A useful evidence pair consists of one image or text excerpt showing what was purchased and one warehouse image showing what arrived. Keep the relevant text visible, including the selected variant if several options use the same photo. If the issue concerns an accessory, show the wording that includes it in the price. If the issue concerns the wrong colour, include the actual option name rather than a general photograph containing several colourways.",
+            "When marking up a picture, circle the location and explain the label in your message. A blank red arrow at the edge of a folded garment leaves the recipient guessing whether you mean a seam, a colour patch or a missing button. Write plainly: “In image two, the left cuff appears to have one fastener. The selected option diagram shows two.” If another angle could reveal the second fastener, ask for that angle before declaring a shortage.",
+            "Keep originals. An annotated screenshot is useful for explanation, but the unedited original preserves the context around the crop. Name files or notes by order and date so a follow-up image cannot easily be mistaken for the original. This matters when a seller sends a replacement. The warehouse may hold two very similar garments associated with the same discussion at different times."
+          ]
+        },
+        {
+          "heading": "Choose among clarification, replacement and return",
+          "paragraphs": [
+            "A clarification request asks for information while leaving the next action open. Use it when the evidence is incomplete. A replacement request asks the seller to supply a different item, which may add time and introduce another inspection step. A return request asks about sending goods back and recovering funds under the applicable terms. These are different requests. Be precise about which action you want authorised now and which decision you will make after receiving an answer.",
+            "Before agreeing to a replacement, confirm the replacement option, who pays any domestic shipping, what happens to the original and how the revised timeline affects storage or your plans. If the replacement is offered from a different listing or seller, treat it as a different purchasing decision. Check the new specifications and price. If the seller offers a partial adjustment for keeping the item, evaluate whether you can actually use it with the reported defect. A discount does not solve a functional mismatch.",
+            "When a return is proposed, check whether packaging, tags or seals must remain intact and which deadline applies. If another buyer in your group wants the item, make sure everybody understands the available choices before closing the inquiry. Record the option you accepted and the official reference for that action. A verbal assumption about a refund is less useful than a record showing the return stage and the amount or outcome the service has actually confirmed."
+          ]
+        },
+        {
+          "heading": "Protect the rest of a shared parcel from the dispute",
+          "paragraphs": [
+            "A single disputed item need not make the contents of the whole planned parcel ambiguous. Divide the warehouse list into cleared, held and awaiting seller action. If you proceed with the cleared goods, verify the contents of the outgoing parcel in the account. Keep the held item's order reference in an active note and set a reminder for its response deadline. Waiting for news about a jacket should not cause you to overlook the storage date on unrelated purchases.",
+            "If the dispute is resolved after the rest of the parcel ships, reassess the item's shipping options on its own or with later purchases. The earlier estimate for a combined parcel may no longer apply. If the seller sends a replacement, inspect it under its own warehouse record and attach the outcome to the original inquiry. Check the feature that caused the initial problem first, then confirm the rest of the selected option as usual.",
+            "Close the case with a factual summary. “Warehouse confirmed both buttons in the second photo and the jacket was released” describes a resolved uncertainty. “Seller agreed to replacement; new item has not arrived” describes an action in progress. That distinction keeps your records useful if another support agent takes over or if you need to decide whether to ship other goods before the exchange is complete."
+          ]
+        },
+        {
+          "heading": "Follow the outcome through to the account",
+          "paragraphs": [
+            "If an adjustment is agreed, record when and where the credit or replacement should appear and check the official order when that stage is reached. A message proposing an action and an account entry completing it provide different evidence. Preserve both until the purchase is resolved."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "BBDBuy order support",
+          "url": "https://www.bbdbuy.com/help?article=contact&cat=other"
+        },
+        {
+          "title": "Independent guide to BBDBuy ordering tools",
+          "url": "https://bbdbuy.net/tools/"
+        }
+      ]
+    },
+    {
+      "slug": "comparing-bbdbuy-spreadsheet-clothing-options-with-flat-measurements",
+      "title": "Comparing BBDBuy spreadsheet clothing options with flat measurements",
+      "description": "Use one well-fitting garment and the seller's own measurement method to compare listings with similar photographs.",
+      "sections": [
+        {
+          "heading": "Start with fit in a specific garment",
+          "paragraphs": [
+            "Choose trousers you wear comfortably for the same activity. Fasten the waist and lay them flat without stretching any elastic. Record the waistband width, rise, inseam and hem opening using a repeatable method. Note whether they have stretch and where the waistband normally sits. A comparison against a rigid waistband is less informative if the candidate trousers rely on elastic for most of their fit."
+          ]
+        },
+        {
+          "heading": "Translate the chart carefully",
+          "paragraphs": [
+            "Read whether the table describes garment measurements or body measurements. A flat width of 40 cm across a fastened waistband corresponds to roughly 80 cm around that garment. That does not mean a person with an 80 cm waist will necessarily find the trousers comfortable. Fabric, waistband position and the rest of the cut matter. Only convert flat widths when the original measurement method is clear."
+          ]
+        },
+        {
+          "heading": "Compare the limiting measurements",
+          "paragraphs": [
+            "Two sellers can use the same model photograph and different size charts. Look at the waist and rise first if those determine whether you can wear the trousers. Then compare the inseam and leg opening for the shape you want. Mark an unspecified value as unknown. Guessing a measurement from a photograph of a model introduces uncertainty you cannot resolve with a larger sample of similar pictures."
+          ]
+        },
+        {
+          "heading": "Ask for a focused check",
+          "paragraphs": [
+            "If a few centimetres would determine your decision, ask about a measurement for the selected size before purchase or while the item remains at the warehouse. Specify the endpoints and whether the waistband should remain relaxed. Confirm whether that check is available and whether a fee applies. A photo showing a tape across the correct position is far easier to interpret than a generic statement that the item is true to size."
+          ]
+        },
+        {
+          "heading": "Measure rise, inseam and leg opening consistently",
+          "paragraphs": [
+            "For front rise, lay the trousers flat and identify the crotch seam intersection and the top edge of the front waistband. Follow the seller's stated measuring method if the chart includes one. If a thick waistband is included in one measurement and excluded in the other, a difference can appear even on otherwise identical trousers. Document the endpoints in a photograph. When the main fit concern is how high the waistband sits, rise can be more informative than the label's waist size.",
+            "For inseam, use the inner leg from the crotch seam to the hem, allowing the leg to lie naturally. A measurement taken along the outer seam includes a different path. On tapered trousers or curved seams, the exact measuring route can matter. If the seller supplies only total length, you cannot reliably recover the inseam simply by subtracting a guessed rise. Ask for the missing measurement if leg length is essential to the purchase.",
+            "At the hem, compare flat opening widths with flat widths and circumferences with circumferences. For example, a flat opening of 18 cm is about 36 cm around in a simple laid-flat comparison. A chart entry of 36 might therefore describe a similar opening if it gives circumference. Check the heading before treating it as twice as wide. Elastic cuffs can also have a relaxed and a stretched opening. Record which state is being measured."
+          ]
+        },
+        {
+          "heading": "Decide what the cut means for your reference trousers",
+          "paragraphs": [
+            "Two pairs of trousers can share a waist measurement and fit quite differently through the seat and thigh. If your reference pair fits comfortably only because it stretches, a rigid pair with the same flat dimensions may feel restrictive. Inspect the seller's description of fabric and construction. If the candidate has pleats or an elastic section in the waist, consider how those features change the comparison. Photographs can show a pleat or drawcord but usually cannot quantify how much ease you will experience while sitting.",
+            "Imagine a buyer choosing trousers for long periods at a desk. A slightly wider thigh and adequate rise may matter more than a perfectly matched hem opening. Another buyer chooses trousers for a particular cropped silhouette and needs the inseam and taper to be close. Write a short order of importance for your own use. Comparing numbers in that order prevents an attractive colour or a low starting price from overwhelming the dimension that determines whether you will wear them.",
+            "For a useful shortlist, record both the seller's stated measurements and your interpretation. “Size M, stated thigh width 31 cm using seller diagram; my reference 30 cm at a comparable position” is more informative than “M fits.” If the measuring method is unpublished, append your question to the row. The difference between a confirmed one-centimetre difference and an unknown method is significant. One can guide a decision; the other guides the next question."
+          ]
+        },
+        {
+          "heading": "Use a worked comparison for two lookalike listings",
+          "paragraphs": [
+            "Suppose your reference trousers are 40 cm across the relaxed fastened waist and 74 cm along the inseam. Seller A describes a candidate as 80 cm around the garment waist and 73 cm on the inseam. Seller B lists a waist range of 76–86 cm and gives a total outer length without an inseam. If the methods for seller A match yours, its waist is close and the inseam is one centimetre shorter. Seller B requires clarification about how its range and length were measured.",
+            "Now imagine seller B's trousers have elastic panels and seller A's have a rigid waistband. A range that includes 80 cm does not mean both products feel the same. You might want to know the relaxed width and how much tension is needed at the intended size. If comfort without waistband tension matters, the relaxed figure is especially relevant. If your requirements are tight, asking one or two precise questions is more efficient than gathering many impressions from other buyers with unknown measurements.",
+            "A photo of a model can help you understand the general silhouette but it cannot supply missing garment dimensions. You may know neither the model's measurements nor which size was photographed. Studio styling may include adjustments that are not obvious in the image. Use the photograph to decide whether you like the style and the chart to decide whether a particular size is worth checking. Keep those questions separate even when two listings reuse the same model picture."
+          ]
+        },
+        {
+          "heading": "Check the actual garment before combining it with a parcel",
+          "paragraphs": [
+            "If you request warehouse measurement through BBDBuy, include the order reference and ask for a specific position on the actual garment. “Fasten the trousers and measure straight across the relaxed waistband, showing both ends of the tape” is more actionable than “check the size.” Confirm service availability or cost before asking for a long sequence of pictures. Pick the dimension whose answer would actually cause you to keep or decline the item.",
+            "On receipt, compare the tape reading with the original chart using the same unit and method. If a slight difference falls within a tolerance explicitly stated by the seller, weigh that tolerance against your needs. If the method is unclear or the photo cuts off an endpoint, resolve that uncertainty before calling the product incorrect. If the wrong printed size was sent, distinguish that fulfilment problem from a garment labelled correctly but made to measurements that do not work for you.",
+            "After wearing the trousers, update your personal reference with the measurements that mattered most. Did the waist fit while the rise was too short? Did the leg opening matter more than the overall length? That experience gives you a better next comparison without turning one seller's size M into a rule for every brand. Recheck the chart on every new seller listing and whenever an existing seller revises the available product options."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "Independent spreadsheet and QC finder overview",
+          "url": "https://repsheet.net/spreadsheet/bbdbuy"
+        }
+      ]
+    },
+    {
+      "slug": "using-the-official-bbdbuy-app-for-one-order-on-two-devices",
+      "title": "Using the official BBDBuy app for one order on two devices",
+      "description": "Check the published app download routes and use order references to avoid duplicate purchases when switching devices.",
+      "sections": [
+        {
+          "heading": "Use the official download route",
+          "paragraphs": [
+            "BBDBuy's app page offers links for iOS and Android and describes order, warehouse and parcel tracking. Start with that page when looking for the app. If the version available to you differs from a tutorial, compare the account information and available actions in your installed version. Screenshots on a summary page can describe a general workflow without matching every current menu label."
+          ]
+        },
+        {
+          "heading": "Carry over the marketplace item before paying",
+          "paragraphs": [
+            "If you start on a desktop spreadsheet and finish on a phone, send yourself the seller's product address and selected option. Reopen the item and verify the colour, package count and price. A shared product URL may reopen the default variant. Comparing two thumbnails on separate devices will not tell you whether the same option is selected. Check the text of the final order line."
+          ]
+        },
+        {
+          "heading": "Look for an existing order before trying again",
+          "paragraphs": [
+            "After a network interruption, open the account's order history and your payment record. Match the order number and payment status before submitting a second purchase. If the app appears empty, confirm that you are viewing the same account and order category. An unrecognised or pending payment needs investigation with official support before assuming that the purchase never existed."
+          ]
+        },
+        {
+          "heading": "Use the right mobile record for follow-up",
+          "paragraphs": [
+            "Save a purchase reference when you query a seller or inspection result. After you submit a parcel, record the parcel reference and included items. For an international tracking question, capture the most recent event with its date and carrier. If you share the image outside an official support conversation, remove your address and contact details. Keep the unedited original for your own records."
+          ]
+        },
+        {
+          "heading": "Choose the account identity before moving an order",
+          "paragraphs": [
+            "A common source of confusion when switching from a desktop spreadsheet to the BBDBuy app is losing track of which account produced a purchase. One household may use different accounts for work and personal orders. A browser can be signed in to one account while a phone displays another. Before assuming an order failed, check the profile context in each official interface. Use the order reference from the purchase confirmation as your search anchor.",
+            "For a new purchase, finish the product comparison before moving devices. Record the seller, selected variant, quantity and current price from the desktop source. Then open the official purchase flow on the phone and check those fields against your note. A shared link can reproduce a listing without preserving a selection. If two family members both added the same product to different carts, agreeing who will submit the order can prevent a genuine duplicate purchase.",
+            "If you use a shared screen for research, share only the public listing link and intended option. Your purchase history, delivery address and payment details belong in the account through which you complete the order. A public product link may be safe to discuss in a shopping group; a personalised checkout screenshot carries considerably more information. When you send evidence to official support, include the fields needed to resolve the issue and avoid distributing the same screenshot unnecessarily elsewhere."
+          ]
+        },
+        {
+          "heading": "Track a purchase through an interrupted checkout",
+          "paragraphs": [
+            "Consider a case in which the phone displays a spinning indicator after you authorise payment. The first question is whether an order and payment entry already exist. Open the order history in the same account through its normal route and look for a matching seller, amount and recent time. Then check the payment provider's record and the status it displays. A pending transaction has a different meaning from a settled charge, and neither should be interpreted from a notification title alone.",
+            "If the account shows an unpaid order and the provider shows a pending amount, preserve both references. Ask the appropriate service what each status means before attempting payment again. If the account shows a completed purchase and the provider shows a corresponding settled amount, save the order reference and proceed through that order. If two completed order numbers appear, identify which goods each contains and contact the service promptly about your available options.",
+            "Reopening an item on a second device is useful for reviewing the listing. It does not re-open the same transaction unless you are in the actual order detail. Be especially careful with buttons that create or purchase a fresh item. If your aim is to follow up on an existing order, start from the account history. This keeps the question about the original purchase separate from a new shopping decision."
+          ]
+        },
+        {
+          "heading": "Use notifications as an index to the full record",
+          "paragraphs": [
+            "A phone notification provides a useful prompt to look at an order. Its short wording may omit the carrier, parcel number or warehouse item involved. For several similar orders, begin with the reference shown in the detailed account record. Compare the date, selected option and stage. One seller's order being delivered to the warehouse does not mean an international parcel has been delivered to your address. The full record is the place to distinguish those events.",
+            "If you start a support conversation on the phone and later continue on a desktop, retain the message thread and the same reference. Add a new view or attachment only when it advances the investigation. For a measurement question, identify the photo with the tape and its endpoints. For a tracking question, identify the parcel and last carrier scan. Sending a broad collection of unrelated screenshots can make the record harder to follow.",
+            "Use the app's official download information when replacing a device or checking which platform to use. The BBDBuy app page describes available download routes and the activities supported in the mobile experience. Consult the current listing for compatibility and availability. If a device cannot install the app, keep the relevant order references and use the official account access available to you. Reinstalling an app is unnecessary for establishing whether a payment or shipment already exists in the account."
+          ]
+        },
+        {
+          "heading": "Build a small mobile handoff note",
+          "paragraphs": [
+            "A useful note for one product includes the marketplace URL, seller, selected option, order reference and the next action expected. Add a warehouse reference only when it is actually issued. When the item joins an international parcel, add that parcel number and the list of included order references. The note can live in whichever private record you already use; its purpose is simply to keep the connection intact when a phone and desktop display the information differently.",
+            "For a shared shopping task, identify which stage another person is authorised to complete. Someone may be helping compare colourways without being the person paying or approving the parcel. A message such as “please compare the two listed blue options and send me the seller label before I submit” prevents a research task from becoming a second purchase. Once the order exists, share a minimal status summary with the person who needs it.",
+            "At delivery, close the parcel in your records and check the remaining account items. One parcel might contain all the goods you expected this week while another order is still waiting for inspection. Treat the app's order, warehouse and parcel areas as views of different stages. Keeping those stages connected by their actual references makes switching devices straightforward even if menu layouts or notification wording change over time."
+          ]
+        },
+        {
+          "heading": "Resolve an apparent missing order with one message",
+          "paragraphs": [
+            "If the purchase still cannot be located, tell official support which account context you checked, the transaction time, amount and any order reference you received. Explain whether you started on a desktop and completed payment on the phone. This gives the service a clear sequence to investigate without requiring you to repeat the purchase or share sensitive payment credentials."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "Official BBDBuy mobile apps",
+          "url": "https://www.bbdbuy.com/app"
+        },
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        },
+        {
+          "title": "BBDBuy order support",
+          "url": "https://www.bbdbuy.com/help?article=contact&cat=other"
+        }
+      ]
+    },
+    {
+      "slug": "preparing-a-bbdbuy-support-request-for-a-missing-piece-after-delivery",
+      "title": "Preparing a BBDBuy support request for a missing piece after delivery",
+      "description": "Distinguish an item that never entered the parcel from one that was expected inside, and prepare the records support can use.",
+      "sections": [
+        {
+          "heading": "Reconstruct what the parcel contained",
+          "paragraphs": [
+            "Start with the outgoing parcel record and its included warehouse lines. You may have bought several items that arrived on different days and sent only some of them together. Match the missing piece to its actual seller order and selected option. A belt visible in a seller photograph can be an accessory sold separately. Check the confirmed bundle contents before reporting a shortage in the delivery."
+          ]
+        },
+        {
+          "heading": "Keep the arrival evidence intact",
+          "paragraphs": [
+            "Retain the shipping label and the packaging while you check the contents. Photograph any visible opening, damaged area or missing seal and keep a general view showing where the damage occurred. If small pieces could be inside a pocket, inner bag or packing material, inspect those locations and record what you find. If you already opened the parcel, describe that honestly and preserve the evidence that remains."
+          ]
+        },
+        {
+          "heading": "Connect the stages of the journey",
+          "paragraphs": [
+            "Compare your purchase receipt, warehouse inspection and international parcel contents. A warehouse photo showing both pieces narrows the question differently from one showing only the outer package. A recorded packed weight can provide context, but it cannot by itself prove exactly which small component was present. Put the records in date order and avoid treating assumptions about when the loss happened as observations."
+          ]
+        },
+        {
+          "heading": "Ask for a review with specific evidence",
+          "paragraphs": [
+            "Contact official support with the parcel reference, affected seller order, item description and a concise account of receipt. Ask what evidence and deadlines apply and what remedies are available for this parcel. Supply original images where requested through the official channel. Keep correspondence, any carrier report and the final resolution with the same parcel record so you can follow up without repeating the investigation."
+          ]
+        },
+        {
+          "heading": "Sort the possible explanations before assigning responsibility",
+          "paragraphs": [
+            "A missing piece after delivery can have several explanations. The component might never have been included in the seller option. The seller might have sent it in a separate domestic box. It might have reached the warehouse but remained behind when you selected goods for dispatch. It might have been present in the outgoing parcel and been lost or damaged later. These possibilities matter because each points to a different record and a different question for support.",
+            "Begin with the product line. If the seller's option says “organiser only,” a set of pens used to illustrate the organiser may not be part of the purchase. If the option says “organiser with two dividers,” preserve that text and check whether the dividers are separate pieces or fitted into the item. A removable divider may be nested against a side wall or packed beneath a tray. A careful inspection of the product and packaging can resolve a concern without an unnecessary dispute.",
+            "Then inspect the warehouse and parcel records. If the seller sent a missing component later, look for an additional incoming tracking number or warehouse item. If the outgoing parcel lists the main product but not a separately stored accessory, the accessory may still be in your account. The relevant question becomes how to handle the remaining warehouse item. If the account shows all relevant pieces in the outgoing parcel, turn to the packing and delivery evidence."
+          ]
+        },
+        {
+          "heading": "Document the package in the condition you actually received it",
+          "paragraphs": [
+            "If you notice a problem before opening the parcel, photograph the outer carton from several useful angles, including the area of concern and identifying label. Retain photos that show the package as a whole as well as close-ups. A close crop of torn cardboard does not show which box it belongs to or whether the affected area gave access to the contents. An overall image plus one clear detail is generally easier for someone else to interpret.",
+            "If you notice the issue after opening, document the current state and describe which opening you made. Do not recreate a sealed arrival or reposition contents to imply a sequence you did not observe. Take a photograph of all received components laid together, check inner compartments and preserve original pack inserts. If several orders were unpacked together, separate the contents by parcel before counting. That prevents a piece from one box from disguising a shortage in another.",
+            "Record weight evidence cautiously. An outer label may show a declared, chargeable or measured weight, depending on the document. A home scale reading after you have removed packaging measures a different object. If weight could help the investigation, note exactly what was weighed, how and when. A small missing accessory may be too light for the available scale to distinguish at all. Use weight as supporting context and keep stronger item-specific evidence at the centre of the request."
+          ]
+        },
+        {
+          "heading": "Build a support message that can be answered",
+          "paragraphs": [
+            "Begin with one sentence stating the outcome you need: a review of one component apparently missing from a specified parcel. Include the parcel number and the order reference, the exact seller option, expected component count and actual count received. State when delivery occurred and whether the packaging showed visible damage. Add the relevant warehouse evidence and outgoing parcel list. If any expected evidence does not exist, say so rather than trying to fill the gap with an assumption.",
+            "An example might read: “Parcel P arrived on Tuesday. Order O was for the organiser and two dividers. I found the organiser and one divider after checking the carton, plastic insert and inner compartments. The warehouse overview clearly shows the organiser, but the dividers are partly hidden. Could you check whether there is a packing record or a second warehouse item for the other divider and advise what information is required next?” This gives official support two concrete routes to investigate.",
+            "Send sensitive shipping details only through the official support channel that needs them. A public discussion rarely requires a full recipient address, telephone number, unredacted label or payment receipt. Keep copies of the originals and share appropriately redacted versions where possible. Ask the platform or carrier which evidence and deadlines apply to the specific case. Terms can vary with the service and circumstance, so a deadline reported by another shopper is a weak basis for delaying your own enquiry."
+          ]
+        },
+        {
+          "heading": "Follow up according to the explanation that emerges",
+          "paragraphs": [
+            "If support identifies a warehouse item that was never included, decide whether to combine it with future goods or ask what other options are available. Check its storage information promptly. If the seller never supplied the piece, ask about after-sales eligibility for that order and what evidence is needed. If the investigation concerns transport, preserve carrier correspondence and packaging until the service tells you the case is resolved. Each finding changes what a sensible next action looks like.",
+            "Record the date and substance of every meaningful response. “Case acknowledged” tells you the inquiry exists; it does not confirm a refund or replacement. “Seller will send one divider under domestic tracking number X” is a new event that should appear in the same timeline. Check that any promised replacement is actually received and associated with the right purchase. If the remedy is a credit, verify where it appears and whether it matches the agreed outcome.",
+            "Conclude with a factual summary that someone else could follow. For example, “Second divider found in separate warehouse record and sent with next parcel” explains both why it was absent and how it was recovered. “Investigation open; carrier requested the outer label and original packaging images” identifies the current work without promising a result. A precise record is useful whether the case ends with recovery, an adjustment or a decision that the selected configuration never included the disputed piece."
+          ]
+        },
+        {
+          "heading": "Keep the final reference",
+          "paragraphs": [
+            "Store the resolution or open case number with the parcel receipt. If support needs another original image or the carrier issues a later update, you can continue the same investigation without reconstructing the original delivery."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "BBDBuy order support",
+          "url": "https://www.bbdbuy.com/help?article=contact&cat=other"
+        },
+        {
+          "title": "Official BBDBuy mobile apps",
+          "url": "https://www.bbdbuy.com/app"
+        },
+        {
+          "title": "BBDBuy official shopping service",
+          "url": "https://www.bbdbuy.com/"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "When should I use BBDBuy custom order?",
+      "a": "Use the official purchasing route when you want BBDBuy to buy an item and the regular import cannot capture the required details. Provide the seller URL and exact option."
+    },
+    {
+      "q": "Should I create a purchasing order for goods I bought myself?",
+      "a": "Check the forwarding service for goods already paid for. A fresh purchasing instruction could cause another purchase."
+    },
+    {
+      "q": "Where do I find my forwarding address?",
+      "a": "Sign in through BBDBuy's official forwarding route and use the current address and identifying details issued to your account."
+    },
+    {
+      "q": "Why do I need the seller's domestic tracking number?",
+      "a": "It identifies the shipment arriving at the warehouse and helps match it to your forwarding or purchasing record."
+    },
+    {
+      "q": "What if the seller ships one order in two boxes?",
+      "a": "Keep each carrier tracking number and check the account's instructions for matching multiple arrivals to your order."
+    },
+    {
+      "q": "Does a delivered scan mean my BBDBuy parcel arrived at home?",
+      "a": "Read which journey the tracking number belongs to. A domestic seller shipment can show delivery at the China warehouse before international dispatch."
+    },
+    {
+      "q": "Where can I check BBDBuy warehouse and parcel updates on my phone?",
+      "a": "The official mobile app advertises order, warehouse and international parcel updates. Use the order or parcel reference for the stage you need."
+    },
+    {
+      "q": "How can I avoid ordering twice after changing devices?",
+      "a": "Check your order history and payment record in the same account before submitting the item again."
+    },
+    {
+      "q": "Does the quantity field on a listing count pieces or packs?",
+      "a": "Check what one unit of the selected option includes. Multiply the number of units ordered by the pieces per unit."
+    },
+    {
+      "q": "What does a pair of numbers in a household listing title mean?",
+      "a": "It may describe dimensions. Verify the units, package contents and piece count separately in the selected option."
+    },
+    {
+      "q": "Can I compare two BBDBuy clothing sizes using the letter alone?",
+      "a": "Use the seller's garment chart and measuring method. The same letter can represent different measurements across sellers."
+    },
+    {
+      "q": "What is the difference between a body chart and garment measurements?",
+      "a": "A body chart describes the person the item is intended to fit. A garment chart gives measurements of the finished item, which can include room for movement."
+    },
+    {
+      "q": "Which dimensions belong in the shipping estimator?",
+      "a": "Use the outer length, width and height of the packed parcel when available. Product dimensions alone may omit protective material and packaging."
+    },
+    {
+      "q": "Why would a light household item affect my route options?",
+      "a": "A rigid item can increase outer dimensions. Check the current service limits and price using the actual packed size."
+    },
+    {
+      "q": "How should I track several storage deadlines?",
+      "a": "Keep one row per warehoused item with its displayed dates and next action. Start from the earliest deadline when planning consolidation."
+    },
+    {
+      "q": "Does a seller inquiry extend warehouse storage automatically?",
+      "a": "Verify any extension in the account or with official support. Keep the confirmed new date with the warehouse line."
+    },
+    {
+      "q": "How should I report the wrong colour at inspection?",
+      "a": "Send the affected order number, selected option text and the photo showing the discrepancy. Ask for a colour or label check before shipping."
+    },
+    {
+      "q": "Can a sealed multipack be counted from a warehouse image?",
+      "a": "Only visible items or explicit packaging labels can be checked from the image. Ask what further verification is available if the count matters."
+    },
+    {
+      "q": "Which reference helps support locate a missing item after delivery?",
+      "a": "Include the outgoing parcel number and the seller order for the missing piece, plus the parcel contents record where available."
+    },
+    {
+      "q": "What should I keep if the package arrives damaged?",
+      "a": "Retain the label and packaging, photograph the visible damage and ask official support about the applicable evidence requirements and deadline."
+    },
+    {
+      "q": "Where should I check the current conditions for a return or refund?",
+      "a": "Review the affected order and BBDBuy's official help or support channel. Confirm seller eligibility, timing and any costs before authorising a return."
+    }
+  ],
+  "keywords": [
+    "BBDBuy custom order DIY",
+    "BBDBuy forwarding warehouse address",
+    "BBDBuy order status warehoused",
+    "BBDBuy spreadsheet home finds pack size",
+    "BBDBuy shipping estimate package dimensions",
+    "BBDBuy warehouse storage period multiple orders",
+    "BBDBuy QC wrong item warehouse support",
+    "BBDBuy spreadsheet clothing size chart",
+    "BBDBuy app order and parcel tracking",
+    "BBDBuy parcel missing item support"
+  ]
+}

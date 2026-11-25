@@ -12,3 +12,6 @@ fs.writeFileSync('dist/_worker.js',code);
 fs.writeFileSync('dist/_routes.json',JSON.stringify({version:1,include:['/*'],exclude:['/data/*']}));
 fs.writeFileSync('dist/index.html','<!DOCTYPE html><title>CNShopper</title>');
 console.log(JSON.stringify({products:SOURCE_INDEX.length,images:FEATURES.length,workerGzipBytes:gzipSync(code).length}));
+
+import {attachEditorial} from '../../shopping-editorial/build.mjs';
+attachEditorial('dist/_worker.js');

@@ -15,3 +15,6 @@ fs.writeFileSync('dist/public/robots.txt','User-agent: *\nAllow: /\nDisallow: /a
 const missing=new Set(data.report.unavailableSourceIds);
 const paths=['/','/spreadsheet/','/categories/','/image-search/','/guides/','/faq/',...data.products.filter(p=>!missing.has(p[0])).map(p=>'/product/'+p[0])];
 fs.writeFileSync('dist/public/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+[...new Set(paths)].map(p=>'<url><loc>https://vigorbuybrowse.com'+p+'</loc></url>').join('')+'</urlset>');
+
+import {attachEditorial} from '../shopping-editorial/build.mjs';
+attachEditorial('dist/worker.js');

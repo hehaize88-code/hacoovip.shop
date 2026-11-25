@@ -1,0 +1,955 @@
+{
+  "articles": [
+    {
+      "slug": "from-an-orientdig-spreadsheet-row-to-the-exact-seller-option",
+      "title": "From an OrientDig Spreadsheet Row to the Exact Seller Option",
+      "description": "A practical way to check which item a saved row actually opens, recover its options and record the seller selection before paying.",
+      "sections": [
+        {
+          "heading": "Start with the reason you saved it",
+          "paragraphs": [
+            "A spreadsheet row for a canvas bag might show a cream tote with a wide strap. The seller page might put a small black pouch first. Both can belong to the same listing. Before you open a cart, record what you meant to buy in plain English. For this example that means a cream tote, the wide strap and the larger of the two lengths. Now you have three testable details. A listing title such as “summer bag” supplies none of them."
+          ]
+        },
+        {
+          "heading": "Follow the item link all the way to the seller",
+          "paragraphs": [
+            "OrientDig's shopping guide describes direct product-link entry for Taobao, Tmall, Weidian and 1688. Copy the product URL from the row, open the result and compare the seller, listing photos and available selections. Save the underlying item identifier when visible. Two affiliate URLs can point to one listing. Conversely, two listings can show the same studio photograph while offering different variations. A match between thumbnails alone cannot resolve that ambiguity."
+          ]
+        },
+        {
+          "heading": "Read the selected variation as a purchase instruction",
+          "paragraphs": [
+            "Choose each option deliberately and reread the resulting summary. If selecting the longer strap changes the price, the amount beside the original thumbnail no longer describes your selection. For a bundle, read the wording around the photograph. A bag shown next to a pouch can be sold alone, as a set or as a pouch-only add-on. If the selector is ambiguous, ask for confirmation of what ships under that specific choice. Save the answer with the item record."
+          ]
+        },
+        {
+          "heading": "Build a row you can use after checkout",
+          "paragraphs": [
+            "Record the source URL, seller's option wording, quantity, displayed amount and date. Add one distinguishing photo or measurement you want to check on arrival. That produces a useful warehouse instruction, such as “please show the adjustable strap attached to the cream tote.” A long list of links sorted by cheapest price is harder to act on. Retire a row when its destination changes or the desired option disappears. If another seller offers a substitute, give it a new row so its evidence stays together."
+          ]
+        },
+        {
+          "heading": "Work through a listing with three similar choices",
+          "paragraphs": [
+            "Imagine a seller's selector offers a handle-only tote, a tote with a detachable shoulder strap and a two-piece set. The spreadsheet's photograph shows the set being carried over the shoulder. You want the shoulder strap but have no use for the extra pouch. Start by asking which detail actually separates your acceptable choices from the unacceptable one. In this case it is the fastening hardware and included strap, rather than the presence of a bag or the pattern of its fabric. Look for an option-specific photograph showing the hardware and read the components named in that option. If the evidence establishes only that a strap can attach, it leaves open whether the seller supplies the strap.",
+            "Suppose the seller then confirms that the middle option includes the strap while the cheapest option does not. Record that confirmation with the option wording. Someone reopening the same product page a week later can now reproduce your choice even if the listing defaults to the cheapest item. You have also defined the right QC question. A warehouse picture showing an attachment ring but no strap still leaves the relevant question unanswered."
+          ]
+        },
+        {
+          "heading": "Keep two offers comparable when their titles disagree",
+          "paragraphs": [
+            "Product titles can be written to describe a whole range. Instead of comparing two titles word for word, compare the physical configuration you would actually receive. For a tote, record width, height, closure, handle drop and included strap where the seller supplies those details. Mark an unknown as unknown. A photograph taken with a smaller model can make one bag appear much larger than another. Without a measurement, the difference belongs in the unresolved column.",
+            "Then compare cost. Convert both offers to the same quantity and currency using the current displayed checkout amounts, or keep amounts in the original currency until you can do that consistently. Separate the cost of the selected item, any domestic delivery charge and potential international shipment. A cheaper bag with a smaller capacity may be a good purchase for a different purpose. It becomes a misleading comparison only when the changed specification disappears from your notes. This matters especially when a directory labels both rows with the same simplified English product name."
+          ]
+        },
+        {
+          "heading": "Handle a link whose destination has changed",
+          "paragraphs": [
+            "Links can fail in several ways. A seller may remove one option while leaving the listing live. The product page may still open but show a different collection of items. An imported page may omit the option photograph that made the original row useful. Diagnose which part stopped working before trying a workaround. When only an option is unavailable, another link to the same seller page seldom restores that option. When the whole import fails, the underlying seller URL can still give an agent a starting point.",
+            "Keep the original discovery row but mark why it is unresolved. If you locate a replacement listing, check the seller identity and current option just as carefully as on the first row. Do not transfer warehouse photos from an older purchase to a new seller record without marking their origin. The pictures can illustrate a design you liked, but they do not establish which variation the replacement seller will send. Treating them as historical references preserves the useful evidence while keeping current facts clear."
+          ]
+        },
+        {
+          "heading": "Recover evidence after an accidental option change",
+          "paragraphs": [
+            "If you realize at checkout that the summary is wrong, return to the seller selectors before making the payment. Change one setting and read the resulting summary again. Some options that appear to be colors may designate different sizes or bundles. Where the seller wording is unfamiliar, keep it alongside your translation. A translator may give two distinct shades the same broad English name, while the seller's original option labels still distinguish them.",
+            "If the order has already been submitted, check its current status and contact the agent promptly with the exact change requested. Identify the option you selected and the one you intended. Ask whether the order can still be changed and wait for confirmation before placing another purchase. A new order entered immediately could leave you with two active purchases. This is particularly important when only a small accessory changes and two seller pages look almost identical in the account."
+          ]
+        },
+        {
+          "heading": "Know when to leave a row behind",
+          "paragraphs": [
+            "A useful stopping rule is to decide which unanswered fact would make the item unusable. For a gift it might be the missing strap. For a commuter bag it could be whether a laptop of known dimensions fits through the opening. If the seller provides no measurement, the agent cannot confirm it and a warehouse photo after purchase would arrive too late for your needs, leave the find on your reference list. A lower price does not resolve missing specifications.",
+            "Conversely, an uncertainty about a decorative detail may be acceptable if it has little bearing on use and you are comfortable with the seller's available evidence. Record that decision explicitly. Your shortlist then contains rows that can actually be acted on, including the reason each row made the cut. On a later visit you can concentrate on stock or price changes instead of starting the identification process from scratch."
+          ]
+        },
+        {
+          "heading": "A final check at the point of purchase",
+          "paragraphs": [
+            "Before confirming payment, reopen your saved row and read the purchase summary aloud as a short description. Does it name the same object, option, quantity and practical feature you originally wanted? If you would have to point at a photo to explain a missing detail, check whether the order itself records that detail. Add a note or ask the agent where appropriate. Keep the confirmed order summary separate from the older discovery screenshot. In the event of a dispute, the seller's selected option and purchase record are the strongest references for the transaction you actually made."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig shopping assistant guide",
+          "url": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+        },
+        {
+          "title": "OrientDig.net independent spreadsheet guide",
+          "url": "https://orientdig.net/orientdig-spreadsheet.html"
+        }
+      ]
+    },
+    {
+      "slug": "orientdig-image-search-for-a-cropped-product-screenshot",
+      "title": "OrientDig Image Search for a Cropped Product Screenshot",
+      "description": "How to prepare a reference photo, compare visually similar listings and recover the source when product names are missing.",
+      "sections": [
+        {
+          "heading": "Crop for the object you want returned",
+          "paragraphs": [
+            "A screenshot of an outfit can show a jacket, trousers, shoes and a large shop watermark. The intended item may occupy only a corner. OrientDig's official guide describes uploading an image or taking a picture and recommends a clear product against a simple background. Make a separate crop for the jacket and keep the uncropped photograph for later comparison. Preserve the collar, closure and hem if those are the features that identify it. A crop containing only the fabric texture removes too much information."
+          ]
+        },
+        {
+          "heading": "Try a second view when several results look alike",
+          "paragraphs": [
+            "Once several similar items appear, compare one structural feature at a time. The original might have a concealed zipper, two angled pockets and a short collar. Enlarge the seller views and see whether all three appear together. An apparently close match can disappear as soon as you inspect the side seam or the pocket angle. If the front is shared across several listings, search with a back or side view if you have one. Save the original separately so successive crops do not progressively degrade it."
+          ]
+        },
+        {
+          "heading": "Recover the purchasing details from the result",
+          "paragraphs": [
+            "Image search identifies visually related listings. Open the seller page to establish the available size, color, quantity and package contents. A model photo can depict a layered outfit while the selected option is only the vest. Read the variation label next to the actual price. If the image shows a distinctive accessory, verify that the seller includes it. Leave the result out of your shortlist when an essential detail remains unresolved."
+          ]
+        },
+        {
+          "heading": "Use the reference at the warehouse",
+          "paragraphs": [
+            "Retain one annotated copy with the exact feature circled and an untouched original. When the item arrives, compare the warehouse picture with the seller option you bought. A mismatch with an inspiration photo is a different issue from a mismatch with the order. If it matters that the zipper is concealed, the useful follow-up is a close photograph with the front closed. It gives the photographer a specific task and gives you a visible condition for accepting the item."
+          ]
+        },
+        {
+          "heading": "Diagnose what produced an irrelevant result",
+          "paragraphs": [
+            "If the first set of matches consists mostly of footwear when you wanted the trousers, look at the proportion of the crop occupied by each object. A bright shoe against a dark floor can be more visually distinctive than the trousers above it. Trim the shoe and background, but keep the waistband and entire leg shape if those define the garment. If logos dominate the candidates, try a view of the construction rather than repeatedly uploading the same logo close-up. You are changing the information available to a visual search, not telling it the seller's name.",
+            "A separate problem arises when the search result looks correct at first sight but several essential details differ. A tighter crop of a distinctive pocket may help find a design family, while a full-product crop helps distinguish a shirt from an overshirt. Save both searches temporarily. Comparing which candidates appear across the two sets is often more informative than choosing whichever thumbnail appears first."
+          ]
+        },
+        {
+          "heading": "Use a small comparison sheet for lookalikes",
+          "paragraphs": [
+            "Create a row per candidate with the seller link, distinguishing features and one uncertainty. For example, candidate A has the right collar and four exposed buttons, but the reference shows concealed fastening. Candidate B has the correct fastening and hem but no rear view. Candidate C has all three visible features and a different sleeve shape. This forces you to identify what the image actually supports before price enters the comparison.",
+            "Keep color judgments tentative if the reference is a heavily filtered social image. Compare the pattern layout, pocket position, seams and geometry before attempting to distinguish nearly identical shades. Open each listing to determine whether images show the same option. One seller might display several cuts in a gallery and let the buyer choose at checkout. A gallery image can be a valuable lead while failing to prove that every available option has the pictured construction."
+          ]
+        },
+        {
+          "heading": "Handle screenshots of a collage or outfit grid",
+          "paragraphs": [
+            "A collage often combines front and back views, close details, text labels and packaging in one frame. Start with the clearest single product view and remove the rest. Keep each additional view as a separate file, labeled in a way you can recognize later. The rear shot can be a second search or a direct comparison when candidates lack enough visible front detail. Avoid feeding one search six views of different products arranged as though they belonged together.",
+            "If an overlaid label hides the defining feature, search the uncropped visible shape first. A promising seller may supply a gallery with the missing angle, but remember that a visually similar result is only a candidate. If the original reference came from a published seller link, returning to that source can be more effective than repeatedly modifying a low-resolution screenshot. Keep the two methods available and choose the one that preserves more item information."
+          ]
+        },
+        {
+          "heading": "Turn a probable match into a fit decision",
+          "paragraphs": [
+            "Suppose you find a shirt with the right collar, pocket and hem. You still do not know whether its dimensions suit you. Select the size you would buy and compare the seller's measurements to a shirt you already own. For the comparison to mean anything, measure your reference garment in the same way. A chest circumference around the body and a flat underarm width across a garment are different values. If the listing does not define the measurement, ask for clarification.",
+            "This is where a successful image search hands off to ordinary purchasing checks. Identify the material description, included pieces and return conditions that matter to you. Save the winning seller link so you can reopen it directly. Repeating the visual search on another day may produce a different ordering or set of results. The saved link and selected option are the evidence you need after payment."
+          ]
+        },
+        {
+          "heading": "Decide when another search will add little",
+          "paragraphs": [
+            "If every available photograph shows the same generic front and no unique feature, further crops may simply return more versions of the same silhouette. Pause and identify what new evidence would break the tie. It could be a product code, a reverse-side detail or a known original seller. Ask the source of the screenshot for that information if practical. Buying from an unconfirmed match is a different decision from identifying the precise original.",
+            "If you are happy with a similar item, write down the minimum features it must have. Now the search can end when those features and the intended purchase configuration are supported. If you require the exact design, keep uncertainty visible and wait for better evidence. Both decisions are legitimate. The important part is that your order record describes what you actually found, which prevents a plausible visual match from gradually becoming an unsupported claim of identity."
+          ]
+        },
+        {
+          "heading": "Keep the search reproducible",
+          "paragraphs": [
+            "A visual search session can produce dozens of superficially similar products. Once you have narrowed the results, save a small set containing the original reference, your useful crop, the selected seller link and a sentence explaining the decisive feature. For example, “the concealed front and single slanted left pocket match; rear construction remains unconfirmed” tells you whether more evidence is needed. Keep uncertain details visible. When a new result appears later, you can compare it with these same criteria instead of letting a sharper photograph or lower displayed price change your definition of a match. This process takes little space, and it pays off after checkout when you can explain which features the warehouse picture is meant to confirm and which belonged only to your initial inspiration image. Update the note if the seller later supplies a more reliable specification."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig shopping assistant guide",
+          "url": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+        },
+        {
+          "title": "OrientDig warehouse inspection scope",
+          "url": "https://mgt.orientdig.com/help-center/the-inspection-scope-of-the-shopping-agent-service/"
+        }
+      ]
+    },
+    {
+      "slug": "ordering-a-1688-multipack-through-orientdig",
+      "title": "Ordering a 1688 Multipack Through OrientDig",
+      "description": "Read minimum quantities, unit descriptions and mixed variations before committing to a wholesale listing.",
+      "sections": [
+        {
+          "heading": "Count the thing the seller counts",
+          "paragraphs": [
+            "A 1688 row labeled “six clips” could describe six individual units, one pack containing six, or a photograph of six colors offered separately. OrientDig's purchase guide calls attention to supplier minimum order quantities. Look for the selling unit, quantity threshold and text beside the selected option. Write the intended order as a multiplication before payment. Two packs of six would mean twelve clips. A minimum of six packs would mean thirty-six. Those two outcomes have different budgets and different uses."
+          ]
+        },
+        {
+          "heading": "Test whether options share a minimum",
+          "paragraphs": [
+            "Imagine you want three blue pouches and three green ones. A listing may display a six-unit minimum on the page, but that observation alone does not establish whether the seller permits a mixed-color order. Check what the cart accepts and, when the seller wording is unclear, ask the purchasing agent to confirm the mix. Include the two option labels and intended counts. The precise question is whether three of each satisfies this seller's requirement for this item."
+          ]
+        },
+        {
+          "heading": "Compare offers at your actual quantity",
+          "paragraphs": [
+            "Save the subtotal for the quantity you intend to buy. A prominently displayed unit price can belong to a larger tier or an inexpensive accessory in the same listing. Include any quoted domestic freight and divide by the number of usable pieces. Keep international freight as a separate unknown until you have an estimate for the packed order. This approach makes a six-pack offer comparable with a listing priced per piece and highlights situations where extra stock would have no value to you."
+          ]
+        },
+        {
+          "heading": "Decide what can be checked at arrival",
+          "paragraphs": [
+            "OrientDig notes that 1688 purchases can have different inspection standards. Ask what will be visible for your specific lot before relying on individual-unit checks. A picture of a sealed carton can establish the carton label but cannot count opaque contents. A picture of six individually visible pouches can establish quantity and broad color distribution. If the order will only meet your needs when each unit is individually checked, establish whether that service is available before purchasing the lot."
+          ]
+        },
+        {
+          "heading": "Read a hypothetical tier table carefully",
+          "paragraphs": [
+            "Imagine a supplier gives three example tiers in the same currency. Two to nine units cost eight each, ten to forty-nine cost six each, and fifty or more cost five each. At eight units the merchandise would be 64. At ten units it would be 60. That does make ten cheaper than eight before domestic freight in this invented example, but it does not follow that fifty units are a better purchase. Fifty would cost 250, occupy more space and leave far more inventory to store. A lower unit price can coexist with a larger total cash commitment.",
+            "Before making the calculation on a live listing, verify that the exposed tier belongs to the selected option and that the units describe actual pieces. If the supplier sells packs of five, the threshold and your resulting physical count both change. Preserve the original unit wording beside your calculation. A later reader can then see the difference between a negotiated price per piece and a listed price per pack."
+          ]
+        },
+        {
+          "heading": "Resolve mixed colors and sizes in writing",
+          "paragraphs": [
+            "Small wholesale orders often fail on a detail that seems obvious to the buyer. Six size-medium shirts and six mixed sizes are different requests even when both total six garments. Ask whether the supplier accepts your proposed breakdown at that quantity and at what price. List the requested option names and counts individually. If substitutions are unacceptable, say so before purchase. If a replacement color is acceptable within a limit, define that limit so the agent can relay it accurately.",
+            "When the seller responds, compare the confirmed breakdown with the order summary. A general reply that the item is in stock does not necessarily confirm every size. For a coordinated set, one missing size may undermine the value of the entire purchase. Decide whether you will accept a partial order, increase a different size, or cancel the whole request if a particular variant is unavailable. Give the agent that instruction before the seller dispatches a mixed lot."
+          ]
+        },
+        {
+          "heading": "Compare a small wholesale order with a retail one",
+          "paragraphs": [
+            "A retail listing might have a higher piece price but allow the exact count and colors you need. To make the comparison fair, write down the number of units you will actually use. If you need five matching pouches but the wholesale seller requires twelve, calculate both the expenditure for twelve and the cost allocated across the five you need. If the remaining seven have a real use, account for it. If they have no planned use, treating them as automatic savings exaggerates the value of the offer.",
+            "Now add the costs and constraints you can support. Compare any stated China delivery charges, the package sizes if known, the available return terms and the evidence for the desired variants. Place unknown international freight beside the comparison as an estimate with assumptions. A carton of small rigid boxes behaves differently from twelve unboxed fabric pouches. If freight could reverse the decision, ask for better packing information before committing."
+          ]
+        },
+        {
+          "heading": "Choose the inspection depth for a batch",
+          "paragraphs": [
+            "Suppose twelve pouches arrive sealed in two clear bags of six. A photograph may let you count one face of each stack but conceal the reverse, inner lining and zipper movement. Identify which of those details affects your use. A color allocation for an event may require seeing all the items together. A visible logo placement issue might need an example from each color. A full functional check of every closure is a different request and may fall outside what the warehouse can offer.",
+            "Ask what can be verified without damaging resale packaging and what extra handling would cost if available. Document any agreed inspection level. If only a sample can be seen, describe it as a sample when you evaluate the results. A good sample picture can justify one limited observation about that piece, but it cannot reveal whether the twelfth unit has a hidden defect. The amount at stake should determine how much uncertainty you can accept."
+          ]
+        },
+        {
+          "heading": "Record the received count in the same units",
+          "paragraphs": [
+            "When the shipment arrives, compare the supplier's invoice or order breakdown, the warehouse record and the photographs using one consistent unit. If the seller billed two cartons but the warehouse registered two parcels, you still need to know how many packs or pieces each carton contains. Keep each domestic tracking reference attached to the seller's explanation of its contents. A split dispatch can account for an apparent shortage before all cartons have arrived.",
+            "If a count remains unresolved, tell the agent which lot, color and quantity are involved. “The order confirms six blue and six green; the first registered package appears to contain six blue, and no second tracking number is shown” supplies a concrete decision. The agent can ask whether there is a second dispatch, a picking issue or a mismatch in the declared arrangement. This is more actionable than simply saying that half the order appears to be missing."
+          ]
+        },
+        {
+          "heading": "Use the confirmed pack breakdown next time",
+          "paragraphs": [
+            "Once you have a successful order, save the seller, product code, units per pack, accepted color mix and price at the actual quantity. Include the date and whether the information came from the listing, the seller or warehouse observation. A repeat purchase can start from that record, but verify availability and current terms again. The earlier order tells you what one seller supplied under one arrangement. If the supplier changes pack size or moves the low price into another tier, an old shopping note can otherwise turn an apparently routine repeat purchase into an unexpectedly large wholesale commitment."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig shopping assistant guide",
+          "url": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+        },
+        {
+          "title": "OrientDig warehouse inspection scope",
+          "url": "https://mgt.orientdig.com/help-center/the-inspection-scope-of-the-shopping-agent-service/"
+        }
+      ]
+    },
+    {
+      "slug": "write-an-orientdig-detailed-photo-request-a-photographer-can-use",
+      "title": "Write an OrientDig Detailed Photo Request a Photographer Can Use",
+      "description": "Turn an uncertain fit, missing detail or accessory question into a warehouse photo request with clear framing.",
+      "sections": [
+        {
+          "heading": "Decide what would change your decision",
+          "paragraphs": [
+            "An extra picture is most useful when two possible answers lead to different actions. Suppose you own a shirt that fits at a flat chest width of 54 centimeters. The new shirt is labeled with your usual size, but the listing offers no garment measurement. A full front view confirms the color and general cut. It cannot tell you whether the chest is close to your reference. Ask for a photograph of the flat garment with a tape spanning the two underarm seams."
+          ]
+        },
+        {
+          "heading": "Specify the endpoints and view",
+          "paragraphs": [
+            "OrientDig distinguishes standard warehouse images from custom detailed photographs. Its instructions ask buyers to identify the item and align the number of requests with the number of pictures ordered. Include the warehouse item number, the area, the camera direction and the feature that must remain legible. For example, ask for one overhead photo with both tape endpoints and the centimeter scale visible. That gives the photographer room to make the whole measurement legible without guessing what you mean by “size.”"
+          ]
+        },
+        {
+          "heading": "Separate questions that need incompatible framing",
+          "paragraphs": [
+            "A full-width chest measurement needs a wide frame. A care label needs a close frame and enough light to read small text. Combining both demands into one picture can produce a photograph that satisfies neither. Prioritize the feature that affects your decision most, then request another angle if necessary and available. For an accessory count, ask for the pieces laid out together. For a suspected scratch, ask for a close picture with the surface angled to the light."
+          ]
+        },
+        {
+          "heading": "Read the result with the original question beside it",
+          "paragraphs": [
+            "Check whether the tape begins where your reference measurement begins. A line across the widest part of a sleeve is different from a line across the body just below the armholes. If a standard photograph is blurred, OrientDig's photo guide describes asking for a retake. If you need a different view from the outset, describe the custom view directly. Keep the request and response together so a later question about fit can refer to the same item, method and photograph."
+          ]
+        },
+        {
+          "heading": "Translate a fit concern into a reproducible measurement",
+          "paragraphs": [
+            "Take a garment you already own and lay it flat on a hard surface. Choose the dimension that limits comfortable wear for you. It could be shoulder width, the width across the chest just below the armholes or back length from a defined seam to the hem. Photograph your method for your own reference. Two people can measure “length” from different points and get different answers even on the same garment. Identify whether the collar is included, whether the fabric lies relaxed and whether the tape follows a curve or a straight line.",
+            "Then send only the instruction necessary for the warehouse to reproduce that method. For example, ask for a straight line down the center back from the seam below the collar to the bottom hem. If you are comparing a stretch fabric, specify that the fabric should lie relaxed. A measurement of stretched fabric answers a separate question. Keep your own reference number out of the request if you simply want the observed measurement; compare the results after receiving the image."
+          ]
+        },
+        {
+          "heading": "Choose a framing plan for a suspected defect",
+          "paragraphs": [
+            "For a flaw such as a possible seam opening, a close shot should show the entire location and enough surrounding fabric to orient the reviewer. A crop consisting of just a few threads might be sharp yet impossible to place on the garment. Request one close view of the affected seam and, when necessary, a wider view showing which side or panel it belongs to. Separate a cosmetic feature from a functional finding. A photograph can show a gap. It cannot establish how the seam will behave after months of use.",
+            "If the question is about a pair of shoes, ask for both items under comparable positioning and lighting before drawing a symmetry conclusion. A toe photographed from near the lens can appear larger simply because of perspective. For a mark on a glossy surface, asking for another viewing angle can help distinguish reflection from a visible scratch. Avoid requesting an unsupported judgment such as “certify flawless”; specify the feature you want the camera to capture."
+          ]
+        },
+        {
+          "heading": "Interpret a tape photograph before reading the number",
+          "paragraphs": [
+            "Find the zero point first. Some measuring tapes have an end tab or a blank margin before the printed scale. Verify that the measured edge aligns with the correct starting mark, then look for the opposite endpoint in the same image. If the tape twists, bends above the surface or disappears under material, the photograph may not support a precise value. A tilted photo can also make a line appear to cross a mark that it does not actually touch. Write down a range if the image only supports a range.",
+            "Check whether the seller's chart gives body or garment dimensions. A flat garment width doubled can approximate a garment circumference at that point, but it does not incorporate the ease you need, and it is not the same as measuring your body. Comparing the warehouse shirt with a known comfortable shirt using the same method is generally easier to interpret. If the two garments differ in stretch, cut or intended layering, include those differences when making the decision."
+          ]
+        },
+        {
+          "heading": "Write requests for small hardware or accessory details",
+          "paragraphs": [
+            "Suppose a bag appears to have a detachable clasp, but the standard side view hides the attachment. A targeted instruction could ask for one picture of the clasp and attachment ring together, with the connection visible. If the concern is a missing second strap, ask for all included straps laid next to the bag. A close-up of one clasp would be a poor answer to a count question. A group shot would be a poor answer to a question about small lettering stamped inside a clasp.",
+            "Choose the angle and scale that match the decision. When a label must be legible, identify which label you mean and whether both sides matter. A country label, model code and care label can be different pieces of fabric. If writing needs to be compared with a seller specification, keep the exact seller wording at hand. Once a photo has answered your question, avoid requesting more nearly identical images merely to accumulate extra evidence."
+          ]
+        },
+        {
+          "heading": "Use a failed request to narrow the next action",
+          "paragraphs": [
+            "Review how the actual photo differs from your request. If the photographer measured the right dimension but cut off one tape endpoint, a retake request can be very specific. If the photographer measured the sleeve because you wrote only “length,” clarify that you need center-back body length and name the seam. If the item itself has no accessible model label, another photograph taken from the same angle will not solve the problem. Ask whether the relevant marking exists elsewhere, or return to the seller for a product specification.",
+            "Finally, decide what you will do if the remaining uncertainty cannot be resolved. A missing decorative close-up may be acceptable. A missing measurement on a final-sale item that must fit precisely may be decisive. Keep the request, original picture and response under the same warehouse item identifier. If you later discuss the matter with the seller, this record shows exactly what the warehouse observed and which question is still open."
+          ]
+        },
+        {
+          "heading": "Keep a measurement note you can reuse",
+          "paragraphs": [
+            "Record the observed measurement, the method and whether the endpoints were fully visible. When the item eventually arrives, measure it yourself in the same way and note how it fits. That creates a personal comparison grounded in a garment you have actually worn. For later orders you can request the same method and compare like with like, reducing the need for several rounds of expensive or inconclusive photography."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig detailed photo service",
+          "url": "https://mgt.orientdig.com/help-center/orientdig-detailed-photo/"
+        },
+        {
+          "title": "OrientDig warehouse inspection scope",
+          "url": "https://mgt.orientdig.com/help-center/the-inspection-scope-of-the-shopping-agent-service/"
+        },
+        {
+          "title": "OrientDig value-added services",
+          "url": "https://mgt.orientdig.com/help-center/value-added-services/"
+        }
+      ]
+    },
+    {
+      "slug": "orientdig-order-status-from-purchased-to-stored-in-warehouse",
+      "title": "OrientDig Order Status from Purchased to Stored in Warehouse",
+      "description": "Interpret local shipping, receiving, inspection and stock-in statuses, and choose the right evidence when progress seems slow.",
+      "sections": [
+        {
+          "heading": "Find the record for the individual item",
+          "paragraphs": [
+            "A cart with purchases from multiple sellers can create several independent timelines. Start with the item number for the piece you need. OrientDig's status glossary divides purchasing, local dispatch, receiving, inspection and storage into separate events. Check the latest label on that order before deciding who can answer a question. A seller dispatch issue and a warehouse registration issue need different records."
+          ]
+        },
+        {
+          "heading": "Identify when the seller has actually dispatched it",
+          "paragraphs": [
+            "Purchased means the agent has bought the item and is awaiting delivery from the seller. Once the seller has dispatched it locally, the order moves into its China delivery leg. If your event deadline depends on a particular item, ask about that seller's dispatch rather than asking for an international delivery estimate. Preorders and customized goods can follow a different seller schedule, a distinction OrientDig makes in its processing guide."
+          ]
+        },
+        {
+          "heading": "Distinguish receipt from shelf availability",
+          "paragraphs": [
+            "Received puts the item at OrientDig awaiting inspection. Stock arrived indicates that inspection and weighing have occurred while stock-in is still pending. Stored in warehouse is the stage at which the item has entered storage and parcel submission can be considered. A domestic tracking page marked delivered can therefore be consistent with a warehouse screen that does not yet let you ship. Delivery to the building and making a particular order available to its buyer are separate events."
+          ]
+        },
+        {
+          "heading": "Write a support question about one transition",
+          "paragraphs": [
+            "Include the order number, latest visible status, its date and any domestic delivery record. For example, “The local carrier shows delivery on Monday, and this item still shows Received. Has inspection been completed?” gives the team a specific transition to check. Keep pending purchases out of a parcel plan until they show as available. When a seller order and a submitted international parcel coexist in the same account, write down which identifier belongs to each before following up."
+          ]
+        },
+        {
+          "heading": "Read a two-seller timeline without merging the orders",
+          "paragraphs": [
+            "Suppose a shirt and a bag were paid for together. The shirt shows Purchased on Tuesday, Shipped (Local) on Thursday and Received on Saturday. The bag still shows Purchased. That does not mean that the bag was inside the shirt's delivered package. The shirt has a domestic dispatch event. The bag does not. Open each order, look for a seller tracking reference and check whether the seller explicitly confirmed a shared package. Until that exists, plan for two separate timelines.",
+            "If the bag was a preorder, retrieve the seller's expected dispatch information and check whether that was part of the original listing. A general platform order-processing estimate describes a different interval from seller production. Asking the warehouse to inspect an item that the seller has not dispatched cannot advance the purchase. Asking the agent to confirm the seller's ready date addresses the actual missing event. The same distinction helps when multiple buyers report different wait times for purchases made on the same day."
+          ]
+        },
+        {
+          "heading": "Resolve a local delivery scan that has no item-level match",
+          "paragraphs": [
+            "Start with the carrier reference, delivered date and location shown. Confirm that the reference came from the seller order you are reviewing. Marketplace sellers sometimes send purchases in several packages or communicate a replacement reference. If one package holds multiple items, a single delivery scan may relate to more than one order line. Compare the seller's dispatch note with the item identifiers before assuming that the warehouse lost a piece.",
+            "Now check the platform's last visible item status. A carrier's completed delivery and an internal Received status can reasonably occur before inspection and stock-in. If there is a genuine mismatch, ask which item or domestic parcel remains unmatched. Send the carrier number privately, together with the order identifier and the time of the latest event. This allows staff to investigate either inbound receiving or a seller dispatch discrepancy without asking you to repeat the entire sourcing history."
+          ]
+        },
+        {
+          "heading": "Read balance and invalid states before trying again",
+          "paragraphs": [
+            "OrientDig's glossary includes Clear Balance when the actual purchase amount exceeds the original payment. That is a request to resolve a cost difference, not a report that an item has reached the warehouse. Check the seller option, quantity and any message about an updated price. A change from a single unit to a multi-piece configuration can create a different amount. Ask what changed when the explanation is unclear, especially if the item no longer fits the original budget.",
+            "An invalid or unresolved purchase is also different from a delayed shipment. Look for the stated reason in the record before entering a replacement order. If the product name and price did not match, correcting the original data may be the useful next step. If the seller has withdrawn the product, repeatedly resubmitting the same link is unlikely to restore availability. Keep the original identifier and any cancellation or refund update until the account clearly reflects the outcome."
+          ]
+        },
+        {
+          "heading": "Use timestamps to estimate the next decision",
+          "paragraphs": [
+            "When you read a processing estimate, identify exactly which clock it measures. Buyer payment to agent purchase, seller dispatch to domestic delivery and warehouse receipt to inspection are separate intervals. Only some can begin immediately after payment. A parcel delivery estimate is later still. Build a timeline with the event and date, then leave the next unknown interval blank. This makes it clear why adding a carrier's quoted international transit time to the original payment date can give a misleading arrival prediction.",
+            "A practical alternative is to set a decision date for the part of the plan you control. For example, you may decide that if the bag has still not reached storage by Friday, you will evaluate shipping the shirt alone. That decision does not require promising a delivery date for either item. It simply links an observation, such as the bag's status on Friday, to a choice you can actually make in the warehouse."
+          ]
+        },
+        {
+          "heading": "Prepare the handoff from an item record to a parcel record",
+          "paragraphs": [
+            "Once the item is stored, inspect the available evidence and decide whether there is an unresolved seller issue. An item becoming eligible to ship is not the same as a decision to accept it. Read the selected size, quantity, condition and any applicable return deadline before placing it into a parcel. If you are combining purchases, make a short manifest of the warehouse item IDs you intend to submit and leave unresolved items out until their status and contents are clear.",
+            "After parcel submission, retain the new parcel identifier. The app can still show the original item purchases alongside an entirely different series of packing and transit events. When you contact support, lead with the identifier associated with the missing action. Ask about order inspection using the item record, and about international pickup using the parcel record. A two-line note with both identifiers and their relationship is often enough to avoid a long and irrelevant tracking discussion."
+          ]
+        },
+        {
+          "heading": "Example of a timeline ready for support",
+          "paragraphs": [
+            "A useful account note might read: “Order A was marked Purchased on Tuesday. Domestic tracking was added on Thursday, and the carrier shows delivery on Saturday. The platform now shows Received. I am asking whether inspection is complete because this is the last item needed for parcel submission.” Replace those sample events with the exact ones visible on your account. If a new status appears while you are gathering evidence, update the question before sending it. A request about missing delivery becomes obsolete when the real remaining task is stock-in. If the timing question relates to a gift or scheduled event, state the date as your own planning constraint. This gives the agent context while keeping the expected warehouse and carrier timelines distinct from a guaranteed arrival commitment. Keep that distinction visible in subsequent updates as well."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig order and parcel status glossary",
+          "url": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+        },
+        {
+          "title": "OrientDig shopping order processing time",
+          "url": "https://mgt.orientdig.com/help-center/shopping-order-processing-time/"
+        }
+      ]
+    },
+    {
+      "slug": "orientdig-rehearsal-packing-for-a-bulky-lightweight-parcel",
+      "title": "OrientDig Rehearsal Packing for a Bulky Lightweight Parcel",
+      "description": "Work out whether a packing rehearsal could change a route or packaging decision before submitting a bulky order.",
+      "sections": [
+        {
+          "heading": "Start with the packaging choice that matters",
+          "paragraphs": [
+            "A fleece jacket and a structured hat may weigh little but need very different treatment. Compressing the jacket may be acceptable. Flattening the hat could destroy the shape you paid for. Write down the item that determines the minimum safe box size before requesting a packing change. If a rigid hat box must remain, removing one thin plastic sleeve might have virtually no effect on the outside dimensions."
+          ]
+        },
+        {
+          "heading": "Understand the first estimate",
+          "paragraphs": [
+            "OrientDig explains that stored item weights include their original packaging and that the system estimates outer packing at submission. The finished parcel can therefore differ from that estimate. For routes that use dimensional charging, a light but large package may be billed according to volume. Read the rule for the actual line you are considering. Applying a divisor remembered from another carrier can produce a confident answer for the wrong route."
+          ]
+        },
+        {
+          "heading": "Give the warehouse a usable packing instruction",
+          "paragraphs": [
+            "The listed rehearsal service involves packing and weighing before final parcel submission. Identify the stored items to include and the packaging to preserve. A request such as “keep the hat box, remove only the disposable outer mailer and fold the jacket around it if suitable” makes your priorities clearer than simply requesting the cheapest package. Check the current service terms and ask which measurements will be available if your route comparison depends on dimensions."
+          ]
+        },
+        {
+          "heading": "Use the result to choose an action",
+          "paragraphs": [
+            "Compare eligible routes using consistent packed measurements, destination and contents. Ask whether the measured parcel still fits each line's stated limits. When protective packaging changes after rehearsal, your earlier measurements may stop applying. Retain the packed measurements with the packing instructions that produced them. OrientDig's weight guide also explains that the logistics provider can adjust billing weight, so a rehearsal is most valuable as a decision aid before shipping."
+          ]
+        },
+        {
+          "heading": "Work out whether a measurement could change the decision",
+          "paragraphs": [
+            "A rehearsal has the most value when the result can change something you do. Imagine comparing two routes. One accepts your goods if the packed box meets a dimensional limit. Another can carry a wider parcel but has a different pricing rule. The uncertain measurement is the width of the protected hat box after outer packing. Rehearsing the exact configuration could tell you whether the first option is even relevant. If only one line accepts the goods and you intend to keep exactly the same packing whatever the result, the benefit may be smaller.",
+            "Write down the two outcomes you are deciding between and the measurement that separates them. A width limit, volumetric charge or protective clearance can each matter for different reasons. This short exercise keeps the service request practical. Asking for a rehearsal merely because the stored weight looks surprising may provide more numbers without explaining why it looks surprising. In that case verify which packaging the stored weight includes first."
+          ]
+        },
+        {
+          "heading": "Understand why outside volume can change quickly",
+          "paragraphs": [
+            "Use a simple hypothetical box to see why depth matters. A parcel measuring 40 by 30 by 20 centimeters occupies 24,000 cubic centimeters. If its depth can safely drop to 15 centimeters at the same length and width, the resulting volume is 18,000 cubic centimeters. The reduction is one quarter even though only one dimension changed. Whether that produces a freight saving depends on the line, its calculation and which weight determines the charge. The arithmetic describes a change in box volume and nothing more.",
+            "Now reverse the situation. Removing the hat's retail box may reduce total weight slightly, but the crown might still require the same amount of protective space. The outer dimensions could stay unchanged. Removing packing has not necessarily reduced the measure that drove the quote. Ask the warehouse to preserve structural protection and give you the actual outside measurements for the final configuration when available. This is more informative than estimating a saving from the weight of discarded cardboard alone."
+          ]
+        },
+        {
+          "heading": "Separate measured values from the line's billing rules",
+          "paragraphs": [
+            "Write the packed mass in kilograms and the external length, width and height in the units specified by your chosen line. If the line supplies a volumetric divisor, use that exact divisor and its required units. Check whether it rounds up each dimension or rounds the resulting billed weight. Even when two routes start with identical measured dimensions, their chargeable weights can differ. When those rules are unavailable, keep the route's official quote rather than inventing a universal formula.",
+            "For a purely instructional example, assume a fictional service divided cubic centimeters by 6,000 to obtain a kilogram equivalent. The 24,000-cubic-centimeter box would give four kilograms under that invented rule. An actual mass of two kilograms would be lower. This example illustrates why size can matter; it does not identify any OrientDig route's divisor, minimum or price. If your available line instead uses actual weight only or applies different thresholds, its quote should be evaluated on those terms."
+          ]
+        },
+        {
+          "heading": "Preserve the relationship between instructions and measurements",
+          "paragraphs": [
+            "The warehouse might report one packed result while your parcel still contains every shoe box, then quote another after approved changes. Label each measurement with the relevant configuration. A record that says only “box 35 cm” is easy to misuse if you later add another item. Useful labels include the included item numbers, retail boxes retained, any protective layers requested and whether the numbers came from an actual rehearsal or a preliminary estimate.",
+            "If adding one small item is proposed after rehearsal, ask how it fits. A soft scarf might fit into existing space without changing the outside dimensions, while a rigid accessory a few centimeters longer than the other contents could require a larger carton. Neither outcome follows merely from the accessory's weight. Rerun the applicable route comparison when the physical configuration changes. This habit also makes it easier to investigate a later difference between the warehouse record and the final billing dimensions."
+          ]
+        },
+        {
+          "heading": "Make a protection decision you can explain",
+          "paragraphs": [
+            "Imagine the cheaper configuration saves enough to matter but leaves the hat unsupported. Decide whether the item remains useful if its shape is damaged. If it does not, the missing protection belongs in your cost comparison. You might prefer to keep the box, ship the hat separately, or reconsider whether buying that particular item makes sense at the quoted freight. Each choice addresses a different constraint. No single parcel shape is optimal for every buyer or combination of goods.",
+            "When you approve packing, state the final configuration and keep the corresponding estimate. After dispatch, compare the route, chargeable weight and latest parcel details with that record if there is a question. OrientDig explains that a logistics provider can adjust billing measurements, which is one reason to retain both sets of values. Ask which value changed rather than assuming every difference is an unexplained fee. A clear comparison helps the support team identify measurement, configuration or route as the source of the difference."
+          ]
+        },
+        {
+          "heading": "Put numbers beside the final approval",
+          "paragraphs": [
+            "Before paying for freight, write one sentence that connects the selected route, included goods and packing arrangement. Add the latest packed size and mass, then record which measurement the quote appears to use. A line reading “two garments around retained hat box, dimensions from Tuesday's rehearsal” is much easier to interpret later than a loose screenshot of a checkout total. If the price is still outside budget, revisit a decision that can actually change it: the carrier option, grouping of goods or amount of protective space you can safely alter. If none can change without compromising the item, the quote has still answered the original question. You now know the realistic cost of shipping the product in the condition you require."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig value-added services",
+          "url": "https://mgt.orientdig.com/help-center/value-added-services/"
+        },
+        {
+          "title": "OrientDig guide to actual and volumetric weight",
+          "url": "https://mgt.orientdig.com/help-center/actual-weight-and-volumetric-weight/"
+        }
+      ]
+    },
+    {
+      "slug": "orientdig-no-reason-returns-before-international-dispatch",
+      "title": "OrientDig No-Reason Returns Before International Dispatch",
+      "description": "Identify the eligible storage event, preserve resale condition and prepare an actionable return request while the item is still in China.",
+      "sections": [
+        {
+          "heading": "Locate the event that starts the published window",
+          "paragraphs": [
+            "Open the order history for the individual item and find its warehouse storage entry. OrientDig's published terms for qualifying no-reason returns specify five days, expressed as 120 hours, after the Stored in warehouse status begins. Check your order's displayed deadline and eligibility promptly. Waiting for the rest of a haul can use up another item's return window even though the two purchases are intended to travel in the same international box."
+          ]
+        },
+        {
+          "heading": "Decide what kind of problem you are reporting",
+          "paragraphs": [
+            "Changing your mind about a color is different from receiving the wrong variant. For a preference return, keep the product in the condition required by the seller and ask how to submit the request. For a suspected mismatch, provide the seller option and a warehouse photo showing the discrepancy. A clear comparison gives the agent evidence to discuss with the seller and helps avoid filing a preference issue when the order may have been fulfilled incorrectly."
+          ]
+        },
+        {
+          "heading": "Preserve packaging until a decision is made",
+          "paragraphs": [
+            "A no-reason request depends on seller terms and resale condition. Removing tags, discarding packaging or authorizing a customization can complicate that decision. If a parcel preparation request is already underway, ask the agent whether the item can still be held. Do this before agreeing to dispatch. Save the time of submission, the item identifier and the response. A request sent to a general community channel gives you less traceable evidence than the platform's order process."
+          ]
+        },
+        {
+          "heading": "Compare the available resolutions",
+          "paragraphs": [
+            "Ask for the applicable domestic transport and service charges for your particular return or exchange. Changing size can require another outbound shipment from the seller, which is a different sequence from returning an item for a refund. Ask whether the desired replacement is available and whether it can arrive in time for your parcel. Seller acceptance is a separate decision. Wait for the platform's confirmation before treating the purchase as refunded or adding a replacement to the same budget."
+          ]
+        },
+        {
+          "heading": "Build a return timeline for the affected item",
+          "paragraphs": [
+            "Start with four separate events: seller dispatch, warehouse delivery, the platform's Stored in warehouse event and your request submission. Use the status that the applicable return terms actually name. In a mixed order, repeat this exercise for the affected item even when other items arrived on different days. A domestic carrier scan, a stock-in entry and the first time you happened to look at a photo may have different timestamps. The account's own record is the most practical starting point for a timely inquiry.",
+            "If a deadline appears inconsistent or the time zone is unclear, capture what the order displays and ask the agent immediately. Avoid waiting for the ambiguity to resolve on its own. Include the relevant timestamps as they appear, preserving any zone shown. The goal is to get the request filed and associated with the correct item while it remains eligible, rather than arguing retrospectively about when a mixed carton was delivered to the warehouse entrance."
+          ]
+        },
+        {
+          "heading": "Decide whether the issue is preference, mismatch or uncertainty",
+          "paragraphs": [
+            "Consider three jacket orders. In the first, the ordered red jacket arrives correctly and the buyer changes their mind. In the second, the selected red jacket has arrived in blue. In the third, the warehouse lighting makes the shade look more orange than expected, but the label matches. A preference return, a documented mismatch and an unresolved visual comparison need different descriptions. The agent can work more effectively when the request reports the observed facts.",
+            "For the first case, ask whether the seller accepts an eligible no-reason return and what costs apply. For the second, compare the selected option with the visible label or packaging code and include both. For the third, a clearer picture or seller confirmation might help while the window remains open. Do not wait to report a potential issue merely because you are gathering a better photograph if doing so risks missing the deadline. Tell the agent what is already known and what you still need checked."
+          ]
+        },
+        {
+          "heading": "Consider the full cost of an exchange",
+          "paragraphs": [
+            "An exchange for another size involves returning the original item and arranging delivery of the replacement. Ask which domestic freight amounts apply in each direction, whether the service charge applies and whether the desired variant is currently in stock. The public no-reason policy describes different charge components for returns and exchanges. Use the amount confirmed for your item. A historical example from another buyer may reflect a different seller, method or reason.",
+            "Compare that resolution with a straightforward refund. If a replacement is essential for a particular event, its dispatch and inspection still take time. If the seller cannot confirm the new size, an exchange may exchange one uncertainty for another. Conversely, when a suitable size is verified and the original price was favorable, an exchange can preserve the purchase you intended. Keep your preferred outcome and acceptable alternative in writing so the agent knows whether to proceed if the seller offers only one option."
+          ]
+        },
+        {
+          "heading": "Keep warehouse instructions consistent while selling terms are reviewed",
+          "paragraphs": [
+            "A buyer can accidentally issue conflicting instructions. One message asks the warehouse to preserve original packaging for return, while another submitted parcel requests that all packaging be discarded. List every active instruction concerning the affected item and ask whether it can be held pending the seller's response. If the parcel has already entered packing, its status matters. Contact the order agent with both the item and parcel identifiers rather than relying on a general cancellation message.",
+            "Leave unaffected purchases out of the return case. If they have separate storage deadlines, decide whether to ship them independently or wait. Protecting one item's return eligibility does not require losing track of every other item. Keep three labels in your own notes: awaiting seller confirmation, return accepted but not completed, and refund recorded. Those are distinct stages. Treating acceptance as immediate repayment can cause an erroneous budget calculation when you place another order."
+          ]
+        },
+        {
+          "heading": "Prepare a concise seller-facing record",
+          "paragraphs": [
+            "Write your request in language that a reviewer can pass on without reconstructing your browsing history. For example, identify the warehouse item, the selected option, the stored time, the resolution you seek and a short reason. Attach the relevant original order confirmation and warehouse photo. If you have two similar jackets from different sellers, include the distinguishing order or model code. That prevents the reviewer from asking one seller about a different seller's stock.",
+            "Keep a copy of the response, approved charges, return tracking information when provided and eventual account credit. If the proposed amount differs from the amount you originally paid, ask for the component breakdown before drawing a conclusion. Domestic freight, a seller-approved merchandise refund and any service charge can be separate entries. Once the matter is resolved, mark the old spreadsheet row accordingly. If a replacement was purchased, its new order and warehouse timeline deserve a separate record, especially if you intend to combine it with purchases that have already been waiting."
+          ]
+        },
+        {
+          "heading": "Review the replacement as a new arrival",
+          "paragraphs": [
+            "When a replacement arrives, open the new warehouse record and compare it with the variant that the seller agreed to send. Do not assume the issue is settled simply because the replacement package reached China storage. Check the same size label, option code or visible feature that triggered the first request. Retain the old and new images separately so the support case can show which photograph belongs to which item. If the exchange resolves the issue, update the parcel manifest to include the new item identifier and remove the old one. This closes a common gap between a successful seller negotiation and the later practical task of shipping the correct goods overseas."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig conditions for no-reason returns",
+          "url": "https://mgt.orientdig.com/help-center/terms-of-promised-returns-with-no-reasons/"
+        },
+        {
+          "title": "OrientDig order and parcel status glossary",
+          "url": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+        },
+        {
+          "title": "OrientDig shopping FAQ",
+          "url": "https://orientdig.com/help-center-faqs"
+        }
+      ]
+    },
+    {
+      "slug": "orientdig-diy-orders-for-a-product-that-will-not-import",
+      "title": "OrientDig DIY Orders for a Product That Will Not Import",
+      "description": "Prepare an exact purchase instruction for a source that does not open as a normal product listing.",
+      "sections": [
+        {
+          "heading": "Recover the missing item identity first",
+          "paragraphs": [
+            "A link to a seller album can identify a collection without identifying the exact item inside it. Save the specific product page if available and note the seller's product code or image number. OrientDig describes a DIY ordering path for sources outside its direct import list, including examples such as Yupoo. The order still needs a clear purchasing instruction. A complete album URL and a note saying “the black one” can leave several possible products."
+          ]
+        },
+        {
+          "heading": "Describe the selection so someone else can repeat it",
+          "paragraphs": [
+            "Think of the agent opening the seller page without seeing your browsing history. Provide the original option wording, model code, size system, color and quantity. If a photograph displays both a bag and a detachable pouch, say which pieces you intend to purchase. Include a crop highlighting the correct choice as supporting evidence while keeping the underlying source page available. Screenshots and URLs solve different parts of the identification problem."
+          ]
+        },
+        {
+          "heading": "Separate confirmed details from questions",
+          "paragraphs": [
+            "If you know the model and color but the seller has not confirmed availability, state that directly. Ask for confirmation before purchase if you would decline a substitute. For example, “one olive pouch, item 04, 18 cm version; please confirm availability before switching to the larger version” defines a clear boundary. An old price seen on a forum is weak evidence of the amount the seller currently requires. Keep the seller's latest quote and your own spending limit distinct."
+          ]
+        },
+        {
+          "heading": "Check the order after it enters processing",
+          "paragraphs": [
+            "Read any message about missing information or a balance difference before approving the purchase. OrientDig's status glossary includes a balance-adjustment state when the actual purchase cost exceeds the initial payment. If the agent has found another listing, compare it with the same model, seller terms and selected option you originally recorded. When the warehouse pictures arrive, return to that record. It provides a more reliable reference than a visual memory of an album you browsed days earlier."
+          ]
+        },
+        {
+          "heading": "Diagnose whether this is an import problem or an item problem",
+          "paragraphs": [
+            "A direct link can fail for reasons that lead to different actions. The link might be a shop homepage, a shortened share string with missing information, or a source outside the supported direct-link list. Sometimes the seller's original product has genuinely disappeared. Open the original source and confirm that the specific item and desired option still exist before building a manual order. If they do, collect the canonical seller page and any item code the seller provides. If they do not, a DIY instruction cannot by itself restore the stock.",
+            "In an album, locate the individual photograph or product entry rather than sending the whole gallery. Check that a visitor who opens the link will land near the same item you see. If the page cannot be opened without a login, preserve the available public identifying information and ask whether the agent can verify it. Avoid giving access credentials or personal account material merely to communicate an item description. The purchasing question is which item the seller can supply and under what terms."
+          ]
+        },
+        {
+          "heading": "Write a compact order brief with separate fields",
+          "paragraphs": [
+            "A useful brief names the source, seller or shop, model, exact option, quantity, confirmed price if known, and any point requiring clarification. Add an instruction about substitutions when the distinction matters. A concrete example is a bicycle pouch pictured in two lengths and three colors. “Small dark green pouch” may still leave two seller codes if the album uses both forest green and olive. Transcribe the seller's visible code if you can and include the matching annotated image.",
+            "State unresolved facts plainly. A handwritten price beneath an old album picture might be outdated. Say when you saw it and ask for the current amount instead of presenting it as a settled quote. If the selling unit might be a pair, ask whether one order buys one pouch or two. Decide how much of the agent's instruction can be carried out immediately and what requires your approval. A clear brief reduces the chance that an agent will interpret a missing choice in a way you did not intend."
+          ]
+        },
+        {
+          "heading": "Use images to identify, then use text to authorize",
+          "paragraphs": [
+            "An image is excellent evidence of a color block, strap shape or pattern placement. It is less effective at communicating quantity, size system, inclusion of accessories or the maximum amount you approve. Attach a visual reference with the target item circled if other objects appear in the picture. Preserve an unmarked version for comparison. Then restate the intended model and selected option in text. If the vendor uses product codes, use both the code and description so a typo is easier to catch.",
+            "Avoid treating every pictured accessory as part of the order. In a gallery photograph a bag may hang from a display strap that is sold separately. If you need both, explicitly ask the seller to confirm both pieces and whether their price is combined. If you need a particular size, ask how the seller measures it. When those answers arrive, update the brief once. Forwarding an old image, a partially corrected message and an unrelated screenshot makes it harder to see which purchase you finally authorized."
+          ]
+        },
+        {
+          "heading": "Read the response as a new purchase proposal",
+          "paragraphs": [
+            "The agent may find that the price has changed, the requested color is unavailable or the seller can offer only a related product. Compare any revised proposal with your original must-have features. A different length may be acceptable for decorative use and unacceptable for carrying a particular device. A replacement seller can change the return conditions even if the photographs look identical. Ask what is confirmed about the actual offered item, then decide whether to accept the revised offer.",
+            "Keep the old and new conditions visible rather than overwriting the original in your notes. Record what changed and when you approved it. If you ask the agent to cancel, watch for the order status and any related balance update. Avoid placing the replacement through a second workflow until the first purchase status is understood. This prevents an apparently failed import from turning into duplicate procurement if the agent and the buyer each place an order independently."
+          ]
+        },
+        {
+          "heading": "Review the item when it reaches storage",
+          "paragraphs": [
+            "Use the final approved brief as your warehouse checklist. If you approved one olive pouch in the short configuration, verify the model or color label and the relevant length where visible. A standard photograph might answer the broad appearance question while leaving the difference between two nearby sizes unresolved. Request a suitable detailed view when available. Identify the ordered item number so a similar manual purchase is not photographed in its place.",
+            "If the item deviates from the documented agreement, send the final approval and observed discrepancy together. Keep any seller restrictions and time limits in view; the manual nature of the order does not create an automatic right to return it. Once the order is accepted, retain the seller link, item code and actual confirmed selection as the reusable record. A later repeat purchase can then start with a verified identity rather than rediscovering the same item from a collage."
+          ]
+        },
+        {
+          "heading": "Know which older details remain reliable",
+          "paragraphs": [
+            "If you repeat a manual order later, carry over the model identification method and confirmed option wording, then recheck price, stock, quantity and current return terms. A seller can keep an album photograph online after changing stock or retiring a size. A previous successful purchase is strong evidence that the agent understood the instruction on that occasion. It gives no automatic assurance that the item is still available today. Date the new confirmation so your next warehouse review has a clear reference to the purchase you actually authorized."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig shopping assistant guide",
+          "url": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+        },
+        {
+          "title": "OrientDig order and parcel status glossary",
+          "url": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+        }
+      ]
+    },
+    {
+      "slug": "orientdig-tracking-between-packing-and-carrier-collection",
+      "title": "OrientDig Tracking Between Packing and Carrier Collection",
+      "description": "Read the parcel handoff stages and distinguish a packing update from a carrier collection event.",
+      "sections": [
+        {
+          "heading": "Open the international parcel record",
+          "paragraphs": [
+            "An order ID identifies what the agent bought. The parcel record identifies the shipment assembled from one or more warehouse items. A buyer looking at a domestic tracking number can see a delivered scan even when the international parcel has barely begun preparation. Open the submitted parcel, verify its destination and contents, then record the newest international event and time. This small distinction prevents an old local delivery from being mistaken for delivery to your address."
+          ]
+        },
+        {
+          "heading": "Read packing and collection as different actions",
+          "paragraphs": [
+            "OrientDig's status glossary separates packing completed from shipped. A finished box can still be waiting for carrier pickup. The dispatch guidance also notes that carrier schedules, weekends and public holidays can affect collection. A shipping label or number can appear before a carrier network has registered physical receipt. Check the exact status language rather than relying on the mere existence of a number."
+          ]
+        },
+        {
+          "heading": "Follow the next handoff in sequence",
+          "paragraphs": [
+            "The platform's international logistics overview describes collection, security processing, flight arrangements, transit, destination clearance and local delivery. A public tracker may show only some of these transitions. When a carrier scan identifies a new processing location, keep the location and date together. A gap between visible events cannot by itself identify which underlying step is delayed. Use the route's own estimated time as context and check messages for any request requiring action."
+          ]
+        },
+        {
+          "heading": "Ask a question the right team can answer",
+          "paragraphs": [
+            "For a packed box awaiting pickup, ask whether the scheduled collection occurred. For a parcel already collected, include the carrier reference and precise last event. If final delivery is disputed, keep the delivery scan, address confirmation and any carrier message. Avoid publishing tracking references or full addresses in a public post. Give the order and parcel identifiers privately to the relevant support channel so staff can compare the platform record with the carrier timeline."
+          ]
+        },
+        {
+          "heading": "Make a timeline that distinguishes platform and carrier events",
+          "paragraphs": [
+            "Take the last few events and put their sources beside them. One update may come from OrientDig's parcel workflow, another from a carrier tracking page and another from a destination delivery partner. These services can use different names for the same physical handoff or publish information at different times. Write down the date, local time if supplied, exact source and event wording. A newly displayed update may refer to an earlier physical event, so sorting solely by when you saw a notification can reverse the apparent sequence.",
+            "If the account shows packaging completed and the carrier website has a label or electronic notification, you know two things: packing has been recorded and shipment data exists. You do not yet know that the carrier collected the box unless there is a relevant physical handoff event. If the carrier then records collection, update the timeline rather than treating the earlier label event as evidence of a second parcel. This simple record also helps when a support agent asks for the last actual scan."
+          ]
+        },
+        {
+          "heading": "Distinguish an information gap from an action request",
+          "paragraphs": [
+            "An uneventful period after collection and a message requesting a corrected address require different responses. Read your parcel messages as well as the tracker. A route in transit can move through stages that are not all public scans. By contrast, an explicit request for missing recipient details may require you to supply information through the official channel. Check whether the message belongs to the expected parcel and use the known official account or carrier contact to follow up.",
+            "When no action is requested, compare the latest confirmed event with the current estimated delivery range shown for the route. The international logistics overview explains that weather, clearance and provider issues can affect timing. A rough estimate from a different destination is a poor baseline. For an event purchase, decide early whether you need an alternative locally instead of reading every quiet tracking interval as evidence of either safe arrival or loss. The tracker communicates events, not a promise that a deadline will be met."
+          ]
+        },
+        {
+          "heading": "Follow a change of carrier reference carefully",
+          "paragraphs": [
+            "Some international shipments involve a local delivery provider after the destination stage. If your parcel details identify another carrier or number, link it to the original parcel record rather than replacing the first number in your notes. An overseas reference and a local reference can describe one shipment. Verify that the country, expected destination and available handoff information are consistent before assuming you have found the right result. Generic tracking websites can return confusing results for short or reused identifiers.",
+            "A local delivery entry can also have a different level of detail from the platform's overview. Use the official carrier where identified to read delivery attempts, pickup instructions or address-related messages. If a pickup location is mentioned, check the specific carrier's notification and requirements through its official channel. Keep private addresses and delivery codes out of public screenshots. A support case generally needs the relevant number and event history rather than every personal detail on the delivery label."
+          ]
+        },
+        {
+          "heading": "Diagnose a parcel that appears to have gone backwards",
+          "paragraphs": [
+            "A status describing a return deserves close reading. OrientDig's glossary distinguishes cancellation of an order to ship, domestic return and overseas return. They describe different circumstances and stages. If a domestic security issue brings a parcel back to the warehouse, that is different from a seller accepting a merchandise return. If an overseas parcel returns because delivery could not be completed, the selected international shipping and destination history matter. Read the exact order or parcel screen before applying any meaning to the single word “return.”",
+            "Record the triggering event and ask support what options are available for that particular line and contents. A revised route or resubmission may require changed information or packaging. Do not assume a refund, a replacement shipment or free resending solely from the status label. If support asks for an address correction, provide it through the official private channel and ask whether the carrier can still apply the change at the current stage."
+          ]
+        },
+        {
+          "heading": "Use one support message per missing handoff",
+          "paragraphs": [
+            "A concise history is more useful than a long sequence of cropped notices. Give the parcel identifier, route, last confirmed platform event, last confirmed carrier event and the question you want answered. If the gap is between packing and physical collection, ask whether the parcel was included in the expected pickup. If the gap is between an overseas arrival and delivery, ask which carrier holds it and whether there is an action for the recipient.",
+            "Save the reply with its date and any case number. If a carrier later supplies a different answer, place both observations on the same timeline. It becomes easier to identify whether one source simply updated later or whether there is a real conflict requiring investigation. After delivery, retain the shipment record until you check the contents against the parcel manifest. A completed carrier event resolves a transit question; it does not by itself establish that every purchased item is present and intact."
+          ]
+        },
+        {
+          "heading": "Keep a clean record after the final scan",
+          "paragraphs": [
+            "When the carrier marks the parcel delivered, check the location and confirmation details shown. If the box is not where expected, use the official delivery record and contact channel to investigate the final handoff promptly. If it arrives, keep the parcel label until you have checked the contents and condition. An image of a delivered carton can identify the shipment even after it has been unpacked. Once the delivery and contents both reconcile, mark the parcel complete in your own records. This leaves outstanding orders visible and prevents the old domestic tracking references from resurfacing as apparently unresolved international shipments in a later review. Retain only the records you still need for follow-up."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig order and parcel status glossary",
+          "url": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+        },
+        {
+          "title": "OrientDig dispatch and carrier collection",
+          "url": "https://mgt.orientdig.com/help-center/parcel-dispatch-pick-up-time/"
+        },
+        {
+          "title": "OrientDig international logistics stages",
+          "url": "https://mgt.orientdig.com/help-center/logistics-platform-introduction/"
+        }
+      ]
+    },
+    {
+      "slug": "documenting-a-missing-item-in-an-orientdig-delivery",
+      "title": "Documenting a Missing Item in an OrientDig Delivery",
+      "description": "Build a parcel-to-item record with packaging photos, order details and weights for a post-delivery support request.",
+      "sections": [
+        {
+          "heading": "Pause before throwing out the packaging",
+          "paragraphs": [
+            "If a parcel arrives visibly torn or unusually light, preserve the condition in which it arrived. OrientDig's after-sales guide asks for photographic evidence and specifically calls for a weight picture before opening when the received weight is disputed. Photograph the whole parcel on a scale if one is available, keeping the unit visible. Capture damaged areas and the shipping label privately. Avoid altering the packaging until you have recorded the issue as clearly as possible."
+          ]
+        },
+        {
+          "heading": "Reconcile the actual parcel manifest",
+          "paragraphs": [
+            "A purchase may be missing from this box because it was never assigned to it. Open the submitted parcel and list the item IDs and quantities included. Compare them with what you unpacked, including small items inside another product's box or wrapping. Mark each line present, missing or still uncertain. If two similar accessories were purchased from different sellers, identify which seller order is missing rather than reporting an unqualified count."
+          ]
+        },
+        {
+          "heading": "Choose photos that answer separate questions",
+          "paragraphs": [
+            "A wide view can show all received items together. A close view can show a torn seal, wrong size label or damaged area. A photo of the interior packing can connect the condition of the goods to the condition of the parcel. OrientDig's published evidence guide distinguishes missing, stained, damaged and wrong-style cases. Select the pictures that substantiate your own issue. Keep originals so you can provide an uncropped image if a support reviewer needs more context."
+          ]
+        },
+        {
+          "heading": "File one clear account of the issue",
+          "paragraphs": [
+            "Provide the parcel number, missing order number, ordered quantity, received quantity and delivery time. State the result you want investigated. The published after-sales page gives a 72-hour contact period for missing, damaged or defective goods after receipt, so contact support promptly and check current terms on your order. Keep the case reference and any requested follow-up together. When additional evidence arrives, add it to the same record so the sequence remains understandable."
+          ]
+        },
+        {
+          "heading": "Map the seller order to the parcel you received",
+          "paragraphs": [
+            "Start with the delivery label and international parcel number. Open that parcel's manifest and identify each warehouse item assigned to it. A buyer may have paid for one cart, received several domestic packages and submitted more than one international box. A missing item from the whole shopping trip may be correctly absent from the particular parcel you are opening. Check whether another item still shows in storage, is in a second parcel or was refunded before attributing a shortage to packing or transit.",
+            "Next compare the manifest with physical pieces. A seller option described as a set can complicate the count: one warehouse item may contain three components, or a photograph of three components may correspond to only one selected accessory. Return to the original confirmed variant and package contents. Only once you know what should have been in the parcel can you describe what is actually missing. This distinction can radically change which team or seller should examine the evidence."
+          ]
+        },
+        {
+          "heading": "Build a photo sequence with an understandable scale",
+          "paragraphs": [
+            "Begin with the full parcel and any visible damage. Include wider views that show where a tear or crushed corner sits relative to the box, then take closer images without losing the originals. If there is an available scale, place the parcel on it securely and make the reading and units visible. A blurry crop of a number cannot show whether it refers to this parcel, and a photograph taken after removing packing serves a different evidential purpose. Record which step each image represents.",
+            "Once opened, photograph the internal packing and items as found before separating everything for counting. Then lay out the received pieces in a way that makes identification possible. Two identical black pouches can look like one if stacked. A close-up of an option tag may connect a visually similar item to the correct seller order. Keep the shipping label and personal details for private submission only; a public discussion rarely needs your address or tracking identifier."
+          ]
+        },
+        {
+          "heading": "Handle an apparent weight discrepancy correctly",
+          "paragraphs": [
+            "Suppose the warehouse record and the home scale differ slightly. Before treating that as proof of missing goods, verify that the two values represent the same thing. A billed weight can include a route calculation based on volume, while a home scale measures mass. An estimated submission weight can also differ from the finished parcel. Compare actual physical measurements in matching units when they are available. Keep the box and packing material in the comparison, and state whether your number was recorded before or after opening.",
+            "A substantial discrepancy may support further investigation without independently identifying where an item went missing. A correct-looking weight also does not prove every piece is present; similar items can weigh almost the same. Use the weight as one line of evidence alongside the manifest, warehouse photographs and received contents. When you contact support, provide the exact values and their sources rather than summarizing the issue as a claim that the carrier definitely removed something."
+          ]
+        },
+        {
+          "heading": "Choose evidence for a variant error or visible damage",
+          "paragraphs": [
+            "If every piece is present but one has the wrong size, the evidence changes. Photograph the size marking and provide the original order selection. A garment that fits differently from expected and a garment labeled with a different size are two distinct observations. For a wrong style, compare the overall appearance with the confirmed item and identify a concrete difference such as the closure, pocket layout or model label. For damage, include a close view and an overall image identifying the affected item.",
+            "Preserve original tags, accessories and packaging while the case is being reviewed. If there appears to be liquid damage, note visible staining or wet packing as observed while avoiding unsupported conclusions about where the problem began. If repair or cleaning would change the evidence, document the condition first and ask the platform what it needs before acting. The goal is to create a record another person can evaluate without having been in the room when you opened the delivery."
+          ]
+        },
+        {
+          "heading": "Write the support request around one discrepancy",
+          "paragraphs": [
+            "A useful missing-item message might read: “Parcel P includes item W on its manifest. The order confirms two units. I received one unit and have attached the parcel overview, packing and received contents. The sealed parcel weight was recorded in the attached image. Please check the packing and dispatch record for the second unit.” Replace the example identifiers and statements only with details you can actually support. If you could not weigh the unopened parcel, say so and supply the evidence you do have.",
+            "Contact the relevant support channel promptly and retain the case reference. If the agent requests additional images, keep them in the same case when possible and label any photographs taken after the original unpacking. Record the proposed resolution and any next deadline. If only part of a set is affected, clarify whether the proposed replacement or refund concerns that component or the whole item. A careful record protects both the time-sensitive claim and your ability to understand its eventual outcome."
+          ]
+        },
+        {
+          "heading": "Keep unresolved facts clearly labeled",
+          "paragraphs": [
+            "If you did not take an unopened weight or the outer packaging has already been discarded, explain which evidence is unavailable and which records remain. The purchase confirmation, manifest, original warehouse images and photographs of the delivered goods can still help distinguish an omitted item from an incorrect seller option. Avoid recreating a staged unpacking image and presenting it as a contemporaneous photograph. A later layout of received contents can be useful when its timing is clear. The most credible claim is a straightforward account of what you found, what you documented and which missing detail you are asking the platform to investigate."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "OrientDig after-sales evidence guide",
+          "url": "https://mgt.orientdig.com/help-center/what-do-i-do-if-there-is-something-wrong-after-i-received/"
+        },
+        {
+          "title": "OrientDig order and parcel status glossary",
+          "url": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Which seller links can I paste directly into OrientDig?",
+      "a": "The shopping guide lists product links from Taobao, Tmall, Weidian and 1688. Open the individual listing and verify the imported option before checkout.",
+      "source": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+    },
+    {
+      "q": "Can I order from a Yupoo album?",
+      "a": "OrientDig describes DIY ordering for sources such as Yupoo. Supply the specific model, source page, option and quantity so the agent can identify what to buy.",
+      "source": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+    },
+    {
+      "q": "How should I crop a picture for OrientDig image search?",
+      "a": "Keep one product prominent against a relatively plain background. Preserve distinguishing details such as the closure or profile, then verify the options on the result page.",
+      "source": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+    },
+    {
+      "q": "Can I buy a single unit from a 1688 listing?",
+      "a": "Check the seller's minimum and selling unit. Some sellers require more than one unit or pack, and the displayed price can depend on quantity.",
+      "source": "https://mgt.orientdig.com/help-center/shopping-assistant-guidance/"
+    },
+    {
+      "q": "What does Purchased mean on an order?",
+      "a": "OrientDig has bought the item from the seller. This status precedes the seller's delivery to the warehouse.",
+      "source": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+    },
+    {
+      "q": "Where is my order when it shows Shipped (Local)?",
+      "a": "The seller has sent it on the domestic leg toward OrientDig. International shipment requires a separate parcel after warehouse processing.",
+      "source": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+    },
+    {
+      "q": "Why does an item show Received but remain unavailable to ship?",
+      "a": "Received is the warehouse arrival stage. Inspection, weighing and stock-in can still be pending.",
+      "source": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+    },
+    {
+      "q": "How does Stock arrived differ from Stored in warehouse?",
+      "a": "Stock arrived means inspection and weighing have been completed. Stored in warehouse means the item has been put into storage and can be considered for parcel submission.",
+      "source": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+    },
+    {
+      "q": "Why did my paid order enter Clear Balance?",
+      "a": "The glossary uses this status when the actual purchase amount exceeds the original payment. Review the order details and any message explaining the difference.",
+      "source": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+    },
+    {
+      "q": "Do standard QC pictures include a tape measurement?",
+      "a": "A specific measurement may require a detailed photograph. Identify the item, dimension, endpoints and units in the request.",
+      "source": "https://mgt.orientdig.com/help-center/orientdig-detailed-photo/"
+    },
+    {
+      "q": "Can I ask for a blurry standard photograph to be taken again?",
+      "a": "OrientDig's photo guidance describes a free retake for unclear standard images. Reference the particular photo and explain which visible detail is unreadable.",
+      "source": "https://mgt.orientdig.com/help-center/orientdig-detailed-photo/"
+    },
+    {
+      "q": "Does standard QC test an electronic device?",
+      "a": "The published inspection scope limits electronic and digital product checks to appearance. A warehouse image does not establish that the device powers on.",
+      "source": "https://mgt.orientdig.com/help-center/the-inspection-scope-of-the-shopping-agent-service/"
+    },
+    {
+      "q": "When does the no-reason return clock start?",
+      "a": "The published terms for eligible items use the Stored in warehouse status and specify 120 hours. Check the order's deadline and submit promptly.",
+      "source": "https://mgt.orientdig.com/help-center/terms-of-promised-returns-with-no-reasons/"
+    },
+    {
+      "q": "Who approves a no-reason return?",
+      "a": "The agent can negotiate with the seller. Seller eligibility, resale condition and the applicable deadline affect the outcome.",
+      "source": "https://mgt.orientdig.com/help-center/terms-of-promised-returns-with-no-reasons/"
+    },
+    {
+      "q": "Can I see the weight before submitting the parcel?",
+      "a": "OrientDig lists rehearsal packing as an optional service. Specify the exact stored items and packing requirements, and check the terms before purchase.",
+      "source": "https://mgt.orientdig.com/help-center/value-added-services/"
+    },
+    {
+      "q": "What is estimated billing weight?",
+      "a": "At submission the platform estimates outer packaging using stored item weights. The packed and measured parcel can differ.",
+      "source": "https://mgt.orientdig.com/help-center/actual-weight-and-volumetric-weight/"
+    },
+    {
+      "q": "Can a light parcel be billed on volume?",
+      "a": "Yes, if the selected line uses dimensional charging and its calculated volumetric weight exceeds its actual weight. Check the specific route rule.",
+      "source": "https://mgt.orientdig.com/help-center/actual-weight-and-volumetric-weight/"
+    },
+    {
+      "q": "What does Packaging Completed tell me?",
+      "a": "The parcel has been packed and is awaiting courier pickup. The glossary marks courier collection separately.",
+      "source": "https://mgt.orientdig.com/help-center/status-of-the-shopping-agent-orders/"
+    },
+    {
+      "q": "Why might collection move to a later day?",
+      "a": "The dispatch guide notes that carrier pickup schedules, weekends and public holidays can affect when a packed parcel leaves.",
+      "source": "https://mgt.orientdig.com/help-center/parcel-dispatch-pick-up-time/"
+    },
+    {
+      "q": "What should I photograph if the delivered weight seems wrong?",
+      "a": "OrientDig's evidence guide asks for a picture of the parcel being weighed before opening. Preserve the packaging and the parcel reference.",
+      "source": "https://mgt.orientdig.com/help-center/what-do-i-do-if-there-is-something-wrong-after-i-received/"
+    },
+    {
+      "q": "What should I include when an item is missing after delivery?",
+      "a": "Identify the parcel and missing order, compare the manifest with what arrived, and supply photos of the received goods and packaging. Contact after-sales promptly.",
+      "source": "https://mgt.orientdig.com/help-center/what-do-i-do-if-there-is-something-wrong-after-i-received/"
+    }
+  ],
+  "keywords": [
+    "OrientDig spreadsheet Weidian link",
+    "OrientDig image search upload",
+    "OrientDig 1688 minimum order quantity",
+    "OrientDig detailed photo measurements",
+    "OrientDig stock arrived vs stored in warehouse",
+    "OrientDig rehearsal packing volumetric weight",
+    "OrientDig stored in warehouse return request",
+    "OrientDig DIY order Yupoo item link",
+    "OrientDig packaging completed tracking not moving",
+    "OrientDig missing item after delivery"
+  ]
+}

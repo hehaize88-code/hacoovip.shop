@@ -1,0 +1,18 @@
+{
+  "host": "cnshopperbrowse.com",
+  "brand": "CNShopper",
+  "catalog": "spreadsheet",
+  "languages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "it",
+    "pt"
+  ],
+  "queryLocale": false,
+  "oldArticles": true,
+  "noFaq": false,
+  "analytics": "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-114JSB52FW\"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-114JSB52FW');</script>",
+  "revision": "9b15fd1db1cbb380"
+}

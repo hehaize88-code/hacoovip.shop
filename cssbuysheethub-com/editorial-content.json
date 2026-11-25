@@ -1,0 +1,956 @@
+{
+  "articles": [
+    {
+      "slug": "cssbuy-weidian-spreadsheet-link-check",
+      "title": "Checking a Weidian find before placing a CSSBuy order",
+      "description": "Follow a spreadsheet find to the seller, match its options and write an order note that leaves little room for substitution.",
+      "sections": [
+        {
+          "heading": "Start with the exact purchase you mean to make",
+          "paragraphs": [
+            "A link can still work after the seller changes what it offers. Suppose a spreadsheet shows a canvas tote with a shoulder strap. On the live listing there are two options with almost identical thumbnails, but one is the bag alone. Save the seller's option text next to the photo of the set you want. If the strap matters, its inclusion should be explicit before you spend money. A product title seldom describes every option on a multi-variant listing."
+          ]
+        },
+        {
+          "heading": "Match the source to the order preview",
+          "paragraphs": [
+            "Open the original Weidian listing and keep it available when you paste the link into CSSBuy. Compare the seller, item ID where displayed, option name, quantity and price for the selected configuration. If the preview shows another item, stop at this point. Searching again by title can bring back a similar design from a different seller. A shop page or a collection link also needs an individual product selection before an agent can act on it."
+          ]
+        },
+        {
+          "heading": "Give the buyer an answerable instruction",
+          "paragraphs": [
+            "CSSBuy's Buy For Me guide describes both link submission and its Expert Buy option for items that search does not retrieve. When manual input is necessary, supply the original link and exact specification. A note such as “Select black canvas with the adjustable strap. If that set has sold out, contact me before purchase” gives the buyer a decision they can carry out. A note like “get the best one” leaves the important choice unresolved."
+          ]
+        },
+        {
+          "heading": "Keep the final selection with your receipt",
+          "paragraphs": [
+            "Record the option accepted at checkout and the date alongside the original spreadsheet row. If two colours go into the cart, keep each as a separate entry. Later, when the warehouse sends photos, you will be able to point to the correct colour and quantity even if the product page has since changed. Save any answer about included accessories with that order too."
+          ]
+        },
+        {
+          "heading": "Read the link the way a purchasing agent will",
+          "paragraphs": [
+            "When you open a find from a spreadsheet, several pages may sit between the thumbnail and the seller. A category page can show many related products, a listing can contain a family of variations, and the purchase form can remember a default colour or size. Work through those layers slowly enough to identify the individual offer. In a conventional Weidian URL, the itemID value identifies the listing. It is useful for finding the same listing again, but a listing ID alone rarely records which option you selected.",
+            "For example, you might save a row labelled “black desk organizer,” while the seller offers a tray, a pen cup and a bundle. The black finish might apply to all three. If the purchase form defaults to the single pen cup, you could receive exactly what was submitted and still feel the order was wrong. Record the seller's bundle name as well as the colour. If the options have pictures, keep a screenshot of the selected state rather than the unselected hero image."
+          ]
+        },
+        {
+          "heading": "Compare two finds that look identical",
+          "paragraphs": [
+            "Sellers can use similar photographs for different offers. Suppose two rows in your shortlist show the same green notebook cover. One is a cover only and the other includes the notebook shown inside. Identify whether the underlying item IDs match. If they differ, compare their specifications separately even if the photos look identical. The lower price may reflect a different bundle, material, quantity or size. A different ID does not automatically make an offer worse; it tells you that the selection needs its own verification.",
+            "If two rows lead to the same listing, check whether each describes a different variant. You can keep both by recording the item ID and selected option rather than using the URL as the only field. This also helps after delivery. When you receive one notebook and one cover, you can match warehouse photos to the two order lines instead of trying to remember which row was meant to include what."
+          ]
+        },
+        {
+          "heading": "Resolve a translation ambiguity with a concrete attribute",
+          "paragraphs": [
+            "Machine-translated option labels sometimes preserve colour names while dropping the term that distinguishes a set from an individual piece. Compare the displayed option text with the seller's photographs, but avoid guessing from colour alone. If a single Chinese option label is important, retain the original wording in the purchasing note alongside your short explanation. This gives the agent or merchant the exact words to locate.",
+            "Ask a question with an observable answer. “Does this option contain the tray and the separate cup shown in the second image?” can be answered by checking the seller's configuration. “Is this one better?” requires the seller to infer which features you value. When a measurement determines the choice, include the unit and where it is measured. If the seller's answer resolves the issue, attach it to the order record before paying rather than relying on a later translation of the changing product page."
+          ]
+        },
+        {
+          "heading": "Check quantity and price at the selected state",
+          "paragraphs": [
+            "A spreadsheet often has room for one price, even when the listing offers several configurations. After selecting the intended option, compare the amount shown in CSSBuy against the live seller configuration. Also check the quantity increment. A listing selling pairs is not priced the same way as a listing selling individual components. If you need two pairs, the correct order quantity might be two rather than four. The exact unit is part of the purchase specification.",
+            "CSSBuy's Buy For Me flow describes paying for the item and domestic delivery at the purchase stage. Leave international freight separate when comparing seller offers. Imagine that option A costs 55 yuan with 8 yuan domestic shipping and option B costs 60 yuan with local shipping included. The comparable purchase-stage amounts in this example are 63 and 60 yuan. The smaller headline product price is not the smaller first-stage basket. Neither figure tells you what a fully packed international parcel will cost."
+          ]
+        },
+        {
+          "heading": "Decide when a broken link is worth pursuing",
+          "paragraphs": [
+            "If the CSSBuy form fails to retrieve a listing, first check that you copied the individual seller page rather than a search result, album index or the spreadsheet's own address. Reopen the URL independently and check whether the selected product is still visible. A working merchant page paired with an incomplete import is a different problem from an offer that has been withdrawn. CSSBuy's guide points to Expert Buy when its normal search cannot find an item.",
+            "If the original offer is gone, do not silently replace it with a visually similar one. Open the replacement as a new find, identify the seller, compare options and check the size or bundle from scratch. Save the original row as unavailable if you need an audit trail. A buyer who knowingly selects an alternative can evaluate the change. A buyer who assumes the replacement is the original may be unable to explain a discrepancy later."
+          ]
+        },
+        {
+          "heading": "Use the saved record at warehouse arrival",
+          "paragraphs": [
+            "Once the warehouse images arrive, return to the record made before you paid. First check count and variation, then look at the distinct feature you wanted verified. For the hypothetical tote with a shoulder strap, a photograph of the bag's front alone cannot confirm whether the strap arrived inside. Ask the specific follow-up and provide the order line that includes the accessory. Keep the item out of your international parcel until a concern material to your purchase has been answered.",
+            "For future finds, the useful row is short: source listing, seller option, expected contents, selected quantity, price date, special instruction and order number. A spreadsheet with these fields can remain useful even after the seller changes an image or price. It records the decision you made and the evidence necessary to check it, without turning a discovery list into a claim that the goods have already been inspected."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-1688-minimum-order-quantity",
+      "title": "Buying from 1688 through CSSBuy when the supplier sets a minimum",
+      "description": "Work out which unit the seller is quoting, what quantity qualifies and whether a multi-unit purchase makes sense for your parcel.",
+      "sections": [
+        {
+          "heading": "Read the quantity beside the price",
+          "paragraphs": [
+            "A price that looks right for one household item can belong to a larger quantity tier. CSSBuy specifically tells buyers that many 1688 suppliers impose minimums. Check the live offer for the selected variation and quantity before multiplying a number copied from a spreadsheet. If the listing describes a pack, establish how many pieces the pack contains. Two packs of three and two individual pieces create very different purchase orders."
+          ]
+        },
+        {
+          "heading": "Check how colours count",
+          "paragraphs": [
+            "Imagine a supplier displaying three colours and a two-unit minimum. You want one blue and one green. The headline minimum alone cannot tell you whether the supplier permits mixed colours to qualify. Ask CSSBuy to confirm the combination with the seller if the live order form is unclear. Where matching colours matter, add an instruction that substitutions require approval. Keep the answer with the two line items so you can inspect the correct split at arrival."
+          ]
+        },
+        {
+          "heading": "Compare the complete basket",
+          "paragraphs": [
+            "For illustration, a hypothetical single-unit offer costs 45 yuan plus 8 yuan for domestic delivery. A wholesale alternative at 30 yuan each with a two-unit minimum and 10 yuan delivery costs 70 yuan for the basket. The wholesale unit price is lower, but the basket costs 17 yuan more before international shipping. Consider how much use you have for the second item and whether it adds another bulky box. These numbers illustrate the calculation and are independent of any live CSSBuy rate."
+          ]
+        },
+        {
+          "heading": "Agree on what can be inspected",
+          "paragraphs": [
+            "CSSBuy flags a different quality-control standard for purchases from 1688. If you need an individual count, a label photo or confirmation of a specific accessory, ask what can be checked for this order before purchasing in bulk. For a carton of identical goods, a photograph of the sealed outer carton alone cannot establish the contents of each package. Keep any inspection limits in mind when deciding how many units to buy."
+          ]
+        },
+        {
+          "heading": "Model the purchase as a basket, then compare the unit",
+          "paragraphs": [
+            "For a useful comparison, give each seller its own row and write down the exact version you are pricing. Multiply the amount per selling unit by the number of selling units. Include domestic shipping at the displayed quantity and record the number of usable pieces that will arrive. If the merchant sells a pack, converting the final basket into a cost per usable piece lets you compare it with a merchant selling single pieces. Keep international freight as a separate estimate until the warehouse has measurements.",
+            "Consider a hypothetical pack of six plain storage pouches. One supplier charges 72 yuan for a pack and 8 yuan for local delivery. The basket totals 80 yuan, which is about 13.33 yuan per pouch. Another supplier offers individual pouches at 14 yuan with 4 yuan local delivery per order. If you need six, its comparable basket is 88 yuan. If you need two, the single-piece offer totals 32 yuan and the first merchant still requires 80. The demand you actually have changes the decision. No live supplier price or CSSBuy fee is implied by those sample figures."
+          ]
+        },
+        {
+          "heading": "Read a tier boundary without inventing a discount",
+          "paragraphs": [
+            "A tiered display might state one amount for a small order and a different one above a threshold. Select the intended quantity on the live page and inspect the resulting amount. If the display changes only after choosing a colour or specification, capture that state. Do not multiply the largest advertised discount by a quantity that cannot earn it. Where the imported agent page and live seller option disagree, pause and request the amount the seller will accept for the configured order.",
+            "For example, imagine a seller showing 20 yuan for quantities two through nine and 16 yuan from ten units onward. Nine units at the first tier total 180 yuan, while ten at the second total 160 yuan before delivery. That surprising result deserves confirmation from the actual checkout or seller. Even if confirmed, the extra unit still needs packing, storage and a use. A threshold calculation can reveal a question; it cannot verify a merchant's current terms."
+          ]
+        },
+        {
+          "heading": "Check the geometry of a multi-unit purchase",
+          "paragraphs": [
+            "Freight matters most for pieces that use more space than their weight suggests. Six fabric pouches might nest almost flat, while six rigid gift boxes may require a much larger carton. Ask for the likely packed format if it affects your budget. Can a decorative sleeve be packed flat? Must a protective insert stay in place? Will the seller dispatch a carton of individually boxed pieces? Write these as questions about the specific goods rather than assuming the warehouse can reconstruct the seller's packaging later.",
+            "If the individual units need to be presentable, do not treat all retail materials as disposable in your estimate. Compare the complete carton with the amount you would genuinely pay for the same number of usable items locally. Keep the comparison in one currency and record the exchange rate you used for your own budget. Check the agent checkout separately for its current conversion and charges."
+          ]
+        },
+        {
+          "heading": "Plan inspection around the kind of error that matters",
+          "paragraphs": [
+            "A carton can be correct in total quantity and wrong in assortment. If you ordered three black pouches and three white pouches, six pieces in a photograph settle only the first question. Give the agent the exact split in your purchasing notes and ask what inspection evidence can reasonably be supplied under the applicable 1688 standard. If each pouch is sealed and the outer package lacks a colour code, finding the answer may require handling that affects presentation. Decide in advance whether that is acceptable.",
+            "For custom sizes, direct attention to the actual point of variation. A set may come with short and long straps under the same product name. A detail photo of a logo offers little evidence about strap length. Request a clear label or measurement if feasible. If the supplier cannot confirm the configuration or the available inspection cannot address your concern, reducing the order size or choosing a different listing may be more practical than accepting a large uncertain basket."
+          ]
+        },
+        {
+          "heading": "Decide whether a sample answers the real question",
+          "paragraphs": [
+            "Buyers sometimes look for a single sample before committing to a larger quantity. Confirm whether that specific supplier sells one, what variant it represents and whether a later production run would have the same specification. One sample may help you evaluate dimensions, colour under your lighting or how a fastening feels. It is weak evidence for the consistency of twenty unseen pieces. Keep those two questions distinct when setting a budget for a trial.",
+            "If a separate sample listing is offered, record the connection to the bulk listing and compare the option text. A photograph shared between two product pages does not establish that both will supply the same material or pack size. Keep the seller's confirmation with the order record. Then, if the trial meets your needs, recheck the bulk minimum, price and lead time at the point you are ready to reorder."
+          ]
+        },
+        {
+          "heading": "Keep the final purchasing instruction short enough to use",
+          "paragraphs": [
+            "A useful line can read, “Please confirm whether one pack of six can contain three black and three white units. If mixed colours are unavailable, contact me before purchasing.” Follow it with the exact source option labels and the quantity as the order form wants it. Leave the detailed arithmetic in your own notes. The person placing the purchase needs the intended configuration and the boundary on acceptable changes.",
+            "Before approving, you should be able to name the expected number of usable pieces, the maximum basket you agreed to and how any required mix will be checked. When the goods reach the warehouse, compare the received configuration with that record. Those three details protect against the most expensive errors in a wholesale-style order: buying more than you need, buying the wrong version in quantity, or discovering too late that the assortment cannot be checked."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-expert-buy-product-information",
+      "title": "What to put in a CSSBuy Expert Buy request",
+      "description": "Prepare a manual purchase request when the normal product search cannot retrieve the seller's listing.",
+      "sections": [
+        {
+          "heading": "Identify the exact offer",
+          "paragraphs": [
+            "CSSBuy directs customers to Expert Buy when ordinary item search fails. Begin with the direct seller URL, the seller's displayed product name and a screenshot of the exact option if available. If you found the item in an album, identify the individual item and selected specification. A link to a seller's entire collection asks the person placing the order to make a decision you could have settled yourself."
+          ]
+        },
+        {
+          "heading": "Translate the buying decision into fields",
+          "paragraphs": [
+            "Write each variable separately. For a hypothetical fabric order this might be the seller's colour number, sold length per unit, number of units and whether a continuous piece is essential. Including both the seller's wording and a plain-language description makes an ambiguous translation easier to resolve. Avoid treating a picture of several pieces as evidence of the quantity sold. If a price depends on dimensions, ask for confirmation of the configured price."
+          ]
+        },
+        {
+          "heading": "Decide which changes need your approval",
+          "paragraphs": [
+            "A useful note names the action if the selected version is unavailable. For example, ask CSSBuy to contact you before accepting a different finish or a higher price. If either finish is acceptable but only within a budget, give that specific instruction. CSSBuy describes an order-note channel and says it may request more information. Monitor the message associated with the order while it is being purchased."
+          ]
+        },
+        {
+          "heading": "Check the order summary once it exists",
+          "paragraphs": [
+            "Compare the confirmation with the request before assuming the seller has accepted every detail. Find the order number, recorded quantity and selected option. Keep any agreement about a custom specification in the same place. If the eventual warehouse photo raises a question, the original request tells you what CSSBuy was asked to buy and the seller's answer tells you what was actually promised."
+          ]
+        },
+        {
+          "heading": "Decide whether manual purchasing solves your particular problem",
+          "paragraphs": [
+            "Expert Buy is useful when the ordinary importer cannot create the right purchase from a seller link. First establish whether the difficulty is finding the page, reading the options, or obtaining information the merchant has never supplied. If you have no link and only a picture, a manual purchase form cannot magically identify its original seller. If you have a clear source but the agent's search cannot retrieve it, a direct link, specification and price give the buyer a concrete starting point. If the merchant has not explained what a bundle includes, an enquiry to the merchant must still resolve that gap.",
+            "Try opening the source yourself and select the complete configuration. Does the seller show a price, a way to choose the specification, and a quantity unit? Write down the answer for each. A shopping agent can ask follow-up questions, but a request with these foundations gives both sides a better chance of spotting a mismatch before payment. Be especially careful with social posts or album images that present several products in one picture."
+          ]
+        },
+        {
+          "heading": "Describe a real option in a short block of text",
+          "paragraphs": [
+            "Imagine ordering three metres of cotton canvas from a seller whose photos show ten colours on a swatch card. The buy request should identify the card and the number of the chosen colour, the width of the fabric, the selling unit, the quantity you intend and whether you need one continuous length. If the seller sells half-metre units, six units may be required to create that length. Buying three units because you need three metres could yield half as much fabric as planned.",
+            "A workable note is: “Swatch 07, natural canvas, listed width 140 cm. I need one continuous cut three metres long. Please confirm the number of seller units and contact me if it will come in separate pieces.” This is a hypothetical example, not a CSSBuy form requirement. It captures the choice the agent needs to communicate and the condition that would change your decision. It avoids unnecessary background about what you plan to make with the fabric."
+          ]
+        },
+        {
+          "heading": "Distinguish a quoted price from an approved ceiling",
+          "paragraphs": [
+            "A price shown in an album might apply to the base model, a single accessory or an older promotion. Record where you saw it and what it appeared to include. If you are willing to accept a limited increase, explicitly state that the agent should confirm the final total before purchasing when the new price is above your budget. If you expect domestic delivery to be separate, account for it separately. This prevents a later disagreement arising simply because one amount included local postage and another did not.",
+            "Avoid giving an open-ended instruction to pay whatever is necessary. On a manual order, even a small variation can change the seller's quote substantially. A custom length, an extra attachment or a change in pack size might be priced differently. Decide ahead of time whether a price change cancels the request, requires your approval or is acceptable within a stated limit. Keep that decision attached to the seller's response."
+          ]
+        },
+        {
+          "heading": "Handle alternate spellings, numbers and images",
+          "paragraphs": [
+            "An option can be uniquely identified by a picture and still be easy to misread in text. Codes such as O1 and 01, similar translations of cream and beige, or labels using measurements without units create avoidable uncertainty. Copy the seller's exact option text, add the unit you intend and include the relevant image if the order channel accepts it. If you supply several pictures, state which image identifies the selection and which simply shows the feature you want confirmed.",
+            "If an image includes a second item as decoration, say explicitly whether you are ordering that accessory. For example, “the wooden base only, without the lamp pictured above it” is more useful than “same as photo.” If you need a compatible set, identify both seller options and ask whether they are sold together, purchased separately or supplied in a fixed combination. Do not rely on the purchasing agent to infer a bundle from styling photography."
+          ]
+        },
+        {
+          "heading": "Interpret a request for further information",
+          "paragraphs": [
+            "When CSSBuy sends a clarification, read the question in terms of the decision the buyer cannot make. If the merchant's selected colour is unavailable, replying “yes” might mean either that you understand or that you authorize a substitution. Instead, answer with the action: “Wait for the original colour and tell me the expected restock date,” or “Cancel this line if the selected version cannot be purchased.” If multiple order lines exist, include the item reference.",
+            "If the merchant proposes a substitute, compare the attributes that mattered in the first place. A replacement of the same colour could be a different material or unit count. Ask the merchant, through the agent where appropriate, for the changed attributes and revised total. Keep the original and proposed choices separately in your own record so that, if you do approve the substitution, the warehouse will later have the correct comparison."
+          ]
+        },
+        {
+          "heading": "Convert the purchase note into a warehouse check",
+          "paragraphs": [
+            "After a manual order is accepted, take the few attributes central to your decision and turn them into inspection questions. For the fabric example, the selected colour code, number of pieces and continuous length matter more than whether the folded package looks tidy. Some of those questions may be answerable visually while others need a measurement or opening. Ask what verification is actually available and what it would cost before expecting it as part of ordinary handling.",
+            "If the seller supplied a written confirmation, retain it with the order number. When the goods arrive, compare the confirmation, purchase record and actual pictures. A discrepancy among those three has a clear starting point for support. A neatly written request earns its keep twice: first when the buyer has to place the order, and later when you have to decide whether the specific item in the warehouse is the one you authorized."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-warehouse-qc-photo-measurements",
+      "title": "Reading CSSBuy warehouse QC photos for size and missing parts",
+      "description": "Use the order specification and a clearly described measurement to resolve a warehouse-photo question before shipment.",
+      "sections": [
+        {
+          "heading": "Decide what a photograph can settle",
+          "paragraphs": [
+            "For a jacket, it may be possible to read the size label, count the buttons and compare the colour panels. A photograph alone is a poor way to determine how the shoulders will fit. List the questions you need answered and choose an observable test for each. CSSBuy describes inspection and photography after warehouse arrival. Check which views were supplied for your order and ask about the availability and price of additional work when needed."
+          ]
+        },
+        {
+          "heading": "Match the photo to the purchased variation",
+          "paragraphs": [
+            "Start with the order number and source option. A main listing photo may show a jacket with detachable trim even when the lower-priced option excludes it. Look for the trim only if the purchased specification includes it. If several similar jackets arrived, pair each image set with its own order number. Label a concern precisely enough that another person can find it without reviewing your whole cart."
+          ]
+        },
+        {
+          "heading": "Name both endpoints of a measurement",
+          "paragraphs": [
+            "If sleeve length matters, explain whether you mean shoulder seam to cuff or neckline to cuff. For a raglan sleeve these are different measurements. Request a clear view of both tape endpoints and the unit. Compare a garment laid flat with another garment measured the same way. A body circumference, a half-width on a table and the seller's recommended body size are three different figures."
+          ]
+        },
+        {
+          "heading": "Use the result while the item is in the warehouse",
+          "paragraphs": [
+            "If a discrepancy appears, keep the image, the selected option and a short explanation together. Contact CSSBuy on the relevant order before submitting that item for international delivery. Its public FAQ describes a short warehouse return window and conditions for return to the seller. A pending photo question is worth addressing immediately, even if you plan to hold other approved items for consolidation."
+          ]
+        },
+        {
+          "heading": "Work from a garment you already wear",
+          "paragraphs": [
+            "If fit is the reason for asking for a measurement, choose a piece you own that fits the way you want this purchase to fit. A loose overshirt and a fitted dress shirt can have the same nominal size while needing very different measurements. Lay your reference garment flat, close any fastening that affects its shape, and note how you positioned it. A buyer measuring a favourite jacket while wearing it will not have a comparable reference for a warehouse garment laid flat on a table.",
+            "Select the few dimensions that drive the decision. For a jacket that pulls across the chest, flat chest width may matter more than total length. For trousers that fit everywhere but at the ankle, inner leg length and leg opening may tell you more than the generic size label. Save your own reference values and units. The customer service agent does not need your personal body measurements to photograph a seam-to-seam garment measurement."
+          ]
+        },
+        {
+          "heading": "Specify the path of the tape",
+          "paragraphs": [
+            "Write one instruction for each dimension that cannot be read from the supplied views. A flat half-chest measurement might run horizontally from one underarm point to the other with the jacket closed and lying naturally. Back length could be taken from the base of the rear collar to the bottom hem along the middle. If you measure from the top of the collar at home but ask the warehouse to measure from its base, the difference will include the collar itself.",
+            "A tape photographed at an angle can make a result difficult to read. Ask for the zero point and endpoint to appear in the same plane as the garment, with the relevant markings legible. An elastic waistband deserves an extra specification: do you need the relaxed flat width or a moderately stretched measurement? Stretching force is hard to standardize remotely. Compare the relaxed measurement first and ask the seller about the garment's intended fit if uncertainty remains."
+          ]
+        },
+        {
+          "heading": "Use the right arithmetic and keep the unit",
+          "paragraphs": [
+            "Suppose your own buttoned jacket measures 55 centimetres across the chest when flat, while the warehouse photo appears to show 53 centimetres using the same endpoints. The observable difference is 2 centimetres in flat width. Simply doubling each flat figure suggests about 4 centimetres of difference around the garment, but cut, seams and thickness affect how much ease you actually feel. Avoid treating that calculation as a prediction of exactly how a tailored or lined piece will wear.",
+            "Now suppose the seller's chart lists 110 centimetres as a chest measurement. If that field means the garment's full circumference, it may correspond roughly to a flat 55-centimetre comparison. If it means recommended body chest size, a direct comparison is inappropriate. Identify what the chart measures before asking for a return on the basis of two numbers that describe different things. Keep centimetres and inches labelled consistently, especially if the tape displays both."
+          ]
+        },
+        {
+          "heading": "Inspect a set as a set",
+          "paragraphs": [
+            "A product photo may show a jacket, belt and removable hood. Check which of them were actually included in your chosen option. If the seller's order says three separate components, look for three visible components or a credible explanation that one is inside a pocket or packet. Ask for the smallest additional view needed to resolve the uncertainty. Opening every sealed accessory could alter the packaging more than your question requires.",
+            "Use the order number when several items share accessories. Two apparently identical straps might belong to different bag sizes. Compare width, colour, hardware or the option code if those details distinguish them. A flat lay showing one bag and a strap confirms physical presence together in the photograph; it does not prove compatibility between two different models. If the connection is important, ask whether the fastening can be checked within the service being offered."
+          ]
+        },
+        {
+          "heading": "Decide which discrepancies are material",
+          "paragraphs": [
+            "A measurement difference matters in context. A small variation at the bottom of a loose garment may not change how you wear it. The same difference in a closely fitted sleeve opening might prevent it fitting over a watch or another layer. Set a realistic personal lower or upper limit before seeing the warehouse result. That protects you from trying to rationalize an unsuitable piece simply because you have already waited for it to arrive.",
+            "If the measurements are borderline, distinguish uncertainty from a demonstrated error. A hidden zero point, a folded hem or a tape laid along the wrong seam leaves the first result inconclusive. Ask for one corrected measurement using clear endpoints. If reliable evidence shows the item misses a specification you agreed with the seller, send the seller's stated dimension, your selected size and the relevant warehouse image through the order's support channel. The response will depend on the merchant and applicable return conditions."
+          ]
+        },
+        {
+          "heading": "Preserve only the evidence needed for a decision",
+          "paragraphs": [
+            "Name saved images by order and feature rather than by generic camera filenames. A label photo, a full front view and a measurement view have different purposes. Keep the original files when possible so that tiny tape markings remain legible. If you annotate one, retain a clean copy and state whether your note is an observation, a comparison with your own garment or a question for the seller.",
+            "When you decide to ship, record why the evidence was adequate. “Flat chest 54 cm against a 53 cm minimum; belt and hood visible” captures a verifiable decision. If you request a return, keep the order on hold from international submission until the return request is understood. Check your other warehouse items independently. An unresolved sleeve measurement should not be allowed to obscure the storage deadline or shipment decision for the rest of your parcel."
+          ]
+        },
+        {
+          "heading": "Keep a reusable measurement profile",
+          "paragraphs": [
+            "If your first order gives you a good fit, measure the delivered garment yourself and compare it with the warehouse image. Record any difference that arose from your measuring technique. A repeatable set of reference measurements for each type of garment makes the next warehouse enquiry shorter and helps you interpret a photograph without assuming that every seller uses the same sizing chart."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        },
+        {
+          "title": "CSSBuy · Official storage and returns FAQ",
+          "url": "https://m.cssbuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-warehouse-storage-extension-per-order",
+      "title": "Managing CSSBuy storage when items arrive on different days",
+      "description": "Calculate each item's warehouse deadline and compare storage extension with a partial shipment.",
+      "sections": [
+        {
+          "heading": "Put a date against each order",
+          "paragraphs": [
+            "CSSBuy's FAQ starts the standard free storage period at the In Warehouse status. A purchase date, payment receipt or domestic carrier scan can all be earlier. Record the warehouse date shown for each order and check the account's actual deadline. An order you placed later may arrive first. Sorting a list by purchase date therefore gives a misleading picture of which item needs attention."
+          ]
+        },
+        {
+          "heading": "Count extensions by the unit CSSBuy bills",
+          "paragraphs": [
+            "The public FAQ lists 90 free days and a subsequent charge of 15 yuan per order per month. Check the current amount and availability for the specific order before paying. By simple arithmetic, four independently billable orders at that published rate would total 60 yuan for one month. Four pieces recorded under one order should prompt a check of the account's billing unit before you apply the same calculation."
+          ]
+        },
+        {
+          "heading": "Compare three practical choices",
+          "paragraphs": [
+            "Consider a box containing items A and B, with item C delayed at the seller. You can send A and B together now, wait within their free periods, or look at extending the older order. Obtain comparable shipping estimates for the partial and complete boxes. Also consider whether C actually has a reliable arrival date. Spending on an extension based on an unconfirmed restock can leave you facing the same decision again."
+          ]
+        },
+        {
+          "heading": "Confirm that the deadline actually moved",
+          "paragraphs": [
+            "CSSBuy warns that items past the free period without shipment or extension can be treated as abandoned and destroyed. Record the extension receipt and the new date shown against the affected order. If the account still shows the old deadline, contact support promptly with the order number and payment detail. A note in your own spreadsheet cannot substitute for the warehouse accepting the extension."
+          ]
+        },
+        {
+          "heading": "Build a storage register that prevents a forgotten order",
+          "paragraphs": [
+            "Give each CSSBuy order one row, even when several orders came from the same seller or have identical product names. Record the order number, the date it reached In Warehouse, the date shown for expiry, the declared quantity and its current decision. A useful decision might be “accepted for next parcel,” “waiting for a replacement” or “need a size measurement.” This last field explains why the item is still there and who needs to act. A generic note saying “hold” becomes hard to interpret a month later.",
+            "Keep the warehouse deadline and a personal decision date in different columns. You may want to decide ahead of a holiday, trip or weekend when you cannot check your account, even if the warehouse deadline is later. Sorting by your decision date helps you act before the last opportunity. Update the entry after each status change rather than resetting the whole sheet whenever a new item arrives."
+          ]
+        },
+        {
+          "heading": "Calculate the cost of waiting for the right group",
+          "paragraphs": [
+            "Suppose three individually billed orders are near the end of the free period and you are waiting on one more seller. At the rate published in the FAQ, one extra month for all three would be 45 yuan. Two months at that same rate would be 90 yuan. Confirm the applicable price and any renewal conditions before making that commitment. These examples use the published unit of billing and do not imply that every item in a mixed account is eligible on identical terms.",
+            "Now obtain a current estimate for shipping those three orders together and another for the planned complete group. You may not yet know the final dimensions of the fourth item. Test two plausible sizes rather than giving an unknown box a weight of zero. Compare the complete choices, including any extension, packing or second shipment. If the freight saving depends on the fourth item arriving before the next month, find out what evidence supports that assumption."
+          ]
+        },
+        {
+          "heading": "Decide which item actually needs the extension",
+          "paragraphs": [
+            "An account can contain a bulky low-value item, a valuable compact item and a small accessory with a long remaining free period. Extending every line because one is near expiry can waste money. Work down the register in deadline order. Ask whether the older item can go now, whether it should wait with a justified extension, or whether an existing unresolved problem needs support before either choice is reasonable. Then consider the younger items separately.",
+            "If you decide to ship two items and extend one, note the order numbers explicitly. After completing the actions, reopen the warehouse list. Check which entries moved to the parcel and which remains stored. If two visually identical products came from different orders, rely on their references to verify that the oldest was actually sent. A selected thumbnail may be a poor guide when the account contains repeated purchases."
+          ]
+        },
+        {
+          "heading": "Handle an item with an unresolved seller issue",
+          "paragraphs": [
+            "Storage time and the merchant's return conditions are separate concerns. Waiting within a generous storage period can still allow a tighter seller window to close. When a photo reveals a possible wrong variation, contact the relevant order as soon as you see it and ask whether a return or exchange is available. Keep the storage deadline visible during the investigation. A support conversation about the product should not be assumed to pause warehouse billing or extend an expiry date.",
+            "For an exchange, ask how the returned original and the incoming replacement will appear in the account. You need to know which record still holds a physical item and which date applies to the updated entry. Do not simply overwrite the older order with the replacement's expected arrival. Save the confirmed return and check the replacement when it is actually stored. This is especially important if your decision to delay other goods depends on the replacement joining their parcel."
+          ]
+        },
+        {
+          "heading": "Choose a reminder that leads to an action",
+          "paragraphs": [
+            "A calendar reminder should tell you what to do when it appears. “Review order A, get current freight for A plus B, and decide whether to pay for a one-month extension” is more effective than “CSSBuy deadline.” Include the relevant order number and the deadline as displayed on the account. Keep personal data and payment details out of a calendar entry shared with other people.",
+            "If you miss an earlier reminder, review the live inventory promptly rather than assuming your estimate still applies. Check whether the order remains available to ship or extend. If the interface is unclear, contact CSSBuy with the order reference and the precise deadline you can see. The official FAQ explains the consequence of items being treated as abandoned; it does not warrant that an expired item can be recovered after disposal."
+          ]
+        },
+        {
+          "heading": "Verify a partial shipment before closing your record",
+          "paragraphs": [
+            "After submitting some goods for overseas delivery, keep the parcel reference next to the relevant order numbers and confirm that the outstanding warehouse entries correspond to the items you intentionally left behind. If the parcel still requires payment or a packing decision, maintain that as its own follow-up. Completing the first step in the interface may leave an action before the package can actually move.",
+            "Once the remaining order is extended, record its revised expiry and keep evidence of payment. Compare that evidence with the live account if anything appears inconsistent. The practical aim is to know, at any point, which physical goods remain at the warehouse, who is waiting for what, when the next deadline arrives and how much it will cost to wait. With those details visible, decisions about combining orders become budget choices rather than last-minute attempts to save forgotten inventory."
+          ]
+        },
+        {
+          "heading": "Leave a deadline record after consolidation",
+          "paragraphs": [
+            "For any group approaching expiry, take a dated copy of the relevant inventory entries before submitting them. If a payment or parcel review fails, compare the current inventory with that list and check whether the orders still require storage action. This helps distinguish an item genuinely released for shipment from one accidentally left behind when a parcel selection did not finish."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Official storage and returns FAQ",
+          "url": "https://m.cssbuy.com/"
+        },
+        {
+          "title": "CSSBuy · Ship For Me guide",
+          "url": "https://www.cssbuy.com/shop/shipForMe"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-return-before-seven-days-warehouse",
+      "title": "Requesting a CSSBuy seller return before the warehouse window closes",
+      "description": "Identify the seller's conditions, document the issue and check the domestic return costs before authorizing a return.",
+      "sections": [
+        {
+          "heading": "Start with the warehouse arrival",
+          "paragraphs": [
+            "CSSBuy's public FAQ describes three conditions for its usual warehouse return assistance. The seller must accept a return, the item must have been in the warehouse for less than seven days, and return shipping must be covered. Check the receipt date and seller conditions as soon as a concern appears. Do not use your planned international ship date as the start of the clock."
+          ]
+        },
+        {
+          "heading": "Describe exactly why the item is going back",
+          "paragraphs": [
+            "If you ordered a two-piece set and see one piece, ask first whether the second is inside the package or arriving separately. If you ordered a blue item and the label identifies a different seller colour, supply both option names and the corresponding photo. A change of mind and a discrepancy with the order are distinct explanations. Report the facts you can support and ask how the seller will handle that reason."
+          ]
+        },
+        {
+          "heading": "Compare a refund with an exchange",
+          "paragraphs": [
+            "For a low-cost item, the domestic postage may be material to the amount recovered. Ask for the return cost, any deduction, and whether a replacement requires a second delivery charge. If you want an exchange, confirm that the desired variant is available before agreeing to send the original back. Waiting for a replacement may also change the storage plans for unrelated goods."
+          ]
+        },
+        {
+          "heading": "Keep the evidence until the transaction is reconciled",
+          "paragraphs": [
+            "Save the order number, seller's response, approved action, domestic tracking if available, and eventual credit or replacement record. If the goods have already been exported, use CSSBuy's after-sales guidance for that stage. It mentions purchase receipts and warranty documents for relevant defects arising after use. A warehouse return request and an overseas warranty enquiry need different evidence and may carry different costs."
+          ]
+        },
+        {
+          "heading": "Identify the precise object of the return",
+          "paragraphs": [
+            "Write down the seller order, the CSSBuy order and the item you want returned. For a single-item purchase those may seem interchangeable. For a set of three or a purchase containing several colours, the difference matters. A merchant might require an entire set back, even when one component is wrong; or it might agree to replace only the missing part. Ask which physical goods must be sent and whether the original accessories and packaging must accompany them.",
+            "Take a practical example: an organizer sold with six removable dividers arrives with five visible in the warehouse photo. It may be possible that the last divider is nested inside the base. Ask for a count before describing the set as defective. If the sixth piece is genuinely missing, the merchant might offer to send that component domestically. Compare the delay and cost of that solution with returning the whole product. The appropriate remedy depends on what was promised and what actually arrived."
+          ]
+        },
+        {
+          "heading": "Collect evidence for the reason you are giving",
+          "paragraphs": [
+            "A variant dispute starts with the seller's selected option and the agent order confirmation. A quantity dispute starts with the sales unit and the number of pieces received. A visible condition problem calls for a clear image of the affected area and, when useful, the outer packaging. Save these records separately. A photograph showing a dent does not prove that a different size was ordered, and a seller option screenshot cannot show damage to the delivered piece.",
+            "Describe the mismatch using ordinary observable facts. “The order is for the 30 cm model, the outer label reads 25 cm and the warehouse tape also shows approximately 25 cm” gives the agent something concrete to present to the merchant. If the tape endpoint is hidden, explain that the result is unclear and ask for a corrected view. A smaller amount of reliable evidence is usually more persuasive than a long sequence of pictures with no indication of what each proves."
+          ]
+        },
+        {
+          "heading": "Compare refund, replacement and acceptance with numbers",
+          "paragraphs": [
+            "Suppose a hypothetical item cost 65 yuan and return postage would cost you 12 yuan. If the seller agrees to refund the full item price, the merchandise refund less that postage would be 53 yuan before any other applicable charges. If domestic delivery on the original purchase was separate, check whether it is refundable too; do not silently include it in the 65. A promise that “the item is refundable” does not on its own settle every associated charge.",
+            "For an exchange, check whether you would owe return shipping, a new delivery cost, or a price difference for the replacement size. Also ask whether the correct model is in stock and when the replacement could be sent. Accepting a small seller concession may be sensible only if the item remains useful for the purpose you bought it for. A partial refund on a case that does not fit your device may offer little practical value."
+          ]
+        },
+        {
+          "heading": "Ask the merchant one question at a time",
+          "paragraphs": [
+            "An initial message can include the order number, receipt date, reason for return and your preferred solution. Ask the agent to confirm eligibility while the item remains at the warehouse. Once the merchant answers, follow up on any costs or requirements that remain unclear. Trying to negotiate a refund percentage, exchange size, postage and future discount all at once makes a short response such as “yes” difficult to interpret.",
+            "If the seller authorizes return, ask what address and process the agent will use, and whether the warehouse can retain evidence of dispatch. Do not send goods independently or share unrelated customer information. The item is under warehouse control, and the agent needs to associate its physical return with the correct seller case. If the part is included in a larger shipment plan, remove it from the planned international selection until the case is settled."
+          ]
+        },
+        {
+          "heading": "Understand what each status demonstrates",
+          "paragraphs": [
+            "A request being submitted means the seller has been asked for a remedy. Authorization means the seller agreed under specified conditions. Domestic return tracking means merchandise has been sent back. A refund entry means money was credited through a particular channel. An exchange requires the additional step of verifying the replacement. Treat them as separate checkpoints so that one update does not get mistaken for completion of the whole case.",
+            "For a replacement, inspect the new unit against the agreed specification just as you would inspect the original. A second warehouse arrival might have a new reference. Keep the original seller agreement linked to that reference, especially if the merchant promised a different size or a specific accessory. If the replacement still has an issue, the value of that paper trail is that the agent can see what the merchant agreed to correct."
+          ]
+        },
+        {
+          "heading": "Keep unrelated items moving when appropriate",
+          "paragraphs": [
+            "A single return can delay a combined parcel unnecessarily. Recheck your other items' storage periods and calculate whether waiting for the replacement still makes sense. A heavy box with several ready items and one uncertain low-cost accessory presents a different decision from a parcel meant specifically to contain a matching set. Price the partial shipment and later combination before assuming all goods must wait together.",
+            "If the seller declines a return, ask for the stated reason and review the applicable seller conditions. If the issue is no longer an ordinary domestic return because the goods have gone abroad, consult CSSBuy's after-sales policy for the relevant stage and retain receipts and warranty materials where applicable. Close the warehouse case only when the final action and its financial result are clear. Your record should show exactly what the merchant accepted, what was sent, what was credited and whether a replacement still needs attention."
+          ]
+        },
+        {
+          "heading": "Reconcile the final domestic postage",
+          "paragraphs": [
+            "If the merchant authorizes a return, compare the agreed return-postage amount with the final debit. If they differ, ask whether the actual carrier fee changed or whether the debit covers an additional service. Retain the seller's acceptance alongside the refund record. This is particularly helpful on sets where only one component was returned and the original order remains partly active."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Official storage and returns FAQ",
+          "url": "https://m.cssbuy.com/"
+        },
+        {
+          "title": "CSSBuy · After-sales policy",
+          "url": "https://www.cssbuy.com/shop/helpCenter?id=80"
+        },
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-ship-for-me-warehouse-address",
+      "title": "Using CSSBuy Ship For Me for goods you purchased yourself",
+      "description": "Match a seller shipment to your forwarding order and check package choices before the international leg.",
+      "sections": [
+        {
+          "heading": "Identify who is placing the purchase",
+          "paragraphs": [
+            "Ship For Me serves buyers ordering from the seller themselves and forwarding purchases to the CSSBuy warehouse. If you need CSSBuy to buy from the seller, its Buy For Me instructions describe that separate process. Make this decision before paying a merchant. An order you already placed generally needs delivery and identification details for forwarding, not a second purchase request for the same goods."
+          ]
+        },
+        {
+          "heading": "Copy the account's current address",
+          "paragraphs": [
+            "CSSBuy directs customers to their member area for the warehouse address. Use the address supplied to your account and copy all required receiving details, including any identifier displayed. Keep the Chinese characters intact where the merchant expects them. A warehouse address copied from an old tutorial could omit the field that ties the seller's package to you. Confirm the saved merchant address before dispatch."
+          ]
+        },
+        {
+          "heading": "Track the incoming boxes independently",
+          "paragraphs": [
+            "If a merchant splits an order, record every domestic tracking number alongside its item list. One delivered box does not prove that every item in the merchant order has arrived. Retain the seller receipt and the carrier's delivery information. If the warehouse cannot identify a box, these details give support something specific to match against its receiving records."
+          ]
+        },
+        {
+          "heading": "Give the warehouse packaging instructions that fit the goods",
+          "paragraphs": [
+            "CSSBuy describes consolidation, vacuum packaging and reinforcement on its forwarding page. Decide separately for each item whether its retail packaging has value, whether compression could damage its shape and which fragile surfaces need protection. For example, preserve a rigid presentation box while asking about compressing a separate group of plain garments. Verify the resulting parcel details and quote before authorizing overseas shipment."
+          ]
+        },
+        {
+          "heading": "Map the two transactions before entering an address",
+          "paragraphs": [
+            "With an independently purchased item you have a transaction with the seller and a forwarding arrangement with the warehouse. Your merchant account records the product, payment and local delivery. Your warehouse account identifies the incoming goods and the eventual international parcel. Keep the corresponding references side by side. If the seller sends the wrong product, the original sales record matters. If a correctly addressed box reaches the warehouse but cannot be found in your account, the receiving records matter.",
+            "This distinction becomes especially important when the forwarding purchase is supposed to join other products the agent bought for you. The final parcel may be a convenient combined shipment, yet the agent was not the original buyer for every item inside. Record which seller communication and payment records you control directly. Then, if a question arises, you can supply the evidence yourself instead of waiting for an agent to look up a merchant payment it never made."
+          ]
+        },
+        {
+          "heading": "Enter the receiving fields without guessing",
+          "paragraphs": [
+            "Use the warehouse details displayed in your own member center. Preserve the displayed recipient, contact data, regional fields and any required identifying text. A merchant address form may divide province, city, district and detailed street address into separate boxes. Follow the corresponding fields carefully and inspect the merchant's final saved address as a complete string. Copying the correct street but omitting the account reference can create a box that reaches the building without being easy to match to you.",
+            "If the merchant rejects a field, ask CSSBuy how to enter the current details in that particular form. Avoid substituting a familiar city, removing characters to make the text look shorter or borrowing a recipient identity from a public screenshot. Check before the seller dispatches, while an error may be easier to correct. For an order already sent, share the actual label details and domestic tracking privately with the agent for advice."
+          ]
+        },
+        {
+          "heading": "Make a package register when one seller sends multiple boxes",
+          "paragraphs": [
+            "Suppose you buy two shelves and a set of fittings in one merchant order. The seller sends each shelf separately and puts the fittings in the first carton. Create entries for carton one and carton two, each with its own tracking number and contents. If the first carton reaches the warehouse and the second remains in transit, the seller's order may still look partly complete. Keeping carton-level detail prevents a single delivery event from being mistaken for receipt of both shelves.",
+            "If the merchant changes a tracking number, retain the old and new numbers and mark which is active. If two cartons cannot be distinguished by their labels, ask the seller for the dispatch details it actually has instead of guessing their contents. That way the warehouse can match physical boxes against reliable carrier information. Once the items appear in your account, compare quantities with the independent order receipt before approving consolidation."
+          ]
+        },
+        {
+          "heading": "Decide what inspection can reasonably establish",
+          "paragraphs": [
+            "CSSBuy's forwarding page describes a QC service that can photograph goods. Ask what is available for the product and packing you received. For the shelf example, a label photo might confirm the advertised finish, while counting fittings could require opening a sealed packet. Opening the box may affect how safely it can be repacked, or the merchant may have particular return conditions. Resolve these questions before asking the warehouse to unpack more than necessary.",
+            "If an actual problem appears, record whether it is damage to the outer shipping carton, a missing accessory, an incorrect model or an issue you cannot verify visually. Contact the merchant from the purchase account if its authorization is needed. Ask CSSBuy what it can do on the forwarding side, such as identifying the parcel or providing available evidence. Do not assume that responsibility for a merchant return automatically transfers when goods enter a forwarding warehouse."
+          ]
+        },
+        {
+          "heading": "Test consolidation against the contents you have",
+          "paragraphs": [
+            "Once every expected incoming box is recorded, look at the actual product shapes. Two flat shelves may be economical to pack together, while a small fragile object could require protective clearance that changes the outer dimensions. Compare the available combined option with appropriate separate parcels. If the goods include anything subject to transport restrictions, check the eligible lines for the actual contents before approving the plan.",
+            "Where packaging choices matter, refer to the individual item numbers. For example, instruct the warehouse to retain corner protection on the two shelves and keep the small fittings in a sealed bag. Ask whether redundant outer shipping materials can be removed without exposing the finished surfaces. A generic instruction to discard all boxes could remove protection that would cost more to replace than the freight saved. Ask for updated packed information where available."
+          ]
+        },
+        {
+          "heading": "Review both addresses and both legs before payment",
+          "paragraphs": [
+            "Your merchant's domestic shipping address and your international receiving address serve different routes. Check that the overseas parcel uses the correct personal destination, contact information and postal details. A domestic seller tracking number ends at the warehouse; your later parcel should have its own shipping reference. Maintain that distinction in your records when looking up tracking or asking a carrier about delivery.",
+            "Before releasing the international package, check its item list against the original merchant receipts, the warehouse entries and any goods the agent purchased separately. Make sure a seller's delayed second carton has not been left behind unintentionally. Save the parcel reference with the list of items you approved. A complete record lets you answer three different questions later: what the merchant agreed to sell, which domestic parcels the warehouse received and what the overseas parcel was supposed to contain. Those answers make forwarding considerably easier to manage if any one handoff needs investigation."
+          ]
+        },
+        {
+          "heading": "Separate the merchant receipt from the warehouse handoff",
+          "paragraphs": [
+            "If a merchant later asks for proof of a missing domestic shipment, send the carrier details for the incoming package and the seller order reference. If an overseas carrier asks what was in the final carton, use the completed parcel's inventory and waybill instead. A forwarding file works well when it lets you produce either record independently without exposing unrelated purchases or relying on screenshots copied from someone else's account."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Ship For Me guide",
+          "url": "https://www.cssbuy.com/shop/shipForMe"
+        },
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-vacuum-packaging-vs-reinforcement",
+      "title": "Choosing CSSBuy vacuum packaging or parcel reinforcement",
+      "description": "Plan a mixed parcel around shape, protection and billable dimensions using the packing options CSSBuy actually describes.",
+      "sections": [
+        {
+          "heading": "Think about the space that sets the box size",
+          "paragraphs": [
+            "Vacuum packing may reduce the space occupied by compressible clothing. The benefit depends on what else is in the parcel. If a rigid box determines the outer length and width, flattening an adjacent garment may leave the parcel dimensions unchanged. Compare what you expect to happen to each dimension, and ask the warehouse about the packed result before relying on any estimated saving."
+          ]
+        },
+        {
+          "heading": "Mark items that need to keep their shape",
+          "paragraphs": [
+            "A structured accessory, a moulded insert and a folded cotton shirt have different needs. Identify which items can be compressed and which should stay in their retail protection. CSSBuy offers reinforcement and describes bubble wrapping for fragile goods. Ask what is feasible for the specific parcel. Extra padding can increase dimensions, but replacing a damaged object may cost more than the freight difference."
+          ]
+        },
+        {
+          "heading": "Make instructions intelligible on a mixed order",
+          "paragraphs": [
+            "For example, specify “Keep the board game's rigid box and protect its corners. The two cotton shirts may be compressed separately.” Include the item references and avoid vague directions such as “remove all boxes” if an exception matters. Packaging removal can be difficult to reverse. If a retail box must remain suitable for a gift, state whether the box itself needs an outer protective layer."
+          ]
+        },
+        {
+          "heading": "Compare the result with a realistic alternative",
+          "paragraphs": [
+            "Ask for the packed measurements used in the quote. Compare that parcel with a feasible alternative using the same destination and eligible shipping method. Note the total cost of packaging services as well as any freight change. A smaller measured volume may produce no price change if the same billing increment applies. Make the choice using the quote and the protection required by the contents."
+          ]
+        },
+        {
+          "heading": "Examine the item that establishes each outer dimension",
+          "paragraphs": [
+            "Picture a parcel containing folded shirts, a rigid stationery box and a framed print. The print may set the minimum length and width regardless of how tightly the shirts are compressed. The stationery box may determine the minimum height. A stack of shirts can fill the remaining space or push the height above that minimum. Ask which item sets the limiting dimension before paying for a service intended to reduce it. A smaller pile of shirts is only a cheaper parcel if the outer packing or billed weight actually changes.",
+            "In a soft-clothing-only parcel, the opportunity is different. Several thick sweaters may compress enough for a smaller carton. But a structured collar, delicate embellishment or material that should hold a particular shape deserves separate treatment. Inspect the product description and care information where available and decide which items you are comfortable compressing. Tell the warehouse about exceptions individually rather than assuming every item under the clothing category can be treated alike."
+          ]
+        },
+        {
+          "heading": "Compare protection for three distinct failures",
+          "paragraphs": [
+            "First consider crushing. A rigid retail box or fragile shape can be damaged by surrounding weight even when its surface is covered. Second consider abrasion: two surfaces moving against one another may scratch in transit. Third consider free movement inside the outer carton. A well-wrapped object can still strike the carton if there is excessive unused space. Write down which failure you are trying to reduce so the proposed solution addresses the actual problem.",
+            "CSSBuy's forwarding material mentions bubble wrapping for fragile items and reinforced packing. Ask what the available service would do for your specific item. A request to protect a print's corners is different from asking to wrap a ceramic handle or keep metal parts separate from a polished surface. Stronger outer packaging can help in some situations while leaving a loose object free to move inside. Clarify what will be protected and how before evaluating the extra cost."
+          ]
+        },
+        {
+          "heading": "Calculate volume change without promising a rate change",
+          "paragraphs": [
+            "Suppose a hypothetical outer carton is 45 by 35 by 30 centimetres. Its volume is 47,250 cubic centimetres. If compressing agreed soft items allows the height to fall to 24 centimetres with length and width unchanged, the new volume is 37,800 cubic centimetres. The volume falls by 9,450 cubic centimetres, or 20 percent. That arithmetic describes a box. It does not prove a 20-percent freight reduction because a route can price on a different weight, round within a billing bracket or apply other limits.",
+            "Now imagine that the rigid stationery box still requires a 30-centimetre outer height. Compressing the shirts may create empty space without reducing the outer volume at all. Asking the warehouse for the likely packed dimensions protects you from paying for an impressive-looking compression result that does little for freight. Check the current line's price treatment with the measured weight and dimensions. Do not import a divisor from a different route or a different platform."
+          ]
+        },
+        {
+          "heading": "Write a mixed-parcel instruction the packer can follow",
+          "paragraphs": [
+            "Begin with the item reference and an unambiguous action. “Order A, two cotton shirts, may be compressed together. Order B, presentation box, retain its original carton and protect the corners. Order C, framed print, please advise on rigid outer protection before packing.” This example describes priorities without assuming the service offers a particular material or can guarantee a result. Ask the warehouse to flag conflicting requirements.",
+            "If retail packaging matters, define whether the box itself counts as merchandise. For a gift, creased packaging might make a sound product unsuitable. For a tool purchased for personal use, the printed sleeve may add little value while a moulded insert still protects important parts. Approve removal and retention separately for those components. If the packer cannot satisfy all requests within a single carton, compare separate shipping or a different grouping using the actual quotes available."
+          ]
+        },
+        {
+          "heading": "Reassess insurance and returns separately from packing",
+          "paragraphs": [
+            "Protection against impact, the carrier's eligibility rules and any insurance terms are separate questions. Reinforcement cannot guarantee against all damage or make a restricted product acceptable to a route. If a particular object is valuable or unusually fragile, check the terms that apply to its contents, chosen shipping method and any available shipping protection. A generic description of reinforcement does not settle those points.",
+            "Also consider whether you may need to contact the seller about an unresolved warehouse concern. Removing retail packaging or compressing goods before you decide whether to keep them could complicate that conversation. Resolve a wrong variation or suspected missing accessory before authorizing unnecessary irreversible packing changes. For a parcel of several items, it may be reasonable to approve packing for the accepted goods while leaving one disputed unit out of the shipment."
+          ]
+        },
+        {
+          "heading": "Check the completed parcel against the request",
+          "paragraphs": [
+            "When the warehouse supplies packed details, compare its reported dimensions and weight with the configuration you approved. If the height is unchanged, ask whether a rigid item sets the minimum rather than assuming the vacuum service was missed. If a protected item required more space, check whether the new carton remains within the chosen line's limits and whether the quote changes. Concentrate on the final cost of the complete acceptable configuration.",
+            "Keep the packing instruction, any reply and the approved quote with the parcel reference. At delivery, observe which packaging choices worked: whether a gift box remained presentable, whether wrapped items stayed separate and how much the soft goods expanded after unpacking. Use those observations as starting assumptions for a similar future order, then verify the new products' shapes and materials. The best packing decision is specific enough to protect what you care about and measurable enough to compare against a usable alternative."
+          ]
+        },
+        {
+          "heading": "Record which packaging instruction changed the outcome",
+          "paragraphs": [
+            "If a second quote differs, isolate one change at a time where feasible. For example, first compare the same combined goods with and without the disposable shoe box, then consider adding protection to the retained product. Changing the line, outer carton and packaging services simultaneously leaves you unable to tell which choice drove the new cost or which part of the improvement could be repeated."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Ship For Me guide",
+          "url": "https://www.cssbuy.com/shop/shipForMe"
+        },
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-international-shipping-deposit-final-fee",
+      "title": "Reconciling a CSSBuy shipping deposit with the final freight charge",
+      "description": "Compare the original estimate, the parcel measurements and any account adjustment after dispatch.",
+      "sections": [
+        {
+          "heading": "Keep the first estimate reproducible",
+          "paragraphs": [
+            "Write down the destination, route, estimated weight and date used. Add any package dimensions you entered and indicate whether they came from the seller, your own estimate or the warehouse. A screenshot showing only a price leaves the most important inputs unknown. If the quote changes later, you want to know whether a different route, a different parcel or a revised measurement explains it."
+          ]
+        },
+        {
+          "heading": "Understand what CSSBuy charges at submission",
+          "paragraphs": [
+            "The Buy For Me guide describes a shipping deposit based on an estimate, the chosen method and destination. It explains that the carrier verifies the final size and weight. Payment for the items and Chinese domestic delivery occurs earlier. When reconciling a payment statement, compare freight with freight. A wallet top-up, a purchase payment and the final parcel charge are separate entries with different purposes."
+          ]
+        },
+        {
+          "heading": "Work backwards from the packed box",
+          "paragraphs": [
+            "Imagine two storage bins containing items that each weigh one kilogram. They may require different padding and outer boxes. If the final freight exceeds your model, look for packed measurements and the weight basis selected by that route. If the final figure is lower, CSSBuy says the relevant difference can be returned to the CSSBuy account after shipment. Check the account ledger as well as the card statement."
+          ]
+        },
+        {
+          "heading": "Ask support about one discrepancy at a time",
+          "paragraphs": [
+            "Send the parcel number, original deposit, recorded final freight and the precise amount you cannot reconcile. If you expected a credit, include the dispatch date and identify the account entries you have already checked. If the problem is a measurement, request confirmation of the packed dimensions and units. These two requests involve different records and can be answered more readily when separated."
+          ]
+        },
+        {
+          "heading": "A worked ledger from purchase to freight credit",
+          "paragraphs": [
+            "Consider an illustrative order, with invented amounts solely to show the arithmetic. You pay 210 yuan for the goods and 12 yuan to deliver them to the warehouse. Later you authorize an international shipping deposit of 160 yuan. After the carrier measurement is settled, suppose CSSBuy records final freight of 148 yuan and credits the 12-yuan difference to your account. The goods and domestic delivery total 222 yuan. With final freight included, the three components add to 370 yuan. The temporary sum of payments before the credit was 382 yuan.",
+            "A common reconciliation error is to add both 160 and 148 to the order total. The deposit and the settled freight refer to the same leg. Another error is to count a wallet top-up as an additional shipping cost. A top-up explains how a balance was funded. The later debit explains what it bought. If you funded the wallet in another currency, keep the conversion rate and provider charge in separate fields so that a currency movement does not appear to be a warehouse measurement issue.",
+            "If there are extra services, add them to the example only when you can identify a distinct charge. Packing material, insurance or a service recorded alongside freight may already be included in the displayed total. Check the itemization instead of making assumptions in either direction. A ledger that reconciles to the account should allow you to point to every component exactly once."
+          ]
+        },
+        {
+          "heading": "Trace the measurement that changed",
+          "paragraphs": [
+            "Suppose your first estimate used a seller-provided item weight. The carrier checks the parcel as it travels, including the outer box and protective packing. Start by comparing the two objects that were weighed. An increase from an unpacked object to a complete parcel does not by itself indicate a weighing error. When the original figure came from an unrelated buyer's order, the comparison is even weaker because that buyer may have used different packaging or ordered a different quantity.",
+            "Next compare dimensions in the same units. A retail box placed inside an outer carton occupies more space than the retail box by itself. If the selected line takes dimensions into account, the height after packing may change the quote even when the weight difference on the scale is small. Consult the selected route's terms for its calculation. CSSBuy's general deposit explanation does not supply a universal divisor or billing increment applicable to every line.",
+            "Finally establish the point in time for both figures. A pre-packing estimate, a warehouse measurement and a carrier-verified final figure can be recorded on different dates. If support provides a revised measurement, write down which stage it represents. Otherwise it is easy to spend time comparing two estimates while overlooking the final amount that actually appears in the ledger."
+          ]
+        },
+        {
+          "heading": "Allocate freight to several purchases without overstating precision",
+          "paragraphs": [
+            "If you are tracking the cost of each purchase, choose a method for allocating one final parcel charge across its contents. Dividing by item count is simple for several similar shirts. Dividing by individual weight may be more useful for a mix of books and small accessories. A bulky but light item can also make an equal-weight allocation misleading. There is no single accounting split implied by a combined carrier charge; state the method you chose.",
+            "For illustration, suppose the settled freight is 150 yuan and three similarly packaged orders weigh one, two and three kilograms. A purely weight-based split gives 25, 50 and 75 yuan. The three allocations add back to 150. If an additional rigid box was used only for the lightest product, you could record its separately itemized packing cost against that product. That is a budgeting decision. It does not change what CSSBuy charged for the parcel or establish what any individual item would have cost to ship on its own."
+          ]
+        },
+        {
+          "heading": "Send a question that identifies the unresolved line",
+          "paragraphs": [
+            "A concise example might read, “For parcel P, I can see a deposit of 160 yuan and a final shipping record of 148 yuan. Could you identify the ledger entry for the 12-yuan adjustment?” Replace the illustrative figures with the actual amounts. Give the dispatch date and the currency, and explain whether the question concerns a CSSBuy wallet transaction or an external payment statement. Keep payment-card numbers and unrelated account details out of screenshots.",
+            "A measurement enquiry needs a different question. For example, ask for the carrier-verified packed dimensions, measured weight and applicable route when the final freight differs from the model you saved. Include the input values from your own estimate so support can see what you compared. If the final amount includes services, ask which entries represent freight and which represent those services. Do not ask a carrier to locate a wallet credit or expect the payment provider to know a parcel's packed dimensions."
+          ]
+        },
+        {
+          "heading": "Close the record when all entries reconcile",
+          "paragraphs": [
+            "Keep the original estimate, deposit receipt, final freight record and any later credit together with the parcel number. If the parcel covered multiple orders, include the item references as well. When you review the cost later, compare it with another parcel only after matching route, destination, packing and time period. Two similarly heavy shipments can still be poor comparisons if one included bulky boxes or additional protection.",
+            "The most useful lesson from a previous charge is usually a better input for the next estimate. You might learn that a particular boxed item needs a larger outer carton, or that a seller's published weight excludes packaging. Record that observation beside the dimensions you actually received. You can then make a more realistic preliminary budget while continuing to use the current route quote and the new parcel's own final measurements.",
+            "If the account shows a separate refund unrelated to the parcel, leave it on its original transaction. Matching two entries only because the numbers are equal can hide an unsettled difference. Use the parcel reference, transaction description and posting date together to confirm the link."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        },
+        {
+          "title": "CSSBuy · Shipping estimate",
+          "url": "https://www.cssbuy.com/?action=estimates&go=page"
+        }
+      ]
+    },
+    {
+      "slug": "cssbuy-my-parcel-tracking-order-note",
+      "title": "Using CSSBuy My Parcel to trace a shipment and report a delivery issue",
+      "description": "Follow the correct parcel number from dispatch to receipt and attach a clear after-sales note if goods arrive damaged or incomplete.",
+      "sections": [
+        {
+          "heading": "Switch from the item record to the parcel record",
+          "paragraphs": [
+            "A seller can deliver goods to the warehouse long before the overseas parcel is sent. CSSBuy's Buy For Me guide directs users to My Parcel in the User Center after dispatch. Before asking a carrier to trace an order, establish whether you have a seller tracking number or the international parcel number. Keep both if a missing item could have disappeared on either leg."
+          ]
+        },
+        {
+          "heading": "Write down the last verifiable event",
+          "paragraphs": [
+            "Copy the carrier name, tracking number, date, time zone if available and the actual status text. A shipping label, an acceptance scan and a delivery scan establish different things. If the carrier has no visible event yet, report that observation without treating it as proof of loss. In a support note, ask which handoff was completed and whether a different last-mile number is available for your parcel."
+          ]
+        },
+        {
+          "heading": "Reconstruct what was packed",
+          "paragraphs": [
+            "Use the list of orders submitted in the parcel and compare it with the items you actually received. Photograph the outer box, label, packaging condition and contents before discarding anything. If an accessory seems absent, check inserts and smaller internal packets. State which order and selected variant you expected, including the quantity. Avoid publishing a delivery label with your full address or phone number."
+          ]
+        },
+        {
+          "heading": "Contact the service tied to the problem",
+          "paragraphs": [
+            "CSSBuy describes after-sales notes on the relevant My Parcel entry. For a shipment issue, include the parcel reference and evidence of its condition. For a defect in a particular item, add its seller order and any warranty paperwork. Ask what further documentation and response deadline apply to the case. Keep the parcel investigation and the seller's response in the same file so that later updates can be matched accurately."
+          ]
+        },
+        {
+          "heading": "Identify which parcel could contain the missing item",
+          "paragraphs": [
+            "Before tracing anything, pull up the list of warehouse orders you actually submitted. Suppose two similar pencil cases came from the same seller and only one was selected for overseas shipping. If the other case is still in storage, an apparently incomplete home delivery may match the parcel exactly. Conversely, if both appear on the same waybill and only one is present, you have a specific shortage to investigate. Record the item references and selected quantities rather than relying on thumbnails.",
+            "If you submitted two international parcels together, check their waybills separately. They may move through different carrier facilities or reach the destination on different days. Do not treat the arrival of the first as proof that all goods should already be at your door. Put the missing order next to the waybill that actually lists it. This one step can distinguish a second parcel still travelling from a genuine issue in a parcel already delivered."
+          ]
+        },
+        {
+          "heading": "Build a timeline that separates the seller and carrier",
+          "paragraphs": [
+            "Take the last few confirmed events and arrange them by date: seller dispatch to the warehouse, warehouse receipt, parcel submission, international dispatch and the carrier's latest scan. The event names are more useful than copying every line of an app notification. A seller's domestic delivery means the package reached the domestic address associated with the purchase. It does not show that the international carrier received your consolidated box.",
+            "For a parcel with no apparent movement, note which number you entered and which carrier displayed the status. Some references identify orders rather than transport consignments. A shipping label can exist before the first visible carrier acceptance. If an account page indicates dispatch but the public tracker has no matching event, ask CSSBuy for confirmation of the handoff and the correct tracking number. Where appropriate, ask whether a separate local number exists for delivery in your country."
+          ]
+        },
+        {
+          "heading": "Handle an exception according to what it actually says",
+          "paragraphs": [
+            "If tracking reports a failed delivery attempt, check the carrier's official instructions, the address used and any recipient contact details that might need attention. A recipient absent at delivery, a missing apartment number and a parcel held for collection each call for different actions. Contact the party named by the carrier and keep CSSBuy's parcel record updated. Avoid posting your full delivery label or private contact information in a public tracking discussion.",
+            "If tracking says delivered but the parcel is absent, first check the delivery details, any designated receiving area and whether someone authorized to receive it accepted it. Ask the carrier what proof of delivery is available. Note which checks you completed and when. If no parcel is found, give CSSBuy the timeline, the international reference and the carrier's reply. Make clear that the issue is a delivery record you cannot reconcile, rather than stating that the merchant failed to ship."
+          ]
+        },
+        {
+          "heading": "Document a delivered parcel before rearranging its contents",
+          "paragraphs": [
+            "When a box is torn, crushed or unusually light, keep the original packing and record its condition promptly. Take a whole-box view that ties the evidence to the waybill, then close views of damage or broken tape. Photograph the internal arrangement as you remove goods. A close view of a broken part is helpful, but without the rest of the packaging it may be difficult to establish which item and shipment it came from.",
+            "Compare what you find with the parcel inventory. Small accessories can sit inside sleeves, retail inserts or a pocket in the main product. Check these places before reporting a shortage. If the warehouse images show the accessory before packing, preserve them alongside the delivery photos and the order confirmation. If there is no photo showing it, say so. A good report distinguishes the item that clearly arrived damaged from a component whose earlier presence remains uncertain."
+          ]
+        },
+        {
+          "heading": "Choose the right after-sales question",
+          "paragraphs": [
+            "A dent to the outer shipping carton with undamaged goods may matter little for a utilitarian purchase. The same dent can be material when a collectible retail box was part of what you bought. Explain the specific loss in relation to your order and packing request. If the issue is a product function that first fails after use, retain the purchase receipt and warranty documentation and consult the seller-related after-sales process. A carrier investigation into external damage is unlikely to resolve a technical fault without other evidence.",
+            "For a parcel issue, CSSBuy directs buyers to add an after-sales note on the relevant My Parcel entry. Include the waybill, affected item reference, actual event time and the action you are asking for. A focused message might request a trace, the warehouse packing record, the applicable carrier claim procedure or instructions for contacting the seller. Ask about any evidence deadline promptly. Keep the original images and retain the packaging until you know what the investigating party requires."
+          ]
+        },
+        {
+          "heading": "Reconcile the final answer with the original problem",
+          "paragraphs": [
+            "An internal trace can establish a handoff without establishing successful delivery. A seller can authorize an exchange without the replacement yet reaching the warehouse. A carrier can acknowledge a complaint without accepting liability or determining compensation. Record the outcome at the correct level and keep any remaining action open. If the agent asks for an additional photo, send the requested angle and explain what it shows instead of resending the entire original message.",
+            "At completion, save the resolution next to the parcel number and affected order. If a missing item was found in a second waybill, record that second reference. If the merchant agreed to replace a component, track that new shipment separately. If a carrier or seller declined a claim, keep the stated reason with the applicable terms. This record gives you a reliable account of what happened to your goods and a practical basis for improving packing, tracking or evidence collection on your next shipment."
+          ]
+        },
+        {
+          "heading": "Save the correct contact reference",
+          "paragraphs": [
+            "When a carrier opens its own investigation, record that case number separately from the tracking number and your CSSBuy parcel reference. A follow-up to the carrier can then reach the existing enquiry, while the CSSBuy order note continues to show which warehouse items and waybill the case concerns."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CSSBuy · Buy For Me guide",
+          "url": "https://m.cssbuy.com/buyforme"
+        },
+        {
+          "title": "CSSBuy · After-sales policy",
+          "url": "https://www.cssbuy.com/shop/helpCenter?id=80"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Where do I start with a Weidian find?",
+      "a": "Open its source listing, confirm the seller and selected variant, then paste the item link into CSSBuy's search field and review the order preview."
+    },
+    {
+      "q": "What if CSSBuy cannot load the product link?",
+      "a": "The Buy For Me guide points to Expert Buy. Supply the direct listing, option text, price and quantity so the intended purchase can be identified."
+    },
+    {
+      "q": "Can CSSBuy search for an item by name?",
+      "a": "Its official ordering guide lists product-name search across Taobao, Tmall and 1688. Check the seller and specification of any match before ordering."
+    },
+    {
+      "q": "Can a 1688 listing require multiple units?",
+      "a": "Yes. CSSBuy directs buyers to the supplier's minimum. Confirm whether it applies to an individual colour, pack or the whole order."
+    },
+    {
+      "q": "What does the first CSSBuy payment cover?",
+      "a": "The Buy For Me guide describes payment for the item and Chinese domestic delivery at this stage. International freight comes when the warehouse parcel is submitted."
+    },
+    {
+      "q": "How do I prevent a colour substitution?",
+      "a": "Record the seller's exact option text and use the order note to request contact before the buyer accepts a substitute."
+    },
+    {
+      "q": "When are CSSBuy warehouse photos taken?",
+      "a": "The purchasing guide places inspection and photography after warehouse arrival. Open the relevant stored item to review available images."
+    },
+    {
+      "q": "Are all 1688 goods inspected under the same standard as other orders?",
+      "a": "CSSBuy flags a separate inspection standard for 1688. Check what can be inspected on your particular order before relying on a specific check."
+    },
+    {
+      "q": "How should I request a garment measurement?",
+      "a": "Identify the item and specify the unit, both endpoints and whether the garment should lie flat. Compare the result with a garment measured in the same way."
+    },
+    {
+      "q": "When does free warehouse storage begin?",
+      "a": "CSSBuy's FAQ starts the 90-day period when the order reaches In Warehouse status. Check the date for each order individually."
+    },
+    {
+      "q": "What is the published storage extension price?",
+      "a": "CSSBuy's public FAQ lists 15 yuan per order per month after the standard free period. Verify the current charge and new expiry date in your account."
+    },
+    {
+      "q": "Can unpaid, expired storage lead to disposal?",
+      "a": "Yes. CSSBuy warns that unshipped items without an extension can be treated as abandoned and destroyed after the free period."
+    },
+    {
+      "q": "Can CSSBuy return a stored item to its seller?",
+      "a": "The official FAQ requires seller acceptance, less than seven days in the warehouse and payment of return postage. Contact CSSBuy promptly with the order number."
+    },
+    {
+      "q": "What is Ship For Me used for?",
+      "a": "You buy from the merchant yourself and send the purchase to CSSBuy for forwarding. Buy For Me is the purchasing-agent workflow."
+    },
+    {
+      "q": "Where can I find my CSSBuy forwarding address?",
+      "a": "Get it from your member center and preserve every receiving field shown when you enter it with the merchant."
+    },
+    {
+      "q": "Can separate packages be consolidated?",
+      "a": "CSSBuy offers warehouse consolidation. Check that all expected items have arrived and are eligible for the chosen international route."
+    },
+    {
+      "q": "When is vacuum packing worth considering?",
+      "a": "Consider it for compressible clothing where reducing the packed volume could affect freight. Check whether other rigid items still set the box dimensions."
+    },
+    {
+      "q": "Can I request extra protection for fragile items?",
+      "a": "CSSBuy describes reinforced packaging and bubble wrapping. Identify the item and fragile surfaces and ask what protection is available."
+    },
+    {
+      "q": "Why can the final international fee differ from the deposit?",
+      "a": "CSSBuy estimates the deposit and calculates final freight using carrier-verified parcel size and weight. Compare the same parcel and route when reviewing the adjustment."
+    },
+    {
+      "q": "Where do I track the international parcel?",
+      "a": "Open My Parcel in the User Center after dispatch. Use the parcel tracking number rather than the seller's domestic number."
+    },
+    {
+      "q": "How do I report a problem after delivery?",
+      "a": "Open the relevant My Parcel entry and add an after-sales note with the order number, parcel number and evidence of the issue."
+    }
+  ],
+  "keywords": [
+    "CSSBuy Weidian spreadsheet link check",
+    "CSSBuy 1688 minimum order quantity",
+    "CSSBuy Expert Buy product information",
+    "CSSBuy warehouse QC photo measurements",
+    "CSSBuy warehouse storage extension per order",
+    "CSSBuy return before seven days warehouse",
+    "CSSBuy Ship For Me warehouse address",
+    "CSSBuy vacuum packaging vs reinforcement",
+    "CSSBuy international shipping deposit final fee",
+    "CSSBuy My Parcel tracking order note"
+  ]
+}

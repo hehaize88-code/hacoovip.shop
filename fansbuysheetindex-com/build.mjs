@@ -20,3 +20,5 @@ const worker=[
 ]
 fs.mkdirSync('dist/server',{recursive:true})
 fs.writeFileSync('dist/server/index.js',worker.join('\n'))
+import {attachEditorial} from '../shopping-editorial/build.mjs';
+attachEditorial('dist/server/index.js');

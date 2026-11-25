@@ -1,0 +1,971 @@
+{
+  "articles": [
+    {
+      "slug": "cnshopper-forwarding-for-a-parcel-you-already-bought",
+      "title": "CNShopper Forwarding for a Parcel You Already Bought",
+      "description": "Match a privately purchased domestic parcel to the forwarding form, then follow it into warehouse consolidation.",
+      "sections": [
+        {
+          "heading": "Choose the workflow that matches your purchase",
+          "paragraphs": [
+            "If you already paid the Chinese seller directly and arranged delivery, the outstanding task is getting the domestic parcel matched to you at the warehouse. CNShopper publishes a forwarding form for this situation. Submitting a new shopping-agent purchase for the same goods would create a different instruction. Establish who placed the seller order, who has its China tracking number and where the seller intends to send it before taking another step."
+          ]
+        },
+        {
+          "heading": "Copy the warehouse details from your current session",
+          "paragraphs": [
+            "Use the selected destination warehouse in the official forwarding flow and copy its current address as shown. Avoid retyping it from a screenshot saved by another buyer. Ask the seller to confirm the destination before dispatch. Once the seller provides the domestic tracking reference, keep it private. CNShopper's form describes that number as a parcel-ownership identifier, which makes a public tracking screenshot an unsuitable way to ask for help."
+          ]
+        },
+        {
+          "heading": "Pre-alert the actual package",
+          "paragraphs": [
+            "The form asks for the tracking number, package name, total item value in USD and quantity. Enter the information for the physical package associated with that tracking number. When one seller order goes out in two boxes, ask which items and quantities are in each. When several orders share a single domestic tracking reference, reconcile them before entering duplicate records. The official form also provides a bulk template for buyers pre-alerting several packages."
+          ]
+        },
+        {
+          "heading": "Move from warehouse match to parcel submission",
+          "paragraphs": [
+            "A pre-alert tells the warehouse what to expect. The goods must still arrive and become available in your account before you can select them for international shipment. Check that the registered record matches your package, then decide which eligible items to consolidate. Read the freight payment deadline displayed for the submitted parcel. If the domestic carrier shows delivery but your package has not been matched, contact support privately with the pre-alert details, seller dispatch information and the specific unmatched record."
+          ]
+        },
+        {
+          "heading": "Reconcile seller orders, domestic packages and items",
+          "paragraphs": [
+            "Forwarding works most smoothly when you keep three different counts. A seller order is a commercial transaction. A domestic package is the physical box traveling to the warehouse under a tracking number. An item is one of the goods inside a box. The three counts can differ. One order for four bowls could leave the seller as two packages, while two separate orders from the same shop could be packed together. The forwarding form is organized around an incoming package, so first establish how the seller actually dispatched the purchase.",
+            "Write one row for each confirmed domestic tracking reference, followed by the seller order numbers and expected contents. If the seller tells you that two tracking numbers exist but cannot yet say which items are in which package, record the uncertainty. Avoid declaring that every item is in both packages simply to get the form completed. Ask the seller for the packing breakdown or check with CNShopper how to enter the situation accurately. This makes the warehouse match, and any later investigation of shortages, easier to understand."
+          ]
+        },
+        {
+          "heading": "Avoid a warehouse-address mismatch before dispatch",
+          "paragraphs": [
+            "The warehouse details on today's forwarding page are the practical reference for the shipment you are about to arrange. Compare the seller checkout address with the selected warehouse fields, including any identifying part of the supplied address. A general city match is insufficient if the street address or receiving details differ. If the seller's form reformats the address, review the final order confirmation to see what was actually saved. Keep a private copy in case the seller later asks where the package should have been sent.",
+            "If the seller has already dispatched to a different location, a forwarding pre-alert at CNShopper cannot physically redirect that parcel. Contact the seller or domestic carrier through the appropriate channel and establish whether correction is possible. Only then update the expected delivery record. Likewise, if the seller supplies a replacement tracking number, retain the old one as superseded and follow the corrected reference. Duplicate pre-alerts for one physical box can create confusion when warehouse records are reconciled."
+          ]
+        },
+        {
+          "heading": "Make the package description meaningful",
+          "paragraphs": [
+            "A description such as “goods” gives you little to compare after arrival. Use a practical identification phrase, for example “two blue canvas organizers, same seller order” when that accurately describes the actual package. In the value field, follow the form's stated currency and use the relevant documented item value. Keep the seller invoice or order confirmation for your own records. If a purchase invoice covers multiple boxes, distinguish confirmed values from any allocation you are still checking. Ask the platform when the correct entry is unclear.",
+            "Use the quantity field consistently with the package and product information requested. A retail set may be one ordered set containing several pieces; a seller's dispatched carton may contain multiple individually ordered units. Describe that distinction in the package name or permitted remarks if it would otherwise be confusing. If any of the contents have route or handling constraints, check suitability with the platform before shipping them to a warehouse with the expectation of international carriage."
+          ]
+        },
+        {
+          "heading": "Handle domestic delivery and international dispatch separately",
+          "paragraphs": [
+            "Imagine your domestic tracker marks the box delivered on Wednesday. Your immediate question is whether that incoming package has been matched and registered. International postage has not automatically been purchased by that event. Open the warehouse or forwarding record and reconcile the tracking number and expected contents. If something looks incorrect, raise it before adding the record to a new international parcel. Once the package is eligible, choose the actual grouping, route and available protections you want.",
+            "CNShopper's forwarding workflow displays a payment deadline after international parcel submission. Check the current timer on your own submission. Preparing an international parcel order and paying it are separate actions. When payment completes, retain its parcel number alongside the original domestic reference. The record should now read from the seller order to incoming package to outgoing parcel. If your outgoing parcel contains multiple forwarded boxes, maintain one entry for each domestic number pointing to that same international shipment."
+          ]
+        },
+        {
+          "heading": "Prepare an unmatched-parcel support request",
+          "paragraphs": [
+            "A clear request says who sent the package, which domestic tracking number applies, when the carrier reported delivery, which warehouse address the seller actually used and which pre-alert record is missing a match. Supply the relevant information to official support privately. If the seller shipped two boxes, state which one has appeared and which one remains unmatched. One correctly registered box is useful evidence that your account and part of the order are correctly connected, but it does not prove that the second box took the same route.",
+            "Before sending, compare the exact characters in the tracking number across the seller order, carrier page and pre-alert form. A single transposition can point the warehouse to a different parcel. Check whether the carrier reused an internal seller number or supplied its own waybill number, and ask the seller to clarify when both are visible. Once resolved, update the private record with the corrected number and resulting warehouse item. This preserves a traceable chain without publishing personal addresses or tracking details."
+          ]
+        },
+        {
+          "heading": "Check which questions the forwarding service can answer",
+          "paragraphs": [
+            "If the seller sent a different model before forwarding, the original purchase agreement is between you and the seller you selected. Begin with that order confirmation and ask the warehouse which identifying details it can document. If the goods have arrived correctly and the question concerns international packaging, direct it to the forwarding service with the registered package number. If domestic dispatch has not occurred, the seller holds the next useful information. Knowing which party controls the next step prevents a correctly filed pre-alert from being mistaken for a seller purchase, product guarantee or completed overseas booking."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper forwarding form and instructions",
+          "url": "https://m.cnshopper.com/forwarding"
+        },
+        {
+          "title": "CNShopper package consolidation guide",
+          "url": "https://cnshopper.com/blog/package-consolidation"
+        }
+      ]
+    },
+    {
+      "slug": "reconciling-the-two-cnshopper-payments-on-one-order",
+      "title": "Reconciling the Two CNShopper Payments on One Order",
+      "description": "Trace a product charge and a later parcel charge to different records, including an example for purchases from two sellers.",
+      "sections": [
+        {
+          "heading": "Identify what the first payment purchased",
+          "paragraphs": [
+            "CNShopper describes a two-stage payment process. The product order funds the purchase from the seller and may include domestic shipping or selected services. The later payment funds the international parcel. Open the first order summary and record the item, variant, quantity and charges shown. If you bought two items from different sellers, retain both order identifiers. A parcel that contains them later may have only one freight payment."
+          ]
+        },
+        {
+          "heading": "Build a ledger around the goods and the parcel",
+          "paragraphs": [
+            "Consider a hypothetical pair of purchases. A shirt is listed at 100 units of currency and a bag at 80, with a domestic delivery charge of 10 on the bag order. Your recorded merchandise and local transport total is 190 before international shipping. If the parcel later quotes 60 in the same currency, the combined outlay would be 250 before any additional applicable amounts. Those numbers illustrate the bookkeeping only. They are unrelated to any published CNShopper tariff."
+          ]
+        },
+        {
+          "heading": "Trace an unexpected amount to its line item",
+          "paragraphs": [
+            "Check whether you are looking at the seller order, a wallet funding transaction or the freight payment for a parcel. Funding a wallet and using that balance for an order are different entries. Counting both as new purchase expenses double-counts the same money. When a bank statement uses a different currency from the checkout, keep the original amount and currency with the bank's posted amount instead of assuming the numerical difference is an agent fee."
+          ]
+        },
+        {
+          "heading": "Resolve duplicate-looking charges with evidence",
+          "paragraphs": [
+            "Match the transaction date, currency, amount and order or parcel identifier. Two posted charges of the same amount for the same identifier deserve a different question from two equal amounts covering separate stages. Use official payment support and share the identifiers and relevant receipts privately. Mask unrelated transactions and payment credentials. A focused inquiry such as “both posted debits refer to this single parcel payment” makes the discrepancy much easier to investigate."
+          ]
+        },
+        {
+          "heading": "Start with the event behind each bank entry",
+          "paragraphs": [
+            "A cross-border purchase can create several lines in a payment history. One may be an authorization, another a posted charge, another a balance top-up and another a deduction from that balance. Start by identifying the source of the record and what it says happened. You cannot establish that the platform charged an order twice solely from two lines on different screens. Equally, a genuine duplicate should be investigated when the posted transactions cannot be reconciled with distinct purchases or stages.",
+            "Open CNShopper's order summary and locate the payment status for the merchandise. Then open the international parcel and locate its freight payment status, if a parcel exists. Finally check the payment provider's records to see whether each entry is pending or posted as the provider describes it. Keep the dates and currencies intact. A different posting date alone does not make two entries different expenses; it may reflect how the provider records the same event. Use the transaction identifiers and amounts to establish the relationship."
+          ]
+        },
+        {
+          "heading": "Account for a purchase split across seller orders",
+          "paragraphs": [
+            "Imagine one checkout contains a jacket from seller A and two pouches from seller B. You may want your own spreadsheet to show the cost per final item, while the actual platform records still follow individual purchases and the later parcel. Start with the exact seller order values and any charge attached to each. If the pouches form one seller order, do not automatically assign the entire shared domestic freight amount to each pouch. Choose an allocation method and label it clearly.",
+            "For personal budgeting you might split the domestic charge equally between identical pouches. For unlike items, you may prefer to keep the shared amount separate because a simple allocation adds apparent precision. Whichever choice you use, the allocated amounts should add back to the actual charge. When the international parcel payment appears, that new amount belongs to the parcel as a whole. Any later split between jacket and pouches is your accounting choice and should not be described as a separate tariff imposed on each product."
+          ]
+        },
+        {
+          "heading": "Follow one item that never reached the parcel",
+          "paragraphs": [
+            "Suppose the two pouches arrived and the jacket was canceled before domestic dispatch. The international parcel might now contain only the pouches. Recheck the order state and any refund entry for the jacket. A cancellation message, seller approval and completed account credit can be separate events. If you calculate the total cost of the delivered goods before the refund has appeared, label that amount as pending instead of silently subtracting money that has not yet been credited.",
+            "For the international payment, record the actual contents in the submitted parcel. You should be able to answer two questions independently. What happened to the money initially associated with the canceled jacket? What did it cost to ship the two pouches you actually received? Mixing those questions into one net figure hides an unresolved refund or creates the impression that the two-pouch parcel included a charge for a jacket that was never packed."
+          ]
+        },
+        {
+          "heading": "Keep currency conversion outside the item-count calculation",
+          "paragraphs": [
+            "A display currency helps you compare listings but the payment provider may post a different numerical amount in your account currency. Write each number with its currency code. If you convert figures for your budget, record the conversion basis and whether you used the posted amount or an approximate rate. Avoid adding a number in one currency directly to another because both screens display a familiar currency symbol. The order confirmation is also the right place to check whether the displayed amount was an estimate or the actual amount you approved.",
+            "When analyzing an apparent difference, first compare the same transaction in the same currency. Then look at what the provider charged in your account currency and any separately disclosed conversion or provider charges. CNShopper's two-stage workflow explains why there can be two platform payments; it does not by itself explain every difference introduced by a payment provider. A support message can be precise about which side of the transaction needs explanation."
+          ]
+        },
+        {
+          "heading": "Close the reconciliation when the parcel is delivered",
+          "paragraphs": [
+            "Retain the product payment references, parcel freight payment, any refunds and the final parcel manifest. Write a final total only after deciding which charges you mean to include. One buyer may want merchandise plus international freight, another may want every posted charge related to receiving the parcel. Give the total a plain description. If there are separate third-party delivery or destination charges on your particular shipment, record them only when supported by your own receipt.",
+            "If a discrepancy remains, name the unresolved transaction instead of resending the whole order history. For example, one merchandise payment and one parcel payment may reconcile cleanly while a third posted debit still has no matching reference. Tell support that those first two have been accounted for and identify the third by date, amount, currency and provider reference. This narrows the review to a specific event and helps distinguish an accounting error in your notes from a payment issue requiring action. Keep sensitive payment numbers and unrelated bank information out of the materials you send."
+          ]
+        },
+        {
+          "heading": "Keep a useful per-item cost without inventing fees",
+          "paragraphs": [
+            "If you want to compare the eventual cost of two similar finds, choose a transparent method for dividing shared freight and note its limitations. Allocating by recorded item weight can be useful when both goods pack similarly. It is less representative when a light rigid package determines the whole box size. You can also leave freight at parcel level and compare merchandise separately. Either choice is more honest than pretending the carrier supplied a per-item price it never quoted. Your personal allocation should reconcile to the actual parcel payment without changing what CNShopper's receipt says."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper two-step payment guide",
+          "url": "https://cnshopper.com/blog/2-step-payment-process"
+        },
+        {
+          "title": "CNShopper payment guide",
+          "url": "https://cnshopper.com/blog/secure-payments"
+        },
+        {
+          "title": "CNShopper international shipping guide",
+          "url": "https://cnshopper.com/blog/shipping-guide"
+        }
+      ]
+    },
+    {
+      "slug": "using-the-cnshopper-shipping-estimator-for-an-unpacked-item",
+      "title": "Using the CNShopper Shipping Estimator for an Unpacked Item",
+      "description": "Compare realistic packing scenarios for a specific destination and learn which numbers to replace after warehouse measurement.",
+      "sections": [
+        {
+          "heading": "Estimate the packaged object",
+          "paragraphs": [
+            "A seller describes a lamp shade as light. The weight may be low while its rigid shape occupies most of a carton. Start your estimate with the item, likely protective packaging and destination. A jacket of the same weight could fold into a much smaller space. CNShopper's shipping guide identifies both size and weight, alongside destination and route, as inputs to the shipping cost. A single number copied from a seller's product specification will often leave part of that question unanswered."
+          ]
+        },
+        {
+          "heading": "Give unknowns a range",
+          "paragraphs": [
+            "If the only firm information is the item's measured width, mark the other dimensions as assumptions. Try a compact but plausible package and a larger version with protective space. Keep the same destination, contents and units when comparing the results. Record which assumptions cause a route to disappear or a quote to change materially. These are the measurements worth obtaining after warehouse arrival. Avoid reporting a precisely calculated price based on guessed dimensions as an expected bill."
+          ]
+        },
+        {
+          "heading": "Compare routes against the same need",
+          "paragraphs": [
+            "Set your real constraint before picking the cheapest result. A buyer who must retain a rigid box has fewer packaging choices than one buying a compressible garment. An option that appears suitable for a hypothetical parcel may be unavailable for the actual contents or packed size. Use the offered route details to compare price and estimated timing. Treat the service name and the destination as part of the quote so a different buyer can tell exactly what your comparison covered."
+          ]
+        },
+        {
+          "heading": "Replace estimates with measured details",
+          "paragraphs": [
+            "Once the items arrive, review the available warehouse details and the parcel choices before paying international freight. If you change the contents, packaging or destination, rerun the comparison. A useful saved record includes the original estimate, the observed measurements and the final amount selected. That makes it possible to explain a change in terms of packaging or route, and gives you better inputs the next time you buy a similar item."
+          ]
+        },
+        {
+          "heading": "Design two useful scenarios before using the calculator",
+          "paragraphs": [
+            "Begin with a plausible minimum box that still protects the goods. For example, a rigid storage tray cannot be folded to the size of its flat base, and a soft jacket can be folded only to the extent its material and finish allow. Then create a second scenario with additional protective space or retained retail packaging. Keep both configurations realistic. Comparing an unprotected item tightly wrapped in paper with a carefully protected carton is of little value if you would never accept the first arrangement.",
+            "Write down why the two scenarios differ and which measurements are confirmed. If the seller provides an unpacked weight but no packaging data, label it as such. A seller's dimensions might describe the object, its gift box or the local shipping carton. Ask which one, particularly when a few centimeters could affect eligibility. In the estimator, use only the fields and units the tool requests. If the tool cannot model a variation directly, keep that assumption in your notes and confirm the route later with actual parcel information."
+          ]
+        },
+        {
+          "heading": "See the effect of changing just one dimension",
+          "paragraphs": [
+            "Consider two imaginary packages holding the same goods. The first measures 40 by 30 by 20 centimeters and the second 40 by 30 by 15. Their volumes are 24,000 and 18,000 cubic centimeters respectively. That is a quarter less physical volume in the second example. It says nothing by itself about the percentage change in freight. The line might bill by mass, apply dimensional rules or round the billable weight. The platform's current route-specific quote is the figure to compare.",
+            "This exercise helps you find the measurement that matters. If the price and route options stay the same across the reasonable range, obsessing over a centimeter may add little value. If an option disappears or the amount changes enough to affect your purchase, obtain a firmer specification before payment. Test one input at a time where possible. Changing destination, weight and size simultaneously can reveal a different price without revealing why it changed."
+          ]
+        },
+        {
+          "heading": "Compare the total delivered purchase you intend to make",
+          "paragraphs": [
+            "An estimator helps price the overseas leg, while the purchase decision concerns the goods and the complete journey. Keep item cost, seller domestic shipping where applicable and the estimated international charge in separate fields. If you have not yet decided whether to add another item, run the base parcel first. Then test the addition under a plausible combined packing arrangement. Adding two individual quotes together is not necessarily the same as quoting a combined box.",
+            "A soft scarf might fit around a rigid tray with little effect on the outside dimensions. A longer rigid item could force a larger carton even if it adds little mass. Decide whether combining actually fits your purpose, and note any restrictions or protection needs. If you cannot estimate the combined box with confidence, plan a range rather than presenting the best-case number as the expected outcome. When comparing sellers, keep these freight assumptions consistent unless one seller provides clearly different package specifications."
+          ]
+        },
+        {
+          "heading": "Compare route suitability before comparing delivery speed",
+          "paragraphs": [
+            "A route with an appealing estimated delivery time needs to be available for the final parcel, destination and product type. Read its size and contents conditions, and confirm uncertain items with the platform. A broad shipping guide can describe different transport methods without guaranteeing that all appear for your own address. Use the options currently offered for your actual scenario and record the date of quotation. If your deadline is fixed, think about the seller and warehouse stages that precede the overseas route estimate as well.",
+            "A projected transit duration does not begin when you save a spreadsheet row. The seller must dispatch, the warehouse must receive and process the item, and the parcel must be submitted and paid. If one seller is still confirming stock, a faster international line cannot remove that uncertainty. Make a decision using the whole timeline, especially for gifts or items needed on a particular date. A compact comparison includes route, estimated freight, assumptions and the latest date on which the item would need to reach the warehouse."
+          ]
+        },
+        {
+          "heading": "Explain the final difference using observed facts",
+          "paragraphs": [
+            "When the warehouse supplies the actual parcel details, put them beside the assumptions from the first estimate. Did the outer carton become taller? Did you retain a box that was originally going to be removed? Did the destination or available route change? Was the original estimate for one item while the submitted parcel now contains two? These are concrete explanations to investigate. A difference in the final amount alone does not show which factor changed.",
+            "Save the final selected route, packed measurements where available and actual charge. Use that record to improve later estimates for similar goods. If you ask support about a price discrepancy, provide the two comparable records and identify exactly which inputs appear identical. A question about two identical-looking quotes on different routes will otherwise be difficult to resolve. If the difference arises from a documented packing decision you approved, you have a useful planning lesson for the next purchase rather than an unexplained fee."
+          ]
+        },
+        {
+          "heading": "Decide what to record for the next purchase",
+          "paragraphs": [
+            "Save a compact entry that describes the item, whether its retail box was retained, the packed dimensions when available, measured weight, destination, route and quoted freight. Add the date. This makes the entry a useful comparison if you later buy a similar product. It also prevents a route-specific price from turning into a general claim that every parcel of that mass costs the same. When the new purchase has different contents, destination or packaging, treat the earlier figure as context and run a fresh estimate against the new conditions."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper international shipping guide",
+          "url": "https://cnshopper.com/blog/shipping-guide"
+        },
+        {
+          "title": "CNShopper package consolidation guide",
+          "url": "https://cnshopper.com/blog/package-consolidation"
+        }
+      ]
+    },
+    {
+      "slug": "cnshopper-qc-photos-for-a-multi-piece-order",
+      "title": "CNShopper QC Photos for a Multi-Piece Order",
+      "description": "Use an itemized contents list to inspect a warehouse photo of a set, identify what cannot be seen and request a useful follow-up.",
+      "sections": [
+        {
+          "heading": "Turn the seller option into an inventory",
+          "paragraphs": [
+            "Suppose a travel organizer appears in a photograph with a strap, two removable dividers and a small pouch. The selected seller option might include only the organizer and strap. Recover the actual option description before counting pieces. List what the seller promised, quantity by quantity, and associate it with the correct order number. A missing prop from a studio photograph is a different issue from a missing part explicitly included in the purchased set."
+          ]
+        },
+        {
+          "heading": "Classify each piece as visible or unresolved",
+          "paragraphs": [
+            "Open the warehouse photographs for that individual order. Mark a piece visible only when you can identify it in the picture. A pouch tucked under the organizer could be present without appearing in the standard front view. A sealed bag with a contents label can show what the label says but may not show what is inside. CNShopper describes QC as a visual review. It does not establish the functionality of internal parts or certify that a product will perform as advertised."
+          ]
+        },
+        {
+          "heading": "Request one photograph that settles the count",
+          "paragraphs": [
+            "A useful request names the order and asks for a top-down photograph of the included pieces laid separately beside the organizer, if opening or moving them is allowed. When the seller requires intact packaging for returns, ask about that condition first. If a stamped model number is also important, request a separate close view rather than expecting a wide layout to make tiny lettering legible. Check availability and any charge for extra inspection in your account."
+          ]
+        },
+        {
+          "heading": "Act while the goods remain in the warehouse",
+          "paragraphs": [
+            "If the photographs establish a missing component, contact support with the selected option, the expected count and the specific evidence. A concise statement such as “the order lists two dividers and the laid-out contents show one” gives the agent something precise to discuss with the seller. If the count is still unresolved, ask the warehouse to verify it before including the item in an international parcel. Keep the resulting response with the order in case the same question comes up on delivery."
+          ]
+        },
+        {
+          "heading": "Separate what a package label says from what you can see",
+          "paragraphs": [
+            "Suppose the seller confirms one organizer, a detachable strap and two dividers. The warehouse photographs show an outer bag labeled with the correct model and a front view of the organizer. The label supports the model identification. The photograph supports the presence of the organizer. Neither image alone proves that both dividers are inside. Mark the components as unresolved until you have direct evidence or a sufficiently informative seller or warehouse confirmation. This prevents a reasonable visual inference from hardening into an unsupported count.",
+            "Conversely, do not classify a component as missing merely because it is hidden. A strap may be tucked into the main compartment for shipment. Before asking the seller for a replacement, request a view or check that could distinguish hidden from absent. If opening retail packaging is necessary, first ask whether doing so is permitted and whether it affects the terms under which you could return the item. A check that destroys the only available resolution may be a poor trade."
+          ]
+        },
+        {
+          "heading": "Assign the right reference to each component",
+          "paragraphs": [
+            "A multi-piece order may combine several similar accessories. Record which seller listing defines each part and which seller option you selected. For a travel set, one listing might show a long strap on the model photograph while another variation supplies a shorter strap. A product code on the bag may identify the base organizer without distinguishing the two strap choices. Look for the option-level wording or order note that establishes the actual agreement.",
+            "Make a short expected-contents line that a warehouse worker can understand without opening your whole browsing history. For example, ask for one organizer, two removable dividers and one long strap, identified by the order number and model. Specify that you want to count the pieces in one frame if possible. If you also need to verify the strap length, ask for that measurement separately. A photo adequate for counting and a photo adequate for reading a tape may need different framing and scale."
+          ]
+        },
+        {
+          "heading": "Treat appearance, size and function as separate questions",
+          "paragraphs": [
+            "A warehouse photo can show that a clasp is attached. It cannot by itself establish a rated load, long-term durability or any other performance claim. A visible zipper may be the right style without proving that it opens smoothly throughout its length. CNShopper's terms explicitly distinguish visual QC from a complete functional inspection or professional certification. Decide what kind of assurance you need before treating a photograph as sufficient. If use depends on a technical specification, look for the manufacturer's documented specification or seller confirmation for the actual model.",
+            "For dimensions, define endpoints and units. If a divider must fit a compartment, a photograph of the full set laid out flat may show how many pieces arrived while leaving the divider width unreadable. Ask for a measurement from the relevant edge to the other, with both endpoints visible. Compare with the compartment opening you measured using the same unit. The resulting observation can support a fit decision much more directly than another generic picture of the complete organizer."
+          ]
+        },
+        {
+          "heading": "Decide how to respond to three different results",
+          "paragraphs": [
+            "If all components are visible and match the seller option, mark the set reviewed and keep the evidence until delivery. If one component is hidden, ask for an additional check while preserving the item's eligibility and packaging. If the warehouse confirms that a component is absent, contact support with the expected and received counts and ask which seller resolution is available. These are different outcomes even though the initial photographs may have looked identical.",
+            "A replacement part could require a second domestic shipment. Ask whether the seller can provide it, whether it will be tracked and how the item should be held while waiting. An exchange of the whole set may affect the other goods you planned to consolidate. A partial refund might be acceptable if the missing component is optional, but inadequate if it performs the main purpose of the purchase. State your preferred resolution and why the component matters rather than assuming that every shortage has the same value."
+          ]
+        },
+        {
+          "heading": "Keep the evidence useful through final delivery",
+          "paragraphs": [
+            "When the warehouse issue is resolved, update the expected contents and the outgoing parcel manifest. If a missing strap was supplied in a second package, link its warehouse item to the original set. Otherwise you may select the organizer but leave the replacement strap behind when submitting the international parcel. This extra check is particularly important when one seller correction creates a separate warehouse record containing a very small object.",
+            "After arrival, compare the physical components with the last verified warehouse record. If something is absent now but was clearly visible in the verified set, report the order, parcel and evidence of the earlier count. If the component was never verified, describe that uncertainty explicitly. Keep photos of the delivered packaging until the matter is resolved. A clear record of when the component was last seen helps support investigate the correct stage rather than repeating the seller-side review for an issue that may have occurred later."
+          ]
+        },
+        {
+          "heading": "Capture enough context for a partial set",
+          "paragraphs": [
+            "A single close photograph of a divider might prove that one exists while leaving its relationship to the order unclear. Keep an overview linking the pieces to the organizer, then identify the detail view using the same item number. If the seller supplied two versions that differ only by one component, this relationship is what establishes which version arrived. For later reference, keep a brief statement of the final verified set, the date and any component that remained unverified. This helps everyone read the evidence at the level of certainty it actually supports."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper FAQ",
+          "url": "https://cnshopper.com/blog/faq-cnshopper-help"
+        },
+        {
+          "title": "CNShopper terms of service",
+          "url": "https://www.cnshopper.com/legal/terms-of-service"
+        },
+        {
+          "title": "CNShopper after-sales guide",
+          "url": "https://cnshopper.com/blog/after-sales-returns"
+        }
+      ]
+    },
+    {
+      "slug": "cnshopper-storage-time-when-sellers-deliver-on-different-days",
+      "title": "CNShopper Storage Time When Sellers Deliver on Different Days",
+      "description": "Build an item-by-item warehouse timeline and keep return decisions separate from the parcel consolidation date.",
+      "sections": [
+        {
+          "heading": "Start a separate clock for every arrival",
+          "paragraphs": [
+            "Three purchases made on a Sunday need not reach the warehouse on the same day. CNShopper describes eligible storage of up to 90 days and says the period usually starts when the warehouse receives and registers the item. Look at the account entry for each item rather than counting from the day you paid for the entire basket. Record the displayed registration date and remaining time alongside the item number."
+          ]
+        },
+        {
+          "heading": "Review the earliest item immediately",
+          "paragraphs": [
+            "Imagine a jacket is registered on Monday while a second seller has not yet dispatched a matching pair of trousers. You may want to ship both together eventually, but you can review the jacket's photos as soon as they are available. If its label shows the wrong size, raise that with support promptly. CNShopper's return policy distinguishes the after-sales period from storage. Waiting for the trousers could consume the shorter window for resolving the jacket issue."
+          ]
+        },
+        {
+          "heading": "Put a decision date beside the storage date",
+          "paragraphs": [
+            "For each item, write down when you will decide whether to ship it alone, hold it or request help. Choose that date using the earliest relevant constraint displayed on the order and the amount of flexibility you need. A fragile purchase awaiting a packaging answer deserves a different follow-up from an approved garment awaiting a second seller. Check account messages after changing the plan since stock and dispatch information can change."
+          ]
+        },
+        {
+          "heading": "Escalate a missing or uncertain deadline",
+          "paragraphs": [
+            "If the item page does not display a clear date, ask support to confirm the registration time, eligibility and available options for that specific item. When the remaining storage period is short, obtain confirmation before assuming an extension. The published policy indicates that charges or other handling may apply after the free period. Keep the response with your item record and reevaluate the benefit of waiting against the confirmed conditions."
+          ]
+        },
+        {
+          "heading": "Build a worksheet around registration, review and action",
+          "paragraphs": [
+            "Create one line for each warehouse item, even when several seller purchases were paid in one session. Useful fields are the item number, seller, quantity, registered arrival, visible QC status, after-sales action if needed and remaining storage shown in the account. Add one simple decision field, such as waiting for a matching item, approved to ship, or seller issue open. This gives every stored object a reason for being there. A mixed warehouse list can otherwise look reassuringly full while one important deadline approaches unnoticed.",
+            "For several identical items, check whether they share a storage record or were registered on different days. If the platform displays an item-level deadline, preserve that observation. Do not recalculate a longer date from a general headline when the order shows a shorter period or different conditions. CNShopper describes eligibility and varying circumstances. Ask support if a specific account display seems inconsistent, using the item ID and the exact dates you see."
+          ]
+        },
+        {
+          "heading": "Choose between waiting and dispatching a partial parcel",
+          "paragraphs": [
+            "Imagine a coat is approved, a belt is still awaiting a seller response and a personalized gift has no confirmed dispatch date. You can frame the choice as two concrete scenarios. In the first, ship the coat now and manage the other items later. In the second, hold the approved coat until a defined review date while checking the other purchases. Compare the currently available quote for the first option with a cautious estimate for a combined shipment, and note what additional uncertainty waiting creates.",
+            "A combined shipment might reduce repeated packing, but the belt may need returning and the gift may arrive much later than planned. CNShopper allows selection of eligible stored items, subject to warehouse and route terms. Waiting is a choice you can revisit rather than a promise to keep every item together. Set the next review date early enough to allow questions and payment before the earliest relevant deadline. If the expected saving is small or uncertain, separating the urgent item may better meet your actual objective."
+          ]
+        },
+        {
+          "heading": "Treat after-sales work as an active task",
+          "paragraphs": [
+            "If an item looks wrong, begin by identifying the exact visible discrepancy. A mislabeled size or different model can often be documented more clearly than a vague concern about appearance. Contact support while the applicable seller window remains open, and preserve tags and packaging as appropriate. Once a request is filed, record what action has been requested, which evidence is pending and when you need to check for a reply. A stored item with an unresolved seller issue requires attention even if the storage clock has plenty of time left.",
+            "Do not assume that opening a seller case pauses every other deadline. Ask about the actual conditions if the answer affects your plan. A seller may agree to replace an item, after which the replacement could produce a new warehouse record with its own timeline. Keep the old record linked to the new one and update your parcel grouping accordingly. Otherwise a future review might mistakenly treat the original returned item as still available for shipping or overlook the replacement when it arrives."
+          ]
+        },
+        {
+          "heading": "Make a practical plan for a disappearing calendar date",
+          "paragraphs": [
+            "If the warehouse screen is unclear, gather the item record, date first shown as registered and any current status message. Ask support for the actual remaining time and the steps available before expiry. Specify whether you want to ship, combine, request an extension if available or resolve a seller issue. General questions about the platform's longest possible free storage period are less useful than a question about one specific item under its current conditions.",
+            "If you have several items close to their deadlines, sort first by the action needed. An approved item may only require parcel submission and payment. A disputed one may need seller agreement, and a fragile one may need a packing suitability answer. Two items showing the same number of days remaining can therefore demand different urgency. Do the steps that require third-party responses early. Keep a direct note of support's answer rather than relying on an assumed extension based on another buyer's order."
+          ]
+        },
+        {
+          "heading": "Reconcile remaining items after each shipment",
+          "paragraphs": [
+            "When you submit an international parcel, record its contents and verify which items remain in warehouse storage. A partial shipment can leave a small accessory or replacement part behind even when you thought the whole purchase had been included. Compare your intended manifest against the actual parcel confirmation. If the belt was purposely held because of a seller issue, its decision and next review date should remain visible. If it was accidentally omitted, check what can still be changed at the parcel's current stage.",
+            "Finally, look for seller orders that have never registered at all. They should not be assigned a warehouse deadline based on the date of purchase. Their next action may be seller dispatch confirmation or domestic tracking investigation. Separating pending purchases from registered storage keeps your calendar focused on deadlines that actually exist and helps avoid treating a missing domestic shipment as nothing more than an item that is taking up warehouse space."
+          ]
+        },
+        {
+          "heading": "Leave a margin for the action itself",
+          "paragraphs": [
+            "Your chosen shipping date should allow time to review the parcel, select a suitable line and complete the required payment. If an available line rejects the final configuration, you may need another packing or grouping decision. Avoid treating the final day of a storage period as the ideal time to begin solving those questions. A better personal reminder names the action to take while enough time remains, such as confirming whether the fragile item can join the parcel. Keep that planning date clearly distinct from the deadline shown by CNShopper. One is your working schedule and the other is a condition of the stored item."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper storage timeline",
+          "url": "https://cnshopper.com/buyer-protection/90-days-free-storage"
+        },
+        {
+          "title": "CNShopper warehouse and storage policy",
+          "url": "https://m.cnshopper.com/legal/warehouse-and-storage-policy"
+        },
+        {
+          "title": "CNShopper return and refund policy",
+          "url": "https://cnshopper.com/legal/return-and-refund-policy"
+        }
+      ]
+    },
+    {
+      "slug": "consolidating-cnshopper-orders-without-crushing-a-fragile-item",
+      "title": "Consolidating CNShopper Orders Without Crushing a Fragile Item",
+      "description": "Compare a mixed parcel with a split shipment when one item needs structure, clearance or protective packaging.",
+      "sections": [
+        {
+          "heading": "Let the most vulnerable object set the conditions",
+          "paragraphs": [
+            "Start with the item that could be damaged by pressure or movement. A cap with a shaped crown, a boxed ceramic ornament and a stack of folded shirts each tolerate different packing methods. Identify which features must arrive intact. A buyer who collects the retail box may treat damage to that box as a loss even when the contents survive. Put that requirement into the packing discussion before considering space savings."
+          ]
+        },
+        {
+          "heading": "Check which stored items are ready",
+          "paragraphs": [
+            "CNShopper describes consolidation for eligible warehouse items and allows buyers to select what to ship. Review each item's QC and resolve pending seller questions before building the parcel. If a return is still possible, avoid approving packaging removal that could affect resale condition. A second seller's delayed shipment is a separate decision. It may be sensible to send the confirmed items earlier when waiting threatens a storage deadline or a delivery objective."
+          ]
+        },
+        {
+          "heading": "Compare the packing alternatives",
+          "paragraphs": [
+            "One scenario could keep the ornament in its protective box and send the shirts alongside it if the warehouse can avoid pressure. Another could ship the ornament separately. Ask what protective measures are available, whether the items are suitable for one route and how each arrangement changes the packed dimensions. Removing several small mailers may reduce material without making the final carton smaller. The result depends on the object that dictates the outer dimensions and on the route's weight rules."
+          ]
+        },
+        {
+          "heading": "Write instructions that resolve tradeoffs",
+          "paragraphs": [
+            "State the item number, the packaging to retain and what may be removed. “Keep the ornament's inner box and cushioning; disposable outer seller mailers may be removed if suitable” gives the warehouse a clearer instruction than “make it small.” Review the selected contents and route before paying. CNShopper's consolidation guide explicitly notes that combining items does not always reduce freight. The preferable choice is the one that meets the protection requirement at an acceptable quoted total."
+          ]
+        },
+        {
+          "heading": "Distinguish product damage from loss of retail presentation",
+          "paragraphs": [
+            "A buyer ordering a ceramic ornament for personal use may care mainly that the ornament arrives intact. A buyer giving it as a gift may also require an uncrushed printed box. Those requirements imply different packaging choices. Tell the warehouse whether the retail presentation is part of what you need to preserve. An outer seller mailer, a fitted protective insert and a printed gift carton each serve different purposes. An instruction to remove all boxes is too broad if only the disposable mailer is expendable.",
+            "Check the warehouse photos for the arrangement that already exists. A fitted insert may be the only component keeping a delicate item from shifting inside its carton. A box containing loose accessories may also prevent them from contacting a finished surface. Ask the warehouse whether the original protection is suitable for combined international shipment, and what options are available for the actual item. A general packing recommendation for another buyer's order cannot establish how the present parcel will be built."
+          ]
+        },
+        {
+          "heading": "Consider side pressure, stacking and movement separately",
+          "paragraphs": [
+            "Imagine placing a shaped cap next to a heavy boxed item in a larger carton. The cap might be safe when the box stands upright but vulnerable if the heavy item can move sideways. Filling empty space and providing structural support address different problems. A soft garment can fill some gaps but cannot necessarily prevent crushing by a dense object. Describe which items are heavy, fragile or shape-sensitive and ask whether they can be packed together suitably. Avoid prescribing an unsupported material as a guarantee of protection.",
+            "A stack of flat goods raises a different question. An extra rigid item might distribute pressure or concentrate it depending on shape and placement. If the warehouse cannot confirm a suitable configuration, obtain a quote for separate shipment. The comparison is then between two feasible options with different handling and freight costs. Comparing an unsuitable mixed parcel with a protected separate parcel on price alone leaves out the most important difference."
+          ]
+        },
+        {
+          "heading": "Compare a combined quote with two separate quotes",
+          "paragraphs": [
+            "For each scenario record the included items, intended packaging, destination, eligible line and quoted charge. If you split the shipment, add both parcel charges and any separately quoted protection. For a combined scenario, use the actual combined estimate where available. Adding individual weights is simple, but adding individual volumes rarely specifies a realistic combined carton. Some items nest, while others require empty clearance or force a box to be longer. Do not assume that a heavier single parcel automatically qualifies for a cheaper line.",
+            "If the costs are close, compare the consequences of a problem. A separate fragile parcel can protect other goods from breakage or staining, but it creates another shipment to track and may duplicate outer packing. A combined parcel can simplify receipt but make one item's delay affect everything in it. Record which advantage matters to you. The goal is to choose a parcel you are willing to receive at the quoted cost, not merely to minimize the number of tracking numbers."
+          ]
+        },
+        {
+          "heading": "Settle seller-side concerns before requesting packing changes",
+          "paragraphs": [
+            "A pair of shoes may look correct in the wide warehouse image while the size label remains unreadable. Ask for the needed evidence before authorizing box removal or consolidation. Seller terms can depend on the item's original condition and contents. Once packaging is changed or items are mixed into an international parcel, resolving a wrong variant can become harder. CNShopper's consolidation guide specifically advises handling returns and exchanges before consolidation and overseas shipment.",
+            "Review each piece independently even if you originally ordered the goods as a coordinated outfit. If one item requires an exchange, decide whether the others should remain held, travel separately or wait until a defined date. Keep the disputed item out of an approved parcel plan until support confirms the resolution. A replacement that arrives under a new warehouse identifier must be added deliberately. Otherwise you could end up shipping the approved items while the replacement for the original problem remains behind."
+          ]
+        },
+        {
+          "heading": "Inspect the submitted configuration and the final delivery",
+          "paragraphs": [
+            "Reopen the parcel summary before payment and compare its contents with your requested arrangement. Did you keep the collector's box? Is the fragile ornament included exactly once? Did the warehouse offer the protective option you intended to select? If a necessary condition is absent from the summary, ask for clarification before authorizing dispatch. A brief saved copy of the accepted arrangement makes disagreements easier to investigate later. Do not assume that a general note guarantees a service that the warehouse did not confirm as available.",
+            "When the goods arrive, check the exterior and the condition of any package whose preservation mattered. Retain the outer packing until you have counted and inspected the contents. If something is damaged, document the actual condition and contact official support with the parcel details. A contemporary photo of the received packing can help explain whether the concern involves the product, inner packaging or outer carton. The planning record now serves a second purpose by showing exactly what condition and protection you requested at the warehouse stage."
+          ]
+        },
+        {
+          "heading": "Record the one decision that changed the quote",
+          "paragraphs": [
+            "If the combined parcel ultimately costs more than expected, note which actual change mattered. Perhaps the protected ornament dictated a much taller outer carton, or a split arrangement made a different route available. If combining was worthwhile, identify whether it preserved the parcel size, reduced duplicated packaging or simply made receipt easier. A practical account of one decision is more valuable for a future order than a general claim that all mixed parcels save money. On the next purchase you can test the same condition with the new goods, warehouse options and destination before committing to a packing plan."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper package consolidation guide",
+          "url": "https://cnshopper.com/blog/package-consolidation"
+        },
+        {
+          "title": "CNShopper international shipping guide",
+          "url": "https://cnshopper.com/blog/shipping-guide"
+        },
+        {
+          "title": "CNShopper terms of service",
+          "url": "https://www.cnshopper.com/legal/terms-of-service"
+        }
+      ]
+    },
+    {
+      "slug": "matching-a-cnshopper-spreadsheet-find-to-a-taobao-seller-listing",
+      "title": "Matching a CNShopper Spreadsheet Find to a Taobao Seller Listing",
+      "description": "Use the original item link, variation labels and current seller photos to verify a third-party find before checkout.",
+      "sections": [
+        {
+          "heading": "Recover the listing behind the thumbnail",
+          "paragraphs": [
+            "Independent directories such as JadeShip list spreadsheets for CNShopper and other agents. A row can help you discover a product without recording the exact selection you need. Follow the product link and note the marketplace, seller, listing title and identifier where available. If the destination is a shop homepage or a dead item, the row has lost an important part of its evidence. Keep it as an inspiration reference until you locate an identifiable seller listing."
+          ]
+        },
+        {
+          "heading": "Check what changed when you selected the option",
+          "paragraphs": [
+            "Look at the price and summary before and after choosing size, color or configuration. A desktop organizer might have a low-cost tray-only option and a higher-priced set with upright dividers. Both may use the same thumbnail. Compare the final selection wording against the feature that made you save it. Write down the seller's original option name as well as your own short description so you can recognize it if a translation changes."
+          ]
+        },
+        {
+          "heading": "Compare competing rows by purchase contents",
+          "paragraphs": [
+            "One saved row may include a set while another offers the individual pieces. Calculate the cost for the quantity and components you intend to use. Keep China domestic delivery visible when shown, and reserve international costs for the later parcel stage described by CNShopper. If a listing has moved to another seller, create a fresh comparison row. Feedback, photos and return terms attached to one seller should not automatically follow a visually similar replacement."
+          ]
+        },
+        {
+          "heading": "Build a record you can use for QC",
+          "paragraphs": [
+            "Save the original URL, date checked, chosen option, quantity and one concrete warehouse check. For an organizer, that might mean “verify two upright dividers are included.” Fit questions need a specific dimension, while a colorway question needs a visible distinguishing feature in addition to the translated color name. Once the buyer or agent has placed the order, the saved selection makes it easier to resolve a mismatch than trying to reconstruct the purchase from an old spreadsheet thumbnail."
+          ]
+        },
+        {
+          "heading": "Read a misleading low price as an option question",
+          "paragraphs": [
+            "Consider a seller listing that displays a polished desktop organizer in every gallery photograph. The lowest selectable price may apply to a single divider or replacement tray. A spreadsheet compiler might save that starting price beside a photo of the entire assembly. Open the selector, choose the configuration you want and read the final summary. If the amount changes, capture the amount associated with the full configuration you would buy. An accurate comparison begins with equivalent goods, even if that makes a striking thumbnail price disappear.",
+            "Now look for meaningful differences between options that share a broad name. A translation may call two finishes “white” while the seller distinguishes warm white and gray white. Retain the original option label or code when possible and attach your own plain-language description. This gives an agent enough detail to reproduce the exact choice later. If the seller has reordered the options since the spreadsheet was created, an instruction such as “the second white option” is much less reliable than its name and code."
+          ]
+        },
+        {
+          "heading": "Detect a duplicate row without losing the evidence",
+          "paragraphs": [
+            "Several independent spreadsheets may list the same seller product using different agent or referral URLs. Compare the underlying marketplace, seller and item identifier where available. If these match, the rows may be alternative paths to the same listing. Preserve any genuinely different evidence, such as an additional angle or measurement, while avoiding the conclusion that multiple directory rows independently confirm product quality. Repetition of one seller photograph adds visibility but does not create another buyer inspection.",
+            "The reverse problem also occurs. Two sellers may use the same image of an organizer while offering different dimensions, components or stock. Do not merge those rows solely because the thumbnails match. Give each seller a separate entry and compare the specific option, included pieces, available measurements and current conditions. A genuine warehouse photograph associated with one purchase can illustrate a design, but it cannot prove that a second seller's version will match. Label the source of each piece of evidence."
+          ]
+        },
+        {
+          "heading": "Make size and compatibility decisions before price decisions",
+          "paragraphs": [
+            "Suppose the organizer must fit a shelf opening of known width and depth. Establish the maximum outside dimensions the shelf can accept and leave the clearance your use requires. A seller measurement describing only the interior compartment is a different quantity. Ask whether the displayed dimensions include handles, feet or frame overhang. If the seller offers multiple widths on one listing, confirm that the measurement diagram applies to the selected size.",
+            "A candidate that cannot be shown to fit the shelf may be unsuitable regardless of its starting price. Conversely, where size is flexible and only the number of compartments matters, the best evidence may be a top view and an explicit component count. State what the object needs to do in one sentence. This prevents a comparison from drifting toward whichever row has the most attractive photograph or the longest list of unverified features."
+          ]
+        },
+        {
+          "heading": "Handle unavailable rows without inventing a replacement",
+          "paragraphs": [
+            "When a saved link no longer opens, check whether the original item ID or seller name remains in the row. Search for the product using those identifiers alongside a distinctive feature. If a different seller listing appears, create a new entry with its own date and evidence. An item being visually similar does not transfer the old seller's handling, availability or return terms. Keep the old row as a reference only if it still supplies something useful, such as the product code or an exact measurement diagram.",
+            "If the desired option has disappeared while other options remain available, record that specifically. A buyer who revisits the row can then see that the link works but does not currently lead to the intended configuration. Ask whether the seller expects restock only if that information affects your purchase. Avoid reporting an unconfirmed restock date as a seller commitment. A useful directory row describes the last verified fact and when it was checked, especially for options that change frequently."
+          ]
+        },
+        {
+          "heading": "Preserve a purchase record separate from the directory",
+          "paragraphs": [
+            "After the seller selection is confirmed, your reliable reference shifts from the discovery directory to the actual order. Save the specific marketplace link, chosen variant, quantity, current option image and any seller confirmation. A directory thumbnail may later change or disappear, while your account order still identifies what was purchased. If you later share a recommendation, distinguish your observed order experience from assumptions about every version of the seller's listing.",
+            "At the warehouse, match the visible goods with the agreed selection. For the desktop organizer that may mean verifying width, the number of dividers and the selected finish, using whatever evidence is available. If a discrepancy appears, give support the order and the exact comparison. This makes the spreadsheet genuinely useful all the way through delivery. Its original job was discovery, and the traceable seller and order records it led you to now support an informed purchase decision and a specific after-sales inquiry if required."
+          ]
+        },
+        {
+          "heading": "Leave a useful trail when sharing the find",
+          "paragraphs": [
+            "If you share the product with someone else, give the underlying seller link and say which variant you checked. Include the date and note whether a statement comes from seller specifications, a warehouse photograph or your own received item. Those three sources can answer different questions. A warehouse image can establish a visible component without proving how the organizer performs after months of use. A seller's current label can identify an option without guaranteeing future stock. This narrow, practical description lets another buyer reproduce your search and verify their own selection without mistaking a useful referral for a guarantee about every item in a changing listing. Identify the seller again before placing your order."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "About CNShopper",
+          "url": "https://cnshopper.com/about-cnshopper/about-us"
+        },
+        {
+          "title": "JadeShip agent spreadsheet directory",
+          "url": "https://www.jadeship.com/spreadsheets"
+        },
+        {
+          "title": "CNShopper two-step payment guide",
+          "url": "https://cnshopper.com/blog/2-step-payment-process"
+        }
+      ]
+    },
+    {
+      "slug": "cnshopper-tracking-shows-delivered-but-the-parcel-is-still-in-china",
+      "title": "CNShopper Tracking Shows Delivered but the Parcel Is Still in China",
+      "description": "Tell a seller delivery scan from an international parcel event, then follow the correct reference through warehouse processing.",
+      "sections": [
+        {
+          "heading": "Read the destination of the delivery scan",
+          "paragraphs": [
+            "A seller in China can complete delivery to CNShopper's warehouse before the overseas parcel even exists. Open the original order and check the destination and carrier for the delivered event. If the tracking number belongs to the seller's domestic shipment, the event describes delivery in China. Look for the corresponding warehouse item in your account. A buyer waiting at home for that same parcel is looking at the wrong leg of the journey."
+          ]
+        },
+        {
+          "heading": "Allow for matching and warehouse processing",
+          "paragraphs": [
+            "CNShopper's tracking guide describes registration, matching and preparation for QC after warehouse arrival. A carrier scan can precede the matching of a specific package to its account. Buyers using forwarding should also check that the pre-alert contains the correct domestic reference. Compare the number character by character and confirm whether the seller split the purchase into more than one package. Give support the exact unmatched record if the account and carrier histories do not reconcile."
+          ]
+        },
+        {
+          "heading": "Locate the international shipment separately",
+          "paragraphs": [
+            "After reviewing eligible warehouse items, the buyer submits a parcel and pays the shipping charge. The international tracking reference normally follows processing and handoff to the provider. Look up the submitted parcel rather than reopening the original seller link. If one international box contains three orders, there can be several domestic deliveries and only one international tracking record. Keep those relationships in a short note if you are combining multiple purchases."
+          ]
+        },
+        {
+          "heading": "Report the last confirmed transition",
+          "paragraphs": [
+            "When asking for help, tell support which stage you can establish. “The seller's domestic carrier delivered this number to the warehouse, but I cannot locate a registered item for order X” is more informative than “my parcel says delivered.” For an overseas parcel already handed to the carrier, use its international reference and latest scan instead. Keep tracking numbers, phone numbers and delivery addresses in private support channels."
+          ]
+        },
+        {
+          "heading": "Trace a two-box purchase from seller to warehouse",
+          "paragraphs": [
+            "Imagine a seller sends a jacket and a belt separately. The jacket's domestic carrier reports delivery to the China warehouse on Tuesday, and the belt is still in transit under another reference. Your CNShopper account may show the jacket registered and the belt pending. You may see the word delivered in one place, but it concerns one box and one destination. Create a small map with each order item, domestic number, warehouse record and eventual international parcel. Leaving the international field blank until submission helps avoid inventing a shipment that does not yet exist.",
+            "Ask the seller which goods were sent under each number if the packing breakdown is unclear. Match seller dispatch notes and the available carrier evidence before deciding the warehouse has a shortage. If both pieces were meant to travel in one package, your evidence and question will be different. A single domestic number containing two order lines creates a contents question, while two numbers with one still in transit create a timing question."
+          ]
+        },
+        {
+          "heading": "Read the status in the system that produced it",
+          "paragraphs": [
+            "A seller page, domestic carrier, warehouse system and international carrier each observe different events. A seller may show an order as shipped as soon as dispatch is recorded. A domestic carrier can later show delivery to the warehouse receiving point. CNShopper must still associate the package with the buyer and process the item. The international carrier becomes relevant after a separate parcel is prepared. Read each status as a statement from that source about its own part of the journey.",
+            "Write down the exact time and time zone shown if timing matters. A carrier that uses China local time and a buyer account showing another zone can make events appear to fall on different calendar days. This is especially relevant around midnight. Avoid concluding that a package spent a full extra day in transit from dates alone. When reporting a discrepancy, preserve the raw timestamps instead of converting them from memory. Support can then reconcile events in the same system and time zone."
+          ]
+        },
+        {
+          "heading": "Check forwarding records differently from agent purchases",
+          "paragraphs": [
+            "If CNShopper bought the item for you, start with the platform's seller order and attached domestic tracking. If you purchased independently and sent a package to the warehouse, start with the forwarding pre-alert and the details you entered. CNShopper's forwarding form treats the tracking reference as important for ownership matching. A seller supplying a corrected tracking number after a pre-alert can create an apparent delivery with no matching warehouse record. Compare the references before entering a second package or assuming the original is lost.",
+            "Also check the warehouse destination the seller actually used, especially if you copied an old address or a marketplace checkout reused a previously saved one. A domestic delivery scan may be perfectly accurate while referring to another receiving location. If the destination differs, contact the seller or carrier through official channels to determine what happened. An international shipment cannot be assembled from goods the selected warehouse never received, no matter how complete the original forwarding form appears."
+          ]
+        },
+        {
+          "heading": "Follow the change from goods to submitted parcel",
+          "paragraphs": [
+            "Once items are available and reviewed, select the ones you want to ship and check the resulting parcel record. Its contents, destination, route and payment state are specific to that outgoing shipment. A signed domestic delivery does not perform these choices for you. If one item is still undergoing an after-sales review, keep it separate unless and until it can be legitimately included. If you submitted only the jacket, the belt's later arrival will require a separate decision even though both came from the same seller checkout.",
+            "When CNShopper or the carrier provides an international reference, retain it beside the parcel identifier. If another delivery partner is shown later, link that reference to the same parcel in your notes. Do not delete the first number, since it may be useful to explain an earlier stage. Conversely, avoid treating a carrier label or electronic notification as a confirmed physical scan unless the event actually says collection or acceptance occurred."
+          ]
+        },
+        {
+          "heading": "Handle a genuine overseas delivery dispute promptly",
+          "paragraphs": [
+            "Once an international carrier marks the actual destination parcel delivered, the investigation changes. Check that you are viewing the right parcel, address area and local delivery partner. Review the available delivery proof or official notification and see whether the carrier identifies a pickup point or delivery attempt. If the event says delivered but you have not received the parcel, contact the relevant official carrier or platform support promptly with the international reference and last confirmed event.",
+            "Keep your home address, delivery code and tracking references private. A public screenshot can expose sensitive delivery information without helping a warehouse team investigate. A useful private chronology is short: order item, domestic arrival and registration, outgoing parcel submission, international reference and disputed final event. This lets a reviewer distinguish an ordinary completed China leg from a genuinely disputed final delivery. Once the issue is resolved, retain the record until the goods themselves have been checked against the outgoing manifest."
+          ]
+        },
+        {
+          "heading": "Choose a reference before opening a tracking search",
+          "paragraphs": [
+            "Ask yourself which physical movement you want to see. For seller to warehouse, use the domestic reference. For a warehouse item awaiting review, use the item record. For the submitted international box, use its parcel record and international reference when issued. If the site asks for a number but you have several, identify the carrier or order associated with the field before entering one. This avoids spending time interpreting a technically valid scan for the wrong journey. It also makes it easier to notice a genuine missing transition, such as a confirmed inbound delivery that has not yet been matched to your specific forwarding pre-alert. Keep the corrected reference with that inbound record."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper order tracking guide",
+          "url": "https://cnshopper.com/blog/order-tracking"
+        },
+        {
+          "title": "CNShopper forwarding form and instructions",
+          "url": "https://m.cnshopper.com/forwarding"
+        }
+      ]
+    },
+    {
+      "slug": "cnshopper-returns-for-a-wrong-seller-variant-before-shipping",
+      "title": "CNShopper Returns for a Wrong Seller Variant Before Shipping",
+      "description": "Put a variant mismatch into a documented after-sales request while the order is still at the warehouse.",
+      "sections": [
+        {
+          "heading": "Establish the selection that was actually purchased",
+          "paragraphs": [
+            "Recover the order confirmation rather than relying on the current seller homepage. A listing can now default to a different color or an option may have sold out. Save the original variant text, model code if shown and the order quantity. If the label in the warehouse photograph appears to differ, record both values clearly. A side-by-side description of “ordered model B with two clips; received model A with one” is easier to investigate than a general complaint about quality."
+          ]
+        },
+        {
+          "heading": "Collect a picture of the decisive difference",
+          "paragraphs": [
+            "Ask yourself what a reviewer would need to distinguish the two versions without prior familiarity. A wide photograph may show the silhouette while concealing the label. Another taken from directly above might make the label legible but hide a different closure. Supply the clearest existing warehouse evidence and request an additional view when available. Be precise about unresolved details; a color shift caused by different lighting is weaker evidence than a different printed product code."
+          ]
+        },
+        {
+          "heading": "Keep the item eligible while the request is reviewed",
+          "paragraphs": [
+            "Hold international submission and preserve the condition of the item, packaging, labels and accessories. CNShopper's return policy explains that seller terms, order status and product type affect eligibility. The published policy gives five days after processing or QC as an example that may apply to some requests, and explicitly distinguishes return windows from storage periods. Check the actual order conditions and submit promptly. An item still within free storage may already be close to its seller deadline."
+          ]
+        },
+        {
+          "heading": "Ask for the resolution that fits your order",
+          "paragraphs": [
+            "State whether you prefer a correct replacement or a refund and whether a substitute is acceptable. If the desired variant is unavailable, request confirmation before the agent buys something else. Ask what domestic charges apply and at what stage funds can be credited. Keep the case reference and seller response. International shipping introduces more restrictions and cost, so resolve the mismatch before consolidating this purchase with items that you already accepted."
+          ]
+        },
+        {
+          "heading": "Compare the correct evidence for two similar colors",
+          "paragraphs": [
+            "Imagine the order confirmation identifies a dark green bag, while the warehouse photo appears almost black. Before asserting that the seller sent black, look for the variant label, item code or seller packaging mark. A difference in lighting or screen settings can make two similar colors difficult to distinguish visually. Ask for another clear view or confirmation of the labeled option when available. If the label explicitly refers to black, the case becomes more specific than a subjective description of a dark photograph.",
+            "A different model code, closure or number of pockets can sometimes settle an issue more clearly than color. Identify the strongest visible distinction and provide one order image showing what was selected. If the warehouse picture is too compressed to read the label, say exactly what is unreadable. This directs the additional inspection toward the missing evidence. Avoid asking the warehouse to judge whether an item is generally “wrong” without explaining the concrete comparison the seller needs to see."
+          ]
+        },
+        {
+          "heading": "Distinguish a wrong label from an unsuitable fit",
+          "paragraphs": [
+            "A buyer who ordered size medium and received a garment labeled small can report a direct discrepancy between the selected and received option. A buyer who ordered medium and received medium but finds the garment narrower than expected faces a different question. Check whether the seller published measured garment dimensions, what tolerance or method was stated if any, and which measurement you actually need. A warehouse tape photograph can clarify a physical dimension, while it cannot by itself guarantee personal fit.",
+            "For a measurement dispute, specify endpoints and units and compare like with like. A flat width across the garment and a circumference around the body are not interchangeable. If the seller gave no usable dimensional promise and the label matches, a preference-based return may be the relevant inquiry depending on eligibility. Describe the situation honestly so the agent can assess the appropriate seller terms. Presenting a fit preference as a wrong label can delay a legitimate request when the evidence contradicts that description."
+          ]
+        },
+        {
+          "heading": "Understand how packaging affects the available choices",
+          "paragraphs": [
+            "Some products may need their original packaging, labels and accessories to qualify for a return. CNShopper's published return policy lists these and other factors, including seller policies, customization, second-hand goods and order status. If warehouse photos suggest a wrong variant, pause any request to remove shoe boxes, cut labels or discard inner packaging. Ask whether a specific inspection can be completed while preserving return eligibility, especially for sealed or personalized goods.",
+            "For example, the external label of a boxed item may identify a different model from the order. Photographing that label can be enough to start a seller inquiry without opening a sealed package. If the external label matches but the contents appear inconsistent through a transparent window, ask the agent what evidence the seller requires before breaking the seal. A return discussion is most effective when the item is still in the condition the seller's terms require. Keep the approved next action in the account record."
+          ]
+        },
+        {
+          "heading": "Compare refund, replacement and seller clarification",
+          "paragraphs": [
+            "A full refund can resolve a purchase that no longer meets your needs, but only after the seller and platform process the applicable request. A replacement can preserve your plan if the correct variant is genuinely available, but it adds seller dispatch and warehouse review time. A seller clarification may resolve an apparent discrepancy when the model number has two published labels for the same configuration. Ask what specific evidence or agreement supports each proposed outcome.",
+            "Suppose the correct variant is unavailable and the seller offers a different color at a reduced price. Decide whether you would have bought that color on its own at the proposed amount. If the answer is no, the discount does not fix the original problem. If you would accept it, record precisely which substitute and amount you approved. Avoid accepting a vague promise of “similar” goods when size, color or compatibility is essential. Keep the seller's response and the platform case reference together."
+          ]
+        },
+        {
+          "heading": "Recheck the outcome before shipping",
+          "paragraphs": [
+            "If a replacement arrives, use the new warehouse record to verify the specific feature that prompted the exchange. A seller dispatching “a replacement” is an intermediate event, not proof that the correct variant has arrived. Compare the label, model or measurement with the final agreement. Link the original order, case and replacement in your notes so any new photograph is associated with the correct unit. Once accepted, include the replacement identifier in the intended parcel and remove any obsolete item record.",
+            "If the case ends in a refund, compare the confirmed credit with the item and charges covered by the agreement. Ask about any discrepancy in the posted amount using the original order, case and payment references. For a partial settlement, identify exactly which component or issue it covers. The process is complete when you can reconcile the physical item, the status of the seller case and the financial result. This prevents an issue that appears solved on one screen from resurfacing when you submit the parcel or review your balance later."
+          ]
+        },
+        {
+          "heading": "Make the next purchase easier to verify",
+          "paragraphs": [
+            "Once the case closes, keep the seller's exact option words, the feature that distinguished the variants and the photograph that resolved the issue. The next time you buy the same model, you can ask for confirmation of that distinguishing detail before purchase. If the seller uses numerical codes, retain both the code and its description, since display order and translations can change. A short note documenting one genuine mismatch is more useful than labeling an entire seller unreliable on the strength of a single order. It focuses any future check on a specific, observable source of error."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper after-sales guide",
+          "url": "https://cnshopper.com/blog/after-sales-returns"
+        },
+        {
+          "title": "CNShopper return and refund policy",
+          "url": "https://cnshopper.com/legal/return-and-refund-policy"
+        },
+        {
+          "title": "CNShopper FAQ",
+          "url": "https://cnshopper.com/blog/faq-cnshopper-help"
+        }
+      ]
+    },
+    {
+      "slug": "choosing-a-cnshopper-payment-method-without-double-counting-a-top-up",
+      "title": "Choosing a CNShopper Payment Method Without Double-Counting a Top-Up",
+      "description": "Read the checkout and wallet records together and recognize the difference between adding funds, paying a seller order and paying freight.",
+      "sections": [
+        {
+          "heading": "Identify where the money currently sits",
+          "paragraphs": [
+            "There are three separate questions when checking out. Did money move from your payment provider into a platform balance? Did that balance pay for a seller order? Has the international parcel been paid for? CNShopper's help materials describe wallet funding where available and a separate two-stage purchase and freight process. A wallet transaction therefore needs a label in your notes. Otherwise one deposit and one purchase using those funds can appear to be two purchases."
+          ]
+        },
+        {
+          "heading": "Use checkout to see the available methods",
+          "paragraphs": [
+            "The payment page for your own order is the place to confirm which methods are offered. Availability can depend on the current checkout, so a logo seen on a landing page or another buyer's screenshot is insufficient. Compare the currency, amount, displayed fees and any applicable method conditions before approving. If a top-up offer includes a bonus, read the specific usage and withdrawal conditions before treating it as money available for every type of charge."
+          ]
+        },
+        {
+          "heading": "Reconcile a small example",
+          "paragraphs": [
+            "Suppose you add 50 units to a wallet and then use 35 units for an order. With no other activity, the arithmetic points to 15 units remaining. The movement into the wallet and the 35-unit debit represent different events. If another 10 is later used for shipping, the expected remaining balance would be five. These are illustrative amounts. Save the real recorded entries and account for any separately listed adjustment, refund or payment directly through another provider."
+          ]
+        },
+        {
+          "heading": "Follow up on a mismatch safely",
+          "paragraphs": [
+            "If the provider shows a completed transfer but the account shows no corresponding wallet credit, record the time, amount, currency and reference. If the wallet shows a debit but the order remains unpaid, capture that order status as a separate observation. Contact official support privately with the specific mismatch and keep sensitive payment credentials out of screenshots. Avoid repeating a payment just to see whether the first one worked before reviewing the original transaction and its status."
+          ]
+        },
+        {
+          "heading": "Draw the difference between funding and spending",
+          "paragraphs": [
+            "A wallet makes sense only if you can tell when it gained funds and when those funds were used. Treat the external payment provider, wallet and seller order as three distinct records. A top-up may reduce the provider balance while increasing the platform balance. An order paid using that wallet may reduce the platform balance without creating a second external charge. Compare amounts on both sides of each event. The same money can appear in two records for accounting reasons without representing two separate purchases.",
+            "For example, imagine a buyer funds a wallet with 80 units, spends 50 on merchandise and has 30 left. The merchandise cost is 50 and the unused wallet balance is 30. The temporary cash outflow from the external account is 80. All three figures can be correct because they answer different questions. If the buyer later pays 20 of freight from the same balance, merchandise and freight together account for 70 while 10 remains. Label the measure you are reporting before calling the whole deposit the cost of the goods."
+          ]
+        },
+        {
+          "heading": "Check the requirements of the payment you are about to make",
+          "paragraphs": [
+            "Open the order or parcel checkout first and confirm which charge is due. An unpaid seller order needs merchandise payment; an unpaid international parcel needs freight payment. A previous wallet top-up may supply funds but does not tell you which of those obligations has been settled. Verify the payment status after completing the intended transaction. If both the order and wallet records are visible, check that the item identifier and amount match the action you just took.",
+            "Read the method options displayed for the actual transaction and any current conditions. A method available for one buyer or for one payment stage may be unavailable for another configuration. A promotional wallet balance could also have specific rules. If those rules affect whether you can pay the intended charge or recover unused funds, obtain the terms before topping up. Keep a screenshot of the relevant non-sensitive conditions as they appeared when you decided; an advertising headline alone may omit important details."
+          ]
+        },
+        {
+          "heading": "Separate authorization, completion and refund in your records",
+          "paragraphs": [
+            "A payment provider may show a pending entry before it becomes posted, expires or changes state. Use the provider's own status terminology and the platform's order status rather than treating every pending line as a completed charge. If an order remains unpaid, first determine whether the external transaction completed and whether a wallet credit or platform payment was recorded. Capture the time and identifiers while the issue is fresh. Avoid repeatedly initiating the same payment without understanding the state of the first attempt.",
+            "A refund creates a further pair of questions: did the seller or platform approve it, and where was the money credited? An account balance increase differs from a reversal to an external payment method. Look for the destination and transaction reference in the actual refund record. If you were expecting a card credit but see a wallet credit, ask about the specific transaction terms and history instead of assuming the amount disappeared. Keep approval and posted credit as separate milestones until the records match."
+          ]
+        },
+        {
+          "heading": "Think about currency before comparing totals",
+          "paragraphs": [
+            "Write original amounts with their currencies. If a provider converts the transaction into your account currency, retain both the purchase amount and the posted amount. A conversion can change the numerical value even when the original platform charge was correct. When using one currency for a budget spreadsheet, use a consistent method: either record the actual provider-posted amount or clearly label an estimate with the date and rate basis. If you convert a platform display figure and also import the posted external amount, you may accidentally count the same expense twice.",
+            "Bonuses, refunds and balances introduce similar bookkeeping questions. A promotional credit may have a different eligibility or withdrawal status from cash-funded balance. If the account displays them separately, keep that distinction. Never assume that every visible balance can be taken out or used for every charge. CNShopper's FAQs direct buyers to check current wallet and withdrawal terms. Use those transaction-specific conditions when deciding how much to deposit, especially if you have no immediate use for the remainder."
+          ]
+        },
+        {
+          "heading": "Send one actionable payment-support request",
+          "paragraphs": [
+            "For a missing wallet credit, provide the official support team with the top-up reference, provider transaction status, amount, currency and approximate time. For a wallet debit that did not settle an order, give the wallet transaction and the unpaid order or parcel identifier. For a suspected duplicate external payment, identify both posted references and explain why one order appears to have been paid twice. These are three different investigations. A note that says only “my payment failed” leaves support unsure which record to inspect.",
+            "Redact complete card numbers, security codes, passwords and unrelated bank activity. Use the platform's official support path, and retain its case number and response. When the issue resolves, update your own ledger with the actual result: wallet credited, order paid, payment reversed, or another documented outcome. Keeping this record alongside your merchandise and freight payments restores a clear picture of what was spent on the goods and which funds remain available for a future purchase."
+          ]
+        },
+        {
+          "heading": "Carry forward only the usable balance",
+          "paragraphs": [
+            "Before the next purchase, open the current wallet screen and check which portion remains usable for the intended order. Do not rely on a previous reconciliation after a refund, promotion or partial freight payment has occurred. If you decide to top up again, record what the extra funds are for and verify the new credit before using them. This creates a clean link between the earlier order, any money still available and the next payment without turning a wallet deposit into an unexplained second merchandise expense."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "CNShopper payment guide",
+          "url": "https://cnshopper.com/blog/secure-payments"
+        },
+        {
+          "title": "CNShopper FAQ",
+          "url": "https://cnshopper.com/blog/faq-cnshopper-help"
+        },
+        {
+          "title": "CNShopper two-step payment guide",
+          "url": "https://cnshopper.com/blog/2-step-payment-process"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "I already bought the product myself. How do I forward it?",
+      "a": "Use the forwarding flow to copy the current warehouse details and pre-alert the domestic tracking number. Once the matching package arrives, review it for international shipment.",
+      "source": "https://m.cnshopper.com/forwarding"
+    },
+    {
+      "q": "What does the CNShopper forwarding form ask me to enter?",
+      "a": "The form requests the domestic tracking number, package name, total item value in USD and quantity. Use the contents associated with that physical parcel.",
+      "source": "https://m.cnshopper.com/forwarding"
+    },
+    {
+      "q": "Can I submit a batch of forwarding pre-alerts?",
+      "a": "The forwarding form offers a downloadable bulk template and import. Match each tracking reference to the relevant package before importing.",
+      "source": "https://m.cnshopper.com/forwarding"
+    },
+    {
+      "q": "Should I post my China tracking number publicly for help?",
+      "a": "Keep it private. CNShopper identifies this number as a means of proving ownership of a forwarded parcel, so use private official support for matching issues.",
+      "source": "https://m.cnshopper.com/forwarding"
+    },
+    {
+      "q": "Why do I have separate product and freight payments?",
+      "a": "The first payment generally covers the item and applicable local charges. The later payment covers the international parcel after warehouse details become available.",
+      "source": "https://cnshopper.com/blog/2-step-payment-process"
+    },
+    {
+      "q": "Does a wallet top-up mean my order is paid?",
+      "a": "Funding a balance and using it at checkout are separate actions. Check the individual order's payment status and the wallet transaction history.",
+      "source": "https://cnshopper.com/blog/secure-payments"
+    },
+    {
+      "q": "How can I find the payment methods available for my purchase?",
+      "a": "Check the live payment page for that order and review its amounts and terms. Methods and wallet options may vary.",
+      "source": "https://cnshopper.com/blog/faq-cnshopper-help"
+    },
+    {
+      "q": "How can I estimate freight before warehouse arrival?",
+      "a": "Use the shipping estimator with the destination and plausible package measurements or weight as requested. Update the estimate once the warehouse has actual details.",
+      "source": "https://cnshopper.com/blog/shipping-guide"
+    },
+    {
+      "q": "Why does a lightweight product produce a high shipping estimate?",
+      "a": "Parcel size also affects international freight. A light, rigid item can occupy a large box, and the selected line's pricing and destination also matter.",
+      "source": "https://cnshopper.com/blog/shipping-guide"
+    },
+    {
+      "q": "Can I consolidate items purchased from different sellers?",
+      "a": "Eligible items registered in your warehouse account can be selected together. Review the available routes and each item's suitability before submitting.",
+      "source": "https://cnshopper.com/blog/package-consolidation"
+    },
+    {
+      "q": "Do I have to send all stored items at once?",
+      "a": "You can select some items for shipment and leave others in storage, subject to the deadlines and terms that apply to each item.",
+      "source": "https://cnshopper.com/blog/package-consolidation"
+    },
+    {
+      "q": "Will removing a shoebox always make shipping cheaper?",
+      "a": "Packaging removal may be available, but the final result depends on the packed parcel and route. Decide first whether the original box is needed for protection or resale condition.",
+      "source": "https://cnshopper.com/blog/package-consolidation"
+    },
+    {
+      "q": "How should I handle a fragile item in a mixed parcel?",
+      "a": "Ask whether the item needs protective packing or separate shipment and specify the packaging to retain. Compare the suitable options before consolidating.",
+      "source": "https://cnshopper.com/blog/package-consolidation"
+    },
+    {
+      "q": "When does eligible free warehouse storage normally start?",
+      "a": "CNShopper says it usually begins when the item is received and registered at the warehouse. Use the date and remaining storage shown for that specific item.",
+      "source": "https://cnshopper.com/buyer-protection/90-days-free-storage"
+    },
+    {
+      "q": "Does an advertised 90-day storage period give me 90 days to return an item?",
+      "a": "No. Eligible free storage can be up to 90 days, while seller and after-sales deadlines can be substantially shorter. Review the item as soon as QC is available.",
+      "source": "https://m.cnshopper.com/legal/warehouse-and-storage-policy"
+    },
+    {
+      "q": "What can I check in CNShopper QC photographs?",
+      "a": "Look for visible features such as labels, color, accessible package contents, quantity and obvious damage. A photo cannot settle a detail outside the frame.",
+      "source": "https://cnshopper.com/blog/faq-cnshopper-help"
+    },
+    {
+      "q": "Does warehouse QC certify authenticity or test all functions?",
+      "a": "CNShopper describes these images as a visual inspection. Its terms exclude authentication, laboratory certification and complete functional checks.",
+      "source": "https://www.cnshopper.com/legal/terms-of-service"
+    },
+    {
+      "q": "My China tracking number says delivered. Is it at my overseas address?",
+      "a": "Check the destination. Delivery under the seller's domestic reference generally refers to the China warehouse; the international parcel has a separate shipment record.",
+      "source": "https://cnshopper.com/blog/order-tracking"
+    },
+    {
+      "q": "When should I expect an international tracking reference?",
+      "a": "CNShopper says it is usually generated after the international parcel is processed and handed to the provider. Look in the submitted parcel record.",
+      "source": "https://cnshopper.com/blog/order-tracking"
+    },
+    {
+      "q": "What helps support resolve a wrong-variant request?",
+      "a": "Provide the order number, seller option selected, warehouse evidence and the exact difference. Contact support before submitting the item for international freight.",
+      "source": "https://cnshopper.com/blog/after-sales-returns"
+    },
+    {
+      "q": "Can I count on returning a customized item?",
+      "a": "The return policy lists personalized or customized goods among items that may be ineligible. Verify the specific seller terms before purchasing.",
+      "source": "https://cnshopper.com/legal/return-and-refund-policy"
+    }
+  ],
+  "keywords": [
+    "CNShopper forwarding pre-alert tracking number",
+    "CNShopper two-step payment international shipping",
+    "CNShopper shipping estimator parcel dimensions",
+    "CNShopper QC photos accessories missing",
+    "CNShopper 90 days storage start date",
+    "CNShopper consolidation fragile items packaging",
+    "CNShopper spreadsheet Taobao product link",
+    "CNShopper domestic tracking delivered warehouse",
+    "CNShopper wrong item refund warehouse QC",
+    "CNShopper wallet balance top up order payment"
+  ]
+}

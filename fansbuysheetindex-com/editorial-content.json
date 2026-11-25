@@ -1,0 +1,817 @@
+{
+  "articles": [
+    {
+      "slug": "spreadsheet-variant-selection",
+      "title": "A FansBuy spreadsheet find has six styles. Which one will you receive?",
+      "description": "Follow a multi-style listing from a spreadsheet thumbnail to a specific FansBuy cart line, including how to handle a missing option.",
+      "sections": [
+        {
+          "heading": "Read the selected option before comparing prices",
+          "paragraphs": [
+            "A thumbnail of a navy canvas bag catches your eye. The source listing offers navy and black bags, plus a strap sold on its own. If the lowest price belongs to the strap, two spreadsheet entries with the same cover picture can look like a bargain and a rip-off even though both lead to the same shop. Start with the item you actually want and change the selection before writing down the price. This bag is an illustrative example.",
+            "FansBuy’s buying guide lets you start with a marketplace link, including links from Weidian, Taobao and 1688. Open the seller link from the find, check the seller and item identifier, and select the combination you want in FansBuy. Keep the original option wording beside your translation. “Navy with strap” and “navy strap” are short enough to look similar when a phone truncates the selector."
+          ]
+        },
+        {
+          "heading": "Save a record someone else can understand",
+          "paragraphs": [
+            "Take one picture of the selected option and one of the image or size chart that explains it. If the pictures show a set, look for the words that confirm exactly what comes in the box. For multiple units, record the quantity per order and the number of orders separately. A pair sold as one unit requires different arithmetic from two individual pieces.",
+            "Try reading your cart line without looking at the product picture. Could you still tell which bag to order, its colour, whether the strap is included and how many should arrive? If two options produce the same translated words, save the seller’s original labels and a screenshot showing the highlighted option. A link to the shop homepage will not identify that selection."
+          ]
+        },
+        {
+          "heading": "Handle a changed or missing variation",
+          "paragraphs": [
+            "If the intended option disappears between browsing and checkout, reopen the source rather than picking the nearest price. The seller may have removed an option, the import may have missed it, or the listing may have changed. The evidence you have can show a discrepancy, but it cannot identify its cause. Ask about the exact source URL and choice. FansBuy also describes a manual fill-and-buy flow for product details that need to be entered by hand.",
+            "A useful note for the bag example would be “Please confirm the navy bag with the matching detachable strap. The separate navy strap is not the item I want. Please ask me if the bag is unavailable.” That gives the buyer a decision if the seller offers a substitute. Once the product reaches the warehouse, use the same saved option when checking the item and accessories in the order photos."
+          ]
+        },
+        {
+          "heading": "Compare a mixed basket by line rather than by photo",
+          "paragraphs": [
+            "Here is a second way to check a more difficult order. You are buying one navy bag for yourself and one black bag for a friend. You also want a longer replacement strap for the navy bag. Prepare three separate intended selections before adding anything. Put the source ID and option on each line even when the source is identical. This makes a repeated source ID meaningful: it tells you that three choices came from the same seller page, not that the cart contains three identical bags.",
+            "Select the navy bag first. Read back the colour and accessory wording in the cart after adding it. Open the seller page again, choose the black version, and check whether the original selection resets to a default when you change another field. Finish by selecting the accessory, paying particular attention to its length, hardware colour and whether the advertised unit is one strap or a pair. These checks are worth doing after each addition because a shared cover photo will conceal an error in any one of the three.",
+            "Before you pay, read the intended list against the actual quantities. If the cart groups the two bags together under one product, expand the options and confirm that each has quantity one. A combined total of two could mean two navy bags, one of each, or two accessories. If a selection has disappeared, resolve that line alone. Rebuilding the entire basket from scratch can introduce a second error in a choice that was right the first time."
+          ]
+        },
+        {
+          "heading": "When the warehouse photo seems to contradict the selection",
+          "paragraphs": [
+            "In the three-line example, a photo of a navy bag and one strap does not establish whether the long replacement strap arrived. The seller may have packed a standard detachable strap inside the bag. Begin with the confirmed order quantities, then identify how many warehouse references belong to that seller. Ask whether the extra strap was received as a separate line, was packed inside another item or has its own domestic tracking number.",
+            "For an apparent colour error, compare a neutral feature as well as the colour itself. A navy and a black bag can look similar under artificial light, while different hardware finishes or label codes may distinguish them. Ask for one focused check rather than rejecting both bags from the same distant photograph. If the colour is plainly wrong, save the original order confirmation and the image with the warehouse reference visible. They document both sides of the discrepancy.",
+            "If a seller offers a different version to replace an unavailable option, send a fresh approval for that exact version only if you want it. Take a new snapshot after the change. It is easy to remember that you approved “the other one” and forget whether that referred to the colour, strap length or a complete substitution. Naming the item and changed attributes now makes a later warehouse decision much simpler."
+          ]
+        },
+        {
+          "heading": "A two-minute review on a phone",
+          "paragraphs": [
+            "On a narrow screen, first expand the option text so suffixes such as “strap only” or “with liner” are visible. Check the currently active thumbnail against its corresponding label, then inspect the price after the option is selected. If the page resets when you switch apps to translate a label, return to the final cart and verify the active selection again. Do this before paying rather than relying on the order in which you tapped the screen.",
+            "Save an image of the cart line that includes the actual seller option and quantity, plus the source link in text. A product screenshot without a source is hard to trace when many shops reuse the same photograph. A source URL without a selected option is equally incomplete on a multi-style listing. The two records together let you explain the intended purchase even after the source picture changes."
+          ]
+        },
+        {
+          "heading": "A final check when someone else will use the item",
+          "paragraphs": [
+            "If the bag is for someone else, confirm the details that affect its use before the seller is paid. A friend asking for “the navy one in the picture” may care about the size that fits their laptop, the detachable strap, the lining colour or all three. Send them the actual selected measurements and included parts in a short message. If their laptop measures 33 cm across, a listing giving the bag’s exterior width as 33 cm does not establish that the laptop will fit through its opening.",
+            "This illustrates why variant checking starts with intended use. An accurate purchase can still be unsuitable if the buyer checked only the colour. Pick one or two essential requirements and record whether the seller listing confirms them. If the opening width is essential and absent, ask before purchasing. A general statement about a bag fitting most laptops cannot answer a close dimensional question. Once the selected item, its accessories and its essential dimensions are clear, you have a repeatable way to compare the warehouse evidence with what you actually intended to buy."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy official homepage",
+          "url": "https://fansbuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "fill-buy-order-specifications",
+      "title": "When a product link will not import into FansBuy: writing a fill-and-buy request",
+      "description": "Prepare the product details for manual ordering and distinguish a missing catalogue option from an unconfirmed seller price.",
+      "sections": [
+        {
+          "heading": "Decide what actually failed",
+          "paragraphs": [
+            "A product URL can open the wrong item, open the correct item with incomplete options, or fail to produce a result at all. Those situations deserve different instructions. Open the exact source in a regular browser and establish whether the seller still shows the product and option. If the source has disappeared, a screenshot can explain what you wanted but cannot establish that the seller still has it.",
+            "FansBuy’s beginner guide describes an alternative called fill & buy in which you enter the details yourself and add the request to the cart. Use that path when you can describe a real listing. A photo saved from an unrelated shop, a search-results link, or a word such as “original” leaves the person doing the purchase to guess what is acceptable."
+          ]
+        },
+        {
+          "heading": "Write a specification with an acceptance test",
+          "paragraphs": [
+            "Imagine ordering a replacement strap for a bag. “Brown strap” leaves out the attachment, width and length. “One brown strap, two silver swivel hooks, 25 mm wide; please confirm the 100–120 cm adjustable version” gives the buyer checks they can repeat. Quote the seller’s option text exactly where possible, include a reference image if the form supports it, and put the condition that matters most first.",
+            "If some detail is essential but absent from the listing, phrase it as a question. Do not enter your preferred answer as a known specification. If the only source for the width is your own measurement of an old strap, say so. A seller may have a different measuring convention. An answer before purchase is more valuable than a disagreement at the warehouse."
+          ]
+        },
+        {
+          "heading": "Make changes conditional",
+          "paragraphs": [
+            "If the seller responds that the requested finish costs more, check the price difference, the available colour, and whether the item remains returnable before approving an amended order. Give a precise spending limit when appropriate, using the currency of the quotation. Avoid an instruction to buy “whatever is closest” if colour or fit will decide whether you can use the item.",
+            "After payment save the request, the seller response, and the confirmation showing the agreed details. When the order reaches the Packing Centre, compare the evidence with that agreed version. If the second finish was approved, the first screenshot alone is no longer a complete description of the order."
+          ]
+        },
+        {
+          "heading": "A manual request for two sizes of the same product",
+          "paragraphs": [
+            "Suppose the seller only has a shared album showing a 25 mm strap in two lengths. You need one short brown strap and one long black strap. Treat these as two distinct purchase decisions, even if you contact the seller once. A single note reading “one black and one brown, short and long” permits two interpretations. Write “one short brown” and “one long black,” followed by the seller’s exact length specification for each. Clarify whether the measurement includes the metal attachments at the ends.",
+            "If you put two lines in the request, note whether the quoted China-side shipping charge is per order, per item or still unknown. A quote for several items can be misunderstood when entered into separate forms. Ask how to handle it if the confirmation repeats a charge that the seller offered only once. Do not deduct a charge yourself on the assumption staff will notice. Give the buyer the written quote and ask what final approval is needed.",
+            "State any dependency between the lines. You may need both straps for a project and want to cancel the purchase if only one is available. Or you may be happy to buy whichever can be confirmed. Explain the choice ahead of time. A person placing the order cannot infer it from two separate lines, and approval of one item does not automatically authorise a different size for the other."
+          ]
+        },
+        {
+          "heading": "What to do with a screenshot-only price",
+          "paragraphs": [
+            "A screenshot can preserve the date, source wording and original option. It has limits as evidence of the current transaction. Look for a current seller response that confirms what is being supplied, the quote currency and the charge to the warehouse. If the only price shown is handwritten on the image, do not “fix” it by choosing the nearest price from another listing. That would create a convincing number with no supporting offer.",
+            "A cropped listing photo can also hide the information that matters most to purchasing staff. Try to include the heading or seller identity and enough surrounding detail to distinguish the chosen row. Crop unrelated conversations and names before forwarding material. If the screenshot contains several versions, mark the exact one in a copy while keeping the original. A circle around both versions is little better than no annotation.",
+            "When the seller responds with an updated price, compare the entire revised offer, not just the increase. The seller might now quote two straps together instead of one, include domestic freight that was previously separate or supply a different clasp. Ask for clarification in one message listing the remaining uncertainties. Once staff confirm the revised basis, you can decide whether the new total still meets your limit."
+          ]
+        },
+        {
+          "heading": "Close the loop at the warehouse",
+          "paragraphs": [
+            "A manual order deserves a particularly clear record because there may be no structured seller option saved automatically. Keep the buyer’s confirmed interpretation with the final request. When the straps reach the warehouse, use the same definitions of length and finish that you used before purchase. A measurement taken from the leather only can differ from one taken hook to hook without either being wrong.",
+            "If both straps arrive in one bag, a distant picture cannot identify which colour has which length. Ask for a view that links each label or tape measurement with the corresponding strap, keeping the goods in a condition compatible with any seller return. If the evidence shows the wrong combination, describe the two expected pairings and the received pairing explicitly. This turns a vague complaint about sizing into a discrepancy another person can check."
+          ]
+        },
+        {
+          "heading": "Check whether a substitution would change the intended use",
+          "paragraphs": [
+            "A seller may reply that the same strap is available with swivel hooks in a different width. “Same colour and length” can sound good enough until you try to attach it. Compare the opening of the hook with the ring on the bag, the width with the strap guides, and the load the seller says it is designed to carry if that matters to your purchase. Do not ask warehouse staff to infer strength from a photograph. Where suitability depends on a technical claim, seek the seller’s specification or decline the substitute if you cannot verify it.",
+            "Write acceptance instructions in a way that remains clear even if a different support agent reads the conversation later. For example, authorise the black finish if the width, hardware and length match, and ask for another confirmation if any of those three differ. If you would accept only a price reduction beyond that limit, say what further approval is required. This keeps a limited permission from being mistakenly treated as a general invitation to make substitutions.",
+            "When closing your manual request, make a final comparison between the submitted fields and your latest seller message. Check whether an attachment has the right colour code, whether the quantity field duplicates a bundle count in the description and whether the price includes domestic delivery. If any final confirmation remains outstanding, keep it visible under the order reference. Once all of those details match, the buyer has an actionable request even if automatic import never becomes available.",
+            "Keep the approved manual specification available until both the warehouse review and the final delivery are complete."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy Help Center",
+          "url": "https://fansbuy.com/helpCenter"
+        }
+      ]
+    },
+    {
+      "slug": "basket-currency-reconciliation",
+      "title": "Reconciling a FansBuy basket in CNY with a payment in your own currency",
+      "description": "Use the quoted amount, the payment currency and the actual receipt to explain why a spreadsheet price and an account debit can differ.",
+      "sections": [
+        {
+          "heading": "Start with the original price",
+          "paragraphs": [
+            "Three numbers may appear during one purchase: the CNY price recorded on the marketplace, the amount displayed by the buying site, and the debit reported by your payment method. Capture the selected option, quantity and currency at each step. A catalog display can help you shop within a budget. It will not identify which conversion applied to a completed transaction.",
+            "FansBuy describes live exchange rates, several payment currencies and the option to use account balance. Record whether you paid directly or used balance previously added to your account. A top-up and a later balance purchase are related transactions. Adding both in full to your product spending double counts the same money."
+          ]
+        },
+        {
+          "heading": "Work a small example",
+          "paragraphs": [
+            "Suppose a notebook costs CNY 48 and domestic delivery on the order costs CNY 8. A second notebook at the same unit price brings the item subtotal to CNY 96. If the displayed delivery remains CNY 8 for both, the amount before any other listed charges is CNY 104. If delivery becomes CNY 16, the comparable amount is CNY 112. Verify which amount the current order shows. These are made-up figures for practice.",
+            "Suppose a payment provider actually collects 15 units of your home currency for CNY 104, with no other amount included. Dividing 104 by 15 gives about 6.93 CNY per home-currency unit. Dividing in the opposite direction gives about 0.144 home-currency units per CNY. Label the direction on the calculation. If the payment includes a separate charge, that division describes the effective cost to you and cannot isolate FansBuy’s exchange rate."
+          ]
+        },
+        {
+          "heading": "Reconcile the receipts in sequence",
+          "paragraphs": [
+            "Save the amount debited by the payment method, the amount credited to your balance if applicable, and the amount actually spent on the order. If you add 50 and spend 35, the other 15 is still balance. If multiple orders use the same top-up, record their individual deductions. A remaining balance helps explain why your bank-statement total can be larger than the goods purchased so far.",
+            "Keep international shipping on a separate line when it is charged later. The exchange rate may also differ on that date. For an accurate retrospective total, sum the amounts actually paid in one currency and deduct actual credits only once. For a future purchase, mark the conversion as provisional until you see the new checkout."
+          ]
+        },
+        {
+          "heading": "A mixed payment example",
+          "paragraphs": [
+            "Imagine you already have 30 units of account balance, then purchase a basket whose final charge is 75 of the same units. If the checkout allows a mixed payment and shows 30 paid from balance and 45 charged elsewhere, the cost of the basket is 75. The new external cash payment is 45. Both figures are correct, but they answer different questions. Check the actual payment options shown for your order before assuming a split payment is available.",
+            "For a monthly budget, decide which question you are asking. A cash-flow budget tracks when money left your external payment account. An order-cost record assigns money to the goods that consumed it. If a balance top-up happened last month and the goods were purchased this month, the time periods differ. That difference is not evidence that the goods were charged twice. The account history shows the transfer into balance and the later debit against the order.",
+            "Now imagine a partial cancellation returns 12 units to balance. The revised order cost becomes 63 in this example. Your external debit of 45 remains on the statement unless you separately receive money back externally. Recording the 12 as both a reduction of the order and a new external payment refund will make the two views disagree. Keep a separate status for “credited to balance” until you can see an actual external movement."
+          ]
+        },
+        {
+          "heading": "When a second order shares the same delivery cost",
+          "paragraphs": [
+            "Suppose two items from one seller have different prices and a single combined domestic freight amount. To compare the cost of each item, you may split that freight equally, allocate it in proportion to the item prices, or keep it at order level. Each approach can be reasonable for a personal budget, but none changes what you paid. Write down the method before comparing one item with an alternative seller’s quote.",
+            "For example, two items costing 30 and 70 CNY share a confirmed 10 CNY delivery charge. An even split gives totals of 35 and 75 CNY. Allocating by item price gives totals of 33 and 77 CNY. Both add to 110 CNY. If a different seller offers the cheaper item for 34 CNY delivered, your allocation can change which looks cheaper at first sight. Price the alternative purchase as it would really occur rather than treating an accounting split as a seller charge."
+          ]
+        },
+        {
+          "heading": "Diagnose a discrepancy in the right order",
+          "paragraphs": [
+            "First establish that you are looking at the same seller, option, quantity and timestamp. Next compare domestic delivery and selected services. Then compare the currency displayed on the shopping page with the currency selected in the payment provider. A product selection or added service can explain a difference before exchange rates enter the calculation. Taking screenshots of three unrelated totals and labelling the gap a “conversion fee” is usually unhelpful.",
+            "Last, compare settled amounts rather than an early authorisation and a later final charge without dates. If the provider does not show a breakdown, you can still report the effective amount you spent. Label anything you cannot isolate as unknown. For support, provide the order and transaction references, original currencies and timestamps, with sensitive account information removed. Ask which component accounts for the difference instead of asserting a hidden charge you cannot demonstrate."
+          ]
+        },
+        {
+          "heading": "Estimate a future total without mixing exchange rates",
+          "paragraphs": [
+            "If exchange rates change while you are saving for a purchase, build a range in a single direction. Assume a hypothetical goods subtotal of 210 CNY. At 7 CNY per unit of your home currency it equals 30 home units; at 6 CNY per unit it equals 35. The lower number of CNY per home unit makes the same goods more expensive to you. Writing the two conversions side by side catches the common error of expecting the larger divisor to produce the larger home-currency price.",
+            "Now add only charges that use the same basis. If a local payment provider quotes an extra 1.5 home units, add it after conversion. If a domestic freight amount is quoted in CNY, add it before conversion or convert it once on a separate line. Do not accidentally convert the home-currency fee again. Keep the estimated future international parcel payment in a different row because that transaction may occur at another rate.",
+            "A useful final record can be short: chosen SKU and quantity, source CNY price, confirmed domestic delivery, services shown, total order debit, actual currency, payment reference and any subsequent credit. If the marketplace amount exceeds your original shortlist but the home-currency debit looks unchanged, check whether a rate movement masked the price rise. If the seller price is unchanged but the home-currency debit increased, look for exchange movement, a changed payment method or additional services. The same worksheet helps you investigate either direction without needing access to proprietary exchange-rate calculations.",
+            "One last distinction matters when sharing your experience. Report the date and the actual payment route alongside the effective price you paid. A friend paying in a different currency, at a different time or using a different provider may see a different result for precisely the same basket.",
+            "A dated CNY price and a settled home-currency receipt preserve the basis for that comparison."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy Help Center",
+          "url": "https://fansbuy.com/helpCenter"
+        }
+      ]
+    },
+    {
+      "slug": "qc-photo-measurement-request",
+      "title": "What to ask for when a FansBuy QC photo cannot settle a sizing question",
+      "description": "Turn an ambiguous warehouse picture into a specific measurement request, illustrated by a jacket with a dropped shoulder.",
+      "sections": [
+        {
+          "heading": "Identify the missing measurement",
+          "paragraphs": [
+            "A medium label answers a different question from whether a jacket will close over your usual sweater. FansBuy describes warehouse photography and receipt inspection after arrival. Start with your own order and check the product type, label, colour and main features against the selection you paid for. If the view clearly shows size S against a paid order for M, save the discrepancy before asking anyone to measure the garment.",
+            "When the label matches yet fit is uncertain, pick a garment you already wear comfortably and lay it flat. For a zipped jacket, close both jackets in the same way before comparing them. Record whether your reference width is measured across the front at the underarms or around the whole garment. A flat width of 56 cm and a circumference of 112 cm could describe the same garment, but only with compatible methods."
+          ]
+        },
+        {
+          "heading": "Ask for one informative view",
+          "paragraphs": [
+            "A practical request might read: “Could you lay the jacket flat, close the zip, and show the distance from one underarm seam to the other with both tape endpoints visible? Please confirm any extra charge first.” Use the service channel available on the order. FansBuy’s guide points shoppers toward additional service requests and customer support. It does not establish that every type of measurement will be available for every item.",
+            "For a dropped shoulder, decide whether sleeve length should be measured from the shoulder seam or the collar. If your reference was measured from the collar, a warehouse picture starting at the seam can look short even when both sleeves end at the same place. Draw a simple line on a copy of the reference photo if it makes the request unambiguous."
+          ]
+        },
+        {
+          "heading": "Interpret the reply before packing",
+          "paragraphs": [
+            "Read the start of the tape, the end, and the unit. Watch for a tape that bends around a fold or begins several centimetres outside the seam. A photo that cuts off one endpoint cannot settle a close decision. Where the seller lists a tolerance, use the one shown for that product rather than applying a universal allowance.",
+            "If the result misses your requirement, leave the jacket out of the international parcel while you ask what options remain. Keep the order number, listing chart, QC view and your request together. A measurement can support a conversation about a discrepancy, but acceptance, a replacement or a refund depends on the order and its applicable terms."
+          ]
+        },
+        {
+          "heading": "Different garments need different evidence",
+          "paragraphs": [
+            "Consider a jacket designed to be worn with layers. Chest width might be generous while the upper sleeve is restrictive. You may need chest and upper-arm dimensions from a reference jacket with a similar cut. Decide which one is likely to change your purchase decision. A request for ten unrelated measurements can cost more and still omit the one needed to tell whether the sleeves will accommodate a sweater.",
+            "For trousers, establish whether the waistband is elastic and whether the measurement in the listing is relaxed, stretched, laid flat or expressed around the body. If you own trousers that fit, compare like with like. A warehouse image of a stretched waistband cannot be evaluated against the relaxed width you recorded at home. Request an image that specifies the condition. Avoid asking someone to pull a garment to a subjective “comfortable” stretch without agreeing on what would count as comparable.",
+            "For shoes, a size label can verify a stated size but an exterior heel-to-toe measurement is a different quantity from interior length. If the seller’s size chart uses foot length, do not assume that inserting a tape along the visible sole will reproduce it. Ask what the size chart means first, then decide whether a measurement that staff can reasonably take would settle the fit question. Sometimes another warehouse photo cannot provide the missing information."
+          ]
+        },
+        {
+          "heading": "What a narrow margin changes",
+          "paragraphs": [
+            "Suppose a favourite jacket measures 57 cm laid flat and the compared item is listed as 56 cm. A single centimetre might be immaterial in a loose style but decisive in a fitted jacket with little ease. Decide on a personal acceptable range before seeing the answer to avoid rationalising an inconvenient result. Add any seller-stated tolerance to your notes and keep it distinct from your own acceptable range.",
+            "An answer of “about 56 cm” deserves different confidence depending on how it was obtained. If the tape image clearly shows both underarm seams and the jacket is lying evenly, you have a reproducible observation. If someone measured over a hanger with folds or left a bulky zip open, the result has a different meaning. Ask for clarification of the method first, especially where the decision hinges on a very small distance.",
+            "If your measured reference uses a different fabric or construction, acknowledge what the comparison cannot tell you. Two jackets with identical flat dimensions may feel different over a sweater because of lining, thickness or stretch. Those features may be impossible to assess from the photographs. A sound sizing decision can be to avoid a purchase whose suitability depends on information the seller and warehouse cannot provide."
+          ]
+        },
+        {
+          "heading": "Write the result on the order, not just in a chat",
+          "paragraphs": [
+            "Keep one line for the requested measurement and another for the received result. For example, record that you requested zipped underarm-to-underarm width, got a photo reading approximately 56 cm, and compared it with your own jacket at 57 cm. Add the date and order ID. When you return later to decide which items to ship, this is easier to interpret than a saved picture of a tape with no explanation.",
+            "If the result suggests a seller error, capture both the original size chart for the ordered variant and the warehouse result before a listing update changes the evidence. If the garment matches the listing but would fit poorly for you, describe the situation accurately when asking about options. The distinction between a wrong product and a personal fit issue can change what the seller is willing to do."
+          ]
+        },
+        {
+          "heading": "When a measurement is already clear enough",
+          "paragraphs": [
+            "If the order shows size medium, the delivered label clearly shows small and the seller’s size chart treats them as distinct choices, you already have a precise mismatch to report. Ordering a chest measurement may add useful information about whether you would personally keep the garment, but it is not required to establish that the label differs. Decide which question you are asking before paying for a special measurement. If you already know you would refuse any small-labelled item, act on the clearer evidence first.",
+            "At the other extreme, suppose the photographed reading is close enough that a repeat measurement would not change what you choose. Consider the uncertainty you can accept for this specific garment. If you can use it slightly loose but could never use it smaller, tell staff which boundary matters. If a single clear image shows it misses that boundary by a large margin, asking for repeated pictures of the same tape location buys little additional knowledge.",
+            "When you approve an item after a close fit decision, retain your comparison and later note how the delivered garment actually fits. A reference you have both measured and worn becomes more useful for future purchases. Do not generalise one successful comparison to every seller using the same label. Repeat the method for the next garment, particularly when its construction changes from an unlined summer jacket to a heavy lined coat.",
+            "Use the same unit throughout each comparison and check that the tape’s zero mark remains visible."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy Help Center",
+          "url": "https://fansbuy.com/helpCenter"
+        }
+      ]
+    },
+    {
+      "slug": "wait-or-split-storage",
+      "title": "Should you wait for the last seller before shipping your FansBuy warehouse items?",
+      "description": "Compare a late seller, an early warehouse item and a delivery deadline using separate dates for each decision.",
+      "sections": [
+        {
+          "heading": "Give every item its own clock",
+          "paragraphs": [
+            "Suppose two shirts are ready at the FansBuy warehouse and a third seller has not dispatched a pair of shoes. FansBuy advertises 90 days of free storage and its beginner guide lets you select stored goods to send overseas or continue shopping before combining them. Read the date or status shown against each item. One late order should not make you lose track of the earlier goods.",
+            "Keep purchase date, seller dispatch, warehouse receipt and the date you need delivery in separate columns. A marketplace order placed weeks ago may have arrived only yesterday. Conversely, a newer item in the same cart may have reached storage earlier. Where an exact expiry matters and the account does not explain the start date, ask FansBuy to confirm it against the item reference."
+          ]
+        },
+        {
+          "heading": "Compare two realistic options",
+          "paragraphs": [
+            "For a deadline, write down the latest day you could send the shirts and still accept the uncertainty in the route estimate. Look at the shoes separately. If the seller has only created a label, you have less information than if the parcel was scanned near the warehouse. Neither status tells you the shoes have passed inspection.",
+            "Price the ready items as one parcel using the best current measurements, then consider the combined parcel with an explicit estimate for the missing shoes and their box. If you might send the shoes separately, include the second parcel price in the comparison. Comparing one combined shipment with the shirts-only cost omits a planned expense and can make a split look artificially inexpensive."
+          ]
+        },
+        {
+          "heading": "Preserve the option to change your mind",
+          "paragraphs": [
+            "If the late item is speculative, choose a review date rather than a promise to wait indefinitely. On that date, reconsider the actual seller progress, the warehouse status of the existing items, and whether their return decisions are settled. Free storage and seller return eligibility are separate matters. A free storage period alone is a poor reason to delay reporting a mismatch.",
+            "There are sensible reasons to send early even if one combined parcel appears cheaper: a real delivery deadline, a fragile item needing its own protection, or uncertainty over whether the last seller will ship. Record which reason matters to you. You can then change the decision if that condition changes without rebuilding the whole plan from memory."
+          ]
+        },
+        {
+          "heading": "Put a price on waiting only when the prices are comparable",
+          "paragraphs": [
+            "Create a table with the options you would truly consider: send the two shirts now and the shoes later, send all three after the shoes arrive, or skip the shoes if a cancellation is available and suitable. Each option needs a complete set of costs. If the seller has not accepted a cancellation, do not assume you can simply spend nothing on the shoes. Mark that possibility as conditional and keep the confirmed costs separate.",
+            "Imagine the two separate parcels would cost 18 and 24 units, while the combined parcel is provisionally 34. Waiting appears to save 8 units. If the combined package later requires a larger outer box and the quote becomes 43, the apparent saving disappears. This is an illustration of sensitivity to the unknown box, not a prediction about FansBuy pricing. Ask yourself whether saving approximately 8 would justify the risk of missing your date.",
+            "A coupon complicates the comparison if it applies only to one route or has a minimum spend. Use the quoted totals for the same eligible options and record whether the coupon is actually available on each. One coupon cannot be counted against both separate parcels unless its terms genuinely allow that. If the combined quote assumes a promotion that could expire before the shoes arrive, keep the unpromoted total visible as a second scenario."
+          ]
+        },
+        {
+          "heading": "Separate a birthday deadline from a general preference",
+          "paragraphs": [
+            "If the shirts are gifts for a specific date, determine when you would switch to a local replacement if delivery becomes uncertain. Work backward from that practical decision, not from a promise that a carrier estimate will turn into an exact arrival time. If the shirts can be used after the date, a late delivery has a different cost. Write down which consequence applies, since it will influence how long waiting seems reasonable.",
+            "The unshipped shoes can also be the time-sensitive item if a seller action is pending. For example, staff may need a size confirmation before purchasing, and waiting for a dispatch that cannot start until you reply creates an artificial delay. Read the latest message on the order rather than relying exclusively on the public tracking page. Decide which party has the information or action needed for the next handoff."
+          ]
+        },
+        {
+          "heading": "Tell support exactly what should move",
+          "paragraphs": [
+            "If you split the plan, identify every ready warehouse reference to be sent and every item to remain in storage. Check the preview of your selection one more time before paying, especially when two shirts have similar titles. Copy the resulting parcel reference back into your plan so you can see later which products are already committed to travel and which are still available.",
+            "If you wait, put a concrete condition on the decision. For instance, “review when the shoes receive their first physical carrier scan or on the date the shirts need a shipping decision, whichever comes first.” That is more workable than refreshing the same tracking label daily. Keep monitoring any independent seller deadlines for the stored shirts at the same time. Consolidation can wait for a missing pair, while a return request on a separate item may require immediate action."
+          ]
+        },
+        {
+          "heading": "Avoid transferring the timetable of one item to another",
+          "paragraphs": [
+            "Imagine the early shirts have passed warehouse review and no seller issue remains. The shoes, however, arrive just as you are ready to submit. A domestic delivery scan makes consolidation feel immediate, but the shoes may still need intake and a decision about visible condition. Do not add them mentally to the ready parcel until the account actually shows a corresponding warehouse item you can inspect and select. If your decision depended on a particular size, the label or measurement also matters before you commit both orders to international shipment.",
+            "Now reverse the situation. The shoes are ready and look correct, while one shirt has an unresolved discrepancy. You may be able to select the shoes and the other shirt and leave the disputed item aside. Review the actual selection rather than treating all goods from the original shopping cart as inseparable. If returning the defective shirt could create a separate later shipment for a replacement, include that consequence when comparing costs.",
+            "A simple decision log for this example would say which items are ready, which are waiting for evidence, the latest acceptable dispatch date for the gifts, the estimated shipping difference and when you will review again. Once all five fields are filled, stop treating every small change in a public tracker as a reason to start over. Reopen the decision when a field changes materially, such as receipt of the last item, a revised charge or a seller deadline requiring action.",
+            "If you are placing a subsequent order, use your experience with the first one to plan overlap more realistically. You can order nonessential additions later and still decide to send the original parcel on its own. That gives you the benefit of optional consolidation without turning every later product into a commitment to delay all the goods already waiting.",
+            "If something changes after a parcel has already been submitted, ask what amendments remain possible and what charges apply before issuing new instructions to the warehouse."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy official homepage",
+          "url": "https://fansbuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "rehearsal-packing-decision",
+      "title": "When FansBuy rehearsal packing can answer an expensive shipping question",
+      "description": "Test whether exact packed measurements could change the route, packaging or split you choose before paying international freight.",
+      "sections": [
+        {
+          "heading": "Find the uncertainty that matters",
+          "paragraphs": [
+            "For two folded T-shirts, a small change in estimated weight might leave your preferred route unchanged. Add a rigid presentation box to the basket and the problem changes. The parcel dimensions could decide the route or alter the cost enough to change your purchase decision. FansBuy’s beginner guide describes a paid rehearsal service in which goods are packed and the weight and dimensions recorded before you select the shipping method.",
+            "Write down the question you expect the service to answer. “Can I keep the box and still use the route that accepts a parcel of this size?” is more actionable than “Will shipping be cheap?” Verify the actual route limit and current charge before relying on it. If no route accepts the contents regardless of size, obtaining a more precise measurement will not solve the underlying problem."
+          ]
+        },
+        {
+          "heading": "Test the two numbers separately",
+          "paragraphs": [
+            "Imagine an outer box measuring 50 by 30 by 20 cm. Its volume is 30,000 cubic centimetres. A smaller arrangement measuring 40 by 30 by 18 cm occupies 21,600 cubic centimetres, a reduction of 28 percent. That percentage describes volume only. The scale weight, the way the carrier bills the parcel, and any minimum charge can produce a different percentage change in cost.",
+            "If the route gives a dimensional divisor, apply that exact divisor with its stated units. At a hypothetical 6,000 cubic centimetres per kilogram, the two volumes correspond to 5 and 3.6 dimensional kilograms. If the scale reads 4.6 kg and the route uses the higher weight, reducing volume below 4.6 dimensional kg stops reducing the comparison weight. The route can still apply its own rounding and restrictions."
+          ]
+        },
+        {
+          "heading": "Give packing instructions that preserve what matters",
+          "paragraphs": [
+            "Distinguish the shipping carton from the retail box. If a presentation box is part of the gift, specify that it must remain intact before asking for a smaller parcel. Ask what can be changed once packing begins and whether a revised packing request incurs another charge. A rehearsal quote based on removing the box is irrelevant if you would never accept that option.",
+            "Save the resulting dimensions, scale weight, item list and route quote as one record. Adding another item, restoring a box or changing protection changes the parcel you tested. Recheck the figures before paying. The benefit of rehearsal is a better decision about a specific package, even if the final choice is to keep the larger box or split the goods."
+          ]
+        },
+        {
+          "heading": "Estimate how much the missing measurement is worth",
+          "paragraphs": [
+            "A rehearsal is most informative near a decision boundary. Suppose you would choose a certain route if an outer dimension stays below the limit displayed in its current conditions, and you would choose another if it exceeds that limit. An estimate a few centimetres either side of the limit makes the exact measurement important. A measurement far inside the allowed range may have less power to change your route choice, especially if the remaining weight uncertainty is small.",
+            "Write two columns with the best plausible and worst plausible dimensions of a package you are willing to accept. Use each in the calculator with the same contents, destination and route preferences. If your decision is identical in both columns, consider whether rehearsal offers any other benefit, such as confirming that a gift box was retained or verifying the final item set. If your preferred route changes, the measurement has a clear practical value even before calculating potential savings.",
+            "Compare the displayed cost of the packing service with the realistic difference you might avoid. If the best available alternative is just two units cheaper and rehearsal costs more than that, savings alone cannot justify the service. If the difference is larger but there is no guarantee which package dimensions the warehouse can achieve, treat that saving as a possibility. Do not promise yourself that ordering rehearsal automatically wins the best-case result."
+          ]
+        },
+        {
+          "heading": "Keep the quote attached to a packing specification",
+          "paragraphs": [
+            "Use a short packing brief with the item references, what must stay, what may be removed if available, and the destination. If you ask to preserve a manufacturer’s outer sleeve but remove a separate shipping box, describe both. A request to “remove all unnecessary boxes” conveys your goal without explaining what you consider unnecessary. The person packing the parcel cannot know that one particular box is part of the gift.",
+            "Imagine the warehouse provides a weight and dimensions, then you realise an accessory is still arriving. Decide whether to ship the measured parcel unchanged or start a fresh comparison after the accessory arrives. A pencil case might fit in a corner with little effect on volume, yet increase the scale weight enough to affect a route’s next billing step. A bulky accessory can change the box in every direction. Neither result follows from the accessory’s item price."
+          ]
+        },
+        {
+          "heading": "Interpret the measurement report before selecting the carrier",
+          "paragraphs": [
+            "Compare the measured dimensions with your estimated ones by dimension, not just by volume. A box may become smaller overall while remaining too long for the route you wanted. If a result surprises you, ask which side is the maximum and whether a rigid item set that measurement. Do not request forceful compression when the item’s shape is essential or the warehouse has explained a protection constraint.",
+            "Check that the final route accepts the real contents as well as the measured package. Keep the measured weight, outside dimensions and final payable options in the same currency and session where possible. If you later see a cheaper quote from another site, check whether it includes equivalent protection, an eligible route and the same measured parcel. A lower number produced from item-only weights is a different estimate."
+          ]
+        },
+        {
+          "heading": "When to leave the result alone",
+          "paragraphs": [
+            "Sometimes rehearsal gives an answer you hoped to avoid: the box cannot be made smaller without sacrificing protection, and the eligible route costs more than your preliminary estimate. That can still be the correct result. Compare sensible alternatives such as sending a less urgent item later or retaining the existing carton rather than issuing repeated packing requests in pursuit of a number that the physical items cannot support. Confirm any cost to change an already packed plan before authorising more work."
+          ]
+        },
+        {
+          "heading": "Use a route comparison that respects your delivery needs",
+          "paragraphs": [
+            "Imagine the rehearsal report confirms your preferred compact carton, but the lowest priced eligible route has conditions you cannot accept. Perhaps it gives a broad delivery estimate when you need the parcel before moving house, or the available tracking level is inadequate for a time-sensitive handoff. Keep two separate rankings: price among eligible lines and suitability among the lines you would actually choose. Saving a little on an unsuitable route is not the expected benefit of the rehearsal.",
+            "If your delivery address could change, resolve that separately before selecting a route. A perfectly measured parcel sent to the wrong address is a worse outcome than a modest rounding difference. Confirm the current recipient, postal code and contact details in the submission flow. Keep the rehearsal measurement reference with the parcel you ultimately dispatch, especially if you have two similar packing requests open at once.",
+            "After shipment, compare the actual freight settlement with the rehearsal quote and note what changed. If the parcel measurements and contents stayed the same but a service charge was added, record that separately. If the outer carton changed after reinforcement, update both the dimensions and the pack description in your notes. This produces a reference useful for similar purchases in the future without assuming the previous rate or route availability will still apply.",
+            "Check the live conditions again for every new shipment."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy shipping estimates",
+          "url": "https://fansbuy.com/estimates"
+        },
+        {
+          "title": "Fansbuy.net independent calculator guide",
+          "url": "https://fansbuy.net/shipping-calculator"
+        }
+      ]
+    },
+    {
+      "slug": "shipping-deposit-account-credit",
+      "title": "How to read a FansBuy shipping deposit, balance request or account credit",
+      "description": "Reconcile an international shipping estimate with the final amount, without counting a wallet credit as a second discount.",
+      "sections": [
+        {
+          "heading": "Match the payment to the parcel",
+          "paragraphs": [
+            "FansBuy describes paying a shipping deposit based on estimated weight. Its guide says an excess goes back to the account balance and a shortfall can require additional payment before dispatch. Start with the parcel reference and the amount shown for international shipping. The earlier payment for the products and domestic delivery belongs to a different part of the purchase.",
+            "Check whether the amount on your screen includes packaging, insurance or another selected service. To verify a difference between estimate and final freight, compare like amounts. Subtracting a freight-only figure from a total that includes an optional service will produce a discrepancy even when the underlying freight calculation agrees."
+          ]
+        },
+        {
+          "heading": "Reconcile an excess and a shortfall",
+          "paragraphs": [
+            "Consider a hypothetical deposit of 240 currency units followed by a final charge of 216 for the same components. A credit of 24 makes the net cost 216. If your card statement still shows 240, look in the account’s balance history for the 24. A credit inside the account will not necessarily appear as a reversal on your original payment method.",
+            "Reverse the example. With a deposit of 216 and a final charge of 240, the extra 24 is a balance due. If the system used available balance for that adjustment, count the balance deduction once. Checking both the parcel details and the balance transactions can establish whether you actually paid another 24 externally or used funds you already held."
+          ]
+        },
+        {
+          "heading": "Read the payment settings before retrying",
+          "paragraphs": [
+            "The beginner guide also mentions setting an amount for automatic deductions when balance is sufficient. Check the current setting and relevant transactions if you expected a manual request but saw a balance movement instead. Review the parcel state before clicking a payment action again, especially after an interrupted payment screen.",
+            "If the figures still differ, send support the parcel ID, deposit amount, final comparison amount, individual services, and the specific movement you cannot match. Include currency and date. Mask unrelated payment details. “Deposit 240, final freight 216, no 24 credit visible against this parcel” gives staff a precise question that “shipping is too high” cannot."
+          ]
+        },
+        {
+          "heading": "Trace a parcel with a coupon and an optional service",
+          "paragraphs": [
+            "A more difficult example starts with a goods order paid several weeks ago. At parcel submission you select a separate packaging service, enter a coupon and pay a shipping deposit. Later, an account credit appears. To reconcile these amounts, identify the date and reference for each event. Put the old goods order to one side. Its price may belong in your final delivered-cost budget, but it cannot explain the difference between estimated and final international freight for this parcel.",
+            "For an illustrative calculation, suppose estimated freight is 180 units, packing costs 10 and the coupon reduces the total by 15. Your initial total would be 175 if those are the only elements. Suppose the final freight becomes 165 and the other two lines remain at 10 and minus 15. The revised total becomes 160. The adjustment is 15. Comparing the initial total of 175 with final freight of 165 produces a misleading difference of 10 because you have compared different components.",
+            "If the final screen no longer shows the same coupon or packaging amount, do not force it to fit that calculation. Write down the changed lines and check which one occurred at which stage. A difference that looks like an incorrect weight calculation can turn out to be a separately posted packing fee or a discount whose conditions changed. Ask about the specific missing or changed line before concluding anything about the underlying carrier quote."
+          ]
+        },
+        {
+          "heading": "Distinguish an account credit from a withdrawal",
+          "paragraphs": [
+            "When FansBuy credits unused freight to your account balance, money available on the platform increases. Whether you choose to spend that balance on another order or request a withdrawal is a later decision. Your statement may therefore show the original full deposit and no matching card refund. The balance transaction is still economically relevant to the order calculation. Do not infer a failed refund solely because your card statement did not change.",
+            "If you later use the credited 15 units toward another parcel, assign that spending to the new parcel. The earlier parcel still cost the amount after the 15-unit adjustment. If instead you withdrew the funds, check the separate withdrawal record and the actual method and amount received. This distinction becomes important if different currencies or payment-provider charges are involved. A conversion on withdrawal is not part of the original shipping weight calculation."
+          ]
+        },
+        {
+          "heading": "Check the timing of a shortage notice",
+          "paragraphs": [
+            "Read the timestamp of the notice as well as its amount. If you attempted a payment during an unstable connection, refresh the parcel and account transactions before retrying. One screen might still display an older request while another already shows a settled deduction. If the platform records two successful charges for the same reference, keep both transaction IDs. Repeatedly clicking a payment button makes the trace harder to follow.",
+            "If the parcel is urgent and you cannot interpret the current state, ask whether dispatch is waiting for an outstanding balance and what exact amount, in what currency, is due now. This gives support a verifiable operational question in addition to a billing question. A status that still says pending shipping could relate to packing or carrier handoff rather than money. Only the current parcel record or the platform’s response can settle which dependency applies."
+          ]
+        },
+        {
+          "heading": "Reconcile two parcels funded by one balance",
+          "paragraphs": [
+            "Suppose you paid a deposit of 90 units for parcel A and 110 for parcel B. After packing, A receives a 10-unit credit and B needs an additional 10. Your net spending on both stays at 200, but the final costs are 80 and 120. A monthly total that looks exactly right can hide an incorrect allocation between parcels. Record the two adjustments against the correct parcel IDs so that later comparisons of shipping cost per order remain meaningful.",
+            "If you send one parcel for yourself and one shared with a friend, the distinction matters even more. Suppose the friend’s goods were only in parcel A. Charging them from the initial deposit would ignore the credit, while dividing all deposits and adjustments evenly might charge them for changes on parcel B. First reconcile each parcel by itself. Then agree how its final cost will be shared, taking into account your actual arrangement. The platform cannot infer a private cost-sharing agreement from two parcels on one account.",
+            "For quick checks, derive a balance equation in one currency: opening balance plus genuine credits and top-ups, minus settled order and service charges, should reconcile with the closing balance when you include all transactions. If it does not, check the date range and pending movements. If the account includes different currencies, reconcile each currency separately before attempting any conversion.",
+            "If a support response says the difference was already credited, ask for the transaction reference and posting date rather than asking staff to repeat the arithmetic. That reference lets you distinguish a real credit attached to the wrong private spreadsheet row from a missing movement requiring further review. Archive the answer with the statement once you have reconciled the figures, so the same credit cannot be double counted in a later order.",
+            "For a final cross-check, compare the revised parcel cost with the amount you allocated to the items inside it. If you distributed shipping before the adjustment arrived, update those allocations from the settled total. Leave the original estimate on file so you can explain why the numbers in an older budget differ."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy Help Center",
+          "url": "https://fansbuy.com/helpCenter"
+        }
+      ]
+    },
+    {
+      "slug": "calculator-bulky-parcel",
+      "title": "Using the FansBuy calculator for a bulky parcel before and after packing",
+      "description": "Build two realistic packing scenarios and compare the live routes available to your destination using consistent inputs.",
+      "sections": [
+        {
+          "heading": "Estimate the package you will actually send",
+          "paragraphs": [
+            "A desk mat in a rigid tube and the same mat folded flat may weigh nearly the same but occupy very different packages. If folding would permanently crease it, the flat scenario is useless regardless of the price it produces. Write down the packing arrangement you can genuinely accept and the length, width, height and gross weight you expect. Gross weight includes the outer packaging.",
+            "Use the official FansBuy shipping estimate for current routes. The independent Fansbuy.net calculator guide identifies destination, category, grams and centimetres as inputs to prepare. If you have only the product dimensions, mark them as approximate and allow for protection. A manufacturer’s advertised 80 cm mat length does not tell you the final tube length once protective end caps are fitted."
+          ]
+        },
+        {
+          "heading": "Compare complete route entries",
+          "paragraphs": [
+            "Enter one destination and one honest description of the contents. Run both feasible packing plans with the same assumptions for everything except the changed packaging. Write down each route that actually appears, its stated restrictions and its quoted amount. If a route disappears when the dimensions increase, eligibility is a more important result than a small difference in price between the remaining lines.",
+            "A volume calculation can help diagnose a change. A parcel measuring 80 by 15 by 15 cm takes up 18,000 cubic centimetres. An outer carton of 85 by 20 by 20 cm occupies 34,000 cubic centimetres. The length increased by just 5 cm, but the cross section increased too. Whether the difference changes the billed amount depends on the actual route’s method and minimums."
+          ]
+        },
+        {
+          "heading": "Replace assumptions after the warehouse measures",
+          "paragraphs": [
+            "When you have final packed dimensions, rerun the same comparison. Keep the date, destination, contents and result visible when comparing it with the earlier screenshot. A changed route list may reflect altered measurements or service availability. You cannot attribute the entire difference to packing if the contents or destination also changed.",
+            "If a result seems implausibly cheap, start with units: 1.8 kg is 1,800 g. Then check decimal marks, dimension units and whether the destination is genuinely your delivery address. If no route remains, ask about eligibility using the exact category and measurements. Altering the contents description to make an unavailable route appear would leave the estimate unrelated to the parcel."
+          ]
+        },
+        {
+          "heading": "Compare the longest side as well as total volume",
+          "paragraphs": [
+            "Two cartons can occupy similar volumes while presenting different transport problems. A box 80 by 10 by 10 cm and one 40 by 20 by 10 cm both occupy 8,000 cubic centimetres. The first has an 80 cm side while the second has a 40 cm side. A route with a longest-side condition could treat them differently even if its dimensional-weight calculation used only volume. Read every dimension condition that appears for the route you are considering.",
+            "This matters when arranging a long item diagonally. A seller may suggest the mat will fit diagonally inside a shorter carton, but that suggestion is meaningful only if the object can fit with end protection and without permanent bending. Ask for the actual packed outside dimensions instead of calculating from an idealised diagonal. If the warehouse cannot pack it that way, a quote based on the theoretical box does not describe an available option.",
+            "For another comparison, imagine adding several light accessories around the roll. The carton might stay exactly the same size while scale weight rises. In that situation the effect on billed freight depends on which rule was determining the quote beforehand. Keep the before-and-after weight and dimensions so you can see which quantity changed. A blanket cost-per-kilogram estimate can hide the fact that size was the limiting constraint for the original parcel."
+          ]
+        },
+        {
+          "heading": "Make a comparison you could use a week later",
+          "paragraphs": [
+            "For each eligible route, note the date of the estimate, the destination, the exact option name, weight and all three dimensions. Copy any relevant notes about delivery estimate, excluded contents, add-on charges or address coverage. If a condition is unclear, save the wording rather than abbreviating it into a confident claim. A note saying “route fast” tells you very little once prices or availability change.",
+            "Choose the same currency for the comparison and keep the scope consistent. One quote may display an optional protection cost while another leaves it for a later step. Include a service in both totals if you would buy it in both cases, and record it as optional if your choice depends on the route. Keep uncertain destination charges separate rather than inventing a fixed amount to make the columns look complete."
+          ]
+        },
+        {
+          "heading": "Diagnose an empty result",
+          "paragraphs": [
+            "If no routes appear, recheck the country, parcel units, size entries and contents one at a time. A transposed length of 800 instead of 80 cm should be easy to correct; a genuinely long rigid parcel may still be ineligible after every entry is correct. Do not lower the entered length below the measurement to make the screen return results. Ask which constraint is binding and whether a different genuinely available packing arrangement would address it.",
+            "If the shipment consists of several items and one establishes the problematic length, test the other items on their own. This can reveal a feasible split, but it does not solve how the excluded item will reach you. Price or resolve that item separately before concluding that the split is better. A successful quote for everything except the desk mat is incomplete if the mat was the reason you placed the order."
+          ]
+        },
+        {
+          "heading": "A practical pre-purchase test for a fixed spending limit",
+          "paragraphs": [
+            "Start from the total you can accept rather than an advertised per-kilogram number. Suppose the mat and China-side delivery together use 42 units of a 75-unit budget. That leaves at most 33 for all remaining costs combined. If an acceptable route already estimates 32 before any relevant extras, the plan leaves little room for an unexpectedly large outer carton. If the only eligible quote is 45, the early calculation has already answered the budget question under those assumptions.",
+            "Try the larger of your physically plausible boxes as well as the smaller one. If both fit the budget and both have routes you would use, you may be comfortable proceeding with that uncertainty. If only the smallest possible box fits, ask whether the warehouse can actually achieve it while protecting the product. A promise to yourself that the outer carton will be tiny is not an input you can verify.",
+            "When you share the result with someone splitting the order, describe it as a dated scenario. List the destination, planned contents, approximate box and whether packaging has been measured. If the friend later adds another item, price the revised parcel anew. An extra item could use spare space cheaply or could force a far larger box. The original quote contains no information that can settle which will happen.",
+            "After delivery, write down the real packed size and final cost for your own reference. This can improve future preliminary estimates for similar products, but a new seller, shape, destination or route can change the result. The reusable part is the measurement method and the habit of testing complete parcels, not a universal rate for shipping all desk mats.",
+            "If you later see another shopper’s quote for a similar product, use it to generate questions. Ask whether they kept the original tube, what the packed dimensions were and when the estimate was generated. Without the destination and actual eligible route, the apparent price difference cannot tell you whether your own quote is wrong or unusually expensive."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy shipping estimates",
+          "url": "https://fansbuy.com/estimates"
+        },
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "Fansbuy.net independent calculator guide",
+          "url": "https://fansbuy.net/shipping-calculator"
+        }
+      ]
+    },
+    {
+      "slug": "parcel-insurance-offer",
+      "title": "Reading a FansBuy parcel insurance offer before selecting cover",
+      "description": "Compare the premium, insured value and current coverage wording for the parcel that will actually travel.",
+      "sections": [
+        {
+          "heading": "Read the offer attached to this parcel",
+          "paragraphs": [
+            "FansBuy’s guide places optional insurance in the parcel-submission flow. The platform has also posted updates to destination-dependent insurance rates. Read the offer visible for your destination, route and parcel when you make the decision. A percentage copied from an old screenshot cannot tell you what the current offer covers or how its premium is calculated.",
+            "Identify the number on which the percentage is applied. Item value, insured value, shipping cost and the total amount you have spent can all be different. If the offer leaves the base unclear, ask for the premium and corresponding insured value in writing. Keep the current terms with the parcel number, especially if you intend to combine several orders."
+          ]
+        },
+        {
+          "heading": "Separate the price of cover from the size of a claim",
+          "paragraphs": [
+            "A hypothetical rate of 4 percent applied to an eligible value of 500 units produces a premium of 20 units. This example illustrates the arithmetic only. It does not demonstrate that the whole 500 is payable after any loss. Read what events qualify, whether there are limits, whether shipping charges are included, and which evidence or deadlines apply to the offer you see.",
+            "Think about a parcel containing one expensive item and three low-cost accessories. If the most valuable item is excluded from a type of cover, the total purchase amount gives a misleading picture of the benefit. Conversely, a low premium can still be a poor basis for comparison if you have not established whether your main concern is covered. Ask about the event you care about in plain language."
+          ]
+        },
+        {
+          "heading": "Keep enough evidence to explain the purchase",
+          "paragraphs": [
+            "Before paying, keep a copy of the offer, parcel contents, item receipts, chosen route and paid premium. If you decline, keep the same order and dispatch records anyway. At delivery, an intact-looking outer carton and visible damage to an inner item are separate observations. Photograph each when relevant and preserve packaging while you read the reporting procedure.",
+            "For a question after dispatch, use the channel and deadlines in your own terms rather than relying on another shopper’s experience. A concise report identifies the parcel, dates, affected items, actual condition and requested review. You can report what you observed without speculating about which carrier employee or warehouse process caused it."
+          ]
+        },
+        {
+          "heading": "Match the covered event to the reason you are considering insurance",
+          "paragraphs": [
+            "A buyer may use “protection” to describe several different concerns. A parcel might be lost after carrier acceptance, arrive with visible impact damage, contain an item damaged before dispatch, or arrive intact with a seller’s wrong variant. These are different events involving different evidence. Before buying cover, identify the one you chiefly care about and find the wording that addresses it. If you cannot locate an answer, ask the platform before paying.",
+            "For a fragile gift, for example, the important question may be damage to the item while the outside carton looks undamaged. A summary that mentions “parcel loss” tells you little about that case. Ask whether the event is covered for the specific item and route, what packaging conditions apply, and which documents would be required. Save the answer with the offer. A support response tied to a different route or to standard, non-fragile goods will not settle your case.",
+            "Read for any difference between whole-parcel and partial loss. If a package holding three products arrives with one missing, the evidence you need can differ from that for a parcel with no delivery record at all. The warehouse contents list, order-level receipts and arrival photographs serve different purposes. You need not collect unnecessary personal data to keep a usable record, but the parcel references should be consistent across the documents."
+          ]
+        },
+        {
+          "heading": "Check the value calculation before choosing an amount",
+          "paragraphs": [
+            "Suppose your three item receipts show 120, 90 and 40 units in the same currency. Their sum is 250. If a checkout field asks for an insured value, establish what values the policy allows, whether the selected amount is capped by documented cost and whether freight is included or excluded. Never inflate an amount or use a currency-converted total without checking the unit that the form requests.",
+            "If the item price was partly covered by a coupon, your paid receipt and the original list price may differ. If payment was made in another currency, keep both the original amount and the actual receipt so that a later review can establish the basis. The generic arithmetic for multiplying a percentage by a number cannot establish which number a particular policy recognises. The terms and the checkout’s interpretation decide that."
+          ]
+        },
+        {
+          "heading": "Consider the international and warehouse evidence separately",
+          "paragraphs": [
+            "A pre-shipment warehouse picture can show visible condition at a particular moment. It does not document every movement after packing. A final delivery picture can document the state in which you found the carton. It cannot by itself establish when a break occurred. Save the evidence for both ends without claiming that either alone proves the cause. If the policy requires a particular report or deadline, prioritise that procedure promptly.",
+            "If a covered event occurs, keep the application reference and record whether the platform has merely acknowledged receipt, requested more evidence, approved an amount or actually credited it. Those are separate stages. A polite acknowledgement is not a payout, and a quoted maximum is not an approved settlement. Describe only the stage confirmed by your own record when calculating what the shipment ultimately cost you."
+          ]
+        },
+        {
+          "heading": "Ask for terms in a form you can recognise later",
+          "paragraphs": [
+            "At checkout, record the title or version of the terms if one is shown and retain the dated view that applied to the parcel. A general Help Center article is useful background, but the specific offer may contain a route limitation or an eligibility condition not shown in an overview. If the two appear to disagree, get clarification before paying. Ask about the parcel reference and the particular clause rather than requesting a broad guarantee that everything is covered.",
+            "If you have declared the values of several items separately, line them up with the documents that prove the purchase amounts. A seller invoice might use an abbreviated item name and a different product language from the warehouse record. Save the source ID or purchase confirmation connecting the two. This makes it possible to show which receipt corresponds to which item without exposing unrelated purchases in an account screenshot.",
+            "If a shipment contains used goods, a gift bought at a discount or something with personal sentimental value, the purchase receipt and the cost to you of losing the item may be very different. Ask what evidence the terms recognise. Do not assume you can insure sentimental value merely by typing a higher number. If financial compensation would still leave the loss unacceptable, a different packing or delivery choice may matter more to the decision than changing the insured amount.",
+            "The point to settle before selecting a checkbox is therefore specific: which eligible item and event, up to which evidenced value, under which conditions and procedure. If any element remains unclear, write that uncertainty into your decision rather than filling the gap with an anecdote. Two shoppers can reasonably make different choices when their contents, gift deadlines or willingness to accept loss differ.",
+            "Should you change your route or remove a high-value item before dispatch, check whether the insurance selection still matches the parcel that will be sent. A saved screenshot from the earlier combination may describe another insured value or offer. Keep the record of the final transaction, including any response about the change, so you can identify which terms you actually accepted."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy Help Center",
+          "url": "https://fansbuy.com/helpCenter"
+        },
+        {
+          "title": "FansBuy official homepage",
+          "url": "https://fansbuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "tracking-domestic-or-international",
+      "title": "Which tracking number do you need when a FansBuy order seems stuck?",
+      "description": "Identify the handoff that last occurred and send a support request with the order or parcel number that belongs to it.",
+      "sections": [
+        {
+          "heading": "Separate the seller shipment from the export parcel",
+          "paragraphs": [
+            "A marketplace seller may have posted an item to the FansBuy warehouse while the international parcel has yet to be created. FansBuy’s official process puts warehouse inspection and parcel submission between those two journeys. Read the destination of the tracking event before assuming that “delivered” means delivery to your home.",
+            "Build a timeline with the seller order, China-side carrier reference if shown, warehouse record, submitted parcel and international carrier number. A single international parcel can hold several order items. A seller can also send goods in separate packages. Record quantities at each handoff so that one scanned parcel is not accidentally treated as evidence that every unit has arrived."
+          ]
+        },
+        {
+          "heading": "Work from the last observed event",
+          "paragraphs": [
+            "Suppose an order for three notebooks shows a domestic delivery scan, while only two books appear in the warehouse record. The domestic scan establishes a carrier event for a package. It cannot establish the count of its contents. Look for information about a split shipment or another tracking number and then ask support to match the delivered package to the received units.",
+            "Now suppose all three books passed inspection, you submitted an international parcel, and the current label shows no later scan. Check whether international shipping is paid, whether a balance request remains, and whether the parcel shows physical dispatch. The platform’s Track shipping action is relevant to this stage. A label alone provides less information than a dated carrier acceptance event."
+          ]
+        },
+        {
+          "heading": "Ask for the next verifiable handoff",
+          "paragraphs": [
+            "Use the appropriate reference and quote the last visible event exactly, including its date and time zone if displayed. A useful message might say, “Parcel [reference] shows the export label on Tuesday. I can see no carrier acceptance event. Could you confirm whether the carrier collected this parcel?” For an intake issue, ask which warehouse item matches the domestic tracking number.",
+            "Avoid guessing a cause from silence. Different trackers may update at different times, and an unchanged screen alone cannot distinguish a missed scan from a delayed pickup. Keep the submission receipt and event screenshots. When a new physical scan appears, update the timeline rather than continuing to ask the previous party about a handoff that has already occurred."
+          ]
+        },
+        {
+          "heading": "Follow a split seller shipment without losing the other items",
+          "paragraphs": [
+            "Suppose you buy two green notebooks, a pencil case and a ruler in one seller order. The seller ships the books together and sends the accessories later. One domestic tracking number then shows delivered. If the seller’s confirmation reveals two numbers, match each with the quantities it covers and save the last confirmed event for each. Without that link, the first delivery scan is liable to be misread as evidence that all four units reached the warehouse.",
+            "After the first intake, compare the warehouse item names, photos and quantities with the parcel you expect. If two books are visible but there is no pencil case, look for evidence on the second seller shipment before reporting a shortage. If the seller confirms everything was packed together, ask staff to reconcile that statement with the warehouse record. Both requests are reasonable in different circumstances. The existing documents determine which is more useful.",
+            "Later, if the books and accessories are combined with goods from other sellers for international shipping, attach the international parcel number to each warehouse reference selected for that shipment. You should still be able to see which domestic tracking number brought each item in. That detail can become important after delivery if one item is missing and you need to establish whether it ever entered the export parcel."
+          ]
+        },
+        {
+          "heading": "Read an event in its original context",
+          "paragraphs": [
+            "A tracking line can contain a scan time, location and description in a language you do not routinely use. Save the original text and your translation separately. A phrase translated as “delivery completed” may refer to delivery to the next operator in a route rather than final delivery to your street address. Check the named destination and nearby events. Never post tracking codes or a complete address in a public help forum when a private support channel is available.",
+            "Two sites can display times in different zones or list the most recent event at opposite ends of the page. Before concluding that a parcel travelled backward or that a later event is missing, compare the full dates and event sequence. If no time zone is shown, say so in your notes. An ordering difference in two public trackers is evidence of differing presentation, not proof that one carrier lost the parcel."
+          ]
+        },
+        {
+          "heading": "Ask different questions before and after international dispatch",
+          "paragraphs": [
+            "Before dispatch, the useful question may concern the warehouse: whether the selected goods are packed, a freight balance remains unpaid or the parcel is waiting for collection. After physical carrier acceptance, the useful reference is generally the carrier tracking number plus the platform parcel number. Quote the last recorded physical event and ask about the next available enquiry step under the route’s terms. Avoid giving a carrier your seller order number alone if it cannot identify the export shipment.",
+            "If the parcel shows final delivery and you cannot locate it, review the recipient details privately, check any delivery notes or proof available through the carrier, and contact the appropriate service promptly. Record exactly what you observed rather than guessing where it went. If the parcel is present but damaged or incomplete, keep the packaging and document the contents. That is a condition or quantity issue, even if the tracking status itself is correct."
+          ]
+        },
+        {
+          "heading": "Build a support message when there are two plausible explanations",
+          "paragraphs": [
+            "Suppose a warehouse image shows the pencil case but not the ruler, and the seller says both were sent together. The ruler might be inside the pencil case, a second unit might not have been processed, or the shipment might actually be incomplete. Rather than presenting one explanation as fact, send the seller’s stated contents, the warehouse item reference and the question that would distinguish them. “Could you confirm whether a ruler was received inside the case or recorded separately?” is actionable without accusing either party.",
+            "If a second carrier number later appears, append it to the same case and say which units are still unresolved. Opening a new enquiry without cross-references can leave two people investigating the same parcel under different assumptions. When the issue is resolved, note whether the explanation was a split seller package, a separate intake record or an actual shortage. This matters if you later need a refund or replacement for a specific unit.",
+            "During international transit, a similar approach helps when the platform and carrier display different events. Quote both rather than treating one as inherently authoritative. For example, say that the platform lists dispatch on one date and the carrier still shows label creation as its latest public event. Ask which record establishes physical handover and whether a carrier enquiry is available yet. Include the tracking number privately and avoid guessing a delivery date from the gap.",
+            "As the parcel moves, one line per physical handoff is usually enough. You do not need to save a fresh screenshot every time you refresh an unchanged page. Save the events that change a decision, such as warehouse receipt, payment confirmation, carrier acceptance, a delivery exception or final receipt. This compact history will be easier to use than dozens of repeated screenshots if support later asks which handoff you are querying.",
+            "If you share the timeline with a family member waiting for the parcel, provide the international tracking link only after you have identified it. The domestic reference can send them looking for a delivery in the wrong country."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "FansBuy beginner’s guide",
+          "url": "https://fansbuy.com/beginnerGuide"
+        },
+        {
+          "title": "FansBuy Help Center",
+          "url": "https://fansbuy.com/helpCenter"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Which marketplace links does FansBuy’s buying guide mention?",
+      "a": "The guide gives Taobao, 1688 and Weidian as examples for the link search. After opening the link, check the seller, selected option and quantity in the imported item."
+    },
+    {
+      "q": "What if FansBuy keyword search returns the wrong version?",
+      "a": "Try the original seller URL. Compare the seller and exact option with your saved listing before adding it to the cart."
+    },
+    {
+      "q": "Can I send a purchase request without automatic product import?",
+      "a": "The beginner guide describes a fill-and-buy option. Enter the source, specifications and quantity yourself, and ask about any essential detail the seller has not confirmed."
+    },
+    {
+      "q": "Does paying for an item include international delivery?",
+      "a": "FansBuy describes paying for goods and China-side delivery first. Review and pay for the international parcel after warehouse arrival."
+    },
+    {
+      "q": "Can I use FansBuy account balance at checkout?",
+      "a": "The guide describes a Use Balance option. Check the deduction and any remaining amount on the actual payment screen."
+    },
+    {
+      "q": "Where do I request additional order services?",
+      "a": "The beginner guide points to the value-added services action in My orders and to customer service for special requests. Confirm availability and price for the item."
+    },
+    {
+      "q": "Where do processed warehouse items appear?",
+      "a": "Look in the Packing Centre under your personal account. Match each record to the original order before selecting it for shipment."
+    },
+    {
+      "q": "What does FansBuy do when goods reach its warehouse?",
+      "a": "Its buying guide describes an intake check, weighing and photos. Read the evidence for the item you ordered before deciding to ship."
+    },
+    {
+      "q": "Can a QC photo show whether a jacket fits?",
+      "a": "A photo can show a size label or visible measurements. Compare matching measurements with a garment that fits you, and ask for a specific view if an essential measurement is missing."
+    },
+    {
+      "q": "How much free storage does FansBuy advertise?",
+      "a": "The official site advertises 90 days. Check your item’s dates and any account-specific notices before waiting for other orders."
+    },
+    {
+      "q": "Can I send some stored products now and wait for others?",
+      "a": "The guide lets you select products in the Packing Centre for parcel submission. Confirm which item references you have selected before authorising the parcel."
+    },
+    {
+      "q": "What is a FansBuy rehearsal package?",
+      "a": "The guide describes paid packing and measurement before you choose the logistics method and pay final shipping. Check the service charge and available packing instructions on your parcel."
+    },
+    {
+      "q": "Do I need a parcel’s weight or its dimensions for an estimate?",
+      "a": "Prepare gross weight and outside dimensions, destination and contents. Read the billing and eligibility rules of the routes shown for that parcel."
+    },
+    {
+      "q": "Does smaller packaging always reduce shipping cost?",
+      "a": "It depends on the route. A minimum, gross-weight charge or rounding rule may leave the price unchanged even when the box occupies less space."
+    },
+    {
+      "q": "What happens if FansBuy's freight estimate is too high?",
+      "a": "The official guide says the excess is credited to the account balance. Match the parcel’s final statement to the corresponding balance entry."
+    },
+    {
+      "q": "What happens if the shipping deposit is too low?",
+      "a": "FansBuy describes requesting the remaining amount before shipment. Check the parcel notice and balance history before paying again."
+    },
+    {
+      "q": "Can a shipping adjustment use my account balance automatically?",
+      "a": "The beginner guide describes an optional pre-authorised amount that can be deducted when sufficient balance is available. Check the current setting and transaction record."
+    },
+    {
+      "q": "Where do I check insurance conditions?",
+      "a": "Use the current parcel offer and the Insurance and Compensation material in FansBuy’s Help Center. Verify covered events and the insured value for your own shipment."
+    },
+    {
+      "q": "How do I track a dispatched FansBuy parcel?",
+      "a": "Use Track shipping for the international parcel. Keep its parcel reference separate from seller-to-warehouse tracking numbers."
+    },
+    {
+      "q": "What does a domestic tracking status of delivered mean?",
+      "a": "Check the destination. A China-side delivery scan can concern the FansBuy warehouse, with inspection and international shipment still to follow."
+    },
+    {
+      "q": "What should I send support about a parcel cost difference?",
+      "a": "Provide the parcel reference, currency, deposit, final amount, optional charges and the entry you cannot reconcile. Share only the parts of receipts needed to explain the issue."
+    }
+  ],
+  "keywords": [
+    "FansBuy spreadsheet variant",
+    "FansBuy fill and buy",
+    "FansBuy real time exchange rate",
+    "FansBuy QC measurement photos",
+    "FansBuy storage consolidation",
+    "FansBuy rehearsal package",
+    "FansBuy shipping deposit refund",
+    "FansBuy shipping calculator packed weight",
+    "FansBuy parcel insurance",
+    "FansBuy tracking parcel vs order"
+  ]
+}

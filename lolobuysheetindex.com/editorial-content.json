@@ -1,0 +1,818 @@
+{
+  "articles": [
+    {
+      "slug": "weidian-find-identity",
+      "title": "Two LoloBuy finds share a picture: how to identify the Weidian listing behind each",
+      "description": "Compare two similar product links by marketplace item, selected option and seller before submitting either one to LoloBuy.",
+      "sections": [
+        {
+          "heading": "Locate the source identity",
+          "paragraphs": [
+            "A cover photograph can be reused by several shops, and the same shop may offer an accessory and a complete set on different pages. If two LoloBuy finds appear identical, open the original seller link for each. Keep the marketplace name beside the item identifier. A local catalogue page number and an order number assigned after payment identify different records.",
+            "On a Weidian source URL, look for the value labelled itemID. An agent URL may carry that whole source link inside its own address, where punctuation can appear encoded. Follow the supplied link and read the actual destination rather than removing pieces of an unfamiliar URL until its numbers look alike. If you have a source reference and cannot reach the same item, mark the candidate unresolved."
+          ]
+        },
+        {
+          "heading": "Compare the selection that survives the handoff",
+          "paragraphs": [
+            "Imagine two listings using the same photo of a dining set. One seller offers two bowls, the other one bowl plus a spoon. Even a perfect match between the thumbnail and the listing says nothing about the unit you selected. Compare the selected option, number of pieces, dimensions and product price on the current listing. Keep any translated choice beside the original seller wording.",
+            "LoloBuy describes purchasing third-party goods through product links. It also has a separate manual-entry process. If a normal product selection changes into a blank form, stop and check what information is missing. A field you have to fill in yourself cannot confirm the seller’s stock or price. Use the original evidence and ask about unresolved details before placing the request."
+          ]
+        },
+        {
+          "heading": "Keep an auditable shortlist",
+          "paragraphs": [
+            "Record each candidate in one sentence: source marketplace and ID, seller if shown, intended option, number of pieces and price for that option. Add a dated screenshot only for details likely to change. If the cheaper bowl has a different diameter, record that difference before comparing its apparent value.",
+            "Once you choose, save the resulting LoloBuy order record beside the listing identity. If a warehouse picture later shows one bowl where you expected two, you can distinguish an incomplete delivery from an order that was actually for a single bowl. That distinction determines what question to ask the seller and what evidence supports it."
+          ]
+        },
+        {
+          "heading": "Read the route when the address contains two links",
+          "paragraphs": [
+            "Sometimes the address bar initially shows the independent directory, then the purchasing site, while the original Weidian link is carried as a parameter inside the destination. The three addresses answer different questions: where you discovered the item, which service you are using to order it and which seller listing that service will attempt to buy. Keep the original marketplace link separately in plain text. If the agent link stops importing a listing, the original source gives you a meaningful place to investigate.",
+            "Suppose the independent entry is labelled “Dining Set 418,” and a buying page contains a different long number. It would be unsafe to assume either number is the seller ID just because it looks plausible. Find the original link explicitly labelled as the seller URL, open it and look for the marketplace’s item identifier. Follow the purchasing button and check whether the product information shown there matches that same listing. A private catalogue sequence such as 418 can remain useful for finding the site entry again without proving anything about the seller’s item number.",
+            "Be careful when sharing a copied address from an app. Some mobile share actions supply text around a shortened link rather than the destination URL alone. Open the link in a normal browser and check which actual seller page appears before forwarding it as your specification. If you cannot resolve it, save the text you received and ask for the original product listing. Guessing the intended page from the thumbnail only reproduces the ambiguity that led you to check the source in the first place."
+          ]
+        },
+        {
+          "heading": "Identical source, different choices",
+          "paragraphs": [
+            "Two listings in a spreadsheet can legitimately lead to one Weidian product. One directory entry may highlight a set of two blue bowls and another a larger serving bowl from the same seller page. Their source identity then matches, but their intended selections do not. Compare the exact option entered on the purchasing page and the quantity the cart line requests. A shared source ID is a reason to inspect the selector more carefully, not a reason to delete one candidate automatically.",
+            "Find out what the seller calls a unit. If the offer is two bowls per set and you select quantity two, the intended order is four bowls if the seller confirms that description. If the seller charges per bowl and the “pair” appears only as a styling photograph, selecting two gives a different result. Since pictures do not settle the unit of sale, look for explicit text near the purchase controls or ask for seller confirmation. Include the number of pieces you expect to receive in any order remark where appropriate.",
+            "A change of pattern or finish may also change the price. Imagine the blue pair costs more than the white pair, and the default choice is white. A comparison made before selecting blue does not answer what your chosen bowls cost. If you see an unexpected difference between two catalogue prices, record the currently selected variant and timestamp before assuming one entry is outdated. Both entries may simply have captured different variants."
+          ]
+        },
+        {
+          "heading": "A practical identity test on arrival",
+          "paragraphs": [
+            "Once the seller order reaches the warehouse, the marketplace link is only the start of the check. Two sellers can sell the same style, and one seller can supply several units over time. Match the warehouse item with the particular LoloBuy order and its requested option. Then inspect the product evidence for that unit or group. Do not use warehouse photos of an earlier order as confirmation that the current order has arrived correctly.",
+            "In the bowls example, count the pieces you can actually see, identify the pattern and verify the relevant dimensions if size was important. If a photo shows two closed boxes, it supports the count of visible packages but may not establish that each contains the correct bowl. If opening is permitted and would affect your return options, weigh that consequence before requesting additional views. A clear picture of a model code can sometimes resolve the variation without disturbing original protection.",
+            "If a mismatch persists, send the exact seller identity, paid variant and warehouse item number together. For example, explain that the source and paid order specify a pair of 14 cm bowls in blue, while the warehouse evidence shows a package labelled as a single 18 cm bowl. Ask for the next step available on that order. The specific dimensions and quantity do more to resolve the issue than a screenshot of the attractive cover photo."
+          ]
+        },
+        {
+          "heading": "Keep substitutions traceable",
+          "paragraphs": [
+            "If the original seller no longer offers the bowls, another seller’s similar listing is a new candidate. Repeat the same checks, including dimensions, quantity, packaging and return conditions. A matching design image does not transfer the old seller’s promises. If you approve a substitute, label it as such in your notes and retain the earlier option for the record. Otherwise a perfectly correct replacement can later appear to be a warehouse error simply because you compared it with the abandoned original selection.",
+            "When you share the final find, distinguish the current seller URL from your personal order or warehouse links. The seller identity and variant are useful to another shopper. Your private purchase record, shipping address and payment details are unnecessary for discovery and should stay in your own records."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy buying guide",
+          "url": "https://www.lolobuy.com/helpCenter/1242296499766165"
+        },
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        },
+        {
+          "title": "LoloBuy manual purchase form and service conditions",
+          "url": "https://www.lolobuy.com/productDetail/7852567389?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7852567389"
+        }
+      ]
+    },
+    {
+      "slug": "manual-entry-freight-fields",
+      "title": "Filling LoloBuy’s manual order form when a seller quotes goods and delivery separately",
+      "description": "Map a seller’s offer to LoloBuy’s product, specifications, quantity and domestic-freight fields without inventing missing numbers.",
+      "sections": [
+        {
+          "heading": "Start from the written offer",
+          "paragraphs": [
+            "LoloBuy’s manual form shows separate fields for the source link, product name, specifications, notes, images, price in CNY, freight to the warehouse and quantity. Read the offer once for what is being sold, and again for how the total was calculated. A group message that says “120 shipped” is incomplete if you cannot tell the quantity, destination or currency.",
+            "Suppose a seller quotes CNY 60 per cushion cover for two, with CNY 15 domestic freight for the order. Your expected China-side subtotal is 60 times two plus 15, or CNY 135. Check that the form’s displayed total matches the offer before any separately disclosed platform charges. These figures are an illustration, not current rates."
+          ]
+        },
+        {
+          "heading": "Give the buyer enough detail to verify the offer",
+          "paragraphs": [
+            "Copy the original item link and the seller’s exact description of the selected option. For cushion covers, useful distinctions include the size, fabric colour, closure and whether an insert is included. State the number of covers separately. “Two blue covers, each 45 by 45 cm, without inserts” is clearer than “double blue size 45.”",
+            "If the seller quotes a bundle price, ask how quantity should be entered so the total is correct. Treating a two-unit bundle as a unit price and then entering two can double the request. If domestic freight is blank or “to be confirmed,” ask for it. A zero entered in a form usually looks like a definite zero to whoever processes the purchase."
+          ]
+        },
+        {
+          "heading": "Read the conditions for this kind of order",
+          "paragraphs": [
+            "The form warns that some special third-party purchases may carry extra service charges, may be unavailable and may have limited seller returns or appearance-only checks. Check the staff response and the specific seller terms before you authorise a change. The form also makes clear that international shipment is outside this purchase amount.",
+            "Save the final version if the seller changes the materials, price or available options. If the form’s terms or a missing specification make the purchase unacceptable, an accurate decision can be to drop the item. A manual form preserves an ordering route. It cannot create stock or provide a seller guarantee that the underlying offer lacks."
+          ]
+        },
+        {
+          "heading": "A seller can quote domestic delivery in more than one way",
+          "paragraphs": [
+            "In a second example, the seller offers one embroidered patch for CNY 12, a set of four for CNY 40 and domestic delivery of CNY 6 per parcel. If you want four identical patches, the intended seller offer might be one set. Entering 40 as the unit price and four as the quantity would produce a goods subtotal of 160. Entering 12 and four yields 48, which also fails to reproduce the agreed set price. Read the unit and quantity together before interpreting the total.",
+            "If the manual form and the seller’s offer use different units, ask the platform how to record the agreed bundle rather than forcing a calculated unit price into a field whose meaning is unclear. Some sellers might quote a discount for a particular assortment, such as four identical colours, while mixed colours cost more. Tell staff whether four units are interchangeable or whether you need one of each colour. Attach the quote covering the actual assortment and write the expected delivered-to-warehouse total in your notes.",
+            "Domestic delivery can also change when the seller splits a shipment or a delivery area differs from the one assumed in the quote. A quotation saying free delivery to a certain city does not prove that delivery to the actual warehouse is free. Let the purchasing platform confirm the receiving arrangement internally and avoid sharing private warehouse or account identifiers publicly. If the seller revises delivery from 6 to 10 CNY, confirm whether the rest of the offer remains the same before approving the difference."
+          ]
+        },
+        {
+          "heading": "Write a note that adds information to the form",
+          "paragraphs": [
+            "Use the product-name field to identify the item, the specifications field for the variant and the notes field for constraints or clarification. Repeating the listing title in all three uses up space without answering a buyer’s questions. For patches, a meaningful specification could give the colour, diameter, backing type and quantity. A useful note could say whether an iron-on substitute is acceptable if the ordered sew-on version is unavailable.",
+            "Order the details by consequence. If the backing must be sew-on because the fabric cannot be heated, that requirement matters more than a slight variation in thread colour. Write it explicitly rather than hoping someone will infer it from the image. Conversely, if an exact thread match is essential to repairing a uniform, provide the seller’s actual colour code if available and ask before accepting a substitution. The form cannot tell which requirements are flexible unless you explain them.",
+            "An image can help show the correct design and seller label, but it rarely proves scale. If a 5 cm and an 8 cm patch look identical, include the measurement in text and attach the source row showing its association with the option. When your source is a conversation screenshot, crop unrelated names or messages. Keep the original complete quote privately in case the trimmed evidence later proves insufficient."
+          ]
+        },
+        {
+          "heading": "Handle a revised manual quote",
+          "paragraphs": [
+            "Suppose the staff response says the requested colour is available only in a larger bundle. Work out the total goods amount, the number of useful units and the domestic delivery charge on that new basis. A better price per piece can still be poor value if it requires buying many more patches than you need. Compare the proposed order with your intended use instead of approving it because the unit price looks lower.",
+            "Check whether the newer quote has different seller conditions. A made-to-order bundle might have a different return policy from a ready-stock standard set, or the seller may be unable to confirm the exact dispatch date. Do not treat those possibilities as facts unless disclosed for the order. Ask which conditions apply and decide whether they are acceptable. The warning on LoloBuy’s manual form is a reason to verify the transaction, not proof that every manual order has the same limitations.",
+            "After approving any revision, keep a record connecting the original request, staff clarification and final amount. At warehouse intake, use the final agreed version to check the goods. If a revised bundle contains four patches and a fifth loose sample, do not assume the sample replaces an expected unit until the labels and quantities match. If the form and seller used different units, convert both to the same actual piece count for this check."
+          ]
+        },
+        {
+          "heading": "Know what remains provisional after the first payment",
+          "paragraphs": [
+            "For budgeting, separate the confirmed purchase amount from later costs for the international parcel. If you intend to add the patches to another order, they may fit in spare space, but that does not guarantee zero incremental cost. They may affect weight steps, packaging or route eligibility. If they will travel alone, the destination and minimum charges may be more important than their purchase price. Use the official shipping estimator with realistic dimensions when you have them.",
+            "Your manual purchase record is complete when another person could identify the seller offer, count the units, check the price and understand what substitutions you authorised. International freight can still be pending at that point. Keeping those two conclusions separate prevents an accurate manual request from being mistaken for an all-inclusive delivered price.",
+            "Before sending a second manual request for the same seller, check the status of the first one. If it already contains both cushion covers, another identical quantity could duplicate a purchase that was merely awaiting price confirmation."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy manual purchase form and service conditions",
+          "url": "https://www.lolobuy.com/productDetail/7852567389?url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7852567389"
+        },
+        {
+          "title": "LoloBuy buying guide",
+          "url": "https://www.lolobuy.com/helpCenter/1242296499766165"
+        }
+      ]
+    },
+    {
+      "slug": "estimate-category-combinations",
+      "title": "Why a LoloBuy shipping estimate changes when you add a different product category",
+      "description": "Use the estimator’s destination, terminal categories, grams and centimetres to distinguish a price change from a route that no longer accepts the parcel.",
+      "sections": [
+        {
+          "heading": "Describe the real contents first",
+          "paragraphs": [
+            "LoloBuy’s official estimator requests destination, weight in grams, category and dimensions in centimetres. Its category selector asks for end categories and allows up to three selections. Start with an inventory of what you actually intend to send. A bag holding a battery-powered gadget is still a parcel containing the gadget, even if the bag occupies more space.",
+            "Open the category choices until you reach the specific option the interface expects. When an item is ambiguous, describe it to support with the features that matter for transport. If a product has a battery, say whether you know how it is supplied. Never substitute an easier-looking category simply to reveal a route. You would be pricing a materially different parcel."
+          ]
+        },
+        {
+          "heading": "Change one thing between test runs",
+          "paragraphs": [
+            "Suppose you are considering a shirt alone or a shirt with a watch. Use the actual country for both queries. For a first diagnostic run, keep dimensions and weight fixed and change the category selection only. That comparison can reveal which routes depend on the contents. For the real two-item estimate, update the gross weight and outer measurements as well.",
+            "Label the first test as diagnostic. It is easy to save a low number from the unchanged-weight run and later mistake it for the combined-parcel cost. If a particular route disappears, the test shows a change in the options returned. It does not identify the reason unless the route description or support response explains the relevant restriction."
+          ]
+        },
+        {
+          "heading": "Handle more categories than the form accepts",
+          "paragraphs": [
+            "The three-selection limit is an interface constraint. It is not permission to leave a fourth relevant category out of a parcel description. Ask LoloBuy how to obtain an accurate quote or whether separate parcels are needed. If you test smaller groups, price the groups you could actually ship and include all resulting parcels in the total.",
+            "After packing, rerun the viable option with measured dimensions, the destination and the final contents. Confirm what the parcel submission screen will accept and charge. The estimator helps discover constraints while a purchase is still flexible. It cannot reserve a carrier or establish acceptance for products you did not enter."
+          ]
+        },
+        {
+          "heading": "Use a small test matrix to find the item that changes the results",
+          "paragraphs": [
+            "A useful sequence begins with the shirt alone at its realistic size and weight. Save the route names returned. Next run the watch alone using its accurate category and its own realistic package. Then price the combined parcel with both categories, combined weight and plausible outer dimensions. If a route appears for the shirt but disappears for the watch and the combined parcel, that pattern points toward the watch or its associated package details as a factor worth checking. It does not prove a universal ban on watches.",
+            "If you want to isolate the category effect more precisely, repeat a pair of diagnostic tests with identical dimensions and weight and change the category only. Keep the results clearly labelled as hypothetical. This is much like checking which switch controls a light: changing every switch at once does not reveal which one mattered. The final shipping estimate must still reflect the actual measured package. Never submit the diagnostic values as the parcel description if they are inaccurate.",
+            "A table with one row per test can prevent costly mistakes. Include the selected country, entered categories, gross grams, dimensions, number of eligible routes and the names of routes you would consider. Add a short explanation such as “comparison only; weight held fixed” or “current combined package estimate.” When you return a few days later, you will know exactly which result was intended for budgeting and which was used only to investigate the interface."
+          ]
+        },
+        {
+          "heading": "Why a broad category choice can be misleading",
+          "paragraphs": [
+            "The top-level category names on the estimator cover products with different transport characteristics. Two accessories that look similar in a catalogue might differ because one has an electronic component or magnetic fastening. Read the more specific choices and the description of the actual item. If you do not know what inside a product gives it that feature, ask before deciding its category. A seller’s broad title may omit the information the estimator needs.",
+            "Avoid treating a route name returned for one item as an approval of every item sold by that seller. If a watch and a spare loose battery are separate contents, describe them accurately and verify the relevant restrictions. The same principle applies to a toy packaged with an electronic accessory or a beauty kit with different components. The fact that one part fits a general category does not make the rest disappear.",
+            "If more than three relevant end categories remain after you fully understand the goods, contact LoloBuy with a simple list of the actual items instead of repeatedly testing omissions. Ask whether the estimator groups particular categories or whether you need a separate quote for a mixed parcel. If the answer recommends splitting it, plan genuinely separate shipments and account for each package’s outer protection, minimums and delivery costs."
+          ]
+        },
+        {
+          "heading": "Choose among the routes that remain eligible",
+          "paragraphs": [
+            "Once the route list reflects the real contents, compare more than the price. Read any stated conditions, dimensions, delivery estimates, tracking level and destination coverage. Keep the route and quotation date together. A route offered for one postcode or country today does not guarantee that the option will still appear after warehouse receipt, especially if the package dimensions or contents change.",
+            "Imagine the shirt-only quote offers several low-cost choices and the combined quote offers one more expensive choice. Sending both together may still cost less than paying two separate minimums. Conversely, the combined route might cost more than the total for separate packages. Use the complete amounts rather than the number of available routes as your decision criterion. More choice is useful, but it is not a measurement of what the shipment will cost.",
+            "For the final draft of a plan, write down the actual items and the route that matches them. Identify which measurements come from the warehouse and which are still estimated. If a pending item arrives later or changes the category set, repeat the comparison. If you decide to remove the watch from the plan, make sure you also remove its weight and revise the box dimensions where appropriate. Leaving the original figures in the calculator can make a correct category test produce a poor price estimate."
+          ]
+        },
+        {
+          "heading": "What to send support if results still look wrong",
+          "paragraphs": [
+            "Report the destination, selected end categories, measurements with units and the exact result or error. A screenshot of an empty list without the inputs gives support little to investigate. For a real warehouse item, include its item reference privately and explain whether the package is already packed. Ask whether the problem is item eligibility, dimensions, destination coverage or an incomplete selection. This direct question gives you a usable answer even if a suitable route does not currently exist.",
+            "For a final consistency check, read the contents list from the warehouse and tick off every relevant item against the estimator inputs. Include loose accessories that might otherwise be hidden inside a larger item. Then check the returned route against the actual box, not just the estimated product weight. If a later seller changes the watch or supplies it with an unexpected spare component, repeat the check. The value of keeping the earlier comparison lies in knowing exactly which assumption changed and which earlier route result can no longer be relied upon. A few minutes spent labelling that change is preferable to discovering it only after paying for an ineligible parcel."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy shipping fee estimator",
+          "url": "https://www.lolobuy.com/estimate"
+        },
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "shoe-box-removal-sequence",
+      "title": "Keep or remove the shoe box on LoloBuy? Decide before changing the packaging",
+      "description": "Weigh protection, potential returns, sentimental value and actual route savings before authorising removal of original packaging.",
+      "sections": [
+        {
+          "heading": "Decide what the box is worth to you",
+          "paragraphs": [
+            "For some buyers a retail box is disposable. For others it completes a gift, protects a delicate finish or carries the model information they need to verify the order. Before requesting removal, decide which applies to the specific pair. LoloBuy has announced packaging and shoe-box removal services. Its notice describes consequences for returns or exchanges once original packaging is removed.",
+            "Review the goods before changing them. Match the size labels and the pair against the order, check visible condition and look for accessories. If one shoe is obscured or a label is unreadable, get the missing evidence while the original packaging is still available. Save a photo of a box label that identifies a colourway or model before deciding to discard it."
+          ]
+        },
+        {
+          "heading": "Ask for the dimensions that change the decision",
+          "paragraphs": [
+            "A pair of shoes may keep nearly the same outer dimensions without its retail box if the warehouse still needs a protective carton around it. Alternatively, removing an oversized retail box may make a significant difference. Ask which dimensions describe the retail box and which describe the international parcel. Route limits and freight generally concern the latter.",
+            "Consider a hypothetical outer carton of 38 by 26 by 16 cm. Its volume is 15,808 cubic centimetres. An alternative of 35 by 23 by 15 cm occupies 12,075 cubic centimetres. That reduction in volume is about 24 percent, but it does not establish a 24 percent reduction in cost. Check the result for the actual route, including minimums and billed weight."
+          ]
+        },
+        {
+          "heading": "Give instructions for each pair",
+          "paragraphs": [
+            "If you are sending several pairs, write down exactly which original boxes must be kept. LoloBuy’s notice refers to item-specific remarks or contacting support about the box you want retained. Use the warehouse item reference for each pair. “Keep the presentable box” makes staff guess which pair is the gift.",
+            "Once the packing result is available, review the updated package information and distinguish outer protection from the original retail box. If you cannot accept the risk to a return or the possibility of minor deformation, keep the packaging until the outstanding issue is resolved. The cheapest hypothetical box is irrelevant when preserving the pair or its return options matters more."
+          ]
+        },
+        {
+          "heading": "Compare keeping, folding and discarding only where actually offered",
+          "paragraphs": [
+            "A retail box protects the pair in more than one way. It can stop other goods from rubbing against a delicate upper, preserve the shape of a shoe and carry model information the buyer wants to keep. Its value can also be very small if you already have ample protection and no use for the box. Decide which parts have practical value to you before reducing the choice to a simple yes or no. If a particular alternative, such as folding an empty box, is only an idea, ask whether the warehouse can actually provide it.",
+            "Consider a hypothetical gift pair and a pair of everyday trainers. You want to present the gift in its original box; the trainers only need to arrive undamaged. If both pairs share a parcel, it may be sensible to retain the gift box and remove the trainer box if inspection is complete and staff can pack the shoes securely. This option is easy to lose if the request says only “remove shoe boxes.” Make a short list that maps the warehouse item number to your instruction for each pair.",
+            "Now weigh the mixed plan against two alternatives: retain both original boxes, or ship the gift pair separately in its protected box. Each option changes the overall outer carton and possibly its weight or route availability. A pair without a box might still require stuffing or separation from a hard object. Record the package dimensions once the warehouse confirms them. Do not infer that removing exactly one of two boxes halves the total volume."
+          ]
+        },
+        {
+          "heading": "Preserve the seller evidence before it disappears",
+          "paragraphs": [
+            "The box label might be the clearest evidence of the size or colourway reported by the seller. Take a moment to compare the label on the box with the label on the shoes themselves. They can answer different questions. A box marked with the requested size does not confirm the shoes inside have the same label, and size labels on both shoes still do not verify fit. If fit depends on a specific measurement, ask about it before deciding to change the packaging.",
+            "If the pair arrived with spare laces, a dust bag or information card, decide whether those items belong to the product and must remain. A warehouse instruction to remove packaging should not leave it ambiguous whether accessories are to be discarded. Name the accessories and ask staff to keep them with the matching pair. Even if you do not need the box itself, a small labelled bag can help maintain the identity of accessories in a mixed parcel when the platform supports that instruction.",
+            "When there is visible damage to a box on arrival, photograph the condition before authorising any change. Damage to a retail box and damage to shoes are different observations and may matter differently depending on your purchase intent. A collector who requires pristine packaging should raise that specific issue promptly. Someone who does not care about the box can still make a careful decision about the condition and protection of the shoes."
+          ]
+        },
+        {
+          "heading": "Decide whether a smaller quote changes the outcome",
+          "paragraphs": [
+            "Take the two plausible outer packages and run them through the estimator using the same destination and contents. If both remain in the same charge band, a large reduction in volume might produce little or no visible freight saving. It may still influence which routes are available if one option meets a size limit and the other does not. Read the returned options instead of treating volume change as a direct percentage discount.",
+            "If one option is genuinely cheaper, compare the difference with the value of preserving the packaging, any service charge and the effect on return options. Imagine a saving of four currency units and a gift box you would pay eight to replace. Even without a return issue, the cost saving may not justify removal. These figures are a personal decision example. They are not a price quote for removal or a replacement value promised by the platform."
+          ]
+        },
+        {
+          "heading": "Verify the finished parcel",
+          "paragraphs": [
+            "After packing, review the warehouse response and parcel details against the two item-specific instructions. If the record is unclear about the gift box, ask before shipment rather than assuming staff interpreted a vague request correctly. Remember that removing original packaging is a physical action. Changing your mind in the cart cannot necessarily restore a box already discarded.",
+            "Keep the updated dimensions and any images showing protection. When you receive the shoes, compare the contents and accessories with the pre-shipment record. If they arrive safely and you are satisfied, your notes still help with a future purchase: they show which protection was sufficient for this particular construction and pack combination. Avoid generalising one success to every delicate shoe, every route or a future pair for which original packaging has greater value.",
+            "If you repeat the purchase for another person, ask about their preferences afresh. A box that you would readily discard may be essential to someone giving the shoes as a present. Show them the two complete shipping options and the current packaging-removal conditions before approving a change on their behalf. Recording their choice alongside the specific item reference keeps one person’s preference from accidentally becoming a permanent instruction for every pair in a shared shipment."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy announcement on packaging removal",
+          "url": "https://www.lolobuy.com/noticeDetail?id=1242816890732823"
+        },
+        {
+          "title": "Independent guide to LoloBuy packaging and routes",
+          "url": "https://lolobuyspreadsheet.se/guides/lolobuy-shipping-guide"
+        },
+        {
+          "title": "LoloBuy standard inspection service",
+          "url": "https://www.lolobuy.com/helpCenter/1242300728672386"
+        }
+      ]
+    },
+    {
+      "slug": "sealed-collectible-inspection",
+      "title": "How to assess a sealed collectible from LoloBuy warehouse photos",
+      "description": "Evaluate packaging, edition and visible damage while keeping the seal and the limits of a warehouse inspection in view.",
+      "sections": [
+        {
+          "heading": "Decide whether the seal is part of the purchase",
+          "paragraphs": [
+            "A collector buying an unopened figure may value an intact seal, the condition of the carton and the edition printed on the side. Someone buying the figure for display may care more about the contents and accessories. These priorities lead to different requests. Decide which evidence you need before authorising anyone to disturb packaging.",
+            "LoloBuy describes warehouse inspection and QC photos. Its inspection materials distinguish visible checks from the limits that apply to sealed goods. If the only evidence is the outside of the box, describe the result as an exterior check. A photograph of an unopened carton cannot establish that every internal accessory is present, that articulation works or that an item has been independently authenticated."
+          ]
+        },
+        {
+          "heading": "Read the carton as an object in its own right",
+          "paragraphs": [
+            "Start with the edition or model printed on the box, compare it with the paid option, then inspect corners, seams, seals and obvious pressure marks. A listing containing the words “limited version” is less concrete than a matching identifier on the seller page and the warehouse carton. If finish or edition is encoded differently between markets, ask for an explanation rather than guessing from a similar colour.",
+            "For a suspected corner crush, request one view showing the whole carton so you know which corner is affected and another close enough to show its shape. Soft shadow can resemble a dent. Two angles of the same area can settle the question without opening the box. Check what additional photo options and charges are available first."
+          ]
+        },
+        {
+          "heading": "Specify what may be opened",
+          "paragraphs": [
+            "A suitable message could be “Please keep the retail seal intact. Could you photograph the edition text on the underside and the top-right corner from the side? Please let me know if this requires an additional service.” If an insert must be opened to confirm an accessory, decide whether preserving the seal or checking the accessory matters more.",
+            "If appearance already falls outside what you ordered, preserve the original condition and ask about seller options before international shipping. If you accept the exterior and choose to ship, keep the pre-shipment pictures. They give you a reference if the outer carton looks different on arrival, while leaving any unobserved interior condition genuinely unresolved."
+          ]
+        },
+        {
+          "heading": "Check the edition without relying on the artwork alone",
+          "paragraphs": [
+            "Imagine that a figure is sold in a standard release and a special colour edition. Both boxes use the same large illustration on the front. The smaller edition text and a model code on the side distinguish them. Save the selected seller option, then identify which of those printed features should match. A front-facing warehouse picture may be accurate and still unable to answer the question you care about.",
+            "Ask for a close view that includes enough of the surrounding carton to show which item the label belongs to. A close-up of a number with no relation to the rest of the box can be difficult to connect with your order, especially if several similar items are processed together. If the warehouse reference appears elsewhere in the order record, keep the label photo alongside that record. Do not interpret an unrecognised code as a counterfeit claim. First establish whether the seller’s listing actually specifies a code for the version you ordered.",
+            "Look for potentially misleading packaging changes. A multilingual sticker might cover part of the original edition wording or a shipping label could cover the relevant side. If reading it would require peeling a sticker or breaking a seal, ask whether there is another visible side or a seller-supplied identifier that settles the question. Do not authorise a physical change when you intended only to request another photograph."
+          ]
+        },
+        {
+          "heading": "Distinguish handling marks from evidence of opening",
+          "paragraphs": [
+            "A retail carton can have a dented corner and intact seals, or look undamaged while a seal appears disturbed. These are separate checks. For a suspected dent, compare two angles under reasonably even light and look for a change in the carton’s geometry. For a seal, ask for a clear picture of its edges. Warehouse pictures can record visible condition without proving precisely how the mark occurred or who handled the box earlier.",
+            "If two apparently identical seals differ slightly, compare only with evidence reliable for that particular release. Comparing one online image from another production run may generate a false alarm. If the release was advertised as factory sealed and the condition remains ambiguous, ask the seller or platform what confirmation is available. A seller’s assertion, a warehouse observation and an expert authentication are distinct kinds of evidence.",
+            "A practical threshold is whether the answer would change your decision. If a light surface crease makes the item unsuitable for a collection, you can raise that clearly visible condition without needing to open the box. If the only concern is a loose internal accessory heard rattling, the exterior may offer little help. Decide whether seller terms or your own collection priorities allow any additional inspection. For an unopened collector’s item, the honest result may be that the interior remains unknown."
+          ]
+        },
+        {
+          "heading": "Plan the international parcel around the retail carton",
+          "paragraphs": [
+            "An intact collectible carton can be damaged by a heavy item sharing the same parcel. Before combining it with books or metal accessories, ask how the warehouse can prevent crushing. Describe the part you want protected: retail box corners and seals, not just the figure itself. A worker focused on protecting the contents may accept cosmetic carton wear that would make the purchase unsuitable for a collector. Specify your priorities before packing.",
+            "If you compare two quotes, consider the actual protection in each. One plan may fit a smaller carton only by removing padding around the retail box. Another may cost more but maintain an external buffer. Do not compare them solely on weight and then assume both offer the same outcome. Keep the gross weight and external packed dimensions consistent with the plan you would accept."
+          ]
+        },
+        {
+          "heading": "Prepare for receipt without disturbing the evidence",
+          "paragraphs": [
+            "Save the best pre-shipment photos of the retail carton. When the parcel arrives, record the outside condition before opening the transport carton if there is visible damage. Then document the internal protection and the retail carton before removing or discarding packaging. These observations help separate damage already visible at the warehouse from a newly visible mark, while still leaving its exact cause for the relevant parties to investigate.",
+            "If the exterior and ordered edition are correct and you want to keep the item sealed, there is no need to open it solely to complete an imaginary inspection checklist. If you choose to open it for display, do so in light of any seller or after-sales conditions applicable to your order. Keep your conclusion precise: verified outer edition code and carton condition, internal accessories unverified while sealed. That level of precision is more useful to a future buyer or support agent than saying the collectible passed every possible check.",
+            "When sharing an inspection result with a friend or another collector, be specific about the evidence you possess. You might say that the printed edition matched the paid option, both exterior seals appeared intact in the available images, and one photographed corner showed a shallow crease. If the recipient asks whether every internal accessory is present, say that the box stayed sealed and you could not assess that detail. This is helpful even for people who ultimately make different decisions: someone collecting loose figures may accept the crease, while someone displaying unopened boxes may decline the same item based on precisely the same photographs."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy standard inspection service",
+          "url": "https://www.lolobuy.com/helpCenter/1242300728672386"
+        },
+        {
+          "title": "Independent guide to LoloBuy inspection options",
+          "url": "https://lolobuyspreadsheet.se/updates/lolobuy-qc-photos-decision-guide-before-shipping"
+        },
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "1688-quantity-sampling",
+      "title": "One LoloBuy warehouse photo and a 1688 order of twelve: what has actually been checked?",
+      "description": "Distinguish the number of units received, the number inspected and the number photographed when assessing a multi-unit order.",
+      "sections": [
+        {
+          "heading": "Ask three different counting questions",
+          "paragraphs": [
+            "Twelve pouches reach the warehouse. A photo shows one apparently correct green pouch. How many pouches did the seller send? How many are green? How many have functioning zips? A clear image of one item cannot answer all three questions. Define the decision you need before asking for more inspection.",
+            "LoloBuy’s published inspection materials distinguish handling of different 1688 purchases. The independent inspection guide links to the official instructions and describes sampling or limits on inspection under certain stock-in methods. Confirm the method selected for the order. Do not assume that a photograph of a representative unit means staff checked each unit against every specification."
+          ]
+        },
+        {
+          "heading": "Separate count, assortment and condition",
+          "paragraphs": [
+            "Suppose the order is for six green pouches and six grey ones. An overhead photo showing twelve sealed sleeves might establish a package count. If the colours are hidden, that same photo cannot confirm the mix. An opened green pouch can show the visible fabric and label of one unit. It still cannot establish the contents of eleven sealed sleeves.",
+            "Write a request around the missing evidence: “Could you confirm the total units received and the split between green and grey from the visible labels? Please advise if individual inspection is available and what it costs before opening the sleeves.” This avoids commissioning detailed checks when a simple visible label count would settle the decision. It also protects packaging if the seller requires it for a return."
+          ]
+        },
+        {
+          "heading": "Decide whether fuller inspection is worthwhile",
+          "paragraphs": [
+            "For small low-cost items bought for personal use, the cost of inspecting every unit may be disproportionate. For a matched set where a missing colour makes the order unusable, colour-by-colour verification may matter more than a perfect close-up of one zip. Specify whether staff should stop and ask if the count differs or proceed with another agreed check.",
+            "Record what was verified and the actual number of units involved. “Twelve labelled sleeves, six of each colour; one green sample photographed” is useful at delivery. “QC passed” loses nearly all the information needed to explain a discrepancy. Keep original seller quantities, the warehouse response and the final parcel inventory together."
+          ]
+        },
+        {
+          "heading": "Decide what one inspected unit can establish",
+          "paragraphs": [
+            "Suppose the twelve pouches arrive grouped in two cartons. The seller says each carton holds six items of one colour. A picture of one carton label might show six green units and a picture of the other six grey units, but neither proves that the cartons actually contain those quantities. If the warehouse counted the individual sleeves, that adds another layer of evidence. Ask which observation supports the reported count instead of treating a label, a count and an opened sample as equivalent.",
+            "If one opened pouch has a working zip and a clean seam, you have direct evidence about that pouch. Other units might be identical, but whether you can accept the uncertainty depends on the purpose of the order. A batch intended for twelve separate gifts offers little flexibility if even one unit is missing or a colour is wrong. If you ordered an extra or two for your own use, a representative condition check may be acceptable.",
+            "There is no universal sample count that turns a batch into a guarantee. A sample drawn entirely from the top of one carton may never reveal a problem restricted to the second carton, a particular size or a later production batch. If the platform offers a suitable inspection service, explain the grouping you care about. For a two-colour order, one observation from each visibly distinct group is more informative about colour correctness than two photographs of the first green pouch."
+          ]
+        },
+        {
+          "heading": "Turn a vague quantity check into a short instruction",
+          "paragraphs": [
+            "Begin with a quantity statement the recipient can check: twelve total, six green, six grey. Then specify the minimum evidence that would answer your question. If transparent packaging makes colours visible, an overall photo with groups separated may be enough for the assortment. If opaque sleeves carry seller codes, visible labels plus an actual count might be the least disruptive option. If neither works, ask about the cost and implications of opening packaging before authorising it.",
+            "Give separate instructions for damaged or uncertain units. “If the total differs or a label is unreadable, please tell me which group is affected before packing” allows a warehouse employee to report a precise exception. It does not ask staff to certify that every zip works when no functional inspection was purchased. Clearly distinguish what staff agreed to check from what you, as the buyer, infer from the result.",
+            "You can also constrain the action. If returned goods must stay in a seller-resalable condition, tell the warehouse to ask before opening sealed retail packaging. If ordinary transparent transit sleeves may be opened and resealed, confirm that the seller agrees it will not affect eligibility if this matters. A buyer cannot safely assume every 1688 supplier handles returns in the same way."
+          ]
+        },
+        {
+          "heading": "Investigate a batch discrepancy systematically",
+          "paragraphs": [
+            "Imagine the warehouse reports twelve sleeves but eight green and four grey. Verify the paid order and seller invoice first. Did quantity refer to twelve mixed items or to six of each? If the purchase clearly required six of each, keep the grouped photo, the invoice and the warehouse item reference. Ask whether the seller can correct the assortment and what domestic shipping or repacking charges would follow.",
+            "If the two unexpected labels are in a language you cannot read confidently, do not describe their colour as certain solely from a translation application. Ask for the product code or a clear visible sample where permitted. A supplier may use code names for colours that differ from common translations. The correct next action might be a seller explanation of label codes rather than shipping the items back immediately.",
+            "If the warehouse actually received only ten pieces, check whether the seller used two domestic parcels and whether both have arrived. A count of ten can be correct for the first parcel without settling whether the whole order is short. Conversely, two delivery scans do not guarantee twelve pieces in total. Connect each scan to the goods received, then report the remaining missing quantity if the records still fail to reconcile."
+          ]
+        },
+        {
+          "heading": "Preserve grouping when you later split the shipment",
+          "paragraphs": [
+            "If you plan to send some pouches now and the rest later, assign the accepted units to the correct international parcel. A seller quantity discrepancy can become difficult to trace after units are mixed with a second purchase of the same style. Keep the original order and warehouse references attached to the group, particularly if the second purchase has different colours or seller terms.",
+            "At final delivery, record what you find using the same distinctions as the warehouse check. Count pieces, match colours and inspect condition as separate activities. If eleven units are fine and one zip fails, your evidence concerns a particular unit and problem. If four are the wrong colour, the earlier assortment record becomes relevant. The initial sample never certified every unit, but a clear record of its scope still helps you investigate what went wrong.",
+            "For a repeat order, keep the seller’s unit definitions and the inspection method that actually worked. If the original order was grouped by colour and the next is grouped by size, adapt the count accordingly. Reusing a checklist for six green and six grey units would be a poor way to verify four small, four medium and four large items across three separately labelled seller packs."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy standard inspection service",
+          "url": "https://www.lolobuy.com/helpCenter/1242300728672386"
+        },
+        {
+          "title": "Independent guide to LoloBuy inspection options",
+          "url": "https://lolobuyspreadsheet.se/updates/lolobuy-qc-photos-decision-guide-before-shipping"
+        }
+      ]
+    },
+    {
+      "slug": "storage-dates-multiple-sellers",
+      "title": "Planning a multi-seller LoloBuy order around warehouse dates and open returns",
+      "description": "Decide which stored goods can wait for consolidation and which need a seller decision before the next parcel.",
+      "sections": [
+        {
+          "heading": "Start with the oldest received item",
+          "paragraphs": [
+            "LoloBuy advertises 180 days of free storage and lets users combine selected stored goods from different sellers. That is useful when orders arrive at different times. It does not answer how long a seller will accept a return or how quickly a later seller will dispatch. Keep the warehouse dates and any applicable return dates in separate fields.",
+            "Suppose a coat arrives first, a scarf arrives a week later, and a small bag remains with its seller. The coat’s warehouse photos show a different lining from the one described. Before deciding whether to wait for the bag, resolve the lining question. Keeping a coat for months at no storage charge is poor value if the relevant seller action can expire much earlier."
+          ]
+        },
+        {
+          "heading": "Give each item a decision date",
+          "paragraphs": [
+            "For the coat, record the discrepancy, the date of warehouse intake, the seller’s current terms and the action available in the order. For the scarf, note that it is ready and whether you have any delivery deadline. For the unshipped bag, record the seller’s latest confirmed event rather than entering a guessed arrival date. This makes the uncertainty visible.",
+            "Check the storage clock in your account, especially for goods processed on different dates. If an expiry date is unclear, ask about the specific item reference. Do not infer that placing a new order resets an earlier item’s clock or that the advertised free period gives permission to leave an item unreviewed indefinitely."
+          ]
+        },
+        {
+          "heading": "Price the choice to wait",
+          "paragraphs": [
+            "Compare the parcel you can send today with the combination you might send after the bag arrives. Include a second shipment if the bag will travel separately; leave it out only if your actual alternative is to cancel or forgo the bag where that is possible. If you have only provisional dimensions, label the combined price as provisional.",
+            "Revisit the decision when an event changes: the seller dispatches, a product is found defective, a route closes, or the oldest item approaches its deadline. A useful plan does not require knowing the missing seller’s arrival date. It requires knowing what you will send if the bag still has not arrived when waiting no longer suits your priorities."
+          ]
+        },
+        {
+          "heading": "Build a timeline around decisions you can still change",
+          "paragraphs": [
+            "Start with a small calendar for the coat, scarf and bag. Add the order date, shown warehouse receipt date, any seller action deadline and your own latest acceptable shipment date. Leave a blank when you have no verified date. A blank makes the uncertainty easy to spot. Filling it with an optimistic guess creates a false sense that the order is under control, particularly if you later copy the calendar into a parcel plan.",
+            "Sort the received items by the earliest date that requires an action, rather than by the date you purchased them. A newly received coat with a visible mismatch can require attention sooner than an older scarf whose inspection is complete. If the seller allows a specific response window, note where that information came from and whether the current order gives a deadline or only general wording. When in doubt, ask promptly and record the reply.",
+            "For the unreceived bag, keep the seller’s dispatch status separate from any courier estimate. A new tracking label is progress, but a physical acceptance scan gives stronger evidence that the seller has handed something over. A delivery scan at the destination warehouse is another step, while a matching stored item and reviewed photos are what let you decide whether it is suitable for international shipment. Avoid setting a firm plan that assumes all those steps happen simultaneously."
+          ]
+        },
+        {
+          "heading": "Make a fair cost comparison when one item is unresolved",
+          "paragraphs": [
+            "A common mistake is to price the two ready items today and compare their quote with a future combined price that omits the unresolved item’s packaging. If the bag is structured, a rigid retail box could determine the combined parcel dimensions. If it is soft and can be folded without damage, the effect might be smaller. Ask what packaging could be acceptable and calculate a low and high scenario. Be explicit that you do not yet know which one applies.",
+            "Suppose the scarf alone could fit in a small envelope-style pack, the coat already needs a box, and the bag may push the box into another route or size band. The incremental effect of adding the scarf to the coat is different from the incremental effect of adding the bag. Price the combinations that match your real choices. Sending all three, sending coat and scarf now plus bag later, and waiting only for a seller answer about the coat are distinct plans.",
+            "If the coat is returned and you choose a replacement, include the timing and route uncertainty of the replacement in a new comparison. Do not continue using the old three-item quote after the contents change. If you give up the purchase entirely, keep the seller refund and the shipping plan in separate records. A reduction in the amount spent on goods is not a saving produced by warehouse consolidation."
+          ]
+        },
+        {
+          "heading": "Use the storage period well without postponing every decision",
+          "paragraphs": [
+            "Long advertised free storage can be genuinely useful. A buyer might need time for independent orders to arrive, to compare two options from different sellers, or to confirm the destination address after a move. Use the period to collect the information that will improve the shipment. If every item is accepted and the final route is already affordable, waiting for an undefined future bargain may add little value.",
+            "Where a delivery date matters, work backward from the latest date you can accept the goods, leaving room for the uncertainty stated in the route estimate. A warehouse deadline several months away is irrelevant if you will move abroad next week and cannot receive the parcel at the old address. Check recipient details again at submission. The right shipping time is determined by the combination of warehouse conditions and your actual ability to receive the goods.",
+            "If an old item approaches its displayed deadline, ask the platform what options and costs apply before that deadline. Do not extrapolate from another buyer’s extension or assume a later account top-up resets the timer. Provide the specific warehouse item, its shown date and the action you are considering. If an extension is offered, save the new date and any fee and use them in your comparison."
+          ]
+        },
+        {
+          "heading": "Close each record once the item moves on",
+          "paragraphs": [
+            "When the scarf joins an international parcel, attach the new parcel reference to its row and mark the warehouse decision complete. When the coat goes back to the seller, replace “stored” with the confirmed return status and keep tracking any outstanding refund. Leave the bag pending until it reaches a stage you can actually verify. These small changes prevent a returned item from accidentally appearing in a future packing plan.",
+            "A month later, the records should answer three simple questions: which items are still in storage, which unresolved deadlines remain, and which money or delivery events are still pending. If those answers are obvious, the advertised free period has served its purpose. You have gained flexibility without confusing separate sellers, parcel costs or return decisions.",
+            "If your plan is shared with a friend, send them the item-specific status rather than an account screenshot containing unrelated personal details. Explain which purchase is ready, which is awaiting a seller response, and which date will trigger a shipping decision. This lets them approve a split or a delay without mistakenly believing all three goods are already stored."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        },
+        {
+          "title": "LoloBuy return procedure",
+          "url": "https://www.lolobuy.com/helpCenter/1242296772133891"
+        }
+      ]
+    },
+    {
+      "slug": "irregular-parcel-measurement",
+      "title": "How to measure an awkward LoloBuy parcel for the shipping calculator",
+      "description": "Use the packed outside dimensions and gross weight to compare shipping scenarios for a light product with an awkward shape.",
+      "sections": [
+        {
+          "heading": "Measure the smallest box you can actually use",
+          "paragraphs": [
+            "A rolled poster and a small art book illustrate the problem. The poster is light but sets a minimum parcel length. The book may need a corner protector that increases width. Adding the product dimensions together in three directions creates a fictional carton. Instead, sketch how the objects can be packed with adequate protection and measure the outside dimensions of that arrangement.",
+            "LoloBuy’s estimator asks for grams and centimetres, the destination and the goods category. A measuring tape wrapped around a tube gives its circumference, not the width of the outer carton. If the final package is cylindrical or has an irregular shape, ask how the available carrier wants it measured. Do not assume every route will accept the shape at all."
+          ]
+        },
+        {
+          "heading": "Compare physically possible arrangements",
+          "paragraphs": [
+            "For illustration, a 65 by 12 by 12 cm carton takes up 9,360 cubic centimetres. A rectangular carton measuring 65 by 25 by 12 cm takes up 19,500 cubic centimetres. Adding a narrow book might double the outer volume even if the total weight barely changes. This is geometry, not a LoloBuy billing formula. Enter the appropriate dimensions into the official estimate to see the route-specific result.",
+            "Now price two parcels if shipping separately is genuinely an option. Use a protected package size and gross weight for each, and sum both estimates. A lightweight tube might have few eligible routes. A heavier book might be compact enough to travel on a different route. The better choice depends on these actual results and the protection you need."
+          ]
+        },
+        {
+          "heading": "Revisit the estimate when packing changes",
+          "paragraphs": [
+            "If a poster cannot be folded, include “keep rolled” in any request about compact packing. If the book is a gift, specify whether its original sleeve and corners must remain intact. Ask what outside size the warehouse expects under those instructions, then replace provisional measurements with actuals when available.",
+            "Compare the final result with the version of the quote that used the same contents and packaging. If the price rose, check whether the cause was the outside size, total weight, change in route or a separate service. The difference may have more than one cause. Keep the dated values so a support question can identify exactly which comparison needs explaining."
+          ]
+        },
+        {
+          "heading": "Check whether the product length determines the carton length",
+          "paragraphs": [
+            "A poster advertised as 60 cm wide may fit a tube longer than 60 cm once the roll, protective wrapping and end caps are included. A 60 cm item measurement cannot automatically be entered as the packed length. Ask whether the seller’s figure describes the printed area, the sheet itself, the retail tube or the final shipping package. Even a trustworthy figure can be the wrong input if it describes a different object.",
+            "For a rolled product, establish which dimension actually runs along the tube. A seller may describe a poster as 60 by 90 cm but roll it so that the tube length follows the shorter edge, or supply it in a fixed retail tube that determines the length regardless of your preferred arrangement. If the artwork must remain in its original packaging, tell the warehouse. Changing the roll direction may alter the risk of creasing or simply be unavailable.",
+            "Two packages with equal volume can also have different maximum sides. A carton 80 by 10 by 10 cm occupies 8,000 cubic centimetres, as does one measuring 40 by 20 by 10 cm. A long-side restriction can distinguish them even if a volume-based calculation gives equal dimensional weights. Read the conditions of the eligible route and keep the three individual measurements in your notes rather than recording only the multiplication result."
+          ]
+        },
+        {
+          "heading": "Select units carefully on a mobile calculator",
+          "paragraphs": [
+            "LoloBuy’s estimator labels the weight input in grams. If a warehouse record says 1.25 kg, enter 1,250 g. If your measuring tool is marked in millimetres, divide by ten to obtain centimetres. For example, 650 mm equals 65 cm. A value of 650 entered into a centimetre field describes a 6.5 m object and can hide eligible routes or produce misleading results.",
+            "For fractional measurements, note the figure you actually observed and follow the route or interface instructions on rounding. Do not round a side downward to sneak under a limit. A parcel very close to a stated maximum merits clarification from the warehouse or carrier before you commit to a plan. If a large end cap or irregular protrusion makes the true maximum unclear, measure the maximum outside span and ask what measurement the carrier will use.",
+            "Enter the final goods categories as accurately as the measurements. A box of artwork and a box with dense electronic accessories can have the same dimensions and gross weight but different eligible routes. LoloBuy’s form makes category a separate input for that reason. When the parcel contains the art book as well, check how the form expects the contents to be selected and whether all components are acceptable for the route you prefer."
+          ]
+        },
+        {
+          "heading": "Compare the cost of protection with the cost of damage",
+          "paragraphs": [
+            "A rigid tube or reinforced carton may increase weight and dimensions. That does not automatically make it a poor choice. If the poster is difficult to replace or you need the gift to arrive undamaged for a particular date, a modestly larger parcel may be preferable. Describe the physical outcome you need, such as keeping the poster rolled and preventing the book corners from pressing against it. The warehouse can then tell you which packing arrangements are feasible.",
+            "If two packing proposals are available, compare them on the same basis. Note outer measurements, gross weight, packaging cost, contents and actual route. Plan A might give the lower freight result but require a separate paid packing service. Plan B might use an existing retail tube and a slightly larger ordinary carton. Count everything you would genuinely choose. Do not count a hypothetical discount unless the actual parcel qualifies for it.",
+            "If the combined package still exceeds your budget, consider whether the book can travel in a later parcel that is already planned. Calculate the extra cost that the book would add to that later parcel as well as the poster’s standalone cost. Putting the book “in the next shipment” does not make it free. It changes which parcel pays for the weight and space. If there is no actual future shipment, price a separate parcel rather than assuming one will appear."
+          ]
+        },
+        {
+          "heading": "Compare the final invoice with your trial",
+          "paragraphs": [
+            "Once the warehouse supplies packed measurements, rerun the calculator and keep a screenshot of the inputs with the result. If the final amount differs, compare the exact dimensions, gross grams, route, destination and any optional charges. A higher cost can be entirely consistent with a different carton after reinforcement. If every visible input matches, ask which tariff condition or fee accounts for the difference.",
+            "Save the final real-world measurements privately for a future poster purchase. They can provide a better starting range than item-only dimensions, especially when the same seller uses a stable retail tube. Recheck every new parcel anyway. A thicker art book, another protective cap or a different destination can change the calculation while the poster itself stays the same.",
+            "If the seller can provide a photograph of its packed retail tube beside a ruler before purchase, use that to refine the starting estimate and label it as seller packaging. The international outer carton may still differ. Keeping the two measurements distinct makes a later difference understandable without assuming that either the seller or the warehouse measured incorrectly."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy shipping fee estimator",
+          "url": "https://www.lolobuy.com/estimate"
+        },
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "wrong-variant-seller-return",
+      "title": "A different variant reached LoloBuy: documenting a seller return before parcel submission",
+      "description": "Build a short evidence record that connects the seller’s option, the paid order and the warehouse item.",
+      "sections": [
+        {
+          "heading": "Establish what you ordered",
+          "paragraphs": [
+            "A listing thumbnail shows a navy-and-white backpack. The selected variant is the navy body with a white front pocket. At the warehouse, the picture appears to show an all-navy backpack. Start with the variant confirmation on the paid order, not the thumbnail alone. A seller may use the same photo across several options, and translated names may differ from the labels used by the warehouse.",
+            "Save the original source option, the paid order and the current warehouse image. Note the relevant item number and date. If the colour difference could simply be lighting, look for a variant code, distinctive panel or other feature that distinguishes the two. If an entire panel is hidden in the image, request the missing angle before concluding the seller shipped the wrong variant."
+          ]
+        },
+        {
+          "heading": "Preserve the condition while checking eligibility",
+          "paragraphs": [
+            "Read the current return action and any deadline for this item as soon as you discover the discrepancy. LoloBuy has a dedicated return procedure, while special manual orders can have seller-dependent restrictions. Promptly ask about available steps if the platform status and seller terms leave you uncertain. Do not assume free storage extends the time for a return.",
+            "Keep tags, packaging and included accessories intact. Postpone changes such as removing original packaging, combining the item into an international parcel or asking for alterations while a return remains under consideration. A service intended to reduce shipping size can compromise a seller return if you later establish a mismatch."
+          ]
+        },
+        {
+          "heading": "Request a specific outcome",
+          "paragraphs": [
+            "A focused request might say “The paid option shows navy with a white front pocket. The warehouse front photo shows a navy pocket and the warehouse label reads [code]. Could you check whether the seller can exchange it for [correct code], and confirm any freight or service charge before proceeding?” Attach the two clearest images. Avoid burying the key detail in a long gallery.",
+            "If the seller offers an exchange, ask whether the replacement will be checked again and whether another deadline applies. If a return is accepted, follow the account record through dispatch back to the seller and any eventual credit. Acceptance of a request, physical return and a posted refund are different events. Save the reference for each."
+          ]
+        },
+        {
+          "heading": "Decide what the evidence shows before choosing a remedy",
+          "paragraphs": [
+            "There are several plausible situations in the backpack example. The seller may have dispatched the wrong variant. The warehouse may have photographed the correct one under lighting that obscures the contrast. Or your paid order may show the all-navy variant despite the catalogue picture that led you to the listing. Each calls for a different next question. Start with the structured paid option and seller wording, then compare the evidence for the actual item. This avoids asking for an exchange that simply repeats the selection you already made.",
+            "If the order is wrong because the selection on the shopping page reset to a default, explain that accurately when asking whether a change is possible. If the seller supplied a clearly different model code, point to that mismatch. You need not decide who is at fault before asking staff to clarify the order. Describe what was requested, what arrived, and what evidence still needs confirmation. That precision often reduces the number of messages required to identify the problem.",
+            "Distinguish a wrong variant from a disagreement about a product description. If the paid order says “navy with white pocket” and the pocket is plainly navy, the variant check is straightforward. If the order says only “navy” while the listing photograph shows a light-coloured insert, the question is what was included in that seller option. Save the relevant source text and ask for clarification instead of treating a photo of optional styling as an unconditional promise."
+          ]
+        },
+        {
+          "heading": "Compare exchange, return and keeping the item",
+          "paragraphs": [
+            "An exchange is useful only if the correct variant still exists, the replacement can arrive in time, and any additional domestic freight or service charge is acceptable. Ask whether a replacement would keep the same order reference or be processed as a new transaction. Track the replacement through warehouse receipt and check its variant again before assuming the first issue is resolved. A seller’s promise to send the correct model is a step forward, not evidence of what has arrived.",
+            "A return may make more sense when the desired version is unavailable or the timing no longer works. Ask which amount is eligible for refund, who pays any return freight and what condition the seller requires. The advertised item price and the total initially paid can differ because domestic freight or services were included. Do not assume every original payment component will be refunded. Use the current order terms and the platform’s confirmed response for the case.",
+            "Keeping the item can also be reasonable if the difference is minor and you still value the product. If the seller offers a partial adjustment, verify the exact amount, currency and where it would be credited. Consider whether accepting it would settle the issue and whether you are comfortable shipping the received variant internationally. Take the decision with the actual discrepancy in view, not under pressure from a presumed parcel deadline that the account has not confirmed."
+          ]
+        },
+        {
+          "heading": "Keep a sequence of events for the return",
+          "paragraphs": [
+            "Record when the item was stored, when you first reported the mismatch, what the seller or platform requested and which action you took. If the procedure sets a deadline, use its stated starting event and time zone if shown. An international buyer can easily confuse the local time of a support message with the date the warehouse uses. Where a boundary is close, contact support promptly and ask for the deadline for that specific item rather than relying on an unofficial generalisation.",
+            "If a return is approved, retain the approval and any China-side return tracking. A seller may need to receive and inspect the returned goods before a credit is posted. Follow the actual record instead of assuming approval, completed shipment and final refund happen at once. If the credit arrives, compare its amount with the agreed remedy and keep track of whether it is account balance or an external payment movement.",
+            "If several similar backpacks were purchased, use the same item reference throughout. It is possible to compare the right evidence yet apply the return action to the wrong warehouse unit. Before confirming any action, read the source ID, colour option, size and warehouse record one more time. Mark the disputed unit as unavailable for international consolidation in your own plan until the case reaches a clear decision."
+          ]
+        },
+        {
+          "heading": "Receive the replacement as a new inspection decision",
+          "paragraphs": [
+            "When a replacement reaches the warehouse, use the saved original specification and the seller’s correction confirmation. A second photo of a navy backpack taken from behind cannot settle whether the front pocket is white. Ask for the angle that distinguishes the two models. If the replacement now matches and its visible condition is acceptable, update the warehouse row and parcel plan with its new reference if one exists.",
+            "When reviewing your final costs, keep the original purchase, any return freight, refund or partial credit, and any replacement charge as separate entries. This produces an accurate record of what the resolution cost you and lets you explain it if a later transaction appears under a different reference. It also prevents a correct refund from being accidentally subtracted twice from the delivered price.",
+            "Keep that cost record with the final item reference if you later combine the replacement with goods from another seller."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy return procedure",
+          "url": "https://www.lolobuy.com/helpCenter/1242296772133891"
+        },
+        {
+          "title": "LoloBuy standard inspection service",
+          "url": "https://www.lolobuy.com/helpCenter/1242300728672386"
+        },
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        }
+      ]
+    },
+    {
+      "slug": "mixed-fragile-parcel-decision",
+      "title": "Combining LoloBuy warehouse items when one item can crush another",
+      "description": "Compare a combined parcel with separate shipments using a realistic packing arrangement and the value of each item’s protection.",
+      "sections": [
+        {
+          "heading": "Start with a compatibility check",
+          "paragraphs": [
+            "Imagine a ceramic cup, a thick book and a folded tea towel from three sellers. LoloBuy allows selected stored goods to travel together. Choosing all three at once can reduce repeated packaging, but it also puts a hard moving object beside a breakable one. Before comparing prices, establish which arrangements can protect the cup and preserve the book’s corners.",
+            "A tea towel may soften contact but is not a substitute for reliable immobilisation or a suitable inner pack. Ask what protection the warehouse can offer, how it would separate the goods, and what that adds to weight and dimensions. If an item arrived with protective moulding, do not request its removal until you understand what would replace it."
+          ]
+        },
+        {
+          "heading": "Compare three complete parcel plans",
+          "paragraphs": [
+            "Plan one sends everything in a single protected box. Plan two sends the cup separately and packs the book with the towel. Plan three, if appropriate, holds the towel for another order and sends the cup and book separately. For each plan, note every parcel, its realistic packed measurements, destination, eligible routes and optional service charges. Add the cost of all parcels you still intend to send.",
+            "If the combined estimate is lower by a small amount, ask what you give up to achieve it. It may depend on removing the inner carton that you want retained or using a route that cannot accept the contents. If the split estimate is higher, check whether better protection, different tracking or different timing is worth that amount to you."
+          ]
+        },
+        {
+          "heading": "Confirm the selected warehouse references",
+          "paragraphs": [
+            "Before submission, cross-check the selected item numbers and the packing request. “Keep the moulded inner packaging on cup [reference]; please keep it separate from book [reference]” is more useful than “pack carefully.” Ask for confirmation if your decision depends on a particular service. Only the warehouse can confirm what it can provide for the actual items.",
+            "When the final parcel details become available, compare them with the plan you approved. A new carton can change the route choices. Keep pre-shipment pictures of the goods and their visible condition. If an item arrives damaged, photograph the outside, inner protection and affected item before discarding the packaging and consult the current reporting procedure."
+          ]
+        },
+        {
+          "heading": "Ask what the warehouse can physically achieve",
+          "paragraphs": [
+            "The seller’s packaging and the warehouse’s outer packing do different jobs. A fitted insert may protect the cup inside its retail box, while an international carton must also stop that box from moving or being crushed by a heavy book. Before authorising removal of any packaging, identify which piece of protection is being discussed. A suggestion to discard a thin decorative sleeve differs from removing the only fitted insert around the handle.",
+            "Describe the failure you want to prevent. A heavy book sliding against a handle, for example, concentrates force on a vulnerable feature. A rigid divider or separate protected package might address it if the warehouse offers a suitable service. Simply surrounding both loose items with soft materials may leave room for movement. Ask for the warehouse’s actual proposal and any added cost rather than prescribing an unverified packing arrangement that may not be available.",
+            "A useful question is “Can the cup remain in its fitted inner box, with a barrier keeping the book off the box, and what would the outside dimensions and gross weight be?” If the answer is that a larger carton is needed, enter that carton into your comparison. If staff cannot confirm sufficient separation and the cup has real value to you, sending it independently is a concrete alternative to compare."
+          ]
+        },
+        {
+          "heading": "Put both the separate and combined prices on one page",
+          "paragraphs": [
+            "Suppose a combined package would cost 36 hypothetical units in freight plus 4 for added protection. Two separate packages might cost 20 and 17 units, plus 3 for the cup’s protection. Both alternatives total 40. In that case the headline freight figure makes the combined parcel look cheaper even though the complete cost is equal. The sensible decision depends on protection, timing and route conditions. These amounts are examples chosen to illustrate comparison, not LoloBuy quotes.",
+            "If the parcel containing the book can travel on a cheaper route than the fragile parcel, verify that each quoted route accepts its actual contents. A single combined parcel may lose the cheaper route if the fragile item changes eligibility. Conversely, paying two route minimums can make separation costly. Which effect dominates depends on the actual measurements and returned routes. There is no reliable answer based solely on the fact that the items were bought from different sellers.",
+            "Check how you divided the packaging cost. If the book already has appropriate protection and that service is included in the 17-unit price, do not add it again. If a quote for the cup assumes its original box has been removed, it is not comparable with a combined quote that keeps the box. Write down what remains around each item in each scenario so the prices reflect equivalent or consciously different protection."
+          ]
+        },
+        {
+          "heading": "Compare deadlines and delivery evidence",
+          "paragraphs": [
+            "The book and cup may be intended for different dates. Combining them makes the slower or unresolved item a dependency for both. If the cup is still waiting for a replacement due to a seller defect, consider shipping the ready book and towel while that issue is settled. If they are a single gift and you need them together, combining or deliberately coordinating two parcels may be worth more effort.",
+            "Delivery evidence can also differ. One parcel means one set of carrier events for several warehouse orders. Two parcels mean two separate journeys. Make a simple contents list for each, including the warehouse references and visible condition before packing. A delivery scan for the book does not prove the cup arrived if they were sent separately. If combined, a delivery scan confirms receipt of a parcel rather than the condition of each item inside.",
+            "If you choose an optional parcel service or protection offer, read the current terms for the exact package and goods. Do not assume a general service covers fragile contents or that a package described as reinforced has insurance. Ask specifically about the cup and the type of damage you are concerned about. Keep the protection terms and physical packing instructions distinct; they address different parts of the decision."
+          ]
+        },
+        {
+          "heading": "Review the first photos at delivery",
+          "paragraphs": [
+            "Where the outer box is visibly crushed or punctured, document the outside before removing the inner packaging. When opening it, record the arrangement of the book, towel, fitted cup box and any divider. This makes it possible to describe which layer was damaged and whether the goods were still secured. Keep all relevant material while you check the current after-sales procedure.",
+            "If the cup is intact but its retail box is dented, the significance depends on what you purchased and told the warehouse to preserve. If the cup is cracked despite an undamaged outer box, the pre-shipment condition and internal protection become especially useful evidence. Report observations in their sequence rather than assigning a cause you did not witness. A careful before-and-after record is more persuasive and more accurate than a general statement that the whole parcel was damaged.",
+            "After a successful delivery, note which packing arrangement was actually used and whether it met your priorities. That experience can inform another ceramic order, but a different cup shape, thinner handle, heavier companion item or changed route can make a previous packing decision inappropriate. Revisit the physical compatibility each time you build a new parcel."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "LoloBuy official homepage",
+          "url": "https://www.lolobuy.com/"
+        },
+        {
+          "title": "LoloBuy shipping fee estimator",
+          "url": "https://www.lolobuy.com/estimate"
+        },
+        {
+          "title": "Independent guide to LoloBuy packaging and routes",
+          "url": "https://lolobuyspreadsheet.se/guides/lolobuy-shipping-guide"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What number should I save from a Weidian find?",
+      "a": "Keep the original Weidian itemID and seller URL beside the selected option. Save the later LoloBuy order and warehouse references separately."
+    },
+    {
+      "q": "Can identical photos identify one seller listing?",
+      "a": "No. Compare the marketplace ID, seller, selected option and quantity on the current product page before treating two finds as equivalent."
+    },
+    {
+      "q": "What does LoloBuy’s manual purchase form ask for?",
+      "a": "It lists the product link, name, specifications, notes, product pictures, CNY item price, freight to the warehouse and quantity."
+    },
+    {
+      "q": "Does the manual purchase total include overseas freight?",
+      "a": "The form labels the amount as excluding international shipping. It has a separate field for delivery to the warehouse."
+    },
+    {
+      "q": "How should I enter a seller’s bundle price?",
+      "a": "Confirm whether the quoted amount is per piece or per bundle, and check the quantity and displayed subtotal together before submitting."
+    },
+    {
+      "q": "Can special third-party purchases have different return conditions?",
+      "a": "Yes. LoloBuy’s manual-order notice flags seller-dependent return or exchange limits, possible extra charges and the possibility that staff cannot place the order."
+    },
+    {
+      "q": "Which units does LoloBuy’s shipping estimator use?",
+      "a": "Enter weight in grams and length, width and height in centimetres. Use the packed outside dimensions when you have them."
+    },
+    {
+      "q": "How many end categories can I select in the estimator?",
+      "a": "The official estimator says up to three. Ask support how to quote a parcel with more relevant categories instead of omitting part of its contents."
+    },
+    {
+      "q": "Why did a route disappear when I changed the contents?",
+      "a": "The available routes depend on the inputs. Read the returned route conditions and ask LoloBuy about your exact items if the reason is unclear."
+    },
+    {
+      "q": "Do I enter the item's dimensions or the outer parcel’s dimensions?",
+      "a": "For a parcel estimate, use the external packed measurements. If only product measurements exist, mark the early result provisional."
+    },
+    {
+      "q": "Can LoloBuy consolidate goods bought from different sellers?",
+      "a": "Yes. Its homepage describes consolidating purchases at its China warehouse and selecting stored products for one parcel."
+    },
+    {
+      "q": "How long is LoloBuy’s advertised free warehouse storage?",
+      "a": "The official homepage advertises 180 days. Verify the applicable dates on your specific warehouse record."
+    },
+    {
+      "q": "Does free storage extend a seller return deadline?",
+      "a": "Do not infer that from the storage period. Consult the current return procedure and the action available on your particular order."
+    },
+    {
+      "q": "Are LoloBuy QC photos included?",
+      "a": "LoloBuy’s homepage advertises free inspection pictures. Check which views are included for the product and any charges for additional requests."
+    },
+    {
+      "q": "Can LoloBuy verify the inside of a sealed collectible from its outer carton?",
+      "a": "An exterior photo supports checks of the visible label, seal and carton condition. It cannot establish all contents or functions inside the package."
+    },
+    {
+      "q": "Does one photo mean every unit in a 1688 order was inspected?",
+      "a": "No. Check the stock-in method, sampling arrangements and actual number of units examined. Ask about quantity or individual checks when needed."
+    },
+    {
+      "q": "What should I review before requesting shoe-box removal?",
+      "a": "Review the pair, labels, visible condition, seller return eligibility and the value of retaining the box. Read the current removal notice before authorising the service."
+    },
+    {
+      "q": "How can I keep the box for just one pair in a group?",
+      "a": "Identify the pair by its warehouse item reference and explicitly ask to retain its original box. Confirm the instruction before packing."
+    },
+    {
+      "q": "Can reducing parcel volume leave the freight price unchanged?",
+      "a": "Yes, depending on the selected route's billing method, gross weight and charge increments. Compare actual estimates using the two feasible packing plans."
+    },
+    {
+      "q": "What evidence helps with a wrong variant at the warehouse?",
+      "a": "Save the selected seller option, paid order, warehouse reference and a clear warehouse photo showing the mismatch. Check eligibility before requesting a return or exchange."
+    },
+    {
+      "q": "What should I keep if an item arrives damaged?",
+      "a": "Preserve outer and inner packaging, the item, its warehouse pictures and delivery record. Photograph the damage and follow the platform’s current after-sales instructions promptly."
+    }
+  ],
+  "keywords": [
+    "LoloBuy Weidian spreadsheet item ID",
+    "LoloBuy manual entry freight to warehouse",
+    "LoloBuy shipping estimator categories",
+    "LoloBuy shoe box removal",
+    "LoloBuy warehouse QC sealed product",
+    "LoloBuy 1688 QC sampling",
+    "LoloBuy 180 days storage",
+    "LoloBuy shipping cost bulky lightweight",
+    "LoloBuy return wrong variant",
+    "LoloBuy combined parcel fragile items"
+  ]
+}
