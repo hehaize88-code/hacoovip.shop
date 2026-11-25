@@ -118,6 +118,11 @@
       "cssbuy-ship-for-me-warehouse-address": {
         "14": "ใช้ข้อมูลคลังสินค้าที่แสดงในหน้าสมาชิกของคุณเอง คัดลอกชื่อผู้รับ ข้อมูลติดต่อ เขตพื้นที่ และรหัสหรือข้อความระบุตัวตนที่จำเป็นให้ตรงกับที่แสดง แบบฟอร์มของผู้ขายอาจแยกช่องมณฑล เมือง เขต และที่อยู่โดยละเอียด ให้กรอกข้อมูลให้ตรงช่อง แล้วอ่านที่อยู่ทั้งหมดอีกครั้งหลังบันทึก แม้จะใส่ชื่อถนนถูกต้อง พัสดุก็อาจไปถึงอาคารโดยที่คลังจับคู่กับบัญชีของคุณได้ยาก หากลืมใส่รหัสอ้างอิงบัญชี"
       }
+    },
+    "ro": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Prin serviciul Buy For Me de la CSSBuy, la plasarea comenzii plătești produsul și livrarea în China. Compară separat transportul internațional. Să presupunem că varianta A costă 55 de yuani, la care se adaugă 8 yuani pentru livrarea internă, iar varianta B costă 60 de yuani cu livrarea internă inclusă. La prima plată, A ajunge la 63 de yuani, iar B la 60. Deși produsul A are prețul afișat mai mic, comanda B costă mai puțin în această etapă. Niciuna dintre sume nu indică tariful pentru expedierea internațională după ambalarea coletului."
+      }
     }
   }
 }
