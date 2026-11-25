@@ -28,6 +28,11 @@
       "understanding-ootdbuy-tracking-when-a-parcel-is-out-for-delivery": {
         "2": "追跡ステータスを実際の配送会社の案内に沿って読む"
       }
+    },
+    "id": {
+      "writing-an-ootdbuy-custom-order-for-a-hard-to-import-listing": {
+        "11": "Dalam pesanan khusus, petugas akan membaca petunjuk Anda. Jelaskan tindakan yang boleh diambil jika pilihan di halaman penjual berubah. Kalimat “Hubungi saya dahulu jika varian hitam habis” mengharuskan petugas menunggu konfirmasi. Kalimat “Utamakan hitam, tetapi warna gelap lain boleh jika terpaksa” mengizinkan penggantian. Perbedaannya penting jika barang itu hadiah yang harus serasi dengan satu set. Tulis petunjuk di samping varian yang dipilih dan bedakan permintaan khusus dari opsi yang memang ditawarkan penjual. Menuliskan keinginan akan komponen yang bisa dilepas tidak membuat komponen itu otomatis termasuk dalam paket."
+      }
     }
   }
 }

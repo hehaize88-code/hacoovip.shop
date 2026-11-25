@@ -94,6 +94,11 @@
       "cssbuy-warehouse-storage-extension-per-order": {
         "23": "Le rappel dans votre agenda doit indiquer quoi faire le moment venu. « Vérifier la commande A, demander le tarif actuel pour expédier A et B ensemble et décider s’il faut payer un mois de stockage supplémentaire » est plus utile que « Échéance CSSBuy ». Notez le numéro de commande et la date limite affichée dans le compte. Évitez d’inscrire des données personnelles ou des renseignements de paiement dans un agenda partagé."
       }
+    },
+    "id": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Dalam layanan Buy For Me milik CSSBuy, pembeli membayar harga barang serta ongkir dalam negeri pada tahap pembelian. Pisahkan ongkir internasional saat membandingkan penawaran penjual. Misalnya, opsi A seharga 55 yuan dikenai ongkir dalam negeri 8 yuan. Opsi B seharga 60 yuan sudah termasuk ongkir dalam negeri. Jadi, biaya pembelian awalnya masing-masing 63 dan 60 yuan. Meskipun harga barang A lebih rendah, total pembayaran awalnya lebih tinggi. Kedua angka ini belum menunjukkan ongkos pengiriman internasional setelah paket selesai dikemas."
+      }
     }
   }
 }
