@@ -69,6 +69,11 @@
       "eastmallbuy-spreadsheet-qc-before-purchase": {
         "10": "ดูว่าภาพที่คุณกำลังใช้เป็นภาพประเภทใด"
       }
+    },
+    "sk": {
+      "eastmallbuy-inspection-sealed-collectibles-electronics": {
+        "26": "K nákupu v sklade si zapíšte tri veci: čo ste si objednali, čo potvrdzujú fotografie zo skladu a čo zostáva neoverené. Napríklad: „Kód edície sa zhoduje s dokladom. Na dvoch záberoch je pečať neporušená. Počet kusov príslušenstva vnútri nebol overený.“ Potom zvážte, či je pre vás táto neistota prijateľná. Ak vám viac záleží na zachovaní pôvodného zapečatenia než na kontrole obsahu, môžete schváliť odoslanie v ochrannom obale. V zázname však uveďte len to, čo sa naozaj skontrolovalo."
+      }
     }
   }
 }

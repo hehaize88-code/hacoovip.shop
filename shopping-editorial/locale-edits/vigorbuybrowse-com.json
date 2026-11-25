@@ -80,6 +80,11 @@
         "5": "ดูภาพรวมที่คลังถ่ายแล้วหาสินค้าชิ้นหลักก่อน จากนั้นมองหาชิ้นส่วนที่ถอดได้ ตัวล็อก และห่อชั้นในที่อาจบรรจุชิ้นส่วนเล็ก ๆ แยกให้ออกว่าชิ้นส่วนนั้นขาดไปจริงหรือแค่อยู่นอกกรอบภาพ หากสายคล้องเก็บอยู่ในกระเป๋าใบเล็ก ภาพด้านหน้าที่ถ่ายตอนปิดกระเป๋าย่อมใช้ยืนยันไม่ได้ จดแยกว่าภาพยืนยันอะไรได้แล้วและยังมีอะไรที่มองไม่เห็น",
         "10": "แยกของที่ขายรวมเป็นชุดออกจากของที่นำมาจัดฉากถ่ายภาพ"
       }
+    },
+    "sk": {
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "23": "Na záver si urobte krátku poznámku ku kontrole. Zapíšte si objednaný variant, čo potvrdzujú fotografie a akú neistotu ste ochotní prijať. Napríklad: „Označenie tmavomodrej farby sedí. Vidno tmavý zips aj rozmiestnenie vreciek. Presný odtieň pri dennom svetle neviem posúdiť, ale výrobok prijímam.“ Poznámka vám poslúži aj bez toho, aby ste kontaktovali podporu: zachytáva, podľa čoho ste vtedy nákup schválili."
+      }
     }
   }
 }
