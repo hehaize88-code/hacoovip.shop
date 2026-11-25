@@ -6,7 +6,6 @@ import os
 from pathlib import Path
 import re
 import subprocess
-from urllib.request import urlopen
 
 MULTILINGUAL = ('jncraton/m2m100_1.2B-ct2-int8','e50078df6be13a88592b70ea42f4d74c2082e448')
 PAIR_MODELS = {
@@ -80,16 +79,39 @@ def translate(lang):
   output={key:[lookup[line] for line in lines] for key,lines in pages.items()}
   write(Path('localized-output')/config.parent.name/(dest+'.json'),{'source':hashlib.sha256(source.read_bytes()).hexdigest(),'data':output})
   print(config.parent.name,dest,len(strings),'fields',flush=True)
+def clean_names(text,brand):
+ # These compounds are observed machine translations of protected brand names.
+ # Keep ordinary words and grammatical suffixes outside the name intact.
+ if brand.lower().endswith('buy'):
+  stem=re.escape(brand[:-3])
+  pattern=r"(?<![A-Za-z0-9])"+stem+r"[ -]?(?:AcheterLe|Acheter|Achetez|Comprar|Compra|Compre|Kaufen)(?![A-Za-z])"
+  text=re.sub(pattern,brand,text,flags=re.IGNORECASE)
+ if brand=='BBDBuy':
+  text=re.sub(r"(?<![A-Za-z])(?:BBDAy|BBDDuy|BBDDAuy|BBDDBuy)(?![A-Za-z])",brand,text,flags=re.IGNORECASE)
+ return re.sub(r"(?<![A-Za-z])Weidien(?![A-Za-z])","Weidian",text,flags=re.IGNORECASE)
 def assemble():
  for config in sorted(Path('.').glob('*/editorial-config.json')):
   source=config.parent/'editorial-content.json';pages=fields(read(source));signature=hashlib.sha256(source.read_bytes()).hexdigest()
   result={}
-  for lang in read(config)['languages']:
+  settings=read(config)
+  articles=read(source)['articles']
+  for lang in settings['languages']:
    if lang=='en':continue
    obj=read(Path('localized-output')/config.parent.name/(lang+'.json'))
    if obj['source']!=signature:raise ValueError('Source changed during translation')
    translated=obj['data']
    if translated.keys()!=pages.keys() or any(len(ls)!=len(pages[k]) or not all(isinstance(s,str) and s.strip() for s in ls) for k,ls in translated.items()):raise ValueError('Incomplete '+lang)
+   translated={key:[clean_names(line,settings['brand']) for line in value] for key,value in translated.items()}
+   titles=settings.get('localizedTitles',{}).get(lang,{})
+   for index,article in enumerate(articles):
+    if article['slug'] in titles:
+     title=titles[article['slug']]
+     translated[article['slug']][0]=title
+     translated['articles'][2*index]=title
+   checked_faq=settings.get('localizedFaq',{}).get(lang)
+   if checked_faq:
+    if len(checked_faq)!=len(pages['faq']):raise ValueError('Incomplete reviewed FAQ')
+    translated['faq']=checked_faq
    result[lang]=translated
   write(config.parent/'editorial-locales.json',result)
 if __name__=='__main__':

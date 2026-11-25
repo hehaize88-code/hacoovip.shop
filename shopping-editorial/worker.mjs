@@ -46,6 +46,7 @@ export function withEditorial(original, config, content, local={}){
  const canonical=(lang,route)=>origin+pathFor(lang,route);
  async function localize(source,lang,key,ctx){
   if(lang==='en')return source;
+  if(key==='faq'&&config.localizedFaq?.[lang])return translatedPage(source,config.localizedFaq[lang]);
   if(local[lang]?.[key])return translatedPage(source,local[lang][key]);
   const cache=globalThis.caches?.default, cacheKey=origin+'/__editorial-cache/'+config.revision+'/'+lang+'/'+key;
   const hit=await cache?.match(cacheKey);
@@ -66,8 +67,12 @@ export function withEditorial(original, config, content, local={}){
    const old=await original.fetch(request,env,ctx);
    if(!old.ok||request.method==='HEAD')return old;
    const s=await old.text();
-   // A plain urlset cannot link another sitemap. Its sibling is advertised in robots.txt.
-   const result=u.pathname==='/robots.txt'?s.trimEnd()+'\nSitemap: '+origin+'/sitemap-editorial.xml\n':s.replace('</sitemapindex>',urlTag('/sitemap-editorial.xml')+'</sitemapindex>');
+     let result=u.pathname==='/robots.txt'?s.trimEnd()+'\nSitemap: '+origin+'/sitemap-editorial.xml\n':s.replace('</sitemapindex>',urlTag('/sitemap-editorial.xml')+'</sitemapindex>');
+   if(u.pathname==='/sitemap.xml'&&s.includes('</urlset>')){
+    const known=new Set(Array.from(s.matchAll(/<loc>([^<]+)<\/loc>/g),m=>m[1]));
+    const additions=codes.flatMap(k=>editorialRoutes.map(p=>escapeMarkup(canonical(k,p)))).filter(loc=>!known.has(loc));
+    if(known.size+additions.length<=50000)result=s.replace('</urlset>',additions.map(loc=>'<url><loc>'+loc+'</loc></url>').join('')+'</urlset>');
+   }
    const h=new Headers(old.headers);h.delete('content-length');h.delete('etag');return new Response(result,{headers:h});
   }
   const parts=u.pathname.split('/').filter(Boolean);
@@ -85,6 +90,9 @@ export function withEditorial(original, config, content, local={}){
    if(previous.ok)return previous;
    return new Response('<!doctype html><html lang="en"><meta name="robots" content="noindex"><a href="'+pathFor('en',route)+'">Read in English</a></html>',{status:503,headers:{'Content-Type':'text/html; charset=utf-8','Retry-After':'120','Cache-Control':'no-store'}});
   }
+  const reviewed=config.localizedTitles?.[lang];
+  if(article&&reviewed?.[slug])data={...data,title:reviewed[slug]};
+  if(data.articles&&reviewed)data={articles:data.articles.map(a=>({...a,title:reviewed[a.slug]||a.title}))};
   const [articles,sources,sheet]=labels[lang],e=escapeMarkup;
   const title=article?data.title:section==='faq'?'FAQ':articles;
   const schema=article?structured({'@type':'Article',headline:title,description:data.description,inLanguage:lang,mainEntityOfPage:canonical(lang,route),citation:data.sources.map(s=>s.url)}):section==='faq'?faqSchema(data.faq):'';
@@ -98,7 +106,11 @@ export function withEditorial(original, config, content, local={}){
     const end=page.lastIndexOf('</body>'), htmlEnd=page.lastIndexOf('</html>');
     const at=end>=0?end:htmlEnd>=0?htmlEnd:page.length;
     const headers=new Headers(old.headers);headers.delete('content-length');headers.delete('etag');
-    return new Response(page.slice(0,at)+addition+page.slice(at),{headers});
+    const links='<link rel="canonical" href="'+e(canonical(lang,route))+'">'+codes.map(k=>'<link rel="alternate" hreflang="'+k+'" href="'+e(canonical(k,route))+'">').join('')+'<link rel="alternate" hreflang="x-default" href="'+e(canonical('en',route))+'">';
+    const response=new Response(page.slice(0,at)+addition+page.slice(at),{headers});
+    return new HTMLRewriter().on('html',{element(el){el.setAttribute('lang',lang);}})
+      .on('link[rel="canonical"],link[rel="alternate"][hreflang]',{element(el){el.remove();}})
+      .on('meta[charset]',{element(el){el.after(links,{html:true});}}).transform(response);
    }
   }
   const nav='<header class="ednav"><a href="'+pathFor(lang,'')+'">'+e(config.brand)+'</a><a href="'+pathFor(lang,config.catalog+'/')+'">'+e(sheet)+'</a><a href="'+pathFor(lang,'articles/')+'">'+e(articles)+'</a><a href="'+pathFor(lang,'faq/')+'">FAQ</a><select aria-label="Language" onchange="location.href=this.value">'+codes.map(k=>'<option value="'+pathFor(k,route)+'"'+(k===lang?' selected':'')+'>'+e(new Intl.DisplayNames([k],{type:'language'}).of(k))+'</option>').join('')+'</select></header>';
