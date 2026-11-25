@@ -89,8 +89,8 @@ def clean_names(text,brand):
  if brand=='BBDBuy':
   text=re.sub(r"(?<![A-Za-z])(?:BBDAy|BBDDuy|BBDDAuy|BBDDBuy)(?![A-Za-z])",brand,text,flags=re.IGNORECASE)
  return re.sub(r"(?<![A-Za-z])Weidien(?![A-Za-z])","Weidian",text,flags=re.IGNORECASE)
-def reviewed_chinese(folder,source_hash):
- path=Path('shopping-editorial/reviewed-zh')/(folder+'.json')
+def reviewed_data(directory,folder,source_hash):
+ path=Path('shopping-editorial',directory)/(folder+'.json')
  if path.exists():
   review=read(path)
  else:
@@ -106,15 +106,20 @@ def assemble():
   result={}
   settings=read(config)
   articles=read(source)['articles']
+  edits=reviewed_data('locale-edits',config.parent.name,signature) or {}
   for lang in settings['languages']:
    if lang=='en':continue
    obj=read(Path('localized-output')/config.parent.name/(lang+'.json'))
    if obj['source']!=signature:raise ValueError('Source changed during translation')
    translated=obj['data']
    if lang in ('zh','zh-CN'):
-    translated=reviewed_chinese(config.parent.name,signature) or translated
+    translated=reviewed_data('reviewed-zh',config.parent.name,signature) or translated
    if translated.keys()!=pages.keys() or any(len(ls)!=len(pages[k]) or not all(isinstance(s,str) and s.strip() for s in ls) for k,ls in translated.items()):raise ValueError('Incomplete '+lang)
    translated={key:[clean_names(line,settings['brand']) for line in value] for key,value in translated.items()}
+   for key,changes in edits.get(lang,{}).items():
+    for index,line in changes.items():
+     if not line.strip():raise ValueError('Empty editorial correction')
+     translated[key][int(index)]=line
    titles=settings.get('localizedTitles',{}).get(lang,{})
    for index,article in enumerate(articles):
     if article['slug'] in titles:

@@ -1,0 +1,62 @@
+{
+  "source": "6ecedbcf9de693d1abff7bd903b432af46305bed80bf50b42596ce4084f460d3",
+  "data": {
+    "hu": {
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "23": "Az ellenőrzés végén írjon rövid feljegyzést a megrendelt változatról, a fényképeken igazolható részletekről és arról, miben maradt némi bizonytalanság. Például: „A címkén szereplő sötétkék szín egyezik a rendeléssel. Látszik a sötét cipzár és a zsebek elhelyezkedése. A pontos árnyalat természetes fényben kérdéses, de így is elfogadom.” A feljegyzés akkor is hasznos, ha nem fordul az ügyfélszolgálathoz: később is visszakeresheti, milyen információk alapján hagyta jóvá az árut."
+      }
+    },
+    "el": {
+      "how-to-shortlist-vigorbuy-spreadsheet-finds-when-several-listings-share-a-photo": {
+        "9": "Σημειώστε δίπλα σε κάθε υποψήφιο προϊόν ένα συγκεκριμένο στοιχείο. Το «φαίνεται το φερμουάρ, αλλά δεν έχει επιβεβαιωθεί το ύψος των χερουλιών» σας δείχνει τι να ρωτήσετε. Η «καλή ποιότητα» είναι απλώς μια εντύπωση που δεν μπορεί να επαληθεύσει κάποιος άλλος. Πριν πληρώσετε, ανοίξτε ξανά την πρώτη σας επιλογή στο VigorBuy και συγκρίνετε την επιλεγμένη παραλλαγή με τις προδιαγραφές που κρατήσατε. Αν ο πωλητής έχει αλλάξει την παραλλαγή ή την ποσότητα, αξιολογήστε την προσφορά από την αρχή."
+      }
+    },
+    "cs": {
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "23": "Na závěr si stručně poznamenejte objednanou variantu, co lze z fotografií ověřit a jakou nejistotu jste ochotni přijmout. Například: „Označení tmavě modré barvy odpovídá objednávce, tmavý zip i rozmístění kapes jsou vidět. Přesný odstín za denního světla neznám, ale i tak mi zboží vyhovuje.“ Záznam se hodí, i když podporu vůbec nekontaktujete. Později budete vědět, podle čeho jste zboží tehdy schválili."
+      }
+    },
+    "bg": {
+      "how-to-shortlist-vigorbuy-spreadsheet-finds-when-several-listings-share-a-photo": {
+        "9": "До всяка набелязана оферта запишете по една конкретна бележка. „Ципът се вижда, но височината на дръжките не е потвърдена“ подсказва какво да попитате. „Добро качество“ е само впечатление, което друг човек не може да провери. Преди плащане отворете отново предпочитаната оферта във VigorBuy и сравнете избрания вариант със записаните изисквания. Ако продавачът е сменил варианта или количеството, преценете новата оферта отначало."
+      }
+    },
+    "ja": {
+      "faq": {
+        "5": "一覧の表示価格は、別の仕様や最も安い付属品だけの価格かもしれません。支払う前に、選んだ仕様の価格とセット内容を確認してください。",
+        "7": "変換後のリンクは販売者の商品ページを開くためのものです。移動先で色、サイズ、数量を選び直し、注文内容を確かめてください。"
+      },
+      "how-to-shortlist-vigorbuy-spreadsheet-finds-when-several-listings-share-a-photo": {
+        "9": "候補ごとに、判断の根拠を一つずつ書き添えます。「ファスナーは確認できたが、持ち手の高さは未確認」なら、次に何を尋ねるべきかが分かります。「品質が良い」だけでは、ほかの人は確かめられません。支払い前に第一候補をVigorBuyで開き直し、選択中の仕様と保存した条件を照合してください。販売者が選択肢や入り数を変えていたら、新しい条件で買うかどうかを改めて判断しましょう。"
+      },
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "2": "写真がどの商品・色のものかを確かめる"
+      },
+      "why-a-vigorbuy-shipping-calculator-changes-when-the-box-changes": {
+        "10": "運賃計算に使う重量を具体例で確かめる",
+        "21": "外部の送料計算ツールとVigorBuyのアカウント画面を行き来するときは、通貨と重量の単位をそろえてください。2キログラムと2,000グラムは同じ重さですが、グラム単位の欄に「2」と入力すればまったく違う見積もりになります。また、換算後の金額が整数に丸められていると、配送サービス間の小さな価格差が見えないことがあります。利用するサービスは、アカウントに現在表示されている通貨と合計額を確かめて決めましょう。"
+      },
+      "vigorbuy-payment-stages-and-how-to-reconcile-two-charges": {
+        "19": "共同で発送する場合は、出庫前に送料の分け方を話し合いましょう。人数で均等に割るのは簡単ですが、一人の硬い靴箱が荷物全体の大きさを決めている場合には、納得しにくいかもしれません。点数で割ると小さなアクセサリーと厚手のコートが同じ負担になり、実重量だけで割ると容積の影響が反映されません。合計額が記載された一枚の領収書だけでは、各人の負担額は決まりません。全員で方法を決めて記録しておきましょう。"
+      },
+      "planning-a-vigorbuy-bundle-when-one-item-has-not-arrived": {
+        "10": "商品の用途から同梱するかを決める"
+      }
+    },
+    "pl": {
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "23": "Na koniec zapisz zamówiony wariant, szczegóły potwierdzone na zdjęciach i to, co mimo wątpliwości akceptujesz. Na przykład: „Oznaczenie granatowego koloru zgadza się z zamówieniem. Widać ciemny zamek i układ kieszeni. Nie mam pewności co do odcienia w świetle dziennym, ale mogę to zaakceptować”. Taka notatka przyda się nawet bez kontaktu z obsługą. Przypomni, na jakiej podstawie produkt został zaakceptowany."
+      }
+    },
+    "hr": {
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "23": "Na kraju zapišite naručenu varijantu, što možete potvrditi na fotografijama i što ste spremni prihvatiti iako niste potpuno sigurni. Primjerice: „Oznaka za tamnoplavu boju odgovara narudžbi. Vide se tamni patentni zatvarač i raspored džepova. Nisam siguran koja je točna nijansa na dnevnom svjetlu, ali to mi je prihvatljivo.“ Bilješka će vam koristiti i ako se ne obratite podršci jer ćete znati na temelju čega ste prihvatili proizvod."
+      }
+    },
+    "es": {
+      "troubleshooting-a-vigorbuy-product-page-that-cannot-load-a-find": {
+        "9": "Trata cada enlace nuevo como una oferta distinta. Comprueba de nuevo el precio, el número de piezas por paquete, la tabla de tallas, los colores y las condiciones del vendedor. Las fotos de almacén asociadas al número de artículo anterior solo documentan la oferta anterior. Si ya has hecho un pedido, consulta a soporte con su referencia antes de volver a comprar. Si aún estás comparando productos, marca la ficha original como no disponible, anota la fecha y guarda la alternativa en otra fila."
+      }
+    }
+  }
+}

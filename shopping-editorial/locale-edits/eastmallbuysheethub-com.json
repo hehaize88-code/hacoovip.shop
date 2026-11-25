@@ -1,0 +1,69 @@
+{
+  "source": "71c3ad1aa894e0e676404fdab01e1131263bd114b3e9744533479351749c7b61",
+  "data": {
+    "hu": {
+      "eastmallbuy-inspection-sealed-collectibles-electronics": {
+        "26": "A raktárba érkezett tételnél három dolgot jegyezz fel: mit rendeltél, mit igazolnak a raktári képek, és mi maradt bizonytalan. Például: „A kiadás kódja egyezik a bizonylaton szereplővel. A zárófólia két nézetből is épnek látszik. A belső tartozékok számát nem ellenőrizték.” Döntsd el, hogy ez a bizonytalanság belefér-e. Ha a bontatlan állapot megőrzése fontosabb a tartalom ellenőrzésénél, kérhetsz védőcsomagolást és indíthatod a szállítást anélkül, hogy minden alkatrészt ellenőrzöttnek tekintenél."
+      }
+    },
+    "da": {
+      "eastmallbuy-spreadsheet-qc-before-purchase": {
+        "23": "Gem produktlinket, den valgte variant, stykprisen på kontroltidspunktet, det kendetegn, du har bekræftet, og eventuelle åbne spørgsmål for hver vare på din liste. Beskriv det, du faktisk kan se: »På det tidligere foto ses to udvendige lynlåstrækkere. Den indvendige skillevæg er ikke synlig.« Det fortæller dig, hvad du skal undersøge, når din vare ankommer til lageret. Med »kontrollen ser fin ud« skal du selv huske, hvad du lagde vægt på."
+      },
+      "eastmallbuy-inspection-sealed-collectibles-electronics": {
+        "26": "Skriv tre ting ud for den lagrede vare: hvad du bestilte, hvad lagerets billeder viser, og hvad der stadig er ukendt. For eksempel: »Udgavekoden stemmer med kvitteringen. Forseglingen er intakt på billeder fra to vinkler. Antallet af tilbehørsdele indeni er ikke bekræftet.« Vurder, om det er tilstrækkeligt for denne vare. Hvis ubrudt emballage betyder mere end en kontrol af indholdet, kan du godkende forsendelse i beskyttende emballage uden at gå ud fra, at alle dele er kontrolleret."
+      }
+    },
+    "nl": {
+      "eastmallbuy-spreadsheet-qc-before-purchase": {
+        "23": "Bewaar bij elk artikel op je shortlist de oorspronkelijke productlink, de gekozen variant, de stukprijs op het moment van controleren, het bevestigde kenmerk en eventuele openstaande vragen. Schrijf op wat je ziet, bijvoorbeeld: ‘Op de eerdere foto zijn twee ritstrekkers aan de buitenkant te zien. De binnenverdeler is niet zichtbaar.’ Zo weet je meteen wat je bij aankomst in het magazijn nog wilt controleren. Bij ‘de controle ziet er goed uit’ moet je later zelf bedenken welke eisen je ook alweer stelde."
+      }
+    },
+    "cs": {
+      "eastmallbuy-inspection-sealed-collectibles-electronics": {
+        "26": "K položce ve skladu si poznamenejte tři věci: co jste objednali, co ukazují fotografie ze skladu a co zůstává neověřené. Například: „Kód vydání souhlasí s dokladem. Na záběrech ze dvou úhlů vypadá pečeť neporušená. Počet kusů příslušenství uvnitř nebyl ověřen.“ Zvažte, zda vám to u tohoto zboží stačí. Pokud si více ceníte neporušeného obalu než kontroly obsahu, můžete schválit odeslání v ochranném obalu, aniž byste všechny součásti považovali za zkontrolované."
+      }
+    },
+    "fi": {
+      "eastmallbuy-spreadsheet-qc-before-purchase": {
+        "23": "Kirjaa kustakin harkitsemastasi tuotteesta alkuperäinen tuotelinkki, valittu vaihtoehto, tarkistushetken kappalehinta, varmistamasi ominaisuus ja avoimet kysymykset. Kuvaa havainto omin sanoin: ”Aiemmassa kuvassa näkyy kaksi ulkopuolista vetoketjun vedintä. Sisäpuolen väliseinä ei näy.” Merkinnästä selviää, mitä pitää vielä tarkistaa, kun oma tuote saapuu varastoon. Jos kirjoitat vain ”tarkastus näyttää hyvältä”, joudut myöhemmin muistelemaan, mikä sinulle oli tärkeää."
+      },
+      "eastmallbuy-inspection-sealed-collectibles-electronics": {
+        "26": "Kirjaa varastoon saapuneesta tuotteesta kolme asiaa: mitä tilasit, mitä varastokuvat vahvistivat ja mitä jäi selvittämättä. Esimerkiksi: ”Painoksen tunnus vastaa kuitin tietoa. Sinetti näyttää ehjältä kahdesta kuvakulmasta. Pakkauksen sisällä olevien tarvikkeiden määrää ei ole tarkistettu.” Päätä, riittävätkö nämä tiedot juuri tämän tuotteen kohdalla. Jos ehjä pakkaus on tärkeämpi kuin sisällön tarkistus, voit hyväksyä lähetyksen suojapakkauksessa olettamatta, että jokainen osa on tarkistettu."
+      }
+    },
+    "ja": {
+      "eastmallbuy-stored-no-qc-photos": {
+        "22": "経過を整理し、確認したい点を具体的に問い合わせる",
+        "23": "問い合わせには、たとえば「注文番号［番号］、選択した仕様［販売店の表記］は［日時］に Stored になりましたが、注文詳細に倉庫の写真がまだ表示されません。撮影待ちなのか、別の注文番号に写真が登録されているのか確認していただけますか」と書けます。これなら、単なる遅れと注文の取り違えを分けて調べられます。アプリとウェブサイトの両方を確認した場合は、そのことと確認した注文も伝えてください。",
+        "28": "二つの商品を一つの荷物にまとめる場合も、発送メモにはそれぞれの注文番号を残しましょう。よく似た仕様をいくつも同梱した後でも、倉庫で確認した内容を正しい注文に結び付けられます。"
+      },
+      "eastmallbuy-order-status-purchased-seller-sent-stored": {
+        "13": "所要日数の目安がどの区間を指すか確認する"
+      },
+      "eastmallbuy-etl-volumetric-weight-calculator": {
+        "4": "軽くてかさばる箱を例に計算する"
+      },
+      "eastmallbuy-warehouse-90-days-unmatched-60-days": {
+        "25": "倉庫で実際に処理されたことを確かめる"
+      },
+      "eastmallbuy-forwarded-goods-insurance-eligibility": {
+        "11": "たとえば、淘宝の販売店から代行購入したコート、同じ代行サービスで買った本、自分で購入して転送を依頼した卓上スタンドが同じアカウントにあるとします。最後は一箱にまとめても、それぞれの購入記録は別です。EastMallBuy は転送品を商品保険の対象外としているため、この違いが重要です。商品ごとに注文番号、購入経路、申告した商品価格、手元の購入証明を控えてください。同じ倉庫に並んだ写真だけでは、すべてに同じ補償が適用されるとは判断できません。"
+      },
+      "eastmallbuy-parcel-tracking-no-updates-germany-scan": {
+        "4": "追跡が更新されないときは利用した配送ルートを確認する"
+      }
+    },
+    "sv": {
+      "eastmallbuy-spreadsheet-qc-before-purchase": {
+        "23": "Spara produktlänken, den valda varianten, styckpriset vid kontrollen, den egenskap du har kunnat bekräfta och eventuella öppna frågor för varje vara du överväger. Beskriv vad du ser med egna ord: ”Det tidigare fotot visar två utvändiga dragkedjedragare. Det går inte att se den invändiga skiljeväggen.” Det säger vad du behöver kontrollera när din egen vara kommer till lagret. Med anteckningen ”kontrollen ser bra ut” måste du senare försöka minnas vilka krav du hade."
+      },
+      "eastmallbuy-inspection-sealed-collectibles-electronics": {
+        "26": "Anteckna tre saker om varan på lagret: vad du beställde, vad lagerbilderna faktiskt visar och vad som fortfarande är okänt. Till exempel: ”Utgåvans kod stämmer med kvittot. Förseglingen ser hel ut från två vinklar. Antalet tillbehör inuti är inte kontrollerat.” Avgör om det räcker för just den här varan. Om en obruten förpackning är viktigare än att inspektera innehållet kan du godkänna leverans i skyddande emballage utan att förutsätta att varje del har kontrollerats."
+      },
+      "eastmallbuy-wallet-balance-refund-original-payment": {
+        "23": "Om frågan gäller plattformens handläggning kan du skriva: ”Min begäran om återbetalning från plånboken, [referens], gäller [belopp och valuta]. Den skickades [datum] och har fortfarande status [status]. Kan ni bekräfta om den har behandlats och om ni behöver fler uppgifter?” Om EastMallBuy visar ärendet som slutfört men återbetalningen saknas hos betaltjänsten, be om betalningsreferensen som den ursprungliga betalningsförmedlaren kan spåra. Håll detta ärende skilt från returer till säljaren, såvida inte den saknade krediteringen faktiskt avser den ordern."
+      }
+    }
+  }
+}

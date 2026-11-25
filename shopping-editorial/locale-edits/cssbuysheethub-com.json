@@ -1,0 +1,99 @@
+{
+  "source": "72bf46d7d1c82f80764cdd26fa956d08f26195dbfaecc9d3b7640aafdf16058e",
+  "data": {
+    "hu": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "A CSSBuy Buy For Me szolgáltatásában vásárláskor a terméket és a Kínán belüli szállítást fizeted ki. Az eladók ajánlatainak összehasonlításakor a nemzetközi fuvardíjat külön kezeld. Ha az A változat 55 jüan, a belföldi szállítása pedig 8 jüan, míg a B változat 60 jüan, szállítással együtt, akkor a vásárláskor fizetendő összeg 63, illetve 60 jüan. Az olcsóbbnak hirdetett termék tehát többe kerül ebben a szakaszban. A becsomagolt küldemény nemzetközi szállítási díja egyik összegben sincs benne."
+      }
+    },
+    "da": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "7": "CSSBuys vejledning til Buy For Me forklarer, hvordan du indsender et produktlink, og hvordan du bruger Expert Buy, hvis søgningen ikke finder varen. Ved manuel bestilling skal du angive det oprindelige link og den præcise variant. Skriv for eksempel: »Vælg sort kanvas med justerbar rem. Hvis sættet er udsolgt, så kontakt mig inden købet.« Det giver indkøberen en klar instruktion. »Vælg den bedste« fortæller ikke, hvad der må ændres.",
+        "21": "Med CSSBuys Buy For Me betaler du ved købet for varen og leveringen inden for Kina. Hold international fragt adskilt, når du sammenligner sælgere. Koster A 55 yuan plus 8 yuan i indenrigsfragt, og koster B 60 yuan inklusive indenrigsfragt, er købspriserne med levering til lageret henholdsvis 63 og 60 yuan. Den laveste viste varepris giver altså ikke den laveste første betaling. Ingen af beløbene viser, hvad den færdigpakkede internationale forsendelse vil koste."
+      },
+      "cssbuy-warehouse-storage-extension-per-order": {
+        "23": "Skriv i kalenderpåmindelsen, hvad du skal gøre. »Gennemgå ordre A, tjek den aktuelle fragt for A og B sammen, og beslut, om du vil betale for en ekstra måneds opbevaring« er mere brugbart end »CSSBuy-frist«. Tilføj ordrenummeret og fristen fra din konto. Undlad person- og betalingsoplysninger, hvis andre har adgang til kalenderen."
+      },
+      "cssbuy-my-parcel-tracking-order-note": {
+        "3": "Sælgeren kan have leveret varen til lageret længe før den internationale afsendelse. Efter afsendelsen henviser CSSBuys vejledning til Buy For Me til My Parcel i User Center. Før du beder transportøren undersøge en forsendelse, skal du afgøre, om du har sælgerens indenlandske sporingsnummer eller det internationale pakkenummer. Gem begge, hvis du ikke ved, på hvilken del af rejsen en vare er forsvundet."
+      }
+    },
+    "nl": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Bij aankoop via Buy For Me van CSSBuy betaal je eerst voor het artikel en de verzending binnen China. Houd de internationale verzendkosten apart wanneer je verkopers vergelijkt. Stel dat optie A 55 yuan kost plus 8 yuan binnenlandse verzending en optie B 60 yuan inclusief binnenlandse verzending. Dan betaal je in deze fase respectievelijk 63 en 60 yuan. Het artikel met de laagste getoonde prijs komt dus duurder uit bij het afrekenen. Geen van beide bedragen vertelt wat het ingepakte internationale pakket gaat kosten."
+      }
+    },
+    "pt": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "No serviço Buy For Me da CSSBuy, paga primeiro o artigo e o transporte dentro da China. Ao comparar vendedores, calcule o envio internacional à parte. Se a opção A custar 55 yuans mais 8 de portes nacionais e a opção B custar 60 yuans com esses portes incluídos, os totais nesta fase são de 63 e 60 yuans. O artigo com o preço anunciado mais baixo fica mais caro nesta primeira etapa. Nenhum destes valores indica o custo do envio internacional após o embalamento."
+      }
+    },
+    "cs": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Při nákupu přes službu Buy For Me u CSSBuy nejprve zaplatíte za zboží a dopravu po Číně. Mezinárodní přepravu při porovnávání nabídek počítejte zvlášť. Stojí-li varianta A 55 jüanů a vnitrostátní doprava 8 jüanů, zatímco varianta B stojí 60 jüanů včetně této dopravy, zaplatíte v této fázi 63, respektive 60 jüanů. Nižší uvedená cena zboží tedy neznamená nižší první platbu. Ani jedna částka neudává cenu mezinárodní přepravy zabalené zásilky."
+      }
+    },
+    "bg": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "При покупка чрез услугата Buy For Me на CSSBuy първо плащате стоката и доставката в Китай. Сравнявайте офертите на продавачите отделно от международния транспорт. Ако вариант А струва 55 юана плюс 8 юана за вътрешна доставка, а вариант Б струва 60 юана с включена вътрешна доставка, на този етап плащате съответно 63 и 60 юана. По-ниската обявена цена на стоката води до по-висока обща сума за покупката. Нито една от двете суми не показва колко ще струва международният превоз след опаковането."
+      }
+    },
+    "ja": {
+      "faq": {
+        "3": "Buy For Me のガイドでは、商品を読み込めない場合に Expert Buy を案内しています。購入したい商品を特定できるよう、販売ページへの直接リンク、選択肢の正確な表記、価格、数量を伝えてください。",
+        "33": "圧縮できる衣類で、荷物の体積を小さくすると送料が下がりそうな場合に検討しましょう。ただし、同梱する硬い箱や商品が外箱の寸法を決めていれば、衣類を圧縮しても箱は小さくなりません。"
+      },
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "4": "販売ページと注文プレビューを照合する",
+        "10": "買付担当者がリンク先で商品を特定できるようにする"
+      },
+      "cssbuy-1688-minimum-order-quantity": {
+        "13": "数量別の価格と割引の適用条件を確かめる"
+      },
+      "cssbuy-warehouse-qc-photo-measurements": {
+        "18": "たとえば販売店のサイズ表に「胸囲110cm」とある場合、製品の胸まわりの寸法なら、平置きの身幅約55cmに相当します。一方、着る人の推奨胸囲なら、服の身幅とは直接比較できません。異なる基準の数字を理由に返品を申し出る前に、表が何を測ったものか確認しましょう。特にメジャーに両方の目盛りがある場合は、センチとインチを混同しないよう記録してください。"
+      },
+      "cssbuy-warehouse-storage-extension-per-order": {
+        "4": "CSSBuyの課金単位に合わせて保管延長料を計算する"
+      },
+      "cssbuy-vacuum-packaging-vs-reinforcement": {
+        "6": "同梱する商品ごとに梱包の指示を分ける"
+      }
+    },
+    "pl": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Przy zakupie przez usługę Buy For Me w CSSBuy najpierw płacisz za towar i dostawę na terenie Chin. Porównując sprzedawców, licz wysyłkę międzynarodową osobno. Jeśli wariant A kosztuje 55 juanów plus 8 juanów za dostawę krajową, a wariant B kosztuje 60 juanów z dostawą krajową w cenie, na tym etapie zapłacisz odpowiednio 63 i 60 juanów. Towar z niższą ceną w ogłoszeniu okazuje się więc droższy po doliczeniu dostawy do magazynu. Żadna z kwot nie określa kosztu międzynarodowej wysyłki gotowej paczki."
+      }
+    },
+    "hr": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Pri kupnji putem usluge Buy For Me na CSSBuyu najprije plaćate proizvod i dostavu unutar Kine. Kad uspoređujete ponude prodavača, međunarodnu dostavu računajte zasebno. Ako opcija A košta 55 juana uz 8 juana domaće dostave, a opcija B 60 juana s uključenom domaćom dostavom, u ovoj fazi plaćate 63 odnosno 60 juana. Proizvod s nižom istaknutom cijenom tako je skuplji kad se uračuna dostava do skladišta. Nijedan iznos ne govori koliko će stajati međunarodni prijevoz zapakiranog paketa."
+      }
+    },
+    "de": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Bei CSSBuys Dienst Buy For Me zahlen Sie beim Kauf zunächst den Artikel und den Versand innerhalb Chinas. Vergleichen Sie die internationale Fracht getrennt. Kostet Option A 55 Yuan zuzüglich 8 Yuan Inlandsversand und Option B 60 Yuan einschließlich Inlandsversand, zahlen Sie in dieser Phase 63 beziehungsweise 60 Yuan. Der Artikel mit dem niedrigeren Angebotspreis ist bis zum Lager also teurer. Keiner der Beträge sagt aus, was der internationale Versand des fertig gepackten Pakets kosten wird."
+      },
+      "cssbuy-my-parcel-tracking-order-note": {
+        "3": "Der Verkäufer kann die Ware lange vor dem internationalen Versand ans Lager geliefert haben. Nach dem Versand verweist CSSBuy in der Anleitung zu Buy For Me auf My Parcel im User Center. Klären Sie vor einer Nachforschung beim Transportdienst, ob Sie die inländische Sendungsnummer des Verkäufers oder die internationale Paketnummer vor sich haben. Bewahren Sie beide auf, wenn unklar ist, auf welchem Abschnitt ein Artikel abhandengekommen sein könnte."
+      }
+    },
+    "sv": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "7": "CSSBuys guide till Buy For Me beskriver hur du skickar in produktlänkar och använder Expert Buy när sökningen inte hittar varan. Om du behöver fylla i uppgifterna manuellt ska du ange ursprungslänken och den exakta varianten. Skriv till exempel: ”Välj svart canvas med justerbar rem. Om det setet är slutsålt, kontakta mig före köpet.” Då vet inköparen vad som gäller. ”Ta den bästa” lämnar valet öppet."
+      },
+      "cssbuy-my-parcel-tracking-order-note": {
+        "3": "Säljaren kan ha levererat varan till lagret långt innan det internationella paketet skickas. Efter avsändning hänvisar CSSBuy i guiden till Buy For Me till My Parcel i User Center. Innan du ber transportören spåra en försändelse bör du kontrollera om du har säljarens inrikes spårningsnummer eller det internationella paketnumret. Spara båda om en vara kan ha försvunnit på någon av sträckorna."
+      }
+    },
+    "fr": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "7": "Le guide CSSBuy consacré à Buy For Me explique comment transmettre un lien et utiliser Expert Buy si la recherche ne trouve pas l’article. Si une saisie manuelle est nécessaire, indiquez le lien d’origine et la variante exacte. Écrivez par exemple : « Choisissez le modèle en toile noire avec sangle réglable. Si cet ensemble est épuisé, contactez-moi avant d’acheter. » L’acheteur sait ainsi comment agir. « Prenez le meilleur » laisse le choix essentiel en suspens.",
+        "21": "Avec le service Buy For Me de CSSBuy, vous payez d’abord l’article et la livraison en Chine. Comparez les offres des vendeurs en laissant le transport international à part. Si l’option A coûte 55 yuans plus 8 yuans de port intérieur, et l’option B 60 yuans port intérieur compris, les totaux à ce stade sont respectivement de 63 et 60 yuans. Le prix affiché le plus bas ne donne donc pas le panier le moins cher à l’achat. Aucun de ces montants n’indique le coût de l’expédition internationale du colis emballé."
+      },
+      "cssbuy-warehouse-storage-extension-per-order": {
+        "23": "Le rappel dans votre agenda doit indiquer quoi faire le moment venu. « Vérifier la commande A, demander le tarif actuel pour expédier A et B ensemble et décider s’il faut payer un mois de stockage supplémentaire » est plus utile que « Échéance CSSBuy ». Notez le numéro de commande et la date limite affichée dans le compte. Évitez d’inscrire des données personnelles ou des renseignements de paiement dans un agenda partagé."
+      }
+    }
+  }
+}
