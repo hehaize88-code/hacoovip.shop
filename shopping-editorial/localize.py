@@ -89,6 +89,17 @@ def clean_names(text,brand):
  if brand=='BBDBuy':
   text=re.sub(r"(?<![A-Za-z])(?:BBDAy|BBDDuy|BBDDAuy|BBDDBuy)(?![A-Za-z])",brand,text,flags=re.IGNORECASE)
  return re.sub(r"(?<![A-Za-z])Weidien(?![A-Za-z])","Weidian",text,flags=re.IGNORECASE)
+def reviewed_chinese(folder,source_hash):
+ path=Path('shopping-editorial/reviewed-zh')/(folder+'.json')
+ if path.exists():
+  review=read(path)
+ else:
+  # The publication job checks out just the content inputs. Read the matching
+  # revision of the editorial review when it is outside that sparse checkout.
+  obj=subprocess.run(['git','show','HEAD:'+path.as_posix()],capture_output=True)
+  if obj.returncode:return None
+  review=json.loads(obj.stdout)
+ return review['data'] if review['source']==source_hash else None
 def assemble():
  for config in sorted(Path('.').glob('*/editorial-config.json')):
   source=config.parent/'editorial-content.json';pages=fields(read(source));signature=hashlib.sha256(source.read_bytes()).hexdigest()
@@ -100,6 +111,8 @@ def assemble():
    obj=read(Path('localized-output')/config.parent.name/(lang+'.json'))
    if obj['source']!=signature:raise ValueError('Source changed during translation')
    translated=obj['data']
+   if lang in ('zh','zh-CN'):
+    translated=reviewed_chinese(config.parent.name,signature) or translated
    if translated.keys()!=pages.keys() or any(len(ls)!=len(pages[k]) or not all(isinstance(s,str) and s.strip() for s in ls) for k,ls in translated.items()):raise ValueError('Incomplete '+lang)
    translated={key:[clean_names(line,settings['brand']) for line in value] for key,value in translated.items()}
    titles=settings.get('localizedTitles',{}).get(lang,{})
