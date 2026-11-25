@@ -65,6 +65,21 @@
       "finding-the-vigorbuy-app-and-keeping-mobile-orders-traceable": {
         "21": "Jika Anda berganti ponsel atau melanjutkan percakapan lewat komputer, pastikan nomor referensi dan riwayat pesannya sama. Jelaskan perkembangan masalah yang sudah dilaporkan. Misalnya: “Untuk pesanan X, kemarin saya meminta foto detail kedua. Saya masih mempertimbangkan pengiriman paket.” Pesan baru yang hanya berbunyi “barangnya salah” bisa dianggap merujuk pada pembelian lain atau sebagai permintaan langsung untuk mengembalikan barang."
       }
+    },
+    "vi": {
+      "reading-vigorbuy-qc-photos-when-a-listing-has-several-colourways": {
+        "23": "Sau khi xem ảnh, hãy ghi lại ngắn gọn mẫu đã đặt, những gì ảnh xác nhận được và điểm nào bạn vẫn chấp nhận dù chưa kiểm tra được. Chẳng hạn: “Nhãn ghi đúng màu xanh hải quân, thấy rõ khóa kéo màu sẫm và vị trí các túi. Chưa rõ sắc độ chính xác dưới ánh sáng ban ngày, nhưng tôi chấp nhận.” Kể cả khi không cần liên hệ hỗ trợ, ghi chú này vẫn giúp bạn nhớ mình đã dựa vào thông tin nào để đồng ý nhận món hàng."
+      }
+    },
+    "th": {
+      "how-to-shortlist-vigorbuy-spreadsheet-finds-when-several-listings-share-a-photo": {
+        "9": "จดเหตุผลที่เลือกไว้ข้างสินค้าแต่ละรายการ เช่น “เห็นซิปชัด แต่ยังไม่ทราบระยะจากขอบกระเป๋าถึงส่วนบนของหูหิ้ว” ข้อความนี้บอกได้ทันทีว่าต้องถามอะไรเพิ่ม ส่วนคำว่า “คุณภาพดี” เป็นเพียงความเห็นที่คนอื่นตรวจสอบไม่ได้ ก่อนจ่ายเงิน ให้เปิดสินค้าที่คุณเลือกเป็นอันดับแรกบน VigorBuy อีกครั้ง แล้วเทียบตัวเลือกปัจจุบันกับรายละเอียดที่จดไว้ หากผู้ขายเปลี่ยนตัวเลือกหรือจำนวนชิ้น ให้พิจารณาข้อเสนอใหม่นั้นอีกครั้งก่อนซื้อ"
+      },
+      "vigorbuy-warehouse-inspection-for-sets-sold-in-several-configurations": {
+        "3": "ภาพหลักของสินค้าประเภทอุปกรณ์เสริมบางรายการอาจโชว์ครบทั้งชุด แม้ผู้ขายจะเปิดให้เลือกซื้อแยกชิ้น เริ่มจากตรวจตัวเลือกที่คุณสั่งจริง แล้วเขียนรายการชิ้นส่วนที่ควรได้รับแยกบรรทัด การระบุว่า “กระเป๋าใบเล็ก สายยาว สายคล้องข้อมือ” ช่วยให้คลังตรวจสอบได้ชัดกว่าคำว่า “ทั้งชุด” จดว่าตัวเลือกนั้นระบุสินค้าสองชิ้นที่เข้าชุดกัน สินค้าหนึ่งคู่ หรือสินค้าชิ้นเดียวตามสีที่เลือก และเก็บข้อความของผู้ขายที่ระบุรายละเอียดนี้ไว้",
+        "5": "ดูภาพรวมที่คลังถ่ายแล้วหาสินค้าชิ้นหลักก่อน จากนั้นมองหาชิ้นส่วนที่ถอดได้ ตัวล็อก และห่อชั้นในที่อาจบรรจุชิ้นส่วนเล็ก ๆ แยกให้ออกว่าชิ้นส่วนนั้นขาดไปจริงหรือแค่อยู่นอกกรอบภาพ หากสายคล้องเก็บอยู่ในกระเป๋าใบเล็ก ภาพด้านหน้าที่ถ่ายตอนปิดกระเป๋าย่อมใช้ยืนยันไม่ได้ จดแยกว่าภาพยืนยันอะไรได้แล้วและยังมีอะไรที่มองไม่เห็น",
+        "10": "แยกของที่ขายรวมเป็นชุดออกจากของที่นำมาจัดฉากถ่ายภาพ"
+      }
     }
   }
 }

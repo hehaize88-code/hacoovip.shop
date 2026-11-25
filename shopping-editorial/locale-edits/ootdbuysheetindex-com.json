@@ -33,6 +33,14 @@
       "writing-an-ootdbuy-custom-order-for-a-hard-to-import-listing": {
         "11": "Dalam pesanan khusus, petugas akan membaca petunjuk Anda. Jelaskan tindakan yang boleh diambil jika pilihan di halaman penjual berubah. Kalimat “Hubungi saya dahulu jika varian hitam habis” mengharuskan petugas menunggu konfirmasi. Kalimat “Utamakan hitam, tetapi warna gelap lain boleh jika terpaksa” mengizinkan penggantian. Perbedaannya penting jika barang itu hadiah yang harus serasi dengan satu set. Tulis petunjuk di samping varian yang dipilih dan bedakan permintaan khusus dari opsi yang memang ditawarkan penjual. Menuliskan keinginan akan komponen yang bisa dilepas tidak membuat komponen itu otomatis termasuk dalam paket."
       }
+    },
+    "th": {
+      "how-to-compare-ootdbuy-shipping-estimates-for-a-mixed-parcel": {
+        "18": "แยกเกณฑ์คิดน้ำหนักตามปริมาตรของผู้ขนส่งออกจากตัวเลขที่คุณประเมินเอง"
+      },
+      "preparing-an-ootdbuy-aftersales-request-for-a-short-shipment": {
+        "15": "ตรวจว่าได้สินค้าไม่ครบหรือเข้าใจจำนวนชิ้นต่อหน่วยขายคลาดเคลื่อน"
+      }
     }
   }
 }

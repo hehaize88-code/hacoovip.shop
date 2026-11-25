@@ -99,6 +99,25 @@
       "cssbuy-weidian-spreadsheet-link-check": {
         "21": "Dalam layanan Buy For Me milik CSSBuy, pembeli membayar harga barang serta ongkir dalam negeri pada tahap pembelian. Pisahkan ongkir internasional saat membandingkan penawaran penjual. Misalnya, opsi A seharga 55 yuan dikenai ongkir dalam negeri 8 yuan. Opsi B seharga 60 yuan sudah termasuk ongkir dalam negeri. Jadi, biaya pembelian awalnya masing-masing 63 dan 60 yuan. Meskipun harga barang A lebih rendah, total pembayaran awalnya lebih tinggi. Kedua angka ini belum menunjukkan ongkos pengiriman internasional setelah paket selesai dikemas."
       }
+    },
+    "vi": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "Với dịch vụ Buy For Me của CSSBuy, khi đặt mua bạn trả tiền hàng và phí vận chuyển nội địa Trung Quốc. Khi so sánh các nhà bán hàng, hãy tính riêng cước quốc tế. Giả sử phương án A có giá 55 nhân dân tệ và phí giao nội địa là 8 nhân dân tệ, còn phương án B giá 60 nhân dân tệ đã bao gồm phí giao nội địa. Tổng số tiền phải trả ở bước mua hàng lần lượt là 63 và 60 nhân dân tệ. Trong ví dụ này, món hàng có giá niêm yết thấp hơn lại có tổng chi phí ban đầu cao hơn. Cả hai con số đều chưa cho biết cước quốc tế của kiện hàng sau khi đóng gói."
+      },
+      "cssbuy-my-parcel-tracking-order-note": {
+        "28": "Lưu đúng mã tham chiếu để liên hệ hỗ trợ"
+      }
+    },
+    "th": {
+      "cssbuy-weidian-spreadsheet-link-check": {
+        "21": "เมื่อใช้บริการ Buy For Me ของ CSSBuy คุณจะจ่ายค่าสินค้าและค่าส่งภายในจีนตอนสั่งซื้อ เวลาเปรียบเทียบข้อเสนอของผู้ขาย ให้แยกค่าส่งระหว่างประเทศไว้ต่างหาก สมมติว่าตัวเลือก A ราคา 55 หยวน บวกค่าส่งในจีน 8 หยวน ส่วนตัวเลือก B ราคา 60 หยวนรวมค่าส่งในจีนแล้ว ยอดที่ต้องจ่ายในขั้นสั่งซื้อจึงเป็น 63 และ 60 หยวนตามลำดับ ในตัวอย่างนี้ สินค้าที่ติดราคาต่ำกว่ากลับมียอดชำระขั้นแรกสูงกว่า ทั้งสองยอดยังบอกไม่ได้ว่าค่าส่งระหว่างประเทศหลังบรรจุสินค้าจะเป็นเท่าไร"
+      },
+      "cssbuy-expert-buy-product-information": {
+        "16": "แยกราคาที่ผู้ขายเสนอออกจากวงเงินสูงสุดที่คุณอนุมัติ"
+      },
+      "cssbuy-ship-for-me-warehouse-address": {
+        "14": "ใช้ข้อมูลคลังสินค้าที่แสดงในหน้าสมาชิกของคุณเอง คัดลอกชื่อผู้รับ ข้อมูลติดต่อ เขตพื้นที่ และรหัสหรือข้อความระบุตัวตนที่จำเป็นให้ตรงกับที่แสดง แบบฟอร์มของผู้ขายอาจแยกช่องมณฑล เมือง เขต และที่อยู่โดยละเอียด ให้กรอกข้อมูลให้ตรงช่อง แล้วอ่านที่อยู่ทั้งหมดอีกครั้งหลังบันทึก แม้จะใส่ชื่อถนนถูกต้อง พัสดุก็อาจไปถึงอาคารโดยที่คลังจับคู่กับบัญชีของคุณได้ยาก หากลืมใส่รหัสอ้างอิงบัญชี"
+      }
     }
   }
 }

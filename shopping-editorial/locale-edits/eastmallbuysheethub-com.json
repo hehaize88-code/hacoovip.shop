@@ -64,6 +64,11 @@
       "eastmallbuy-wallet-balance-refund-original-payment": {
         "23": "Om frågan gäller plattformens handläggning kan du skriva: ”Min begäran om återbetalning från plånboken, [referens], gäller [belopp och valuta]. Den skickades [datum] och har fortfarande status [status]. Kan ni bekräfta om den har behandlats och om ni behöver fler uppgifter?” Om EastMallBuy visar ärendet som slutfört men återbetalningen saknas hos betaltjänsten, be om betalningsreferensen som den ursprungliga betalningsförmedlaren kan spåra. Håll detta ärende skilt från returer till säljaren, såvida inte den saknade krediteringen faktiskt avser den ordern."
       }
+    },
+    "th": {
+      "eastmallbuy-spreadsheet-qc-before-purchase": {
+        "10": "ดูว่าภาพที่คุณกำลังใช้เป็นภาพประเภทใด"
+      }
     }
   }
 }

@@ -24,6 +24,11 @@
       "shipping-deposit-account-credit": {
         "2": "支払い明細と対象の荷物を照合する"
       }
+    },
+    "th": {
+      "shipping-deposit-account-credit": {
+        "15": "ดูให้ชัดว่าเป็นยอดเงินเข้าบัญชีหรือการถอนเงินออก"
+      }
     }
   }
 }

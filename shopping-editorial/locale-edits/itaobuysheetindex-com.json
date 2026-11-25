@@ -31,6 +31,11 @@
       "comparing-taobao-tmall-and-1688-options-for-one-itaobuy-find": {
         "27": "翻訳された選択肢を仕様別の画像と照合する"
       }
+    },
+    "th": {
+      "tracing-an-itaobuy-order-from-seller-dispatch-to-warehouse-intake": {
+        "10": "แยกให้ออกว่าคลังสแกนล่าช้าหรือสินค้าขาดไปจริง"
+      }
     }
   }
 }
