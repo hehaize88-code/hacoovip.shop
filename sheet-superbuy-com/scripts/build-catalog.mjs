@@ -8,7 +8,7 @@ function bundle(names, exports, base=shared){
  const body=names.map(n=>read(n,base).replace(/^import .*$/gm,'').replace(/^export /gm,'')).join('\n')
  return 'const {'+exports+'}=(()=>{'+body+'\nreturn {'+exports+'}})();'
 }
-const css=read('theme.css')+read('visual.css')+'header .brand img{width:148px;height:auto}.cardset{min-width:0}.qc{display:block;padding:.45rem}.sort{margin:.6rem 0}.search .camera{font-size:1.3rem}.actions select{max-width:9rem}.catalog-menu{display:flex;gap:1rem;flex-wrap:wrap}'
+const css=read('theme.css')+read('visual.css')+'.wrap .process-section,.wrap .latest-guides,.wrap .faq-preview{margin:3rem auto;max-width:70rem}.article-grid,.process-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}.article-card,.process-list article,.faq-list details{background:white;border:1px solid #dedfd6;padding:1rem;border-radius:10px}.article-card h2{font-size:1.15rem}.faq-list summary{cursor:pointer;font-weight:600}.faq-list summary span{float:right}.process-list article>span,.plain.eyebrow{display:none}.article-card a,.process-intro a{color:#20477c;text-decoration:underline}header .brand img{width:148px;height:auto}.cardset{min-width:0}.qc{display:block;padding:.45rem}.sort{margin:.6rem 0}.search .camera{font-size:1.3rem}.actions select{max-width:9rem}.catalog-menu{display:flex;gap:1rem;flex-wrap:wrap}'
 // Resolve market IDs from the same source catalog used by the live feed.
 const packs=new URL('../cnshopperbrowse.com/catalog/',root)
 const archive=fs.readdirSync(packs).filter(n=>n.endsWith('.gz.b64')).sort().map(n=>read(n,packs)).join('')
@@ -26,6 +26,9 @@ const generated=[
  bundle(['visual.mjs'],'visualView,visualApi'),
  read('scripts/catalog-worker.mjs',root)
 ].join('\n')
+ // Capture browser functions before the deployment bundler instruments Worker functions.
+ .replace('visualClient.toString()',()=>JSON.stringify(read('visual.mjs').split('function visualClient(){')[1].split('\nconst scanLabels=')[0].replace(/^/,'function visualClient(){').trim()))
+ .replace('moneyScript.toString()',()=>JSON.stringify(read('money.mjs').slice(read('money.mjs').indexOf('function moneyScript(){')).trim()))
 const out=new URL('out/',root)
 fs.mkdirSync(out,{recursive:true})
 fs.writeFileSync(fileURLToPath(new URL('_worker.js',out)),generated)
