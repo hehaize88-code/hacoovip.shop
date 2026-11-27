@@ -14,7 +14,7 @@
   });
   document.addEventListener('submit',event=>{
     const form=event.target;if(!form.matches('form[role="search"]'))return;
-    const input=form.querySelector('[name="keywords"]');if(!input.value.trim()){event.preventDefault();input.focus();return;}
+    const input=form.querySelector('[name="q"]');if(!input.value.trim()){event.preventDefault();input.focus();return;}
     // Do not transmit free-form search text to analytics.
     track('search_submit',{search_used:true,link_domain:new URL(form.action).hostname});
   });
