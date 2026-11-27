@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {parse} from 'node-html-parser'
+import {copy} from '../../eastmallbuysheethub-com/i18n.mjs'
 const root=path.resolve('out')
 const official='https://cdn.superbuy.com/starit-superbuy/dist/img/'
 const register='https://www.superbuy.com/en/page/register/'
@@ -13,10 +14,24 @@ function visit(dir){
   const dom=parse(fs.readFileSync(target,'utf8'))
   const lang=(dom.querySelector('html')?.getAttribute('lang')||'en').toLowerCase()
   const base=lang==='en'?'/':'/'+lang+'/'
+  const words=copy[lang==='zh-cn'?'zh-CN':lang]||copy.en
+  const picker=dom.querySelector('.language-switcher')
+  if(picker){
+   picker.querySelector('summary span')?.set_content(words.language)
+   picker.querySelector('.language-panel-head span')?.set_content(words.language)
+   const display=new Intl.DisplayNames([lang],{type:'language'})
+   for(const option of picker.querySelectorAll('a[data-language]')){
+    const code=option.getAttribute('data-language')
+    const name=option.querySelector('strong')
+    if(!name||code===lang)continue
+    const local=display.of(code),native=name.textContent
+    if(local.toLocaleLowerCase(lang)!==native.toLocaleLowerCase(lang))name.set_content(local+' · '+native)
+   }
+  }
   for(const a of dom.querySelectorAll('a[href]')){
    const href=a.getAttribute('href')
    if(!/^https?:\/\/(?:www\.)?cnfanshp\.com\//i.test(href))continue
-   if(a.classList.contains('nav-cta')||a.parentNode?.getAttribute?.('aria-label')==='Mobile navigation'){
+   if(a.classList.contains('nav-cta')||a.parentNode?.parentNode?.classList?.contains('mobile-menu')){
     a.setAttribute('href',register);a.set_content(labels[lang]||labels.en)
    }else{
     const item=href.match(/\/AllProducts\/(\d+)\.html/i)
@@ -29,7 +44,7 @@ function visit(dir){
    form.setAttribute('action',base+'spreadsheet/');form.removeAttribute('target')
    const input=form.querySelector('input[name="keywords"]');input?.setAttribute('name','q')
    form.querySelector('input[name="channelid"]')?.remove()
-   form.insertAdjacentHTML('beforeend','<a href="'+base+'image-search/" aria-label="Image search">📷</a>')
+   form.insertAdjacentHTML('beforeend','<a href="'+base+'image-search/" aria-label="'+words.imgSearch+'">📷</a>')
   }
   if(path.relative(root,target)===(lang==='en'?'index.html':lang+'/index.html')){
    const sections=['.process-section','.latest-guides','.faq-preview'].map(selector=>dom.querySelector(selector)?.toString()||'').join('')

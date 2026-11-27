@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import {fileURLToPath} from 'node:url'
+import {localName,languages} from '../../eastmallbuysheethub-com/i18n.mjs'
 const root=new URL('../',import.meta.url)
 const shared=new URL('../eastmallbuysheethub-com/',root)
 const read=(file,base=shared)=>fs.readFileSync(new URL(file,base),'utf8')
@@ -15,12 +16,29 @@ const archive=fs.readdirSync(packs).filter(n=>n.endsWith('.gz.b64')).sort().map(
 const source=gunzipSync(Buffer.from(archive,'base64')).toString('base64')
 const {SOURCE_INDEX}=await import('data:text/javascript;base64,'+source)
 const records=SOURCE_INDEX.map(p=>[p.path.match(/(\d+)\.html$/)[1],p.id,p.name,p.price,p.img])
+const labelSource=new URL('content/product-labels/',root)
+const readLabels=file=>JSON.parse(gunzipSync(fs.readFileSync(new URL(file,labelSource))))
+const layouts=readLabels('layouts.json.gz')
+const labelOutput=new URL('out/product-labels/',root)
+fs.mkdirSync(labelOutput,{recursive:true})
+for(const lang of Object.keys(languages)){
+ const values=readLabels(lang.toLowerCase()+'.json.gz')
+ const titles=Object.create(null)
+ for(const [sourceName,parts] of Object.entries(layouts)){
+  const isCategory=/^(shoes|sweatshirts|hoodies|t-shirts|jackets|pants\/shorts|electronics|accessories|headwear|jersey|short sets|other stuff)[\s_-]*\d+$/i.test(sourceName)
+  if(parts.some(part=>typeof part==='number'&&!values[part]))throw new Error('Missing '+lang+' translation for '+sourceName)
+  const label=isCategory?localName(sourceName,lang):parts.map(part=>typeof part==='number'?values[part]:part).join('').trim()
+  if(!label)throw new Error('Missing '+lang+' title for '+sourceName)
+  titles[sourceName]=label
+ }
+ fs.writeFileSync(new URL(lang.toLowerCase()+'.json',labelOutput),JSON.stringify(titles))
+}
 const generated=[
  'const records='+JSON.stringify(records)+';',
  'const css='+JSON.stringify(css)+';const seed='+read('rates-seed.json')+';',
  bundle(['money.mjs'],'currencies,ratesResponse,priceTag,moneyScript'),
  bundle(['locale-west.mjs'],'westCopy'),bundle(['locale-east.mjs'],'eastCopy'),
- bundle(['catalog-locales.mjs','i18n.mjs'],'languages,copy,localName,sourceQuery').replace(/EastMallBuy/gi,'Superbuy'),
+ bundle(['catalog-locales.mjs','i18n.mjs'],'languages,copy,localName,sourceQuery,pageNames').replace(/EastMallBuy/gi,'Superbuy'),
  bundle(['source.mjs'],'read,parseCards,categoriesFrom,defaultList,detail'),
  bundle(['visual-data.mjs'],'imageMeta,imageNames,imageReferences,imageSignatures,pendingSellers',new URL('../fansbuysheetindex-com/',root)),
  bundle(['visual.mjs'],'visualView,visualApi'),
