@@ -2275,6 +2275,21 @@ function page(l,u,route,title,body,status=200){
  const schema=route?'':'<script type="application/ld+json">'+JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Superbuy Spreadsheet',url:u.origin+'/',potentialAction:{'@type':'SearchAction',target:u.origin+base(l)+'spreadsheet/?q={search_term_string}','query-input':'required name=search_term_string'}})+'</script>'
  return new Response('<!doctype html><html lang="'+l+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+(title==='Superbuy Spreadsheet'?'Superbuy Spreadsheet | Finds, QC Photos &amp; Weidian Links':esc(title)+' | Superbuy Spreadsheet')+'</title><meta name="description" content="'+esc(t.intro)+'"><link rel="canonical" href="'+href+'">'+alternates+'<link rel="alternate" hreflang="x-default" href="'+esc(u.origin+'/'+route+u.search)+'"><link rel="icon" href="'+favicon+'"><style>'+css+'</style>'+schema+analytics+'</head><body>'+header(l,u,route)+'<main class="wrap">'+body+'</main><footer class="wrap foot"><a href="'+base(l)+'shipping/">'+editorialLabels[l][1]+'</a><a href="'+base(l)+'qc-guide/">'+esc(t.qc)+'</a><a href="'+base(l)+'faq/">'+esc(t.faq)+'</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+"function moneyScript(){\n const picker=document.querySelector('#currency')\n const fallback=JSON.parse(document.getElementById('rate-seed').textContent)\n let data=fallback\n try{\n  const saved=JSON.parse(sessionStorage.getItem('eastmallbuy-rates'))\n  if(saved?.rates?.USD===1&&Number(saved.rates.CNY)>0&&Date.parse(saved.date)>=Date.parse(fallback.date))data=saved\n }catch{}\n function apply(){\n  const currency=picker.value\n  const factor=Number(data.rates[currency])/Number(data.rates.CNY)\n  if(!Number.isFinite(factor)||factor<=0){picker.value='CNY';return apply()}\n  const format=new Intl.NumberFormat(document.documentElement.lang,{style:'currency',currency})\n  const date=new Intl.DateTimeFormat(document.documentElement.lang,{dateStyle:'medium'}).format(new Date(data.date))\n  for(const n of document.querySelectorAll('[data-cny]')){\n   n.textContent=format.format(Number(n.dataset.cny)*factor)\n   n.title='CNY / '+currency+' · '+date\n  }\n  const credit=document.querySelector('[data-rate-date]')\n  if(credit)credit.textContent=date\n  try{localStorage.setItem('eastmallbuy-currency',currency)}catch{}\n }\n let initial='USD'\n try{initial=localStorage.getItem('eastmallbuy-currency')||'USD'}catch{}\n if([...picker.options].some(o=>o.value===initial))picker.value=initial\n window.addEventListener('currency-refresh',apply)\n picker.addEventListener('change',apply)\n apply()\n fetch('/exchange-rates.json').then(r=>r.ok?r.json():null).then(fresh=>{\n  if(fresh?.rates?.USD!==1||!(fresh.rates.CNY>0)||!(fresh.rates[picker.value]>0)||Date.parse(fresh.date)<Date.parse(data.date))return\n  data=fresh\n  try{sessionStorage.setItem('eastmallbuy-rates',JSON.stringify(data))}catch{}\n  apply()\n }).catch(()=>{})\n}"+')()</script></body></html>',{status,headers:{'content-type':'text/html;charset=utf-8','cache-control':status===200?'public,max-age=60':'no-store',...(status!==200||u.search?{'x-robots-tag':'noindex,follow'}:{})}})
 }
+const mobileSheetStyle=`<style>
+ .sheet-mobile-pager{display:none}
+ @media(max-width:767px){
+  .sheet-list .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
+  .sheet-list .sheet-other-part,.sheet-list .sheet-desktop-pager{display:none}
+  .sheet-list .sheet-mobile-pager{display:flex;align-items:center;justify-content:center;gap:12px}
+  .sheet-list .photo{aspect-ratio:auto;height:clamp(105px,19svh,200px)}
+  .sheet-list .card h3{font-size:1rem;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .sheet-list .qc{padding:4px 0;font-size:.86rem}
+  .sheet-list .chips{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+  .sheet-list .chips a{flex:none}
+  .sheet-list .sort{gap:6px 12px}
+  .sheet-list h1{margin-bottom:8px}
+ }
+ </style>`
 async function listing(u,l,route,env){
  const t=copy[l],b=base(l),q=(u.searchParams.get('q')||'').trim().slice(0,120),sort=u.searchParams.get('sort')||'new',n=Math.max(1,Math.min(25000,parseInt(u.searchParams.get('page'))||1))
  const sorts={new:['new','desc'],popular:['click','desc'],low:['price','asc'],high:['price','desc']}
@@ -2294,9 +2309,14 @@ async function listing(u,l,route,env){
  const exact=/^\d+$/.test(q)?byMarket.get(q):undefined
  const html=exact?'':await read(src.pathname+src.search)
  const items=exact?[{id:exact[0],name:exact[2],price:exact[3],image:'https://www.cnfanshp.com'+exact[4]}]:parseCards(html),home=!route
- const links=(p)=>{const next=new URLSearchParams(u.search);for(const [k,v] of Object.entries(p))if(v)next.set(k,v);else next.delete(k);return esc(b+'spreadsheet/?'+next)}
+ const compact=route==='spreadsheet/'
+ const perPart=20
+ const parts=Math.max(1,Math.ceil(items.length/perPart))
+ const requestedPart=u.searchParams.get('part')
+ const part=requestedPart==='last'?parts:Math.max(1,Math.min(parts,Number.parseInt(requestedPart,10)||1))
+ const links=(p)=>{const next=new URLSearchParams(u.search);next.delete('part');for(const [k,v] of Object.entries(p))if(v)next.set(k,v);else next.delete(k);return esc(b+'spreadsheet/?'+next)}
  const buyPath=p=>{const id=byCatalog.get(p.id)?.[1];return /^\d+$/.test(id)?esc(shortBuy(id)):b+'product/'+p.id+'/'}
- const cards=(home?items.slice(0,8):items).map(p=>'<div class="cardset"><a class="card" href="'+buyPath(p)+'"><div class="photo"><img loading="lazy" src="'+esc(p.image)+'" alt="'+esc(localName(p.name,l))+'"></div><h3>'+esc(localName(p.name,l))+'</h3>'+priceTag(p.price,l)+'</a><a class="qc" href="'+b+'photos/'+p.id+'/">'+esc(t.gallery)+' / QC</a></div>').join('')
+ const cards=(home?items.slice(0,8):items).map((p,i)=>'<div class="cardset'+(compact&&Math.floor(i/perPart)+1!==part?' sheet-other-part':'')+'"><a class="card" href="'+buyPath(p)+'"><div class="photo"><img loading="lazy" src="'+esc(p.image)+'" alt="'+esc(localName(p.name,l))+'"></div><h3>'+esc(localName(p.name,l))+'</h3>'+priceTag(p.price,l)+'</a><a class="qc" href="'+b+'photos/'+p.id+'/">'+esc(t.gallery)+' / QC</a></div>').join('')
  let guide=''
  if(home&&env.ASSETS){
   const asset=await env.ASSETS.fetch(new Request(new URL('/home-guides/'+l.toLowerCase()+'.json',u)))
@@ -2306,8 +2326,19 @@ async function listing(u,l,route,env){
  const intro=home?(l==='en'?'Search Superbuy finds by product name or photo. Compare prices, review seller and QC photos where available, and open the matching Weidian item on Superbuy.':t.intro):t.browse
  const filters='<div class="chips">'+(categories||categoriesFrom(html)).filter(c=>!['allproducts','all'].includes(c.id.toLowerCase())).map(c=>'<a href="'+links({cat:c.id,q:'',page:''})+'">'+esc(localName(c.name,l))+'</a>').join('')+'</div>'
  const sortBar='<div class="catalog-menu sort">'+[['new',t.latest],['popular','★'],['low',t.price+' ↑'],['high',t.price+' ↓']].map(([k,v])=>'<a href="'+links({sort:k,page:''})+'">'+esc(v)+'</a>').join('')+'</div>'
- const pager='<div class="pager">'+(n>1?'<a href="'+links({page:n-1})+'">'+t.prev+'</a>':'')+(html.includes('>下一页<')||items.length===60?'<a href="'+links({page:n+1})+'">'+t.next+'</a>':'')+'</div>'
- return page(l,u,route,title,'<section class="listing"><h1>'+esc(title)+'</h1><p>'+esc(intro)+'</p>'+search(l,q)+filters+sortBar+'<div class="cards">'+cards+'</div>'+(!items.length?'<p>'+t.empty+'</p>':'')+(home?'<a class="btn" href="'+b+'spreadsheet/">'+t.browse+'</a>':pager)+'</section>'+guide)
+ const hasNext=html.includes('>下一页<')||items.length===60
+ const pageLink=(params,label)=>'<a href="'+links(params)+'">'+esc(label)+'</a>'
+ const desktopPager='<div class="pager sheet-desktop-pager">'+(n>1?pageLink({page:n-1},t.prev):'')+(hasNext?pageLink({page:n+1},t.next):'')+'</div>'
+ let pager=desktopPager
+ if(compact){
+  const prev=part>1?{page:n,part:part-1}:n>1?{page:n-1,part:'last'}:null
+  const next=part<parts?{page:n,part:part+1}:hasNext?{page:n+1}:null
+  if(prev||next){
+   const number=new Intl.NumberFormat(l).format((n-1)*3+part)
+   pager+='<div class="pager sheet-mobile-pager">'+(prev?pageLink(prev,t.prev):'')+'<span aria-current="page">'+number+'</span>'+(next?pageLink(next,t.next):'')+'</div>'
+  }
+ }
+ return page(l,u,route,title,(compact?mobileSheetStyle:'')+'<section class="listing'+(compact?' sheet-list':'')+'"><h1>'+esc(title)+'</h1><p>'+esc(intro)+'</p>'+search(l,q)+filters+sortBar+'<div class="cards">'+cards+'</div>'+(!items.length?'<p>'+t.empty+'</p>':'')+(home?'<a class="btn" href="'+b+'spreadsheet/">'+t.browse+'</a>':pager)+'</section>'+guide)
 }
 function official(d){
  if(!/^\d+$/.test(d.marketplaceId))return null
