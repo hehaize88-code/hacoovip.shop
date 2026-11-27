@@ -1,3 +1,6 @@
+const byCatalog=new Map(records.map(r=>[r[0],r]))
+const byMarket=new Map(records.map(r=>[r[1],r]))
+const shortBuy=id=>'https://www.superbuy.com/en/page/buy/?'+new URLSearchParams({nTag:'Home-search',from:'search-input',url:'https://weidian.com/item.html?itemID='+id})
 const register='https://www.superbuy.com/en/page/register/'
 const logo='https://cdn.superbuy.com/starit-superbuy/dist/img/homepage-v2/brand/logo-artwork.svg'
 const favicon='https://cdn.superbuy.com/starit-superbuy/dist/img/favicon/favicon.svg'
@@ -19,7 +22,7 @@ function page(l,u,route,title,body,status=200){
  const href=esc(u.origin+base(l)+route+u.search)
  const alternates=Object.keys(languages).map(k=>'<link rel="alternate" hreflang="'+k+'" href="'+esc(u.origin+base(k)+route+u.search)+'">').join('')
  const t=copy[l]
- return new Response('<!doctype html><html lang="'+l+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+' | Superbuy Spreadsheet</title><meta name="description" content="'+esc(t.intro)+'"><link rel="canonical" href="'+href+'">'+alternates+'<link rel="alternate" hreflang="x-default" href="'+esc(u.origin+'/'+route+u.search)+'"><link rel="icon" href="'+favicon+'"><style>'+css+'</style>'+analytics+'</head><body>'+header(l,u,route)+'<main class="wrap">'+body+'</main><footer class="wrap foot"><a href="'+(legacy.includes(l)?base(l):'/')+'shipping/">Shipping</a><a href="'+(legacy.includes(l)?base(l):'/')+'qc-guide/">QC Guide</a><a href="'+(legacy.includes(l)?base(l):'/')+'faq/">FAQ</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+moneyScript.toString()+')()</script></body></html>',{status,headers:{'content-type':'text/html;charset=utf-8','cache-control':status===200?'public,max-age=60':'no-store',...(status!==200||u.search?{'x-robots-tag':'noindex,follow'}:{})}})
+ return new Response('<!doctype html><html lang="'+l+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+(title==='Superbuy Spreadsheet'?'Superbuy Spreadsheet | Finds, QC Photos &amp; Weidian Links':esc(title)+' | Superbuy Spreadsheet')+'</title><meta name="description" content="'+esc(t.intro)+'"><link rel="canonical" href="'+href+'">'+alternates+'<link rel="alternate" hreflang="x-default" href="'+esc(u.origin+'/'+route+u.search)+'"><link rel="icon" href="'+favicon+'"><style>'+css+'</style>'+analytics+'</head><body>'+header(l,u,route)+'<main class="wrap">'+body+'</main><footer class="wrap foot"><a href="'+(legacy.includes(l)?base(l):'/')+'shipping/">Shipping</a><a href="'+(legacy.includes(l)?base(l):'/')+'qc-guide/">QC Guide</a><a href="'+(legacy.includes(l)?base(l):'/')+'faq/">FAQ</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+moneyScript.toString()+')()</script></body></html>',{status,headers:{'content-type':'text/html;charset=utf-8','cache-control':status===200?'public,max-age=60':'no-store',...(status!==200||u.search?{'x-robots-tag':'noindex,follow'}:{})}})
 }
 async function listing(u,l,route){
  const t=copy[l],b=base(l),q=(u.searchParams.get('q')||'').trim().slice(0,120),sort=u.searchParams.get('sort')||'new',n=Math.max(1,Math.min(25000,parseInt(u.searchParams.get('page'))||1))
@@ -37,9 +40,12 @@ async function listing(u,l,route){
  if(q)path='/search.html?'+new URLSearchParams({channelid:2,keywords:sourceQuery(q,l)})
  const src=new URL(path,'https://www.cnfanshp.com')
  src.searchParams.set('sort',key);src.searchParams.set('sort_asc',direction);src.searchParams.set('page',n)
- const html=await read(src.pathname+src.search),items=parseCards(html),home=!route
+ const exact=/^\d+$/.test(q)?byMarket.get(q):undefined
+ const html=exact?'':await read(src.pathname+src.search)
+ const items=exact?[{id:exact[0],name:exact[2],price:exact[3],image:'https://www.cnfanshp.com'+exact[4]}]:parseCards(html),home=!route
  const links=(p)=>{const next=new URLSearchParams(u.search);for(const [k,v] of Object.entries(p))if(v)next.set(k,v);else next.delete(k);return esc(b+'spreadsheet/?'+next)}
- const cards=(home?items.slice(0,8):items).map(p=>'<div class="cardset"><a class="card" href="'+b+'product/'+p.id+'/"><div class="photo"><img loading="lazy" src="'+esc(p.image)+'" alt="'+esc(localName(p.name,l))+'"></div><h3>'+esc(localName(p.name,l))+'</h3>'+priceTag(p.price,l)+'</a><a class="qc" href="'+b+'photos/'+p.id+'/">'+esc(t.gallery)+' / QC</a></div>').join('')
+ const buyPath=p=>{const id=byCatalog.get(p.id)?.[1];return /^\d+$/.test(id)?esc(shortBuy(id)):b+'product/'+p.id+'/'}
+ const cards=(home?items.slice(0,8):items).map(p=>'<div class="cardset"><a class="card" href="'+buyPath(p)+'"><div class="photo"><img loading="lazy" src="'+esc(p.image)+'" alt="'+esc(localName(p.name,l))+'"></div><h3>'+esc(localName(p.name,l))+'</h3>'+priceTag(p.price,l)+'</a><a class="qc" href="'+b+'photos/'+p.id+'/">'+esc(t.gallery)+' / QC</a></div>').join('')
  const title=home?t.hero:t.sheet
  const intro=home?(l==='en'?'Search Superbuy finds by product name or photo. Compare prices, review seller and QC photos where available, and open the matching Weidian item on Superbuy.':t.intro):t.browse
  const filters='<div class="chips">'+(categories||categoriesFrom(html)).filter(c=>!['allproducts','all'].includes(c.id.toLowerCase())).map(c=>'<a href="'+links({cat:c.id,q:'',page:''})+'">'+esc(localName(c.name,l))+'</a>').join('')+'</div>'
@@ -69,9 +75,7 @@ async function serve(request,env){
    const gallery=(title,images)=>images.length?'<h2>'+esc(title)+'</h2><div class="cards">'+images.map(src=>'<img loading="lazy" style="width:100%" src="'+esc(src)+'" alt="'+esc(title)+'">').join('')+'</div>':''
    return page(l,u,route,localName(d.name,l),'<h1>'+esc(localName(d.name,l))+'</h1>'+(buy?'<a class="btn" href="'+esc(buy)+'">'+t.buy+'</a>':'')+gallery(t.gallery,d.images)+gallery(t.detailPhotos,d.media.details)+gallery(t.styles,d.media.styles.map(s=>s.image))+(gallery(t.qc,d.media.qc)||'<p>'+t.noQc+'</p>'))
   }
-  const asset=await env.ASSETS.fetch(request)
-  if(!asset.headers.get('content-type')?.includes('text/html'))return asset
-  return new HTMLRewriter().on('a.nav-cta, nav[aria-label="Mobile navigation"] a:last-child',{element(el){el.setAttribute('href',register);el.setInnerContent(t.register)}}).on('a.brand img',{element(el){el.setAttribute('src',logo)}}).on('link[rel~="icon"]',{element(el){el.setAttribute('href',favicon)}}).on('a[href]',{element(el){const h=el.getAttribute('href')||'',m=h.match(/^https?:\/\/(?:www\.)?cnfanshp\.com\/AllProducts\/(\d+)\.html$/i);if(m)el.setAttribute('href',base(l)+'product/'+m[1]+'/');else if(/^https?:\/\/(www\.)?cnfanshp\.com\//.test(h))el.setAttribute('href',base(l)+'spreadsheet/')}}).transform(asset)
+  return env.ASSETS.fetch(request)
  }catch(error){console.error('Catalog request failed',String(error));return page(l,u,route,t.error,'<h1>'+t.error+'</h1><a href="'+esc(u.pathname+u.search)+'">'+t.retry+'</a>',503)}
 }
 export default {fetch:serve}
