@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { parse } from 'node-html-parser';
 const root=path.resolve(process.argv[2]||'out');
-const langs=['en','fr','de','es','it','id','zh-cn'];
+const langs='en fr de es it id zh-cn nl pt pl ro sv da fi el cs hu bg sk hr ja ko vi th'.split(' ');
 const origin='https://sheet-superbuy.com';
 const files=[];
 function walk(dir){for(const f of fs.readdirSync(dir,{withFileTypes:true})){if(f.isDirectory()&&!['_next','_not-found','404'].includes(f.name))walk(path.join(dir,f.name));else if(f.name==='index.html')files.push(path.join(dir,f.name));}}
@@ -18,7 +18,7 @@ for(const file of files){
  assert.equal(doc.querySelector('html').getAttribute('lang'),lang==='zh-cn'?'zh-CN':lang,file);
  assert.equal(doc.querySelectorAll('h1').length,1,file);
  assert.equal(doc.querySelector('link[rel="canonical"]').getAttribute('href'),canonical,file);
- assert.equal(doc.querySelectorAll('link[rel="alternate"][hreflang]').length,8,file);
+ assert.equal(doc.querySelectorAll('link[rel="alternate"][hreflang]').length,langs.length+1,file);
  assert(!html.includes('self.__next_f')&&!html.includes('translate.google.com'),file);
  assert(doc.querySelector('meta[name="robots"]').getAttribute('content').includes('index'),file);
  for(const n of doc.querySelectorAll('script[type="application/ld+json"]'))JSON.parse(n.textContent);
@@ -48,6 +48,6 @@ for(const file of files){
    }
  }
 }
-assert.equal(files.length,175);
-assert.equal((fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').match(/<loc>/g)||[]).length,175);
-console.log(`PASS: ${files.length} pages; 18 articles × 7 languages; ${links} internal links; canonical, hreflang and paragraph parity.`);
+assert.equal(files.length,25*langs.length);
+assert.equal((fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').match(/<loc>/g)||[]).length,25*langs.length);
+console.log(`PASS: ${files.length} pages; 18 articles × 24 languages; ${links} internal links; canonical, hreflang and paragraph parity.`);

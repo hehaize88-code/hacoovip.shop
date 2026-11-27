@@ -1,11 +1,13 @@
 import fs from 'node:fs';
+import {gunzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import { parse } from 'node-html-parser';
 
 const origin='https://sheet-superbuy.com';
 const root=process.cwd();
 const output=path.join(root,'out');
-const languages=['en','fr','de','es','it','id','zh-cn'];
+const languages='en fr de es it id zh-cn nl pt pl ro sv da fi el cs hu bg sk hr ja ko vi th'.split(' ');
 const langTag=(lang)=>lang==='zh-cn'?'zh-CN':lang;
 const locale={en:'en_US',fr:'fr_FR',de:'de_DE',es:'es_ES',it:'it_IT',id:'id_ID','zh-cn':'zh_CN'};
 const short={en:'EN',fr:'FR',de:'DE',es:'ES',it:'IT',id:'ID','zh-cn':'中文'};
@@ -45,7 +47,15 @@ if(process.argv.includes('--extract')){
  fs.writeFileSync(path.join(directory,'source.json'),JSON.stringify([...strings].sort(),null,2)+'\n');
  console.log(`Extracted ${strings.size} text fields from ${pages.length} English pages.`);process.exit(0);
 }
-const dictionaries=Object.fromEntries(languages.slice(1).map(lang=>[lang,JSON.parse(fs.readFileSync(path.join(directory,`${lang}.json`),'utf8'))]));
+const ordered=JSON.parse(fs.readFileSync(path.join(directory,'source.json'),'utf8'));
+const checksum=createHash('sha256').update(JSON.stringify(ordered)).digest('hex');
+const dictionaries=Object.fromEntries(languages.slice(1).map(lang=>{
+ const original=path.join(directory,lang+'.json');
+ if(fs.existsSync(original))return [lang,JSON.parse(fs.readFileSync(original,'utf8'))];
+ const packed=JSON.parse(gunzipSync(fs.readFileSync(path.join(directory,lang+'.json.gz'))));
+ if(packed.source!==checksum||packed.values.length!==ordered.length)throw Error('Translation source mismatch: '+lang);
+ return [lang,Object.fromEntries(ordered.map((key,i)=>[key,packed.values[i]]))];
+}));
 for(const lang of languages.slice(1)){const missing=[...strings].filter(s=>typeof dictionaries[lang][s]!=='string'||!dictionaries[lang][s].trim());if(missing.length)throw Error(`${lang}: ${missing.length} untranslated fields, beginning with ${missing.slice(0,3).join(' | ')}`);}
 let total=0;
 for(const p of pages){const source=fs.readFileSync(p.file,'utf8');for(const lang of languages){
@@ -62,18 +72,20 @@ for(const p of pages){const source=fs.readFileSync(p.file,'utf8');for(const lang
  doc.querySelector('html').setAttribute('lang',langTag(lang));
  doc.querySelector('link[rel="canonical"]')?.setAttribute('href',canonical);
  doc.querySelector('meta[property="og:url"]')?.setAttribute('content',canonical);
- doc.querySelector('meta[property="og:locale"]')?.setAttribute('content',locale[lang]);
- doc.querySelector('[data-current-language]').set_content(short[lang]);
+ doc.querySelector('meta[property="og:locale"]')?.setAttribute('content',locale[lang]||new Intl.Locale(lang).maximize().toString().split('-').filter(k=>k.length!==4).join('_'));
+ doc.querySelector('[data-current-language]').set_content(short[lang]||lang.toUpperCase());
  const languageCopy={en:['Language','Same page, complete content'],fr:['Langue','Même page, contenu complet'],de:['Sprache','Gleiche Seite, vollständiger Inhalt'],es:['Idioma','Misma página, contenido completo'],it:['Lingua','Stessa pagina, contenuto completo'],id:['Bahasa','Halaman sama, konten lengkap'],'zh-cn':['语言','保留当前页面，内容完整']};
- doc.querySelector('.language-panel-head span').set_content(languageCopy[lang][0]);
- doc.querySelector('.language-panel-head small').set_content(languageCopy[lang][1]);
+ const nativeName=k=>new Intl.DisplayNames([langTag(k)],{type:'language'}).of(langTag(k));
+ doc.querySelector('.language-options').set_content(languages.map(k=>`<a data-language="${k}" hreflang="${langTag(k)}" href="${urlFor(p.route,k)}"><span>${short[k]||k.toUpperCase()}</span><strong>${esc(nativeName(k))}</strong></a>`).join(''));
+ doc.querySelector('.language-panel-head span').set_content(languageCopy[lang]?.[0]||nativeName(lang));
+ doc.querySelector('.language-panel-head small').set_content(languageCopy[lang]?.[1]||'');
  for(const a of doc.querySelectorAll('a[href]')){
   const target=a.getAttribute('data-language');
   if(target){a.setAttribute('href',urlFor(p.route,target));if(target===lang)a.setAttribute('aria-current','page');continue;}
   const href=a.getAttribute('href');if(href.startsWith('/')&&!href.startsWith('//'))a.setAttribute('href',urlFor(href,lang));
  }
  const alternate=languages.map(l=>`<link rel="alternate" hreflang="${langTag(l)}" href="${origin+urlFor(p.route,l)}">`).join('')+`<link rel="alternate" hreflang="x-default" href="${origin+p.route}">`;
- doc.querySelector('head').insertAdjacentHTML('beforeend',alternate+'<meta name="site-release" content="2026-11-04-multilingual-18-guides">');
+ doc.querySelector('head').insertAdjacentHTML('beforeend',alternate+'<meta name="site-release" content="2026-11-27-superbuy-24-languages">');
  for(const node of doc.querySelectorAll('script[type="application/ld+json"]')){
   let data=schemaStrings(JSON.parse(node.textContent),translate);
   function urls(v,key=''){if(Array.isArray(v))return v.map(x=>urls(x,key));if(v&&typeof v==='object')return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,urls(x,k)]));if(key==='inLanguage')return langTag(lang);if(typeof v==='string'&&v.startsWith(origin)&&['url','@id','item'].includes(key)){const u=new URL(v);if(!/\.[a-z0-9]+$/i.test(u.pathname))return origin+urlFor(u.pathname,lang)+u.search+u.hash;}return v;}
@@ -84,5 +96,5 @@ for(const p of pages){const source=fs.readFileSync(p.file,'utf8');for(const lang
 }}
 const entries=[];for(const p of pages)for(const lang of languages){const alternatives=languages.map(l=>`<xhtml:link rel="alternate" hreflang="${langTag(l)}" href="${origin+urlFor(p.route,l)}"/>`).join('');entries.push(`<url><loc>${origin+urlFor(p.route,lang)}</loc><lastmod>${["/", "/shipping/", "/articles/"].includes(p.route)||/superbuy-(shipping-cost-guide|qc-photos-checklist|payment-methods-fees|returns-refunds|warehouse-storage)/.test(p.route)||p.route.includes("how-long-does-superbuy-shipping-take")?"2026-11-04":"2026-10-07"}</lastmod>${alternatives}<xhtml:link rel="alternate" hreflang="x-default" href="${origin+p.route}"/></url>`);}
 fs.writeFileSync(path.join(output,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${entries.join('')}</urlset>`);
-fs.writeFileSync(path.join(output,'_deployment.txt'),`2026-11-04-multilingual-18-guides\n${total} pages; ${languages.join(', ')}\n`);
+fs.writeFileSync(path.join(output,'_deployment.txt'),`2026-11-27-superbuy-24-languages\n${total} pages; ${languages.join(', ')}\n`);
 console.log(`Published ${total} complete static pages in ${languages.length} languages.`);

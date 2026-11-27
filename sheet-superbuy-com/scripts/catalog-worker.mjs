@@ -5,13 +5,13 @@ const register='https://www.superbuy.com/en/page/register/'
 const logo='https://cdn.superbuy.com/starit-superbuy/dist/img/homepage-v2/brand/logo-artwork.svg'
 const favicon='https://cdn.superbuy.com/starit-superbuy/dist/img/favicon/favicon.svg'
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
-const legacy=['en','fr','de','es','it','id','zh-CN']
 const base=l=>l==='en'?'/':'/'+l.toLowerCase()+'/'
 const code=s=>Object.keys(languages).find(l=>l.toLowerCase()===s?.toLowerCase())
+const editorialLabels={en:['Articles','Shipping'],fr:['Articles','Livraison'],de:['Artikel','Versand'],es:['Artículos','Envío'],it:['Articoli','Spedizione'],id:['Artikel','Pengiriman'],'zh-CN':['文章','国际运费'],nl:['Artikelen','Verzending'],pt:['Artigos','Envio'],pl:['Artykuły','Wysyłka'],ro:['Articole','Livrare'],sv:['Artiklar','Frakt'],da:['Artikler','Fragt'],fi:['Artikkelit','Toimitus'],el:['Άρθρα','Αποστολή'],cs:['Články','Doprava'],hu:['Cikkek','Szállítás'],bg:['Статии','Доставка'],sk:['Články','Doprava'],hr:['Članci','Dostava'],ja:['記事','国際配送'],ko:['가이드','국제 배송'],vi:['Bài viết','Vận chuyển'],th:['บทความ','การจัดส่ง']}
 const opts=(pairs,value)=>pairs.map(([k,v])=>'<option value="'+esc(k)+'"'+(k===value?' selected':'')+'>'+esc(v)+'</option>').join('')
 function header(l,u,route){
  const t=copy[l],b=base(l)
- return '<header><div class="wrap"><a class="brand" href="'+b+'"><img src="'+logo+'" alt="Superbuy"></a><nav><a href="'+b+'spreadsheet/">'+t.sheet+'</a><a href="'+b+'image-search/">'+t.imgSearch+'</a><a href="'+(legacy.includes(l)?b:'/')+'articles/">Articles</a></nav><div class="actions"><select aria-label="'+esc(t.language)+'" onchange="location.href=this.value">'+opts(Object.entries(languages).map(([k,v])=>[base(k)+route+u.search,v]),b+route+u.search)+'</select><select id="currency" aria-label="'+esc(t.currency)+'">'+opts(currencies.map(k=>[k,k]),'USD')+'</select><a class="btn" href="'+register+'">'+t.register+'</a></div></div></header>'
+ return '<header><div class="wrap"><a class="brand" href="'+b+'"><img src="'+logo+'" alt="Superbuy"></a><nav><a href="'+b+'spreadsheet/">'+t.sheet+'</a><a href="'+b+'image-search/">'+t.imgSearch+'</a><a href="'+b+'articles/">'+editorialLabels[l][0]+'</a></nav><div class="actions"><select aria-label="'+esc(t.language)+'" onchange="location.href=this.value">'+opts(Object.entries(languages).map(([k,v])=>[base(k)+route+u.search,v]),b+route+u.search)+'</select><select id="currency" aria-label="'+esc(t.currency)+'">'+opts(currencies.map(k=>[k,k]),'USD')+'</select><a class="btn" href="'+register+'">'+t.register+'</a></div></div></header>'
 }
 function search(l,q){
  const t=copy[l],b=base(l)
@@ -22,9 +22,10 @@ function page(l,u,route,title,body,status=200){
  const href=esc(u.origin+base(l)+route+u.search)
  const alternates=Object.keys(languages).map(k=>'<link rel="alternate" hreflang="'+k+'" href="'+esc(u.origin+base(k)+route+u.search)+'">').join('')
  const t=copy[l]
- return new Response('<!doctype html><html lang="'+l+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+(title==='Superbuy Spreadsheet'?'Superbuy Spreadsheet | Finds, QC Photos &amp; Weidian Links':esc(title)+' | Superbuy Spreadsheet')+'</title><meta name="description" content="'+esc(t.intro)+'"><link rel="canonical" href="'+href+'">'+alternates+'<link rel="alternate" hreflang="x-default" href="'+esc(u.origin+'/'+route+u.search)+'"><link rel="icon" href="'+favicon+'"><style>'+css+'</style>'+analytics+'</head><body>'+header(l,u,route)+'<main class="wrap">'+body+'</main><footer class="wrap foot"><a href="'+(legacy.includes(l)?base(l):'/')+'shipping/">Shipping</a><a href="'+(legacy.includes(l)?base(l):'/')+'qc-guide/">QC Guide</a><a href="'+(legacy.includes(l)?base(l):'/')+'faq/">FAQ</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+moneyScript.toString()+')()</script></body></html>',{status,headers:{'content-type':'text/html;charset=utf-8','cache-control':status===200?'public,max-age=60':'no-store',...(status!==200||u.search?{'x-robots-tag':'noindex,follow'}:{})}})
+ const schema=route?'':'<script type="application/ld+json">'+JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Superbuy Spreadsheet',url:u.origin+'/',potentialAction:{'@type':'SearchAction',target:u.origin+base(l)+'spreadsheet/?q={search_term_string}','query-input':'required name=search_term_string'}})+'</script>'
+ return new Response('<!doctype html><html lang="'+l+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+(title==='Superbuy Spreadsheet'?'Superbuy Spreadsheet | Finds, QC Photos &amp; Weidian Links':esc(title)+' | Superbuy Spreadsheet')+'</title><meta name="description" content="'+esc(t.intro)+'"><link rel="canonical" href="'+href+'">'+alternates+'<link rel="alternate" hreflang="x-default" href="'+esc(u.origin+'/'+route+u.search)+'"><link rel="icon" href="'+favicon+'"><style>'+css+'</style>'+schema+analytics+'</head><body>'+header(l,u,route)+'<main class="wrap">'+body+'</main><footer class="wrap foot"><a href="'+base(l)+'shipping/">'+editorialLabels[l][1]+'</a><a href="'+base(l)+'qc-guide/">'+esc(t.qc)+'</a><a href="'+base(l)+'faq/">'+esc(t.faq)+'</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+moneyScript.toString()+')()</script></body></html>',{status,headers:{'content-type':'text/html;charset=utf-8','cache-control':status===200?'public,max-age=60':'no-store',...(status!==200||u.search?{'x-robots-tag':'noindex,follow'}:{})}})
 }
-async function listing(u,l,route){
+async function listing(u,l,route,env){
  const t=copy[l],b=base(l),q=(u.searchParams.get('q')||'').trim().slice(0,120),sort=u.searchParams.get('sort')||'new',n=Math.max(1,Math.min(25000,parseInt(u.searchParams.get('page'))||1))
  const sorts={new:['new','desc'],popular:['click','desc'],low:['price','asc'],high:['price','desc']}
  const [key,direction]=Object.hasOwn(sorts,sort)?sorts[sort]:sorts.new
@@ -46,12 +47,17 @@ async function listing(u,l,route){
  const links=(p)=>{const next=new URLSearchParams(u.search);for(const [k,v] of Object.entries(p))if(v)next.set(k,v);else next.delete(k);return esc(b+'spreadsheet/?'+next)}
  const buyPath=p=>{const id=byCatalog.get(p.id)?.[1];return /^\d+$/.test(id)?esc(shortBuy(id)):b+'product/'+p.id+'/'}
  const cards=(home?items.slice(0,8):items).map(p=>'<div class="cardset"><a class="card" href="'+buyPath(p)+'"><div class="photo"><img loading="lazy" src="'+esc(p.image)+'" alt="'+esc(localName(p.name,l))+'"></div><h3>'+esc(localName(p.name,l))+'</h3>'+priceTag(p.price,l)+'</a><a class="qc" href="'+b+'photos/'+p.id+'/">'+esc(t.gallery)+' / QC</a></div>').join('')
+ let guide=''
+ if(home&&env.ASSETS){
+  const asset=await env.ASSETS.fetch(new Request(new URL('/home-guides/'+l.toLowerCase()+'.json',u)))
+  if(asset.ok && asset.headers.get('content-type')?.includes('json'))guide=(await asset.json()).sections
+ }
  const title=home?t.hero:t.sheet
  const intro=home?(l==='en'?'Search Superbuy finds by product name or photo. Compare prices, review seller and QC photos where available, and open the matching Weidian item on Superbuy.':t.intro):t.browse
  const filters='<div class="chips">'+(categories||categoriesFrom(html)).filter(c=>!['allproducts','all'].includes(c.id.toLowerCase())).map(c=>'<a href="'+links({cat:c.id,q:'',page:''})+'">'+esc(localName(c.name,l))+'</a>').join('')+'</div>'
  const sortBar='<div class="catalog-menu sort">'+[['new',t.latest],['popular','★'],['low',t.price+' ↑'],['high',t.price+' ↓']].map(([k,v])=>'<a href="'+links({sort:k,page:''})+'">'+esc(v)+'</a>').join('')+'</div>'
  const pager='<div class="pager">'+(n>1?'<a href="'+links({page:n-1})+'">'+t.prev+'</a>':'')+(html.includes('>下一页<')||items.length===60?'<a href="'+links({page:n+1})+'">'+t.next+'</a>':'')+'</div>'
- return page(l,u,route,title,'<section class="listing"><h1>'+esc(title)+'</h1><p>'+esc(intro)+'</p>'+search(l,q)+filters+sortBar+'<div class="cards">'+cards+'</div>'+(!items.length?'<p>'+t.empty+'</p>':'')+(home?'<a class="btn" href="'+b+'spreadsheet/">'+t.browse+'</a>':pager)+'</section>')
+ return page(l,u,route,title,'<section class="listing"><h1>'+esc(title)+'</h1><p>'+esc(intro)+'</p>'+search(l,q)+filters+sortBar+'<div class="cards">'+cards+'</div>'+(!items.length?'<p>'+t.empty+'</p>':'')+(home?'<a class="btn" href="'+b+'spreadsheet/">'+t.browse+'</a>':pager)+'</section>'+guide)
 }
 function official(d){
  if(!/^\d+$/.test(d.marketplaceId))return null
@@ -67,7 +73,7 @@ async function serve(request,env){
  if(u.pathname.startsWith('/visual-api/'))return visualApi(request)
  if(u.pathname==='/favicon.ico'||u.pathname==='/favicon.svg')return Response.redirect(favicon,302)
  try{
-  if(!route||['spreadsheet/','finds/','categories/'].includes(route))return await listing(u,l,route)
+  if(!route||['spreadsheet/','finds/','categories/'].includes(route))return await listing(u,l,route,env)
   if(route==='image-search/')return page(l,u,route,t.imgSearch,visualView({lang:l,t,escape:esc,base:base(l)}))
   if(/^(?:product|photos)\/\d{1,8}\/$/.test(route)){
    const d=await detail(parts[1]),buy=official(d)

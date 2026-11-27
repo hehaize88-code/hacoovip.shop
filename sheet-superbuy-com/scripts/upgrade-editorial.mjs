@@ -4,7 +4,7 @@ import {parse} from 'node-html-parser'
 const root=path.resolve('out')
 const official='https://cdn.superbuy.com/starit-superbuy/dist/img/'
 const register='https://www.superbuy.com/en/page/register/'
-const labels={en:'Register',fr:'Inscription',de:'Registrieren',es:'Registrarse',it:'Registrati',id:'Daftar','zh-cn':'注册'}
+const labels={nl:'Registreren',pt:'Cadastrar-se',pl:'Zarejestruj się',ro:'Înregistrare',sv:'Registrera dig',da:'Tilmeld dig',fi:'Rekisteröidy',el:'Εγγραφή',cs:'Registrace',hu:'Regisztráció',bg:'Регистрация',sk:'Registrácia',hr:'Registracija',ja:'新規登録',ko:'회원가입',vi:'Đăng ký',th:'สมัครสมาชิก',en:'Register',fr:'Inscription',de:'Registrieren',es:'Registrarse',it:'Registrati',id:'Daftar','zh-cn':'注册'}
 function visit(dir){
  for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
   const target=path.join(dir,entry.name)
@@ -30,6 +30,12 @@ function visit(dir){
    const input=form.querySelector('input[name="keywords"]');input?.setAttribute('name','q')
    form.querySelector('input[name="channelid"]')?.remove()
    form.insertAdjacentHTML('beforeend','<a href="'+base+'image-search/" aria-label="Image search">📷</a>')
+  }
+  if(path.relative(root,target)===(lang==='en'?'index.html':lang+'/index.html')){
+   const sections=['.process-section','.latest-guides','.faq-preview'].map(selector=>dom.querySelector(selector)?.toString()||'').join('')
+   const dest=path.join(root,'home-guides')
+   fs.mkdirSync(dest,{recursive:true})
+   fs.writeFileSync(path.join(dest,lang+'.json'),JSON.stringify({sections}))
   }
   fs.writeFileSync(target,dom.toString())
  }
