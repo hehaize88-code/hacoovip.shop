@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import * as browserScripts from './browser-scripts.mjs'
 import {imageReferences} from './visual-data.mjs'
 const read=file=>fs.readFileSync(new URL(file,import.meta.url),'utf8')
 const inject=(name,value)=>'const '+name+'='+JSON.stringify(value)+';\n'
@@ -7,11 +8,13 @@ function wrap(files,bindings){
  const list=bindings.join(',')
  return 'const {'+list+'}=(()=>{\n'+files.map(moduleSource).join('\n')+'\nreturn {'+list+'};})();\n'
 }
+// Preserve browser code before the Worker bundler adds runtime-only helpers.
 const worker=[
+ ...Object.entries(browserScripts).map(([name,fn])=>inject(name+'Source',fn.toString())),
  inject('css',['theme.css','product.css','visual.css'].map(read).join('\n')),
  inject('brandAssets',Object.fromEntries(['logo.png','favicon.png'].map(name=>[name,fs.readFileSync(new URL('./brand/'+name,import.meta.url)).toString('base64')]))),
  inject('seed',JSON.parse(read('rates-seed.json'))),
- wrap(['money.mjs'],['currencies','ratesResponse','priceTag','moneyScript']),
+ wrap(['money.mjs'],['currencies','ratesResponse','priceTag']),
  wrap(['locale-west.mjs'],['westCopy']),
  wrap(['locale-east.mjs'],['eastCopy']),
  wrap(['catalog-locales.mjs','i18n.mjs'],['languages','copy','pageNames','localName','localOption','sourceQuery']),

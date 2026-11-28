@@ -18,45 +18,4 @@ function priceTag(n,lang){
  const formatted=new Intl.NumberFormat(lang,{style:'currency',currency:'USD'}).format(Number(v)/seed.rates.CNY)
  return '<span data-cny="'+v+'">'+formatted+'</span>'
 }
-function moneyScript(){
- const picker=document.querySelector('#currency')
- const fallback=JSON.parse(document.getElementById('rate-seed').textContent)
- let data=fallback
- try{
-  const saved=JSON.parse(sessionStorage.getItem('hipobuy-rates'))
-  if(saved?.rates?.USD===1&&[...picker.options].every(o=>Number(saved.rates[o.value])>0)&&Date.parse(saved.date)>=Date.parse(fallback.date))data=saved
- }catch{}
- function apply(){
-  const currency=picker.value
-  const factor=Number(data.rates[currency])/Number(data.rates.CNY)
-  if(!Number.isFinite(factor)||factor<=0)return
-  const format=new Intl.NumberFormat(document.documentElement.lang,{style:'currency',currency})
-  const date=new Intl.DateTimeFormat(document.documentElement.lang,{dateStyle:'medium'}).format(new Date(data.date))
-  for(const n of document.querySelectorAll('[data-cny]')){
-   n.textContent=format.format(Number(n.dataset.cny)*factor)
-   n.title='CNY / '+currency+' · '+date
-  }
-  const credit=document.querySelector('[data-rate-date]')
-  if(credit)credit.textContent=date
-  try{localStorage.setItem('hipobuy-currency',currency)}catch{}
- }
- let initial='USD'
- try{initial=localStorage.getItem('hipobuy-currency')||'USD'}catch{}
- if([...picker.options].some(o=>o.value===initial))picker.value=initial
- window.addEventListener('currency-refresh',apply)
- const selectors=[...document.querySelectorAll('[data-currency]')]
- for(const select of selectors){
-  select.value=picker.value
-  select.addEventListener('change',()=>{
-   for(const other of selectors)other.value=select.value
-   apply()
-  })
- }
- apply()
- fetch('/exchange-rates.json').then(r=>r.ok?r.json():null).then(fresh=>{
-  if(fresh?.rates?.USD!==1||!(fresh.rates.CNY>0)||!(fresh.rates[picker.value]>0)||Date.parse(fresh.date)<Date.parse(data.date))return
-  data=fresh
-  try{sessionStorage.setItem('hipobuy-rates',JSON.stringify(data))}catch{}
-  apply()
- }).catch(()=>{})
-}
+

@@ -5,12 +5,7 @@ const escape=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>'
 const menuLanguages='en de fr es it nl pt pl ro sv zh-CN da fi el cs hu bg sk hr ja ko vi th id'.split(' ')
 const register='https://hipobuy.com/register'
 const icon='<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg>'
-function bindLanguagePicker(){
- const picker=document.querySelector('.locale-picker')
- const summary=picker.querySelector('summary')
- document.addEventListener('pointerdown',event=>{if(picker.open&&!picker.contains(event.target))picker.open=false})
- picker.addEventListener('keydown',event=>{if(event.key==='Escape'){picker.open=false;summary.focus()}})
-}
+
 async function render(request){
  const url=new URL(request.url), parts=url.pathname.split('/').filter(Boolean)
  if(['/brand/logo.png','/brand/favicon.png'].includes(url.pathname)){
@@ -67,7 +62,7 @@ async function render(request){
  }}
  }else{status=404;body='<section class="notice"><h1>404</h1><a href="'+base+'">'+t.home+'</a></section>'}
  }catch(e){console.error('catalog response:',String(e).slice(0,150));status=e.message==='missing'?404:503;body='<section class="notice"><h1>'+t.error+'</h1><a href="'+escape(url.pathname+url.search)+'">'+t.retry+'</a></section>'}
- const html='<!doctype html><html lang="'+lang+'"><meta charset="utf-8"><link rel="icon" href="/brand/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1">'+(status===200?'<link rel="canonical" href="'+escape(primary+url.pathname+url.search)+'">':'<meta name="robots" content="noindex">')+Object.keys(languages).map(k=>'<link rel="alternate" hreflang="'+k+'" href="'+escape(primary+localizedPath(k))+'">').join('')+'<link rel="alternate" hreflang="x-default" href="'+escape(primary+localizedPath('en'))+'"><title>'+escape(title)+' | HipoBuy</title><style>'+css+'</style><header><div class="wrap"><a class="brand" href="'+base+'"><img src="/brand/logo.png" alt="HipoBuy" width="132" height="33"></a><nav><a href="'+base+'">'+t.home+'</a><a href="'+link()+'">'+t.sheet+'</a><a href="'+base+'categories/">'+t.categories+'</a><a href="'+base+'image-search/">'+t.imgSearch+'</a><a href="'+base+'faq/">'+t.faq+'</a></nav><div class="actions">'+langNav+''+currencySelect('currency')+'<a class="btn" href="'+register+'">'+t.register+'</a></div></div></header><main class="wrap">'+body+'</main><footer class="wrap foot"><strong>'+escape(t.hero)+'</strong><a href="'+base+'faq/">'+t.faq+'</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+bindLanguagePicker.toString()+')();('+moneyScript.toString()+')();</script></html>'
+ const html='<!doctype html><html lang="'+lang+'"><meta charset="utf-8"><link rel="icon" href="/brand/favicon.png"><meta name="viewport" content="width=device-width,initial-scale=1">'+(status===200?'<link rel="canonical" href="'+escape(primary+url.pathname+url.search)+'">':'<meta name="robots" content="noindex">')+Object.keys(languages).map(k=>'<link rel="alternate" hreflang="'+k+'" href="'+escape(primary+localizedPath(k))+'">').join('')+'<link rel="alternate" hreflang="x-default" href="'+escape(primary+localizedPath('en'))+'"><title>'+escape(title)+' | HipoBuy</title><style>'+css+'</style><header><div class="wrap"><a class="brand" href="'+base+'"><img src="/brand/logo.png" alt="HipoBuy" width="132" height="33"></a><nav><a href="'+base+'">'+t.home+'</a><a href="'+link()+'">'+t.sheet+'</a><a href="'+base+'categories/">'+t.categories+'</a><a href="'+base+'image-search/">'+t.imgSearch+'</a><a href="'+base+'faq/">'+t.faq+'</a></nav><div class="actions">'+langNav+''+currencySelect('currency')+'<a class="btn" href="'+register+'">'+t.register+'</a></div></div></header><main class="wrap">'+body+'</main><footer class="wrap foot"><strong>'+escape(t.hero)+'</strong><a href="'+base+'faq/">'+t.faq+'</a><a href="https://www.exchangerate-api.com/">ExchangeRate-API · <span data-rate-date></span></a></footer><script type="application/json" id="rate-seed">'+JSON.stringify(seed)+'</script><script>('+bindLanguagePickerSource+')();('+moneyScriptSource+')();</script></html>'
  return new Response(html,{status,headers:{'x-robots-tag':'noindex, follow','content-type':'text/html; charset=utf-8','cache-control':status===200?'public, max-age=60, s-maxage=300':'no-store'}})
 }
 export default {fetch:render}
