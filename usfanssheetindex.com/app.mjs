@@ -17,11 +17,6 @@ async function render(request){
  if(['/favicon.ico','/favicon.jpg','/favicon.png'].includes(url.pathname))return new Response(Uint8Array.from(atob(favicon),c=>c.charCodeAt(0)),{headers:{'content-type':'image/png'}})
  if(url.pathname==='/brand/logo.webp' && brandLogo)return new Response(Uint8Array.from(atob(brandLogo),v=>v.charCodeAt(0)),{headers:{'content-type':'image/webp','cache-control':'public,max-age=86400'}})
  if(url.pathname==='/')return Response.redirect(primary+'/en/'+url.search,308)
- if(url.pathname==='/robots.txt')return new Response('User-agent: *\nAllow: /\nDisallow: /visual-api/\nSitemap: '+primary+'/sitemap.xml\n',{headers:{'content-type':'text/plain; charset=utf-8'}})
- const xml=(tag,rows)=>new Response('<?xml version="1.0" encoding="UTF-8"?><'+tag+' xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+rows+'</'+tag+'>',{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public,max-age=3600'}})
- if(url.pathname==='/sitemap.xml')return xml('sitemapindex',Object.keys(languages).map(k=>'<sitemap><loc>'+primary+'/sitemap-'+k+'.xml</loc></sitemap>').join(''))
- const map=url.pathname.match(/^\/sitemap-([a-zA-Z-]+)\.xml$/)
- if(map&&Object.hasOwn(languages,map[1]))return xml('urlset',['','spreadsheet/','categories/','image-search/','faq/',...Object.keys(imageNames).filter(id=>/^\d+$/.test(id)).map(id=>'product/'+id+'/')].map(path=>'<url><loc>'+primary+'/'+map[1]+'/'+path+'</loc></url>').join(''))
  if(url.pathname.startsWith('/visual-api/'))return visualApi(request)
  const lang=Object.hasOwn(languages,parts[0])?parts[0]:'en', t=copy[lang]
  const route=parts[1]||'home',base='/'+lang+'/', q=(url.searchParams.get('q')||'').slice(0,120),cat=url.searchParams.get('cat')||'',page=Math.max(1,Math.min(10000,parseInt(url.searchParams.get('page'))||1))
