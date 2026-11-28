@@ -1,0 +1,10 @@
+{
+  "name": "usfanssheetindex-com",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-11-28",
+  "build": {"command": "npm run build"},
+  "routes": [
+    {"pattern":"usfanssheetindex.com","custom_domain":true},
+    {"pattern":"www.usfanssheetindex.com","custom_domain":true}
+  ]
+}
